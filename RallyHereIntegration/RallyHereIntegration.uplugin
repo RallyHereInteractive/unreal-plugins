@@ -1,0 +1,49 @@
+{
+    "FileVersion": 3,
+    "FriendlyName": "Rally Here Integration",
+    "Version": 1,
+    "VersionName": "1.0",
+    "CreatedBy": "HiRez Studios, Inc.",
+    "CreatedByURL": "hirezstudios.com",
+    "Description": "Rally Here Integration of the API with recommended usage",
+    "Category": "Hirez",
+    "EnabledByDefault": false,
+
+    "Modules": [
+        {
+            "Name": "RallyHereIntegration",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "AdditionalDependencies": [
+                "RallyHereA2S"
+            ]
+        }
+    ],
+
+	"Plugins": [
+		{
+			"Name": "OnlineFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "RallyHereAPI",
+			"Enabled": true
+		},
+		{
+			"Name": "WebAuth",
+			"Enabled": true
+		},
+		{
+			"Name": "RallyHereA2S",
+			"Enabled": true
+		}
+	]
+}

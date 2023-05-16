@@ -1,0 +1,958 @@
+#include "RH_LocalPlayerLoginSubsystem.h"
+#include "GenericPlatform/GenericPlatformChunkInstall.h"
+#include "Misc/ConfigCacheIni.h"
+#include "RallyHereIntegrationModule.h"
+#include "OnlineSubsystem.h"
+#include "Online.h"
+#include "RH_LocalPlayerSubsystem.h"
+#include "RH_OnlineSubsystemNames.h"
+#include "WebAuthModule.h"
+#include "Engine/LocalPlayer.h"
+#include "Misc/CommandLine.h"
+#include "UObject/Package.h"
+
+FString ToString(ERHAPI_LoginResult Val)
+{
+    return RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERHAPI_LoginResult", Val);
+}
+
+FString ToString(ERHAPI_LocalPlayerLoginOSS Val)
+{
+    return RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERHAPI_LocalPlayerLoginOSS", Val);
+}
+
+void URH_LocalPlayerLoginSubsystem::Initialize()
+{
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	Super::Initialize();
+}
+
+void URH_LocalPlayerLoginSubsystem::Deinitialize()
+{
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	Super::Deinitialize();
+}
+
+FString URH_LocalPlayerLoginSubsystem::GetSavedCredentialEnvironment(FName OSSName) const
+{
+    return SavedCredentialPrefix
+        + TEXT("__") + OSSName.ToString()
+        + TEXT("__") + FPlatformProcess::ExecutableName()
+        + TEXT("__") + FRallyHereIntegrationModule::Get().GetSandboxId()
+        + TEXT("__") + FRallyHereIntegrationModule::Get().GetBaseURL();
+}
+
+bool URH_LocalPlayerLoginSubsystem::ShouldUseSavedCredentials() const
+{
+    if (!bLoginAllowStoredRefreshToken)
+    {
+        return false;
+    }
+
+    for (const auto& Key : IgnoreSavedCredentialsCommandLineKeys)
+    {
+        bool bIgnore;
+        if (FParse::Bool(FCommandLine::Get(), *Key, bIgnore) && bIgnore)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+IOnlineSubsystem* URH_LocalPlayerLoginSubsystem::GetLoginOSS() const
+{
+    return GetLocalPlayerSubsystem()->GetOSS(LoginOSSName);
+}
+
+IOnlineSubsystem* URH_LocalPlayerLoginSubsystem::GetNicknameOSS() const
+{
+    if (NicknameOSSName.IsNone())
+    {
+        return GetLoginOSS();
+    }
+    return GetLocalPlayerSubsystem()->GetOSS(NicknameOSSName);
+}
+
+IOnlineSubsystem* URH_LocalPlayerLoginSubsystem::GetOSS(ERHAPI_LocalPlayerLoginOSS OSSType) const
+{
+    switch (OSSType)
+    {
+    case ERHAPI_LocalPlayerLoginOSS::Login:
+        return GetLoginOSS();
+    case ERHAPI_LocalPlayerLoginOSS::Nickname:
+        return GetNicknameOSS();
+    default:
+        return nullptr;
+    }
+}
+
+FRH_LoginResult URH_LocalPlayerLoginSubsystem::FRH_PendingLoginRequest::CreateResult(ERHAPI_LoginResult ResultType) const
+{
+    FRH_LoginResult Result{};
+    Result.Result = ResultType;
+    Result.OSSType = LoginPhase;
+    Result.OSSUniqueId = OSSUniqueId;
+    Result.NicknameOSSUniqueId = NicknameOSSUniqueId;
+    return Result;
+}
+
+void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, const FRH_LoginResult& Res)
+{
+    switch (Res.Result)
+    {
+    case ERHAPI_LoginResult::Fail_OSSLogin:
+    case ERHAPI_LoginResult::Fail_OSSNeedsProfile:
+    case ERHAPI_LoginResult::Fail_RHDenied:
+    case ERHAPI_LoginResult::Fail_RHUnknown:
+        if (ShouldUseSavedCredentials() && FWebAuthModule::Get().IsAvailable())
+        {
+            const auto LoginOSS = GetLoginOSS();
+
+            if (LoginOSS != nullptr)
+            {
+                // If this was a refresh token login that failed, then whatever refresh data we have is invalid.
+                // Clear that data, run a logout (so the user must login again), and run through the process again.
+                FWebAuthModule::Get().GetWebAuth().SaveCredentials(Req.OSSUniqueId->ToString(), FString{},
+                                                                   GetSavedCredentialEnvironment(LoginOSS->GetInstanceName()));
+            }
+        	
+            if (bLogoutAndRetryLoginIfRefreshLoginFailed && !Req.CredentialRefreshToken.IsEmpty())
+            {
+                const auto Identity = LoginOSS ? LoginOSS->GetIdentityInterface() : nullptr;
+                if (Identity.IsValid() && Identity->Logout(
+                    GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId()))
+                {
+                    UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Logged out and retrying login"),
+                           ANSI_TO_TCHAR(__FUNCTION__));
+                    Req.CredentialRefreshToken.Empty();
+                    DoLoginOSSLogin(Req);
+                    return;
+                }
+            }
+        }
+        break;
+    }
+
+    Req.OnLoginComplete.ExecuteIfBound(Res);
+}
+
+void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcceptTOS, bool bAcceptPP,
+                                                    FRH_OnLoginComplete OnLoginComplete)
+{
+    FOnlineAccountCredentials Credentials;
+    FParse::Value(FCommandLine::Get(), TEXT("AUTH_TYPE="), Credentials.Type);
+    FParse::Value(FCommandLine::Get(), TEXT("AUTH_LOGIN="), Credentials.Id);
+    FParse::Value(FCommandLine::Get(), TEXT("AUTH_PASSWORD="), Credentials.Token);
+
+    const auto LoginOSS = GetLoginOSS();
+    if (LoginOSS && LoginOSS->GetSubsystemName() == SWITCH_SUBSYSTEM)
+    {
+        Credentials.Type = TEXT("NintendoAccount");
+    }
+
+    FString SavedUserId, SavedRefreshToken;
+    if (ShouldUseSavedCredentials() && FWebAuthModule::Get().IsAvailable())
+    {
+        if (LoginOSS && FWebAuthModule::Get().GetWebAuth().LoadCredentials(SavedUserId, SavedRefreshToken,
+                                                               GetSavedCredentialEnvironment(LoginOSS->GetInstanceName())))
+        {
+            Credentials.Id = SavedUserId;
+        }
+        else
+        {
+            SavedRefreshToken.Empty();
+        }
+    }
+
+    SubmitLogin(Credentials, SavedRefreshToken, bAcceptEULA, bAcceptTOS, bAcceptPP, OnLoginComplete);
+}
+
+void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials& Credentials,
+                                                FString CredentialRefreshToken, bool bAcceptEULA, bool bAcceptTOS,
+                                                bool bAcceptPP, FRH_OnLoginComplete OnLoginComplete)
+{
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+    FRH_PendingLoginRequest Req;
+    Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::Login;
+    Req.Credentials = Credentials;
+    Req.CredentialRefreshToken = MoveTemp(CredentialRefreshToken);
+    Req.bAcceptEULA = bAcceptEULA;
+    Req.bAcceptTOS = bAcceptTOS;
+    Req.bAcceptPP = bAcceptPP;
+    Req.OnLoginComplete = MoveTemp(OnLoginComplete);
+    DoShowLoginOSSLoginUI(Req);
+}
+
+void URH_LocalPlayerLoginSubsystem::DoShowLoginOSSLoginUI(FRH_PendingLoginRequest& Req)
+{
+    if (!bLoginOSSRequireLoginUIFirst)
+    {
+        DoLoginOSSLogin(Req);
+        return;
+    }
+
+    const bool bSuccess = ShowLoginProfileSelectionUI(
+        false,
+        FRH_OnProfileSelectionUIClosed::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::LoginOSSLoginUIClosed, Req),
+        ERHAPI_LocalPlayerLoginOSS::Login);
+    if (!bSuccess)
+    {
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSLoginUINotShown));
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::DoShowNicknameOSSLoginUI(FRH_PendingLoginRequest& Req)
+{
+    Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::Nickname;
+    if (!bNicknameOSSRequireLoginUIFirst)
+    {
+        DoNicknameOSSLogin(Req);
+        return;
+    }
+
+    const bool bSuccess = ShowLoginProfileSelectionUI(
+        false,
+        FRH_OnProfileSelectionUIClosed::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::NicknameOSSLoginUIClosed, Req),
+        ERHAPI_LocalPlayerLoginOSS::Nickname);
+    if (!bSuccess)
+    {
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSLoginUINotShown));
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::LoginOSSLoginUIClosed(TSharedPtr<const FUniqueNetId> UniqueId,
+                           const FOnlineError& Error,
+                           FRH_PendingLoginRequest Req)
+{
+    if (Error.WasSuccessful() && UniqueId.IsValid())
+    {
+        Req.OSSUniqueId = UniqueId;
+        DoLoginOSSLogin(Req);
+    }
+    else
+    {
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSLoginUINoUserSelected);
+        Result.OSSErrorMessage = Error.ToLogString();
+        PostResults(Req, Result);
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::NicknameOSSLoginUIClosed(TSharedPtr<const FUniqueNetId> UniqueId,
+                               const FOnlineError& Error,
+                               FRH_PendingLoginRequest Req)
+{
+    if (Error.WasSuccessful() && UniqueId.IsValid())
+    {
+        Req.NicknameOSSUniqueId = UniqueId;
+        DoNicknameOSSLogin(Req);
+    }
+    else
+    {
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSLoginUINoUserSelected);
+        Result.OSSErrorMessage = Error.ToLogString();
+        PostResults(Req, Result);
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::DoLoginOSSLogin(FRH_PendingLoginRequest& Req)
+{
+#if WITH_HIREZ_ENGINE
+    if (!bLoginDuringPartialInstall)
+    {
+        IPlatformChunkInstall* pChunkInstall = FPlatformMisc::GetPlatformChunkInstall();
+        if (pChunkInstall != nullptr && !pChunkInstall->AreAllChunksInstalled())
+        {
+            UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Installation incomplete"), ANSI_TO_TCHAR(__FUNCTION__));
+            PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_PartialInstall));
+            return;
+        }
+    }
+#endif
+
+    DoOSSLogin(Req, GetLoginOSS(), &URH_LocalPlayerLoginSubsystem::OSSLoginComplete);
+}
+
+void URH_LocalPlayerLoginSubsystem::DoNicknameOSSLogin(FRH_PendingLoginRequest& Req)
+{
+    auto LoginOSS = GetLoginOSS();
+    auto NicknameOSS = GetNicknameOSS();
+    if (LoginOSS == NicknameOSS)
+    {
+        DoRallyHereLogin(Req);
+    }
+    else
+    {
+        DoOSSLogin(Req, NicknameOSS, &URH_LocalPlayerLoginSubsystem::OSSNicknameLoginComplete);
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::DoOSSLogin(FRH_PendingLoginRequest& Req, IOnlineSubsystem* OSS,
+                                               OSSLoginCompleteFn OnComplete)
+{
+    auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+    if (!Identity.IsValid())
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Missing OSS Identity - check that the OSS is valid"),
+               ANSI_TO_TCHAR(__FUNCTION__));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSMissing));
+        return;
+    }
+
+    if (OnOSSLoginCompleteDelegateHandle.IsValid())
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS Login already pending"), ANSI_TO_TCHAR(__FUNCTION__));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_LoginAlreadyPending));
+        return;
+    }
+
+    int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
+    if (OSS->GetSubsystemName() == SWITCH_SUBSYSTEM)
+    {
+        FString ForcedUserAccountMode;
+        if (GConfig->GetString(
+                TEXT("/Script/SwitchRuntimeSettings.SwitchRuntimeSettings"), TEXT("StartupAccountMode"),
+                ForcedUserAccountMode, GEngineIni)
+            && ForcedUserAccountMode != TEXT("None"))
+        {
+            // If we're using any Startup Account Mode, then we always handle login events as ControllerId 0
+            ControllerId = 0;
+        }
+    }
+
+    OnOSSLoginCompleteDelegateHandle = Identity->AddOnLoginCompleteDelegate_Handle(
+        ControllerId, FOnLoginCompleteDelegate::CreateUObject(this, OnComplete, Req));
+    Identity->Login(ControllerId, Req.Credentials);
+}
+
+void URH_LocalPlayerLoginSubsystem::OSSLoginComplete(int32 ControllerId,
+                                                     bool bSuccessful,
+                                                     const FUniqueNetId& UniqueId,
+                                                     const FString& ErrorMessage,
+                                                     FRH_PendingLoginRequest Req)
+{
+    const auto bSuccess = OnOSSLoginComplete(ControllerId,
+                                             bSuccessful,
+                                             UniqueId,
+                                             ErrorMessage,
+                                             Req,
+                                             GetLoginOSS(),
+                                             &FRH_PendingLoginRequest::OSSUniqueId,
+                                             bLoginOSSRequireValidUserIdForFailedLogin);
+    if (bSuccess)
+    {
+        DoLoginOSSPrivilegeCheck(Req);
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::OSSNicknameLoginComplete(int32 ControllerId,
+                                                             bool bSuccessful,
+                                                             const FUniqueNetId& UniqueId,
+                                                             const FString& ErrorMessage,
+                                                             FRH_PendingLoginRequest Req)
+{
+    const auto bSuccess = OnOSSLoginComplete(ControllerId,
+                                             bSuccessful,
+                                             UniqueId,
+                                             ErrorMessage,
+                                             Req,
+                                             GetNicknameOSS(),
+                                             &FRH_PendingLoginRequest::NicknameOSSUniqueId,
+                                             bNicknameOSSRequireValidUserIdForFailedLogin);
+    if (bSuccess)
+    {
+        DoNicknameOSSPrivilegeCheck(Req);
+    }
+}
+
+bool URH_LocalPlayerLoginSubsystem::OnOSSLoginComplete(int32 ControllerId,
+                                                       bool bSuccessful,
+                                                       const FUniqueNetId& UserId,
+                                                       const FString& ErrorMessage,
+                                                       FRH_PendingLoginRequest& Req,
+                                                       IOnlineSubsystem* OSS,
+                                                       PendingLoginUniqueIdRef UniqueIdPtr,
+                                                       bool bOSSRequireValidUserIdForFailedLogin)
+{
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+    auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+    if (!Identity.IsValid())
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Missing OSS Identity - check that the OSS is valid"),
+               ANSI_TO_TCHAR(__FUNCTION__));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSMissing));
+        return false;
+    }
+
+    // clear the delegate, because the controller id may change next time
+    Identity->ClearOnLoginCompleteDelegate_Handle(ControllerId, OnOSSLoginCompleteDelegateHandle);
+    OnOSSLoginCompleteDelegateHandle.Reset();
+
+    if (!bSuccessful)
+    {
+        if (bOSSRequireValidUserIdForFailedLogin && !UserId.IsValid())
+        {
+            UE_LOG(LogRallyHereIntegration, Error,
+                   TEXT("[%s] OSS Login Failed - user is missing.  Need to prompt for profile selection"),
+                   ANSI_TO_TCHAR(__FUNCTION__));
+            FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSNeedsProfile);
+            Result.OSSErrorMessage = ErrorMessage;
+            PostResults(Req, Result);
+            return false;
+        }
+
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS Login Failed"), ANSI_TO_TCHAR(__FUNCTION__));
+        Req.*UniqueIdPtr = Identity->GetUniquePlayerId(ControllerId);
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSLogin);
+        Result.OSSErrorMessage = ErrorMessage;
+        PostResults(Req, Result);
+        return false;
+    }
+
+    // For whatever reason, the OSS interface doesn't return a SharedPtr to the identity here, so we have to recreate it to forward.
+    Req.*UniqueIdPtr = Identity->GetUniquePlayerId(ControllerId);
+    if (Identity->GetLoginStatus(*(Req.*UniqueIdPtr)) != ELoginStatus::LoggedIn)
+    {
+        UE_LOG(LogRallyHereIntegration, Error,
+               TEXT("[%s] OSS Login Failed - user is not logged in.  Need to prompt for profile selection"),
+               ANSI_TO_TCHAR(__FUNCTION__));
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSNeedsProfile);
+        Result.OSSErrorMessage = ErrorMessage;
+        PostResults(Req, Result);
+        return false;
+    }
+
+    if (bResolveRallyHereBaseURLAfterOSSLogin)
+    {
+		FRallyHereIntegrationModule::Get().ResolveSandboxId(); // force re-resolve resolve sandbox (can change during login process on Sony systems)
+        FRallyHereIntegrationModule::Get().ResolveBaseURL(); // force re-resolve base URL
+    }
+
+    return true;
+}
+
+bool URH_LocalPlayerLoginSubsystem::ShowLoginProfileSelectionUI(bool bShowOnlineOnly,
+                                                                FRH_OnProfileSelectionUIClosed OnClosed,
+                                                                ERHAPI_LocalPlayerLoginOSS OSSType)
+{
+    auto OSS = GetOSS(OSSType);
+    auto ExternalUI = OSS ? OSS->GetExternalUIInterface() : nullptr;
+    if (!ExternalUI)
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Missing OSS ExternalUI - check that the OSS is valid"),
+               ANSI_TO_TCHAR(__FUNCTION__));
+        return false;
+    }
+
+    const int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
+    const bool bShow = ExternalUI->ShowLoginUI(ControllerId,
+                                               bShowOnlineOnly,
+                                               false,
+                                               FOnLoginUIClosedDelegate::CreateUObject(
+                                                   this, &URH_LocalPlayerLoginSubsystem::ExternalUI_ShowLoginUIClosed,
+                                                   OnClosed));
+    if (bShow)
+    {
+        UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Showing"), ANSI_TO_TCHAR(__FUNCTION__));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Error showing"), ANSI_TO_TCHAR(__FUNCTION__));
+    }
+    return bShow;
+}
+
+void URH_LocalPlayerLoginSubsystem::ExternalUI_ShowLoginUIClosed(TSharedPtr<const FUniqueNetId> UniqueId,
+                                                                 const int ControllerIndex,
+                                                                 const FOnlineError& Error,
+                                                                 FRH_OnProfileSelectionUIClosed OnClosed)
+{
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+    OnClosed.ExecuteIfBound(UniqueId, Error);
+}
+
+void URH_LocalPlayerLoginSubsystem::DoLoginOSSPrivilegeCheck(FRH_PendingLoginRequest& Req)
+{
+    if (!bLoginOSSRequireOnlinePlayToLogin)
+    {
+        UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Submitting RallyHereLogin"), ANSI_TO_TCHAR(__FUNCTION__));
+        DoShowNicknameOSSLoginUI(Req);
+        return;
+    }
+    DoOSSPrivilegeCheck(Req, GetLoginOSS(), &FRH_PendingLoginRequest::OSSUniqueId,
+                        &URH_LocalPlayerLoginSubsystem::OnLoginOSSPrivilegeResults);
+}
+
+void URH_LocalPlayerLoginSubsystem::DoNicknameOSSPrivilegeCheck(FRH_PendingLoginRequest& Req)
+{
+    if (!bNicknameOSSRequireOnlinePlayToLogin)
+    {
+        DoRallyHereLogin(Req);
+        return;
+    }
+    DoOSSPrivilegeCheck(Req, GetNicknameOSS(), &FRH_PendingLoginRequest::NicknameOSSUniqueId,
+                        &URH_LocalPlayerLoginSubsystem::OnNicknameOSSPrivilegeResults);
+}
+
+void URH_LocalPlayerLoginSubsystem::DoOSSPrivilegeCheck(FRH_PendingLoginRequest& Req,
+                                                        IOnlineSubsystem* OSS,
+                                                        PendingLoginUniqueIdRef UniqueIdPtr,
+                                                        OSSPrivilegeResultsFn OnPrivilegeResults)
+{
+    auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+    if (!Identity.IsValid())
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Missing OSS Identity - check that the OSS is valid"),
+               ANSI_TO_TCHAR(__FUNCTION__));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSMissing));
+        return;
+    }
+
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] OSS CanPlayOnline privilege check started"),
+           ANSI_TO_TCHAR(__FUNCTION__));
+    Identity->GetUserPrivilege(*(Req.*UniqueIdPtr),
+                               EUserPrivileges::CanPlayOnline,
+                               IOnlineIdentity::FOnGetUserPrivilegeCompleteDelegate::CreateUObject(
+                                   this, OnPrivilegeResults, Req));
+}
+
+void URH_LocalPlayerLoginSubsystem::OnLoginOSSPrivilegeResults(const FUniqueNetId& UniqueId,
+                                                               EUserPrivileges::Type Privilege, uint32 PrivilegeResults,
+                                                               FRH_PendingLoginRequest Req)
+{
+    const bool bSuccess = OnOSSPrivilegeResults(UniqueId,
+                                                Privilege,
+                                                PrivilegeResults,
+                                                Req,
+                                                GetLoginOSS(),
+                                                bLoginOSSPromptAccountUpgradeIfInsufficient);
+    if (bSuccess)
+    {
+        DoShowNicknameOSSLoginUI(Req);
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::OnNicknameOSSPrivilegeResults(const FUniqueNetId& UniqueId,
+                                                                  EUserPrivileges::Type Privilege,
+                                                                  uint32 PrivilegeResults, FRH_PendingLoginRequest Req)
+{
+    const bool bSuccess = OnOSSPrivilegeResults(UniqueId,
+                                                Privilege,
+                                                PrivilegeResults,
+                                                Req,
+                                                GetNicknameOSS(),
+                                                bNicknameOSSPromptAccountUpgradeIfInsufficient);
+    if (bSuccess)
+    {
+        DoRallyHereLogin(Req);
+    }
+}
+
+bool URH_LocalPlayerLoginSubsystem::OnOSSPrivilegeResults(const FUniqueNetId& UserId,
+                                                          EUserPrivileges::Type Privilege,
+                                                          uint32 PrivilegeResults,
+                                                          FRH_PendingLoginRequest Req,
+                                                          IOnlineSubsystem* OSS,
+                                                          bool bPromptForAccountUpgradeIfInsufficient)
+{
+    auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+    if (!Identity.IsValid())
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Missing OSS Identity - check that the OSS is valid"),
+               ANSI_TO_TCHAR(__FUNCTION__));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSMissing));
+        return false;
+    }
+
+    if ((IOnlineIdentity::EPrivilegeResults)PrivilegeResults == IOnlineIdentity::EPrivilegeResults::NoFailures)
+    {
+        const auto LoginStatus = Identity->GetLoginStatus(UserId);
+        if (LoginStatus != ELoginStatus::LoggedIn)
+        {
+            UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] User logged out (%s) during privilege check"),
+                   ANSI_TO_TCHAR(__FUNCTION__), ToString(LoginStatus));
+            FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSLogout);
+            Result.PrivilegeResults = PrivilegeResults;
+            PostResults(Req, Result);
+            return false;
+        }
+
+        UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] All Privileges valid"), ANSI_TO_TCHAR(__FUNCTION__));
+        return true;
+    }
+    else if (PrivilegeResults & (uint32)IOnlineIdentity::EPrivilegeResults::AccountTypeFailure)
+    {
+        if (bPromptForAccountUpgradeIfInsufficient)
+        {
+            auto ExternalUI = OSS ? OSS->GetExternalUIInterface() : nullptr;
+            if (ExternalUI.IsValid())
+            {
+                ExternalUI->ShowAccountUpgradeUI(UserId);
+            }
+        }
+
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Showing account upgrade UI"), ANSI_TO_TCHAR(__FUNCTION__));
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSAccountTypeNotSufficient);
+        Result.PrivilegeResults = PrivilegeResults;
+        PostResults(Req, Result);
+        return false;
+    }
+    else if (PrivilegeResults & (uint32)IOnlineIdentity::EPrivilegeResults::AgeRestrictionFailure)
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] User is age restricted"), ANSI_TO_TCHAR(__FUNCTION__));
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSAgeRestriction);
+        Result.PrivilegeResults = PrivilegeResults;
+        PostResults(Req, Result);
+        return false;
+    }
+    else if (PrivilegeResults & ((uint32)IOnlineIdentity::EPrivilegeResults::UserNotFound | (uint32)
+        IOnlineIdentity::EPrivilegeResults::UserNotLoggedIn))
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] User not found"), ANSI_TO_TCHAR(__FUNCTION__));
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSUserNotFound);
+        Result.PrivilegeResults = PrivilegeResults;
+        PostResults(Req, Result);
+        return false;
+    }
+    else
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unknown privilege check failure %d"),
+               ANSI_TO_TCHAR(__FUNCTION__), PrivilegeResults);
+        FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSPrivilegeCheck);
+        Result.PrivilegeResults = PrivilegeResults;
+        PostResults(Req, Result);
+        return false;
+    }
+}
+
+TOptional<ERHAPI_GrantType> URH_LocalPlayerLoginSubsystem::GetGrantType(FName OSSName) const
+{
+    if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::Steam;
+    }
+    else if (OSSName == EPIC_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::Epic;
+    }
+    else if (OSSName == PS4_SUBSYSTEM)
+    {
+        bool bUseCrossGenAuth = false;
+        if (GConfig->GetBool(TEXT("/Script/PS4PlatformEditor.PS4TargetSettings"), TEXT("bUseCrossGenAuthentication"), bUseCrossGenAuth, GEngineIni) && bUseCrossGenAuth)
+        {
+            return ERHAPI_GrantType::PS4V3;
+        }
+        return ERHAPI_GrantType::PS4V1;
+    }
+    else if (OSSName == PS5_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::PS5V3;
+    }
+    else if (OSSName == LIVE_SUBSYSTEM || OSSName == GDK_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::Xboxlive;
+    }
+    else if (OSSName == SWITCH_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::NintendoSwitch;
+    }
+    else if (OSSName == APPLE_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::Apple;
+    }
+    else if (OSSName == GOOGLE_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::Google;
+    }
+    else if (OSSName == ANON_SUBSYSTEM)
+    {
+        return ERHAPI_GrantType::Anon;
+    }
+    else
+    {
+        return {};
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Req)
+{
+    Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::None;
+
+    auto LoginOSS = GetLoginOSS();
+    auto LoginIdentity = LoginOSS ? LoginOSS->GetIdentityInterface() : nullptr;
+    if (!LoginIdentity)
+    {
+        UE_LOG(LogRallyHereIntegration, Error,
+               TEXT("[%s] Missing OSS Identity - check that the login OSS '%s' is valid"), ANSI_TO_TCHAR(__FUNCTION__),
+               LoginOSS ? *LoginOSS->GetSubsystemName().ToString() : TEXT("NotFound"));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSMissing));
+        return;
+    }
+
+    int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
+
+    RallyHereAPI::FRequest_Login Request;
+    Request.SetShouldRetry();
+    Request.AuthContext = GetAuthContext();
+    Request.BodyLoginV1LoginPost.SetIncludeRefresh(true);
+    Request.BodyLoginV1LoginPost.SetAcceptEula(Req.bAcceptEULA);
+    Request.BodyLoginV1LoginPost.SetAcceptTos(Req.bAcceptTOS);
+    Request.BodyLoginV1LoginPost.SetAcceptPrivacyPolicy(Req.bAcceptPP);
+    if (Req.CredentialRefreshToken.IsEmpty())
+    {
+        auto NicknameOSS = GetNicknameOSS();
+        auto NicknameIdentity = NicknameOSS ? NicknameOSS->GetIdentityInterface() : nullptr;
+        if (!NicknameIdentity.IsValid())
+        {
+            NicknameIdentity = LoginIdentity;
+        }
+
+        auto GrantType = GetGrantType(LoginOSS->GetSubsystemName());
+        if (!GrantType)
+        {
+            UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find grant type for OSS '%s'."),
+                   ANSI_TO_TCHAR(__FUNCTION__), *LoginOSS->GetSubsystemName().ToString());
+            PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSNotSupported));
+            return;
+        }
+
+        Request.BodyLoginV1LoginPost.GrantType = *GrantType;
+        Request.BodyLoginV1LoginPost.PortalAccessToken = LoginIdentity->GetAuthToken(ControllerId);
+        Request.BodyLoginV1LoginPost.SetPortalDisplayName(NicknameIdentity->GetPlayerNickname(ControllerId));
+
+        UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Login OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
+               ANSI_TO_TCHAR(__FUNCTION__),
+               *LoginOSS->GetInstanceName().ToString(),
+               *LoginOSS->GetSubsystemName().ToString(),
+               ToString(LoginIdentity->GetLoginStatus(ControllerId)),
+               *LoginIdentity->GetPlayerNickname(ControllerId),
+               *LoginIdentity->GetUniquePlayerId(ControllerId)->ToDebugString());
+        UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Nickname OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
+               ANSI_TO_TCHAR(__FUNCTION__),
+               NicknameOSS ? *NicknameOSS->GetInstanceName().ToString() : *LoginOSS->GetInstanceName().ToString(),
+               NicknameOSS ? *NicknameOSS->GetSubsystemName().ToString() : *LoginOSS->GetSubsystemName().ToString(),
+               ToString(NicknameIdentity->GetLoginStatus(ControllerId)),
+               *NicknameIdentity->GetPlayerNickname(ControllerId),
+               *NicknameIdentity->GetUniquePlayerId(ControllerId)->ToDebugString());
+    }
+    else
+    {
+        Request.BodyLoginV1LoginPost.GrantType = ERHAPI_GrantType::Refresh;
+        Request.BodyLoginV1LoginPost.PortalAccessToken = Req.CredentialRefreshToken;
+    }
+
+	if (auto UserAccount = LoginIdentity->GetUserAccount(*Req.OSSUniqueId))
+	{
+		FString IDToken;
+		if (UserAccount->GetAuthAttribute(AUTH_ATTR_ID_TOKEN, IDToken))
+		{
+			if (bLoginOSSUseIDTokenAsPortalParentAccessToken)
+			{
+				Request.BodyLoginV1LoginPost.SetPortalParentAccessToken(IDToken);
+			}
+			else if (bLoginOSSUseIDTokenAsPortalAccessToken)
+			{
+				Request.BodyLoginV1LoginPost.PortalAccessToken = IDToken;
+			}
+		}
+	}
+	
+    UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Login request"),
+           ANSI_TO_TCHAR(__FUNCTION__));
+    auto HttpRequest = RH_APIs::GetAPIs().GetAuth().Login(Request,
+		                                                                                         RallyHereAPI::FDelegate_Login::CreateUObject(
+		                                                                                             this,
+		                                                                                             &URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete,
+		                                                                                             Req));
+    if (!HttpRequest)
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Failed to create request"), ANSI_TO_TCHAR(__FUNCTION__));
+    }
+}
+
+const TCHAR* GetBoolStr(bool b)
+{
+    return b ? TEXT("True") : TEXT("False");
+}
+
+void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::FResponse_Login& Resp,
+                                                           FRH_PendingLoginRequest Req)
+{
+	auto AuthContext = GetLocalPlayerSubsystem()->GetAuthContext();
+    if (!AuthContext.IsValid())
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] AuthContext is null"), ANSI_TO_TCHAR(__FUNCTION__));
+        return;
+    }
+
+    AuthContext->ProcessLogin(Resp);
+    if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Ok)
+    {
+        if (ShouldUseSavedCredentials() && FWebAuthModule::Get().IsAvailable())
+        {
+            // Store the refresh token in secure storage for subsequent logins
+            auto& RHLoginResult = AuthContext->GetLoginResult();
+        	FString RefreshToken;
+            if (RHLoginResult.IsSet() && RHLoginResult->GetRefreshToken(RefreshToken) && !RefreshToken.IsEmpty())
+            {
+                const auto LoginOSS = GetLoginOSS();
+                const FName OSSName = LoginOSS ? LoginOSS->GetInstanceName() : NAME_None;
+                FWebAuthModule::Get().GetWebAuth().SaveCredentials(Req.OSSUniqueId->ToString(),
+                                                                   *RefreshToken,
+                                                                   GetSavedCredentialEnvironment(OSSName));
+            }
+        }
+
+		CheckCrossplayPrivilege(*Req.OSSUniqueId);
+		CheckCommunicationPrivilege(*Req.OSSUniqueId);
+		FCoreDelegates::ApplicationHasReactivatedDelegate.AddUObject(this, &URH_LocalPlayerLoginSubsystem::HandleAppReactivated);
+
+        UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Success"), ANSI_TO_TCHAR(__FUNCTION__));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Success));
+    }
+    else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Denied || Resp.GetHttpResponseCode() ==
+        EHttpResponseCodes::Forbidden)
+    {
+        FString Content = Resp.GetHttpResponse()->GetContentAsString();
+        TSharedPtr<FJsonValue> JsonValue;
+        auto Reader = TJsonReaderFactory<>::Create(Content);
+        if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
+        {
+            FRHAPI_AgreementMessage Msg;
+            Msg.FromJson(JsonValue);
+        	bool NeedsEula = false, NeedsTos = false, NeedsPrivacyPolicy = false;
+            if ((Msg.GetNeedsEula(NeedsEula) && NeedsEula) || (Msg.GetNeedsTos(NeedsTos) && NeedsTos) ||
+            	(Msg.GetNeedsPrivacyPolicy(NeedsPrivacyPolicy) && NeedsPrivacyPolicy))
+            {
+                FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_MustAcceptAgreements);
+                Result.bMustAcceptEULA = NeedsEula;
+                Result.bMustAcceptTOS = NeedsTos;
+                Result.bMustAcceptPP = NeedsPrivacyPolicy;
+                UE_LOG(LogRallyHereIntegration,
+                       Log,
+                       TEXT("[%s] User needs to accept eula=%s tos=%s pp=%s"),
+                       ANSI_TO_TCHAR(__FUNCTION__),
+                       GetBoolStr(Result.bMustAcceptEULA),
+                       GetBoolStr(Result.bMustAcceptTOS),
+                       GetBoolStr(Result.bMustAcceptPP));
+                PostResults(Req, Result);
+                return;
+            }
+        }
+
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Denied with content: %s"), ANSI_TO_TCHAR(__FUNCTION__),
+               *Content);
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_RHDenied));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unknown error (%s) with content: %s"),
+               ANSI_TO_TCHAR(__FUNCTION__),
+               *Resp.GetResponseString(),
+               Resp.GetHttpResponse() ? *Resp.GetHttpResponse()->GetContentAsString() : TEXT(""));
+        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_RHUnknown));
+    }
+}
+
+void URH_LocalPlayerLoginSubsystem::CheckCrossplayPrivilege(const FUniqueNetId& UniqueId)
+{
+	auto Identity = GetLoginOSS() ? GetLoginOSS()->GetIdentityInterface() : nullptr;
+	if (!Identity.IsValid())
+	{
+		return;
+	}
+
+	Identity->GetUserPrivilege(UniqueId,
+		EUserPrivileges::CanUserCrossPlay,
+		IOnlineIdentity::FOnGetUserPrivilegeCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::HandleCheckCrossPlayPrivilegeComplete));
+}
+
+void URH_LocalPlayerLoginSubsystem::HandleCheckCrossPlayPrivilegeComplete(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, uint32 PrivilegeResults)
+{
+	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+	{
+		if (UserId == LPSS->GetOSSUniqueId())
+		{
+			switch ((IOnlineIdentity::EPrivilegeResults)PrivilegeResults)
+			{
+				case IOnlineIdentity::EPrivilegeResults::NoFailures:
+				{
+					bCrossplayEnabled = true;
+				}
+				break;
+				default:
+				{
+					bCrossplayEnabled = false;
+				}
+				break;
+			}
+		}
+	}
+}
+
+void URH_LocalPlayerLoginSubsystem::CheckCommunicationPrivilege(const FUniqueNetId& UniqueId)
+{
+	auto Identity = GetLoginOSS() ? GetLoginOSS()->GetIdentityInterface() : nullptr;
+	if (!Identity.IsValid())
+	{
+		return;
+	}
+
+	Identity->GetUserPrivilege(UniqueId,
+		EUserPrivileges::CanCommunicateOnline,
+		IOnlineIdentity::FOnGetUserPrivilegeCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::HandleCheckCommunicationPrivilegeComplete));
+}
+
+void URH_LocalPlayerLoginSubsystem::HandleCheckCommunicationPrivilegeComplete(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, uint32 PrivilegeResults)
+{
+	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+	{
+		if (UserId == LPSS->GetOSSUniqueId())
+		{
+			switch ((IOnlineIdentity::EPrivilegeResults)PrivilegeResults)
+			{
+				case IOnlineIdentity::EPrivilegeResults::NoFailures:
+				{
+					bCommunicationEnabled = true;
+				}
+				break;
+				default:
+				{
+					bCommunicationEnabled = false;
+					uint32 ChatRestrictionMask = (uint32)IOnlineIdentity::EPrivilegeResults::ChatRestriction | (uint32)IOnlineIdentity::EPrivilegeResults::AgeRestrictionFailure;
+					bool bHasSpecificChatRestriction = (PrivilegeResults & ChatRestrictionMask) != 0;
+					const auto ExternalUI = Online::GetExternalUIInterface();
+					if (bHasSpecificChatRestriction && ExternalUI.IsValid())
+					{
+						ExternalUI->ShowPlatformMessageBox(UserId, EPlatformMessageType::ChatRestricted);
+					}
+				}
+				break;
+			}
+		}
+	}
+}
+
+
+void URH_LocalPlayerLoginSubsystem::HandleAppReactivated()
+{
+	DECLARE_CYCLE_STAT(TEXT("URH_LocalPlayerLoginSubsystem::HandleAppReactivated"), STAT_URH_LocalPlayerLoginSubsystem_HandleAppReactivated, STATGROUP_TaskGraphTasks);
+
+	const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+		FSimpleDelegateGraphTask::FDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::HandleAppReactivatedGameThread),
+		GET_STATID(STAT_URH_LocalPlayerLoginSubsystem_HandleAppReactivated),
+		nullptr,
+		ENamedThreads::GameThread);
+}
+
+void URH_LocalPlayerLoginSubsystem::HandleAppReactivatedGameThread()
+{
+	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+	{
+		CheckCrossplayPrivilege(*LPSS->GetOSSUniqueId());
+		CheckCommunicationPrivilege(*LPSS->GetOSSUniqueId());
+	}
+}

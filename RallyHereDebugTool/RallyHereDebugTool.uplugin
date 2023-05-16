@@ -1,0 +1,39 @@
+{
+	"FileVersion" : 3,
+
+	"FriendlyName" : "RallyHere Debug Tool",
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"CreatedBy" : "HiRez Studios, Inc.",
+	"CreatedByURL" : "hirezstudios.com",
+	"Description": "Contains tools for debugging the RallyHereIntegration plugin via a GUI implemented in Dear ImGui",
+	"Category": "Hirez",
+	"EnabledByDefault" : false,
+
+    "Modules": [
+        {
+            "Name": "RallyHereDebugTool",
+            "Type": "DeveloperTool",
+            "LoadingPhase": "Default"
+        }
+    ],
+
+	"Plugins": [
+        {
+            "Name": "RallyHereAPI",
+            "Enabled": true
+        },
+        {
+            "Name": "RallyHereIntegration",
+            "Enabled": true
+        },
+		{
+			"Name": "ImGui",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		}
+    ]
+}
