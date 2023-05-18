@@ -4,11 +4,11 @@
 	"FriendlyName" : "RallyHere Debug Tool",
 	"Version" : 1,
 	"VersionName" : "1.0",
-	"CreatedBy" : "HiRez Studios, Inc.",
-	"CreatedByURL" : "hirezstudios.com",
+    "CreatedBy": "Rally Here Interactive, Inc.",
+    "CreatedByURL": "rallyhere.gg",
 	"Description": "Contains tools for debugging the RallyHereIntegration plugin via a GUI implemented in Dear ImGui",
-	"Category": "Hirez",
-	"EnabledByDefault" : false,
+	"Category": "RallyHere",
+	"EnabledByDefault" : true,
 
     "Modules": [
         {

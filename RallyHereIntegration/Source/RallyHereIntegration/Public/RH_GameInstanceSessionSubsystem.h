@@ -45,10 +45,12 @@ public:
 
 	const FRHAPI_Instance* GetInstance() const;
 
-	bool IsLocallyHosted(const FRHAPI_Instance& Instance) const;
+	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
+	bool IsLocallyHostedInstance(const FRHAPI_Instance& Instance) const;
 
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	bool IsLocallyHosted(const URH_JoinedSession* Session) const { return Session->GetInstanceData() ? IsLocallyHosted(*Session->GetInstanceData()) : false; }
+	bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
+	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
 	bool IsPlayerLocal(const FRHAPI_SessionPlayer& Player) const;
 
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
@@ -66,11 +68,18 @@ public:
 	void BLUEPRINT_StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { StartLeaveInstanceFlow(bAlreadyDisconnected, bCheckDesired, Delegate); }
 	void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
 
+	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Mark Instance Fubar", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessDynamicDelegate& Delegate) { MarkInstanceFubar(Reason, Delegate); }
+	void MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessBlock Delegate = FRH_GenericSuccessBlock());
+
 protected:
 	UPROPERTY(BlueprintGetter = GetDesiredSession, Transient, Category = "Session|Instance")
-	URH_JoinedSession*	DesiredSession;	// data we want to sync to
+	URH_JoinedSession*	DesiredSession;	// session we want to sync to
 	UPROPERTY(BlueprintGetter = GetActiveSession, Transient, Category = "Session|Instance")
-	URH_JoinedSession*	ActiveSession;	// instance we are synced to
+	URH_JoinedSession*	ActiveSession;	// session we are synced to
+
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Session|Instance")
+	bool bHasBeenMarkedFubar;
 
 	void OnMapLoadComplete(UWorld* pWorld);
 	void OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString);

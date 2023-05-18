@@ -1,34 +1,18 @@
 // Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
 
 #include "RHDTW_Entitlements.h"
-#include "RallyHereDebugToolModule.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "imgui.h"
-
 #include "RH_ImGuiUtilities.h"
-#include "Interfaces/OnlinePurchaseInterface.h"
+
+#include "RH_LocalPlayerLoginSubsystem.h"
 
 #define IMGUI_PURGE_TIME_TEXTENTRY_PREALLOCATION_SIZE 256
 #define IMGUI_PURGE_TIME_INPUT_WIDTH 180.f
 
 FRHDTW_Entitlements::FRHDTW_Entitlements()
 	: Super()
-{
-	if (GetEntitlementSubsystem() != nullptr)
-	{
-		Entitlements = GetEntitlementSubsystem()->GetEntitlements();
-	}
-}
-
-void FRHDTW_Entitlements::UpdateEntitlements(const TArray<FPurchaseReceipt>& UpdatedEntitlements)
-{
-	Entitlements = UpdatedEntitlements;
-}
-
-void FRHDTW_Entitlements::UpdateEntitlementStatus(const EntitlementStatusMapStruct UpdatedEntitlementStatusMap)
-{
-	EntitlementStatusMap = UpdatedEntitlementStatusMap.EntitlementStatusMap;
-}
+{}
 
 void FRHDTW_Entitlements::Do()
 {
@@ -67,56 +51,94 @@ void FRHDTW_Entitlements::Do()
 		return;
 	}
 
-	if (ImGui::Button("Query Entitlements from the Platform"))
+	if (ImGui::Button("Start Process Platform Entitlement Task"))
 	{
-		pRH_EntitlementSubsystem->CachedEntitlementsUpdatedDelegate.AddRaw(this, &FRHDTW_Entitlements::UpdateEntitlements);
-		pRH_EntitlementSubsystem->EntitlementStatusMapUpdatedDelegate.AddRaw(this, &FRHDTW_Entitlements::UpdateEntitlementStatus);
-		pRH_EntitlementSubsystem->QueryEntitlements();
+		pRH_EntitlementSubsystem->SubmitEntitlements();
 	}
+
 	ImGui::SameLine();
-	if (ImGui::Button("Send Receipts to the Core"))
+	
+	if (ImGui::Button("Clear Saved Entitlement Results"))
 	{
-		pRH_EntitlementSubsystem->SubmitEntitlementsToInventory(LoginOSS);
-	}
-	ImGui::Separator();
-	if (ImGui::Button("Refresh"))
-	{
-		Entitlements = pRH_EntitlementSubsystem->GetEntitlements();
+		pRH_EntitlementSubsystem->GetEntitlementResults()->Empty();
 	}
 
-	ImGui::Columns(3);
-	ImGui::Text("%s", "SKU");
-	ImGui::NextColumn();
-	ImGui::Text("%s", "Unique ID");
-	ImGui::NextColumn();
-	ImGui::Text("%s", "Status");
-	ImGui::NextColumn();
 	ImGui::Separator();
 
-	for (FPurchaseReceipt receipt : Entitlements)
+	for (const auto& pair : *GetEntitlementSubsystem()->GetEntitlementResults())
 	{
-		for (FPurchaseReceipt::FReceiptOfferEntry offerEntry : receipt.ReceiptOffers)
+		FRHAPI_PlatformEntitlementProcessResult result = pair.Value;
+
+		FString label;
+		if (result.GetRequestId().IsEmpty())
 		{
-			for (FPurchaseReceipt::FLineItemInfo lineItem : offerEntry.LineItems)
-			{
-				ImGui::PushID(TCHAR_TO_UTF8(*lineItem.UniqueId));
-
-				ImGui::Text("%s", TCHAR_TO_UTF8(*lineItem.ItemName));
-				ImGui::NextColumn();
-
-				ImGui::Text("%s", TCHAR_TO_UTF8(*lineItem.UniqueId));
-				ImGui::NextColumn();
-
-				EntitlementStatus status = EntitlementStatusMap.FindRef(lineItem.UniqueId);
-				ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(status).ToString()));
-				ImGui::NextColumn();
-
-				ImGui::PopID();
-			}
+			label += FString::Printf(TEXT("Processing"));
+		} else
+		{
+			label += FString::Printf(TEXT("%s - Request ID - %s"), *result.GetStatus(), *result.GetRequestId());
 		}
-	}
+		label += "###request-id";
+		// label += TCHAR_TO_UTF8(*result.GetRequestId());
+		
+		// ImGui::PushID(TCHAR_TO_UTF8(*result.GetRequestId()));
+		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*label)))
+		{
+			ImGui::Text("Status : %s", TCHAR_TO_UTF8(*result.Status_Optional));
+			ImGuiDisplayCopyableValue(TEXT("Request ID"), result.RequestId);
+			ImGui::Text("Platform ID : %s", TCHAR_TO_UTF8(*EnumToString(result.PlatformId)));
+			ImGuiDisplayCopyableValue(TEXT("Platform User ID"), result.PlatformUserId);
+			ImGui::Text("Client Type : %s", TCHAR_TO_UTF8(*EnumToString(result.ClientType)));
+			ImGui::Text("Platform Region : %s", TCHAR_TO_UTF8(*EnumToString(result.PlatformRegion)));
+			ImGuiDisplayCopyableValue(TEXT("Transaction ID"), result.TransactionId);
 
-	ImGui::Columns(1);
+			ImGui::Separator();
+
+			ImGui::Columns(5);
+			ImGui::Text("%s", "Authority");
+			ImGui::NextColumn();
+			ImGui::Text("%s", "SKU");
+			ImGui::NextColumn();
+			ImGui::Text("%s", "Unique ID");
+			ImGui::NextColumn();
+			ImGui::Text("%s", "Status");
+			ImGui::NextColumn();
+			ImGui::Text("%s", "Error Code");
+			ImGui::NextColumn();
+			ImGui::Separator();
+			
+			for (FRHAPI_PlatformEntitlement entitlement : result.GetServerEntitlements())
+			{
+				FString authority = "server";
+				ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
+				ImGui::NextColumn(); 
+				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
+				ImGui::NextColumn(); 
+				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
+				ImGui::NextColumn();
+				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
+				ImGui::NextColumn();
+				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
+				ImGui::NextColumn();
+			}
+			for (FRHAPI_PlatformEntitlement entitlement : result.GetClientEntitlements())
+			{
+				FString authority = "client";
+				ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
+				ImGui::NextColumn(); 
+				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
+				ImGui::NextColumn(); 
+				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
+				ImGui::NextColumn();
+				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
+				ImGui::NextColumn();
+				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
+				ImGui::NextColumn();
+			}
+			
+			ImGui::Columns(1);
+		}
+		ImGui::PopID();
+	}
 }
 
 URH_EntitlementSubsystem* FRHDTW_Entitlements::GetEntitlementSubsystem()

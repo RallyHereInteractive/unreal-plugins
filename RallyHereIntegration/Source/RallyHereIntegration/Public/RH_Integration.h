@@ -5,10 +5,11 @@
 #include "UObject/Object.h"
 #include "RallyHereAPIAll.h"
 #include "RallyHereAPIHelpers.h"
+#include "RH_IntegrationSettings.h"
 
 #include "RH_Integration.generated.h"
 
-UCLASS(Config=RallyHereIntegration, DefaultConfig)
+UCLASS()
 class RALLYHEREINTEGRATION_API URH_Integration : public UObject
 {
     GENERATED_BODY()
@@ -73,9 +74,6 @@ private:
     RallyHereAPI::FRallyHereAPIAll APIs;
     HttpRetryManagerPtr RetryManager;
 
-    UPROPERTY(Config)
-    FString BaseUrl;
-
     UPROPERTY(Transient)
     FString ResolvedBaseUrl;
 
@@ -89,20 +87,6 @@ private:
 	// Is the SandboxId locked - aka will not change during ResolveSandboxId calls.
     UPROPERTY(Transient)
     bool bIsSandboxIdLocked;
-
-    UPROPERTY(Config)
-    TArray<FString> BaseURLCommandLineKeys;
-
-    UPROPERTY(Config)
-    TArray<FString> SandboxCommandLineKeys;
-
-	/** Keys to check for on the command line for an override to the default OSS */
-    UPROPERTY(Config)
-    TArray<FString> DefaultOSSCommandLineKeys;
-
-    /** Online Subsystem to use for selecting the base URL sandbox.  If not provided, will use the default OSS */
-    UPROPERTY(Config)
-    FName SandboxOSSName;
 
 	UPROPERTY()
 	class URH_WebRequests* WebRequestTracker;

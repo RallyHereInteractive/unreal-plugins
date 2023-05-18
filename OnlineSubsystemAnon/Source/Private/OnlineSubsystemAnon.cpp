@@ -138,12 +138,6 @@ bool FOnlineSubsystemAnon::Init()
         return false;
     }
 
-    if (!GConfig->GetInt(TEXT("OnlineSubsystemAnon"), TEXT("GameId"), GameId, GEngineIni) || GameId == 0)
-    {
-        UE_LOG_ONLINE(Log, TEXT("OnlineSubsystemAnon is using the default GameId.  Consider setting a custom value"));
-        GameId = 1;
-    }
-
     IdentityInterface = MakeShareable(new FOnlineIdentityAnon(this));
     bInitialized = true;
     UE_LOG_ONLINE(Log, TEXT("Init complete"));
@@ -191,7 +185,7 @@ bool FOnlineSubsystemAnon::IsEnabled() const
 
 FString FOnlineSubsystemAnon::GetAppId() const
 {
-    return LexToString(GameId);
+    return LexToString(1000);
 }
 
 FText FOnlineSubsystemAnon::GetOnlineServiceName() const

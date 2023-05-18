@@ -1,13 +1,13 @@
 {
     "FileVersion": 3,
-    "FriendlyName": "Rally Here Integration",
+    "FriendlyName": "RallyHere Integration",
     "Version": 1,
     "VersionName": "1.0",
-    "CreatedBy": "HiRez Studios, Inc.",
-    "CreatedByURL": "hirezstudios.com",
-    "Description": "Rally Here Integration of the API with recommended usage",
-    "Category": "Hirez",
-    "EnabledByDefault": false,
+    "CreatedBy": "Rally Here Interactive, Inc.",
+    "CreatedByURL": "rallyhere.gg",
+    "Description": "RallyHere Integration of the API with recommended usage",
+    "Category": "Rally Here",
+	"EnabledByDefault" : true,
 
     "Modules": [
         {

@@ -521,6 +521,8 @@ void URH_InventorySubsystem::HandleGetInventory(const RallyHereAPI::FResponse_Ge
 		return;
 	}
 
+	TArray<int32> FullInventoryItemIds;
+
 	// full update
 	InventoryCache = TMap<int32, TArray<FRH_ItemInventory>>();
 	for (const auto& Entry : Response.Content.Inventory_Optional.Items_Optional)
@@ -533,6 +535,7 @@ void URH_InventorySubsystem::HandleGetInventory(const RallyHereAPI::FResponse_Ge
 		int32 ItemId = FCString::Atoi(*Entry.Key);
 		TArray<FRH_ItemInventory>& InventoryForItem = InventoryCache.FindOrAdd(ItemId);
 		InventoryForItem.Empty();
+		FullInventoryItemIds.Add(ItemId);
 
 		for (const auto& InvEntry : Entry.Value.Records_Optional)
 		{
@@ -542,7 +545,7 @@ void URH_InventorySubsystem::HandleGetInventory(const RallyHereAPI::FResponse_Ge
 		}
 	}
 
-	BroadcastOnInventoryCacheUpdated(ItemIds);
+	BroadcastOnInventoryCacheUpdated(FullInventoryItemIds);
 	Delegate.ExecuteIfBound(true);
 }
 

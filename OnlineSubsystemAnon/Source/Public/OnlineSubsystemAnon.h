@@ -74,7 +74,6 @@ public:
 	virtual bool Tick(float DeltaTime) override;
 
 private:
-    int32 GameId;
     bool bInitialized;
 };
 

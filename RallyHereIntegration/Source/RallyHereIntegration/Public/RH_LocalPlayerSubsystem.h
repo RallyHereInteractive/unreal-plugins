@@ -151,10 +151,6 @@ private:
 
 	FAuthContextPtr AuthContext;
 
-    /** RallyHere Client ID. Determines the available permissions for RallyHere APIs */
-    UPROPERTY(Config)
-    FString ClientId;
-
     UPROPERTY(Transient)
     FString ResolvedClientId;
 
@@ -162,20 +158,10 @@ private:
     UPROPERTY(Transient)
     bool bIsClientIdLocked;
 
-    UPROPERTY(Config)
-    TArray<FString> ClientIdCommandLineKeys;
-
-    /** RallyHere Client secret. Must be associated with the defined client ID */
-    UPROPERTY(Config)
-    FString ClientSecret;
-
     UPROPERTY(Transient)
     FString ResolvedClientSecret;
 
     // Is the client secret locked - aka will not change during ResolveClientSecret calls.
     UPROPERTY(Transient)
     bool bIsClientSecretLocked;
-
-    UPROPERTY(Config)
-    TArray<FString> ClientSecretCommandLineKeys;
 };

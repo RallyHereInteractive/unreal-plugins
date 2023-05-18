@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ClientType.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPI/Public/PlatformID.h"
 #include "RallyHereAPI/Public/Platform.h"
@@ -68,6 +69,7 @@ bool RH_GetPlayerIdFromLocalPlayer(const class ULocalPlayer* pLocalPlayer, FGuid
 
 TOptional<ERHAPI_PlatformID> RALLYHEREINTEGRATION_API RH_GetPlatformIdFromOSSName(FName OSSName);
 TOptional<ERHAPI_Platform> RALLYHEREINTEGRATION_API RH_GetPlatformFromOSSName(FName OSSName);
+ERHAPI_ClientType RALLYHEREINTEGRATION_API RH_GetClientTypeFromOSSName(FName OSSName);
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform);
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatformType(ERHAPI_PlatformTypes PlatformType);
 
@@ -165,7 +167,7 @@ public:
 		HttpRequest = BaseType::DoCall(API, Request, BaseType::Delegate::CreateSP(this, &FRH_SimpleQueryHelper::OnQueryComplete));
 		if (!HttpRequest)
 		{
-			Failed(TEXT("Could not create http request"));
+			Failed(TEXT("Could not create http request to query queues"));
 		}
 	}
 

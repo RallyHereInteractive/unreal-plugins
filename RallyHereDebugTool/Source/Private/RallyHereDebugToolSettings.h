@@ -49,7 +49,7 @@ struct FRallyHereDebugToolKeyInfo
 	}
 };
 
-UCLASS(Config=RallyHereIntegration, DefaultConfig)
+UCLASS(Config=RallyHereIntegration, DefaultConfig, meta=(DisplayName = "Rally Here Debug Tool Settings"))
 class URallyHereDebugToolSettings : public UDeveloperSettings
 {
     GENERATED_BODY()

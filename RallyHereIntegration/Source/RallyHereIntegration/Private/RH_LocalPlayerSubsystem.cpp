@@ -1,5 +1,6 @@
 
 #include "RH_LocalPlayerSubsystem.h"
+#include "RH_IntegrationSettings.h"
 #include "RallyHereIntegrationModule.h"
 #include "OnlineSubsystemUtils.h"
 #include "RH_ConfigSubsystem.h"
@@ -304,7 +305,9 @@ void URH_LocalPlayerSubsystem::ResolveClientId()
         return;
     }
 
-    for (const auto& Key : ClientIdCommandLineKeys)
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
+    for (const auto& Key : Settings->ClientIdCommandLineKeys)
     {
         FString temp;
         if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
@@ -314,18 +317,9 @@ void URH_LocalPlayerSubsystem::ResolveClientId()
         }
     }
 
+    if (!Settings->ClientId.IsEmpty())
     {
-        FString temp;
-        if (GConfig->GetString(TEXT("RallyHere"), TEXT("ClientId"), temp, GRallyHereIntegrationIni) && !temp.IsEmpty())
-        {
-            SetClientId(MoveTemp(temp), TEXT("INI: RallyHere - ClientId"));
-            return;
-        }
-    }
-
-    if (!ClientId.IsEmpty())
-    {
-        SetClientId(ClientId, TEXT("URH_LocalPlayerSubsystem::ClientId"));
+        SetClientId(Settings->ClientId, TEXT("INI: RH_IntegrationSettings - ClientId"));
         return;
     }
 
@@ -360,7 +354,9 @@ void URH_LocalPlayerSubsystem::ResolveClientSecret()
         return;
     }
 
-    for (const auto& Key : ClientSecretCommandLineKeys)
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
+    for (const auto& Key : Settings->ClientSecretCommandLineKeys)
     {
         FString temp;
         if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
@@ -370,20 +366,11 @@ void URH_LocalPlayerSubsystem::ResolveClientSecret()
         }
     }
 
-    {
-        FString temp;
-        if (GConfig->GetString(TEXT("RallyHere"), TEXT("ClientSecret"), temp, GRallyHereIntegrationIni) && !temp.IsEmpty())
-        {
-            SetClientSecret(MoveTemp(temp), TEXT("INI: RallyHere - ClientSecret"));
-            return;
-        }
-    }
-
-    if (!ClientSecret.IsEmpty())
-    {
-        SetClientSecret(ClientSecret, TEXT("URH_LocalPlayerSubsystem::ClientSecret"));
-        return;
-    }
+	if (!Settings->ClientSecret.IsEmpty())
+	{
+		SetClientSecret(Settings->ClientSecret, TEXT("INI: RH_IntegrationSettings - ClientSecret"));
+		return;
+	}
 
     UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
 }

@@ -11,7 +11,7 @@
 struct FRH_AutoPoller;
 struct FRH_PollControl;
 
-USTRUCT(meta = (ShowOnlyInnerProperties))
+USTRUCT()
 struct FRH_PollTimerSetting
 {
 	GENERATED_BODY()
@@ -29,7 +29,7 @@ struct FRH_PollTimerSetting
 	}
 };
 
-UCLASS(Config = RallyHereIntegration, DefaultConfig, AutoExpandCategories=Timers)
+UCLASS(Config = RallyHereIntegration, DefaultConfig, AutoExpandCategories = Timers, meta = (DisplayName = "Rally Here Polling Settings"))
 class URH_PollingSettings : public UDeveloperSettings
 {
 	GENERATED_UCLASS_BODY()
@@ -41,7 +41,7 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Timers")
 	float DefaultPollingInterval;
 
-	UFUNCTION(Category = "Timers")
+	UFUNCTION(Category = "Timers", meta=(ShowOnlyInnerProperties))
 	float GetPollingInterval(const FName& TimerName) const;
 };
 

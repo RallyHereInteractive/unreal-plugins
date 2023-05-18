@@ -108,12 +108,30 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHGetSandboxId(
 			Ar.Logf(TEXT("Sandbox ID = %s"), *FRallyHereIntegrationModule::Get().GetSandboxId());
 		}));
 
+
+
+static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetOSS(
+	TEXT("rh.setOSS"),
+	TEXT("Set the Default Online Subsystem at runtime"),
+	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
+		{
+			if (Args.Num() > 0)
+			{
+				FString OSSName = Args[0];
+				Ar.Logf(TEXT("Set OSS = %s"), *OSSName);
+				GConfig->SetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), *OSSName, GEngineIni);
+				IOnlineSubsystem::ReloadDefaultSubsystem();
+			}
+		}));
+
 void URH_Integration::Initialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
 	// override default OSS if specified
-	for (const auto& Key : DefaultOSSCommandLineKeys)
+	for (const auto& Key : Settings->DefaultOSSCommandLineKeys)
 	{
 		FString temp;
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
@@ -184,7 +202,9 @@ void URH_Integration::ResolveBaseURL()
 		return;
 	}
 
-	for (const auto& Key : BaseURLCommandLineKeys)
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
+	for (const auto& Key : Settings->BaseURLCommandLineKeys)
 	{
 		FString temp;
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
@@ -196,18 +216,20 @@ void URH_Integration::ResolveBaseURL()
 
 	{
 		FString SandboxId = GetSandboxId();
-		FString temp;
-		if (!SandboxId.IsEmpty() && GConfig->GetString(
-			TEXT("RallyHereSandboxURL"), *SandboxId, temp, GRallyHereIntegrationIni) && !temp.IsEmpty())
+		if (!SandboxId.IsEmpty())
 		{
-			SetBaseURL(MoveTemp(temp), TEXT("Sandbox:") + SandboxId);
-			return;
+			const auto* SandboxURL = Settings->SandboxURLs.FindByPredicate([SandboxId](const FRH_SandboxConfiguration& Config) { return Config.SandboxId == SandboxId; });
+			if (SandboxURL != nullptr)
+			{
+				SetBaseURL(SandboxURL->BaseUrl, TEXT("Sandbox:") + SandboxId);
+				return;
+			}
 		}
 	}
 
-	if (!BaseUrl.IsEmpty())
+	if (!Settings->BaseUrl.IsEmpty())
 	{
-		SetBaseURL(BaseUrl, TEXT("URH_Integration::BaseURL"));
+		SetBaseURL(Settings->BaseUrl, TEXT("URH_IntegrationSettings::BaseURL"));
 		return;
 	}
 
@@ -265,8 +287,10 @@ void URH_Integration::ResolveSandboxId()
 		return;
 	}
 
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
 	FString NewSandboxId;
-	for (const auto& Key : SandboxCommandLineKeys)
+	for (const auto& Key : Settings->SandboxCommandLineKeys)
 	{
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), NewSandboxId))
 		{
@@ -276,9 +300,9 @@ void URH_Integration::ResolveSandboxId()
 	}
 
 	FString Source;
-	if (!SandboxOSSName.IsNone())
+	if (!Settings->SandboxOSSName.IsNone())
 	{
-		if (GetSandboxIdFromOSS(IOnlineSubsystem::Get(SandboxOSSName), NewSandboxId, Source))
+		if (GetSandboxIdFromOSS(IOnlineSubsystem::Get(Settings->SandboxOSSName), NewSandboxId, Source))
 		{
 			SetSandboxId(MoveTemp(NewSandboxId), MoveTemp(Source));
 			return;

@@ -82,7 +82,7 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_Instance& Info, URH_GameI
 		else
 		{
 			ImGui::Text("Type: Player Hosted");
-			if (pGISessionSubsystem && pGISessionSubsystem->IsLocallyHosted(Info))
+			if (pGISessionSubsystem && pGISessionSubsystem->IsLocallyHostedInstance(Info))
 			{
 				ImGui::SameLine();
 				ImGui::Text("<LOCALHOST>");
@@ -355,6 +355,10 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 						if (ImGui::Button("Deactivate"))
 						{
 							pGISessionSubsystem->SyncToSession(nullptr);
+						}
+						if (ImGui::Button("Mark Fubar"))
+						{
+							pGISessionSubsystem->MarkInstanceFubar(TEXT("Debug Tool"));
 						}
 					}
 					else

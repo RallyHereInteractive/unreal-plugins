@@ -595,7 +595,6 @@ void URH_PlayerPresence::CheckPollStatus()
 		return;
 	}
 
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	static FName PollTimerName(TEXT("PlayerPresence"));
 
 	// create a poller if one was not created yet

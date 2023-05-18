@@ -169,7 +169,7 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 			return;
 		}
 
-		if (IsLocallyHosted(ActiveSession))
+		if (IsLocallyHostedSession(ActiveSession))
 		{
 			// instance info updates are not really properly using optional flags, so get a default object and pass it
 			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
@@ -321,7 +321,7 @@ const FRHAPI_Instance* URH_GameInstanceSessionSubsystem::GetInstance() const
 	return nullptr;
 }
 
-bool URH_GameInstanceSessionSubsystem::IsLocallyHosted(const FRHAPI_Instance& Instance) const
+bool URH_GameInstanceSessionSubsystem::IsLocallyHostedInstance(const FRHAPI_Instance& Instance) const
 {
 	// determine whether a local player is host player
 	if (IsRunningDedicatedServer())
@@ -400,7 +400,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSes
 	FWorldContext* pWorldContext = pGameInstance->GetWorldContext();
 	check(pWorldContext != nullptr && pWorldContext->World() != nullptr);	// if we are somehow travelling without a world context, we are in a broken state, and should not have gotten to this point
 
-	if (IsLocallyHosted(Instance))
+	if (IsLocallyHostedInstance(Instance))
 	{
 		FURL hostURL;
 		if (GenerateHostURL(DesiredSession, pWorldContext->LastURL, hostURL) && hostURL.Valid && hostURL.Map.Len() > 0)
@@ -411,6 +411,9 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSes
 			DesiredSession->SetActive(true);
 			DesiredSession->SetWatchingPlayers(true);
 			ActiveSession = DesiredSession;
+
+			// clear fubar flag for new tracking
+			bHasBeenMarkedFubar = false;
 
 			// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
 			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
@@ -464,7 +467,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
 	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
 
-	if (ActiveSession != nullptr && IsLocallyHosted(ActiveSession))
+	if (ActiveSession != nullptr && IsLocallyHostedSession(ActiveSession))
 	{
 		// instance info updates are not really properly using optional flags, so get a default object and pass it
 		FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
@@ -496,5 +499,42 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	else
 	{
 		Delegate.ExecuteIfBound(true);
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessBlock Delegate)
+{
+	if (ActiveSession != nullptr && !bHasBeenMarkedFubar)
+	{
+		bHasBeenMarkedFubar = true;
+		typedef RallyHereAPI::Traits_ReportFubar BaseType;
+
+		BaseType::Request Request = {};
+		Request.AuthContext = GetAuthContext();
+		Request.SessionId = ActiveSession->GetSessionId();
+		Request.InstanceFubar.SetSite(ActiveSession->GetSessionData().GetSiteId());
+		//Request.InstanceFubar.SetMatchmakingProfileId()
+		Request.InstanceFubar.SetError(Reason);
+
+		auto* Instance = ActiveSession->GetInstanceData();
+		if (Instance != nullptr)
+		{
+			Request.InstanceFubar.SetInstanceId(Instance->GetInstanceId());
+			if (Instance->HostType == ERHAPI_HostType::Player)
+			{
+				Request.InstanceFubar.SetInstanceSourceProvider(ERHAPI_InstanceSourceProvider::Player);
+			}
+			else
+			{
+				// not sure how to determine other host types
+			}
+		}
+
+		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+			BaseType::Delegate(),
+			Delegate
+		);
+
+		Helper->Start(RH_APIs::GetSessionAPI(), Request);
 	}
 }

@@ -30,7 +30,7 @@ bool RH_GetPlayerIdFromLocalPlayer(const ULocalPlayer* pLocalPlayer, FGuid* outP
 
 TOptional<ERHAPI_PlatformID> RH_GetPlatformIdFromOSSName(FName OSSName)
 {
-	if (OSSName == STEAM_SUBSYSTEM)
+	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
 	{
 		return ERHAPI_PlatformID::Steam;
 	}
@@ -113,6 +113,85 @@ TOptional<ERHAPI_Platform> RH_GetPlatformFromOSSName(FName OSSName)
 	else
 	{
 		return {};
+	}
+}
+
+ERHAPI_InventoryPortal RH_GetInventoryPortalFromPlatformType(ERHAPI_PlatformTypes PlatformType)
+{
+	switch (PlatformType)
+	{
+	case ERHAPI_PlatformTypes::PT_ANON:
+		return ERHAPI_InventoryPortal::Anon;
+	case ERHAPI_PlatformTypes::PT_AMAZON:
+		return ERHAPI_InventoryPortal::Steam;
+	case ERHAPI_PlatformTypes::PT_STEAM:
+		return ERHAPI_InventoryPortal::Steam;
+	case ERHAPI_PlatformTypes::PT_PSN:
+		return ERHAPI_InventoryPortal::Psn;
+	case ERHAPI_PlatformTypes::PT_XBOX_LIVE:
+		return ERHAPI_InventoryPortal::XboxLive;
+	case ERHAPI_PlatformTypes::PT_GOOGLE:
+		return ERHAPI_InventoryPortal::Google;
+	case ERHAPI_PlatformTypes::PT_TWITCH:
+		return ERHAPI_InventoryPortal::Twitch;
+	case ERHAPI_PlatformTypes::PT_NINTENDO_SWITCH:
+		return ERHAPI_InventoryPortal::NintendoSwitch;
+	case ERHAPI_PlatformTypes::PT_APPLE:
+		return ERHAPI_InventoryPortal::Apple;
+	case ERHAPI_PlatformTypes::PT_NINTENDO:
+		return ERHAPI_InventoryPortal::Nintendo;
+	case ERHAPI_PlatformTypes::PT_EPIC:
+		return ERHAPI_InventoryPortal::Epic;
+	case ERHAPI_PlatformTypes::PT_GOOGLE_PLAY:
+		return ERHAPI_InventoryPortal::GooglePlay;
+	case ERHAPI_PlatformTypes::PT_NINTENDO_PPID:
+		return ERHAPI_InventoryPortal::NintendoPpid;
+	}
+
+	return ERHAPI_InventoryPortal::Unknown;
+}
+
+ERHAPI_ClientType RH_GetClientTypeFromOSSName(FName OSSName)
+{
+	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::Win;
+	}
+	else if (OSSName == EPIC_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::Win;
+	}
+	else if (OSSName == PS4_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::PS4;
+	}
+	else if (OSSName == PS5_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::PS5;
+	}
+	else if (OSSName == GDK_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::Xboxone;
+	}
+	else if (OSSName == SWITCH_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::_Switch;
+	}
+	else if (OSSName == APPLE_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::Ios;
+	}
+	else if (OSSName == GOOGLE_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::Android;
+	}
+	else if (OSSName == ANON_SUBSYSTEM)
+	{
+		return ERHAPI_ClientType::Win;
+	}
+	else
+	{
+		return ERHAPI_ClientType::Unknown;
 	}
 }
 

@@ -10,11 +10,9 @@ public:
 	typedef FRH_DebugToolWindow Super;
 
 	FRHDTW_Entitlements();
-	void UpdateEntitlements(const TArray<FPurchaseReceipt>& UpdatedEntitlements);
-	void UpdateEntitlementStatus(const EntitlementStatusMapStruct EntitlementStatusMap);
+	void GetEntitlementResults(EntitlementProcessResultMapStruct map);
 	virtual void Do() override;
 private:
-	TArray<FPurchaseReceipt> Entitlements = TArray<FPurchaseReceipt>();
-	TMap<FUniqueEntitlementId,EntitlementStatus> EntitlementStatusMap = TMap<FUniqueEntitlementId,EntitlementStatus>();
+	TMap<FString, FRHAPI_PlatformEntitlementProcessResult> EntitlementResults;
 	URH_EntitlementSubsystem* GetEntitlementSubsystem();
 };

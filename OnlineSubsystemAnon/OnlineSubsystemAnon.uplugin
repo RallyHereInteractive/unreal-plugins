@@ -4,11 +4,11 @@
 	"FriendlyName" : "Online Subsystem Anon",
 	"Version" : 1,
 	"VersionName" : "1.0",
-	"CreatedBy" : "HiRez Studios, Inc.",
-	"CreatedByURL" : "hirezstudios.com",
+	"CreatedBy": "Rally Here Interactive, Inc.",
+    "CreatedByURL": "rallyhere.gg",
 	"Description": "Access to Anon Service",
-	"Category": "Hirez",
-	"EnabledByDefault" : false,
+	"Category": "RallyHere",
+	"EnabledByDefault" : true,
 
     "Modules": [
         {

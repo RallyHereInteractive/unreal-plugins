@@ -2,11 +2,11 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "RallyHereA2S",
+	"FriendlyName": "RallyHere A2S",
 	"Description": "Implements the A2S query language (created by Valve) so that RallyHere can query our instances",
-	"Category": "Hirez",
-	"CreatedBy": "RallyHere",
-	"CreatedByURL": "hirezstudios.com",
+	"Category": "RallyHere",
+	"CreatedBy": "Rally Here Interactive, Inc.",
+    "CreatedByURL": "rallyhere.gg",
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
@@ -14,7 +14,7 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"EnabledByDefault": false,
+	"EnabledByDefault" : true,
 	
 	"Modules": [
 		{
