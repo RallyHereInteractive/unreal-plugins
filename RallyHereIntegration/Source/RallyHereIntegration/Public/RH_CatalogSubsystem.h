@@ -415,7 +415,7 @@ public:
 	int32 GetCouponDiscountCurrencyItemId() const { return CouponDiscountCurrencyItemId; }
 
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	double GetCouponDiscountPercentage() const { return CouponDiscountPercentage; }
+	float GetCouponDiscountPercentage() const { return CouponDiscountPercentage; }
 
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
 	bool GetCouponConsumeOnUse() const { return CouponConsumeOnUse; }
@@ -433,7 +433,7 @@ public:
 	bool IsCouponApplicableForLootId(int32 LootId) const { return CouponDiscountLoot.Contains(LootId); }
 
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	int32 GetCouponDiscountedPrice(int32 Price) const { return FMath::CeilToInt32(Price * (1.f - GetCouponDiscountPercentage())); }
+	int32 GetCouponDiscountedPrice(int32 Price) const { return FMath::CeilToInt(Price * (1.f - GetCouponDiscountPercentage())); }
 
 	// Id of the item
 	UPROPERTY(Transient)
@@ -461,7 +461,7 @@ public:
 	int32 CouponDiscountCurrencyItemId;
 
 	UPROPERTY(Transient)
-	double CouponDiscountPercentage;
+	float CouponDiscountPercentage;
 
 	UPROPERTY(Transient)
 	bool CouponConsumeOnUse;

@@ -132,13 +132,13 @@ void URH_PlayerInfoSubsystem::LookupPlayer(FString PlayerName, FRH_PlayerInfoLoo
 	}
 }
 
-void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Response& Resp, FRH_PlayerInfoLookupPlayerBlock Delegate)
+void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Response& Response, FRH_PlayerInfoLookupPlayerBlock Delegate)
 {
 	TArray<URH_PlayerInfo*> OutInfos;
 
-	if (Resp.IsSuccessful())
+	if (Response.IsSuccessful())
 	{
-		if (const auto DisplayNames = Resp.Content.GetDisplayNamesOrNull())
+		if (const auto DisplayNames = Response.Content.GetDisplayNamesOrNull())
 		{
 			for (auto const& DisplayName : *DisplayNames)
 			{
@@ -342,18 +342,18 @@ void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = 
 	}
 }
 
-void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Resp, FRH_PlayerInfoGetPlatformsBlock Delegate)
+void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, FRH_PlayerInfoGetPlatformsBlock Delegate)
 {
 	TArray<URH_PlayerPlatformInfo*> Infos;
-	if (Resp.IsSuccessful())
+	if (Response.IsSuccessful())
 	{
 		if (const auto PSS = GetPlayerInfoSubsystem())
 		{
 			// update our local cache of references
-			LinkedPlayerPlatforms.Reset(Resp.Content.LinkedPortals.Num());
-			Infos.Reset(Resp.Content.LinkedPortals.Num());
+			LinkedPlayerPlatforms.Reset(Response.Content.LinkedPortals.Num());
+			Infos.Reset(Response.Content.LinkedPortals.Num());
 
-			for (auto const& LinkedPlatform : Resp.Content.LinkedPortals)
+			for (auto const& LinkedPlatform : Response.Content.LinkedPortals)
 			{
 				FString PortalUserId;
 				if (LinkedPlatform.GetPortalUserId(PortalUserId))
@@ -381,7 +381,7 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Resp
 	}
 
 	LastRequestPlatforms = FDateTime::UtcNow();
-	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Infos);
+	Delegate.ExecuteIfBound(Response.IsSuccessful(), Infos);
 }
 void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlayerSettingsBlock Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
 {
@@ -466,8 +466,8 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, URH_PlayerS
 			Request.SettingTypeId = SettingTypeId;
 			Request.AuthContext = GetAuthContext();
 			Request.Key = Pair.Key;
-			Request.BodySetSinglePlayerUuidSettingV2PlayerPlayerUuidSettingTypeSettingTypeIdKeyKeyPut.V = Pair.Value.V;
-			Request.BodySetSinglePlayerUuidSettingV2PlayerPlayerUuidSettingTypeSettingTypeIdKeyKeyPut.Value = *Value;
+			Request.SetSinglePlayerSettingRequest.SetV(Pair.Value.V);
+			Request.SetSinglePlayerSettingRequest.SetValue(*Value);
 			if (!SetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, SetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnSetPlayerSettingsResponse, Delegate, SettingTypeId, Pair.Key, SettingsData)))
 			{
 				PendingSettingRequestsByTypeId.Remove(SettingTypeId);

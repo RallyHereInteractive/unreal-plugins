@@ -23,12 +23,8 @@ public:
 	
 	void UpdatePlayerPresenceSelf(RallyHereAPI::FRequest_UpdatePlayerPresenceSelf& Request, const RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf& Delegate);
 
-	/** \defgroup Raw call accessors
-	 * @{
-	 */
 	void GetPlayerPresenceSelf(RallyHereAPI::FRequest_GetPlayerPresenceSelf& Request, const RallyHereAPI::FDelegate_GetPlayerPresenceSelf& Delegate);
 	void GetSettings(RallyHereAPI::FRequest_GetPresenceSettings& Request, const RallyHereAPI::FDelegate_GetPresenceSettings& Delegate);
-	/** @} */
 
 	UFUNCTION(BlueprintSetter, Category = "Presence")
 	void SetDesiredStatus(ERHAPI_OnlineStatus NewStatus) { DesiredStatus = NewStatus; RefreshStatus(); }

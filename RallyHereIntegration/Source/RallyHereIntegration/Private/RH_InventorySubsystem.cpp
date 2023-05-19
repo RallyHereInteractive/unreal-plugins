@@ -368,9 +368,9 @@ TArray<FRH_ItemInventory> URH_InventorySubsystem::GetCachedInventoryForItemsAndT
 {
 	TArray<FRH_ItemInventory> Results;
 
-	if (ItemIds.IsEmpty())
+	if (ItemIds.Num() <= 0)
 	{
-		if (Types.IsEmpty())
+		if (Types.Num() <= 0)
 		{
 			for (const auto& ItemInv : InventoryCache)
 			{
@@ -403,7 +403,7 @@ TArray<FRH_ItemInventory> URH_InventorySubsystem::GetCachedInventoryForItemsAndT
 				const auto& InventoryForItem = InventoryCache.Find(ItemId);
 				for (const auto& Inv : *InventoryForItem)
 				{
-					if (Types.IsEmpty() || Types.Contains(Inv.InventoryType))
+					if (Types.Num() <= 0 || Types.Contains(Inv.InventoryType))
 					{
 						Results.Emplace(Inv);
 					}
@@ -443,7 +443,7 @@ void URH_InventorySubsystem::GetInventory(TArray<int32> ItemIds, const FRH_OnInv
 
 	Request.PlayerUuid = GetRHPlayerUuid();
 	Request.AuthContext = GetAuthContext();
-	if (!ItemIds.IsEmpty())
+	if (ItemIds.Num() > 0)
 	{
 		Request.ItemIds = ItemIds;
 	}
@@ -468,7 +468,7 @@ void URH_InventorySubsystem::HandleGetInventory(const RallyHereAPI::FResponse_Ge
 	}
 	
 	//partial item updates
-	if (!ItemIds.IsEmpty())
+	if (ItemIds.Num() > 0)
 	{
 		if (!Response.Content.Inventory_IsSet || !Response.Content.Inventory_Optional.Items_IsSet)
 		{
@@ -552,7 +552,7 @@ void URH_InventorySubsystem::HandleGetInventory(const RallyHereAPI::FResponse_Ge
 void URH_InventorySubsystem::CreateInventory(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const ERHAPI_Source Source, 
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
-	if (CreateInventories.IsEmpty())
+	if (CreateInventories.Num() <= 0)
 	{
 		Delegate.ExecuteIfBound(false);
 		return;
@@ -627,7 +627,7 @@ void URH_InventorySubsystem::HandleCreateInventory(const RallyHereAPI::FResponse
 void URH_InventorySubsystem::UpdateInventory(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source, 
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
-	if (UpdateInventories.IsEmpty())
+	if (UpdateInventories.Num() <= 0)
 	{
 		Delegate.ExecuteIfBound(false);
 		return;
@@ -869,12 +869,14 @@ URH_PlayerOrderResult* URH_InventorySubsystem::ParseOrderResult(const FRHAPI_Pla
 
 	for (auto& OrderEntry : Content.Entries)
 	{
+		auto NewOrderEntry = NewObject<URH_PlayerOrderResultEntry>(this);
+
 		if (OrderEntry.Details_IsSet)
 		{
 			UpdateInventoryFromOrderDetails(OrderEntry.GetDetails());
+			NewOrderEntry->Details.Append(OrderEntry.GetDetails());
 		}
 
-		auto NewOrderEntry = NewObject<URH_PlayerOrderResultEntry>(this);
 		NewOrderEntry->OrderEntryType = OrderEntry.Type;
 
 		if (const auto LootId = OrderEntry.GetLootIdOrNull())

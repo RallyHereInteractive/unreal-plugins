@@ -1,4 +1,4 @@
-#include "RH_ConfigSubsystem.h"
+﻿#include "RH_ConfigSubsystem.h"
 
 #include "RallyHereIntegrationModule.h"
 #include "Misc/ConfigCacheIni.h"

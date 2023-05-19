@@ -16,8 +16,6 @@ Private/BodyBeginNewSessionV1SessionPost.cpp
 Private/BodyFindOpportunitiesV1OpportunityPost.cpp
 Private/BodyGetPortalTokenDetailsV1PortaltokenDetailsPost.cpp
 Private/BodyLoginV1LoginPost.cpp
-Private/BodySetSinglePlayerIdSettingV1PlayerPlayerIdSettingTypeSettingTypeIdKeyKeyPut.cpp
-Private/BodySetSinglePlayerUuidSettingV2PlayerPlayerUuidSettingTypeSettingTypeIdKeyKeyPut.cpp
 Private/BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost.cpp
 Private/BodyUpdatePersonV1PersonPersonIdInfoPost.cpp
 Private/Browser.cpp
@@ -117,6 +115,7 @@ Private/MatchCreateRequest.cpp
 Private/MatchCreateResponse.cpp
 Private/MatchInfo.cpp
 Private/MatchMakingProfile.cpp
+Private/MatchMakingRuleset.cpp
 Private/MatchMakingSessionRequest.cpp
 Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
@@ -152,6 +151,7 @@ Private/PlatformRegion.cpp
 Private/PlatformSession.cpp
 Private/PlatformSessionPlayer.cpp
 Private/PlatformSessionTemplate.cpp
+Private/PlayerData.cpp
 Private/PlayerIdNotificationAPI.cpp
 Private/PlayerIdWrapper.cpp
 Private/PlayerInventoryChange.cpp
@@ -170,6 +170,8 @@ Private/PlayerOrdersResponse.cpp
 Private/PlayerPersonResponse.cpp
 Private/PlayerPresence.cpp
 Private/PlayerPresenceUpdateSelf.cpp
+Private/PlayerRating.cpp
+Private/PlayerRatingUpdateRequest.cpp
 Private/PlayerResponse.cpp
 Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
@@ -203,11 +205,15 @@ Private/RallyHereAPIAuthContext.cpp
 Private/RallyHereAPIBaseModel.cpp
 Private/RallyHereAPIHelpers.cpp
 Private/RallyHereAPIModule.cpp
+Private/RankAPI.cpp
+Private/RankRequestResponse.cpp
+Private/RankUpdateResponse.cpp
+Private/Rating.cpp
+Private/Rating1.cpp
 Private/Restriction.cpp
 Private/RestrictionType.cpp
 Private/Rule.cpp
 Private/Ruleset.cpp
-Private/Ruleset1.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/SendInBlueContact.cpp
 Private/Session.cpp
@@ -224,6 +230,7 @@ Private/SessionTeam.cpp
 Private/SessionTemplate.cpp
 Private/SessionTemplates.cpp
 Private/SessionUpdate.cpp
+Private/SetSinglePlayerSettingRequest.cpp
 Private/SettingData.cpp
 Private/SettingType.cpp
 Private/SettingTypeVersion.cpp
@@ -232,10 +239,14 @@ Private/SiteAPI.cpp
 Private/SiteSettings.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
+Private/TimeAPI.cpp
 Private/TimeFrame.cpp
 Private/TimeFrames.cpp
 Private/TokenRequest.cpp
 Private/TokenResponse.cpp
+Private/TrueskillV1PlayerData.cpp
+Private/TrueskillV1Team.cpp
+Private/TrueskillV1UpdateRequest.cpp
 Private/UpdateInventoryRequest.cpp
 Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
@@ -264,8 +275,6 @@ Public/BodyBeginNewSessionV1SessionPost.h
 Public/BodyFindOpportunitiesV1OpportunityPost.h
 Public/BodyGetPortalTokenDetailsV1PortaltokenDetailsPost.h
 Public/BodyLoginV1LoginPost.h
-Public/BodySetSinglePlayerIdSettingV1PlayerPlayerIdSettingTypeSettingTypeIdKeyKeyPut.h
-Public/BodySetSinglePlayerUuidSettingV2PlayerPlayerUuidSettingTypeSettingTypeIdKeyKeyPut.h
 Public/BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost.h
 Public/BodyUpdatePersonV1PersonPersonIdInfoPost.h
 Public/Browser.h
@@ -365,6 +374,7 @@ Public/MatchCreateRequest.h
 Public/MatchCreateResponse.h
 Public/MatchInfo.h
 Public/MatchMakingProfile.h
+Public/MatchMakingRuleset.h
 Public/MatchMakingSessionRequest.h
 Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
@@ -400,6 +410,7 @@ Public/PlatformRegion.h
 Public/PlatformSession.h
 Public/PlatformSessionPlayer.h
 Public/PlatformSessionTemplate.h
+Public/PlayerData.h
 Public/PlayerIdNotificationAPI.h
 Public/PlayerIdWrapper.h
 Public/PlayerInventoryChange.h
@@ -418,6 +429,8 @@ Public/PlayerOrdersResponse.h
 Public/PlayerPersonResponse.h
 Public/PlayerPresence.h
 Public/PlayerPresenceUpdateSelf.h
+Public/PlayerRating.h
+Public/PlayerRatingUpdateRequest.h
 Public/PlayerResponse.h
 Public/PlayerSession.h
 Public/PlayerSessionInvite.h
@@ -451,11 +464,15 @@ Public/RallyHereAPIAuthContext.h
 Public/RallyHereAPIBaseModel.h
 Public/RallyHereAPIHelpers.h
 Public/RallyHereAPIModule.h
+Public/RankAPI.h
+Public/RankRequestResponse.h
+Public/RankUpdateResponse.h
+Public/Rating.h
+Public/Rating1.h
 Public/Restriction.h
 Public/RestrictionType.h
 Public/Rule.h
 Public/Ruleset.h
-Public/Ruleset1.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/SendInBlueContact.h
 Public/Session.h
@@ -472,6 +489,7 @@ Public/SessionTeam.h
 Public/SessionTemplate.h
 Public/SessionTemplates.h
 Public/SessionUpdate.h
+Public/SetSinglePlayerSettingRequest.h
 Public/SettingData.h
 Public/SettingType.h
 Public/SettingTypeVersion.h
@@ -480,10 +498,14 @@ Public/SiteAPI.h
 Public/SiteSettings.h
 Public/SortOrder.h
 Public/Source.h
+Public/TimeAPI.h
 Public/TimeFrame.h
 Public/TimeFrames.h
 Public/TokenRequest.h
 Public/TokenResponse.h
+Public/TrueskillV1PlayerData.h
+Public/TrueskillV1Team.h
+Public/TrueskillV1UpdateRequest.h
 Public/UpdateInventoryRequest.h
 Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h

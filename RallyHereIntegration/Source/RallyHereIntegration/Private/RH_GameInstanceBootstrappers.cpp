@@ -310,7 +310,11 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Server bootstrapping failed - bootstrap error is fatal"), ANSI_TO_TCHAR(__FUNCTION__));
 
 		// attempt to fully flush HTTP system before we shut down
+#if RH_FROM_ENGINE_VERSION(5,0)
 		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
+#else
+		FHttpModule::Get().GetHttpManager().Flush(false);
+#endif
 
 		if (RallyHere::TermSignalHandler::ExitStatusOverride != INDEX_NONE)
 		{
@@ -867,7 +871,7 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 			SessionPlayer.SetJoined(CreationTime);
 
 			// TODO adding everyone to one team for now
-			if (SessionInfo.Teams.IsEmpty())
+			if (SessionInfo.Teams.Num() <= 0)
 			{
 				SessionInfo.Teams.Add(FRHAPI_SessionTeam());
 			}

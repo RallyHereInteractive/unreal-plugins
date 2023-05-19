@@ -36,7 +36,8 @@ bool FOnlineIdentityAnon::Login(int32 LocalUserNum, const FOnlineAccountCredenti
     {
         FString ErrorStr = TEXT("Invalid User Name");
         UE_LOG_ONLINE_IDENTITY(Warning, TEXT("Failed login. %s"), *ErrorStr);
-        TriggerOnLoginCompleteDelegates(LocalUserNum, false, FUniqueNetIdAnon::EmptyId().Get(), ErrorStr);
+		auto EmptyId = CreateEmptyPlayerId();
+        TriggerOnLoginCompleteDelegates(LocalUserNum, false, *(EmptyId.Get()), ErrorStr);
         return false;
     }
 
@@ -44,7 +45,8 @@ bool FOnlineIdentityAnon::Login(int32 LocalUserNum, const FOnlineAccountCredenti
     {
         FString ErrorStr = TEXT("login already in progress");
         UE_LOG_ONLINE_IDENTITY(Warning, TEXT("Failed login. %s"), *ErrorStr);
-        TriggerOnLoginCompleteDelegates(LocalUserNum, false, FUniqueNetIdAnon::EmptyId().Get(), ErrorStr);
+		auto EmptyId = CreateEmptyPlayerId();
+        TriggerOnLoginCompleteDelegates(LocalUserNum, false, *(EmptyId.Get()), ErrorStr);
         return false;
     }
     hrUser.bOperationInProgress = true;
@@ -66,7 +68,7 @@ bool FOnlineIdentityAnon::Login(int32 LocalUserNum, const FOnlineAccountCredenti
 
     hrUser.bOperationInProgress = false;
     hrUser.UserName = AccountCredentials.Id;
-    hrUser.Id = MakeShared<FUniqueNetIdAnon>(hrUser.UserName);
+    hrUser.Id = CreateUniquePlayerId(hrUser.UserName);
 
     TriggerOnLoginCompleteDelegates(LocalUserNum, true, *hrUser.Id, FString());
 
@@ -143,7 +145,7 @@ ELoginStatus::Type FOnlineIdentityAnon::GetLoginStatus(const FUniqueNetId& UserI
     return ELoginStatus::NotLoggedIn;
 }
 
-TSharedPtr<const FUniqueNetId> FOnlineIdentityAnon::GetUniquePlayerId(int32 LocalUserNum) const
+FUniqueNetIdPtr FOnlineIdentityAnon::GetUniquePlayerId(int32 LocalUserNum) const
 {
     if (auto hrUser = Users.Find(LocalUserNum))
     {
@@ -152,19 +154,24 @@ TSharedPtr<const FUniqueNetId> FOnlineIdentityAnon::GetUniquePlayerId(int32 Loca
     return nullptr;
 }
 
-TSharedPtr<const FUniqueNetId> FOnlineIdentityAnon::CreateUniquePlayerId(uint8* Bytes, int32 Size)
+FUniqueNetIdPtr FOnlineIdentityAnon::CreateUniquePlayerId(uint8* Bytes, int32 Size)
 {
     if (Bytes && Size > 0)
     {
         FString StrId(Size, (TCHAR*)Bytes);
-        return MakeShareable(new FUniqueNetIdAnon(StrId));
+        return FUniqueNetIdString::Create(StrId, ANON_SUBSYSTEM);
     }
     return nullptr;
 }
 
-TSharedPtr<const FUniqueNetId> FOnlineIdentityAnon::CreateUniquePlayerId(const FString& Str)
+FUniqueNetIdPtr FOnlineIdentityAnon::CreateUniquePlayerId(const FString& Str)
 {
-    return MakeShareable(new FUniqueNetIdAnon(Str));
+	return FUniqueNetIdString::Create(Str, ANON_SUBSYSTEM);
+}
+
+FUniqueNetIdPtr FOnlineIdentityAnon::CreateEmptyPlayerId()
+{
+	return FUniqueNetIdString::Create(FString(), ANON_SUBSYSTEM);
 }
 
 FString FOnlineIdentityAnon::GetPlayerNickname(int32 LocalUserNum) const

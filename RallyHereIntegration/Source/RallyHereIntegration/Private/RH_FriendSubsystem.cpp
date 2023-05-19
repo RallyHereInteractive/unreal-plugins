@@ -638,17 +638,14 @@ void URH_FriendSubsystem::OSSReadFriendsList(const FString& ListName /* = "Defau
 	{
 		if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
 		{
-			if (ULocalPlayer* LocalPlayer = LPSS->GetLocalPlayer())
-			{
-				// Request load platform friends list
-				OSSFriendsInterface->ReadFriendsList(LocalPlayer->GetPlatformUserId(), ListName, FOnReadFriendsListComplete::CreateUObject(this, &URH_FriendSubsystem::OnReadOSSFriendsComplete));
+			// Request load platform friends list
+			OSSFriendsInterface->ReadFriendsList(LPSS->GetPlatformUserId(), ListName, FOnReadFriendsListComplete::CreateUObject(this, &URH_FriendSubsystem::OnReadOSSFriendsComplete));
 
-				// Listen to presence change to update friends' metadata
-				if (OSSPresenceInterface.IsValid())
-				{
-					OSSPresenceInterface->ClearOnPresenceReceivedDelegate_Handle(OnOSSPresenceReceivedHandle);
-					OnOSSPresenceReceivedHandle = OSSPresenceInterface->AddOnPresenceReceivedDelegate_Handle(FOnPresenceReceivedDelegate::CreateUObject(this, &URH_FriendSubsystem::OnOSSPresenceReceived));
-				}
+			// Listen to presence change to update friends' metadata
+			if (OSSPresenceInterface.IsValid())
+			{
+				OSSPresenceInterface->ClearOnPresenceReceivedDelegate_Handle(OnOSSPresenceReceivedHandle);
+				OnOSSPresenceReceivedHandle = OSSPresenceInterface->AddOnPresenceReceivedDelegate_Handle(FOnPresenceReceivedDelegate::CreateUObject(this, &URH_FriendSubsystem::OnOSSPresenceReceived));
 			}
 		}
 	}
@@ -692,10 +689,7 @@ void URH_FriendSubsystem::UpdateWithOSSFriends(const FString& ListName /* = "Def
 	int32 LocalUserNum = INDEX_NONE;
 	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
 	{
-		if (ULocalPlayer* LocalPlayer = LPSS->GetLocalPlayer())
-		{
-			LocalUserNum = LocalPlayer->GetPlatformUserId();
-		}
+		LocalUserNum = LPSS->GetPlatformUserId();
 	}
 
 	TArray<TSharedRef<FOnlineFriend>> OnlineFriendsList;

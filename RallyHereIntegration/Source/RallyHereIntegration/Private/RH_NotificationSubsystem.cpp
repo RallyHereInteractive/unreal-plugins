@@ -22,10 +22,11 @@ void URH_NotificationSubsystem::Deinitialize()
 void URH_NotificationSubsystem::OnUserChanged()
 {
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	if (GetAuthContext().IsValid() && GetAuthContext()->IsLoggedIn())
+	auto AuthContext = GetAuthContext();
+	if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
 	{
 		// start streaming notifications for this context
-		StartStreamingLatestNotifications();
+		StartStreamingLatestNotifications(AuthContext->GetLoginResult()->GetActivePlayerUuid());
 	}
 	else
 	{

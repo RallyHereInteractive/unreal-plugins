@@ -94,7 +94,7 @@ public:
 	// Streaming functions
 
 	UFUNCTION(BlueprintCallable, Category = "Notification|Streaming")
-	void StartStreamingLatestNotifications(const FGuid& PlayerUuid = FGuid(), const FString& Cursor = TEXT(""));
+	void StartStreamingLatestNotifications(const FGuid& PlayerUuid, const FString& Cursor = TEXT(""));
 
 	UFUNCTION(BlueprintCallable, Category = "Notification|Streaming")
 	void StopStreamingLatestNotifications();

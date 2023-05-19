@@ -32,6 +32,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&Session);
     AllAPIs.Add(&Settings);
     AllAPIs.Add(&Site);
+    AllAPIs.Add(&Time);
     AllAPIs.Add(&Users);
 }
 
@@ -288,6 +289,16 @@ FSiteAPI& FRallyHereAPIAll::GetSite()
 const FSiteAPI& FRallyHereAPIAll::GetSite() const
 {
     return Site;
+}
+
+FTimeAPI& FRallyHereAPIAll::GetTime()
+{
+    return Time;
+}
+
+const FTimeAPI& FRallyHereAPIAll::GetTime() const
+{
+    return Time;
 }
 
 FUsersAPI& FRallyHereAPIAll::GetUsers()

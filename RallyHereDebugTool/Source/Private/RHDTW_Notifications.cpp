@@ -84,7 +84,7 @@ void FRHDTW_Notifications::Do()
 			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
 			if (LPSS && LPSS->GetNotificationSubsystem() != nullptr)
 			{
-				LPSS->GetNotificationSubsystem()->StartStreamingLatestNotifications();
+				LPSS->GetNotificationSubsystem()->StartStreamingLatestNotifications(LPSS->GetPlayerUuid());
 			}
 		}
 	}

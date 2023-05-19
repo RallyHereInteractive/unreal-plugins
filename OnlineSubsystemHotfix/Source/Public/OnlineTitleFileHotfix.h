@@ -4,6 +4,7 @@
 
 #include "OnlineSubsystem.h"
 #include "Interfaces/OnlineTitleFileInterface.h"
+#include "OnlineSubsystemPackage.h"
 
 struct FHotfix_ConfigFile
 {

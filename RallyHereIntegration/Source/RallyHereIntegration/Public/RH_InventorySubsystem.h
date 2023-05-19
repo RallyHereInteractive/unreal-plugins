@@ -288,6 +288,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Result Entry")
 	ERHAPI_PlayerOrderEntryResult GetResult() const { return Result; }
+	
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Result Entry")
+	const TArray<FRHAPI_PlayerOrderDetail> GetDetails() const { return Details; }
 
 	UPROPERTY(Transient)
 	ERHAPI_PlayerOrderEntryType OrderEntryType;
@@ -333,6 +336,9 @@ public:
 
 	UPROPERTY(Transient)
 	ERHAPI_PlayerOrderEntryResult Result;
+
+	UPROPERTY(Transient)
+	TArray<FRHAPI_PlayerOrderDetail> Details;
 };
 
 

@@ -22,7 +22,7 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
 	TEXT("Set the client ID used to log into the RallyHere API"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
 		{
-			FString NewClientId = Args.IsEmpty() ? TEXT("") : Args[0];
+			FString NewClientId = Args.Num() <= 0 ? TEXT("") : Args[0];
 			NewClientId.TrimQuotesInline();
 		
 			for (auto localPlayer : World->GetGameInstance()->GetLocalPlayers())
@@ -50,7 +50,7 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientSecret(
 	TEXT("Set the client secret used to log into the RallyHere API"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
 		{
-			FString NewClientSecret = Args.IsEmpty() ? TEXT("") : Args[0];
+			FString NewClientSecret = Args.Num() <= 0 ? TEXT("") : Args[0];
 			NewClientSecret.TrimQuotesInline();
 		
 			for (auto localPlayer : World->GetGameInstance()->GetLocalPlayers())
@@ -182,13 +182,25 @@ ERHAPI_PlatformTypes URH_LocalPlayerSubsystem::GetLoggedInPlatformType() const
 
 FUniqueNetIdWrapper URH_LocalPlayerSubsystem::GetOSSUniqueId() const
 {
+#if RH_FROM_ENGINE_VERSION(5,0)
 	return GetLocalPlayer()->GetUniqueNetIdForPlatformUser();
+#else
+	return GetLocalPlayer()->GetUniqueNetIdFromCachedControllerId();
+#endif
 }
 
+#if RH_FROM_ENGINE_VERSION(5,0)
 FPlatformUserId URH_LocalPlayerSubsystem::GetPlatformUserId() const
 {
 	return GetLocalPlayer()->GetPlatformUserId();
 }
+#else
+int32 URH_LocalPlayerSubsystem::GetPlatformUserId() const
+{
+	return GetLocalPlayer()->GetControllerId();
+}
+#endif
+
 
 URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
 {

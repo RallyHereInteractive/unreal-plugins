@@ -35,7 +35,12 @@ public:
 	FGuid GetPlayerUuid() const;
 	ERHAPI_PlatformTypes GetLoggedInPlatformType() const;
 	FUniqueNetIdWrapper GetOSSUniqueId() const;
+
+#if RH_FROM_ENGINE_VERSION(5,0)
 	FPlatformUserId GetPlatformUserId() const;
+#else
+	int32 GetPlatformUserId() const;
+#endif
 
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_PlayerInfo* GetLocalPlayerInfo() const;

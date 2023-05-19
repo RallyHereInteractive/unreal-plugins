@@ -4,6 +4,7 @@
 
 #include "OnlineSubsystem.h"
 #include "OnlineSubsystemImpl.h"
+#include "OnlineSubsystemPackage.h"
 
 typedef TSharedPtr<class FOnlineTitleFileHotfix, ESPMode::ThreadSafe> FOnlineTitleFileHotfixPtr;
 

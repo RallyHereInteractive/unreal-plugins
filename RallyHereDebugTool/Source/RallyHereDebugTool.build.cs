@@ -38,13 +38,7 @@ public class RallyHereDebugTool : ModuleRules
 			"SlateCore",
 			"Slate",
 			"OnlineSubsystem",
+            "DeveloperSettings",
         });
-
-		if(ReadOnlyBuildVersion.Current.MajorVersion == 5 && ReadOnlyBuildVersion.Current.MinorVersion >= 0)
-		{
-			PrivateDependencyModuleNames.AddRange(new string[] {
-				"DeveloperSettings",
-			});
-		}
     }
 }

@@ -8,11 +8,8 @@
 	#include "UObject/CoreOnline.h"
 #endif
 #include "Interfaces/OnlineIdentityInterface.h"
+#include "OnlineSubsystemAnonPackage.h"
 #include "Containers/Map.h"
-
-#ifndef WITH_HIREZ_ENGINE
-#define WITH_HIREZ_ENGINE 0
-#endif
 
 class FOnlineSubsystemAnon;
 
@@ -34,9 +31,9 @@ public:
     virtual bool AutoLogin(int32 LocalUserNum) override;
     virtual TSharedPtr<FUserOnlineAccount> GetUserAccount(const FUniqueNetId& UserId) const override;
     virtual TArray<TSharedPtr<FUserOnlineAccount> > GetAllUserAccounts() const override;
-    virtual TSharedPtr<const FUniqueNetId> GetUniquePlayerId(int32 LocalUserNum) const override;
-    virtual TSharedPtr<const FUniqueNetId> CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
-    virtual TSharedPtr<const FUniqueNetId> CreateUniquePlayerId(const FString& Str) override;
+    virtual FUniqueNetIdPtr GetUniquePlayerId(int32 LocalUserNum) const override;
+    virtual FUniqueNetIdPtr CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
+    virtual FUniqueNetIdPtr CreateUniquePlayerId(const FString& Str) override;
     virtual ELoginStatus::Type GetLoginStatus(int32 LocalUserNum) const override;
     virtual ELoginStatus::Type GetLoginStatus(const FUniqueNetId& UserId) const override;
     virtual FString GetPlayerNickname(int32 LocalUserNum) const override;
@@ -46,15 +43,14 @@ public:
     virtual void GetUserPrivilege(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, const FOnGetUserPrivilegeCompleteDelegate& Delegate) override;
     virtual FPlatformUserId GetPlatformUserIdFromUniqueNetId(const FUniqueNetId& UniqueNetId) const override;
     virtual FString GetAuthType() const override;
-#if WITH_HIREZ_ENGINE
-    virtual bool DisconnectForcesLogoff() { return true; }; //$$ DLF: Add support for not logging off when disconnecting from certain OSS (such as Steam)
-#endif
+
+	virtual FUniqueNetIdPtr CreateEmptyPlayerId(); // added for convenience
 
     void Tick(float DeltaTime);
 private:
     struct AnonUser
     {
-        TSharedPtr<const class FUniqueNetIdAnon> Id;
+		FUniqueNetIdPtr Id;
         FString UserName;
         bool bOperationInProgress;
 

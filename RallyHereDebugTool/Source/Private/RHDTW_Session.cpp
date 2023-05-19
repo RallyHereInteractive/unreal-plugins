@@ -37,14 +37,20 @@ FRHDTW_Session::FRHDTW_Session()
 			FString defaultMap = URallyHereDebugToolSettings::Get()->DefaultSessionMapName;
 			FTCHARToUTF8 UTF8DefaultMap(*defaultMap);
 
+			MapName.Reset(0);
+			MapName.AddUninitialized(UTF8DefaultMap.Length());
 			FMemory::Memcpy(MapName.GetData(), UTF8DefaultMap.Get(), MapName.Num());
+			MapName.AddZeroed();
 		}
 
 		{
 			FString defaultMode = URallyHereDebugToolSettings::Get()->DefaultSessionGameModeName;
 			FTCHARToUTF8 UTF8DefaultMode(*defaultMode);
-
+			
+			GameModeName.Reset(0);
+			GameModeName.AddUninitialized(UTF8DefaultMode.Length());
 			FMemory::Memcpy(GameModeName.GetData(), UTF8DefaultMode.Get(), GameModeName.Num());
+			GameModeName.AddZeroed();
 		}
 	}
 

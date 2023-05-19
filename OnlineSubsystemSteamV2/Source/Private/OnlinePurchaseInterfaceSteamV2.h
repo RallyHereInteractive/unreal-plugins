@@ -3,6 +3,7 @@
 #include "OnlineAsyncTaskManagerSteamV2.h"
 #include "Interfaces/OnlinePurchaseInterface.h"
 #include "OnlineSubsystemSteamV2Package.h"
+#include "OnlineError.h"
 
 class FOnlineSubsystemSteamV2;
 

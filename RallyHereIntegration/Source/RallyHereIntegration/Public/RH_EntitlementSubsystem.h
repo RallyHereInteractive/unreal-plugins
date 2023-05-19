@@ -355,28 +355,6 @@ protected:
 	ERHAPI_PlatformRegion GetRegionFromTitleSettings()
 	{
 		auto PlatformRegion = ERHAPI_PlatformRegion::Unknown;
-#if ENGINE_MAJOR_VERSION < 5
-		TSharedPtr<const FJsonObject> Settings = IPlatformFeaturesModule::Get().GetTitleSettings();
-		if (Settings.IsValid())
-		{
-			region = static_cast<PORTAL_REGION>(Settings->GetIntegerField(PORTAL_REGION_PROPERTY_NAME));
-		}
-
-		switch(region)
-		{
-			case 0:
-				PlatformRegion = ERHAPI_PlatformRegion::Unknown;
-				break;
-			case 1:
-				PlatformRegion = ERHAPI_PlatformRegion::Na;
-				break;
-			case 2:
-				PlatformRegion = ERHAPI_PlatformRegion::Eu;
-				break;
-			default:
-				PlatformRegion = ERHAPI_PlatformRegion::Unknown;
-		}
-#endif
 		if(GetPlatformRegionDelegate.IsBound())
 		{
 			PlatformRegion = GetPlatformRegionDelegate.Execute();

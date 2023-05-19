@@ -53,7 +53,11 @@ protected:
 		if (Resp.IsSuccessful() && SessionOwner.IsValid())
 		{
 			SessionIds.Empty();
-			Algo::Transform(Resp.Content.BrowserSessions, SessionIds, [](auto&& BrowserSession){ return BrowserSession.SessionId; });
+
+			for (auto BrowserSession : Resp.Content.BrowserSessions)
+			{
+				SessionIds.Add(BrowserSession.SessionId);
+			}
 
 			if (SessionIds.Num() <= 0)
 			{

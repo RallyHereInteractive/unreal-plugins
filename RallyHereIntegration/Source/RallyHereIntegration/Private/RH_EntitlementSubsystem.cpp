@@ -21,8 +21,8 @@ void URH_EntitlementSubsystem::SubmitEntitlements(FRH_ProcessEntitlementComplete
 	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
 			GetOSS(),
 			GetPurchaseSubsystem(),
-			GetRH_LocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId(),
-			GetRH_LocalPlayerSubsystem()->GetLocalPlayer()->GetUniqueNetIdForPlatformUser().GetUniqueNetId(),
+			GetRH_LocalPlayerSubsystem()->GetPlatformUserId(),
+			GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId(),
 			GetTimerManager(),
 			EntitlementProcessorCompleteDelegate,
 			PlatformRegionDelegate
