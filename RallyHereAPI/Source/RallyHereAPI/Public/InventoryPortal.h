@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "InventoryPortal.generated.h"
 
+
 /**
  * @brief An enumeration.
  */

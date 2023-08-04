@@ -40,12 +40,14 @@ bool FRHAPI_PlayerOrdersResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("data")))
+    const TSharedPtr<FJsonValue> JsonDataField = (*Object)->TryGetField(TEXT("data"));
+    if (JsonDataField.IsValid() && !JsonDataField->IsNull())
     {
-        Data_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("data"), Data_Optional);
+        Data_IsSet = TryGetJsonValue(JsonDataField, Data_Optional);
         ParseSuccess &= Data_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("page"), Page);
+    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
 
     return ParseSuccess;
 }

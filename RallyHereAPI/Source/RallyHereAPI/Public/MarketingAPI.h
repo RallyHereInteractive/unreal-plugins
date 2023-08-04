@@ -30,10 +30,10 @@ public:
     FMarketingAPI();
     virtual ~FMarketingAPI();
 
-    FHttpRequestPtr GetMarketingCampaigns(const FRequest_GetMarketingCampaigns& Request, const FDelegate_GetMarketingCampaigns& Delegate = FDelegate_GetMarketingCampaigns());
+    FHttpRequestPtr GetMarketingCampaigns(const FRequest_GetMarketingCampaigns& Request, const FDelegate_GetMarketingCampaigns& Delegate = FDelegate_GetMarketingCampaigns(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetMarketingCampaignsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMarketingCampaigns Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetMarketingCampaignsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMarketingCampaigns Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API Traits_GetMarketingCampaigns
     typedef FMarketingAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetMarketingCampaigns(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMarketingCampaigns(InRequest, InDelegate, Priority); }
 };
 
 

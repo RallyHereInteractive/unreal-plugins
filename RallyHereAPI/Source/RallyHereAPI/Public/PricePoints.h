@@ -13,8 +13,12 @@
 #include "PricePoint.h"
 #include "PricePoints.generated.h"
 
+/** @defgroup RHAPI_PricePoints RallyHere API Model PricePoints
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Price Points by Price Point ID.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Price Points mapped by Price Point ID. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_PricePoint> PricePoints_Optional{  };
     /** @brief true if PricePoints_Optional has been set to a value */
@@ -81,3 +86,5 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

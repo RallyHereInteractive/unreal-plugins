@@ -116,6 +116,10 @@ FString EnumToString(const ERHAPI_PlayerOrderEntryResult& Value)
         return TEXT("always_owned_inventory_cannot_be_modified");
     case ERHAPI_PlayerOrderEntryResult::AvailableUntilIsInPast:
         return TEXT("available_until_is_in_past");
+    case ERHAPI_PlayerOrderEntryResult::Rollback:
+        return TEXT("rollback");
+    case ERHAPI_PlayerOrderEntryResult::NotStarted:
+        return TEXT("not_started");
     }
 
     UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_PlayerOrderEntryResult::Values Value (%d)"), (int)Value);
@@ -171,7 +175,9 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryResult& 
         { TEXT("item_not_active"), ERHAPI_PlayerOrderEntryResult::ItemNotActive },
         { TEXT("too_many_inv_custom_attributes"), ERHAPI_PlayerOrderEntryResult::TooManyInvCustomAttributes },
         { TEXT("always_owned_inventory_cannot_be_modified"), ERHAPI_PlayerOrderEntryResult::AlwaysOwnedInventoryCannotBeModified },
-        { TEXT("available_until_is_in_past"), ERHAPI_PlayerOrderEntryResult::AvailableUntilIsInPast },    };
+        { TEXT("available_until_is_in_past"), ERHAPI_PlayerOrderEntryResult::AvailableUntilIsInPast },
+        { TEXT("rollback"), ERHAPI_PlayerOrderEntryResult::Rollback },
+        { TEXT("not_started"), ERHAPI_PlayerOrderEntryResult::NotStarted },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);
     if(Found)

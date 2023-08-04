@@ -12,7 +12,6 @@
 #include "RallyHereAPIHelpers.h"
 #include "SortOrder.h"
 #include "CreateInventoryRequests.h"
-#include "DynamicLoot.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "InventoryContextResponse.h"
@@ -55,10 +54,6 @@ struct FRequest_CreatePlayerInventoryUuid;
 struct FResponse_CreatePlayerInventoryUuid;
 struct FRequest_CreatePlayerInventoryUuidSelf;
 struct FResponse_CreatePlayerInventoryUuidSelf;
-struct FRequest_GetDynamicLoot;
-struct FResponse_GetDynamicLoot;
-struct FRequest_GetDynamicLootSelf;
-struct FResponse_GetDynamicLootSelf;
 struct FRequest_GetInventorySessionInfo;
 struct FResponse_GetInventorySessionInfo;
 struct FRequest_GetInventorySessionInfoByPlayerUuid;
@@ -120,8 +115,6 @@ DECLARE_DELEGATE_OneParam(FDelegate_CreatePlayerInventory, const FResponse_Creat
 DECLARE_DELEGATE_OneParam(FDelegate_CreatePlayerInventorySelf, const FResponse_CreatePlayerInventorySelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreatePlayerInventoryUuid, const FResponse_CreatePlayerInventoryUuid&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreatePlayerInventoryUuidSelf, const FResponse_CreatePlayerInventoryUuidSelf&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetDynamicLoot, const FResponse_GetDynamicLoot&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetDynamicLootSelf, const FResponse_GetDynamicLootSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetInventorySessionInfo, const FResponse_GetInventorySessionInfo&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetInventorySessionInfoByPlayerUuid, const FResponse_GetInventorySessionInfoByPlayerUuid&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetInventorySessionInfoByPlayerUuidSelf, const FResponse_GetInventorySessionInfoByPlayerUuidSelf&);
@@ -153,89 +146,86 @@ public:
     FInventoryAPI();
     virtual ~FInventoryAPI();
 
-    FHttpRequestPtr CreateNewInventorySession(const FRequest_CreateNewInventorySession& Request, const FDelegate_CreateNewInventorySession& Delegate = FDelegate_CreateNewInventorySession());
-    FHttpRequestPtr CreateNewInventorySessionByPlayerUuid(const FRequest_CreateNewInventorySessionByPlayerUuid& Request, const FDelegate_CreateNewInventorySessionByPlayerUuid& Delegate = FDelegate_CreateNewInventorySessionByPlayerUuid());
-    FHttpRequestPtr CreateNewInventorySessionByPlayerUuidSelf(const FRequest_CreateNewInventorySessionByPlayerUuidSelf& Request, const FDelegate_CreateNewInventorySessionByPlayerUuidSelf& Delegate = FDelegate_CreateNewInventorySessionByPlayerUuidSelf());
-    FHttpRequestPtr CreateNewInventorySessionSelf(const FRequest_CreateNewInventorySessionSelf& Request, const FDelegate_CreateNewInventorySessionSelf& Delegate = FDelegate_CreateNewInventorySessionSelf());
-    FHttpRequestPtr CreateNewPlayerOrder(const FRequest_CreateNewPlayerOrder& Request, const FDelegate_CreateNewPlayerOrder& Delegate = FDelegate_CreateNewPlayerOrder());
-    FHttpRequestPtr CreateNewPlayerOrderSelf(const FRequest_CreateNewPlayerOrderSelf& Request, const FDelegate_CreateNewPlayerOrderSelf& Delegate = FDelegate_CreateNewPlayerOrderSelf());
-    FHttpRequestPtr CreateNewPlayerUuidOrder(const FRequest_CreateNewPlayerUuidOrder& Request, const FDelegate_CreateNewPlayerUuidOrder& Delegate = FDelegate_CreateNewPlayerUuidOrder());
-    FHttpRequestPtr CreateNewPlayerUuidOrderSelf(const FRequest_CreateNewPlayerUuidOrderSelf& Request, const FDelegate_CreateNewPlayerUuidOrderSelf& Delegate = FDelegate_CreateNewPlayerUuidOrderSelf());
-    FHttpRequestPtr CreatePlayerInventory(const FRequest_CreatePlayerInventory& Request, const FDelegate_CreatePlayerInventory& Delegate = FDelegate_CreatePlayerInventory());
-    FHttpRequestPtr CreatePlayerInventorySelf(const FRequest_CreatePlayerInventorySelf& Request, const FDelegate_CreatePlayerInventorySelf& Delegate = FDelegate_CreatePlayerInventorySelf());
-    FHttpRequestPtr CreatePlayerInventoryUuid(const FRequest_CreatePlayerInventoryUuid& Request, const FDelegate_CreatePlayerInventoryUuid& Delegate = FDelegate_CreatePlayerInventoryUuid());
-    FHttpRequestPtr CreatePlayerInventoryUuidSelf(const FRequest_CreatePlayerInventoryUuidSelf& Request, const FDelegate_CreatePlayerInventoryUuidSelf& Delegate = FDelegate_CreatePlayerInventoryUuidSelf());
-    FHttpRequestPtr GetDynamicLoot(const FRequest_GetDynamicLoot& Request, const FDelegate_GetDynamicLoot& Delegate = FDelegate_GetDynamicLoot());
-    FHttpRequestPtr GetDynamicLootSelf(const FRequest_GetDynamicLootSelf& Request, const FDelegate_GetDynamicLootSelf& Delegate = FDelegate_GetDynamicLootSelf());
-    FHttpRequestPtr GetInventorySessionInfo(const FRequest_GetInventorySessionInfo& Request, const FDelegate_GetInventorySessionInfo& Delegate = FDelegate_GetInventorySessionInfo());
-    FHttpRequestPtr GetInventorySessionInfoByPlayerUuid(const FRequest_GetInventorySessionInfoByPlayerUuid& Request, const FDelegate_GetInventorySessionInfoByPlayerUuid& Delegate = FDelegate_GetInventorySessionInfoByPlayerUuid());
-    FHttpRequestPtr GetInventorySessionInfoByPlayerUuidSelf(const FRequest_GetInventorySessionInfoByPlayerUuidSelf& Request, const FDelegate_GetInventorySessionInfoByPlayerUuidSelf& Delegate = FDelegate_GetInventorySessionInfoByPlayerUuidSelf());
-    FHttpRequestPtr GetInventorySessionInfoSelf(const FRequest_GetInventorySessionInfoSelf& Request, const FDelegate_GetInventorySessionInfoSelf& Delegate = FDelegate_GetInventorySessionInfoSelf());
-    FHttpRequestPtr GetPlayerInventory(const FRequest_GetPlayerInventory& Request, const FDelegate_GetPlayerInventory& Delegate = FDelegate_GetPlayerInventory());
-    FHttpRequestPtr GetPlayerInventorySelf(const FRequest_GetPlayerInventorySelf& Request, const FDelegate_GetPlayerInventorySelf& Delegate = FDelegate_GetPlayerInventorySelf());
-    FHttpRequestPtr GetPlayerInventoryUuid(const FRequest_GetPlayerInventoryUuid& Request, const FDelegate_GetPlayerInventoryUuid& Delegate = FDelegate_GetPlayerInventoryUuid());
-    FHttpRequestPtr GetPlayerInventoryUuidSelf(const FRequest_GetPlayerInventoryUuidSelf& Request, const FDelegate_GetPlayerInventoryUuidSelf& Delegate = FDelegate_GetPlayerInventoryUuidSelf());
-    FHttpRequestPtr GetPlayerOrderById(const FRequest_GetPlayerOrderById& Request, const FDelegate_GetPlayerOrderById& Delegate = FDelegate_GetPlayerOrderById());
-    FHttpRequestPtr GetPlayerOrderByIdSelf(const FRequest_GetPlayerOrderByIdSelf& Request, const FDelegate_GetPlayerOrderByIdSelf& Delegate = FDelegate_GetPlayerOrderByIdSelf());
-    FHttpRequestPtr GetPlayerOrders(const FRequest_GetPlayerOrders& Request, const FDelegate_GetPlayerOrders& Delegate = FDelegate_GetPlayerOrders());
-    FHttpRequestPtr GetPlayerOrdersSelf(const FRequest_GetPlayerOrdersSelf& Request, const FDelegate_GetPlayerOrdersSelf& Delegate = FDelegate_GetPlayerOrdersSelf());
-    FHttpRequestPtr GetPlayerUuidOrderById(const FRequest_GetPlayerUuidOrderById& Request, const FDelegate_GetPlayerUuidOrderById& Delegate = FDelegate_GetPlayerUuidOrderById());
-    FHttpRequestPtr GetPlayerUuidOrderByIdSelf(const FRequest_GetPlayerUuidOrderByIdSelf& Request, const FDelegate_GetPlayerUuidOrderByIdSelf& Delegate = FDelegate_GetPlayerUuidOrderByIdSelf());
-    FHttpRequestPtr GetPlayerUuidOrders(const FRequest_GetPlayerUuidOrders& Request, const FDelegate_GetPlayerUuidOrders& Delegate = FDelegate_GetPlayerUuidOrders());
-    FHttpRequestPtr GetPlayerUuidOrdersSelf(const FRequest_GetPlayerUuidOrdersSelf& Request, const FDelegate_GetPlayerUuidOrdersSelf& Delegate = FDelegate_GetPlayerUuidOrdersSelf());
-    FHttpRequestPtr ModifyManyPlayerInventory(const FRequest_ModifyManyPlayerInventory& Request, const FDelegate_ModifyManyPlayerInventory& Delegate = FDelegate_ModifyManyPlayerInventory());
-    FHttpRequestPtr ModifyManyPlayerInventorySelf(const FRequest_ModifyManyPlayerInventorySelf& Request, const FDelegate_ModifyManyPlayerInventorySelf& Delegate = FDelegate_ModifyManyPlayerInventorySelf());
-    FHttpRequestPtr ModifyManyPlayerInventoryUuid(const FRequest_ModifyManyPlayerInventoryUuid& Request, const FDelegate_ModifyManyPlayerInventoryUuid& Delegate = FDelegate_ModifyManyPlayerInventoryUuid());
-    FHttpRequestPtr ModifyManyPlayerInventoryUuidSelf(const FRequest_ModifyManyPlayerInventoryUuidSelf& Request, const FDelegate_ModifyManyPlayerInventoryUuidSelf& Delegate = FDelegate_ModifyManyPlayerInventoryUuidSelf());
-    FHttpRequestPtr ModifyPlayerInventory(const FRequest_ModifyPlayerInventory& Request, const FDelegate_ModifyPlayerInventory& Delegate = FDelegate_ModifyPlayerInventory());
-    FHttpRequestPtr ModifyPlayerInventorySelf(const FRequest_ModifyPlayerInventorySelf& Request, const FDelegate_ModifyPlayerInventorySelf& Delegate = FDelegate_ModifyPlayerInventorySelf());
-    FHttpRequestPtr ModifyPlayerInventoryUuid(const FRequest_ModifyPlayerInventoryUuid& Request, const FDelegate_ModifyPlayerInventoryUuid& Delegate = FDelegate_ModifyPlayerInventoryUuid());
-    FHttpRequestPtr ModifyPlayerInventoryUuidSelf(const FRequest_ModifyPlayerInventoryUuidSelf& Request, const FDelegate_ModifyPlayerInventoryUuidSelf& Delegate = FDelegate_ModifyPlayerInventoryUuidSelf());
+    FHttpRequestPtr CreateNewInventorySession(const FRequest_CreateNewInventorySession& Request, const FDelegate_CreateNewInventorySession& Delegate = FDelegate_CreateNewInventorySession(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewInventorySessionByPlayerUuid(const FRequest_CreateNewInventorySessionByPlayerUuid& Request, const FDelegate_CreateNewInventorySessionByPlayerUuid& Delegate = FDelegate_CreateNewInventorySessionByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewInventorySessionByPlayerUuidSelf(const FRequest_CreateNewInventorySessionByPlayerUuidSelf& Request, const FDelegate_CreateNewInventorySessionByPlayerUuidSelf& Delegate = FDelegate_CreateNewInventorySessionByPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewInventorySessionSelf(const FRequest_CreateNewInventorySessionSelf& Request, const FDelegate_CreateNewInventorySessionSelf& Delegate = FDelegate_CreateNewInventorySessionSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewPlayerOrder(const FRequest_CreateNewPlayerOrder& Request, const FDelegate_CreateNewPlayerOrder& Delegate = FDelegate_CreateNewPlayerOrder(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewPlayerOrderSelf(const FRequest_CreateNewPlayerOrderSelf& Request, const FDelegate_CreateNewPlayerOrderSelf& Delegate = FDelegate_CreateNewPlayerOrderSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewPlayerUuidOrder(const FRequest_CreateNewPlayerUuidOrder& Request, const FDelegate_CreateNewPlayerUuidOrder& Delegate = FDelegate_CreateNewPlayerUuidOrder(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateNewPlayerUuidOrderSelf(const FRequest_CreateNewPlayerUuidOrderSelf& Request, const FDelegate_CreateNewPlayerUuidOrderSelf& Delegate = FDelegate_CreateNewPlayerUuidOrderSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreatePlayerInventory(const FRequest_CreatePlayerInventory& Request, const FDelegate_CreatePlayerInventory& Delegate = FDelegate_CreatePlayerInventory(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreatePlayerInventorySelf(const FRequest_CreatePlayerInventorySelf& Request, const FDelegate_CreatePlayerInventorySelf& Delegate = FDelegate_CreatePlayerInventorySelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreatePlayerInventoryUuid(const FRequest_CreatePlayerInventoryUuid& Request, const FDelegate_CreatePlayerInventoryUuid& Delegate = FDelegate_CreatePlayerInventoryUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreatePlayerInventoryUuidSelf(const FRequest_CreatePlayerInventoryUuidSelf& Request, const FDelegate_CreatePlayerInventoryUuidSelf& Delegate = FDelegate_CreatePlayerInventoryUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetInventorySessionInfo(const FRequest_GetInventorySessionInfo& Request, const FDelegate_GetInventorySessionInfo& Delegate = FDelegate_GetInventorySessionInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetInventorySessionInfoByPlayerUuid(const FRequest_GetInventorySessionInfoByPlayerUuid& Request, const FDelegate_GetInventorySessionInfoByPlayerUuid& Delegate = FDelegate_GetInventorySessionInfoByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetInventorySessionInfoByPlayerUuidSelf(const FRequest_GetInventorySessionInfoByPlayerUuidSelf& Request, const FDelegate_GetInventorySessionInfoByPlayerUuidSelf& Delegate = FDelegate_GetInventorySessionInfoByPlayerUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetInventorySessionInfoSelf(const FRequest_GetInventorySessionInfoSelf& Request, const FDelegate_GetInventorySessionInfoSelf& Delegate = FDelegate_GetInventorySessionInfoSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerInventory(const FRequest_GetPlayerInventory& Request, const FDelegate_GetPlayerInventory& Delegate = FDelegate_GetPlayerInventory(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerInventorySelf(const FRequest_GetPlayerInventorySelf& Request, const FDelegate_GetPlayerInventorySelf& Delegate = FDelegate_GetPlayerInventorySelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerInventoryUuid(const FRequest_GetPlayerInventoryUuid& Request, const FDelegate_GetPlayerInventoryUuid& Delegate = FDelegate_GetPlayerInventoryUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerInventoryUuidSelf(const FRequest_GetPlayerInventoryUuidSelf& Request, const FDelegate_GetPlayerInventoryUuidSelf& Delegate = FDelegate_GetPlayerInventoryUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerOrderById(const FRequest_GetPlayerOrderById& Request, const FDelegate_GetPlayerOrderById& Delegate = FDelegate_GetPlayerOrderById(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerOrderByIdSelf(const FRequest_GetPlayerOrderByIdSelf& Request, const FDelegate_GetPlayerOrderByIdSelf& Delegate = FDelegate_GetPlayerOrderByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerOrders(const FRequest_GetPlayerOrders& Request, const FDelegate_GetPlayerOrders& Delegate = FDelegate_GetPlayerOrders(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerOrdersSelf(const FRequest_GetPlayerOrdersSelf& Request, const FDelegate_GetPlayerOrdersSelf& Delegate = FDelegate_GetPlayerOrdersSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidOrderById(const FRequest_GetPlayerUuidOrderById& Request, const FDelegate_GetPlayerUuidOrderById& Delegate = FDelegate_GetPlayerUuidOrderById(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidOrderByIdSelf(const FRequest_GetPlayerUuidOrderByIdSelf& Request, const FDelegate_GetPlayerUuidOrderByIdSelf& Delegate = FDelegate_GetPlayerUuidOrderByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidOrders(const FRequest_GetPlayerUuidOrders& Request, const FDelegate_GetPlayerUuidOrders& Delegate = FDelegate_GetPlayerUuidOrders(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidOrdersSelf(const FRequest_GetPlayerUuidOrdersSelf& Request, const FDelegate_GetPlayerUuidOrdersSelf& Delegate = FDelegate_GetPlayerUuidOrdersSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyManyPlayerInventory(const FRequest_ModifyManyPlayerInventory& Request, const FDelegate_ModifyManyPlayerInventory& Delegate = FDelegate_ModifyManyPlayerInventory(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyManyPlayerInventorySelf(const FRequest_ModifyManyPlayerInventorySelf& Request, const FDelegate_ModifyManyPlayerInventorySelf& Delegate = FDelegate_ModifyManyPlayerInventorySelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyManyPlayerInventoryUuid(const FRequest_ModifyManyPlayerInventoryUuid& Request, const FDelegate_ModifyManyPlayerInventoryUuid& Delegate = FDelegate_ModifyManyPlayerInventoryUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyManyPlayerInventoryUuidSelf(const FRequest_ModifyManyPlayerInventoryUuidSelf& Request, const FDelegate_ModifyManyPlayerInventoryUuidSelf& Delegate = FDelegate_ModifyManyPlayerInventoryUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyPlayerInventory(const FRequest_ModifyPlayerInventory& Request, const FDelegate_ModifyPlayerInventory& Delegate = FDelegate_ModifyPlayerInventory(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyPlayerInventorySelf(const FRequest_ModifyPlayerInventorySelf& Request, const FDelegate_ModifyPlayerInventorySelf& Delegate = FDelegate_ModifyPlayerInventorySelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyPlayerInventoryUuid(const FRequest_ModifyPlayerInventoryUuid& Request, const FDelegate_ModifyPlayerInventoryUuid& Delegate = FDelegate_ModifyPlayerInventoryUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ModifyPlayerInventoryUuidSelf(const FRequest_ModifyPlayerInventoryUuidSelf& Request, const FDelegate_ModifyPlayerInventoryUuidSelf& Delegate = FDelegate_ModifyPlayerInventoryUuidSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnCreateNewInventorySessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewInventorySessionByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySessionByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewInventorySessionByPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySessionByPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewInventorySessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewPlayerOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerOrder Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewPlayerOrderSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerOrderSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewPlayerUuidOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerUuidOrder Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreateNewPlayerUuidOrderSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerUuidOrderSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreatePlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreatePlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreatePlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnCreatePlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetDynamicLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetDynamicLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetDynamicLootSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetDynamicLootSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetInventorySessionInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetInventorySessionInfoByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetInventorySessionInfoByPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoByPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetInventorySessionInfoSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerOrderByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrderById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerOrderByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrderByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrders Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerOrdersSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrdersSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidOrderByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrderById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidOrderByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrderByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrders Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidOrdersSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrdersSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyManyPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyManyPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyManyPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyManyPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnModifyPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnCreateNewInventorySessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewInventorySessionByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySessionByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewInventorySessionByPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySessionByPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewInventorySessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewPlayerOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerOrder Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewPlayerOrderSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerOrderSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewPlayerUuidOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerUuidOrder Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateNewPlayerUuidOrderSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewPlayerUuidOrderSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreatePlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreatePlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreatePlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreatePlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetInventorySessionInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetInventorySessionInfoByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetInventorySessionInfoByPlayerUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoByPlayerUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetInventorySessionInfoSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInventorySessionInfoSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerOrderByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrderById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerOrderByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrderByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrders Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerOrdersSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerOrdersSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidOrderByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrderById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidOrderByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrderByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidOrdersResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrders Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidOrdersSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidOrdersSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyManyPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyManyPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyManyPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyManyPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyManyPlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyPlayerInventoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyPlayerInventorySelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventorySelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyPlayerInventoryUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventoryUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnModifyPlayerInventoryUuidSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ModifyPlayerInventoryUuidSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Create New Inventory Session
-
+ *
+ * Create a new Inventory Session for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewInventorySession : public FRequest
 {
@@ -270,11 +260,12 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySession
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewInventorySession(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySession(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Inventory Session By Player Uuid
-
+ *
+ * Create a new Inventory Session for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewInventorySessionByPlayerUuid : public FRequest
 {
@@ -309,11 +300,12 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuid
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewInventorySessionByPlayerUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Inventory Session By Player Uuid Self
-
+ *
+ * Create a new Inventory Session for the currently logged in player.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewInventorySessionByPlayerUuidSelf : public FRequest
 {
@@ -347,11 +339,12 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuidSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewInventorySessionByPlayerUuidSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionByPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Inventory Session Self
-
+ *
+ * Create a new Inventory Session for the currently logged in player.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewInventorySessionSelf : public FRequest
 {
@@ -385,11 +378,12 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewInventorySessionSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Order
-
+ *
+ * Create a new Order for a specific player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrder : public FRequest
 {
@@ -424,11 +418,12 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrder
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewPlayerOrder(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerOrder(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Order Self
-
+ *
+ * Create a new Order for the current logged in player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrderSelf : public FRequest
 {
@@ -450,7 +445,7 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerOrderCreate Content;
+    FRHAPI_PlayerOrder Content;
 
 };
 
@@ -462,11 +457,12 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrderSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewPlayerOrderSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerOrderSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Uuid Order
-
+ *
+ * Create a new Order for a specific player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrder : public FRequest
 {
@@ -501,11 +497,12 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrder
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewPlayerUuidOrder(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerUuidOrder(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Uuid Order Self
-
+ *
+ * Create a new Order for the current logged in player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrderSelf : public FRequest
 {
@@ -527,7 +524,7 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FRespons
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerOrderCreate Content;
+    FRHAPI_PlayerOrder Content;
 
 };
 
@@ -539,11 +536,12 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrderSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateNewPlayerUuidOrderSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerUuidOrderSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory
-
+ *
+ * Create Inventory for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_CreatePlayerInventory : public FRequest
 {
@@ -578,11 +576,12 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventory
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreatePlayerInventory(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory Self
-
+ *
+ * Create Inventory for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_CreatePlayerInventorySelf : public FRequest
 {
@@ -616,11 +615,12 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventorySelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreatePlayerInventorySelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory Uuid
-
+ *
+ * Create Inventory for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_CreatePlayerInventoryUuid : public FRequest
 {
@@ -655,11 +655,12 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuid
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreatePlayerInventoryUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Create Player Inventory Uuid Self
-
+ *
+ * Create Inventory for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_CreatePlayerInventoryUuidSelf : public FRequest
 {
@@ -693,88 +694,12 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuidSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreatePlayerInventoryUuidSelf(InRequest, InDelegate); }
-};
-
-/* Get Dynamic Loot
- *
- * Get dynamically generated loot for a player
-*/
-struct RALLYHEREAPI_API FRequest_GetDynamicLoot : public FRequest
-{
-    FRequest_GetDynamicLoot();
-    virtual ~FRequest_GetDynamicLoot() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-};
-
-struct RALLYHEREAPI_API FResponse_GetDynamicLoot : public FResponse
-{
-    FResponse_GetDynamicLoot(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetDynamicLoot() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DynamicLoot Content;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetDynamicLoot
-{
-    typedef FRequest_GetDynamicLoot Request;
-    typedef FResponse_GetDynamicLoot Response;
-    typedef FDelegate_GetDynamicLoot Delegate;
-    typedef FInventoryAPI API;
-    static FString Name;
-	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetDynamicLoot(InRequest, InDelegate); }
-};
-
-/* Get Dynamic Loot Self
- *
- * Get dynamically generated loot for your player
-*/
-struct RALLYHEREAPI_API FRequest_GetDynamicLootSelf : public FRequest
-{
-    FRequest_GetDynamicLootSelf();
-    virtual ~FRequest_GetDynamicLootSelf() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-};
-
-struct RALLYHEREAPI_API FResponse_GetDynamicLootSelf : public FResponse
-{
-    FResponse_GetDynamicLootSelf(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetDynamicLootSelf() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DynamicLoot Content;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetDynamicLootSelf
-{
-    typedef FRequest_GetDynamicLootSelf Request;
-    typedef FResponse_GetDynamicLootSelf Response;
-    typedef FDelegate_GetDynamicLootSelf Delegate;
-    typedef FInventoryAPI API;
-    static FString Name;
-	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetDynamicLootSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info
-
+ *
+ * Get an Inventory Session for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_GetInventorySessionInfo : public FRequest
 {
@@ -808,11 +733,12 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfo
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetInventorySessionInfo(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info By Player Uuid
-
+ *
+ * Get an Inventory Session for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_GetInventorySessionInfoByPlayerUuid : public FRequest
 {
@@ -846,11 +772,12 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuid
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetInventorySessionInfoByPlayerUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info By Player Uuid Self
-
+ *
+ * Get an Inventory Session for the currently logged in player.
 */
 struct RALLYHEREAPI_API FRequest_GetInventorySessionInfoByPlayerUuidSelf : public FRequest
 {
@@ -883,11 +810,12 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuidSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetInventorySessionInfoByPlayerUuidSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoByPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Inventory Session Info Self
-
+ *
+ * Get an Inventory Session for the currently logged in player.
 */
 struct RALLYHEREAPI_API FRequest_GetInventorySessionInfoSelf : public FRequest
 {
@@ -920,11 +848,12 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetInventorySessionInfoSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory
-
+ *
+ * Get the Inventory for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerInventory : public FRequest
 {
@@ -959,11 +888,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventory
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerInventory(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory Self
-
+ *
+ * Get the Inventory for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerInventorySelf : public FRequest
 {
@@ -997,11 +927,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventorySelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerInventorySelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory Uuid
-
+ *
+ * Get the Inventory for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerInventoryUuid : public FRequest
 {
@@ -1036,11 +967,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuid
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerInventoryUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Inventory Uuid Self
-
+ *
+ * Get the Inventory for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerInventoryUuidSelf : public FRequest
 {
@@ -1074,7 +1006,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuidSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerInventoryUuidSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Order By Id
@@ -1114,7 +1046,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrderById
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerOrderById(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrderById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Order By Id Self
@@ -1153,7 +1085,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrderByIdSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerOrderByIdSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrderByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Orders
@@ -1200,7 +1132,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrders
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerOrders(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrders(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Orders Self
@@ -1246,7 +1178,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrdersSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerOrdersSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrdersSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Order By Id
@@ -1286,7 +1218,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderById
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidOrderById(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrderById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Order By Id Self
@@ -1325,7 +1257,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderByIdSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidOrderByIdSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrderByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Orders
@@ -1372,7 +1304,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrders
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidOrders(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrders(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Orders Self
@@ -1418,11 +1350,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrdersSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidOrdersSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrdersSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory
-
+ *
+ * Modify many Inventory records for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventory : public FRequest
 {
@@ -1457,11 +1390,12 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventory
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyManyPlayerInventory(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory Self
-
+ *
+ * Modify many Inventory records for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventorySelf : public FRequest
 {
@@ -1495,11 +1429,12 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventorySelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyManyPlayerInventorySelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory Uuid
-
+ *
+ * Modify many Inventory records for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventoryUuid : public FRequest
 {
@@ -1534,11 +1469,12 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuid
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyManyPlayerInventoryUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Many Player Inventory Uuid Self
-
+ *
+ * Modify many Inventory records for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventoryUuidSelf : public FRequest
 {
@@ -1572,11 +1508,12 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuidSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyManyPlayerInventoryUuidSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory
-
+ *
+ * Modify a single Inventory record for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyPlayerInventory : public FRequest
 {
@@ -1612,11 +1549,12 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventory
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyPlayerInventory(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory Self
-
+ *
+ * Modify a single Inventory record for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyPlayerInventorySelf : public FRequest
 {
@@ -1651,11 +1589,12 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventorySelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyPlayerInventorySelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory Uuid
-
+ *
+ * Modify a single Inventory record for the specified player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyPlayerInventoryUuid : public FRequest
 {
@@ -1691,11 +1630,12 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuid
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyPlayerInventoryUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Modify Player Inventory Uuid Self
-
+ *
+ * Modify a single Inventory record for the currently authenticated player.
 */
 struct RALLYHEREAPI_API FRequest_ModifyPlayerInventoryUuidSelf : public FRequest
 {
@@ -1730,7 +1670,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuidSelf
     typedef FInventoryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ModifyPlayerInventoryUuidSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
 

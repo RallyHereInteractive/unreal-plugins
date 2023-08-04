@@ -45,15 +45,18 @@ bool FRHAPI_PlayerLastSeenUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("time"), Time);
-    if ((*Object)->HasField(TEXT("platform")))
+    const TSharedPtr<FJsonValue> JsonTimeField = (*Object)->TryGetField(TEXT("time"));
+    ParseSuccess &= JsonTimeField.IsValid() && !JsonTimeField->IsNull() && TryGetJsonValue(JsonTimeField, Time);
+    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+    if (JsonPlatformField.IsValid() && !JsonPlatformField->IsNull())
     {
-        Platform_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("platform"), Platform_Optional);
+        Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
         ParseSuccess &= Platform_IsSet;
     }
-    if ((*Object)->HasField(TEXT("display_name")))
+    const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
+    if (JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull())
     {
-        DisplayName_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("display_name"), DisplayName_Optional);
+        DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
         ParseSuccess &= DisplayName_IsSet;
     }
 

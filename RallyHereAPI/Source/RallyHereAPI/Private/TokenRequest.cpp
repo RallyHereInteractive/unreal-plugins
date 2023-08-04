@@ -35,7 +35,8 @@ bool FRHAPI_TokenRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("grant_type"), GrantType);
+    const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
+    ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
 
     return ParseSuccess;
 }

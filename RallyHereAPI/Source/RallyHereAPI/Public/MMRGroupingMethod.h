@@ -11,16 +11,17 @@
 #include "RallyHereAPIHelpers.h"
 #include "MMRGroupingMethod.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief What method should be used to determine a linking&#39;s group MMR based on the individuals
  */
 UENUM(BlueprintType)
 enum class ERHAPI_MMRGroupingMethod : uint8
 {
-    Worst UMETA(ToolTip="An enumeration."),
-    Best UMETA(ToolTip="An enumeration."),
-    AverageByVariance UMETA(ToolTip="An enumeration."),
-    Average UMETA(ToolTip="An enumeration."),
+    Worst UMETA(ToolTip="Use the lowest MMR of any player in the linking"),
+    Best UMETA(ToolTip="Use the highest MMR of any player in the linking"),
+    AverageByVariance UMETA(ToolTip="Use the arithmetic mean of the players&#39; skill multiplied by their variance. This is the sum of each player&#39;s skill times variance divided by the number of players"),
+    Average UMETA(ToolTip="Use the arithmetic mean of the players&#39; skill. This is the sum of each player&#39;s skill divided by the number of players"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_MMRGroupingMethod& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_MMRGroupingMethod& EnumValue);

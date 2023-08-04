@@ -28,10 +28,10 @@ public:
     FTimeAPI();
     virtual ~FTimeAPI();
 
-    FHttpRequestPtr GetUtcTime(const FRequest_GetUtcTime& Request, const FDelegate_GetUtcTime& Delegate = FDelegate_GetUtcTime());
+    FHttpRequestPtr GetUtcTime(const FRequest_GetUtcTime& Request, const FDelegate_GetUtcTime& Delegate = FDelegate_GetUtcTime(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetUtcTime Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetUtcTimeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetUtcTime Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -68,7 +68,7 @@ struct RALLYHEREAPI_API Traits_GetUtcTime
     typedef FTimeAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetUtcTime(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetUtcTime(InRequest, InDelegate, Priority); }
 };
 
 

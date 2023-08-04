@@ -32,6 +32,11 @@ void FRHAPI_LookupResults::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("identity_platforms"));
         RallyHereAPI::WriteJsonValue(Writer, IdentityPlatforms_Optional);
     }
+    if (IdentityPlatformsByPlatform_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("identity_platforms_by_platform"));
+        RallyHereAPI::WriteJsonValue(Writer, IdentityPlatformsByPlatform_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -43,15 +48,23 @@ bool FRHAPI_LookupResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("display_names")))
+    const TSharedPtr<FJsonValue> JsonDisplayNamesField = (*Object)->TryGetField(TEXT("display_names"));
+    if (JsonDisplayNamesField.IsValid() && !JsonDisplayNamesField->IsNull())
     {
-        DisplayNames_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("display_names"), DisplayNames_Optional);
+        DisplayNames_IsSet = TryGetJsonValue(JsonDisplayNamesField, DisplayNames_Optional);
         ParseSuccess &= DisplayNames_IsSet;
     }
-    if ((*Object)->HasField(TEXT("identity_platforms")))
+    const TSharedPtr<FJsonValue> JsonIdentityPlatformsField = (*Object)->TryGetField(TEXT("identity_platforms"));
+    if (JsonIdentityPlatformsField.IsValid() && !JsonIdentityPlatformsField->IsNull())
     {
-        IdentityPlatforms_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("identity_platforms"), IdentityPlatforms_Optional);
+        IdentityPlatforms_IsSet = TryGetJsonValue(JsonIdentityPlatformsField, IdentityPlatforms_Optional);
         ParseSuccess &= IdentityPlatforms_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonIdentityPlatformsByPlatformField = (*Object)->TryGetField(TEXT("identity_platforms_by_platform"));
+    if (JsonIdentityPlatformsByPlatformField.IsValid() && !JsonIdentityPlatformsByPlatformField->IsNull())
+    {
+        IdentityPlatformsByPlatform_IsSet = TryGetJsonValue(JsonIdentityPlatformsByPlatformField, IdentityPlatformsByPlatform_Optional);
+        ParseSuccess &= IdentityPlatformsByPlatform_IsSet;
     }
 
     return ParseSuccess;

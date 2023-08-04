@@ -1,0 +1,83 @@
+
+#include "CoreMinimal.h"
+#include "{{unrealModuleName}}HttpRequester.h"
+
+{{#cppNamespaceDeclarations}}
+namespace {{this}}
+{
+{{/cppNamespaceDeclarations}}
+
+F{{unrealModuleName}}HttpRequester* F{{unrealModuleName}}HttpRequester::Singleton = nullptr;
+
+F{{unrealModuleName}}HttpRequester::F{{unrealModuleName}}HttpRequester()
+{
+    MaxSimultaneousRequests = 15;
+    PendingRequestCount = 0;
+}
+
+void F{{unrealModuleName}}HttpRequester::Tick(float DeltaTime)
+{
+    TArray<int32> Keys;
+
+    if (HttpRequestQueue.GetKeys(Keys) > 0)
+    {
+        Keys.Sort();
+        for (int32& Key : Keys)
+        {
+            if (auto findItem = HttpRequestQueue.Find(Key))
+            {
+                while ((*findItem).Num())
+                {
+                    const auto Request = (*findItem).Pop();
+                    Request->HttpRequest->OnProcessRequestComplete().BindRaw(this, &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
+                    if (Request->HttpRequest->ProcessRequest())
+                    {
+                        PendingRequestCount++;
+                    }
+
+                    {
+                        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestStarted, FColor::Purple);
+                        Request->API.OnRequestStarted().Broadcast(Request->Metadata, Request->HttpRequest);
+                    }
+
+                    if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)
+                    {
+                        break;
+                    }
+                }
+
+                if ((*findItem).Num() == 0)
+                {
+                    HttpRequestQueue.Remove(Key);
+                }
+            }
+
+            if (MaxSimultaneousRequests > 0 && PendingRequestCount >= MaxSimultaneousRequests)
+            {
+                return;
+            }
+        }
+    }
+}
+
+void F{{unrealModuleName}}HttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate)
+{
+    PendingRequestCount--;
+    ResponseDelegate.Execute(HttpRequest, HttpResponse, bSucceeded);
+}
+
+void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData)
+{
+    if (auto findItem = HttpRequestQueue.Find(RequestData->Priority))
+    {
+        (*findItem).Insert(RequestData, 0);
+    }
+    else
+    {
+        HttpRequestQueue.Add(RequestData->Priority, {RequestData});
+    }
+}
+
+{{#cppNamespaceDeclarations}}
+}
+{{/cppNamespaceDeclarations}}

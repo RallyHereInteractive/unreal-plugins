@@ -40,10 +40,12 @@ bool FRHAPI_SessionPlayerUpdateResponse::FromJson(const TSharedPtr<FJsonValue>& 
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("status"), Status);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+    ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

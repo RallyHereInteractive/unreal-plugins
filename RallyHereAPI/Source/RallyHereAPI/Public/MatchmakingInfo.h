@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "MatchmakingInfo.generated.h"
 
+/** @defgroup RHAPI_MatchmakingInfo RallyHere API Model MatchmakingInfo
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Info about the matchmaking status in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
@@ -68,3 +72,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

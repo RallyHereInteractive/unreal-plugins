@@ -20,4 +20,8 @@ private:
 	void DoViewRequests(URH_WebRequests* WebRequestsTracker);
 	void DoViewRequest(const FRH_WebRequest* WebRequest);
 	void DoViewResponse(const FRH_WebResponse* WebResponse);
+
+	TMap<FString, bool> APIFilterToggles;
+	bool AreAllAPIFiltersToggledOn() const;
+	void ToggleAllAPIFilters(bool bOn);
 };

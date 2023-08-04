@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "OpportunityState.generated.h"
 
+
 /**
  * @brief An enumeration.
  */

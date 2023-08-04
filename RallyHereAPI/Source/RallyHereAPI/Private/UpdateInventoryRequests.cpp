@@ -45,17 +45,20 @@ bool FRHAPI_UpdateInventoryRequests::FromJson(const TSharedPtr<FJsonValue>& Json
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("source")))
+    const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
+    if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
     {
-        Source_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("source"), Source_Optional);
+        Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
         ParseSuccess &= Source_IsSet;
     }
-    if ((*Object)->HasField(TEXT("client_order_ref_id")))
+    const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
+    if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
     {
-        ClientOrderRefId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("client_order_ref_id"), ClientOrderRefId_Optional);
+        ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
         ParseSuccess &= ClientOrderRefId_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("inventory"), Inventory);
+    const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
+    ParseSuccess &= JsonInventoryField.IsValid() && !JsonInventoryField->IsNull() && TryGetJsonValue(JsonInventoryField, Inventory);
 
     return ParseSuccess;
 }

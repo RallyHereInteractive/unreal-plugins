@@ -43,14 +43,16 @@ bool FRHAPI_FriendsApiConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("friend_limit")))
+    const TSharedPtr<FJsonValue> JsonFriendLimitField = (*Object)->TryGetField(TEXT("friend_limit"));
+    if (JsonFriendLimitField.IsValid() && !JsonFriendLimitField->IsNull())
     {
-        FriendLimit_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("friend_limit"), FriendLimit_Optional);
+        FriendLimit_IsSet = TryGetJsonValue(JsonFriendLimitField, FriendLimit_Optional);
         ParseSuccess &= FriendLimit_IsSet;
     }
-    if ((*Object)->HasField(TEXT("block_limit")))
+    const TSharedPtr<FJsonValue> JsonBlockLimitField = (*Object)->TryGetField(TEXT("block_limit"));
+    if (JsonBlockLimitField.IsValid() && !JsonBlockLimitField->IsNull())
     {
-        BlockLimit_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("block_limit"), BlockLimit_Optional);
+        BlockLimit_IsSet = TryGetJsonValue(JsonBlockLimitField, BlockLimit_Optional);
         ParseSuccess &= BlockLimit_IsSet;
     }
 

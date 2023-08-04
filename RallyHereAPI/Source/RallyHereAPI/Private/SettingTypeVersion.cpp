@@ -45,17 +45,20 @@ bool FRHAPI_SettingTypeVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("allow_update")))
+    const TSharedPtr<FJsonValue> JsonAllowUpdateField = (*Object)->TryGetField(TEXT("allow_update"));
+    if (JsonAllowUpdateField.IsValid() && !JsonAllowUpdateField->IsNull())
     {
-        AllowUpdate_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("allow_update"), AllowUpdate_Optional);
+        AllowUpdate_IsSet = TryGetJsonValue(JsonAllowUpdateField, AllowUpdate_Optional);
         ParseSuccess &= AllowUpdate_IsSet;
     }
-    if ((*Object)->HasField(TEXT("key_regex")))
+    const TSharedPtr<FJsonValue> JsonKeyRegexField = (*Object)->TryGetField(TEXT("key_regex"));
+    if (JsonKeyRegexField.IsValid() && !JsonKeyRegexField->IsNull())
     {
-        KeyRegex_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("key_regex"), KeyRegex_Optional);
+        KeyRegex_IsSet = TryGetJsonValue(JsonKeyRegexField, KeyRegex_Optional);
         ParseSuccess &= KeyRegex_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("value_jsonschema"), ValueJsonschema);
+    const TSharedPtr<FJsonValue> JsonValueJsonschemaField = (*Object)->TryGetField(TEXT("value_jsonschema"));
+    ParseSuccess &= JsonValueJsonschemaField.IsValid() && !JsonValueJsonschemaField->IsNull() && TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema);
 
     return ParseSuccess;
 }

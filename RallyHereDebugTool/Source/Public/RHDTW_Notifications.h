@@ -2,7 +2,7 @@
 #pragma once
 
 #include "RH_DebugToolWindow.h"
-#include "RH_NotificationSubsystem.h"
+#include "RH_PlayerNotifications.h"
 
 struct FRHDTW_Notifications : public FRH_DebugToolWindow
 {

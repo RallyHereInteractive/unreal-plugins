@@ -53,24 +53,28 @@ bool FRHAPI_PlayerPresenceUpdateSelf::FromJson(const TSharedPtr<FJsonValue>& Jso
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("status")))
+    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
     {
-        Status_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("status"), Status_Optional);
+        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
         ParseSuccess &= Status_IsSet;
     }
-    if ((*Object)->HasField(TEXT("message")))
+    const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
+    if (JsonMessageField.IsValid() && !JsonMessageField->IsNull())
     {
-        Message_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("message"), Message_Optional);
+        Message_IsSet = TryGetJsonValue(JsonMessageField, Message_Optional);
         ParseSuccess &= Message_IsSet;
     }
-    if ((*Object)->HasField(TEXT("do_not_disturb")))
+    const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
+    if (JsonDoNotDisturbField.IsValid() && !JsonDoNotDisturbField->IsNull())
     {
-        DoNotDisturb_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("do_not_disturb"), DoNotDisturb_Optional);
+        DoNotDisturb_IsSet = TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
         ParseSuccess &= DoNotDisturb_IsSet;
     }
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

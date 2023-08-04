@@ -29,8 +29,16 @@ void FRHAPI_Notification::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("rh_url"));
         RallyHereAPI::WriteJsonValue(Writer, RhUrl_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-    RallyHereAPI::WriteJsonValue(Writer, CustomData);
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
+    if (Etag_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("etag"));
+        RallyHereAPI::WriteJsonValue(Writer, Etag_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("notification_id"));
     RallyHereAPI::WriteJsonValue(Writer, NotificationId);
     Writer->WriteIdentifierPrefix(TEXT("created"));
@@ -46,15 +54,30 @@ bool FRHAPI_Notification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("message"), Message);
-    if ((*Object)->HasField(TEXT("rh_url")))
+    const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
+    ParseSuccess &= JsonMessageField.IsValid() && !JsonMessageField->IsNull() && TryGetJsonValue(JsonMessageField, Message);
+    const TSharedPtr<FJsonValue> JsonRhUrlField = (*Object)->TryGetField(TEXT("rh_url"));
+    if (JsonRhUrlField.IsValid() && !JsonRhUrlField->IsNull())
     {
-        RhUrl_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("rh_url"), RhUrl_Optional);
+        RhUrl_IsSet = TryGetJsonValue(JsonRhUrlField, RhUrl_Optional);
         ParseSuccess &= RhUrl_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("notification_id"), NotificationId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("created"), Created);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
+    if (JsonEtagField.IsValid() && !JsonEtagField->IsNull())
+    {
+        Etag_IsSet = TryGetJsonValue(JsonEtagField, Etag_Optional);
+        ParseSuccess &= Etag_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonNotificationIdField = (*Object)->TryGetField(TEXT("notification_id"));
+    ParseSuccess &= JsonNotificationIdField.IsValid() && !JsonNotificationIdField->IsNull() && TryGetJsonValue(JsonNotificationIdField, NotificationId);
+    const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
+    ParseSuccess &= JsonCreatedField.IsValid() && !JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created);
 
     return ParseSuccess;
 }

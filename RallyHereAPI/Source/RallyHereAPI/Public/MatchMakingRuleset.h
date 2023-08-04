@@ -13,8 +13,12 @@
 #include "Rule.h"
 #include "MatchMakingRuleset.generated.h"
 
+/** @defgroup RHAPI_MatchMakingRuleset RallyHere API Model MatchMakingRuleset
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of rules that are used to determine whether a MatchMakingTemplate should be used
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief A list of the rules to be checked for this ruleset */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_Rule> Rules{  };
     /** @brief Gets the value of Rules */
@@ -56,3 +61,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
     /** @brief Sets the value of Determiner */
     void SetDeterminer(ERHAPI_Determiner NewValue) { Determiner = NewValue;  }
 };
+
+/** @} */

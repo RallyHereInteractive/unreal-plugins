@@ -11,14 +11,15 @@
 #include "RallyHereAPIHelpers.h"
 #include "QuantityType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Determines how the quantity is to be modified.  Relative looks at the context in which is fulfilled; e.g. If Loot A has a quantity of 2 and 5 is being fulfill, the resulting quantity modification will be 10.  Absolute ignores the context in which it is fulfilled; e.g. If Loot B has a quantity of 3 and 5 is being fulfill 5, the resulting quantity modification will be 3.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_QuantityType : uint8
 {
-    Relative UMETA(ToolTip="An enumeration."),
-    Absolute UMETA(ToolTip="An enumeration."),
+    Relative UMETA(ToolTip="The quantity will be modified relative to the context in which it is fulfilled."),
+    Absolute UMETA(ToolTip="The quantity will be modified regardless of the context in which it is fulfilled."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_QuantityType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_QuantityType& EnumValue);

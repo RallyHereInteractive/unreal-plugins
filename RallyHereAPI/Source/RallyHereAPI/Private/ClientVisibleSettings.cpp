@@ -43,14 +43,16 @@ bool FRHAPI_ClientVisibleSettings::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("self_ping_interval_seconds")))
+    const TSharedPtr<FJsonValue> JsonSelfPingIntervalSecondsField = (*Object)->TryGetField(TEXT("self_ping_interval_seconds"));
+    if (JsonSelfPingIntervalSecondsField.IsValid() && !JsonSelfPingIntervalSecondsField->IsNull())
     {
-        SelfPingIntervalSeconds_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("self_ping_interval_seconds"), SelfPingIntervalSeconds_Optional);
+        SelfPingIntervalSeconds_IsSet = TryGetJsonValue(JsonSelfPingIntervalSecondsField, SelfPingIntervalSeconds_Optional);
         ParseSuccess &= SelfPingIntervalSeconds_IsSet;
     }
-    if ((*Object)->HasField(TEXT("last_seen_age_considered_offline_seconds")))
+    const TSharedPtr<FJsonValue> JsonLastSeenAgeConsideredOfflineSecondsField = (*Object)->TryGetField(TEXT("last_seen_age_considered_offline_seconds"));
+    if (JsonLastSeenAgeConsideredOfflineSecondsField.IsValid() && !JsonLastSeenAgeConsideredOfflineSecondsField->IsNull())
     {
-        LastSeenAgeConsideredOfflineSeconds_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("last_seen_age_considered_offline_seconds"), LastSeenAgeConsideredOfflineSeconds_Optional);
+        LastSeenAgeConsideredOfflineSeconds_IsSet = TryGetJsonValue(JsonLastSeenAgeConsideredOfflineSecondsField, LastSeenAgeConsideredOfflineSeconds_Optional);
         ParseSuccess &= LastSeenAgeConsideredOfflineSeconds_IsSet;
     }
 

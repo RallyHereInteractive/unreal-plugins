@@ -5,10 +5,10 @@
 #include "RallyHereAPI/Public/Notifications.h"
 #include "RallyHereAPI/Public/PlayerNotificationAPI.h"
 #include "RallyHereIntegrationModule.h"
-#include "RH_NotificationSubsystem.h"
+#include "RH_PlayerNotifications.h"
 #include "Tickable.h"
 #include "HttpModule.h"
-#include "../Public/RH_NotificationSubsystem.h"
+#include "../Public/RH_PlayerNotifications.h"
 
 class FRH_NotificationStreamingLongPollHelper : public FRH_AsyncTaskHelper
 {
@@ -74,7 +74,8 @@ protected:
 
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 			HttpRequest = LongPollTraits::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
-				LongPollTraits::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollComplete));
+				LongPollTraits::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollComplete),
+				GetDefault<URH_IntegrationSettings>()->NotificationPollSelfPriority);
 		}
 		else
 		{
@@ -85,7 +86,8 @@ protected:
 
 			UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 			HttpRequest = LongPollTraitsSelf::DoCall(RH_APIs::GetAPIs().GetPlayerNotification(), Request,
-				LongPollTraitsSelf::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollCompleteSelf));
+				LongPollTraitsSelf::Delegate::CreateSP(this, &FRH_NotificationStreamingLongPollHelper::LongPollCompleteSelf),
+				GetDefault<URH_IntegrationSettings>()->NotificationPollOtherPriority);
 		}
 
 		if (!HttpRequest)
@@ -130,7 +132,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_NotificationStreamingHelper"));
+		static FString Name(TEXT("FRH_NotificationStreamingLongPollHelper"));
 		return Name;
 	}
 

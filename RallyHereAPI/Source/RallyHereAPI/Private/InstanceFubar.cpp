@@ -26,12 +26,18 @@ void FRHAPI_InstanceFubar::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     RallyHereAPI::WriteJsonValue(Writer, InstanceId);
     Writer->WriteIdentifierPrefix(TEXT("error"));
     RallyHereAPI::WriteJsonValue(Writer, Error);
-    Writer->WriteIdentifierPrefix(TEXT("site"));
-    RallyHereAPI::WriteJsonValue(Writer, Site);
-    Writer->WriteIdentifierPrefix(TEXT("matchmaking_profile_id"));
-    RallyHereAPI::WriteJsonValue(Writer, MatchmakingProfileId);
-    Writer->WriteIdentifierPrefix(TEXT("instance_source_provider"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceSourceProvider));
+    Writer->WriteIdentifierPrefix(TEXT("region"));
+    RallyHereAPI::WriteJsonValue(Writer, Region);
+    if (MatchmakingProfileId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("matchmaking_profile_id"));
+        RallyHereAPI::WriteJsonValue(Writer, MatchmakingProfileId_Optional);
+    }
+    if (InstanceSourceProvider_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("instance_source_provider"));
+        RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceSourceProvider_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -43,11 +49,24 @@ bool FRHAPI_InstanceFubar::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_id"), InstanceId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("error"), Error);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("site"), Site);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("matchmaking_profile_id"), MatchmakingProfileId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_source_provider"), InstanceSourceProvider);
+    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+    const TSharedPtr<FJsonValue> JsonErrorField = (*Object)->TryGetField(TEXT("error"));
+    ParseSuccess &= JsonErrorField.IsValid() && !JsonErrorField->IsNull() && TryGetJsonValue(JsonErrorField, Error);
+    const TSharedPtr<FJsonValue> JsonRegionField = (*Object)->TryGetField(TEXT("region"));
+    ParseSuccess &= JsonRegionField.IsValid() && !JsonRegionField->IsNull() && TryGetJsonValue(JsonRegionField, Region);
+    const TSharedPtr<FJsonValue> JsonMatchmakingProfileIdField = (*Object)->TryGetField(TEXT("matchmaking_profile_id"));
+    if (JsonMatchmakingProfileIdField.IsValid() && !JsonMatchmakingProfileIdField->IsNull())
+    {
+        MatchmakingProfileId_IsSet = TryGetJsonValue(JsonMatchmakingProfileIdField, MatchmakingProfileId_Optional);
+        ParseSuccess &= MatchmakingProfileId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonInstanceSourceProviderField = (*Object)->TryGetField(TEXT("instance_source_provider"));
+    if (JsonInstanceSourceProviderField.IsValid() && !JsonInstanceSourceProviderField->IsNull())
+    {
+        InstanceSourceProvider_IsSet = TryGetJsonValue(JsonInstanceSourceProviderField, InstanceSourceProvider_Optional);
+        ParseSuccess &= InstanceSourceProvider_IsSet;
+    }
 
     return ParseSuccess;
 }

@@ -40,16 +40,16 @@ public:
     FKeyEntitlementsAPI();
     virtual ~FKeyEntitlementsAPI();
 
-    FHttpRequestPtr ProcessKeyEntitlements(const FRequest_ProcessKeyEntitlements& Request, const FDelegate_ProcessKeyEntitlements& Delegate = FDelegate_ProcessKeyEntitlements());
-    FHttpRequestPtr ProcessKeyEntitlementsPlayerUuid(const FRequest_ProcessKeyEntitlementsPlayerUuid& Request, const FDelegate_ProcessKeyEntitlementsPlayerUuid& Delegate = FDelegate_ProcessKeyEntitlementsPlayerUuid());
-    FHttpRequestPtr ProcessKeyEntitlementsSelf(const FRequest_ProcessKeyEntitlementsSelf& Request, const FDelegate_ProcessKeyEntitlementsSelf& Delegate = FDelegate_ProcessKeyEntitlementsSelf());
-    FHttpRequestPtr ProcessPlayerUuidEntitlementsSelf(const FRequest_ProcessPlayerUuidEntitlementsSelf& Request, const FDelegate_ProcessPlayerUuidEntitlementsSelf& Delegate = FDelegate_ProcessPlayerUuidEntitlementsSelf());
+    FHttpRequestPtr ProcessKeyEntitlements(const FRequest_ProcessKeyEntitlements& Request, const FDelegate_ProcessKeyEntitlements& Delegate = FDelegate_ProcessKeyEntitlements(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ProcessKeyEntitlementsPlayerUuid(const FRequest_ProcessKeyEntitlementsPlayerUuid& Request, const FDelegate_ProcessKeyEntitlementsPlayerUuid& Delegate = FDelegate_ProcessKeyEntitlementsPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ProcessKeyEntitlementsSelf(const FRequest_ProcessKeyEntitlementsSelf& Request, const FDelegate_ProcessKeyEntitlementsSelf& Delegate = FDelegate_ProcessKeyEntitlementsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ProcessPlayerUuidEntitlementsSelf(const FRequest_ProcessPlayerUuidEntitlementsSelf& Request, const FDelegate_ProcessPlayerUuidEntitlementsSelf& Delegate = FDelegate_ProcessPlayerUuidEntitlementsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnProcessKeyEntitlementsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlements Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnProcessKeyEntitlementsPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnProcessKeyEntitlementsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnProcessPlayerUuidEntitlementsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlayerUuidEntitlementsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnProcessKeyEntitlementsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlements Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnProcessKeyEntitlementsPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnProcessKeyEntitlementsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessKeyEntitlementsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnProcessPlayerUuidEntitlementsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlayerUuidEntitlementsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -90,7 +90,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlements
     typedef FKeyEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ProcessKeyEntitlements(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlements(InRequest, InDelegate, Priority); }
 };
 
 /* Process Key Entitlements Player Uuid
@@ -130,7 +130,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsPlayerUuid
     typedef FKeyEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ProcessKeyEntitlementsPlayerUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlementsPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Process Key Entitlements Self
@@ -169,7 +169,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsSelf
     typedef FKeyEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ProcessKeyEntitlementsSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlementsSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Process Player Uuid Entitlements Self
@@ -208,7 +208,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlayerUuidEntitlementsSelf
     typedef FKeyEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ProcessPlayerUuidEntitlementsSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlayerUuidEntitlementsSelf(InRequest, InDelegate, Priority); }
 };
 
 

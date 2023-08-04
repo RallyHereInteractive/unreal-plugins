@@ -35,11 +35,11 @@ protected:
 	{
 		QueryType::Request Request;
 		Request.AuthContext = AuthContext;
-		Request.Page = SearchParams.Cursor;
+		Request.Cursor = SearchParams.Cursor;
 		Request.PageSize = SearchParams.PageSize;
 		// todo - ETag
 
-		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_QueueBrowserSearchHelper::OnQueryComplete));
+		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_QueueBrowserSearchHelper::OnQueryComplete), GetDefault<URH_IntegrationSettings>()->GetAllQueueInfoPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to query queues"));
@@ -160,7 +160,7 @@ protected:
 		Request.TemplateGroupId = SearchTemplateGroupId;
 		// todo - ETag
 
-		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_TemplateGroupSearchHelper::OnQueryComplete));
+		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_TemplateGroupSearchHelper::OnQueryComplete), GetDefault<URH_IntegrationSettings>()->GetMatchmakingTemplatePriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to query templates"));
@@ -256,7 +256,7 @@ protected:
 		Request.InstanceLaunchTemplateId = SearchTemplateId;
 		// todo - ETag
 
-		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_InstanceLaunchTemplateSearchHelper::OnQueryComplete));
+		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_InstanceLaunchTemplateSearchHelper::OnQueryComplete), GetDefault<URH_IntegrationSettings>()->GetMapGameInfoPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to query templates"));
@@ -321,4 +321,37 @@ void URH_MatchmakingBrowserCache::ImportAPIInstanceLaunchTemplate(const FRHAPI_I
 	}
 
 	TemplateWrapper->ImportAPIInstanceLaunchTemplate(APITemplate, ETag);
+}
+
+void URH_MatchmakingBrowserCache::SearchRegions(FRH_OnRegionSearchCompleteDelegateBlock Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	typedef RallyHereAPI::Traits_GetSiteSettings BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	//Request.IfNoneMatch = AppSettingsETag;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					RegionsCache = Resp.Content;
+
+					{
+						SCOPED_NAMED_EVENT(RallyHere_BroadcastRegionsUpdated, FColor::Purple);
+						OnRegionsUpdated.Broadcast(this);
+						OnRegionsUpdatedNative.Broadcast(this);
+					}
+				}
+			}),
+		FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess)
+			{
+				Delegate.ExecuteIfBound(bSuccess, GetAllRegions());
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetSiteSettingsPriority
+	);
+
+	Helper->Start(RH_APIs::GetAPIs().GetSite(), Request);
 }

@@ -8,6 +8,7 @@
 #include "FriendsV2API.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "HttpModule.h"
 #include "Serialization/JsonSerializer.h"
 
@@ -22,43 +23,60 @@ FFriendsV2API::FFriendsV2API() : FAPI()
 
 FFriendsV2API::~FFriendsV2API() {}
 
-FHttpRequestPtr FFriendsV2API::AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate /*= FDelegate_AddFriendV2()*/)
+FHttpRequestPtr FFriendsV2API::AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate /*= FDelegate_AddFriendV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnAddFriendV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnAddFriendV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnAddFriendV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnAddFriendV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_AddFriendV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -67,6 +85,7 @@ FRequest_AddFriendV2::FRequest_AddFriendV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_AddFriendV2::GetSimplifiedPath() const
@@ -200,43 +219,60 @@ FResponse_AddFriendV2::FResponse_AddFriendV2(FRequestMetadata InRequestMetadata)
 
 FString Traits_AddFriendV2::Name = TEXT("AddFriendV2");
 
-FHttpRequestPtr FFriendsV2API::AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate /*= FDelegate_AddNotesV2()*/)
+FHttpRequestPtr FFriendsV2API::AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate /*= FDelegate_AddNotesV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnAddNotesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnAddNotesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnAddNotesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnAddNotesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_AddNotesV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -245,6 +281,7 @@ FRequest_AddNotesV2::FRequest_AddNotesV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_AddNotesV2::GetSimplifiedPath() const
@@ -372,43 +409,60 @@ FResponse_AddNotesV2::FResponse_AddNotesV2(FRequestMetadata InRequestMetadata) :
 
 FString Traits_AddNotesV2::Name = TEXT("AddNotesV2");
 
-FHttpRequestPtr FFriendsV2API::DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate /*= FDelegate_DeleteFriendV2()*/)
+FHttpRequestPtr FFriendsV2API::DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate /*= FDelegate_DeleteFriendV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnDeleteFriendV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnDeleteFriendV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnDeleteFriendV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnDeleteFriendV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_DeleteFriendV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -417,6 +471,7 @@ FRequest_DeleteFriendV2::FRequest_DeleteFriendV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_DeleteFriendV2::GetSimplifiedPath() const
@@ -536,43 +591,60 @@ FResponse_DeleteFriendV2::FResponse_DeleteFriendV2(FRequestMetadata InRequestMet
 
 FString Traits_DeleteFriendV2::Name = TEXT("DeleteFriendV2");
 
-FHttpRequestPtr FFriendsV2API::DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate /*= FDelegate_DeleteFriendsV2()*/)
+FHttpRequestPtr FFriendsV2API::DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate /*= FDelegate_DeleteFriendsV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnDeleteFriendsV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnDeleteFriendsV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnDeleteFriendsV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnDeleteFriendsV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_DeleteFriendsV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -581,6 +653,7 @@ FRequest_DeleteFriendsV2::FRequest_DeleteFriendsV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_DeleteFriendsV2::GetSimplifiedPath() const
@@ -681,43 +754,60 @@ FResponse_DeleteFriendsV2::FResponse_DeleteFriendsV2(FRequestMetadata InRequestM
 
 FString Traits_DeleteFriendsV2::Name = TEXT("DeleteFriendsV2");
 
-FHttpRequestPtr FFriendsV2API::DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate /*= FDelegate_DeleteNotesV2()*/)
+FHttpRequestPtr FFriendsV2API::DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate /*= FDelegate_DeleteNotesV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnDeleteNotesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnDeleteNotesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnDeleteNotesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnDeleteNotesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_DeleteNotesV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -726,6 +816,7 @@ FRequest_DeleteNotesV2::FRequest_DeleteNotesV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_DeleteNotesV2::GetSimplifiedPath() const
@@ -822,43 +913,60 @@ FResponse_DeleteNotesV2::FResponse_DeleteNotesV2(FRequestMetadata InRequestMetad
 
 FString Traits_DeleteNotesV2::Name = TEXT("DeleteNotesV2");
 
-FHttpRequestPtr FFriendsV2API::GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate /*= FDelegate_GetFriendRelationshipV2()*/)
+FHttpRequestPtr FFriendsV2API::GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate /*= FDelegate_GetFriendRelationshipV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnGetFriendRelationshipV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnGetFriendRelationshipV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnGetFriendRelationshipV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnGetFriendRelationshipV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_GetFriendRelationshipV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -867,6 +975,7 @@ FRequest_GetFriendRelationshipV2::FRequest_GetFriendRelationshipV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_GetFriendRelationshipV2::GetSimplifiedPath() const
@@ -986,43 +1095,60 @@ FResponse_GetFriendRelationshipV2::FResponse_GetFriendRelationshipV2(FRequestMet
 
 FString Traits_GetFriendRelationshipV2::Name = TEXT("GetFriendRelationshipV2");
 
-FHttpRequestPtr FFriendsV2API::GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate /*= FDelegate_GetFriendsListForPlayerV2()*/)
+FHttpRequestPtr FFriendsV2API::GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate /*= FDelegate_GetFriendsListForPlayerV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnGetFriendsListForPlayerV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FFriendsV2API::OnGetFriendsListForPlayerV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FFriendsV2API::OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FFriendsV2API::OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FFriendsV2API::OnGetFriendsListForPlayerV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FFriendsV2API::OnGetFriendsListForPlayerV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_GetFriendsListForPlayerV2 Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -1031,6 +1157,7 @@ FRequest_GetFriendsListForPlayerV2::FRequest_GetFriendsListForPlayerV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_GetFriendsListForPlayerV2::GetSimplifiedPath() const

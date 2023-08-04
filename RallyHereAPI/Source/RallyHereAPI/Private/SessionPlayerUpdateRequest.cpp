@@ -45,15 +45,18 @@ bool FRHAPI_SessionPlayerUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& J
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("status")))
+    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
     {
-        Status_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("status"), Status_Optional);
+        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
         ParseSuccess &= Status_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("team_id"), TeamId);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
+    ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

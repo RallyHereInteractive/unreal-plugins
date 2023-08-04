@@ -5,10 +5,12 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
-#include "SessionAPI.h"
+#include "SessionsAPI.h"
+#include "RH_Beacons.h"
 
 // used to validate state of local players before joining an instance
 #include "RH_LocalPlayerSessionSubsystem.h"
+#include "RH_GameInstanceBootstrappers.h"
 
 // used to look up local IP as a temporary method for determining join IP
 #include <SocketSubsystem.h>
@@ -17,7 +19,7 @@
 
 //==================================================================
 
-bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
+bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL)
 {
 	if (Session == nullptr)
 	{
@@ -63,7 +65,7 @@ bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* 
 	return false;
 }
 
-bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
+bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL)
 {
 	if (Session == nullptr)
 	{
@@ -88,13 +90,13 @@ bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* 
 	}
 
 	// TODO - determine private vs public connection
-	bool bUsePublic = false;
+	bool bUsePublic = JoinParams->PublicConnStr.Len() > 0;
 	{
 		// rule out the default address, which is the Any address in IPv4
 		FIPv4Address Addr;
-		if (FIPv4Address::Parse(JoinParams->PublicConnStr, Addr) && Addr != FIPv4Address::Any)
+		if (FIPv4Address::Parse(JoinParams->PublicConnStr, Addr) && Addr == FIPv4Address::Any)
 		{
-			bUsePublic = true;
+			bUsePublic = false;
 		}
 	}
 	const FString FormattedURLString = bUsePublic ? JoinParams->PublicConnStr : JoinParams->PrivateConnStr;
@@ -158,6 +160,13 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 
 	if (ActiveSession != nullptr)
 	{
+		// this can happen if a map load fails to create the UWorld
+		if (World == nullptr)
+		{
+			// in this case, the engine should abort the load and load a new map with the ?closed or ?failed flags, handled below.  We will handle it in that case, as too many things depend on the UWorld reference (rather than the Context)
+			return;
+		}
+
 		const FURL& URL = World->URL;
 
 		const bool bHasSessionId = URL.HasOption(RH_SESSION_PARAMETER_NAME);
@@ -176,31 +185,54 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 			// make sure we send version in case we are updating joinability.  Its possible the default object above will not have received it yet
 			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
 
-			auto* NetDriver = World->GetNetDriver();
-			if (NetDriver != nullptr && NetDriver->IsServer() && NetDriver->GetSocketSubsystem() != nullptr && World->URL.Port > 0)
-			{
-				bool bCanBind = false;
-				const TSharedRef<FInternetAddr> LocalIp = NetDriver->GetSocketSubsystem()->GetLocalHostAddr(*GLog, bCanBind);
-				if (LocalIp->IsValid())	// validity check for the address not the shared ref
-				{
-					const auto LocalIPModified = LocalIp->Clone();
-					// world URL should have the port that was opened for listen
-					LocalIPModified->SetPort(World->URL.Port);
+			FString PublicConnStr;
+			FString PrivateConnStr;
 
-					// temp - parse as IPv4 to determine if it should be public or private
-					FIPv4Address tempIPv4;
-					if (FIPv4Address::Parse(LocalIPModified->ToString(false), tempIPv4) && tempIPv4.IsSiteLocalAddress())
+			// if dedicated server, look up the server's join parameters, else inspect locally (TODO - find a better lookup for a public IP for P2P)
+			if (GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr && GetGameInstanceSubsystem()->GetServerBootstrapper()->DetermineJoinParameters(PublicConnStr, PrivateConnStr))
+			{
+				InstanceInfo.JoinParams_IsSet = true;
+				InstanceInfo.GetJoinParams().PublicConnStr = PublicConnStr;
+				InstanceInfo.GetJoinParams().PrivateConnStr = PrivateConnStr;
+			}
+			else
+			{
+				// fall back to local LAN detection
+				auto* NetDriver = World->GetNetDriver();
+				if (NetDriver != nullptr && NetDriver->IsServer() && NetDriver->GetSocketSubsystem() != nullptr && World->URL.Port > 0)
+				{
+					bool bCanBind = false;
+					const TSharedRef<FInternetAddr> LocalIp = NetDriver->GetSocketSubsystem()->GetLocalHostAddr(*GLog, bCanBind);
+					if (LocalIp->IsValid()) // validity check for the address not the shared ref
 					{
-						InstanceInfo.GetJoinParams().PublicConnStr.Empty();
-						InstanceInfo.GetJoinParams().PrivateConnStr = LocalIPModified->ToString(true);
+						const auto LocalIPModified = LocalIp->Clone();
+						// world URL should have the port that was opened for listen
+						LocalIPModified->SetPort(World->URL.Port);
+
+						// temp - parse as IPv4 to determine if it should be public or private
+						FIPv4Address tempIPv4;
+						if (FIPv4Address::Parse(LocalIPModified->ToString(false), tempIPv4) && tempIPv4.IsSiteLocalAddress())
+						{
+							InstanceInfo.JoinParams_IsSet = true;
+							InstanceInfo.GetJoinParams().PublicConnStr.Empty();
+							InstanceInfo.GetJoinParams().PrivateConnStr = TEXT("unreal://") + LocalIPModified->ToString(true);
+						}
+						else
+						{
+							// add unreal protocol name
+							InstanceInfo.JoinParams_IsSet = true;
+							InstanceInfo.GetJoinParams().PublicConnStr = TEXT("unreal://") + LocalIPModified->ToString(true);
+							InstanceInfo.GetJoinParams().PrivateConnStr.Empty();
+						}
 					}
-					else
-					{
-						InstanceInfo.GetJoinParams().PublicConnStr = LocalIPModified->ToString(true);
-						InstanceInfo.GetJoinParams().PrivateConnStr.Empty();
-					}
-					InstanceInfo.JoinParams_IsSet = true;
 				}
+			}
+
+
+			// if it is a beacon, convert world to beacon mode
+			if (ActiveSession && ActiveSession->IsBeaconSession())
+			{
+				CreateBeaconHost(World, World->URL.Port, true);
 			}
 
 			const bool bRequireConnectivity = IsRunningDedicatedServer(); //|| World->URL.HasOption(TEXT("listen"));
@@ -251,6 +283,36 @@ void URH_GameInstanceSessionSubsystem::OnTravelFailure(UWorld* World, ETravelFai
 	}
 }
 
+ARH_OnlineBeaconHost* URH_GameInstanceSessionSubsystem::CreateBeaconHost(UWorld* pWorld, uint32 Port, bool bShutdownWorldNetDriver)
+{
+	if (pWorld == nullptr)
+	{
+		return nullptr;
+	}
+
+	if (bShutdownWorldNetDriver)
+	{
+		GEngine->ShutdownWorldNetDriver(pWorld);
+	}
+
+	auto* pBeaconHost = pWorld->SpawnActor<ARH_OnlineBeaconHost>();
+
+	// change port to specified port
+	pBeaconHost->ListenPort = Port;
+	pBeaconHost->InitHost();
+
+	// fire delegates to allow registration of handler objects
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastBeaconCreated, FColor::Purple);
+		OnBeaconCreated.Broadcast(pBeaconHost);
+		BLUEPRINT_OnBeaconCreated.Broadcast(pBeaconHost);
+	}
+
+	pBeaconHost->PauseBeaconRequests(false);
+
+	return pBeaconHost;
+}
+
 void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionInfo, FRH_GameInstanceSessionSyncBlock Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -258,7 +320,7 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	// swap our session data for the update
 	DesiredSession = SessionInfo;
 
-	const FRHAPI_Instance* newInstanceData = DesiredSession != nullptr ? DesiredSession->GetInstanceData() : nullptr;
+	const FRHAPI_InstanceInfo* newInstanceData = DesiredSession != nullptr ? DesiredSession->GetInstanceData() : nullptr;
 
 	// if we are in a session, and we do not want to be, start leaving (regardless of destination)
 	if (ActiveSession != nullptr && ActiveSession != DesiredSession)
@@ -279,12 +341,20 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	}
 }
 
-bool URH_GameInstanceSessionSubsystem::IsReadyToChangeMaps(const URH_JoinedSession* Session) const
+bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog) const
 {
 	if (Session->IsActive())
 	{
 		// session is already active, cannot join it
-		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Session already active"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Session already active"), ANSI_TO_TCHAR(__FUNCTION__));
+		return false;
+	}
+
+	const auto* Instance = Session->GetInstanceData();
+	if (Instance == nullptr)
+	{
+		// session has no instance to join
+		UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Session has no instance"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
 
@@ -302,16 +372,47 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToChangeMaps(const URH_JoinedSessi
 				// someone is not in the session
 				FGuid playerId = FGuid();
 				RH_GetPlayerIdFromLocalPlayer(LP, &playerId);
-				UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - player %s not in session"), ANSI_TO_TCHAR(__FUNCTION__), *playerId.ToString());
+				UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - player %s not in session"), ANSI_TO_TCHAR(__FUNCTION__), *playerId.ToString());
 				return false;
 			}
+		}
+	}
+
+	auto pWorldContext = pGameInstance->GetWorldContext();
+
+	if (IsLocallyHostedInstance(*Instance))
+	{
+		FURL hostURL;
+		if (GenerateHostURL(Session, pWorldContext->LastURL, hostURL) && hostURL.Valid && hostURL.Map.Len() > 0)
+		{
+		}
+		else
+		{
+			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Locally hosted session cannot generated host URL"), ANSI_TO_TCHAR(__FUNCTION__));
+			return false;
+		}
+	}
+	else
+	{
+		// specifically call out joinable state errors
+		if (Instance->GetJoinStatus() != ERHAPI_InstanceJoinableStatus::Joinable)
+		{
+			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Instance is not in joinable state"), ANSI_TO_TCHAR(__FUNCTION__));
+			return false;
+		}
+
+		FURL JoinURL;
+		if (!GenerateJoinURL(Session, pWorldContext->LastURL, JoinURL))
+		{
+			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - Could not generate join URL"), ANSI_TO_TCHAR(__FUNCTION__));
+			return false;
 		}
 	}
 
 	return true;
 }
 
-const FRHAPI_Instance* URH_GameInstanceSessionSubsystem::GetInstance() const
+const FRHAPI_InstanceInfo* URH_GameInstanceSessionSubsystem::GetInstance() const
 {
 	if (ActiveSession != nullptr)
 	{
@@ -321,7 +422,7 @@ const FRHAPI_Instance* URH_GameInstanceSessionSubsystem::GetInstance() const
 	return nullptr;
 }
 
-bool URH_GameInstanceSessionSubsystem::IsLocallyHostedInstance(const FRHAPI_Instance& Instance) const
+bool URH_GameInstanceSessionSubsystem::IsLocallyHostedInstance(const FRHAPI_InstanceInfo& Instance) const
 {
 	// determine whether a local player is host player
 	if (IsRunningDedicatedServer())
@@ -382,14 +483,14 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSes
 		Delegate.ExecuteIfBound(false);
 		return false;
 	}
-	else if (!IsReadyToChangeMaps(DesiredSession))
+	else if (!IsReadyToJoinInstance(DesiredSession, true))
 	{
 		Delegate.ExecuteIfBound(false);
 		return false;
 	}
 
 	const FRHAPI_Session& Session = DesiredSession->GetSessionData();
-	const FRHAPI_Instance& Instance = DesiredSession->GetSessionData().GetInstance();
+	const FRHAPI_InstanceInfo& Instance = DesiredSession->GetSessionData().GetInstance();
 
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("Starting join of Instance under Session %s"), *Session.SessionId);
 
@@ -421,7 +522,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSes
 			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
 			ActiveSession->UpdateInstanceInfo(InstanceInfo);
 
-			bool bTravelStarted = pWorldContext->World()->ServerTravel(hostURL.ToString(), true, false);
+			bool bTravelStarted = pWorldContext->World()->ServerTravel(hostURL.ToString(false), true, false);
 
 			Delegate.ExecuteIfBound(bTravelStarted);
 			return true;
@@ -445,7 +546,14 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSes
 		DesiredSession->SetWatchingPlayers(true);
 		ActiveSession = DesiredSession;
 
-		GEngine->SetClientTravel(pWorldContext->World(), *JoinURL.ToString(), TRAVEL_Absolute);
+		FString JoinURLString;
+		{
+			// since we allow hostnames, which parse incorrectly in the engine when using the default port, temporarily change the default port so taht we can generate the URL properly but contain the default port
+			TGuardValue<int32> PortGuard(FURL::UrlConfig.DefaultPort, -1); // DefaultPort is a signed in, this should never match, causing it to always be emitted into the string
+			JoinURLString = JoinURL.ToString(true);
+		} 
+
+		GEngine->SetClientTravel(pWorldContext->World(), *JoinURLString, TRAVEL_Absolute);
 
 		Delegate.ExecuteIfBound(true);
 		return true;
@@ -512,7 +620,7 @@ void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, 
 		BaseType::Request Request = {};
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = ActiveSession->GetSessionId();
-		Request.InstanceFubar.SetSite(ActiveSession->GetSessionData().GetSiteId());
+		Request.InstanceFubar.SetRegion(ActiveSession->GetSessionData().GetRegionId());
 		//Request.InstanceFubar.SetMatchmakingProfileId()
 		Request.InstanceFubar.SetError(Reason);
 
@@ -532,9 +640,10 @@ void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, 
 
 		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 			BaseType::Delegate(),
-			Delegate
+			Delegate,
+			GetDefault<URH_IntegrationSettings>()->SessionInstanceMarkFubarPriority
 		);
 
-		Helper->Start(RH_APIs::GetSessionAPI(), Request);
+		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 	}
 }

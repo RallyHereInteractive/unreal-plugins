@@ -13,8 +13,12 @@
 #include "InstanceStartupParams.h"
 #include "InstanceRequest.generated.h"
 
+/** @defgroup RHAPI_InstanceRequest RallyHere API Model InstanceRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body to create an instance resource in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
@@ -92,6 +96,29 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
     /** @brief Sets the value of HostType */
     void SetHostType(ERHAPI_HostType NewValue) { HostType = NewValue;  }
 
+    /** @brief Player UUID of the host, if the host type is player */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FGuid HostPlayerUuid_Optional{  };
+    /** @brief true if HostPlayerUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool HostPlayerUuid_IsSet{ false };
+    /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
+    FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
+    /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
+    const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
+    /** @brief Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
+    /** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+    /** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
+    void SetHostPlayerUuid(FGuid NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+     /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
+    void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
+
     /** @brief instance-defined custom data */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
@@ -115,3 +142,5 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

@@ -16,8 +16,6 @@ void URH_LocalPlayerPresenceSubsystem::Initialize()
 	InitPropertiesWithDefaultValues();
 	
 	Poller = FRH_PollControl::CreateAutoPoller();
-
-	StartRefreshTimer();
 }
 
 void URH_LocalPlayerPresenceSubsystem::Deinitialize()
@@ -48,7 +46,8 @@ void URH_LocalPlayerPresenceSubsystem::UpdatePlayerPresenceSelf(RallyHereAPI::FR
 				Poller->DeferPollTimer();
 			}
 		}), 
-		FRH_GenericSuccessDelegate()
+		FRH_GenericSuccessDelegate(),
+		GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
 	);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
@@ -56,6 +55,11 @@ void URH_LocalPlayerPresenceSubsystem::UpdatePlayerPresenceSelf(RallyHereAPI::FR
 
 void URH_LocalPlayerPresenceSubsystem::GetPlayerPresenceSelf(RallyHereAPI::FRequest_GetPlayerPresenceSelf& Request, const RallyHereAPI::FDelegate_GetPlayerPresenceSelf& Delegate)
 {
+	if (!Request.AuthContext)
+	{
+		Request.AuthContext = GetAuthContext();
+	}
+
 	typedef RallyHereAPI::Traits_GetPlayerPresenceSelf BaseType;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -64,7 +68,8 @@ void URH_LocalPlayerPresenceSubsystem::GetPlayerPresenceSelf(RallyHereAPI::FRequ
 			// this does not write to a local cache!
 			Delegate.ExecuteIfBound(Resp);
 		}),
-		FRH_GenericSuccessDelegate()
+		FRH_GenericSuccessDelegate(),
+		GetDefault<URH_IntegrationSettings>()->PresenceGetSelfPriority
 	);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
@@ -88,6 +93,16 @@ void URH_LocalPlayerPresenceSubsystem::StopRefreshTimer()
 	}
 }
 
+bool URH_LocalPlayerPresenceSubsystem::IsRefreshTimerActive(float& TimeRemaining) const
+{
+	if (Poller.IsValid() && Poller->IsActive())
+	{
+		TimeRemaining = Poller->GetTimeRemaining();
+		return true;
+	}
+	return false;
+}
+
 void URH_LocalPlayerPresenceSubsystem::RefreshStatus()
 {
 	auto AuthContext = GetAuthContext();
@@ -104,7 +119,8 @@ void URH_LocalPlayerPresenceSubsystem::RefreshStatus()
 					{
 						Poller->DeferPollTimer();
 					}
-				})
+				}),
+			GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
 		);
 	}
 }
@@ -122,18 +138,36 @@ void URH_LocalPlayerPresenceSubsystem::PollRefreshStatus(const FRH_PollCompleteF
 	BaseType::Request Request;
 	Request.AuthContext = AuthContext;
 	Request.PlayerPresenceUpdateSelf.SetStatus(DesiredStatus);
-	BaseType::DoCall(RH_APIs::GetPresenceAPI(), Request,
+	auto RequestPtr = BaseType::DoCall(RH_APIs::GetPresenceAPI(), Request,
 		RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf::CreateWeakLambda(this, [this, Delegate](const BaseType::Response& Resp)
 		{
 			Delegate.ExecuteIfBound(Resp.IsSuccessful(), true);
-		})
+		}),
+		GetDefault<URH_IntegrationSettings>()->PresenceGetSelfPriority
 	);
+
+	// if we did not successfully make the request, but were otherwise valid, just restart timer
+	if (RequestPtr)
+	{
+		Delegate.ExecuteIfBound(false, true);
+		return;
+	}
 }
 
 void URH_LocalPlayerPresenceSubsystem::OnUserChanged()
 {
 	Super::OnUserChanged();
 	InitPropertiesWithDefaultValues();
+
+	auto AuthContext = GetAuthContext();
+	if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
+	{
+		StartRefreshTimer();
+	}
+	else
+	{
+		StopRefreshTimer();
+	}
 }
 
 void URH_LocalPlayerPresenceSubsystem::InitPropertiesWithDefaultValues()
@@ -145,7 +179,7 @@ void URH_LocalPlayerPresenceSubsystem::GetSettings(RallyHereAPI::FRequest_GetPre
 {
 	typedef RallyHereAPI::Traits_GetPresenceSettings BaseType;
 
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(Delegate);
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(Delegate, FRH_GenericSuccessDelegate(), GetDefault<URH_IntegrationSettings>()->PresenceGetSettingsPriority);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
 }

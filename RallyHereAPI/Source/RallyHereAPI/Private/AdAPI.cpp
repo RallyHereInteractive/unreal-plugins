@@ -8,6 +8,7 @@
 #include "AdAPI.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "HttpModule.h"
 #include "Serialization/JsonSerializer.h"
 
@@ -22,43 +23,60 @@ FAdAPI::FAdAPI() : FAPI()
 
 FAdAPI::~FAdAPI() {}
 
-FHttpRequestPtr FAdAPI::BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate /*= FDelegate_BeginNewSession()*/)
+FHttpRequestPtr FAdAPI::BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate /*= FDelegate_BeginNewSession()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAdAPI::OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAdAPI::OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAdAPI::OnBeginNewSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_BeginNewSession Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -67,6 +85,7 @@ FRequest_BeginNewSession::FRequest_BeginNewSession()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_BeginNewSession::GetSimplifiedPath() const
@@ -110,7 +129,7 @@ bool FRequest_BeginNewSession::SetupHttpRequest(const FHttpRequestRef& HttpReque
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, BodyBeginNewSessionV1SessionPost);
+        WriteJsonValue(Writer, BodyBeginNewSession);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -118,11 +137,11 @@ bool FRequest_BeginNewSession::SetupHttpRequest(const FHttpRequestRef& HttpReque
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BeginNewSession - Body parameter (FRHAPI_BodyBeginNewSessionV1SessionPost) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BeginNewSession - Body parameter (FRHAPI_BodyBeginNewSession) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BeginNewSession - Body parameter (FRHAPI_BodyBeginNewSessionV1SessionPost) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BeginNewSession - Body parameter (FRHAPI_BodyBeginNewSession) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -185,43 +204,60 @@ FResponse_BeginNewSession::FResponse_BeginNewSession(FRequestMetadata InRequestM
 
 FString Traits_BeginNewSession::Name = TEXT("BeginNewSession");
 
-FHttpRequestPtr FAdAPI::FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate /*= FDelegate_FindOpportunities()*/)
+FHttpRequestPtr FAdAPI::FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate /*= FDelegate_FindOpportunities()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAdAPI::OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAdAPI::OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAdAPI::OnFindOpportunitiesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_FindOpportunities Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -230,6 +266,7 @@ FRequest_FindOpportunities::FRequest_FindOpportunities()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_FindOpportunities::GetSimplifiedPath() const
@@ -273,7 +310,7 @@ bool FRequest_FindOpportunities::SetupHttpRequest(const FHttpRequestRef& HttpReq
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, BodyFindOpportunitiesV1OpportunityPost);
+        WriteJsonValue(Writer, BodyFindOpportunities);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -281,11 +318,11 @@ bool FRequest_FindOpportunities::SetupHttpRequest(const FHttpRequestRef& HttpReq
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindOpportunities - Body parameter (FRHAPI_BodyFindOpportunitiesV1OpportunityPost) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindOpportunities - Body parameter (FRHAPI_BodyFindOpportunities) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindOpportunities - Body parameter (FRHAPI_BodyFindOpportunitiesV1OpportunityPost) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindOpportunities - Body parameter (FRHAPI_BodyFindOpportunities) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -348,43 +385,60 @@ FResponse_FindOpportunities::FResponse_FindOpportunities(FRequestMetadata InRequ
 
 FString Traits_FindOpportunities::Name = TEXT("FindOpportunities");
 
-FHttpRequestPtr FAdAPI::UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate /*= FDelegate_UnityAdWatched()*/)
+FHttpRequestPtr FAdAPI::UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate /*= FDelegate_UnityAdWatched()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAdAPI::OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAdAPI::OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_UnityAdWatched Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -393,6 +447,7 @@ FRequest_UnityAdWatched::FRequest_UnityAdWatched()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_UnityAdWatched::GetSimplifiedPath() const
@@ -465,43 +520,60 @@ FResponse_UnityAdWatched::FResponse_UnityAdWatched(FRequestMetadata InRequestMet
 
 FString Traits_UnityAdWatched::Name = TEXT("UnityAdWatched");
 
-FHttpRequestPtr FAdAPI::UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate /*= FDelegate_UnityMediationAdWatched()*/)
+FHttpRequestPtr FAdAPI::UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate /*= FDelegate_UnityMediationAdWatched()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAdAPI::OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAdAPI::OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAdAPI::OnUnityMediationAdWatchedResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_UnityMediationAdWatched Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -510,6 +582,7 @@ FRequest_UnityMediationAdWatched::FRequest_UnityMediationAdWatched()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
@@ -583,43 +656,60 @@ FResponse_UnityMediationAdWatched::FResponse_UnityMediationAdWatched(FRequestMet
 
 FString Traits_UnityMediationAdWatched::Name = TEXT("UnityMediationAdWatched");
 
-FHttpRequestPtr FAdAPI::UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate /*= FDelegate_UpdateOpportunityById()*/)
+FHttpRequestPtr FAdAPI::UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate /*= FDelegate_UpdateOpportunityById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAdAPI::OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAdAPI::OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAdAPI::OnUpdateOpportunityByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_UpdateOpportunityById Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -628,6 +718,7 @@ FRequest_UpdateOpportunityById::FRequest_UpdateOpportunityById()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_UpdateOpportunityById::GetSimplifiedPath() const
@@ -676,7 +767,7 @@ bool FRequest_UpdateOpportunityById::SetupHttpRequest(const FHttpRequestRef& Htt
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost);
+        WriteJsonValue(Writer, BodyUpdateOpportunityById);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -684,11 +775,11 @@ bool FRequest_UpdateOpportunityById::SetupHttpRequest(const FHttpRequestRef& Htt
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateOpportunityById - Body parameter (FRHAPI_BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateOpportunityById - Body parameter (FRHAPI_BodyUpdateOpportunityById) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateOpportunityById - Body parameter (FRHAPI_BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateOpportunityById - Body parameter (FRHAPI_BodyUpdateOpportunityById) was ignored, not supported in urlencoded requests"));
     }
     else
     {

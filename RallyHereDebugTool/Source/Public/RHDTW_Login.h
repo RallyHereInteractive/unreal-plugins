@@ -1,4 +1,3 @@
-// Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
 #pragma once
 
 #include "RH_DebugToolWindow.h"
@@ -11,7 +10,10 @@ struct FRHDTW_Login : public FRH_DebugToolWindow
 	virtual ~FRHDTW_Login();
 
 	virtual void Do() override;
+	void DoLoginTab();
+	void DoMassLoginTab();
 
+	// Login variables
 	bool bAcceptEULA;
 	bool bAcceptTOS;
 	bool bAcceptPP;
@@ -19,4 +21,18 @@ struct FRHDTW_Login : public FRH_DebugToolWindow
 	TArray<ANSICHAR> OSSIDBuffer;
 	TArray<ANSICHAR> OSSTokenBuffer;
 	TArray<ANSICHAR> RefreshTokenBuffer;
+
+	// Mass Login variables
+	bool ML_bAcceptEULA;
+	bool ML_bAcceptTOS;
+	bool ML_bAcceptPP;
+	TArray<ANSICHAR> ML_OSSLoginTypeBuffer;
+	TArray<ANSICHAR> ML_OSSIDBuffer;
+	TArray<ANSICHAR> ML_OSSTokenBuffer;
+	TArray<ANSICHAR> ML_RefreshTokenBuffer;
+	int32 ML_RangeFrom;
+	int32 ML_RangeTo;
+
+private:
+	FString ML_Result;
 };

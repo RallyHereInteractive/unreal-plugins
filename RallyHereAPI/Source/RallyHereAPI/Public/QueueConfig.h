@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "QueueConfig.generated.h"
 
+/** @defgroup RHAPI_QueueConfig RallyHere API Model QueueConfig
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Configuration about a specific queue
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
@@ -139,3 +143,5 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     /** @brief Sets the value of MatchMakingTemplateGroupId */
     void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 };
+
+/** @} */

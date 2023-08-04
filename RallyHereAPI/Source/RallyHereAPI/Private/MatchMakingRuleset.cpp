@@ -37,8 +37,10 @@ bool FRHAPI_MatchMakingRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("rules"), Rules);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("determiner"), Determiner);
+    const TSharedPtr<FJsonValue> JsonRulesField = (*Object)->TryGetField(TEXT("rules"));
+    ParseSuccess &= JsonRulesField.IsValid() && !JsonRulesField->IsNull() && TryGetJsonValue(JsonRulesField, Rules);
+    const TSharedPtr<FJsonValue> JsonDeterminerField = (*Object)->TryGetField(TEXT("determiner"));
+    ParseSuccess &= JsonDeterminerField.IsValid() && !JsonDeterminerField->IsNull() && TryGetJsonValue(JsonDeterminerField, Determiner);
 
     return ParseSuccess;
 }

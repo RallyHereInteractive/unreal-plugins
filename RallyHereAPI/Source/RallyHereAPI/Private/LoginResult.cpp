@@ -22,6 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_LoginResult::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    Writer->WriteIdentifierPrefix(TEXT("platform"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
     Writer->WriteIdentifierPrefix(TEXT("portal_id"));
     RallyHereAPI::WriteJsonValue(Writer, PortalId);
     Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
@@ -86,50 +88,68 @@ bool FRHAPI_LoginResult::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_id"), PortalId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_user_id"), PortalUserId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("display_name"), DisplayName);
-    if ((*Object)->HasField(TEXT("portal_parent_auth_result")))
+    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+    ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+    const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
+    ParseSuccess &= JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId);
+    const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
+    ParseSuccess &= JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull() && TryGetJsonValue(JsonPortalUserIdField, PortalUserId);
+    const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
+    ParseSuccess &= JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull() && TryGetJsonValue(JsonDisplayNameField, DisplayName);
+    const TSharedPtr<FJsonValue> JsonPortalParentAuthResultField = (*Object)->TryGetField(TEXT("portal_parent_auth_result"));
+    if (JsonPortalParentAuthResultField.IsValid() && !JsonPortalParentAuthResultField->IsNull())
     {
-        PortalParentAuthResult_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_parent_auth_result"), PortalParentAuthResult_Optional);
+        PortalParentAuthResult_IsSet = TryGetJsonValue(JsonPortalParentAuthResultField, PortalParentAuthResult_Optional);
         ParseSuccess &= PortalParentAuthResult_IsSet;
     }
-    if ((*Object)->HasField(TEXT("permissions")))
+    const TSharedPtr<FJsonValue> JsonPermissionsField = (*Object)->TryGetField(TEXT("permissions"));
+    if (JsonPermissionsField.IsValid() && !JsonPermissionsField->IsNull())
     {
-        Permissions_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("permissions"), Permissions_Optional);
+        Permissions_IsSet = TryGetJsonValue(JsonPermissionsField, Permissions_Optional);
         ParseSuccess &= Permissions_IsSet;
     }
-    if ((*Object)->HasField(TEXT("restrictions")))
+    const TSharedPtr<FJsonValue> JsonRestrictionsField = (*Object)->TryGetField(TEXT("restrictions"));
+    if (JsonRestrictionsField.IsValid() && !JsonRestrictionsField->IsNull())
     {
-        Restrictions_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("restrictions"), Restrictions_Optional);
+        Restrictions_IsSet = TryGetJsonValue(JsonRestrictionsField, Restrictions_Optional);
         ParseSuccess &= Restrictions_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("active_player_id"), ActivePlayerId);
-    if ((*Object)->HasField(TEXT("active_player_uuid")))
+    const TSharedPtr<FJsonValue> JsonActivePlayerIdField = (*Object)->TryGetField(TEXT("active_player_id"));
+    ParseSuccess &= JsonActivePlayerIdField.IsValid() && !JsonActivePlayerIdField->IsNull() && TryGetJsonValue(JsonActivePlayerIdField, ActivePlayerId);
+    const TSharedPtr<FJsonValue> JsonActivePlayerUuidField = (*Object)->TryGetField(TEXT("active_player_uuid"));
+    if (JsonActivePlayerUuidField.IsValid() && !JsonActivePlayerUuidField->IsNull())
     {
-        ActivePlayerUuid_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("active_player_uuid"), ActivePlayerUuid_Optional);
+        ActivePlayerUuid_IsSet = TryGetJsonValue(JsonActivePlayerUuidField, ActivePlayerUuid_Optional);
         ParseSuccess &= ActivePlayerUuid_IsSet;
     }
-    if ((*Object)->HasField(TEXT("role_id")))
+    const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
+    if (JsonRoleIdField.IsValid() && !JsonRoleIdField->IsNull())
     {
-        RoleId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("role_id"), RoleId_Optional);
+        RoleId_IsSet = TryGetJsonValue(JsonRoleIdField, RoleId_Optional);
         ParseSuccess &= RoleId_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("person_id"), PersonId);
-    if ((*Object)->HasField(TEXT("access_token")))
+    const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
+    ParseSuccess &= JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId);
+    const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
+    if (JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull())
     {
-        AccessToken_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("access_token"), AccessToken_Optional);
+        AccessToken_IsSet = TryGetJsonValue(JsonAccessTokenField, AccessToken_Optional);
         ParseSuccess &= AccessToken_IsSet;
     }
-    if ((*Object)->HasField(TEXT("refresh_token")))
+    const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
+    if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
     {
-        RefreshToken_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("refresh_token"), RefreshToken_Optional);
+        RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
         ParseSuccess &= RefreshToken_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("publisher_uuid"), PublisherUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("tenant_uuid"), TenantUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("config_elector_uuid"), ConfigElectorUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("client_uuid"), ClientUuid);
+    const TSharedPtr<FJsonValue> JsonPublisherUuidField = (*Object)->TryGetField(TEXT("publisher_uuid"));
+    ParseSuccess &= JsonPublisherUuidField.IsValid() && !JsonPublisherUuidField->IsNull() && TryGetJsonValue(JsonPublisherUuidField, PublisherUuid);
+    const TSharedPtr<FJsonValue> JsonTenantUuidField = (*Object)->TryGetField(TEXT("tenant_uuid"));
+    ParseSuccess &= JsonTenantUuidField.IsValid() && !JsonTenantUuidField->IsNull() && TryGetJsonValue(JsonTenantUuidField, TenantUuid);
+    const TSharedPtr<FJsonValue> JsonConfigElectorUuidField = (*Object)->TryGetField(TEXT("config_elector_uuid"));
+    ParseSuccess &= JsonConfigElectorUuidField.IsValid() && !JsonConfigElectorUuidField->IsNull() && TryGetJsonValue(JsonConfigElectorUuidField, ConfigElectorUuid);
+    const TSharedPtr<FJsonValue> JsonClientUuidField = (*Object)->TryGetField(TEXT("client_uuid"));
+    ParseSuccess &= JsonClientUuidField.IsValid() && !JsonClientUuidField->IsNull() && TryGetJsonValue(JsonClientUuidField, ClientUuid);
 
     return ParseSuccess;
 }

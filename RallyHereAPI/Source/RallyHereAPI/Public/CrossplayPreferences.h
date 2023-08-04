@@ -13,8 +13,12 @@
 #include "CrossplayPlatform.h"
 #include "CrossplayPreferences.generated.h"
 
+/** @defgroup RHAPI_CrossplayPreferences RallyHere API Model CrossplayPreferences
+ *  @{
+ */
+
 /**
- * @brief Client&#39;s desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible
+ * @brief A session&#39;s or player&#39;s preferences around crossplay platforms and inputs. Permitted platforms and inputs will be checked when new players attempt to join a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
@@ -57,3 +61,5 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
     /** @brief Sets the value of PermittedInput */
     void SetPermittedInput(ERHAPI_CrossplayInput NewValue) { PermittedInput = NewValue;  }
 };
+
+/** @} */

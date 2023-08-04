@@ -30,10 +30,10 @@ public:
     FSiteAPI();
     virtual ~FSiteAPI();
 
-    FHttpRequestPtr GetSiteSettings(const FRequest_GetSiteSettings& Request, const FDelegate_GetSiteSettings& Delegate = FDelegate_GetSiteSettings());
+    FHttpRequestPtr GetSiteSettings(const FRequest_GetSiteSettings& Request, const FDelegate_GetSiteSettings& Delegate = FDelegate_GetSiteSettings(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetSiteSettingsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSiteSettings Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetSiteSettingsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSiteSettings Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API Traits_GetSiteSettings
     typedef FSiteAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetSiteSettings(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSiteSettings(InRequest, InDelegate, Priority); }
 };
 
 

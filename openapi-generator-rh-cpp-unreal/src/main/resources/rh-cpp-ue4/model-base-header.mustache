@@ -1,0 +1,216 @@
+{{!
+Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
+Copyright 2022 HiRez Studios
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+}}
+{{>licenseInfo}}
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Interfaces/IHttpRequest.h"
+#include "Interfaces/IHttpResponse.h"
+#include "Serialization/JsonWriter.h"
+#include "Dom/JsonObject.h"
+#include "HttpRetrySystem.h"
+#include "Containers/Ticker.h"
+#include "Runtime/Launch/Resources/Version.h"
+#include "Misc/Guid.h"
+#include "RallyHereAPIBaseModel.generated.h"
+
+/** @defgroup RHAPI_BaseModel RallyHere API Base Model
+ *  @{
+ */
+
+/**
+ * @brief Base class for all RallyHereAPI data models
+ */
+USTRUCT(BlueprintType)
+struct {{dllapi}} {{unrealModelPrefix}}Model
+{
+    GENERATED_BODY(WithNoDestructor);
+    virtual ~{{unrealModelPrefix}}Model() {}
+
+    /**
+    * @brief Fills this object with data from the passed in JSON
+    *
+    * @param [in] JsonValue Data from the API call.
+    *
+    * @return true if parsing of the JSON data was successful.
+    */
+    virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) { return false; }
+
+    /**
+    * @brief Writes the data from this object into the specified JSON Writer stream
+    *
+    * @param [in] Writer JSON Writer stream to push .
+    */
+    virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const {}
+};
+/** @} */
+
+{{#cppNamespaceDeclarations}}
+namespace {{this}}
+{
+{{/cppNamespaceDeclarations}}
+
+struct FAuthContext;
+using namespace FHttpRetrySystem;
+
+#if ENGINE_MAJOR_VERSION >= 5
+struct {{dllapi}} FHttpRetryManager : public FManager, public FTSTickerObjectBase
+#else
+struct {{dllapi}} FHttpRetryManager : public FManager, public FTickerObjectBase
+#endif
+{
+    using FManager::FManager;
+
+    bool Tick(float DeltaTime) final;
+};
+
+struct {{dllapi}} FHttpRetryParams
+{
+    FHttpRetryParams(
+        const FRetryLimitCountSetting& InRetryLimitCountOverride = FRetryLimitCountSetting(),
+        const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride = FRetryTimeoutRelativeSecondsSetting(),
+        const FRetryResponseCodes& InRetryResponseCodes = FRetryResponseCodes(),
+        const FRetryVerbs& InRetryVerbs = FRetryVerbs(),
+        const FRetryDomainsPtr& InRetryDomains = FRetryDomainsPtr()
+    );
+
+    FRetryLimitCountSetting RetryLimitCountOverride;
+    FRetryTimeoutRelativeSecondsSetting RetryTimeoutRelativeSecondsOverride;
+    FRetryResponseCodes RetryResponseCodes;
+    FRetryVerbs RetryVerbs;
+    FRetryDomainsPtr RetryDomains;
+};
+
+/*
+ * Metadata used to track a request through the Unreal systems
+ */
+struct {{dllapi}} FRequestMetadata
+{
+    FGuid Identifier;
+    FString SimplifiedPath;
+    int32 RetryCount = 0;
+};
+
+class {{dllapi}} FRequest
+{
+public:
+    virtual ~FRequest() = default;
+    virtual bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const = 0;
+    virtual FString ComputePath() const = 0;
+    virtual FString GetSimplifiedPath() const = 0;
+    virtual TSharedPtr<FAuthContext> GetAuthContext() const { return nullptr; }
+    const FRequestMetadata& GetRequestMetadata() const { return RequestMetadata; }
+
+    /* Enables retry and optionally sets a retry policy for this request */
+    void SetShouldRetry(const FHttpRetryParams& Params = FHttpRetryParams()) { RetryParams = Params; }
+    const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
+
+protected:
+    FRequestMetadata RequestMetadata;
+    TOptional<FHttpRetryParams> RetryParams;
+};
+
+class {{dllapi}} FResponse
+{
+public:
+    FResponse(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse() = default;
+    virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) = 0;
+    virtual bool ParseHeaders() { return true; }
+
+    void SetSuccessful(bool InSuccessful) { Successful = InSuccessful; }
+    bool IsSuccessful() const { return Successful; }
+
+    virtual void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode);
+    EHttpResponseCodes::Type GetHttpResponseCode() const { return ResponseCode; }
+
+    void SetResponseString(const FString& InResponseString) { ResponseString = InResponseString; }
+    const FString& GetResponseString() const { return ResponseString; }
+
+    void SetHttpResponse(const FHttpResponsePtr& InHttpResponse) { HttpResponse = InHttpResponse; }
+    const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
+
+    const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
+    
+    void SetJsonResponse(const TSharedPtr<FJsonValue>& InJsonValue) { ResponseJson = InJsonValue; }
+    const TSharedPtr<FJsonValue>& GetJsonResponse() const { return ResponseJson; }
+
+protected:
+    bool Successful;
+    EHttpResponseCodes::Type ResponseCode;
+    FString ResponseString;
+    FHttpResponsePtr HttpResponse;
+    FRequestMetadata RequestMetadata;
+    TSharedPtr<FJsonValue> ResponseJson;
+};
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FAPI_RequestStarted, const FRequestMetadata&, FHttpRequestRef);
+DECLARE_MULTICAST_DELEGATE_FiveParams(FAPI_RequestCompleted, const FResponse&, FHttpRequestPtr, FHttpResponsePtr, bool /* success */, bool /* willRetryWithAuth */);
+
+class {{dllapi}} FAPI
+{
+public:
+    FAPI() = default;
+    virtual ~FAPI() = default;
+
+    /* Sets the URL Endpoint.
+     * Note: several fallback endpoints can be configured in request retry policies, see Request::SetShouldRetry */
+    void SetURL(const FString& Url);
+    FString GetURL() const;
+    FString GetName() const;
+
+    /* Adds global header params to all requests */
+    void AddHeaderParam(const FString& Key, const FString& Value);
+    void ClearHeaderParams();
+
+    /* Auth context for requests that require an Authorization header */
+    void SetAuthContext(FAuthContext& NewAuthContext);
+    FAuthContext *GetAuthContext();
+
+    /* Sets the retry manager to the user-defined retry manager. User must manage the lifetime of the retry manager.
+     * If no retry manager is specified and a request needs retries, a default retry manager will be used.
+     * See also: Request::SetShouldRetry */
+    void SetHttpRetryManager(FHttpRetrySystem::FManager& RetryManager);
+    FHttpRetrySystem::FManager &GetHttpRetryManager();
+
+    FAPI_RequestStarted& OnRequestStarted() { return RequestStarted; }
+    FAPI_RequestCompleted& OnRequestCompleted() { return RequestCompleted; }
+
+protected:
+    FHttpRequestRef CreateHttpRequest(const FRequest& Request) const;
+    bool IsValid() const;
+    struct FRequestPendingAuthRetry
+    {
+        FHttpRequestPtr HttpRequest;
+        TSharedPtr<FAuthContext> AuthContext;
+        FDelegateHandle Handle;
+    };
+    bool HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse& InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FRequestMetadata& RequestMetadata, int32 Priority);
+    void RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request, FHttpRequestCompleteDelegate ResponseDelegate, FRequestMetadata RequestMetadata, int32 Priority);
+
+    FString Url;
+    FString Name;
+    TMap<FString, FString> AdditionalHeaderParams;
+    mutable FHttpRetrySystem::FManager* RetryManager = nullptr;
+    mutable TUniquePtr<FHttpRetryManager> DefaultRetryManager;
+    FAPI_RequestStarted RequestStarted;
+    FAPI_RequestCompleted RequestCompleted;
+};
+
+{{#cppNamespaceDeclarations}}
+}
+{{/cppNamespaceDeclarations}}

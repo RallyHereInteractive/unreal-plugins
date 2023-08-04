@@ -4,6 +4,7 @@
 #include "RH_LocalPlayerSubsystem.h"
 #include "imgui.h"
 #include "RH_ImGuiUtilities.h"
+#include "RallyHereDebugTool.h"
 
 #include "RH_LocalPlayerLoginSubsystem.h"
 
@@ -12,68 +13,96 @@
 
 FRHDTW_Entitlements::FRHDTW_Entitlements()
 	: Super()
-{}
+{
+	DefaultPos = FVector2D(610, 20);
+	ActionResult.Empty();
+}
 
 void FRHDTW_Entitlements::Do()
 {
-	const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
-	if (pLocalPlayer == nullptr)
+	int NumSelectedPlayers = 0;
+	if (URallyHereDebugTool* pOwner = GetOwner())
 	{
-		return;
+		NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
 	}
-	
-	URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-	if (pRH_LocalPlayerSubsystem == nullptr)
+
+	if (NumSelectedPlayers <= 0)
 	{
-		ImGui::Text("RH_LocalPlayerSubsystem not available.");
+		ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
 		return;
 	}
 
-	URH_LocalPlayerLoginSubsystem* pRH_LoginSubsystem = pRH_LocalPlayerSubsystem->GetLoginSubsystem();
-	if (pRH_LoginSubsystem == nullptr)
-	{
-		ImGui::Text("RH_LocalPlayerLoginSubsystem not available.");
-		return;
-	}
-	
-	IOnlineSubsystem* LoginOSS = pRH_LoginSubsystem->GetLoginOSS();
-	if (LoginOSS == nullptr)
-	{
-		ImGui::Text("Login OSS: not available.");
-		return;
-	}
-	
-	URH_EntitlementSubsystem* pRH_EntitlementSubsystem = GetEntitlementSubsystem();
-
-	if (pRH_EntitlementSubsystem == nullptr)
-	{
-		ImGui::Text("%s", "URH_EntitlementSubsystem not available.");
-		return;
-	}
+	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
 
 	if (ImGui::Button("Start Process Platform Entitlement Task"))
 	{
-		pRH_EntitlementSubsystem->SubmitEntitlements();
+		ActionResult.Empty();
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* pLocalPlayerSubsystem)
+			{
+				if (URH_EntitlementSubsystem* pEntitlementSubsystem = pLocalPlayerSubsystem->GetEntitlementSubsystem())
+				{
+					pEntitlementSubsystem->SubmitEntitlementsForLoggedInOSS(FRH_ProcessEntitlementCompletedDelegate::CreateLambda([this, pLocalPlayerSubsystem](bool bSuccess, FRHAPI_PlatformEntitlementProcessResult Result)
+						{
+							ActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] Processing entitlements with logged in OSS " + (bSuccess ? " succeeded" : "failed.") + LINE_TERMINATOR;
+						}));
+				}
+			}));
 	}
 
 	ImGui::SameLine();
 	
 	if (ImGui::Button("Clear Saved Entitlement Results"))
 	{
-		pRH_EntitlementSubsystem->GetEntitlementResults()->Empty();
+		ActionResult.Empty();
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* pLocalPlayerSubsystem)
+			{
+				if (URH_EntitlementSubsystem* pEntitlementSubsystem = pLocalPlayerSubsystem->GetEntitlementSubsystem())
+				{
+					pEntitlementSubsystem->GetEntitlementResults()->Empty();
+					ActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] Cleared saved entitlement results." + LINE_TERMINATOR;
+				}
+			}));
+	}
+
+	if (!ActionResult.IsEmpty())
+	{
+		if (ImGui::CollapsingHeader("Entitlements Action Result", RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ActionResult));
+		}
 	}
 
 	ImGui::Separator();
 
-	for (const auto& pair : *GetEntitlementSubsystem()->GetEntitlementResults())
+	const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
+	FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pLocalPlayer->GetControllerId());
+	ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
+
+	URH_EntitlementSubsystem* pRH_EntitlementSubsystem = nullptr;
+	if (const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+	{
+		pRH_EntitlementSubsystem = pRH_LocalPlayerSubsystem->GetEntitlementSubsystem();
+	}
+	if (pRH_EntitlementSubsystem == nullptr)
+	{
+		ImGui::Text("%s", "URH_EntitlementSubsystem not available.");
+		return;
+	}
+
+	for (const auto& pair : *pRH_EntitlementSubsystem->GetEntitlementResults())
 	{
 		FRHAPI_PlatformEntitlementProcessResult result = pair.Value;
 
 		FString label;
-		if (result.GetRequestId().IsEmpty())
+		if (result.GetStatus() == "FAILED")
+		{
+			label += FString::Printf(TEXT("Failed"));	
+		}
+		else if (result.GetRequestId().IsEmpty())
 		{
 			label += FString::Printf(TEXT("Processing"));
-		} else
+		}
+		else
 		{
 			label += FString::Printf(TEXT("%s - Request ID - %s"), *result.GetStatus(), *result.GetRequestId());
 		}
@@ -93,67 +122,51 @@ void FRHDTW_Entitlements::Do()
 
 			ImGui::Separator();
 
-			ImGui::Columns(5);
-			ImGui::Text("%s", "Authority");
-			ImGui::NextColumn();
-			ImGui::Text("%s", "SKU");
-			ImGui::NextColumn();
-			ImGui::Text("%s", "Unique ID");
-			ImGui::NextColumn();
-			ImGui::Text("%s", "Status");
-			ImGui::NextColumn();
-			ImGui::Text("%s", "Error Code");
-			ImGui::NextColumn();
-			ImGui::Separator();
-			
-			for (FRHAPI_PlatformEntitlement entitlement : result.GetServerEntitlements())
+			if (ImGui::BeginTable("EntitlementsTable", 5, RH_TableFlagsPropSizing))
 			{
-				FString authority = "server";
-				ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
-				ImGui::NextColumn(); 
-				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
-				ImGui::NextColumn(); 
-				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
-				ImGui::NextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
-				ImGui::NextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
-				ImGui::NextColumn();
+				// Header
+				ImGui::TableSetupColumn("Authority");
+				ImGui::TableSetupColumn("SKU");
+				ImGui::TableSetupColumn("Unique ID");
+				ImGui::TableSetupColumn("Status");
+				ImGui::TableSetupColumn("Error Code");
+				ImGui::TableHeadersRow();
+
+				// Content
+				for (FRHAPI_PlatformEntitlement entitlement : result.GetServerEntitlements())
+				{
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					FString authority = "server";
+					ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
+				}
+				for (FRHAPI_PlatformEntitlement entitlement : result.GetClientEntitlements())
+				{
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					FString authority = "client";
+					ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
+				}
+
+				ImGui::EndTable();
 			}
-			for (FRHAPI_PlatformEntitlement entitlement : result.GetClientEntitlements())
-			{
-				FString authority = "client";
-				ImGui::Text("%s", TCHAR_TO_UTF8(*authority));
-				ImGui::NextColumn(); 
-				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformSku));
-				ImGui::NextColumn(); 
-				ImGui::Text("%s", TCHAR_TO_UTF8(*entitlement.PlatformEntitlementId));
-				ImGui::NextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetStatus())));
-				ImGui::NextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*EnumToString(entitlement.GetErrorCode())));
-				ImGui::NextColumn();
-			}
-			
-			ImGui::Columns(1);
 		}
 		ImGui::PopID();
 	}
-}
-
-URH_EntitlementSubsystem* FRHDTW_Entitlements::GetEntitlementSubsystem()
-{
-	const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
-	if (pLocalPlayer == nullptr)
-	{
-		return nullptr;
-	}
-
-	const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-	if (pRH_LocalPlayerSubsystem == nullptr)
-	{
-		return nullptr;
-	}
-
-	return pRH_LocalPlayerSubsystem->GetEntitlementSubsystem();
 }

@@ -49,19 +49,24 @@ bool FRHAPI_PlayerPersonResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_id"), PlayerId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_uuid"), PlayerUuid);
-    if ((*Object)->HasField(TEXT("active_player_id")))
+    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+    ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
+    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+    const TSharedPtr<FJsonValue> JsonActivePlayerIdField = (*Object)->TryGetField(TEXT("active_player_id"));
+    if (JsonActivePlayerIdField.IsValid() && !JsonActivePlayerIdField->IsNull())
     {
-        ActivePlayerId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("active_player_id"), ActivePlayerId_Optional);
+        ActivePlayerId_IsSet = TryGetJsonValue(JsonActivePlayerIdField, ActivePlayerId_Optional);
         ParseSuccess &= ActivePlayerId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("active_player_uuid")))
+    const TSharedPtr<FJsonValue> JsonActivePlayerUuidField = (*Object)->TryGetField(TEXT("active_player_uuid"));
+    if (JsonActivePlayerUuidField.IsValid() && !JsonActivePlayerUuidField->IsNull())
     {
-        ActivePlayerUuid_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("active_player_uuid"), ActivePlayerUuid_Optional);
+        ActivePlayerUuid_IsSet = TryGetJsonValue(JsonActivePlayerUuidField, ActivePlayerUuid_Optional);
         ParseSuccess &= ActivePlayerUuid_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("person_id"), PersonId);
+    const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
+    ParseSuccess &= JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull() && TryGetJsonValue(JsonPersonIdField, PersonId);
 
     return ParseSuccess;
 }

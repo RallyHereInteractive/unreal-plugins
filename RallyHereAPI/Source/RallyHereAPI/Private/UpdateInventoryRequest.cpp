@@ -68,39 +68,46 @@ bool FRHAPI_UpdateInventoryRequest::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("source")))
+    const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
+    if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
     {
-        Source_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("source"), Source_Optional);
+        Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
         ParseSuccess &= Source_IsSet;
     }
-    if ((*Object)->HasField(TEXT("client_order_ref_id")))
+    const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
+    if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
     {
-        ClientOrderRefId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("client_order_ref_id"), ClientOrderRefId_Optional);
+        ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
         ParseSuccess &= ClientOrderRefId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("bucket")))
+    const TSharedPtr<FJsonValue> JsonBucketField = (*Object)->TryGetField(TEXT("bucket"));
+    if (JsonBucketField.IsValid() && !JsonBucketField->IsNull())
     {
-        Bucket_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("bucket"), Bucket_Optional);
+        Bucket_IsSet = TryGetJsonValue(JsonBucketField, Bucket_Optional);
         ParseSuccess &= Bucket_IsSet;
     }
-    if ((*Object)->HasField(TEXT("count")))
+    const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
+    if (JsonCountField.IsValid() && !JsonCountField->IsNull())
     {
-        Count_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("count"), Count_Optional);
+        Count_IsSet = TryGetJsonValue(JsonCountField, Count_Optional);
         ParseSuccess &= Count_IsSet;
     }
-    if ((*Object)->HasField(TEXT("expires")))
+    const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
+    if (JsonExpiresField.IsValid() && !JsonExpiresField->IsNull())
     {
-        Expires_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("expires"), Expires_Optional);
+        Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
         ParseSuccess &= Expires_IsSet;
     }
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
-    if ((*Object)->HasField(TEXT("item_id")))
+    const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
+    if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
     {
-        ItemId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("item_id"), ItemId_Optional);
+        ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
         ParseSuccess &= ItemId_IsSet;
     }
 

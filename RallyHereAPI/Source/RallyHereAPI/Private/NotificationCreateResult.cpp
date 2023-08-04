@@ -35,7 +35,8 @@ bool FRHAPI_NotificationCreateResult::FromJson(const TSharedPtr<FJsonValue>& Jso
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("notification_id"), NotificationId);
+    const TSharedPtr<FJsonValue> JsonNotificationIdField = (*Object)->TryGetField(TEXT("notification_id"));
+    ParseSuccess &= JsonNotificationIdField.IsValid() && !JsonNotificationIdField->IsNull() && TryGetJsonValue(JsonNotificationIdField, NotificationId);
 
     return ParseSuccess;
 }

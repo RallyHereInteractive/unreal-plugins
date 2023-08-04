@@ -52,6 +52,11 @@ void FRHAPI_PlayerOrder::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("match_id"));
         RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
     }
+    if (IsTransaction_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("is_transaction"));
+        RallyHereAPI::WriteJsonValue(Writer, IsTransaction_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("order_id"));
     RallyHereAPI::WriteJsonValue(Writer, OrderId);
     Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
@@ -71,40 +76,56 @@ bool FRHAPI_PlayerOrder::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("source")))
+    const TSharedPtr<FJsonValue> JsonSourceField = (*Object)->TryGetField(TEXT("source"));
+    if (JsonSourceField.IsValid() && !JsonSourceField->IsNull())
     {
-        Source_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("source"), Source_Optional);
+        Source_IsSet = TryGetJsonValue(JsonSourceField, Source_Optional);
         ParseSuccess &= Source_IsSet;
     }
-    if ((*Object)->HasField(TEXT("client_order_ref_id")))
+    const TSharedPtr<FJsonValue> JsonClientOrderRefIdField = (*Object)->TryGetField(TEXT("client_order_ref_id"));
+    if (JsonClientOrderRefIdField.IsValid() && !JsonClientOrderRefIdField->IsNull())
     {
-        ClientOrderRefId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("client_order_ref_id"), ClientOrderRefId_Optional);
+        ClientOrderRefId_IsSet = TryGetJsonValue(JsonClientOrderRefIdField, ClientOrderRefId_Optional);
         ParseSuccess &= ClientOrderRefId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("portal_id")))
+    const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
+    if (JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull())
     {
-        PortalId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_id"), PortalId_Optional);
+        PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
         ParseSuccess &= PortalId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("portal_user_id")))
+    const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
+    if (JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull())
     {
-        PortalUserId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_user_id"), PortalUserId_Optional);
+        PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
         ParseSuccess &= PortalUserId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("instance_id")))
+    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
     {
-        InstanceId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_id"), InstanceId_Optional);
+        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
         ParseSuccess &= InstanceId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("match_id")))
+    const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
+    if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
     {
-        MatchId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("match_id"), MatchId_Optional);
+        MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
         ParseSuccess &= MatchId_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("order_id"), OrderId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_uuid"), PlayerUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("created_time"), CreatedTime);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("entries"), Entries);
+    const TSharedPtr<FJsonValue> JsonIsTransactionField = (*Object)->TryGetField(TEXT("is_transaction"));
+    if (JsonIsTransactionField.IsValid() && !JsonIsTransactionField->IsNull())
+    {
+        IsTransaction_IsSet = TryGetJsonValue(JsonIsTransactionField, IsTransaction_Optional);
+        ParseSuccess &= IsTransaction_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
+    ParseSuccess &= JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull() && TryGetJsonValue(JsonOrderIdField, OrderId);
+    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+    const TSharedPtr<FJsonValue> JsonCreatedTimeField = (*Object)->TryGetField(TEXT("created_time"));
+    ParseSuccess &= JsonCreatedTimeField.IsValid() && !JsonCreatedTimeField->IsNull() && TryGetJsonValue(JsonCreatedTimeField, CreatedTime);
+    const TSharedPtr<FJsonValue> JsonEntriesField = (*Object)->TryGetField(TEXT("entries"));
+    ParseSuccess &= JsonEntriesField.IsValid() && !JsonEntriesField->IsNull() && TryGetJsonValue(JsonEntriesField, Entries);
 
     return ParseSuccess;
 }

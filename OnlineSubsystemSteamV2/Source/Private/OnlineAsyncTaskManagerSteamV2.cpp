@@ -8,6 +8,7 @@ void FOnlineAsyncTaskManagerSteamV2::OnlineTick()
 	check(SteamSubsystem);
 	check(FPlatformTLS::GetCurrentThreadId() == OnlineThreadId);
 
+	/* The following are handled by the embedded SteamV1 integration.  Ticking them here when the integration is not wholy-owned by this subsystem makes it subject to race conditions with the SteamV1 interface
 	if (SteamSubsystem->IsSteamClientAvailable())
 	{
 		SteamAPI_RunCallbacks();
@@ -17,6 +18,7 @@ void FOnlineAsyncTaskManagerSteamV2::OnlineTick()
 	{
 		SteamGameServer_RunCallbacks();
 	}
+	*/
 }
 
 class FOnlineAsyncEventSteamInventoryDefinitionUpdate : public FOnlineAsyncEvent<FOnlineSubsystemSteamV2>

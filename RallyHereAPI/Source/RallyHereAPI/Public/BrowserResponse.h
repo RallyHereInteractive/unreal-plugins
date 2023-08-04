@@ -12,8 +12,12 @@
 #include "BrowserSessionInfo.h"
 #include "BrowserResponse.generated.h"
 
+/** @defgroup RHAPI_BrowserResponse RallyHere API Model BrowserResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A response with a list of browsers, and a cursor to continue iterating through them
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
@@ -60,3 +64,5 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
     /** @brief Sets the value of BrowserSessions */
     void SetBrowserSessions(TArray<FRHAPI_BrowserSessionInfo> NewValue) { BrowserSessions = NewValue;  }
 };
+
+/** @} */

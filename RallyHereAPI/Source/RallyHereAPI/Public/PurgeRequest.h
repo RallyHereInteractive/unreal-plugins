@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PurgeRequest.generated.h"
 
+/** @defgroup RHAPI_PurgeRequest RallyHere API Model PurgeRequest
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -58,3 +62,5 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
      /** @brief Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false */
     void ClearSuggestedPurgeTime() { SuggestedPurgeTime_IsSet = false; }
 };
+
+/** @} */

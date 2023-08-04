@@ -11,25 +11,26 @@
 #include "RallyHereAPIHelpers.h"
 #include "Portal.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Portals a.k.a platforms that a player can be linked/authenticated with
  */
 UENUM(BlueprintType)
 enum class ERHAPI_Portal : uint8
 {
-    Anon UMETA(ToolTip="An enumeration."),
-    Amazon UMETA(ToolTip="An enumeration."),
-    Steam UMETA(ToolTip="An enumeration."),
-    Psn UMETA(ToolTip="An enumeration."),
-    Xboxlive UMETA(ToolTip="An enumeration."),
-    Basic UMETA(ToolTip="An enumeration."),
-    Google UMETA(ToolTip="An enumeration."),
-    Twitch UMETA(ToolTip="An enumeration."),
-    NintendoSwitch UMETA(ToolTip="An enumeration."),
-    Apple UMETA(ToolTip="An enumeration."),
-    Nintendo UMETA(ToolTip="An enumeration."),
-    Epic UMETA(ToolTip="An enumeration."),
-    NintendoPpid UMETA(ToolTip="An enumeration."),
+    Anon UMETA(ToolTip="Anonymous portal used for testing. This is not intended to be used by real players."),
+    Amazon UMETA(ToolTip="Amazon portal"),
+    Steam UMETA(ToolTip="Steam portal"),
+    Psn UMETA(ToolTip="Playstation Network portal"),
+    Xboxlive UMETA(ToolTip="Xbox Live portal"),
+    Basic UMETA(ToolTip="Basic portal"),
+    Google UMETA(ToolTip="Google portal"),
+    Twitch UMETA(ToolTip="Twitch portal"),
+    NintendoSwitch UMETA(ToolTip="Nintendo Switch portal"),
+    Apple UMETA(ToolTip="Apple portal"),
+    Nintendo UMETA(ToolTip="Nintendo portal"),
+    Epic UMETA(ToolTip="Epic portal"),
+    NintendoPpid UMETA(ToolTip="Nintendo PPID portal"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Portal& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Portal& EnumValue);

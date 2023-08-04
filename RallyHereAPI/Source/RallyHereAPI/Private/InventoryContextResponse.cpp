@@ -38,9 +38,10 @@ bool FRHAPI_InventoryContextResponse::FromJson(const TSharedPtr<FJsonValue>& Jso
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("inventory")))
+    const TSharedPtr<FJsonValue> JsonInventoryField = (*Object)->TryGetField(TEXT("inventory"));
+    if (JsonInventoryField.IsValid() && !JsonInventoryField->IsNull())
     {
-        Inventory_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("inventory"), Inventory_Optional);
+        Inventory_IsSet = TryGetJsonValue(JsonInventoryField, Inventory_Optional);
         ParseSuccess &= Inventory_IsSet;
     }
 

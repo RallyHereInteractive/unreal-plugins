@@ -38,9 +38,10 @@ bool FRHAPI_Notifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("notifications")))
+    const TSharedPtr<FJsonValue> JsonNotificationsField = (*Object)->TryGetField(TEXT("notifications"));
+    if (JsonNotificationsField.IsValid() && !JsonNotificationsField->IsNull())
     {
-        Notifications_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("notifications"), Notifications_Optional);
+        Notifications_IsSet = TryGetJsonValue(JsonNotificationsField, Notifications_Optional);
         ParseSuccess &= Notifications_IsSet;
     }
 

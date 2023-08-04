@@ -12,8 +12,12 @@
 #include "QueueConfig.h"
 #include "QueuesResponse.generated.h"
 
+/** @defgroup RHAPI_QueuesResponse RallyHere API Model QueuesResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A list of configuration about queues
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model
@@ -46,3 +50,5 @@ struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model
     /** @brief Sets the value of Queues */
     void SetQueues(TArray<FRHAPI_QueueConfig> NewValue) { Queues = NewValue;  }
 };
+
+/** @} */

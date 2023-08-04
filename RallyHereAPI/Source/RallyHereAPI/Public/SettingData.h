@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "SettingData.generated.h"
 
+/** @defgroup RHAPI_SettingData RallyHere API Model SettingData
+ *  @{
+ */
+
 /**
  * @brief Setting version/value data from a specific setting type/key for a player
  */
@@ -72,3 +76,5 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
      /** @brief Clears the value of Value_Optional and sets Value_IsSet to false */
     void ClearValue() { Value_IsSet = false; }
 };
+
+/** @} */

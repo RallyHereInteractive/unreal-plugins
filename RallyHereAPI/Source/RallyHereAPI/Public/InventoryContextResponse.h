@@ -9,11 +9,15 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "Inventory1.h"
+#include "Inventory.h"
 #include "InventoryContextResponse.generated.h"
 
+/** @defgroup RHAPI_InventoryContextResponse RallyHere API Model InventoryContextResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Inventory Context for a Player.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
@@ -37,24 +41,26 @@ struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_Inventory1 Inventory_Optional{  };
+    FRHAPI_Inventory Inventory_Optional{  };
     /** @brief true if Inventory_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Inventory_IsSet{ false };
     /** @brief Gets the value of Inventory_Optional, regardless of it having been set */
-    FRHAPI_Inventory1& GetInventory() { return Inventory_Optional; }
+    FRHAPI_Inventory& GetInventory() { return Inventory_Optional; }
     /** @brief Gets the value of Inventory_Optional, regardless of it having been set */
-    const FRHAPI_Inventory1& GetInventory() const { return Inventory_Optional; }
+    const FRHAPI_Inventory& GetInventory() const { return Inventory_Optional; }
     /** @brief Gets the value of Inventory_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_Inventory1& GetInventory(const FRHAPI_Inventory1& DefaultValue) const { if (Inventory_IsSet) return Inventory_Optional; return DefaultValue; }
+    const FRHAPI_Inventory& GetInventory(const FRHAPI_Inventory& DefaultValue) const { if (Inventory_IsSet) return Inventory_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Inventory_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInventory(FRHAPI_Inventory1& OutValue) const { if (Inventory_IsSet) OutValue = Inventory_Optional; return Inventory_IsSet; }
+    bool GetInventory(FRHAPI_Inventory& OutValue) const { if (Inventory_IsSet) OutValue = Inventory_Optional; return Inventory_IsSet; }
     /** @brief Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_Inventory1* GetInventoryOrNull() { if (Inventory_IsSet) return &Inventory_Optional; return nullptr; }
+    FRHAPI_Inventory* GetInventoryOrNull() { if (Inventory_IsSet) return &Inventory_Optional; return nullptr; }
     /** @brief Returns a pointer to Inventory_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_Inventory1* GetInventoryOrNull() const { if (Inventory_IsSet) return &Inventory_Optional; return nullptr; }
+    const FRHAPI_Inventory* GetInventoryOrNull() const { if (Inventory_IsSet) return &Inventory_Optional; return nullptr; }
     /** @brief Sets the value of Inventory_Optional and also sets Inventory_IsSet to true */
-    void SetInventory(FRHAPI_Inventory1 NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true; }
+    void SetInventory(FRHAPI_Inventory NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true; }
      /** @brief Clears the value of Inventory_Optional and sets Inventory_IsSet to false */
     void ClearInventory() { Inventory_IsSet = false; }
 };
+
+/** @} */

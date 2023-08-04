@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "SendInBlueContact.generated.h"
 
+/** @defgroup RHAPI_SendInBlueContact RallyHere API Model SendInBlueContact
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -162,3 +166,5 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     /** @brief Sets the value of UpdateEnabled_Optional to its default and also sets UpdateEnabled_IsSet to true */
     void SetUpdateEnabledToDefault() { UpdateEnabled_Optional = false; UpdateEnabled_IsSet = true; }
 };
+
+/** @} */

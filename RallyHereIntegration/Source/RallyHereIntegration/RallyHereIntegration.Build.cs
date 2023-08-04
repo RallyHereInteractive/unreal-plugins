@@ -19,32 +19,18 @@ public class RallyHereIntegration : ModuleRules
                 "OnlineSubsystem",
                 "OnlineSubsystemUtils",
                 "RallyHereAPI",
+				"RallyHereGameHostProvider",
                 "WebAuth",
 				"Sockets",
 				"Networking",
-				"DeveloperSettings"
+				"DeveloperSettings",
             }
         );
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[] {
-				"Hotfix",
+				"Hotfix"
 			}
 		);
-
-		if (Target.Type == TargetType.Server || Target.Type == TargetType.Editor)
-		{
-			PrivateDefinitions.Add("WITH_RALLYHEREA2S=1");
-			PrivateDependencyModuleNames.AddRange(
-				new string[]
-				{
-					"RallyHereA2S"
-				}
-			);
-		}
-		else
-		{
-			PrivateDefinitions.Add("WITH_RALLYHEREA2S=0");
-		}
-	}
+    }
 }

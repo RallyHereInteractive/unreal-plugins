@@ -12,8 +12,12 @@
 #include "SessionTemplate.h"
 #include "SessionTemplates.generated.h"
 
+/** @defgroup RHAPI_SessionTemplates RallyHere API Model SessionTemplates
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A mapping of RallyHere session template types to the templates
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionTemplates : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplates : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Dictionary of SessionTemplates keyed on their template type */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_SessionTemplate> Templates_Optional{  };
     /** @brief true if Templates_Optional has been set to a value */
@@ -58,3 +63,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplates : public FRHAPI_Model
      /** @brief Clears the value of Templates_Optional and sets Templates_IsSet to false */
     void ClearTemplates() { Templates_IsSet = false; }
 };
+
+/** @} */

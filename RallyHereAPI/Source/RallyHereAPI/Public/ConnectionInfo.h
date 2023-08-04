@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "ConnectionInfo.generated.h"
 
+/** @defgroup RHAPI_ConnectionInfo RallyHere API Model ConnectionInfo
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Connection info about the requesting client
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
     /** @brief Sets the value of Ip */
     void SetIp(FString NewValue) { Ip = NewValue;  }
 };
+
+/** @} */

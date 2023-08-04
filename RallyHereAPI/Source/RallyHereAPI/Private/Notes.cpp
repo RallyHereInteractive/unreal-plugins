@@ -38,9 +38,10 @@ bool FRHAPI_Notes::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("notes")))
+    const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
+    if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
     {
-        Notes_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("notes"), Notes_Optional);
+        Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
         ParseSuccess &= Notes_IsSet;
     }
 

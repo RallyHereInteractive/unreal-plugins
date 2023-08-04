@@ -47,18 +47,22 @@ bool FRHAPI_SessionEventCreateRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("event_code"), EventCode);
-    if ((*Object)->HasField(TEXT("description")))
+    const TSharedPtr<FJsonValue> JsonEventCodeField = (*Object)->TryGetField(TEXT("event_code"));
+    ParseSuccess &= JsonEventCodeField.IsValid() && !JsonEventCodeField->IsNull() && TryGetJsonValue(JsonEventCodeField, EventCode);
+    const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
+    if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
     {
-        Description_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("description"), Description_Optional);
+        Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
         ParseSuccess &= Description_IsSet;
     }
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("timestamp"), Timestamp);
+    const TSharedPtr<FJsonValue> JsonTimestampField = (*Object)->TryGetField(TEXT("timestamp"));
+    ParseSuccess &= JsonTimestampField.IsValid() && !JsonTimestampField->IsNull() && TryGetJsonValue(JsonTimestampField, Timestamp);
 
     return ParseSuccess;
 }

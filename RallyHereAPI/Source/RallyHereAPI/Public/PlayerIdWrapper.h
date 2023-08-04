@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerIdWrapper.generated.h"
 
+/** @defgroup RHAPI_PlayerIdWrapper RallyHere API Model PlayerIdWrapper
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -48,3 +52,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIdWrapper : public FRHAPI_Model
     /** @brief Sets the value of PlayerId to its default  */
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 };
+
+/** @} */

@@ -12,6 +12,10 @@
 #include "ValidationError.h"
 #include "HTTPValidationError.generated.h"
 
+/** @defgroup RHAPI_HTTPValidationError RallyHere API Model HTTPValidationError
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -58,3 +62,5 @@ struct RALLYHEREAPI_API FRHAPI_HTTPValidationError : public FRHAPI_Model
      /** @brief Clears the value of Detail_Optional and sets Detail_IsSet to false */
     void ClearDetail() { Detail_IsSet = false; }
 };
+
+/** @} */

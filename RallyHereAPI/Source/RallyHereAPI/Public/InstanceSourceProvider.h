@@ -11,15 +11,16 @@
 #include "RallyHereAPIHelpers.h"
 #include "InstanceSourceProvider.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief What type of provider is hosting the instance
  */
 UENUM(BlueprintType)
 enum class ERHAPI_InstanceSourceProvider : uint8
 {
-    Player UMETA(ToolTip="An enumeration."),
-    Sic UMETA(ToolTip="An enumeration."),
-    Multiplay UMETA(ToolTip="An enumeration."),
+    Player UMETA(ToolTip="Instance is being hosted by a player"),
+    Sic UMETA(ToolTip="Instance is hosted by the RallyHere SIC system"),
+    Multiplay UMETA(ToolTip="Instance is being hosted by Multiplay"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InstanceSourceProvider& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceSourceProvider& EnumValue);

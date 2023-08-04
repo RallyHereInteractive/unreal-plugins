@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "BrowserInfo.generated.h"
 
+/** @defgroup RHAPI_BrowserInfo RallyHere API Model BrowserInfo
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Information about the browser resource in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_BrowserInfo : public FRHAPI_Model
@@ -58,3 +62,5 @@ struct RALLYHEREAPI_API FRHAPI_BrowserInfo : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

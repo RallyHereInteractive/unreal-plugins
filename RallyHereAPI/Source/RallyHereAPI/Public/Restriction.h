@@ -12,6 +12,10 @@
 #include "RestrictionType.h"
 #include "Restriction.generated.h"
 
+/** @defgroup RHAPI_Restriction RallyHere API Model Restriction
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -89,3 +93,5 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
      /** @brief Clears the value of Expiration_Optional and sets Expiration_IsSet to false */
     void ClearExpiration() { Expiration_IsSet = false; }
 };
+
+/** @} */

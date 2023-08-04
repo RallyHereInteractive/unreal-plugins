@@ -13,8 +13,12 @@
 #include "Source.h"
 #include "CreateInventoryRequests.generated.h"
 
+/** @defgroup RHAPI_CreateInventoryRequests RallyHere API Model CreateInventoryRequests
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Collection of Create Inventory Requests. This will create new Inventory for each request. Each individual entry will be processed in the order they are specified in the collection.  &lt;b&gt;Note: Partial success is possible as each request is processed individually.&lt;/b&gt;
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Source of this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Source Source_Optional{  };
     /** @brief true if Source_Optional has been set to a value */
@@ -59,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
      /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
     void ClearSource() { Source_IsSet = false; }
 
+    /** @brief Arbitrary UUID that can be used by clients to correlate Order requests with Order responses. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ClientOrderRefId_Optional{  };
     /** @brief true if ClientOrderRefId_Optional has been set to a value */
@@ -90,3 +96,5 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
     /** @brief Sets the value of Inventory */
     void SetInventory(TArray<FRHAPI_CreateInventoryRequest> NewValue) { Inventory = NewValue;  }
 };
+
+/** @} */

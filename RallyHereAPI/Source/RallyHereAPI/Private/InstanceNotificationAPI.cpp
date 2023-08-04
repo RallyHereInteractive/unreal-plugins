@@ -8,6 +8,7 @@
 #include "InstanceNotificationAPI.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "HttpModule.h"
 #include "Serialization/JsonSerializer.h"
 
@@ -22,43 +23,60 @@ FInstanceNotificationAPI::FInstanceNotificationAPI() : FAPI()
 
 FInstanceNotificationAPI::~FInstanceNotificationAPI() {}
 
-FHttpRequestPtr FInstanceNotificationAPI::InstanceCreateNotification(const FRequest_InstanceCreateNotification& Request, const FDelegate_InstanceCreateNotification& Delegate /*= FDelegate_InstanceCreateNotification()*/)
+FHttpRequestPtr FInstanceNotificationAPI::InstanceCreateNotification(const FRequest_InstanceCreateNotification& Request, const FDelegate_InstanceCreateNotification& Delegate /*= FDelegate_InstanceCreateNotification()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FInstanceNotificationAPI::OnInstanceCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FInstanceNotificationAPI::OnInstanceCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceCreateNotificationResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_InstanceCreateNotification Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -67,6 +85,7 @@ FRequest_InstanceCreateNotification::FRequest_InstanceCreateNotification()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_InstanceCreateNotification::GetSimplifiedPath() const
@@ -140,8 +159,11 @@ void FResponse_InstanceCreateNotification::SetHttpResponseCode(EHttpResponseCode
     case 200:
         SetResponseString(TEXT("Successful Response"));
         break;
+    case 400:
+        SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
+        break;
     case 403:
-        SetResponseString(TEXT("Forbidden"));
+        SetResponseString(TEXT(" Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -161,43 +183,60 @@ FResponse_InstanceCreateNotification::FResponse_InstanceCreateNotification(FRequ
 
 FString Traits_InstanceCreateNotification::Name = TEXT("InstanceCreateNotification");
 
-FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationById(const FRequest_InstanceGetNotificationById& Request, const FDelegate_InstanceGetNotificationById& Delegate /*= FDelegate_InstanceGetNotificationById()*/)
+FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationById(const FRequest_InstanceGetNotificationById& Request, const FDelegate_InstanceGetNotificationById& Delegate /*= FDelegate_InstanceGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_InstanceGetNotificationById Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -206,6 +245,7 @@ FRequest_InstanceGetNotificationById::FRequest_InstanceGetNotificationById()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_InstanceGetNotificationById::GetSimplifiedPath() const
@@ -269,11 +309,14 @@ void FResponse_InstanceGetNotificationById::SetHttpResponseCode(EHttpResponseCod
     case 200:
         SetResponseString(TEXT("Successful Response"));
         break;
+    case 400:
+        SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
+        break;
     case 403:
-        SetResponseString(TEXT("Forbidden"));
+        SetResponseString(TEXT(" Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
         break;
     case 404:
-        SetResponseString(TEXT("Not Found"));
+        SetResponseString(TEXT(" Error Codes: - resource_not_found - Notification could not be found "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -293,43 +336,60 @@ FResponse_InstanceGetNotificationById::FResponse_InstanceGetNotificationById(FRe
 
 FString Traits_InstanceGetNotificationById::Name = TEXT("InstanceGetNotificationById");
 
-FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationsPage(const FRequest_InstanceGetNotificationsPage& Request, const FDelegate_InstanceGetNotificationsPage& Delegate /*= FDelegate_InstanceGetNotificationsPage()*/)
+FHttpRequestPtr FInstanceNotificationAPI::InstanceGetNotificationsPage(const FRequest_InstanceGetNotificationsPage& Request, const FDelegate_InstanceGetNotificationsPage& Delegate /*= FDelegate_InstanceGetNotificationsPage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceGetNotificationsPageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_InstanceGetNotificationsPage Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -338,6 +398,7 @@ FRequest_InstanceGetNotificationsPage::FRequest_InstanceGetNotificationsPage()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_InstanceGetNotificationsPage::GetSimplifiedPath() const
@@ -425,8 +486,11 @@ void FResponse_InstanceGetNotificationsPage::SetHttpResponseCode(EHttpResponseCo
     case 304:
         SetResponseString(TEXT("Not Modified"));
         break;
+    case 400:
+        SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
+        break;
     case 403:
-        SetResponseString(TEXT("Forbidden"));
+        SetResponseString(TEXT(" Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -446,43 +510,60 @@ FResponse_InstanceGetNotificationsPage::FResponse_InstanceGetNotificationsPage(F
 
 FString Traits_InstanceGetNotificationsPage::Name = TEXT("InstanceGetNotificationsPage");
 
-FHttpRequestPtr FInstanceNotificationAPI::InstanceLongPollForNotifications(const FRequest_InstanceLongPollForNotifications& Request, const FDelegate_InstanceLongPollForNotifications& Delegate /*= FDelegate_InstanceLongPollForNotifications()*/)
+FHttpRequestPtr FInstanceNotificationAPI::InstanceLongPollForNotifications(const FRequest_InstanceLongPollForNotifications& Request, const FDelegate_InstanceLongPollForNotifications& Delegate /*= FDelegate_InstanceLongPollForNotifications()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FInstanceNotificationAPI::OnInstanceLongPollForNotificationsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_InstanceLongPollForNotifications Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -491,6 +572,7 @@ FRequest_InstanceLongPollForNotifications::FRequest_InstanceLongPollForNotificat
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_InstanceLongPollForNotifications::GetSimplifiedPath() const
@@ -573,8 +655,11 @@ void FResponse_InstanceLongPollForNotifications::SetHttpResponseCode(EHttpRespon
     case 200:
         SetResponseString(TEXT("Successful Response"));
         break;
+    case 400:
+        SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
+        break;
     case 403:
-        SetResponseString(TEXT("Forbidden"));
+        SetResponseString(TEXT(" Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));

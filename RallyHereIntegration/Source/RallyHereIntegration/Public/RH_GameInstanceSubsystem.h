@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -20,114 +19,185 @@ class URH_PlayerInfoSubsystem;
 class URH_CatalogSubsystem;
 class URH_ConfigSubsystem;
 
+/** @defgroup GameInstance RallyHere Game Instance
+ *  @{
+ */
+
+/**
+ * @brief Subsystem for the Game Instance.
+ */
 UCLASS(Config=RallyHereIntegration, DefaultConfig)
 class RALLYHEREINTEGRATION_API URH_GameInstanceSubsystem : public UGameInstanceSubsystem
 {
     GENERATED_BODY()
 public:
+	/**
+	 * @brief Gets if the subsystem is enabled and should be created.
+	 */
 	bool ShouldCreateSubsystem(UObject* Outer) const override { return bEnabled; }
+	/**
+	* @brief Initialize the subsystem.
+	*/
     void Initialize(FSubsystemCollectionBase& Collection);
+	/**
+	* @brief Safely tears down the subsystem.
+	*/
     void Deinitialize();
-
+	/**
+	* @brief Sets the Auth Context for the subsystem.
+	* @param [in] InAuthContext The Auth Context to set with.
+	*/
 	void SetAuthContext(FAuthContextPtr InAuthContext) { AuthContext = InAuthContext; }
+	/**
+	* @brief Gets the subsystems designated auth context.
+	*/
 	FAuthContextPtr GetAuthContext() const { return AuthContext; }
-
+	/**
+	* @brief Gets the session subsystem on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	inline URH_GameInstanceSessionSubsystem* GetSessionSubsystem() const { return SessionSubsystem; };
-
+	/**
+	* @brief Gets the session search cache on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	inline URH_SessionBrowserCache* GetSessionSearchCache() const { return SessionSearchCache; };
-
+	/**
+	* @brief Gets the matchmaking cache on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Matchmaking")
 	inline URH_MatchmakingBrowserCache* GetMatchmakingCache() const { return MatchmakingCache; };
-
+	/**
+	* @brief Gets the server bootstrapper on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	inline URH_GameInstanceServerBootstrapper* GetServerBootstrapper() const { return ServerBootstrapper; };
-
+	/**
+	* @brief Gets the client boostrapper on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	inline URH_GameInstanceClientBootstrapper* GetClientBootstrapper() const { return ClientBootstrapper; };
-
+	/**
+	* @brief Gets the player info subsystem on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "PlayerInfo")
 	inline URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const { return PlayerInfoSubsystem; };
-
+	/**
+	* @brief Gets the catalog subsystem on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Catalog")
 	inline URH_CatalogSubsystem* GetCatalogSubsystem() const { return CatalogSubsystem; };
-
+	/**
+	* @brief Gets the config subsystem on the instance.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "Config")
 	inline URH_ConfigSubsystem* GetConfigSubsystem() const { return ConfigSubsystem; };
-
+	/**
+	 * @brief Handles verification and validation of a player attempting to connect to the instance.
+	 * 
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] NewPlayer The player that is attempting to connect.
+	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
+	 */
 	void GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage);
+	bool ValidateIncomingConnection(class UNetConnection* Connection, FString& ErrorMessage) const;
 
-	// the following are meant to inspect state of default object before game instance is initialized, once it is initialized use the above
+	/**
+	* @brief Gets if server boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
+	*/
 	FORCEINLINE static bool DEFAULT_IsServerBootstrappingEnabled() 
 	{
 		auto* Default = GetDefault<URH_GameInstanceSubsystem>();
 		return Default->ShouldCreateSubsystem(nullptr) && Default->bEnableGameSessions && Default->bEnableServerBootstrapper && IsRunningDedicatedServer();
 	}
+	/**
+	* @brief Gets if client boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
+	*/
 	FORCEINLINE static bool DEFAULT_IsClientBootstrappingEnabled()
 	{
 		auto* Default = GetDefault<URH_GameInstanceSubsystem>();
 		return Default->ShouldCreateSubsystem(nullptr) && Default->bEnableGameSessions && Default->bEnableClientBootstrapper && !IsRunningDedicatedServer();
 	}
 
-private:
+protected:
+	/** @brief Auth context used by the Game Instance Subsystem. */
 	FAuthContextPtr AuthContext;
-
+	/** @brief Array of plugins for the Game Instance Subsystem. */
 	UPROPERTY()
 	TArray<URH_GameInstanceSubsystemPlugin*> SubsystemPlugins;
-
+	/**
+	 * @brief Adds a plugin to the Game Instance Subsystem.
+	 * @param [in] SubsystemClassPath The class path of the plugin to add.
+	 * @return The plugin that was added.
+	 */
 	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_GameInstanceSubsystemPlugin>::Value, bool>::Type = true>
-	UClassToUse* AddSubsystemPlugin()
+	UClassToUse* AddSubsystemPlugin(FSoftClassPath SubsystemClassPath)
 	{
-		auto* Subsystem = NewObject<UClassToUse>(this);
+		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
+
+		// If an invalid class type was specified we fall back to the default.
+		if (!SubsystemClass)
+		{
+			SubsystemClass = UClassToUse::StaticClass();
+		}
+		
+		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
 		SubsystemPlugins.Add(Subsystem);
 		return Subsystem;
 	}
-
+	/** @brief The Session Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSessionSubsystem, Category = "Session")
 	URH_GameInstanceSessionSubsystem* SessionSubsystem;
-
+	/** @brief The Cache for seasion seaches. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSessionSearchCache, Category = "Session")
 	URH_SessionBrowserCache* SessionSearchCache;
-
+	/** @brief The Cache to matchmaking. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetMatchmakingCache, Category = "Matchmaking")
 	URH_MatchmakingBrowserCache* MatchmakingCache;
-
+	/** @brief The Game Instance Server Boostrapper. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetServerBootstrapper, Category = "Session")
 	URH_GameInstanceServerBootstrapper* ServerBootstrapper;
-
+	/** @brief The Game Instance Client Boostrapper. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetClientBootstrapper, Category = "Session")
 	URH_GameInstanceClientBootstrapper* ClientBootstrapper;
-
+	/** @brief The Player Info Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetPlayerInfoSubsystem, Category = "Player Info")
 	URH_PlayerInfoSubsystem* PlayerInfoSubsystem;
-
+	/** @brief The Catalog Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetCatalogSubsystem, Category = "Catalog")
 	URH_CatalogSubsystem* CatalogSubsystem;
-
+	/** @brief The Config Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetConfigSubsystem, Category = "Config")
 	URH_ConfigSubsystem* ConfigSubsystem;
 
 	// control flags
+	/** @brief If the Game Instance Subsystem is enabled. */
 	UPROPERTY(config)
 	bool bEnabled = true;
-
+	/** @brief If the Session Browser is enabled. */
 	UPROPERTY(config)
 	bool bEnableSessionBrowser = true;
-
+	/** @brief If the Matchmaking Browser is enabled. */
 	UPROPERTY(config)
 	bool bEnableMatchmakingBrowser = true;
-
+	/** @brief If the Game Sessions are enabled. */
 	UPROPERTY(config)
 	bool bEnableGameSessions = true;
+	/** @brief If the Game Instance Server Bootstrapper is enabled. */
 	UPROPERTY(config)
 	bool bEnableServerBootstrapper = true;
+	/** @brief If the Game Instance Client Bootstrapper is enabled. */
 	UPROPERTY(config)
 	bool bEnableClientBootstrapper = true;
+	/** @brief If set, the connection attempt must have a valid security token to be allowed to connect. */
 	UPROPERTY(config)
 	bool bUseSecurityTokenForJoining = true;
 	UPROPERTY(config)
+	/** @brief If set, the Player Id must have been imported to the instance before being allowed to connect. */
 	bool bRequireImportedPlayerIdsForJoining = true;
 	UPROPERTY(config)
+	/** @brief If set, the Player Id must be valid before being allowed to connect. */
 	bool bRequireValidPlayerIdsForJoining = true;
 };
+
+/** @} */

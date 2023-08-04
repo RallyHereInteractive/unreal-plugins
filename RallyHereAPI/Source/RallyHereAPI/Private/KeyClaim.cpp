@@ -75,45 +75,54 @@ bool FRHAPI_KeyClaim::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("portal_id")))
+    const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
+    if (JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull())
     {
-        PortalId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_id"), PortalId_Optional);
+        PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
         ParseSuccess &= PortalId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("portal_user_id")))
+    const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
+    if (JsonPortalUserIdField.IsValid() && !JsonPortalUserIdField->IsNull())
     {
-        PortalUserId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_user_id"), PortalUserId_Optional);
+        PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
         ParseSuccess &= PortalUserId_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("key_claim_uuid"), KeyClaimUuid);
-    if ((*Object)->HasField(TEXT("claimed")))
+    const TSharedPtr<FJsonValue> JsonKeyClaimUuidField = (*Object)->TryGetField(TEXT("key_claim_uuid"));
+    ParseSuccess &= JsonKeyClaimUuidField.IsValid() && !JsonKeyClaimUuidField->IsNull() && TryGetJsonValue(JsonKeyClaimUuidField, KeyClaimUuid);
+    const TSharedPtr<FJsonValue> JsonClaimedField = (*Object)->TryGetField(TEXT("claimed"));
+    if (JsonClaimedField.IsValid() && !JsonClaimedField->IsNull())
     {
-        Claimed_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("claimed"), Claimed_Optional);
+        Claimed_IsSet = TryGetJsonValue(JsonClaimedField, Claimed_Optional);
         ParseSuccess &= Claimed_IsSet;
     }
-    if ((*Object)->HasField(TEXT("external_key")))
+    const TSharedPtr<FJsonValue> JsonExternalKeyField = (*Object)->TryGetField(TEXT("external_key"));
+    if (JsonExternalKeyField.IsValid() && !JsonExternalKeyField->IsNull())
     {
-        ExternalKey_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("external_key"), ExternalKey_Optional);
+        ExternalKey_IsSet = TryGetJsonValue(JsonExternalKeyField, ExternalKey_Optional);
         ParseSuccess &= ExternalKey_IsSet;
     }
-    if ((*Object)->HasField(TEXT("external_key_campaign_uuid")))
+    const TSharedPtr<FJsonValue> JsonExternalKeyCampaignUuidField = (*Object)->TryGetField(TEXT("external_key_campaign_uuid"));
+    if (JsonExternalKeyCampaignUuidField.IsValid() && !JsonExternalKeyCampaignUuidField->IsNull())
     {
-        ExternalKeyCampaignUuid_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("external_key_campaign_uuid"), ExternalKeyCampaignUuid_Optional);
+        ExternalKeyCampaignUuid_IsSet = TryGetJsonValue(JsonExternalKeyCampaignUuidField, ExternalKeyCampaignUuid_Optional);
         ParseSuccess &= ExternalKeyCampaignUuid_IsSet;
     }
-    if ((*Object)->HasField(TEXT("external_key_type")))
+    const TSharedPtr<FJsonValue> JsonExternalKeyTypeField = (*Object)->TryGetField(TEXT("external_key_type"));
+    if (JsonExternalKeyTypeField.IsValid() && !JsonExternalKeyTypeField->IsNull())
     {
-        ExternalKeyType_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("external_key_type"), ExternalKeyType_Optional);
+        ExternalKeyType_IsSet = TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
         ParseSuccess &= ExternalKeyType_IsSet;
     }
-    if ((*Object)->HasField(TEXT("created_on")))
+    const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
+    if (JsonCreatedOnField.IsValid() && !JsonCreatedOnField->IsNull())
     {
-        CreatedOn_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("created_on"), CreatedOn_Optional);
+        CreatedOn_IsSet = TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
         ParseSuccess &= CreatedOn_IsSet;
     }
-    if ((*Object)->HasField(TEXT("last_modified_on")))
+    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+    if (JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull())
     {
-        LastModifiedOn_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("last_modified_on"), LastModifiedOn_Optional);
+        LastModifiedOn_IsSet = TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
         ParseSuccess &= LastModifiedOn_IsSet;
     }
 

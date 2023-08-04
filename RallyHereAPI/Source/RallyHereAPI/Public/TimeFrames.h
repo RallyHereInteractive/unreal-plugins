@@ -13,8 +13,12 @@
 #include "TimeFrame.h"
 #include "TimeFrames.generated.h"
 
+/** @defgroup RHAPI_TimeFrames RallyHere API Model TimeFrames
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Time Frames by Time Frame ID.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Time Frames mapped by Time Frame ID. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_TimeFrame> TimeFrames_Optional{  };
     /** @brief true if TimeFrames_Optional has been set to a value */
@@ -81,3 +86,5 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

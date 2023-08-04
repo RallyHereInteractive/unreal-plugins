@@ -20,6 +20,10 @@
 #include "XpTables.h"
 #include "Catalog.generated.h"
 
+/** @defgroup RHAPI_Catalog RallyHere API Model Catalog
+ *  @{
+ */
+
 /**
  * @brief Full list of all loaded objects for the catalog.  Organized in a normalized model
  */
@@ -242,3 +246,5 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

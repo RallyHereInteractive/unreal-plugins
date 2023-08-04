@@ -13,8 +13,12 @@
 #include "Loot.h"
 #include "Loots.generated.h"
 
+/** @defgroup RHAPI_Loots RallyHere API Model Loots
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Loot by Loot ID.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Loots : public FRHAPI_Model
@@ -81,3 +85,5 @@ struct RALLYHEREAPI_API FRHAPI_Loots : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "FriendshipStatus.generated.h"
 
+
 /**
  * @brief An enumeration.
  */

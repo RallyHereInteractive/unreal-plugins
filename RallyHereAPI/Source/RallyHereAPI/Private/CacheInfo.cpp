@@ -40,10 +40,12 @@ bool FRHAPI_CacheInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("etag"), Etag);
-    if ((*Object)->HasField(TEXT("str_rep")))
+    const TSharedPtr<FJsonValue> JsonEtagField = (*Object)->TryGetField(TEXT("etag"));
+    ParseSuccess &= JsonEtagField.IsValid() && !JsonEtagField->IsNull() && TryGetJsonValue(JsonEtagField, Etag);
+    const TSharedPtr<FJsonValue> JsonStrRepField = (*Object)->TryGetField(TEXT("str_rep"));
+    if (JsonStrRepField.IsValid() && !JsonStrRepField->IsNull())
     {
-        StrRep_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("str_rep"), StrRep_Optional);
+        StrRep_IsSet = TryGetJsonValue(JsonStrRepField, StrRep_Optional);
         ParseSuccess &= StrRep_IsSet;
     }
 

@@ -38,9 +38,10 @@ bool FRHAPI_SessionTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("templates")))
+    const TSharedPtr<FJsonValue> JsonTemplatesField = (*Object)->TryGetField(TEXT("templates"));
+    if (JsonTemplatesField.IsValid() && !JsonTemplatesField->IsNull())
     {
-        Templates_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("templates"), Templates_Optional);
+        Templates_IsSet = TryGetJsonValue(JsonTemplatesField, Templates_Optional);
         ParseSuccess &= Templates_IsSet;
     }
 

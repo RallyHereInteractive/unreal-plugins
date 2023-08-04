@@ -18,8 +18,12 @@
 #include "XpQuantityTransform.h"
 #include "Loot.generated.h"
 
+/** @defgroup RHAPI_Loot RallyHere API Model Loot
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is granted to the player or the Sub Vendor is fulfilled but not both.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
@@ -42,6 +46,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The Loot ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 LootId{ 0 };
     /** @brief Gets the value of LootId */
@@ -55,6 +60,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of LootId to its default  */
     void SetLootIdToDefault() { LootId = 0;  }
 
+    /** @brief The Vendor ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 VendorId{ 0 };
     /** @brief Gets the value of VendorId */
@@ -68,6 +74,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of VendorId to its default  */
     void SetVendorIdToDefault() { VendorId = 0;  }
 
+    /** @brief The Item ID. Optional Item that will be granted to the player if Sub Vendor ID is not specified. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ItemId_Optional{  };
     /** @brief true if ItemId_Optional has been set to a value */
@@ -116,6 +123,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of Item_Optional and sets Item_IsSet to false */
     void ClearItem() { Item_IsSet = false; }
 
+    /** @brief The Sub Vendor ID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 SubVendorId_Optional{  };
     /** @brief true if SubVendorId_Optional has been set to a value */
@@ -142,6 +150,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of SubVendorId_Optional to its default and also sets SubVendorId_IsSet to true */
     void SetSubVendorIdToDefault() { SubVendorId_Optional = 0; SubVendorId_IsSet = true; }
 
+    /** @brief The quantity of the Item or Sub Vendor to fulfill. This will be multiplied by the quantity of fulfilled Loot and the parent Loot if quantity_type is relative. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 Quantity_Optional{  };
     /** @brief true if Quantity_Optional has been set to a value */
@@ -168,6 +177,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
     void SetQuantityToDefault() { Quantity_Optional = 0; Quantity_IsSet = true; }
 
+    /** @brief The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventorySelector InventorySelectorType_Optional{  };
     /** @brief true if InventorySelectorType_Optional has been set to a value */
@@ -190,6 +200,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of InventorySelectorType_Optional and sets InventorySelectorType_IsSet to false */
     void ClearInventorySelectorType() { InventorySelectorType_IsSet = false; }
 
+    /** @brief The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryOperation InventoryOperation_Optional{  };
     /** @brief true if InventoryOperation_Optional has been set to a value */
@@ -212,6 +223,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of InventoryOperation_Optional and sets InventoryOperation_IsSet to false */
     void ClearInventoryOperation() { InventoryOperation_IsSet = false; }
 
+    /** @brief Determines if the Loot is active. Inactive Loot will not be fulfilled. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Active_Optional{  };
     /** @brief true if Active_Optional has been set to a value */
@@ -238,6 +250,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of Active_Optional to its default and also sets Active_IsSet to true */
     void SetActiveToDefault() { Active_Optional = false; Active_IsSet = true; }
 
+    /** @brief The sort order of the Loot. Lower sort order will be fulfilled first. Inventory Operation is used as a tie breaker when sort_order is the same. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 SortOrder_Optional{  };
     /** @brief true if SortOrder_Optional has been set to a value */
@@ -264,6 +277,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of SortOrder_Optional to its default and also sets SortOrder_IsSet to true */
     void SetSortOrderToDefault() { SortOrder_Optional = 0; SortOrder_IsSet = true; }
 
+    /** @brief The drop weight of the Loot. Higher drop weight will be more likely to be fulfilled. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 DropWeight_Optional{  };
     /** @brief true if DropWeight_Optional has been set to a value */
@@ -290,7 +304,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of DropWeight_Optional to its default and also sets DropWeight_IsSet to true */
     void SetDropWeightToDefault() { DropWeight_Optional = 0; DropWeight_IsSet = true; }
 
-    /** @brief When dropped in a randomly sampled vendor, will this create a new order or fill inline? */
+    /** @brief When dropped in a randomly sampled vendor, will this create a new order or fill inline?. The primary use case for this is when you want the same loot to be dropped multiple times in a randomly sampled vendor. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool FillInNewOrder_Optional{  };
     /** @brief true if FillInNewOrder_Optional has been set to a value */
@@ -398,7 +412,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of RequiredItemCount_Optional to its default and also sets RequiredItemCount_IsSet to true */
     void SetRequiredItemCountToDefault() { RequiredItemCount_Optional = 0; RequiredItemCount_IsSet = true; }
 
-    /** @brief Amount of owned/rented of this Loot's item that will prevent this loot from droppping in a randomly sampled vendor */
+    /** @brief Amount of owned/rented of this Loot's item that will prevent this Loot from dropping in a randomly sampled vendor */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 StackLimit_Optional{  };
     /** @brief true if StackLimit_Optional has been set to a value */
@@ -473,6 +487,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of EffectiveFrom_Optional and sets EffectiveFrom_IsSet to false */
     void ClearEffectiveFrom() { EffectiveFrom_IsSet = false; }
 
+    /** @brief Determines how the quantity is modified in the context it is fulfilled in. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_QuantityType QuantityType_Optional{  };
     /** @brief true if QuantityType_Optional has been set to a value */
@@ -495,6 +510,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of QuantityType_Optional and sets QuantityType_IsSet to false */
     void ClearQuantityType() { QuantityType_IsSet = false; }
 
+    /** @brief When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 QuantityMultInventoryItemId_Optional{  };
     /** @brief true if QuantityMultInventoryItemId_Optional has been set to a value */
@@ -521,6 +537,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of QuantityMultInventoryItemId_Optional to its default and also sets QuantityMultInventoryItemId_IsSet to true */
     void SetQuantityMultInventoryItemIdToDefault() { QuantityMultInventoryItemId_Optional = 0; QuantityMultInventoryItemId_IsSet = true; }
 
+    /** @brief Determines if the Loot can be claimed by the client. This is dangerous without the correct loot confiuration as a client could claim Loot multiple times. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool IsClaimableByClient_Optional{  };
     /** @brief true if IsClaimableByClient_Optional has been set to a value */
@@ -547,6 +564,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of IsClaimableByClient_Optional to its default and also sets IsClaimableByClient_IsSet to true */
     void SetIsClaimableByClientToDefault() { IsClaimableByClient_Optional = false; IsClaimableByClient_IsSet = true; }
 
+    /** @brief The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 TimeFrameId_Optional{  };
     /** @brief true if TimeFrameId_Optional has been set to a value */
@@ -596,6 +614,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false */
     void ClearUseInventoryBucket() { UseInventoryBucket_IsSet = false; }
 
+    /** @brief Allows treating quantity as additional levels to grant to the Player. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_XpQuantityTransform XpQuantityTransformType_Optional{  };
     /** @brief true if XpQuantityTransformType_Optional has been set to a value */
@@ -618,6 +637,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of XpQuantityTransformType_Optional and sets XpQuantityTransformType_IsSet to false */
     void ClearXpQuantityTransformType() { XpQuantityTransformType_IsSet = false; }
 
+    /** @brief The current price point guid. Optional Price Point ID that will be used to determine the price of the Loot when it is fulfilled. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString CurrentPricePointGuid_Optional{  };
     /** @brief true if CurrentPricePointGuid_Optional has been set to a value */
@@ -640,6 +660,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of CurrentPricePointGuid_Optional and sets CurrentPricePointGuid_IsSet to false */
     void ClearCurrentPricePointGuid() { CurrentPricePointGuid_IsSet = false; }
 
+    /** @brief The pre sale price point guid. Optional Price Point ID that will be used to show the previous price of the Loot. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString PreSalePricePointGuid_Optional{  };
     /** @brief true if PreSalePricePointGuid_Optional has been set to a value */
@@ -711,3 +732,5 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true */
     void SetHardQuantityMaximumToDefault() { HardQuantityMaximum_Optional = 0; HardQuantityMaximum_IsSet = true; }
 };
+
+/** @} */

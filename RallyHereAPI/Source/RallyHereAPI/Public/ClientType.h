@@ -11,8 +11,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "ClientType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Client type for Entitlements
  */
 UENUM(BlueprintType)
 enum class ERHAPI_ClientType : uint8

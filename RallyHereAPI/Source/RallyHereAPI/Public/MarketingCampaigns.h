@@ -12,6 +12,10 @@
 #include "MarketingCampaign.h"
 #include "MarketingCampaigns.generated.h"
 
+/** @defgroup RHAPI_MarketingCampaigns RallyHere API Model MarketingCampaigns
+ *  @{
+ */
+
 /**
  * @brief List of external Marketing Campaigns.
  */
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of external Marketing Campaigns */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_MarketingCampaign> Campaigns{  };
     /** @brief Gets the value of Campaigns */
@@ -45,3 +50,5 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
     /** @brief Sets the value of Campaigns */
     void SetCampaigns(TArray<FRHAPI_MarketingCampaign> NewValue) { Campaigns = NewValue;  }
 };
+
+/** @} */

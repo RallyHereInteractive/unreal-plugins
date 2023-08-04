@@ -11,14 +11,15 @@
 #include "RallyHereAPIHelpers.h"
 #include "VendorType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Determines how the Vendor fulfills the loot.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_VendorType : uint8
 {
-    Recipe UMETA(ToolTip="An enumeration."),
-    RandomlySampled UMETA(ToolTip="An enumeration."),
+    Recipe UMETA(ToolTip="A Vendor that will always drop all of the Loot in the Loot table."),
+    RandomlySampled UMETA(ToolTip="A Vendor that will only fulfill one of the Loot in the Loot table based on the drop weights of the Loot."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_VendorType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_VendorType& EnumValue);

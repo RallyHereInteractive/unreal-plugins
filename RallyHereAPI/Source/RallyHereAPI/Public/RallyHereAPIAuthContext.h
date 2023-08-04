@@ -10,6 +10,8 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIBaseModel.h"
 #include "LoginResult.h"
+#include "TokenResponse.h"
+#include "RallyHereAPIAuthContext.generated.h"
 
 namespace RallyHereAPI
 {
@@ -17,9 +19,11 @@ namespace RallyHereAPI
 class FAuthAPI;
 struct FRequest_Login;
 struct FResponse_Login;
-struct LoginResult;
+struct FRequest_Token;
+struct FResponse_Token;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FAuthContextLoginComplete, bool /* bAuthSuccess */);
+DECLARE_MULTICAST_DELEGATE(FAuthContextLogout);
 DECLARE_MULTICAST_DELEGATE(FAuthContextLoginUserChanged);
 
 struct RALLYHEREAPI_API FAuthContext : TSharedFromThis<FAuthContext>
@@ -30,13 +34,18 @@ public:
     FAuthContext(FAuthAPI& LoginAPI_);
 
     void ProcessLogin(const FResponse_Login &LoginResponse_);
+    void ProcessLoginToken(const FResponse_Token &LoginResponse_);
     bool Refresh();
     FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
     FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
+    FAuthContextLogout& OnLogout() { return Logout; }
     const TOptional<FRHAPI_LoginResult>& GetLoginResult() const;
+    const TOptional<FRHAPI_TokenResponse>& GetTokenResponse() const;
     bool IsLoggedIn() const;
     FString GetAccessToken() const;
     FString GetRefreshToken() const;
+
+    void ClearAuthContext();
 
     void SetClientId(const FString& InClientId);
     void SetClientSecret(const FString& InClientSecret);
@@ -57,8 +66,33 @@ private:
     bool bIsRefreshing;
     FAuthContextLoginComplete LoginComplete;
     FAuthContextLoginUserChanged LoginUserChanged;
+    FAuthContextLogout Logout;
     TOptional<FRHAPI_LoginResult> LoginResult;
+    TOptional<FRHAPI_TokenResponse> TokenResponse;
 
     inline void UpdateBasicAuthValue();
 };
 }
+
+typedef TSharedPtr<RallyHereAPI::FAuthContext> FAuthContextPtr;
+
+USTRUCT(BlueprintType)
+struct RALLYHEREAPI_API FRHAPI_AuthContext
+{
+	GENERATED_BODY()
+	
+	UPROPERTY()
+	int32 Dummy;
+	
+	FAuthContextPtr AuthContext;
+	
+	FRHAPI_AuthContext()
+		: Dummy(0)
+		, AuthContext(nullptr)
+	{}
+	
+	FRHAPI_AuthContext(const FAuthContextPtr& InAuthContext)
+		: Dummy(0)
+		, AuthContext(InAuthContext)
+	{}
+};

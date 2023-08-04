@@ -11,14 +11,15 @@
 #include "RallyHereAPIHelpers.h"
 #include "HostType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Whether the host is another player, or a dedicated instance
  */
 UENUM(BlueprintType)
 enum class ERHAPI_HostType : uint8
 {
-    Dedicated UMETA(ToolTip="An enumeration."),
-    Player UMETA(ToolTip="An enumeration."),
+    Dedicated UMETA(ToolTip="A dedicated, standalone instance"),
+    Player UMETA(ToolTip="A player hosted instance"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_HostType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_HostType& EnumValue);

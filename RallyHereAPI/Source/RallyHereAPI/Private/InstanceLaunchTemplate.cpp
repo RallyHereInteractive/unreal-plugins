@@ -26,6 +26,8 @@ void FRHAPI_InstanceLaunchTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer)
     RallyHereAPI::WriteJsonValue(Writer, InstanceLaunchTemplateId);
     Writer->WriteIdentifierPrefix(TEXT("map_selection_list"));
     RallyHereAPI::WriteJsonValue(Writer, MapSelectionList);
+    Writer->WriteIdentifierPrefix(TEXT("default_host_type"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(DefaultHostType));
     Writer->WriteIdentifierPrefix(TEXT("custom_data"));
     RallyHereAPI::WriteJsonValue(Writer, CustomData);
     Writer->WriteObjectEnd();
@@ -39,9 +41,14 @@ bool FRHAPI_InstanceLaunchTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_launch_template_id"), InstanceLaunchTemplateId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("map_selection_list"), MapSelectionList);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData);
+    const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
+    ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId);
+    const TSharedPtr<FJsonValue> JsonMapSelectionListField = (*Object)->TryGetField(TEXT("map_selection_list"));
+    ParseSuccess &= JsonMapSelectionListField.IsValid() && !JsonMapSelectionListField->IsNull() && TryGetJsonValue(JsonMapSelectionListField, MapSelectionList);
+    const TSharedPtr<FJsonValue> JsonDefaultHostTypeField = (*Object)->TryGetField(TEXT("default_host_type"));
+    ParseSuccess &= JsonDefaultHostTypeField.IsValid() && !JsonDefaultHostTypeField->IsNull() && TryGetJsonValue(JsonDefaultHostTypeField, DefaultHostType);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    ParseSuccess &= JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull() && TryGetJsonValue(JsonCustomDataField, CustomData);
 
     return ParseSuccess;
 }

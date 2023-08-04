@@ -24,12 +24,19 @@ void FRHAPI_PlatformSessionTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("platform_id"));
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformId));
+    Writer->WriteIdentifierPrefix(TEXT("platform"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
     Writer->WriteIdentifierPrefix(TEXT("platform_session_type"));
     RallyHereAPI::WriteJsonValue(Writer, PlatformSessionType);
-    if (Metadata_IsSet)
+    if (MaxPlayers_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("metadata"));
-        RallyHereAPI::WriteJsonValue(Writer, Metadata_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("max_players"));
+        RallyHereAPI::WriteJsonValue(Writer, MaxPlayers_Optional);
+    }
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -42,12 +49,23 @@ bool FRHAPI_PlatformSessionTemplate::FromJson(const TSharedPtr<FJsonValue>& Json
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("platform_id"), PlatformId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("platform_session_type"), PlatformSessionType);
-    if ((*Object)->HasField(TEXT("metadata")))
+    const TSharedPtr<FJsonValue> JsonPlatformIdField = (*Object)->TryGetField(TEXT("platform_id"));
+    ParseSuccess &= JsonPlatformIdField.IsValid() && !JsonPlatformIdField->IsNull() && TryGetJsonValue(JsonPlatformIdField, PlatformId);
+    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+    ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+    const TSharedPtr<FJsonValue> JsonPlatformSessionTypeField = (*Object)->TryGetField(TEXT("platform_session_type"));
+    ParseSuccess &= JsonPlatformSessionTypeField.IsValid() && !JsonPlatformSessionTypeField->IsNull() && TryGetJsonValue(JsonPlatformSessionTypeField, PlatformSessionType);
+    const TSharedPtr<FJsonValue> JsonMaxPlayersField = (*Object)->TryGetField(TEXT("max_players"));
+    if (JsonMaxPlayersField.IsValid() && !JsonMaxPlayersField->IsNull())
     {
-        Metadata_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("metadata"), Metadata_Optional);
-        ParseSuccess &= Metadata_IsSet;
+        MaxPlayers_IsSet = TryGetJsonValue(JsonMaxPlayersField, MaxPlayers_Optional);
+        ParseSuccess &= MaxPlayers_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
     }
 
     return ParseSuccess;

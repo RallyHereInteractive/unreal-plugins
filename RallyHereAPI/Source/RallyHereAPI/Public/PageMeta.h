@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PageMeta.generated.h"
 
+/** @defgroup RHAPI_PageMeta RallyHere API Model PageMeta
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -74,3 +78,5 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
     /** @brief Sets the value of Total to its default  */
     void SetTotalToDefault() { Total = 0;  }
 };
+
+/** @} */

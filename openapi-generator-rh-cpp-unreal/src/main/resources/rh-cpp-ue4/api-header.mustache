@@ -1,0 +1,132 @@
+{{!
+Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
+Copyright 2022 HiRez Studios
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+}}
+{{>licenseInfo}}
+#pragma once
+
+#include "CoreMinimal.h"
+#include "{{unrealModuleName}}AuthContext.h"
+#include "{{unrealModuleName}}Helpers.h"
+{{#imports}}{{{import}}}
+{{/imports}}
+
+{{#cppNamespaceDeclarations}}
+namespace {{this}}
+{
+{{/cppNamespaceDeclarations}}
+using {{cppNamespaceDeclarations.0}}::ToStringFormatArg;
+using {{cppNamespaceDeclarations.0}}::WriteJsonValue;
+using {{cppNamespaceDeclarations.0}}::TryGetJsonValue;
+
+{{#operations}}{{#operation}}struct FRequest_{{operationIdCamelCase}};
+struct FResponse_{{operationIdCamelCase}};
+{{/operation}}{{/operations}}
+{{#operations}}{{#operation}}DECLARE_DELEGATE_OneParam(FDelegate_{{operationIdCamelCase}}, const FResponse_{{operationIdCamelCase}}&);
+{{/operation}}{{/operations}}
+class {{dllapi}} {{classname}} : public FAPI
+{
+public:
+    {{classname}}();
+    virtual ~{{classname}}();
+
+{{#operations}}{{#operation}}{{#description}}    /* {{{.}}} */
+{{/description}}    FHttpRequestPtr {{operationIdCamelCase}}(const FRequest_{{operationIdCamelCase}}& Request, const FDelegate_{{operationIdCamelCase}}& Delegate = FDelegate_{{operationIdCamelCase}}(), int32 Priority = Default{{unrealModuleName}}Priority);
+{{/operation}}{{/operations}}
+private:
+{{#operations}}{{#operation}}    void On{{operationIdCamelCase}}Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_{{operationIdCamelCase}} Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+{{/operation}}{{/operations}}
+};
+
+{{#operations}}
+{{#operation}}
+/* {{summary}}
+{{#notes}} *
+ * {{.}}{{/notes}}
+*/
+struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
+{
+    FRequest_{{operationIdCamelCase}}();
+    virtual ~FRequest_{{operationIdCamelCase}}() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    {{#authMethods.0}}
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    {{/authMethods.0}}
+    {{^authMethods.0}}
+
+    {{/authMethods.0}}
+    {{#allParams}}
+    {{#isEnum}}
+    {{#allowableValues}}
+    enum class {{{enumName}}}
+    {
+        {{#values}}
+        {{this}},
+        {{/values}}
+    };
+    {{/allowableValues}}
+
+    static FString EnumToString(const {{{enumName}}}& EnumValue);
+    static bool EnumFromString(const FString& EnumAsString, {{{enumName}}}& EnumValue);
+    {{#description}}/* {{{.}}} */
+    {{/description}}{{^required}}TOptional<{{/required}}{{{datatypeWithEnum}}}{{^required}}>{{/required}} {{paramName}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};
+    {{/isEnum}}
+    {{^isEnum}}
+    {{#description}}/* {{{.}}} */
+    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{paramName}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};
+    {{/isEnum}}
+    {{/allParams}}
+};
+
+struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
+{
+    FResponse_{{operationIdCamelCase}}(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_{{operationIdCamelCase}}() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;{{#responses.0.headers.0}}
+    bool ParseHeaders() override;{{/responses.0.headers.0}}
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    {{#responses.0}}
+    {{#dataType}}{{{.}}} Content;{{/dataType}}
+    {{#headers.0}}
+    // Headers
+    {{/headers.0}}
+    {{#headers}}
+    {{#description}}/* {{{.}}} */
+    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};{{/headers}}
+    {{/responses.0}}
+};
+
+struct {{dllapi}} Traits_{{operationIdCamelCase}}
+{
+    typedef FRequest_{{operationIdCamelCase}} Request;
+    typedef FResponse_{{operationIdCamelCase}} Response;
+    typedef FDelegate_{{operationIdCamelCase}} Delegate;
+    typedef {{classname}} API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = Default{{unrealModuleName}}Priority) { return InAPI.{{operationIdCamelCase}}(InRequest, InDelegate, Priority); }
+};
+
+{{/operation}}
+{{/operations}}
+
+{{#cppNamespaceDeclarations}}
+}
+{{/cppNamespaceDeclarations}}

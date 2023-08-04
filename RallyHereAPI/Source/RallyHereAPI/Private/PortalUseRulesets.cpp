@@ -43,14 +43,16 @@ bool FRHAPI_PortalUseRulesets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("rulesets")))
+    const TSharedPtr<FJsonValue> JsonRulesetsField = (*Object)->TryGetField(TEXT("rulesets"));
+    if (JsonRulesetsField.IsValid() && !JsonRulesetsField->IsNull())
     {
-        Rulesets_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("rulesets"), Rulesets_Optional);
+        Rulesets_IsSet = TryGetJsonValue(JsonRulesetsField, Rulesets_Optional);
         ParseSuccess &= Rulesets_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

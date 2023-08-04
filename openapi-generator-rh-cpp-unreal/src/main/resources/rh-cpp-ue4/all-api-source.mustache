@@ -1,0 +1,39 @@
+
+#include "CoreMinimal.h"
+#include "{{unrealModuleName}}All.h"
+
+{{#cppNamespaceDeclarations}}
+namespace {{this}}
+{
+{{/cppNamespaceDeclarations}}
+
+F{{unrealModuleName}}All::F{{unrealModuleName}}All()
+{
+    {{#apiInfo}}
+    {{#apis}}
+    AllAPIs.Add(&{{{baseName}}});
+    {{/apis}}
+    {{/apiInfo}}
+}
+
+TArray<FAPI*> F{{unrealModuleName}}All::GetAllAPIs() const
+{
+    return AllAPIs;
+}
+{{#apiInfo}}
+{{#apis}}
+
+{{{classname}}}& F{{unrealModuleName}}All::Get{{{baseName}}}()
+{
+    return {{{baseName}}};
+}
+
+const {{{classname}}}& F{{unrealModuleName}}All::Get{{{baseName}}}() const
+{
+    return {{{baseName}}};
+}
+{{/apis}}
+{{/apiInfo}}
+{{#cppNamespaceDeclarations}}
+}
+{{/cppNamespaceDeclarations}}

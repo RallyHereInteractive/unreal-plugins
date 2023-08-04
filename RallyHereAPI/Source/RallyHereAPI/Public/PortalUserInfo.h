@@ -9,8 +9,13 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "Platform.h"
 #include "Portal.h"
 #include "PortalUserInfo.generated.h"
+
+/** @defgroup RHAPI_PortalUserInfo RallyHere API Model PortalUserInfo
+ *  @{
+ */
 
 /**
  * @brief 
@@ -35,6 +40,15 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     * @param [in] Writer JSON Writer stream to push .
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_Platform Platform{  };
+    /** @brief Gets the value of Platform */
+    ERHAPI_Platform& GetPlatform() { return Platform; }
+    /** @brief Gets the value of Platform */
+    const ERHAPI_Platform& GetPlatform() const { return Platform; }
+    /** @brief Sets the value of Platform */
+    void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Portal PortalId{  };
@@ -63,3 +77,5 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     /** @brief Sets the value of DisplayName */
     void SetDisplayName(FString NewValue) { DisplayName = NewValue;  }
 };
+
+/** @} */

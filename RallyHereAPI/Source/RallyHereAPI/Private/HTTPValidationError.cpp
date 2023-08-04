@@ -38,9 +38,10 @@ bool FRHAPI_HTTPValidationError::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("detail")))
+    const TSharedPtr<FJsonValue> JsonDetailField = (*Object)->TryGetField(TEXT("detail"));
+    if (JsonDetailField.IsValid() && !JsonDetailField->IsNull())
     {
-        Detail_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("detail"), Detail_Optional);
+        Detail_IsSet = TryGetJsonValue(JsonDetailField, Detail_Optional);
         ParseSuccess &= Detail_IsSet;
     }
 

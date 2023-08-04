@@ -22,10 +22,10 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_SessionUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    if (SiteId_IsSet)
+    if (RegionId_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("site_id"));
-        RallyHereAPI::WriteJsonValue(Writer, SiteId_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("region_id"));
+        RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
     }
     if (CustomData_IsSet)
     {
@@ -43,14 +43,16 @@ bool FRHAPI_SessionUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("site_id")))
+    const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
+    if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
     {
-        SiteId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("site_id"), SiteId_Optional);
-        ParseSuccess &= SiteId_IsSet;
+        RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
+        ParseSuccess &= RegionId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

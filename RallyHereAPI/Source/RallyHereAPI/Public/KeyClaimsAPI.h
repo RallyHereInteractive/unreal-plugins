@@ -66,32 +66,32 @@ public:
     FKeyClaimsAPI();
     virtual ~FKeyClaimsAPI();
 
-    FHttpRequestPtr ClaimPlayerUuidUnclaimedKeyClaim(const FRequest_ClaimPlayerUuidUnclaimedKeyClaim& Request, const FDelegate_ClaimPlayerUuidUnclaimedKeyClaim& Delegate = FDelegate_ClaimPlayerUuidUnclaimedKeyClaim());
-    FHttpRequestPtr ClaimPlayerUuidUnclaimedKeyClaimForMe(const FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe& Request, const FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe& Delegate = FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe());
-    FHttpRequestPtr ClaimUnclaimedKeyClaim(const FRequest_ClaimUnclaimedKeyClaim& Request, const FDelegate_ClaimUnclaimedKeyClaim& Delegate = FDelegate_ClaimUnclaimedKeyClaim());
-    FHttpRequestPtr ClaimUnclaimedKeyClaimForMe(const FRequest_ClaimUnclaimedKeyClaimForMe& Request, const FDelegate_ClaimUnclaimedKeyClaimForMe& Delegate = FDelegate_ClaimUnclaimedKeyClaimForMe());
-    FHttpRequestPtr GetKeyClaim(const FRequest_GetKeyClaim& Request, const FDelegate_GetKeyClaim& Delegate = FDelegate_GetKeyClaim());
-    FHttpRequestPtr GetKeyClaimForMe(const FRequest_GetKeyClaimForMe& Request, const FDelegate_GetKeyClaimForMe& Delegate = FDelegate_GetKeyClaimForMe());
-    FHttpRequestPtr GetKeyClaims(const FRequest_GetKeyClaims& Request, const FDelegate_GetKeyClaims& Delegate = FDelegate_GetKeyClaims());
-    FHttpRequestPtr GetKeyClaimsForMe(const FRequest_GetKeyClaimsForMe& Request, const FDelegate_GetKeyClaimsForMe& Delegate = FDelegate_GetKeyClaimsForMe());
-    FHttpRequestPtr GetKeyClaimsForMyUuid(const FRequest_GetKeyClaimsForMyUuid& Request, const FDelegate_GetKeyClaimsForMyUuid& Delegate = FDelegate_GetKeyClaimsForMyUuid());
-    FHttpRequestPtr GetPlayerUuidKeyClaim(const FRequest_GetPlayerUuidKeyClaim& Request, const FDelegate_GetPlayerUuidKeyClaim& Delegate = FDelegate_GetPlayerUuidKeyClaim());
-    FHttpRequestPtr GetPlayerUuidKeyClaimSelf(const FRequest_GetPlayerUuidKeyClaimSelf& Request, const FDelegate_GetPlayerUuidKeyClaimSelf& Delegate = FDelegate_GetPlayerUuidKeyClaimSelf());
-    FHttpRequestPtr GetPlayerUuidKeyClaims(const FRequest_GetPlayerUuidKeyClaims& Request, const FDelegate_GetPlayerUuidKeyClaims& Delegate = FDelegate_GetPlayerUuidKeyClaims());
+    FHttpRequestPtr ClaimPlayerUuidUnclaimedKeyClaim(const FRequest_ClaimPlayerUuidUnclaimedKeyClaim& Request, const FDelegate_ClaimPlayerUuidUnclaimedKeyClaim& Delegate = FDelegate_ClaimPlayerUuidUnclaimedKeyClaim(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ClaimPlayerUuidUnclaimedKeyClaimForMe(const FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe& Request, const FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe& Delegate = FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ClaimUnclaimedKeyClaim(const FRequest_ClaimUnclaimedKeyClaim& Request, const FDelegate_ClaimUnclaimedKeyClaim& Delegate = FDelegate_ClaimUnclaimedKeyClaim(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ClaimUnclaimedKeyClaimForMe(const FRequest_ClaimUnclaimedKeyClaimForMe& Request, const FDelegate_ClaimUnclaimedKeyClaimForMe& Delegate = FDelegate_ClaimUnclaimedKeyClaimForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetKeyClaim(const FRequest_GetKeyClaim& Request, const FDelegate_GetKeyClaim& Delegate = FDelegate_GetKeyClaim(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetKeyClaimForMe(const FRequest_GetKeyClaimForMe& Request, const FDelegate_GetKeyClaimForMe& Delegate = FDelegate_GetKeyClaimForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetKeyClaims(const FRequest_GetKeyClaims& Request, const FDelegate_GetKeyClaims& Delegate = FDelegate_GetKeyClaims(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetKeyClaimsForMe(const FRequest_GetKeyClaimsForMe& Request, const FDelegate_GetKeyClaimsForMe& Delegate = FDelegate_GetKeyClaimsForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetKeyClaimsForMyUuid(const FRequest_GetKeyClaimsForMyUuid& Request, const FDelegate_GetKeyClaimsForMyUuid& Delegate = FDelegate_GetKeyClaimsForMyUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidKeyClaim(const FRequest_GetPlayerUuidKeyClaim& Request, const FDelegate_GetPlayerUuidKeyClaim& Delegate = FDelegate_GetPlayerUuidKeyClaim(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidKeyClaimSelf(const FRequest_GetPlayerUuidKeyClaimSelf& Request, const FDelegate_GetPlayerUuidKeyClaimSelf& Delegate = FDelegate_GetPlayerUuidKeyClaimSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidKeyClaims(const FRequest_GetPlayerUuidKeyClaims& Request, const FDelegate_GetPlayerUuidKeyClaims& Delegate = FDelegate_GetPlayerUuidKeyClaims(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnClaimPlayerUuidUnclaimedKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimPlayerUuidUnclaimedKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnClaimPlayerUuidUnclaimedKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnClaimUnclaimedKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimUnclaimedKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnClaimUnclaimedKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimUnclaimedKeyClaimForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaims Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetKeyClaimsForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimsForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetKeyClaimsForMyUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimsForMyUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidKeyClaimSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaimSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaims Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnClaimPlayerUuidUnclaimedKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimPlayerUuidUnclaimedKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnClaimPlayerUuidUnclaimedKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnClaimUnclaimedKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimUnclaimedKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnClaimUnclaimedKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ClaimUnclaimedKeyClaimForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetKeyClaimForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaims Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetKeyClaimsForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimsForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetKeyClaimsForMyUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetKeyClaimsForMyUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidKeyClaimResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaim Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidKeyClaimSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaimSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidKeyClaimsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidKeyClaims Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -133,7 +133,7 @@ struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaim
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaim(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Claim Player Uuid Unclaimed Key Claim For Me
@@ -173,7 +173,7 @@ struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaimForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Claim Unclaimed Key Claim
@@ -214,7 +214,7 @@ struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaim
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ClaimUnclaimedKeyClaim(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Claim Unclaimed Key Claim For Me
@@ -254,7 +254,7 @@ struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaimForMe
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ClaimUnclaimedKeyClaimForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claim
@@ -294,7 +294,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaim
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetKeyClaim(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claim For Me
@@ -333,7 +333,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimForMe
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetKeyClaimForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claims
@@ -372,7 +372,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaims
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetKeyClaims(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaims(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claims For Me
@@ -410,7 +410,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMe
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetKeyClaimsForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimsForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Key Claims For My Uuid
@@ -448,7 +448,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMyUuid
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetKeyClaimsForMyUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimsForMyUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Key Claim
@@ -488,7 +488,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaim
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidKeyClaim(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaim(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Key Claim Self
@@ -527,7 +527,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaimSelf
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidKeyClaimSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaimSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Key Claims
@@ -566,7 +566,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaims
     typedef FKeyClaimsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidKeyClaims(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaims(InRequest, InDelegate, Priority); }
 };
 
 

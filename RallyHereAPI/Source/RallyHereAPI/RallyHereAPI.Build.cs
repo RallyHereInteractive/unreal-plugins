@@ -20,6 +20,7 @@ public class RallyHereAPI : ModuleRules
                 "CoreUObject",
                 "HTTP",
                 "Json",
+                "Engine",
             }
         );
         PCHUsage = PCHUsageMode.NoPCHs;

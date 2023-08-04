@@ -1,0 +1,114 @@
+{{!
+Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
+Copyright 2022 HiRez Studios
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+}}
+{{>licenseInfo}}
+#pragma once
+
+#include "CoreMinimal.h"
+#include "{{unrealModuleName}}BaseModel.h"
+#include "Tickable.h"
+#include "HttpModule.h"
+{{#imports}}{{{import}}}
+{{/imports}}
+
+DECLARE_STATS_GROUP(TEXT("{{unrealModuleName}}"), STATGROUP_{{unrealModuleName}}, STATCAT_Advanced);
+
+{{#cppNamespaceDeclarations}}
+namespace {{this}}
+{
+{{/cppNamespaceDeclarations}}
+
+class F{{unrealModuleName}}HttpRequester;
+
+struct F{{unrealModuleName}}HttpRequestData
+{
+public:
+    F{{unrealModuleName}}HttpRequestData(const FHttpRequestRef& InHttpRequest, FAPI& InAPI, int32 InPriority) :
+      HttpRequest(InHttpRequest),
+      API(InAPI),
+      Priority(InPriority)
+    {
+    }
+    
+    void SetMetadata(const FRequestMetadata& InMetadata)
+    {
+        Metadata = InMetadata;
+    }
+
+    void SetDelegate(const FHttpRequestCompleteDelegate& InDelegate)
+    {
+        ResponseDelegate = InDelegate;
+    }
+
+    FHttpRequestRef HttpRequest;
+    FRequestMetadata Metadata;
+    FAPI& API;
+    int32 Priority;
+    FHttpRequestCompleteDelegate ResponseDelegate;
+};
+
+typedef TMap<int32, TArray<TSharedPtr<struct F{{unrealModuleName}}HttpRequestData>, TInlineAllocator<10>>> HttpRequestMap;
+
+class {{dllapi}} F{{unrealModuleName}}HttpRequester : public FTickableGameObject
+{
+public:
+    F{{unrealModuleName}}HttpRequester();
+    virtual ~F{{unrealModuleName}}HttpRequester() = default;
+
+    static void Initialize()
+    {
+        if (Singleton == nullptr)
+        {
+            Singleton = new F{{unrealModuleName}}HttpRequester();
+        }
+    }
+
+    static void Uninitialize()
+    {
+        if (Singleton != nullptr)
+        {
+            delete Singleton;
+        }
+    }
+
+    static F{{unrealModuleName}}HttpRequester* Get()
+    {
+        return Singleton;
+    }
+    
+    void SetMaxSimultaneousRequests(int32 InNum) { MaxSimultaneousRequests = InNum; }
+
+    virtual void Tick(float DeltaTime) override;
+
+    void EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData);
+
+    virtual bool IsTickable() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
+    virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(FRH_HttpRequests, STATGROUP_{{unrealModuleName}}); }
+
+    void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
+
+private:
+    static F{{unrealModuleName}}HttpRequester* Singleton;
+
+    HttpRequestMap HttpRequestQueue;
+
+    int32 MaxSimultaneousRequests;
+    int32 PendingRequestCount;
+};
+
+{{#cppNamespaceDeclarations}}
+}
+{{/cppNamespaceDeclarations}}

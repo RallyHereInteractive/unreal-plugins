@@ -9,12 +9,16 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "AutoStartupParams.h"
+#include "InstanceStartupParams.h"
 #include "PlatformSessionTemplate.h"
 #include "SessionTemplate.generated.h"
 
+/** @defgroup RHAPI_SessionTemplate RallyHere API Model SessionTemplate
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Template used to create new RallyHere sessions of a specific type. Configurable in the developer portal
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
@@ -283,28 +287,28 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void ClearPlatformTemplates() { PlatformTemplates_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_AutoStartupParams AutoStartupParams_Optional{  };
+    FRHAPI_InstanceStartupParams AutoStartupParams_Optional{  };
     /** @brief true if AutoStartupParams_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool AutoStartupParams_IsSet{ false };
     /** @brief Gets the value of AutoStartupParams_Optional, regardless of it having been set */
-    FRHAPI_AutoStartupParams& GetAutoStartupParams() { return AutoStartupParams_Optional; }
+    FRHAPI_InstanceStartupParams& GetAutoStartupParams() { return AutoStartupParams_Optional; }
     /** @brief Gets the value of AutoStartupParams_Optional, regardless of it having been set */
-    const FRHAPI_AutoStartupParams& GetAutoStartupParams() const { return AutoStartupParams_Optional; }
+    const FRHAPI_InstanceStartupParams& GetAutoStartupParams() const { return AutoStartupParams_Optional; }
     /** @brief Gets the value of AutoStartupParams_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_AutoStartupParams& GetAutoStartupParams(const FRHAPI_AutoStartupParams& DefaultValue) const { if (AutoStartupParams_IsSet) return AutoStartupParams_Optional; return DefaultValue; }
+    const FRHAPI_InstanceStartupParams& GetAutoStartupParams(const FRHAPI_InstanceStartupParams& DefaultValue) const { if (AutoStartupParams_IsSet) return AutoStartupParams_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of AutoStartupParams_Optional and returns true if it has been set, otherwise returns false */
-    bool GetAutoStartupParams(FRHAPI_AutoStartupParams& OutValue) const { if (AutoStartupParams_IsSet) OutValue = AutoStartupParams_Optional; return AutoStartupParams_IsSet; }
+    bool GetAutoStartupParams(FRHAPI_InstanceStartupParams& OutValue) const { if (AutoStartupParams_IsSet) OutValue = AutoStartupParams_Optional; return AutoStartupParams_IsSet; }
     /** @brief Returns a pointer to AutoStartupParams_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_AutoStartupParams* GetAutoStartupParamsOrNull() { if (AutoStartupParams_IsSet) return &AutoStartupParams_Optional; return nullptr; }
+    FRHAPI_InstanceStartupParams* GetAutoStartupParamsOrNull() { if (AutoStartupParams_IsSet) return &AutoStartupParams_Optional; return nullptr; }
     /** @brief Returns a pointer to AutoStartupParams_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_AutoStartupParams* GetAutoStartupParamsOrNull() const { if (AutoStartupParams_IsSet) return &AutoStartupParams_Optional; return nullptr; }
+    const FRHAPI_InstanceStartupParams* GetAutoStartupParamsOrNull() const { if (AutoStartupParams_IsSet) return &AutoStartupParams_Optional; return nullptr; }
     /** @brief Sets the value of AutoStartupParams_Optional and also sets AutoStartupParams_IsSet to true */
-    void SetAutoStartupParams(FRHAPI_AutoStartupParams NewValue) { AutoStartupParams_Optional = NewValue; AutoStartupParams_IsSet = true; }
+    void SetAutoStartupParams(FRHAPI_InstanceStartupParams NewValue) { AutoStartupParams_Optional = NewValue; AutoStartupParams_IsSet = true; }
      /** @brief Clears the value of AutoStartupParams_Optional and sets AutoStartupParams_IsSet to false */
     void ClearAutoStartupParams() { AutoStartupParams_IsSet = false; }
 
-    /** @brief Minimum number of this type of session to be running at any given time per site. */
+    /** @brief Minimum number of this type of session to be running at any given time per region. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 MinSessionCount_Optional{  };
     /** @brief true if MinSessionCount_Optional has been set to a value */
@@ -331,28 +335,28 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     /** @brief Sets the value of MinSessionCount_Optional to its default and also sets MinSessionCount_IsSet to true */
     void SetMinSessionCountToDefault() { MinSessionCount_Optional = 0; MinSessionCount_IsSet = true; }
 
-    /** @brief Product-defined custom metadata */
+    /** @brief Product-defined custom data about this session type */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TMap<FString, FString> Metadata_Optional{  };
-    /** @brief true if Metadata_Optional has been set to a value */
+    TMap<FString, FString> CustomData_Optional{  };
+    /** @brief true if CustomData_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool Metadata_IsSet{ false };
-    /** @brief Gets the value of Metadata_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetMetadata() { return Metadata_Optional; }
-    /** @brief Gets the value of Metadata_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetMetadata() const { return Metadata_Optional; }
-    /** @brief Gets the value of Metadata_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetMetadata(const TMap<FString, FString>& DefaultValue) const { if (Metadata_IsSet) return Metadata_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Metadata_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMetadata(TMap<FString, FString>& OutValue) const { if (Metadata_IsSet) OutValue = Metadata_Optional; return Metadata_IsSet; }
-    /** @brief Returns a pointer to Metadata_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetMetadataOrNull() { if (Metadata_IsSet) return &Metadata_Optional; return nullptr; }
-    /** @brief Returns a pointer to Metadata_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetMetadataOrNull() const { if (Metadata_IsSet) return &Metadata_Optional; return nullptr; }
-    /** @brief Sets the value of Metadata_Optional and also sets Metadata_IsSet to true */
-    void SetMetadata(TMap<FString, FString> NewValue) { Metadata_Optional = NewValue; Metadata_IsSet = true; }
-     /** @brief Clears the value of Metadata_Optional and sets Metadata_IsSet to false */
-    void ClearMetadata() { Metadata_IsSet = false; }
+    bool CustomData_IsSet{ false };
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+    void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief The number of teams this session type can have */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -435,3 +439,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     /** @brief Sets the value of CanChangeOwnTeam_Optional to its default and also sets CanChangeOwnTeam_IsSet to true */
     void SetCanChangeOwnTeamToDefault() { CanChangeOwnTeam_Optional = true; CanChangeOwnTeam_IsSet = true; }
 };
+
+/** @} */

@@ -43,14 +43,16 @@ bool FRHAPI_Loots::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("loot")))
+    const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
+    if (JsonLootField.IsValid() && !JsonLootField->IsNull())
     {
-        Loot_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("loot"), Loot_Optional);
+        Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
         ParseSuccess &= Loot_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

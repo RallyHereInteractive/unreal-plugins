@@ -60,30 +60,36 @@ bool FRHAPI_CreateInventoryRequest::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("bucket")))
+    const TSharedPtr<FJsonValue> JsonBucketField = (*Object)->TryGetField(TEXT("bucket"));
+    if (JsonBucketField.IsValid() && !JsonBucketField->IsNull())
     {
-        Bucket_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("bucket"), Bucket_Optional);
+        Bucket_IsSet = TryGetJsonValue(JsonBucketField, Bucket_Optional);
         ParseSuccess &= Bucket_IsSet;
     }
-    if ((*Object)->HasField(TEXT("count")))
+    const TSharedPtr<FJsonValue> JsonCountField = (*Object)->TryGetField(TEXT("count"));
+    if (JsonCountField.IsValid() && !JsonCountField->IsNull())
     {
-        Count_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("count"), Count_Optional);
+        Count_IsSet = TryGetJsonValue(JsonCountField, Count_Optional);
         ParseSuccess &= Count_IsSet;
     }
-    if ((*Object)->HasField(TEXT("expires")))
+    const TSharedPtr<FJsonValue> JsonExpiresField = (*Object)->TryGetField(TEXT("expires"));
+    if (JsonExpiresField.IsValid() && !JsonExpiresField->IsNull())
     {
-        Expires_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("expires"), Expires_Optional);
+        Expires_IsSet = TryGetJsonValue(JsonExpiresField, Expires_Optional);
         ParseSuccess &= Expires_IsSet;
     }
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("item_id"), ItemId);
-    if ((*Object)->HasField(TEXT("type")))
+    const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
+    ParseSuccess &= JsonItemIdField.IsValid() && !JsonItemIdField->IsNull() && TryGetJsonValue(JsonItemIdField, ItemId);
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
     {
-        Type_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("type"), Type_Optional);
+        Type_IsSet = TryGetJsonValue(JsonTypeField, Type_Optional);
         ParseSuccess &= Type_IsSet;
     }
 

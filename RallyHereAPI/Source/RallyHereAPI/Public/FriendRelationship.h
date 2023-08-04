@@ -12,8 +12,12 @@
 #include "FriendshipStatus.h"
 #include "FriendRelationship.generated.h"
 
+/** @defgroup RHAPI_FriendRelationship RallyHere API Model FriendRelationship
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Represents the relationship with a potential friend.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_FriendRelationship : public FRHAPI_Model
@@ -85,3 +89,5 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationship : public FRHAPI_Model
     /** @brief Sets the value of LastModifiedOn */
     void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
 };
+
+/** @} */

@@ -63,34 +63,40 @@ bool FRHAPI_PricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("name")))
+    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+    if (JsonNameField.IsValid() && !JsonNameField->IsNull())
     {
-        Name_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("name"), Name_Optional);
+        Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
         ParseSuccess &= Name_IsSet;
     }
-    if ((*Object)->HasField(TEXT("strict_flag")))
+    const TSharedPtr<FJsonValue> JsonStrictFlagField = (*Object)->TryGetField(TEXT("strict_flag"));
+    if (JsonStrictFlagField.IsValid() && !JsonStrictFlagField->IsNull())
     {
-        StrictFlag_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("strict_flag"), StrictFlag_Optional);
+        StrictFlag_IsSet = TryGetJsonValue(JsonStrictFlagField, StrictFlag_Optional);
         ParseSuccess &= StrictFlag_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cap_flag")))
+    const TSharedPtr<FJsonValue> JsonCapFlagField = (*Object)->TryGetField(TEXT("cap_flag"));
+    if (JsonCapFlagField.IsValid() && !JsonCapFlagField->IsNull())
     {
-        CapFlag_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cap_flag"), CapFlag_Optional);
+        CapFlag_IsSet = TryGetJsonValue(JsonCapFlagField, CapFlag_Optional);
         ParseSuccess &= CapFlag_IsSet;
     }
-    if ((*Object)->HasField(TEXT("current_breakpoints")))
+    const TSharedPtr<FJsonValue> JsonCurrentBreakpointsField = (*Object)->TryGetField(TEXT("current_breakpoints"));
+    if (JsonCurrentBreakpointsField.IsValid() && !JsonCurrentBreakpointsField->IsNull())
     {
-        CurrentBreakpoints_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("current_breakpoints"), CurrentBreakpoints_Optional);
+        CurrentBreakpoints_IsSet = TryGetJsonValue(JsonCurrentBreakpointsField, CurrentBreakpoints_Optional);
         ParseSuccess &= CurrentBreakpoints_IsSet;
     }
-    if ((*Object)->HasField(TEXT("pre_sale_breakpoints")))
+    const TSharedPtr<FJsonValue> JsonPreSaleBreakpointsField = (*Object)->TryGetField(TEXT("pre_sale_breakpoints"));
+    if (JsonPreSaleBreakpointsField.IsValid() && !JsonPreSaleBreakpointsField->IsNull())
     {
-        PreSaleBreakpoints_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("pre_sale_breakpoints"), PreSaleBreakpoints_Optional);
+        PreSaleBreakpoints_IsSet = TryGetJsonValue(JsonPreSaleBreakpointsField, PreSaleBreakpoints_Optional);
         ParseSuccess &= PreSaleBreakpoints_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

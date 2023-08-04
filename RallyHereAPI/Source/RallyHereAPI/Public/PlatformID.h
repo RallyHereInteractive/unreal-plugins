@@ -11,24 +11,25 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlatformID.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief DEPRECATED. Use Platform instead. Unique ids for different client platforms
  */
 UENUM(BlueprintType)
 enum class ERHAPI_PlatformID : uint8
 {
-    Anon UMETA(ToolTip="An enumeration."),
-    Amazon UMETA(ToolTip="An enumeration."),
-    Steam UMETA(ToolTip="An enumeration."),
-    Psn UMETA(ToolTip="An enumeration."),
-    Xboxlive UMETA(ToolTip="An enumeration."),
-    Basic UMETA(ToolTip="An enumeration."),
-    Google UMETA(ToolTip="An enumeration."),
-    Twitch UMETA(ToolTip="An enumeration."),
-    NintendoSwitch UMETA(ToolTip="An enumeration."),
-    Apple UMETA(ToolTip="An enumeration."),
-    Nintendo UMETA(ToolTip="An enumeration."),
-    Epic UMETA(ToolTip="An enumeration."),
+    Anon UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Anon"),
+    Amazon UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Amazon"),
+    Steam UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Steam"),
+    Psn UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform PSN"),
+    XboxLive UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform XboxLive"),
+    Basic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Basic"),
+    Google UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Google"),
+    Twitch UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Twitch"),
+    NintendoSwitch UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoSwitch"),
+    Apple UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Apple"),
+    Nintendo UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoNAID"),
+    Epic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Epic"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlatformID& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformID& EnumValue);

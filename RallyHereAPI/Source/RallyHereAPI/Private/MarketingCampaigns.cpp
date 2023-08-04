@@ -35,7 +35,8 @@ bool FRHAPI_MarketingCampaigns::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("campaigns"), Campaigns);
+    const TSharedPtr<FJsonValue> JsonCampaignsField = (*Object)->TryGetField(TEXT("campaigns"));
+    ParseSuccess &= JsonCampaignsField.IsValid() && !JsonCampaignsField->IsNull() && TryGetJsonValue(JsonCampaignsField, Campaigns);
 
     return ParseSuccess;
 }

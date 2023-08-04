@@ -16,6 +16,8 @@ void URH_PlayerInfoSubsystem::Initialize()
 	Super::Initialize();
 
 	InitPropertiesWithDefaultValues();
+
+	PlayerInfoClassOverride = GetDefault<URH_IntegrationSettings>()->PlayerInfoClass.TryLoadClass<URH_PlayerInfo>();
 }
 
 void URH_PlayerInfoSubsystem::Deinitialize()
@@ -34,15 +36,16 @@ void URH_PlayerInfoSubsystem::Tick(float DeltaTime)
 		for (auto PlayerInfoPair : PlayerInfos)
 		{
 			auto PlayerInfo = PlayerInfoPair.Value;
+
 			if (PlayerInfo->GetPresence())
 			{
 				// this should kick a request if one is needed (ex: being watched)
 				PlayerInfo->GetPresence()->CheckPollStatus();
 			}
 
-			if (PlayerInfo->GetInventorySubsystem())
+			if (PlayerInfo->GetPlayerInventory())
 			{
-				PlayerInfo->GetInventorySubsystem()->CheckPollStatus();
+				PlayerInfo->GetPlayerInventory()->CheckPollStatus();
 			}
 		}
 	}
@@ -66,8 +69,14 @@ URH_PlayerInfo* URH_PlayerInfoSubsystem::GetOrCreatePlayerInfo(const FGuid& Play
 	{
 		return nullptr;
 	}
+
+	const UClass* PlayerInfoClass = PlayerInfoClassOverride;
+	if (!PlayerInfoClass)
+	{
+		PlayerInfoClass = URH_PlayerInfo::StaticClass();
+	}
 	
-	const auto NewInfo = NewObject<URH_PlayerInfo>(this);
+	const auto NewInfo = NewObject<URH_PlayerInfo>(this, PlayerInfoClass);
 	NewInfo->InitializeForPlayer(PlayerUuid);
 	PlayerInfos.Add(PlayerUuid, NewInfo);
 
@@ -119,6 +128,16 @@ void URH_PlayerInfoSubsystem::ClearPlayerInfoCache()
 	PlayerInfos.Empty();
 }
 
+URH_PlayerInfo* URH_PlayerInfoSubsystem::RemovePlayerInfoFromCache(const FGuid& PlayerUuid)
+{
+	URH_PlayerInfo* RemovedPlayerInfo;
+	if (PlayerInfos.RemoveAndCopyValue(PlayerUuid, RemovedPlayerInfo))
+	{
+		return RemovedPlayerInfo;
+	}
+	return nullptr;
+}
+
 void URH_PlayerInfoSubsystem::LookupPlayer(FString PlayerName, FRH_PlayerInfoLookupPlayerBlock Delegate)
 {
 	auto Request = TLookupPlayer::Request();
@@ -126,7 +145,7 @@ void URH_PlayerInfoSubsystem::LookupPlayer(FString PlayerName, FRH_PlayerInfoLoo
 	Request.DisplayName = TArray<FString>();
 	Request.DisplayName.GetValue().Push(PlayerName);
 	Request.AuthContext = GetAuthContext();
-	if (!TLookupPlayer::DoCall(RH_APIs::GetUsersAPI(), Request, TLookupPlayer::Delegate::CreateUObject(this, &URH_PlayerInfoSubsystem::OnLookupPlayerResponse, Delegate)))
+	if (!TLookupPlayer::DoCall(RH_APIs::GetUsersAPI(), Request, TLookupPlayer::Delegate::CreateUObject(this, &URH_PlayerInfoSubsystem::OnLookupPlayerResponse, Delegate), GetDefault<URH_IntegrationSettings>()->UsersLookupPlayerPriority))
 	{
 		Delegate.ExecuteIfBound(false, TArray<URH_PlayerInfo*>());
 	}
@@ -146,13 +165,52 @@ void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Respon
 				{
 					for (auto const& Player : Pair.Value)
 					{
-						FGuid PlayerUuidGuid;
-						FGuid::Parse(Player.PlayerUuid, PlayerUuidGuid);
-						OutInfos.Push(GetOrCreatePlayerInfo(PlayerUuidGuid));
+						OutInfos.Push(GetOrCreatePlayerInfo(Player.PlayerUuid));
 					}
 				}
 			}
 		}	
+	}
+
+	Delegate.ExecuteIfBound(OutInfos.Num() > 0, OutInfos);
+}
+
+void URH_PlayerInfoSubsystem::LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, FRH_PlayerInfoLookupPlayerBlock Delegate)
+{
+	auto Request = TLookupPlayer::Request();
+
+	Request.Platform = PlayerPlatformId.PlatformType;
+	Request.Identities = TArray<FString>();
+	Request.Identities.GetValue().Push(PlayerPlatformId.UserId);
+	Request.AuthContext = GetAuthContext();
+	if (!TLookupPlayer::DoCall(RH_APIs::GetUsersAPI(), Request, TLookupPlayer::Delegate::CreateUObject(this, &URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse, Delegate), GetDefault<URH_IntegrationSettings>()->UsersLookupPlayerPriority))
+	{
+		Delegate.ExecuteIfBound(false, TArray<URH_PlayerInfo*>());
+	}
+}
+
+void URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse(const TLookupPlayer::Response& Response, FRH_PlayerInfoLookupPlayerBlock Delegate)
+{
+	TArray<URH_PlayerInfo*> OutInfos;
+
+	if (Response.IsSuccessful())
+	{
+		if (const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* IdentityPlatforms = Response.Content.GetIdentityPlatformsOrNull())
+		{
+			for (const TPair<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& IdentityPlatform : *IdentityPlatforms)
+			{
+				for (const FRHAPI_PlatformIdentityLookupResults& PlatformIdentityResult : IdentityPlatform.Value)
+				{
+					if (const TMap<FString, FRHAPI_PlayerResponse>* IdentitiesMap = PlatformIdentityResult.GetIdentityOrNull())
+					{
+						for (const TPair<FString, FRHAPI_PlayerResponse>& Pair : *IdentitiesMap)
+						{
+							OutInfos.Push(GetOrCreatePlayerInfo(Pair.Value.GetPlayerUuid()));
+						}
+					}
+				}
+			}
+		}
 	}
 
 	Delegate.ExecuteIfBound(OutInfos.Num() > 0, OutInfos);
@@ -164,19 +222,11 @@ URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Su
 {
 	PlayerPresence = CreateDefaultSubobject<URH_PlayerPresence>(TEXT("PlayerPresence"));
 
-	InventorySubsystem = CreateDefaultSubobject<URH_InventorySubsystem>(TEXT("InventorySubsystem"));
-	InventorySubsystem->SetPlayerInfo(this);
-}
+	PlayerInventory = CreateDefaultSubobject<URH_PlayerInventory>(TEXT("PlayerInventory"));
+	PlayerInventory->SetPlayerInfo(this);
 
-void URH_PlayerInfo::BeginDestroy()
-{
-	if (InventorySubsystem != nullptr)
-	{
-		InventorySubsystem->Deinitialize();
-		InventorySubsystem = nullptr;
-	}
-
-	Super::BeginDestroy();
+	PlayerNotifications = CreateDefaultSubobject<URH_PlayerNotifications>(TEXT("PlayerNotifications"));
+	PlayerNotifications->SetPlayerInfo(this);
 }
 
 URH_PlayerInfoSubsystem* URH_PlayerInfo::GetPlayerInfoSubsystem() const
@@ -192,17 +242,40 @@ void URH_PlayerInfo::InitializeForPlayer(const FGuid& Value)
 	{
 		PlayerPresence->PlayerUuid = Value;
 	}
-	InventorySubsystem->Initialize();
+	PlayerInventory->Initialize();
+	PlayerNotifications->Initialize();
 }
 
-ERHAPI_PlatformTypes URH_PlayerInfo::GetLoggedInPlatformType() const
+void URH_PlayerInfo::StartStreamingNotifications()
+{
+	// start streaming notifications for this context
+	PlayerNotifications->StartStreamingLatestNotifications();
+}
+
+void URH_PlayerInfo::StopStreamingNotifications(bool bClearCache)
+{
+	// stop streaming notifications for this context
+	PlayerNotifications->StopStreamingLatestNotifications(bClearCache);
+}
+
+ERHAPI_PlatformTypes_DEPRECATED URH_PlayerInfo::GetLoggedInPlatformType() const
 {
 	const FAuthContextPtr AuthContext = GetAuthContext();
-	if (AuthContext.IsValid())
+	if (AuthContext.IsValid() && AuthContext->IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
 	{
-		return ERHAPI_PlatformTypes(AuthContext->GetLoginResult().GetValue().PortalId);
+		return ERHAPI_PlatformTypes_DEPRECATED(AuthContext->GetLoginResult().GetValue().PortalId);
 	}
-	return ERHAPI_PlatformTypes::PT_UNKNOWN;
+	return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
+}
+
+ERHAPI_Platform URH_PlayerInfo::GetLoggedInPlatform() const
+{
+	const FAuthContextPtr AuthContext = GetAuthContext();
+	if (AuthContext.IsValid() && AuthContext->IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
+	{
+		return AuthContext->GetLoginResult().GetValue().GetPlatform();
+	}
+	return ERHAPI_Platform::Anon;
 }
 
 TArray<URH_PlayerPlatformInfo*> URH_PlayerInfo::GetPlayerPlatforms() const
@@ -229,44 +302,40 @@ URH_PlayerPlatformInfo* URH_PlayerInfo::GetPlayerPlatformInfo(const FRH_PlayerPl
 	return nullptr;
 }
 
-void URH_PlayerInfo::GetLastKnownGamerTagAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_PlatformTypes PreferredPlatformType /*= ERHAPI_PlatformTypes::PT_UNKNOWN*/, const FRH_PlayerInfoGetGamerTagBlock Delegate /*= FRH_PlayerInfoGetGamerTagBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
+void URH_PlayerInfo::GetLastKnownGamerTagAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType /*= ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
+{
+	GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, RH_GetPlatformFromPlatformType(PreferredPlatformType), Delegate, LocalPlayerSubsystem);
+}
+
+void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
 {
 	// Get platform type from logged in portal if PreferredPlatformType is not provided
-	if (PreferredPlatformType == ERHAPI_PlatformTypes::PT_UNKNOWN)
+	if (PreferredPlatformType == ERHAPI_Platform::Anon)
 	{
-		PreferredPlatformType = GetLoggedInPlatformType();
+		PreferredPlatformType = GetLoggedInPlatform();
 	}
 
 	if (LastRequestPlatforms.GetTicks() != 0 && !bForceRefresh)
 	{
-		FDateTime Now = FDateTime::UtcNow();
+		const FDateTime Now = FDateTime::UtcNow();
 		if (LastRequestPlatforms + StaleThreshold < Now)
 		{
-			FString OutGamerTag = FString("");
-			if (GetLastKnownGamerTag(OutGamerTag, PreferredPlatformType))
-			{
-				Delegate.ExecuteIfBound(true, OutGamerTag);
-			}
-			else
-			{
-				Delegate.ExecuteIfBound(false, OutGamerTag);
-			}
-
+			FString OutDisplayName = FString("");
+			Delegate.ExecuteIfBound(GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType), OutDisplayName);
 			return;
 		}
-		return;
 	}
 
-	GetLinkedPlatformInfo(StaleThreshold, bForceRefresh, FRH_PlayerInfoGetPlatformsDelegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownGamerTagResponse, PreferredPlatformType, Delegate, LocalPlayerSubsystem));
+	GetLinkedPlatformInfo(StaleThreshold, bForceRefresh, FRH_PlayerInfoGetPlatformsDelegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse, PreferredPlatformType, Delegate, LocalPlayerSubsystem));
 }
 
-void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownGamerTagResponse(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms, ERHAPI_PlatformTypes PreferredPlatformType, const FRH_PlayerInfoGetGamerTagBlock Delegate, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem)
+void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameBlock Delegate, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem)
 {
 	if (Platforms.Num())
 	{
 		const auto findPlatformInfo = Platforms.FindByPredicate([PreferredPlatformType](const URH_PlayerPlatformInfo* PortalInfo)
 			{
-				return PortalInfo->GetPlatformType() == PreferredPlatformType;
+				return PortalInfo->GetPlatform() == PreferredPlatformType;
 			});
 
 
@@ -283,13 +352,13 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownGamerTagResponse(bool
 					const auto MessageSanitizer = OSS->GetMessageSanitizer(LocalPlayerSubsystem->GetPlatformUserId(), AuthTypeToExclude);
 					if (MessageSanitizer)
 					{
-						MessageSanitizer->SanitizeDisplayName(PlatformInfo->GetLastKnownGamerTag(), FOnMessageProcessed::CreateUObject(this, &URH_PlayerInfo::OnDisplayNameSanitized, PreferredPlatformType, Delegate));
+						MessageSanitizer->SanitizeDisplayName(PlatformInfo->GetLastKnownDisplayName(), FOnMessageProcessed::CreateUObject(this, &URH_PlayerInfo::OnDisplayNameSanitized, PreferredPlatformType, Delegate));
 						return;
 					}
 				}
 			}
 
-			Delegate.ExecuteIfBound(true, PlatformInfo->GetLastKnownGamerTag());
+			Delegate.ExecuteIfBound(true, PlatformInfo->GetLastKnownDisplayName());
 			return;
 		}
 	}
@@ -297,21 +366,21 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownGamerTagResponse(bool
 	Delegate.ExecuteIfBound(false, FString(""));
 }
 
-void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& SanitizedMessage, ERHAPI_PlatformTypes PreferredPlatformType, const FRH_PlayerInfoGetGamerTagBlock Delegate)
+void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& SanitizedMessage, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameBlock Delegate)
 {
 	if (bSuccess)
 	{
 		auto Platforms = GetPlayerPlatforms();
 		const auto findPlatformInfo = Platforms.FindByPredicate([PreferredPlatformType](const URH_PlayerPlatformInfo* PortaInfo)
 			{
-				return PortaInfo->GetPlatformType() == PreferredPlatformType;
+				return PortaInfo->GetPlatform() == PreferredPlatformType;
 			});
 
 		URH_PlayerPlatformInfo* PlatformInfo = findPlatformInfo != nullptr ? *findPlatformInfo : Platforms[0];
 
 		if (PlatformInfo != nullptr)
 		{
-			PlatformInfo->GamerTag = SanitizedMessage;
+			PlatformInfo->DisplayName = SanitizedMessage;
 		}
 		
 		Delegate.ExecuteIfBound(true, SanitizedMessage);
@@ -336,7 +405,7 @@ void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = 
 	auto Request = GetPlatforms::Request();
 	Request.PlayerUuid = RHPlayerUuid;
 	Request.AuthContext = GetAuthContext();
-	if (!GetPlatforms::DoCall(RH_APIs::GetUsersAPI(), Request, GetPlatforms::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse, Delegate)))
+	if (!GetPlatforms::DoCall(RH_APIs::GetUsersAPI(), Request, GetPlatforms::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse, Delegate), GetDefault<URH_IntegrationSettings>()->UsersGetLinkedPlatformsPriority))
 	{
 		Delegate.ExecuteIfBound(false, TArray<URH_PlayerPlatformInfo*>());
 	}
@@ -358,19 +427,19 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Resp
 				FString PortalUserId;
 				if (LinkedPlatform.GetPortalUserId(PortalUserId))
 				{
-					auto PlayerPlatformId = FRH_PlayerPlatformId(PortalUserId, ERHAPI_PlatformTypes(LinkedPlatform.PortalId));
+					auto PlayerPlatformId = FRH_PlayerPlatformId(PortalUserId, LinkedPlatform.Platform);
 					LinkedPlayerPlatforms.Add(PlayerPlatformId);
 					
 					auto* PlayerPlatformInfo = GetPlayerPlatformInfo(PlayerPlatformId);
 					
-					// update gamertag
+					// update display name
 					if (PlayerPlatformInfo != nullptr)
 					{
 						Infos.Add(PlayerPlatformInfo);
-						LinkedPlatform.GetDisplayName(PlayerPlatformInfo->GamerTag);
+						LinkedPlatform.GetDisplayName(PlayerPlatformInfo->DisplayName);
 
-						FGuid PlayerUuid;
-						if (FGuid::Parse(LinkedPlatform.GetPlayerUuid(), PlayerUuid))
+						FGuid PlayerUuid = LinkedPlatform.GetPlayerUuid();
+						if (PlayerUuid.IsValid())
 						{
 							PSS->AddPlayerLink(PlayerPlatformId, PlayerUuid);
 						}
@@ -383,6 +452,7 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Resp
 	LastRequestPlatforms = FDateTime::UtcNow();
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), Infos);
 }
+
 void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlayerSettingsBlock Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
 {
 	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
@@ -392,7 +462,7 @@ void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTime
 		{
 			if (auto FoundSettings = PlayerSettingsByTypeId.Find(SettingTypeId))
 			{
-				if ((*FoundSettings)->Content.Num() > 0)
+				if (FoundSettings->Content.Num() > 0)
 				{
 					Delegate.ExecuteIfBound(true, *FoundSettings);
 					return;
@@ -405,22 +475,23 @@ void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTime
 	Request.PlayerUuid = RHPlayerUuid;
 	Request.SettingTypeId = SettingTypeId;
 	Request.AuthContext = GetAuthContext();
-	if (!GetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerSettingsResponse, Delegate, SettingTypeId)))
+	if (!GetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerSettingsResponse, Delegate, SettingTypeId), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
 	{
-		Delegate.ExecuteIfBound(false, nullptr);
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
 	}
 }
 
 void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId)
 {
-	URH_PlayerSettingsDataWrapper* ResponseWrapper = NewObject<URH_PlayerSettingsDataWrapper>();
-	ResponseWrapper->Content.Empty();
+	FRH_PlayerSettingsDataWrapper ResponseWrapper;
+	ResponseWrapper.Content.Empty();
 
 	if (Response.IsSuccessful())
 	{
 		for (const auto& Pair : Response.Content)
 		{
-			ResponseWrapper->Content.Add(Pair);
+			ResponseWrapper.Content.Add(Pair);
 		}
 	}
 
@@ -429,20 +500,22 @@ void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Re
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
 }
 
-void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, URH_PlayerSettingsDataWrapper* SettingsData, FRH_PlayerInfoSetPlayerSettingsBlock Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
+void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, FRH_PlayerInfoSetPlayerSettingsBlock Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
 {
 	// Disallow duplicate active requested SettingTypeIds
 	if (PendingSettingRequestsByTypeId.Contains(SettingTypeId))
 	{
-		Delegate.ExecuteIfBound(false, nullptr);
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
 		return;
 	}
 
-	if (SettingsData == nullptr || SettingsData->Content.Num() <= 0)
+	if (SettingsData.Content.Num() <= 0)
 	{
 		PendingSettingRequestsByTypeId.Remove(SettingTypeId);
 		SetPlayerSettingResponses.Remove(SettingTypeId);
-		Delegate.ExecuteIfBound(false, nullptr);
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
 		return;
 	}
 
@@ -451,13 +524,13 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, URH_PlayerS
 
 	if (const auto FoundKeySet = PendingSettingRequestsByTypeId.Find(SettingTypeId))
 	{
-		for (const auto& Pair : SettingsData->Content)
+		for (const auto& Pair : SettingsData.Content)
 		{
 			FoundKeySet->SettingKeySet.Add(Pair.Key);
 		}
 	}
 
-	for (const auto& Pair : SettingsData->Content)
+	for (const auto& Pair : SettingsData.Content)
 	{
 		if (const auto Value = Pair.Value.GetValueOrNull())
 		{
@@ -468,16 +541,17 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, URH_PlayerS
 			Request.Key = Pair.Key;
 			Request.SetSinglePlayerSettingRequest.SetV(Pair.Value.V);
 			Request.SetSinglePlayerSettingRequest.SetValue(*Value);
-			if (!SetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, SetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnSetPlayerSettingsResponse, Delegate, SettingTypeId, Pair.Key, SettingsData)))
+			if (!SetSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, SetSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnSetPlayerSettingsResponse, Delegate, SettingTypeId, Pair.Key, SettingsData), GetDefault<URH_IntegrationSettings>()->SettingsUpdatePriority))
 			{
 				PendingSettingRequestsByTypeId.Remove(SettingTypeId);
-				Delegate.ExecuteIfBound(false, nullptr);
+				FRH_PlayerSettingsDataWrapper EmptyWrapper;
+				Delegate.ExecuteIfBound(false, EmptyWrapper);
 			}
 		}
 	}
 }
 
-void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, URH_PlayerSettingsDataWrapper* SettingsData)
+void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
 {
 	if (Response.IsSuccessful())
 	{
@@ -488,7 +562,7 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 
 			if (!SetPlayerSettingResponses.Contains(SettingKey))
 			{
-				URH_PlayerSettingsDataWrapper* NewSettingsWrapper = NewObject<URH_PlayerSettingsDataWrapper>();
+				FRH_PlayerSettingsDataWrapper NewSettingsWrapper;
 				SetPlayerSettingResponses.Add(SettingKey, NewSettingsWrapper);
 			}
 
@@ -496,7 +570,7 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 			{
 				for (const auto& pair : Response.Content)
 				{
-					(*FoundResponses)->Content.Add(pair);
+					FoundResponses->Content.Add(pair);
 				}
 
 				if (FoundPendingSettings->SettingKeySet.Num() <= 0)
@@ -514,11 +588,93 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 	{
 		PendingSettingRequestsByTypeId.Remove(SettingTypeId);
 		SetPlayerSettingResponses.Remove(SettingTypeId);
-		Delegate.ExecuteIfBound(false, nullptr);
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
 	}
 }
 
-bool URH_PlayerInfo::GetLastKnownGamerTag(FString& OutGamerTag, ERHAPI_PlatformTypes PreferredPlatformType) const
+
+void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlayerRankingsBlock Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
+{
+	FDateTime Now = FDateTime::UtcNow();
+	if (LastRequestRankings.GetTicks() != 0 && (LastRequestRankings + StaleThreshold) < Now && !bForceRefresh)
+	{
+		TArray<FRHAPI_PlayerRankResponse> Values;
+		PlayerRankingsByRankingId.GenerateValueArray(Values);
+		Delegate.ExecuteIfBound(false, Values);
+		return;
+	}
+
+	auto Request = GetRankings::Request();
+	Request.PlayerUuid = GetRHPlayerUuid();
+	Request.AuthContext = GetAuthContext();
+	if (!GetRankings::DoCall(RH_APIs::GetRankAPI(), Request, GetRankings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerRankingsResponse, Delegate), GetDefault<URH_IntegrationSettings>()->RankingGetPriority))
+	{
+		TArray<FRHAPI_PlayerRankResponse> Values;
+		PlayerRankingsByRankingId.GenerateValueArray(Values);
+		Delegate.ExecuteIfBound(false, Values);
+	}
+}
+
+void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
+{
+	if (Response.IsSuccessful())
+	{
+		PlayerRankingsByRankingId.Empty();
+
+		for (const auto& PlayerRankResponse : Response.Content.GetPlayerRanks())
+		{
+			PlayerRankingsByRankingId.Add(PlayerRankResponse.GetRankId(), PlayerRankResponse);
+		}
+	}
+
+	LastRequestRankings = FDateTime::UtcNow();
+
+	TArray<FRHAPI_PlayerRankResponse> Values;
+	PlayerRankingsByRankingId.GenerateValueArray(Values);
+	Delegate.ExecuteIfBound(true, Values);
+}
+
+void URH_PlayerInfo::UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, FRH_PlayerInfoGetPlayerRankingsBlock Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
+{
+	auto Request = UpdateRanking::Request();
+	Request.PlayerUuid = GetRHPlayerUuid();
+	Request.RankId = RankId;
+	Request.AuthContext = GetAuthContext();
+	Request.PlayerRankUpdateRequest = RankData;
+
+	if (!UpdateRanking::DoCall(RH_APIs::GetRankAPI(), Request, UpdateRanking::Delegate::CreateUObject(this, &URH_PlayerInfo::OnUpdatePlayerRankingResponse, Delegate), GetDefault<URH_IntegrationSettings>()->RankingUpdatePriority))
+	{
+		TArray<FRHAPI_PlayerRankResponse> Values;
+		PlayerRankingsByRankingId.GenerateValueArray(Values);
+		Delegate.ExecuteIfBound(false, Values);
+	}
+}
+
+void URH_PlayerInfo::OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
+{
+	if (Response.IsSuccessful())
+	{
+		for (const auto& Player : Response.Content.UpdatedPlayers)
+		{
+			if (Player.GetPlayerUuid() == GetRHPlayerUuid())
+			{
+				PlayerRankingsByRankingId.FindOrAdd(Player.GetRankId(), Player);
+			}
+		}
+		TArray<FRHAPI_PlayerRankResponse> Values;
+		PlayerRankingsByRankingId.GenerateValueArray(Values);
+		Delegate.ExecuteIfBound(true, Values);
+	}
+	else
+	{
+		TArray<FRHAPI_PlayerRankResponse> Values;
+		PlayerRankingsByRankingId.GenerateValueArray(Values);
+		Delegate.ExecuteIfBound(false, Values);
+	}
+}
+
+bool URH_PlayerInfo::GetLastKnownDisplayName(FString& OutDisplayName, ERHAPI_Platform PreferredPlatformType) const
 {
 	if (LinkedPlayerPlatforms.Num() == 0)
 	{
@@ -526,9 +682,9 @@ bool URH_PlayerInfo::GetLastKnownGamerTag(FString& OutGamerTag, ERHAPI_PlatformT
 	}
 
 	// Get platform type from logged in portal if PreferredPlatformType is not provided
-	if (PreferredPlatformType == ERHAPI_PlatformTypes::PT_UNKNOWN)
+	if (PreferredPlatformType == ERHAPI_Platform::Anon)
 	{
-		PreferredPlatformType = GetLoggedInPlatformType();
+		PreferredPlatformType = GetLoggedInPlatform();
 	}
 
 	bool bSuccess = false;
@@ -546,7 +702,7 @@ bool URH_PlayerInfo::GetLastKnownGamerTag(FString& OutGamerTag, ERHAPI_PlatformT
 		const auto* PlayerPlatformInfo = PSS->GetPlayerPlatformInfo(PlatformId);
 		if (PlayerPlatformInfo != nullptr)
 		{
-			OutGamerTag = PlayerPlatformInfo->GetLastKnownGamerTag();
+			OutDisplayName = PlayerPlatformInfo->GetLastKnownDisplayName();
 			bSuccess = true;
 		}
 	}
@@ -582,7 +738,7 @@ URH_PlayerInfo* URH_PlayerPresence::GetPlayerInfo() const
 	return Cast<URH_PlayerInfo>(GetOuter());
 }
 
-void URH_PlayerPresence::CheckPollStatus()
+void URH_PlayerPresence::CheckPollStatus(const bool bForceUpdate)
 {
 	if (!ShouldPoll())
 	{
@@ -609,6 +765,10 @@ void URH_PlayerPresence::CheckPollStatus()
 		// kick immediately, as someone just became interested in this result
 		PresencePoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_PlayerPresence::PollPresence), PollTimerName, true);
 	}
+	else if (bForceUpdate)
+	{
+		PresencePoller->ExecutePoll();
+	}
 }
 
 void URH_PlayerPresence::PollPresence(const FRH_PollCompleteFunc& Delegate)
@@ -623,7 +783,8 @@ void URH_PlayerPresence::PollPresence(const FRH_PollCompleteFunc& Delegate)
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<GetPresenceType>>(
 		GetPresenceType::Delegate::CreateUObject(this, &URH_PlayerPresence::HandleResponse),
-		FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess) {Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); })
+		FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess) {Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); }),
+		GetDefault<URH_IntegrationSettings>()->PresenceGetOtherPriority
 	);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
@@ -645,5 +806,30 @@ void URH_PlayerPresence::HandleResponse(const GetPresenceType::Response& Resp)
 	else
 	{
 		ExecuteDelegates(false, false);
+	}
+}
+
+void URH_PlayerPresence::ExecuteDelegates(bool bSuccess, bool bUpdated)
+{
+	// only fire the general callbacks if we updated
+	if (bUpdated)
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
+		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(this);
+		OnPresenceUpdatedDelegate.Broadcast(this);
+	}
+
+	// copy the temporary request array before invoking, then clear
+	TArray<FRH_OnRequestPlayerPresenceBlock> Temp = TemporaryRequestDelegates;
+	TemporaryRequestDelegates.Reset();
+	for (auto& Delegate : Temp)
+	{
+		Delegate.ExecuteIfBound(bSuccess, this);
+	}
+
+	auto* PlayerInfo = GetPlayerInfo();
+	if (PlayerInfo != nullptr && bUpdated)
+	{
+		PlayerInfo->OnPresenceUpdated(this);
 	}
 }

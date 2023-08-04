@@ -24,14 +24,31 @@ void URH_CatalogSubsystem::Deinitialize()
 	InitPropertiesWithDefaultValues();
 }
 
-URH_CatalogXpTable* URH_CatalogSubsystem::GetXpTable(int32 XpTableId) const
+void URH_CatalogSubsystem::Tick(float DeltaTime)
 {
-	if (auto XpTable = XpTables.Find(XpTableId))
+	for (const auto& PendingGetItemCallPair : PendingGetCatalogItemCalls)
 	{
-		return *XpTable;
+		SubmittedGetCatalogItemCalls.Add(PendingGetItemCallPair);
+
+		auto Request = TGetCatalogItem::Request();
+		Request.AuthContext = GetAuthContext();
+		Request.ItemId = PendingGetItemCallPair.Key;
+
+		TGetCatalogItem::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogItem::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogItemResponse, PendingGetItemCallPair.Key), GetDefault<URH_IntegrationSettings>()->GetCatalogItemPriority);
 	}
 
-	return nullptr;
+	PendingGetCatalogItemCalls.Empty();
+}
+
+bool URH_CatalogSubsystem::GetXpTable(int32 XpTableId, FRHAPI_XpTable& XpTable) const
+{
+	if (auto FindXpTable = XpTables.Find(XpTableId))
+	{
+		XpTable = *FindXpTable;
+		return true;
+	}
+
+	return false;
 }
 
 void URH_CatalogSubsystem::InitPropertiesWithDefaultValues()
@@ -39,10 +56,9 @@ void URH_CatalogSubsystem::InitPropertiesWithDefaultValues()
 	XpTables.Empty();
 	InventoryBucketUseRuleSets.Empty();
 	VendorRequests.Empty();
-	EnqueuedVendorsToGet.Empty();
 	CatalogVendors.Empty();
 	CatalogItems.Empty();
-	CatalogVendorItems.Empty();
+	CatalogLootItems.Empty();
 	CatalogPricePoints.Empty();
 	GetCatalogAllETag = {};
 	GetCatalogXpAllETag = {};
@@ -61,7 +77,7 @@ void URH_CatalogSubsystem::GetCatalogAll(FRH_CatalogCallBlock Delegate)
 
 	Request.AuthContext = GetAuthContext();
 
-	if (!TGetCatalogAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogAllResponse, Delegate)))
+	if (!TGetCatalogAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogAllPriority))
 	{
 		Delegate.ExecuteIfBound(false);
 	}
@@ -76,22 +92,75 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 			GetCatalogAllETag = Resp.ETag.GetValue();
 		}
 
-		if (const auto Data = Resp.Content.GetXpTablesOrNull())
+		if (const auto& Data = Resp.Content.GetXpTablesOrNull())
 		{
 			ParseAllXpTables(*Data);
 		}
 
-		if (const auto Data = Resp.Content.GetInventoryBucketUseRuleSetsOrNull())
+		if (const auto& Data = Resp.Content.GetInventoryBucketUseRuleSetsOrNull())
 		{
 			ParseAllInventoryBucketUseRuleSets(*Data);
 		}
 
-		if (const auto Data = Resp.Content.GetPricePointsOrNull())
+		CatalogVendors.Empty();
+		if (const auto& Data = Resp.Content.GetVendorsOrNull())
 		{
-			ParseAllPricePoints(*Data);
+			if (const auto& Vendors = (*Data).GetVendorsOrNull())
+			{
+				for (const auto& VendorPair : (*Vendors))
+				{
+					CatalogVendors.Add(FCString::Atoi(*VendorPair.Key), VendorPair.Value);
+				}
+			}
 		}
 
-		// #RHTODO - Implement full parsing
+		CatalogLootItems.Empty();
+		if (const auto& Data = Resp.Content.GetLootOrNull())
+		{
+			if (const auto& Loot = (*Data).GetLootOrNull())
+			{
+				for (const auto& LootPair : (*Loot))
+				{
+					CatalogLootItems.Add(FCString::Atoi(*LootPair.Key), LootPair.Value);
+				}
+			}
+		}
+
+		CatalogItems.Empty();
+		if (const auto& Data = Resp.Content.GetItemsOrNull())
+		{
+			if (const auto& Items = (*Data).GetItemsOrNull())
+			{
+				for (const auto& ItemPair : (*Items))
+				{
+					ParseCatalogItem(ItemPair.Value, FCString::Atoi(*ItemPair.Key));
+				}
+			}
+		}
+
+		CatalogPricePoints.Empty();
+		if (const auto Data = Resp.Content.GetPricePointsOrNull())
+		{
+			if (auto PricePoints = (*Data).GetPricePointsOrNull())
+			{
+				for (const auto& PricePointPair : *PricePoints)
+				{
+					CatalogPricePoints.Add(FGuid(PricePointPair.Key), PricePointPair.Value);
+				}
+			}
+		}
+
+		TimeFrames.Empty();
+		if (const auto& Data = Resp.Content.GetTimeFramesOrNull())
+		{
+			if (const auto& TimeframeData = (*Data).GetTimeFramesOrNull())
+			{
+				for (const auto& TimeFramePair : (*TimeframeData))
+				{
+					TimeFrames.Add(FCString::Atoi(*TimeFramePair.Key), TimeFramePair.Value);
+				}
+			}
+		}
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
@@ -108,7 +177,7 @@ void URH_CatalogSubsystem::GetCatalogXpAll(FRH_CatalogCallBlock Delegate)
 
 	Request.AuthContext = GetAuthContext();
 
-	if (!TGetCatalogXpAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogXpAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogXpAllResponse, Delegate)))
+	if (!TGetCatalogXpAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogXpAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogXpAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogXpAllPriority))
 	{
 		Delegate.ExecuteIfBound(false);
 	}
@@ -139,24 +208,41 @@ void URH_CatalogSubsystem::GetCatalogItem(int32 ItemId, FRH_CatalogCallBlock Del
 		return;
 	}
 
-	auto Request = TGetCatalogItem::Request();
-	Request.AuthContext = GetAuthContext();
-	Request.ItemId = ItemId;
-
-	if (!TGetCatalogItem::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogItem::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogItemResponse, ItemId, Delegate)))
+	// First check if there is a submitted call we can add our delegate to.
+	if (const auto& findSubmittedItem = SubmittedGetCatalogItemCalls.Find(ItemId))
 	{
-		Delegate.ExecuteIfBound(false);
+		(*findSubmittedItem).Add(Delegate);
+		return;
+	}
+	// The check if there is a pending call we can add our delegate to.
+	else if (const auto& findPendingItem = PendingGetCatalogItemCalls.Find(ItemId))
+	{
+		(*findPendingItem).Add(Delegate);
+		return;
+	}
+	// Finally just create a new pending call.
+	else
+	{
+		PendingGetCatalogItemCalls.Add(ItemId, TArray<FRH_CatalogCallBlock>{Delegate});
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Response& Resp, int32 ItemId, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Response& Resp, int32 ItemId)
 {
 	if (Resp.IsSuccessful())
 	{
 		ParseCatalogItem(Resp.Content, ItemId);
 	}
 
-	Delegate.ExecuteIfBound(Resp.IsSuccessful());
+	if (const auto& findItem = SubmittedGetCatalogItemCalls.Find(ItemId))
+	{
+		for (const auto& Delegate : *findItem)
+		{
+			Delegate.ExecuteIfBound(Resp.IsSuccessful());
+		}
+	}
+
+	SubmittedGetCatalogItemCalls.Remove(ItemId);
 }
 
 void URH_CatalogSubsystem::ParseAllXpTables(FRHAPI_XpTables Content)
@@ -168,24 +254,7 @@ void URH_CatalogSubsystem::ParseAllXpTables(FRHAPI_XpTables Content)
 		for (auto const& XpTable : *NewXpTables)
 		{
 			int32 TableId = FCString::Atoi(*XpTable.Key);
-
-			auto NewXpTable = NewObject<URH_CatalogXpTable>();
-			NewXpTable->XpTableId = TableId;
-
-			if (const auto CacheInfo = XpTable.Value.GetCacheInfoOrNull())
-			{
-				NewXpTable->ETag = CacheInfo->Etag;
-			}
-
-			if (const auto XpEntries = XpTable.Value.GetXpEntriesOrNull())
-			{
-				for (auto const& XpEntry : *XpEntries)
-				{
-					NewXpTable->XpEntries.Push(XpEntry.Value);
-				}
-			}
-
-			XpTables.Add(TableId, NewXpTable);
+			XpTables.Add(FCString::Atoi(*XpTable.Key), XpTable.Value);
 		}
 	}
 }
@@ -201,7 +270,7 @@ void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(FRH_CatalogCa
 
 	Request.AuthContext = GetAuthContext();
 
-	if (!TGetCatalogInventoryBucketUseRuleSetsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogInventoryBucketUseRuleSetsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate)))
+	if (!TGetCatalogInventoryBucketUseRuleSetsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogInventoryBucketUseRuleSetsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogInventoryBucketUseRuleSetsAllPriority))
 	{
 		Delegate.ExecuteIfBound(false);
 	}
@@ -225,71 +294,50 @@ void URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(con
 void URH_CatalogSubsystem::ParseAllInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets Content)
 {
 	InventoryBucketUseRuleSets.Empty();
-	if (Content.RuleSets_Optional.Num() == 0)
+	const auto RuleSets = Content.GetRuleSetsOrNull();
+	if (!RuleSets || RuleSets->Num() == 0)
 	{
 		return;
 	}
-	
-	for (auto const& RuleSet : Content.RuleSets_Optional)
-	{
-		if (RuleSet.Value.Rules_Optional.Num() == 0)
-		{
-			continue;
-		}
-		
-		TMap<ERHAPI_InventoryBucket, URH_InventoryBucketUseRuleSet*> BucketRuleSet{};
-		for (auto const& Rules : RuleSet.Value.Rules_Optional)
-		{
-			const auto Bucket = RH_GETENUMFROMSTRING("/Script/RallyHereAPI", "ERHAPI_InventoryBucket", Rules.Key);
-			if (Bucket == INDEX_NONE)
-			{
-				continue;
-			}
 
-			ERHAPI_InventoryBucket InventoryBucket = static_cast<ERHAPI_InventoryBucket>(Bucket);
-			URH_InventoryBucketUseRuleSet* NewInventoryBucketUseRuleSet = NewObject<URH_InventoryBucketUseRuleSet>();
-			NewInventoryBucketUseRuleSet->Bucket = InventoryBucket;
-			for (auto const& Rule : Rules.Value)
-			{
-				NewInventoryBucketUseRuleSet->BucketUseOrder.Add(static_cast<ERHAPI_InventoryBucket>(Rule));
-			}
-
-			if (RuleSet.Value.CacheInfo_IsSet)
-			{
-				NewInventoryBucketUseRuleSet->ETag = RuleSet.Value.CacheInfo_Optional.Etag;
-			}
-
-			BucketRuleSet.Add(InventoryBucket, NewInventoryBucketUseRuleSet);
-		}
-		
-		InventoryBucketUseRuleSets.Add(RuleSet.Key, BucketRuleSet);
-	}
-}
-
-bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryPortal InventoryPlatform) const
-{
-	return CanRulesetUsePlatformForBucket(InventoryBucketRulesetId, TargetBucket, RH_GetInventoryBucketFromInventoryPortal(InventoryPlatform));
+	InventoryBucketUseRuleSets = *RuleSets;
 }
 
 bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryBucket ItemInventoryBucket) const
 {
 	if (auto findRuleset = InventoryBucketUseRuleSets.Find(InventoryBucketRulesetId))
 	{
-		TMap<ERHAPI_InventoryBucket, URH_InventoryBucketUseRuleSet*> ruleset = *findRuleset;
-		URH_InventoryBucketUseRuleSet* InventoryBucket = nullptr;
+		FRHAPI_InventoryBucketUseRuleSet ruleset = *findRuleset;
 
-		if (auto findInventoryBucket = ruleset.Find(TargetBucket))
+		const FString& TargetBucketString = EnumToString(TargetBucket);
+		const FString& FallbackBucketString = EnumToString(ERHAPI_InventoryBucket::None);
+
+		TArray<ERHAPI_InventoryBucket> InventoryBucketUseOrder;
+		TArray<ERHAPI_InventoryBucket> FallbackInventoryBucketUseOrder;
+
+		if (const auto& rules = ruleset.GetRulesOrNull())
 		{
-			InventoryBucket = *findInventoryBucket;
-		}
-		else if (auto findFallbackInventoryBucket = ruleset.Find(ERHAPI_InventoryBucket::None))
-		{
-			InventoryBucket = *findFallbackInventoryBucket;
+			for (const auto& rule : *rules)
+			{
+				if (rule.Key == TargetBucketString)
+				{
+					InventoryBucketUseOrder = rule.Value;
+					break;
+				}
+				else if (rule.Key == FallbackBucketString)
+				{
+					FallbackInventoryBucketUseOrder = rule.Value;
+				}
+			}
 		}
 
-		if (InventoryBucket != nullptr)
+		if (InventoryBucketUseOrder.Num())
 		{
-			return InventoryBucket->BucketUseOrder.Contains(ItemInventoryBucket);
+			return InventoryBucketUseOrder.Contains(ItemInventoryBucket);
+		}
+		else if (FallbackInventoryBucketUseOrder.Num())
+		{
+			return FallbackInventoryBucketUseOrder.Contains(ItemInventoryBucket);
 		}
 	}
 
@@ -310,41 +358,33 @@ void URH_CatalogSubsystem::GetCatalogVendor(const FRHVendorGetRequest& VendorReq
 
 	for (auto const& VendorId : VendorRequest.VendorIds)
 	{
-		EnqueuedVendorsToGet.AddUnique(VendorId);
-	}
-
-	if (!bHasActiveVendorRequest && EnqueuedVendorsToGet.Num())
-	{
-		GetCatalogVendorSingle(EnqueuedVendorsToGet.Pop());
+		GetCatalogVendorSingle(VendorId);
 	}
 }
 
 void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId)
 {
-	// Make sure we don't have a vendor request in flight
-	if (bHasActiveVendorRequest)
-	{
-		return;
-	}
-
-	bHasActiveVendorRequest = true;
-
 	auto Request = TGetCatalogVendor::Request();
 
-	if (const auto& FindItem = CatalogVendors.Find(VendorId))
+	if (!Request.IfNoneMatch.IsSet())
 	{
-		if (!Request.IfNoneMatch.IsSet() && !(*FindItem)->ETag.IsEmpty())
+		if (const auto& FindItem = CatalogVendors.Find(VendorId))
 		{
-			Request.IfNoneMatch.Emplace((*FindItem)->ETag);
+			if (const auto& CacheInfo = (*FindItem).GetCacheInfoOrNull())
+			{
+				if (!CacheInfo->GetEtag().IsEmpty())
+				{
+					Request.IfNoneMatch.Emplace(CacheInfo->GetEtag());
+				}
+			}
 		}
 	}
 
 	Request.VendorId = VendorId;
 	Request.AuthContext = GetAuthContext();
 
-	if (!TGetCatalogVendor::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogVendor::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponse, VendorId)))
+	if (!TGetCatalogVendor::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogVendor::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorResponse, VendorId), GetDefault<URH_IntegrationSettings>()->GetCatalogVendorPriority))
 	{
-		bHasActiveVendorRequest = false;
 		// Remove any vendor requests that were expecting this vendor and fail them as our call failed
 		for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
 		{
@@ -359,12 +399,20 @@ void URH_CatalogSubsystem::GetCatalogVendorSingle(int32 VendorId)
 
 void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::Response& Resp, int32 VendorId)
 {
-	bHasActiveVendorRequest = false;
-	URH_CatalogVendor* Vendor = nullptr;
+	FRHAPI_Vendor Vendor;
 
 	if (Resp.IsSuccessful())
 	{
-		Vendor = ParseVendor(Resp.Content, VendorId);
+		// Find or create the Vendor we are updating
+		if (const auto& FindItem = CatalogVendors.Find(VendorId))
+		{
+			*FindItem = Resp.Content;
+			Vendor = *FindItem;
+		}
+		else
+		{
+			Vendor = CatalogVendors.Add(VendorId, Resp.Content);
+		}
 	}
 	else if (Resp.GetHttpResponseCode() ==  EHttpResponseCodes::NotModified)
 	{
@@ -376,15 +424,33 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 	}
 
 	TArray<int32> SubVendorsToRequest;
-	// Request all sub vendors of the vendor we just got to update them as needed
-	if (Vendor != nullptr)
+	if (const auto* VendorItems = Vendor.GetLootOrNull())
 	{
-		for (const auto& VendorItem : Vendor->VendorItems)
+		for (const auto& VendorItem : (*VendorItems))
 		{
-			if (const URH_CatalogVendor* SubVendor = VendorItem.Value->SubVendor)
+			// Request all sub vendors of the vendor we just got to update them as needed
+			if (const auto& SubVendorId = VendorItem.Value.GetSubVendorIdOrNull())
 			{
-				SubVendorsToRequest.AddUnique(SubVendor->VendorId);
-				EnqueuedVendorsToGet.AddUnique(SubVendor->VendorId);
+				SubVendorsToRequest.AddUnique(*SubVendorId);
+			}
+
+			if (const auto& FindItem = CatalogLootItems.Find(VendorItem.Value.GetLootId()))
+			{
+				*FindItem = VendorItem.Value;
+			}
+			else
+			{
+				CatalogLootItems.Add(VendorItem.Value.GetLootId(), VendorItem.Value);
+			}
+
+			if (const auto& Item = VendorItem.Value.GetItemOrNull())
+			{
+				int32 ItemId = VendorItem.Value.GetItemId(0);
+
+				if (ItemId != 0)
+				{
+					ParseCatalogItem((*Item), ItemId);
+				}
 			}
 		}
 	}
@@ -409,175 +475,10 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 		}
 	}	
 
-	if (!bHasActiveVendorRequest && EnqueuedVendorsToGet.Num())
+	for (int32 SubVendorId : SubVendorsToRequest)
 	{
-		GetCatalogVendorSingle(EnqueuedVendorsToGet.Pop());
+		GetCatalogVendorSingle(SubVendorId);
 	}
-}
-
-URH_CatalogVendor* URH_CatalogSubsystem::ParseVendor(FRHAPI_Vendor CatalogVendor, int32 VendorId)
-{
-	URH_CatalogVendor* Vendor = nullptr;
-
-	// Find or create the Vendor we are updating
-	if (const auto& FindItem = CatalogVendors.Find(VendorId))
-	{
-		Vendor = *FindItem;
-	}
-
-	if (Vendor == nullptr)
-	{
-		Vendor = NewObject<URH_CatalogVendor>();
-		CatalogVendors.Add(VendorId, Vendor);
-	}
-
-	if (const auto CacheInfo = CatalogVendor.GetCacheInfoOrNull())
-	{
-		// If our ETag is the same, then we don't need to update this item
-		if (Vendor->ETag == CacheInfo->Etag)
-		{
-			return Vendor;
-		}
-
-		// If our ETag has changed, wipe ourselves to defaults
-		Vendor->Clear();
-		Vendor->ETag = CacheInfo->Etag;
-	}
-
-	Vendor->VendorId = VendorId;
-
-	if (const auto LootMap = CatalogVendor.GetLootOrNull())
-	{
-		for (auto const& Loot : *LootMap)
-		{
-			if (URH_CatalogVendorItem* CatalogVendorItem = ParseCatalogVendorItem(Loot.Value, Vendor))
-			{
-				Vendor->VendorItems.Add(CatalogVendorItem->GetLootId(), CatalogVendorItem);
-			}
-		}
-	}
-
-	CatalogVendor.GetType(Vendor->VendorType);
-
-	return Vendor;
-}
-
-URH_CatalogVendorItem* URH_CatalogSubsystem::ParseCatalogVendorItem(FRHAPI_Loot LootItem, URH_CatalogVendor* ParentVendor)
-{
-	// Find or create the VendorItem we are updating
-	URH_CatalogVendorItem* VendorItem = nullptr;
-
-	if (const auto& FindItem = CatalogVendorItems.Find(LootItem.LootId))
-	{
-		VendorItem = *FindItem;
-	}
-
-	if (VendorItem == nullptr)
-	{
-		VendorItem = NewObject<URH_CatalogVendorItem>();
-		CatalogVendorItems.Add(LootItem.LootId, VendorItem);
-	}
-	
-	if (const auto CacheInfo = LootItem.GetCacheInfoOrNull())
-	{
-		// If our ETag is the same, then we don't need to update this item
-		if (VendorItem->ETag == CacheInfo->Etag)
-		{
-			return VendorItem;
-		}
-
-		// If our ETag has changed, wipe ourselves to defaults
-		VendorItem->Clear();
-		VendorItem->ETag = CacheInfo->Etag;
-	}
-
-	VendorItem->LootId = LootItem.LootId;
-
-	if (ParentVendor != nullptr)
-	{
-		VendorItem->ParentVendor = ParentVendor;
-	}
-	else
-	{
-		URH_CatalogVendor* Vendor = nullptr;
-
-		// Find or create the Vendor we are updating
-		if (const auto& FindItem = CatalogVendors.Find(LootItem.VendorId))
-		{
-			Vendor = *FindItem;
-		}
-
-		if (Vendor == nullptr)
-		{
-			// If we don't have a vendor record for the vendor that owns this item, create a stub with the vendor Id on it.
-			Vendor = NewObject<URH_CatalogVendor>();
-			Vendor->VendorId = LootItem.VendorId;
-			CatalogVendors.Add(Vendor->VendorId, Vendor);
-		}
-
-		VendorItem->ParentVendor = Vendor;
-	}
-
-	if (const auto SubVendorId = LootItem.GetSubVendorIdOrNull())
-	{
-		URH_CatalogVendor* Vendor = nullptr;
-
-		// Find or create the Vendor we are updating
-		if (const auto& FindItem = CatalogVendors.Find(*SubVendorId))
-		{
-			Vendor = *FindItem;
-		}
-
-		if (Vendor == nullptr)
-		{
-			// If we don't have a vendor record for the vendor that owns this item, create a stub with the vendor Id on it.
-			Vendor = NewObject<URH_CatalogVendor>();
-			Vendor->VendorId = *SubVendorId;
-			CatalogVendors.Add(Vendor->VendorId, Vendor);
-		}
-
-		VendorItem->SubVendor = Vendor;
-	}
-
-	const auto Item = LootItem.GetItemOrNull();
-	int32 ItemId;
-	if (Item && LootItem.GetItemId(ItemId))
-	{
-		VendorItem->Item = ParseCatalogItem(*Item, ItemId);
-	}
-
-	if (const auto CurrentPricePointGuid = LootItem.GetCurrentPricePointGuidOrNull())
-	{
-		FGuid::Parse(*CurrentPricePointGuid, VendorItem->CurrentPricePointGuid);
-	}
-
-	if (const auto PreSalePricePointGuid = LootItem.GetPreSalePricePointGuidOrNull())
-	{
-		FGuid::Parse(*PreSalePricePointGuid, VendorItem->PreSalePricePointGuid);
-	}
-
-	LootItem.GetUseInventoryBucket(VendorItem->UseInventoryBucket);
-	LootItem.GetInventorySelectorType(VendorItem->InventorySelectorType);
-	LootItem.GetInventoryOperation(VendorItem->InventoryOperation);
-	LootItem.GetQuantity(VendorItem->Quantity);
-	LootItem.GetQuantityType(VendorItem->QuantityType);
-	LootItem.GetXpQuantityTransformType(VendorItem->XpQuantityTransformType);
-	LootItem.GetActive(VendorItem->Active);
-	LootItem.GetSortOrder(VendorItem->SortOrder);
-	LootItem.GetDropWeight(VendorItem->DropWeight);
-	LootItem.GetFillInNewOrder(VendorItem->FillInNewOrder);
-	LootItem.GetAllowPartialBundles(VendorItem->AllowPartialBundles);
-	LootItem.GetRequiredItemId(VendorItem->RequiredItemId);
-	LootItem.GetRequiredItemCount(VendorItem->RequiredItemCount);
-	LootItem.GetStackLimit(VendorItem->StackLimit);
-	LootItem.GetUiHint(VendorItem->UiHint);
-	LootItem.GetEffectiveFrom(VendorItem->EffectiveFrom);
-	LootItem.GetQuantityMultInventoryItemId(VendorItem->QuantityMultInventoryItemId);
-	LootItem.GetIsClaimableByClient(VendorItem->ClaimableByClient);
-	LootItem.GetTimeFrameId(VendorItem->TimeFrameId);
-	LootItem.GetHardQuantityMaximum(VendorItem->HardQuantityMaximum);
-
-	return VendorItem;
 }
 
 URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(FRHAPI_Item CatalogItem, int32 ItemId)
@@ -612,30 +513,73 @@ URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(FRHAPI_Item CatalogItem,
 		Item->ETag = CacheInfo->Etag;
 	}
 
-	Item->ItemId = ItemId;
+	Item->InitializeFromCatalogItem(CatalogItem, ItemId);
 	
-	CatalogItem.GetType(Item->Type);
-	CatalogItem.GetRefItemId(Item->RefItemId);
-	CatalogItem.GetAvailabilityFlags(Item->AvailabilityFlags);
-	CatalogItem.GetEntitledLootId(Item->EntitledLootId);
-	CatalogItem.GetLevelXpTableId(Item->LevelXpTableId);
-	CatalogItem.GetLevelVendorId(Item->LevelVendorId);
-	CatalogItem.GetCouponDiscountCurrencyItemId(Item->CouponDiscountCurrencyItemId);
-	CatalogItem.GetCouponDiscountPercentage(Item->CouponDiscountPercentage);
-	CatalogItem.GetCouponConsumeOnUse(Item->CouponConsumeOnUse);
-	CatalogItem.GetInventoryBucketUseRuleSetId(Item->ItemInventoryBucketUseRuleSetId);
-	
-	if (const auto CouponDiscountLoot = CatalogItem.GetCouponDiscountLootOrNull())
-	{
-		Item->CouponDiscountLoot.Append(*CouponDiscountLoot);
-	}
-
 	if (ItemAdded)
 	{
 		OnCatalogItemAdded.ExecuteIfBound(Item);
 	}
 
 	return Item;
+}
+
+void URH_CatalogSubsystem::GetCatalogVendorsAll(FRH_CatalogCallBlock Delegate)
+{
+	auto Request = TGetCatalogVendorsAll::Request();
+
+	if (!Request.IfNoneMatch.IsSet() && !GetCatalogVendorsAllETag.IsEmpty())
+	{
+		Request.IfNoneMatch.Emplace(GetCatalogVendorsAllETag);
+	}
+
+	Request.AuthContext = GetAuthContext();
+
+	if (!TGetCatalogVendorsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogVendorsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogVendorsAllPriority))
+	{
+		Delegate.ExecuteIfBound(false);
+	}
+}
+
+void URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse(const TGetCatalogVendorsAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+{
+	if (Resp.IsSuccessful())
+	{
+		if (Resp.ETag.IsSet())
+		{
+			GetCatalogVendorsAllETag = Resp.ETag.GetValue();
+		}
+
+		CatalogVendors.Empty();
+		CatalogLootItems.Empty();
+
+		if (const auto& Data = Resp.Content.GetVendorsOrNull())
+		{
+			for (const auto& VendorPair : (*Data))
+			{
+				CatalogVendors.Add(FCString::Atoi(*VendorPair.Key), VendorPair.Value);
+
+				if (const auto* VendorItems = VendorPair.Value.GetLootOrNull())
+				{
+					for (const auto& VendorItem : (*VendorItems))
+					{
+						CatalogLootItems.Add(VendorItem.Value.GetLootId(), VendorItem.Value);
+
+						if (const auto& Item = VendorItem.Value.GetItemOrNull())
+						{
+							int32 ItemId = VendorItem.Value.GetItemId(0);
+
+							if (ItemId != 0)
+							{
+								ParseCatalogItem((*Item), ItemId);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
 void URH_CatalogSubsystem::GetCatalogPricePointsAll(FRH_CatalogCallBlock Delegate)
@@ -649,7 +593,7 @@ void URH_CatalogSubsystem::GetCatalogPricePointsAll(FRH_CatalogCallBlock Delegat
 
 	Request.AuthContext = GetAuthContext();
 
-	if (!TGetCatalogPricePointsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogPricePointsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse, Delegate)))
+	if (!TGetCatalogPricePointsAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogPricePointsAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogPricePointsAllPriority))
 	{
 		Delegate.ExecuteIfBound(false);
 	}
@@ -664,86 +608,157 @@ void URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse(const TGetCatalogP
 			GetCatalogPricePointsAllETag = Resp.ETag.GetValue();
 		}
 
-		ParseAllPricePoints(Resp.Content);
+		CatalogPricePoints.Empty();
+
+		if (const auto PricePoints = Resp.Content.GetPricePointsOrNull())
+		{
+			for (const auto& PricePointPair : *PricePoints)
+			{
+				CatalogPricePoints.Add(FGuid(PricePointPair.Key), PricePointPair.Value);
+			}
+		}
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
-void URH_CatalogSubsystem::ParseAllPricePoints(FRHAPI_PricePoints Content)
+void URH_CatalogSubsystem::GetCatalogTimeFramesAll(FRH_CatalogCallBlock Delegate)
 {
-	if (const auto PricePoints = Content.GetPricePointsOrNull())
+	auto Request = TGetCatalogTimeFramesAll::Request();
+
+	if (!Request.IfNoneMatch.IsSet() && !GetCatalogTimeFramesAllETag.IsEmpty())
 	{
-		for (const auto& PricePointPair : *PricePoints)
-		{
-			// Find or create the PricePoint we are updating
-			URH_CatalogPricePoint* PricePoint = nullptr;
-			FGuid PricePointGuid = FGuid(PricePointPair.Key);
-			FRHAPI_PricePoint PricePointData = PricePointPair.Value;
+		Request.IfNoneMatch.Emplace(GetCatalogTimeFramesAllETag);
+	}
 
-			if (const auto& FindItem = CatalogPricePoints.Find(PricePointGuid))
-			{
-				PricePoint = *FindItem;
-			}
+	Request.AuthContext = GetAuthContext();
 
-			if (PricePoint == nullptr)
-			{
-				// If we don't have a price point record yet, create one and parse the price point
-				PricePoint = NewObject<URH_CatalogPricePoint>();
-				CatalogPricePoints.Add(PricePointGuid, PricePoint);
-			}
-
-			if (const auto CacheInfo = PricePointData.GetCacheInfoOrNull())
-			{
-				// If our ETag is the same, then we don't need to update this price point
-				if (PricePoint->ETag == CacheInfo->Etag)
-				{
-					continue;
-				}
-
-				// If our ETag has changed, wipe ourselves to defaults
-				PricePoint->Clear();
-				PricePoint->ETag = CacheInfo->Etag;
-			}
-
-			PricePoint->PricePointId = PricePointGuid;
-			PricePointData.GetName(PricePoint->Name);
-			PricePointData.GetStrictFlag(PricePoint->StrictFlag);
-			PricePointData.GetCapFlag(PricePoint->CapFlag);
-			
-			if (const auto CurrentBreakpoints = PricePointData.GetCurrentBreakpointsOrNull())
-			{
-				for (const auto& PriceBreakpoint : *CurrentBreakpoints)
-				{
-					URH_CatalogPriceBreakpoint* NewPriceBreakpoint = NewObject<URH_CatalogPriceBreakpoint>();
-					NewPriceBreakpoint->PriceItemId = PriceBreakpoint.PriceItemId;
-					NewPriceBreakpoint->Quantity = PriceBreakpoint.Quantity;
-					NewPriceBreakpoint->Price = PriceBreakpoint.Price;
-					PricePoint->CurrentPriceBreakpoints.Add(NewPriceBreakpoint);
-				}
-			}
-
-			if (const auto PreSaleBreakpoints = PricePointData.GetPreSaleBreakpointsOrNull())
-			{
-				for (const auto& PriceBreakpoint : *PreSaleBreakpoints)
-				{
-					URH_CatalogPriceBreakpoint* NewPriceBreakpoint = NewObject<URH_CatalogPriceBreakpoint>();
-					NewPriceBreakpoint->PriceItemId = PriceBreakpoint.PriceItemId;
-					NewPriceBreakpoint->Quantity = PriceBreakpoint.Quantity;
-					NewPriceBreakpoint->Price = PriceBreakpoint.Price;
-					PricePoint->PreSalePriceBreakpoints.Add(NewPriceBreakpoint);
-				}
-			}			
-		}
+	if (!TGetCatalogTimeFramesAll::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogTimeFramesAll::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse, Delegate), GetDefault<URH_IntegrationSettings>()->GetCatalogTimeFramesAllPriority))
+	{
+		Delegate.ExecuteIfBound(false);
 	}
 }
 
-void URH_CatalogSubsystem::AddReferencedObjects(UObject* InThis, FReferenceCollector& Collector)
+void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, FRH_CatalogCallBlock Delegate)
 {
-	Super::AddReferencedObjects(InThis, Collector);
-	URH_CatalogSubsystem* This = CastChecked<URH_CatalogSubsystem>(InThis);
-	for (auto Entry : This->InventoryBucketUseRuleSets)
+	if (Resp.IsSuccessful())
 	{
-		Collector.AddReferencedObjects(Entry.Value, This);
+		if (Resp.ETag.IsSet())
+		{
+			GetCatalogTimeFramesAllETag = Resp.ETag.GetValue();
+		}
+
+		TimeFrames.Empty();
+
+		if (const auto& Data = Resp.Content.GetTimeFramesOrNull())
+		{
+			for (const auto& TimeFramePair : (*Data))
+			{
+				TimeFrames.Add(FCString::Atoi(*TimeFramePair.Key), TimeFramePair.Value);
+			}
+		}
 	}
+
+	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
+}
+
+///
+
+bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price)
+{
+	for (const auto& PriceBreakpoint : PriceBreakpoints)
+	{
+		if (PriceBreakpoint.GetPriceItemId() == CurrencyItemId &&
+			PriceBreakpoint.GetQuantity() == Quantity)
+		{
+			Price = PriceBreakpoint.GetPrice();
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool URH_CatalogBlueprintLibrary::IsCouponApplicableForItem(URH_CatalogItem* CouponItem, FRHAPI_Loot CatalogVendorItem)
+{ 
+	return IsCouponApplicableForLootId(CouponItem, CatalogVendorItem.GetLootId());
+}
+
+bool URH_CatalogBlueprintLibrary::IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, int32 LootId)
+{
+	if (CouponItem != nullptr)
+	{
+		return CouponItem->GetCouponDiscountLoot().Contains(LootId);
+	}
+
+	return false;
+}
+
+int32 URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(URH_CatalogItem* CouponItem, int32 Price)
+{ 
+	if (CouponItem != nullptr)
+	{
+		return FMath::CeilToInt(Price * (1.f - CouponItem->GetCouponDiscountPercentage()));
+	}
+
+	return Price;
+}
+
+int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(FRHAPI_XpTable XpTable, int32 XpLevel) 
+{
+	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
+	{
+		if (XpLevel > (*Entries).Num())
+		{
+			return INDEX_NONE;
+		}
+
+		int32 CurrentIndex = 0;
+		for (auto const& XpEntry : *Entries)
+		{
+			if (CurrentIndex == XpLevel)
+			{
+				return XpEntry.Value;
+			}
+
+			CurrentIndex++;
+		}
+	}
+	return INDEX_NONE;
+}
+
+int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(FRHAPI_XpTable XpTable, int64 XpPoints) 
+{
+	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
+	{
+		int32 CurrentIndex = 0;
+		for (auto const& XpEntry : *Entries)
+		{
+			if (XpEntry.Value > XpPoints)
+			{
+				return CurrentIndex;
+			}
+
+			CurrentIndex++;
+		}
+	}
+
+	return 0;
+}
+
+bool URH_CatalogBlueprintLibrary::GetVendorItemById(const FRHAPI_Vendor& Vendor, int32 LootId, FRHAPI_Loot& LootItem)
+{
+	if (const auto& LootItems = Vendor.GetLootOrNull())
+	{
+		for (const auto& VendorItemPair : (*LootItems))
+		{
+			if (VendorItemPair.Value.GetLootId() == LootId)
+			{
+				LootItem = VendorItemPair.Value;
+				return true;
+			}
+		}
+	}
+	
+	return false;
 }

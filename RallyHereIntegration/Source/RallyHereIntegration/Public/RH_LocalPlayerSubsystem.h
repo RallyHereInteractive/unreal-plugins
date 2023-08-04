@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <RH_FriendSubsystem.h>
@@ -18,155 +17,179 @@ class URH_LocalPlayerSessionSubsystem;
 class URH_LocalPlayerPresenceSubsystem;
 class URH_PurgeSubsystem;
 class URH_EntitlementSubsystem;
-class URH_NotificationSubsystem;
+class URH_PlayerNotifications;
 
-// #MRTODO - add OSS inventory checking after login, app reactivation
+// #RHTODO - add OSS inventory checking after login, app reactivation
 
+/** @defgroup LocalPlayer RallyHere Local Player
+ *  @{
+ */
 
+ /**
+  * @brief Subsystem to manage the local player.
+  */
 UCLASS(Config=RallyHereIntegration, DefaultConfig)
 class RALLYHEREINTEGRATION_API URH_LocalPlayerSubsystem : public ULocalPlayerSubsystem
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
-    void Initialize(FSubsystemCollectionBase& Collection);
-    void Deinitialize();
-
+	/**
+	* @brief Initialize the subsystem.
+	*/
+	void Initialize(FSubsystemCollectionBase& Collection);
+	/**
+	* @brief Safely tears down the subsystem.
+	*/
+	void Deinitialize();
+	/**
+	* @brief Gets if the player is currently logged in.
+	*/
 	bool IsLoggedIn() const;
+	/**
+	* @brief Gets the player's unique player id.
+	*/
 	FGuid GetPlayerUuid() const;
-	ERHAPI_PlatformTypes GetLoggedInPlatformType() const;
+	/**
+	* @brief Gets the platform type for the player if logged in.
+	*/
+	UE_DEPRECATED(5.0, "This function has been deprecated, use GetLoggedInPlatform")
+	ERHAPI_PlatformTypes_DEPRECATED GetLoggedInPlatformType() const;
+	/**
+	* @brief Gets the platform type for the player if logged in.
+	*/
+	ERHAPI_Platform GetLoggedInPlatform() const;
+	/**
+	* @brief Gets the player's OSS unique id.
+	*/
 	FUniqueNetIdWrapper GetOSSUniqueId() const;
 
 #if RH_FROM_ENGINE_VERSION(5,0)
+	/**
+	* @brief Gets the player's platform id.
+	*/
 	FPlatformUserId GetPlatformUserId() const;
 #else
+	/**
+	* @brief Gets the player's platform id.
+	*/
 	int32 GetPlatformUserId() const;
 #endif
-
+	/**
+	* @brief Gets the player's player info.
+	*/
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_PlayerInfo* GetLocalPlayerInfo() const;
-
+	/**
+	* @brief Gets the player's platform id wrapped with platform type.
+	*/
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
 	FRH_PlayerPlatformId GetPlayerPlatformId() const;
-
+	/**
+	* @brief Gets the player's auth context.
+	*/
 	FAuthContextPtr GetAuthContext() const { return AuthContext; }
-
-	/** Get a specific OSS by name for this local player's world.  In editor, this allows each world/game instance to have a different OSS */
+	/** 
+	* @brief Get a specific OSS by name for this local player's world.  In editor, this allows each world/game instance to have a different OSS 
+	*/
 	IOnlineSubsystem* GetOSS(const FName& SubsystemName = NAME_None) const;
-
-	/** Set the client ID for the AuthContext */
-	void SetClientId(FString InClientId, FString Source = TEXT("Direct"));
-
-	/** Get the current client ID (will run ResolveClientId if there isn't one) */
-	FString GetClientId();
-
 	/**
-	  * Check for a client ID across several sources and assign the first non-empty value to the APIs:
-	  * 1. Command line values from the keys in ClientIdCommandLineKeys.  By default these are:
-	  *     RallyHereClientIdX
-	  *     RallyHereClientId
-	  *     RallyHereClientIdInternal
-	  * 2. ini value from the "RallyHere" section, with the "ClientId" key.
-	  * 3. ini value from the section for this class, with the "ClientId" key.
-	  */
-	void ResolveClientId();
-
-	// If locked, disables the ResolveClientId function
-	void LockClientId(bool bLocked = true)
-	{
-		bIsClientIdLocked = bLocked;
-	}
-    
-	/** Set the client secret for the AuthContext */
-	void SetClientSecret(FString InClientSecret, FString Source = TEXT("Direct"));
-
-	/** Get the current client secret (will run ResolveClientSecret if there isn't one) */
-	FString GetClientSecret();
-
+	* @brief Gets the player's login subsystem.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
+	FORCEINLINE URH_LocalPlayerLoginSubsystem* GetLoginSubsystem() const { return LoginSubsystem; }
 	/**
-	  * Check for a client secret across several sources and assign the first non-empty value to the APIs:
-	  * 1. Command line values from the keys in ClientSecretCommandLineKeys.  By default these are:
-	  *     RallyHereClientSecretX
-	  *     RallyHereClientSecret
-	  *     RallyHereClientSecretInternal
-	  * 2. ini value from the "RallyHere" section, with the "ClientSecret" key.
-	  * 3. ini value from the section for this class, with the "ClientSecret" key.
-	  */
-	void ResolveClientSecret();
-
-	// If locked, disables the ResolveClientSecret function
-	void LockClientSecret(bool bLocked = true)
-	{
-		bIsClientSecretLocked = bLocked;
-	}
-
+	* @brief Gets the player's ad subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
-    FORCEINLINE URH_LocalPlayerLoginSubsystem* GetLoginSubsystem() const { return LoginSubsystem; }
+	FORCEINLINE URH_AdSubsystem* GetAdSubsystem() const { return AdSubsystem; }
+	/**
+	* @brief Gets the player's friend subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
-    FORCEINLINE URH_AdSubsystem* GetAdSubsystem() const { return AdSubsystem; }
-	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
-    FORCEINLINE URH_FriendSubsystem* GetFriendSubsystem() const { return FriendSubsystem; }
+	FORCEINLINE URH_FriendSubsystem* GetFriendSubsystem() const { return FriendSubsystem; }
+	/**
+	* @brief Gets the player's session subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
 	FORCEINLINE URH_LocalPlayerSessionSubsystem* GetSessionSubsystem() const { return SessionSubsystem; }
+	/**
+	* @brief Gets the player's presence subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
 	FORCEINLINE URH_LocalPlayerPresenceSubsystem* GetPresenceSubsystem() const { return PresenceSubsystem; }
+	/**
+	* @brief Gets the player's purge subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
 	FORCEINLINE URH_PurgeSubsystem* GetPurgeSubsystem() const { return PurgeSubsystem; }
+	/**
+	* @brief Gets the player's entitlement subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
 	FORCEINLINE URH_EntitlementSubsystem* GetEntitlementSubsystem() const { return EntitlementSubsystem; }
+	/**
+	* @brief Gets the player's notification subsystem.
+	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
-	FORCEINLINE URH_NotificationSubsystem* GetNotificationSubsystem() const { return NotificationSubsystem; }
-private:
+	URH_PlayerNotifications* GetPlayerNotifications() const;
+	
+protected:
+	/** @brief Array of plugins for the Local Player Subsystem. */
 	UPROPERTY()
 	TArray<URH_LocalPlayerSubsystemPlugin*> SubsystemPlugins;
-
+	/**
+	 * @brief Adds a plugin to the Game Instance Subsystem.
+	 * @param [in] SubsystemClassPath The class path of the plugin to add.
+	 * @return The plugin that was added.
+	 */
 	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_LocalPlayerSubsystemPlugin>::Value, bool>::Type = true>
-	UClassToUse* AddSubsystemPlugin()
+	UClassToUse* AddSubsystemPlugin(FSoftClassPath SubsystemClassPath)
 	{
-		auto* Subsystem = NewObject<UClassToUse>(this);
+		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
+
+		// If an invalid class type was specified we fall back to the default.
+		if (!SubsystemClass)
+		{
+			SubsystemClass = UClassToUse::StaticClass();
+		}
+		
+		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
 		SubsystemPlugins.Add(Subsystem);
 		return Subsystem;
 	}
 
-	void OnUserLoggedIn(bool bSuccess);
-	void OnUserChanged();
-
+	/**
+	 * @brief Called whenever the user logs in.
+	 * @param [in] bSuccess True if the login was successful, false otherwise.
+	 */
+	virtual void OnUserLoggedIn(bool bSuccess);
+	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
+	virtual void OnUserChanged();
+	/** @brief The Login Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetLoginSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
-    URH_LocalPlayerLoginSubsystem* LoginSubsystem;
-
+	URH_LocalPlayerLoginSubsystem* LoginSubsystem;
+	/** @brief The Ad Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetAdSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
-    URH_AdSubsystem* AdSubsystem;
-
+	URH_AdSubsystem* AdSubsystem;
+	/** @brief The Friend Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetFriendSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
-    URH_FriendSubsystem* FriendSubsystem;
-
+	URH_FriendSubsystem* FriendSubsystem;
+	/** @brief The Session Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetSessionSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_LocalPlayerSessionSubsystem* SessionSubsystem;
-	
+	/** @brief The Presence Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetPresenceSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_LocalPlayerPresenceSubsystem* PresenceSubsystem;
-	
+	/** @brief The Purge Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetPurgeSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_PurgeSubsystem* PurgeSubsystem;
-	
+	/** @brief The Entitlement Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetEntitlementSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
-	URH_EntitlementSubsystem* EntitlementSubsystem;	
-
-	UPROPERTY(BlueprintGetter = GetNotificationSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
-	URH_NotificationSubsystem* NotificationSubsystem;
-
+	URH_EntitlementSubsystem* EntitlementSubsystem;
+	/** The Player Info associated with the local player. */
+	TWeakObjectPtr<URH_PlayerInfo> PlayerInfoCache;
+	/** The Local Players auth context. */
 	FAuthContextPtr AuthContext;
-
-    UPROPERTY(Transient)
-    FString ResolvedClientId;
-
-    // Is the client ID locked - aka will not change during ResolveClientId calls.
-    UPROPERTY(Transient)
-    bool bIsClientIdLocked;
-
-    UPROPERTY(Transient)
-    FString ResolvedClientSecret;
-
-    // Is the client secret locked - aka will not change during ResolveClientSecret calls.
-    UPROPERTY(Transient)
-    bool bIsClientSecretLocked;
 };
+
+/** @} */

@@ -38,9 +38,10 @@ bool FRHAPI_ClaimKeyRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("external_key_type")))
+    const TSharedPtr<FJsonValue> JsonExternalKeyTypeField = (*Object)->TryGetField(TEXT("external_key_type"));
+    if (JsonExternalKeyTypeField.IsValid() && !JsonExternalKeyTypeField->IsNull())
     {
-        ExternalKeyType_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("external_key_type"), ExternalKeyType_Optional);
+        ExternalKeyType_IsSet = TryGetJsonValue(JsonExternalKeyTypeField, ExternalKeyType_Optional);
         ParseSuccess &= ExternalKeyType_IsSet;
     }
 

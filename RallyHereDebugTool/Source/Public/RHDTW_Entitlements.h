@@ -10,9 +10,7 @@ public:
 	typedef FRH_DebugToolWindow Super;
 
 	FRHDTW_Entitlements();
-	void GetEntitlementResults(EntitlementProcessResultMapStruct map);
 	virtual void Do() override;
 private:
-	TMap<FString, FRHAPI_PlatformEntitlementProcessResult> EntitlementResults;
-	URH_EntitlementSubsystem* GetEntitlementSubsystem();
+	FString ActionResult;
 };

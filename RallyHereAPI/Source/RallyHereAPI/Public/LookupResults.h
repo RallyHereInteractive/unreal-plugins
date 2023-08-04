@@ -13,6 +13,10 @@
 #include "PlayerResponse.h"
 #include "LookupResults.generated.h"
 
+/** @defgroup RHAPI_LookupResults RallyHere API Model LookupResults
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -78,4 +82,27 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
     void SetIdentityPlatforms(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> NewValue) { IdentityPlatforms_Optional = NewValue; IdentityPlatforms_IsSet = true; }
      /** @brief Clears the value of IdentityPlatforms_Optional and sets IdentityPlatforms_IsSet to false */
     void ClearIdentityPlatforms() { IdentityPlatforms_IsSet = false; }
+
+    TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatformsByPlatform_Optional{  };
+    /** @brief true if IdentityPlatformsByPlatform_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool IdentityPlatformsByPlatform_IsSet{ false };
+    /** @brief Gets the value of IdentityPlatformsByPlatform_Optional, regardless of it having been set */
+    TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& GetIdentityPlatformsByPlatform() { return IdentityPlatformsByPlatform_Optional; }
+    /** @brief Gets the value of IdentityPlatformsByPlatform_Optional, regardless of it having been set */
+    const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& GetIdentityPlatformsByPlatform() const { return IdentityPlatformsByPlatform_Optional; }
+    /** @brief Gets the value of IdentityPlatformsByPlatform_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& GetIdentityPlatformsByPlatform(const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& DefaultValue) const { if (IdentityPlatformsByPlatform_IsSet) return IdentityPlatformsByPlatform_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of IdentityPlatformsByPlatform_Optional and returns true if it has been set, otherwise returns false */
+    bool GetIdentityPlatformsByPlatform(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& OutValue) const { if (IdentityPlatformsByPlatform_IsSet) OutValue = IdentityPlatformsByPlatform_Optional; return IdentityPlatformsByPlatform_IsSet; }
+    /** @brief Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr */
+    TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsByPlatformOrNull() { if (IdentityPlatformsByPlatform_IsSet) return &IdentityPlatformsByPlatform_Optional; return nullptr; }
+    /** @brief Returns a pointer to IdentityPlatformsByPlatform_Optional, if it has been set, otherwise returns nullptr */
+    const TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>* GetIdentityPlatformsByPlatformOrNull() const { if (IdentityPlatformsByPlatform_IsSet) return &IdentityPlatformsByPlatform_Optional; return nullptr; }
+    /** @brief Sets the value of IdentityPlatformsByPlatform_Optional and also sets IdentityPlatformsByPlatform_IsSet to true */
+    void SetIdentityPlatformsByPlatform(TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> NewValue) { IdentityPlatformsByPlatform_Optional = NewValue; IdentityPlatformsByPlatform_IsSet = true; }
+     /** @brief Clears the value of IdentityPlatformsByPlatform_Optional and sets IdentityPlatformsByPlatform_IsSet to false */
+    void ClearIdentityPlatformsByPlatform() { IdentityPlatformsByPlatform_IsSet = false; }
 };
+
+/** @} */

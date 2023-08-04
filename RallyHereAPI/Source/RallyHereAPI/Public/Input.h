@@ -11,15 +11,16 @@
 #include "RallyHereAPIHelpers.h"
 #include "Input.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief The different input types that players can use
  */
 UENUM(BlueprintType)
 enum class ERHAPI_Input : uint8
 {
-    Kbm UMETA(ToolTip="An enumeration."),
-    Gamepad UMETA(ToolTip="An enumeration."),
-    Touch UMETA(ToolTip="An enumeration."),
+    Kbm UMETA(ToolTip="Input for players using a keyboard and mouse"),
+    Gamepad UMETA(ToolTip="Input for players using a gamepad/controller"),
+    Touch UMETA(ToolTip="Input for players using a touch screen"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Input& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Input& EnumValue);

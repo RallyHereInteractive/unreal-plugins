@@ -13,8 +13,12 @@
 #include "EntitlementStatus.h"
 #include "PlatformEntitlement.generated.h"
 
+/** @defgroup RHAPI_PlatformEntitlement RallyHere API Model PlatformEntitlement
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Entitlement for a platform. This takes in a sku and platform entitlement id and checks to see if the user has the entitlement on the platform
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
@@ -153,3 +157,5 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
      /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
     void ClearOrderId() { OrderId_IsSet = false; }
 };
+
+/** @} */

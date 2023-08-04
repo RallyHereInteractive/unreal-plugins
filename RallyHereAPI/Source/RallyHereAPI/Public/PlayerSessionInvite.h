@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerSessionInvite.generated.h"
 
+/** @defgroup RHAPI_PlayerSessionInvite RallyHere API Model PlayerSessionInvite
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Information about an invite to a session that a player received
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
@@ -68,3 +72,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
      /** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
     void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false; }
 };
+
+/** @} */

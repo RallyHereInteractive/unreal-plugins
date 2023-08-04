@@ -12,6 +12,10 @@
 #include "OnlineStatus.h"
 #include "PlayerPresenceUpdateSelf.generated.h"
 
+/** @defgroup RHAPI_PlayerPresenceUpdateSelf RallyHere API Model PlayerPresenceUpdateSelf
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -132,3 +136,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

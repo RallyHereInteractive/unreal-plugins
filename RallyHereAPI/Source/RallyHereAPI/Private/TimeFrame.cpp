@@ -67,36 +67,44 @@ bool FRHAPI_TimeFrame::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("name")))
+    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+    if (JsonNameField.IsValid() && !JsonNameField->IsNull())
     {
-        Name_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("name"), Name_Optional);
+        Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
         ParseSuccess &= Name_IsSet;
     }
-    if ((*Object)->HasField(TEXT("active")))
+    const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
+    if (JsonActiveField.IsValid() && !JsonActiveField->IsNull())
     {
-        Active_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("active"), Active_Optional);
+        Active_IsSet = TryGetJsonValue(JsonActiveField, Active_Optional);
         ParseSuccess &= Active_IsSet;
     }
-    if ((*Object)->HasField(TEXT("episode")))
+    const TSharedPtr<FJsonValue> JsonEpisodeField = (*Object)->TryGetField(TEXT("episode"));
+    if (JsonEpisodeField.IsValid() && !JsonEpisodeField->IsNull())
     {
-        Episode_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("episode"), Episode_Optional);
+        Episode_IsSet = TryGetJsonValue(JsonEpisodeField, Episode_Optional);
         ParseSuccess &= Episode_IsSet;
     }
-    if ((*Object)->HasField(TEXT("episode_type")))
+    const TSharedPtr<FJsonValue> JsonEpisodeTypeField = (*Object)->TryGetField(TEXT("episode_type"));
+    if (JsonEpisodeTypeField.IsValid() && !JsonEpisodeTypeField->IsNull())
     {
-        EpisodeType_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("episode_type"), EpisodeType_Optional);
+        EpisodeType_IsSet = TryGetJsonValue(JsonEpisodeTypeField, EpisodeType_Optional);
         ParseSuccess &= EpisodeType_IsSet;
     }
-    if ((*Object)->HasField(TEXT("hour_interval")))
+    const TSharedPtr<FJsonValue> JsonHourIntervalField = (*Object)->TryGetField(TEXT("hour_interval"));
+    if (JsonHourIntervalField.IsValid() && !JsonHourIntervalField->IsNull())
     {
-        HourInterval_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("hour_interval"), HourInterval_Optional);
+        HourInterval_IsSet = TryGetJsonValue(JsonHourIntervalField, HourInterval_Optional);
         ParseSuccess &= HourInterval_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("start"), Start);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("end"), End);
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonStartField = (*Object)->TryGetField(TEXT("start"));
+    ParseSuccess &= JsonStartField.IsValid() && !JsonStartField->IsNull() && TryGetJsonValue(JsonStartField, Start);
+    const TSharedPtr<FJsonValue> JsonEndField = (*Object)->TryGetField(TEXT("end"));
+    ParseSuccess &= JsonEndField.IsValid() && !JsonEndField->IsNull() && TryGetJsonValue(JsonEndField, End);
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

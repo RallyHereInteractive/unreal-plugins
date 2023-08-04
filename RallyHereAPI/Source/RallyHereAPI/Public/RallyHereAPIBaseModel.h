@@ -18,15 +18,36 @@
 #include "Misc/Guid.h"
 #include "RallyHereAPIBaseModel.generated.h"
 
+/** @defgroup RHAPI_BaseModel RallyHere API Base Model
+ *  @{
+ */
+
+/**
+ * @brief Base class for all RallyHereAPI data models
+ */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Model
 {
     GENERATED_BODY(WithNoDestructor);
     virtual ~FRHAPI_Model() {}
 
-    virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const {}
+    /**
+    * @brief Fills this object with data from the passed in JSON
+    *
+    * @param [in] JsonValue Data from the API call.
+    *
+    * @return true if parsing of the JSON data was successful.
+    */
     virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) { return false; }
+
+    /**
+    * @brief Writes the data from this object into the specified JSON Writer stream
+    *
+    * @param [in] Writer JSON Writer stream to push .
+    */
+    virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const {}
 };
+/** @} */
 
 namespace RallyHereAPI
 {
@@ -69,6 +90,7 @@ struct RALLYHEREAPI_API FRequestMetadata
 {
     FGuid Identifier;
     FString SimplifiedPath;
+    int32 RetryCount = 0;
 };
 
 class RALLYHEREAPI_API FRequest
@@ -165,8 +187,8 @@ protected:
         TSharedPtr<FAuthContext> AuthContext;
         FDelegateHandle Handle;
     };
-    bool HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse& InOutResponse);
-    void RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request);
+    bool HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse& InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FRequestMetadata& RequestMetadata, int32 Priority);
+    void RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request, FHttpRequestCompleteDelegate ResponseDelegate, FRequestMetadata RequestMetadata, int32 Priority);
 
     FString Url;
     FString Name;

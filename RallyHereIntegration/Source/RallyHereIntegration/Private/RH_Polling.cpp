@@ -236,6 +236,8 @@ void FRH_AutoPoller::ExecutePoll()
 	}
 }
 
+
+
 void FRH_AutoPoller::OnPollFinished(bool bSuccess, bool bResetTimer)
 {
 	if (bResetTimer)

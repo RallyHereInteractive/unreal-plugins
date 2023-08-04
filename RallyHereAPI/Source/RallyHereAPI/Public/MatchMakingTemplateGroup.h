@@ -13,8 +13,12 @@
 #include "MatchMakingTemplate.h"
 #include "MatchMakingTemplateGroup.generated.h"
 
+/** @defgroup RHAPI_MatchMakingTemplateGroup RallyHere API Model MatchMakingTemplateGroup
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroup : public FRHAPI_Model
@@ -80,3 +84,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroup : public FRHAPI_Model
      /** @brief Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false */
     void ClearRequiredItemIds() { RequiredItemIds_IsSet = false; }
 };
+
+/** @} */

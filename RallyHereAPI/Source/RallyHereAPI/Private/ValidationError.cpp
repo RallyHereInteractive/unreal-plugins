@@ -39,9 +39,12 @@ bool FRHAPI_ValidationError::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("loc"), Loc);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("msg"), Msg);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("type"), Type);
+    const TSharedPtr<FJsonValue> JsonLocField = (*Object)->TryGetField(TEXT("loc"));
+    ParseSuccess &= JsonLocField.IsValid() && !JsonLocField->IsNull() && TryGetJsonValue(JsonLocField, Loc);
+    const TSharedPtr<FJsonValue> JsonMsgField = (*Object)->TryGetField(TEXT("msg"));
+    ParseSuccess &= JsonMsgField.IsValid() && !JsonMsgField->IsNull() && TryGetJsonValue(JsonMsgField, Msg);
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
 
     return ParseSuccess;
 }

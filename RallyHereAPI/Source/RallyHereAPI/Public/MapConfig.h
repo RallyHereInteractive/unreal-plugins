@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "MapConfig.generated.h"
 
+/** @defgroup RHAPI_MapConfig RallyHere API Model MapConfig
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Configuration about a specific map for an instance to load into
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
@@ -115,3 +119,5 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

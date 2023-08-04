@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "AdOpportunity.generated.h"
 
+/** @defgroup RHAPI_AdOpportunity RallyHere API Model AdOpportunity
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -35,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The URL to the ad */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString AdUrl{  };
     /** @brief Gets the value of AdUrl */
@@ -44,6 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     /** @brief Sets the value of AdUrl */
     void SetAdUrl(FString NewValue) { AdUrl = NewValue;  }
 
+    /** @brief The number of seconds the ad is */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 Seconds{ 0 };
     /** @brief Gets the value of Seconds */
@@ -57,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     /** @brief Sets the value of Seconds to its default  */
     void SetSecondsToDefault() { Seconds = 0;  }
 
+    /** @brief The ID of the ad opportunity */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString OpportunityId{  };
     /** @brief Gets the value of OpportunityId */
@@ -66,3 +73,5 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     /** @brief Sets the value of OpportunityId */
     void SetOpportunityId(FString NewValue) { OpportunityId = NewValue;  }
 };
+
+/** @} */

@@ -1,5 +1,6 @@
 #include "RH_Integration.h"
 #include "OnlineSubsystem.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "RallyHereIntegrationModule.h"
 #include "HAL/IConsoleManager.h"
 #include "Misc/OutputDevice.h"
@@ -109,6 +110,53 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHGetSandboxId(
 		}));
 
 
+static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
+	TEXT("rh.setclientid"),
+	TEXT("Set the client ID used to log into the RallyHere API"),
+	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
+		{	
+			if (!FRallyHereIntegrationModule::IsAvailable())
+			{
+				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
+				return;
+			}
+			FString NewClientId = Args.Num() > 0 ? Args[0] : FString();
+			NewClientId.TrimQuotesInline();
+			FRallyHereIntegrationModule::Get().LockClientId(!NewClientId.IsEmpty());
+			FRallyHereIntegrationModule::Get().SetClientId(MoveTemp(NewClientId), TEXT("Console Command"));		
+			Ar.Logf(TEXT("Updated Client ID to [%s]"), *NewClientId);
+		}));
+
+static FAutoConsoleCommandWithOutputDevice ConsoleRHGetClientId(
+	TEXT("rh.getclientid"),
+	TEXT("Get the Client ID used to log into the RallyHere API"),
+	FConsoleCommandWithOutputDeviceDelegate::CreateLambda([](FOutputDevice& Ar)
+		{
+			if (!FRallyHereIntegrationModule::IsAvailable())
+			{
+				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
+				return;
+			}
+
+			Ar.Logf(TEXT("Client ID = %s"), *FRallyHereIntegrationModule::Get().GetClientId());
+		}));
+
+static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientSecret(
+	TEXT("rh.setclientsecret"),
+	TEXT("Set the client secret used to log into the RallyHere API"),
+	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
+		{
+			if (!FRallyHereIntegrationModule::IsAvailable())
+			{
+				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
+				return;
+			}
+			FString NewClientSecret = Args.Num() >= 0 ? Args[0] : FString();
+			NewClientSecret.TrimQuotesInline();
+			FRallyHereIntegrationModule::Get().LockClientSecret(!NewClientSecret.IsEmpty());
+			FRallyHereIntegrationModule::Get().SetClientSecret(MoveTemp(NewClientSecret), TEXT("Console Command"));
+			Ar.Logf(TEXT("Updated Client Secret to [**SECRET**]"));
+		}));
 
 static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetOSS(
 	TEXT("rh.setOSS"),
@@ -152,6 +200,12 @@ void URH_Integration::Initialize()
 		API->SetHttpRetryManager(*RetryManager);
 	}
 
+	auto* HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->SetMaxSimultaneousRequests(Settings->MaxSimultaneousRequests);
+	}
+
 	// Go ahead and load a base URL in case one was passed through at startup
 	ResolveBaseURL();
 
@@ -177,6 +231,12 @@ void URH_Integration::Uninitialize()
 void URH_Integration::SetBaseURL(FString InBaseUrl, FString Source)
 {
 	ResolvedBaseUrl = MoveTemp(InBaseUrl);
+
+	if (ResolvedBaseUrl.EndsWith(TEXT("/")))
+	{
+		ResolvedBaseUrl = ResolvedBaseUrl.LeftChop(1);
+	}
+
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedBaseUrl,
 		*Source);
 	for (auto& API : APIs.GetAllAPIs())
@@ -214,16 +274,14 @@ void URH_Integration::ResolveBaseURL()
 		}
 	}
 
+
 	{
-		FString SandboxId = GetSandboxId();
-		if (!SandboxId.IsEmpty())
+		const auto SandboxId = GetSandboxId();
+		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
+		if (Sandbox != nullptr && !Sandbox->BaseUrl.IsEmpty())
 		{
-			const auto* SandboxURL = Settings->SandboxURLs.FindByPredicate([SandboxId](const FRH_SandboxConfiguration& Config) { return Config.SandboxId == SandboxId; });
-			if (SandboxURL != nullptr)
-			{
-				SetBaseURL(SandboxURL->BaseUrl, TEXT("Sandbox:") + SandboxId);
-				return;
-			}
+			SetBaseURL(Sandbox->BaseUrl, TEXT("Sandbox:") + SandboxId);
+			return;
 		}
 	}
 
@@ -323,3 +381,112 @@ void URH_Integration::ResolveSandboxId()
 
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a sandbox id"), ANSI_TO_TCHAR(__FUNCTION__));
 }
+
+
+void URH_Integration::SetClientId(FString InClientId, FString Source)
+{
+	ResolvedClientId = MoveTemp(InClientId);
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedClientId,
+		*Source);
+}
+
+FString URH_Integration::GetClientId()
+{
+	if (ResolvedClientId.IsEmpty())
+	{
+		ResolveClientId();
+	}
+	return ResolvedClientId;
+}
+
+void URH_Integration::ResolveClientId()
+{
+	if (bIsClientIdLocked)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Locked and will not change"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
+	for (const auto& Key : Settings->ClientIdCommandLineKeys)
+	{
+		FString temp;
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
+		{
+			SetClientId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
+			return;
+		}
+	}
+
+	{
+		const auto SandboxId = GetSandboxId();
+		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
+		if (Sandbox != nullptr && !Sandbox->ClientId.IsEmpty())
+		{
+			SetClientId(Sandbox->ClientId, TEXT("Sandbox:") + SandboxId);
+			return;
+		}
+	}
+
+	if (!Settings->ClientId.IsEmpty())
+	{
+		SetClientId(Settings->ClientId, TEXT("INI: RH_IntegrationSettings - ClientId"));
+		return;
+	}
+
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
+}
+
+void URH_Integration::SetClientSecret(FString InClientSecret, FString Source)
+{
+	ResolvedClientSecret = MoveTemp(InClientSecret);
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *Source);
+}
+
+FString URH_Integration::GetClientSecret()
+{
+	if (ResolvedClientSecret.IsEmpty())
+	{
+		ResolveClientSecret();
+	}
+	return ResolvedClientSecret;
+}
+
+void URH_Integration::ResolveClientSecret()
+{
+	if (bIsClientSecretLocked)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Locked and will not change"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
+	for (const auto& Key : Settings->ClientSecretCommandLineKeys)
+	{
+		FString temp;
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
+		{
+			SetClientSecret(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
+			return;
+		}
+	}
+
+	const auto SandboxId = GetSandboxId();
+	const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
+	if (Sandbox != nullptr && !Sandbox->ClientSecret.IsEmpty())
+	{
+		SetClientSecret(Sandbox->ClientSecret, TEXT("Sandbox:") + SandboxId);
+		return;
+	}
+
+	if (!Settings->ClientSecret.IsEmpty())
+	{
+		SetClientSecret(Settings->ClientSecret, TEXT("INI: RH_IntegrationSettings - ClientSecret"));
+		return;
+	}
+
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
+}
+

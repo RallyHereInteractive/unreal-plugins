@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "HzApiErrorModel.generated.h"
 
+/** @defgroup RHAPI_HzApiErrorModel RallyHere API Model HzApiErrorModel
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -79,3 +83,5 @@ struct RALLYHEREAPI_API FRHAPI_HzApiErrorModel : public FRHAPI_Model
     /** @brief Sets the value of Desc */
     void SetDesc(FString NewValue) { Desc = NewValue;  }
 };
+
+/** @} */

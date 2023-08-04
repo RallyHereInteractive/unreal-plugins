@@ -12,8 +12,12 @@
 #include "SessionEvent.h"
 #include "SessionEvents.generated.h"
 
+/** @defgroup RHAPI_SessionEvents RallyHere API Model SessionEvents
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A list of events that occurred in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionEvents : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvents : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief A list of the events that have occurred in a given session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_SessionEvent> Events_Optional{  };
     /** @brief true if Events_Optional has been set to a value */
@@ -58,3 +63,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvents : public FRHAPI_Model
      /** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
     void ClearEvents() { Events_IsSet = false; }
 };
+
+/** @} */

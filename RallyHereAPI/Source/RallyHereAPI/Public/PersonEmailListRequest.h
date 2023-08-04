@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PersonEmailListRequest.generated.h"
 
+/** @defgroup RHAPI_PersonEmailListRequest RallyHere API Model PersonEmailListRequest
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -57,3 +61,5 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListRequest : public FRHAPI_Model
      /** @brief Clears the value of EmailListIds_Optional and sets EmailListIds_IsSet to false */
     void ClearEmailListIds() { EmailListIds_IsSet = false; }
 };
+
+/** @} */

@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "FriendsV1.generated.h"
 
+/** @defgroup RHAPI_FriendsV1 RallyHere API Model FriendsV1
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief List of player_ids to operate on.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_FriendsV1 : public FRHAPI_Model
@@ -44,3 +48,5 @@ struct RALLYHEREAPI_API FRHAPI_FriendsV1 : public FRHAPI_Model
     /** @brief Sets the value of Friends */
     void SetFriends(TArray<int32> NewValue) { Friends = NewValue;  }
 };
+
+/** @} */

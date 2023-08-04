@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "ClaimKeyRequest.generated.h"
 
+/** @defgroup RHAPI_ClaimKeyRequest RallyHere API Model ClaimKeyRequest
+ *  @{
+ */
+
 /**
  * @brief Attempt to claim a Key Claim from a Marketing Campaign.
  */
@@ -61,3 +65,5 @@ struct RALLYHEREAPI_API FRHAPI_ClaimKeyRequest : public FRHAPI_Model
     /** @brief Sets the value of ExternalKeyType_Optional to its default and also sets ExternalKeyType_IsSet to true */
     void SetExternalKeyTypeToDefault() { ExternalKeyType_Optional = TEXT("Type of the External Key"); ExternalKeyType_IsSet = true; }
 };
+
+/** @} */

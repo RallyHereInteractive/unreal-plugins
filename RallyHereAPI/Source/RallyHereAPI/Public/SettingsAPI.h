@@ -85,44 +85,44 @@ public:
     FSettingsAPI();
     virtual ~FSettingsAPI();
 
-    FHttpRequestPtr DeleteAllPlayerIdSettingsForSettingType(const FRequest_DeleteAllPlayerIdSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerIdSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerIdSettingsForSettingType());
-    FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingType(const FRequest_DeleteAllPlayerUuidSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingType());
-    FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf());
-    FHttpRequestPtr DeleteSinglePlayerIdSetting(const FRequest_DeleteSinglePlayerIdSetting& Request, const FDelegate_DeleteSinglePlayerIdSetting& Delegate = FDelegate_DeleteSinglePlayerIdSetting());
-    FHttpRequestPtr DeleteSinglePlayerUuidSetting(const FRequest_DeleteSinglePlayerUuidSetting& Request, const FDelegate_DeleteSinglePlayerUuidSetting& Delegate = FDelegate_DeleteSinglePlayerUuidSetting());
-    FHttpRequestPtr DeleteSinglePlayerUuidSettingSelf(const FRequest_DeleteSinglePlayerUuidSettingSelf& Request, const FDelegate_DeleteSinglePlayerUuidSettingSelf& Delegate = FDelegate_DeleteSinglePlayerUuidSettingSelf());
-    FHttpRequestPtr GetAllPlayerIdSettingsForSettingType(const FRequest_GetAllPlayerIdSettingsForSettingType& Request, const FDelegate_GetAllPlayerIdSettingsForSettingType& Delegate = FDelegate_GetAllPlayerIdSettingsForSettingType());
-    FHttpRequestPtr GetAllPlayerUuidSettingsForSettingType(const FRequest_GetAllPlayerUuidSettingsForSettingType& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingType());
-    FHttpRequestPtr GetAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf());
-    FHttpRequestPtr GetConfigForAllSettingTypes(const FRequest_GetConfigForAllSettingTypes& Request, const FDelegate_GetConfigForAllSettingTypes& Delegate = FDelegate_GetConfigForAllSettingTypes());
-    FHttpRequestPtr GetConfigForSingleSettingTypeAllVersions(const FRequest_GetConfigForSingleSettingTypeAllVersions& Request, const FDelegate_GetConfigForSingleSettingTypeAllVersions& Delegate = FDelegate_GetConfigForSingleSettingTypeAllVersions());
-    FHttpRequestPtr GetConfigForSingleSettingTypeAndVersion(const FRequest_GetConfigForSingleSettingTypeAndVersion& Request, const FDelegate_GetConfigForSingleSettingTypeAndVersion& Delegate = FDelegate_GetConfigForSingleSettingTypeAndVersion());
-    FHttpRequestPtr GetSinglePlayerIdSetting(const FRequest_GetSinglePlayerIdSetting& Request, const FDelegate_GetSinglePlayerIdSetting& Delegate = FDelegate_GetSinglePlayerIdSetting());
-    FHttpRequestPtr GetSinglePlayerUuidSetting(const FRequest_GetSinglePlayerUuidSetting& Request, const FDelegate_GetSinglePlayerUuidSetting& Delegate = FDelegate_GetSinglePlayerUuidSetting());
-    FHttpRequestPtr GetSinglePlayerUuidSettingSelf(const FRequest_GetSinglePlayerUuidSettingSelf& Request, const FDelegate_GetSinglePlayerUuidSettingSelf& Delegate = FDelegate_GetSinglePlayerUuidSettingSelf());
-    FHttpRequestPtr SetSinglePlayerIdSetting(const FRequest_SetSinglePlayerIdSetting& Request, const FDelegate_SetSinglePlayerIdSetting& Delegate = FDelegate_SetSinglePlayerIdSetting());
-    FHttpRequestPtr SetSinglePlayerUuidSetting(const FRequest_SetSinglePlayerUuidSetting& Request, const FDelegate_SetSinglePlayerUuidSetting& Delegate = FDelegate_SetSinglePlayerUuidSetting());
-    FHttpRequestPtr SetSinglePlayerUuidSettingSelf(const FRequest_SetSinglePlayerUuidSettingSelf& Request, const FDelegate_SetSinglePlayerUuidSettingSelf& Delegate = FDelegate_SetSinglePlayerUuidSettingSelf());
+    FHttpRequestPtr DeleteAllPlayerIdSettingsForSettingType(const FRequest_DeleteAllPlayerIdSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerIdSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerIdSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingType(const FRequest_DeleteAllPlayerUuidSettingsForSettingType& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteSinglePlayerIdSetting(const FRequest_DeleteSinglePlayerIdSetting& Request, const FDelegate_DeleteSinglePlayerIdSetting& Delegate = FDelegate_DeleteSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteSinglePlayerUuidSetting(const FRequest_DeleteSinglePlayerUuidSetting& Request, const FDelegate_DeleteSinglePlayerUuidSetting& Delegate = FDelegate_DeleteSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteSinglePlayerUuidSettingSelf(const FRequest_DeleteSinglePlayerUuidSettingSelf& Request, const FDelegate_DeleteSinglePlayerUuidSettingSelf& Delegate = FDelegate_DeleteSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllPlayerIdSettingsForSettingType(const FRequest_GetAllPlayerIdSettingsForSettingType& Request, const FDelegate_GetAllPlayerIdSettingsForSettingType& Delegate = FDelegate_GetAllPlayerIdSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllPlayerUuidSettingsForSettingType(const FRequest_GetAllPlayerUuidSettingsForSettingType& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingType& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingType(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllPlayerUuidSettingsForSettingTypeSelf(const FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf& Request, const FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf& Delegate = FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetConfigForAllSettingTypes(const FRequest_GetConfigForAllSettingTypes& Request, const FDelegate_GetConfigForAllSettingTypes& Delegate = FDelegate_GetConfigForAllSettingTypes(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetConfigForSingleSettingTypeAllVersions(const FRequest_GetConfigForSingleSettingTypeAllVersions& Request, const FDelegate_GetConfigForSingleSettingTypeAllVersions& Delegate = FDelegate_GetConfigForSingleSettingTypeAllVersions(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetConfigForSingleSettingTypeAndVersion(const FRequest_GetConfigForSingleSettingTypeAndVersion& Request, const FDelegate_GetConfigForSingleSettingTypeAndVersion& Delegate = FDelegate_GetConfigForSingleSettingTypeAndVersion(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetSinglePlayerIdSetting(const FRequest_GetSinglePlayerIdSetting& Request, const FDelegate_GetSinglePlayerIdSetting& Delegate = FDelegate_GetSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetSinglePlayerUuidSetting(const FRequest_GetSinglePlayerUuidSetting& Request, const FDelegate_GetSinglePlayerUuidSetting& Delegate = FDelegate_GetSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetSinglePlayerUuidSettingSelf(const FRequest_GetSinglePlayerUuidSettingSelf& Request, const FDelegate_GetSinglePlayerUuidSettingSelf& Delegate = FDelegate_GetSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr SetSinglePlayerIdSetting(const FRequest_SetSinglePlayerIdSetting& Request, const FDelegate_SetSinglePlayerIdSetting& Delegate = FDelegate_SetSinglePlayerIdSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr SetSinglePlayerUuidSetting(const FRequest_SetSinglePlayerUuidSetting& Request, const FDelegate_SetSinglePlayerUuidSetting& Delegate = FDelegate_SetSinglePlayerUuidSetting(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr SetSinglePlayerUuidSettingSelf(const FRequest_SetSinglePlayerUuidSettingSelf& Request, const FDelegate_SetSinglePlayerUuidSettingSelf& Delegate = FDelegate_SetSinglePlayerUuidSettingSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForAllSettingTypes Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnDeleteAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllPlayerIdSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerIdSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllPlayerUuidSettingsForSettingTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllPlayerUuidSettingsForSettingTypeSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetConfigForAllSettingTypesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForAllSettingTypes Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetConfigForSingleSettingTypeAllVersionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetConfigForSingleSettingTypeAndVersionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSetSinglePlayerIdSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerIdSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSetSinglePlayerUuidSettingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSetting Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSetSinglePlayerUuidSettingSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SetSinglePlayerUuidSettingSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -163,7 +163,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Delete All Player Uuid Settings For Setting Type
@@ -205,7 +205,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Delete All Player Uuid Settings For Setting Type Self
@@ -245,7 +245,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Id Setting
@@ -289,7 +289,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteSinglePlayerIdSetting(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Uuid Setting
@@ -333,7 +333,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteSinglePlayerUuidSetting(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Single Player Uuid Setting Self
@@ -350,8 +350,6 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FReq
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    /* Player to delete setting for */
-    FGuid PlayerUuid;
     /* Setting Type to delete settings for.  Must be one of the known setting types */
     FString SettingTypeId;
     /* Setting Key to delete setting for */
@@ -377,7 +375,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Id Settings For Setting Type
@@ -421,7 +419,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Settings For Setting Type
@@ -465,7 +463,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Settings For Setting Type Self
@@ -507,7 +505,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For All Setting Types
@@ -545,7 +543,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetConfigForAllSettingTypes(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For Single Setting Type All Versions
@@ -584,7 +582,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
 };
 
 /* Get Config For Single Setting Type And Version
@@ -624,7 +622,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Id Setting
@@ -668,7 +666,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetSinglePlayerIdSetting(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Uuid Setting
@@ -712,7 +710,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetSinglePlayerUuidSetting(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Get Single Player Uuid Setting Self
@@ -754,7 +752,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetSinglePlayerUuidSettingSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Id Setting
@@ -799,7 +797,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.SetSinglePlayerIdSetting(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Uuid Setting
@@ -844,7 +842,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.SetSinglePlayerUuidSetting(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
 /* Set Single Player Uuid Setting Self
@@ -887,7 +885,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
     typedef FSettingsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.SetSinglePlayerUuidSettingSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
 

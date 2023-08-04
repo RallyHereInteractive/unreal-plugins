@@ -9,10 +9,15 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "AdditionalJoinParams.h"
 #include "QueueJoinRequest.generated.h"
 
+/** @defgroup RHAPI_QueueJoinRequest RallyHere API Model QueueJoinRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body to enter into a matchmaking queue
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
@@ -45,28 +50,27 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
     /** @brief Sets the value of QueueId */
     void SetQueueId(FString NewValue) { QueueId = NewValue;  }
 
-    /** @brief Additional tags for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FString> AdditionalTags_Optional{  };
-    /** @brief true if AdditionalTags_Optional has been set to a value */
+    FRHAPI_AdditionalJoinParams AdditionalJoinParams_Optional{  };
+    /** @brief true if AdditionalJoinParams_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool AdditionalTags_IsSet{ false };
-    /** @brief Gets the value of AdditionalTags_Optional, regardless of it having been set */
-    TArray<FString>& GetAdditionalTags() { return AdditionalTags_Optional; }
-    /** @brief Gets the value of AdditionalTags_Optional, regardless of it having been set */
-    const TArray<FString>& GetAdditionalTags() const { return AdditionalTags_Optional; }
-    /** @brief Gets the value of AdditionalTags_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FString>& GetAdditionalTags(const TArray<FString>& DefaultValue) const { if (AdditionalTags_IsSet) return AdditionalTags_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of AdditionalTags_Optional and returns true if it has been set, otherwise returns false */
-    bool GetAdditionalTags(TArray<FString>& OutValue) const { if (AdditionalTags_IsSet) OutValue = AdditionalTags_Optional; return AdditionalTags_IsSet; }
-    /** @brief Returns a pointer to AdditionalTags_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FString>* GetAdditionalTagsOrNull() { if (AdditionalTags_IsSet) return &AdditionalTags_Optional; return nullptr; }
-    /** @brief Returns a pointer to AdditionalTags_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FString>* GetAdditionalTagsOrNull() const { if (AdditionalTags_IsSet) return &AdditionalTags_Optional; return nullptr; }
-    /** @brief Sets the value of AdditionalTags_Optional and also sets AdditionalTags_IsSet to true */
-    void SetAdditionalTags(TArray<FString> NewValue) { AdditionalTags_Optional = NewValue; AdditionalTags_IsSet = true; }
-     /** @brief Clears the value of AdditionalTags_Optional and sets AdditionalTags_IsSet to false */
-    void ClearAdditionalTags() { AdditionalTags_IsSet = false; }
+    bool AdditionalJoinParams_IsSet{ false };
+    /** @brief Gets the value of AdditionalJoinParams_Optional, regardless of it having been set */
+    FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() { return AdditionalJoinParams_Optional; }
+    /** @brief Gets the value of AdditionalJoinParams_Optional, regardless of it having been set */
+    const FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() const { return AdditionalJoinParams_Optional; }
+    /** @brief Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& DefaultValue) const { if (AdditionalJoinParams_IsSet) return AdditionalJoinParams_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false */
+    bool GetAdditionalJoinParams(FRHAPI_AdditionalJoinParams& OutValue) const { if (AdditionalJoinParams_IsSet) OutValue = AdditionalJoinParams_Optional; return AdditionalJoinParams_IsSet; }
+    /** @brief Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() { if (AdditionalJoinParams_IsSet) return &AdditionalJoinParams_Optional; return nullptr; }
+    /** @brief Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() const { if (AdditionalJoinParams_IsSet) return &AdditionalJoinParams_Optional; return nullptr; }
+    /** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true */
+    void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
+     /** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
+    void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false; }
 
     /** @brief List of map preferences in order from most desired, to least desired */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -78,3 +82,5 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
     /** @brief Sets the value of MapPreferences */
     void SetMapPreferences(TArray<int32> NewValue) { MapPreferences = NewValue;  }
 };
+
+/** @} */

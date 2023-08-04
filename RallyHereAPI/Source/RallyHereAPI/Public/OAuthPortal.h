@@ -11,21 +11,22 @@
 #include "RallyHereAPIHelpers.h"
 #include "OAuthPortal.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Supported OAuth portals for V1 Login Flow
  */
 UENUM(BlueprintType)
 enum class ERHAPI_OAuthPortal : uint8
 {
-    Google UMETA(ToolTip="An enumeration."),
-    Apple UMETA(ToolTip="An enumeration."),
-    Epic UMETA(ToolTip="An enumeration."),
-    Xbox UMETA(ToolTip="An enumeration."),
-    Psn UMETA(ToolTip="An enumeration."),
-    Nintendo UMETA(ToolTip="An enumeration."),
-    Steam UMETA(ToolTip="An enumeration."),
-    Amazon UMETA(ToolTip="An enumeration."),
-    Twitch UMETA(ToolTip="An enumeration."),
+    Google UMETA(ToolTip="Google OAuth Portal"),
+    Apple UMETA(ToolTip="Apple OAuth Portal"),
+    Epic UMETA(ToolTip="Epic OAuth Portal"),
+    Xbox UMETA(ToolTip="Xbox OAuth Portal"),
+    Psn UMETA(ToolTip="Playstation Network OAuth Portal"),
+    Nintendo UMETA(ToolTip="Nintendo OAuth Portal"),
+    Steam UMETA(ToolTip="Steam OAuth Portal"),
+    Amazon UMETA(ToolTip="Amazon OAuth Portal"),
+    Twitch UMETA(ToolTip="Twitch OAuth Portal"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OAuthPortal& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthPortal& EnumValue);

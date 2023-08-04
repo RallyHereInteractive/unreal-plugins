@@ -69,37 +69,46 @@ bool FRHAPI_PlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("status")))
+    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
     {
-        Status_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("status"), Status_Optional);
+        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
         ParseSuccess &= Status_IsSet;
     }
-    if ((*Object)->HasField(TEXT("message")))
+    const TSharedPtr<FJsonValue> JsonMessageField = (*Object)->TryGetField(TEXT("message"));
+    if (JsonMessageField.IsValid() && !JsonMessageField->IsNull())
     {
-        Message_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("message"), Message_Optional);
+        Message_IsSet = TryGetJsonValue(JsonMessageField, Message_Optional);
         ParseSuccess &= Message_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("platform"), Platform);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("display_name"), DisplayName);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
+    ParseSuccess &= JsonPlatformField.IsValid() && !JsonPlatformField->IsNull() && TryGetJsonValue(JsonPlatformField, Platform);
+    const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
+    ParseSuccess &= JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull() && TryGetJsonValue(JsonDisplayNameField, DisplayName);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
-    if ((*Object)->HasField(TEXT("player_id")))
+    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+    if (JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull())
     {
-        PlayerId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_id"), PlayerId_Optional);
+        PlayerId_IsSet = TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
         ParseSuccess &= PlayerId_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_uuid"), PlayerUuid);
-    if ((*Object)->HasField(TEXT("do_not_disturb")))
+    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+    const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
+    if (JsonDoNotDisturbField.IsValid() && !JsonDoNotDisturbField->IsNull())
     {
-        DoNotDisturb_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("do_not_disturb"), DoNotDisturb_Optional);
+        DoNotDisturb_IsSet = TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
         ParseSuccess &= DoNotDisturb_IsSet;
     }
-    if ((*Object)->HasField(TEXT("last_seen")))
+    const TSharedPtr<FJsonValue> JsonLastSeenField = (*Object)->TryGetField(TEXT("last_seen"));
+    if (JsonLastSeenField.IsValid() && !JsonLastSeenField->IsNull())
     {
-        LastSeen_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("last_seen"), LastSeen_Optional);
+        LastSeen_IsSet = TryGetJsonValue(JsonLastSeenField, LastSeen_Optional);
         ParseSuccess &= LastSeen_IsSet;
     }
 

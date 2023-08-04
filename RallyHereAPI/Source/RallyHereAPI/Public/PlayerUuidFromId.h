@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerUuidFromId.generated.h"
 
+/** @defgroup RHAPI_PlayerUuidFromId RallyHere API Model PlayerUuidFromId
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -44,3 +48,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerUuidFromId : public FRHAPI_Model
     /** @brief Sets the value of Uuid */
     void SetUuid(FGuid NewValue) { Uuid = NewValue;  }
 };
+
+/** @} */

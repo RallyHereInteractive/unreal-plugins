@@ -38,9 +38,10 @@ bool FRHAPI_InventorySessionCreateRequest::FromJson(const TSharedPtr<FJsonValue>
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("session_platform")))
+    const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
+    if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
     {
-        SessionPlatform_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_platform"), SessionPlatform_Optional);
+        SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
         ParseSuccess &= SessionPlatform_IsSet;
     }
 

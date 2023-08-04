@@ -13,8 +13,12 @@
 #include "PriceBreakpoint.h"
 #include "PricePoint.generated.h"
 
+/** @defgroup RHAPI_PricePoint RallyHere API Model PricePoint
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Price Breakpoints (volume pricing).
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The name of the Price Point. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Name_Optional{  };
     /** @brief true if Name_Optional has been set to a value */
@@ -59,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
      /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
     void ClearName() { Name_IsSet = false; }
 
+    /** @brief Forces the quantity to be equal to a quantity on a Price Breakpoint. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool StrictFlag_Optional{  };
     /** @brief true if StrictFlag_Optional has been set to a value */
@@ -85,6 +91,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     /** @brief Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true */
     void SetStrictFlagToDefault() { StrictFlag_Optional = false; StrictFlag_IsSet = true; }
 
+    /** @brief Only allows quantity to be fulfilled up the highest quantity on the Price Breakpoints */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool CapFlag_Optional{  };
     /** @brief true if CapFlag_Optional has been set to a value */
@@ -111,6 +118,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     /** @brief Sets the value of CapFlag_Optional to its default and also sets CapFlag_IsSet to true */
     void SetCapFlagToDefault() { CapFlag_Optional = false; CapFlag_IsSet = true; }
 
+    /** @brief Current Price Breakpoints. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PriceBreakpoint> CurrentBreakpoints_Optional{  };
     /** @brief true if CurrentBreakpoints_Optional has been set to a value */
@@ -133,6 +141,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
      /** @brief Clears the value of CurrentBreakpoints_Optional and sets CurrentBreakpoints_IsSet to false */
     void ClearCurrentBreakpoints() { CurrentBreakpoints_IsSet = false; }
 
+    /** @brief Previous Price Breakpoints. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PriceBreakpoint> PreSaleBreakpoints_Optional{  };
     /** @brief true if PreSaleBreakpoints_Optional has been set to a value */
@@ -177,3 +186,5 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

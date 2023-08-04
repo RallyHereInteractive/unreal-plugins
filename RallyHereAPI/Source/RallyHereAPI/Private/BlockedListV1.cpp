@@ -41,10 +41,14 @@ bool FRHAPI_BlockedListV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_id"), PlayerId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player_uuid"), PlayerUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("blocked"), Blocked);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("page"), Page);
+    const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
+    ParseSuccess &= JsonPlayerIdField.IsValid() && !JsonPlayerIdField->IsNull() && TryGetJsonValue(JsonPlayerIdField, PlayerId);
+    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+    ParseSuccess &= JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid);
+    const TSharedPtr<FJsonValue> JsonBlockedField = (*Object)->TryGetField(TEXT("blocked"));
+    ParseSuccess &= JsonBlockedField.IsValid() && !JsonBlockedField->IsNull() && TryGetJsonValue(JsonBlockedField, Blocked);
+    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
 
     return ParseSuccess;
 }

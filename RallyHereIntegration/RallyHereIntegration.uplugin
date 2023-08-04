@@ -9,16 +9,29 @@
     "Category": "Rally Here",
 	"EnabledByDefault" : true,
 
-    "Modules": [
-        {
-            "Name": "RallyHereIntegration",
-            "Type": "Runtime",
-            "LoadingPhase": "Default",
-            "AdditionalDependencies": [
-                "RallyHereA2S"
-            ]
-        }
-    ],
+	"Modules": [
+		{
+			"Name": "RallyHereGameHostProvider",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "RallyHereIntegration",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"RallyHereGameHostAdapter"
+			]
+		},
+		{
+			"Name": "RallyHereEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"RallyHereIntegration"
+			]
+		}
+	],
 
 	"Plugins": [
 		{
@@ -39,10 +52,6 @@
 		},
 		{
 			"Name": "WebAuth",
-			"Enabled": true
-		},
-		{
-			"Name": "RallyHereA2S",
 			"Enabled": true
 		}
 	]

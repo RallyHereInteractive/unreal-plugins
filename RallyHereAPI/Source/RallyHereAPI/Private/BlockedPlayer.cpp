@@ -37,8 +37,10 @@ bool FRHAPI_BlockedPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("blocked_player_uuid"), BlockedPlayerUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("last_modified_on"), LastModifiedOn);
+    const TSharedPtr<FJsonValue> JsonBlockedPlayerUuidField = (*Object)->TryGetField(TEXT("blocked_player_uuid"));
+    ParseSuccess &= JsonBlockedPlayerUuidField.IsValid() && !JsonBlockedPlayerUuidField->IsNull() && TryGetJsonValue(JsonBlockedPlayerUuidField, BlockedPlayerUuid);
+    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+    ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
 
     return ParseSuccess;
 }

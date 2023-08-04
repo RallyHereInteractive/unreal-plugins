@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "OffsetReset.generated.h"
 
+
 /**
  * @brief An enumeration.
  */

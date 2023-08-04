@@ -12,8 +12,12 @@
 #include "Operation.h"
 #include "Rule.generated.h"
 
+/** @defgroup RHAPI_Rule RallyHere API Model Rule
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A rule to determine which MatchMakingTemplate should be used on a session entering matchmaking
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
@@ -60,3 +64,5 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
     /** @brief Sets the value of Value to its default  */
     void SetValueToDefault() { Value = 0;  }
 };
+
+/** @} */

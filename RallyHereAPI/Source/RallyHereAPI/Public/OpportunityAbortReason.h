@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "OpportunityAbortReason.generated.h"
 
+
 /**
  * @brief An enumeration.
  */

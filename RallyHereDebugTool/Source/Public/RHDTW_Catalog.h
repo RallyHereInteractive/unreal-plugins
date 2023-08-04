@@ -15,13 +15,20 @@ struct FRHDTW_Catalog : public FRH_DebugToolWindow
 	void Do() override;
 	void DoShowClaim(URH_CatalogSubsystem* catalog);
 	void DoShowVendors(URH_CatalogSubsystem* catalog);
+	void DoShowItems(URH_CatalogSubsystem* catalog);
 	void DoShowXpTables(URH_CatalogSubsystem* catalog);
 	void DoShowItemInventoryBucketUseRuleSets(URH_CatalogSubsystem* catalog);
+	void DoShowTimeFrames(URH_CatalogSubsystem* catalog);
 	void DoShowPricePoints(URH_CatalogSubsystem* catalog);
-	void DoShowPricePoint(const URH_CatalogPricePoint* pp);
-	void DoShowPriceBreakpointList(const TArray<URH_CatalogPriceBreakpoint*>& bpl);
+	void DoShowPricePoint(const TPair<FGuid, FRHAPI_PricePoint>& pp);
+	void DoShowPriceBreakpointList(const TArray<FRHAPI_PriceBreakpoint>& pbp);
+
+	bool GetCouponsForItem(URH_CatalogSubsystem* catalog, FRHAPI_Loot LootItem, TArray<URH_CatalogItem*>& Coupons);
 
 	TArray<ANSICHAR> VendorIdInput;
 	TArray<ANSICHAR> PromoCodeInput;
+	int32 ItemIdInput;
 	int32 SelectedInventoryBucketRuleSet;
+
+	TArray<int32> SelectedVendorCouponIndexs;
 };

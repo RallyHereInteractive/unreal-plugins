@@ -33,10 +33,10 @@ void FRHAPI_CreateOrJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
     }
     Writer->WriteIdentifierPrefix(TEXT("session_type"));
     RallyHereAPI::WriteJsonValue(Writer, SessionType);
-    if (SiteId_IsSet)
+    if (RegionId_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("site_id"));
-        RallyHereAPI::WriteJsonValue(Writer, SiteId_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("region_id"));
+        RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -49,18 +49,23 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("client_version"), ClientVersion);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("client_settings"), ClientSettings);
-    if ((*Object)->HasField(TEXT("crossplay_preferences")))
+    const TSharedPtr<FJsonValue> JsonClientVersionField = (*Object)->TryGetField(TEXT("client_version"));
+    ParseSuccess &= JsonClientVersionField.IsValid() && !JsonClientVersionField->IsNull() && TryGetJsonValue(JsonClientVersionField, ClientVersion);
+    const TSharedPtr<FJsonValue> JsonClientSettingsField = (*Object)->TryGetField(TEXT("client_settings"));
+    ParseSuccess &= JsonClientSettingsField.IsValid() && !JsonClientSettingsField->IsNull() && TryGetJsonValue(JsonClientSettingsField, ClientSettings);
+    const TSharedPtr<FJsonValue> JsonCrossplayPreferencesField = (*Object)->TryGetField(TEXT("crossplay_preferences"));
+    if (JsonCrossplayPreferencesField.IsValid() && !JsonCrossplayPreferencesField->IsNull())
     {
-        CrossplayPreferences_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("crossplay_preferences"), CrossplayPreferences_Optional);
+        CrossplayPreferences_IsSet = TryGetJsonValue(JsonCrossplayPreferencesField, CrossplayPreferences_Optional);
         ParseSuccess &= CrossplayPreferences_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_type"), SessionType);
-    if ((*Object)->HasField(TEXT("site_id")))
+    const TSharedPtr<FJsonValue> JsonSessionTypeField = (*Object)->TryGetField(TEXT("session_type"));
+    ParseSuccess &= JsonSessionTypeField.IsValid() && !JsonSessionTypeField->IsNull() && TryGetJsonValue(JsonSessionTypeField, SessionType);
+    const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
+    if (JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull())
     {
-        SiteId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("site_id"), SiteId_Optional);
-        ParseSuccess &= SiteId_IsSet;
+        RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
+        ParseSuccess &= RegionId_IsSet;
     }
 
     return ParseSuccess;

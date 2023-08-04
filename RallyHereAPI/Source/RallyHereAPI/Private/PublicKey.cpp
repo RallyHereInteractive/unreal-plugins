@@ -41,10 +41,14 @@ bool FRHAPI_PublicKey::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("kid"), Kid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("kty"), Kty);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("n"), N);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("e"), E);
+    const TSharedPtr<FJsonValue> JsonKidField = (*Object)->TryGetField(TEXT("kid"));
+    ParseSuccess &= JsonKidField.IsValid() && !JsonKidField->IsNull() && TryGetJsonValue(JsonKidField, Kid);
+    const TSharedPtr<FJsonValue> JsonKtyField = (*Object)->TryGetField(TEXT("kty"));
+    ParseSuccess &= JsonKtyField.IsValid() && !JsonKtyField->IsNull() && TryGetJsonValue(JsonKtyField, Kty);
+    const TSharedPtr<FJsonValue> JsonNField = (*Object)->TryGetField(TEXT("n"));
+    ParseSuccess &= JsonNField.IsValid() && !JsonNField->IsNull() && TryGetJsonValue(JsonNField, N);
+    const TSharedPtr<FJsonValue> JsonEField = (*Object)->TryGetField(TEXT("e"));
+    ParseSuccess &= JsonEField.IsValid() && !JsonEField->IsNull() && TryGetJsonValue(JsonEField, E);
 
     return ParseSuccess;
 }

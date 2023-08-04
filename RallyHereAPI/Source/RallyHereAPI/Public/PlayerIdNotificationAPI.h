@@ -53,28 +53,28 @@ public:
     FPlayerIdNotificationAPI();
     virtual ~FPlayerIdNotificationAPI();
 
-    FHttpRequestPtr PlayeridCreateNotification(const FRequest_PlayeridCreateNotification& Request, const FDelegate_PlayeridCreateNotification& Delegate = FDelegate_PlayeridCreateNotification());
-    FHttpRequestPtr PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate = FDelegate_PlayeridGetNotificationById());
-    FHttpRequestPtr PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate = FDelegate_PlayeridGetNotificationByIdSelf());
-    FHttpRequestPtr PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate = FDelegate_PlayeridGetNotificationsPage());
-    FHttpRequestPtr PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate = FDelegate_PlayeridGetNotificationsPageSelf());
-    FHttpRequestPtr PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate = FDelegate_PlayeridLongPollForNotifications());
-    FHttpRequestPtr PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate = FDelegate_PlayeridLongPollForNotificationsSelf());
+    FHttpRequestPtr PlayeridCreateNotification(const FRequest_PlayeridCreateNotification& Request, const FDelegate_PlayeridCreateNotification& Delegate = FDelegate_PlayeridCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate = FDelegate_PlayeridGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate = FDelegate_PlayeridGetNotificationByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate = FDelegate_PlayeridGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridGetNotificationsPageSelf(const FRequest_PlayeridGetNotificationsPageSelf& Request, const FDelegate_PlayeridGetNotificationsPageSelf& Delegate = FDelegate_PlayeridGetNotificationsPageSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridLongPollForNotifications(const FRequest_PlayeridLongPollForNotifications& Request, const FDelegate_PlayeridLongPollForNotifications& Delegate = FDelegate_PlayeridLongPollForNotifications(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridLongPollForNotificationsSelf(const FRequest_PlayeridLongPollForNotificationsSelf& Request, const FDelegate_PlayeridLongPollForNotificationsSelf& Delegate = FDelegate_PlayeridLongPollForNotificationsSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnPlayeridCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnPlayeridGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnPlayeridGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnPlayeridGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnPlayeridGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnPlayeridLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnPlayeridLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnPlayeridCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridGetNotificationsPageSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPageSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridLongPollForNotificationsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotifications Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridLongPollForNotificationsSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridLongPollForNotificationsSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Create Notification
  *
- * Create new notification for client.  Requires permission to create for a different client
+ * Create new notification for client.  Requires permission to create for a different client  Requires permissions: Any of &#x60;notification:playerid:*&#x60;, &#x60;notification:playerid:write&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridCreateNotification : public FRequest
 {
@@ -109,12 +109,12 @@ struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridCreateNotification(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotification(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id
  *
- * Retrieve a single notification by id  This version can be used for arbitrary clients with permission
+ * Retrieve a single notification by id  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:playerid:*&#x60;,&#x60;notification:playerid:read&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationById : public FRequest
 {
@@ -149,12 +149,12 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridGetNotificationById(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationById(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notification By Id Self
  *
- * Retrieve a single notification by id
+ * Retrieve a single notification by id  Requires permissions: Any of &#x60;notification:playerid:*&#x60;,&#x60;notification:playerid:read&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationByIdSelf : public FRequest
 {
@@ -188,12 +188,12 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridGetNotificationByIdSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page
  *
- * Get recent notifications ordered from the newest to the oldest.  It is important stress that this endpoint returns notifications in reverse order from a stream of notifications. The first notification returned from this will be the newest one we can find, and older ones will be further down the page (or on later pages).  This API is useful for displaying a list of the most recent notifications to the user, only requesting further pages when the user requests a bigger list.  Client are expected to poll this endpoint regularly.  This version can be used for arbitrary clients with permission
+ * Get recent notifications ordered from the newest to the oldest.  It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API. The first notification returned from this will be the newest one we can find, and older ones will be further down the page (or on later pages).  This API is useful for displaying a list of the most recent notifications to the user, only requesting further pages when the user requests a bigger list.  Client are expected to poll this endpoint regularly.  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:playerid:*&#x60;,&#x60;notification:playerid:read&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPage : public FRequest
 {
@@ -234,12 +234,12 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridGetNotificationsPage(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPage(InRequest, InDelegate, Priority); }
 };
 
 /* Get Notifications Page Self
  *
- * Get recent notifications ordered from the newest to the oldest.  It is important stress that this endpoint returns notifications in reverse order from a stream of notifications. The first notification returned from this will be the newest one we can find, and older ones will be further down the page (or on later pages).  This API is useful for displaying a list of the most recent notifications to the user, only requesting further pages when the user requests a bigger list.  Client are expected to poll this endpoint regularly.
+ * Get recent notifications ordered from the newest to the oldest.  It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API. The first notification returned from this will be the newest one we can find, and older ones will be further down the page (or on later pages).  This API is useful for displaying a list of the most recent notifications to the user, only requesting further pages when the user requests a bigger list.  Client are expected to poll this endpoint regularly.  Requires permissions: Any of &#x60;notification:playerid:*&#x60;,&#x60;notification:playerid:read&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPageSelf : public FRequest
 {
@@ -279,12 +279,12 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridGetNotificationsPageSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications
  *
- * This endpoint will return notifications newer than &#x60;exclude_before&#x60;.  This endpoint returns notifications from earlier to newer, which is the opposite of the paging API.  This operation is a long-poll.  That means we will keep the connection open until we get any notification or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return the notifications found.  This version can be used for arbitrary clients with permission
+ * This endpoint will return notifications newer than &#x60;exclude_before&#x60;.  This endpoint returns notifications from older to newer, which is the opposite of the paging API.  This operation is a long-poll.  That means we will keep the connection open until we get any notification or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return the notifications found.  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:playerid:*&#x60;,&#x60;notification:playerid:read&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequest
 {
@@ -301,7 +301,7 @@ struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequ
     TOptional<int32> MaxPageSize;
     /* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
     TOptional<FString> ExcludeBefore;
-    /* When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest */
+    /* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
     TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
     /* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
     TOptional<int32> Deadline;
@@ -326,12 +326,12 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridLongPollForNotifications(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotifications(InRequest, InDelegate, Priority); }
 };
 
 /* Long Poll For Notifications Self
  *
- * This endpoint will return notifications newer than &#x60;exclude_before&#x60;.  This endpoint returns notifications from earlier to newer, which is the opposite of the paging API.  This operation is a long-poll.  That means we will keep the connection open until we get any notification or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return the notifications found.
+ * This endpoint will return notifications newer than &#x60;exclude_before&#x60;.  This endpoint returns notifications from older to newer, which is the opposite of the paging API.  This operation is a long-poll.  That means we will keep the connection open until we get any notification or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return the notifications found.  Requires permissions: Any of &#x60;notification:playerid:*&#x60;,&#x60;notification:playerid:read&#x60;
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public FRequest
 {
@@ -347,7 +347,7 @@ struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public F
     TOptional<int32> MaxPageSize;
     /* All notifications including and before this (chronologically) provided id will be ignored when returning results.  You cannot depend on the format of this string, and it must be considered opaque */
     TOptional<FString> ExcludeBefore;
-    /* When `exclude_before` is not found or not given, begin streaming messages from the earliest available, or the latest */
+    /* When `exclude_before` is not found in the stream or not given, begin streaming messages from the earliest/latest message */
     TOptional<ERHAPI_OffsetReset> OffsetResetStrategy;
     /* We will try to the best of our ability to return by this deadline, even when we have no notifications.  Value should be in seconds */
     TOptional<int32> Deadline;
@@ -372,7 +372,7 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.PlayeridLongPollForNotificationsSelf(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
 };
 
 

@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "DiscoveryResponse.generated.h"
 
+/** @defgroup RHAPI_DiscoveryResponse RallyHere API Model DiscoveryResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Contains information that aids the client in communicating with the connection managers.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_DiscoveryResponse : public FRHAPI_Model
@@ -35,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_DiscoveryResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The list of addresses for the connection managers */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FString> Addresses{  };
     /** @brief Gets the value of Addresses */
@@ -44,6 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_DiscoveryResponse : public FRHAPI_Model
     /** @brief Sets the value of Addresses */
     void SetAddresses(TArray<FString> NewValue) { Addresses = NewValue;  }
 
+    /** @brief The status of the connection managers */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString ServerStatus_Optional{  };
     /** @brief true if ServerStatus_Optional has been set to a value */
@@ -70,6 +76,7 @@ struct RALLYHEREAPI_API FRHAPI_DiscoveryResponse : public FRHAPI_Model
     /** @brief Sets the value of ServerStatus_Optional to its default and also sets ServerStatus_IsSet to true */
     void SetServerStatusToDefault() { ServerStatus_Optional = TEXT("unknown"); ServerStatus_IsSet = true; }
 
+    /** @brief The command line arguments used to be used by the client */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString CommandLineArgs_Optional{  };
     /** @brief true if CommandLineArgs_Optional has been set to a value */
@@ -96,3 +103,5 @@ struct RALLYHEREAPI_API FRHAPI_DiscoveryResponse : public FRHAPI_Model
     /** @brief Sets the value of CommandLineArgs_Optional to its default and also sets CommandLineArgs_IsSet to true */
     void SetCommandLineArgsToDefault() { CommandLineArgs_Optional = TEXT(" "); CommandLineArgs_IsSet = true; }
 };
+
+/** @} */

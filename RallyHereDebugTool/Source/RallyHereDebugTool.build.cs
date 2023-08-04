@@ -38,7 +38,8 @@ public class RallyHereDebugTool : ModuleRules
 			"SlateCore",
 			"Slate",
 			"OnlineSubsystem",
-            "DeveloperSettings",
+			"OnlineSubsystemUtils",
+			"DeveloperSettings",
         });
     }
 }

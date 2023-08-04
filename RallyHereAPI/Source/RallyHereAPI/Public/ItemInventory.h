@@ -13,8 +13,12 @@
 #include "InventoryRecord.h"
 #include "ItemInventory.generated.h"
 
+/** @defgroup RHAPI_ItemInventory RallyHere API Model ItemInventory
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Inventory of a particular Item for a Player organized by Inventory ID.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_ItemInventory : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_ItemInventory : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Inventory Records for this Item Inventory. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_InventoryRecord> Records_Optional{  };
     /** @brief true if Records_Optional has been set to a value */
@@ -81,3 +86,5 @@ struct RALLYHEREAPI_API FRHAPI_ItemInventory : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

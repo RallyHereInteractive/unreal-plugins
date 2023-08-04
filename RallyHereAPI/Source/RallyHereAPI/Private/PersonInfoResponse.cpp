@@ -48,19 +48,22 @@ bool FRHAPI_PersonInfoResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("person_id")))
+    const TSharedPtr<FJsonValue> JsonPersonIdField = (*Object)->TryGetField(TEXT("person_id"));
+    if (JsonPersonIdField.IsValid() && !JsonPersonIdField->IsNull())
     {
-        PersonId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("person_id"), PersonId_Optional);
+        PersonId_IsSet = TryGetJsonValue(JsonPersonIdField, PersonId_Optional);
         ParseSuccess &= PersonId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("active_player_id")))
+    const TSharedPtr<FJsonValue> JsonActivePlayerIdField = (*Object)->TryGetField(TEXT("active_player_id"));
+    if (JsonActivePlayerIdField.IsValid() && !JsonActivePlayerIdField->IsNull())
     {
-        ActivePlayerId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("active_player_id"), ActivePlayerId_Optional);
+        ActivePlayerId_IsSet = TryGetJsonValue(JsonActivePlayerIdField, ActivePlayerId_Optional);
         ParseSuccess &= ActivePlayerId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("email")))
+    const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
+    if (JsonEmailField.IsValid() && !JsonEmailField->IsNull())
     {
-        Email_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("email"), Email_Optional);
+        Email_IsSet = TryGetJsonValue(JsonEmailField, Email_Optional);
         ParseSuccess &= Email_IsSet;
     }
 

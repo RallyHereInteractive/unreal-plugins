@@ -13,8 +13,12 @@
 #include "CrossplayPreferences.h"
 #include "CreateOrJoinRequest.generated.h"
 
+/** @defgroup RHAPI_CreateOrJoinRequest RallyHere API Model CreateOrJoinRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body for a player to join a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
@@ -88,30 +92,28 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     /** @brief Sets the value of SessionType */
     void SetSessionType(FString NewValue) { SessionType = NewValue;  }
 
-    /** @brief Preferred site for the instance and match to take place in */
+    /** @brief Preferred region for the instance and match to take place in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 SiteId_Optional{  };
-    /** @brief true if SiteId_Optional has been set to a value */
+    FString RegionId_Optional{  };
+    /** @brief true if RegionId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool SiteId_IsSet{ false };
-    /** @brief Gets the value of SiteId_Optional, regardless of it having been set */
-    int32& GetSiteId() { return SiteId_Optional; }
-    /** @brief Gets the value of SiteId_Optional, regardless of it having been set */
-    const int32& GetSiteId() const { return SiteId_Optional; }
-    /** @brief Gets the value of SiteId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetSiteId(const int32& DefaultValue) const { if (SiteId_IsSet) return SiteId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of SiteId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSiteId(int32& OutValue) const { if (SiteId_IsSet) OutValue = SiteId_Optional; return SiteId_IsSet; }
-    /** @brief Returns a pointer to SiteId_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetSiteIdOrNull() { if (SiteId_IsSet) return &SiteId_Optional; return nullptr; }
-    /** @brief Returns a pointer to SiteId_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetSiteIdOrNull() const { if (SiteId_IsSet) return &SiteId_Optional; return nullptr; }
-    /** @brief Sets the value of SiteId_Optional and also sets SiteId_IsSet to true */
-    void SetSiteId(int32 NewValue) { SiteId_Optional = NewValue; SiteId_IsSet = true; }
-     /** @brief Clears the value of SiteId_Optional and sets SiteId_IsSet to false */
-    void ClearSiteId() { SiteId_Optional = 0; SiteId_IsSet = false; }
-    /** @brief Returns true if SiteId_Optional is set and matches the default value */
-    bool IsSiteIdDefaultValue() const { return SiteId_IsSet && SiteId_Optional == 0; }
-    /** @brief Sets the value of SiteId_Optional to its default and also sets SiteId_IsSet to true */
-    void SetSiteIdToDefault() { SiteId_Optional = 0; SiteId_IsSet = true; }
+    bool RegionId_IsSet{ false };
+    /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
+    FString& GetRegionId() { return RegionId_Optional; }
+    /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
+    const FString& GetRegionId() const { return RegionId_Optional; }
+    /** @brief Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet) OutValue = RegionId_Optional; return RegionId_IsSet; }
+    /** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetRegionIdOrNull() { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
+    /** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
+    /** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
+    void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+     /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+    void ClearRegionId() { RegionId_IsSet = false; }
 };
+
+/** @} */

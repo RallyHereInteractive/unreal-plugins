@@ -13,8 +13,12 @@
 #include "InventoryBucket.h"
 #include "CreateInventoryRequest.generated.h"
 
+/** @defgroup RHAPI_CreateInventoryRequest RallyHere API Model CreateInventoryRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Request to Create a new Inventory.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Inventory Bucket for this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryBucket Bucket_Optional{  };
     /** @brief true if Bucket_Optional has been set to a value */
@@ -59,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
      /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
     void ClearBucket() { Bucket_IsSet = false; }
 
+    /** @brief Count for this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 Count_Optional{  };
     /** @brief true if Count_Optional has been set to a value */
@@ -108,6 +114,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
      /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
     void ClearExpires() { Expires_IsSet = false; }
 
+    /** @brief Arbitrary data map that can be set to add additional data to Inventory. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
@@ -165,3 +172,5 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
      /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
     void ClearType() { Type_IsSet = false; }
 };
+
+/** @} */

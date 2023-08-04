@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "SessionEventCreateRequest.generated.h"
 
+/** @defgroup RHAPI_SessionEventCreateRequest RallyHere API Model SessionEventCreateRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body to create an event about a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionEventCreateRequest : public FRHAPI_Model
@@ -105,3 +109,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionEventCreateRequest : public FRHAPI_Model
     /** @brief Sets the value of Timestamp */
     void SetTimestamp(FDateTime NewValue) { Timestamp = NewValue;  }
 };
+
+/** @} */

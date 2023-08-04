@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "CacheInfo.generated.h"
 
+/** @defgroup RHAPI_CacheInfo RallyHere API Model CacheInfo
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Cache information for the resource it is attached to. The etag value can be used with the If-None-Match and If-Match headers
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
@@ -66,3 +70,5 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
      /** @brief Clears the value of StrRep_Optional and sets StrRep_IsSet to false */
     void ClearStrRep() { StrRep_IsSet = false; }
 };
+
+/** @} */

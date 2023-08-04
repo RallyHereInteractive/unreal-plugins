@@ -10,11 +10,16 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "Input.h"
+#include "Platform.h"
 #include "PlatformID.h"
 #include "ClientSettings.generated.h"
 
+/** @defgroup RHAPI_ClientSettings RallyHere API Model ClientSettings
+ *  @{
+ */
+
 /**
- * @brief Which input type and platform the client is using
+ * @brief A player&#39;s platform and input settings
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
@@ -37,15 +42,51 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Which platform this client is one */
+    /** @brief DEPRECATED. Use 'platform' instead. Id for which platform this client is on. ID will be ignored if 'platform' is given. At least one of the two is required */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_PlatformID PlatformId{  };
-    /** @brief Gets the value of PlatformId */
-    ERHAPI_PlatformID& GetPlatformId() { return PlatformId; }
-    /** @brief Gets the value of PlatformId */
-    const ERHAPI_PlatformID& GetPlatformId() const { return PlatformId; }
-    /** @brief Sets the value of PlatformId */
-    void SetPlatformId(ERHAPI_PlatformID NewValue) { PlatformId = NewValue;  }
+    ERHAPI_PlatformID PlatformId_Optional{  };
+    /** @brief true if PlatformId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PlatformId_IsSet{ false };
+    /** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
+    ERHAPI_PlatformID& GetPlatformId() { return PlatformId_Optional; }
+    /** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
+    const ERHAPI_PlatformID& GetPlatformId() const { return PlatformId_Optional; }
+    /** @brief Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_PlatformID& GetPlatformId(const ERHAPI_PlatformID& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlatformId(ERHAPI_PlatformID& OutValue) const { if (PlatformId_IsSet) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
+    /** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_PlatformID* GetPlatformIdOrNull() { if (PlatformId_IsSet) return &PlatformId_Optional; return nullptr; }
+    /** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_PlatformID* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return &PlatformId_Optional; return nullptr; }
+    /** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true */
+    void SetPlatformId(ERHAPI_PlatformID NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; }
+     /** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
+    void ClearPlatformId() { PlatformId_IsSet = false; }
+
+    /** @brief Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_Platform Platform_Optional{  };
+    /** @brief true if Platform_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Platform_IsSet{ false };
+    /** @brief Gets the value of Platform_Optional, regardless of it having been set */
+    ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
+    /** @brief Gets the value of Platform_Optional, regardless of it having been set */
+    const ERHAPI_Platform& GetPlatform() const { return Platform_Optional; }
+    /** @brief Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_Platform& GetPlatform(const ERHAPI_Platform& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
+    /** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+    /** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+    /** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
+    void SetPlatform(ERHAPI_Platform NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+     /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+    void ClearPlatform() { Platform_IsSet = false; }
 
     /** @brief Which input type this client is using */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -57,3 +98,5 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
     /** @brief Sets the value of Input */
     void SetInput(ERHAPI_Input NewValue) { Input = NewValue;  }
 };
+
+/** @} */

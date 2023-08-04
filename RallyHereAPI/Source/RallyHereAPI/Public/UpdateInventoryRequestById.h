@@ -12,8 +12,12 @@
 #include "InventoryBucket.h"
 #include "UpdateInventoryRequestById.generated.h"
 
+/** @defgroup RHAPI_UpdateInventoryRequestById RallyHere API Model UpdateInventoryRequestById
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Request to Update Inventory by an existing Inventory ID. If the Inventory entry does not exist, then the request will fail.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Inventory Bucket for this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryBucket Bucket_Optional{  };
     /** @brief true if Bucket_Optional has been set to a value */
@@ -58,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
      /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
     void ClearBucket() { Bucket_IsSet = false; }
 
+    /** @brief Count for this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 Count_Optional{  };
     /** @brief true if Count_Optional has been set to a value */
@@ -107,6 +113,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
      /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
     void ClearExpires() { Expires_IsSet = false; }
 
+    /** @brief Arbitrary data map that can be set to add additional data to Inventory. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
@@ -129,6 +136,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief Item ID for this Inventory Operation. If the Item ID is not set during an Update Inventory Request, then the Item ID will not be modified on the existing Inventory Record. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ItemId_Optional{  };
     /** @brief true if ItemId_Optional has been set to a value */
@@ -155,6 +163,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
     /** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
     void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
 
+    /** @brief Inventory ID for this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid InventoryId{  };
     /** @brief Gets the value of InventoryId */
@@ -164,3 +173,5 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequestById : public FRHAPI_Model
     /** @brief Sets the value of InventoryId */
     void SetInventoryId(FGuid NewValue) { InventoryId = NewValue;  }
 };
+
+/** @} */

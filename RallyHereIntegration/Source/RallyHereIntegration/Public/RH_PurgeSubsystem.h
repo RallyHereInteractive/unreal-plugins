@@ -12,107 +12,102 @@
 
 #define HOURS_TO_ACCOUNT_FOR_CLOCK_DRIFT 1
 
-USTRUCT(BlueprintType)
-struct FRH_ErrorInfo
-{
-	GENERATED_BODY()
-	
-	UPROPERTY(BlueprintReadOnly, Category = "Error")
-	int32 ResponseCode;
-	UPROPERTY(BlueprintReadOnly, Category = "Error")
-	FString ResponseContent;
-
-	FRH_ErrorInfo() : 
-		ResponseCode(0),
-		ResponseContent(TEXT(""))
-	{
-	}
-
-	void ImportErrorInfo(const RallyHereAPI::FResponse& Response)
-	{
-		if (Response.GetHttpResponse().IsValid())
-		{
-			const auto HttpResp = Response.GetHttpResponse();
-			ResponseCode = HttpResp->GetResponseCode();
-			ResponseContent = HttpResp->GetContentAsString();
-		}
-	}
-};
-
-USTRUCT(BlueprintType)
-struct FRH_PurgeStatus
-{
-	GENERATED_BODY()
-	
-	UPROPERTY(BlueprintReadOnly, Category = "Purge")
-	FGuid PersonId;
-	UPROPERTY(BlueprintReadOnly, Category = "Purge")
-	FString PurgeStatus;
-	UPROPERTY(BlueprintReadOnly, Category = "Purge")
-	FDateTime PurgeOn;
-	UPROPERTY(BlueprintReadOnly, Category = "Purge")
-	FDateTime CreatedOn;
-	UPROPERTY(BlueprintReadOnly, Category = "Purge")
-	FDateTime LastModifiedOn;
-
-	void ImportAPIStatus(const FRHAPI_PurgeResponse& Response)
-    {
-    	PersonId = Response.PersonId;
-    	PurgeStatus = Response.Status;
-    	PurgeOn = Response.PurgeOn;
-    	CreatedOn = Response.CreatedOn;
-    	LastModifiedOn = Response.LastModifiedOn;
-    }
-};
-
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnPurgeStatusUpdatedDynamicDelegate, bool, bSuccess, FRH_PurgeStatus, PurgeStatus, FRH_ErrorInfo, Error);
-DECLARE_DELEGATE_ThreeParams(FRH_OnPurgeStatusUpdatedDelegate, bool, FRH_PurgeStatus, FRH_ErrorInfo);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnPurgeStatusUpdatedDelegateBlock, FRH_OnPurgeStatusUpdatedDelegate, FRH_OnPurgeStatusUpdatedDynamicDelegate, bool, FRH_PurgeStatus, FRH_ErrorInfo);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnPurgeStatusUpdatedDynamicDelegate, bool, bSuccess, FRHAPI_PurgeResponse, PurgeStatus, FRH_ErrorInfo, Error);
+DECLARE_DELEGATE_ThreeParams(FRH_OnPurgeStatusUpdatedDelegate, bool, FRHAPI_PurgeResponse, FRH_ErrorInfo);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnPurgeStatusUpdatedDelegateBlock, FRH_OnPurgeStatusUpdatedDelegate, FRH_OnPurgeStatusUpdatedDynamicDelegate, bool, FRHAPI_PurgeResponse, FRH_ErrorInfo);
 
+/** @defgroup Purge RallyHere Purge
+ *  @{
+ */
 
+/**
+ * @brief Subsystem to manage purging a players account.
+ */
 UCLASS(Config=RallyHereIntegration, DefaultConfig)
 class RALLYHEREINTEGRATION_API URH_PurgeSubsystem : public URH_LocalPlayerSubsystemPlugin
 {
     GENERATED_BODY()
 public:
+	/**
+	 * @brief Initialize the subsystem.
+	 */
     virtual void Initialize() override;
+	/**
+	 * @brief Safely tears down the subsystem.
+	 */
     virtual void Deinitialize() override;
-
+	/**
+	 * @brief Requests a purge for the local player at a specific time.
+	 * @param [in] PurgeTime The exact time to complete the purge.
+	 * @param [in] Delegate Callback with the current status of the purge request.
+	 */
+	bool EnqueueMeForPurge(FDateTime PurgeTime, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(TOptional<FDateTime>(PurgeTime), Delegate); };
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Enqueue Me for Purge with Purge Time", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_EnqueueMeForPurgeWithPurgeTime(FDateTime PurgeTime, const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return EnqueueMeForPurge(PurgeTime, Delegate); };
-	bool EnqueueMeForPurge(FDateTime PurgeTime, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate())  { return EnqueueMeForPurge(TOptional<FDateTime>(PurgeTime), Delegate); };
-
+	/**
+	 * @brief Requests a purge for the local player, uses a configured default amount of time til purge from request.
+	 * @param [in] Delegate Callback with the current status of the purge request.
+	 */
+	bool EnqueueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(TOptional<FDateTime>(), Delegate); };
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Enqueue Me for Purge", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_EnqueueMeForPurge(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return EnqueueMeForPurge(Delegate); };
-	bool EnqueueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(TOptional<FDateTime>(), Delegate); };
-
+	/**
+	 * @brief Requests a purge for the local player that will be resolved immediately.
+	 * @param [in] Delegate Callback with the current status of the purge request.
+	 */
+	bool PurgeMeImmediately(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(FDateTime::UtcNow() - FTimespan::FromHours(HOURS_TO_ACCOUNT_FOR_CLOCK_DRIFT), Delegate); };
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Purge Me Immediately", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_PurgeMeImmediately(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return PurgeMeImmediately(Delegate); };
-	bool PurgeMeImmediately(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate()) { return EnqueueMeForPurge(FDateTime::UtcNow() - FTimespan::FromHours(HOURS_TO_ACCOUNT_FOR_CLOCK_DRIFT), Delegate); };
-	
+	/**
+	 * @brief Requests to clear the purge request for the local play.
+	 * @param [in] Delegate Callback with the current status of the purge request.
+	 */
+	bool DequeueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate());
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Dequeue Me for Purge", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_DequeueMeForPurge(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return DequeueMeForPurge(Delegate); };
-	bool DequeueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate());
-	
+	/**
+	 * @brief Requests the status of a purge for the local player.
+	 * @param [in] Delegate Callback with the current status of the purge request.
+	 */
+	bool QueryMyPurgeStatus(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate());
 	UFUNCTION(BlueprintCallable, Category = "Purge", meta = (DisplayName = "Get My Purge Status", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDynamicDelegate& Delegate) { return QueryMyPurgeStatus(Delegate); };
-	bool QueryMyPurgeStatus(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate = FRH_OnPurgeStatusUpdatedDelegate());
-
+	/**
+	 * @brief Gets the local players Purge Status.
+	 */
 	UFUNCTION(BlueprintGetter, Category = "Purge")
-	FRH_PurgeStatus GetMyPurgeStatus() const { return PurgeStatus; }; 
+	FRHAPI_PurgeResponse GetMyPurgeStatus() const { return PurgeStatus; };
 
-private:
+protected:
+	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
     virtual void OnUserChanged() override;
-
-	bool EnqueueMeForPurge(TOptional<FDateTime> PurgeTime, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
-	
-    void OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge& Resp,
-                          FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
-    void OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForPurge& Resp,
-                           FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
-    void OnGetMyPurgeStatus(const RallyHereAPI::FResponse_GetQueuePurgeStatusForMe& Resp,
-                           FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
-
-	FRH_PurgeStatus PurgeStatus; 
+	/**
+	* @brief Handles the response to a Queue Me For Purge call
+	* @param [in] Resp Response given for the call
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	*/
+	virtual bool EnqueueMeForPurge(TOptional<FDateTime> PurgeTime, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
+	/**
+	* @brief Handles the response to a Purge Me call
+	* @param [in] Resp Response given for the call
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	*/
+    virtual void OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge& Resp, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
+	/**
+	* @brief Handles the response to a Dequeue Me For Purge call
+	* @param [in] Resp Response given for the call
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	*/
+    virtual void OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForPurge& Resp, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
+	/**
+	* @brief Handles the response to a Get Purge Status call
+	* @param [in] Resp Response given for the call
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	*/
+    virtual void OnGetMyPurgeStatus(const RallyHereAPI::FResponse_GetQueuePurgeStatusForMe& Resp, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate);
+	/** @brief Current Purge Status */
+	FRHAPI_PurgeResponse PurgeStatus;
 };
+
+/** @} */

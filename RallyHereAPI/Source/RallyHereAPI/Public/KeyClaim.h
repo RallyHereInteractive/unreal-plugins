@@ -12,6 +12,10 @@
 #include "InventoryPortal.h"
 #include "KeyClaim.generated.h"
 
+/** @defgroup RHAPI_KeyClaim RallyHere API Model KeyClaim
+ *  @{
+ */
+
 /**
  * @brief A KeyClaim is a reward a player for fulfilling requirements of an eternal marketing campaign. Once the player has completed the requirements of the campaign and have been assigned a sku of the campaign by the Platform, invoke Process Key Entitlements to consume the sku from the Platform for a Key Claim.
  */
@@ -165,7 +169,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
      /** @brief Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false */
     void ClearExternalKeyCampaignUuid() { ExternalKeyCampaignUuid_IsSet = false; }
 
-    /** @brief This can be used to allow the player to claim different types based on their preferrence.hile we don't have requirement for what should contain, it must match a key type assigned to the external campaign. */
+    /** @brief This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString ExternalKeyType_Optional{  };
     /** @brief true if ExternalKeyType_Optional has been set to a value */
@@ -234,3 +238,5 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
      /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
     void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; }
 };
+
+/** @} */

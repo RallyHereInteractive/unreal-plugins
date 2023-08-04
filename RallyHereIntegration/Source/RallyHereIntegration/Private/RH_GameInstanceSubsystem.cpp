@@ -15,6 +15,7 @@
 #include "RH_SessionBrowser.h"
 #include "RH_MatchmakingBrowser.h"
 
+
 void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -24,29 +25,29 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	// Create Subsystem plugins
 	if (bEnableGameSessions)
 	{
-		SessionSubsystem = AddSubsystemPlugin<URH_GameInstanceSessionSubsystem>();
+		SessionSubsystem = AddSubsystemPlugin<URH_GameInstanceSessionSubsystem>(GetDefault<URH_IntegrationSettings>()->GameInstanceSessionInfoSubsystemClass);
 
 		if (DEFAULT_IsServerBootstrappingEnabled())
 		{
-			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>();
+			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>(GetDefault<URH_IntegrationSettings>()->GameInstanceServerBootstrappermClass);
 		}
 		else if (DEFAULT_IsClientBootstrappingEnabled())
 		{
-			ClientBootstrapper = AddSubsystemPlugin<URH_GameInstanceClientBootstrapper>();
+			ClientBootstrapper = AddSubsystemPlugin<URH_GameInstanceClientBootstrapper>(GetDefault<URH_IntegrationSettings>()->GameInstanceClientBootstrapperClass);
 		}
 	}
-
-	PlayerInfoSubsystem = AddSubsystemPlugin<URH_PlayerInfoSubsystem>();
-	CatalogSubsystem = AddSubsystemPlugin<URH_CatalogSubsystem>();
-	ConfigSubsystem = AddSubsystemPlugin<URH_ConfigSubsystem>();
+	
+	PlayerInfoSubsystem = AddSubsystemPlugin<URH_PlayerInfoSubsystem>(GetDefault<URH_IntegrationSettings>()->PlayerInfoSubsystemClass);
+	CatalogSubsystem = AddSubsystemPlugin<URH_CatalogSubsystem>(GetDefault<URH_IntegrationSettings>()->CatalogSubsystemClass);
+	ConfigSubsystem = AddSubsystemPlugin<URH_ConfigSubsystem>(GetDefault<URH_IntegrationSettings>()->ConfigSubsystemClass);
 
 	if (bEnableSessionBrowser)
 	{
-		SessionSearchCache = AddSubsystemPlugin<URH_SessionBrowserCache>();
+		SessionSearchCache = AddSubsystemPlugin<URH_SessionBrowserCache>(GetDefault<URH_IntegrationSettings>()->SessionBrowserCacheClass);
 	}
 	if (bEnableMatchmakingBrowser)
 	{
-		MatchmakingCache = AddSubsystemPlugin<URH_MatchmakingBrowserCache>();
+		MatchmakingCache = AddSubsystemPlugin<URH_MatchmakingBrowserCache>(GetDefault<URH_IntegrationSettings>()->MatchmakingBrowserCacheClass);
 	}
 
 	// Initialize all plugins
@@ -90,32 +91,45 @@ void URH_GameInstanceSubsystem::GameModePreloginEvent(class AGameModeBase* GameM
 		{
 			if (Client->PlayerId == NewPlayer)
 			{
-				RequestURL = Client->RequestURL;
-				
-				auto* pRH_Conn = Cast<URH_IpConnection>(Client);
-				if (pRH_Conn != nullptr)
-				{
-					bool bFound = false;
-					bool bValid = false;;
-					pRH_Conn->ImportPlayerOptionsfromURL(bFound, bValid);
-
-					if (bRequireImportedPlayerIdsForJoining && !bFound)
-					{
-						ErrorMessage = TEXT("Could not import player options from URL");
-						return;
-					}
-
-					//if it is a game type of world, check required id flag (for now, editor may not have valid IDs for PIE, etc)
-					if (World->WorldType == EWorldType::Game)
-					{
-						if (bRequireValidPlayerIdsForJoining && !bValid)
-						{
-							ErrorMessage = TEXT("Imported player ids are not valid");
-							return;
-						}
-					}
-				}
+				ValidateIncomingConnection(Client, ErrorMessage);
 				break;
+			}
+		}
+	}
+}
+
+bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Connection, FString& ErrorMessage) const
+{
+	if (Connection == nullptr)
+	{
+		ErrorMessage = TEXT("Connection is null");
+		return false;
+	}
+
+	// find the player connection and import any player options desired
+	auto* World = GetGameInstance()->GetWorld();
+	FString RequestURL = Connection->RequestURL;
+
+	auto* pRH_Conn = Cast<URH_IpConnection>(Connection);
+	if (pRH_Conn != nullptr)
+	{
+		bool bFound = false;
+		bool bValid = false;;
+		pRH_Conn->ImportPlayerOptionsfromURL(bFound, bValid);
+
+		if (bRequireImportedPlayerIdsForJoining && !bFound)
+		{
+			ErrorMessage = TEXT("Could not import player options from URL");
+			return false;
+		}
+
+		//if it is a game type of world, check required id flag (for now, editor may not have valid IDs for PIE, etc)
+		if (World->WorldType == EWorldType::Game)
+		{
+			if (bRequireValidPlayerIdsForJoining && !bValid)
+			{
+				ErrorMessage = TEXT("Imported player ids are not valid");
+				return false;
 			}
 		}
 	}
@@ -150,9 +164,11 @@ void URH_GameInstanceSubsystem::GameModePreloginEvent(class AGameModeBase* GameM
 				if (SessionSecurityToken != nullptr && *SessionSecurityToken != LoginSecurityToken)
 				{
 					ErrorMessage = TEXT("RH Security Token mismatch");
-					return;
+					return false;
 				}
 			}
 		}
 	}
+
+	return true;
 }

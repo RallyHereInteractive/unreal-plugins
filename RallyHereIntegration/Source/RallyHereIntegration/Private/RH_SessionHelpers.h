@@ -2,46 +2,176 @@
 #pragma once
 
 #include "RH_SessionData.h"
+#include "RallyHereAPIHelpers.h"
+#include "OnlineSubsystem.h"
 
 // auth context support
 class FRH_SessionHelper : public FRH_AsyncTaskHelper
 {
 protected:
-	FRH_SessionHelper(FRH_SessionOwnerPtr InSessionOwner)
-		: FRH_AsyncTaskHelper()
+	FRH_SessionHelper(FRH_SessionOwnerPtr InSessionOwner, int32 InPriority)
+		: FRH_AsyncTaskHelper(InPriority)
 		, SessionOwner(InSessionOwner)
 	{
 	}
-	FAuthContextPtr GetAuthContext() const;
+
+	TSharedPtr<RallyHereAPI::FAuthContext> GetAuthContext() const
+	{
+		if (SessionOwner.IsValid())
+		{
+			return SessionOwner->GetSessionAuthContext();
+		}
+
+		return nullptr;
+	}
 
 	FRH_SessionOwnerPtr SessionOwner;
 };
 
-// Boilerplate class that does a session lookup and completion, for use after modifying a session
-class FRH_SessionModifierHelper : public FRH_SessionHelper
+// Boilerplate class that supports running the RHSession's internal poll and waiting on a result (deduplicated and throttled, but requires a pre-existing RHSession)
+class FRH_SessionPollHelper : public FRH_SessionHelper
 {
 protected:
-	FRH_SessionModifierHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId)
-		: FRH_SessionHelper(InSessionOwner)
+	FRH_SessionPollHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, int32 InPriority)
+		: FRH_SessionHelper(InSessionOwner, InPriority)
 		, SessionId(InSessionId)
 	{
 	}
 
-	void DoSessionLookup();
-	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp);
+
+	void DoSessionLookup()
+	{
+		if (SessionOwner.IsValid())
+		{
+			auto* PolledSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+
+			if (PolledSession != nullptr)
+			{
+				PolledSession->AddDeferredPoll(FRH_DeferredSessionPoll(FRH_DeferredSessionPoll::Type::Modification, FRH_PollCompleteFunc::CreateSP(this, &FRH_SessionPollHelper::OnSessionPollComplete)));
+			}
+			else
+			{
+				Failed(TEXT("Could not find session"));
+			}
+		}
+		else
+		{
+			Failed(TEXT("Session owner is invalid"));
+		}
+	}
+
+	void OnSessionPollComplete(bool bSuccess, bool)
+	{
+		if (bSuccess && SessionOwner.IsValid())
+		{
+			RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+		}
+		else
+		{
+			Failed("Session Poll Failed");
+		}
+	}
 
 	FString SessionId;
 	TWeakObjectPtr<URH_JoinedSession> RHSession;
-	FHttpRequestPtr HttpRequest;
 };
+
+// Boilerplate class that does a full lookup of session data from the API (no-deduplicaiton or throttling, but does not require a pre-existing RHSession)
+class FRH_SessionLookupHelper : public FRH_SessionHelper
+{
+public:
+	FRH_SessionLookupHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, int32 InPriority)
+		: FRH_SessionHelper(InSessionOwner, InPriority)
+		, SessionId(InSessionId)
+	{
+	}
+
+protected:
+
+	void DoSessionLookup()
+	{
+		// Read session data
+		RallyHereAPI::Traits_GetSessionById::Request Request;
+		Request.AuthContext = GetAuthContext();
+		Request.SessionId = SessionId;
+
+		if (SessionOwner.IsValid())
+		{
+			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
+		}
+
+		auto HttpRequest = RallyHereAPI::Traits_GetSessionById::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionLookupHelper::OnSessionLookup), TaskPriority);
+		if (!HttpRequest)
+		{
+			Failed(TEXT("Could not create http request to lookup session"));
+		}
+	}
+
+	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
+	{
+		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+		{
+			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
+			RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+
+			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+		}
+		else if (Resp.GetHttpResponseCode() == (EHttpResponseCodes::NotModified))
+		{
+			// defer the poll, as we received an update here that said we are up to date
+			auto* RHSessionView = SessionOwner->GetSessionById(SessionId);
+			if (RHSessionView != nullptr)
+			{
+				RHSessionView->DeferPolling();
+			}
+			RHSession = Cast<URH_JoinedSession>(RHSessionView);
+			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+		}
+		else
+		{
+			if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound && Resp.GetJsonResponse().IsValid())
+			{
+				// this could be due to the API being down, or due to the session being missing, so check further
+				const TSharedPtr<FJsonObject>* JsonObject = nullptr;
+				FString ErrorCodeDesc;
+				if (Resp.GetJsonResponse()->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("error_code"), ErrorCodeDesc))
+				{
+					if (ErrorCodeDesc == TEXT("session_not_found")) // todo - const somewhere?
+					{
+						auto* ExistingSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+						if (ExistingSession != nullptr)
+						{
+							SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionNotFound, FColor::Purple);
+							ExistingSession->BLUEPRINT_OnSessionNotFoundDelegate.Broadcast(ExistingSession);
+							ExistingSession->OnSessionNotFoundDelegate.Broadcast(ExistingSession);
+						}
+						Failed(TEXT("Session Not Found"));
+						return;
+					}
+				}
+
+				Failed(TEXT("Lookup Failed"));
+			}
+			else
+			{
+				Failed(TEXT("Lookup Failed"));
+			}
+		}
+	}
+
+	FString SessionId;
+	TWeakObjectPtr<URH_JoinedSession> RHSession;
+};
+
 
 // Generic lambda-capable class for doing a request, checking return type, and then doing a session read
 template<typename BaseType>
-class FRH_SessionRequestAndModifyHelper : public FRH_SessionModifierHelper
+class FRH_SessionRequestAndModifyHelper : public FRH_SessionPollHelper
 {
 public:
-	FRH_SessionRequestAndModifyHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock())
-		: FRH_SessionModifierHelper(InSessionOwner, InSessionId)
+	FRH_SessionRequestAndModifyHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionPollHelper(InSessionOwner, InSessionId, InPriority)
 		, Delegate(InDelegate)
 	{
 	}
@@ -51,7 +181,7 @@ public:
 		Started();
 		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
 		{
-			HttpRequest = BaseType::DoCall(RH_APIs::GetSessionAPI(), InRequest, BaseType::Delegate::CreateSP(this, &FRH_SessionRequestAndModifyHelper::OnRequestById));
+			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), InRequest, BaseType::Delegate::CreateSP(this, &FRH_SessionRequestAndModifyHelper::OnRequestById), TaskPriority);
 			if (!HttpRequest)
 			{
 				Failed(TEXT("Could not create http request"));
@@ -66,7 +196,6 @@ protected:
 
 	void OnRequestById(const typename BaseType::Response& Resp)
 	{
-		HttpRequest = nullptr;
 		if (Resp.IsSuccessful())
 		{
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
@@ -92,22 +221,25 @@ protected:
 
 
 template<typename BaseType>
-void DoRequestViaHelper(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock())
+void DoRequestViaHelper(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock(), int32 Priority = DefaultRallyHereAPIPriority)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
 	typename BaseType::Request Request;
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = SessionId;
 
-	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate);
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, Priority);
 	Helper->Start(Request);
 }
 
-class FRH_SessionPollHelper : public FRH_SessionModifierHelper
+// Simple wrapper class that runs the lookup helper only
+class FRH_SessionPollOnlyHelper : public FRH_SessionLookupHelper
 {
 public:
-	FRH_SessionPollHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock())
-		: FRH_SessionModifierHelper(InSessionOwner, InSessionId)
+
+public:
+	FRH_SessionPollOnlyHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionLookupHelper(InSessionOwner, InSessionId, InPriority)
 		, Delegate(InDelegate)
 	{
 	}
@@ -118,8 +250,8 @@ public:
 
 		DoSessionLookup();
 	}
-protected:
 
+protected:
 	virtual FString GetName() const override
 	{
 		static FString Name(TEXT("FRH_SessionPollHelper"));
@@ -136,9 +268,10 @@ protected:
 class FRH_SessionPollAllHelper : public FRH_SessionHelper
 {
 public:
-	FRH_SessionPollAllHelper(FRH_SessionOwnerPtr InSessionOwner, bool bInTemplatesOnly, FRH_OnPollAllSessionsDelegate InDelegate)
-		: FRH_SessionHelper(InSessionOwner)
-		, bTemplatesOnly(bInTemplatesOnly)
+	FRH_SessionPollAllHelper(FRH_SessionOwnerPtr InSessionOwner, bool bInPollMembership, bool bInPollAllSessions, FRH_OnPollAllSessionsDelegate InDelegate, int32 InPriority)
+		: FRH_SessionHelper(InSessionOwner, InPriority)
+		, bPollMembership(bInPollMembership)
+		, bPollAllSessions(bInPollAllSessions)
 		, Delegate(InDelegate)
 	{
 	}
@@ -156,8 +289,9 @@ protected:
 		// Read template data
 		RallyHereAPI::Traits_GetAllSessionTemplates::Request Request;
 		Request.AuthContext = GetAuthContext();
+		Request.IfNoneMatch = SessionOwner->GetETagForAllTemplatesPoll();
 
-		HttpRequest = RallyHereAPI::Traits_GetAllSessionTemplates::DoCall(RH_APIs::GetSessionAPI(), Request, RallyHereAPI::Traits_GetAllSessionTemplates::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnQueryAllTemplates));
+		HttpRequest = RallyHereAPI::Traits_GetAllSessionTemplates::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetAllSessionTemplates::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnQueryAllTemplates), TaskPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
@@ -175,17 +309,30 @@ protected:
 				Templates->GenerateValueArray(TemplatesArray);
 			}
 
-			TArray<FRH_APISessionTemplateWithETag> TemplatesWithETagArray;
-			TemplatesWithETagArray.Reserve(TemplatesArray.Num());
+			TArray<FString> TemplateNames;
+			TemplateNames.Reserve(TemplatesArray.Num());
 			for (auto Template : TemplatesArray)
 			{
-				TemplatesWithETagArray.Add(FRH_APISessionTemplateWithETag(Template, Resp.ETag));
+				SessionOwner->ImportAPITemplate(Template);
+				TemplateNames.Add(Template.SessionType);
 			}
 
 			// reconcile the templates into the owner before querying sessions
-			SessionOwner->ReconcileAPITemplates(TemplatesWithETagArray, TArray<FString>());
+			SessionOwner->ReconcileAPITemplates(TemplateNames, Resp.ETag);
 
-			if (bTemplatesOnly)
+			if (!bPollMembership)
+			{
+				// if only templates are requested (an optimization in some cases), complete now
+				Completed(true);
+			}
+			else
+			{
+				QueryAllSessions();
+			}
+		}
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
+		{
+			if (!bPollMembership)
 			{
 				// if only templates are requested (an optimization in some cases), complete now
 				Completed(true);
@@ -197,7 +344,7 @@ protected:
 		}
 		else
 		{
-			Failed(TEXT("Query All Lookup Failed"));
+			Failed(TEXT("Query All Templates Lookup Failed"));
 		}
 	}
 
@@ -206,8 +353,10 @@ protected:
 		// Read session data
 		RallyHereAPI::Traits_GetPlayerSessionsSelf::Request Request;
 		Request.AuthContext = GetAuthContext();
+		// for now - do not use ETag here, as we do not have a convenient way to get the list of sessions to poll for.  Since we want to poll all those sessions for updates, we need the full list to poll
+		Request.IfNoneMatch = SessionOwner->GetETagForAllSessionsPoll();
 
-		HttpRequest = RallyHereAPI::Traits_GetPlayerSessionsSelf::DoCall(RH_APIs::GetSessionAPI(), Request, RallyHereAPI::Traits_GetPlayerSessionsSelf::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnQueryAllSessions));
+		HttpRequest = RallyHereAPI::Traits_GetPlayerSessionsSelf::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetPlayerSessionsSelf::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnQueryAllSessions), TaskPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
@@ -223,36 +372,51 @@ protected:
 
 			auto* SessionsMap = Resp.Content.GetSessionsOrNull();
 
-			// if successful but no session list, assume no sessions presently which is a success
 			if (SessionsMap == nullptr || SessionsMap->Num() <= 0)
 			{
-				Completed(true);
-				return;
+				// if successful but no session list, assume no sessions presently which is a success
 			}
-
-			for (auto pair : *SessionsMap)
+			else
 			{
-				const auto SessionIdSet = pair.Value.GetSessionIdsOrNull();
-				if (SessionIdSet && SessionIdSet->Num() > 0)
+				for (auto pair : *SessionsMap)
 				{
-					SessionIds.Append(SessionIdSet->Array());
-				}
+					const auto SessionIdSet = pair.Value.GetSessionIdsOrNull();
+					if (SessionIdSet && SessionIdSet->Num() > 0)
+					{
+						SessionIds.Append(SessionIdSet->Array());
+					}
 
-				const auto PendingInvites = pair.Value.GetPendingInvitesOrNull();
-				if (PendingInvites && PendingInvites->Num() > 0)
-				{
-					TArray<FString> InviteSessionIds;
-					PendingInvites->GenerateKeyArray(InviteSessionIds);
-					SessionIds.Append(InviteSessionIds);
+					const auto PendingInvites = pair.Value.GetPendingInvitesOrNull();
+					if (PendingInvites && PendingInvites->Num() > 0)
+					{
+						TArray<FString> InviteSessionIds;
+						PendingInvites->GenerateKeyArray(InviteSessionIds);
+						SessionIds.Append(InviteSessionIds);
+					}
 				}
 			}
+
+			NewAllSessionsETag = Resp.ETag;
+
+			RemainingSessionIds = SessionIds;
+			QueryNextSession();
+		}
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
+		{
+			TArray<URH_SessionView*> SessionsToPoll = SessionOwner->GetAllSessionsForPolling();
+			for (auto Session : SessionsToPoll)
+			{
+				SessionIds.Add(Session->GetSessionId());
+			}
+
+			NewAllSessionsETag = SessionOwner->GetETagForAllSessionsPoll();
 
 			RemainingSessionIds = SessionIds;
 			QueryNextSession();
 		}
 		else
 		{
-			Failed(TEXT("Query All Lookup Failed"));
+			Failed(TEXT("Query All Sessions Lookup Failed"));
 		}
 	}
 
@@ -262,7 +426,7 @@ protected:
 		{
 			FString SessionId = RemainingSessionIds.Pop(false);
 
-			UE_LOG(LogRHSession, VeryVerbose, TEXT("Querying next - %s"), *SessionId);
+			UE_LOG(LogRHSession, VeryVerbose, TEXT("%s querying next session %s"), *GetName(), *SessionId);
 			DoSessionLookup(SessionId);
 		}
 		else
@@ -273,21 +437,31 @@ protected:
 
 	void DoSessionLookup(const FString& SessionId)
 	{
+		if (!bPollAllSessions)
+		{
+			// if we are not polling all sessions, only poll new sessions
+			auto Session = SessionOwner->GetSessionById(SessionId);
+			if (Session != nullptr)
+			{
+				// this session already exists, poll the next session
+				QueryNextSession();
+				return;
+			}
+		}
+
 		// Read session data
 		RallyHereAPI::FRequest_GetSessionById Request;
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
 
-#if SESSIONS_SUPPORT_ETAGS
 		if (SessionOwner.IsValid())
 		{
 			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
 		}
-#endif
 
 		LastSessionLookupId = SessionId;
 
-		HttpRequest = RH_APIs::GetSessionAPI().GetSessionById(Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnSessionLookup));
+		HttpRequest = RH_APIs::GetSessionsAPI().GetSessionById(Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionPollAllHelper::OnSessionLookup));
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
@@ -299,11 +473,17 @@ protected:
 		HttpRequest = nullptr;
 		if (Resp.IsSuccessful())
 		{
-			Sessions.Add(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
+			// import the new session
+			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
 		{
-			SessionsNotModified.Add(LastSessionLookupId);
+			// session has not changed, but we can defer the poll
+			auto* RHSession = SessionOwner->GetSessionById(LastSessionLookupId);
+			if (RHSession != nullptr)
+			{
+				RHSession->DeferPolling();
+			}
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 		{
@@ -312,7 +492,7 @@ protected:
 			Request.AuthContext = GetAuthContext();
 			Request.SessionId = LastSessionLookupId;
 
-			RH_APIs::GetSessionAPI().LeaveSessionByIdSelf(Request);
+			RH_APIs::GetSessionsAPI().LeaveSessionByIdSelf(Request);
 		}
 
 		// continue looking at sessions since failures on lookups are allowed.  This can happen if, for example, the session was removed between the initial poll and now (or if the session is bugged)
@@ -321,7 +501,7 @@ protected:
 
 	void ReconcileSessionsWithOwner()
 	{
-		SessionOwner->ReconcileAPISessions(Sessions, SessionsNotModified);
+		SessionOwner->ReconcileAPISessions(SessionIds, NewAllSessionsETag);
 
 		Completed(true);
 	}
@@ -333,34 +513,24 @@ protected:
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
-		TArray<URH_SessionView*> RHSessions;
-		for (auto SessionId : SessionIds)
-		{
-			URH_SessionView* RHSession = SessionOwner->GetSessionById(SessionId);
-			if (RHSession != nullptr)
-			{
-				RHSessions.Add(RHSession);
-			}
-		}
-		Delegate.ExecuteIfBound(bSuccess, RHSessions);
+		Delegate.ExecuteIfBound(bSuccess, SessionIds);
 	}
 
-	bool bTemplatesOnly;
+	bool bPollMembership, bPollAllSessions;
 	FRH_OnPollAllSessionsDelegate Delegate;
 	FHttpRequestPtr HttpRequest;
 	TArray<FString> SessionIds, RemainingSessionIds;
+	TOptional<FString> NewAllSessionsETag;
 	FString LastSessionLookupId;
-	TArray<FRH_APISessionWithETag> Sessions;
-	TArray<FString> SessionsNotModified;
 };
 
 
-class FRH_SessionCreateOrJoinByTypeHelper : public FRH_SessionModifierHelper
+class FRH_SessionCreateOrJoinByTypeHelper : public FRH_SessionLookupHelper
 {
 	typedef RallyHereAPI::Traits_CreateOrJoinSession BaseType;
 public:
-	FRH_SessionCreateOrJoinByTypeHelper(FRH_SessionOwnerPtr InSessionOwner, const FRH_SessionCreateParams& InCreateParams, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock())
-		: FRH_SessionModifierHelper(InSessionOwner, FString())
+	FRH_SessionCreateOrJoinByTypeHelper(FRH_SessionOwnerPtr InSessionOwner, const FRHAPI_CreateOrJoinRequest& InCreateParams, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionLookupHelper(InSessionOwner, FString(), InPriority)
 		, CreateParams(InCreateParams)
 		, Delegate(InDelegate)
 	{
@@ -374,19 +544,9 @@ public:
 			BaseType::Request Request;
 			Request.AuthContext = GetAuthContext();
 
-			Request.CreateOrJoinRequest.SessionType = CreateParams.SessionType;
-			if (CreateParams.SiteId != INDEX_NONE)
-			{
-				Request.CreateOrJoinRequest.SetSiteId(CreateParams.SiteId);
-			}
+			Request.CreateOrJoinRequest = CreateParams;
 
-			Request.CreateOrJoinRequest.ClientVersion = URH_JoinedSession::GetClientVersionForSession();
-
-			const auto OSS = SessionOwner->GetOSS();
-			Request.CreateOrJoinRequest.ClientSettings.PlatformId = RH_GetPlatformIdFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_PlatformID::Anon);
-			Request.CreateOrJoinRequest.ClientSettings.Input = URH_JoinedSession::GetClientInputTypeForSession();
-
-			HttpRequest = BaseType::DoCall(RH_APIs::GetSessionAPI(), Request, BaseType::Delegate::CreateSP(this, &FRH_SessionCreateOrJoinByTypeHelper::OnCreated));
+			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), Request, BaseType::Delegate::CreateSP(this, &FRH_SessionCreateOrJoinByTypeHelper::OnCreated), TaskPriority);
 			if (!HttpRequest)
 			{
 				Failed(TEXT("Could not create http request"));
@@ -400,7 +560,6 @@ public:
 protected:
 	void OnCreated(const BaseType::Response& Resp)
 	{
-		HttpRequest = nullptr;
 		if (Resp.IsSuccessful())
 		{
 			// set our new session id
@@ -423,6 +582,142 @@ protected:
 		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
 	}
 
-	FRH_SessionCreateParams CreateParams;
+	FRHAPI_CreateOrJoinRequest CreateParams;
+	FRH_OnSessionUpdatedDelegateBlock Delegate;
+};
+
+
+class FRH_SessionJoinByIdHelper : public FRH_SessionLookupHelper
+{
+	typedef RallyHereAPI::Traits_JoinSessionByIdSelf BaseType;
+public:
+	FRH_SessionJoinByIdHelper(FRH_SessionOwnerPtr InSessionOwner, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionLookupHelper(InSessionOwner, FString(), InPriority)
+		, Delegate(InDelegate)
+	{
+	}
+
+	virtual void Start(const FString& InSessionId)
+	{
+		Started();
+
+		SessionId = InSessionId;
+
+		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
+		{
+			const auto OSS = SessionOwner->GetOSS();
+
+			BaseType::Request Request;
+			Request.AuthContext = SessionOwner->GetSessionAuthContext();
+			Request.SessionId = SessionId;
+			Request.SelfSessionPlayerUpdateRequest.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
+			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());
+
+			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), Request, BaseType::Delegate::CreateSP(this, &FRH_SessionJoinByIdHelper::OnJoined), TaskPriority);
+			if (!HttpRequest)
+			{
+				Failed(TEXT("Could not create http request"));
+			}
+		}
+		else
+		{
+			Failed(TEXT("Improper Session Owner or Auth Context"));
+		}
+	}
+protected:
+	void OnJoined(const BaseType::Response& Resp)
+	{
+		if (Resp.IsSuccessful())
+		{
+			DoSessionLookup();
+		}
+		else
+		{
+			Failed(TEXT("Request Failed"));
+		}
+	}
+
+	virtual FString GetName() const override
+	{
+		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		return Name;
+	}
+	virtual void ExecuteCallback(bool bSuccess) const override
+	{
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+	}
+
+	FRH_OnSessionUpdatedDelegateBlock Delegate;
+};
+
+
+class FRH_SessionJoinByPlatformIdHelper : public FRH_SessionLookupHelper
+{
+	typedef RallyHereAPI::Traits_JoinSessionByPlatformSessionIdSelf BaseType;
+public:
+	FRH_SessionJoinByPlatformIdHelper(FRH_SessionOwnerPtr InSessionOwner, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionLookupHelper(InSessionOwner, FString(), InPriority)
+		, Delegate(InDelegate)
+	{
+	}
+
+	virtual void Start(const ERHAPI_Platform& Platform, const FString& PlatformSessionIdStr)
+	{
+		Started();
+		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
+		{
+			const auto OSS = SessionOwner->GetOSS();
+
+			BaseType::Request Request;
+			Request.AuthContext = GetAuthContext();
+			Request.Platform = Platform;
+			Request.PlatformSessionIdBase64 = RallyHereAPI::Base64UrlEncode(PlatformSessionIdStr);
+
+			Request.SelfSessionPlayerUpdateRequest.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetPlatform(Platform);
+			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());
+
+			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), Request, BaseType::Delegate::CreateSP(this, &FRH_SessionJoinByPlatformIdHelper::OnJoined), TaskPriority);
+			if (!HttpRequest)
+			{
+				Failed(TEXT("Could not create http request"));
+			}
+		}
+		else
+		{
+			Failed(TEXT("Improper Session Owner or Auth Context"));
+		}
+	}
+protected:
+	void OnJoined(const BaseType::Response& Resp)
+	{
+		if (Resp.IsSuccessful())
+		{
+			// set our new session id
+			SessionId = Resp.Content.SessionId;
+
+			// the response contains the full session, so import it into our owner
+			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
+			RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+
+			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+		}
+		else
+		{
+			Failed(TEXT("Request Failed"));
+		}
+	}
+
+	virtual FString GetName() const override
+	{
+		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		return Name;
+	}
+	virtual void ExecuteCallback(bool bSuccess) const override
+	{
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+	}
+
 	FRH_OnSessionUpdatedDelegateBlock Delegate;
 };

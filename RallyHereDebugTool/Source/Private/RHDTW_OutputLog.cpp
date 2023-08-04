@@ -195,6 +195,8 @@ FRHDTW_OutputLog::FRHDTW_OutputLog()
 	, SettingsLoadedHandle()
 	, DebugToolActiveHandle()
 {
+	DefaultPos = FVector2D(610, 430);
+	DefaultSize = FVector2D(900, 400);
 	bShowMenuBar = true;
 	AdditionalWindowFlags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 	SearchLogBuffer.AddZeroed(SearchLogBuffer.GetSlack());

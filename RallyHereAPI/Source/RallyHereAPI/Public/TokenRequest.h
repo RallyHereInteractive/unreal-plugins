@@ -12,6 +12,10 @@
 #include "OAuthGrantType.h"
 #include "TokenRequest.generated.h"
 
+/** @defgroup RHAPI_TokenRequest RallyHere API Model TokenRequest
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_TokenRequest : public FRHAPI_Model
     /** @brief Sets the value of GrantType */
     void SetGrantType(ERHAPI_OAuthGrantType NewValue) { GrantType = NewValue;  }
 };
+
+/** @} */

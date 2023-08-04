@@ -12,6 +12,10 @@
 #include "AdOpportunity.h"
 #include "AdOpportunities.generated.h"
 
+/** @defgroup RHAPI_AdOpportunities RallyHere API Model AdOpportunities
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunities : public FRHAPI_Model
     /** @brief Sets the value of Opportunities */
     void SetOpportunities(TArray<FRHAPI_AdOpportunity> NewValue) { Opportunities = NewValue;  }
 };
+
+/** @} */

@@ -11,8 +11,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "EntitlementErrorCode.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Error codes for Entitlements
  */
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementErrorCode : uint8

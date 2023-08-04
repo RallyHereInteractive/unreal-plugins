@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerPersonResponse.generated.h"
 
+/** @defgroup RHAPI_PlayerPersonResponse RallyHere API Model PlayerPersonResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -49,13 +53,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PlayerUuid{  };
+    FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
-    FString& GetPlayerUuid() { return PlayerUuid; }
+    FGuid& GetPlayerUuid() { return PlayerUuid; }
     /** @brief Gets the value of PlayerUuid */
-    const FString& GetPlayerUuid() const { return PlayerUuid; }
+    const FGuid& GetPlayerUuid() const { return PlayerUuid; }
     /** @brief Sets the value of PlayerUuid */
-    void SetPlayerUuid(FString NewValue) { PlayerUuid = NewValue;  }
+    void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ActivePlayerId_Optional{  };
@@ -84,33 +88,35 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
     void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString ActivePlayerUuid_Optional{  };
+    FGuid ActivePlayerUuid_Optional{  };
     /** @brief true if ActivePlayerUuid_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool ActivePlayerUuid_IsSet{ false };
     /** @brief Gets the value of ActivePlayerUuid_Optional, regardless of it having been set */
-    FString& GetActivePlayerUuid() { return ActivePlayerUuid_Optional; }
+    FGuid& GetActivePlayerUuid() { return ActivePlayerUuid_Optional; }
     /** @brief Gets the value of ActivePlayerUuid_Optional, regardless of it having been set */
-    const FString& GetActivePlayerUuid() const { return ActivePlayerUuid_Optional; }
+    const FGuid& GetActivePlayerUuid() const { return ActivePlayerUuid_Optional; }
     /** @brief Gets the value of ActivePlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetActivePlayerUuid(const FString& DefaultValue) const { if (ActivePlayerUuid_IsSet) return ActivePlayerUuid_Optional; return DefaultValue; }
+    const FGuid& GetActivePlayerUuid(const FGuid& DefaultValue) const { if (ActivePlayerUuid_IsSet) return ActivePlayerUuid_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of ActivePlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-    bool GetActivePlayerUuid(FString& OutValue) const { if (ActivePlayerUuid_IsSet) OutValue = ActivePlayerUuid_Optional; return ActivePlayerUuid_IsSet; }
+    bool GetActivePlayerUuid(FGuid& OutValue) const { if (ActivePlayerUuid_IsSet) OutValue = ActivePlayerUuid_Optional; return ActivePlayerUuid_IsSet; }
     /** @brief Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetActivePlayerUuidOrNull() { if (ActivePlayerUuid_IsSet) return &ActivePlayerUuid_Optional; return nullptr; }
+    FGuid* GetActivePlayerUuidOrNull() { if (ActivePlayerUuid_IsSet) return &ActivePlayerUuid_Optional; return nullptr; }
     /** @brief Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetActivePlayerUuidOrNull() const { if (ActivePlayerUuid_IsSet) return &ActivePlayerUuid_Optional; return nullptr; }
+    const FGuid* GetActivePlayerUuidOrNull() const { if (ActivePlayerUuid_IsSet) return &ActivePlayerUuid_Optional; return nullptr; }
     /** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true */
-    void SetActivePlayerUuid(FString NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true; }
+    void SetActivePlayerUuid(FGuid NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true; }
      /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
     void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PersonId{  };
+    FGuid PersonId{  };
     /** @brief Gets the value of PersonId */
-    FString& GetPersonId() { return PersonId; }
+    FGuid& GetPersonId() { return PersonId; }
     /** @brief Gets the value of PersonId */
-    const FString& GetPersonId() const { return PersonId; }
+    const FGuid& GetPersonId() const { return PersonId; }
     /** @brief Sets the value of PersonId */
-    void SetPersonId(FString NewValue) { PersonId = NewValue;  }
+    void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
 };
+
+/** @} */

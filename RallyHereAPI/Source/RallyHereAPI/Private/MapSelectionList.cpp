@@ -37,8 +37,10 @@ bool FRHAPI_MapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("map_selection_list_id"), MapSelectionListId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("maps"), Maps);
+    const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
+    ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
+    const TSharedPtr<FJsonValue> JsonMapsField = (*Object)->TryGetField(TEXT("maps"));
+    ParseSuccess &= JsonMapsField.IsValid() && !JsonMapsField->IsNull() && TryGetJsonValue(JsonMapsField, Maps);
 
     return ParseSuccess;
 }

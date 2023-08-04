@@ -43,14 +43,16 @@ bool FRHAPI_TimeFrames::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("time_frames")))
+    const TSharedPtr<FJsonValue> JsonTimeFramesField = (*Object)->TryGetField(TEXT("time_frames"));
+    if (JsonTimeFramesField.IsValid() && !JsonTimeFramesField->IsNull())
     {
-        TimeFrames_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("time_frames"), TimeFrames_Optional);
+        TimeFrames_IsSet = TryGetJsonValue(JsonTimeFramesField, TimeFrames_Optional);
         ParseSuccess &= TimeFrames_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

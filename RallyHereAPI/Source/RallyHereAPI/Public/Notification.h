@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "Notification.generated.h"
 
+/** @defgroup RHAPI_Notification RallyHere API Model Notification
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -70,13 +74,49 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
 
     /** @brief Custom values for the notification */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TMap<FString, FString> CustomData{  };
-    /** @brief Gets the value of CustomData */
-    TMap<FString, FString>& GetCustomData() { return CustomData; }
-    /** @brief Gets the value of CustomData */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData; }
-    /** @brief Sets the value of CustomData */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData = NewValue;  }
+    TMap<FString, FString> CustomData_Optional{  };
+    /** @brief true if CustomData_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool CustomData_IsSet{ false };
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+    void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief ETag for the resource at rh_url at the time of this notification */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString Etag_Optional{  };
+    /** @brief true if Etag_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Etag_IsSet{ false };
+    /** @brief Gets the value of Etag_Optional, regardless of it having been set */
+    FString& GetEtag() { return Etag_Optional; }
+    /** @brief Gets the value of Etag_Optional, regardless of it having been set */
+    const FString& GetEtag() const { return Etag_Optional; }
+    /** @brief Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetEtag(const FString& DefaultValue) const { if (Etag_IsSet) return Etag_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false */
+    bool GetEtag(FString& OutValue) const { if (Etag_IsSet) OutValue = Etag_Optional; return Etag_IsSet; }
+    /** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetEtagOrNull() { if (Etag_IsSet) return &Etag_Optional; return nullptr; }
+    /** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetEtagOrNull() const { if (Etag_IsSet) return &Etag_Optional; return nullptr; }
+    /** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true */
+    void SetEtag(FString NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; }
+     /** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
+    void ClearEtag() { Etag_IsSet = false; }
 
     /** @brief Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -98,3 +138,5 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     /** @brief Sets the value of Created */
     void SetCreated(FDateTime NewValue) { Created = NewValue;  }
 };
+
+/** @} */

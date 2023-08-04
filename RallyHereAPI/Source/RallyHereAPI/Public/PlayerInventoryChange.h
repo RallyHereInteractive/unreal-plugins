@@ -12,8 +12,12 @@
 #include "InventoryRecord.h"
 #include "PlayerInventoryChange.generated.h"
 
+/** @defgroup RHAPI_PlayerInventoryChange RallyHere API Model PlayerInventoryChange
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Represents the change that occurred to an entry in the Player&#39;s Inventory. The before fields contain the state before the change, after fields contain the state after the change.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The Item ID of the Item before the change. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 BeforeItemId_Optional{  };
     /** @brief true if BeforeItemId_Optional has been set to a value */
@@ -62,6 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     /** @brief Sets the value of BeforeItemId_Optional to its default and also sets BeforeItemId_IsSet to true */
     void SetBeforeItemIdToDefault() { BeforeItemId_Optional = 0; BeforeItemId_IsSet = true; }
 
+    /** @brief The Item ID of the Item after the change. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 AfterItemId_Optional{  };
     /** @brief true if AfterItemId_Optional has been set to a value */
@@ -132,3 +138,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
      /** @brief Clears the value of After_Optional and sets After_IsSet to false */
     void ClearAfter() { After_IsSet = false; }
 };
+
+/** @} */

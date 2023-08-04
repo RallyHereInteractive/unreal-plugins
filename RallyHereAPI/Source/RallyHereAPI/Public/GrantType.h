@@ -11,25 +11,26 @@
 #include "RallyHereAPIHelpers.h"
 #include "GrantType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Supported grant types for V1 Login Flow
  */
 UENUM(BlueprintType)
 enum class ERHAPI_GrantType : uint8
 {
-    Google UMETA(ToolTip="An enumeration."),
-    Apple UMETA(ToolTip="An enumeration."),
-    Refresh UMETA(ToolTip="An enumeration."),
-    Epic UMETA(ToolTip="An enumeration."),
-    Xboxlive UMETA(ToolTip="An enumeration."),
-    PS4V1 UMETA(ToolTip="An enumeration."),
-    PS4V3 UMETA(ToolTip="An enumeration."),
-    PS5V3 UMETA(ToolTip="An enumeration."),
-    Nintendo UMETA(ToolTip="An enumeration."),
-    NintendoSwitch UMETA(ToolTip="An enumeration."),
-    Steam UMETA(ToolTip="An enumeration."),
-    Basic UMETA(ToolTip="An enumeration."),
-    Anon UMETA(ToolTip="An enumeration."),
+    Google UMETA(ToolTip="Google authentication"),
+    Apple UMETA(ToolTip="Apple authentication"),
+    Refresh UMETA(ToolTip="Refresh Token authentication"),
+    Epic UMETA(ToolTip="Epic Online Services authentication"),
+    Xboxlive UMETA(ToolTip="Xbox Live authentication"),
+    PS4V1 UMETA(ToolTip="Playstation Network v1 authentication using the configured PS4 credentials"),
+    PS4V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
+    PS5V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
+    Nintendo UMETA(ToolTip="Nintendo Account authentication"),
+    NintendoSwitch UMETA(ToolTip="Nintendo Service Account (for Nintendo Switch) authentication"),
+    Steam UMETA(ToolTip="Steam authentication"),
+    Basic UMETA(ToolTip="Basic Username/Password authentication"),
+    Anon UMETA(ToolTip="Anonymous authentication"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_GrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& EnumValue);

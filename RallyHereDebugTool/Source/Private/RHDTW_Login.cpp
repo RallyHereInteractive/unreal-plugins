@@ -1,23 +1,20 @@
-// Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
-
-#include "RallyHereDebugToolModule.h"
 #include "RHDTW_Login.h"
-#include "imgui.h"
+#include "RallyHereDebugTool.h"
 #include "RH_ImGuiUtilities.h"
 
-#include "RH_LocalPlayerSubsystem.h"
+#include "Engine/LocalPlayer.h"
+#include "Kismet/GameplayStatics.h"
+
 #include "RH_LocalPlayerLoginSubsystem.h"
 
-#include "Engine/LocalPlayer.h"
-#include "OnlineSubsystem.h"
-#include "Interfaces/OnlineIdentityInterface.h"
+#include "imgui.h"
 
 namespace
 {
 	void ImGuiDisplayLoginResult(const FRHAPI_LoginResult& LoginResult)
 	{
 		ImGui::Text("Logged in to RallyHere");
-		
+
 		if (ImGui::TreeNodeEx("Player", RH_DefaultTreeFlagsLeaf))
 		{
 			ImGuiDisplayCopyableValue(TEXT("Player ID"), LoginResult.ActivePlayerId);
@@ -94,6 +91,8 @@ namespace
 FRHDTW_Login::FRHDTW_Login()
 	: Super()
 {
+	DefaultPos = FVector2D(610, 20);
+
 	bAcceptEULA = false;
 	bAcceptTOS = false;
 	bAcceptPP = false;
@@ -101,18 +100,55 @@ FRHDTW_Login::FRHDTW_Login()
 	OSSIDBuffer.SetNumZeroed(100);
 	OSSTokenBuffer.SetNumZeroed(100);
 	RefreshTokenBuffer.SetNumZeroed(100);
+
+	ML_bAcceptEULA = false;
+	ML_bAcceptTOS = false;
+	ML_bAcceptPP = false;
+	ML_OSSLoginTypeBuffer.SetNumZeroed(100);
+	ML_OSSIDBuffer.SetNumZeroed(100);
+	ML_OSSTokenBuffer.SetNumZeroed(100);
+	ML_RefreshTokenBuffer.SetNumZeroed(100);
+	ML_RangeFrom = 0;
+	ML_RangeTo = 0;
 }
 
 FRHDTW_Login::~FRHDTW_Login()
-{	
+{
 }
 
 void FRHDTW_Login::Do()
 {
+    static ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
+	if (ImGui::BeginTabBar("Login", tab_bar_flags))
+	{
+		ImGui::SetNextItemWidth(50);
+
+		if (ImGui::BeginTabItem("Login", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoLoginTab();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Multi Login", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoMassLoginTab();
+			ImGui::EndTabItem();
+		}
+		else
+		{
+			ML_Result = FString("");
+		}
+
+		ImGui::EndTabBar();
+	}
+}
+
+void FRHDTW_Login::DoLoginTab()
+{
 	ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
 	if (pLocalPlayer == nullptr)
 	{
-		ImGui::Text("Please select a Local Player in order to log in.");
+		ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
 		return;
 	}
 
@@ -129,6 +165,10 @@ void FRHDTW_Login::Do()
 		ImGui::Text("RH_LocalPlayerLoginSubsystem not available.");
 		return;
 	}
+
+	FString LoginOSSText = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pLocalPlayer->GetControllerId());
+	ImGui::Text("%s", TCHAR_TO_UTF8(*LoginOSSText));
+	ImGui::Separator();
 
 	ImGuiDisplayOSSLoginStatus(pLocalPlayer, pRH_LoginSubsystem);
 	ImGui::Separator();
@@ -172,11 +212,93 @@ void FRHDTW_Login::Do()
 			Cred.Token = UTF8_TO_TCHAR(OSSTokenBuffer.GetData());
 			pRH_LoginSubsystem->SubmitLogin(Cred, UTF8_TO_TCHAR(RefreshTokenBuffer.GetData()), bAcceptEULA, bAcceptTOS, bAcceptPP);
 		}
+		if (ImGui::Button("Logout"))
+		{
+			pRH_LoginSubsystem->Logout();
+		}
 	}
 	else
 	{
 		if (ImGui::Button("Cannot Login (Bad Controller Id)"))
 		{
+		}
+	}
+}
+
+void FRHDTW_Login::DoMassLoginTab()
+{
+	URallyHereDebugTool* pOwner = GetOwner();
+	if (pOwner == nullptr)
+	{
+		ImGui::Text("URallyHereDebugTool not available.");
+		return;
+	}
+
+	ImGui::Text("Create multiple local players and log them in.");
+	ImGui::InputText("OSS ID/Username (prefix)", ML_OSSIDBuffer.GetData(), ML_OSSIDBuffer.Num(), ImGuiInputTextFlags_CharsNoBlank);
+	ImGui::InputText("OSS Token/Password", ML_OSSTokenBuffer.GetData(), ML_OSSTokenBuffer.Num(), ImGuiInputTextFlags_CharsNoBlank | ImGuiInputTextFlags_Password);
+	ImGui::InputText("OSS Login Type", ML_OSSLoginTypeBuffer.GetData(), ML_OSSLoginTypeBuffer.Num(), ImGuiInputTextFlags_CharsNoBlank);
+	ImGui::InputText("Refresh Token", ML_RefreshTokenBuffer.GetData(), ML_RefreshTokenBuffer.Num(), ImGuiInputTextFlags_CharsNoBlank);
+
+	ImGui::Text("OSS ID/Username index suffix range (inclusive):");
+	ImGui::SetNextItemWidth(150.f);
+	if (ImGui::InputInt("From", &ML_RangeFrom, 1, 0))
+	{
+		ML_RangeFrom = FMath::Max(ML_RangeFrom, 0);
+		ML_RangeTo = FMath::Max(ML_RangeTo, ML_RangeFrom);
+	}
+	ImGui::SetNextItemWidth(150.f);
+	if (ImGui::InputInt("To", &ML_RangeTo, 1, 0))
+	{
+		ML_RangeTo = FMath::Max(ML_RangeTo, ML_RangeFrom);
+	}
+
+	ImGui::Checkbox("Accept EULA", &ML_bAcceptEULA);
+	ImGui::Checkbox("Accept TOS", &ML_bAcceptTOS);
+	ImGui::Checkbox("Accept PP", &ML_bAcceptPP);
+
+	if (ImGui::Button("Create and Login"))
+	{
+		for (int i = ML_RangeFrom; i <= ML_RangeTo; i++)
+		{
+			if (ULocalPlayer* pLocalPlayer = pOwner->AddNewLocalPlayer())
+			{
+				if (URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+				{
+					if (URH_LocalPlayerLoginSubsystem* pRH_LoginSubsystem = pRH_LocalPlayerSubsystem->GetLoginSubsystem())
+					{
+						FOnlineAccountCredentials Cred;
+						Cred.Type = UTF8_TO_TCHAR(ML_OSSLoginTypeBuffer.GetData());
+						FString id = UTF8_TO_TCHAR(ML_OSSIDBuffer.GetData());
+						id.Append(FString::FromInt(i));
+						Cred.Id = id;
+						Cred.Token = UTF8_TO_TCHAR(ML_OSSTokenBuffer.GetData());
+						pRH_LoginSubsystem->SubmitLogin(Cred, UTF8_TO_TCHAR(ML_RefreshTokenBuffer.GetData()), ML_bAcceptEULA, ML_bAcceptTOS, ML_bAcceptPP);
+					}
+				}
+			}
+		}
+
+		ML_Result = FString("PLAYERS CREATED");
+	}
+	ImGui::Text("%s", TCHAR_TO_UTF8(*ML_Result));
+
+	ImGui::Separator();
+
+	auto pWorld = GetWorld();
+	const bool bSplitscreenDisabled = UGameplayStatics::IsSplitscreenForceDisabled(pWorld);
+	if (bSplitscreenDisabled)
+	{
+		if (ImGui::Button("Enable Splitscreen"))
+		{
+			UGameplayStatics::SetForceDisableSplitscreen(pWorld, false);
+		}
+	}
+	else
+	{
+		if (ImGui::Button("Disable Splitscreen"))
+		{
+			UGameplayStatics::SetForceDisableSplitscreen(pWorld, true);
 		}
 	}
 }

@@ -11,13 +11,14 @@
 #include "RallyHereAPIHelpers.h"
 #include "OAuthGrantType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Supported OAuth2 grant types
  */
 UENUM(BlueprintType)
 enum class ERHAPI_OAuthGrantType : uint8
 {
-    ClientCredentials UMETA(ToolTip="An enumeration."),
+    ClientCredentials UMETA(ToolTip="The OAuth2 client credentials grant type"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_OAuthGrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthGrantType& EnumValue);

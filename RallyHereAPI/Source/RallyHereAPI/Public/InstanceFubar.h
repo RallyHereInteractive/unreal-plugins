@@ -12,8 +12,12 @@
 #include "InstanceSourceProvider.h"
 #include "InstanceFubar.generated.h"
 
+/** @defgroup RHAPI_InstanceFubar RallyHere API Model InstanceFubar
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Information about an instance that has been determined to be FUBAR
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
@@ -56,37 +60,61 @@ struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
     /** @brief Sets the value of Error */
     void SetError(FString NewValue) { Error = NewValue;  }
 
-    /** @brief What site the failed instance was in */
+    /** @brief What region the failed instance was in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 Site{ 0 };
-    /** @brief Gets the value of Site */
-    int32& GetSite() { return Site; }
-    /** @brief Gets the value of Site */
-    const int32& GetSite() const { return Site; }
-    /** @brief Sets the value of Site */
-    void SetSite(int32 NewValue) { Site = NewValue;  }
-    /** @brief Returns true if Site matches the default value */
-    bool IsSiteDefaultValue() const { return Site == 0; }
-    /** @brief Sets the value of Site to its default  */
-    void SetSiteToDefault() { Site = 0;  }
+    FString Region{  };
+    /** @brief Gets the value of Region */
+    FString& GetRegion() { return Region; }
+    /** @brief Gets the value of Region */
+    const FString& GetRegion() const { return Region; }
+    /** @brief Sets the value of Region */
+    void SetRegion(FString NewValue) { Region = NewValue;  }
 
     /** @brief ID for which matchmaking profile was used to generate the failed instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString MatchmakingProfileId{  };
-    /** @brief Gets the value of MatchmakingProfileId */
-    FString& GetMatchmakingProfileId() { return MatchmakingProfileId; }
-    /** @brief Gets the value of MatchmakingProfileId */
-    const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId; }
-    /** @brief Sets the value of MatchmakingProfileId */
-    void SetMatchmakingProfileId(FString NewValue) { MatchmakingProfileId = NewValue;  }
+    FString MatchmakingProfileId_Optional{  };
+    /** @brief true if MatchmakingProfileId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MatchmakingProfileId_IsSet{ false };
+    /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
+    FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
+    /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
+    const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId_Optional; }
+    /** @brief Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMatchmakingProfileId(const FString& DefaultValue) const { if (MatchmakingProfileId_IsSet) return MatchmakingProfileId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchmakingProfileId(FString& OutValue) const { if (MatchmakingProfileId_IsSet) OutValue = MatchmakingProfileId_Optional; return MatchmakingProfileId_IsSet; }
+    /** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMatchmakingProfileIdOrNull() { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true */
+    void SetMatchmakingProfileId(FString NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
+     /** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
+    void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; }
 
     /** @brief Which instance provider allocated this failed instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_InstanceSourceProvider InstanceSourceProvider{  };
-    /** @brief Gets the value of InstanceSourceProvider */
-    ERHAPI_InstanceSourceProvider& GetInstanceSourceProvider() { return InstanceSourceProvider; }
-    /** @brief Gets the value of InstanceSourceProvider */
-    const ERHAPI_InstanceSourceProvider& GetInstanceSourceProvider() const { return InstanceSourceProvider; }
-    /** @brief Sets the value of InstanceSourceProvider */
-    void SetInstanceSourceProvider(ERHAPI_InstanceSourceProvider NewValue) { InstanceSourceProvider = NewValue;  }
+    ERHAPI_InstanceSourceProvider InstanceSourceProvider_Optional{  };
+    /** @brief true if InstanceSourceProvider_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool InstanceSourceProvider_IsSet{ false };
+    /** @brief Gets the value of InstanceSourceProvider_Optional, regardless of it having been set */
+    ERHAPI_InstanceSourceProvider& GetInstanceSourceProvider() { return InstanceSourceProvider_Optional; }
+    /** @brief Gets the value of InstanceSourceProvider_Optional, regardless of it having been set */
+    const ERHAPI_InstanceSourceProvider& GetInstanceSourceProvider() const { return InstanceSourceProvider_Optional; }
+    /** @brief Gets the value of InstanceSourceProvider_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_InstanceSourceProvider& GetInstanceSourceProvider(const ERHAPI_InstanceSourceProvider& DefaultValue) const { if (InstanceSourceProvider_IsSet) return InstanceSourceProvider_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of InstanceSourceProvider_Optional and returns true if it has been set, otherwise returns false */
+    bool GetInstanceSourceProvider(ERHAPI_InstanceSourceProvider& OutValue) const { if (InstanceSourceProvider_IsSet) OutValue = InstanceSourceProvider_Optional; return InstanceSourceProvider_IsSet; }
+    /** @brief Returns a pointer to InstanceSourceProvider_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_InstanceSourceProvider* GetInstanceSourceProviderOrNull() { if (InstanceSourceProvider_IsSet) return &InstanceSourceProvider_Optional; return nullptr; }
+    /** @brief Returns a pointer to InstanceSourceProvider_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_InstanceSourceProvider* GetInstanceSourceProviderOrNull() const { if (InstanceSourceProvider_IsSet) return &InstanceSourceProvider_Optional; return nullptr; }
+    /** @brief Sets the value of InstanceSourceProvider_Optional and also sets InstanceSourceProvider_IsSet to true */
+    void SetInstanceSourceProvider(ERHAPI_InstanceSourceProvider NewValue) { InstanceSourceProvider_Optional = NewValue; InstanceSourceProvider_IsSet = true; }
+     /** @brief Clears the value of InstanceSourceProvider_Optional and sets InstanceSourceProvider_IsSet to false */
+    void ClearInstanceSourceProvider() { InstanceSourceProvider_IsSet = false; }
 };
+
+/** @} */

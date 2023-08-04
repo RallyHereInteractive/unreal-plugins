@@ -37,8 +37,10 @@ bool FRHAPI_HTTPAuthorizationCredentials::FromJson(const TSharedPtr<FJsonValue>&
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("scheme"), Scheme);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("credentials"), Credentials);
+    const TSharedPtr<FJsonValue> JsonSchemeField = (*Object)->TryGetField(TEXT("scheme"));
+    ParseSuccess &= JsonSchemeField.IsValid() && !JsonSchemeField->IsNull() && TryGetJsonValue(JsonSchemeField, Scheme);
+    const TSharedPtr<FJsonValue> JsonCredentialsField = (*Object)->TryGetField(TEXT("credentials"));
+    ParseSuccess &= JsonCredentialsField.IsValid() && !JsonCredentialsField->IsNull() && TryGetJsonValue(JsonCredentialsField, Credentials);
 
     return ParseSuccess;
 }

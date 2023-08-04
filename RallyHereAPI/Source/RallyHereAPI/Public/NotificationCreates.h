@@ -12,6 +12,10 @@
 #include "NotificationCreate.h"
 #include "NotificationCreates.generated.h"
 
+/** @defgroup RHAPI_NotificationCreates RallyHere API Model NotificationCreates
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -38,24 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreates : public FRHAPI_Model
 
     /** @brief List of notifications creation requests */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_NotificationCreate> Notifications_Optional{  };
-    /** @brief true if Notifications_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool Notifications_IsSet{ false };
-    /** @brief Gets the value of Notifications_Optional, regardless of it having been set */
-    TArray<FRHAPI_NotificationCreate>& GetNotifications() { return Notifications_Optional; }
-    /** @brief Gets the value of Notifications_Optional, regardless of it having been set */
-    const TArray<FRHAPI_NotificationCreate>& GetNotifications() const { return Notifications_Optional; }
-    /** @brief Gets the value of Notifications_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_NotificationCreate>& GetNotifications(const TArray<FRHAPI_NotificationCreate>& DefaultValue) const { if (Notifications_IsSet) return Notifications_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Notifications_Optional and returns true if it has been set, otherwise returns false */
-    bool GetNotifications(TArray<FRHAPI_NotificationCreate>& OutValue) const { if (Notifications_IsSet) OutValue = Notifications_Optional; return Notifications_IsSet; }
-    /** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_NotificationCreate>* GetNotificationsOrNull() { if (Notifications_IsSet) return &Notifications_Optional; return nullptr; }
-    /** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_NotificationCreate>* GetNotificationsOrNull() const { if (Notifications_IsSet) return &Notifications_Optional; return nullptr; }
-    /** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true */
-    void SetNotifications(TArray<FRHAPI_NotificationCreate> NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
-     /** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
-    void ClearNotifications() { Notifications_IsSet = false; }
+    TArray<FRHAPI_NotificationCreate> Notifications{  };
+    /** @brief Gets the value of Notifications */
+    TArray<FRHAPI_NotificationCreate>& GetNotifications() { return Notifications; }
+    /** @brief Gets the value of Notifications */
+    const TArray<FRHAPI_NotificationCreate>& GetNotifications() const { return Notifications; }
+    /** @brief Sets the value of Notifications */
+    void SetNotifications(TArray<FRHAPI_NotificationCreate> NewValue) { Notifications = NewValue;  }
 };
+
+/** @} */

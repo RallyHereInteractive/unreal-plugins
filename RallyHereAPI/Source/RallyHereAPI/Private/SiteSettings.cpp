@@ -44,12 +44,16 @@ bool FRHAPI_SiteSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("site_id"), SiteId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("sort_order"), SortOrder);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_only"), CustomOnly);
-    if ((*Object)->HasField(TEXT("message_name")))
+    const TSharedPtr<FJsonValue> JsonSiteIdField = (*Object)->TryGetField(TEXT("site_id"));
+    ParseSuccess &= JsonSiteIdField.IsValid() && !JsonSiteIdField->IsNull() && TryGetJsonValue(JsonSiteIdField, SiteId);
+    const TSharedPtr<FJsonValue> JsonSortOrderField = (*Object)->TryGetField(TEXT("sort_order"));
+    ParseSuccess &= JsonSortOrderField.IsValid() && !JsonSortOrderField->IsNull() && TryGetJsonValue(JsonSortOrderField, SortOrder);
+    const TSharedPtr<FJsonValue> JsonCustomOnlyField = (*Object)->TryGetField(TEXT("custom_only"));
+    ParseSuccess &= JsonCustomOnlyField.IsValid() && !JsonCustomOnlyField->IsNull() && TryGetJsonValue(JsonCustomOnlyField, CustomOnly);
+    const TSharedPtr<FJsonValue> JsonMessageNameField = (*Object)->TryGetField(TEXT("message_name"));
+    if (JsonMessageNameField.IsValid() && !JsonMessageNameField->IsNull())
     {
-        MessageName_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("message_name"), MessageName_Optional);
+        MessageName_IsSet = TryGetJsonValue(JsonMessageNameField, MessageName_Optional);
         ParseSuccess &= MessageName_IsSet;
     }
 

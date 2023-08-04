@@ -49,7 +49,7 @@ public:
 		RH_PlayerUuid.Invalidate();
 	}
 
-	// #MRTODO - reimplement connection cryptograph
+	// #RHTODO - reimplement connection cryptograph
 
 protected:
 	FGuid RH_PlayerUuid;

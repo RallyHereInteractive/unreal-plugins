@@ -11,16 +11,17 @@
 #include "RallyHereAPIHelpers.h"
 #include "CrossplayInput.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches
  */
 UENUM(BlueprintType)
 enum class ERHAPI_CrossplayInput : uint8
 {
-    Any UMETA(ToolTip="An enumeration."),
-    Kbm UMETA(ToolTip="An enumeration."),
-    Gamepad UMETA(ToolTip="An enumeration."),
-    Touch UMETA(ToolTip="An enumeration."),
+    Any UMETA(ToolTip="No crossplay input preferences. Can play with players using any input"),
+    Kbm UMETA(ToolTip="Can only play with players using a keyboard and mouse"),
+    Gamepad UMETA(ToolTip="Can only player with players using a gamepad/controller"),
+    Touch UMETA(ToolTip="Can only player with players using a touch screen"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_CrossplayInput& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayInput& EnumValue);

@@ -39,9 +39,12 @@ bool FRHAPI_PriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("price_item_id"), PriceItemId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("quantity"), Quantity);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("price"), Price);
+    const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
+    ParseSuccess &= JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId);
+    const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
+    ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
+    const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
+    ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
 
     return ParseSuccess;
 }

@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "JoinParams.generated.h"
 
+/** @defgroup RHAPI_JoinParams RallyHere API Model JoinParams
+ *  @{
+ */
+
 /**
- * @brief Parameters to join the instance
+ * @brief Parameters provided by the allocation system or an instance on how to connect
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
@@ -78,3 +82,5 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

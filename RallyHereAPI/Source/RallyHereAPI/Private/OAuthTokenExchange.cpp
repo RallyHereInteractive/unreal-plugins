@@ -23,7 +23,7 @@ void FRHAPI_OAuthTokenExchange::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 {
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("grant_type"));
-    RallyHereAPI::WriteJsonValue(Writer, GrantType);
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(GrantType));
     Writer->WriteIdentifierPrefix(TEXT("code"));
     RallyHereAPI::WriteJsonValue(Writer, Code);
     if (AcceptedEula_IsSet)
@@ -52,21 +52,26 @@ bool FRHAPI_OAuthTokenExchange::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("grant_type"), GrantType);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("code"), Code);
-    if ((*Object)->HasField(TEXT("accepted_eula")))
+    const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
+    ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
+    const TSharedPtr<FJsonValue> JsonCodeField = (*Object)->TryGetField(TEXT("code"));
+    ParseSuccess &= JsonCodeField.IsValid() && !JsonCodeField->IsNull() && TryGetJsonValue(JsonCodeField, Code);
+    const TSharedPtr<FJsonValue> JsonAcceptedEulaField = (*Object)->TryGetField(TEXT("accepted_eula"));
+    if (JsonAcceptedEulaField.IsValid() && !JsonAcceptedEulaField->IsNull())
     {
-        AcceptedEula_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("accepted_eula"), AcceptedEula_Optional);
+        AcceptedEula_IsSet = TryGetJsonValue(JsonAcceptedEulaField, AcceptedEula_Optional);
         ParseSuccess &= AcceptedEula_IsSet;
     }
-    if ((*Object)->HasField(TEXT("accepted_tos")))
+    const TSharedPtr<FJsonValue> JsonAcceptedTosField = (*Object)->TryGetField(TEXT("accepted_tos"));
+    if (JsonAcceptedTosField.IsValid() && !JsonAcceptedTosField->IsNull())
     {
-        AcceptedTos_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("accepted_tos"), AcceptedTos_Optional);
+        AcceptedTos_IsSet = TryGetJsonValue(JsonAcceptedTosField, AcceptedTos_Optional);
         ParseSuccess &= AcceptedTos_IsSet;
     }
-    if ((*Object)->HasField(TEXT("accepted_privacy_policy")))
+    const TSharedPtr<FJsonValue> JsonAcceptedPrivacyPolicyField = (*Object)->TryGetField(TEXT("accepted_privacy_policy"));
+    if (JsonAcceptedPrivacyPolicyField.IsValid() && !JsonAcceptedPrivacyPolicyField->IsNull())
     {
-        AcceptedPrivacyPolicy_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("accepted_privacy_policy"), AcceptedPrivacyPolicy_Optional);
+        AcceptedPrivacyPolicy_IsSet = TryGetJsonValue(JsonAcceptedPrivacyPolicyField, AcceptedPrivacyPolicy_Optional);
         ParseSuccess &= AcceptedPrivacyPolicy_IsSet;
     }
 

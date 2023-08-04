@@ -35,7 +35,8 @@ bool FRHAPI_PlayerUuidFromId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("uuid"), Uuid);
+    const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
+    ParseSuccess &= JsonUuidField.IsValid() && !JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid);
 
     return ParseSuccess;
 }

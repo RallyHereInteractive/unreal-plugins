@@ -41,11 +41,11 @@ const TArray<FRHAPI_AdOpportunity>& URH_AdSubsystem::GetOpportunities() const
 FHttpRequestPtr URH_AdSubsystem::BeginNewSession(RallyHereAPI::FRequest_BeginNewSession Request,
                                                  const RallyHereAPI::FDelegate_BeginNewSession& Delegate)
 {
-    if (Request.BodyBeginNewSessionV1SessionPost.CountryCode.IsEmpty())
+    if (Request.BodyBeginNewSession.CountryCode.IsEmpty())
     {
         FString Lang;
-        GetCodesFromLocale(Lang, Request.BodyBeginNewSessionV1SessionPost.CountryCode);
-        if (Lang.IsEmpty() || Request.BodyBeginNewSessionV1SessionPost.CountryCode.IsEmpty())
+        GetCodesFromLocale(Lang, Request.BodyBeginNewSession.CountryCode);
+        if (Lang.IsEmpty() || Request.BodyBeginNewSession.CountryCode.IsEmpty())
         {
             return nullptr;
         }
@@ -61,7 +61,7 @@ FHttpRequestPtr URH_AdSubsystem::BeginNewSession(RallyHereAPI::FRequest_BeginNew
     return RH_APIs::GetAdAPI().BeginNewSession(Request,
                                                                                 RallyHereAPI::FDelegate_BeginNewSession::CreateUObject(
                                                                                     this, &URH_AdSubsystem::OnBeginNewSession,
-                                                                                    Delegate));
+                                                                                    Delegate), GetDefault<URH_IntegrationSettings>()->BeginNewAdSessionPriority);
 }
 
 void URH_AdSubsystem::OnBeginNewSession(const RallyHereAPI::FResponse_BeginNewSession& Resp,
@@ -77,13 +77,13 @@ void URH_AdSubsystem::OnBeginNewSession(const RallyHereAPI::FResponse_BeginNewSe
 FHttpRequestPtr URH_AdSubsystem::FindOpportunities(RallyHereAPI::FRequest_FindOpportunities Request,
                                                    const RallyHereAPI::FDelegate_FindOpportunities& Delegate)
 {
-    if (Request.BodyFindOpportunitiesV1OpportunityPost.CountryCode.IsEmpty()
-        || Request.BodyFindOpportunitiesV1OpportunityPost.LanguageCode.IsEmpty())
+    if (Request.BodyFindOpportunities.CountryCode.IsEmpty()
+        || Request.BodyFindOpportunities.LanguageCode.IsEmpty())
     {
-        GetCodesFromLocale(Request.BodyFindOpportunitiesV1OpportunityPost.LanguageCode,
-                           Request.BodyFindOpportunitiesV1OpportunityPost.CountryCode);
-        if (Request.BodyFindOpportunitiesV1OpportunityPost.LanguageCode.IsEmpty()
-            || Request.BodyFindOpportunitiesV1OpportunityPost.CountryCode.IsEmpty())
+        GetCodesFromLocale(Request.BodyFindOpportunities.LanguageCode,
+                           Request.BodyFindOpportunities.CountryCode);
+        if (Request.BodyFindOpportunities.LanguageCode.IsEmpty()
+            || Request.BodyFindOpportunities.CountryCode.IsEmpty())
         {
             return nullptr;
         }
@@ -99,7 +99,7 @@ FHttpRequestPtr URH_AdSubsystem::FindOpportunities(RallyHereAPI::FRequest_FindOp
     return RH_APIs::GetAdAPI().FindOpportunities(Request,
                                                                                   RallyHereAPI::FDelegate_FindOpportunities::CreateUObject(
                                                                                       this, &URH_AdSubsystem::OnFindOpportunities,
-                                                                                      Delegate));
+                                                                                      Delegate), GetDefault<URH_IntegrationSettings>()->FindAdOppertunitiesPriority);
 }
 
 void URH_AdSubsystem::OnFindOpportunities(const RallyHereAPI::FResponse_FindOpportunities& Resp,
@@ -131,7 +131,7 @@ FHttpRequestPtr URH_AdSubsystem::UpdateOpportunityById(RallyHereAPI::FRequest_Up
                                                                                       RallyHereAPI::FDelegate_UpdateOpportunityById::CreateUObject(
                                                                                           this,
                                                                                           &URH_AdSubsystem::OnUpdateOpportunityById,
-                                                                                          Delegate));
+                                                                                          Delegate), GetDefault<URH_IntegrationSettings>()->UpdateAdOppertunitiesPriority);
 }
 
 void URH_AdSubsystem::OnUpdateOpportunityById(const RallyHereAPI::FResponse_UpdateOpportunityById& Resp,

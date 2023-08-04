@@ -111,11 +111,6 @@ bool FOnlineIdentityAnon::Logout(int32 LocalUserNum)
 
 bool FOnlineIdentityAnon::AutoLogin(int32 LocalUserNum)
 {
-    if (IsRunningDedicatedServer())
-    {
-        return false;
-    }
-
     FString TypeStr, LoginStr, PasswordStr;
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_TYPE="), TypeStr);
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_LOGIN="), LoginStr);

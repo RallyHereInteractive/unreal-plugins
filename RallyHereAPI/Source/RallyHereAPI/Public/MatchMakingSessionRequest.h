@@ -12,8 +12,12 @@
 #include "SessionTeam.h"
 #include "MatchMakingSessionRequest.generated.h"
 
+/** @defgroup RHAPI_MatchMakingSessionRequest RallyHere API Model MatchMakingSessionRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body for a new matchmade session to be created
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingSessionRequest : public FRHAPI_Model
@@ -66,19 +70,15 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingSessionRequest : public FRHAPI_Model
     /** @brief Sets the value of InstanceLaunchTemplateId */
     void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
 
-    /** @brief Site to start the instance in */
+    /** @brief Region to start the instance in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 SiteId{ 0 };
-    /** @brief Gets the value of SiteId */
-    int32& GetSiteId() { return SiteId; }
-    /** @brief Gets the value of SiteId */
-    const int32& GetSiteId() const { return SiteId; }
-    /** @brief Sets the value of SiteId */
-    void SetSiteId(int32 NewValue) { SiteId = NewValue;  }
-    /** @brief Returns true if SiteId matches the default value */
-    bool IsSiteIdDefaultValue() const { return SiteId == 0; }
-    /** @brief Sets the value of SiteId to its default  */
-    void SetSiteIdToDefault() { SiteId = 0;  }
+    FString RegionId{  };
+    /** @brief Gets the value of RegionId */
+    FString& GetRegionId() { return RegionId; }
+    /** @brief Gets the value of RegionId */
+    const FString& GetRegionId() const { return RegionId; }
+    /** @brief Sets the value of RegionId */
+    void SetRegionId(FString NewValue) { RegionId = NewValue;  }
 
     /** @brief Unique ID for this generated match */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -112,4 +112,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingSessionRequest : public FRHAPI_Model
     void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief Player UUID of the host, if the host type is player */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FGuid HostPlayerUuid_Optional{  };
+    /** @brief true if HostPlayerUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool HostPlayerUuid_IsSet{ false };
+    /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
+    FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
+    /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
+    const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
+    /** @brief Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
+    /** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return &HostPlayerUuid_Optional; return nullptr; }
+    /** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
+    void SetHostPlayerUuid(FGuid NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; }
+     /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
+    void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 };
+
+/** @} */

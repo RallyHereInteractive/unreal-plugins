@@ -78,49 +78,58 @@ bool FRHAPI_Catalog::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("xp_tables")))
+    const TSharedPtr<FJsonValue> JsonXpTablesField = (*Object)->TryGetField(TEXT("xp_tables"));
+    if (JsonXpTablesField.IsValid() && !JsonXpTablesField->IsNull())
     {
-        XpTables_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("xp_tables"), XpTables_Optional);
+        XpTables_IsSet = TryGetJsonValue(JsonXpTablesField, XpTables_Optional);
         ParseSuccess &= XpTables_IsSet;
     }
-    if ((*Object)->HasField(TEXT("portal_use_rulesets")))
+    const TSharedPtr<FJsonValue> JsonPortalUseRulesetsField = (*Object)->TryGetField(TEXT("portal_use_rulesets"));
+    if (JsonPortalUseRulesetsField.IsValid() && !JsonPortalUseRulesetsField->IsNull())
     {
-        PortalUseRulesets_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_use_rulesets"), PortalUseRulesets_Optional);
+        PortalUseRulesets_IsSet = TryGetJsonValue(JsonPortalUseRulesetsField, PortalUseRulesets_Optional);
         ParseSuccess &= PortalUseRulesets_IsSet;
     }
-    if ((*Object)->HasField(TEXT("inventory_bucket_use_rule_sets")))
+    const TSharedPtr<FJsonValue> JsonInventoryBucketUseRuleSetsField = (*Object)->TryGetField(TEXT("inventory_bucket_use_rule_sets"));
+    if (JsonInventoryBucketUseRuleSetsField.IsValid() && !JsonInventoryBucketUseRuleSetsField->IsNull())
     {
-        InventoryBucketUseRuleSets_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("inventory_bucket_use_rule_sets"), InventoryBucketUseRuleSets_Optional);
+        InventoryBucketUseRuleSets_IsSet = TryGetJsonValue(JsonInventoryBucketUseRuleSetsField, InventoryBucketUseRuleSets_Optional);
         ParseSuccess &= InventoryBucketUseRuleSets_IsSet;
     }
-    if ((*Object)->HasField(TEXT("vendors")))
+    const TSharedPtr<FJsonValue> JsonVendorsField = (*Object)->TryGetField(TEXT("vendors"));
+    if (JsonVendorsField.IsValid() && !JsonVendorsField->IsNull())
     {
-        Vendors_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("vendors"), Vendors_Optional);
+        Vendors_IsSet = TryGetJsonValue(JsonVendorsField, Vendors_Optional);
         ParseSuccess &= Vendors_IsSet;
     }
-    if ((*Object)->HasField(TEXT("loot")))
+    const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
+    if (JsonLootField.IsValid() && !JsonLootField->IsNull())
     {
-        Loot_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("loot"), Loot_Optional);
+        Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
         ParseSuccess &= Loot_IsSet;
     }
-    if ((*Object)->HasField(TEXT("items")))
+    const TSharedPtr<FJsonValue> JsonItemsField = (*Object)->TryGetField(TEXT("items"));
+    if (JsonItemsField.IsValid() && !JsonItemsField->IsNull())
     {
-        Items_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("items"), Items_Optional);
+        Items_IsSet = TryGetJsonValue(JsonItemsField, Items_Optional);
         ParseSuccess &= Items_IsSet;
     }
-    if ((*Object)->HasField(TEXT("price_points")))
+    const TSharedPtr<FJsonValue> JsonPricePointsField = (*Object)->TryGetField(TEXT("price_points"));
+    if (JsonPricePointsField.IsValid() && !JsonPricePointsField->IsNull())
     {
-        PricePoints_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("price_points"), PricePoints_Optional);
+        PricePoints_IsSet = TryGetJsonValue(JsonPricePointsField, PricePoints_Optional);
         ParseSuccess &= PricePoints_IsSet;
     }
-    if ((*Object)->HasField(TEXT("time_frames")))
+    const TSharedPtr<FJsonValue> JsonTimeFramesField = (*Object)->TryGetField(TEXT("time_frames"));
+    if (JsonTimeFramesField.IsValid() && !JsonTimeFramesField->IsNull())
     {
-        TimeFrames_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("time_frames"), TimeFrames_Optional);
+        TimeFrames_IsSet = TryGetJsonValue(JsonTimeFramesField, TimeFrames_Optional);
         ParseSuccess &= TimeFrames_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

@@ -37,8 +37,10 @@ bool FRHAPI_BrowserResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("cursor"), Cursor);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("browser_sessions"), BrowserSessions);
+    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+    ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+    const TSharedPtr<FJsonValue> JsonBrowserSessionsField = (*Object)->TryGetField(TEXT("browser_sessions"));
+    ParseSuccess &= JsonBrowserSessionsField.IsValid() && !JsonBrowserSessionsField->IsNull() && TryGetJsonValue(JsonBrowserSessionsField, BrowserSessions);
 
     return ParseSuccess;
 }

@@ -12,8 +12,12 @@
 #include "CacheInfo.h"
 #include "TimeFrame.generated.h"
 
+/** @defgroup RHAPI_TimeFrame RallyHere API Model TimeFrame
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Time Frames are used to calculate the expiration of Inventory
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The name of the Time Frame. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Name_Optional{  };
     /** @brief true if Name_Optional has been set to a value */
@@ -58,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
      /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
     void ClearName() { Name_IsSet = false; }
 
+    /** @brief Whether or not the Time Frame is active. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Active_Optional{  };
     /** @brief true if Active_Optional has been set to a value */
@@ -205,3 +211,5 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

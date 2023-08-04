@@ -13,8 +13,12 @@
 #include "PageMeta.h"
 #include "FriendsListV1.generated.h"
 
+/** @defgroup RHAPI_FriendsListV1 RallyHere API Model FriendsListV1
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief List of the player&#39;s friends. Includes sent friend requests and received friends requests.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_FriendsListV1 : public FRHAPI_Model
@@ -77,3 +81,5 @@ struct RALLYHEREAPI_API FRHAPI_FriendsListV1 : public FRHAPI_Model
     /** @brief Sets the value of Page */
     void SetPage(FRHAPI_PageMeta NewValue) { Page = NewValue;  }
 };
+
+/** @} */

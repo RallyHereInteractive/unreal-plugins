@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "PurchasePrice.generated.h"
 
+/** @defgroup RHAPI_PurchasePrice RallyHere API Model PurchasePrice
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief The purchase price of an Item.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
@@ -35,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The Item used as the currency for the purchase. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PriceItemId{ 0 };
     /** @brief Gets the value of PriceItemId */
@@ -48,6 +53,7 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     /** @brief Sets the value of PriceItemId to its default  */
     void SetPriceItemIdToDefault() { PriceItemId = 0;  }
 
+    /** @brief The price of the Item. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 Price{ 0 };
     /** @brief Gets the value of Price */
@@ -61,6 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     /** @brief Sets the value of Price to its default  */
     void SetPriceToDefault() { Price = 0;  }
 
+    /** @brief The Item used as the coupon for the purchase. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PriceCouponItemId_Optional{  };
     /** @brief true if PriceCouponItemId_Optional has been set to a value */
@@ -87,3 +94,5 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     /** @brief Sets the value of PriceCouponItemId_Optional to its default and also sets PriceCouponItemId_IsSet to true */
     void SetPriceCouponItemIdToDefault() { PriceCouponItemId_Optional = 0; PriceCouponItemId_IsSet = true; }
 };
+
+/** @} */

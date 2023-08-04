@@ -42,13 +42,16 @@ bool FRHAPI_MatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("profile_id"), ProfileId);
-    if ((*Object)->HasField(TEXT("join_mode")))
+    const TSharedPtr<FJsonValue> JsonProfileIdField = (*Object)->TryGetField(TEXT("profile_id"));
+    ParseSuccess &= JsonProfileIdField.IsValid() && !JsonProfileIdField->IsNull() && TryGetJsonValue(JsonProfileIdField, ProfileId);
+    const TSharedPtr<FJsonValue> JsonJoinModeField = (*Object)->TryGetField(TEXT("join_mode"));
+    if (JsonJoinModeField.IsValid() && !JsonJoinModeField->IsNull())
     {
-        JoinMode_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("join_mode"), JoinMode_Optional);
+        JoinMode_IsSet = TryGetJsonValue(JsonJoinModeField, JoinMode_Optional);
         ParseSuccess &= JoinMode_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_launch_template_id"), InstanceLaunchTemplateId);
+    const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
+    ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId);
 
     return ParseSuccess;
 }

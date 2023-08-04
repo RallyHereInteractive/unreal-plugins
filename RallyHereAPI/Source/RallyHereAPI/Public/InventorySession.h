@@ -12,8 +12,12 @@
 #include "Platform.h"
 #include "InventorySession.generated.h"
 
+/** @defgroup RHAPI_InventorySession RallyHere API Model InventorySession
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Inventory Session for a Player.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Unique ID for this Inventory Session. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
@@ -45,6 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
     /** @brief Sets the value of SessionId */
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
+    /** @brief Platform for this Inventory Session. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Platform SessionPlatform_Optional{  };
     /** @brief true if SessionPlatform_Optional has been set to a value */
@@ -67,12 +73,28 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
      /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
     void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
 
+    /** @brief Durable Loot that has been applied when this Inventory Session was created. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<int32> AppliedDurableLoot{  };
-    /** @brief Gets the value of AppliedDurableLoot */
-    TArray<int32>& GetAppliedDurableLoot() { return AppliedDurableLoot; }
-    /** @brief Gets the value of AppliedDurableLoot */
-    const TArray<int32>& GetAppliedDurableLoot() const { return AppliedDurableLoot; }
-    /** @brief Sets the value of AppliedDurableLoot */
-    void SetAppliedDurableLoot(TArray<int32> NewValue) { AppliedDurableLoot = NewValue;  }
+    TArray<int32> AppliedDurableLoot_Optional{  };
+    /** @brief true if AppliedDurableLoot_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool AppliedDurableLoot_IsSet{ false };
+    /** @brief Gets the value of AppliedDurableLoot_Optional, regardless of it having been set */
+    TArray<int32>& GetAppliedDurableLoot() { return AppliedDurableLoot_Optional; }
+    /** @brief Gets the value of AppliedDurableLoot_Optional, regardless of it having been set */
+    const TArray<int32>& GetAppliedDurableLoot() const { return AppliedDurableLoot_Optional; }
+    /** @brief Gets the value of AppliedDurableLoot_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TArray<int32>& GetAppliedDurableLoot(const TArray<int32>& DefaultValue) const { if (AppliedDurableLoot_IsSet) return AppliedDurableLoot_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of AppliedDurableLoot_Optional and returns true if it has been set, otherwise returns false */
+    bool GetAppliedDurableLoot(TArray<int32>& OutValue) const { if (AppliedDurableLoot_IsSet) OutValue = AppliedDurableLoot_Optional; return AppliedDurableLoot_IsSet; }
+    /** @brief Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr */
+    TArray<int32>* GetAppliedDurableLootOrNull() { if (AppliedDurableLoot_IsSet) return &AppliedDurableLoot_Optional; return nullptr; }
+    /** @brief Returns a pointer to AppliedDurableLoot_Optional, if it has been set, otherwise returns nullptr */
+    const TArray<int32>* GetAppliedDurableLootOrNull() const { if (AppliedDurableLoot_IsSet) return &AppliedDurableLoot_Optional; return nullptr; }
+    /** @brief Sets the value of AppliedDurableLoot_Optional and also sets AppliedDurableLoot_IsSet to true */
+    void SetAppliedDurableLoot(TArray<int32> NewValue) { AppliedDurableLoot_Optional = NewValue; AppliedDurableLoot_IsSet = true; }
+     /** @brief Clears the value of AppliedDurableLoot_Optional and sets AppliedDurableLoot_IsSet to false */
+    void ClearAppliedDurableLoot() { AppliedDurableLoot_IsSet = false; }
 };
+
+/** @} */

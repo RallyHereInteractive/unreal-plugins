@@ -30,7 +30,7 @@ FString EnumToString(const ERHAPI_PlatformID& Value)
         return TEXT("5");
     case ERHAPI_PlatformID::Psn:
         return TEXT("9");
-    case ERHAPI_PlatformID::Xboxlive:
+    case ERHAPI_PlatformID::XboxLive:
         return TEXT("10");
     case ERHAPI_PlatformID::Basic:
         return TEXT("11");
@@ -59,7 +59,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformID& Value)
         { TEXT("4"), ERHAPI_PlatformID::Amazon },
         { TEXT("5"), ERHAPI_PlatformID::Steam },
         { TEXT("9"), ERHAPI_PlatformID::Psn },
-        { TEXT("10"), ERHAPI_PlatformID::Xboxlive },
+        { TEXT("10"), ERHAPI_PlatformID::XboxLive },
         { TEXT("11"), ERHAPI_PlatformID::Basic },
         { TEXT("13"), ERHAPI_PlatformID::Google },
         { TEXT("16"), ERHAPI_PlatformID::Twitch },

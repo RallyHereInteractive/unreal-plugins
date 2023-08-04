@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "HTTPAuthorizationCredentials.generated.h"
 
+/** @defgroup RHAPI_HTTPAuthorizationCredentials RallyHere API Model HTTPAuthorizationCredentials
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -53,3 +57,5 @@ struct RALLYHEREAPI_API FRHAPI_HTTPAuthorizationCredentials : public FRHAPI_Mode
     /** @brief Sets the value of Credentials */
     void SetCredentials(FString NewValue) { Credentials = NewValue;  }
 };
+
+/** @} */

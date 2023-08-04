@@ -16,22 +16,21 @@ struct FRHDTW_Friends : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 	void DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem);
-	void DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem) const;
+	void DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem);
 	void DoBlockedPlayersTab(URH_FriendSubsystem* Urh_FriendSubsystem);
 
-	void HandleFetchFriendsList(bool bSuccessful);
-	void HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, FriendshipStatus FriendsStatus);
-	void HandleRemoveFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid);
-	void HandleAddNote(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FString& NewNote);
-	void HandleFetchFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid);
+	void HandleFetchFriendsList(bool bSuccessful, const FGuid InstigatorUuid);
+	void HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, FriendshipStatus FriendsStatus, const FGuid InstigatorUuid);
+	void HandleRemoveFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FGuid InstigatorUuid);
+	void HandleAddNote(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FString& NewNote, const FGuid InstigatorUuid);
+	void HandleFetchFriend(bool bSuccessful, const FGuid& FriendsPlayerUuid, const FGuid InstigatorUuid);
 
-	void HandleFetchBlockedPlayers(bool bSuccessful);
-	void HandleBlockPlayer(bool bSuccessful, const FGuid& PlayerUuid);
-	void HandleUnblockPlayer(bool bSuccessful, const FGuid& PlayerUuid);
-	void HandleFetchBlockedPlayer(bool bSuccessful, const FGuid& PlayerUuid);
+	void HandleFetchBlockedPlayers(bool bSuccessful, const FGuid InstigatorUuid);
+	void HandleBlockPlayer(bool bSuccessful, const FGuid& PlayerUuid, const FGuid InstigatorUuid);
+	void HandleUnblockPlayer(bool bSuccessful, const FGuid& PlayerUuid, const FGuid InstigatorUuid);
+	void HandleFetchBlockedPlayer(bool bSuccessful, const FGuid& PlayerUuid, const FGuid InstigatorUuid);
 
-	TArray<ANSICHAR> FriendPlayerUuidString;
-	TArray<ANSICHAR> BlockedPlayerUuidString;
+	TArray<ANSICHAR> PlatformUserIdString;
 
 	FString FriendActionResult;
 	FString BlockActionResult;

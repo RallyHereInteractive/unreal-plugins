@@ -12,8 +12,12 @@
 #include "Platform.h"
 #include "InventorySessionCreateRequest.generated.h"
 
+/** @defgroup RHAPI_InventorySessionCreateRequest RallyHere API Model InventorySessionCreateRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Request body for creating a new Inventory Session.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateRequest : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateRequest : public FRHAPI_Mod
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The platform for the session. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Platform SessionPlatform_Optional{  };
     /** @brief true if SessionPlatform_Optional has been set to a value */
@@ -58,3 +63,5 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateRequest : public FRHAPI_Mod
      /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
     void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
 };
+
+/** @} */

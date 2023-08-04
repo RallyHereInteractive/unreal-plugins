@@ -13,8 +13,12 @@
 #include "JoinParams.h"
 #include "InstanceInfoUpdate.generated.h"
 
+/** @defgroup RHAPI_InstanceInfoUpdate RallyHere API Model InstanceInfoUpdate
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body to update the instance resource in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
@@ -151,3 +155,5 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

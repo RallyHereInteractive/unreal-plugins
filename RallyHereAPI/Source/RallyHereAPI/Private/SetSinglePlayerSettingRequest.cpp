@@ -37,8 +37,10 @@ bool FRHAPI_SetSinglePlayerSettingRequest::FromJson(const TSharedPtr<FJsonValue>
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("v"), V);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("value"), Value);
+    const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
+    ParseSuccess &= JsonVField.IsValid() && !JsonVField->IsNull() && TryGetJsonValue(JsonVField, V);
+    const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
+    ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
 
     return ParseSuccess;
 }

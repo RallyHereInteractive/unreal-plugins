@@ -49,17 +49,22 @@ bool FRHAPI_MapConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("map_game_id"), MapGameId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("map_name"), MapName);
-    if ((*Object)->HasField(TEXT("mode")))
+    const TSharedPtr<FJsonValue> JsonMapGameIdField = (*Object)->TryGetField(TEXT("map_game_id"));
+    ParseSuccess &= JsonMapGameIdField.IsValid() && !JsonMapGameIdField->IsNull() && TryGetJsonValue(JsonMapGameIdField, MapGameId);
+    const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
+    ParseSuccess &= JsonMapNameField.IsValid() && !JsonMapNameField->IsNull() && TryGetJsonValue(JsonMapNameField, MapName);
+    const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
+    if (JsonModeField.IsValid() && !JsonModeField->IsNull())
     {
-        Mode_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("mode"), Mode_Optional);
+        Mode_IsSet = TryGetJsonValue(JsonModeField, Mode_Optional);
         ParseSuccess &= Mode_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("selection_chance"), SelectionChance);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonSelectionChanceField = (*Object)->TryGetField(TEXT("selection_chance"));
+    ParseSuccess &= JsonSelectionChanceField.IsValid() && !JsonSelectionChanceField->IsNull() && TryGetJsonValue(JsonSelectionChanceField, SelectionChance);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

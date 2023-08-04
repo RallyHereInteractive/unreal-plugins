@@ -4,6 +4,7 @@
 #include "RH_DebugToolWindow.h"
 #include "RH_PurgeSubsystem.h"
 #include "UsersAPI.h"
+#include <string>
 
 struct FRHDTW_Purge : public FRH_DebugToolWindow
 {
@@ -15,14 +16,9 @@ public:
 
 	virtual void Do() override;
 private:
-	URH_PurgeSubsystem* GetPurgeSubsystem();
-	
-	void HandleEnqueueMeForPurge(bool success, FRH_PurgeStatus PurgeStatus, FRH_ErrorInfo Error);
-	void HandleDequeueMeForPurge(bool success, FRH_PurgeStatus PurgeStatus, FRH_ErrorInfo Error);
-	void HandleGetMyPurgeStatus(bool success, FRH_PurgeStatus PurgeStatus, FRH_ErrorInfo Error);
-
-	void DequeueMeForPurge(URH_PurgeSubsystem* pRH_PurgeSubsystem);
-	void RefreshMyPurgeStatus(URH_PurgeSubsystem* pRH_PurgeSubsystem);
+	void HandleEnqueueMeForPurge(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid);
+	void HandleDequeueMeForPurge(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid);
+	void HandleGetMyPurgeStatus(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid);
 	
 	std::string SuggestedPurgeTimeInput;
 	FString PurgeActionResult;

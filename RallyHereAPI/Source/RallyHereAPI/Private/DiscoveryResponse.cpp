@@ -45,15 +45,18 @@ bool FRHAPI_DiscoveryResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("addresses"), Addresses);
-    if ((*Object)->HasField(TEXT("server_status")))
+    const TSharedPtr<FJsonValue> JsonAddressesField = (*Object)->TryGetField(TEXT("addresses"));
+    ParseSuccess &= JsonAddressesField.IsValid() && !JsonAddressesField->IsNull() && TryGetJsonValue(JsonAddressesField, Addresses);
+    const TSharedPtr<FJsonValue> JsonServerStatusField = (*Object)->TryGetField(TEXT("server_status"));
+    if (JsonServerStatusField.IsValid() && !JsonServerStatusField->IsNull())
     {
-        ServerStatus_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("server_status"), ServerStatus_Optional);
+        ServerStatus_IsSet = TryGetJsonValue(JsonServerStatusField, ServerStatus_Optional);
         ParseSuccess &= ServerStatus_IsSet;
     }
-    if ((*Object)->HasField(TEXT("command_line_args")))
+    const TSharedPtr<FJsonValue> JsonCommandLineArgsField = (*Object)->TryGetField(TEXT("command_line_args"));
+    if (JsonCommandLineArgsField.IsValid() && !JsonCommandLineArgsField->IsNull())
     {
-        CommandLineArgs_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("command_line_args"), CommandLineArgs_Optional);
+        CommandLineArgs_IsSet = TryGetJsonValue(JsonCommandLineArgsField, CommandLineArgs_Optional);
         ParseSuccess &= CommandLineArgs_IsSet;
     }
 

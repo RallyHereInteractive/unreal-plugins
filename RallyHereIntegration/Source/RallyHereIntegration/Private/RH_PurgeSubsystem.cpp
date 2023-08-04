@@ -17,7 +17,7 @@ void URH_PurgeSubsystem::Deinitialize()
 void URH_PurgeSubsystem::OnUserChanged()
 {
 	Super::OnUserChanged();
-	PurgeStatus = FRH_PurgeStatus();
+	PurgeStatus = FRHAPI_PurgeResponse();
 }
 
 bool URH_PurgeSubsystem::EnqueueMeForPurge(TOptional<FDateTime> PurgeTime, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
@@ -29,7 +29,8 @@ bool URH_PurgeSubsystem::EnqueueMeForPurge(TOptional<FDateTime> PurgeTime, FRH_O
 	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().QueueMeForPurge(Request,
     		RallyHereAPI::FDelegate_QueueMeForPurge::CreateUObject(
     			this, &URH_PurgeSubsystem::OnPurgeMe,
-    			Delegate));
+    			Delegate),
+				GetDefault<URH_IntegrationSettings>()->PurgeQueuePriority);
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false, PurgeStatus, FRH_ErrorInfo());
@@ -45,7 +46,8 @@ bool URH_PurgeSubsystem::DequeueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock
 	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().DequeueMeForPurge(Request,
     		RallyHereAPI::FDelegate_DequeueMeForPurge::CreateUObject(
     			this, &URH_PurgeSubsystem::OnDequeueMe,
-    			Delegate));
+    			Delegate),
+				GetDefault<URH_IntegrationSettings>()->PurgeQueuePriority);
 
 	if (HttpPtr == nullptr)
 	{
@@ -62,7 +64,8 @@ bool URH_PurgeSubsystem::QueryMyPurgeStatus(FRH_OnPurgeStatusUpdatedDelegateBloc
 	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().GetQueuePurgeStatusForMe(Request,
     		RallyHereAPI::FDelegate_GetQueuePurgeStatusForMe::CreateUObject(
     			this, &URH_PurgeSubsystem::OnGetMyPurgeStatus,
-    			Delegate));
+    			Delegate),
+				GetDefault<URH_IntegrationSettings>()->PurgeGetStatusPriority);
 	
 	if (HttpPtr == nullptr)
 	{
@@ -82,7 +85,7 @@ void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge
 		{
 			AuthContext->Refresh(); 
 		}
-		PurgeStatus.ImportAPIStatus(Resp.Content);
+		PurgeStatus = Resp.Content;
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());
 	}
 	else
@@ -98,7 +101,7 @@ void URH_PurgeSubsystem::OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForP
 {
 	if (Resp.IsSuccessful())
 	{
-		PurgeStatus = FRH_PurgeStatus();
+		PurgeStatus = FRHAPI_PurgeResponse();
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());
 	}
 	else
@@ -114,12 +117,12 @@ void URH_PurgeSubsystem::OnGetMyPurgeStatus(const RallyHereAPI::FResponse_GetQue
 {
 	if (Resp.IsSuccessful())
 	{
-		PurgeStatus.ImportAPIStatus(Resp.Content);
+		PurgeStatus = Resp.Content;
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());
 	}
 	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Type::NotFound)
 	{
-		PurgeStatus.ImportAPIStatus({});
+		PurgeStatus = FRHAPI_PurgeResponse();
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());
 	}
 	else

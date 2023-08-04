@@ -9,16 +9,20 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "Browser.h"
-#include "Instance.h"
-#include "Match.h"
-#include "Matchmaking.h"
+#include "BrowserInfo.h"
+#include "InstanceInfo.h"
+#include "MatchInfo.h"
+#include "MatchmakingInfo.h"
 #include "PlatformSession.h"
 #include "SessionTeam.h"
 #include "Session.generated.h"
 
+/** @defgroup RHAPI_Session RallyHere API Model Session
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A session resource
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
@@ -62,90 +66,90 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_Instance Instance_Optional{  };
+    FRHAPI_InstanceInfo Instance_Optional{  };
     /** @brief true if Instance_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Instance_IsSet{ false };
     /** @brief Gets the value of Instance_Optional, regardless of it having been set */
-    FRHAPI_Instance& GetInstance() { return Instance_Optional; }
+    FRHAPI_InstanceInfo& GetInstance() { return Instance_Optional; }
     /** @brief Gets the value of Instance_Optional, regardless of it having been set */
-    const FRHAPI_Instance& GetInstance() const { return Instance_Optional; }
+    const FRHAPI_InstanceInfo& GetInstance() const { return Instance_Optional; }
     /** @brief Gets the value of Instance_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_Instance& GetInstance(const FRHAPI_Instance& DefaultValue) const { if (Instance_IsSet) return Instance_Optional; return DefaultValue; }
+    const FRHAPI_InstanceInfo& GetInstance(const FRHAPI_InstanceInfo& DefaultValue) const { if (Instance_IsSet) return Instance_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Instance_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInstance(FRHAPI_Instance& OutValue) const { if (Instance_IsSet) OutValue = Instance_Optional; return Instance_IsSet; }
+    bool GetInstance(FRHAPI_InstanceInfo& OutValue) const { if (Instance_IsSet) OutValue = Instance_Optional; return Instance_IsSet; }
     /** @brief Returns a pointer to Instance_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_Instance* GetInstanceOrNull() { if (Instance_IsSet) return &Instance_Optional; return nullptr; }
+    FRHAPI_InstanceInfo* GetInstanceOrNull() { if (Instance_IsSet) return &Instance_Optional; return nullptr; }
     /** @brief Returns a pointer to Instance_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_Instance* GetInstanceOrNull() const { if (Instance_IsSet) return &Instance_Optional; return nullptr; }
+    const FRHAPI_InstanceInfo* GetInstanceOrNull() const { if (Instance_IsSet) return &Instance_Optional; return nullptr; }
     /** @brief Sets the value of Instance_Optional and also sets Instance_IsSet to true */
-    void SetInstance(FRHAPI_Instance NewValue) { Instance_Optional = NewValue; Instance_IsSet = true; }
+    void SetInstance(FRHAPI_InstanceInfo NewValue) { Instance_Optional = NewValue; Instance_IsSet = true; }
      /** @brief Clears the value of Instance_Optional and sets Instance_IsSet to false */
     void ClearInstance() { Instance_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_Match Match_Optional{  };
+    FRHAPI_MatchInfo Match_Optional{  };
     /** @brief true if Match_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Match_IsSet{ false };
     /** @brief Gets the value of Match_Optional, regardless of it having been set */
-    FRHAPI_Match& GetMatch() { return Match_Optional; }
+    FRHAPI_MatchInfo& GetMatch() { return Match_Optional; }
     /** @brief Gets the value of Match_Optional, regardless of it having been set */
-    const FRHAPI_Match& GetMatch() const { return Match_Optional; }
+    const FRHAPI_MatchInfo& GetMatch() const { return Match_Optional; }
     /** @brief Gets the value of Match_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_Match& GetMatch(const FRHAPI_Match& DefaultValue) const { if (Match_IsSet) return Match_Optional; return DefaultValue; }
+    const FRHAPI_MatchInfo& GetMatch(const FRHAPI_MatchInfo& DefaultValue) const { if (Match_IsSet) return Match_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Match_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMatch(FRHAPI_Match& OutValue) const { if (Match_IsSet) OutValue = Match_Optional; return Match_IsSet; }
+    bool GetMatch(FRHAPI_MatchInfo& OutValue) const { if (Match_IsSet) OutValue = Match_Optional; return Match_IsSet; }
     /** @brief Returns a pointer to Match_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_Match* GetMatchOrNull() { if (Match_IsSet) return &Match_Optional; return nullptr; }
+    FRHAPI_MatchInfo* GetMatchOrNull() { if (Match_IsSet) return &Match_Optional; return nullptr; }
     /** @brief Returns a pointer to Match_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_Match* GetMatchOrNull() const { if (Match_IsSet) return &Match_Optional; return nullptr; }
+    const FRHAPI_MatchInfo* GetMatchOrNull() const { if (Match_IsSet) return &Match_Optional; return nullptr; }
     /** @brief Sets the value of Match_Optional and also sets Match_IsSet to true */
-    void SetMatch(FRHAPI_Match NewValue) { Match_Optional = NewValue; Match_IsSet = true; }
+    void SetMatch(FRHAPI_MatchInfo NewValue) { Match_Optional = NewValue; Match_IsSet = true; }
      /** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
     void ClearMatch() { Match_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_Matchmaking Matchmaking_Optional{  };
+    FRHAPI_MatchmakingInfo Matchmaking_Optional{  };
     /** @brief true if Matchmaking_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Matchmaking_IsSet{ false };
     /** @brief Gets the value of Matchmaking_Optional, regardless of it having been set */
-    FRHAPI_Matchmaking& GetMatchmaking() { return Matchmaking_Optional; }
+    FRHAPI_MatchmakingInfo& GetMatchmaking() { return Matchmaking_Optional; }
     /** @brief Gets the value of Matchmaking_Optional, regardless of it having been set */
-    const FRHAPI_Matchmaking& GetMatchmaking() const { return Matchmaking_Optional; }
+    const FRHAPI_MatchmakingInfo& GetMatchmaking() const { return Matchmaking_Optional; }
     /** @brief Gets the value of Matchmaking_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_Matchmaking& GetMatchmaking(const FRHAPI_Matchmaking& DefaultValue) const { if (Matchmaking_IsSet) return Matchmaking_Optional; return DefaultValue; }
+    const FRHAPI_MatchmakingInfo& GetMatchmaking(const FRHAPI_MatchmakingInfo& DefaultValue) const { if (Matchmaking_IsSet) return Matchmaking_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Matchmaking_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMatchmaking(FRHAPI_Matchmaking& OutValue) const { if (Matchmaking_IsSet) OutValue = Matchmaking_Optional; return Matchmaking_IsSet; }
+    bool GetMatchmaking(FRHAPI_MatchmakingInfo& OutValue) const { if (Matchmaking_IsSet) OutValue = Matchmaking_Optional; return Matchmaking_IsSet; }
     /** @brief Returns a pointer to Matchmaking_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_Matchmaking* GetMatchmakingOrNull() { if (Matchmaking_IsSet) return &Matchmaking_Optional; return nullptr; }
+    FRHAPI_MatchmakingInfo* GetMatchmakingOrNull() { if (Matchmaking_IsSet) return &Matchmaking_Optional; return nullptr; }
     /** @brief Returns a pointer to Matchmaking_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_Matchmaking* GetMatchmakingOrNull() const { if (Matchmaking_IsSet) return &Matchmaking_Optional; return nullptr; }
+    const FRHAPI_MatchmakingInfo* GetMatchmakingOrNull() const { if (Matchmaking_IsSet) return &Matchmaking_Optional; return nullptr; }
     /** @brief Sets the value of Matchmaking_Optional and also sets Matchmaking_IsSet to true */
-    void SetMatchmaking(FRHAPI_Matchmaking NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true; }
+    void SetMatchmaking(FRHAPI_MatchmakingInfo NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true; }
      /** @brief Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false */
     void ClearMatchmaking() { Matchmaking_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_Browser Browser_Optional{  };
+    FRHAPI_BrowserInfo Browser_Optional{  };
     /** @brief true if Browser_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Browser_IsSet{ false };
     /** @brief Gets the value of Browser_Optional, regardless of it having been set */
-    FRHAPI_Browser& GetBrowser() { return Browser_Optional; }
+    FRHAPI_BrowserInfo& GetBrowser() { return Browser_Optional; }
     /** @brief Gets the value of Browser_Optional, regardless of it having been set */
-    const FRHAPI_Browser& GetBrowser() const { return Browser_Optional; }
+    const FRHAPI_BrowserInfo& GetBrowser() const { return Browser_Optional; }
     /** @brief Gets the value of Browser_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_Browser& GetBrowser(const FRHAPI_Browser& DefaultValue) const { if (Browser_IsSet) return Browser_Optional; return DefaultValue; }
+    const FRHAPI_BrowserInfo& GetBrowser(const FRHAPI_BrowserInfo& DefaultValue) const { if (Browser_IsSet) return Browser_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Browser_Optional and returns true if it has been set, otherwise returns false */
-    bool GetBrowser(FRHAPI_Browser& OutValue) const { if (Browser_IsSet) OutValue = Browser_Optional; return Browser_IsSet; }
+    bool GetBrowser(FRHAPI_BrowserInfo& OutValue) const { if (Browser_IsSet) OutValue = Browser_Optional; return Browser_IsSet; }
     /** @brief Returns a pointer to Browser_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_Browser* GetBrowserOrNull() { if (Browser_IsSet) return &Browser_Optional; return nullptr; }
+    FRHAPI_BrowserInfo* GetBrowserOrNull() { if (Browser_IsSet) return &Browser_Optional; return nullptr; }
     /** @brief Returns a pointer to Browser_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_Browser* GetBrowserOrNull() const { if (Browser_IsSet) return &Browser_Optional; return nullptr; }
+    const FRHAPI_BrowserInfo* GetBrowserOrNull() const { if (Browser_IsSet) return &Browser_Optional; return nullptr; }
     /** @brief Sets the value of Browser_Optional and also sets Browser_IsSet to true */
-    void SetBrowser(FRHAPI_Browser NewValue) { Browser_Optional = NewValue; Browser_IsSet = true; }
+    void SetBrowser(FRHAPI_BrowserInfo NewValue) { Browser_Optional = NewValue; Browser_IsSet = true; }
      /** @brief Clears the value of Browser_Optional and sets Browser_IsSet to false */
     void ClearBrowser() { Browser_IsSet = false; }
 
@@ -229,32 +233,28 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     /** @brief Sets the value of Created */
     void SetCreated(FDateTime NewValue) { Created = NewValue;  }
 
-    /** @brief Preferred site for the instance and match to take place in */
+    /** @brief Preferred region for the instance and match to take place in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 SiteId_Optional{  };
-    /** @brief true if SiteId_Optional has been set to a value */
+    FString RegionId_Optional{  };
+    /** @brief true if RegionId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool SiteId_IsSet{ false };
-    /** @brief Gets the value of SiteId_Optional, regardless of it having been set */
-    int32& GetSiteId() { return SiteId_Optional; }
-    /** @brief Gets the value of SiteId_Optional, regardless of it having been set */
-    const int32& GetSiteId() const { return SiteId_Optional; }
-    /** @brief Gets the value of SiteId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetSiteId(const int32& DefaultValue) const { if (SiteId_IsSet) return SiteId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of SiteId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSiteId(int32& OutValue) const { if (SiteId_IsSet) OutValue = SiteId_Optional; return SiteId_IsSet; }
-    /** @brief Returns a pointer to SiteId_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetSiteIdOrNull() { if (SiteId_IsSet) return &SiteId_Optional; return nullptr; }
-    /** @brief Returns a pointer to SiteId_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetSiteIdOrNull() const { if (SiteId_IsSet) return &SiteId_Optional; return nullptr; }
-    /** @brief Sets the value of SiteId_Optional and also sets SiteId_IsSet to true */
-    void SetSiteId(int32 NewValue) { SiteId_Optional = NewValue; SiteId_IsSet = true; }
-     /** @brief Clears the value of SiteId_Optional and sets SiteId_IsSet to false */
-    void ClearSiteId() { SiteId_Optional = 0; SiteId_IsSet = false; }
-    /** @brief Returns true if SiteId_Optional is set and matches the default value */
-    bool IsSiteIdDefaultValue() const { return SiteId_IsSet && SiteId_Optional == 0; }
-    /** @brief Sets the value of SiteId_Optional to its default and also sets SiteId_IsSet to true */
-    void SetSiteIdToDefault() { SiteId_Optional = 0; SiteId_IsSet = true; }
+    bool RegionId_IsSet{ false };
+    /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
+    FString& GetRegionId() { return RegionId_Optional; }
+    /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
+    const FString& GetRegionId() const { return RegionId_Optional; }
+    /** @brief Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet) OutValue = RegionId_Optional; return RegionId_IsSet; }
+    /** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetRegionIdOrNull() { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
+    /** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return &RegionId_Optional; return nullptr; }
+    /** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
+    void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
+     /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
+    void ClearRegionId() { RegionId_IsSet = false; }
 
     /** @brief Flag of whether or not this session was created by matchmaking or not */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -283,3 +283,5 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     /** @brief Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true */
     void SetCreatedByMatchmakingToDefault() { CreatedByMatchmaking_Optional = false; CreatedByMatchmaking_IsSet = true; }
 };
+
+/** @} */

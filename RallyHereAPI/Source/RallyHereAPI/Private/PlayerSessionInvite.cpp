@@ -40,10 +40,12 @@ bool FRHAPI_PlayerSessionInvite::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_id"), SessionId);
-    if ((*Object)->HasField(TEXT("inviting_player_uuid")))
+    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+    ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+    const TSharedPtr<FJsonValue> JsonInvitingPlayerUuidField = (*Object)->TryGetField(TEXT("inviting_player_uuid"));
+    if (JsonInvitingPlayerUuidField.IsValid() && !JsonInvitingPlayerUuidField->IsNull())
     {
-        InvitingPlayerUuid_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("inviting_player_uuid"), InvitingPlayerUuid_Optional);
+        InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
         ParseSuccess &= InvitingPlayerUuid_IsSet;
     }
 

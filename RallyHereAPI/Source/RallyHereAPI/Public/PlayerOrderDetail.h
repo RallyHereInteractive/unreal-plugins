@@ -14,8 +14,12 @@
 #include "PlayerOrderDetailType.h"
 #include "PlayerOrderDetail.generated.h"
 
+/** @defgroup RHAPI_PlayerOrderDetail RallyHere API Model PlayerOrderDetail
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Represents details of what occurred in a Player Order Entry.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
@@ -38,6 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The type of detail. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_PlayerOrderDetailType Type{  };
     /** @brief Gets the value of Type */
@@ -47,6 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     /** @brief Sets the value of Type */
     void SetType(ERHAPI_PlayerOrderDetailType NewValue) { Type = NewValue;  }
 
+    /** @brief The Loot ID. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 LootId_Optional{  };
     /** @brief true if LootId_Optional has been set to a value */
@@ -117,3 +123,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
      /** @brief Clears the value of Order_Optional and sets Order_IsSet to false */
     void ClearOrder() { Order_IsSet = false; }
 };
+
+/** @} */

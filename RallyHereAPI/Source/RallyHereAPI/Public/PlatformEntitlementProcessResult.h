@@ -15,8 +15,12 @@
 #include "PlatformRegion.h"
 #include "PlatformEntitlementProcessResult.generated.h"
 
+/** @defgroup RHAPI_PlatformEntitlementProcessResult RallyHere API Model PlatformEntitlementProcessResult
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Result of processing a platform entitlement
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_Model
@@ -199,3 +203,5 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     /** @brief Sets the value of SkippedServerEntitlements_Optional to its default and also sets SkippedServerEntitlements_IsSet to true */
     void SetSkippedServerEntitlementsToDefault() { SkippedServerEntitlements_Optional = false; SkippedServerEntitlements_IsSet = true; }
 };
+
+/** @} */

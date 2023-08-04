@@ -38,9 +38,10 @@ bool FRHAPI_PurgeRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("suggested_purge_time")))
+    const TSharedPtr<FJsonValue> JsonSuggestedPurgeTimeField = (*Object)->TryGetField(TEXT("suggested_purge_time"));
+    if (JsonSuggestedPurgeTimeField.IsValid() && !JsonSuggestedPurgeTimeField->IsNull())
     {
-        SuggestedPurgeTime_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("suggested_purge_time"), SuggestedPurgeTime_Optional);
+        SuggestedPurgeTime_IsSet = TryGetJsonValue(JsonSuggestedPurgeTimeField, SuggestedPurgeTime_Optional);
         ParseSuccess &= SuggestedPurgeTime_IsSet;
     }
 

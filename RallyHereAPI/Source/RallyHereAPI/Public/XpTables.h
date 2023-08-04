@@ -13,8 +13,12 @@
 #include "XpTable.h"
 #include "XpTables.generated.h"
 
+/** @defgroup RHAPI_XpTables RallyHere API Model XpTables
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of XP Tables. Each table is a collection of XP Levels from 1 to N. Each level has a minimum XP value.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_XpTables : public FRHAPI_Model
@@ -81,3 +85,5 @@ struct RALLYHEREAPI_API FRHAPI_XpTables : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

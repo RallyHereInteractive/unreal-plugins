@@ -39,9 +39,12 @@ bool FRHAPI_AdOpportunity::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("ad_url"), AdUrl);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("seconds"), Seconds);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("opportunity_id"), OpportunityId);
+    const TSharedPtr<FJsonValue> JsonAdUrlField = (*Object)->TryGetField(TEXT("ad_url"));
+    ParseSuccess &= JsonAdUrlField.IsValid() && !JsonAdUrlField->IsNull() && TryGetJsonValue(JsonAdUrlField, AdUrl);
+    const TSharedPtr<FJsonValue> JsonSecondsField = (*Object)->TryGetField(TEXT("seconds"));
+    ParseSuccess &= JsonSecondsField.IsValid() && !JsonSecondsField->IsNull() && TryGetJsonValue(JsonSecondsField, Seconds);
+    const TSharedPtr<FJsonValue> JsonOpportunityIdField = (*Object)->TryGetField(TEXT("opportunity_id"));
+    ParseSuccess &= JsonOpportunityIdField.IsValid() && !JsonOpportunityIdField->IsNull() && TryGetJsonValue(JsonOpportunityIdField, OpportunityId);
 
     return ParseSuccess;
 }

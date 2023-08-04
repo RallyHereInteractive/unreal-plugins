@@ -71,7 +71,20 @@ public:
 	/** Toggle ImGui demo. */
 	void ToggleDemo() { SetShowDemo(!ShowDemo()); }
 
+	//$$KAB - BEGIN - Add support for loading a layout from INI between frames
+	void SetLoadSavedLayout(bool bReload) { bLoadSavedLayout = bReload; }
+	bool ShouldLoadSavedLayout() const { return bLoadSavedLayout; }
+
+	void SetLoadDefaultLayout(bool bReload) { bLoadDefaultLayout = bReload; }
+	bool ShouldLoadDefaultLayout() const { return bLoadDefaultLayout; }
+	//$$KAB - END - Add support for loading a layout from INI between frames
+
 private:
+
+	//$$KAB - BEGIN - Add support for loading a layout from INI between frames
+	bool bLoadDefaultLayout = false;
+	bool bLoadSavedLayout = false;
+	//$$KAB - END - Add support for loading a layout from INI between frames
 
 	bool bInputEnabled = false;
 

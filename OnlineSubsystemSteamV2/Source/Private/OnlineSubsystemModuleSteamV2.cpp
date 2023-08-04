@@ -15,28 +15,62 @@ IMPLEMENT_MODULE(FOnlineSubsystemSteamV2Module, OnlineSubsystemSteamV2);
  */
 class FOnlineFactorySteamV2 : public IOnlineFactory
 {
+	/** Single instantiation of the STEAM interface */
+	// NOTE - this is a weak interface, since sometimes the OSS manager will delete without going through the factory, and we do not want to prevent that
+	static TWeakPtr<class IOnlineSubsystem, ESPMode::ThreadSafe> SteamV2Singleton;
+
+	void DestroySubsystem()
+	{
+		auto SteamV2SingletonShared = SteamV2Singleton.Pin();
+		SteamV2Singleton.Reset();
+
+		if (SteamV2SingletonShared.IsValid())
+		{
+			SteamV2SingletonShared->Shutdown();
+			SteamV2SingletonShared = nullptr;
+		}
+		
+	}
+
 public:
 	FOnlineFactorySteamV2() = default;
-	virtual ~FOnlineFactorySteamV2() = default;
+	virtual ~FOnlineFactorySteamV2()
+	{
+		DestroySubsystem();
+	}
 
-	// Mirrors OnlineSubsystemNull
 	virtual IOnlineSubsystemPtr CreateSubsystem(FName InstanceName)
 	{
-		FOnlineSubsystemSteamV2Ptr OnlineSub = MakeShared<FOnlineSubsystemSteamV2, ESPMode::ThreadSafe>(InstanceName);
-		if (!OnlineSub->IsEnabled())
+		if (!SteamV2Singleton.IsValid())
 		{
-			UE_LOG_ONLINE(Warning, TEXT("Steam API disabled!"));
-			return nullptr;
-		}
-		else if (!OnlineSub->Init())
-		{
-			UE_LOG_ONLINE(Warning, TEXT("Steam API failed to initialize!"));
-			return nullptr;
+			auto SteamV2SingletonShared = MakeShared<FOnlineSubsystemSteamV2, ESPMode::ThreadSafe>(InstanceName);
+
+			if (SteamV2SingletonShared->IsEnabled())
+			{
+				if (!SteamV2SingletonShared->Init())
+				{
+					UE_LOG_ONLINE(Warning, TEXT("Steam API failed to initialize!"));
+					DestroySubsystem();
+				}
+			}
+			else
+			{
+				UE_CLOG_ONLINE(IsRunningDedicatedServer() || IsRunningGame(), Warning, TEXT("Steam API disabled!"));
+				DestroySubsystem();
+			}
+
+			SteamV2Singleton = SteamV2SingletonShared;
+
+			return SteamV2SingletonShared;
 		}
 
-		return OnlineSub;
+		UE_LOG_ONLINE(Warning, TEXT("Can't create more than one instance of SteamV2 online subsystem!"));
+		return nullptr;
 	}
 };
+
+
+TWeakPtr<class IOnlineSubsystem, ESPMode::ThreadSafe> FOnlineFactorySteamV2::SteamV2Singleton = nullptr;
 
 void FOnlineSubsystemSteamV2Module::StartupModule()
 {

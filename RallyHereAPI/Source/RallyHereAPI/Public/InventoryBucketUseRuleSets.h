@@ -13,8 +13,12 @@
 #include "InventoryBucketUseRuleSet.h"
 #include "InventoryBucketUseRuleSets.generated.h"
 
+/** @defgroup RHAPI_InventoryBucketUseRuleSets RallyHere API Model InventoryBucketUseRuleSets
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Inventory Bucket Use Rule Sets. A rule set determine how item can be used across buckets.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
@@ -81,3 +85,5 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSets : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

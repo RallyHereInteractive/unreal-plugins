@@ -14,8 +14,12 @@
 #include "SessionPlayerStatus.h"
 #include "SessionPlayer.generated.h"
 
+/** @defgroup RHAPI_SessionPlayer RallyHere API Model SessionPlayer
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A player resource in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
@@ -244,3 +248,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
      /** @brief Clears the value of Joined_Optional and sets Joined_IsSet to false */
     void ClearJoined() { Joined_IsSet = false; }
 };
+
+/** @} */

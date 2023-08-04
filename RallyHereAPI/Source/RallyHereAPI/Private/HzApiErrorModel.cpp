@@ -42,13 +42,16 @@ bool FRHAPI_HzApiErrorModel::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("auth_success")))
+    const TSharedPtr<FJsonValue> JsonAuthSuccessField = (*Object)->TryGetField(TEXT("auth_success"));
+    if (JsonAuthSuccessField.IsValid() && !JsonAuthSuccessField->IsNull())
     {
-        AuthSuccess_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("auth_success"), AuthSuccess_Optional);
+        AuthSuccess_IsSet = TryGetJsonValue(JsonAuthSuccessField, AuthSuccess_Optional);
         ParseSuccess &= AuthSuccess_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("error_code"), ErrorCode);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("desc"), Desc);
+    const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
+    ParseSuccess &= JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull() && TryGetJsonValue(JsonErrorCodeField, ErrorCode);
+    const TSharedPtr<FJsonValue> JsonDescField = (*Object)->TryGetField(TEXT("desc"));
+    ParseSuccess &= JsonDescField.IsValid() && !JsonDescField->IsNull() && TryGetJsonValue(JsonDescField, Desc);
 
     return ParseSuccess;
 }

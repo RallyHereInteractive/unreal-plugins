@@ -24,10 +24,10 @@ void FRHAPI_QueueJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("queue_id"));
     RallyHereAPI::WriteJsonValue(Writer, QueueId);
-    if (AdditionalTags_IsSet)
+    if (AdditionalJoinParams_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("additional_tags"));
-        RallyHereAPI::WriteJsonValue(Writer, AdditionalTags_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
+        RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
     }
     Writer->WriteIdentifierPrefix(TEXT("map_preferences"));
     RallyHereAPI::WriteJsonValue(Writer, MapPreferences);
@@ -42,13 +42,16 @@ bool FRHAPI_QueueJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("queue_id"), QueueId);
-    if ((*Object)->HasField(TEXT("additional_tags")))
+    const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
+    ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
+    const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
+    if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
     {
-        AdditionalTags_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("additional_tags"), AdditionalTags_Optional);
-        ParseSuccess &= AdditionalTags_IsSet;
+        AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
+        ParseSuccess &= AdditionalJoinParams_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("map_preferences"), MapPreferences);
+    const TSharedPtr<FJsonValue> JsonMapPreferencesField = (*Object)->TryGetField(TEXT("map_preferences"));
+    ParseSuccess &= JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull() && TryGetJsonValue(JsonMapPreferencesField, MapPreferences);
 
     return ParseSuccess;
 }

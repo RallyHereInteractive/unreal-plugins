@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "MessageOnly.generated.h"
 
+/** @defgroup RHAPI_MessageOnly RallyHere API Model MessageOnly
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -44,3 +48,5 @@ struct RALLYHEREAPI_API FRHAPI_MessageOnly : public FRHAPI_Model
     /** @brief Sets the value of Message */
     void SetMessage(FString NewValue) { Message = NewValue;  }
 };
+
+/** @} */

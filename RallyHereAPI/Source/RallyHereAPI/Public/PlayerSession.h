@@ -13,8 +13,12 @@
 #include "PlayerSessionInvite.h"
 #include "PlayerSession.generated.h"
 
+/** @defgroup RHAPI_PlayerSession RallyHere API Model PlayerSession
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Information about the sessions of a specific type that a player is currently a member of, or invited to
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
@@ -93,3 +97,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
      /** @brief Clears the value of PendingInvites_Optional and sets PendingInvites_IsSet to false */
     void ClearPendingInvites() { PendingInvites_IsSet = false; }
 };
+
+/** @} */

@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "PriceBreakpoint.generated.h"
 
+/** @defgroup RHAPI_PriceBreakpoint RallyHere API Model PriceBreakpoint
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Price based on quantity and the Item ID of the currency used.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
@@ -74,3 +78,5 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
     /** @brief Sets the value of Price to its default  */
     void SetPriceToDefault() { Price = 0;  }
 };
+
+/** @} */

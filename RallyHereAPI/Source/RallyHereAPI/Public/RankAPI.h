@@ -12,10 +12,11 @@
 #include "RallyHereAPIHelpers.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
-#include "PlayerRatingUpdateRequest.h"
-#include "RankRequestResponse.h"
-#include "RankUpdateResponse.h"
-#include "TrueskillV1UpdateRequest.h"
+#include "PlayerRankRequestResponse.h"
+#include "PlayerRankUpdateRequest.h"
+#include "PlayerRankUpdateResponse.h"
+#include "RankConfigRequestResponse.h"
+#include "TrueskillUpdateRequest.h"
 
 namespace RallyHereAPI
 {
@@ -23,19 +24,34 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_GetAllPlayerUuidRating;
-struct FResponse_GetAllPlayerUuidRating;
-struct FRequest_GetPlayerUuidRating;
-struct FResponse_GetPlayerUuidRating;
-struct FRequest_UpdatePlayerUuidRating;
-struct FResponse_UpdatePlayerUuidRating;
-struct FRequest_UpdateRatingsTrueskillV1;
-struct FResponse_UpdateRatingsTrueskillV1;
+struct FRequest_GetAllPlayerUuidRanks;
+struct FResponse_GetAllPlayerUuidRanks;
+struct FRequest_GetAllPlayerUuidRanksSelf;
+struct FResponse_GetAllPlayerUuidRanksSelf;
+struct FRequest_GetAllRankConfig;
+struct FResponse_GetAllRankConfig;
+struct FRequest_GetPlayerUuidRank;
+struct FResponse_GetPlayerUuidRank;
+struct FRequest_GetPlayerUuidRankSelf;
+struct FResponse_GetPlayerUuidRankSelf;
+struct FRequest_GetRankConfig;
+struct FResponse_GetRankConfig;
+struct FRequest_UpdatePlayerUuidRank;
+struct FResponse_UpdatePlayerUuidRank;
+struct FRequest_UpdatePlayerUuidRankSelf;
+struct FResponse_UpdatePlayerUuidRankSelf;
+struct FRequest_UpdateRankingsTrueskillV1;
+struct FResponse_UpdateRankingsTrueskillV1;
 
-DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRating, const FResponse_GetAllPlayerUuidRating&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRating, const FResponse_GetPlayerUuidRating&);
-DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRating, const FResponse_UpdatePlayerUuidRating&);
-DECLARE_DELEGATE_OneParam(FDelegate_UpdateRatingsTrueskillV1, const FResponse_UpdateRatingsTrueskillV1&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRanks, const FResponse_GetAllPlayerUuidRanks&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetAllPlayerUuidRanksSelf, const FResponse_GetAllPlayerUuidRanksSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetAllRankConfig, const FResponse_GetAllRankConfig&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRank, const FResponse_GetPlayerUuidRank&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidRankSelf, const FResponse_GetPlayerUuidRankSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetRankConfig, const FResponse_GetRankConfig&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRank, const FResponse_UpdatePlayerUuidRank&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerUuidRankSelf, const FResponse_UpdatePlayerUuidRankSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdateRankingsTrueskillV1, const FResponse_UpdateRankingsTrueskillV1&);
 
 class RALLYHEREAPI_API FRankAPI : public FAPI
 {
@@ -43,27 +59,37 @@ public:
     FRankAPI();
     virtual ~FRankAPI();
 
-    FHttpRequestPtr GetAllPlayerUuidRating(const FRequest_GetAllPlayerUuidRating& Request, const FDelegate_GetAllPlayerUuidRating& Delegate = FDelegate_GetAllPlayerUuidRating());
-    FHttpRequestPtr GetPlayerUuidRating(const FRequest_GetPlayerUuidRating& Request, const FDelegate_GetPlayerUuidRating& Delegate = FDelegate_GetPlayerUuidRating());
-    FHttpRequestPtr UpdatePlayerUuidRating(const FRequest_UpdatePlayerUuidRating& Request, const FDelegate_UpdatePlayerUuidRating& Delegate = FDelegate_UpdatePlayerUuidRating());
-    FHttpRequestPtr UpdateRatingsTrueskillV1(const FRequest_UpdateRatingsTrueskillV1& Request, const FDelegate_UpdateRatingsTrueskillV1& Delegate = FDelegate_UpdateRatingsTrueskillV1());
+    FHttpRequestPtr GetAllPlayerUuidRanks(const FRequest_GetAllPlayerUuidRanks& Request, const FDelegate_GetAllPlayerUuidRanks& Delegate = FDelegate_GetAllPlayerUuidRanks(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllPlayerUuidRanksSelf(const FRequest_GetAllPlayerUuidRanksSelf& Request, const FDelegate_GetAllPlayerUuidRanksSelf& Delegate = FDelegate_GetAllPlayerUuidRanksSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllRankConfig(const FRequest_GetAllRankConfig& Request, const FDelegate_GetAllRankConfig& Delegate = FDelegate_GetAllRankConfig(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidRank(const FRequest_GetPlayerUuidRank& Request, const FDelegate_GetPlayerUuidRank& Delegate = FDelegate_GetPlayerUuidRank(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidRankSelf(const FRequest_GetPlayerUuidRankSelf& Request, const FDelegate_GetPlayerUuidRankSelf& Delegate = FDelegate_GetPlayerUuidRankSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetRankConfig(const FRequest_GetRankConfig& Request, const FDelegate_GetRankConfig& Delegate = FDelegate_GetRankConfig(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdatePlayerUuidRank(const FRequest_UpdatePlayerUuidRank& Request, const FDelegate_UpdatePlayerUuidRank& Delegate = FDelegate_UpdatePlayerUuidRank(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdatePlayerUuidRankSelf(const FRequest_UpdatePlayerUuidRankSelf& Request, const FDelegate_UpdatePlayerUuidRankSelf& Delegate = FDelegate_UpdatePlayerUuidRankSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdateRankingsTrueskillV1(const FRequest_UpdateRankingsTrueskillV1& Request, const FDelegate_UpdateRankingsTrueskillV1& Delegate = FDelegate_UpdateRankingsTrueskillV1(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetAllPlayerUuidRatingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidRating Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidRatingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidRating Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUpdatePlayerUuidRatingResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerUuidRating Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUpdateRatingsTrueskillV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateRatingsTrueskillV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetAllPlayerUuidRanksResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidRanks Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllPlayerUuidRanksSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPlayerUuidRanksSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllRankConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllRankConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidRankResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidRank Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidRankSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidRankSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetRankConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetRankConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdatePlayerUuidRankResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerUuidRank Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdatePlayerUuidRankSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerUuidRankSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdateRankingsTrueskillV1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateRankingsTrueskillV1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
-/* Get All Player Uuid Rating
+/* Get All Player Uuid Ranks
  *
- * Get a specific player&#39;s rank for a specific ranking type
+ * Get all of a specific player&#39;s ranks  Required Permissions: &#x60;rank:read:self&#x60; for players acting on themselves, otherwise &#x60;rank:read:any&#x60;
 */
-struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRating : public FRequest
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanks : public FRequest
 {
-    FRequest_GetAllPlayerUuidRating();
-    virtual ~FRequest_GetAllPlayerUuidRating() = default;
+    FRequest_GetAllPlayerUuidRanks();
+    virtual ~FRequest_GetAllPlayerUuidRanks() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
@@ -73,76 +99,112 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRating : public FRequest
     FGuid PlayerUuid;
 };
 
-struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRating : public FResponse
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
 {
-    FResponse_GetAllPlayerUuidRating(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetAllPlayerUuidRating() = default;
+    FResponse_GetAllPlayerUuidRanks(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetAllPlayerUuidRanks() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_RankRequestResponse Content;
+    FRHAPI_PlayerRankRequestResponse Content;
 
 };
 
-struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRating
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
 {
-    typedef FRequest_GetAllPlayerUuidRating Request;
-    typedef FResponse_GetAllPlayerUuidRating Response;
-    typedef FDelegate_GetAllPlayerUuidRating Delegate;
+    typedef FRequest_GetAllPlayerUuidRanks Request;
+    typedef FResponse_GetAllPlayerUuidRanks Response;
+    typedef FDelegate_GetAllPlayerUuidRanks Delegate;
     typedef FRankAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllPlayerUuidRating(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanks(InRequest, InDelegate, Priority); }
 };
 
-/* Get Player Uuid Rating
+/* Get All Player Uuid Ranks Self
  *
- * Get a specific player&#39;s rank for a specific ranking type
+ * Get all of current player&#39;s ranks  Required Permissions: &#x60;rank:read:self&#x60;
 */
-struct RALLYHEREAPI_API FRequest_GetPlayerUuidRating : public FRequest
+struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelf : public FRequest
 {
-    FRequest_GetPlayerUuidRating();
-    virtual ~FRequest_GetPlayerUuidRating() = default;
+    FRequest_GetAllPlayerUuidRanksSelf();
+    virtual ~FRequest_GetAllPlayerUuidRanksSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    int32 RankingTypeId = 0;
 };
 
-struct RALLYHEREAPI_API FResponse_GetPlayerUuidRating : public FResponse
+struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
 {
-    FResponse_GetPlayerUuidRating(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerUuidRating() = default;
+    FResponse_GetAllPlayerUuidRanksSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetAllPlayerUuidRanksSelf() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_RankRequestResponse Content;
+    FRHAPI_PlayerRankRequestResponse Content;
 
 };
 
-struct RALLYHEREAPI_API Traits_GetPlayerUuidRating
+struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
 {
-    typedef FRequest_GetPlayerUuidRating Request;
-    typedef FResponse_GetPlayerUuidRating Response;
-    typedef FDelegate_GetPlayerUuidRating Delegate;
+    typedef FRequest_GetAllPlayerUuidRanksSelf Request;
+    typedef FResponse_GetAllPlayerUuidRanksSelf Response;
+    typedef FDelegate_GetAllPlayerUuidRanksSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidRating(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanksSelf(InRequest, InDelegate, Priority); }
 };
 
-/* Update Player Uuid Rating
+/* Get All Rank Config
  *
- * Update a specific player&#39;s ratings to those that are provided. Ratings are taken as is
+ * Get all rank configuration  Required Permissions: &#x60;rank:read:config&#x60;
 */
-struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRating : public FRequest
+struct RALLYHEREAPI_API FRequest_GetAllRankConfig : public FRequest
 {
-    FRequest_UpdatePlayerUuidRating();
-    virtual ~FRequest_UpdatePlayerUuidRating() = default;
+    FRequest_GetAllRankConfig();
+    virtual ~FRequest_GetAllRankConfig() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetAllRankConfig : public FResponse
+{
+    FResponse_GetAllRankConfig(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetAllRankConfig() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_RankConfigRequestResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetAllRankConfig
+{
+    typedef FRequest_GetAllRankConfig Request;
+    typedef FResponse_GetAllRankConfig Response;
+    typedef FDelegate_GetAllRankConfig Delegate;
+    typedef FRankAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRankConfig(InRequest, InDelegate, Priority); }
+};
+
+/* Get Player Uuid Rank
+ *
+ * Get a specific player&#39;s rank for a specific rank id              Required Permissions: &#x60;rank:read:self&#x60; for players acting on themselves,  otherwise &#x60;rank:read:any&#x60;
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidRank : public FRequest
+{
+    FRequest_GetPlayerUuidRank();
+    virtual ~FRequest_GetPlayerUuidRank() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
@@ -151,68 +213,224 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRating : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PlayerUuid;
     int32 RankId = 0;
-    FRHAPI_PlayerRatingUpdateRequest PlayerRatingUpdateRequest;
 };
 
-struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRating : public FResponse
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
 {
-    FResponse_UpdatePlayerUuidRating(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdatePlayerUuidRating() = default;
+    FResponse_GetPlayerUuidRank(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerUuidRank() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_RankUpdateResponse Content;
+    FRHAPI_PlayerRankRequestResponse Content;
 
 };
 
-struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRating
+struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
 {
-    typedef FRequest_UpdatePlayerUuidRating Request;
-    typedef FResponse_UpdatePlayerUuidRating Response;
-    typedef FDelegate_UpdatePlayerUuidRating Delegate;
+    typedef FRequest_GetPlayerUuidRank Request;
+    typedef FResponse_GetPlayerUuidRank Response;
+    typedef FDelegate_GetPlayerUuidRank Delegate;
     typedef FRankAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UpdatePlayerUuidRating(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
-/* Update Ratings Trueskill V1
+/* Get Player Uuid Rank Self
  *
- * Run Trueskill V1 rating update on players and persist their new ratings
+ * Get current player&#39;s rank for a specific rank id              Required Permissions: &#x60;rank:read:self&#x60;
 */
-struct RALLYHEREAPI_API FRequest_UpdateRatingsTrueskillV1 : public FRequest
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelf : public FRequest
 {
-    FRequest_UpdateRatingsTrueskillV1();
-    virtual ~FRequest_UpdateRatingsTrueskillV1() = default;
+    FRequest_GetPlayerUuidRankSelf();
+    virtual ~FRequest_GetPlayerUuidRankSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_TrueskillV1UpdateRequest TrueskillV1UpdateRequest;
+    int32 RankId = 0;
 };
 
-struct RALLYHEREAPI_API FResponse_UpdateRatingsTrueskillV1 : public FResponse
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
 {
-    FResponse_UpdateRatingsTrueskillV1(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateRatingsTrueskillV1() = default;
+    FResponse_GetPlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerUuidRankSelf() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_RankUpdateResponse Content;
+    FRHAPI_PlayerRankRequestResponse Content;
 
 };
 
-struct RALLYHEREAPI_API Traits_UpdateRatingsTrueskillV1
+struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
 {
-    typedef FRequest_UpdateRatingsTrueskillV1 Request;
-    typedef FResponse_UpdateRatingsTrueskillV1 Response;
-    typedef FDelegate_UpdateRatingsTrueskillV1 Delegate;
+    typedef FRequest_GetPlayerUuidRankSelf Request;
+    typedef FResponse_GetPlayerUuidRankSelf Response;
+    typedef FDelegate_GetPlayerUuidRankSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UpdateRatingsTrueskillV1(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRankSelf(InRequest, InDelegate, Priority); }
+};
+
+/* Get Rank Config
+ *
+ * Get rank configuration for specific rank id  Required Permissions: &#x60;rank:read:config&#x60;
+*/
+struct RALLYHEREAPI_API FRequest_GetRankConfig : public FRequest
+{
+    FRequest_GetRankConfig();
+    virtual ~FRequest_GetRankConfig() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    int32 RankId = 0;
+};
+
+struct RALLYHEREAPI_API FResponse_GetRankConfig : public FResponse
+{
+    FResponse_GetRankConfig(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetRankConfig() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_RankConfigRequestResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetRankConfig
+{
+    typedef FRequest_GetRankConfig Request;
+    typedef FResponse_GetRankConfig Response;
+    typedef FDelegate_GetRankConfig Delegate;
+    typedef FRankAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetRankConfig(InRequest, InDelegate, Priority); }
+};
+
+/* Update Player Uuid Rank
+ *
+ * Update a specific player&#39;s ranks to those that are provided. Ranks are taken as is  Required Permissions: &#x60;rank:update:self&#x60; for players acting on themselves,  otherwise &#x60;rank:update:any&#x60;
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRank : public FRequest
+{
+    FRequest_UpdatePlayerUuidRank();
+    virtual ~FRequest_UpdatePlayerUuidRank() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid PlayerUuid;
+    int32 RankId = 0;
+    FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
+};
+
+struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
+{
+    FResponse_UpdatePlayerUuidRank(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpdatePlayerUuidRank() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerRankUpdateResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
+{
+    typedef FRequest_UpdatePlayerUuidRank Request;
+    typedef FResponse_UpdatePlayerUuidRank Response;
+    typedef FDelegate_UpdatePlayerUuidRank Delegate;
+    typedef FRankAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRank(InRequest, InDelegate, Priority); }
+};
+
+/* Update Player Uuid Rank Self
+ *
+ * Update current player&#39;s ranks to those that are provided. Ranks are taken as is   Required Permissions: &#x60;rank:update:self&#x60;
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelf : public FRequest
+{
+    FRequest_UpdatePlayerUuidRankSelf();
+    virtual ~FRequest_UpdatePlayerUuidRankSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    int32 RankId = 0;
+    FRHAPI_PlayerRankUpdateRequest PlayerRankUpdateRequest;
+};
+
+struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
+{
+    FResponse_UpdatePlayerUuidRankSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpdatePlayerUuidRankSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerRankUpdateResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
+{
+    typedef FRequest_UpdatePlayerUuidRankSelf Request;
+    typedef FResponse_UpdatePlayerUuidRankSelf Response;
+    typedef FDelegate_UpdatePlayerUuidRankSelf Delegate;
+    typedef FRankAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRankSelf(InRequest, InDelegate, Priority); }
+};
+
+/* Update Rankings Trueskill V1
+ *
+ * Run Trueskill V1 rank update on players and persist their new ranks Requires at least two teams, and the player&#39;s trueskill values before the last match was played  Required Permissions: &#x60;rank:update:any&#x60;
+*/
+struct RALLYHEREAPI_API FRequest_UpdateRankingsTrueskillV1 : public FRequest
+{
+    FRequest_UpdateRankingsTrueskillV1();
+    virtual ~FRequest_UpdateRankingsTrueskillV1() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+
+    FRHAPI_TrueskillUpdateRequest TrueskillUpdateRequest;
+};
+
+struct RALLYHEREAPI_API FResponse_UpdateRankingsTrueskillV1 : public FResponse
+{
+    FResponse_UpdateRankingsTrueskillV1(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpdateRankingsTrueskillV1() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerRankUpdateResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1
+{
+    typedef FRequest_UpdateRankingsTrueskillV1 Request;
+    typedef FResponse_UpdateRankingsTrueskillV1 Response;
+    typedef FDelegate_UpdateRankingsTrueskillV1 Delegate;
+    typedef FRankAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateRankingsTrueskillV1(InRequest, InDelegate, Priority); }
 };
 
 

@@ -29,8 +29,11 @@ void FRHAPI_InventorySession::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("session_platform"));
         RallyHereAPI::WriteJsonValue(Writer, EnumToString(SessionPlatform_Optional));
     }
-    Writer->WriteIdentifierPrefix(TEXT("applied_durable_loot"));
-    RallyHereAPI::WriteJsonValue(Writer, AppliedDurableLoot);
+    if (AppliedDurableLoot_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("applied_durable_loot"));
+        RallyHereAPI::WriteJsonValue(Writer, AppliedDurableLoot_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -42,13 +45,20 @@ bool FRHAPI_InventorySession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_id"), SessionId);
-    if ((*Object)->HasField(TEXT("session_platform")))
+    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+    ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+    const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
+    if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
     {
-        SessionPlatform_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_platform"), SessionPlatform_Optional);
+        SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
         ParseSuccess &= SessionPlatform_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("applied_durable_loot"), AppliedDurableLoot);
+    const TSharedPtr<FJsonValue> JsonAppliedDurableLootField = (*Object)->TryGetField(TEXT("applied_durable_loot"));
+    if (JsonAppliedDurableLootField.IsValid() && !JsonAppliedDurableLootField->IsNull())
+    {
+        AppliedDurableLoot_IsSet = TryGetJsonValue(JsonAppliedDurableLootField, AppliedDurableLoot_Optional);
+        ParseSuccess &= AppliedDurableLoot_IsSet;
+    }
 
     return ParseSuccess;
 }

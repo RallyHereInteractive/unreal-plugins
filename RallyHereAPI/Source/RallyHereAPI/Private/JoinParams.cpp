@@ -42,11 +42,14 @@ bool FRHAPI_JoinParams::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("public_conn_str"), PublicConnStr);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("private_conn_str"), PrivateConnStr);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonPublicConnStrField = (*Object)->TryGetField(TEXT("public_conn_str"));
+    ParseSuccess &= JsonPublicConnStrField.IsValid() && !JsonPublicConnStrField->IsNull() && TryGetJsonValue(JsonPublicConnStrField, PublicConnStr);
+    const TSharedPtr<FJsonValue> JsonPrivateConnStrField = (*Object)->TryGetField(TEXT("private_conn_str"));
+    ParseSuccess &= JsonPrivateConnStrField.IsValid() && !JsonPrivateConnStrField->IsNull() && TryGetJsonValue(JsonPrivateConnStrField, PrivateConnStr);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

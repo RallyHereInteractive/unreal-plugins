@@ -11,6 +11,7 @@
 FRHDTW_Notifications::FRHDTW_Notifications()
 	: Super()
 {
+	DefaultPos = FVector2D(610, 20);
 	URL.SetNumZeroed(256);
 	APIName.SetNumZeroed(256);
 	APIParams.SetNumZeroed(256);
@@ -18,55 +19,64 @@ FRHDTW_Notifications::FRHDTW_Notifications()
 }
 
 
-void ImGuiDisplayLocalPlayerNotifications(URH_LocalPlayerSubsystem* LPSS)
+void ImGuiDisplayLocalPlayerNotifications(ULocalPlayer* SelectedLocalPlayer, URH_LocalPlayerSubsystem* LPSS)
 {
+	if (SelectedLocalPlayer != nullptr)
+	{
+		FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), SelectedLocalPlayer->GetControllerId());
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
+	}
+
 	const FString BaseURL = FRallyHereIntegrationModule::Get().GetBaseURL();
 
-	if (LPSS->GetNotificationSubsystem() == nullptr)
+	if (LPSS == nullptr || LPSS->GetPlayerNotifications() == nullptr)
 	{
 		return;
 	}
 
-	ImGui::Columns(6);
-	ImGui::Text("API");
-	ImGui::NextColumn();
-	ImGui::Text("Message");
-	ImGui::NextColumn();
-	ImGui::Text("ID");
-	ImGui::NextColumn();
-	ImGui::Text("Created");
-	ImGui::NextColumn();
-	ImGui::Text("URL");
-	ImGui::NextColumn();
-	ImGui::Text("Custom Data");
-	ImGui::NextColumn();
-
-	for (const auto& Notification : LPSS->GetNotificationSubsystem()->GetStreamingHistory())
+	if (ImGui::BeginTable("NotificationsTable", 7, RH_TableFlagsPropSizing))
 	{
-		ImGui::PushID(TCHAR_TO_UTF8(*Notification.GetNotificationId()));
-		const FString URL = Notification.GetRhUrl(TEXT(""));
-		FString APIName;
-		TArray<FString> APIParams;
-		RH_BreakApartURL(URL, BaseURL, APIName, APIParams);
+		// Header
+		ImGui::TableSetupColumn("API");
+		ImGui::TableSetupColumn("Message");
+		ImGui::TableSetupColumn("ID");
+		ImGui::TableSetupColumn("Created");
+		ImGui::TableSetupColumn("URL");
+		ImGui::TableSetupColumn("ETag");
+		ImGui::TableSetupColumn("Custom Data");
+		ImGui::TableHeadersRow();
 
-		ImGui::Separator();
-		ImGuiDisplayCopyableValue(TEXT("API"), APIName, ECopyMode::Value);
-		ImGui::NextColumn();
-		ImGuiDisplayCopyableValue(TEXT("Message"), Notification.GetMessage(), ECopyMode::Value);
-		ImGui::NextColumn();
-		ImGuiDisplayCopyableValue(TEXT("ID"), Notification.GetNotificationId(), ECopyMode::Value);
-		ImGui::NextColumn();
-		ImGuiDisplayCopyableValue(TEXT("Created"), Notification.GetCreated().ToString(), ECopyMode::Value);
-		ImGui::NextColumn();
-		ImGuiDisplayCopyableValue(TEXT("URL"), URL, ECopyMode::Value);
-		ImGui::NextColumn();
-		ImGuiDisplayCustomData(Notification.GetCustomData());
-		ImGui::NextColumn();
+		// Content
+		for (const auto& Notification : LPSS->GetPlayerNotifications()->GetStreamingHistory())
+		{
+			ImGui::PushID(TCHAR_TO_UTF8(*Notification.GetNotificationId()));
 
-		ImGui::PopID();
+			const FString URL = Notification.GetRhUrl(TEXT(""));
+			FString APIName;
+			TArray<FString> APIParams;
+			RH_BreakApartURL(URL, BaseURL, APIName, APIParams);
+
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("API"), APIName, ECopyMode::Value);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("Message"), Notification.GetMessage(), ECopyMode::Value, true);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("Notification ID"), Notification.GetNotificationId(), ECopyMode::Value, true);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("Created"), Notification.GetCreated(), ECopyMode::Value, true);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("URL"), URL, ECopyMode::Value, true);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT("ETag"), Notification.GetEtagOrNull(), ECopyMode::Value, true);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCustomData(Notification.GetCustomData());
+
+			ImGui::PopID();
+		}
+
+		ImGui::EndTable();
 	}
-
-	ImGui::Columns(1);
 }
 
 void FRHDTW_Notifications::Do()
@@ -77,14 +87,25 @@ void FRHDTW_Notifications::Do()
 		return;
 	}
 
+	int NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
+	if (NumSelectedPlayers == 0)
+	{
+		ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
+		return;
+	}
+	else
+	{
+		ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
+	}
+
 	if (ImGui::Button("Start Streaming"))
 	{
 		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
 		{
 			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetNotificationSubsystem() != nullptr)
+			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
 			{
-				LPSS->GetNotificationSubsystem()->StartStreamingLatestNotifications(LPSS->GetPlayerUuid());
+				LPSS->GetPlayerNotifications()->StartStreamingLatestNotifications();
 			}
 		}
 	}
@@ -94,9 +115,9 @@ void FRHDTW_Notifications::Do()
 		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
 		{
 			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetNotificationSubsystem() != nullptr)
+			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
 			{
-				LPSS->GetNotificationSubsystem()->StopStreamingLatestNotifications();
+				LPSS->GetPlayerNotifications()->StopStreamingLatestNotifications();
 			}
 		}
 	}
@@ -113,9 +134,9 @@ void FRHDTW_Notifications::Do()
 		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
 		{
 			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetNotificationSubsystem() != nullptr)
+			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
 			{
-				LPSS->GetNotificationSubsystem()->SetStreamingHistorySize(NumNotifications);
+				LPSS->GetPlayerNotifications()->SetStreamingHistorySize(NumNotifications);
 			}
 		}
 	}
@@ -159,14 +180,14 @@ void FRHDTW_Notifications::Do()
 		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
 		{
 			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetNotificationSubsystem() != nullptr)
+			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
 			{
-				LPSS->GetNotificationSubsystem()->CreateNotification(LPSS->GetPlayerUuid(), UTF8_TO_TCHAR(Message.GetData()), UTF8_TO_TCHAR(URL.GetData()));
+				LPSS->GetPlayerNotifications()->CreateNotification(LPSS->GetPlayerUuid(), UTF8_TO_TCHAR(Message.GetData()), UTF8_TO_TCHAR(URL.GetData()));
 			}
 		}
 	}
 
 	ImGui::Separator();
 
-	ImGuiDisplayLocalPlayerNotifications(GetSelectedRH_LocalPlayerSubsystem());
+	ImGuiDisplayLocalPlayerNotifications(GetFirstSelectedLocalPlayer(), GetSelectedRH_LocalPlayerSubsystem());
 }

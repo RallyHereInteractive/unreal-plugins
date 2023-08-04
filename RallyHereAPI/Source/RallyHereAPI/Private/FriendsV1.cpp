@@ -35,7 +35,8 @@ bool FRHAPI_FriendsV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("friends"), Friends);
+    const TSharedPtr<FJsonValue> JsonFriendsField = (*Object)->TryGetField(TEXT("friends"));
+    ParseSuccess &= JsonFriendsField.IsValid() && !JsonFriendsField->IsNull() && TryGetJsonValue(JsonFriendsField, Friends);
 
     return ParseSuccess;
 }

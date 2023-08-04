@@ -1,7 +1,7 @@
 #include "RH_SessionBrowser.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_OnlineSubsystemNames.h"
-#include "SessionAPI.h"
+#include "SessionsAPI.h"
 
 
 URH_SessionBrowserCache::URH_SessionBrowserCache()
@@ -40,7 +40,7 @@ protected:
 		if (SearchParams.Cursor >= 0) Request.Cursor = SearchParams.Cursor;
 		if (SearchParams.PageSize > 0) Request.PageSize = SearchParams.PageSize;
 
-		HttpRequest = QuerySessionByType::DoCall(RH_APIs::GetSessionAPI(), Request, QuerySessionByType::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnQueryAllSessions));
+		HttpRequest = QuerySessionByType::DoCall(RH_APIs::GetSessionsAPI(), Request, QuerySessionByType::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnQueryAllSessions), GetDefault<URH_IntegrationSettings>()->SessionGetByTypePriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to query sessions"));
@@ -99,14 +99,12 @@ protected:
 		RallyHereAPI::FRequest_GetSessionById Request;
 		Request.AuthContext = AuthContext;
 		Request.SessionId = SessionId;
-#if SESSIONS_SUPPORT_ETAGS
 		if (SessionOwner.IsValid())
 		{
 			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
 		}
-#endif
 
-		HttpRequest = RH_APIs::GetSessionAPI().GetSessionById(Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnSessionLookup));
+		HttpRequest = RH_APIs::GetSessionsAPI().GetSessionById(Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnSessionLookup), GetDefault<URH_IntegrationSettings>()->SessionGetBySessionIdPriority);
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
@@ -123,7 +121,7 @@ protected:
 			if (SessionOwner.IsValid())
 			{
 				// make sure we have the template
-				FRH_SessionTemplate temp;
+				FRHAPI_SessionTemplate temp;
 				if (!SessionOwner->GetTemplate(Resp.Content.Type, temp))
 				{
 					bMissingTemplates = true;
@@ -150,7 +148,7 @@ protected:
 		QueryTemplates::Request Request;
 		Request.AuthContext = AuthContext;
 
-		HttpRequest = QueryTemplates::DoCall(RH_APIs::GetSessionAPI(), Request, QueryTemplates::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnQueryAllTemplates));
+		HttpRequest = QueryTemplates::DoCall(RH_APIs::GetSessionsAPI(), Request, QueryTemplates::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnQueryAllTemplates));
 		if (!HttpRequest)
 		{
 			Failed(TEXT("Could not create http request to lookup session"));
@@ -171,7 +169,7 @@ protected:
 			// reconcile the templates into the owner before querying sessions
 			for (auto Template : TemplatesArray)
 			{
-				SessionOwner->ImportAPITemplate(FRH_APISessionTemplateWithETag(Template, Resp.ETag));
+				SessionOwner->ImportAPITemplate(Template);
 			}
 
 			bMissingTemplates = false;
@@ -246,7 +244,7 @@ void URH_SessionBrowserCache::ImportAPISession(const FRH_APISessionWithETag& Ses
 	URH_SessionView* ExistingRHSession = existingPtr ? *existingPtr : nullptr;
 
 	// Lookup template from the cache, this should be always existing due to checks in the Import logic
-	FRH_SessionTemplate Template;
+	FRHAPI_SessionTemplate Template;
 	if (!GetTemplate(Session.Type, Template))
 	{
 		return;
@@ -271,7 +269,7 @@ void URH_SessionBrowserCache::ImportAPISession(const FRH_APISessionWithETag& Ses
 	}
 }
 
-bool URH_SessionBrowserCache::GetTemplate(const FString& Type, FRH_SessionTemplate& Template) const
+bool URH_SessionBrowserCache::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
 {
 	auto ptr = Templates.Find(Type);
 	if (ptr != nullptr)
@@ -282,12 +280,9 @@ bool URH_SessionBrowserCache::GetTemplate(const FString& Type, FRH_SessionTempla
 	return false;
 }
 
-void URH_SessionBrowserCache::ImportAPITemplate(const FRH_APISessionTemplateWithETag& Template)
+void URH_SessionBrowserCache::ImportAPITemplate(const FRHAPI_SessionTemplate& Template)
 {
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.Data.SessionType);
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.SessionType);
 
-	FRH_SessionTemplate RHTemplate;
-	RHTemplate.ImportAPITemplate(Template);
-
-	Templates.Add(RHTemplate.SessionType, RHTemplate);
+	Templates.Add(Template.SessionType, Template);
 }

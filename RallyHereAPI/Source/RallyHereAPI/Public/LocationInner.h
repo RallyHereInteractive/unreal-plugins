@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "LocationInner.generated.h"
 
+/** @defgroup RHAPI_LocationInner RallyHere API Model LocationInner
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -36,3 +40,5 @@ struct RALLYHEREAPI_API FRHAPI_LocationInner : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 };
+
+/** @} */

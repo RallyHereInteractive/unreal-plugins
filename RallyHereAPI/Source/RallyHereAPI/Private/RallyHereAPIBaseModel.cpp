@@ -7,6 +7,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIModule.h"
 #include "Serialization/JsonReader.h"
@@ -125,7 +126,7 @@ FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
     }
 }
 
-bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse &InOutResponse)
+bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse &InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FRequestMetadata& RequestMetadata, int32 Priority)
 {
     InOutResponse.SetHttpResponse(HttpResponse);
     InOutResponse.SetSuccessful(bSucceeded);
@@ -184,21 +185,21 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
             if (JsonValue.IsValid())
             {
                 InOutResponse.SetJsonResponse(JsonValue);
-				
+
                 if (AuthContext)
                 {
-                    bool bAuthIsValid = false;
+                    TOptional<bool> bAuthIsValid;
                     const TSharedPtr<FJsonObject>* JsonObject;
                     switch (HttpResponse->GetResponseCode())
                     {
                     case 403: // XDK clients screwed this one up for us
                     case 401:
-                        if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && !bAuthIsValid)
+                        if (JsonValue->TryGetObject(JsonObject) && JsonObject && JsonObject->IsValid() && TryGetJsonValue(*JsonObject, FString(TEXT("auth_success")), bAuthIsValid) && bAuthIsValid.IsSet() && !bAuthIsValid.GetValue())
                         {
                             auto Retry = MakeShared<FRequestPendingAuthRetry>();
                             Retry->HttpRequest = HttpRequest;
                             Retry->AuthContext = AuthContext;
-                            Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry);
+                            Retry->Handle = AuthContext->OnLoginComplete().AddRaw(this, &FAPI::RetryRequestAfterAuth, Retry, ResponseDelegate, RequestMetadata, Priority);
                             if (AuthContext->Refresh())
                             {
                                 return true; // Don't submit the response for this request, we are going to retry it.
@@ -220,7 +221,7 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
                     // Report the parse error but do not mark the request as unsuccessful. Data could be partial or malformed, but the request succeeded.
                     UE_LOG(LogRallyHereAPI, Warning, TEXT("Parsed JSON successfully, but failed to ingest into API structures (note: failure may be partial) (type:%s):\n%s"), *ContentType, *Content);
                     return false;
-                }				
+                }
             }
             else
             {
@@ -246,11 +247,20 @@ bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
     return false;
 }
 
-void FAPI::RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request)
+void FAPI::RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request, FHttpRequestCompleteDelegate ResponseDelegate, FRequestMetadata RequestMetadata, int32 Priority)
 {
     Request->AuthContext->OnLoginComplete().Remove(Request->Handle);
-	Request->AuthContext->AddBearerToken(Request->HttpRequest);
-    Request->HttpRequest->ProcessRequest();
+    Request->AuthContext->AddBearerToken(Request->HttpRequest);
+
+    if (auto* HttpRequester = FRallyHereAPIHttpRequester::Get())
+    {
+        TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(Request->HttpRequest.ToSharedRef(), *this, Priority);
+        RequestMetadata.RetryCount++;
+        RequestData->SetMetadata(RequestMetadata);
+        RequestData->SetDelegate(ResponseDelegate);
+
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
 }
 
 }

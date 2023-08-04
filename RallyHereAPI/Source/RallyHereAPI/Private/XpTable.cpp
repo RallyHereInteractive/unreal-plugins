@@ -43,14 +43,16 @@ bool FRHAPI_XpTable::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("xp_entries")))
+    const TSharedPtr<FJsonValue> JsonXpEntriesField = (*Object)->TryGetField(TEXT("xp_entries"));
+    if (JsonXpEntriesField.IsValid() && !JsonXpEntriesField->IsNull())
     {
-        XpEntries_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("xp_entries"), XpEntries_Optional);
+        XpEntries_IsSet = TryGetJsonValue(JsonXpEntriesField, XpEntries_Optional);
         ParseSuccess &= XpEntries_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

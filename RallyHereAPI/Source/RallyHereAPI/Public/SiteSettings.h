@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "SiteSettings.generated.h"
 
+/** @defgroup RHAPI_SiteSettings RallyHere API Model SiteSettings
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Contains information about a site/region.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SiteSettings : public FRHAPI_Model
@@ -100,3 +104,5 @@ struct RALLYHEREAPI_API FRHAPI_SiteSettings : public FRHAPI_Model
      /** @brief Clears the value of MessageName_Optional and sets MessageName_IsSet to false */
     void ClearMessageName() { MessageName_IsSet = false; }
 };
+
+/** @} */

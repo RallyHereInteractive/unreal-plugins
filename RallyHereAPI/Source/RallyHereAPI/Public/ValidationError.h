@@ -12,6 +12,10 @@
 #include "LocationInner.h"
 #include "ValidationError.generated.h"
 
+/** @defgroup RHAPI_ValidationError RallyHere API Model ValidationError
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -63,3 +67,5 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
     /** @brief Sets the value of Type */
     void SetType(FString NewValue) { Type = NewValue;  }
 };
+
+/** @} */

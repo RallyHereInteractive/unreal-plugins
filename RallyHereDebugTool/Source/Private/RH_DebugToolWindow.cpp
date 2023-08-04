@@ -34,12 +34,32 @@ TArray<class ULocalPlayer*> FRH_DebugToolWindow::GetAllSelectedLocalPlayers() co
 	return Result;
 }
 
+TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllSelectedPlayerInfos() const 
+{
+	TArray<class URH_PlayerInfo*> Result;
+	if (Owner.IsValid())
+	{
+		Result = Owner->GetAllSelectedPlayerInfos();
+	}
+	return Result;
+}
+
+TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllTargetedPlayerInfos() const
+{
+	TArray<class URH_PlayerInfo*> Result;
+	if (Owner.IsValid())
+	{
+		Result = Owner->GetAllTargetedPlayerInfos();
+	}
+	return Result;
+}
+
 class URH_LocalPlayerSubsystem* FRH_DebugToolWindow::GetSelectedRH_LocalPlayerSubsystem() const
 {
 	return ULocalPlayer::GetSubsystem<URH_LocalPlayerSubsystem>(GetFirstSelectedLocalPlayer());
 }
 
-void FRH_DebugToolWindow::ForEachSelectedPlayer(FRHDT_LPAction Action)
+void FRH_DebugToolWindow::ForEachSelectedLocalPlayer(FRHDT_LPAction Action)
 {
 	for (auto Player : GetAllSelectedLocalPlayers())
 	{
@@ -47,7 +67,7 @@ void FRH_DebugToolWindow::ForEachSelectedPlayer(FRHDT_LPAction Action)
 	}
 }
 
-void FRH_DebugToolWindow::ForEachSelectedRHPlayer(FRHDT_RHLPAction Action)
+void FRH_DebugToolWindow::ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction Action)
 {
 	for (auto Player : GetAllSelectedLocalPlayers())
 	{
@@ -55,6 +75,22 @@ void FRH_DebugToolWindow::ForEachSelectedRHPlayer(FRHDT_RHLPAction Action)
 		{
 			Action.ExecuteIfBound(RHLPSS);
 		}
+	}
+}
+
+void FRH_DebugToolWindow::ForEachSelectedRHPlayer(FRHDT_RHPAction Action)
+{
+	for (auto PlayerInfo : GetAllSelectedPlayerInfos())
+	{
+		Action.ExecuteIfBound(PlayerInfo);
+	}
+}
+
+void FRH_DebugToolWindow::ForEachTargetedRHPlayer(FRHDT_RHPAction Action)
+{
+	for (auto PlayerInfo : GetAllTargetedPlayerInfos())
+	{
+		Action.ExecuteIfBound(PlayerInfo);
 	}
 }
 
@@ -118,8 +154,9 @@ void FRH_DebugToolWindow::RenderWindow()
 	}
 	ImGui::SetNextWindowPos(ImVec2(DefaultPos.X, DefaultPos.Y), WindowCond);
 	ImGui::SetNextWindowSize(ImVec2(DefaultSize.X, DefaultSize.Y), WindowCond);
-
+	
 	ImGuiWindowFlags windowFlags = bShowMenuBar ? ImGuiWindowFlags_MenuBar : ImGuiWindowFlags_None;
+	windowFlags |= ImGuiWindowFlags_NoFocusOnAppearing;
 	windowFlags |= AdditionalWindowFlags;
 	ImGui::Begin(TCHAR_TO_ANSI(*Name), &bShow, windowFlags);
 	Do();

@@ -12,8 +12,12 @@
 #include "FriendshipStatus.h"
 #include "FriendRelationshipV1.generated.h"
 
+/** @defgroup RHAPI_FriendRelationshipV1 RallyHere API Model FriendRelationshipV1
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Represents the relationship with a potential friend. V1 includes player_id and player_uuid.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
@@ -46,17 +50,30 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
     void SetFriendsPlayerUuid(FGuid NewValue) { FriendsPlayerUuid = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 FriendsPlayerId{ 0 };
-    /** @brief Gets the value of FriendsPlayerId */
-    int32& GetFriendsPlayerId() { return FriendsPlayerId; }
-    /** @brief Gets the value of FriendsPlayerId */
-    const int32& GetFriendsPlayerId() const { return FriendsPlayerId; }
-    /** @brief Sets the value of FriendsPlayerId */
-    void SetFriendsPlayerId(int32 NewValue) { FriendsPlayerId = NewValue;  }
-    /** @brief Returns true if FriendsPlayerId matches the default value */
-    bool IsFriendsPlayerIdDefaultValue() const { return FriendsPlayerId == 0; }
-    /** @brief Sets the value of FriendsPlayerId to its default  */
-    void SetFriendsPlayerIdToDefault() { FriendsPlayerId = 0;  }
+    int32 FriendsPlayerId_Optional{  };
+    /** @brief true if FriendsPlayerId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool FriendsPlayerId_IsSet{ false };
+    /** @brief Gets the value of FriendsPlayerId_Optional, regardless of it having been set */
+    int32& GetFriendsPlayerId() { return FriendsPlayerId_Optional; }
+    /** @brief Gets the value of FriendsPlayerId_Optional, regardless of it having been set */
+    const int32& GetFriendsPlayerId() const { return FriendsPlayerId_Optional; }
+    /** @brief Gets the value of FriendsPlayerId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetFriendsPlayerId(const int32& DefaultValue) const { if (FriendsPlayerId_IsSet) return FriendsPlayerId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of FriendsPlayerId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetFriendsPlayerId(int32& OutValue) const { if (FriendsPlayerId_IsSet) OutValue = FriendsPlayerId_Optional; return FriendsPlayerId_IsSet; }
+    /** @brief Returns a pointer to FriendsPlayerId_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetFriendsPlayerIdOrNull() { if (FriendsPlayerId_IsSet) return &FriendsPlayerId_Optional; return nullptr; }
+    /** @brief Returns a pointer to FriendsPlayerId_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetFriendsPlayerIdOrNull() const { if (FriendsPlayerId_IsSet) return &FriendsPlayerId_Optional; return nullptr; }
+    /** @brief Sets the value of FriendsPlayerId_Optional and also sets FriendsPlayerId_IsSet to true */
+    void SetFriendsPlayerId(int32 NewValue) { FriendsPlayerId_Optional = NewValue; FriendsPlayerId_IsSet = true; }
+     /** @brief Clears the value of FriendsPlayerId_Optional and sets FriendsPlayerId_IsSet to false */
+    void ClearFriendsPlayerId() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = false; }
+    /** @brief Returns true if FriendsPlayerId_Optional is set and matches the default value */
+    bool IsFriendsPlayerIdDefaultValue() const { return FriendsPlayerId_IsSet && FriendsPlayerId_Optional == 0; }
+    /** @brief Sets the value of FriendsPlayerId_Optional to its default and also sets FriendsPlayerId_IsSet to true */
+    void SetFriendsPlayerIdToDefault() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = true; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_FriendshipStatus Status{  };
@@ -98,3 +115,5 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
     /** @brief Sets the value of LastModifiedOn */
     void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
 };
+
+/** @} */

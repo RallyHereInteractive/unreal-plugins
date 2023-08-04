@@ -50,20 +50,24 @@ bool FRHAPI_PlayerOrderDetail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("type"), Type);
-    if ((*Object)->HasField(TEXT("loot_id")))
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+    const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
+    if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
     {
-        LootId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("loot_id"), LootId_Optional);
+        LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
         ParseSuccess &= LootId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("inv_change")))
+    const TSharedPtr<FJsonValue> JsonInvChangeField = (*Object)->TryGetField(TEXT("inv_change"));
+    if (JsonInvChangeField.IsValid() && !JsonInvChangeField->IsNull())
     {
-        InvChange_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("inv_change"), InvChange_Optional);
+        InvChange_IsSet = TryGetJsonValue(JsonInvChangeField, InvChange_Optional);
         ParseSuccess &= InvChange_IsSet;
     }
-    if ((*Object)->HasField(TEXT("order")))
+    const TSharedPtr<FJsonValue> JsonOrderField = (*Object)->TryGetField(TEXT("order"));
+    if (JsonOrderField.IsValid() && !JsonOrderField->IsNull())
     {
-        Order_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("order"), Order_Optional);
+        Order_IsSet = TryGetJsonValue(JsonOrderField, Order_Optional);
         ParseSuccess &= Order_IsSet;
     }
 

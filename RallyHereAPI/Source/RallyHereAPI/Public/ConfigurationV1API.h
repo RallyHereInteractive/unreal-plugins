@@ -30,10 +30,10 @@ public:
     FConfigurationV1API();
     virtual ~FConfigurationV1API();
 
-    FHttpRequestPtr GetFriendsAndBlockLimits(const FRequest_GetFriendsAndBlockLimits& Request, const FDelegate_GetFriendsAndBlockLimits& Delegate = FDelegate_GetFriendsAndBlockLimits());
+    FHttpRequestPtr GetFriendsAndBlockLimits(const FRequest_GetFriendsAndBlockLimits& Request, const FDelegate_GetFriendsAndBlockLimits& Delegate = FDelegate_GetFriendsAndBlockLimits(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetFriendsAndBlockLimitsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsAndBlockLimits Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetFriendsAndBlockLimitsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsAndBlockLimits Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsAndBlockLimits
     typedef FConfigurationV1API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetFriendsAndBlockLimits(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsAndBlockLimits(InRequest, InDelegate, Priority); }
 };
 
 

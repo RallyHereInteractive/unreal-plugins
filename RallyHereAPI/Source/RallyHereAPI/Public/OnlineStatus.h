@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "OnlineStatus.generated.h"
 
+
 /**
  * @brief An enumeration.
  */

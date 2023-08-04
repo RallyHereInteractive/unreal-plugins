@@ -9,11 +9,16 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "HostType.h"
 #include "MapSelectionList.h"
 #include "InstanceLaunchTemplate.generated.h"
 
+/** @defgroup RHAPI_InstanceLaunchTemplate RallyHere API Model InstanceLaunchTemplate
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Configuration about how an instance should behave when it&#39;s allocated
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
@@ -55,6 +60,16 @@ struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
     /** @brief Sets the value of MapSelectionList */
     void SetMapSelectionList(FRHAPI_MapSelectionList NewValue) { MapSelectionList = NewValue;  }
 
+    /** @brief Default host type for this template. Can be overriden in instance requests */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_HostType DefaultHostType{  };
+    /** @brief Gets the value of DefaultHostType */
+    ERHAPI_HostType& GetDefaultHostType() { return DefaultHostType; }
+    /** @brief Gets the value of DefaultHostType */
+    const ERHAPI_HostType& GetDefaultHostType() const { return DefaultHostType; }
+    /** @brief Sets the value of DefaultHostType */
+    void SetDefaultHostType(ERHAPI_HostType NewValue) { DefaultHostType = NewValue;  }
+
     /** @brief Custom data that will be passed to the session during the instance launch request */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData{  };
@@ -65,3 +80,5 @@ struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
     /** @brief Sets the value of CustomData */
     void SetCustomData(TMap<FString, FString> NewValue) { CustomData = NewValue;  }
 };
+
+/** @} */

@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "InstanceStartupParams.generated.h"
 
+/** @defgroup RHAPI_InstanceStartupParams RallyHere API Model InstanceStartupParams
+ *  @{
+ */
+
 /**
- * @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode
+ * @brief Parameters given to an instance to change what map and mode it loads, and other gameplay behavior
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
@@ -101,3 +105,5 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

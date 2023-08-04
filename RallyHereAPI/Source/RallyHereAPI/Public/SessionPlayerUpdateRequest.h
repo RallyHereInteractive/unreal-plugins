@@ -12,8 +12,12 @@
 #include "SessionPlayerStatus.h"
 #include "SessionPlayerUpdateRequest.generated.h"
 
+/** @defgroup RHAPI_SessionPlayerUpdateRequest RallyHere API Model SessionPlayerUpdateRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request body to update information about a player in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
@@ -96,3 +100,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

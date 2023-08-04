@@ -12,6 +12,10 @@
 #include "PublicKey.h"
 #include "PublicKeyList.generated.h"
 
+/** @defgroup RHAPI_PublicKeyList RallyHere API Model PublicKeyList
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_PublicKeyList : public FRHAPI_Model
     /** @brief Sets the value of Keys */
     void SetKeys(TArray<FRHAPI_PublicKey> NewValue) { Keys = NewValue;  }
 };
+
+/** @} */

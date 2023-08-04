@@ -12,6 +12,10 @@
 #include "PlayerResponse.h"
 #include "PlatformIdentityLookupResults.generated.h"
 
+/** @defgroup RHAPI_PlatformIdentityLookupResults RallyHere API Model PlatformIdentityLookupResults
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -58,3 +62,5 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIdentityLookupResults : public FRHAPI_Mod
      /** @brief Clears the value of Identity_Optional and sets Identity_IsSet to false */
     void ClearIdentity() { Identity_IsSet = false; }
 };
+
+/** @} */

@@ -13,8 +13,12 @@
 #include "PlayerOrder.h"
 #include "PlayerOrdersResponse.generated.h"
 
+/** @defgroup RHAPI_PlayerOrdersResponse RallyHere API Model PlayerOrdersResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Player Orders.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief A collection of Player Orders. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PlayerOrder> Data_Optional{  };
     /** @brief true if Data_Optional has been set to a value */
@@ -68,3 +73,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
     /** @brief Sets the value of Page */
     void SetPage(FRHAPI_InventoryPageMeta NewValue) { Page = NewValue;  }
 };
+
+/** @} */

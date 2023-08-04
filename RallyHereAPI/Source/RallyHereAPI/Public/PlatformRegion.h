@@ -11,8 +11,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlatformRegion.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Region for Entitlements
  */
 UENUM(BlueprintType)
 enum class ERHAPI_PlatformRegion : uint8

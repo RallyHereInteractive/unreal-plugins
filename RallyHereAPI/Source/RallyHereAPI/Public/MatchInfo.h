@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "MatchInfo.generated.h"
 
+/** @defgroup RHAPI_MatchInfo RallyHere API Model MatchInfo
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Information about a match
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
@@ -101,3 +105,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
      /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
     void ClearTicketIds() { TicketIds_IsSet = false; }
 };
+
+/** @} */

@@ -38,9 +38,10 @@ bool FRHAPI_SessionEvents::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("events")))
+    const TSharedPtr<FJsonValue> JsonEventsField = (*Object)->TryGetField(TEXT("events"));
+    if (JsonEventsField.IsValid() && !JsonEventsField->IsNull())
     {
-        Events_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("events"), Events_Optional);
+        Events_IsSet = TryGetJsonValue(JsonEventsField, Events_Optional);
         ParseSuccess &= Events_IsSet;
     }
 

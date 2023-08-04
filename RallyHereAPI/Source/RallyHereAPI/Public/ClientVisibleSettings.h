@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "ClientVisibleSettings.generated.h"
 
+/** @defgroup RHAPI_ClientVisibleSettings RallyHere API Model ClientVisibleSettings
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -89,3 +93,5 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
     /** @brief Sets the value of LastSeenAgeConsideredOfflineSeconds_Optional to its default and also sets LastSeenAgeConsideredOfflineSeconds_IsSet to true */
     void SetLastSeenAgeConsideredOfflineSecondsToDefault() { LastSeenAgeConsideredOfflineSeconds_Optional = 60; LastSeenAgeConsideredOfflineSeconds_IsSet = true; }
 };
+
+/** @} */

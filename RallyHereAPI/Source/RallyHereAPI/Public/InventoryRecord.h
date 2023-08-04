@@ -13,8 +13,12 @@
 #include "InventoryType.h"
 #include "InventoryRecord.generated.h"
 
+/** @defgroup RHAPI_InventoryRecord RallyHere API Model InventoryRecord
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Inventory Record for a Player
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Unique ID for this Inventory Record. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid InventoryId{  };
     /** @brief Gets the value of InventoryId */
@@ -46,6 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
     /** @brief Sets the value of InventoryId */
     void SetInventoryId(FGuid NewValue) { InventoryId = NewValue;  }
 
+    /** @brief Type of Inventory Record. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryType Type{  };
     /** @brief Gets the value of Type */
@@ -55,25 +61,26 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
     /** @brief Sets the value of Type */
     void SetType(ERHAPI_InventoryType NewValue) { Type = NewValue;  }
 
+    /** @brief Legacy Inventory ID. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 LegacyInventoryId_Optional{  };
+    int64 LegacyInventoryId_Optional{  };
     /** @brief true if LegacyInventoryId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool LegacyInventoryId_IsSet{ false };
     /** @brief Gets the value of LegacyInventoryId_Optional, regardless of it having been set */
-    int32& GetLegacyInventoryId() { return LegacyInventoryId_Optional; }
+    int64& GetLegacyInventoryId() { return LegacyInventoryId_Optional; }
     /** @brief Gets the value of LegacyInventoryId_Optional, regardless of it having been set */
-    const int32& GetLegacyInventoryId() const { return LegacyInventoryId_Optional; }
+    const int64& GetLegacyInventoryId() const { return LegacyInventoryId_Optional; }
     /** @brief Gets the value of LegacyInventoryId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetLegacyInventoryId(const int32& DefaultValue) const { if (LegacyInventoryId_IsSet) return LegacyInventoryId_Optional; return DefaultValue; }
+    const int64& GetLegacyInventoryId(const int64& DefaultValue) const { if (LegacyInventoryId_IsSet) return LegacyInventoryId_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LegacyInventoryId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyInventoryId(int32& OutValue) const { if (LegacyInventoryId_IsSet) OutValue = LegacyInventoryId_Optional; return LegacyInventoryId_IsSet; }
+    bool GetLegacyInventoryId(int64& OutValue) const { if (LegacyInventoryId_IsSet) OutValue = LegacyInventoryId_Optional; return LegacyInventoryId_IsSet; }
     /** @brief Returns a pointer to LegacyInventoryId_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetLegacyInventoryIdOrNull() { if (LegacyInventoryId_IsSet) return &LegacyInventoryId_Optional; return nullptr; }
+    int64* GetLegacyInventoryIdOrNull() { if (LegacyInventoryId_IsSet) return &LegacyInventoryId_Optional; return nullptr; }
     /** @brief Returns a pointer to LegacyInventoryId_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetLegacyInventoryIdOrNull() const { if (LegacyInventoryId_IsSet) return &LegacyInventoryId_Optional; return nullptr; }
+    const int64* GetLegacyInventoryIdOrNull() const { if (LegacyInventoryId_IsSet) return &LegacyInventoryId_Optional; return nullptr; }
     /** @brief Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true */
-    void SetLegacyInventoryId(int32 NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true; }
+    void SetLegacyInventoryId(int64 NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true; }
      /** @brief Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false */
     void ClearLegacyInventoryId() { LegacyInventoryId_Optional = 0; LegacyInventoryId_IsSet = false; }
     /** @brief Returns true if LegacyInventoryId_Optional is set and matches the default value */
@@ -81,6 +88,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
     /** @brief Sets the value of LegacyInventoryId_Optional to its default and also sets LegacyInventoryId_IsSet to true */
     void SetLegacyInventoryIdToDefault() { LegacyInventoryId_Optional = 0; LegacyInventoryId_IsSet = true; }
 
+    /** @brief Bucket for this Inventory Record. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryBucket Bucket_Optional{  };
     /** @brief true if Bucket_Optional has been set to a value */
@@ -103,6 +111,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
      /** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
     void ClearBucket() { Bucket_IsSet = false; }
 
+    /** @brief Instance count for this Inventory Record. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 Count{ 0 };
     /** @brief Gets the value of Count */
@@ -149,6 +158,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
      /** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
     void ClearExpires() { Expires_IsSet = false; }
 
+    /** @brief Arbitrary map of data for this Inventory Record. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
@@ -171,3 +181,5 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

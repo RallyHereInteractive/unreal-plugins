@@ -39,20 +39,20 @@ public:
     FQueuesAPI();
     virtual ~FQueuesAPI();
 
-    FHttpRequestPtr GetAllMapGameInfo(const FRequest_GetAllMapGameInfo& Request, const FDelegate_GetAllMapGameInfo& Delegate = FDelegate_GetAllMapGameInfo());
-    FHttpRequestPtr GetAllQueueInfo(const FRequest_GetAllQueueInfo& Request, const FDelegate_GetAllQueueInfo& Delegate = FDelegate_GetAllQueueInfo());
-    FHttpRequestPtr GetMatchMakingTemplates(const FRequest_GetMatchMakingTemplates& Request, const FDelegate_GetMatchMakingTemplates& Delegate = FDelegate_GetMatchMakingTemplates());
+    FHttpRequestPtr GetAllMapGameInfo(const FRequest_GetAllMapGameInfo& Request, const FDelegate_GetAllMapGameInfo& Delegate = FDelegate_GetAllMapGameInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllQueueInfo(const FRequest_GetAllQueueInfo& Request, const FDelegate_GetAllQueueInfo& Delegate = FDelegate_GetAllQueueInfo(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetMatchMakingTemplates(const FRequest_GetMatchMakingTemplates& Request, const FDelegate_GetMatchMakingTemplates& Delegate = FDelegate_GetMatchMakingTemplates(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllMapGameInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetAllMapGameInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllMapGameInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Get All Map Game Info
  *
- * Get all the match game info
+ * Get the config used to launch an instance by the launch template id. Launch template ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves) any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllMapGameInfo : public FRequest
 {
@@ -65,6 +65,8 @@ struct RALLYHEREAPI_API FRequest_GetAllMapGameInfo : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FGuid InstanceLaunchTemplateId;
+    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+    TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
@@ -89,12 +91,12 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
     typedef FQueuesAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info
  *
- * Get all the available queues, maps, and map selection lists
+ * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves) any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfo : public FRequest
 {
@@ -106,8 +108,10 @@ struct RALLYHEREAPI_API FRequest_GetAllQueueInfo : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    int32 Page = 0;
-    int32 PageSize = 0;
+    TOptional<int32> Cursor;
+    TOptional<int32> PageSize;
+    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+    TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
@@ -132,12 +136,12 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
     typedef FQueuesAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllQueueInfo(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates
  *
- * Get match making templates and rules
+ * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;/v1/queues&#x60; endpoint  Required Permissions:   For any player (including themselves) any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;               Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplates : public FRequest
 {
@@ -150,6 +154,8 @@ struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplates : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FGuid TemplateGroupId;
+    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+    TOptional<FString> IfNoneMatch;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
@@ -174,7 +180,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
     typedef FQueuesAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
 };
 
 

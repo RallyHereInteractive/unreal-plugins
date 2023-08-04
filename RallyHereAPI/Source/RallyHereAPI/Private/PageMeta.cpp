@@ -39,9 +39,12 @@ bool FRHAPI_PageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("page"), Page);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("limit"), Limit);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("total"), Total);
+    const TSharedPtr<FJsonValue> JsonPageField = (*Object)->TryGetField(TEXT("page"));
+    ParseSuccess &= JsonPageField.IsValid() && !JsonPageField->IsNull() && TryGetJsonValue(JsonPageField, Page);
+    const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
+    ParseSuccess &= JsonLimitField.IsValid() && !JsonLimitField->IsNull() && TryGetJsonValue(JsonLimitField, Limit);
+    const TSharedPtr<FJsonValue> JsonTotalField = (*Object)->TryGetField(TEXT("total"));
+    ParseSuccess &= JsonTotalField.IsValid() && !JsonTotalField->IsNull() && TryGetJsonValue(JsonTotalField, Total);
 
     return ParseSuccess;
 }

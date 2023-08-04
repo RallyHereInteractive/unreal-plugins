@@ -37,8 +37,10 @@ bool FRHAPI_PlayerLinkedPortalsResponse::FromJson(const TSharedPtr<FJsonValue>& 
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("player"), Player);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("linked_portals"), LinkedPortals);
+    const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
+    ParseSuccess &= JsonPlayerField.IsValid() && !JsonPlayerField->IsNull() && TryGetJsonValue(JsonPlayerField, Player);
+    const TSharedPtr<FJsonValue> JsonLinkedPortalsField = (*Object)->TryGetField(TEXT("linked_portals"));
+    ParseSuccess &= JsonLinkedPortalsField.IsValid() && !JsonLinkedPortalsField->IsNull() && TryGetJsonValue(JsonLinkedPortalsField, LinkedPortals);
 
     return ParseSuccess;
 }

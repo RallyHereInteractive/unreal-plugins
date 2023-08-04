@@ -12,8 +12,12 @@
 #include "Platform.h"
 #include "InventorySessionCreateResponse.generated.h"
 
+/** @defgroup RHAPI_InventorySessionCreateResponse RallyHere API Model InventorySessionCreateResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Response body for creating a new Inventory Session.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Model
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The ID of the session. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
@@ -45,6 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
     /** @brief Sets the value of SessionId */
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
+    /** @brief The platform for the session. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Platform SessionPlatform_Optional{  };
     /** @brief true if SessionPlatform_Optional has been set to a value */
@@ -67,6 +73,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
      /** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
     void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
 
+    /** @brief The ID of the Order generated for any Loot given during the creation of the Inventory Session. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString OrderId_Optional{  };
     /** @brief true if OrderId_Optional has been set to a value */
@@ -89,3 +96,5 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
      /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
     void ClearOrderId() { OrderId_IsSet = false; }
 };
+
+/** @} */

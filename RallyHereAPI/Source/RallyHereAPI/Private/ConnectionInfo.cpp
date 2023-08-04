@@ -35,7 +35,8 @@ bool FRHAPI_ConnectionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("ip"), Ip);
+    const TSharedPtr<FJsonValue> JsonIpField = (*Object)->TryGetField(TEXT("ip"));
+    ParseSuccess &= JsonIpField.IsValid() && !JsonIpField->IsNull() && TryGetJsonValue(JsonIpField, Ip);
 
     return ParseSuccess;
 }

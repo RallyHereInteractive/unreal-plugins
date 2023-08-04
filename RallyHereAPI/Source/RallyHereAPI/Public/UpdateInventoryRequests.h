@@ -13,8 +13,12 @@
 #include "UpdateInventoryRequestById.h"
 #include "UpdateInventoryRequests.generated.h"
 
+/** @defgroup RHAPI_UpdateInventoryRequests RallyHere API Model UpdateInventoryRequests
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Collection of Update Inventory Requests. The Inventory referenced in the Update Inventory Requests must exist otherwise the request will fail. Each individual entry will be processed in the order they are specified in the collection.  &lt;b&gt;Note: Partial success is possible as each request is processed individually.&lt;/b&gt;
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Source of this Inventory Operation. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Source Source_Optional{  };
     /** @brief true if Source_Optional has been set to a value */
@@ -59,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
      /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
     void ClearSource() { Source_IsSet = false; }
 
+    /** @brief Arbitrary UUID that can be used by clients to correlate Order requests with Order responses. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ClientOrderRefId_Optional{  };
     /** @brief true if ClientOrderRefId_Optional has been set to a value */
@@ -81,6 +87,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
      /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
     void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
 
+    /** @brief Collection of Update Inventory Requests. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_UpdateInventoryRequestById> Inventory{  };
     /** @brief Gets the value of Inventory */
@@ -90,3 +97,5 @@ struct RALLYHEREAPI_API FRHAPI_UpdateInventoryRequests : public FRHAPI_Model
     /** @brief Sets the value of Inventory */
     void SetInventory(TArray<FRHAPI_UpdateInventoryRequestById> NewValue) { Inventory = NewValue;  }
 };
+
+/** @} */

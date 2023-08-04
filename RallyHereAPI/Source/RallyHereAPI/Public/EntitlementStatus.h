@@ -11,8 +11,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "EntitlementStatus.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Status of an Entitlement
  */
 UENUM(BlueprintType)
 enum class ERHAPI_EntitlementStatus : uint8

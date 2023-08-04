@@ -12,8 +12,12 @@
 #include "ProfileJoinMode.h"
 #include "MatchMakingProfile.generated.h"
 
+/** @defgroup RHAPI_MatchMakingProfile RallyHere API Model MatchMakingProfile
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A profile that describes what pools of players a session will be a part of when matchmaking
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
@@ -79,3 +83,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfile : public FRHAPI_Model
     /** @brief Sets the value of InstanceLaunchTemplateId */
     void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
 };
+
+/** @} */

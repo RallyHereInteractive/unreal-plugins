@@ -42,13 +42,16 @@ bool FRHAPI_MatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("mmr_group_method"), MmrGroupMethod);
-    if ((*Object)->HasField(TEXT("ruleset")))
+    const TSharedPtr<FJsonValue> JsonMmrGroupMethodField = (*Object)->TryGetField(TEXT("mmr_group_method"));
+    ParseSuccess &= JsonMmrGroupMethodField.IsValid() && !JsonMmrGroupMethodField->IsNull() && TryGetJsonValue(JsonMmrGroupMethodField, MmrGroupMethod);
+    const TSharedPtr<FJsonValue> JsonRulesetField = (*Object)->TryGetField(TEXT("ruleset"));
+    if (JsonRulesetField.IsValid() && !JsonRulesetField->IsNull())
     {
-        Ruleset_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("ruleset"), Ruleset_Optional);
+        Ruleset_IsSet = TryGetJsonValue(JsonRulesetField, Ruleset_Optional);
         ParseSuccess &= Ruleset_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("profiles"), Profiles);
+    const TSharedPtr<FJsonValue> JsonProfilesField = (*Object)->TryGetField(TEXT("profiles"));
+    ParseSuccess &= JsonProfilesField.IsValid() && !JsonProfilesField->IsNull() && TryGetJsonValue(JsonProfilesField, Profiles);
 
     return ParseSuccess;
 }

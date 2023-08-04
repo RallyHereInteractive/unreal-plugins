@@ -12,8 +12,12 @@
 #include "SortOrder.h"
 #include "InventoryPageMeta.generated.h"
 
+/** @defgroup RHAPI_InventoryPageMeta RallyHere API Model InventoryPageMeta
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Metadata about the page of results
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
@@ -132,3 +136,5 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
     /** @brief Sets the value of Limit_Optional to its default and also sets Limit_IsSet to true */
     void SetLimitToDefault() { Limit_Optional = 10; Limit_IsSet = true; }
 };
+
+/** @} */

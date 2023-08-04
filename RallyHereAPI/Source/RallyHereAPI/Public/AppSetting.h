@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "AppSetting.generated.h"
 
+/** @defgroup RHAPI_AppSetting RallyHere API Model AppSetting
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A key/value pair that represents a setting to be used by the client.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
@@ -35,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The key for the setting */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Key{  };
     /** @brief Gets the value of Key */
@@ -44,6 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     /** @brief Sets the value of Key */
     void SetKey(FString NewValue) { Key = NewValue;  }
 
+    /** @brief The value for the setting */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Value{  };
     /** @brief Gets the value of Value */
@@ -53,3 +59,5 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     /** @brief Sets the value of Value */
     void SetValue(FString NewValue) { Value = NewValue;  }
 };
+
+/** @} */

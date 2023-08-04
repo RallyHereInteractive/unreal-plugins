@@ -13,6 +13,10 @@
 #include "KeyType.h"
 #include "MarketingCampaign.generated.h"
 
+/** @defgroup RHAPI_MarketingCampaign RallyHere API Model MarketingCampaign
+ *  @{
+ */
+
 /**
  * @brief A Marketing Campaign is a set of external keys that can be claimed by players.The key claims are assigned to the player based on
  */
@@ -136,3 +140,5 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
      /** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
     void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; }
 };
+
+/** @} */

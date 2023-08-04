@@ -60,30 +60,36 @@ bool FRHAPI_SendInBlueContact::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("email"), Email);
-    if ((*Object)->HasField(TEXT("attributes")))
+    const TSharedPtr<FJsonValue> JsonEmailField = (*Object)->TryGetField(TEXT("email"));
+    ParseSuccess &= JsonEmailField.IsValid() && !JsonEmailField->IsNull() && TryGetJsonValue(JsonEmailField, Email);
+    const TSharedPtr<FJsonValue> JsonAttributesField = (*Object)->TryGetField(TEXT("attributes"));
+    if (JsonAttributesField.IsValid() && !JsonAttributesField->IsNull())
     {
-        Attributes_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("attributes"), Attributes_Optional);
+        Attributes_IsSet = TryGetJsonValue(JsonAttributesField, Attributes_Optional);
         ParseSuccess &= Attributes_IsSet;
     }
-    if ((*Object)->HasField(TEXT("emailBlacklisted")))
+    const TSharedPtr<FJsonValue> JsonEmailBlacklistedField = (*Object)->TryGetField(TEXT("emailBlacklisted"));
+    if (JsonEmailBlacklistedField.IsValid() && !JsonEmailBlacklistedField->IsNull())
     {
-        EmailBlacklisted_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("emailBlacklisted"), EmailBlacklisted_Optional);
+        EmailBlacklisted_IsSet = TryGetJsonValue(JsonEmailBlacklistedField, EmailBlacklisted_Optional);
         ParseSuccess &= EmailBlacklisted_IsSet;
     }
-    if ((*Object)->HasField(TEXT("listIds")))
+    const TSharedPtr<FJsonValue> JsonListIdsField = (*Object)->TryGetField(TEXT("listIds"));
+    if (JsonListIdsField.IsValid() && !JsonListIdsField->IsNull())
     {
-        ListIds_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("listIds"), ListIds_Optional);
+        ListIds_IsSet = TryGetJsonValue(JsonListIdsField, ListIds_Optional);
         ParseSuccess &= ListIds_IsSet;
     }
-    if ((*Object)->HasField(TEXT("unlinkListIds")))
+    const TSharedPtr<FJsonValue> JsonUnlinkListIdsField = (*Object)->TryGetField(TEXT("unlinkListIds"));
+    if (JsonUnlinkListIdsField.IsValid() && !JsonUnlinkListIdsField->IsNull())
     {
-        UnlinkListIds_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("unlinkListIds"), UnlinkListIds_Optional);
+        UnlinkListIds_IsSet = TryGetJsonValue(JsonUnlinkListIdsField, UnlinkListIds_Optional);
         ParseSuccess &= UnlinkListIds_IsSet;
     }
-    if ((*Object)->HasField(TEXT("updateEnabled")))
+    const TSharedPtr<FJsonValue> JsonUpdateEnabledField = (*Object)->TryGetField(TEXT("updateEnabled"));
+    if (JsonUpdateEnabledField.IsValid() && !JsonUpdateEnabledField->IsNull())
     {
-        UpdateEnabled_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("updateEnabled"), UpdateEnabled_Optional);
+        UpdateEnabled_IsSet = TryGetJsonValue(JsonUpdateEnabledField, UpdateEnabled_Optional);
         ParseSuccess &= UpdateEnabled_IsSet;
     }
 

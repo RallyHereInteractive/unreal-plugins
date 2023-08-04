@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerLastSeenUpdate.generated.h"
 
+/** @defgroup RHAPI_PlayerLastSeenUpdate RallyHere API Model PlayerLastSeenUpdate
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -91,3 +95,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
      /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
     void ClearDisplayName() { DisplayName_IsSet = false; }
 };
+
+/** @} */

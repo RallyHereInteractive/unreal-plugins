@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PurgeResponse.generated.h"
 
+/** @defgroup RHAPI_PurgeResponse RallyHere API Model PurgeResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -83,3 +87,5 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     /** @brief Sets the value of Status */
     void SetStatus(FString NewValue) { Status = NewValue;  }
 };
+
+/** @} */

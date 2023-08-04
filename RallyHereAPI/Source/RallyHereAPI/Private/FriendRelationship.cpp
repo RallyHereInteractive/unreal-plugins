@@ -44,14 +44,18 @@ bool FRHAPI_FriendRelationship::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("friends_player_uuid"), FriendsPlayerUuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("status"), Status);
-    if ((*Object)->HasField(TEXT("notes")))
+    const TSharedPtr<FJsonValue> JsonFriendsPlayerUuidField = (*Object)->TryGetField(TEXT("friends_player_uuid"));
+    ParseSuccess &= JsonFriendsPlayerUuidField.IsValid() && !JsonFriendsPlayerUuidField->IsNull() && TryGetJsonValue(JsonFriendsPlayerUuidField, FriendsPlayerUuid);
+    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+    ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+    const TSharedPtr<FJsonValue> JsonNotesField = (*Object)->TryGetField(TEXT("notes"));
+    if (JsonNotesField.IsValid() && !JsonNotesField->IsNull())
     {
-        Notes_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("notes"), Notes_Optional);
+        Notes_IsSet = TryGetJsonValue(JsonNotesField, Notes_Optional);
         ParseSuccess &= Notes_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("last_modified_on"), LastModifiedOn);
+    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+    ParseSuccess &= JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull() && TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn);
 
     return ParseSuccess;
 }

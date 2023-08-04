@@ -14,8 +14,12 @@
 #include "VendorType.h"
 #include "Vendor.generated.h"
 
+/** @defgroup RHAPI_Vendor RallyHere API Model Vendor
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Loot and how to fulfill them.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
@@ -38,6 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Determines how the Vendor fulfills the loot */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_VendorType Type_Optional{  };
     /** @brief true if Type_Optional has been set to a value */
@@ -112,6 +117,7 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     /** @brief Sets the value of LegacyConfigVersion_Optional to its default and also sets LegacyConfigVersion_IsSet to true */
     void SetLegacyConfigVersionToDefault() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = true; }
 
+    /** @brief The Loot the Vendor will fulfill mapped by Loot ID. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_Loot> Loot_Optional{  };
     /** @brief true if Loot_Optional has been set to a value */
@@ -156,3 +162,5 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "SetSinglePlayerSettingRequest.generated.h"
 
+/** @defgroup RHAPI_SetSinglePlayerSettingRequest RallyHere API Model SetSinglePlayerSettingRequest
+ *  @{
+ */
+
 /**
  * @brief Updatable contents of a setting for a player
  */
@@ -59,3 +63,5 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
     /** @brief Sets the value of Value */
     void SetValue(FRHAPI_JsonValue NewValue) { Value = NewValue;  }
 };
+
+/** @} */

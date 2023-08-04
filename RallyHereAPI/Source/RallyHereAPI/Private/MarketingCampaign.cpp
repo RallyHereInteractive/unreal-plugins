@@ -54,22 +54,28 @@ bool FRHAPI_MarketingCampaign::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("uuid"), Uuid);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("name"), Name);
-    if ((*Object)->HasField(TEXT("portal_id")))
+    const TSharedPtr<FJsonValue> JsonUuidField = (*Object)->TryGetField(TEXT("uuid"));
+    ParseSuccess &= JsonUuidField.IsValid() && !JsonUuidField->IsNull() && TryGetJsonValue(JsonUuidField, Uuid);
+    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+    ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
+    const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
+    if (JsonPortalIdField.IsValid() && !JsonPortalIdField->IsNull())
     {
-        PortalId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("portal_id"), PortalId_Optional);
+        PortalId_IsSet = TryGetJsonValue(JsonPortalIdField, PortalId_Optional);
         ParseSuccess &= PortalId_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("key_types"), KeyTypes);
-    if ((*Object)->HasField(TEXT("created_on")))
+    const TSharedPtr<FJsonValue> JsonKeyTypesField = (*Object)->TryGetField(TEXT("key_types"));
+    ParseSuccess &= JsonKeyTypesField.IsValid() && !JsonKeyTypesField->IsNull() && TryGetJsonValue(JsonKeyTypesField, KeyTypes);
+    const TSharedPtr<FJsonValue> JsonCreatedOnField = (*Object)->TryGetField(TEXT("created_on"));
+    if (JsonCreatedOnField.IsValid() && !JsonCreatedOnField->IsNull())
     {
-        CreatedOn_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("created_on"), CreatedOn_Optional);
+        CreatedOn_IsSet = TryGetJsonValue(JsonCreatedOnField, CreatedOn_Optional);
         ParseSuccess &= CreatedOn_IsSet;
     }
-    if ((*Object)->HasField(TEXT("last_modified_on")))
+    const TSharedPtr<FJsonValue> JsonLastModifiedOnField = (*Object)->TryGetField(TEXT("last_modified_on"));
+    if (JsonLastModifiedOnField.IsValid() && !JsonLastModifiedOnField->IsNull())
     {
-        LastModifiedOn_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("last_modified_on"), LastModifiedOn_Optional);
+        LastModifiedOn_IsSet = TryGetJsonValue(JsonLastModifiedOnField, LastModifiedOn_Optional);
         ParseSuccess &= LastModifiedOn_IsSet;
     }
 

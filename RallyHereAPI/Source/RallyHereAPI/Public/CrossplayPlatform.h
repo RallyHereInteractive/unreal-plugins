@@ -11,15 +11,16 @@
 #include "RallyHereAPIHelpers.h"
 #include "CrossplayPlatform.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches
  */
 UENUM(BlueprintType)
 enum class ERHAPI_CrossplayPlatform : uint8
 {
-    Any UMETA(ToolTip="An enumeration."),
-    Xbox UMETA(ToolTip="An enumeration."),
-    Playstation UMETA(ToolTip="An enumeration."),
+    Any UMETA(ToolTip="No crossplay platform preferences. Can play with players any platforms"),
+    Xbox UMETA(ToolTip="Can only play with players on xbox-like platforms (xbox-one, xsx etc.)"),
+    Playstation UMETA(ToolTip="Can only play with players on playstation-like platform (ps4, ps5 etc.)"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_CrossplayPlatform& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayPlatform& EnumValue);

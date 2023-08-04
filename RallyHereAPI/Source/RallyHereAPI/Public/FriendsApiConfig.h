@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "FriendsApiConfig.generated.h"
 
+/** @defgroup RHAPI_FriendsApiConfig RallyHere API Model FriendsApiConfig
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -89,3 +93,5 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
     /** @brief Sets the value of BlockLimit_Optional to its default and also sets BlockLimit_IsSet to true */
     void SetBlockLimitToDefault() { BlockLimit_Optional = 10000; BlockLimit_IsSet = true; }
 };
+
+/** @} */

@@ -11,8 +11,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "InventoryBucket.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Grouping of Inventory Items. Inventory items are grouped into different buckets as each Platform that is supported has different requirements on how Inventory can be used on their Platform and other Platforms.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_InventoryBucket : uint8

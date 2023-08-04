@@ -58,29 +58,34 @@ bool FRHAPI_Vendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("type")))
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
     {
-        Type_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("type"), Type_Optional);
+        Type_IsSet = TryGetJsonValue(JsonTypeField, Type_Optional);
         ParseSuccess &= Type_IsSet;
     }
-    if ((*Object)->HasField(TEXT("legacy_type")))
+    const TSharedPtr<FJsonValue> JsonLegacyTypeField = (*Object)->TryGetField(TEXT("legacy_type"));
+    if (JsonLegacyTypeField.IsValid() && !JsonLegacyTypeField->IsNull())
     {
-        LegacyType_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("legacy_type"), LegacyType_Optional);
+        LegacyType_IsSet = TryGetJsonValue(JsonLegacyTypeField, LegacyType_Optional);
         ParseSuccess &= LegacyType_IsSet;
     }
-    if ((*Object)->HasField(TEXT("legacy_config_version")))
+    const TSharedPtr<FJsonValue> JsonLegacyConfigVersionField = (*Object)->TryGetField(TEXT("legacy_config_version"));
+    if (JsonLegacyConfigVersionField.IsValid() && !JsonLegacyConfigVersionField->IsNull())
     {
-        LegacyConfigVersion_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("legacy_config_version"), LegacyConfigVersion_Optional);
+        LegacyConfigVersion_IsSet = TryGetJsonValue(JsonLegacyConfigVersionField, LegacyConfigVersion_Optional);
         ParseSuccess &= LegacyConfigVersion_IsSet;
     }
-    if ((*Object)->HasField(TEXT("loot")))
+    const TSharedPtr<FJsonValue> JsonLootField = (*Object)->TryGetField(TEXT("loot"));
+    if (JsonLootField.IsValid() && !JsonLootField->IsNull())
     {
-        Loot_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("loot"), Loot_Optional);
+        Loot_IsSet = TryGetJsonValue(JsonLootField, Loot_Optional);
         ParseSuccess &= Loot_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

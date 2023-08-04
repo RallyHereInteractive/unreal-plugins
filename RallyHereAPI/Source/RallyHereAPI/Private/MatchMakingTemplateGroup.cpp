@@ -42,11 +42,14 @@ bool FRHAPI_MatchMakingTemplateGroup::FromJson(const TSharedPtr<FJsonValue>& Jso
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("template_group_id"), TemplateGroupId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("template_options"), TemplateOptions);
-    if ((*Object)->HasField(TEXT("required_item_ids")))
+    const TSharedPtr<FJsonValue> JsonTemplateGroupIdField = (*Object)->TryGetField(TEXT("template_group_id"));
+    ParseSuccess &= JsonTemplateGroupIdField.IsValid() && !JsonTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonTemplateGroupIdField, TemplateGroupId);
+    const TSharedPtr<FJsonValue> JsonTemplateOptionsField = (*Object)->TryGetField(TEXT("template_options"));
+    ParseSuccess &= JsonTemplateOptionsField.IsValid() && !JsonTemplateOptionsField->IsNull() && TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions);
+    const TSharedPtr<FJsonValue> JsonRequiredItemIdsField = (*Object)->TryGetField(TEXT("required_item_ids"));
+    if (JsonRequiredItemIdsField.IsValid() && !JsonRequiredItemIdsField->IsNull())
     {
-        RequiredItemIds_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("required_item_ids"), RequiredItemIds_Optional);
+        RequiredItemIds_IsSet = TryGetJsonValue(JsonRequiredItemIdsField, RequiredItemIds_Optional);
         ParseSuccess &= RequiredItemIds_IsSet;
     }
 

@@ -24,17 +24,20 @@
 #define STEAMV2_SUBSYSTEM FName(TEXT("STEAMV2"))
 #endif
 
-#ifndef EPIC_SUBSYSTEM
-#if !WITH_HIREZ_ENGINE
-#define EPIC_SUBSYSTEM FName(TEXT("EOS"))
-#else
-// HIREZ_ENGINE uses a custom implemented version of the EOS OSS, made before there was a publicly available one in the engine
-#define EPIC_SUBSYSTEM FName(TEXT("EPIC"))
+#ifndef EOS_SUBSYSTEM
+#define EOS_SUBSYSTEM FName(TEXT("EOS"))
 #endif
+
+#ifndef EOSPLUS_SUBSYSTEM
+#define EOSPLUS_SUBSYSTEM FName(TEXT("EOSPLUS"))
 #endif
 
 #ifndef ANON_SUBSYSTEM
 #define ANON_SUBSYSTEM FName(TEXT("ANON"))
+#endif
+
+#ifndef BASIC_SUBSYSTEM
+#define BASIC_SUBSYSTEM FName(TEXT("BASIC"))
 #endif
 
 #ifndef PS4_SUBSYSTEM

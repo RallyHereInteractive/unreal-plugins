@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "NotificationCreateResult.generated.h"
 
+/** @defgroup RHAPI_NotificationCreateResult RallyHere API Model NotificationCreateResult
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreateResult : public FRHAPI_Model
     /** @brief Sets the value of NotificationId */
     void SetNotificationId(FString NewValue) { NotificationId = NewValue;  }
 };
+
+/** @} */

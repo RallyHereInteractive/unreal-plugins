@@ -18,6 +18,8 @@
 struct FRHAPI_JsonValue;
 class IHttpRequest;
 
+constexpr int32 DefaultRallyHereAPIPriority = 1000000;
+
 UENUM(BlueprintType)
 enum class ERHAPI_JsonValueType : uint8
 {
@@ -579,29 +581,22 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, TMap<FStrin
 }
 
 template<typename T>
-inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, const FString& Key, T& Value)
-{
-	const TSharedPtr<FJsonValue> JsonValue = JsonObject->TryGetField(Key);
-	if (JsonValue.IsValid() && !JsonValue->IsNull())
-	{
-		return TryGetJsonValue(JsonValue, Value);
-	}
-	return false;
-}
-
-template<typename T>
 inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, const FString& Key, TOptional<T>& OptionalValue)
 {
-	if(JsonObject->HasField(Key))
+	if (JsonObject->HasField(Key))
 	{
 		T Value;
-		if (TryGetJsonValue(JsonObject, Key, Value))
+		const TSharedPtr<FJsonValue> JsonValue = JsonObject->TryGetField(Key);
+		if (JsonValue.IsValid() && !JsonValue->IsNull())
 		{
-			OptionalValue = Value;
-			return true;
+			if (TryGetJsonValue(JsonValue, Value))
+			{
+				OptionalValue = Value;
+				return true;
+			}
 		}
-		else
-			return false;
+
+		return false;
 	}
 	return true; // Absence of optional value is not a parsing error
 }

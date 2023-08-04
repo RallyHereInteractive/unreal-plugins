@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "KeyType.generated.h"
 
+/** @defgroup RHAPI_KeyType RallyHere API Model KeyType
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A Key Type is a type of key that can be claimed from a Marketing Campaign.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
@@ -35,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The type of key */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Type{  };
     /** @brief Gets the value of Type */
@@ -44,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
     /** @brief Sets the value of Type */
     void SetType(FString NewValue) { Type = NewValue;  }
 };
+
+/** @} */

@@ -252,14 +252,20 @@ bool FOnlineSubsystemSteamV2::Init()
 {
 	const bool bIsServer = IsRunningDedicatedServer();
 
+	SteamSubsystem = static_cast<FOnlineSubsystemSteam*>(IOnlineSubsystem::Get(STEAM_SUBSYSTEM));
+
+	if (SteamSubsystem == nullptr || !SteamSubsystem->IsEnabled())
+	{
+		UE_LOG_ONLINE(Warning, TEXT("Internal Steam Subsystem not initialized, unable to create SteamV2 online subsystem"));
+		return false;
+	}
+
 	if (!bIsServer)
 	{
 		PurchaseInterface = MakeShareable(new FOnlinePurchaseSteam(this));
 		StoreInterface = MakeShareable(new FOnlineStoreSteam(this));
 		EntitlementsInterface = MakeShareable(new FOnlineEntitlementsSteam(this));
 	}
-
-	SteamSubsystem = static_cast<FOnlineSubsystemSteam*>(IOnlineSubsystem::Get(STEAM_SUBSYSTEM));
 
 	// Create the online async task thread, assume the Steam Subsystem connected
 	OnlineAsyncTaskThreadRunnable = new FOnlineAsyncTaskManagerSteamV2(this);

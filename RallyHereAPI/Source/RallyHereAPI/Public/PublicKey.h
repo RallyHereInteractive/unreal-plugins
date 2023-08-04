@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PublicKey.generated.h"
 
+/** @defgroup RHAPI_PublicKey RallyHere API Model PublicKey
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -71,3 +75,5 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
     /** @brief Sets the value of E */
     void SetE(FString NewValue) { E = NewValue;  }
 };
+
+/** @} */

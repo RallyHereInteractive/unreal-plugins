@@ -45,15 +45,18 @@ bool FRHAPI_PlayerSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("type"), Type);
-    if ((*Object)->HasField(TEXT("session_ids")))
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+    const TSharedPtr<FJsonValue> JsonSessionIdsField = (*Object)->TryGetField(TEXT("session_ids"));
+    if (JsonSessionIdsField.IsValid() && !JsonSessionIdsField->IsNull())
     {
-        SessionIds_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_ids"), SessionIds_Optional);
+        SessionIds_IsSet = TryGetJsonValue(JsonSessionIdsField, SessionIds_Optional);
         ParseSuccess &= SessionIds_IsSet;
     }
-    if ((*Object)->HasField(TEXT("pending_invites")))
+    const TSharedPtr<FJsonValue> JsonPendingInvitesField = (*Object)->TryGetField(TEXT("pending_invites"));
+    if (JsonPendingInvitesField.IsValid() && !JsonPendingInvitesField->IsNull())
     {
-        PendingInvites_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("pending_invites"), PendingInvites_Optional);
+        PendingInvites_IsSet = TryGetJsonValue(JsonPendingInvitesField, PendingInvites_Optional);
         ParseSuccess &= PendingInvites_IsSet;
     }
 

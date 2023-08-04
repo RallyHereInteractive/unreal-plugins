@@ -41,22 +41,22 @@ public:
     FEntitlementsAPI();
     virtual ~FEntitlementsAPI();
 
-    FHttpRequestPtr ProcessPlatformEntitlementForMe(const FRequest_ProcessPlatformEntitlementForMe& Request, const FDelegate_ProcessPlatformEntitlementForMe& Delegate = FDelegate_ProcessPlatformEntitlementForMe());
-    FHttpRequestPtr ProcessPlatformEntitlementsByPlayerUuid(const FRequest_ProcessPlatformEntitlementsByPlayerUuid& Request, const FDelegate_ProcessPlatformEntitlementsByPlayerUuid& Delegate = FDelegate_ProcessPlatformEntitlementsByPlayerUuid());
-    FHttpRequestPtr RetrieveEntitlementsByPlayerUuid(const FRequest_RetrieveEntitlementsByPlayerUuid& Request, const FDelegate_RetrieveEntitlementsByPlayerUuid& Delegate = FDelegate_RetrieveEntitlementsByPlayerUuid());
-    FHttpRequestPtr RetrieveEntitlementsForMe(const FRequest_RetrieveEntitlementsForMe& Request, const FDelegate_RetrieveEntitlementsForMe& Delegate = FDelegate_RetrieveEntitlementsForMe());
+    FHttpRequestPtr ProcessPlatformEntitlementForMe(const FRequest_ProcessPlatformEntitlementForMe& Request, const FDelegate_ProcessPlatformEntitlementForMe& Delegate = FDelegate_ProcessPlatformEntitlementForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr ProcessPlatformEntitlementsByPlayerUuid(const FRequest_ProcessPlatformEntitlementsByPlayerUuid& Request, const FDelegate_ProcessPlatformEntitlementsByPlayerUuid& Delegate = FDelegate_ProcessPlatformEntitlementsByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr RetrieveEntitlementsByPlayerUuid(const FRequest_RetrieveEntitlementsByPlayerUuid& Request, const FDelegate_RetrieveEntitlementsByPlayerUuid& Delegate = FDelegate_RetrieveEntitlementsByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr RetrieveEntitlementsForMe(const FRequest_RetrieveEntitlementsForMe& Request, const FDelegate_RetrieveEntitlementsForMe& Delegate = FDelegate_RetrieveEntitlementsForMe(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementsByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnRetrieveEntitlementsByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RetrieveEntitlementsByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnRetrieveEntitlementsForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RetrieveEntitlementsForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnProcessPlatformEntitlementForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnProcessPlatformEntitlementsByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProcessPlatformEntitlementsByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnRetrieveEntitlementsByPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RetrieveEntitlementsByPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnRetrieveEntitlementsForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RetrieveEntitlementsForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Process Platform Entitlement For Me
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves) any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementForMe : public FRequest
 {
@@ -90,12 +90,12 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
     typedef FEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ProcessPlatformEntitlementForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlatformEntitlementForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Process Platform Entitlements By Player Uuid
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves) any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementsByPlayerUuid : public FRequest
 {
@@ -130,12 +130,12 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
     typedef FEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Retrieve Entitlements By Player Uuid
  *
- * Get the status of a platform entitlement request by request id
+ * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves) any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsByPlayerUuid : public FRequest
 {
@@ -170,12 +170,12 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
     typedef FEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.RetrieveEntitlementsByPlayerUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.RetrieveEntitlementsByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Retrieve Entitlements For Me
  *
- * Get the status of a platform entitlement request by request id
+ * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves) any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsForMe : public FRequest
 {
@@ -209,7 +209,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsForMe
     typedef FEntitlementsAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.RetrieveEntitlementsForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.RetrieveEntitlementsForMe(InRequest, InDelegate, Priority); }
 };
 
 

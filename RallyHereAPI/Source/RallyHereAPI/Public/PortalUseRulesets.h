@@ -13,8 +13,12 @@
 #include "PortalUseRuleset.h"
 #include "PortalUseRulesets.generated.h"
 
+/** @defgroup RHAPI_PortalUseRulesets RallyHere API Model PortalUseRulesets
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collection of Portal Use Rulesets. A ruleset determine how item can be used across portals.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
@@ -81,3 +85,5 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

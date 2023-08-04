@@ -12,52 +12,100 @@
 
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"
-#include "RH_ServerMetricsHelpers.h"
-
+#include "OnlineSubsystemUtils.h"
 #include "HttpManager.h"
+#include "GameFramework/GameModeBase.h"
+#include <IPAddress.h>
+#include "Interfaces/IPv4/IPv4Address.h"
+
+#include "RH_GameHostProviderGHA.h"
 
 #if PLATFORM_UNIX
 #include <signal.h>
 #endif // PLATFORM_UNIX
 
-URH_SidecarSettings::URH_SidecarSettings(const FObjectInitializer& ObjectInitlaizer)
+URH_BootstrappingSettings::URH_BootstrappingSettings(const FObjectInitializer& ObjectInitlaizer)
 	: Super(ObjectInitlaizer)
 {
-	PollIntervalSidecar = 1.f;
-	PollLogIntervalSidecar = 20;
-
 	PollIntervalFinalizer = 1.f;
 	PollLogIntervalFinalizer = 1;
 	MaxPollCountFinalizer = 10;
 }
 
 URH_GameInstanceServerBootstrapper::URH_GameInstanceServerBootstrapper()
+	: Super()
 {
-	BootstrapMode = ERHAPI_ServerBootstrapMode::Disabled;
-	BootstrapStep = ERHAPI_ServerBootstrapFlowStep::Unstarted;
+	BootstrapMode = ERH_ServerBootstrapMode::Disabled;
+	BootstrapStep = ERH_ServerBootstrapFlowStep::Unstarted;
 
 	MaxRecycleCount = 0;
 
 	DefaultAutoCreateSessionType = TEXT("");
 
-	bMultiSessionServerMode = true;
+	bMultiSessionServerMode = false;
 	bReplaceSIGTERMHandler = true;
 }
 
-bool URH_GameInstanceServerBootstrapper::GetCommandlineBootstrapModeOverride(ERHAPI_ServerBootstrapMode& mode)
+bool URH_GameInstanceServerBootstrapper::GetCommandlineBootstrapModeOverride(ERH_ServerBootstrapMode& mode)
 {
 	// note - mirror changes to this function below in Initialize, which provides more error handling
 	FString BootstrapCommandlineModeString;
 	if (FParse::Value(FCommandLine::Get(), TEXT("rhbootstrapmode="), BootstrapCommandlineModeString))
 	{
-		auto BootstrapCommandlineMode = RH_GETENUMFROMSTRING("/Script/RallyHereIntegration", "ERHAPI_ServerBootstrapMode", BootstrapCommandlineModeString);
+		auto BootstrapCommandlineMode = RH_GETENUMFROMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapMode", BootstrapCommandlineModeString);
 		if (BootstrapCommandlineMode != INDEX_NONE)
 		{
-			mode = static_cast<ERHAPI_ServerBootstrapMode>(BootstrapCommandlineMode);
+			mode = static_cast<ERH_ServerBootstrapMode>(BootstrapCommandlineMode);
+			return true;
+		}
+		else
+		{
+			mode = ERH_ServerBootstrapMode::GameHostProvider;
 			return true;
 		}
 	}
 
+	return false;
+}
+
+bool URH_GameInstanceServerBootstrapper::DetermineJoinParameters(FString& PublicConnStr, FString& PrivateConnStr)
+{
+	if (BootstrappingResult.AllocationInfo.PublicHost.IsSet())
+	{
+		if (BootstrappingResult.AllocationInfo.PublicPort.IsSet())
+		{
+			PublicConnStr = FString::Printf(TEXT("%s:%s"), *BootstrappingResult.AllocationInfo.PublicHost.GetValue(), *BootstrappingResult.AllocationInfo.PublicPort.GetValue());
+		}
+		else
+		{
+			PublicConnStr = BootstrappingResult.AllocationInfo.PublicHost.GetValue();
+		}
+		
+		// temp - parse as IPv4 to determine if it should be public or private
+		FIPv4Address tempIPv4;
+		if (FIPv4Address::Parse(BootstrappingResult.AllocationInfo.PublicHost.GetValue(), tempIPv4) && tempIPv4.IsSiteLocalAddress())
+		{
+			PrivateConnStr = PublicConnStr;
+			PublicConnStr.Empty();
+		}
+		else
+		{
+			PrivateConnStr.Empty();
+		}
+
+		// add unreal protocol name
+		if (PublicConnStr.Len() > 0)
+		{
+			PublicConnStr = TEXT("unreal://") + PublicConnStr;
+		}
+		if (PrivateConnStr.Len() > 0)
+		{
+			PrivateConnStr = TEXT("unreal://") + PublicConnStr;
+		}
+
+		return true;
+	}
+	
 	return false;
 }
 
@@ -67,24 +115,14 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 	Super::Initialize();
 
 	BootstrapMode = DefaultBootstrapMode;
+	
 	FString BootstrapCommandlineModeString;
-	if (FParse::Value(FCommandLine::Get(), TEXT("rhbootstrapmode="), BootstrapCommandlineModeString))
+	ERH_ServerBootstrapMode BootstrapCommandlineMode = ERH_ServerBootstrapMode::GameHostProvider;
+	if (GetCommandlineBootstrapModeOverride(BootstrapCommandlineMode))
 	{
-		auto BootstrapCommandlineMode = RH_GETENUMFROMSTRING("/Script/RallyHereIntegration", "ERHAPI_ServerBootstrapMode", BootstrapCommandlineModeString);
-		if (BootstrapCommandlineMode != INDEX_NONE)
-		{
-			BootstrapMode = (ERHAPI_ServerBootstrapMode)BootstrapCommandlineMode;
-			UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default bootstrap mode overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__)
-				, *RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERHAPI_ServerBootstrapMode", BootstrapMode));
-		}
-		else
-		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - commandline bootstrap mode %s does not match an enum value"), ANSI_TO_TCHAR(__FUNCTION__)
-				, *BootstrapCommandlineModeString);
-
-			OnBootstrappingFailed();
-			return;
-		}
+		BootstrapMode = (ERH_ServerBootstrapMode)BootstrapCommandlineMode;
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default bootstrap mode overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__)
+			, *RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapMode", BootstrapMode));
 	}
 
 	if (FParse::Value(FCommandLine::Get(), TEXT("rhmaxrecyclecount="), MaxRecycleCount))
@@ -94,11 +132,11 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 
 	SetTerminationSignalHandler();
 	
-	UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::Unstarted);
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Unstarted);
 
 	// start login to API as a server
 	check(IsRunningDedicatedServer());
-	if (IsRunningDedicatedServer() && BootstrapMode != ERHAPI_ServerBootstrapMode::Disabled)
+	if (IsRunningDedicatedServer() && BootstrapMode != ERH_ServerBootstrapMode::Disabled)
 	{
 		// this mode assumes that the session subsystem exists
 		auto* RHGameInstanceSubsystem = GetGameInstanceSubsystem();
@@ -115,8 +153,6 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 		AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
 		GetGameInstanceSubsystem()->SetAuthContext(AuthContext);
 
-		InitServerMetrics();
-
 		BeginServerLogin();
 
 		FCoreDelegates::ApplicationWillTerminateDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::ApplicationTerminationNotify);
@@ -124,7 +160,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 	else
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - RH Server Bootstrapping disabled"), ANSI_TO_TCHAR(__FUNCTION__));
-		UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::Complete);
+		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Complete);
 	}
 }
 
@@ -134,6 +170,9 @@ void URH_GameInstanceServerBootstrapper::Deinitialize()
 	Super::Deinitialize();
 
 	BestEffortLeaveSession();
+
+	// dispose of any existing game host adapter
+	GameHostProvider.Reset();
 }
 
 void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession()
@@ -150,7 +189,7 @@ void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession()
 			Request.AuthContext = GetAuthContext();
 			Request.SessionId = RHSession->GetSessionId();
 
-			RallyHereAPI::Traits_LeaveSessionByIdSelf::DoCall(RH_APIs::GetSessionAPI(), Request);
+			RallyHereAPI::Traits_LeaveSessionByIdSelf::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_LeaveSessionByIdSelf::Delegate(), GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
 		}
 
 		RHSession->Expire(FRH_OnSessionExpiredDelegate());
@@ -178,7 +217,7 @@ namespace RallyHere
 			}
 		}
 
-		bool HasReceivedTermSignal() { return bHasReceivedTermSignal; }
+		bool IsSoftStopRequested() { return bHasReceivedTermSignal; }
 
 #if PLATFORM_UNIX
 		namespace Unix
@@ -272,15 +311,15 @@ void URH_GameInstanceServerBootstrapper::HandleAppTerminatedGameThread()
 	BestEffortLeaveSession();
 }
 
-void URH_GameInstanceServerBootstrapper::UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep NewStep)
+void URH_GameInstanceServerBootstrapper::UpdateBootstrapStep(ERH_ServerBootstrapFlowStep NewStep)
 {
-	ERHAPI_ServerBootstrapFlowStep OldStep = BootstrapStep;
+	ERH_ServerBootstrapFlowStep OldStep = BootstrapStep;
 	BootstrapStep = NewStep;
 
 	if (OldStep != NewStep && UE_LOG_ACTIVE(LogRallyHereIntegration, Verbose))
 	{
-		FString OldStepName = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERHAPI_ServerBootstrapFlowStep", OldStep);
-		FString NewStepName = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERHAPI_ServerBootstrapFlowStep", NewStep);
+		FString OldStepName = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapFlowStep", OldStep);
+		FString NewStepName = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapFlowStep", NewStep);
 
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating bootstrap step [%s] -> [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *OldStepName, *NewStepName);
 	}
@@ -289,7 +328,7 @@ void URH_GameInstanceServerBootstrapper::UpdateBootstrapStep(ERHAPI_ServerBootst
 void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 {
 	// only place we should ever set failed
-	UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::Failed);
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Failed);
 
 	// attempt to cleanup session state and mark closed
 	if (RHSession != nullptr)
@@ -334,7 +373,7 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 void URH_GameInstanceServerBootstrapper::OnBootstrappingComplete()
 {
 	// only place we should ever set complete
-	UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::Complete);
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Complete);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Server bootstrapping complete"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
@@ -342,9 +381,123 @@ void URH_GameInstanceServerBootstrapper::BeginServerLogin()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::LoggingIn);
-	auto Helper = MakeShared<FRH_ServerLoginHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
-	Helper->Start();
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::LoggingIn);
+
+	// update the auth context with the current client id and secret in case it changed since prior logins
+	AuthContext->SetClientId(FRallyHereIntegrationModule::Get().GetClientId());
+	AuthContext->SetClientSecret(FRallyHereIntegrationModule::Get().GetClientSecret());
+
+	if (!AuthContext.IsValid() && AuthContext->GetRefreshToken().Len() > 0)
+	{
+		// just refresh the login
+		auto Helper = MakeShared<FRH_ServerLoginUserHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
+		Helper->Start(ERHAPI_GrantType::Refresh, AuthContext->GetRefreshToken());
+	}
+	else
+	{
+		auto* LoginOSS = GetOSS();
+		if (LoginOSS != nullptr)
+		{
+			// if we can determine a grant type for this OSS, use the OSS login
+			if (RH_GetGrantTypeFromOSSName(LoginOSS->GetSubsystemName()).IsSet())
+			{
+				BeginOSSLogin();
+			}
+			else if (LoginOSS->GetSubsystemName() == NULL_SUBSYSTEM)
+			{
+				// special case for null subsystem - login without a user credential
+				auto Helper = MakeShared<FRH_ServerLoginNullHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
+				Helper->Start();
+			}
+			else
+			{
+				UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find grant type for OSS '%s'."),
+					ANSI_TO_TCHAR(__FUNCTION__), *LoginOSS->GetSubsystemName().ToString());
+				OnServerLoginComplete(false);
+			}
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find login OSS."),
+				ANSI_TO_TCHAR(__FUNCTION__));
+			OnServerLoginComplete(false);
+		}
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::BeginOSSLogin()
+{
+	auto* OSS = GetOSS();
+
+	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+	if (!Identity.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	if (OnOSSLoginCompleteDelegateHandle.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS Login already pending"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	int32 ControllerId = 0;
+
+	OnOSSLoginCompleteDelegateHandle = Identity->AddOnLoginCompleteDelegate_Handle(
+		ControllerId, FOnLoginCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnOSSLoginComplete));
+	if (!Identity->AutoLogin(ControllerId))
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Autologin failed"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnServerLoginComplete(false);
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage)
+{
+	auto* OSS = GetOSS();
+
+	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+	if (OSS == nullptr || !Identity.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	// clear the delegate, because the controller id may change next time
+	Identity->ClearOnLoginCompleteDelegate_Handle(ControllerId, OnOSSLoginCompleteDelegateHandle);
+	OnOSSLoginCompleteDelegateHandle.Reset();
+
+	if (!bSuccessful)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS Login Failed: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorMessage);
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	auto UniqueIdPtr = Identity->GetUniquePlayerId(ControllerId);
+	if (Identity->GetLoginStatus(*UniqueIdPtr) != ELoginStatus::LoggedIn)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS User Not Logged In: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorMessage);
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	auto GrantType = RH_GetGrantTypeFromOSSName(OSS->GetSubsystemName());
+	if (!GrantType.IsSet())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find grant type for OSS '%s'."),
+			ANSI_TO_TCHAR(__FUNCTION__), *OSS->GetSubsystemName().ToString());
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	// start a RH login helper
+	auto Helper = MakeShared<FRH_ServerLoginUserHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
+	Helper->Start(GrantType.GetValue(), Identity->GetAuthToken(ControllerId));
 }
 
 void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess)
@@ -352,7 +505,7 @@ void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess)
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	if (bSuccess)
 	{
-		if (BootstrapMode == ERHAPI_ServerBootstrapMode::LoginOnly)
+		if (BootstrapMode == ERH_ServerBootstrapMode::LoginOnly)
 		{
 			OnBootstrappingComplete();
 		}
@@ -376,91 +529,307 @@ void URH_GameInstanceServerBootstrapper::Recycle()
 
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]  - Recycling [%d]"), ANSI_TO_TCHAR(__FUNCTION__), CurrentRecycleCount);
 
-	UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::Recycling);
-	SidecarResult = {};
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Recycling);
+	BootstrappingResult = {};
+
+	// dispose of the previous game host adapter
+	GameHostProvider.Reset();
 
 	// we have already logged in, restart registration
 	BeginRegistration();
 }
 
+
 void URH_GameInstanceServerBootstrapper::BeginRegistration()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::RunningSidecar);
+	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Registration);
 
-	bool bStartedHelper = false;
-	switch (BootstrapMode)
+	auto CreateGameHostProvider = [this]() -> IRH_GameHostProviderInterface*
 	{
-	case ERHAPI_ServerBootstrapMode::Scripted:
-		{
-			// kick sidecar off, which will return us a session id we are part of
-			auto Helper = MakeShared<FRH_ServerBootstrappingSidecarScripted>(AuthContext, FRH_ServerBootstrapSidecarDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete));
-			Helper->Start();
-			bStartedHelper = true;
-		}
-		break;
-	case ERHAPI_ServerBootstrapMode::AutoCreate:
-		{
-			FString SessionType = DefaultAutoCreateSessionType;
+		FString arguments = FCommandLine::Get();
 
-			if (FParse::Value(FCommandLine::Get(), TEXT("rhsessiontype="), SessionType))
-			{
-				UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session type overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionType);
-			}
-
-			if (SessionType.Len() > 0)
-			{
-				// kick autocreate sidecar off, which will create a session and return us the session id
-				auto Helper = MakeShared<FRH_ServerBootstrappingSidecarAutoCreate>(AuthContext, FRH_ServerBootstrapSidecarDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete));
-				Helper->Start(SessionType);
-				bStartedHelper = true;
-			}
-		}
-		break;
-	case ERHAPI_ServerBootstrapMode::SIC:
+		// if no rally here url was provided on the commandline, look it up and inject it (GHA does not know about sandbox lookups)
+		FString CommandlineURL;
+		if (!FParse::Value(*arguments, TEXT("rallyhereurl="), CommandlineURL))
 		{
-			// kick autocreate sidecar off, which will create a session and return us the session id
-			auto Helper = MakeShared<FRH_ServerBootstrappingSidecarSIC>(AuthContext, FRH_ServerBootstrapSidecarDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete));
-			Helper->Start();
-			bStartedHelper = true;
+			arguments += TEXT(" -rallyhereurl=") + FRallyHereIntegrationModule::Get().GetBaseURL();
 		}
-		break;
-	case ERHAPI_ServerBootstrapMode::Multiplay:
+		if (!FParse::Value(*arguments, TEXT("rhuseragent="), CommandlineURL))
+		{
+			arguments += TEXT(" -rhuseragent=") + FPlatformHttp::GetDefaultUserAgent();
+		}
+
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Create game host provider: %s"), ANSI_TO_TCHAR(__FUNCTION__), *arguments);
+
+		if (auto* GHAInterface = IRH_GameHostProviderInterface::Create<FRH_GameHostProviderGHA>(arguments))
+		{
+			return GHAInterface;
+		}
+		else if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+		{
+			return IRH_GameHostProviderInterface::Create<FRH_GameHostProviderFallbackAutoCreate>(arguments);
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - GameHostAdapter provider could not be loaded, and not in autocreate mode"), ANSI_TO_TCHAR(__FUNCTION__));
+			return nullptr;
+		}
+	};
+
+	GameHostProvider.Reset(CreateGameHostProvider());
+	if (!GameHostProvider.IsValid() || !GameHostProvider->IsValid())
 	{
-		// kick autocreate sidecar off, which will create a session and return us the session id
-		auto Helper = MakeShared<FRH_ServerBootstrappingSidecarMultiplay>(AuthContext, FRH_ServerBootstrapSidecarDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete));
-		Helper->Start();
-		bStartedHelper = true;
+		GameHostProvider.Reset();
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not create game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
 	}
-	break;
-	}
-	
-	if (!bStartedHelper)
+
+	// bind callbacks
+	GameHostProvider->OnProviderSoftStopRequested.BindStatic(&RallyHere::TermSignalHandler::TerminationSignalHandler);
+	GameHostProvider->OnProviderHardStopRequested.BindWeakLambda(this, [this]()
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - hard stop requested from game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
+			OnBootstrappingFailed();
+		});
+
+	GameHostProvider->OnProviderConnectComplete.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnConnectComplete);
+	GameHostProvider->OnProviderRegisterComplete.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnRegisterComplete);
+	GameHostProvider->OnProviderReservationComplete.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnReservationComplete);
+	GameHostProvider->OnProviderSelfAllocateComplete.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnSelfAllocateComplete);
+	GameHostProvider->OnProviderAllocationComplete.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnAllocationComplete);
+
+	GameHostProvider->OnProviderStats.BindUObject(this, &URH_GameInstanceServerBootstrapper::OnGameHostProviderStats);
+
+	BeginConnecting();
+}
+
+void URH_GameInstanceServerBootstrapper::BeginConnecting()
+{
+	if (GameHostProvider.IsValid() && GameHostProvider->IsValid())
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not start sidecar helper"), ANSI_TO_TCHAR(__FUNCTION__));
+		GameHostProvider->BeginConnecting();
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to connect without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
 		OnBootstrappingFailed();
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete(bool bSuccess, FRH_SidecarResult Result)
+void URH_GameInstanceServerBootstrapper::OnConnectComplete(bool bSuccess)
+{
+	if (!bSuccess)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider Failed to connect to provider"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
+	}
+
+	if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+	{
+		BeginReservation();
+	}
+	else
+	{
+		BeginRegister();
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::BeginRegister()
+{
+	if (GameHostProvider.IsValid() && GameHostProvider->IsValid())
+	{
+		GameHostProvider->BeginRegister();
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to register without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::OnRegisterComplete(bool bSuccess)
+{
+	if (!bSuccess)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider failed to register"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::OnAllocationComplete(ERH_AllocationStatus Status, const FRH_GameHostAllocationInfo& AllocationInfo)
+{
+	// We can be cancelled in a destructor so make no calls which expect the shared ptr to be valid
+	if (Status == ERH_AllocationStatus::Cancelled)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Cancelled"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+	else if (Status == ERH_AllocationStatus::Failed)
+	{
+		if (BootstrapStep != ERH_ServerBootstrapFlowStep::Complete)
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider Failed to successfully get an allocation"), ANSI_TO_TCHAR(__FUNCTION__));
+			OnBootstrappingFailed();
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] GameHostProvider Spurious allocation failure code after allocated"), ANSI_TO_TCHAR(__FUNCTION__));
+		}
+		return;
+	}
+	else if (Status == ERH_AllocationStatus::TimedOut)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Exceeded maximum amount of time polling"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
+	}
+
+	if (!AllocationInfo.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Invalid allocation info"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
+	}
+
+	BootstrappingResult = AllocationInfo;
+
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Poll response was successful and has allocation id %s session id %s"), *GetName(), *BootstrappingResult.AllocationInfo.AllocationId.Get(TEXT("<UNSET>")), *BootstrappingResult.AllocationInfo.SessionId.Get(TEXT("<UNSET>")));
+	auto Helper = MakeShared<FRH_SessionBootstrappingFinalizer>(
+		AuthContext,
+		BootstrappingResult,
+		FRH_ServerBootstrapFinalizerDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete));
+	Helper->Start();
+}
+
+void URH_GameInstanceServerBootstrapper::BeginReservation()
+{
+	if (GameHostProvider.IsValid() && GameHostProvider->IsValid())
+	{
+		GameHostProvider->BeginReservation();
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to reserve without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
+{
+	if (!bSuccess)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider failed to reserve"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
+	}
+
+	bool bStartedHelper = false;
+	FString SessionType = DefaultAutoCreateSessionType;
+
+	if (FParse::Value(FCommandLine::Get(), TEXT("rhsessiontype="), SessionType))
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - default session type overridden by commandline to %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionType);
+	}
+
+	if (SessionType.Len() > 0 && AuthContext.IsValid())
+	{
+		// create a session and return us the session id
+		typedef RallyHereAPI::Traits_CreateOrJoinSession BaseType;
+		BaseType::Request Request;
+		Request.AuthContext = AuthContext;
+		Request.CreateOrJoinRequest.SetSessionType(SessionType);
+		Request.CreateOrJoinRequest.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+		Request.CreateOrJoinRequest.ClientSettings.SetPlatform(ERHAPI_Platform::Basic);
+		Request.CreateOrJoinRequest.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());
+
+		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+			BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+				{
+					if (Resp.IsSuccessful())
+					{
+						BootstrappingResult.AllocationInfo.SessionId = Resp.Content.GetSessionId();
+					}
+				}), 
+			FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this](bool bSuccess)
+				{
+					if (bSuccess && BootstrappingResult.IsValid())
+					{
+						UE_LOG(LogRallyHereIntegration, Log, TEXT("Session created successfully: %s"), *BootstrappingResult.AllocationInfo.SessionId.Get(TEXT("<INVALID>")))
+
+						// finalize the result
+						auto Helper = MakeShared<FRH_SessionBootstrappingFinalizer>(
+							AuthContext,
+							BootstrappingResult,
+							FRH_ServerBootstrapFinalizerDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete));
+						Helper->Start();
+					}
+					else
+					{
+						UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - session creation failed"), ANSI_TO_TCHAR(__FUNCTION__));
+						OnBootstrappingFailed();
+					}
+				}),
+			GetDefault<URH_IntegrationSettings>()->SessionJoinPriority
+		);
+
+		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+		bStartedHelper = true;
+	}
+	
+	if (!bStartedHelper)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not start auto create bootstrapping finalizer helper"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::BeginSelfAllocate()
+{
+	if (GameHostProvider.IsValid() && GameHostProvider->IsValid())
+	{
+		GameHostProvider->BeginSelfAllocate();
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] attempting to self allocate without a valid game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+	}
+}
+
+void URH_GameInstanceServerBootstrapper::OnSelfAllocateComplete(bool bSuccess)
+{
+	if (!bSuccess)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] GameHostProvider failed to allocate"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnBootstrappingFailed();
+		return;
+	}
+}
+
+
+void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bSuccess, const FRH_BootstrappingResult& Result)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	if (bSuccess && Result.IsComplete() && Result.Session.IsSet())
 	{
-		// cache off our sidecar result
-		SidecarResult = Result;
+		// cache off our bootstrapping result
+		BootstrappingResult = Result;
 
-		const auto& APISession = SidecarResult.Session.GetValue();
-		const auto& Template = SidecarResult.Template.GetValue();
+		const auto& APISession = BootstrappingResult.Session.GetValue();
+		const auto& Template = BootstrappingResult.Template.GetValue();
 
-		UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::WaitingForSession);
+		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::WaitingForSession);
 
 		// make sure template is imported and up to date
 		ImportAPITemplate(Template);
 		// make sure session is imported and up to date
-		ImportAPISession(SidecarResult.Session.GetValue());
-		
+		ImportAPISession(BootstrappingResult.Session.GetValue());
+
 		if (RHSession != nullptr && RHSession->IsOnline() && RHSession->GetSessionId() == APISession.Data.SessionId)
 		{
 			// create default instance data if needed
@@ -471,10 +840,9 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete(bool bSuc
 			else
 			{
 				// allocated session instances (determined by having an allocation id) should always have instance data
-				check(!SidecarResult.AllocationId.IsSet())
+				check(!BootstrappingResult.AllocationInfo.AllocationId.IsSet());
 
 				// if an instance was not created for the session, create one
-				TMap<FString, FString> CustomData;
 				FURL TempURL = FURL();
 
 				// harvest current map url (generally will have been specified from boot URL
@@ -487,27 +855,31 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationSidecarComplete(bool bSuc
 				const FString MapNameString = TempURL.Map;	// this is a simple temporary workaround to get the default map without adding dependencies on the map settings module
 				const FString ModeNameString = TempURL.GetOption(TEXT("game="), TEXT(""));
 
-				FRHAPI_InstanceStartupParams SpawnParams;
-				SpawnParams.Map = MapNameString;
+				FRHAPI_InstanceRequest InstanceRequest;
+
+				FRHAPI_InstanceStartupParams InstanceStartupParams;
+				InstanceStartupParams.Map = MapNameString;
 				if (ModeNameString.Len() > 0)
 				{
-					SpawnParams.SetMode(ModeNameString);
+					InstanceStartupParams.SetMode(ModeNameString);
 				}
 
-				// TODO - make dedicated instance!
-				RHSession->RequestPlayerInstance(SpawnParams, CustomData, FRH_OnSessionUpdatedDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted));
+				InstanceRequest.SetInstanceStartupParams(InstanceStartupParams);
+				InstanceRequest.SetHostType(ERHAPI_HostType::Player); // TODO - make dedicated instance type
+
+				RHSession->RequestInstance(InstanceRequest, FRH_OnSessionUpdatedDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted));
 			}
 		}
 		else
 		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Sidecar returned valid FSession %s, but failed or does not match imported session %s"), 
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Bootstrapping finalizer returned valid FSession %s, but failed or does not match imported session %s"),
 				ANSI_TO_TCHAR(__FUNCTION__), *APISession.Data.SessionId, RHSession != nullptr ? *RHSession->GetSessionId() : TEXT("<UNKONWN>"));
 			OnBootstrappingFailed();
 		}
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Sidecar registration failed"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Bootstrapping finalizer failed"), ANSI_TO_TCHAR(__FUNCTION__));
 		OnBootstrappingFailed();
 	}
 }
@@ -524,6 +896,10 @@ void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool
 		)	
 	{
 		SyncToSession();
+		if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+		{
+			BeginSelfAllocate();
+		}
 	}
 	else
 	{
@@ -531,6 +907,7 @@ void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool
 		OnBootstrappingFailed();
 	}
 }
+
 
 void URH_GameInstanceServerBootstrapper::SyncToSession()
 {
@@ -543,7 +920,7 @@ void URH_GameInstanceServerBootstrapper::SyncToSession()
 		RHSession->StartPolling(); // rather than bootstrapper polling all sessions, tell session to poll internally
 		RHSession->OnSessionUpdatedDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionUpdated);
 		RHSession->OnSessionNotFoundDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::OnSessionNotFound);
-		UpdateBootstrapStep(ERHAPI_ServerBootstrapFlowStep::SyncingToSession);
+		UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::SyncingToSession);
 		SessionSubsystem->SyncToSession(RHSession, FRH_GameInstanceSessionSyncDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete));
 	}
 	else if (RHSession == nullptr)
@@ -587,15 +964,30 @@ void URH_GameInstanceServerBootstrapper::OnSessionUpdated(URH_SessionView* Sessi
 			UE_LOG(LogRHSession, Warning, TEXT("[%s] : Session update has no instance when we previously had one"), ANSI_TO_TCHAR(__FUNCTION__));
 			bNoLongerValidInstance = true;
 		}
+		else if (RHSession->GetInstanceData()->GetJoinStatus() == ERHAPI_InstanceJoinableStatus::Closed)
+		{
+			// instance was marked as closed
+			UE_LOG(LogRHSession, Warning, TEXT("[%s] : Session update has a closed instance"), ANSI_TO_TCHAR(__FUNCTION__));
+			bNoLongerValidInstance = true;
+		}
 		else
 		{
-			if (RHSession->GetInstanceData()->GetAllocationId() != SidecarResult.AllocationId)
+			const auto* InstanceAllocationId = RHSession->GetInstanceData()->GetAllocationIdOrNull();
+			if (BootstrappingResult.AllocationInfo.AllocationId.IsSet()) // if this instance believes it is part of an allocation, make sure the session instance matches that allocation
 			{
-				UE_LOG(LogRHSession, Warning, TEXT("[%s] : Session updated but allocation for the session no longer matches"), ANSI_TO_TCHAR(__FUNCTION__));
-				bNoLongerValidInstance = true;
+				if (InstanceAllocationId == nullptr)
+				{
+					UE_LOG(LogRHSession, Warning, TEXT("[%s] : Session updated but allocation for the session no longer matches (<UNSET> != %s)"), ANSI_TO_TCHAR(__FUNCTION__), *BootstrappingResult.AllocationInfo.AllocationId.GetValue());
+					bNoLongerValidInstance = true;
+				}
+				else if (*InstanceAllocationId != BootstrappingResult.AllocationInfo.AllocationId.GetValue())
+				{
+					UE_LOG(LogRHSession, Warning, TEXT("[%s] : Session updated but allocation for the session no longer matches (%s != %s)"), ANSI_TO_TCHAR(__FUNCTION__), **InstanceAllocationId, *BootstrappingResult.AllocationInfo.AllocationId.GetValue());
+					bNoLongerValidInstance = true;
+				}
 			}
 			/* TODO - check dedicated server id
-			else if (Session.Instance->HostDedicatedServerId.IsSet() && )
+			if (Session.Instance->HostDedicatedServerId.IsSet() && )
 			{
 				UE_LOG(LogRHSession, Error, TEXT("[%s] : Session update has no instance when we previously had one, or allocation for the session no longer matches"), ANSI_TO_TCHAR(__FUNCTION__));
 				bNoLongerValidInstance = true;
@@ -659,21 +1051,45 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(bool bSucc
 
 bool URH_GameInstanceServerBootstrapper::ShouldRecycleAfterCleanup() const
 {
-	return !RallyHere::TermSignalHandler::HasReceivedTermSignal()
-		&& (CurrentRecycleCount < MaxRecycleCount || MaxRecycleCount <= 0)
-		;
+	return !RallyHere::TermSignalHandler::IsSoftStopRequested() && CurrentRecycleCount < MaxRecycleCount;
 }
 
-void URH_GameInstanceServerBootstrapper::InitServerMetrics()
+void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	auto Helper = MakeShared<FRH_ServerMetricsHelper>(FRH_ServerBootstrapMetricsInitDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerMetricsInitComplete));
-	Helper->Start();
+	// if a soft stop has been requested and we do not have a session yet, spin down - else wait for session to no longer exist before spinning down
+	if (RallyHere::TermSignalHandler::IsSoftStopRequested() && RHSession == nullptr)
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Soft stop requested found while ticking, running cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
+		check(ShouldRecycleAfterCleanup() == false); // this is used by the next function, and must return false to properly spin down
+
+		// trigger instance removal cleanup (even if not quite true) to unsync us
+		OnCleanupSessionSyncComplete(false);
+		return;
+	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnServerMetricsInitComplete(bool bSuccess)
+void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostProviderStats& Stats)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	const auto* World = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
+	if (World != nullptr)
+	{
+		Stats.Map = World->GetMapName();
+		if (auto* GameMode = World->GetAuthGameMode())
+		{
+			Stats.GameMode = GameMode->GetName();
+			Stats.PlayerCount = GameMode->GetNumPlayers();
+		}
+	}
+}
+
+bool URH_GameInstanceServerBootstrapper::IsTickable() const
+{
+	return !HasAnyFlags(RF_ClassDefaultObject);
+}
+
+TStatId URH_GameInstanceServerBootstrapper::GetStatId() const
+{
+	RETURN_QUICK_DECLARE_CYCLE_STAT(URH_GameInstanceServerBootstrapper, STATGROUP_TaskGraphTasks);
 }
 
 URH_SessionView* URH_GameInstanceServerBootstrapper::GetSessionById(const FString& SessionId) const
@@ -685,7 +1101,7 @@ URH_SessionView* URH_GameInstanceServerBootstrapper::GetSessionById(const FStrin
 	return nullptr;
 }
 
-bool URH_GameInstanceServerBootstrapper::GetTemplate(const FString& Type, FRH_SessionTemplate& Template) const
+bool URH_GameInstanceServerBootstrapper::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
 {
 	auto ptr = Templates.Find(Type);
 	if (ptr != nullptr)
@@ -710,6 +1126,44 @@ URH_PlayerInfoSubsystem* URH_GameInstanceServerBootstrapper::GetPlayerInfoSubsys
 	return nullptr;
 }
 
+IOnlineSubsystem* URH_GameInstanceServerBootstrapper::GetOSS() const
+{
+	auto* OSS = IOnlineSubsystem::Get();
+	if (OSS != nullptr)
+	{
+		// For PiE, we need to get at the specific instance of the subsystem for this particular player
+		auto* WorldContext = GetGameInstanceSubsystem()->GetGameInstance()->GetWorldContext();
+		if (WorldContext != nullptr)
+		{
+			const FName Name = Online::GetUtils()->GetOnlineIdentifier(*WorldContext, OSS->GetSubsystemName());
+			if (Name != OSS->GetInstanceName())
+			{
+				if (IOnlineSubsystem* FoundOSS = IOnlineSubsystem::Get(Name))
+				{
+					OSS = FoundOSS;
+				}
+			}
+		}
+	}
+
+	return OSS;
+}
+
+FUniqueNetIdWrapper URH_GameInstanceServerBootstrapper::GetOSSUniqueId() const
+{
+	/*
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		return FUniqueNetIdRepl(UOnlineEngineInterface::Get()->GetUniquePlayerIdWrapper(World, PlatformUserId));
+	}
+	*/
+
+	return FUniqueNetIdRepl();
+}
+
+
+
 void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWithETag& SessionWrapper)
 {
 	auto& Session = SessionWrapper.Data;
@@ -724,7 +1178,7 @@ void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWi
 	}
 
 	// Lookup template from the cache, this should be always existing due to checks in the Import logic
-	FRH_SessionTemplate Template;
+	FRHAPI_SessionTemplate Template;
 	if (!GetTemplate(Session.Type, Template))
 	{
 		UE_LOG(LogRHSession, Error, TEXT("[%s] : New session %s has unknown template"), ANSI_TO_TCHAR(__FUNCTION__), *Session.SessionId);
@@ -745,58 +1199,45 @@ void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWi
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::ReconcileAPISessions(const TArray<FRH_APISessionWithETag>& SessionsModified, const TArray<FString>& SessionsNotModified, bool bOnlineOnly)
+void URH_GameInstanceServerBootstrapper::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag)
 {
 	
 }
 
 
-void URH_GameInstanceServerBootstrapper::ImportAPITemplate(const FRH_APISessionTemplateWithETag& Template)
+void URH_GameInstanceServerBootstrapper::ImportAPITemplate(const FRHAPI_SessionTemplate& Template)
 {
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.Data.SessionType);
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.SessionType);
 
-	FRH_SessionTemplate RHTemplate;
-	RHTemplate.ImportAPITemplate(Template);
-
-	Templates.Add(RHTemplate.SessionType, RHTemplate);
+	Templates.Add(Template.SessionType, Template);
 
 	// inform each session of the relevant type of the template update
-	if (RHSession && RHSession->GetSessionType() == RHTemplate.SessionType)
+	if (RHSession && RHSession->GetSessionType() == Template.SessionType)
 	{
-		RHSession->ImportTemplate(RHTemplate);
+		RHSession->ImportTemplate(Template);
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::ReconcileAPITemplates(const TArray<FRH_APISessionTemplateWithETag>& TemplatesModified, const TArray<FString>& TemplatesNotModified, bool bOnlineOnly)
+void URH_GameInstanceServerBootstrapper::ReconcileAPITemplates(const TArray<FString>& TemplateNames, const TOptional<FString> ETag)
 {
 	// build a list of sessions not in the list
 	TArray<FString> TemplatesToRemove;
-	Templates.GenerateKeyArray(TemplatesToRemove);
 
-	for (const auto& Template : TemplatesModified)
+	// remove any templates as needed
+	for (const auto& Pair : Templates)
 	{
-		TemplatesToRemove.RemoveSwap(Template.Data.SessionType);
-	}
-	TemplatesToRemove.RemoveAll([&TemplatesNotModified](const FString& SessionType) { return TemplatesNotModified.Contains(SessionType); });
-
-	// remove any sessions as needed
-	for (const FString& SessionTypeToRemove : TemplatesToRemove)
-	{
-		FRH_SessionTemplate SessionTemplate;
-		if (GetTemplate(SessionTypeToRemove, SessionTemplate))
+		if (Pair.Key != RH_SessionCustomDataKeys::OfflineFlag && !TemplateNames.Contains(Pair.Key))
 		{
-			if (!SessionTemplate.IsOffline() || !bOnlineOnly)
-			{
-				Templates.Remove(SessionTypeToRemove);
-			}
+			TemplatesToRemove.Add(Pair.Key);
 		}
 	}
 
-	// import any new template updates
-	for (const auto& Template : TemplatesModified)
+	for (auto TemplateName : TemplatesToRemove)
 	{
-		ImportAPITemplate(Template);
+		Templates.Remove(TemplateName);
 	}
+
+	AllTemplatesETag = ETag;
 }
 
 
@@ -831,7 +1272,7 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 
 	FRHAPI_SessionTemplate TemplateInfo = {};
 	{
-		TemplateInfo.SessionType = FRH_SessionTemplate::OfflineName;
+		TemplateInfo.SessionType = RH_SessionCustomDataKeys::OfflineFlag;
 	}
 
 	// generate fake data

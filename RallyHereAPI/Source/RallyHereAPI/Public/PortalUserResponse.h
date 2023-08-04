@@ -9,7 +9,12 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "Platform.h"
 #include "PortalUserResponse.generated.h"
+
+/** @defgroup RHAPI_PortalUserResponse RallyHere API Model PortalUserResponse
+ *  @{
+ */
 
 /**
  * @brief 
@@ -71,6 +76,15 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void SetPortalIdToDefault() { PortalId = 0;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_Platform Platform{  };
+    /** @brief Gets the value of Platform */
+    ERHAPI_Platform& GetPlatform() { return Platform; }
+    /** @brief Gets the value of Platform */
+    const ERHAPI_Platform& GetPlatform() const { return Platform; }
+    /** @brief Sets the value of Platform */
+    void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString DisplayName_Optional{  };
     /** @brief true if DisplayName_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -106,11 +120,13 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PlayerUuid{  };
+    FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
-    FString& GetPlayerUuid() { return PlayerUuid; }
+    FGuid& GetPlayerUuid() { return PlayerUuid; }
     /** @brief Gets the value of PlayerUuid */
-    const FString& GetPlayerUuid() const { return PlayerUuid; }
+    const FGuid& GetPlayerUuid() const { return PlayerUuid; }
     /** @brief Sets the value of PlayerUuid */
-    void SetPlayerUuid(FString NewValue) { PlayerUuid = NewValue;  }
+    void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 };
+
+/** @} */

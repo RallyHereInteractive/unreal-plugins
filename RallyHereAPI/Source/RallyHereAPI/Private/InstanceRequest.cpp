@@ -34,6 +34,11 @@ void FRHAPI_InstanceRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     }
     Writer->WriteIdentifierPrefix(TEXT("host_type"));
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(HostType));
+    if (HostPlayerUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("host_player_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, HostPlayerUuid_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -50,20 +55,30 @@ bool FRHAPI_InstanceRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("instance_id")))
+    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
     {
-        InstanceId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_id"), InstanceId_Optional);
+        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
         ParseSuccess &= InstanceId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("instance_startup_params")))
+    const TSharedPtr<FJsonValue> JsonInstanceStartupParamsField = (*Object)->TryGetField(TEXT("instance_startup_params"));
+    if (JsonInstanceStartupParamsField.IsValid() && !JsonInstanceStartupParamsField->IsNull())
     {
-        InstanceStartupParams_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("instance_startup_params"), InstanceStartupParams_Optional);
+        InstanceStartupParams_IsSet = TryGetJsonValue(JsonInstanceStartupParamsField, InstanceStartupParams_Optional);
         ParseSuccess &= InstanceStartupParams_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("host_type"), HostType);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonHostTypeField = (*Object)->TryGetField(TEXT("host_type"));
+    ParseSuccess &= JsonHostTypeField.IsValid() && !JsonHostTypeField->IsNull() && TryGetJsonValue(JsonHostTypeField, HostType);
+    const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
+    if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        HostPlayerUuid_IsSet = TryGetJsonValue(JsonHostPlayerUuidField, HostPlayerUuid_Optional);
+        ParseSuccess &= HostPlayerUuid_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

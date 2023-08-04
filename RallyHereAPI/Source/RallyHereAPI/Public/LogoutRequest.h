@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "LogoutRequest.generated.h"
 
+/** @defgroup RHAPI_LogoutRequest RallyHere API Model LogoutRequest
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -44,3 +48,5 @@ struct RALLYHEREAPI_API FRHAPI_LogoutRequest : public FRHAPI_Model
     /** @brief Sets the value of RefreshToken */
     void SetRefreshToken(FString NewValue) { RefreshToken = NewValue;  }
 };
+
+/** @} */

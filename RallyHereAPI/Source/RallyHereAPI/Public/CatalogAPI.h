@@ -17,11 +17,14 @@
 #include "InventoryBucketUseRuleSets.h"
 #include "Item.h"
 #include "Items.h"
+#include "Loot.h"
 #include "Loots.h"
 #include "PortalUseRuleset.h"
 #include "PortalUseRulesets.h"
 #include "PricePoint.h"
 #include "PricePoints.h"
+#include "TimeFrame.h"
+#include "TimeFrames.h"
 #include "Vendor.h"
 #include "Vendors.h"
 #include "XpTable.h"
@@ -92,47 +95,48 @@ public:
     FCatalogAPI();
     virtual ~FCatalogAPI();
 
-    FHttpRequestPtr GetCatalogAll(const FRequest_GetCatalogAll& Request, const FDelegate_GetCatalogAll& Delegate = FDelegate_GetCatalogAll());
-    FHttpRequestPtr GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSet());
-    FHttpRequestPtr GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSetsAll());
-    FHttpRequestPtr GetCatalogItem(const FRequest_GetCatalogItem& Request, const FDelegate_GetCatalogItem& Delegate = FDelegate_GetCatalogItem());
-    FHttpRequestPtr GetCatalogItemsAll(const FRequest_GetCatalogItemsAll& Request, const FDelegate_GetCatalogItemsAll& Delegate = FDelegate_GetCatalogItemsAll());
-    FHttpRequestPtr GetCatalogLoot(const FRequest_GetCatalogLoot& Request, const FDelegate_GetCatalogLoot& Delegate = FDelegate_GetCatalogLoot());
-    FHttpRequestPtr GetCatalogLootsAll(const FRequest_GetCatalogLootsAll& Request, const FDelegate_GetCatalogLootsAll& Delegate = FDelegate_GetCatalogLootsAll());
-    FHttpRequestPtr GetCatalogPortalUseRuleset(const FRequest_GetCatalogPortalUseRuleset& Request, const FDelegate_GetCatalogPortalUseRuleset& Delegate = FDelegate_GetCatalogPortalUseRuleset());
-    FHttpRequestPtr GetCatalogPortalUseRulesetsAll(const FRequest_GetCatalogPortalUseRulesetsAll& Request, const FDelegate_GetCatalogPortalUseRulesetsAll& Delegate = FDelegate_GetCatalogPortalUseRulesetsAll());
-    FHttpRequestPtr GetCatalogPricePoint(const FRequest_GetCatalogPricePoint& Request, const FDelegate_GetCatalogPricePoint& Delegate = FDelegate_GetCatalogPricePoint());
-    FHttpRequestPtr GetCatalogPricePointsAll(const FRequest_GetCatalogPricePointsAll& Request, const FDelegate_GetCatalogPricePointsAll& Delegate = FDelegate_GetCatalogPricePointsAll());
-    FHttpRequestPtr GetCatalogTimeFrame(const FRequest_GetCatalogTimeFrame& Request, const FDelegate_GetCatalogTimeFrame& Delegate = FDelegate_GetCatalogTimeFrame());
-    FHttpRequestPtr GetCatalogTimeFramesAll(const FRequest_GetCatalogTimeFramesAll& Request, const FDelegate_GetCatalogTimeFramesAll& Delegate = FDelegate_GetCatalogTimeFramesAll());
-    FHttpRequestPtr GetCatalogVendor(const FRequest_GetCatalogVendor& Request, const FDelegate_GetCatalogVendor& Delegate = FDelegate_GetCatalogVendor());
-    FHttpRequestPtr GetCatalogVendorsAll(const FRequest_GetCatalogVendorsAll& Request, const FDelegate_GetCatalogVendorsAll& Delegate = FDelegate_GetCatalogVendorsAll());
-    FHttpRequestPtr GetCatalogXpAll(const FRequest_GetCatalogXpAll& Request, const FDelegate_GetCatalogXpAll& Delegate = FDelegate_GetCatalogXpAll());
-    FHttpRequestPtr GetCatalogXpTable(const FRequest_GetCatalogXpTable& Request, const FDelegate_GetCatalogXpTable& Delegate = FDelegate_GetCatalogXpTable());
+    FHttpRequestPtr GetCatalogAll(const FRequest_GetCatalogAll& Request, const FDelegate_GetCatalogAll& Delegate = FDelegate_GetCatalogAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSet(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogItem(const FRequest_GetCatalogItem& Request, const FDelegate_GetCatalogItem& Delegate = FDelegate_GetCatalogItem(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogItemsAll(const FRequest_GetCatalogItemsAll& Request, const FDelegate_GetCatalogItemsAll& Delegate = FDelegate_GetCatalogItemsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogLoot(const FRequest_GetCatalogLoot& Request, const FDelegate_GetCatalogLoot& Delegate = FDelegate_GetCatalogLoot(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogLootsAll(const FRequest_GetCatalogLootsAll& Request, const FDelegate_GetCatalogLootsAll& Delegate = FDelegate_GetCatalogLootsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogPortalUseRuleset(const FRequest_GetCatalogPortalUseRuleset& Request, const FDelegate_GetCatalogPortalUseRuleset& Delegate = FDelegate_GetCatalogPortalUseRuleset(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogPortalUseRulesetsAll(const FRequest_GetCatalogPortalUseRulesetsAll& Request, const FDelegate_GetCatalogPortalUseRulesetsAll& Delegate = FDelegate_GetCatalogPortalUseRulesetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogPricePoint(const FRequest_GetCatalogPricePoint& Request, const FDelegate_GetCatalogPricePoint& Delegate = FDelegate_GetCatalogPricePoint(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogPricePointsAll(const FRequest_GetCatalogPricePointsAll& Request, const FDelegate_GetCatalogPricePointsAll& Delegate = FDelegate_GetCatalogPricePointsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogTimeFrame(const FRequest_GetCatalogTimeFrame& Request, const FDelegate_GetCatalogTimeFrame& Delegate = FDelegate_GetCatalogTimeFrame(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogTimeFramesAll(const FRequest_GetCatalogTimeFramesAll& Request, const FDelegate_GetCatalogTimeFramesAll& Delegate = FDelegate_GetCatalogTimeFramesAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogVendor(const FRequest_GetCatalogVendor& Request, const FDelegate_GetCatalogVendor& Delegate = FDelegate_GetCatalogVendor(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogVendorsAll(const FRequest_GetCatalogVendorsAll& Request, const FDelegate_GetCatalogVendorsAll& Delegate = FDelegate_GetCatalogVendorsAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogXpAll(const FRequest_GetCatalogXpAll& Request, const FDelegate_GetCatalogXpAll& Delegate = FDelegate_GetCatalogXpAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogXpTable(const FRequest_GetCatalogXpTable& Request, const FDelegate_GetCatalogXpTable& Delegate = FDelegate_GetCatalogXpTable(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItem Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItemsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLootsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRulesetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePoint Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePointsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFrame Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFramesAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendor Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendorsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpTable Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItem Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogItemsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItemsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogLootsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogLootsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogPortalUseRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogPortalUseRulesetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPortalUseRulesetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogPricePointResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePoint Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogPricePointsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogPricePointsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogTimeFrameResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFrame Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogTimeFramesAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogTimeFramesAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogVendorResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendor Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogVendorsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogVendorsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogXpAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogXpTableResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogXpTable Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Get Catalog All
-
+ *
+ * Get the entire catalog.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogAll : public FRequest
 {
@@ -170,11 +174,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Set
-
+ *
+ * Get a specific Inventory Bucket Use Rule Set.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSet : public FRequest
 {
@@ -213,11 +218,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSet(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Sets All
-
+ *
+ * Get all Inventory Bucket Use Rule Sets.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSetsAll : public FRequest
 {
@@ -255,11 +261,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogInventoryBucketUseRuleSetsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Item
-
+ *
+ * Get a specific Item.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogItem : public FRequest
 {
@@ -298,11 +305,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogItem
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogItem(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItem(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Items All
-
+ *
+ * Get all Items.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogItemsAll : public FRequest
 {
@@ -340,11 +348,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogItemsAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogItemsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Loot
-
+ *
+ * Get a specific Loot.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogLoot : public FRequest
 {
@@ -369,7 +378,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogLoot : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Vendor Content;
+    FRHAPI_Loot Content;
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
@@ -383,11 +392,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogLoot
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogLoot(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLoot(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Loots All
-
+ *
+ * Get all Loot.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogLootsAll : public FRequest
 {
@@ -425,11 +435,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogLootsAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogLootsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Portal Use Ruleset
-
+ *
+ * Get a specific Portal Use Ruleset.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRuleset : public FRequest
 {
@@ -468,11 +479,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogPortalUseRuleset(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRuleset(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Portal Use Rulesets All
-
+ *
+ * Get all Portal Use Rulesets.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRulesetsAll : public FRequest
 {
@@ -510,11 +522,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogPortalUseRulesetsAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPortalUseRulesetsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Price Point
-
+ *
+ * Get a specific Price Point.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPricePoint : public FRequest
 {
@@ -553,11 +566,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogPricePoint(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePoint(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Price Points All
-
+ *
+ * Get all Price Points.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogPricePointsAll : public FRequest
 {
@@ -595,11 +609,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogPricePointsAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogPricePointsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Time Frame
-
+ *
+ * Get a specific Time Frame.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogTimeFrame : public FRequest
 {
@@ -624,7 +639,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogTimeFrame : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Vendor Content;
+    FRHAPI_TimeFrame Content;
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
@@ -638,11 +653,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogTimeFrame(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFrame(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Time Frames All
-
+ *
+ * Get all Time Frames.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogTimeFramesAll : public FRequest
 {
@@ -666,7 +682,7 @@ struct RALLYHEREAPI_API FResponse_GetCatalogTimeFramesAll : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_Loots Content;
+    FRHAPI_TimeFrames Content;
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
@@ -680,11 +696,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogTimeFramesAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogTimeFramesAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Vendor
-
+ *
+ * Get a specific Vendor.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogVendor : public FRequest
 {
@@ -723,11 +740,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogVendor
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogVendor(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendor(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Vendors All
-
+ *
+ * Get all Vendors.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogVendorsAll : public FRequest
 {
@@ -765,11 +783,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogVendorsAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogVendorsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Xp All
-
+ *
+ * Get all XP Tables.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogXpAll : public FRequest
 {
@@ -807,11 +826,12 @@ struct RALLYHEREAPI_API Traits_GetCatalogXpAll
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogXpAll(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Xp Table
-
+ *
+ * Get a specific XP Table.
 */
 struct RALLYHEREAPI_API FRequest_GetCatalogXpTable : public FRequest
 {
@@ -850,7 +870,7 @@ struct RALLYHEREAPI_API Traits_GetCatalogXpTable
     typedef FCatalogAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetCatalogXpTable(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogXpTable(InRequest, InDelegate, Priority); }
 };
 
 

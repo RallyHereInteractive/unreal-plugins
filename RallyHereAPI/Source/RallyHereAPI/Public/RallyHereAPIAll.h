@@ -31,7 +31,8 @@
 #include "PresenceAdminAPI.h"
 #include "QueuesAPI.h"
 #include "RankAPI.h"
-#include "SessionAPI.h"
+#include "RegionsAPI.h"
+#include "SessionsAPI.h"
 #include "SettingsAPI.h"
 #include "SiteAPI.h"
 #include "TimeAPI.h"
@@ -113,8 +114,11 @@ public:
     FRankAPI& GetRank();
     const FRankAPI& GetRank() const;
 
-    FSessionAPI& GetSession();
-    const FSessionAPI& GetSession() const;
+    FRegionsAPI& GetRegions();
+    const FRegionsAPI& GetRegions() const;
+
+    FSessionsAPI& GetSessions();
+    const FSessionsAPI& GetSessions() const;
 
     FSettingsAPI& GetSettings();
     const FSettingsAPI& GetSettings() const;
@@ -152,7 +156,8 @@ private:
     FPresenceAdminAPI PresenceAdmin;
     FQueuesAPI Queues;
     FRankAPI Rank;
-    FSessionAPI Session;
+    FRegionsAPI Regions;
+    FSessionsAPI Sessions;
     FSettingsAPI Settings;
     FSiteAPI Site;
     FTimeAPI Time;

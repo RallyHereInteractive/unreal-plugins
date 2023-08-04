@@ -35,7 +35,8 @@ bool FRHAPI_QueuesResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("queues"), Queues);
+    const TSharedPtr<FJsonValue> JsonQueuesField = (*Object)->TryGetField(TEXT("queues"));
+    ParseSuccess &= JsonQueuesField.IsValid() && !JsonQueuesField->IsNull() && TryGetJsonValue(JsonQueuesField, Queues);
 
     return ParseSuccess;
 }

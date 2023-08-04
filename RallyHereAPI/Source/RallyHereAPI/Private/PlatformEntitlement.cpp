@@ -57,26 +57,32 @@ bool FRHAPI_PlatformEntitlement::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("platform_sku"), PlatformSku);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("platform_entitlement_id"), PlatformEntitlementId);
-    if ((*Object)->HasField(TEXT("quantity")))
+    const TSharedPtr<FJsonValue> JsonPlatformSkuField = (*Object)->TryGetField(TEXT("platform_sku"));
+    ParseSuccess &= JsonPlatformSkuField.IsValid() && !JsonPlatformSkuField->IsNull() && TryGetJsonValue(JsonPlatformSkuField, PlatformSku);
+    const TSharedPtr<FJsonValue> JsonPlatformEntitlementIdField = (*Object)->TryGetField(TEXT("platform_entitlement_id"));
+    ParseSuccess &= JsonPlatformEntitlementIdField.IsValid() && !JsonPlatformEntitlementIdField->IsNull() && TryGetJsonValue(JsonPlatformEntitlementIdField, PlatformEntitlementId);
+    const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
+    if (JsonQuantityField.IsValid() && !JsonQuantityField->IsNull())
     {
-        Quantity_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("quantity"), Quantity_Optional);
+        Quantity_IsSet = TryGetJsonValue(JsonQuantityField, Quantity_Optional);
         ParseSuccess &= Quantity_IsSet;
     }
-    if ((*Object)->HasField(TEXT("status")))
+    const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
+    if (JsonStatusField.IsValid() && !JsonStatusField->IsNull())
     {
-        Status_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("status"), Status_Optional);
+        Status_IsSet = TryGetJsonValue(JsonStatusField, Status_Optional);
         ParseSuccess &= Status_IsSet;
     }
-    if ((*Object)->HasField(TEXT("error_code")))
+    const TSharedPtr<FJsonValue> JsonErrorCodeField = (*Object)->TryGetField(TEXT("error_code"));
+    if (JsonErrorCodeField.IsValid() && !JsonErrorCodeField->IsNull())
     {
-        ErrorCode_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("error_code"), ErrorCode_Optional);
+        ErrorCode_IsSet = TryGetJsonValue(JsonErrorCodeField, ErrorCode_Optional);
         ParseSuccess &= ErrorCode_IsSet;
     }
-    if ((*Object)->HasField(TEXT("order_id")))
+    const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
+    if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
     {
-        OrderId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("order_id"), OrderId_Optional);
+        OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
         ParseSuccess &= OrderId_IsSet;
     }
 

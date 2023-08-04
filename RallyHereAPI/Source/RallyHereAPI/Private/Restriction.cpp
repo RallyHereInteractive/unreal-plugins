@@ -45,15 +45,18 @@ bool FRHAPI_Restriction::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("type"), Type);
-    if ((*Object)->HasField(TEXT("reason")))
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
+    const TSharedPtr<FJsonValue> JsonReasonField = (*Object)->TryGetField(TEXT("reason"));
+    if (JsonReasonField.IsValid() && !JsonReasonField->IsNull())
     {
-        Reason_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("reason"), Reason_Optional);
+        Reason_IsSet = TryGetJsonValue(JsonReasonField, Reason_Optional);
         ParseSuccess &= Reason_IsSet;
     }
-    if ((*Object)->HasField(TEXT("expiration")))
+    const TSharedPtr<FJsonValue> JsonExpirationField = (*Object)->TryGetField(TEXT("expiration"));
+    if (JsonExpirationField.IsValid() && !JsonExpirationField->IsNull())
     {
-        Expiration_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("expiration"), Expiration_Optional);
+        Expiration_IsSet = TryGetJsonValue(JsonExpirationField, Expiration_Optional);
         ParseSuccess &= Expiration_IsSet;
     }
 

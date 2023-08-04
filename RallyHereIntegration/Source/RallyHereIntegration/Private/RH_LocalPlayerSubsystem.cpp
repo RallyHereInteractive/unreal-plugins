@@ -15,70 +15,26 @@
 #include "RH_ConfigSubsystem.h"
 #include "RH_EntitlementSubsystem.h"
 #include "RH_PurgeSubsystem.h"
-#include "RH_NotificationSubsystem.h"
+#include "RH_PlayerNotifications.h"
 
-static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
-	TEXT("rh.setclientid"),
-	TEXT("Set the client ID used to log into the RallyHere API"),
-	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{
-			FString NewClientId = Args.Num() <= 0 ? TEXT("") : Args[0];
-			NewClientId.TrimQuotesInline();
-		
-			for (auto localPlayer : World->GetGameInstance()->GetLocalPlayers())
-			{
-				auto localPlayerSubsystem = localPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-				localPlayerSubsystem->SetClientId(NewClientId);
-			}
-			Ar.Logf(TEXT("Updated Client ID to [%s]"), *NewClientId);
-		}));
-
-static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHGetClientId(
-	TEXT("rh.getclientid"),
-	TEXT("Get the client ID used to log into the RallyHere API"),
-	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{
-			for (auto localPlayer : World->GetGameInstance()->GetLocalPlayers())
-			{
-				auto localPlayerSubsystem = localPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-				Ar.Logf(TEXT("Current Client ID = [%s]"), *localPlayerSubsystem->GetClientId());
-			}
-		}));
-
-static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientSecret(
-	TEXT("rh.setclientsecret"),
-	TEXT("Set the client secret used to log into the RallyHere API"),
-	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{
-			FString NewClientSecret = Args.Num() <= 0 ? TEXT("") : Args[0];
-			NewClientSecret.TrimQuotesInline();
-		
-			for (auto localPlayer : World->GetGameInstance()->GetLocalPlayers())
-			{
-				auto localPlayerSubsystem = localPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-				localPlayerSubsystem->SetClientSecret(NewClientSecret);
-			}
-			Ar.Logf(TEXT("Updated Client secret"));
-		}));
 
 void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-    AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth(), GetClientId(), GetClientSecret());
+    AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
 	AuthContext->OnLoginComplete().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserLoggedIn);
 	AuthContext->OnLoginUserChanged().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserChanged);
 
     // Create Subsystems
 	// Create all the subsystem objects first, so they can refer to each other during initialization
-    LoginSubsystem = AddSubsystemPlugin<URH_LocalPlayerLoginSubsystem>();
-	AdSubsystem = AddSubsystemPlugin<URH_AdSubsystem>();
-    FriendSubsystem = AddSubsystemPlugin<URH_FriendSubsystem>();
-	SessionSubsystem = AddSubsystemPlugin<URH_LocalPlayerSessionSubsystem>();
-	PresenceSubsystem = AddSubsystemPlugin<URH_LocalPlayerPresenceSubsystem>();
-	PurgeSubsystem = AddSubsystemPlugin<URH_PurgeSubsystem>();
-	EntitlementSubsystem = AddSubsystemPlugin<URH_EntitlementSubsystem>();
-	NotificationSubsystem = AddSubsystemPlugin<URH_NotificationSubsystem>();
+    LoginSubsystem = AddSubsystemPlugin<URH_LocalPlayerLoginSubsystem>(GetDefault<URH_IntegrationSettings>()->LocalPlayerLoginSubsystemClass);
+	AdSubsystem = AddSubsystemPlugin<URH_AdSubsystem>(GetDefault<URH_IntegrationSettings>()->AdSubsystemClass);
+    FriendSubsystem = AddSubsystemPlugin<URH_FriendSubsystem>(GetDefault<URH_IntegrationSettings>()->FriendSubsystemClass);
+	SessionSubsystem = AddSubsystemPlugin<URH_LocalPlayerSessionSubsystem>(GetDefault<URH_IntegrationSettings>()->LocalPlayerSessionSubsystemClass);
+	PresenceSubsystem = AddSubsystemPlugin<URH_LocalPlayerPresenceSubsystem>(GetDefault<URH_IntegrationSettings>()->LocalPlayerPresenceSubsystemClass);
+	PurgeSubsystem = AddSubsystemPlugin<URH_PurgeSubsystem>(GetDefault<URH_IntegrationSettings>()->PurgeSubsystemClass);
+	EntitlementSubsystem = AddSubsystemPlugin<URH_EntitlementSubsystem>(GetDefault<URH_IntegrationSettings>()->EntitlementSubsystemClass);
 
 	// Initialize Subsystems
 	for (auto Plugin : SubsystemPlugins)
@@ -107,7 +63,6 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 	PresenceSubsystem = nullptr;
 	PurgeSubsystem = nullptr;
 	EntitlementSubsystem = nullptr;
-	NotificationSubsystem = nullptr;
 
 	AuthContext->OnLoginUserChanged().RemoveAll(this);
     AuthContext = nullptr;
@@ -115,9 +70,7 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 
 bool URH_LocalPlayerSubsystem::IsLoggedIn() const
 {
-	auto LoginResult = AuthContext->GetLoginResult();
-	const bool bIsLoggedIn = LoginResult.IsSet() && LoginResult->AccessToken_IsSet;
-	return bIsLoggedIn;
+	return AuthContext->IsLoggedIn();
 }
 
 void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
@@ -153,32 +106,66 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 
 void URH_LocalPlayerSubsystem::OnUserChanged()
 {
+	FGuid OldUuid;
+	URH_PlayerInfo* OldPlayerInfo = PlayerInfoCache.Get();
+	// clear notification watch on last player info
+	if (PlayerInfoCache.IsValid())
+	{
+		OldUuid = PlayerInfoCache->GetRHPlayerUuid();
+		if (PlayerInfoCache->GetPlayerNotifications() != nullptr)
+		{
+			// stop streaming and clear out history as we may not be able to conveniently resume from here
+			PlayerInfoCache->StopStreamingNotifications(true);
+			PlayerInfoCache.Reset();
+		}
+	}
+
 	for (auto Plugin : SubsystemPlugins)
 	{
 		Plugin->OnUserChanged();
+		Plugin->OnUserChanged(OldUuid, OldPlayerInfo);
+	}
+
+	PlayerInfoCache = GetLocalPlayerInfo();
+	if (PlayerInfoCache.IsValid())
+	{
+		if (PlayerInfoCache->GetPlayerNotifications() != nullptr)
+		{
+			// start streaming notifications for this context
+			PlayerInfoCache->StartStreamingNotifications();
+		}
 	}
 }
 
 FGuid URH_LocalPlayerSubsystem::GetPlayerUuid() const
 {
 	auto LoginResult = AuthContext->GetLoginResult();
-	if (AuthContext->IsLoggedIn())
+	if (AuthContext->IsLoggedIn() && LoginResult.IsSet())
 	{
-		return LoginResult.GetValue().GetActivePlayerUuid(FGuid());
+		return LoginResult->GetActivePlayerUuid(FGuid());
 	}
 
 	return FGuid();
 }
 
-ERHAPI_PlatformTypes URH_LocalPlayerSubsystem::GetLoggedInPlatformType() const
+ERHAPI_PlatformTypes_DEPRECATED URH_LocalPlayerSubsystem::GetLoggedInPlatformType() const
 {
-	if (IsLoggedIn())
+	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
 	{
-		auto LoginResult = AuthContext->GetLoginResult();
-		return ERHAPI_PlatformTypes(LoginResult.GetValue().PortalId);
+		return ERHAPI_PlatformTypes_DEPRECATED(AuthContext->GetLoginResult()->GetPortalId());
 	}
-	return ERHAPI_PlatformTypes::PT_UNKNOWN;
+	return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
 }
+
+ERHAPI_Platform URH_LocalPlayerSubsystem::GetLoggedInPlatform() const
+{
+	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
+	{
+		return AuthContext->GetLoginResult()->GetPlatform();
+	}
+	return ERHAPI_Platform::Anon;
+}
+
 
 FUniqueNetIdWrapper URH_LocalPlayerSubsystem::GetOSSUniqueId() const
 {
@@ -229,12 +216,12 @@ FRH_PlayerPlatformId URH_LocalPlayerSubsystem::GetPlayerPlatformId() const
 {
 	// #RHTODO: Consider making this use the PlayerInfo for the local player instead, 
 	//          though we will need to make sure the platform id is setup upon login.
-	if (AuthContext->GetLoginResult().IsSet())
+	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
 	{
 		FRH_PlayerPlatformId PlayerPlatformId;
 
 		PlayerPlatformId.UserId = AuthContext->GetLoginResult()->PortalUserId;
-		PlayerPlatformId.PlatformType = ERHAPI_PlatformTypes(AuthContext->GetLoginResult()->PortalId);
+		PlayerPlatformId.PlatformType = AuthContext->GetLoginResult()->GetPlatform();
 		return PlayerPlatformId;
 	}
 
@@ -288,101 +275,12 @@ IOnlineSubsystem* URH_LocalPlayerSubsystem::GetOSS(const FName& SubsystemName) c
     return nullptr;
 }
 
-void URH_LocalPlayerSubsystem::SetClientId(FString InClientId, FString Source)
+URH_PlayerNotifications* URH_LocalPlayerSubsystem::GetPlayerNotifications() const
 {
-    ResolvedClientId = MoveTemp(InClientId);
-    UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedClientId,
-        *Source);
-
-    if (AuthContext)
-    {
-        AuthContext->SetClientId(ResolvedClientId);
-    }
-}
-
-FString URH_LocalPlayerSubsystem::GetClientId()
-{
-    if (ResolvedClientId.IsEmpty())
-    {
-        ResolveClientId();
-    }
-    return ResolvedClientId;
-}
-
-void URH_LocalPlayerSubsystem::ResolveClientId()
-{
-    if (bIsClientIdLocked)
-    {
-        UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Locked and will not change"), ANSI_TO_TCHAR(__FUNCTION__));
-        return;
-    }
-
-	auto* Settings = GetDefault<URH_IntegrationSettings>();
-
-    for (const auto& Key : Settings->ClientIdCommandLineKeys)
-    {
-        FString temp;
-        if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
-        {
-            SetClientId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
-            return;
-        }
-    }
-
-    if (!Settings->ClientId.IsEmpty())
-    {
-        SetClientId(Settings->ClientId, TEXT("INI: RH_IntegrationSettings - ClientId"));
-        return;
-    }
-
-    UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
-}
-
-void URH_LocalPlayerSubsystem::SetClientSecret(FString InClientSecret, FString Source)
-{
-    ResolvedClientSecret = MoveTemp(InClientSecret);
-    UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *Source);
-
-    if (AuthContext)
-    {
-        AuthContext->SetClientSecret(ResolvedClientSecret);
-    }
-}
-
-FString URH_LocalPlayerSubsystem::GetClientSecret()
-{
-    if (ResolvedClientSecret.IsEmpty())
-    {
-        ResolveClientSecret();
-    }
-    return ResolvedClientSecret;
-}
-
-void URH_LocalPlayerSubsystem::ResolveClientSecret()
-{
-    if (bIsClientSecretLocked)
-    {
-        UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Locked and will not change"), ANSI_TO_TCHAR(__FUNCTION__));
-        return;
-    }
-
-	auto* Settings = GetDefault<URH_IntegrationSettings>();
-
-    for (const auto& Key : Settings->ClientSecretCommandLineKeys)
-    {
-        FString temp;
-        if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
-        {
-            SetClientSecret(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
-            return;
-        }
-    }
-
-	if (!Settings->ClientSecret.IsEmpty())
+	auto* LocalPlayerInfo = GetLocalPlayerInfo();
+	if (LocalPlayerInfo != nullptr)
 	{
-		SetClientSecret(Settings->ClientSecret, TEXT("INI: RH_IntegrationSettings - ClientSecret"));
-		return;
+		return LocalPlayerInfo->GetPlayerNotifications();
 	}
-
-    UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
+	return nullptr;
 }

@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "SessionJoinResponse.generated.h"
 
+/** @defgroup RHAPI_SessionJoinResponse RallyHere API Model SessionJoinResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Response when a player successfully joins a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionJoinResponse : public FRHAPI_Model
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinResponse : public FRHAPI_Model
     /** @brief Sets the value of SessionId */
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 };
+
+/** @} */

@@ -14,8 +14,12 @@
 #include "PurchasePrice.h"
 #include "PlayerOrderEntryCreate.generated.h"
 
+/** @defgroup RHAPI_PlayerOrderEntryCreate RallyHere API Model PlayerOrderEntryCreate
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Request to create a Player Order Entry.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
@@ -38,6 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The type of entry. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_PlayerOrderEntryType Type{  };
     /** @brief Gets the value of Type */
@@ -138,6 +143,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
      /** @brief Clears the value of VendorEtag_Optional and sets VendorEtag_IsSet to false */
     void ClearVendorEtag() { VendorEtag_IsSet = false; }
 
+    /** @brief List of Loot IDs for the dynamic bundle. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<int32> DynamicBundleLootIds_Optional{  };
     /** @brief true if DynamicBundleLootIds_Optional has been set to a value */
@@ -205,6 +211,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
      /** @brief Clears the value of ExternalTranId_Optional and sets ExternalTranId_IsSet to false */
     void ClearExternalTranId() { ExternalTranId_IsSet = false; }
 
+    /** @brief External item SKU for the Order Entry. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString ExternalItemSku_Optional{  };
     /** @brief true if ExternalItemSku_Optional has been set to a value */
@@ -227,6 +234,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
      /** @brief Clears the value of ExternalItemSku_Optional and sets ExternalItemSku_IsSet to false */
     void ClearExternalItemSku() { ExternalItemSku_IsSet = false; }
 
+    /** @brief Inventory Bucket to use for the Order Entry. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryBucket UseInventoryBucket_Optional{  };
     /** @brief true if UseInventoryBucket_Optional has been set to a value */
@@ -249,6 +257,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
      /** @brief Clears the value of UseInventoryBucket_Optional and sets UseInventoryBucket_IsSet to false */
     void ClearUseInventoryBucket() { UseInventoryBucket_IsSet = false; }
 
+    /** @brief Player Portal Event Id for the Order Entry. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int64 PlayerPortalEventId_Optional{  };
     /** @brief true if PlayerPortalEventId_Optional has been set to a value */
@@ -398,6 +407,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief Unique Identifier for the Order Entry. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString EntryId_Optional{  };
     /** @brief true if EntryId_Optional has been set to a value */
@@ -420,3 +430,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
      /** @brief Clears the value of EntryId_Optional and sets EntryId_IsSet to false */
     void ClearEntryId() { EntryId_IsSet = false; }
 };
+
+/** @} */

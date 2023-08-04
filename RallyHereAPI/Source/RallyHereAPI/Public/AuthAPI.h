@@ -12,14 +12,14 @@
 #include "RallyHereAPIHelpers.h"
 #include "OAuthPortal.h"
 #include "AgreementMessage.h"
-#include "BodyGetPortalTokenDetailsV1PortaltokenDetailsPost.h"
-#include "BodyLoginV1LoginPost.h"
 #include "HTTPValidationError.h"
+#include "HzApiErrorModel.h"
+#include "LoginRequestV1.h"
 #include "LoginResult.h"
 #include "LogoutRequest.h"
-#include "MessageOnly.h"
 #include "OAuthTokenExchange.h"
 #include "OAuthTokenResponse.h"
+#include "PortalTokenDetailsRequest.h"
 #include "PublicKey.h"
 #include "PublicKeyList.h"
 #include "TokenRequest.h"
@@ -72,30 +72,30 @@ public:
     FAuthAPI();
     virtual ~FAuthAPI();
 
-    FHttpRequestPtr GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate = FDelegate_GenerateKey());
-    FHttpRequestPtr GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate = FDelegate_GetAllPublicKeys());
-    FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails());
-    FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById());
-    FHttpRequestPtr Login(const FRequest_Login& Request, const FDelegate_Login& Delegate = FDelegate_Login());
-    FHttpRequestPtr Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate = FDelegate_Logout());
-    FHttpRequestPtr OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate = FDelegate_OauthLogin());
-    FHttpRequestPtr OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate = FDelegate_OauthResponse());
-    FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange());
-    FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token());
-    FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify());
+    FHttpRequestPtr GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate = FDelegate_GenerateKey(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate = FDelegate_GetAllPublicKeys(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate = FDelegate_GetPortalTokenDetails(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate = FDelegate_GetPublicKeyById(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr Login(const FRequest_Login& Request, const FDelegate_Login& Delegate = FDelegate_Login(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate = FDelegate_Logout(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate = FDelegate_OauthLogin(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate = FDelegate_OauthResponse(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -132,7 +132,7 @@ struct RALLYHEREAPI_API Traits_GenerateKey
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GenerateKey(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GenerateKey(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Public Keys
@@ -168,7 +168,7 @@ struct RALLYHEREAPI_API Traits_GetAllPublicKeys
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetAllPublicKeys(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPublicKeys(InRequest, InDelegate, Priority); }
 };
 
 /* Get Portal Token Details
@@ -182,7 +182,7 @@ struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
 
-    FRHAPI_BodyGetPortalTokenDetailsV1PortaltokenDetailsPost BodyGetPortalTokenDetailsV1PortaltokenDetailsPost;
+    FRHAPI_PortalTokenDetailsRequest PortalTokenDetailsRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPortalTokenDetails : public FResponse
@@ -204,7 +204,7 @@ struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPortalTokenDetails(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPortalTokenDetails(InRequest, InDelegate, Priority); }
 };
 
 /* Get Public Key By Id
@@ -240,11 +240,12 @@ struct RALLYHEREAPI_API Traits_GetPublicKeyById
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPublicKeyById(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPublicKeyById(InRequest, InDelegate, Priority); }
 };
 
 /* Login
-
+ *
+ * This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.      This endpoint supports user-based authentication for a variety of platforms.
 */
 struct RALLYHEREAPI_API FRequest_Login : public FRequest
 {
@@ -256,7 +257,7 @@ struct RALLYHEREAPI_API FRequest_Login : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_BodyLoginV1LoginPost BodyLoginV1LoginPost;
+    FRHAPI_LoginRequestV1 LoginRequestV1;
     TOptional<FString> UserAgent;
     TOptional<FString> XForwardedFor;
 };
@@ -280,7 +281,7 @@ struct RALLYHEREAPI_API Traits_Login
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.Login(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Login(InRequest, InDelegate, Priority); }
 };
 
 /* Logout
@@ -316,11 +317,12 @@ struct RALLYHEREAPI_API Traits_Logout
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.Logout(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Logout(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Login
-
+ *
+ * This endpoint is used to initiate the OAuth authentication flow for a user.  If the platform has been configured correctly, this endpoint will redirect to the platform&#39;s login page.   Once the user has logged in, the platform should redirect them to the &#x60;/users/v1/oauth/response/{platform}&#x60; endpoint for the associated platform.    Errors will be immediately redirected to the requested &#x60;redirect_uri&#x60; (or the first configured redirect URI, if the requested URI is not configured).
 */
 struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 {
@@ -330,8 +332,11 @@ struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
 
+    /* The platform to use for authentication */
     ERHAPI_OAuthPortal Platform;
+    /* A client state value to be forwarded with this request to the redirect URI. */
     TOptional<FString> State;
+    /* The URI to redirect to after the OAuth flow is complete. If not provided, or does not match one of the preconfigured redirect URIs, the first configured redirect URI will be used. */
     TOptional<FString> RedirectUri;
     TOptional<FString> UserAgent;
     TOptional<FString> XForwardedFor;
@@ -342,10 +347,13 @@ struct RALLYHEREAPI_API FResponse_OauthLogin : public FResponse
     FResponse_OauthLogin(FRequestMetadata InRequestMetadata);
     virtual ~FResponse_OauthLogin() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
-
+    
+    // Headers
+    /*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_key_url_not_found` - Nintendo key url not found     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+    TOptional<FString> Location;
 };
 
 struct RALLYHEREAPI_API Traits_OauthLogin
@@ -356,11 +364,12 @@ struct RALLYHEREAPI_API Traits_OauthLogin
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.OauthLogin(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthLogin(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Response
-
+ *
+ * Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the &#x60;/users/v1/oauth/token&#x60; endpoint to get an access token for the user.
 */
 struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 {
@@ -370,8 +379,11 @@ struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
 
+    /* The platform to use for authentication */
     ERHAPI_OAuthPortal Platform;
+    /* The code or token from the platform that can be used to validate the user's identity */
     TOptional<FString> Code;
+    /* The state value sent to the platform provider that is used to continue with the oauth request. */
     TOptional<FString> State;
     TOptional<FString> UserAgent;
     TOptional<FString> XForwardedFor;
@@ -382,10 +394,13 @@ struct RALLYHEREAPI_API FResponse_OauthResponse : public FResponse
     FResponse_OauthResponse(FRequestMetadata InRequestMetadata);
     virtual ~FResponse_OauthResponse() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
-
+    
+    // Headers
+    /*  URL that the user should be redirected to complete the next step of the OAuth flow.  Redirects to the `redirect_uri` and may include the following query parameters: - `code`: The authorization_code that can be exchanged for an access token for the user. - `state`: The state value that was provided in the original request. - `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:     - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.     - `no_redirects_configured` - No redirect urls setup for oauth.     - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.     - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.     - `failed_to_verify_state` - Failed to verify the state associated with the request.     - `failed_to_save_state` - Error occurred saving the state.     - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator     - `too_many_users` - Account has too many users associated with it.  Contact an administrator     - `user_auth_restricted` - Authentication for this user has been restricted     - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required     - `error_retrieving_player_results` - Error retrieving player results     - `failed_to_retrieve_roles` - Failed to retrieve roles     - `amazon_disabled` - Amazon authentication is currently disabled     - `amazon_token_empty` - Amazon access token is empty     - `amazon_invalid_access_token` - Amazon access token is invalid     - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon     - `anon_disabled` - Anon authentication is currently disabled     - `anon_token_empty` - Anon access token is empty     - `apple_disabled` - Apple authentication is currently disabled     - `apple_token_empty` - Apple access token is empty     - `apple_failed_key_lookup` - Failed to retrieve keys from Apple     - `apple_token_exchange_failed` - Problem exchanging code for token with Apple     - `apple_token_key_not_valid` - public key not found     - `apple_token_not_valid` - Apple access token is not valid     - `authorization_code_not_found` - Authorization code not found or expired     - `basic_disabled` - Basic authentication is currently disabled     - `basic_token_empty` - Basic access token is empty     - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`     - `basic_auth_credentials_not_found` - Basic auth credentials not found     - `epic_disabled` - Epic authentication is currently disabled     - `epic_token_empty` - Epic access token is empty     - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id     - `epic_v1_token_invalid` - Epic v1 token is invalid     - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator     - `epic_v2_token_invalid` - Epic v2 token is invalid     - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic     - `google_disabled` - Google authentication is currently disabled     - `google_token_empty` - Google access token is empty     - `google_keys_not_available` - Google keys are not available.  Please contact an administrator     - `google_token_not_valid` - Google access token is not valid     - `google_token_exchange_failed` - Problem exchanging code for token with Google     - `nintendo_disabled` - Nintendo authentication is currently disabled     - `nintendo_access_token_not_valid` - Nintendo access token is not valid     - `nintendo_key_url_not_found` - Nintendo key url not found     - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.     - `nintendo_ppid_conversion_failed` - error during PPID conversion     - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion     - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion     - `nintendo_ppid_missing` - PPID is missing for user     - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid     - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.     - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid     - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app     - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.     - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo     - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled     - `ps4_v1_token_empty` - PS4 v1 access token is empty     - `ps4_v1_token_expired` - PS4 v1 access token is expired     - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4     - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid     - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled     - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4     - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled     - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled     - `ps4_v3_token_empty` - PS4 v3 access token is empty     - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4     - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid     - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled     - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled     - `ps5_v3_token_empty` - PS5 v3 access token is empty     - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5     - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid     - `refresh_disabled` - Refresh authentication is currently disabled     - `refresh_token_empty` - Refresh token is empty     - `refresh_token_not_found` - Refresh token was not found or has expired     - `refresh_token_invalid_user` - Refresh token refrences invalid user     - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token     - `steam_disabled` - Steam authentication is currently disabled     - `steam_token_empty` - Steam code (Ticket) is empty     - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam     - `steam_user_vacbanned` - User is VAC banned     - `steam_user_publisherbanned` - User is publisher banned     - `twitch_disabled` - Twitch authentication is currently disabled     - `twitch_token_empty` - Twitch access token is empty     - `twitch_token_invalid` - Twitch access token is not valid     - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator     - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch     - `xbox_disabled` - Xbox authentication is currently disabled     - `xbox_xsts_token_empty` - Xbox XSTS token is empty     - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid     - `xbox_xtoken_invalid` - Xbox XToken is not valid     - `xbox_access_token_request_failed` - Problem requesting access token from Xbox     - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox     - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox  - `error_description`: The description for the error that occurred during the OAuth flow. - `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:     - `NO_CODE_IN_REQUEST` - No code in request.     - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.     - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.     - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.     - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.     - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.     - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.     - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.   */
+    TOptional<FString> Location;
 };
 
 struct RALLYHEREAPI_API Traits_OauthResponse
@@ -396,11 +411,12 @@ struct RALLYHEREAPI_API Traits_OauthResponse
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.OauthResponse(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthResponse(InRequest, InDelegate, Priority); }
 };
 
 /* Oauth Token Exchange
-
+ *
+ * Exchange an authorization_code from the &#x60;/users/v1/oauth/response/{platform}&#x60; endpoint for an access token and refresh token.
 */
 struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 {
@@ -434,11 +450,12 @@ struct RALLYHEREAPI_API Traits_OauthTokenExchange
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.OauthTokenExchange(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.OauthTokenExchange(InRequest, InDelegate, Priority); }
 };
 
 /* Token
-
+ *
+ * OAuth2 Token Endpoint. For more information see: &lt;a href&#x3D;\&quot;https://datatracker.ietf.org/doc/html/rfc6749#section-3.2\&quot; target&#x3D;\&quot;_blank\&quot;&gt;Token Endpoint Spec&lt;/a&gt;.
 */
 struct RALLYHEREAPI_API FRequest_Token : public FRequest
 {
@@ -472,7 +489,7 @@ struct RALLYHEREAPI_API Traits_Token
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.Token(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Token(InRequest, InDelegate, Priority); }
 };
 
 /* Verify
@@ -509,7 +526,7 @@ struct RALLYHEREAPI_API Traits_Verify
     typedef FAuthAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.Verify(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Verify(InRequest, InDelegate, Priority); }
 };
 
 

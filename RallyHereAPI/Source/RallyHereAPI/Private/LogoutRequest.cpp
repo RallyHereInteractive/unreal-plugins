@@ -35,7 +35,8 @@ bool FRHAPI_LogoutRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("refresh_token"), RefreshToken);
+    const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
+    ParseSuccess &= JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull() && TryGetJsonValue(JsonRefreshTokenField, RefreshToken);
 
     return ParseSuccess;
 }

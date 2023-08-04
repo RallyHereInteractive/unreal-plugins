@@ -36,7 +36,10 @@ PACKAGE_SCOPE:
 		FOnlineSubsystemImpl(STEAMV2_SUBSYSTEM, InInstanceName),
 		PurchaseInterface(nullptr),
 		StoreInterface(nullptr),
-		EntitlementsInterface(nullptr)
+		EntitlementsInterface(nullptr),
+		SteamSubsystem(nullptr),
+		OnlineAsyncTaskThreadRunnable(nullptr),
+		OnlineAsyncTaskThread(nullptr)
 	{}
 
 	void QueueAsyncTask(class FOnlineAsyncTask* AsyncTask);

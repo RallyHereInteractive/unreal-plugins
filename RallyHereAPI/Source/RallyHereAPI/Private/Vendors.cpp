@@ -43,14 +43,16 @@ bool FRHAPI_Vendors::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("vendors")))
+    const TSharedPtr<FJsonValue> JsonVendorsField = (*Object)->TryGetField(TEXT("vendors"));
+    if (JsonVendorsField.IsValid() && !JsonVendorsField->IsNull())
     {
-        Vendors_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("vendors"), Vendors_Optional);
+        Vendors_IsSet = TryGetJsonValue(JsonVendorsField, Vendors_Optional);
         ParseSuccess &= Vendors_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

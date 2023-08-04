@@ -10,8 +10,8 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "Platform.h"
 #include "Portal.h"
-#include "BodyUpdatePersonV1PersonPersonIdInfoPost.h"
 #include "HTTPAuthorizationCredentials.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
@@ -21,11 +21,14 @@
 #include "PersonEmailListResponse.h"
 #include "PersonInfoResponse.h"
 #include "PlayerIdWrapper.h"
+#include "PlayerIterateResponse.h"
 #include "PlayerLinkedPortalsResponse.h"
 #include "PlayerUuidFromId.h"
 #include "PurgeRequest.h"
 #include "PurgeResponse.h"
+#include "Role.h"
 #include "SendInBlueContact.h"
+#include "UpdatePersonInfoRequest.h"
 
 namespace RallyHereAPI
 {
@@ -33,8 +36,6 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
-struct FRequest_CreateUpdateContact;
-struct FResponse_CreateUpdateContact;
 struct FRequest_DequeueMeForPurge;
 struct FResponse_DequeueMeForPurge;
 struct FRequest_DequeuePersonForPurge;
@@ -43,28 +44,44 @@ struct FRequest_DisableCrossProgression;
 struct FResponse_DisableCrossProgression;
 struct FRequest_EnableCrossProgression;
 struct FResponse_EnableCrossProgression;
+struct FRequest_GetAllRoles;
+struct FResponse_GetAllRoles;
 struct FRequest_GetPerson;
 struct FResponse_GetPerson;
 struct FRequest_GetPersonEmailList;
 struct FResponse_GetPersonEmailList;
+struct FRequest_GetPersonEmailListForSelf;
+struct FResponse_GetPersonEmailListForSelf;
+struct FRequest_GetPersonForSelf;
+struct FResponse_GetPersonForSelf;
 struct FRequest_GetPlayerIdFromPlayerUuid;
 struct FResponse_GetPlayerIdFromPlayerUuid;
+struct FRequest_GetPlayerIdFromPlayerUuidForSelf;
+struct FResponse_GetPlayerIdFromPlayerUuidForSelf;
 struct FRequest_GetPlayerLinkedPortals;
 struct FResponse_GetPlayerLinkedPortals;
 struct FRequest_GetPlayerLinks;
 struct FResponse_GetPlayerLinks;
+struct FRequest_GetPlayerLinksForSelf;
+struct FResponse_GetPlayerLinksForSelf;
 struct FRequest_GetPlayerUuidFromPlayerId;
 struct FResponse_GetPlayerUuidFromPlayerId;
+struct FRequest_GetPlayerUuidFromPlayerIdForSelf;
+struct FResponse_GetPlayerUuidFromPlayerIdForSelf;
+struct FRequest_GetPlayerUuidFromPlayerIdForSelfV2;
+struct FResponse_GetPlayerUuidFromPlayerIdForSelfV2;
 struct FRequest_GetPlayerUuidFromPlayerIdV2;
 struct FResponse_GetPlayerUuidFromPlayerIdV2;
+struct FRequest_GetPlayersPaged;
+struct FResponse_GetPlayersPaged;
 struct FRequest_GetQueuePurgeStatusForMe;
 struct FResponse_GetQueuePurgeStatusForMe;
 struct FRequest_GetQueuePurgeStatusForPerson;
 struct FResponse_GetQueuePurgeStatusForPerson;
 struct FRequest_Link;
 struct FResponse_Link;
-struct FRequest_LookupPlayer;
-struct FResponse_LookupPlayer;
+struct FRequest_LookupPlayerByPortal;
+struct FResponse_LookupPlayerByPortal;
 struct FRequest_QueueMeForPurge;
 struct FResponse_QueueMeForPurge;
 struct FRequest_QueuePersonForPurge;
@@ -75,28 +92,44 @@ struct FRequest_UpdatePerson;
 struct FResponse_UpdatePerson;
 struct FRequest_UpdatePersonEmailList;
 struct FResponse_UpdatePersonEmailList;
+struct FRequest_UpdatePersonEmailListForSelf;
+struct FResponse_UpdatePersonEmailListForSelf;
+struct FRequest_UpdatePersonForSelf;
+struct FResponse_UpdatePersonForSelf;
+struct FRequest_UpsertContact;
+struct FResponse_UpsertContact;
 
-DECLARE_DELEGATE_OneParam(FDelegate_CreateUpdateContact, const FResponse_CreateUpdateContact&);
 DECLARE_DELEGATE_OneParam(FDelegate_DequeueMeForPurge, const FResponse_DequeueMeForPurge&);
 DECLARE_DELEGATE_OneParam(FDelegate_DequeuePersonForPurge, const FResponse_DequeuePersonForPurge&);
 DECLARE_DELEGATE_OneParam(FDelegate_DisableCrossProgression, const FResponse_DisableCrossProgression&);
 DECLARE_DELEGATE_OneParam(FDelegate_EnableCrossProgression, const FResponse_EnableCrossProgression&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetAllRoles, const FResponse_GetAllRoles&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPerson, const FResponse_GetPerson&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPersonEmailList, const FResponse_GetPersonEmailList&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPersonEmailListForSelf, const FResponse_GetPersonEmailListForSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPersonForSelf, const FResponse_GetPersonForSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerIdFromPlayerUuid, const FResponse_GetPlayerIdFromPlayerUuid&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerIdFromPlayerUuidForSelf, const FResponse_GetPlayerIdFromPlayerUuidForSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerLinkedPortals, const FResponse_GetPlayerLinkedPortals&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerLinks, const FResponse_GetPlayerLinks&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerLinksForSelf, const FResponse_GetPlayerLinksForSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidFromPlayerId, const FResponse_GetPlayerUuidFromPlayerId&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidFromPlayerIdForSelf, const FResponse_GetPlayerUuidFromPlayerIdForSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidFromPlayerIdForSelfV2, const FResponse_GetPlayerUuidFromPlayerIdForSelfV2&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerUuidFromPlayerIdV2, const FResponse_GetPlayerUuidFromPlayerIdV2&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayersPaged, const FResponse_GetPlayersPaged&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetQueuePurgeStatusForMe, const FResponse_GetQueuePurgeStatusForMe&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetQueuePurgeStatusForPerson, const FResponse_GetQueuePurgeStatusForPerson&);
 DECLARE_DELEGATE_OneParam(FDelegate_Link, const FResponse_Link&);
-DECLARE_DELEGATE_OneParam(FDelegate_LookupPlayer, const FResponse_LookupPlayer&);
+DECLARE_DELEGATE_OneParam(FDelegate_LookupPlayerByPortal, const FResponse_LookupPlayerByPortal&);
 DECLARE_DELEGATE_OneParam(FDelegate_QueueMeForPurge, const FResponse_QueueMeForPurge&);
 DECLARE_DELEGATE_OneParam(FDelegate_QueuePersonForPurge, const FResponse_QueuePersonForPurge&);
 DECLARE_DELEGATE_OneParam(FDelegate_Unlink, const FResponse_Unlink&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdatePerson, const FResponse_UpdatePerson&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdatePersonEmailList, const FResponse_UpdatePersonEmailList&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdatePersonEmailListForSelf, const FResponse_UpdatePersonEmailListForSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdatePersonForSelf, const FResponse_UpdatePersonForSelf&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpsertContact, const FResponse_UpsertContact&);
 
 class RALLYHEREAPI_API FUsersAPI : public FAPI
 {
@@ -104,93 +137,76 @@ public:
     FUsersAPI();
     virtual ~FUsersAPI();
 
-    FHttpRequestPtr CreateUpdateContact(const FRequest_CreateUpdateContact& Request, const FDelegate_CreateUpdateContact& Delegate = FDelegate_CreateUpdateContact());
-    FHttpRequestPtr DequeueMeForPurge(const FRequest_DequeueMeForPurge& Request, const FDelegate_DequeueMeForPurge& Delegate = FDelegate_DequeueMeForPurge());
-    FHttpRequestPtr DequeuePersonForPurge(const FRequest_DequeuePersonForPurge& Request, const FDelegate_DequeuePersonForPurge& Delegate = FDelegate_DequeuePersonForPurge());
-    FHttpRequestPtr DisableCrossProgression(const FRequest_DisableCrossProgression& Request, const FDelegate_DisableCrossProgression& Delegate = FDelegate_DisableCrossProgression());
-    FHttpRequestPtr EnableCrossProgression(const FRequest_EnableCrossProgression& Request, const FDelegate_EnableCrossProgression& Delegate = FDelegate_EnableCrossProgression());
-    FHttpRequestPtr GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate = FDelegate_GetPerson());
-    FHttpRequestPtr GetPersonEmailList(const FRequest_GetPersonEmailList& Request, const FDelegate_GetPersonEmailList& Delegate = FDelegate_GetPersonEmailList());
-    FHttpRequestPtr GetPlayerIdFromPlayerUuid(const FRequest_GetPlayerIdFromPlayerUuid& Request, const FDelegate_GetPlayerIdFromPlayerUuid& Delegate = FDelegate_GetPlayerIdFromPlayerUuid());
-    FHttpRequestPtr GetPlayerLinkedPortals(const FRequest_GetPlayerLinkedPortals& Request, const FDelegate_GetPlayerLinkedPortals& Delegate = FDelegate_GetPlayerLinkedPortals());
-    FHttpRequestPtr GetPlayerLinks(const FRequest_GetPlayerLinks& Request, const FDelegate_GetPlayerLinks& Delegate = FDelegate_GetPlayerLinks());
-    FHttpRequestPtr GetPlayerUuidFromPlayerId(const FRequest_GetPlayerUuidFromPlayerId& Request, const FDelegate_GetPlayerUuidFromPlayerId& Delegate = FDelegate_GetPlayerUuidFromPlayerId());
-    FHttpRequestPtr GetPlayerUuidFromPlayerIdV2(const FRequest_GetPlayerUuidFromPlayerIdV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdV2());
-    FHttpRequestPtr GetQueuePurgeStatusForMe(const FRequest_GetQueuePurgeStatusForMe& Request, const FDelegate_GetQueuePurgeStatusForMe& Delegate = FDelegate_GetQueuePurgeStatusForMe());
-    FHttpRequestPtr GetQueuePurgeStatusForPerson(const FRequest_GetQueuePurgeStatusForPerson& Request, const FDelegate_GetQueuePurgeStatusForPerson& Delegate = FDelegate_GetQueuePurgeStatusForPerson());
-    FHttpRequestPtr Link(const FRequest_Link& Request, const FDelegate_Link& Delegate = FDelegate_Link());
-    FHttpRequestPtr LookupPlayer(const FRequest_LookupPlayer& Request, const FDelegate_LookupPlayer& Delegate = FDelegate_LookupPlayer());
-    FHttpRequestPtr QueueMeForPurge(const FRequest_QueueMeForPurge& Request, const FDelegate_QueueMeForPurge& Delegate = FDelegate_QueueMeForPurge());
-    FHttpRequestPtr QueuePersonForPurge(const FRequest_QueuePersonForPurge& Request, const FDelegate_QueuePersonForPurge& Delegate = FDelegate_QueuePersonForPurge());
-    FHttpRequestPtr Unlink(const FRequest_Unlink& Request, const FDelegate_Unlink& Delegate = FDelegate_Unlink());
-    FHttpRequestPtr UpdatePerson(const FRequest_UpdatePerson& Request, const FDelegate_UpdatePerson& Delegate = FDelegate_UpdatePerson());
-    FHttpRequestPtr UpdatePersonEmailList(const FRequest_UpdatePersonEmailList& Request, const FDelegate_UpdatePersonEmailList& Delegate = FDelegate_UpdatePersonEmailList());
+    FHttpRequestPtr DequeueMeForPurge(const FRequest_DequeueMeForPurge& Request, const FDelegate_DequeueMeForPurge& Delegate = FDelegate_DequeueMeForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DequeuePersonForPurge(const FRequest_DequeuePersonForPurge& Request, const FDelegate_DequeuePersonForPurge& Delegate = FDelegate_DequeuePersonForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DisableCrossProgression(const FRequest_DisableCrossProgression& Request, const FDelegate_DisableCrossProgression& Delegate = FDelegate_DisableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr EnableCrossProgression(const FRequest_EnableCrossProgression& Request, const FDelegate_EnableCrossProgression& Delegate = FDelegate_EnableCrossProgression(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetAllRoles(const FRequest_GetAllRoles& Request, const FDelegate_GetAllRoles& Delegate = FDelegate_GetAllRoles(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPerson(const FRequest_GetPerson& Request, const FDelegate_GetPerson& Delegate = FDelegate_GetPerson(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPersonEmailList(const FRequest_GetPersonEmailList& Request, const FDelegate_GetPersonEmailList& Delegate = FDelegate_GetPersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPersonEmailListForSelf(const FRequest_GetPersonEmailListForSelf& Request, const FDelegate_GetPersonEmailListForSelf& Delegate = FDelegate_GetPersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPersonForSelf(const FRequest_GetPersonForSelf& Request, const FDelegate_GetPersonForSelf& Delegate = FDelegate_GetPersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerIdFromPlayerUuid(const FRequest_GetPlayerIdFromPlayerUuid& Request, const FDelegate_GetPlayerIdFromPlayerUuid& Delegate = FDelegate_GetPlayerIdFromPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerIdFromPlayerUuidForSelf(const FRequest_GetPlayerIdFromPlayerUuidForSelf& Request, const FDelegate_GetPlayerIdFromPlayerUuidForSelf& Delegate = FDelegate_GetPlayerIdFromPlayerUuidForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerLinkedPortals(const FRequest_GetPlayerLinkedPortals& Request, const FDelegate_GetPlayerLinkedPortals& Delegate = FDelegate_GetPlayerLinkedPortals(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerLinks(const FRequest_GetPlayerLinks& Request, const FDelegate_GetPlayerLinks& Delegate = FDelegate_GetPlayerLinks(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerLinksForSelf(const FRequest_GetPlayerLinksForSelf& Request, const FDelegate_GetPlayerLinksForSelf& Delegate = FDelegate_GetPlayerLinksForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidFromPlayerId(const FRequest_GetPlayerUuidFromPlayerId& Request, const FDelegate_GetPlayerUuidFromPlayerId& Delegate = FDelegate_GetPlayerUuidFromPlayerId(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidFromPlayerIdForSelf(const FRequest_GetPlayerUuidFromPlayerIdForSelf& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelf& Delegate = FDelegate_GetPlayerUuidFromPlayerIdForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidFromPlayerIdForSelfV2(const FRequest_GetPlayerUuidFromPlayerIdForSelfV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdForSelfV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdForSelfV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerUuidFromPlayerIdV2(const FRequest_GetPlayerUuidFromPlayerIdV2& Request, const FDelegate_GetPlayerUuidFromPlayerIdV2& Delegate = FDelegate_GetPlayerUuidFromPlayerIdV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayersPaged(const FRequest_GetPlayersPaged& Request, const FDelegate_GetPlayersPaged& Delegate = FDelegate_GetPlayersPaged(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetQueuePurgeStatusForMe(const FRequest_GetQueuePurgeStatusForMe& Request, const FDelegate_GetQueuePurgeStatusForMe& Delegate = FDelegate_GetQueuePurgeStatusForMe(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetQueuePurgeStatusForPerson(const FRequest_GetQueuePurgeStatusForPerson& Request, const FDelegate_GetQueuePurgeStatusForPerson& Delegate = FDelegate_GetQueuePurgeStatusForPerson(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr Link(const FRequest_Link& Request, const FDelegate_Link& Delegate = FDelegate_Link(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr LookupPlayerByPortal(const FRequest_LookupPlayerByPortal& Request, const FDelegate_LookupPlayerByPortal& Delegate = FDelegate_LookupPlayerByPortal(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr QueueMeForPurge(const FRequest_QueueMeForPurge& Request, const FDelegate_QueueMeForPurge& Delegate = FDelegate_QueueMeForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr QueuePersonForPurge(const FRequest_QueuePersonForPurge& Request, const FDelegate_QueuePersonForPurge& Delegate = FDelegate_QueuePersonForPurge(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr Unlink(const FRequest_Unlink& Request, const FDelegate_Unlink& Delegate = FDelegate_Unlink(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdatePerson(const FRequest_UpdatePerson& Request, const FDelegate_UpdatePerson& Delegate = FDelegate_UpdatePerson(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdatePersonEmailList(const FRequest_UpdatePersonEmailList& Request, const FDelegate_UpdatePersonEmailList& Delegate = FDelegate_UpdatePersonEmailList(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdatePersonEmailListForSelf(const FRequest_UpdatePersonEmailListForSelf& Request, const FDelegate_UpdatePersonEmailListForSelf& Delegate = FDelegate_UpdatePersonEmailListForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdatePersonForSelf(const FRequest_UpdatePersonForSelf& Request, const FDelegate_UpdatePersonForSelf& Delegate = FDelegate_UpdatePersonForSelf(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpsertContact(const FRequest_UpsertContact& Request, const FDelegate_UpsertContact& Delegate = FDelegate_UpsertContact(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnCreateUpdateContactResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateUpdateContact Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDequeueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDequeuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDisableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DisableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerIdFromPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerLinkedPortalsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinkedPortals Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerLinksResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinks Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidFromPlayerIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetPlayerUuidFromPlayerIdV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Link Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnLookupPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LookupPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnQueueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnQueuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUnlinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Unlink Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUpdatePersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnDequeueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDequeuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DequeuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDisableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DisableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnEnableCrossProgressionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnableCrossProgression Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAllRolesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllRoles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerIdFromPlayerUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerIdFromPlayerUuidForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerLinkedPortalsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinkedPortals Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerLinksResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinks Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerLinksForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerLinksForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidFromPlayerIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidFromPlayerIdForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidFromPlayerIdForSelfV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerUuidFromPlayerIdV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayersPagedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersPaged Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Link Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnLookupPlayerByPortalResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LookupPlayerByPortal Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnQueueMeForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueueMeForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnQueuePersonForPurgeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_QueuePersonForPurge Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUnlinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Unlink Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdatePersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdatePersonEmailListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdatePersonEmailListForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonEmailListForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdatePersonForSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePersonForSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpsertContactResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpsertContact Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
-};
-
-/* Create Update Contact
-
-*/
-struct RALLYHEREAPI_API FRequest_CreateUpdateContact : public FRequest
-{
-    FRequest_CreateUpdateContact();
-    virtual ~FRequest_CreateUpdateContact() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_SendInBlueContact SendInBlueContact;
-};
-
-struct RALLYHEREAPI_API FResponse_CreateUpdateContact : public FResponse
-{
-    FResponse_CreateUpdateContact(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreateUpdateContact() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_JsonValue Content;
-
-};
-
-struct RALLYHEREAPI_API Traits_CreateUpdateContact
-{
-    typedef FRequest_CreateUpdateContact Request;
-    typedef FResponse_CreateUpdateContact Response;
-    typedef FDelegate_CreateUpdateContact Delegate;
-    typedef FUsersAPI API;
-    static FString Name;
-	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.CreateUpdateContact(InRequest, InDelegate); }
 };
 
 /* Dequeue Me For Purge
-
+ *
+ * Dequeue the active person of the access token if they are queued to be purged. This will only work if the purge has not already begun.
 */
 struct RALLYHEREAPI_API FRequest_DequeueMeForPurge : public FRequest
 {
@@ -223,11 +239,12 @@ struct RALLYHEREAPI_API Traits_DequeueMeForPurge
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DequeueMeForPurge(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Dequeue Person For Purge
-
+ *
+ * Dequeue a Person that is queued to be purged. This will only work if the purge has not already begun. Requires permission: purge:person:admin
 */
 struct RALLYHEREAPI_API FRequest_DequeuePersonForPurge : public FRequest
 {
@@ -261,7 +278,7 @@ struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DequeuePersonForPurge(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Disable Cross Progression
@@ -298,7 +315,7 @@ struct RALLYHEREAPI_API Traits_DisableCrossProgression
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DisableCrossProgression(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DisableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
 /* Enable Cross Progression
@@ -335,11 +352,50 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.EnableCrossProgression(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EnableCrossProgression(InRequest, InDelegate, Priority); }
+};
+
+/* Get All Roles
+ *
+ * Get all current roles. Including their custom_data and login_loot_rewards.
+*/
+struct RALLYHEREAPI_API FRequest_GetAllRoles : public FRequest
+{
+    FRequest_GetAllRoles();
+    virtual ~FRequest_GetAllRoles() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponse
+{
+    FResponse_GetAllRoles(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetAllRoles() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    TArray<FRHAPI_Role> Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetAllRoles
+{
+    typedef FRequest_GetAllRoles Request;
+    typedef FResponse_GetAllRoles Response;
+    typedef FDelegate_GetAllRoles Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRoles(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person
-
+ *
+ * Get information for a person.
 */
 struct RALLYHEREAPI_API FRequest_GetPerson : public FRequest
 {
@@ -373,11 +429,12 @@ struct RALLYHEREAPI_API Traits_GetPerson
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPerson(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPerson(InRequest, InDelegate, Priority); }
 };
 
 /* Get Person Email List
-
+ *
+ * Get the email list ids for a person
 */
 struct RALLYHEREAPI_API FRequest_GetPersonEmailList : public FRequest
 {
@@ -411,7 +468,83 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailList
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPersonEmailList(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailList(InRequest, InDelegate, Priority); }
+};
+
+/* Get Person Email List For Self
+ *
+ * Get the email list ids for a person on the access token
+*/
+struct RALLYHEREAPI_API FRequest_GetPersonEmailListForSelf : public FRequest
+{
+    FRequest_GetPersonEmailListForSelf();
+    virtual ~FRequest_GetPersonEmailListForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponse
+{
+    FResponse_GetPersonEmailListForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPersonEmailListForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PersonEmailListResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
+{
+    typedef FRequest_GetPersonEmailListForSelf Request;
+    typedef FResponse_GetPersonEmailListForSelf Response;
+    typedef FDelegate_GetPersonEmailListForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailListForSelf(InRequest, InDelegate, Priority); }
+};
+
+/* Get Person For Self
+ *
+ * Get information for the person on the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetPersonForSelf : public FRequest
+{
+    FRequest_GetPersonForSelf();
+    virtual ~FRequest_GetPersonForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponse
+{
+    FResponse_GetPersonForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPersonForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PersonInfoResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPersonForSelf
+{
+    typedef FRequest_GetPersonForSelf Request;
+    typedef FResponse_GetPersonForSelf Response;
+    typedef FDelegate_GetPersonForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Id From Player Uuid
@@ -450,11 +583,50 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerIdFromPlayerUuid(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuid(InRequest, InDelegate, Priority); }
+};
+
+/* Get Player Id From Player Uuid For Self
+ *
+ * Get a player&#39;s id from their uuid for the active player on the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuidForSelf : public FRequest
+{
+    FRequest_GetPlayerIdFromPlayerUuidForSelf();
+    virtual ~FRequest_GetPlayerIdFromPlayerUuidForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuidForSelf : public FResponse
+{
+    FResponse_GetPlayerIdFromPlayerUuidForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerIdFromPlayerUuidForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerIdWrapper Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
+{
+    typedef FRequest_GetPlayerIdFromPlayerUuidForSelf Request;
+    typedef FResponse_GetPlayerIdFromPlayerUuidForSelf Response;
+    typedef FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuidForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Linked Portals
-
+ *
+ * Get a player&#39;s linked portals.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinkedPortals : public FRequest
 {
@@ -488,11 +660,12 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerLinkedPortals(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinkedPortals(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Links
-
+ *
+ * Get a player&#39;s linked portals.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinks : public FRequest
 {
@@ -526,7 +699,45 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinks
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerLinks(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinks(InRequest, InDelegate, Priority); }
+};
+
+/* Get Player Links For Self
+ *
+ * Get a player&#39;s linked portals for the active player on the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerLinksForSelf : public FRequest
+{
+    FRequest_GetPlayerLinksForSelf();
+    virtual ~FRequest_GetPlayerLinksForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponse
+{
+    FResponse_GetPlayerLinksForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerLinksForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerLinkedPortalsResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
+{
+    typedef FRequest_GetPlayerLinksForSelf Request;
+    typedef FResponse_GetPlayerLinksForSelf Response;
+    typedef FDelegate_GetPlayerLinksForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinksForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id
@@ -565,7 +776,83 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidFromPlayerId(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerId(InRequest, InDelegate, Priority); }
+};
+
+/* Get Player Uuid From Player Id For Self
+ *
+ * Get a player&#39;s uuid from their id for the active player on the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelf : public FRequest
+{
+    FRequest_GetPlayerUuidFromPlayerIdForSelf();
+    virtual ~FRequest_GetPlayerUuidFromPlayerIdForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelf : public FResponse
+{
+    FResponse_GetPlayerUuidFromPlayerIdForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerUuidFromPlayerIdForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FGuid Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
+{
+    typedef FRequest_GetPlayerUuidFromPlayerIdForSelf Request;
+    typedef FResponse_GetPlayerUuidFromPlayerIdForSelf Response;
+    typedef FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelf(InRequest, InDelegate, Priority); }
+};
+
+/* Get Player Uuid From Player Id For Self V2
+ *
+ * Get a player&#39;s uuid from their id for the active player on the access token.
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelfV2 : public FRequest
+{
+    FRequest_GetPlayerUuidFromPlayerIdForSelfV2();
+    virtual ~FRequest_GetPlayerUuidFromPlayerIdForSelfV2() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelfV2 : public FResponse
+{
+    FResponse_GetPlayerUuidFromPlayerIdForSelfV2(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerUuidFromPlayerIdForSelfV2() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerUuidFromId Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
+{
+    typedef FRequest_GetPlayerUuidFromPlayerIdForSelfV2 Request;
+    typedef FResponse_GetPlayerUuidFromPlayerIdForSelfV2 Response;
+    typedef FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelfV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id V2
@@ -604,11 +891,54 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate, Priority); }
+};
+
+/* Get Players Paged
+ *
+ * Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players. There is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.
+*/
+struct RALLYHEREAPI_API FRequest_GetPlayersPaged : public FRequest
+{
+    FRequest_GetPlayersPaged();
+    virtual ~FRequest_GetPlayersPaged() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* cursor to continue iteration.  Leaving this empty will begin a new query */
+    TOptional<FString> Cursor;
+    /* number of players to return */
+    TOptional<int32> PageSize;
+};
+
+struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponse
+{
+    FResponse_GetPlayersPaged(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayersPaged() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlayerIterateResponse Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetPlayersPaged
+{
+    typedef FRequest_GetPlayersPaged Request;
+    typedef FResponse_GetPlayersPaged Response;
+    typedef FDelegate_GetPlayersPaged Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayersPaged(InRequest, InDelegate, Priority); }
 };
 
 /* Get Queue Purge Status For Me
-
+ *
+ * Get the purge status for a person of the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForMe : public FRequest
 {
@@ -641,11 +971,12 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetQueuePurgeStatusForMe(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Get Queue Purge Status For Person
-
+ *
+ * Get the purge status for a person. Requires permission: purge:person:admin
 */
 struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForPerson : public FRequest
 {
@@ -679,7 +1010,7 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetQueuePurgeStatusForPerson(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForPerson(InRequest, InDelegate, Priority); }
 };
 
 /* Link
@@ -717,17 +1048,17 @@ struct RALLYHEREAPI_API Traits_Link
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.Link(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Link(InRequest, InDelegate, Priority); }
 };
 
-/* Lookup Player
+/* Lookup Player By Portal
  *
  * Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call &#x60;/v1/player/{player_id}/linked_portals&#x60; for each player for that info, if necessary.
 */
-struct RALLYHEREAPI_API FRequest_LookupPlayer : public FRequest
+struct RALLYHEREAPI_API FRequest_LookupPlayerByPortal : public FRequest
 {
-    FRequest_LookupPlayer();
-    virtual ~FRequest_LookupPlayer() = default;
+    FRequest_LookupPlayerByPortal();
+    virtual ~FRequest_LookupPlayerByPortal() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FString GetSimplifiedPath() const override;
@@ -738,14 +1069,16 @@ struct RALLYHEREAPI_API FRequest_LookupPlayer : public FRequest
     TOptional<TArray<FString>> DisplayName;
     /* Lookup players by their portal identity for this platform */
     TOptional<ERHAPI_Portal> IdentityPlatform;
+    /* Lookup players by their platform identity. Will override identity_platform if set. */
+    TOptional<ERHAPI_Platform> Platform;
     /* Lookup players by their Portal Identity */
     TOptional<TArray<FString>> Identities;
 };
 
-struct RALLYHEREAPI_API FResponse_LookupPlayer : public FResponse
+struct RALLYHEREAPI_API FResponse_LookupPlayerByPortal : public FResponse
 {
-    FResponse_LookupPlayer(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_LookupPlayer() = default;
+    FResponse_LookupPlayerByPortal(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_LookupPlayerByPortal() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
@@ -753,19 +1086,20 @@ struct RALLYHEREAPI_API FResponse_LookupPlayer : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_LookupPlayer
+struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
 {
-    typedef FRequest_LookupPlayer Request;
-    typedef FResponse_LookupPlayer Response;
-    typedef FDelegate_LookupPlayer Delegate;
+    typedef FRequest_LookupPlayerByPortal Request;
+    typedef FResponse_LookupPlayerByPortal Response;
+    typedef FDelegate_LookupPlayerByPortal Delegate;
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.LookupPlayer(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LookupPlayerByPortal(InRequest, InDelegate, Priority); }
 };
 
 /* Queue Me For Purge
-
+ *
+ * Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on &#x60;suggested_purge_time&#x60;.
 */
 struct RALLYHEREAPI_API FRequest_QueueMeForPurge : public FRequest
 {
@@ -799,11 +1133,12 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.QueueMeForPurge(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Queue Person For Purge
-
+ *
+ * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on &#x60;suggested_purge_time&#x60;. Requires permission: purge:person:admin
 */
 struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 {
@@ -838,7 +1173,7 @@ struct RALLYHEREAPI_API Traits_QueuePersonForPurge
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.QueuePersonForPurge(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Unlink
@@ -875,11 +1210,12 @@ struct RALLYHEREAPI_API Traits_Unlink
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.Unlink(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unlink(InRequest, InDelegate, Priority); }
 };
 
 /* Update Person
-
+ *
+ * Update the information for a person.
 */
 struct RALLYHEREAPI_API FRequest_UpdatePerson : public FRequest
 {
@@ -892,7 +1228,7 @@ struct RALLYHEREAPI_API FRequest_UpdatePerson : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PersonId;
-    FRHAPI_BodyUpdatePersonV1PersonPersonIdInfoPost BodyUpdatePersonV1PersonPersonIdInfoPost;
+    FRHAPI_UpdatePersonInfoRequest UpdatePersonInfoRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponse
@@ -914,11 +1250,12 @@ struct RALLYHEREAPI_API Traits_UpdatePerson
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UpdatePerson(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePerson(InRequest, InDelegate, Priority); }
 };
 
 /* Update Person Email List
-
+ *
+ * Update the email list for a person.  This is used to control which emails a person receives.
 */
 struct RALLYHEREAPI_API FRequest_UpdatePersonEmailList : public FRequest
 {
@@ -953,7 +1290,124 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
     typedef FUsersAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UpdatePersonEmailList(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailList(InRequest, InDelegate, Priority); }
+};
+
+/* Update Person Email List For Self
+ *
+ * Update the email list for person on the access token.  This is used to control which emails a person receives.
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePersonEmailListForSelf : public FRequest
+{
+    FRequest_UpdatePersonEmailListForSelf();
+    virtual ~FRequest_UpdatePersonEmailListForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FRHAPI_PersonEmailListRequest PersonEmailListRequest;
+};
+
+struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FResponse
+{
+    FResponse_UpdatePersonEmailListForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpdatePersonEmailListForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_JsonValue Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
+{
+    typedef FRequest_UpdatePersonEmailListForSelf Request;
+    typedef FResponse_UpdatePersonEmailListForSelf Response;
+    typedef FDelegate_UpdatePersonEmailListForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailListForSelf(InRequest, InDelegate, Priority); }
+};
+
+/* Update Person For Self
+ *
+ * Update information for the person on the access token.
+*/
+struct RALLYHEREAPI_API FRequest_UpdatePersonForSelf : public FRequest
+{
+    FRequest_UpdatePersonForSelf();
+    virtual ~FRequest_UpdatePersonForSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FRHAPI_UpdatePersonInfoRequest UpdatePersonInfoRequest;
+};
+
+struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponse
+{
+    FResponse_UpdatePersonForSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpdatePersonForSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_JsonValue Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
+{
+    typedef FRequest_UpdatePersonForSelf Request;
+    typedef FResponse_UpdatePersonForSelf Response;
+    typedef FDelegate_UpdatePersonForSelf Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonForSelf(InRequest, InDelegate, Priority); }
+};
+
+/* Upsert Contact
+ *
+ * Create or update a contact with SendInBlue, Requires permission: user:sendinblue:write
+*/
+struct RALLYHEREAPI_API FRequest_UpsertContact : public FRequest
+{
+    FRequest_UpsertContact();
+    virtual ~FRequest_UpsertContact() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FString GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FRHAPI_SendInBlueContact SendInBlueContact;
+};
+
+struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponse
+{
+    FResponse_UpsertContact(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpsertContact() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_JsonValue Content;
+
+};
+
+struct RALLYHEREAPI_API Traits_UpsertContact
+{
+    typedef FRequest_UpsertContact Request;
+    typedef FResponse_UpsertContact Response;
+    typedef FDelegate_UpsertContact Delegate;
+    typedef FUsersAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpsertContact(InRequest, InDelegate, Priority); }
 };
 
 

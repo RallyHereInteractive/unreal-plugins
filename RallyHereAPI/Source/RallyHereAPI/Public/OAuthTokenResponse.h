@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "OAuthTokenResponse.generated.h"
 
+/** @defgroup RHAPI_OAuthTokenResponse RallyHere API Model OAuthTokenResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief OAuth token exchange response.  Successful response will contain an access_token and refresh_token.  If the user has not accepted all required agreements, the response will contain the appropriate needs_* flags and a regenerated_code.  The regenerated_code is an authorization_code that can be used after the user has accepted the required agreements.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
@@ -35,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Access token for the user. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString AccessToken_Optional{  };
     /** @brief true if AccessToken_Optional has been set to a value */
@@ -57,6 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
      /** @brief Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false */
     void ClearAccessToken() { AccessToken_IsSet = false; }
 
+    /** @brief Refresh token for the user. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString RefreshToken_Optional{  };
     /** @brief true if RefreshToken_Optional has been set to a value */
@@ -79,6 +85,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
      /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
     void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
+    /** @brief If true, the user must accept the EULA before a token can be generated. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool NeedsEula_Optional{  };
     /** @brief true if NeedsEula_Optional has been set to a value */
@@ -105,6 +112,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     /** @brief Sets the value of NeedsEula_Optional to its default and also sets NeedsEula_IsSet to true */
     void SetNeedsEulaToDefault() { NeedsEula_Optional = false; NeedsEula_IsSet = true; }
 
+    /** @brief If true, the user must accept the TOS before a token can be generated. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool NeedsTos_Optional{  };
     /** @brief true if NeedsTos_Optional has been set to a value */
@@ -131,6 +139,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     /** @brief Sets the value of NeedsTos_Optional to its default and also sets NeedsTos_IsSet to true */
     void SetNeedsTosToDefault() { NeedsTos_Optional = false; NeedsTos_IsSet = true; }
 
+    /** @brief If true, the user must accept the Privacy Policy before a token can be generated. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool NeedsPrivacyPolicy_Optional{  };
     /** @brief true if NeedsPrivacyPolicy_Optional has been set to a value */
@@ -157,6 +166,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     /** @brief Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true */
     void SetNeedsPrivacyPolicyToDefault() { NeedsPrivacyPolicy_Optional = false; NeedsPrivacyPolicy_IsSet = true; }
 
+    /** @brief If present, a new code was generated and can be used after the user accepts the required agreements. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString RegeneratedCode_Optional{  };
     /** @brief true if RegeneratedCode_Optional has been set to a value */
@@ -179,6 +189,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
      /** @brief Clears the value of RegeneratedCode_Optional and sets RegeneratedCode_IsSet to false */
     void ClearRegeneratedCode() { RegeneratedCode_IsSet = false; }
 
+    /** @brief Error message if an error occurred. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString ErrorMessage_Optional{  };
     /** @brief true if ErrorMessage_Optional has been set to a value */
@@ -201,3 +212,5 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
      /** @brief Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false */
     void ClearErrorMessage() { ErrorMessage_IsSet = false; }
 };
+
+/** @} */

@@ -11,15 +11,16 @@
 #include "RallyHereAPIHelpers.h"
 #include "PortalTokenDetailsGrantType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief The grant type used to authenticate the portal tokens
  */
 UENUM(BlueprintType)
 enum class ERHAPI_PortalTokenDetailsGrantType : uint8
 {
-    PS4V1 UMETA(ToolTip="An enumeration."),
-    PS4V3 UMETA(ToolTip="An enumeration."),
-    PS5V3 UMETA(ToolTip="An enumeration."),
+    PS4V1 UMETA(ToolTip="Playstation Network v1 auth token validated using the configured PS4 credentials"),
+    PS4V3 UMETA(ToolTip="Playstation Network v3 auth token validated using the configured PS4 credentials"),
+    PS5V3 UMETA(ToolTip="Playstation Network v3 auth token validated using the configured PS5 credentials"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PortalTokenDetailsGrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PortalTokenDetailsGrantType& EnumValue);

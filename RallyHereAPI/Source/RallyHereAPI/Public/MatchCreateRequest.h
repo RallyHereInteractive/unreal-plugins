@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "MatchCreateRequest.generated.h"
 
+/** @defgroup RHAPI_MatchCreateRequest RallyHere API Model MatchCreateRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A request to create a match resource on a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchCreateRequest : public FRHAPI_Model
@@ -68,3 +72,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchCreateRequest : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 };
+
+/** @} */

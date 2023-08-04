@@ -35,7 +35,8 @@ bool FRHAPI_PersonEmailListResponse::FromJson(const TSharedPtr<FJsonValue>& Json
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("email_list_ids"), EmailListIds);
+    const TSharedPtr<FJsonValue> JsonEmailListIdsField = (*Object)->TryGetField(TEXT("email_list_ids"));
+    ParseSuccess &= JsonEmailListIdsField.IsValid() && !JsonEmailListIdsField->IsNull() && TryGetJsonValue(JsonEmailListIdsField, EmailListIds);
 
     return ParseSuccess;
 }

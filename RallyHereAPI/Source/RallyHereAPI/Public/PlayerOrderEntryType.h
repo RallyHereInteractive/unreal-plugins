@@ -11,8 +11,9 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerOrderEntryType.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Player Order Entry Type.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_PlayerOrderEntryType : uint8

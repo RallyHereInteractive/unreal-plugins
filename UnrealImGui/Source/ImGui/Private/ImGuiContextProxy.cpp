@@ -5,6 +5,9 @@
 #include "ImGuiDelegatesContainer.h"
 #include "ImGuiImplementation.h"
 #include "ImGuiInteroperability.h"
+//$$KAB - BEGIN - Add support for loading a layout from INI between frames
+#include "ImGuiModule.h"
+//$$KAB - END - Add support for loading a layout from INI between frames
 #include "Utilities/Arrays.h"
 #include "VersionCompatibility.h"
 
@@ -20,11 +23,9 @@ namespace
 {
 	FString GetSaveDirectory()
 	{
-#if ENGINE_COMPATIBILITY_LEGACY_SAVED_DIR
-		const FString SavedDir = FPaths::GameSavedDir();
-#else
-		const FString SavedDir = FPaths::ProjectSavedDir();
-#endif
+		//$$KAB - BEGIN - Update Saved Directory to a writable path for all platforms
+		const FString SavedDir = FPaths::GeneratedConfigDir();
+		//$$KAB - END - Update Saved Directory to a writable path for all platforms
 
 		FString Directory = FPaths::Combine(*SavedDir, TEXT("ImGui"));
 
@@ -220,6 +221,29 @@ void FImGuiContextProxy::BeginFrame(float DeltaTime)
 #else
 		IO.DisplaySize = { static_cast<float>(DisplaySize.X), static_cast<float>(DisplaySize.Y) };
 #endif
+
+		//$$KAB - BEGIN - Add support for loading a layout from INI between frames
+		if (FImGuiModule::Get().GetProperties().ShouldLoadSavedLayout())
+		{
+			if (FPaths::FileExists(IO.IniFilename))
+			{
+				ImGui::LoadIniSettingsFromDisk(IO.IniFilename);
+			}
+			else
+			{
+				// Default to Default if no saved data exists.
+				FString ConfigFileName = FPaths::EnginePluginsDir() / TEXT("RallyHere/RallyHereDebugTool/Config/DefaultImGuiLayout.ini");
+				ImGui::LoadIniSettingsFromDisk(TCHAR_TO_UTF8(*ConfigFileName));
+			}
+			FImGuiModule::Get().GetProperties().SetLoadSavedLayout(false);
+		}
+		else if (FImGuiModule::Get().GetProperties().ShouldLoadDefaultLayout())
+		{
+			FString ConfigFileName = FPaths::EnginePluginsDir() / TEXT("RallyHere/RallyHereDebugTool/Config/DefaultImGuiLayout.ini");
+			ImGui::LoadIniSettingsFromDisk(TCHAR_TO_UTF8(*ConfigFileName));
+			FImGuiModule::Get().GetProperties().SetLoadDefaultLayout(false);
+		}
+		//$$KAB - END - Add support for loading a layout from INI between frames
 
 		ImGui::NewFrame();
 

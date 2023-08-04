@@ -11,19 +11,20 @@
 #include "RallyHereAPIHelpers.h"
 #include "InventoryOperation.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Determines how the Inventory Quantity will be acted upon and the sort order of Loot in a Vendor.  Sort Order: 1. check_greater_then_or_equal/check_less_than 2. check_greater_than_or_equal_and_subtract/subtract 3. add/set
  */
 UENUM(BlueprintType)
 enum class ERHAPI_InventoryOperation : uint8
 {
-    Invalid UMETA(ToolTip="An enumeration."),
-    Add UMETA(ToolTip="An enumeration."),
-    Subtract UMETA(ToolTip="An enumeration."),
-    Set UMETA(ToolTip="An enumeration."),
-    CheckGreaterThanOrEqual UMETA(ToolTip="An enumeration."),
-    CheckLessThan UMETA(ToolTip="An enumeration."),
-    CheckGreaterThanOrEqualAndSubtract UMETA(ToolTip="An enumeration."),
+    Invalid UMETA(ToolTip="Invalid Inventory Operation."),
+    Add UMETA(ToolTip="Add the quantity or expiration of the Inventory."),
+    Subtract UMETA(ToolTip="Subtract the quantity or expiration of the Inventory."),
+    Set UMETA(ToolTip="Set the quantity or expiration of the Inventory."),
+    CheckGreaterThanOrEqual UMETA(ToolTip="Check if the quantity or expiration of the Inventory is greater than or equal to the value."),
+    CheckLessThan UMETA(ToolTip="Check if the quantity or expiration of the Inventory is less than the value."),
+    CheckGreaterThanOrEqualAndSubtract UMETA(ToolTip="Check if the quantity or expiration of the Inventory is greater than or equal to the value and subtract the value from the quantity or expiration."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_InventoryOperation& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InventoryOperation& EnumValue);

@@ -6,14 +6,17 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereAPIModule.h"
+#include "RallyHereAPIHttpRequester.h"
 
 IMPLEMENT_MODULE(FRallyHereAPIModule, RallyHereAPI);
 DEFINE_LOG_CATEGORY(LogRallyHereAPI);
 
 void FRallyHereAPIModule::StartupModule()
 {
+    RallyHereAPI::FRallyHereAPIHttpRequester::Initialize();
 }
 
 void FRallyHereAPIModule::ShutdownModule()
 {
+    RallyHereAPI::FRallyHereAPIHttpRequester::Uninitialize();
 }

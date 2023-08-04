@@ -41,16 +41,16 @@ public:
     FBlockedV2API();
     virtual ~FBlockedV2API();
 
-    FHttpRequestPtr BlockV2(const FRequest_BlockV2& Request, const FDelegate_BlockV2& Delegate = FDelegate_BlockV2());
-    FHttpRequestPtr GetBlockedListForPlayerV2(const FRequest_GetBlockedListForPlayerV2& Request, const FDelegate_GetBlockedListForPlayerV2& Delegate = FDelegate_GetBlockedListForPlayerV2());
-    FHttpRequestPtr GetBlockedV2(const FRequest_GetBlockedV2& Request, const FDelegate_GetBlockedV2& Delegate = FDelegate_GetBlockedV2());
-    FHttpRequestPtr UnblockV2(const FRequest_UnblockV2& Request, const FDelegate_UnblockV2& Delegate = FDelegate_UnblockV2());
+    FHttpRequestPtr BlockV2(const FRequest_BlockV2& Request, const FDelegate_BlockV2& Delegate = FDelegate_BlockV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetBlockedListForPlayerV2(const FRequest_GetBlockedListForPlayerV2& Request, const FDelegate_GetBlockedListForPlayerV2& Delegate = FDelegate_GetBlockedListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetBlockedV2(const FRequest_GetBlockedV2& Request, const FDelegate_GetBlockedV2& Delegate = FDelegate_GetBlockedV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UnblockV2(const FRequest_UnblockV2& Request, const FDelegate_UnblockV2& Delegate = FDelegate_UnblockV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnBlockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BlockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetBlockedListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetBlockedV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUnblockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnblockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnBlockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BlockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetBlockedListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetBlockedV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBlockedV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUnblockV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnblockV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -91,7 +91,7 @@ struct RALLYHEREAPI_API Traits_BlockV2
     typedef FBlockedV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.BlockV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BlockV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked List For Player V2
@@ -137,7 +137,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
     typedef FBlockedV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetBlockedListForPlayerV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked V2
@@ -177,7 +177,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedV2
     typedef FBlockedV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetBlockedV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedV2(InRequest, InDelegate, Priority); }
 };
 
 /* Unblock V2
@@ -217,7 +217,7 @@ struct RALLYHEREAPI_API Traits_UnblockV2
     typedef FBlockedV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UnblockV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnblockV2(InRequest, InDelegate, Priority); }
 };
 
 

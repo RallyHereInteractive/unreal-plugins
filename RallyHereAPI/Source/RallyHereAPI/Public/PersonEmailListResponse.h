@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PersonEmailListResponse.generated.h"
 
+/** @defgroup RHAPI_PersonEmailListResponse RallyHere API Model PersonEmailListResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -44,3 +48,5 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
     /** @brief Sets the value of EmailListIds */
     void SetEmailListIds(TArray<int32> NewValue) { EmailListIds = NewValue;  }
 };
+
+/** @} */

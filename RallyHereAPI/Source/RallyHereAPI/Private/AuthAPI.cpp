@@ -8,6 +8,7 @@
 #include "AuthAPI.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIAuthContext.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "HttpModule.h"
 #include "Serialization/JsonSerializer.h"
 
@@ -22,43 +23,60 @@ FAuthAPI::FAuthAPI() : FAPI()
 
 FAuthAPI::~FAuthAPI() {}
 
-FHttpRequestPtr FAuthAPI::GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate /*= FDelegate_GenerateKey()*/)
+FHttpRequestPtr FAuthAPI::GenerateKey(const FRequest_GenerateKey& Request, const FDelegate_GenerateKey& Delegate /*= FDelegate_GenerateKey()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnGenerateKeyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GenerateKey Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnGenerateKeyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_GenerateKey Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -67,6 +85,7 @@ FRequest_GenerateKey::FRequest_GenerateKey()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_GenerateKey::GetSimplifiedPath() const
@@ -128,43 +147,60 @@ FResponse_GenerateKey::FResponse_GenerateKey(FRequestMetadata InRequestMetadata)
 
 FString Traits_GenerateKey::Name = TEXT("GenerateKey");
 
-FHttpRequestPtr FAuthAPI::GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate /*= FDelegate_GetAllPublicKeys()*/)
+FHttpRequestPtr FAuthAPI::GetAllPublicKeys(const FRequest_GetAllPublicKeys& Request, const FDelegate_GetAllPublicKeys& Delegate /*= FDelegate_GetAllPublicKeys()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnGetAllPublicKeysResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPublicKeys Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetAllPublicKeysResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_GetAllPublicKeys Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -173,6 +209,7 @@ FRequest_GetAllPublicKeys::FRequest_GetAllPublicKeys()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_GetAllPublicKeys::GetSimplifiedPath() const
@@ -234,43 +271,60 @@ FResponse_GetAllPublicKeys::FResponse_GetAllPublicKeys(FRequestMetadata InReques
 
 FString Traits_GetAllPublicKeys::Name = TEXT("GetAllPublicKeys");
 
-FHttpRequestPtr FAuthAPI::GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate /*= FDelegate_GetPortalTokenDetails()*/)
+FHttpRequestPtr FAuthAPI::GetPortalTokenDetails(const FRequest_GetPortalTokenDetails& Request, const FDelegate_GetPortalTokenDetails& Delegate /*= FDelegate_GetPortalTokenDetails()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnGetPortalTokenDetailsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPortalTokenDetails Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPortalTokenDetailsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_GetPortalTokenDetails Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -279,6 +333,7 @@ FRequest_GetPortalTokenDetails::FRequest_GetPortalTokenDetails()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_GetPortalTokenDetails::GetSimplifiedPath() const
@@ -305,7 +360,7 @@ bool FRequest_GetPortalTokenDetails::SetupHttpRequest(const FHttpRequestRef& Htt
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, BodyGetPortalTokenDetailsV1PortaltokenDetailsPost);
+        WriteJsonValue(Writer, PortalTokenDetailsRequest);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -313,11 +368,11 @@ bool FRequest_GetPortalTokenDetails::SetupHttpRequest(const FHttpRequestRef& Htt
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPortalTokenDetails - Body parameter (FRHAPI_BodyGetPortalTokenDetailsV1PortaltokenDetailsPost) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPortalTokenDetails - Body parameter (FRHAPI_PortalTokenDetailsRequest) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPortalTokenDetails - Body parameter (FRHAPI_BodyGetPortalTokenDetailsV1PortaltokenDetailsPost) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetPortalTokenDetails - Body parameter (FRHAPI_PortalTokenDetailsRequest) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -337,7 +392,7 @@ void FResponse_GetPortalTokenDetails::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Successful Response"));
         break;
     case 403:
-        SetResponseString(TEXT("Forbidden"));
+        SetResponseString(TEXT(" Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_access_token_not_valid&#x60; - Nintendo access token is not valid - &#x60;nintendo_key_url_not_found&#x60; - Nintendo key url not found - &#x60;nintendo_retrieve_client_credentials_failed&#x60; - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - &#x60;nintendo_ppid_conversion_failed&#x60; - error during PPID conversion - &#x60;nintendo_ppid_conversion_too_many_accounts_found&#x60; - too many accounts found during PPID conversion - &#x60;nintendo_ppid_conversion_no_accounts_found&#x60; - no accounts found during PPID conversion - &#x60;nintendo_ppid_missing&#x60; - PPID is missing for user - &#x60;nintendo_ppid_key_not_valid&#x60; - Nintendo access token key is not valid - &#x60;nintendo_service_key_url_not_found&#x60; - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - &#x60;nintendo_service_access_token_not_valid&#x60; - Nintendo service access token is not valid - &#x60;nintendo_service_access_token_for_wrong_app&#x60; - Nintendo service access token is for the wrong app - &#x60;nintendo_oauth_env_not_found&#x60; - Nintendo oauth environment not found.  Check that the environment is configured correctly. - &#x60;nintendo_token_exchange_failed&#x60; - Problem exchanging code for token with Nintendo - &#x60;ps4_v1_disabled&#x60; - PS4 v1 authentication is currently disabled - &#x60;ps4_v1_token_empty&#x60; - PS4 v1 access token is empty - &#x60;ps4_v1_token_expired&#x60; - PS4 v1 access token is expired - &#x60;ps4_v1_token_exchange_failed&#x60; - Problem exchanging code for token with PS4 - &#x60;ps4_v1_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v1_id_token_not_valid&#x60; - PS4 v1 id token is not valid - &#x60;ps4_v1_token_details_disabled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_details_request_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3_disabled&#x60; - PS4 v3 authentication is currently disabled - &#x60;ps4_v3_token_details_disabled&#x60; - PS4 v3 token details are disabled - &#x60;ps4_v3_token_empty&#x60; - PS4 v3 access token is empty - &#x60;ps4_v3_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v3_id_token_not_valid&#x60; - PS4 v3 id token is not valid - &#x60;ps5_v3_disabled&#x60; - PS5 v3 authentication is currently disabled - &#x60;ps5_v3_token_details_disabled&#x60; - PS5 v3 token details are disabled - &#x60;ps5_v3_token_empty&#x60; - PS5 v3 access token is empty - &#x60;ps5_v3_id_token_request_failed&#x60; - Problem requesting id token from PS5 - &#x60;ps5_v3_id_token_not_valid&#x60; - PS5 v3 id token is not valid - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -357,43 +412,60 @@ FResponse_GetPortalTokenDetails::FResponse_GetPortalTokenDetails(FRequestMetadat
 
 FString Traits_GetPortalTokenDetails::Name = TEXT("GetPortalTokenDetails");
 
-FHttpRequestPtr FAuthAPI::GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate /*= FDelegate_GetPublicKeyById()*/)
+FHttpRequestPtr FAuthAPI::GetPublicKeyById(const FRequest_GetPublicKeyById& Request, const FDelegate_GetPublicKeyById& Delegate /*= FDelegate_GetPublicKeyById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnGetPublicKeyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPublicKeyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnGetPublicKeyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_GetPublicKeyById Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -402,6 +474,7 @@ FRequest_GetPublicKeyById::FRequest_GetPublicKeyById()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_GetPublicKeyById::GetSimplifiedPath() const
@@ -474,43 +547,60 @@ FResponse_GetPublicKeyById::FResponse_GetPublicKeyById(FRequestMetadata InReques
 
 FString Traits_GetPublicKeyById::Name = TEXT("GetPublicKeyById");
 
-FHttpRequestPtr FAuthAPI::Login(const FRequest_Login& Request, const FDelegate_Login& Delegate /*= FDelegate_Login()*/)
+FHttpRequestPtr FAuthAPI::Login(const FRequest_Login& Request, const FDelegate_Login& Delegate /*= FDelegate_Login()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Login Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_Login Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -519,6 +609,7 @@ FRequest_Login::FRequest_Login()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_Login::GetSimplifiedPath() const
@@ -566,7 +657,7 @@ bool FRequest_Login::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, BodyLoginV1LoginPost);
+        WriteJsonValue(Writer, LoginRequestV1);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -574,11 +665,11 @@ bool FRequest_Login::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Login - Body parameter (FRHAPI_BodyLoginV1LoginPost) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Login - Body parameter (FRHAPI_LoginRequestV1) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Login - Body parameter (FRHAPI_BodyLoginV1LoginPost) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_Login - Body parameter (FRHAPI_LoginRequestV1) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -598,7 +689,7 @@ void FResponse_Login::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespons
         SetResponseString(TEXT("Successful Response"));
         break;
     case 403:
-        SetResponseString(TEXT("Forbidden"));
+        SetResponseString(TEXT("User authentication failed.  See error code and description for further details.  Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_access_token_not_valid&#x60; - Nintendo access token is not valid - &#x60;nintendo_key_url_not_found&#x60; - Nintendo key url not found - &#x60;nintendo_retrieve_client_credentials_failed&#x60; - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - &#x60;nintendo_ppid_conversion_failed&#x60; - error during PPID conversion - &#x60;nintendo_ppid_conversion_too_many_accounts_found&#x60; - too many accounts found during PPID conversion - &#x60;nintendo_ppid_conversion_no_accounts_found&#x60; - no accounts found during PPID conversion - &#x60;nintendo_ppid_missing&#x60; - PPID is missing for user - &#x60;nintendo_ppid_key_not_valid&#x60; - Nintendo access token key is not valid - &#x60;nintendo_service_key_url_not_found&#x60; - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - &#x60;nintendo_service_access_token_not_valid&#x60; - Nintendo service access token is not valid - &#x60;nintendo_service_access_token_for_wrong_app&#x60; - Nintendo service access token is for the wrong app - &#x60;nintendo_oauth_env_not_found&#x60; - Nintendo oauth environment not found.  Check that the environment is configured correctly. - &#x60;nintendo_token_exchange_failed&#x60; - Problem exchanging code for token with Nintendo - &#x60;ps4_v1_disabled&#x60; - PS4 v1 authentication is currently disabled - &#x60;ps4_v1_token_empty&#x60; - PS4 v1 access token is empty - &#x60;ps4_v1_token_expired&#x60; - PS4 v1 access token is expired - &#x60;ps4_v1_token_exchange_failed&#x60; - Problem exchanging code for token with PS4 - &#x60;ps4_v1_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v1_id_token_not_valid&#x60; - PS4 v1 id token is not valid - &#x60;ps4_v1_token_details_disabled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_details_request_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3_disabled&#x60; - PS4 v3 authentication is currently disabled - &#x60;ps4_v3_token_details_disabled&#x60; - PS4 v3 token details are disabled - &#x60;ps4_v3_token_empty&#x60; - PS4 v3 access token is empty - &#x60;ps4_v3_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v3_id_token_not_valid&#x60; - PS4 v3 id token is not valid - &#x60;ps5_v3_disabled&#x60; - PS5 v3 authentication is currently disabled - &#x60;ps5_v3_token_details_disabled&#x60; - PS5 v3 token details are disabled - &#x60;ps5_v3_token_empty&#x60; - PS5 v3 access token is empty - &#x60;ps5_v3_id_token_request_failed&#x60; - Problem requesting id token from PS5 - &#x60;ps5_v3_id_token_not_valid&#x60; - PS5 v3 id token is not valid - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -618,43 +709,60 @@ FResponse_Login::FResponse_Login(FRequestMetadata InRequestMetadata) :
 
 FString Traits_Login::Name = TEXT("Login");
 
-FHttpRequestPtr FAuthAPI::Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate /*= FDelegate_Logout()*/)
+FHttpRequestPtr FAuthAPI::Logout(const FRequest_Logout& Request, const FDelegate_Logout& Delegate /*= FDelegate_Logout()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnLogoutResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnLogoutResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnLogoutResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Logout Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnLogoutResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnLogoutResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_Logout Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -663,6 +771,7 @@ FRequest_Logout::FRequest_Logout()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_Logout::GetSimplifiedPath() const
@@ -738,43 +847,60 @@ FResponse_Logout::FResponse_Logout(FRequestMetadata InRequestMetadata) :
 
 FString Traits_Logout::Name = TEXT("Logout");
 
-FHttpRequestPtr FAuthAPI::OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate /*= FDelegate_OauthLogin()*/)
+FHttpRequestPtr FAuthAPI::OauthLogin(const FRequest_OauthLogin& Request, const FDelegate_OauthLogin& Delegate /*= FDelegate_OauthLogin()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnOauthLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthLoginResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnOauthLoginResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthLogin Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnOauthLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthLoginResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_OauthLogin Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -783,6 +909,7 @@ FRequest_OauthLogin::FRequest_OauthLogin()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_OauthLogin::GetSimplifiedPath() const
@@ -853,8 +980,8 @@ void FResponse_OauthLogin::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRe
     FResponse::SetHttpResponseCode(InHttpResponseCode);
     switch ((int)InHttpResponseCode)
     {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
+    case 307:
+        SetResponseString(TEXT("Redirect to next step in OAuth flow"));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -862,9 +989,29 @@ void FResponse_OauthLogin::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRe
     }
 }
 
+bool FResponse_OauthLogin::ParseHeaders()
+{
+    // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+    TMap<FString, FString> HeadersMap;
+    for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+    {
+        int32 index;
+        if (HeaderStr.FindChar(TEXT(':'), index))
+        {
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+        }
+    }
+    bool bParsedAllRequiredHeaders = true;
+    if (const FString* Val = HeadersMap.Find(TEXT("location")))
+    {
+        Location = *Val;
+    }
+    return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_OauthLogin::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+    return true;
 }
 
 FResponse_OauthLogin::FResponse_OauthLogin(FRequestMetadata InRequestMetadata) :
@@ -874,43 +1021,60 @@ FResponse_OauthLogin::FResponse_OauthLogin(FRequestMetadata InRequestMetadata) :
 
 FString Traits_OauthLogin::Name = TEXT("OauthLogin");
 
-FHttpRequestPtr FAuthAPI::OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate /*= FDelegate_OauthResponse()*/)
+FHttpRequestPtr FAuthAPI::OauthResponse(const FRequest_OauthResponse& Request, const FDelegate_OauthResponse& Delegate /*= FDelegate_OauthResponse()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnOauthResponseResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthResponseResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnOauthResponseResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthResponseResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_OauthResponse Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -919,6 +1083,7 @@ FRequest_OauthResponse::FRequest_OauthResponse()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_OauthResponse::GetSimplifiedPath() const
@@ -989,8 +1154,8 @@ void FResponse_OauthResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
     FResponse::SetHttpResponseCode(InHttpResponseCode);
     switch ((int)InHttpResponseCode)
     {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
+    case 307:
+        SetResponseString(TEXT("Redirect to next step in OAuth flow"));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -998,9 +1163,29 @@ void FResponse_OauthResponse::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
     }
 }
 
+bool FResponse_OauthResponse::ParseHeaders()
+{
+    // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+    TMap<FString, FString> HeadersMap;
+    for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+    {
+        int32 index;
+        if (HeaderStr.FindChar(TEXT(':'), index))
+        {
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+        }
+    }
+    bool bParsedAllRequiredHeaders = true;
+    if (const FString* Val = HeadersMap.Find(TEXT("location")))
+    {
+        Location = *Val;
+    }
+    return bParsedAllRequiredHeaders;
+}
+
 bool FResponse_OauthResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+    return true;
 }
 
 FResponse_OauthResponse::FResponse_OauthResponse(FRequestMetadata InRequestMetadata) :
@@ -1010,43 +1195,60 @@ FResponse_OauthResponse::FResponse_OauthResponse(FRequestMetadata InRequestMetad
 
 FString Traits_OauthResponse::Name = TEXT("OauthResponse");
 
-FHttpRequestPtr FAuthAPI::OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate /*= FDelegate_OauthTokenExchange()*/)
+FHttpRequestPtr FAuthAPI::OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate /*= FDelegate_OauthTokenExchange()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnOauthTokenExchangeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_OauthTokenExchange Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -1055,6 +1257,7 @@ FRequest_OauthTokenExchange::FRequest_OauthTokenExchange()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_OauthTokenExchange::GetSimplifiedPath() const
@@ -1122,6 +1325,9 @@ void FResponse_OauthTokenExchange::SetHttpResponseCode(EHttpResponseCodes::Type 
     case 200:
         SetResponseString(TEXT("Successful Response"));
         break;
+    case 403:
+        SetResponseString(TEXT(" Error Codes: - &#x60;authorization_code_not_found&#x60;: Authorization code not found or expired "));
+        break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
         break;
@@ -1140,43 +1346,60 @@ FResponse_OauthTokenExchange::FResponse_OauthTokenExchange(FRequestMetadata InRe
 
 FString Traits_OauthTokenExchange::Name = TEXT("OauthTokenExchange");
 
-FHttpRequestPtr FAuthAPI::Token(const FRequest_Token& Request, const FDelegate_Token& Delegate /*= FDelegate_Token()*/)
+FHttpRequestPtr FAuthAPI::Token(const FRequest_Token& Request, const FDelegate_Token& Delegate /*= FDelegate_Token()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnTokenResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_Token Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -1185,6 +1408,7 @@ FRequest_Token::FRequest_Token()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_Token::GetSimplifiedPath() const
@@ -1271,43 +1495,60 @@ FResponse_Token::FResponse_Token(FRequestMetadata InRequestMetadata) :
 
 FString Traits_Token::Name = TEXT("Token");
 
-FHttpRequestPtr FAuthAPI::Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate /*= FDelegate_Verify()*/)
+FHttpRequestPtr FAuthAPI::Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate /*= FDelegate_Verify()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
 
-    FHttpRequestRef HttpRequest = CreateHttpRequest(Request);
-    HttpRequest->SetURL(*(Url + Request.ComputePath()));
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
 
     for(const auto& It : AdditionalHeaderParams)
     {
-        HttpRequest->SetHeader(It.Key, It.Value);
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
     }
 
-    if (!Request.SetupHttpRequest(HttpRequest))
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
     {
         return nullptr;
     }
-    HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnVerifyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext());
-    HttpRequest->ProcessRequest();
-    OnRequestStarted().Broadcast(Request.GetRequestMetadata(), HttpRequest);
-    return HttpRequest;
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FAuthAPI::OnVerifyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
 }
 
-void FAuthAPI::OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry)
+void FAuthAPI::OnVerifyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Verify Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
     if (AuthContextForRetry)
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        HttpRequest->OnProcessRequestComplete().BindRaw(this, &FAuthAPI::OnVerifyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>());
+        ResponseDelegate.BindRaw(this, &FAuthAPI::OnVerifyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
     FResponse_Verify Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response);
-    OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
     if (!bWillRetryWithRefreshedAuth)
     {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
         Delegate.ExecuteIfBound(Response);
     }
 }
@@ -1316,6 +1557,7 @@ FRequest_Verify::FRequest_Verify()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
 }
 
 FString FRequest_Verify::GetSimplifiedPath() const

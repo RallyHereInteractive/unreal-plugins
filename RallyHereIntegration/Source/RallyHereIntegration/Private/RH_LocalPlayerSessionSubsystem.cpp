@@ -6,7 +6,9 @@
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "Engine/LocalPlayer.h"
-#include "RH_NotificationSubsystem.h"
+#include "RH_PlayerNotifications.h"
+#include "RH_PlatformSessionSyncer.h"
+#include "Interfaces/OnlineGameActivityInterface.h"
 
 URH_LocalPlayerSessionSubsystem::URH_LocalPlayerSessionSubsystem()
 	: Super()
@@ -22,9 +24,23 @@ void URH_LocalPlayerSessionSubsystem::Initialize()
 
 	InitPropertiesWithDefaultValues();
 
-	if (GetLocalPlayerSubsystem()->GetNotificationSubsystem() != nullptr)
+	// OSS bindings
+	auto* OSS = GetOSS();
+	if (OSS != nullptr && OSS->GetSessionInterface() != nullptr)
 	{
-		GetLocalPlayerSubsystem()->GetNotificationSubsystem()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).AddUObject(this, &URH_LocalPlayerSessionSubsystem::HandleNotification);
+		OSS->GetSessionInterface()->AddOnSessionUserInviteAcceptedDelegate_Handle(FOnSessionUserInviteAcceptedDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted));
+		OSS->GetSessionInterface()->AddOnCreateSessionCompleteDelegate_Handle(FOnCreateSessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionCreated));
+		OSS->GetSessionInterface()->AddOnJoinSessionCompleteDelegate_Handle(FOnJoinSessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionJoined));
+		OSS->GetSessionInterface()->AddOnStartSessionCompleteDelegate_Handle(FOnStartSessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionStarted));
+		OSS->GetSessionInterface()->AddOnEndSessionCompleteDelegate_Handle(FOnEndSessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionEnded));
+		OSS->GetSessionInterface()->AddOnDestroySessionCompleteDelegate_Handle(FOnDestroySessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionDestroyed));
+
+		OSS->GetSessionInterface()->AddOnSessionParticipantsChangeDelegate_Handle(FOnSessionParticipantsChangeDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantChange));
+		OSS->GetSessionInterface()->AddOnSessionParticipantRemovedDelegate_Handle(FOnSessionParticipantRemovedDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantRemoved));
+	}
+	if (OSS != nullptr && OSS->GetGameActivityInterface() != nullptr)
+	{
+		OSS->GetGameActivityInterface()->AddOnGameActivityActivationRequestedDelegate_Handle(FOnGameActivityActivationRequestedDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation));
 	}
 }
 
@@ -40,16 +56,33 @@ void URH_LocalPlayerSessionSubsystem::Deinitialize()
 	}
 
 	// this should not be necessary in normal flow, but worth doing in case of abnormal cases
-	if (GetLocalPlayerSubsystem()->GetNotificationSubsystem() != nullptr)
+	if (GetLocalPlayerSubsystem()->GetPlayerNotifications() != nullptr)
 	{
-		GetLocalPlayerSubsystem()->GetNotificationSubsystem()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).RemoveAll(this);
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).RemoveAll(this);
 	}
+
+	// OSS bindings
+	auto* OSS = GetOSS();
+	if (OSS != nullptr && OSS->GetSessionInterface() != nullptr)
+	{
+		OSS->GetSessionInterface()->ClearOnSessionUserInviteAcceptedDelegates(this);
+		OSS->GetSessionInterface()->ClearOnCreateSessionCompleteDelegates(this);
+		OSS->GetSessionInterface()->ClearOnJoinSessionCompleteDelegates(this);
+
+		OSS->GetSessionInterface()->ClearOnSessionParticipantsChangeDelegates(this);
+		OSS->GetSessionInterface()->ClearOnSessionParticipantRemovedDelegates(this);
+	}
+	if (OSS != nullptr && OSS->GetGameActivityInterface() != nullptr)
+	{
+		OSS->GetGameActivityInterface()->ClearOnGameActivityActivationRequestedDelegates(this);
+	}
+
 }
 
-void URH_LocalPlayerSessionSubsystem::OnUserChanged()
+void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, class URH_PlayerInfo* OldLocalPlayerInfo)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	Super::OnUserChanged();
+	Super::OnUserChanged(OldPlayerUuid, OldLocalPlayerInfo);
 
 	StopPolling();
 
@@ -66,9 +99,21 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged()
 	// ensure sessions array has been cleared out by the above
 	check(Sessions.Num() == 0);
 
+	// clear out old notification binding
+	if (OldLocalPlayerInfo != nullptr)
+	{
+		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).RemoveAll(this);
+	}
+
 	InitPropertiesWithDefaultValues();
 
-	URH_OnlineSession::PollAllSessions(this, false, FRH_OnPollAllSessionsDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete));	// immediate update
+	// add new notification binding
+	if (GetLocalPlayerSubsystem()->GetPlayerNotifications() != nullptr)
+	{
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).AddUObject(this, &URH_LocalPlayerSessionSubsystem::HandleNotification);
+	}
+
+	URH_SessionView::PollAllSessions(this, true, true, FRH_OnPollAllSessionsDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete));	// immediate update
 	StartPolling();		// start poll timer
 }
 
@@ -89,38 +134,25 @@ void URH_LocalPlayerSessionSubsystem::HandleNotification(const FRHAPI_Notificati
 		{
 			// the third API param should be the session ID
 			const FString& SessionId = APIParams[2];
-#if SESSIONS_SUPPORT_ETAGS
-			const FString ETag = Notification.GetETag();
-#else
-			const FString ETag = FString();
-#endif
+			const FString ETag = Notification.GetEtag();
 
-			bool bShouldPoll = false;
 			auto* Session = GetSessionById(SessionId);
 			if (Session != nullptr)
 			{
-				if (Session->GetETag() != ETag || ETag.Len() <= 0)
-				{
-					// Session that we know about has changed, poll it
-					bShouldPoll = true;
-				}
+				Session->AddDeferredPoll(FRH_DeferredSessionPoll(FRH_DeferredSessionPoll::Type::Notification, FRH_PollCompleteFunc(), ETag));
 			}
 			else
 			{
-				// Session that we do not know about has been notified, poll it
-				bShouldPoll = true;
-			}
-
-			if (bShouldPoll)
-			{
-				URH_OnlineSession::PollSingleSession(SessionId, this);
+				// this may be a session we need to know about but do not know about yet, do an immediate poll to find out
+				ForcePollForUpdate();
 			}
 		}
 	}
 }
 
-void URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete(bool bSuccess, TArray<URH_SessionView*> SessionViews)
+void URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete(bool bSuccess, const TArray<FString>& SessionIds)
 {
+	SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginPollSessionsComplete, FColor::Purple);
 	OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
 }
 
@@ -141,6 +173,16 @@ URH_PlayerInfoSubsystem* URH_LocalPlayerSessionSubsystem::GetPlayerInfoSubsystem
 IOnlineSubsystem* URH_LocalPlayerSessionSubsystem::GetOSS() const
 {
 	return GetLocalPlayerSubsystem()->GetOSS();
+}
+
+FUniqueNetIdWrapper URH_LocalPlayerSessionSubsystem::GetOSSUniqueId() const
+{
+	return GetLocalPlayerSubsystem()->GetOSSUniqueId();
+}
+
+FGuid URH_LocalPlayerSessionSubsystem::GetPlayerUuid() const
+{
+	return GetLocalPlayerSubsystem()->GetPlayerUuid();
 }
 
 TArray<URH_SessionView*> URH_LocalPlayerSessionSubsystem::GetSessionsByType(const FString& Type) const
@@ -219,7 +261,7 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 	URH_SessionView* ExistingRHSession = ExistingPtr ? *ExistingPtr : nullptr;
 
 	// Lookup template from the cache, this should be always existing due to checks in the Import logic
-	FRH_SessionTemplate Template;
+	FRHAPI_SessionTemplate Template;
 	if (!GetTemplate(Session.Type, Template))
 	{
 		return nullptr;
@@ -249,6 +291,12 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 	if (RHSession != nullptr && !Sessions.Contains(Session.SessionId))
 	{
 		Sessions.Add(Session.SessionId, RHSession);
+
+		// add a listener to remove the session locally if it is not found
+		RHSession->OnSessionNotFoundDelegate.AddWeakLambda(this, [this](URH_SessionView* Session)
+			{
+				RemoveSessionById(Session->GetSessionId());
+			});
 	}
 
 	if (RHSession != nullptr)
@@ -257,15 +305,36 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 
 		if (ExistingRHSession != nullptr)
 		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
 			BLUEPRINT_OnSessionUpdatedDelegate.Broadcast(RHSession);
 			OnSessionUpdatedDelegate.Broadcast(RHSession);
 		}
 		else
 		{
-			BLUEPRINT_OnSessionAddedDelegate.Broadcast(RHSession);
-			OnSessionAddedDelegate.Broadcast(RHSession);
+			{
+				SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionAdded, FColor::Purple);
+				BLUEPRINT_OnSessionAddedDelegate.Broadcast(RHSession);
+				OnSessionAddedDelegate.Broadcast(RHSession);
+			}
+
+			// if this is an online session, start listening for updates now that it is in the tracking list
+			if (RHSession->IsOnline())
+			{
+				RHSession->StartPolling();
+			}
 		}
 	}
+
+	// this must be done after the import above
+	if (RHSession != nullptr)
+	{
+		auto JoinedSession = Cast<URH_JoinedSession>(RHSession);
+		if (JoinedSession != nullptr)
+		{
+			CreatePlatformSyncer(JoinedSession);
+		}
+	}
+
 	return RHSession;
 }
 
@@ -299,7 +368,7 @@ bool URH_LocalPlayerSessionSubsystem::PreprocessAPISessionImport(const FRHAPI_Se
 	}
 
 	// block importing a session we do not have the template for
-	FRH_SessionTemplate Template;
+	FRHAPI_SessionTemplate Template;
 	if (!GetTemplate(Session.Type, Template))
 	{
 		// clean up the session if we are in it
@@ -349,33 +418,26 @@ void URH_LocalPlayerSessionSubsystem::ImportAPISession(const FRH_APISessionWithE
 	check(!ExpiringSessions.Contains(Session.SessionId));
 }
 
-void URH_LocalPlayerSessionSubsystem::ReconcileAPISessions(const TArray<FRH_APISessionWithETag>& SessionsModified, const TArray<FString>& SessionNotModified, bool bOnlineOnly)
+void URH_LocalPlayerSessionSubsystem::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag)
 {
 	// build a list of sessions not in the list
 	TArray<FString> SessionIdsToRemove;
-	Sessions.GenerateKeyArray(SessionIdsToRemove);
 
-	for (const auto& Session : SessionsModified)
+	// remove any templates as needed
+	for (const auto& Pair : Sessions)
 	{
-		SessionIdsToRemove.RemoveSwap(Session.Data.SessionId);
-	}
-	SessionIdsToRemove.RemoveAll([&SessionNotModified](const FString& SessionId) { return SessionNotModified.Contains(SessionId); });
-
-	// remove any sessions as needed
-	for (const FString& SessionIdToRemove : SessionIdsToRemove)
-	{
-		auto Session = GetSessionById(SessionIdToRemove);
-		if (Session != nullptr && (!Session->IsOffline() || !bOnlineOnly))
+		if (!Pair.Value->IsOffline() && !SessionIds.Contains(Pair.Key))
 		{
-			RemoveSessionById(SessionIdToRemove);
+			SessionIdsToRemove.Add(Pair.Key);
 		}
 	}
 
-	// import any new session updates
-	for (const auto& Session : SessionsModified)
+	for (const auto& SessionId : SessionIdsToRemove)
 	{
-		ImportAPISession(Session);
+		RemoveSessionById(SessionId);
 	}
+
+	AllSessionsETag = ETag;
 
 	// defer next update cycle
 	if (Poller.IsValid())
@@ -385,55 +447,42 @@ void URH_LocalPlayerSessionSubsystem::ReconcileAPISessions(const TArray<FRH_APIS
 }
 
 
-void URH_LocalPlayerSessionSubsystem::ImportAPITemplate(const FRH_APISessionTemplateWithETag& Template)
+void URH_LocalPlayerSessionSubsystem::ImportAPITemplate(const FRHAPI_SessionTemplate& Template)
 {
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.Data.SessionType);
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.SessionType);
 
-	FRH_SessionTemplate RHTemplate;
-	RHTemplate.ImportAPITemplate(Template);
-
-	Templates.Add(RHTemplate.SessionType, RHTemplate);
+	Templates.Add(Template.SessionType, Template);
 
 	// inform each session of the relevant type of the template update
 	for (auto pair : Sessions)
 	{
-		if (pair.Value->GetSessionType() == RHTemplate.SessionType)
+		if (pair.Value->GetSessionType() == Template.SessionType)
 		{
-			pair.Value->ImportTemplate(RHTemplate);
+			pair.Value->ImportTemplate(Template);
 		}
 	}
 }
 
-void URH_LocalPlayerSessionSubsystem::ReconcileAPITemplates(const TArray<FRH_APISessionTemplateWithETag>& TemplatesModified, const TArray<FString>& TemplatesNotModified, bool bOnlineOnly)
+void URH_LocalPlayerSessionSubsystem::ReconcileAPITemplates(const TArray<FString>& TemplateNames, const TOptional<FString> ETag)
 {
 	// build a list of sessions not in the list
 	TArray<FString> TemplatesToRemove;
-	Templates.GenerateKeyArray(TemplatesToRemove);
 
-	for (const auto& Template : TemplatesModified)
+	// remove any templates as needed
+	for (const auto& Pair : Templates)
 	{
-		TemplatesToRemove.RemoveSwap(Template.Data.SessionType);
-	}
-	TemplatesToRemove.RemoveAll([&TemplatesNotModified](const FString& SessionType) { return TemplatesNotModified.Contains(SessionType); });
-
-	// remove any sessions as needed
-	for (const FString& SessionTypeToRemove : TemplatesToRemove)
-	{
-		FRH_SessionTemplate SessionTemplate;
-		if (GetTemplate(SessionTypeToRemove, SessionTemplate))
+		if (Pair.Key != RH_SessionCustomDataKeys::OfflineFlag && !TemplateNames.Contains(Pair.Key))
 		{
-			if (!SessionTemplate.IsOffline() || !bOnlineOnly)
-			{
-				Templates.Remove(SessionTypeToRemove);
-			}
+			TemplatesToRemove.Add(Pair.Key);
 		}
 	}
 
-	// import any new template updates
-	for (const auto& Template : TemplatesModified)
+	for (const auto& TemplateName : TemplatesToRemove)
 	{
-		ImportAPITemplate(Template);
+		Templates.Remove(TemplateName);
 	}
+
+	AllTemplatesETag = ETag;
 }
 
 void URH_LocalPlayerSessionSubsystem::RemoveSessionById(const FString& SessionId)
@@ -442,11 +491,14 @@ void URH_LocalPlayerSessionSubsystem::RemoveSessionById(const FString& SessionId
 
 	if (Sessions.Contains(SessionId))
 	{
-		UE_LOG(LogRallyHereIntegration, Log, TEXT("Expiring session %s"), *SessionId);
-		URH_SessionView* RHSession = Sessions.FindAndRemoveChecked(SessionId);
+		UE_LOG(LogRHSession, Log, TEXT("Expiring session %s"), *SessionId);
+		auto* RHSession = Sessions.FindAndRemoveChecked(SessionId);
 
-		BLUEPRINT_OnSessionRemovedDelegate.Broadcast(RHSession);
-		OnSessionRemovedDelegate.Broadcast(RHSession);
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionRemoved, FColor::Purple);
+			BLUEPRINT_OnSessionRemovedDelegate.Broadcast(RHSession);
+			OnSessionRemovedDelegate.Broadcast(RHSession);
+		}
 		
 		ExpiringSessions.Add(SessionId, RHSession);
 		RHSession->Expire(FRH_OnSessionExpiredDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnExpirationComplete));
@@ -473,6 +525,29 @@ void URH_LocalPlayerSessionSubsystem::OnExpirationComplete(URH_SessionView* RHSe
 		UE_LOG(LogRHSession, Log, TEXT("Expired session %s"), *SessionId);
 		ExpiringSessions.FindAndRemoveChecked(SessionId);
 
+		// remove the platform syncer
+		auto* PlatformSyncer = GetPlatformSyncerByRHSessionId(SessionId);
+		if (PlatformSyncer != nullptr)
+		{
+			// at this point, cleanup should be complete
+			check(PlatformSyncer->IsCleanupComplete());
+			PlatformSyncers.Remove(SessionId);
+
+			// copy the map to iterate it, in case of further removals
+			auto SyncerMap = PlatformSyncers;
+			for (auto& Pair : SyncerMap)
+			{
+				// put the syncer into unsynchronized state by faking an update - this is to resolve some race conditions around removal and joining on platforms such as Epic where some session types can only be valid for one session at a time on the platform but not on the RH side
+				Pair.Value->OnRHSessionUpdated(Pair.Value->GetRHSession());
+			}
+		}
+
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionExpirationComplete, FColor::Purple);
+			BLUEPRINT_OnSessionExpirationCompleteDelegate.Broadcast(RHSession);
+			OnSessionExpirationCompleteDelegate.Broadcast(RHSession);
+		}
+
 		if (DeferredSessionUpdates.Contains(SessionId))
 		{
 			UE_LOG(LogRHSession, Log, TEXT("Expired session %s was in deferred list, preprocessing"), *SessionId);
@@ -486,7 +561,7 @@ void URH_LocalPlayerSessionSubsystem::OnExpirationComplete(URH_SessionView* RHSe
 	}
 }
 
-bool URH_LocalPlayerSessionSubsystem::GetTemplate(const FString& Type, FRH_SessionTemplate& Template) const
+bool URH_LocalPlayerSessionSubsystem::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
 {
 	auto ptr = Templates.Find(Type);
 	if (ptr != nullptr)
@@ -556,12 +631,12 @@ void URH_LocalPlayerSessionSubsystem::PollForUpdate(const FRH_PollCompleteFunc& 
 		return;
 	}
 
-	auto CompletionDelegate = FRH_OnPollAllSessionsDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, TArray<URH_SessionView*> InSessions)
+	auto CompletionDelegate = FRH_OnPollAllSessionsDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const TArray<FString>& SessionIds)
 	{
 		Delegate.ExecuteIfBound(bSuccess, true);
 	});
 
-	URH_OnlineSession::PollAllSessions(this, false, CompletionDelegate);
+	URH_SessionView::PollAllSessions(this, true, false, CompletionDelegate);
 }
 
 void URH_LocalPlayerSessionSubsystem::ForcePollForUpdate()
@@ -571,5 +646,197 @@ void URH_LocalPlayerSessionSubsystem::ForcePollForUpdate()
 	{
 		Poller->ExecutePoll();
 	}
+}
+
+float URH_LocalPlayerSessionSubsystem::GetPollTimeRemaining() const
+{
+	return Poller.IsValid() ? Poller->GetTimeRemaining() : -1.f;
+}
+
+// Platform Session Support
+
+URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::GetPlatformSyncerByPlatformSessionId(const FUniqueNetIdRepl& PlatformSessionId) const
+{
+	TArray<URH_PlatformSessionSyncer*> PlatformSyncersArray;
+	PlatformSyncers.GenerateValueArray(PlatformSyncersArray);
+	auto ptr = PlatformSyncersArray.FindByPredicate(
+		[PlatformSessionId](const URH_PlatformSessionSyncer* In) {
+			if (In != nullptr)
+			{
+				const auto* PlatformSession = In->GetPlatformSession();
+				if (PlatformSession != nullptr && PlatformSession->SessionInfo)
+				{
+					const auto SessionInfo = PlatformSession->SessionInfo;
+					if (SessionInfo.IsValid() && SessionInfo->IsValid())
+					{
+						return SessionInfo->GetSessionId() == PlatformSessionId;
+					}
+				}
+			}
+			return false;
+		}
+	);
+
+	return ptr != nullptr ? *ptr : nullptr;
+}
+
+URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::CreatePlatformSyncer(URH_JoinedSession* JoinedSession)
+{
+	// this function is conditional - it tries to early out when it can to not created extraneous objects
+	auto SessionId = JoinedSession->GetSessionId();
+	auto PlatformSyncer = GetPlatformSyncerByRHSessionId(SessionId);
+
+	if (PlatformSyncer == nullptr)
+	{
+		// do sanity checking before object creation while we can
+		FString SessionType;
+		if (JoinedSession != nullptr && JoinedSession->GetTemplate().GetEngineSessionType(SessionType))
+		{
+			// for now, only support RH sessions owned by a local player session subsystem
+			auto* OSS = GetOSS();
+			if (OSS != nullptr && OSS->GetSessionInterface() != nullptr && RH_GetPlatformIdFromOSSName(OSS->GetSubsystemName()).IsSet())
+			{
+				PlatformSyncer = NewObject<URH_PlatformSessionSyncer>(this);
+				if (PlatformSyncer->Initialize(SessionId, this))
+				{
+					PlatformSyncers.Add(SessionId, PlatformSyncer);
+				}
+			}
+		}
+	}
+
+	return PlatformSyncer;
+}
+
+bool URH_LocalPlayerSessionSubsystem::FilterOSSCallbackUser(const int32 ControllerId)
+{
+	auto* LPSS = GetLocalPlayerSubsystem();
+	if (ControllerId != INVALID_CONTROLLERID && LPSS->GetLocalPlayer()->GetControllerId() != ControllerId)
+	{		
+		return true;
+	}
+
+	return false;
+}
+
+bool URH_LocalPlayerSessionSubsystem::FilterOSSCallbackUser(const FUniqueNetId& LocalUserId)
+{
+	auto* LPSS = GetLocalPlayerSubsystem();
+	if (LPSS->GetOSSUniqueId() == LocalUserId)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUniqueNetId& LocalUserId, const FString& ActivityId, const FOnlineSessionSearchResult* SessionInfo)
+{
+	// validate that this is for our user
+	if (FilterOSSCallbackUser(LocalUserId))
+	{
+		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because user is filtered"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+	if (!SessionInfo)
+	{
+		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because it has no session dat"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	FString SessionIdStr = SessionInfo->GetSessionIdStr();
+
+	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
 	
+	// we need to join the session
+	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, FRH_GenericSuccessBlock());
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool bSuccesful, const int32 ControllerId, FUniqueNetIdPtr InvitingUserId, const FOnlineSessionSearchResult& Session)
+{
+	FString SessionIdStr = Session.GetSessionIdStr();
+
+	// validate that this is for our user
+	if (FilterOSSCallbackUser(ControllerId))
+	{
+		UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] : Ignoring invite to %s because user is filtered"), ANSI_TO_TCHAR(__FUNCTION__), *SessionIdStr);
+		return;
+	}
+
+	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
+	UE_LOG(LogRHSession, Log, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionIdStr);
+
+	if (bSuccesful)
+	{
+		// we need to join the session
+		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, FRH_GenericSuccessBlock());
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionCreated(FName SessionName, bool bSuccess)
+{
+	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+	if (Syncer != nullptr)
+	{
+		Syncer->OnPlatformSessionCreated(bSuccess);
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionJoined(FName SessionName, EOnJoinSessionCompleteResult::Type Result)
+{
+	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+	if (Syncer != nullptr)
+	{
+		Syncer->OnPlatformSessionJoined(Result);
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionStarted(FName SessionName, bool bSuccess)
+{
+	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+	if (Syncer != nullptr)
+	{
+		Syncer->OnPlatformSessionStarted(bSuccess);
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionEnded(FName SessionName, bool bSuccess)
+{
+	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+	if (Syncer != nullptr)
+	{
+		Syncer->OnPlatformSessionEnded(bSuccess);
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionDestroyed(FName SessionName, bool bSuccess)
+{
+	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+	if (Syncer != nullptr)
+	{
+		Syncer->OnPlatformSessionDestroyed(bSuccess);
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantChange(FName SessionName, const FUniqueNetId& UniqueNetId, bool bJoined)
+{
+	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+	if (Syncer != nullptr)
+	{
+		if (FilterOSSCallbackUser(UniqueNetId))
+		{
+			// the local user left a OSS session, update the RH Session
+			auto RHSession = Syncer->GetRHSession();
+			if (RHSession != nullptr)
+			{
+				RHSession->Leave(true);
+			}
+		}
+	}
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantRemoved(FName SessionName, const FUniqueNetId& UniqueNetId)
+{
+	// this function is specifically for players kicked, but just treat it as a participant being removed
+	OnPlatformSessionParticipantChange(SessionName, UniqueNetId, false);
 }

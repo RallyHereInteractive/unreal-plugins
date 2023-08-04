@@ -14,8 +14,12 @@
 #include "Source.h"
 #include "PlayerOrderCreate.generated.h"
 
+/** @defgroup RHAPI_PlayerOrderCreate RallyHere API Model PlayerOrderCreate
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Create a new Player Order.  &lt;b&gt;Note: &#x60;use_inventory_bucket&#x60; will be ignored on the PlayerOrderEntryCreate if the &#x60;source&#x60; equals &#x60;CLIENT&#x60;.&lt;/b&gt;
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
@@ -38,6 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The source of the Player Order. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Source Source_Optional{  };
     /** @brief true if Source_Optional has been set to a value */
@@ -60,6 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
     void ClearSource() { Source_IsSet = false; }
 
+    /** @brief Arbitrary UUID clients can use to track Orders between request to response. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ClientOrderRefId_Optional{  };
     /** @brief true if ClientOrderRefId_Optional has been set to a value */
@@ -82,6 +88,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
     void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
 
+    /** @brief Portal of the Portal User the Player Order belongs to. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_InventoryPortal PortalId_Optional{  };
     /** @brief true if PortalId_Optional has been set to a value */
@@ -104,6 +111,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
     void ClearPortalId() { PortalId_IsSet = false; }
 
+    /** @brief Portal User Id for the Player this Player Order belongs to. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString PortalUserId_Optional{  };
     /** @brief true if PortalUserId_Optional has been set to a value */
@@ -126,6 +134,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
     void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
+    /** @brief Instance Id for the Instance who submits the Player Order. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString InstanceId_Optional{  };
     /** @brief true if InstanceId_Optional has been set to a value */
@@ -148,6 +157,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
+    /** @brief Match Id for the Match that generated the Player Order. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString MatchId_Optional{  };
     /** @brief true if MatchId_Optional has been set to a value */
@@ -170,6 +180,34 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
     void ClearMatchId() { MatchId_IsSet = false; }
 
+    /** @brief If an order is a transaction, any failed entries will roll back changes from all other entries. */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool IsTransaction_Optional{  };
+    /** @brief true if IsTransaction_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool IsTransaction_IsSet{ false };
+    /** @brief Gets the value of IsTransaction_Optional, regardless of it having been set */
+    bool& GetIsTransaction() { return IsTransaction_Optional; }
+    /** @brief Gets the value of IsTransaction_Optional, regardless of it having been set */
+    const bool& GetIsTransaction() const { return IsTransaction_Optional; }
+    /** @brief Gets the value of IsTransaction_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetIsTransaction(const bool& DefaultValue) const { if (IsTransaction_IsSet) return IsTransaction_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of IsTransaction_Optional and returns true if it has been set, otherwise returns false */
+    bool GetIsTransaction(bool& OutValue) const { if (IsTransaction_IsSet) OutValue = IsTransaction_Optional; return IsTransaction_IsSet; }
+    /** @brief Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetIsTransactionOrNull() { if (IsTransaction_IsSet) return &IsTransaction_Optional; return nullptr; }
+    /** @brief Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetIsTransactionOrNull() const { if (IsTransaction_IsSet) return &IsTransaction_Optional; return nullptr; }
+    /** @brief Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true */
+    void SetIsTransaction(bool NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true; }
+     /** @brief Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false */
+    void ClearIsTransaction() { IsTransaction_Optional = false; IsTransaction_IsSet = false; }
+    /** @brief Returns true if IsTransaction_Optional is set and matches the default value */
+    bool IsIsTransactionDefaultValue() const { return IsTransaction_IsSet && IsTransaction_Optional == false; }
+    /** @brief Sets the value of IsTransaction_Optional to its default and also sets IsTransaction_IsSet to true */
+    void SetIsTransactionToDefault() { IsTransaction_Optional = false; IsTransaction_IsSet = true; }
+
+    /** @brief Unique Identifier for the Order. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString OrderId_Optional{  };
     /** @brief true if OrderId_Optional has been set to a value */
@@ -192,6 +230,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
      /** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
     void ClearOrderId() { OrderId_IsSet = false; }
 
+    /** @brief List of Player Order Entries for the Player Order. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PlayerOrderEntryCreate> Entries{  };
     /** @brief Gets the value of Entries */
@@ -201,3 +240,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     /** @brief Sets the value of Entries */
     void SetEntries(TArray<FRHAPI_PlayerOrderEntryCreate> NewValue) { Entries = NewValue;  }
 };
+
+/** @} */

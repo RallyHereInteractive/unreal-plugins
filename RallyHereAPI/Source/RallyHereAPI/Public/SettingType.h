@@ -12,6 +12,10 @@
 #include "SettingTypeVersion.h"
 #include "SettingType.generated.h"
 
+/** @defgroup RHAPI_SettingType RallyHere API Model SettingType
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -46,3 +50,5 @@ struct RALLYHEREAPI_API FRHAPI_SettingType : public FRHAPI_Model
     /** @brief Sets the value of Versions */
     void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion> NewValue) { Versions = NewValue;  }
 };
+
+/** @} */

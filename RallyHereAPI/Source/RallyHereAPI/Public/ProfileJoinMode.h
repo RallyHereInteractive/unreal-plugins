@@ -11,15 +11,16 @@
 #include "RallyHereAPIHelpers.h"
 #include "ProfileJoinMode.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Mode that determines what types of match requests the ticket will appear in
  */
 UENUM(BlueprintType)
 enum class ERHAPI_ProfileJoinMode : uint8
 {
-    Normal UMETA(ToolTip="An enumeration."),
-    Backfill UMETA(ToolTip="An enumeration."),
-    CreatedBefore UMETA(ToolTip="An enumeration."),
+    Normal UMETA(ToolTip="Ticket will be used to fulfill normal requests (players joining queue regularly to find games)"),
+    Backfill UMETA(ToolTip="Ticket will be used to fulfill backfill requests"),
+    CreatedBefore UMETA(ToolTip="Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_ProfileJoinMode& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_ProfileJoinMode& EnumValue);

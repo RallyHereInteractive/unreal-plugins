@@ -12,6 +12,7 @@
 FRHDTW_Config::FRHDTW_Config()
 {
 	AppSettingsActionResult.Empty();
+	DefaultPos = FVector2D(610, 20);
 }
 
 FRHDTW_Config::~FRHDTW_Config()
@@ -54,14 +55,6 @@ void FRHDTW_Config::Do()
 		ImGui::EndTabItem();
 	}
 
-	if (ImGui::BeginTabItem("Site Settings"))
-	{
-		ImGui::BeginChild("Site Settings");
-		DoRhSiteTab(pRH_ConfigSubsystem);
-		ImGui::EndChild();
-		ImGui::EndTabItem();
-	}
-
 	ImGui::EndTabBar();
 }
 
@@ -85,19 +78,24 @@ void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 	
 	ImGui::Separator();
 	
-	ImGui::Columns(2);
-	ImGui::Text("%s", "Key");
-	ImGui::NextColumn();
-	ImGui::Text("%s", "Value");
-	ImGui::NextColumn();
-	ImGui::Separator();
-
-	for (const auto& AppSetting : pRH_ConfigSubsystem->GetAppSettings())
+	if (ImGui::BeginTable("HotfixMapTable", 2, RH_TableFlagsPropSizing))
 	{
-		ImGuiDisplayCopyableValue(AppSetting.Key, AppSetting.Value, ECopyMode::TwoColumn);
-	}
+		// Header
+		ImGui::TableSetupColumn("Key");
+		ImGui::TableSetupColumn("Value");
+		ImGui::TableHeadersRow();
 
-	ImGui::Columns(1);
+		for (const auto& AppSetting : pRH_ConfigSubsystem->GetAppSettings())
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(AppSetting.Key, TEXT(""), ECopyMode::Key);
+			ImGui::TableNextColumn();
+			ImGuiDisplayCopyableValue(TEXT(""), AppSetting.Value, ECopyMode::Value);
+		}
+
+		ImGui::EndTable();
+	}
 }
 
 void FRHDTW_Config::HandleFetchAppSettings(bool bSuccess)
@@ -109,67 +107,5 @@ void FRHDTW_Config::HandleFetchAppSettings(bool bSuccess)
 	else
 	{
 		AppSettingsActionResult = FString::Printf(TEXT("Refresh App Settings failed"));
-	}
-}
-
-void FRHDTW_Config::DoRhSiteTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
-{
-	auto* LPSubsystem = GetSelectedRH_LocalPlayerSubsystem();
-
-	if (ImGui::Button("Refresh"))
-	{
-		SiteSettingsActionResult.Empty();
-		auto Delegate = FRH_GenericSuccessDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchSiteSettings);
-		pRH_ConfigSubsystem->FetchSiteSettings(Delegate);
-	}
-
-	ImGui::SameLine();
-	
-	if (ImGui::Button("Clear"))
-	{
-		SiteSettingsActionResult.Empty();
-		pRH_ConfigSubsystem->ClearSiteSettings();
-		pRH_ConfigSubsystem->SiteSettingsUpdatedDelegate.Broadcast({});
-	}
-
-	ImGui::Text("%s", TCHAR_TO_UTF8(*SiteSettingsActionResult));
-	
-	ImGui::Separator();
-	
-	ImGui::Columns(4);
-	ImGui::Text("%s", "Site ID");
-	ImGui::NextColumn();
-	ImGui::Text("%s", "Message");
-	ImGui::NextColumn();
-	ImGui::Text("%s", "Custom Only");
-	ImGui::NextColumn();
-	ImGui::Text("%s", "Sort Order");
-	ImGui::NextColumn();
-	ImGui::Separator();
-
-	for (const auto& Site : pRH_ConfigSubsystem->GetSites())
-	{
-		ImGui::Text("%d", Site.Value.SiteId);
-		ImGui::NextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(ToCStr(Site.Value.GetMessageName(TEXT("<UNSET>")))));
-		ImGui::NextColumn();
-		ImGui::Text("%d", Site.Value.CustomOnly);
-		ImGui::NextColumn();
-		ImGui::Text("%d", Site.Value.SortOrder);
-		ImGui::NextColumn();
-	}
-
-	ImGui::Columns(1);
-}
-
-void FRHDTW_Config::HandleFetchSiteSettings(bool bSuccess)
-{
-	if (bSuccess)
-	{
-		SiteSettingsActionResult = FString::Printf(TEXT("Refresh Site Settings succeeded."));
-	}
-	else
-	{
-		SiteSettingsActionResult = FString::Printf(TEXT("Refresh Site Settings failed"));
 	}
 }

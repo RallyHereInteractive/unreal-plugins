@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "TokenResponse.generated.h"
 
+/** @defgroup RHAPI_TokenResponse RallyHere API Model TokenResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -88,3 +92,5 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     /** @brief Sets the value of ExpiresIn to its default  */
     void SetExpiresInToDefault() { ExpiresIn = 0;  }
 };
+
+/** @} */

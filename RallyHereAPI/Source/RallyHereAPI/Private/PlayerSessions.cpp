@@ -27,6 +27,11 @@ void FRHAPI_PlayerSessions::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("sessions"));
         RallyHereAPI::WriteJsonValue(Writer, Sessions_Optional);
     }
+    if (LastUpdatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("last_updated_timestamp"));
+        RallyHereAPI::WriteJsonValue(Writer, LastUpdatedTimestamp_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -38,10 +43,17 @@ bool FRHAPI_PlayerSessions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("sessions")))
+    const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
+    if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())
     {
-        Sessions_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("sessions"), Sessions_Optional);
+        Sessions_IsSet = TryGetJsonValue(JsonSessionsField, Sessions_Optional);
         ParseSuccess &= Sessions_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLastUpdatedTimestampField = (*Object)->TryGetField(TEXT("last_updated_timestamp"));
+    if (JsonLastUpdatedTimestampField.IsValid() && !JsonLastUpdatedTimestampField->IsNull())
+    {
+        LastUpdatedTimestamp_IsSet = TryGetJsonValue(JsonLastUpdatedTimestampField, LastUpdatedTimestamp_Optional);
+        ParseSuccess &= LastUpdatedTimestamp_IsSet;
     }
 
     return ParseSuccess;

@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "SettingTypeVersion.generated.h"
 
+/** @defgroup RHAPI_SettingTypeVersion RallyHere API Model SettingTypeVersion
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -99,3 +103,5 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
     /** @brief Sets the value of ValueJsonschema */
     void SetValueJsonschema(FRHAPI_JsonObject NewValue) { ValueJsonschema = NewValue;  }
 };
+
+/** @} */

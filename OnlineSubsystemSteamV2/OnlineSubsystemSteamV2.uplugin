@@ -1,22 +1,33 @@
 {
-	"FileVersion" : 3,
+	"FileVersion": 3,
 
-	"FriendlyName" : "Online Subsystem SteamV2",
-	"Version" : 1,
-	"VersionName" : "1.0",
-    "CreatedBy": "Rally Here Interactive, Inc.",
-    "CreatedByURL": "rallyhere.gg",
+	"FriendlyName": "Online Subsystem SteamV2",
+	"Version": 1,
+	"VersionName": "1.0",
+	"CreatedBy": "Rally Here Interactive, Inc.",
+	"CreatedByURL": "rallyhere.gg",
 	"Description": "Extended Steam Subsystem Functionality",
 	"Category": "RallyHere",
-	"EnabledByDefault" : false,
+	"EnabledByDefault": false,
 
-    "Modules": [
-        {
-            "Name": "OnlineSubsystemSteamV2",
-            "Type": "Runtime",
-            "LoadingPhase": "Default"
-        }
-    ],
+	"Modules": [
+		{
+			"Name": "OnlineSubsystemSteamV2",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Mac",
+				"Linux"
+			]
+		}
+	],
+	"LocalizationTargets": [
+		{
+			"Name": "OnlineSubsystemSteam",
+			"LoadingPolicy": "Always"
+		}
+	],
 
 	"Plugins": [
 		{

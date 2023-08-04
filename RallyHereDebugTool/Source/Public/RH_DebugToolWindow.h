@@ -12,6 +12,7 @@ class URallyHereDebugTool;
 
 DECLARE_DELEGATE_OneParam(FRHDT_LPAction, class ULocalPlayer*);
 DECLARE_DELEGATE_OneParam(FRHDT_RHLPAction, class URH_LocalPlayerSubsystem*);
+DECLARE_DELEGATE_OneParam(FRHDT_RHPAction, class URH_PlayerInfo*);
 
 struct RALLYHEREDEBUGTOOL_API FRH_DebugToolWindow : public TSharedFromThis<FRH_DebugToolWindow>
 {
@@ -25,8 +26,10 @@ struct RALLYHEREDEBUGTOOL_API FRH_DebugToolWindow : public TSharedFromThis<FRH_D
 	virtual void RenderWindow(); // If you need to override how we normally render windows
 	virtual void Do() {}; // Normal windows should only implement this, as it follows the standard window rendering paradigm
 
-	void ForEachSelectedPlayer(FRHDT_LPAction Action);
-	void ForEachSelectedRHPlayer(FRHDT_RHLPAction Action);
+	void ForEachSelectedLocalPlayer(FRHDT_LPAction Action);
+	void ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction Action);
+	void ForEachSelectedRHPlayer(FRHDT_RHPAction Action);
+	void ForEachTargetedRHPlayer(FRHDT_RHPAction Action);
 
 	TWeakObjectPtr<URallyHereDebugTool> Owner;
 	bool bShow;
@@ -42,6 +45,8 @@ struct RALLYHEREDEBUGTOOL_API FRH_DebugToolWindow : public TSharedFromThis<FRH_D
 	class UGameInstance* GetGameInstance() const;
 	class ULocalPlayer* GetFirstSelectedLocalPlayer() const;
 	TArray<class ULocalPlayer*> GetAllSelectedLocalPlayers() const;
+	TArray<class URH_PlayerInfo*> GetAllSelectedPlayerInfos() const;
+	TArray<class URH_PlayerInfo*> GetAllTargetedPlayerInfos() const;
 	class URH_LocalPlayerSubsystem* GetSelectedRH_LocalPlayerSubsystem() const;
 	void ResetSizeAndPos(bool bInNeedsReset = true);
 

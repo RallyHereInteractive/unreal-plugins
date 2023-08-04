@@ -12,6 +12,10 @@
 #include "KeyClaim.h"
 #include "KeyClaims.generated.h"
 
+/** @defgroup RHAPI_KeyClaims RallyHere API Model KeyClaims
+ *  @{
+ */
+
 /**
  * @brief List of Key Claims available to the player.
  */
@@ -36,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of Key Claims available to the Player */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_KeyClaim> Claims{  };
     /** @brief Gets the value of Claims */
@@ -45,3 +50,5 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
     /** @brief Sets the value of Claims */
     void SetClaims(TArray<FRHAPI_KeyClaim> NewValue) { Claims = NewValue;  }
 };
+
+/** @} */

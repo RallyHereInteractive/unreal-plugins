@@ -12,8 +12,12 @@
 #include "MapConfig.h"
 #include "MapSelectionList.generated.h"
 
+/** @defgroup RHAPI_MapSelectionList RallyHere API Model MapSelectionList
+ *  @{
+ */
+
 /**
- * @brief A selection list of maps that can be chosen to launch into
+ * @brief A list of maps that can be chosen from when an instance is launching
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
@@ -60,3 +64,5 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
     /** @brief Sets the value of Maps */
     void SetMaps(TArray<FRHAPI_MapConfig> NewValue) { Maps = NewValue;  }
 };
+
+/** @} */

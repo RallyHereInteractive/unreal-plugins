@@ -12,8 +12,12 @@
 #include "SessionPlayer.h"
 #include "SessionTeam.generated.h"
 
+/** @defgroup RHAPI_SessionTeam RallyHere API Model SessionTeam
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A team of SessionPlayers in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
@@ -60,3 +64,5 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
     /** @brief Sets the value of MaxSize to its default  */
     void SetMaxSizeToDefault() { MaxSize = 0;  }
 };
+
+/** @} */

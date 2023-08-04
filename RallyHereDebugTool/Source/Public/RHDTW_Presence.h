@@ -17,22 +17,17 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 
-	/** Display and modify presence information for the local player */
-	void DoPresenceTab(URH_LocalPlayerPresenceSubsystem* pRH_PresenceSubsystem);
+#pragma region VIEW PRESENCE TAB
+	/** Display presence information for the selected player info */
+	void DoViewPresenceTab();
 
-	/** Display settings provided for the client by the presence api 
-	* This includes expected timeout rates.
-	*/
-	void DoSettingsTab(URH_LocalPlayerPresenceSubsystem* pRH_PresenceSubsystem);
+	void HandleGetPresence(bool bSuccess, URH_PlayerPresence* PresenceData, FGuid PlayerUuid);
+	FString GetPresenceResult;
+#pragma endregion
 
-	/**
-	 *  \defgroup Self presence information that's not modified locally
-	 *  @{
-	 */
-	FString Platform{};
-	FString DisplayName{};
-	TOptional<TMap<FString, FString>> CustomData;
-	/** @} */
+#pragma region UPDATE SELF TAB
+	/** Modify presence information for the local player */
+	void DoSelfTab();
 	
 	/** 
 	* \defgroup Updating your presence
@@ -43,10 +38,9 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 	bool DoNotDisturbInput{false};
 	std::string CustomPropertyInput{""};
 	std::string CustomValueInput{""};
-	std::string LastUpdateResult{""};
+	FString LastUpdateResult;
 	
-	void HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_UpdatePlayerPresenceSelf& Resp);
-	void HandleGetPlayerPresenceSelf(const RallyHereAPI::FResponse_GetPlayerPresenceSelf& Resp);
+	void HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_UpdatePlayerPresenceSelf& Resp, FGuid PlayerUuid);
 	/** @} */
 
 	/**
@@ -59,4 +53,5 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 	
 	void HandleGetSettings(const RallyHereAPI::FResponse_GetPresenceSettings& Resp);
 	/** @} */
+#pragma endregion
 };

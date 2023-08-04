@@ -52,28 +52,28 @@ public:
     FFriendsV2API();
     virtual ~FFriendsV2API();
 
-    FHttpRequestPtr AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate = FDelegate_AddFriendV2());
-    FHttpRequestPtr AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate = FDelegate_AddNotesV2());
-    FHttpRequestPtr DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate = FDelegate_DeleteFriendV2());
-    FHttpRequestPtr DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate = FDelegate_DeleteFriendsV2());
-    FHttpRequestPtr DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate = FDelegate_DeleteNotesV2());
-    FHttpRequestPtr GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate = FDelegate_GetFriendRelationshipV2());
-    FHttpRequestPtr GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate = FDelegate_GetFriendsListForPlayerV2());
+    FHttpRequestPtr AddFriendV2(const FRequest_AddFriendV2& Request, const FDelegate_AddFriendV2& Delegate = FDelegate_AddFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr AddNotesV2(const FRequest_AddNotesV2& Request, const FDelegate_AddNotesV2& Delegate = FDelegate_AddNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteFriendV2(const FRequest_DeleteFriendV2& Request, const FDelegate_DeleteFriendV2& Delegate = FDelegate_DeleteFriendV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteFriendsV2(const FRequest_DeleteFriendsV2& Request, const FDelegate_DeleteFriendsV2& Delegate = FDelegate_DeleteFriendsV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteNotesV2(const FRequest_DeleteNotesV2& Request, const FDelegate_DeleteNotesV2& Delegate = FDelegate_DeleteNotesV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetFriendRelationshipV2(const FRequest_GetFriendRelationshipV2& Request, const FDelegate_GetFriendRelationshipV2& Delegate = FDelegate_GetFriendRelationshipV2(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetFriendsListForPlayerV2(const FRequest_GetFriendsListForPlayerV2& Request, const FDelegate_GetFriendsListForPlayerV2& Delegate = FDelegate_GetFriendsListForPlayerV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnAddFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnAddNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteFriendV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteFriendsV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteFriendsV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteNotesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteNotesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetFriendRelationshipV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendRelationshipV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetFriendsListForPlayerV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetFriendsListForPlayerV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Add Friend V2
  *
- * Update the friend&#39;s relationship status with the other Player. There is a max number of friends that can be added for a Player.                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update                      the player&#39;s notes for the other player. If you do not want to update or set the notes when adding the other player, then do not                      include a body.&lt;br /&gt;&lt;br /&gt;                     &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response and will match the etag value                      provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). &lt;b&gt;It is highly                      recommended to provide the etag value with the &lt;i&gt; if-match &lt;/i&gt; header to avoid lost updates.                      &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
+ * Modify the friend&#39;s relationship status with the other Player. There is a max number of friends that can be added for a Player.                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update                      the player&#39;s notes for the other player. If you do not want to update or set the notes when adding the other player, then do not                      include a body.&lt;br /&gt;&lt;br /&gt;                     &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response and will match the etag value                      provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). &lt;b&gt;It is highly                      recommended to provide the etag value with the &lt;i&gt; if-match &lt;/i&gt; header to avoid lost updates.                      &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_AddFriendV2 : public FRequest
 {
@@ -114,7 +114,7 @@ struct RALLYHEREAPI_API Traits_AddFriendV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.AddFriendV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriendV2(InRequest, InDelegate, Priority); }
 };
 
 /* Add Notes V2
@@ -160,7 +160,7 @@ struct RALLYHEREAPI_API Traits_AddNotesV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.AddNotesV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotesV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friend V2
@@ -205,7 +205,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriendV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteFriendV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friends V2
@@ -245,7 +245,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriendsV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteFriendsV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendsV2(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Notes V2
@@ -287,7 +287,7 @@ struct RALLYHEREAPI_API Traits_DeleteNotesV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.DeleteNotesV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotesV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friend Relationship V2
@@ -332,12 +332,12 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetFriendRelationshipV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friends List For Player V2
  *
- * Fetch the friend&#39;s list for the Player and their relationship status with those friends. &lt;br /&gt;&lt;br /&gt;                     &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response.                      Clients can utilize the &lt;i&gt;if-none-match&lt;/i&gt; header to avoid having to reload the response if it has not changed. 
+ * Fetch the friend&#39;s list for the Player and their relationship status with those friends. &lt;br /&gt;&lt;br /&gt;                     &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response.                      Clients can utilize the &lt;i&gt;if-none-match&lt;/i&gt; header to avoid having to reload the response if it has not changed.
 */
 struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayerV2 : public FRequest
 {
@@ -378,7 +378,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsListForPlayerV2
     typedef FFriendsV2API API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetFriendsListForPlayerV2(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
 

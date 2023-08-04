@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlatformSessionPlayer.generated.h"
 
+/** @defgroup RHAPI_PlatformSessionPlayer RallyHere API Model PlatformSessionPlayer
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A platform player resource in a platform session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
@@ -35,19 +39,34 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Player ID representing the current player */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 PlayerId{ 0 };
-    /** @brief Gets the value of PlayerId */
-    int32& GetPlayerId() { return PlayerId; }
-    /** @brief Gets the value of PlayerId */
-    const int32& GetPlayerId() const { return PlayerId; }
-    /** @brief Sets the value of PlayerId */
-    void SetPlayerId(int32 NewValue) { PlayerId = NewValue;  }
-    /** @brief Returns true if PlayerId matches the default value */
-    bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
-    /** @brief Sets the value of PlayerId to its default  */
-    void SetPlayerIdToDefault() { PlayerId = 0;  }
+    int32 PlayerId_Optional{  };
+    /** @brief true if PlayerId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PlayerId_IsSet{ false };
+    /** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
+    int32& GetPlayerId() { return PlayerId_Optional; }
+    /** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
+    const int32& GetPlayerId() const { return PlayerId_Optional; }
+    /** @brief Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetPlayerId(const int32& DefaultValue) const { if (PlayerId_IsSet) return PlayerId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlayerId(int32& OutValue) const { if (PlayerId_IsSet) OutValue = PlayerId_Optional; return PlayerId_IsSet; }
+    /** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetPlayerIdOrNull() { if (PlayerId_IsSet) return &PlayerId_Optional; return nullptr; }
+    /** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return &PlayerId_Optional; return nullptr; }
+    /** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true */
+    void SetPlayerId(int32 NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; }
+     /** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
+    void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false; }
+    /** @brief Returns true if PlayerId_Optional is set and matches the default value */
+    bool IsPlayerIdDefaultValue() const { return PlayerId_IsSet && PlayerId_Optional == 0; }
+    /** @brief Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true */
+    void SetPlayerIdToDefault() { PlayerId_Optional = 0; PlayerId_IsSet = true; }
 
+    /** @brief Player UUID representing the current player */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
@@ -84,3 +103,5 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
     /** @brief Sets the value of Leader_Optional to its default and also sets Leader_IsSet to true */
     void SetLeaderToDefault() { Leader_Optional = false; Leader_IsSet = true; }
 };
+
+/** @} */

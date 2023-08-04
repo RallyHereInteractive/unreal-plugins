@@ -45,15 +45,18 @@ bool FRHAPI_InventorySessionCreateResponse::FromJson(const TSharedPtr<FJsonValue
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_id"), SessionId);
-    if ((*Object)->HasField(TEXT("session_platform")))
+    const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
+    ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+    const TSharedPtr<FJsonValue> JsonSessionPlatformField = (*Object)->TryGetField(TEXT("session_platform"));
+    if (JsonSessionPlatformField.IsValid() && !JsonSessionPlatformField->IsNull())
     {
-        SessionPlatform_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("session_platform"), SessionPlatform_Optional);
+        SessionPlatform_IsSet = TryGetJsonValue(JsonSessionPlatformField, SessionPlatform_Optional);
         ParseSuccess &= SessionPlatform_IsSet;
     }
-    if ((*Object)->HasField(TEXT("order_id")))
+    const TSharedPtr<FJsonValue> JsonOrderIdField = (*Object)->TryGetField(TEXT("order_id"));
+    if (JsonOrderIdField.IsValid() && !JsonOrderIdField->IsNull())
     {
-        OrderId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("order_id"), OrderId_Optional);
+        OrderId_IsSet = TryGetJsonValue(JsonOrderIdField, OrderId_Optional);
         ParseSuccess &= OrderId_IsSet;
     }
 

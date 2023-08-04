@@ -29,10 +29,10 @@ public:
     FDiscoveryAPI();
     virtual ~FDiscoveryAPI();
 
-    FHttpRequestPtr GetDiscovery(const FRequest_GetDiscovery& Request, const FDelegate_GetDiscovery& Delegate = FDelegate_GetDiscovery());
+    FHttpRequestPtr GetDiscovery(const FRequest_GetDiscovery& Request, const FDelegate_GetDiscovery& Delegate = FDelegate_GetDiscovery(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnGetDiscoveryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetDiscovery Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnGetDiscoveryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetDiscovery Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -69,7 +69,7 @@ struct RALLYHEREAPI_API Traits_GetDiscovery
     typedef FDiscoveryAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.GetDiscovery(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetDiscovery(InRequest, InDelegate, Priority); }
 };
 
 

@@ -13,8 +13,12 @@
 #include "PageMeta.h"
 #include "BlockedListV1.generated.h"
 
+/** @defgroup RHAPI_BlockedListV1 RallyHere API Model BlockedListV1
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief The list of players that is blocked. V1 includes player_id and player_uuid.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
@@ -77,3 +81,5 @@ struct RALLYHEREAPI_API FRHAPI_BlockedListV1 : public FRHAPI_Model
     /** @brief Sets the value of Page */
     void SetPage(FRHAPI_PageMeta NewValue) { Page = NewValue;  }
 };
+
+/** @} */

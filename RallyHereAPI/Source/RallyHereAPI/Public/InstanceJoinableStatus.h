@@ -11,15 +11,16 @@
 #include "RallyHereAPIHelpers.h"
 #include "InstanceJoinableStatus.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief What state the instance is currently in
  */
 UENUM(BlueprintType)
 enum class ERHAPI_InstanceJoinableStatus : uint8
 {
     Requested UMETA(ToolTip="Searching for a host"),
-    Allocated UMETA(ToolTip="Host has been found"),
-    Pending UMETA(ToolTip="Host has arrived"),
+    Allocated UMETA(ToolTip="Host has been found, and is loading its session information"),
+    Pending UMETA(ToolTip="Host has arrived and is loading"),
     Joinable UMETA(ToolTip="Host is ready to accept players"),
     Closed UMETA(ToolTip="Host has left, been timed out, or could not be found"),
 };

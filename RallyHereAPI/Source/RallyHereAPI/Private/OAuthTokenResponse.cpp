@@ -68,39 +68,46 @@ bool FRHAPI_OAuthTokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("access_token")))
+    const TSharedPtr<FJsonValue> JsonAccessTokenField = (*Object)->TryGetField(TEXT("access_token"));
+    if (JsonAccessTokenField.IsValid() && !JsonAccessTokenField->IsNull())
     {
-        AccessToken_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("access_token"), AccessToken_Optional);
+        AccessToken_IsSet = TryGetJsonValue(JsonAccessTokenField, AccessToken_Optional);
         ParseSuccess &= AccessToken_IsSet;
     }
-    if ((*Object)->HasField(TEXT("refresh_token")))
+    const TSharedPtr<FJsonValue> JsonRefreshTokenField = (*Object)->TryGetField(TEXT("refresh_token"));
+    if (JsonRefreshTokenField.IsValid() && !JsonRefreshTokenField->IsNull())
     {
-        RefreshToken_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("refresh_token"), RefreshToken_Optional);
+        RefreshToken_IsSet = TryGetJsonValue(JsonRefreshTokenField, RefreshToken_Optional);
         ParseSuccess &= RefreshToken_IsSet;
     }
-    if ((*Object)->HasField(TEXT("needs_eula")))
+    const TSharedPtr<FJsonValue> JsonNeedsEulaField = (*Object)->TryGetField(TEXT("needs_eula"));
+    if (JsonNeedsEulaField.IsValid() && !JsonNeedsEulaField->IsNull())
     {
-        NeedsEula_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("needs_eula"), NeedsEula_Optional);
+        NeedsEula_IsSet = TryGetJsonValue(JsonNeedsEulaField, NeedsEula_Optional);
         ParseSuccess &= NeedsEula_IsSet;
     }
-    if ((*Object)->HasField(TEXT("needs_tos")))
+    const TSharedPtr<FJsonValue> JsonNeedsTosField = (*Object)->TryGetField(TEXT("needs_tos"));
+    if (JsonNeedsTosField.IsValid() && !JsonNeedsTosField->IsNull())
     {
-        NeedsTos_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("needs_tos"), NeedsTos_Optional);
+        NeedsTos_IsSet = TryGetJsonValue(JsonNeedsTosField, NeedsTos_Optional);
         ParseSuccess &= NeedsTos_IsSet;
     }
-    if ((*Object)->HasField(TEXT("needs_privacy_policy")))
+    const TSharedPtr<FJsonValue> JsonNeedsPrivacyPolicyField = (*Object)->TryGetField(TEXT("needs_privacy_policy"));
+    if (JsonNeedsPrivacyPolicyField.IsValid() && !JsonNeedsPrivacyPolicyField->IsNull())
     {
-        NeedsPrivacyPolicy_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("needs_privacy_policy"), NeedsPrivacyPolicy_Optional);
+        NeedsPrivacyPolicy_IsSet = TryGetJsonValue(JsonNeedsPrivacyPolicyField, NeedsPrivacyPolicy_Optional);
         ParseSuccess &= NeedsPrivacyPolicy_IsSet;
     }
-    if ((*Object)->HasField(TEXT("regenerated_code")))
+    const TSharedPtr<FJsonValue> JsonRegeneratedCodeField = (*Object)->TryGetField(TEXT("regenerated_code"));
+    if (JsonRegeneratedCodeField.IsValid() && !JsonRegeneratedCodeField->IsNull())
     {
-        RegeneratedCode_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("regenerated_code"), RegeneratedCode_Optional);
+        RegeneratedCode_IsSet = TryGetJsonValue(JsonRegeneratedCodeField, RegeneratedCode_Optional);
         ParseSuccess &= RegeneratedCode_IsSet;
     }
-    if ((*Object)->HasField(TEXT("error_message")))
+    const TSharedPtr<FJsonValue> JsonErrorMessageField = (*Object)->TryGetField(TEXT("error_message"));
+    if (JsonErrorMessageField.IsValid() && !JsonErrorMessageField->IsNull())
     {
-        ErrorMessage_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("error_message"), ErrorMessage_Optional);
+        ErrorMessage_IsSet = TryGetJsonValue(JsonErrorMessageField, ErrorMessage_Optional);
         ParseSuccess &= ErrorMessage_IsSet;
     }
 

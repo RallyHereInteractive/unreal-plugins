@@ -35,7 +35,8 @@ bool FRHAPI_SettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("versions"), Versions);
+    const TSharedPtr<FJsonValue> JsonVersionsField = (*Object)->TryGetField(TEXT("versions"));
+    ParseSuccess &= JsonVersionsField.IsValid() && !JsonVersionsField->IsNull() && TryGetJsonValue(JsonVersionsField, Versions);
 
     return ParseSuccess;
 }

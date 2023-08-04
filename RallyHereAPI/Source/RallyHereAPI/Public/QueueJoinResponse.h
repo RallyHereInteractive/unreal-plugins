@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "QueueJoinResponse.generated.h"
 
+/** @defgroup RHAPI_QueueJoinResponse RallyHere API Model QueueJoinResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A response for successfully joining a matchmaking queue
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
     /** @brief Sets the value of TicketId */
     void SetTicketId(FString NewValue) { TicketId = NewValue;  }
 };
+
+/** @} */

@@ -29,7 +29,8 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&PresenceAdmin);
     AllAPIs.Add(&Queues);
     AllAPIs.Add(&Rank);
-    AllAPIs.Add(&Session);
+    AllAPIs.Add(&Regions);
+    AllAPIs.Add(&Sessions);
     AllAPIs.Add(&Settings);
     AllAPIs.Add(&Site);
     AllAPIs.Add(&Time);
@@ -261,14 +262,24 @@ const FRankAPI& FRallyHereAPIAll::GetRank() const
     return Rank;
 }
 
-FSessionAPI& FRallyHereAPIAll::GetSession()
+FRegionsAPI& FRallyHereAPIAll::GetRegions()
 {
-    return Session;
+    return Regions;
 }
 
-const FSessionAPI& FRallyHereAPIAll::GetSession() const
+const FRegionsAPI& FRallyHereAPIAll::GetRegions() const
 {
-    return Session;
+    return Regions;
+}
+
+FSessionsAPI& FRallyHereAPIAll::GetSessions()
+{
+    return Sessions;
+}
+
+const FSessionsAPI& FRallyHereAPIAll::GetSessions() const
+{
+    return Sessions;
 }
 
 FSettingsAPI& FRallyHereAPIAll::GetSettings()

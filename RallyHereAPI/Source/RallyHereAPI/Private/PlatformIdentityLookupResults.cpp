@@ -38,9 +38,10 @@ bool FRHAPI_PlatformIdentityLookupResults::FromJson(const TSharedPtr<FJsonValue>
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("identity")))
+    const TSharedPtr<FJsonValue> JsonIdentityField = (*Object)->TryGetField(TEXT("identity"));
+    if (JsonIdentityField.IsValid() && !JsonIdentityField->IsNull())
     {
-        Identity_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("identity"), Identity_Optional);
+        Identity_IsSet = TryGetJsonValue(JsonIdentityField, Identity_Optional);
         ParseSuccess &= Identity_IsSet;
     }
 

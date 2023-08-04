@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "MatchCreateResponse.generated.h"
 
+/** @defgroup RHAPI_MatchCreateResponse RallyHere API Model MatchCreateResponse
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief The response to successfully creating a match on a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchCreateResponse : public FRHAPI_Model
@@ -45,3 +49,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchCreateResponse : public FRHAPI_Model
     /** @brief Sets the value of MatchId */
     void SetMatchId(FString NewValue) { MatchId = NewValue;  }
 };
+
+/** @} */

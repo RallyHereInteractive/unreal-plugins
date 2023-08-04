@@ -11,11 +11,15 @@
 #include "RallyHereAPIHelpers.h"
 #include "MMRGroupingMethod.h"
 #include "MatchMakingProfile.h"
-#include "Ruleset.h"
+#include "MatchMakingRuleset.h"
 #include "MatchMakingTemplate.generated.h"
 
+/** @defgroup RHAPI_MatchMakingTemplate RallyHere API Model MatchMakingTemplate
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplate : public FRHAPI_Model
@@ -49,24 +53,24 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplate : public FRHAPI_Model
     void SetMmrGroupMethod(ERHAPI_MMRGroupingMethod NewValue) { MmrGroupMethod = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_Ruleset Ruleset_Optional{  };
+    FRHAPI_MatchMakingRuleset Ruleset_Optional{  };
     /** @brief true if Ruleset_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Ruleset_IsSet{ false };
     /** @brief Gets the value of Ruleset_Optional, regardless of it having been set */
-    FRHAPI_Ruleset& GetRuleset() { return Ruleset_Optional; }
+    FRHAPI_MatchMakingRuleset& GetRuleset() { return Ruleset_Optional; }
     /** @brief Gets the value of Ruleset_Optional, regardless of it having been set */
-    const FRHAPI_Ruleset& GetRuleset() const { return Ruleset_Optional; }
+    const FRHAPI_MatchMakingRuleset& GetRuleset() const { return Ruleset_Optional; }
     /** @brief Gets the value of Ruleset_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_Ruleset& GetRuleset(const FRHAPI_Ruleset& DefaultValue) const { if (Ruleset_IsSet) return Ruleset_Optional; return DefaultValue; }
+    const FRHAPI_MatchMakingRuleset& GetRuleset(const FRHAPI_MatchMakingRuleset& DefaultValue) const { if (Ruleset_IsSet) return Ruleset_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Ruleset_Optional and returns true if it has been set, otherwise returns false */
-    bool GetRuleset(FRHAPI_Ruleset& OutValue) const { if (Ruleset_IsSet) OutValue = Ruleset_Optional; return Ruleset_IsSet; }
+    bool GetRuleset(FRHAPI_MatchMakingRuleset& OutValue) const { if (Ruleset_IsSet) OutValue = Ruleset_Optional; return Ruleset_IsSet; }
     /** @brief Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_Ruleset* GetRulesetOrNull() { if (Ruleset_IsSet) return &Ruleset_Optional; return nullptr; }
+    FRHAPI_MatchMakingRuleset* GetRulesetOrNull() { if (Ruleset_IsSet) return &Ruleset_Optional; return nullptr; }
     /** @brief Returns a pointer to Ruleset_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_Ruleset* GetRulesetOrNull() const { if (Ruleset_IsSet) return &Ruleset_Optional; return nullptr; }
+    const FRHAPI_MatchMakingRuleset* GetRulesetOrNull() const { if (Ruleset_IsSet) return &Ruleset_Optional; return nullptr; }
     /** @brief Sets the value of Ruleset_Optional and also sets Ruleset_IsSet to true */
-    void SetRuleset(FRHAPI_Ruleset NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true; }
+    void SetRuleset(FRHAPI_MatchMakingRuleset NewValue) { Ruleset_Optional = NewValue; Ruleset_IsSet = true; }
      /** @brief Clears the value of Ruleset_Optional and sets Ruleset_IsSet to false */
     void ClearRuleset() { Ruleset_IsSet = false; }
 
@@ -80,3 +84,5 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplate : public FRHAPI_Model
     /** @brief Sets the value of Profiles */
     void SetProfiles(TArray<FRHAPI_MatchMakingProfile> NewValue) { Profiles = NewValue;  }
 };
+
+/** @} */

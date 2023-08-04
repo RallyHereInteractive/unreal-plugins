@@ -53,24 +53,28 @@ bool FRHAPI_InventoryPageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("starting_position")))
+    const TSharedPtr<FJsonValue> JsonStartingPositionField = (*Object)->TryGetField(TEXT("starting_position"));
+    if (JsonStartingPositionField.IsValid() && !JsonStartingPositionField->IsNull())
     {
-        StartingPosition_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("starting_position"), StartingPosition_Optional);
+        StartingPosition_IsSet = TryGetJsonValue(JsonStartingPositionField, StartingPosition_Optional);
         ParseSuccess &= StartingPosition_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cursor")))
+    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+    if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())
     {
-        Cursor_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cursor"), Cursor_Optional);
+        Cursor_IsSet = TryGetJsonValue(JsonCursorField, Cursor_Optional);
         ParseSuccess &= Cursor_IsSet;
     }
-    if ((*Object)->HasField(TEXT("sort")))
+    const TSharedPtr<FJsonValue> JsonSortField = (*Object)->TryGetField(TEXT("sort"));
+    if (JsonSortField.IsValid() && !JsonSortField->IsNull())
     {
-        Sort_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("sort"), Sort_Optional);
+        Sort_IsSet = TryGetJsonValue(JsonSortField, Sort_Optional);
         ParseSuccess &= Sort_IsSet;
     }
-    if ((*Object)->HasField(TEXT("limit")))
+    const TSharedPtr<FJsonValue> JsonLimitField = (*Object)->TryGetField(TEXT("limit"));
+    if (JsonLimitField.IsValid() && !JsonLimitField->IsNull())
     {
-        Limit_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("limit"), Limit_Optional);
+        Limit_IsSet = TryGetJsonValue(JsonLimitField, Limit_Optional);
         ParseSuccess &= Limit_IsSet;
     }
 

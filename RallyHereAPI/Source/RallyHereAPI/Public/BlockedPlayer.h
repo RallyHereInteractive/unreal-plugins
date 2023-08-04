@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "BlockedPlayer.generated.h"
 
+/** @defgroup RHAPI_BlockedPlayer RallyHere API Model BlockedPlayer
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief The player that is being blocked.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
@@ -53,3 +57,5 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
     /** @brief Sets the value of LastModifiedOn */
     void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
 };
+
+/** @} */

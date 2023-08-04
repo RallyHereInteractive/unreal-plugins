@@ -47,16 +47,20 @@ bool FRHAPI_InstanceStartupParams::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("map"), Map);
-    if ((*Object)->HasField(TEXT("mode")))
+    const TSharedPtr<FJsonValue> JsonMapField = (*Object)->TryGetField(TEXT("map"));
+    ParseSuccess &= JsonMapField.IsValid() && !JsonMapField->IsNull() && TryGetJsonValue(JsonMapField, Map);
+    const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
+    if (JsonModeField.IsValid() && !JsonModeField->IsNull())
     {
-        Mode_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("mode"), Mode_Optional);
+        Mode_IsSet = TryGetJsonValue(JsonModeField, Mode_Optional);
         ParseSuccess &= Mode_IsSet;
     }
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("misc_params"), MiscParams);
-    if ((*Object)->HasField(TEXT("custom_data")))
+    const TSharedPtr<FJsonValue> JsonMiscParamsField = (*Object)->TryGetField(TEXT("misc_params"));
+    ParseSuccess &= JsonMiscParamsField.IsValid() && !JsonMiscParamsField->IsNull() && TryGetJsonValue(JsonMiscParamsField, MiscParams);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
-        CustomData_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("custom_data"), CustomData_Optional);
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
     }
 

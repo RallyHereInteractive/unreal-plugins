@@ -35,7 +35,8 @@ bool FRHAPI_PublicKeyList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("keys"), Keys);
+    const TSharedPtr<FJsonValue> JsonKeysField = (*Object)->TryGetField(TEXT("keys"));
+    ParseSuccess &= JsonKeysField.IsValid() && !JsonKeysField->IsNull() && TryGetJsonValue(JsonKeysField, Keys);
 
     return ParseSuccess;
 }

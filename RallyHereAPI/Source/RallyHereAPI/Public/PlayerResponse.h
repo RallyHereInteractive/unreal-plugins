@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PlayerResponse.generated.h"
 
+/** @defgroup RHAPI_PlayerResponse RallyHere API Model PlayerResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -49,11 +53,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerResponse : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PlayerUuid{  };
+    FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
-    FString& GetPlayerUuid() { return PlayerUuid; }
+    FGuid& GetPlayerUuid() { return PlayerUuid; }
     /** @brief Gets the value of PlayerUuid */
-    const FString& GetPlayerUuid() const { return PlayerUuid; }
+    const FGuid& GetPlayerUuid() const { return PlayerUuid; }
     /** @brief Sets the value of PlayerUuid */
-    void SetPlayerUuid(FString NewValue) { PlayerUuid = NewValue;  }
+    void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 };
+
+/** @} */

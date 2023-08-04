@@ -53,24 +53,28 @@ bool FRHAPI_PlayerInventoryChange::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("before_item_id")))
+    const TSharedPtr<FJsonValue> JsonBeforeItemIdField = (*Object)->TryGetField(TEXT("before_item_id"));
+    if (JsonBeforeItemIdField.IsValid() && !JsonBeforeItemIdField->IsNull())
     {
-        BeforeItemId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("before_item_id"), BeforeItemId_Optional);
+        BeforeItemId_IsSet = TryGetJsonValue(JsonBeforeItemIdField, BeforeItemId_Optional);
         ParseSuccess &= BeforeItemId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("after_item_id")))
+    const TSharedPtr<FJsonValue> JsonAfterItemIdField = (*Object)->TryGetField(TEXT("after_item_id"));
+    if (JsonAfterItemIdField.IsValid() && !JsonAfterItemIdField->IsNull())
     {
-        AfterItemId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("after_item_id"), AfterItemId_Optional);
+        AfterItemId_IsSet = TryGetJsonValue(JsonAfterItemIdField, AfterItemId_Optional);
         ParseSuccess &= AfterItemId_IsSet;
     }
-    if ((*Object)->HasField(TEXT("before")))
+    const TSharedPtr<FJsonValue> JsonBeforeField = (*Object)->TryGetField(TEXT("before"));
+    if (JsonBeforeField.IsValid() && !JsonBeforeField->IsNull())
     {
-        Before_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("before"), Before_Optional);
+        Before_IsSet = TryGetJsonValue(JsonBeforeField, Before_Optional);
         ParseSuccess &= Before_IsSet;
     }
-    if ((*Object)->HasField(TEXT("after")))
+    const TSharedPtr<FJsonValue> JsonAfterField = (*Object)->TryGetField(TEXT("after"));
+    if (JsonAfterField.IsValid() && !JsonAfterField->IsNull())
     {
-        After_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("after"), After_Optional);
+        After_IsSet = TryGetJsonValue(JsonAfterField, After_Optional);
         ParseSuccess &= After_IsSet;
     }
 

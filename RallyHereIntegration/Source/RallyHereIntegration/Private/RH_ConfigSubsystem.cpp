@@ -25,7 +25,6 @@ void URH_ConfigSubsystem::Initialize()
 	InitPropertiesWithDefaultValues();
 
 	AppSettingsPoller = FRH_PollControl::CreateAutoPoller();
-	SiteSettingsPoller = FRH_PollControl::CreateAutoPoller();
 
 	// start timer to check for updates
 	if (bAutomaticallyPollConfigurationData)
@@ -55,17 +54,11 @@ void URH_ConfigSubsystem::Deinitialize()
 		AppSettingsPoller->StopPoll();
 		AppSettingsPoller.Reset();
 	}
-	if (SiteSettingsPoller.IsValid())
-	{
-		SiteSettingsPoller->StopPoll();
-		SiteSettingsPoller.Reset();
-	}
 }
 
 void URH_ConfigSubsystem::InitPropertiesWithDefaultValues()
 {
 	AppSettings.Empty();
-	SiteSettings.Empty();
 	
 	// Load Default Feature Flags
 	FKeyValueSink Visitor;
@@ -84,8 +77,8 @@ void URH_ConfigSubsystem::FetchAppSettings(const FRH_GenericSuccessDelegate& Del
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateUObject(this, &URH_ConfigSubsystem::OnFetchAppSettings),
-		Delegate
-		);
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
 
 	Helper->Start(RH_APIs::GetConfigAPI(), Request);
 }
@@ -116,7 +109,10 @@ void URH_ConfigSubsystem::OnFetchAppSettings(const RallyHereAPI::FResponse_GetAp
 
 		AppSettingsETag = Resp.ETag.Get(TEXT(""));
 
-		AppSettingsUpdatedDelegate.Broadcast(this);
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastAppSettingsUpdated, FColor::Purple);
+			AppSettingsUpdatedDelegate.Broadcast(this);
+		}
 
 		if (AppSettingsPoller.IsValid())
 		{
@@ -143,78 +139,6 @@ void URH_ConfigSubsystem::StopAppSettingsRefreshTimer()
 	if (AppSettingsPoller.IsValid())
 	{
 		AppSettingsPoller->StopPoll();
-	}
-}
-
-void URH_ConfigSubsystem::FetchSiteSettings(const FRH_GenericSuccessDelegate& Delegate)
-{
-	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	typedef RallyHereAPI::Traits_GetSiteSettings BaseType;
-
-	BaseType::Request Request;
-	Request.AuthContext = GetAuthContext();
-	//Request.IfNoneMatch = AppSettingsETag;
-
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateUObject(this, &URH_ConfigSubsystem::OnFetchSiteSettings),
-		Delegate
-	);
-
-	Helper->Start(RH_APIs::GetAPIs().GetSite(), Request);
-}
-
-void URH_ConfigSubsystem::PollSiteSettings(const FRH_PollCompleteFunc& Delegate)
-{
-	auto AuthContext = GetAuthContext();
-	if (!AuthContext.IsValid() || !AuthContext->IsLoggedIn())
-	{
-		Delegate.ExecuteIfBound(false, true);
-		return;
-	}
-
-	// fetch with the above delegate wrappered into a lambda to convert the type
-	FetchSiteSettings(FRH_GenericSuccessDelegate::CreateLambda([Delegate](bool bSuccess) {Delegate.ExecuteIfBound(bSuccess, true); }));
-}
-
-void URH_ConfigSubsystem::OnFetchSiteSettings(const RallyHereAPI::FResponse_GetSiteSettings& Resp)
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	// TODO - check for differences / use ETag
-	if (Resp.IsSuccessful())
-	{
-		SiteSettings.Reset();
-		for (auto Site : Resp.Content)
-		{
-			SiteSettings.Add(Site.GetSiteId(), Site);
-		}
-	}
-
-	SiteSettingsUpdatedDelegate.Broadcast(this);
-
-	if (SiteSettingsPoller.IsValid())
-	{
-		SiteSettingsPoller->DeferPollTimer();
-	}
-}
-
-void URH_ConfigSubsystem::StartSiteSettingsRefreshTimer()
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	static FName PollTimerName(TEXT("SiteSettings"));
-
-	if (SiteSettingsPoller.IsValid())
-	{
-		SiteSettingsPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_ConfigSubsystem::PollSiteSettings), PollTimerName);
-	}
-}
-
-void URH_ConfigSubsystem::StopSiteSettingsRefreshTimer()
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	if (SiteSettingsPoller.IsValid())
-	{
-		SiteSettingsPoller->StopPoll();
 	}
 }
 

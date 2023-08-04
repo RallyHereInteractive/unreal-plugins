@@ -33,6 +33,11 @@ void URH_LocalPlayerLoginSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
+bool OSSCannotRelogin(FName OSSName)
+{
+	return OSSName == EOS_SUBSYSTEM;
+}
+
 FString URH_LocalPlayerLoginSubsystem::GetSavedCredentialEnvironment(FName OSSName) const
 {
     return SavedCredentialPrefix
@@ -117,7 +122,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
                 FWebAuthModule::Get().GetWebAuth().SaveCredentials(Req.OSSUniqueId->ToString(), FString{},
                                                                    GetSavedCredentialEnvironment(LoginOSS->GetInstanceName()));
             }
-        	
+
             if (bLogoutAndRetryLoginIfRefreshLoginFailed && !Req.CredentialRefreshToken.IsEmpty())
             {
                 const auto Identity = LoginOSS ? LoginOSS->GetIdentityInterface() : nullptr;
@@ -272,6 +277,19 @@ void URH_LocalPlayerLoginSubsystem::DoLoginOSSLogin(FRH_PendingLoginRequest& Req
     }
 #endif
 
+	auto OSS = GetLoginOSS();
+	if (OSSCannotRelogin(OSS->GetSubsystemName()))
+	{
+		auto IdentityInterface = OSS->GetIdentityInterface();
+		auto LoginUser = IdentityInterface->GetUniquePlayerId(GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId());
+		if (LoginUser && LoginUser->IsValid() && IdentityInterface->GetLoginStatus(*LoginUser) == ELoginStatus::LoggedIn)
+		{
+			Req.OSSUniqueId = LoginUser;
+			DoLoginOSSPrivilegeCheck(Req);
+			return;
+		}
+	}
+
     DoOSSLogin(Req, GetLoginOSS(), &URH_LocalPlayerLoginSubsystem::OSSLoginComplete);
 }
 
@@ -285,6 +303,17 @@ void URH_LocalPlayerLoginSubsystem::DoNicknameOSSLogin(FRH_PendingLoginRequest& 
     }
     else
     {
+		if (OSSCannotRelogin(NicknameOSS->GetSubsystemName()))
+		{
+			auto IdentityInterface = NicknameOSS->GetIdentityInterface();
+			auto LoginUser = IdentityInterface->GetUniquePlayerId(GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId());
+			if (LoginUser && LoginUser->IsValid() && IdentityInterface->GetLoginStatus(*LoginUser) == ELoginStatus::LoggedIn)
+			{
+				Req.NicknameOSSUniqueId = LoginUser;
+				DoNicknameOSSPrivilegeCheck(Req);
+				return;
+			}
+		}
         DoOSSLogin(Req, NicknameOSS, &URH_LocalPlayerLoginSubsystem::OSSNicknameLoginComplete);
     }
 }
@@ -293,7 +322,7 @@ void URH_LocalPlayerLoginSubsystem::DoOSSLogin(FRH_PendingLoginRequest& Req, IOn
                                                OSSLoginCompleteFn OnComplete)
 {
     auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
-    if (!Identity.IsValid())
+    if (OSS == nullptr || !Identity.IsValid())
     {
         UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Missing OSS Identity - check that the OSS is valid"),
                ANSI_TO_TCHAR(__FUNCTION__));
@@ -308,7 +337,7 @@ void URH_LocalPlayerLoginSubsystem::DoOSSLogin(FRH_PendingLoginRequest& Req, IOn
         return;
     }
 
-    int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
+	int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
     if (OSS->GetSubsystemName() == SWITCH_SUBSYSTEM)
     {
         FString ForcedUserAccountMode;
@@ -628,62 +657,13 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSPrivilegeResults(const FUniqueNetId& Us
     }
 }
 
-TOptional<ERHAPI_GrantType> URH_LocalPlayerLoginSubsystem::GetGrantType(FName OSSName) const
-{
-    if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::Steam;
-    }
-    else if (OSSName == EPIC_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::Epic;
-    }
-    else if (OSSName == PS4_SUBSYSTEM)
-    {
-        bool bUseCrossGenAuth = false;
-        if (GConfig->GetBool(TEXT("/Script/PS4PlatformEditor.PS4TargetSettings"), TEXT("bUseCrossGenAuthentication"), bUseCrossGenAuth, GEngineIni) && bUseCrossGenAuth)
-        {
-            return ERHAPI_GrantType::PS4V3;
-        }
-        return ERHAPI_GrantType::PS4V1;
-    }
-    else if (OSSName == PS5_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::PS5V3;
-    }
-    else if (OSSName == LIVE_SUBSYSTEM || OSSName == GDK_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::Xboxlive;
-    }
-    else if (OSSName == SWITCH_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::NintendoSwitch;
-    }
-    else if (OSSName == APPLE_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::Apple;
-    }
-    else if (OSSName == GOOGLE_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::Google;
-    }
-    else if (OSSName == ANON_SUBSYSTEM)
-    {
-        return ERHAPI_GrantType::Anon;
-    }
-    else
-    {
-        return {};
-    }
-}
-
 void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Req)
 {
     Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::None;
 
     auto LoginOSS = GetLoginOSS();
     auto LoginIdentity = LoginOSS ? LoginOSS->GetIdentityInterface() : nullptr;
-    if (!LoginIdentity)
+    if (LoginOSS == nullptr || !LoginIdentity)
     {
         UE_LOG(LogRallyHereIntegration, Error,
                TEXT("[%s] Missing OSS Identity - check that the login OSS '%s' is valid"), ANSI_TO_TCHAR(__FUNCTION__),
@@ -694,13 +674,29 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 
     int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
 
+	const auto AuthToken = LoginIdentity->GetAuthToken(ControllerId);
+
+	if (AuthToken.Len() <= 0)
+	{
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] Empty auth token - check that the login OSS '%s' was able to fully log in (ex: may have logged into a local account rather than a network account)"), ANSI_TO_TCHAR(__FUNCTION__),
+			LoginOSS ? *LoginOSS->GetSubsystemName().ToString() : TEXT("NotFound"));
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSAuthToken));
+		return;
+	}
+
+	// update the auth context with the current client id and secret in case it changed since prior logins
+	auto AuthContext = GetAuthContext();
+	AuthContext->SetClientId(FRallyHereIntegrationModule::Get().GetClientId());
+	AuthContext->SetClientSecret(FRallyHereIntegrationModule::Get().GetClientSecret());
+
     RallyHereAPI::FRequest_Login Request;
     Request.SetShouldRetry();
-    Request.AuthContext = GetAuthContext();
-    Request.BodyLoginV1LoginPost.SetIncludeRefresh(true);
-    Request.BodyLoginV1LoginPost.SetAcceptEula(Req.bAcceptEULA);
-    Request.BodyLoginV1LoginPost.SetAcceptTos(Req.bAcceptTOS);
-    Request.BodyLoginV1LoginPost.SetAcceptPrivacyPolicy(Req.bAcceptPP);
+    Request.AuthContext = AuthContext;
+    Request.LoginRequestV1.SetIncludeRefresh(true);
+    Request.LoginRequestV1.SetAcceptEula(Req.bAcceptEULA);
+    Request.LoginRequestV1.SetAcceptTos(Req.bAcceptTOS);
+    Request.LoginRequestV1.SetAcceptPrivacyPolicy(Req.bAcceptPP);
     if (Req.CredentialRefreshToken.IsEmpty())
     {
         auto NicknameOSS = GetNicknameOSS();
@@ -710,7 +706,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
             NicknameIdentity = LoginIdentity;
         }
 
-        auto GrantType = GetGrantType(LoginOSS->GetSubsystemName());
+        auto GrantType = RH_GetGrantTypeFromOSSName(LoginOSS->GetSubsystemName());
         if (!GrantType)
         {
             UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find grant type for OSS '%s'."),
@@ -719,9 +715,9 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
             return;
         }
 
-        Request.BodyLoginV1LoginPost.GrantType = *GrantType;
-        Request.BodyLoginV1LoginPost.PortalAccessToken = LoginIdentity->GetAuthToken(ControllerId);
-        Request.BodyLoginV1LoginPost.SetPortalDisplayName(NicknameIdentity->GetPlayerNickname(ControllerId));
+        Request.LoginRequestV1.GrantType = *GrantType;
+        Request.LoginRequestV1.PortalAccessToken = AuthToken;
+        Request.LoginRequestV1.SetPortalDisplayName(NicknameIdentity->GetPlayerNickname(ControllerId));
 
         UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Login OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
                ANSI_TO_TCHAR(__FUNCTION__),
@@ -740,8 +736,8 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
     }
     else
     {
-        Request.BodyLoginV1LoginPost.GrantType = ERHAPI_GrantType::Refresh;
-        Request.BodyLoginV1LoginPost.PortalAccessToken = Req.CredentialRefreshToken;
+        Request.LoginRequestV1.GrantType = ERHAPI_GrantType::Refresh;
+        Request.LoginRequestV1.PortalAccessToken = Req.CredentialRefreshToken;
     }
 
 	if (auto UserAccount = LoginIdentity->GetUserAccount(*Req.OSSUniqueId))
@@ -751,15 +747,15 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 		{
 			if (bLoginOSSUseIDTokenAsPortalParentAccessToken)
 			{
-				Request.BodyLoginV1LoginPost.SetPortalParentAccessToken(IDToken);
+				Request.LoginRequestV1.SetPortalParentAccessToken(IDToken);
 			}
 			else if (bLoginOSSUseIDTokenAsPortalAccessToken)
 			{
-				Request.BodyLoginV1LoginPost.PortalAccessToken = IDToken;
+				Request.LoginRequestV1.PortalAccessToken = IDToken;
 			}
 		}
 	}
-	
+
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Login request"),
            ANSI_TO_TCHAR(__FUNCTION__));
     auto HttpRequest = RH_APIs::GetAPIs().GetAuth().Login(Request,
@@ -855,6 +851,27 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
                Resp.GetHttpResponse() ? *Resp.GetHttpResponse()->GetContentAsString() : TEXT(""));
         PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_RHUnknown));
     }
+}
+
+void URH_LocalPlayerLoginSubsystem::Logout()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	const auto LoginOSS = GetLoginOSS();
+
+	FString RefreshToken;
+
+	auto AuthContext = GetAuthContext();
+	if (AuthContext.IsValid())
+	{
+		RefreshToken = AuthContext->GetRefreshToken();
+		AuthContext->ClearAuthContext();
+
+		auto Request = TLogout::Request();
+
+		Request.LogoutRequest.SetRefreshToken(RefreshToken);
+		TLogout::DoCall(RH_APIs::GetAuthAPI(), Request, TLogout::Delegate(), GetDefault<URH_IntegrationSettings>()->AuthLogoutPriority);
+	}
 }
 
 void URH_LocalPlayerLoginSubsystem::CheckCrossplayPrivilege(const FUniqueNetId& UniqueId)

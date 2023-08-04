@@ -14,8 +14,12 @@
 #include "PlatformRegion.h"
 #include "PlatformEntitlementProcessRequest.generated.h"
 
+/** @defgroup RHAPI_PlatformEntitlementProcessRequest RallyHere API Model PlatformEntitlementProcessRequest
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Request to process a platform entitlement
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI_Model
@@ -111,3 +115,5 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
      /** @brief Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false */
     void ClearEntitlements() { Entitlements_IsSet = false; }
 };
+
+/** @} */

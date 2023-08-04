@@ -42,11 +42,14 @@ bool FRHAPI_PurchasePrice::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("price_item_id"), PriceItemId);
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("price"), Price);
-    if ((*Object)->HasField(TEXT("price_coupon_item_id")))
+    const TSharedPtr<FJsonValue> JsonPriceItemIdField = (*Object)->TryGetField(TEXT("price_item_id"));
+    ParseSuccess &= JsonPriceItemIdField.IsValid() && !JsonPriceItemIdField->IsNull() && TryGetJsonValue(JsonPriceItemIdField, PriceItemId);
+    const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
+    ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
+    const TSharedPtr<FJsonValue> JsonPriceCouponItemIdField = (*Object)->TryGetField(TEXT("price_coupon_item_id"));
+    if (JsonPriceCouponItemIdField.IsValid() && !JsonPriceCouponItemIdField->IsNull())
     {
-        PriceCouponItemId_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("price_coupon_item_id"), PriceCouponItemId_Optional);
+        PriceCouponItemId_IsSet = TryGetJsonValue(JsonPriceCouponItemIdField, PriceCouponItemId_Optional);
         ParseSuccess &= PriceCouponItemId_IsSet;
     }
 

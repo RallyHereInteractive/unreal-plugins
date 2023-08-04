@@ -11,8 +11,12 @@
 #include "RallyHereAPIHelpers.h"
 #include "Notes.generated.h"
 
+/** @defgroup RHAPI_Notes RallyHere API Model Notes
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief Notes to set for the Player&#39;s friend. If you don&#39;t want to modify notes, no not include in body when adding a friend.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Notes : public FRHAPI_Model
@@ -57,3 +61,5 @@ struct RALLYHEREAPI_API FRHAPI_Notes : public FRHAPI_Model
      /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
     void ClearNotes() { Notes_IsSet = false; }
 };
+
+/** @} */

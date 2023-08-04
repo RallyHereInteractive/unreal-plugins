@@ -14,13 +14,9 @@ struct FRHDTW_Config : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 	void DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
-	void DoRhSiteTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
 
-	using FFResponse_GetAppSettingsClient = RallyHereAPI::FResponse_GetAppSettingsClient;
 	void HandleFetchAppSettings(bool bSuccess);
-	void HandleFetchSiteSettings(bool bSuccess);
 
 	FString AppSettingsActionResult;
-	FString SiteSettingsActionResult;
 
 };

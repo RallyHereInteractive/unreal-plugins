@@ -6,8 +6,45 @@
 #include "HAL/PlatformApplicationMisc.h"
 #endif
 
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMode CopyMode)
+void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
+	auto CopyButton = [Key, Value, CopyMode, bContentAsTooltip]() {
+#if !PLATFORM_ALLOWS_COPY
+		ImGui::BeginDisabled();
+#endif
+		FString ImGuiId = TEXT("Copy##") + Key;
+		if (CopyMode == ECopyMode::ButtonKey)
+		{
+			ImGuiId = Key;
+		}
+		if (ImGui::SmallButton(TCHAR_TO_UTF8(*ImGuiId)))
+		{
+#if PLATFORM_ALLOWS_COPY
+			FPlatformApplicationMisc::ClipboardCopy(*Value);
+#endif
+		}
+		if (bContentAsTooltip)
+		{
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				FString Tooltip = FString("Copy content:").Append(LINE_TERMINATOR).Append(Value);
+				ImGui::SetTooltip("%s", TCHAR_TO_UTF8(*Tooltip));
+			}
+		}
+#if !PLATFORM_ALLOWS_COPY
+		ImGui::EndDisabled();
+#endif
+	};
+
+	if (bButtonOnLeftSide)
+	{
+		CopyButton();
+		if (CopyMode != ECopyMode::Button && CopyMode != ECopyMode::ButtonKey)
+		{
+			ImGui::SameLine();
+		}
+	}
+
 	if (CopyMode == ECopyMode::Key)
 	{
 		ImGui::Text("%s", TCHAR_TO_UTF8(*Key));
@@ -26,21 +63,16 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const 
 		ImGui::NextColumn();
 		ImGui::Text("%s", TCHAR_TO_UTF8(*Value));
 	}
-#if PLATFORM_ALLOWS_COPY
-	FString ImGuiId = TEXT("Copy##") + Key;
-	if (CopyMode != ECopyMode::Button && CopyMode != ECopyMode::ButtonKey)
+
+	if (!bButtonOnLeftSide)
 	{
-		ImGui::SameLine();
+		if (CopyMode != ECopyMode::Button && CopyMode != ECopyMode::ButtonKey)
+		{
+			ImGui::SameLine();
+		}
+		CopyButton();
 	}
-	if (CopyMode == ECopyMode::ButtonKey)
-	{
-		ImGuiId = Key;
-	}
-	if (ImGui::SmallButton(TCHAR_TO_UTF8(*ImGuiId)))
-	{
-		FPlatformApplicationMisc::ClipboardCopy(*Value);
-	}
-#endif
+	
 	// advance column again
 	if (CopyMode == ECopyMode::TwoColumn)
 	{
@@ -48,45 +80,67 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const 
 	}
 }
 
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FGuid& Value, ECopyMode CopyMode)
+void ImGuiDisplayCopyableValue(const FString& Key, const FGuid& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
 	FString ValueString = Value.ToString(EGuidFormats::DigitsWithHyphens);
-	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode);
+	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FDateTime& Value, ECopyMode CopyMode)
+void ImGuiDisplayCopyableValue(const FString& Key, const FDateTime& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
 	FString ValueString = Value.ToString();
-	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode);
+	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
 
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const int32& Value, ECopyMode CopyMode)
+void ImGuiDisplayCopyableValue(const FString& Key, const int32& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
 	FString ValueString = FString::Printf(TEXT("%d"), Value);
-	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode);
+	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TOptional<TMap<FString, FString>>& CustomData)
+void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FString& Key)
 {
-	if (ImGui::TreeNodeEx("Custom Data", RH_DefaultTreeFlags))
+	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8 (*FString::Printf(TEXT("Custom Data##%s"), *Key)), RH_DefaultTreeFlags))
 	{
-		if (CustomData.IsSet() && CustomData->Num() > 0)
+		if (CustomData.Num() > 0)
 		{
-			for (auto pair : CustomData.GetValue())
+			for (const auto& pair : CustomData)
 			{
 				ImGuiDisplayCopyableValue(pair.Key, pair.Value);
 			}
 		}
-		else if (CustomData.IsSet() && CustomData->Num() > 0)
-		{
-			ImGui::Text("<EMPTY>");
-		}
 		else
 		{
-			ImGui::Text("<UNSET>");
+			ImGui::Text("<EMPTY>");
 		}
 
 		ImGui::TreePop();
 	}
+}
+
+void ImGuiCopyStringToTextInputBuffer(const FString& StringToCopy, TArray<ANSICHAR>& Buffer)
+{
+	FTCHARToUTF8 UTF8StringToCopy(*StringToCopy);
+	auto Length = UTF8StringToCopy.Length() + 1; // includes null terminator
+
+	if (Buffer.Num() < Length)
+	{
+		Buffer.AddZeroed(Length);
+	}
+
+	FMemory::Memcpy(Buffer.GetData(), UTF8StringToCopy.Get(), FMath::Min(Buffer.Num(), Length));
+}
+
+FString ImGuiGetStringFromTextInputBuffer(TArray<ANSICHAR>& Buffer)
+{
+	return UTF8_TO_TCHAR(Buffer.GetData());
+}
+
+FString GetShortUuid(const FGuid& Uuid)
+{
+	FString result = Uuid.ToString(EGuidFormats::DigitsWithHyphens); // Full UUID by default
+	FString theRest = FString("");
+	Uuid.ToString(EGuidFormats::DigitsWithHyphens).Split(FString("-"), &result, &theRest, ESearchCase::CaseSensitive);
+	return result;
 }

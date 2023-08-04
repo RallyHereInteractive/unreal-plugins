@@ -35,7 +35,8 @@ bool FRHAPI_MatchCreateResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    ParseSuccess &= RallyHereAPI::TryGetJsonValue(*Object, TEXT("match_id"), MatchId);
+    const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
+    ParseSuccess &= JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId);
 
     return ParseSuccess;
 }

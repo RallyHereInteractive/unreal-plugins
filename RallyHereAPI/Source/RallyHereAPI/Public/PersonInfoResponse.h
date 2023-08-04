@@ -11,6 +11,10 @@
 #include "RallyHereAPIHelpers.h"
 #include "PersonInfoResponse.generated.h"
 
+/** @defgroup RHAPI_PersonInfoResponse RallyHere API Model PersonInfoResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -36,24 +40,24 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PersonId_Optional{  };
+    FGuid PersonId_Optional{  };
     /** @brief true if PersonId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool PersonId_IsSet{ false };
     /** @brief Gets the value of PersonId_Optional, regardless of it having been set */
-    FString& GetPersonId() { return PersonId_Optional; }
+    FGuid& GetPersonId() { return PersonId_Optional; }
     /** @brief Gets the value of PersonId_Optional, regardless of it having been set */
-    const FString& GetPersonId() const { return PersonId_Optional; }
+    const FGuid& GetPersonId() const { return PersonId_Optional; }
     /** @brief Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetPersonId(const FString& DefaultValue) const { if (PersonId_IsSet) return PersonId_Optional; return DefaultValue; }
+    const FGuid& GetPersonId(const FGuid& DefaultValue) const { if (PersonId_IsSet) return PersonId_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPersonId(FString& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
+    bool GetPersonId(FGuid& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
     /** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetPersonIdOrNull() { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+    FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
     /** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetPersonIdOrNull() const { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+    const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
     /** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true */
-    void SetPersonId(FString NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+    void SetPersonId(FGuid NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
      /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
     void ClearPersonId() { PersonId_IsSet = false; }
 
@@ -105,3 +109,5 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
      /** @brief Clears the value of Email_Optional and sets Email_IsSet to false */
     void ClearEmail() { Email_IsSet = false; }
 };
+
+/** @} */

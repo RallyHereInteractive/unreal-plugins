@@ -11,16 +11,17 @@
 #include "RallyHereAPIHelpers.h"
 #include "Determiner.generated.h"
 
+
 /**
- * @brief An enumeration.
+ * @brief Determiner for how many rules must be satisfied in order to satisfy the ruleset
  */
 UENUM(BlueprintType)
 enum class ERHAPI_Determiner : uint8
 {
-    All UMETA(ToolTip="An enumeration."),
-    Any UMETA(ToolTip="An enumeration."),
-    One UMETA(ToolTip="An enumeration."),
-    None UMETA(ToolTip="An enumeration."),
+    All UMETA(ToolTip="All rules must be satisfied"),
+    Any UMETA(ToolTip="At least one rule must be satisfied"),
+    One UMETA(ToolTip="Exactly one rule must be satisfied"),
+    None UMETA(ToolTip="All rules must not be satisfied"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Determiner& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Determiner& EnumValue);

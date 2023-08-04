@@ -13,8 +13,12 @@
 #include "Item.h"
 #include "Items.generated.h"
 
+/** @defgroup RHAPI_Items RallyHere API Model Items
+ *  @{
+ */
+
 /**
- * @brief 
+ * @brief A collections of Items by Item ID.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
@@ -37,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief A collection of Items by Item ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_Item> Items_Optional{  };
     /** @brief true if Items_Optional has been set to a value */
@@ -81,3 +86,5 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
      /** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
     void ClearCacheInfo() { CacheInfo_IsSet = false; }
 };
+
+/** @} */

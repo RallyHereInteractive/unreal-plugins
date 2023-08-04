@@ -12,6 +12,10 @@
 #include "OnlineStatus.h"
 #include "PlayerPresence.generated.h"
 
+/** @defgroup RHAPI_PlayerPresence RallyHere API Model PlayerPresence
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -216,3 +220,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
      /** @brief Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false */
     void ClearLastSeen() { LastSeen_IsSet = false; }
 };
+
+/** @} */

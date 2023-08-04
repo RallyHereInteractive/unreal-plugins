@@ -1,6 +1,7 @@
 // Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
 
 #include "RallyHereDebugToolModule.h"
+#include "RallyHereDebugTool.h"
 #include "imgui.h"
 #include "RHDTW_Purge.h"
 
@@ -14,7 +15,9 @@
 FRHDTW_Purge::FRHDTW_Purge()
 	: Super()
 {
+	DefaultPos = FVector2D(610, 20);
 	SuggestedPurgeTimeInput.resize(IMGUI_PURGE_TIME_TEXTENTRY_PREALLOCATION_SIZE);
+	PurgeActionResult.Empty();
 }
 
 FRHDTW_Purge::~FRHDTW_Purge()
@@ -23,123 +26,184 @@ FRHDTW_Purge::~FRHDTW_Purge()
 
 void FRHDTW_Purge::Do()
 {
-	URH_PurgeSubsystem* pRH_PurgeSubsystem = GetPurgeSubsystem();
-	if (pRH_PurgeSubsystem == nullptr)
+	int NumSelectedPlayers = 0;
+	if (URallyHereDebugTool* pOwner = GetOwner())
 	{
-		ImGui::Text("%s", "URH_PurgeSubsystem not available.");
+		NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
+	}
+	if (NumSelectedPlayers <= 0)
+	{
+		ImGui::Text("%s", "Please select a local player (has Controller Id) in Player Repository.");
 		return;
 	}
+	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
 	
 	ImGui::SetNextItemWidth(IMGUI_PURGE_TIME_INPUT_WIDTH);
 	ImGui::InputText("Suggested Purge Time (ISO8601 Format)", const_cast<char*>(SuggestedPurgeTimeInput.data()), SuggestedPurgeTimeInput.size());
 	ImGui::SameLine();
 	if (ImGui::Button("Queue Purge"))
 	{
-		if (SuggestedPurgeTimeInput[0] != '\0')
+		PurgeActionResult.Empty();
+		FDateTime SuggestedPurgeDateTime;
+		bool hasPurgeTimeInput = SuggestedPurgeTimeInput[0] != '\0';
+		if (hasPurgeTimeInput)
 		{
-			FDateTime SuggestedPurgeDateTime;
 			FDateTime::ParseIso8601(UTF8_TO_TCHAR(SuggestedPurgeTimeInput.c_str()), SuggestedPurgeDateTime);
-
-			auto Request = RallyHereAPI::FRequest_QueueMeForPurge();
-			Request.PurgeRequest.SetSuggestedPurgeTime(SuggestedPurgeDateTime);
-
-			auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge);
-			pRH_PurgeSubsystem->EnqueueMeForPurge(SuggestedPurgeDateTime, MoveTemp(Delegate));
 		}
-		else
-		{
-			auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge);
-			pRH_PurgeSubsystem->EnqueueMeForPurge(MoveTemp(Delegate));
-		}
+
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this, SuggestedPurgeDateTime, hasPurgeTimeInput](URH_LocalPlayerSubsystem* pLocalPlayerSubsystem)
+			{
+				if (pLocalPlayerSubsystem)
+				{
+					if (URH_PurgeSubsystem* pRH_PurgeSubsystem = pLocalPlayerSubsystem->GetPurgeSubsystem())
+					{
+						if (hasPurgeTimeInput)
+						{
+							pRH_PurgeSubsystem->EnqueueMeForPurge(SuggestedPurgeDateTime, FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge, pLocalPlayerSubsystem->GetPlayerUuid()));
+						}
+						else
+						{
+							pRH_PurgeSubsystem->EnqueueMeForPurge(FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge, pLocalPlayerSubsystem->GetPlayerUuid()));
+						}
+						
+					}
+					else
+					{
+						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+					}
+				}
+			}));
 	}
+
 	if (ImGui::Button("Purge Me Immediately"))
 	{
-		auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge);
-		pRH_PurgeSubsystem->PurgeMeImmediately(MoveTemp(Delegate));
+		PurgeActionResult.Empty();
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* pLocalPlayerSubsystem)
+			{
+				if (pLocalPlayerSubsystem)
+				{
+					if (URH_PurgeSubsystem* pRH_PurgeSubsystem = pLocalPlayerSubsystem->GetPurgeSubsystem())
+					{
+						auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge, pLocalPlayerSubsystem->GetPlayerUuid());
+						pRH_PurgeSubsystem->PurgeMeImmediately(MoveTemp(Delegate));
+					}
+					else
+					{
+						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+					}
+				}
+			}));
 	}
 	
 	ImGui::SameLine();
 	if (ImGui::Button("Dequeue Purge"))
 	{
-		DequeueMeForPurge(pRH_PurgeSubsystem);
+		PurgeActionResult.Empty();
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* pLocalPlayerSubsystem)
+			{
+				if (pLocalPlayerSubsystem)
+				{
+					if (URH_PurgeSubsystem* pRH_PurgeSubsystem = pLocalPlayerSubsystem->GetPurgeSubsystem())
+					{
+						auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleDequeueMeForPurge, pLocalPlayerSubsystem->GetPlayerUuid());
+						pRH_PurgeSubsystem->DequeueMeForPurge(MoveTemp(Delegate));
+					}
+					else
+					{
+						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+					}
+				}
+			}));
+		
 	}
-
-	ImGui::Text("%s", TCHAR_TO_UTF8(*PurgeActionResult));
 	
-	ImGui::Separator();
 	if (ImGui::Button("Refresh Purge Status"))
 	{
-		RefreshMyPurgeStatus(pRH_PurgeSubsystem);
+		PurgeActionResult.Empty();
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* pLocalPlayerSubsystem)
+			{
+				if (pLocalPlayerSubsystem)
+				{
+					if (URH_PurgeSubsystem* pRH_PurgeSubsystem = pLocalPlayerSubsystem->GetPurgeSubsystem())
+					{
+						auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleGetMyPurgeStatus, pLocalPlayerSubsystem->GetPlayerUuid());
+						pRH_PurgeSubsystem->QueryMyPurgeStatus(MoveTemp(Delegate));
+					}
+					else
+					{
+						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+					}
+				}
+			}));
+	}
+
+	if (!PurgeActionResult.IsEmpty())
+	{
+		if (ImGui::CollapsingHeader("Purge Action Result", RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*PurgeActionResult));
+		}
+	}
+
+	ImGui::Separator();
+
+	URH_PurgeSubsystem* pRH_PurgeSubsystem = nullptr;
+	if (const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer())
+	{
+		FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pLocalPlayer->GetControllerId());
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
+
+		if (const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+		{
+			pRH_PurgeSubsystem = pRH_LocalPlayerSubsystem->GetPurgeSubsystem();
+		}
+	}
+
+	if (pRH_PurgeSubsystem == nullptr)
+	{
+		ImGui::Text("%s", "URH_PurgeSubsystem not available.");
+		return;
 	}
 
 	ImGuiDisplayCopyableValue(TEXT("Person ID"), pRH_PurgeSubsystem->GetMyPurgeStatus().PersonId.ToString(EGuidFormats::DigitsWithHyphens));
-	ImGuiDisplayCopyableValue(TEXT("Status"), pRH_PurgeSubsystem->GetMyPurgeStatus().PurgeStatus);
+	ImGuiDisplayCopyableValue(TEXT("Status"), pRH_PurgeSubsystem->GetMyPurgeStatus().Status);
 	ImGuiDisplayCopyableValue(TEXT("Purge On"), pRH_PurgeSubsystem->GetMyPurgeStatus().PurgeOn.ToIso8601());
 	ImGuiDisplayCopyableValue(TEXT("Queued On"), pRH_PurgeSubsystem->GetMyPurgeStatus().CreatedOn.ToIso8601());
-	ImGuiDisplayCopyableValue(TEXT("Last Modified O"), pRH_PurgeSubsystem->GetMyPurgeStatus().LastModifiedOn.ToIso8601());
+	ImGuiDisplayCopyableValue(TEXT("Last Modified On"), pRH_PurgeSubsystem->GetMyPurgeStatus().LastModifiedOn.ToIso8601());
 }
 
-void FRHDTW_Purge::DequeueMeForPurge(URH_PurgeSubsystem* pRH_PurgeSubsystem)
-{
-	auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleDequeueMeForPurge);
-	pRH_PurgeSubsystem->DequeueMeForPurge(MoveTemp(Delegate));
-}
-
-void FRHDTW_Purge::RefreshMyPurgeStatus(URH_PurgeSubsystem* pRH_PurgeSubsystem)
-{
-	auto Delegate = FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleGetMyPurgeStatus);
-	pRH_PurgeSubsystem->QueryMyPurgeStatus(MoveTemp(Delegate));
-}
-
-void FRHDTW_Purge::HandleEnqueueMeForPurge(bool success, FRH_PurgeStatus PurgeStatus, FRH_ErrorInfo Error)
+void FRHDTW_Purge::HandleEnqueueMeForPurge(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid)
 {
 	if (success)
 	{
-		PurgeActionResult = FString::Printf(TEXT("Enqueue Me for Purge succeeded."));
+		PurgeActionResult =+ "[" + GetShortUuid(PlayerUuid) + "] Enqueue Me for Purge succeeded." + LINE_TERMINATOR;
 	}
 	else
 	{
-		PurgeActionResult = FString::Printf(TEXT("Enqueue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent);
+		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Enqueue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
 	}
 }
 
-void FRHDTW_Purge::HandleDequeueMeForPurge(bool success, FRH_PurgeStatus PurgeStatus, FRH_ErrorInfo Error)
+void FRHDTW_Purge::HandleDequeueMeForPurge(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid)
 {
 	if (success)
 	{
-		PurgeActionResult = FString::Printf(TEXT("Dequeue Me for Purge succeeded."));
+		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + "] Dequeue Me for Purge succeeded." + LINE_TERMINATOR;
 	}
 	else
 	{
-		PurgeActionResult = FString::Printf(TEXT("Dequeue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent);
+		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Dequeue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
 	}
 }
 
-URH_PurgeSubsystem* FRHDTW_Purge::GetPurgeSubsystem()
-{
-	const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
-	if (pLocalPlayer == nullptr)
-	{
-		return nullptr;
-	}
-	
-	const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-	if (pRH_LocalPlayerSubsystem == nullptr)
-	{
-		return nullptr;
-	}
-	
-	return pRH_LocalPlayerSubsystem->GetPurgeSubsystem();
-}
-
-void FRHDTW_Purge::HandleGetMyPurgeStatus(bool success, FRH_PurgeStatus PurgeStatus, FRH_ErrorInfo Error)
+void FRHDTW_Purge::HandleGetMyPurgeStatus(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid)
 {
 	if (success)
 	{
-		PurgeActionResult = FString::Printf(TEXT("Refresh Purge Status successed"));
+		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + "] Refresh Purge Status succeeded." + LINE_TERMINATOR;
 	}
 	else
 	{
-		PurgeActionResult = FString::Printf(TEXT("Refresh Purge Status failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent);
+		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Refresh Purge Status failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
 	}
 }

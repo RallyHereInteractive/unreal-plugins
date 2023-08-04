@@ -11,9 +11,9 @@
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
 #include "AdOpportunities.h"
-#include "BodyBeginNewSessionV1SessionPost.h"
-#include "BodyFindOpportunitiesV1OpportunityPost.h"
-#include "BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost.h"
+#include "BodyBeginNewSession.h"
+#include "BodyFindOpportunities.h"
+#include "BodyUpdateOpportunityById.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 
@@ -46,23 +46,24 @@ public:
     FAdAPI();
     virtual ~FAdAPI();
 
-    FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession());
-    FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities());
-    FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched());
-    FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched());
-    FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById());
+    FHttpRequestPtr BeginNewSession(const FRequest_BeginNewSession& Request, const FDelegate_BeginNewSession& Delegate = FDelegate_BeginNewSession(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr FindOpportunities(const FRequest_FindOpportunities& Request, const FDelegate_FindOpportunities& Delegate = FDelegate_FindOpportunities(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UnityAdWatched(const FRequest_UnityAdWatched& Request, const FDelegate_UnityAdWatched& Delegate = FDelegate_UnityAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UnityMediationAdWatched(const FRequest_UnityMediationAdWatched& Request, const FDelegate_UnityMediationAdWatched& Delegate = FDelegate_UnityMediationAdWatched(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdateOpportunityById(const FRequest_UpdateOpportunityById& Request, const FDelegate_UpdateOpportunityById& Delegate = FDelegate_UpdateOpportunityById(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
-    void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
-    void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry);
+    void OnBeginNewSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BeginNewSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnFindOpportunitiesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindOpportunities Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUnityAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUnityMediationAdWatchedResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UnityMediationAdWatched Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdateOpportunityByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOpportunityById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Begin New Session
-
+ *
+ * Start a new session for the user. This will generate a new ad api token that is returned in the response header.
 */
 struct RALLYHEREAPI_API FRequest_BeginNewSession : public FRequest
 {
@@ -74,7 +75,7 @@ struct RALLYHEREAPI_API FRequest_BeginNewSession : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_BodyBeginNewSessionV1SessionPost BodyBeginNewSessionV1SessionPost;
+    FRHAPI_BodyBeginNewSession BodyBeginNewSession;
     /* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
     TOptional<FString> XHzAdApiToken;
 };
@@ -101,11 +102,12 @@ struct RALLYHEREAPI_API Traits_BeginNewSession
     typedef FAdAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.BeginNewSession(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BeginNewSession(InRequest, InDelegate, Priority); }
 };
 
 /* Find Opportunities
-
+ *
+ * Find ad opportunities for the user given optional screen sizes. This will generate a new ad api token that is returned in the response header.
 */
 struct RALLYHEREAPI_API FRequest_FindOpportunities : public FRequest
 {
@@ -117,7 +119,7 @@ struct RALLYHEREAPI_API FRequest_FindOpportunities : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_BodyFindOpportunitiesV1OpportunityPost BodyFindOpportunitiesV1OpportunityPost;
+    FRHAPI_BodyFindOpportunities BodyFindOpportunities;
     /* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
     TOptional<FString> XHzAdApiToken;
 };
@@ -144,7 +146,7 @@ struct RALLYHEREAPI_API Traits_FindOpportunities
     typedef FAdAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.FindOpportunities(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.FindOpportunities(InRequest, InDelegate, Priority); }
 };
 
 /* Unity Ad Watched
@@ -188,7 +190,7 @@ struct RALLYHEREAPI_API Traits_UnityAdWatched
     typedef FAdAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UnityAdWatched(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityAdWatched(InRequest, InDelegate, Priority); }
 };
 
 /* Unity Mediation Ad Watched
@@ -234,11 +236,12 @@ struct RALLYHEREAPI_API Traits_UnityMediationAdWatched
     typedef FAdAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UnityMediationAdWatched(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnityMediationAdWatched(InRequest, InDelegate, Priority); }
 };
 
 /* Update Opportunity By Id
-
+ *
+ * Update the opportunity with the given id. This will generate a new ad api token that is returned in the response header.
 */
 struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
 {
@@ -251,7 +254,7 @@ struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FString OpportunityId;
-    FRHAPI_BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost BodyUpdateOpportunityByIdV1OpportunityOpportunityIdPost;
+    FRHAPI_BodyUpdateOpportunityById BodyUpdateOpportunityById;
     /* Optional header to make calling the endpoint faster by not requiring a new token to be generated. */
     TOptional<FString> XHzAdApiToken;
 };
@@ -278,7 +281,7 @@ struct RALLYHEREAPI_API Traits_UpdateOpportunityById
     typedef FAdAPI API;
     static FString Name;
 	
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate()) { return InAPI.UpdateOpportunityById(InRequest, InDelegate); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateOpportunityById(InRequest, InDelegate, Priority); }
 };
 
 

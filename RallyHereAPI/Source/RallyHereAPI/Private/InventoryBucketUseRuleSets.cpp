@@ -43,14 +43,16 @@ bool FRHAPI_InventoryBucketUseRuleSets::FromJson(const TSharedPtr<FJsonValue>& J
 
     bool ParseSuccess = true;
 
-    if ((*Object)->HasField(TEXT("rule_sets")))
+    const TSharedPtr<FJsonValue> JsonRuleSetsField = (*Object)->TryGetField(TEXT("rule_sets"));
+    if (JsonRuleSetsField.IsValid() && !JsonRuleSetsField->IsNull())
     {
-        RuleSets_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("rule_sets"), RuleSets_Optional);
+        RuleSets_IsSet = TryGetJsonValue(JsonRuleSetsField, RuleSets_Optional);
         ParseSuccess &= RuleSets_IsSet;
     }
-    if ((*Object)->HasField(TEXT("cache_info")))
+    const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
+    if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())
     {
-        CacheInfo_IsSet = RallyHereAPI::TryGetJsonValue(*Object, TEXT("cache_info"), CacheInfo_Optional);
+        CacheInfo_IsSet = TryGetJsonValue(JsonCacheInfoField, CacheInfo_Optional);
         ParseSuccess &= CacheInfo_IsSet;
     }
 

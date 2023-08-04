@@ -13,6 +13,10 @@
 #include "PortalUserResponse.h"
 #include "PlayerLinkedPortalsResponse.generated.h"
 
+/** @defgroup RHAPI_PlayerLinkedPortalsResponse RallyHere API Model PlayerLinkedPortalsResponse
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -55,3 +59,5 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
     /** @brief Sets the value of LinkedPortals */
     void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse> NewValue) { LinkedPortals = NewValue;  }
 };
+
+/** @} */

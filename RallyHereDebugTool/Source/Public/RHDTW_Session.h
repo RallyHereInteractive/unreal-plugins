@@ -2,7 +2,7 @@
 #pragma once
 
 #include "RH_DebugToolWindow.h"
-#include "SessionAPI.h"
+#include "SessionsAPI.h"
 
 #include "RH_SessionData.h"
 #include "RH_SessionBrowser.h"
@@ -26,7 +26,7 @@ public:
 
 	TArray<ANSICHAR> JoinByIdString;
 	TArray<ANSICHAR> CreateByTypeSessionTypeString;
-	int32 CreateByTypeSiteId;
+	TArray<ANSICHAR> CreateByTypeRegionIdString;
 
 	TArray<ANSICHAR> InvitePlayerUuidString;
 	int32 InvitePlayerTeam;
@@ -34,6 +34,7 @@ public:
 
 	TArray<ANSICHAR> MapName;
 	TArray<ANSICHAR> GameModeName;
+	bool bMakeBeaconInstance;
 
 	TArray<ANSICHAR> SearchByTypeString;
 	int32 SearchCursor;
@@ -47,8 +48,8 @@ public:
 	bool bFilterInactiveQueues;
 
 protected:
-	void ImGuiDisplayInstance(const FRHAPI_Instance& Info, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
-	void ImGuiDisplayMatch(const FRHAPI_Match& Info);
+	void ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
+	void ImGuiDisplayMatch(const FRHAPI_MatchInfo& Info);
 	void ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const FRHAPI_SessionPlayer& Player, int32 TeamId, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
 	void ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info);
 	void ImGuiDisplaySession(const FRH_APISessionWithETag& Session, URH_SessionView* RHSession, URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
@@ -59,7 +60,9 @@ protected:
 	void ImGuiDisplayQueuesBrowser(URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplayQueue(const class URH_MatchmakingQueueInfo* Queue, URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, class URH_OnlineSession* pSelectedSession, class URH_MatchmakingBrowserCache* pBrowerCache);
 
-	void ImGuiDisplaySessionTemplate(const struct FRH_SessionTemplate& Template);
+	void ImGuiDisplayRegionsBrowser(URH_GameInstanceSubsystem* pGISubsystem);
+
+	void ImGuiDisplaySessionTemplate(const struct FRHAPI_SessionTemplate& Template);
 
 	void HandleBrowserSearchResult(bool bSuccess, const FRH_SessionBrowserSearchResult& Result);
 

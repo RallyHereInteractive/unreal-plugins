@@ -12,6 +12,10 @@
 #include "Notification.h"
 #include "Notifications.generated.h"
 
+/** @defgroup RHAPI_Notifications RallyHere API Model Notifications
+ *  @{
+ */
+
 /**
  * @brief 
  */
@@ -59,3 +63,5 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
      /** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
     void ClearNotifications() { Notifications_IsSet = false; }
 };
+
+/** @} */
