@@ -7,6 +7,10 @@
 #include <UObject/Object.h>
 #include <UObject/WeakObjectPtr.h>
 
+//$$ BEGIN AP - Enum for ImGuiKey
+#include "imgui.h"
+//$$ END AP
+
 #include "ImGuiInputHandler.generated.h"
 
 
@@ -131,6 +135,10 @@ public:
 
 	/** Called to handle deactivation of the mouse input. */
 	virtual void OnMouseInputDisabled();
+
+//$$ BEGIN AP - Static function to do the mapping from Unreal FKey to ImGuiKey
+	static ImGuiKey GetImGuiKeyFromFKey(const FKey& InFKey, const struct ImGuiIO& IO);
+//$$ END AP
 
 protected:
 

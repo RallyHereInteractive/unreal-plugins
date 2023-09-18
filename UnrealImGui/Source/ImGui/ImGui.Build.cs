@@ -68,8 +68,9 @@ public class ImGui : ModuleRules
 				"Engine",
 				"InputCore",
 				"Slate",
-				"SlateCore"
+				"SlateCore",
 				// ... add private dependencies that you statically link with here ...	
+				"PosixShim"
 			}
 			);
 

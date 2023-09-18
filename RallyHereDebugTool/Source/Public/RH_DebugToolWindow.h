@@ -19,10 +19,9 @@ struct RALLYHEREDEBUGTOOL_API FRH_DebugToolWindow : public TSharedFromThis<FRH_D
 	FRH_DebugToolWindow();
 	virtual ~FRH_DebugToolWindow();
 
-	virtual void Init(URallyHereDebugTool* InOwner, const FString& InName, bool bInShow = false);
+	virtual void Init(URallyHereDebugTool* InOwner, const FString& InName);
 	virtual void Uninit();
 
-	void RenderCheckbox();
 	virtual void RenderWindow(); // If you need to override how we normally render windows
 	virtual void Do() {}; // Normal windows should only implement this, as it follows the standard window rendering paradigm
 
@@ -32,7 +31,6 @@ struct RALLYHEREDEBUGTOOL_API FRH_DebugToolWindow : public TSharedFromThis<FRH_D
 	void ForEachTargetedRHPlayer(FRHDT_RHPAction Action);
 
 	TWeakObjectPtr<URallyHereDebugTool> Owner;
-	bool bShow;
 	bool bShowMenuBar;
 	int32 AdditionalWindowFlags;
 	FString Name;

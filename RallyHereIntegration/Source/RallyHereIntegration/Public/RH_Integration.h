@@ -169,6 +169,11 @@ public:
 	 * @brief Gets the Web Request Tracker.
 	 */
 	class URH_WebRequests* GetWebRequestTracker() const { return WebRequestTracker; }
+
+	/**
+	 * @brief Gets the Diagnostic Reporter.
+	 */
+	class URH_Diagnostics* GetDiagnostics() const { return Diagnostics; }
 private:
     RallyHereAPI::FRallyHereAPIAll APIs;
     HttpRetryManagerPtr RetryManager;
@@ -203,6 +208,9 @@ private:
 
 	UPROPERTY()
 	class URH_WebRequests* WebRequestTracker;
+
+	UPROPERTY()
+	class URH_Diagnostics* Diagnostics;
 };
 
 /** @} */

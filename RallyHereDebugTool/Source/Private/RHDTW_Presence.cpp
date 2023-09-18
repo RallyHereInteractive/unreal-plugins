@@ -8,7 +8,6 @@
 #include "imgui_stdlib.h"
 
 #include "RallyHereIntegrationModule.h"
-#include "RH_ImGuiUtilities.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_PlayerInfoSubsystem.h"
@@ -21,6 +20,7 @@ FRHDTW_Presence::FRHDTW_Presence()
 	DefaultPos = FVector2D(610, 20);
 	GetPresenceResult.Empty();
 	LastUpdateResult.Empty();
+	CustomDataStager.SetName("Presence Update");
 }
 
 FRHDTW_Presence::~FRHDTW_Presence()
@@ -82,7 +82,7 @@ void FRHDTW_Presence::DoViewPresenceTab()
 					}
 					else
 					{
-						GetPresenceResult += "[" + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + "] No presence found on player info." + LINE_TERMINATOR;
+						GetPresenceResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] No presence found on player info.") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -101,7 +101,7 @@ void FRHDTW_Presence::DoViewPresenceTab()
 					}
 					else
 					{
-						GetPresenceResult += "[" + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + "] No presence found on player info." + LINE_TERMINATOR;
+						GetPresenceResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] No presence found on player info.") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -190,16 +190,14 @@ void FRHDTW_Presence::DoSelfTab()
 	if (NumSelectedPlayers <= 0)
 	{
 		ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
+		return;
 	}
 	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
 
 	ImGui::Combo("Status", &StatusInput, "Online\0Away\0Invisible\0Offline\0", 4);
 	ImGui::InputText("Message", &MessageInput);
 	ImGui::Checkbox("Do Not Disturb", &DoNotDisturbInput);
-	ImGui::SetNextItemWidth(200.f);
-	ImGui::InputText("Custom Property", &CustomPropertyInput);
-	ImGui::SetNextItemWidth(200.f);
-	ImGui::InputText("Custom Value", &CustomValueInput);
+	CustomDataStager.DisplayCustomDataStager();
 
 	if (!LastUpdateResult.IsEmpty())
 	{
@@ -211,16 +209,14 @@ void FRHDTW_Presence::DoSelfTab()
 
 	if (ImGui::Button("Update Self"))
 	{
+		LastUpdateResult.Empty();
 		auto req = RallyHereAPI::FRequest_UpdatePlayerPresenceSelf();
 		req.PlayerPresenceUpdateSelf.SetStatus(static_cast<ERHAPI_OnlineStatus>(StatusInput));
 		req.PlayerPresenceUpdateSelf.SetMessage(FString(MessageInput.c_str()));
 		req.PlayerPresenceUpdateSelf.SetDoNotDisturb(DoNotDisturbInput);
-		if (!CustomPropertyInput.empty() && !CustomValueInput.empty())
-		{
-			TMap<FString, FString> newCustomData;
-			newCustomData.Add(CustomPropertyInput.c_str(), CustomValueInput.c_str());
-			req.PlayerPresenceUpdateSelf.SetCustomData(newCustomData);
-		}
+		TMap<FString, FString> newCustomData;
+		CustomDataStager.GetCustomDataMap(newCustomData);
+		req.PlayerPresenceUpdateSelf.SetCustomData(newCustomData);
 
 		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this, &req](URH_LocalPlayerSubsystem* LPSS)
 			{
@@ -237,7 +233,6 @@ void FRHDTW_Presence::DoSelfTab()
 	}
 	
 	ImGui::Text("");
-	ImGui::Separator();
 	ImGui::Separator();
 
 	ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
@@ -275,33 +270,25 @@ void FRHDTW_Presence::DoSelfTab()
 	{
 		ImGui::Text("Seconds until next poll : N/A");
 	}
-	if (ImGui::Button("Start Refresh Timer"))
+	if (timerActive)
 	{
-		pRH_LocalPlayerPresenceSubsystem->StartRefreshTimer();
+		if (ImGui::Button("Stop Refresh Timer"))
+		{
+			pRH_LocalPlayerPresenceSubsystem->StopRefreshTimer();
+		}
 	}
-	ImGui::SameLine();
-	if (ImGui::Button("Stop Refresh Timer"))
+	else
 	{
-		pRH_LocalPlayerPresenceSubsystem->StopRefreshTimer();
+		if (ImGui::Button("Start Refresh Timer"))
+		{
+			pRH_LocalPlayerPresenceSubsystem->StartRefreshTimer();
+		}
 	}
+	
 	ImGui::SameLine();
 	if (ImGui::Button("Refresh Status"))
 	{
 		pRH_LocalPlayerPresenceSubsystem->RefreshStatus();
-	}
-
-	ImGui::Separator();
-	/** Display settings provided for the client by the presence api
-	* This includes expected timeout rates.
-	*/
-	ImGui::Text("Last update result : %s", LastSettingsUpdateResult.c_str());
-	ImGui::Text("Self Ping Interval Seconds : %d", SelfPingIntervalSeconds);
-	ImGui::Text("Last Seen Age Considered Offline Seconds : %d", LastSeenAgeConsideredOfflineSeconds);
-	if (ImGui::Button("Get Presence Settings"))
-	{
-		auto req = RallyHereAPI::FRequest_GetPresenceSettings();
-		auto Delegate = RallyHereAPI::FDelegate_GetPresenceSettings::CreateSP(SharedThis(this), &FRHDTW_Presence::HandleGetSettings);
-		pRH_LocalPlayerPresenceSubsystem->GetSettings(req, MoveTemp(Delegate));
 	}
 }
 
@@ -309,11 +296,11 @@ void FRHDTW_Presence::HandleGetPresence(bool bSuccess, URH_PlayerPresence* Prese
 {
 	if (bSuccess)
 	{
-		GetPresenceResult += "[" + GetShortUuid(PlayerUuid) + "] Get Player Presence succeeded." + LINE_TERMINATOR;
+		GetPresenceResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Get Player Presence succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		GetPresenceResult += "[" + GetShortUuid(PlayerUuid) + "] Get Player Presence failed." + LINE_TERMINATOR;
+		GetPresenceResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Get Player Presence failed.") LINE_TERMINATOR;
 	}
 }
 
@@ -321,17 +308,10 @@ void FRHDTW_Presence::HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_Upd
 {
 	if (Resp.IsSuccessful())
 	{
-		LastUpdateResult += "[" + GetShortUuid(PlayerUuid) + "] Update Self successful." + LINE_TERMINATOR;
+		LastUpdateResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Update Self successful.") LINE_TERMINATOR;
 	}
 	else
 	{
-		LastUpdateResult += "[" + GetShortUuid(PlayerUuid) + "] Update Self failed." + LINE_TERMINATOR;
+		LastUpdateResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Update Self failed.") LINE_TERMINATOR;
 	}
-}
-
-void FRHDTW_Presence::HandleGetSettings(const RallyHereAPI::FResponse_GetPresenceSettings& Resp)
-{
-	Resp.Content.GetSelfPingIntervalSeconds(SelfPingIntervalSeconds);
-	Resp.Content.GetLastSeenAgeConsideredOfflineSeconds(LastSeenAgeConsideredOfflineSeconds);
-	LastSettingsUpdateResult = TCHAR_TO_UTF8(*Resp.GetResponseString());
 }

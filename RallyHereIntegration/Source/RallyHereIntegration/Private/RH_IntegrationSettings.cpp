@@ -10,6 +10,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 
 	bAutoStartSessionsAfterJoin = true;
 
+	bLocalPlayerSubsystemSandboxing = false;
+
 	BeginNewAdSessionPriority = 1100000;
 	FindAdOppertunitiesPriority = 1100000;
 	UpdateAdOppertunitiesPriority = 900000;
@@ -31,6 +33,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	AddFriendPriority = 1000000;
 	RemoveFriendPriority = 1000000;
 	AddFriendNotesPriority = 1000000;
+	DeleteFriendNotesPriority = 1000000;
 	FetchBlockedListPriority = 1000000;
 	FetchBlockedPlayerPriority = 1000000;
 	BlockUnblockPlayerPriority = 1000000;
@@ -77,6 +80,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SessionGetByAllocationIdPriority = 700000;
 	SessionGetBySessionIdPriority = 700000;
 	SessionGetByTypePriority = 700000;
+	SessionsGetOtherPriority = 1000000;
 	SettingsGetPriority = 800000;
 	SettingsUpdatePriority = 800000;
 	GetSiteSettingsPriority = 700000;
@@ -98,5 +102,12 @@ const FRH_SandboxConfiguration* URH_IntegrationSettings::GetSandboxConfiguration
 		}
 		PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	}
+
+	// if we could not find a sandbox, use the default one
+	if (SandboxConfig == nullptr)
+	{
+		SandboxConfig = &DefaultSandboxConfiguration;
+	}
+
 	return SandboxConfig;
 }

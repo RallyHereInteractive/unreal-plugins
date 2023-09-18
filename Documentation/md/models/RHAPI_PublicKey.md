@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PublicKey`](#structFRHAPI__PublicKey) | 
+`struct `[`FRHAPI_PublicKey`](#structFRHAPI__PublicKey) | Public key for verifying Access Token JWTs This is in the JWK format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-4](https://datatracker.ietf.org/doc/html/rfc7517#section-4).
 
 ## struct `FRHAPI_PublicKey` <a id="structFRHAPI__PublicKey"></a>
 
@@ -13,14 +13,16 @@ struct FRHAPI_PublicKey
   : public FRHAPI_Model
 ```
 
+Public key for verifying Access Token JWTs This is in the JWK format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-4](https://datatracker.ietf.org/doc/html/rfc7517#section-4).
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`Kid`](#structFRHAPI__PublicKey_1a985410114ab7cd588e0d558f7fbfbf9a) | 
-`public FString `[`Kty`](#structFRHAPI__PublicKey_1a5e3b2f22a39f6191ffeef87b61815224) | 
-`public FString `[`N`](#structFRHAPI__PublicKey_1a1544c7fa9e970f9cdea72dca9f7278af) | 
-`public FString `[`E`](#structFRHAPI__PublicKey_1ab0b9192d5c959bfef2be40a31dd112d3) | 
+`public FString `[`Kid`](#structFRHAPI__PublicKey_1a985410114ab7cd588e0d558f7fbfbf9a) | Key ID - see [https://datatracker.ietf.org/doc/html/rfc7517#section-4.5](https://datatracker.ietf.org/doc/html/rfc7517#section-4.5).
+`public FString `[`Kty`](#structFRHAPI__PublicKey_1a5e3b2f22a39f6191ffeef87b61815224) | Key Type - see [https://datatracker.ietf.org/doc/html/rfc7517#section-4.1](https://datatracker.ietf.org/doc/html/rfc7517#section-4.1).
+`public FString `[`N`](#structFRHAPI__PublicKey_1a1544c7fa9e970f9cdea72dca9f7278af) | Modulus - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
+`public FString `[`E`](#structFRHAPI__PublicKey_1ab0b9192d5c959bfef2be40a31dd112d3) | Exponent - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
 `public virtual bool `[`FromJson`](#structFRHAPI__PublicKey_1a7d39c5fc6b26257bf14265b4299d28ef)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PublicKey_1af2b3c8f6bd481c19e8d850e009b6cc17)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetKid`](#structFRHAPI__PublicKey_1a60335aab0338252e58f6c5685ef338f0)`()` | Gets the value of Kid.
@@ -40,14 +42,22 @@ struct FRHAPI_PublicKey
 
 #### `public FString `[`Kid`](#structFRHAPI__PublicKey_1a985410114ab7cd588e0d558f7fbfbf9a) <a id="structFRHAPI__PublicKey_1a985410114ab7cd588e0d558f7fbfbf9a"></a>
 
+Key ID - see [https://datatracker.ietf.org/doc/html/rfc7517#section-4.5](https://datatracker.ietf.org/doc/html/rfc7517#section-4.5).
+
 <br>
 #### `public FString `[`Kty`](#structFRHAPI__PublicKey_1a5e3b2f22a39f6191ffeef87b61815224) <a id="structFRHAPI__PublicKey_1a5e3b2f22a39f6191ffeef87b61815224"></a>
+
+Key Type - see [https://datatracker.ietf.org/doc/html/rfc7517#section-4.1](https://datatracker.ietf.org/doc/html/rfc7517#section-4.1).
 
 <br>
 #### `public FString `[`N`](#structFRHAPI__PublicKey_1a1544c7fa9e970f9cdea72dca9f7278af) <a id="structFRHAPI__PublicKey_1a1544c7fa9e970f9cdea72dca9f7278af"></a>
 
+Modulus - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
+
 <br>
 #### `public FString `[`E`](#structFRHAPI__PublicKey_1ab0b9192d5c959bfef2be40a31dd112d3) <a id="structFRHAPI__PublicKey_1ab0b9192d5c959bfef2be40a31dd112d3"></a>
+
+Exponent - see [https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1](https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1).
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKey_1a7d39c5fc6b26257bf14265b4299d28ef)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKey_1a7d39c5fc6b26257bf14265b4299d28ef"></a>

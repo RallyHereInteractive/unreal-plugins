@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionTemplates`](#structFRHAPI__SessionTemplates) | 
+`struct `[`FRHAPI_SessionTemplates`](#structFRHAPI__SessionTemplates) | A mapping of RallyHere session template types to the templates.
 
 ## struct `FRHAPI_SessionTemplates` <a id="structFRHAPI__SessionTemplates"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionTemplates
   : public FRHAPI_Model
 ```
+
+A mapping of RallyHere session template types to the templates.
 
 #### Summary
 

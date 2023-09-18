@@ -141,10 +141,14 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
     }
 
     Req.OnLoginComplete.ExecuteIfBound(Res);
+
+	SCOPED_NAMED_EVENT(RallyHere_BroadcastOnLoginComplete, FColor::Purple);
+	OnLoginComplete.Broadcast(Res);
+	BLUEPRINT_OnLoginComplete.Broadcast(Res);
 }
 
 void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcceptTOS, bool bAcceptPP,
-                                                    FRH_OnLoginComplete OnLoginComplete)
+                                                    FRH_OnLoginComplete OnLoginCompleteDelegate)
 {
     FOnlineAccountCredentials Credentials;
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_TYPE="), Credentials.Type);
@@ -171,12 +175,12 @@ void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcce
         }
     }
 
-    SubmitLogin(Credentials, SavedRefreshToken, bAcceptEULA, bAcceptTOS, bAcceptPP, OnLoginComplete);
+    SubmitLogin(Credentials, SavedRefreshToken, bAcceptEULA, bAcceptTOS, bAcceptPP, OnLoginCompleteDelegate);
 }
 
 void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials& Credentials,
                                                 FString CredentialRefreshToken, bool bAcceptEULA, bool bAcceptTOS,
-                                                bool bAcceptPP, FRH_OnLoginComplete OnLoginComplete)
+                                                bool bAcceptPP, FRH_OnLoginComplete OnLoginCompleteDelegate)
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -187,7 +191,7 @@ void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials&
     Req.bAcceptEULA = bAcceptEULA;
     Req.bAcceptTOS = bAcceptTOS;
     Req.bAcceptPP = bAcceptPP;
-    Req.OnLoginComplete = MoveTemp(OnLoginComplete);
+    Req.OnLoginComplete = MoveTemp(OnLoginCompleteDelegate);
     DoShowLoginOSSLoginUI(Req);
 }
 

@@ -22,10 +22,17 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_Rule::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("operation"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(Operation));
-    Writer->WriteIdentifierPrefix(TEXT("value"));
-    RallyHereAPI::WriteJsonValue(Writer, Value);
+    Writer->WriteIdentifierPrefix(TEXT("rule_type"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(RuleType));
+    if (ItemId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("item_id"));
+        RallyHereAPI::WriteJsonValue(Writer, ItemId_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("comparison_operation"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(ComparisonOperation));
+    Writer->WriteIdentifierPrefix(TEXT("comparison_value"));
+    RallyHereAPI::WriteJsonValue(Writer, ComparisonValue);
     Writer->WriteObjectEnd();
 }
 
@@ -37,10 +44,18 @@ bool FRHAPI_Rule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonOperationField = (*Object)->TryGetField(TEXT("operation"));
-    ParseSuccess &= JsonOperationField.IsValid() && !JsonOperationField->IsNull() && TryGetJsonValue(JsonOperationField, Operation);
-    const TSharedPtr<FJsonValue> JsonValueField = (*Object)->TryGetField(TEXT("value"));
-    ParseSuccess &= JsonValueField.IsValid() && !JsonValueField->IsNull() && TryGetJsonValue(JsonValueField, Value);
+    const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
+    ParseSuccess &= JsonRuleTypeField.IsValid() && !JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType);
+    const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
+    if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
+    {
+        ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
+        ParseSuccess &= ItemId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
+    ParseSuccess &= JsonComparisonOperationField.IsValid() && !JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation);
+    const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
+    ParseSuccess &= JsonComparisonValueField.IsValid() && !JsonComparisonValueField->IsNull() && TryGetJsonValue(JsonComparisonValueField, ComparisonValue);
 
     return ParseSuccess;
 }

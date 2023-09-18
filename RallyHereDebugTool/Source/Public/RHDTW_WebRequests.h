@@ -14,14 +14,16 @@ public:
 
 	FRHDTW_WebRequests();
 	virtual ~FRHDTW_WebRequests() = default;
+	virtual void Init(URallyHereDebugTool* InOwner, const FString& InName) override;
 
 	void Do() override;
 private:
 	void DoViewRequests(URH_WebRequests* WebRequestsTracker);
 	void DoViewRequest(const FRH_WebRequest* WebRequest);
 	void DoViewResponse(const FRH_WebResponse* WebResponse);
+	void DoViewMetadata(const FRH_WebRequest* WebRequest);
 
-	TMap<FString, bool> APIFilterToggles;
+	TMap<FName, bool> APIFilterToggles;
 	bool AreAllAPIFiltersToggledOn() const;
 	void ToggleAllAPIFilters(bool bOn);
 };

@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief 
+ * @brief Lookup results for a platform user id
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlatformIdentityLookupResults : public FRHAPI_Model
@@ -40,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIdentityLookupResults : public FRHAPI_Mod
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of platform user ids and the players that match that platform user id */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FRHAPI_PlayerResponse> Identity_Optional{  };
     /** @brief true if Identity_Optional has been set to a value */

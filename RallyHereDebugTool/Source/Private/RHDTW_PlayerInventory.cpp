@@ -2,7 +2,6 @@
 #include "RallyHereDebugTool.h"
 #include "RHDTW_PlayerInventory.h"
 #include "imgui.h"
-#include "RH_ImGuiUtilities.h"
 
 #define CUSTOM_DATA_TEXT_LENGTH 1024
 
@@ -76,8 +75,8 @@ FRHDTW_PlayerInventory::FRHDTW_PlayerInventory()
 	ClientRefIdInput.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	InputExpires.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	ModifyInventoryIdInput.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
-	InputCustomDataKey.SetNumZeroed(CUSTOM_DATA_TEXT_LENGTH);
-	InputCustomDataValue.SetNumZeroed(CUSTOM_DATA_TEXT_LENGTH);
+
+	CustomDataStager.SetName(TEXT("Inventory Change"));
 }
 
 FRHDTW_PlayerInventory::~FRHDTW_PlayerInventory()
@@ -160,7 +159,7 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 					}
 					else
 					{
-						InventorySessionResult += "[" + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + "] RH_PlayerInventory unavailable." + LINE_TERMINATOR;
+						InventorySessionResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] RH_PlayerInventory unavailable.") LINE_TERMINATOR;
 					}
 				}
 				
@@ -188,7 +187,7 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 					}
 					else
 					{
-						InventorySessionResult += "[" + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + "] RH_PlayerInventory unavailable." + LINE_TERMINATOR;
+						InventorySessionResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] RH_PlayerInventory unavailable.") LINE_TERMINATOR;
 					}
 				}
 
@@ -240,11 +239,11 @@ void FRHDTW_PlayerInventory::HandleInventorySessionUpdated(bool bSuccess, FGuid 
 {
 	if (bSuccess)
 	{
-		InventorySessionResult += "[" + GetShortUuid(PlayerUuid) + "] Inventory session update succeeded." + LINE_TERMINATOR;
+		InventorySessionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Inventory session update succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		InventorySessionResult += "[" + GetShortUuid(PlayerUuid) + "] Inventory session update failed." + LINE_TERMINATOR;
+		InventorySessionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Inventory session update failed.") LINE_TERMINATOR;
 	}
 }
 
@@ -387,7 +386,6 @@ void FRHDTW_PlayerInventory::HandleGetInventory(bool success)
 {
 }
 
-
 void FRHDTW_PlayerInventory::DoModifyInventory()
 {
 	int NumSelectedPlayers = 0;
@@ -418,22 +416,7 @@ void FRHDTW_PlayerInventory::DoModifyInventory()
 	ImGui::Combo("Bucket", &SelectedInventoryBucket, InventoryBucketChars.GetData(), InventoryBucketChars.Num());
 	ImGui::InputInt("Count", &InputCount);
 	ImGui::InputText("Expires (ISO8601)", InputExpires.GetData(), InputExpires.Num());
-	ImGui::InputText("Custom Data Key", InputCustomDataKey.GetData(), InputCustomDataKey.Num());
-	ImGui::InputText("Custom Data Value", InputCustomDataValue.GetData(), InputCustomDataValue.Num());
-	ImGui::TextUnformatted("Staged Custom Data:");
-	for (const auto& entry : StagedCustomData)
-	{
-		ImGuiDisplayCopyableValue(entry.Key, entry.Value, ECopyMode::KeyValue);
-	}
-	if (ImGui::Button("Add Custom Data"))
-	{
-		StagedCustomData.Emplace(UTF8_TO_TCHAR(InputCustomDataKey.GetData()), UTF8_TO_TCHAR(InputCustomDataValue.GetData()));
-	}
-	ImGui::SameLine();
-	if (ImGui::Button("Remove Custom Data"))
-	{
-		StagedCustomData.Remove(UTF8_TO_TCHAR(InputCustomDataKey.GetData()));
-	}
+	CustomDataStager.DisplayCustomDataStager();
 
 	ImGui::Separator();
 
@@ -486,8 +469,9 @@ void FRHDTW_PlayerInventory::DoModifyInventory()
 				}
 			}
 			inv.Bucket = InventoryBuckets[SelectedInventoryBucket];
-			inv.CustomData = StagedCustomData;
-			StagedCustomData = {};
+			TMap<FString, FString> CustomDataMap;
+			CustomDataStager.GetCustomDataMap(CustomDataMap);
+			inv.CustomData = CustomDataMap;
 			inv.ItemId = InputModifyInventoryItemId;
 
 			ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, ClientOrderRefId, inv](URH_PlayerInfo* PlayerInfo)
@@ -500,7 +484,7 @@ void FRHDTW_PlayerInventory::DoModifyInventory()
 						}
 						else
 						{
-							ModifyInventoryResult += "[" + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + "] URH_PlayerInventory not available." + LINE_TERMINATOR;
+							ModifyInventoryResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] URH_PlayerInventory not available.") LINE_TERMINATOR;
 						}
 					}
 				}));
@@ -539,8 +523,9 @@ void FRHDTW_PlayerInventory::DoModifyInventory()
 				}
 			}
 			inv.Bucket = InventoryBuckets[SelectedInventoryBucket];
-			inv.CustomData = StagedCustomData;
-			StagedCustomData = {};
+			TMap<FString, FString> CustomDataMap;
+			CustomDataStager.GetCustomDataMap(CustomDataMap);
+			inv.CustomData = CustomDataMap;
 			inv.ItemId = InputModifyInventoryItemId;
 
 			ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, ClientOrderRefId, inv](URH_PlayerInfo* PlayerInfo)
@@ -553,7 +538,7 @@ void FRHDTW_PlayerInventory::DoModifyInventory()
 						}
 						else
 						{
-							ModifyInventoryResult += "[" + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + "] URH_PlayerInventory not available." + LINE_TERMINATOR;
+							ModifyInventoryResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] URH_PlayerInventory not available.") LINE_TERMINATOR;
 						}
 					}
 				}));
@@ -565,11 +550,11 @@ void FRHDTW_PlayerInventory::HandleInventoryUpdated(bool success, FGuid PlayerUu
 {
 	if (success)
 	{
-		ModifyInventoryResult += "[" + GetShortUuid(PlayerUuid) + "] Operation Successfully Sent." + LINE_TERMINATOR;
+		ModifyInventoryResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Operation Successfully Sent.") LINE_TERMINATOR;
 	}
 	else
 	{
-		ModifyInventoryResult += "[" + GetShortUuid(PlayerUuid) + "] Operation Failed." + LINE_TERMINATOR;
+		ModifyInventoryResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Operation Failed.") LINE_TERMINATOR;
 	}
 }
 

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionPlayerUpdateResponse`](#structFRHAPI__SessionPlayerUpdateResponse) | 
+`struct `[`FRHAPI_SessionPlayerUpdateResponse`](#structFRHAPI__SessionPlayerUpdateResponse) | Response to a reques tto update a player in a session.
 
 ## struct `FRHAPI_SessionPlayerUpdateResponse` <a id="structFRHAPI__SessionPlayerUpdateResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionPlayerUpdateResponse
   : public FRHAPI_Model
 ```
+
+Response to a reques tto update a player in a session.
 
 #### Summary
 

@@ -98,7 +98,6 @@ TArray<ANSICHAR> FRH_DebugToolWindow::ConvertedString;
 
 FRH_DebugToolWindow::FRH_DebugToolWindow()
 	: Owner{}
-	, bShow{}
 	, bShowMenuBar{}
 	, AdditionalWindowFlags{ ImGuiWindowFlags_None }
 	, Name{ TEXT("") }
@@ -112,11 +111,10 @@ FRH_DebugToolWindow::~FRH_DebugToolWindow()
 {
 }
 
-void FRH_DebugToolWindow::Init(URallyHereDebugTool* InOwner, const FString& InName, bool bInShow /*= false*/)
+void FRH_DebugToolWindow::Init(URallyHereDebugTool* InOwner, const FString& InName)
 {
 	Owner = InOwner;
 	Name = InName;
-	bShow = bInShow;
 	if (Owner.IsValid())
 	{
 		Owner->RegisterWindow(SharedThis(this));
@@ -136,16 +134,8 @@ void FRH_DebugToolWindow::ResetSizeAndPos(bool bInNeedsReset)
 	bNeedsWindowPosSizeReset = bInNeedsReset;
 }
 
-void FRH_DebugToolWindow::RenderCheckbox()
-{
-	ImGui::Checkbox(TCHAR_TO_ANSI(*Name), &bShow);
-}
-
 void FRH_DebugToolWindow::RenderWindow()
 {
-	if (!bShow)
-		return;
-
 	ImGuiCond WindowCond = ImGuiCond_FirstUseEver;
 	if (bNeedsWindowPosSizeReset)
 	{
@@ -156,9 +146,8 @@ void FRH_DebugToolWindow::RenderWindow()
 	ImGui::SetNextWindowSize(ImVec2(DefaultSize.X, DefaultSize.Y), WindowCond);
 	
 	ImGuiWindowFlags windowFlags = bShowMenuBar ? ImGuiWindowFlags_MenuBar : ImGuiWindowFlags_None;
-	windowFlags |= ImGuiWindowFlags_NoFocusOnAppearing;
 	windowFlags |= AdditionalWindowFlags;
-	ImGui::Begin(TCHAR_TO_ANSI(*Name), &bShow, windowFlags);
+	ImGui::Begin(TCHAR_TO_ANSI(*Name) , nullptr, windowFlags);
 	Do();
 	ImGui::End();
 }

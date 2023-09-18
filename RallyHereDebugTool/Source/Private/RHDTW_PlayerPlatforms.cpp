@@ -90,10 +90,10 @@ void FRHDTW_PlayerPlatforms::HandleGetLinkedPlatforms(bool bSuccess, const TArra
 {
 	if (bSuccess)
 	{
-		GetPlatformsActionResult += "[" + GetShortUuid(PlayerUuid) + "] Refresh Linked Platforms succeeded." + LINE_TERMINATOR;
+		GetPlatformsActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Refresh Linked Platforms succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		GetPlatformsActionResult += "[" + GetShortUuid(PlayerUuid) + "] Refresh Linked Platforms failed." + LINE_TERMINATOR;
+		GetPlatformsActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Refresh Linked Platforms failed.") LINE_TERMINATOR;
 	}
 }

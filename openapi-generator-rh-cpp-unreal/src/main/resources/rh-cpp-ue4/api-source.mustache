@@ -30,7 +30,7 @@ namespace {{this}}
 {{classname}}::{{classname}}() : FAPI()
 {
     Url = TEXT("{{basePath}}");
-    Name = TEXT("{{baseName}}");
+    Name = FName(TEXT("{{baseName}}"));
 }
 
 {{classname}}::~{{classname}}() {}
@@ -167,15 +167,16 @@ FRequest_{{operationIdCamelCase}}::FRequest_{{operationIdCamelCase}}()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_{{operationIdCamelCase}}::GetSimplifiedPath() const
+FName FRequest_{{operationIdCamelCase}}::GetSimplifiedPath() const
 {
-    return FString(TEXT("{{{path}}}"));
+    static FName Path = FName(TEXT("{{{path}}}"));
+    return Path;
 }
 
 FString FRequest_{{operationIdCamelCase}}::ComputePath() const
 {
     {{^pathParams.0}}
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     {{/pathParams.0}}
     {{#pathParams.0}}
     TMap<FString, FStringFormatArg> PathParams = { {{#pathParams}}

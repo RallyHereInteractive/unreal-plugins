@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerSessions`](#structFRHAPI__PlayerSessions) | 
+`struct `[`FRHAPI_PlayerSessions`](#structFRHAPI__PlayerSessions) | Information about all sessions that a player is currently a member of, or invited to.
 
 ## struct `FRHAPI_PlayerSessions` <a id="structFRHAPI__PlayerSessions"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_PlayerSessions
   : public FRHAPI_Model
 ```
+
+Information about all sessions that a player is currently a member of, or invited to.
 
 #### Summary
 

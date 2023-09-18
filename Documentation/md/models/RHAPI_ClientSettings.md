@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_ClientSettings`](#structFRHAPI__ClientSettings) | 
+`struct `[`FRHAPI_ClientSettings`](#structFRHAPI__ClientSettings) | A player&#39;s platform and input settings.
 
 ## struct `FRHAPI_ClientSettings` <a id="structFRHAPI__ClientSettings"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_ClientSettings
   : public FRHAPI_Model
 ```
+
+A player&#39;s platform and input settings.
 
 #### Summary
 

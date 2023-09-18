@@ -233,7 +233,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewInventorySession : public FRequest
     virtual ~FRequest_CreateNewInventorySession() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -273,7 +273,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewInventorySessionByPlayerUuid : public 
     virtual ~FRequest_CreateNewInventorySessionByPlayerUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -313,7 +313,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewInventorySessionByPlayerUuidSelf : pub
     virtual ~FRequest_CreateNewInventorySessionByPlayerUuidSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -352,7 +352,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewInventorySessionSelf : public FRequest
     virtual ~FRequest_CreateNewInventorySessionSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -391,7 +391,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrder : public FRequest
     virtual ~FRequest_CreateNewPlayerOrder() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -431,7 +431,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrderSelf : public FRequest
     virtual ~FRequest_CreateNewPlayerOrderSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -470,7 +470,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrder : public FRequest
     virtual ~FRequest_CreateNewPlayerUuidOrder() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -510,7 +510,7 @@ struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrderSelf : public FRequest
     virtual ~FRequest_CreateNewPlayerUuidOrderSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -549,7 +549,7 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventory : public FRequest
     virtual ~FRequest_CreatePlayerInventory() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -589,7 +589,7 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventorySelf : public FRequest
     virtual ~FRequest_CreatePlayerInventorySelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -628,7 +628,7 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventoryUuid : public FRequest
     virtual ~FRequest_CreatePlayerInventoryUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -668,7 +668,7 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerInventoryUuidSelf : public FRequest
     virtual ~FRequest_CreatePlayerInventoryUuidSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -707,7 +707,7 @@ struct RALLYHEREAPI_API FRequest_GetInventorySessionInfo : public FRequest
     virtual ~FRequest_GetInventorySessionInfo() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -746,7 +746,7 @@ struct RALLYHEREAPI_API FRequest_GetInventorySessionInfoByPlayerUuid : public FR
     virtual ~FRequest_GetInventorySessionInfoByPlayerUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -785,7 +785,7 @@ struct RALLYHEREAPI_API FRequest_GetInventorySessionInfoByPlayerUuidSelf : publi
     virtual ~FRequest_GetInventorySessionInfoByPlayerUuidSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -823,7 +823,7 @@ struct RALLYHEREAPI_API FRequest_GetInventorySessionInfoSelf : public FRequest
     virtual ~FRequest_GetInventorySessionInfoSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -861,7 +861,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventory : public FRequest
     virtual ~FRequest_GetPlayerInventory() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -901,7 +901,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventorySelf : public FRequest
     virtual ~FRequest_GetPlayerInventorySelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -940,7 +940,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventoryUuid : public FRequest
     virtual ~FRequest_GetPlayerInventoryUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -980,7 +980,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventoryUuidSelf : public FRequest
     virtual ~FRequest_GetPlayerInventoryUuidSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1019,7 +1019,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerOrderById : public FRequest
     virtual ~FRequest_GetPlayerOrderById() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1059,7 +1059,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerOrderByIdSelf : public FRequest
     virtual ~FRequest_GetPlayerOrderByIdSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1098,7 +1098,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerOrders : public FRequest
     virtual ~FRequest_GetPlayerOrders() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1145,7 +1145,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerOrdersSelf : public FRequest
     virtual ~FRequest_GetPlayerOrdersSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1191,7 +1191,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerUuidOrderById : public FRequest
     virtual ~FRequest_GetPlayerUuidOrderById() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1231,7 +1231,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerUuidOrderByIdSelf : public FRequest
     virtual ~FRequest_GetPlayerUuidOrderByIdSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1270,7 +1270,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerUuidOrders : public FRequest
     virtual ~FRequest_GetPlayerUuidOrders() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1317,7 +1317,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerUuidOrdersSelf : public FRequest
     virtual ~FRequest_GetPlayerUuidOrdersSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1363,7 +1363,7 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventory : public FRequest
     virtual ~FRequest_ModifyManyPlayerInventory() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1403,7 +1403,7 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventorySelf : public FRequest
     virtual ~FRequest_ModifyManyPlayerInventorySelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1442,7 +1442,7 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventoryUuid : public FRequest
     virtual ~FRequest_ModifyManyPlayerInventoryUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1482,7 +1482,7 @@ struct RALLYHEREAPI_API FRequest_ModifyManyPlayerInventoryUuidSelf : public FReq
     virtual ~FRequest_ModifyManyPlayerInventoryUuidSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1521,7 +1521,7 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventory : public FRequest
     virtual ~FRequest_ModifyPlayerInventory() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1562,7 +1562,7 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventorySelf : public FRequest
     virtual ~FRequest_ModifyPlayerInventorySelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1602,7 +1602,7 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventoryUuid : public FRequest
     virtual ~FRequest_ModifyPlayerInventoryUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1643,7 +1643,7 @@ struct RALLYHEREAPI_API FRequest_ModifyPlayerInventoryUuidSelf : public FRequest
     virtual ~FRequest_ModifyPlayerInventoryUuidSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

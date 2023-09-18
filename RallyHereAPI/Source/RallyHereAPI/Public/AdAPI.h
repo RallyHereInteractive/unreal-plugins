@@ -71,7 +71,7 @@ struct RALLYHEREAPI_API FRequest_BeginNewSession : public FRequest
     virtual ~FRequest_BeginNewSession() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -115,7 +115,7 @@ struct RALLYHEREAPI_API FRequest_FindOpportunities : public FRequest
     virtual ~FRequest_FindOpportunities() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -159,7 +159,7 @@ struct RALLYHEREAPI_API FRequest_UnityAdWatched : public FRequest
     virtual ~FRequest_UnityAdWatched() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
 
     /* Product ID in the Unity console */
     int32 Productid = 0;
@@ -203,7 +203,7 @@ struct RALLYHEREAPI_API FRequest_UnityMediationAdWatched : public FRequest
     virtual ~FRequest_UnityMediationAdWatched() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
 
     /* Custom data provide by client. Expected to be client type */
     FString CustomizedData;
@@ -249,7 +249,7 @@ struct RALLYHEREAPI_API FRequest_UpdateOpportunityById : public FRequest
     virtual ~FRequest_UpdateOpportunityById() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

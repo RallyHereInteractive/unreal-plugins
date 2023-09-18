@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FTimeAPI::FTimeAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Time");
+    Name = FName(TEXT("Time"));
 }
 
 FTimeAPI::~FTimeAPI() {}
@@ -88,14 +88,15 @@ FRequest_GetUtcTime::FRequest_GetUtcTime()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetUtcTime::GetSimplifiedPath() const
+FName FRequest_GetUtcTime::GetSimplifiedPath() const
 {
-    return FString(TEXT("/config/v1/time/utc"));
+    static FName Path = FName(TEXT("/config/v1/time/utc"));
+    return Path;
 }
 
 FString FRequest_GetUtcTime::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

@@ -19,6 +19,8 @@ A collection of Price Breakpoints (volume pricing).
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PricePoint_1af4668c0cc57ade57a0b96abf535dc2f6) | Custom data associated with the resource.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__PricePoint_1a2b850e99080edc0e92d6000ccfbd0816) | true if CustomData_Optional has been set to a value
 `public FString `[`Name_Optional`](#structFRHAPI__PricePoint_1ab49ac3d98309ae8ab2fa3b8e1789d8c5) | The name of the Price Point.
 `public bool `[`Name_IsSet`](#structFRHAPI__PricePoint_1a8f623a172ea94a826a2ad281e7255c2e) | true if Name_Optional has been set to a value
 `public bool `[`StrictFlag_Optional`](#structFRHAPI__PricePoint_1ae85a32e0460cec90a08a138a39664d11) | Forces the quantity to be equal to a quantity on a Price Breakpoint.
@@ -33,6 +35,14 @@ A collection of Price Breakpoints (volume pricing).
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PricePoint_1a4ae46d4bcca1201ccecbfdde4254e7be) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PricePoint_1afad2c5f654c7ad117e24c72b75bb57a6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PricePoint_1a224e47ff6e378572ad960606a7c3fe0d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a87ab45f4f394ac693bfb8176bc7a239f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a2f2cf1ea9d4f84202af8feb0f81bb47b)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a75fac3e26f601de30a1bfb5e53d833b2)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__PricePoint_1ae551d3d477542e217d70381427125feb)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1af0bd33eabb2b5aa3e6d32516f6a61bfd)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1a32b7726aa13eed431bcf08aeeb016773)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__PricePoint_1a3e113dd4976dbb1ac4f329aa1148b89d)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`ClearCustomData`](#structFRHAPI__PricePoint_1a3f7a4f2dcc067371645926043b0277f7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline FString & `[`GetName`](#structFRHAPI__PricePoint_1a9db967c7703918222c1027295fd5856a)`()` | Gets the value of Name_Optional, regardless of it having been set.
 `public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1adcb2ae6afe38155283fb9362647e94e5)`() const` | Gets the value of Name_Optional, regardless of it having been set.
 `public inline const FString & `[`GetName`](#structFRHAPI__PricePoint_1abc701b11ceed079e796f8e4b655cc648)`(const FString & DefaultValue) const` | Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -88,6 +98,16 @@ A collection of Price Breakpoints (volume pricing).
 
 #### Members
 
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PricePoint_1af4668c0cc57ade57a0b96abf535dc2f6) <a id="structFRHAPI__PricePoint_1af4668c0cc57ade57a0b96abf535dc2f6"></a>
+
+Custom data associated with the resource.
+
+<br>
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__PricePoint_1a2b850e99080edc0e92d6000ccfbd0816) <a id="structFRHAPI__PricePoint_1a2b850e99080edc0e92d6000ccfbd0816"></a>
+
+true if CustomData_Optional has been set to a value
+
+<br>
 #### `public FString `[`Name_Optional`](#structFRHAPI__PricePoint_1ab49ac3d98309ae8ab2fa3b8e1789d8c5) <a id="structFRHAPI__PricePoint_1ab49ac3d98309ae8ab2fa3b8e1789d8c5"></a>
 
 The name of the Price Point.
@@ -163,6 +183,46 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
+
+<br>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a87ab45f4f394ac693bfb8176bc7a239f)`()` <a id="structFRHAPI__PricePoint_1a87ab45f4f394ac693bfb8176bc7a239f"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a2f2cf1ea9d4f84202af8feb0f81bb47b)`() const` <a id="structFRHAPI__PricePoint_1a2f2cf1ea9d4f84202af8feb0f81bb47b"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PricePoint_1a75fac3e26f601de30a1bfb5e53d833b2)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PricePoint_1a75fac3e26f601de30a1bfb5e53d833b2"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__PricePoint_1ae551d3d477542e217d70381427125feb)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PricePoint_1ae551d3d477542e217d70381427125feb"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1af0bd33eabb2b5aa3e6d32516f6a61bfd)`()` <a id="structFRHAPI__PricePoint_1af0bd33eabb2b5aa3e6d32516f6a61bfd"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PricePoint_1a32b7726aa13eed431bcf08aeeb016773)`() const` <a id="structFRHAPI__PricePoint_1a32b7726aa13eed431bcf08aeeb016773"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PricePoint_1a3e113dd4976dbb1ac4f329aa1148b89d)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__PricePoint_1a3e113dd4976dbb1ac4f329aa1148b89d"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__PricePoint_1a3f7a4f2dcc067371645926043b0277f7)`()` <a id="structFRHAPI__PricePoint_1a3f7a4f2dcc067371645926043b0277f7"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 <br>
 #### `public inline FString & `[`GetName`](#structFRHAPI__PricePoint_1a9db967c7703918222c1027295fd5856a)`()` <a id="structFRHAPI__PricePoint_1a9db967c7703918222c1027295fd5856a"></a>

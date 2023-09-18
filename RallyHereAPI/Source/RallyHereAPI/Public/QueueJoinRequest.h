@@ -74,13 +74,13 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 
     /** @brief List of map preferences in order from most desired, to least desired */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<int32> MapPreferences{  };
+    TArray<FString> MapPreferences{  };
     /** @brief Gets the value of MapPreferences */
-    TArray<int32>& GetMapPreferences() { return MapPreferences; }
+    TArray<FString>& GetMapPreferences() { return MapPreferences; }
     /** @brief Gets the value of MapPreferences */
-    const TArray<int32>& GetMapPreferences() const { return MapPreferences; }
+    const TArray<FString>& GetMapPreferences() const { return MapPreferences; }
     /** @brief Sets the value of MapPreferences */
-    void SetMapPreferences(TArray<int32> NewValue) { MapPreferences = NewValue;  }
+    void SetMapPreferences(TArray<FString> NewValue) { MapPreferences = NewValue;  }
 };
 
 /** @} */

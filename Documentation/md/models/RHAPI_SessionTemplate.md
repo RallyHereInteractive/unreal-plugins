@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionTemplate`](#structFRHAPI__SessionTemplate) | 
+`struct `[`FRHAPI_SessionTemplate`](#structFRHAPI__SessionTemplate) | Template used to create new RallyHere sessions of a specific type. Configurable in the developer portal.
 
 ## struct `FRHAPI_SessionTemplate` <a id="structFRHAPI__SessionTemplate"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionTemplate
   : public FRHAPI_Model
 ```
+
+Template used to create new RallyHere sessions of a specific type. Configurable in the developer portal.
 
 #### Summary
 

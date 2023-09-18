@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief 
+ * @brief Response from the player iteration API
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
@@ -40,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of players.  An empty list means iteration is complete */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PlayerResponse> Players_Optional{  };
     /** @brief true if Players_Optional has been set to a value */
@@ -62,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
      /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
     void ClearPlayers() { Players_IsSet = false; }
 
+    /** @brief Cursor to continue iteration */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Cursor_Optional{  };
     /** @brief true if Cursor_Optional has been set to a value */

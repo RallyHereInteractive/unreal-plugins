@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief Configuration about how an instance should behave when it&#39;s allocated
+ * @brief **DEPRECATED** Configuration about how an instance should behave when it&#39;s allocated
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
@@ -72,13 +72,26 @@ struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
 
     /** @brief Custom data that will be passed to the session during the instance launch request */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TMap<FString, FString> CustomData{  };
-    /** @brief Gets the value of CustomData */
-    TMap<FString, FString>& GetCustomData() { return CustomData; }
-    /** @brief Gets the value of CustomData */
-    const TMap<FString, FString>& GetCustomData() const { return CustomData; }
-    /** @brief Sets the value of CustomData */
-    void SetCustomData(TMap<FString, FString> NewValue) { CustomData = NewValue;  }
+    TMap<FString, FString> CustomData_Optional{  };
+    /** @brief true if CustomData_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool CustomData_IsSet{ false };
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+    void ClearCustomData() { CustomData_IsSet = false; }
 };
 
 /** @} */

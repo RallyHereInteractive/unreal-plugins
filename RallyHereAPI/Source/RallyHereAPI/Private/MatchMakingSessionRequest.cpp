@@ -26,8 +26,16 @@ void FRHAPI_MatchMakingSessionRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writ
     RallyHereAPI::WriteJsonValue(Writer, Teams);
     Writer->WriteIdentifierPrefix(TEXT("session_tickets"));
     RallyHereAPI::WriteJsonValue(Writer, SessionTickets);
-    Writer->WriteIdentifierPrefix(TEXT("instance_launch_template_id"));
-    RallyHereAPI::WriteJsonValue(Writer, InstanceLaunchTemplateId);
+    if (InstanceLaunchTemplateId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("instance_launch_template_id"));
+        RallyHereAPI::WriteJsonValue(Writer, InstanceLaunchTemplateId_Optional);
+    }
+    if (InstanceRequestTemplateId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
+        RallyHereAPI::WriteJsonValue(Writer, InstanceRequestTemplateId_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("region_id"));
     RallyHereAPI::WriteJsonValue(Writer, RegionId);
     Writer->WriteIdentifierPrefix(TEXT("match_id"));
@@ -58,7 +66,17 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
     const TSharedPtr<FJsonValue> JsonSessionTicketsField = (*Object)->TryGetField(TEXT("session_tickets"));
     ParseSuccess &= JsonSessionTicketsField.IsValid() && !JsonSessionTicketsField->IsNull() && TryGetJsonValue(JsonSessionTicketsField, SessionTickets);
     const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
-    ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId);
+    if (JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull())
+    {
+        InstanceLaunchTemplateId_IsSet = TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId_Optional);
+        ParseSuccess &= InstanceLaunchTemplateId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
+    if (JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull())
+    {
+        InstanceRequestTemplateId_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId_Optional);
+        ParseSuccess &= InstanceRequestTemplateId_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonRegionIdField = (*Object)->TryGetField(TEXT("region_id"));
     ParseSuccess &= JsonRegionIdField.IsValid() && !JsonRegionIdField->IsNull() && TryGetJsonValue(JsonRegionIdField, RegionId);
     const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));

@@ -92,7 +92,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanks : public FRequest
     virtual ~FRequest_GetAllPlayerUuidRanks() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -131,7 +131,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelf : public FRequest
     virtual ~FRequest_GetAllPlayerUuidRanksSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -169,7 +169,7 @@ struct RALLYHEREAPI_API FRequest_GetAllRankConfig : public FRequest
     virtual ~FRequest_GetAllRankConfig() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -207,7 +207,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerUuidRank : public FRequest
     virtual ~FRequest_GetPlayerUuidRank() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -247,7 +247,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelf : public FRequest
     virtual ~FRequest_GetPlayerUuidRankSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -286,7 +286,7 @@ struct RALLYHEREAPI_API FRequest_GetRankConfig : public FRequest
     virtual ~FRequest_GetRankConfig() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -325,7 +325,7 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRank : public FRequest
     virtual ~FRequest_UpdatePlayerUuidRank() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -366,7 +366,7 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelf : public FRequest
     virtual ~FRequest_UpdatePlayerUuidRankSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -406,7 +406,7 @@ struct RALLYHEREAPI_API FRequest_UpdateRankingsTrueskillV1 : public FRequest
     virtual ~FRequest_UpdateRankingsTrueskillV1() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
 
     FRHAPI_TrueskillUpdateRequest TrueskillUpdateRequest;
 };

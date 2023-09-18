@@ -9,8 +9,9 @@
 #include "Engine/LocalPlayer.h"
 #include "RallyHereDebugToolSettings.h"
 #include <string>
-#include "Misc/DateTime.h"
 #include "Math/Color.h"
+
+#include "RH_Diagnostics.h"
 
 // used for copy support
 #if PLATFORM_ALLOWS_COPY
@@ -39,39 +40,30 @@ FRHDTW_WebRequests::FRHDTW_WebRequests()
 	DefaultPos = FVector2D(610, 430);
 }
 
-void FRHDTW_WebRequests::Do()
+void FRHDTW_WebRequests::Init(URallyHereDebugTool* InOwner, const FString& InName)
 {
-	DoViewRequests(FRallyHereIntegrationModule::Get().GetWebRequestTracker());
+	Super::Init(InOwner, InName);
+	if (URH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker())
+	{
+		for (const FName& APIName : WebRequestsTracker->GetAPINames())
+		{
+			APIFilterToggles.Emplace(APIName, true);
+		}
+	}
 }
 
-void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
+void FRHDTW_WebRequests::Do()
 {
-	if (!WebRequestsTracker)
+	URH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
+	if (WebRequestsTracker == nullptr)
+	{
+		ImGui::Text("RH_WebRequests unavailable.");
 		return;
+	}
 
 	if (ImGui::BeginMenuBar())
 	{
-		TArray<FString> APINames = WebRequestsTracker->GetAPINames();
-
-		if (ImGui::BeginMenu("Track"))
-		{
-			bool bValue = WebRequestsTracker->GetTrackAllWebRequests();
-			if (ImGui::Checkbox("All", &bValue))
-			{
-				WebRequestsTracker->SetTrackAllWebRequests(bValue);
-			}
-			ImGui::Separator();
-			for (const FString& APIName : APINames)
-			{
-				bool bIsSelected = WebRequestsTracker->GetTrackWebRequests(APIName);
-				if (ImGui::Checkbox(TCHAR_TO_UTF8(*APIName), &bIsSelected))
-				{
-					WebRequestsTracker->SetTrackWebRequests(APIName, bIsSelected);
-				}
-			}
-			ImGui::EndMenu();
-		}
-
+		TArray<FName> APINames = WebRequestsTracker->GetAPINames();
 		if (ImGui::BeginMenu("Filter Requests"))
 		{
 			bool bValue = AreAllAPIFiltersToggledOn();
@@ -81,12 +73,12 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 			}
 			ImGui::Separator();
 
-			TArray<FString> FilterKeys;
+			TArray<FName> FilterKeys;
 			APIFilterToggles.GetKeys(FilterKeys);
-			for (const FString& FilterKey : FilterKeys)
+			for (const FName& FilterKey : FilterKeys)
 			{
 				bool bIsSelected = APIFilterToggles[FilterKey];
-				if (ImGui::Checkbox(TCHAR_TO_UTF8(*FilterKey), &bIsSelected))
+				if (ImGui::Checkbox(TCHAR_TO_UTF8(*FilterKey.ToString()), &bIsSelected))
 				{
 					APIFilterToggles[FilterKey] = bIsSelected;
 				}
@@ -102,10 +94,10 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 				WebRequestsTracker->SetLogAllWebRequests(bValue);
 			}
 			ImGui::Separator();
-			for (const FString& APIName : APINames)
+			for (const FName& APIName : APINames)
 			{
 				bool bIsSelected = WebRequestsTracker->GetLogWebRequests(APIName);
-				if (ImGui::Checkbox(TCHAR_TO_UTF8(*APIName), &bIsSelected))
+				if (ImGui::Checkbox(TCHAR_TO_UTF8(*APIName.ToString()), &bIsSelected))
 				{
 					WebRequestsTracker->SetLogWebRequests(APIName, bIsSelected);
 				}
@@ -113,20 +105,40 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 			ImGui::EndMenu();
 		}
 
-		if (ImGui::Button("Clear Tracked Requests"))
+		bool bToggleRetain = WebRequestsTracker->GetIsRetainingWebRequests();
+		const FString buttonLabel = bToggleRetain ? "Retain ALL Web Records: ON" : "Retain ALL Web Records: OFF";
+
+		if (ImGui::Button(TCHAR_TO_UTF8(*buttonLabel)))
 		{
-			WebRequestsTracker->ClearTrackedRequests();
-			APIFilterToggles.Reset();
+			WebRequestsTracker->SetIsRetainingWebRequests(!bToggleRetain);
+		}
+		if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+		{
+			ImGui::SetTooltip("When toggled ON, all web request data is retained (memory intensive).");
 		}
 
 		if (ImGui::Button("Log To File"))
 		{
-			FString OutputFile = WebRequestsTracker->LogTrackedWebRequestsToFile("WebRequests-" + FDateTime::Now().ToString() + ".json");
+			auto* Diagnostics = FRallyHereIntegrationModule::Get().GetDiagnostics();
+			if (Diagnostics != nullptr)
+			{
+				// generate the report, but only include metadata and web requests
+				FRH_DiagnosticReportOptions Options(FRH_DiagnosticReportOptions::AllDisabled);
+				Options.bIncludeMetadata = true;
+				Options.bIncludeWebRequests = true;
+				Options.World = GetWorld();
+				Options.bWriteToFile = true;
 
+				Options.OnReportComplete.BindLambda([](const TSharedRef<const FRH_DiagnosticReportGenerator>& Report)
+					{
 #if PLATFORM_ALLOWS_COPY
-			// copy the filename to the clipboard
-			FPlatformApplicationMisc::ClipboardCopy(*OutputFile);
+						// copy the filename to the clipboard
+						FPlatformApplicationMisc::ClipboardCopy(*Report->ReportFilename);
 #endif
+					});
+
+				Diagnostics->GenerateReport(Options);
+			}
 		}
 		if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
 		{
@@ -137,35 +149,40 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 #endif
 		}
 
+		if (ImGui::Button("Clear Tracked Requests"))
+		{
+			WebRequestsTracker->ClearTrackedRequests();
+		}
+
 		ImGui::EndMenuBar();
 	}
 
+	DoViewRequests(WebRequestsTracker);
+}
+
+void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
+{
+	if (!WebRequestsTracker)
+		return;
 
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_AlwaysVerticalScrollbar;
 	ImGui::BeginChild("Requests", ImVec2(0, 0), false, window_flags);
 
-	const FString BaseURL = FRallyHereIntegrationModule::Get().GetBaseURL();
-	FString APIName;
-	TArray<FString> URLParams;
-
 	const auto& TrackedRequests = WebRequestsTracker->GetTrackedRequests();
-	for (int32 x = TrackedRequests.Num() - 1; x >= 0; --x)
-	{
-		auto request = TrackedRequests[x].Get();
-		if (!request)
-			continue;
+	TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>  requestsIterator(TrackedRequests.GetTail());
 
-		RH_BreakApartURL(TrackedRequests[x]->URL, BaseURL, APIName, URLParams);
-		if (APIFilterToggles.Contains(APIName))
+	int indexId = 0; // Index for IDing the ImGui buttons
+	for (; requestsIterator.GetNode() != nullptr; --requestsIterator)
+	{
+		auto request = requestsIterator.GetNode()->GetValue().Get();
+		if (!request)
 		{
-			if (!APIFilterToggles[APIName])
-			{
-				continue;
-			}
+			continue;
 		}
-		else
+
+		if (!APIFilterToggles.Contains(request->APIName) || !APIFilterToggles[request->APIName])
 		{
-			APIFilterToggles.Emplace(APIName, true);
+			continue;
 		}
 
 		std::string label;
@@ -196,7 +213,7 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 				StyleHeaderColor(Yellow_Base, Yellow_Hovered, Yellow_Active);
 				hasColorStyling = true;
 			}
-			if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::BadRequest) // 400s
+			else if (request->Responses.Last().ResponseCode >= EHttpResponseCodes::BadRequest) // 400s
 			{
 				StyleHeaderColor(Red_Base, Red_Hovered, Red_Active);
 				hasColorStyling = true;
@@ -216,7 +233,7 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 				ImGuiTabBarFlags_AutoSelectNewTabs | ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
 
 #if PLATFORM_ALLOWS_COPY
-			if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("Copy Full Web Request##%d"), x))))
+			if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("Copy Full Web Request##%d"), indexId))))
 			{
 				FPlatformApplicationMisc::ClipboardCopy(*WebRequestsTracker->FormatWebRequestToJsonBlob(*request));
 			}
@@ -226,6 +243,12 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 				if (ImGui::BeginTabItem("Request", nullptr, ImGuiTabItemFlags_None))
 				{
 					DoViewRequest(request);
+					ImGui::EndTabItem();
+				}
+
+				if (ImGui::BeginTabItem("Metadata", nullptr, ImGuiTabItemFlags_None))
+				{
+					DoViewMetadata(request);
 					ImGui::EndTabItem();
 				}
 
@@ -252,6 +275,7 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 		{
 			ImGui::PopStyleColor(3);
 		}
+		++indexId;
 	}
 
 	ImGui::EndChild();
@@ -351,6 +375,39 @@ void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse)
 	}
 }
 
+void FRHDTW_WebRequests::DoViewMetadata(const FRH_WebRequest* WebRequest)
+{
+	if (!WebRequest)
+		return;
+
+	if (ImGui::BeginTable("MetadataTable", 2, RH_TableFlagsFitSizing))
+	{
+		// Header
+		ImGui::TableSetupColumn("Field");
+		ImGui::TableSetupColumn("Value");
+		ImGui::TableHeadersRow();
+
+		// Content
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Identifier", WebRequest->Metadata.Identifier, ECopyMode::Key);
+		ImGui::TableNextColumn();
+		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens)));
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Simplified Path", WebRequest->Metadata.SimplifiedPath.ToString(), ECopyMode::Key);
+		ImGui::TableNextColumn();
+		ImGui::Text("%s", TCHAR_TO_UTF8(*WebRequest->Metadata.SimplifiedPath.ToString()));
+		ImGui::TableNextRow();
+		ImGui::TableNextColumn();
+		ImGuiDisplayCopyableValue("Retry Count", WebRequest->Metadata.RetryCount, ECopyMode::Key);
+		ImGui::TableNextColumn();
+		ImGui::Text("%d", WebRequest->Metadata.RetryCount);
+
+		ImGui::EndTable();
+	}
+}
+
 bool FRHDTW_WebRequests::AreAllAPIFiltersToggledOn() const
 {
 	for (auto& Elem : APIFilterToggles)
@@ -365,11 +422,8 @@ bool FRHDTW_WebRequests::AreAllAPIFiltersToggledOn() const
 
 void FRHDTW_WebRequests::ToggleAllAPIFilters(bool bOn)
 {
-	TArray<FString> Keys;
-	APIFilterToggles.GenerateKeyArray(Keys);
-
-	for (FString Key : Keys)
+	for (auto& Pair : APIFilterToggles)
 	{
-		APIFilterToggles[Key] = bOn;
+		APIFilterToggles[Pair.Key] = bOn;
 	}
 }

@@ -82,7 +82,7 @@ struct RALLYHEREAPI_API FRequest_PlayerCreateNotification : public FRequest
     virtual ~FRequest_PlayerCreateNotification() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -122,7 +122,7 @@ struct RALLYHEREAPI_API FRequest_PlayerGetNotificationById : public FRequest
     virtual ~FRequest_PlayerGetNotificationById() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -162,7 +162,7 @@ struct RALLYHEREAPI_API FRequest_PlayerGetNotificationByIdSelf : public FRequest
     virtual ~FRequest_PlayerGetNotificationByIdSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -201,7 +201,7 @@ struct RALLYHEREAPI_API FRequest_PlayerGetNotificationsPage : public FRequest
     virtual ~FRequest_PlayerGetNotificationsPage() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -247,7 +247,7 @@ struct RALLYHEREAPI_API FRequest_PlayerGetNotificationsPageSelf : public FReques
     virtual ~FRequest_PlayerGetNotificationsPageSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -292,7 +292,7 @@ struct RALLYHEREAPI_API FRequest_PlayerLongPollForNotifications : public FReques
     virtual ~FRequest_PlayerLongPollForNotifications() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -339,7 +339,7 @@ struct RALLYHEREAPI_API FRequest_PlayerLongPollForNotificationsSelf : public FRe
     virtual ~FRequest_PlayerLongPollForNotificationsSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_RegionsResponse`](#structFRHAPI__RegionsResponse) | 
+`struct `[`FRHAPI_RegionsResponse`](#structFRHAPI__RegionsResponse) | A list of regions and a cursor to continue iterating.
 
 ## struct `FRHAPI_RegionsResponse` <a id="structFRHAPI__RegionsResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_RegionsResponse
   : public FRHAPI_Model
 ```
+
+A list of regions and a cursor to continue iterating.
 
 #### Summary
 

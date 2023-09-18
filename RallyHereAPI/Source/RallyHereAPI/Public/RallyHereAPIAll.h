@@ -16,6 +16,7 @@
 #include "CatalogAPI.h"
 #include "ConfigAPI.h"
 #include "ConfigurationV1API.h"
+#include "CustomAPI.h"
 #include "DiscoveryAPI.h"
 #include "EntitlementsAPI.h"
 #include "FriendsV1API.h"
@@ -68,6 +69,9 @@ public:
 
     FConfigurationV1API& GetConfigurationV1();
     const FConfigurationV1API& GetConfigurationV1() const;
+
+    FCustomAPI& GetCustom();
+    const FCustomAPI& GetCustom() const;
 
     FDiscoveryAPI& GetDiscovery();
     const FDiscoveryAPI& GetDiscovery() const;
@@ -141,6 +145,7 @@ private:
     FCatalogAPI Catalog;
     FConfigAPI Config;
     FConfigurationV1API ConfigurationV1;
+    FCustomAPI Custom;
     FDiscoveryAPI Discovery;
     FEntitlementsAPI Entitlements;
     FFriendsV1API FriendsV1;

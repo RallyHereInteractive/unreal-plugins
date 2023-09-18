@@ -84,12 +84,24 @@ void URH_PlatformSessionSyncer::Cleanup(FSimpleDelegate CompletionDelegate)
 	// add delegate first in case cleanup happens in line.
 	OnCleanupComplete.AddLambda([CompletionDelegate](URH_PlatformSessionSyncer* Syncer) { CompletionDelegate.ExecuteIfBound(); });
 
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	UE_LOG(LogRHSession, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	if (!SetSyncActionState(ESyncActionState::Cleanup))
+	if (IsCleanupComplete())
 	{
-		// could not set state (may already be cleaned up), fire the delegate
+		// already cleaned up, trigger delegate now
 		CompletionDelegate.ExecuteIfBound();
+	}
+	else if (IsCleaningUp())
+	{
+		// do nothing
+	}
+	else if (!SetSyncActionState(ESyncActionState::Cleanup))
+	{
+		check(!bDeferCleanup);
+		bDeferCleanup = true;
+
+		FString CurrentStateString = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ESyncActionState", CurrentSyncActionState);
+		UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Could not start cleanup, current state is %s, deferring"), ANSI_TO_TCHAR(__FUNCTION__), *CurrentStateString);
 	}
 }
 
@@ -129,7 +141,7 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 	// TODO - come up with a scouting rule.  For now, hope that the first player in that cant find a session can scout quickly enough
 
 	auto RHSession = GetRHSession();
-	if (RHSession == nullptr)
+	if (RHSession == nullptr || !SessionOwner.IsValid())
 	{
 		return false;
 	}
@@ -172,9 +184,9 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 	return false;;
 }
 
-void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, FRH_GenericSuccessBlock Delegate)
+void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, FRH_GenericSuccessWithErrorBlock Delegate)
 {
-	if (SessionInvite.Session.SessionInfo.IsValid())
+	if (SessionInvite.Session.SessionInfo.IsValid() && SessionOwner.IsValid())
 	{
 		FUniqueNetIdRepl PlatformSessionId = SessionInvite.Session.SessionInfo->GetSessionId();
 		FString PlatformSessionIdJson;
@@ -204,11 +216,11 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 								}
 							}
 
-							Delegate.ExecuteIfBound(true);
+							Delegate.ExecuteIfBound(true, FRH_ErrorInfo());
 						}
 						else
 						{
-							Delegate.ExecuteIfBound(false);
+							Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 						}
 					});
 
@@ -219,7 +231,7 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 		}
 	}	
 
-	Delegate.ExecuteIfBound(false);
+	Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 }
 
 
@@ -383,7 +395,19 @@ bool URH_PlatformSessionSyncer::SetSyncActionState(ESyncActionState NewState)
 
 void URH_PlatformSessionSyncer::SyncActionComplete(bool bSuccess, bool bDeferFrame)
 {
-	if (!bDeferFrame)
+	// if cleanup was deferred, start cleanup
+	if (bDeferCleanup && !IsCleaningUp())
+	{
+		// transition out of the old state first
+		SetSyncActionState(bSuccess ? ESyncActionState::Unsynchronized : ESyncActionState::Error);
+
+		// clear flag
+		bDeferCleanup = false;
+
+		// begin cleanup
+		Cleanup();
+	}
+	else if (!bDeferFrame)
 	{
 		UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Action was %s, continuing without deferal"), ANSI_TO_TCHAR(__FUNCTION__), bSuccess ? TEXT("successful") : TEXT("unsuccessful"));
 		SetSyncActionState(bSuccess ? ESyncActionState::Unsynchronized : ESyncActionState::Error);
@@ -435,8 +459,12 @@ void URH_PlatformSessionSyncer::KickOffState(ESyncActionState NewState)
 		break;
 	case ESyncActionState::CleanupComplete:
 		// fire cleanup delegates - note that this may cause the delegate list to be modified
-		BLUEPRINT_OnCleanupComplete.Broadcast(this);
-		OnCleanupComplete.Broadcast(this);
+		{
+			UE_LOG(LogRHSession, Log, TEXT("[%s] - Cleanup complete, firing delegates"), ANSI_TO_TCHAR(__FUNCTION__));
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastPlatformSyncerCleanupComplete, FColor::Purple);
+			BLUEPRINT_OnCleanupComplete.Broadcast(this);
+			OnCleanupComplete.Broadcast(this);
+		}
 		break;
 	}
 }
@@ -553,6 +581,13 @@ void URH_PlatformSessionSyncer::UpdateRHSessionWithPlatformSession()
 	if (!OSSSessionId.IsValid())
 	{
 		UE_LOG(LogRHSession, Warning, TEXT("[%s] - OSS Session Id is invalid"), ANSI_TO_TCHAR(__FUNCTION__));
+		SyncActionComplete(false);
+		return;
+	}
+
+	if (!SessionOwner.IsValid())
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session Owner is null"), ANSI_TO_TCHAR(__FUNCTION__));
 		SyncActionComplete(false);
 		return;
 	}

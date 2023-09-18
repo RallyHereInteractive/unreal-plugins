@@ -1,0 +1,112 @@
+{{!
+Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
+Copyright 2022 HiRez Studios
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+}}
+{{>licenseInfo}}
+#pragma once
+
+#include "CoreMinimal.h"
+#include "{{unrealModuleName}}BaseModel.h"
+//#include "LoginResult.h"
+//#include "TokenResponse.h"
+#include "{{unrealModuleName}}AuthContext.generated.h"
+
+{{#cppNamespaceDeclarations}}
+namespace {{this}}
+{
+{{/cppNamespaceDeclarations}}
+
+class FAuthAPI;
+struct FRequest_Login;
+struct FResponse_Login;
+struct FRequest_Token;
+struct FResponse_Token;
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FAuthContextLoginComplete, bool /* bAuthSuccess */);
+DECLARE_MULTICAST_DELEGATE(FAuthContextLogout);
+DECLARE_MULTICAST_DELEGATE(FAuthContextLoginUserChanged);
+
+struct {{dllapi}} FAuthContext : TSharedFromThis<FAuthContext>
+{
+public:
+    FAuthContext(FAuthAPI& LoginAPI_, FString ClientId, FString ClientSecret);
+
+    FAuthContext(FAuthAPI& LoginAPI_);
+
+    //void ProcessLogin(const FResponse_Login &LoginResponse_);
+    //void ProcessLoginToken(const FResponse_Token &LoginResponse_);
+    bool Refresh();
+    FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
+    FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
+    FAuthContextLogout& OnLogout() { return Logout; }
+    //const TOptional<{{unrealModelPrefix}}LoginResult>& GetLoginResult() const;
+    //const TOptional<{{unrealModelPrefix}}TokenResponse>& GetTokenResponse() const;
+    bool IsLoggedIn() const;
+    FString GetAccessToken() const;
+    FString GetRefreshToken() const;
+
+    void ClearAuthContext();
+
+    void SetClientId(const FString& InClientId);
+    void SetClientSecret(const FString& InClientSecret);
+
+    bool AddClientCredentials(const FHttpRequestRef& HttpRequest) const;
+    bool AddClientCredentials(const FHttpRequestPtr& HttpRequest) const;
+
+    bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
+    bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
+
+    //static bool IsSameUser(const TOptional<{{unrealModelPrefix}}LoginResult>& A, const TOptional<{{unrealModelPrefix}}LoginResult>& B);
+
+private:
+    FAuthAPI* LoginAPI;
+    TOptional<FString> ClientId;
+    TOptional<FString> ClientSecret;
+    TOptional<FString> BasicAuthValue;
+    bool bIsRefreshing;
+    FAuthContextLoginComplete LoginComplete;
+    FAuthContextLoginUserChanged LoginUserChanged;
+    FAuthContextLogout Logout;
+    //TOptional<{{unrealModelPrefix}}LoginResult> LoginResult;
+    //TOptional<{{unrealModelPrefix}}TokenResponse> TokenResponse;
+
+    inline void UpdateBasicAuthValue();
+};
+{{#cppNamespaceDeclarations}}
+}
+{{/cppNamespaceDeclarations}}
+
+typedef TSharedPtr<{{unrealModuleName}}::FAuthContext> FAuthContextPtr;
+
+USTRUCT(BlueprintType)
+struct {{dllapi}} {{unrealModelPrefix}}AuthContext
+{
+	GENERATED_BODY()
+	
+	UPROPERTY()
+	int32 Dummy;
+	
+	FAuthContextPtr AuthContext;
+	
+	{{unrealModelPrefix}}AuthContext()
+		: Dummy(0)
+		, AuthContext(nullptr)
+	{}
+	
+	{{unrealModelPrefix}}AuthContext(const FAuthContextPtr& InAuthContext)
+		: Dummy(0)
+		, AuthContext(InAuthContext)
+	{}
+};

@@ -81,8 +81,13 @@ public:
 	virtual void NotifyControlMessage(UNetConnection* Connection, uint8 MessageType, FInBunch& Bunch) override;
 	//~ End FNetworkNotify Interface
 
+#if RH_FROM_ENGINE_VERSION(5,3)
+	/** Get stored login URL options */
+	virtual FString GetLoginOptions(const FUniqueNetIdRepl& PlayerId) override { return Super::GetLoginOptions(PlayerId) + LoginOptions; }
+#else
 	/** Get stored login URL options */
 	const FString& GetLoginOptions() const { return LoginOptions; }
+#endif
 
 	/** Set stored login URL options, passed up during connect */
 	void SetLoginOptions(const FString& InLoginOptions) { LoginOptions = InLoginOptions; }

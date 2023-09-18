@@ -19,12 +19,22 @@ A collection of Portal Use Rules.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PortalUseRuleset_1a6adcf1faeab36224d7427c77ee7fb53b) | Custom data associated with the resource.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__PortalUseRuleset_1a9e434691c833dbf6415957cb7dc083a2) | true if CustomData_Optional has been set to a value
 `public TMap< FString, TArray< ERHAPI_InventoryPortal > > `[`Rules_Optional`](#structFRHAPI__PortalUseRuleset_1a0839868d3a302e421c134111d6a23239) | 
 `public bool `[`Rules_IsSet`](#structFRHAPI__PortalUseRuleset_1a4b92c8c7449f8bf0d67daad6a98b75bf) | true if Rules_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__PortalUseRuleset_1ab7077b18224b06098343e0764e593b91) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__PortalUseRuleset_1ab75284e0d03bb879671ab86cfc3c39c6) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUseRuleset_1a65364871150a621def88d653d1fbe84f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalUseRuleset_1a3f150d25c90a137c73a99bcb87d824b8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a01a9fcf5353c6eef969894dd35f9c254)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a40009a1a966a268ad234894f655668e2)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a315ccfdf0a394c8af1c33484efe7a69e)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1ae02e9b64b7890d604ab536729fa8de43)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PortalUseRuleset_1a1eaacc7180f1b8c2e0783e4498ee1bb3)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PortalUseRuleset_1a6916d73cee5a641a1e30b2b0543dcf59)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__PortalUseRuleset_1af1ba3ac076609280a06bf2eea6db94e6)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`ClearCustomData`](#structFRHAPI__PortalUseRuleset_1a0e624bd83b3ca823a2ba9f7f570e0ccc)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline TMap< FString, TArray< ERHAPI_InventoryPortal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a8c522e8de05ec2ab20cc171123d63278)`()` | Gets the value of Rules_Optional, regardless of it having been set.
 `public inline const TMap< FString, TArray< ERHAPI_InventoryPortal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a964d5e4e1b86f59cece224cd0302168d)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
 `public inline const TMap< FString, TArray< ERHAPI_InventoryPortal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a25360c135dd33a58c46b66899ba335fa)`(const TMap< FString, TArray< ERHAPI_InventoryPortal >> & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -44,6 +54,16 @@ A collection of Portal Use Rules.
 
 #### Members
 
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PortalUseRuleset_1a6adcf1faeab36224d7427c77ee7fb53b) <a id="structFRHAPI__PortalUseRuleset_1a6adcf1faeab36224d7427c77ee7fb53b"></a>
+
+Custom data associated with the resource.
+
+<br>
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__PortalUseRuleset_1a9e434691c833dbf6415957cb7dc083a2) <a id="structFRHAPI__PortalUseRuleset_1a9e434691c833dbf6415957cb7dc083a2"></a>
+
+true if CustomData_Optional has been set to a value
+
+<br>
 #### `public TMap< FString, TArray< ERHAPI_InventoryPortal > > `[`Rules_Optional`](#structFRHAPI__PortalUseRuleset_1a0839868d3a302e421c134111d6a23239) <a id="structFRHAPI__PortalUseRuleset_1a0839868d3a302e421c134111d6a23239"></a>
 
 <br>
@@ -77,6 +97,46 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
+
+<br>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a01a9fcf5353c6eef969894dd35f9c254)`()` <a id="structFRHAPI__PortalUseRuleset_1a01a9fcf5353c6eef969894dd35f9c254"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a40009a1a966a268ad234894f655668e2)`() const` <a id="structFRHAPI__PortalUseRuleset_1a40009a1a966a268ad234894f655668e2"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1a315ccfdf0a394c8af1c33484efe7a69e)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PortalUseRuleset_1a315ccfdf0a394c8af1c33484efe7a69e"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__PortalUseRuleset_1ae02e9b64b7890d604ab536729fa8de43)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PortalUseRuleset_1ae02e9b64b7890d604ab536729fa8de43"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PortalUseRuleset_1a1eaacc7180f1b8c2e0783e4498ee1bb3)`()` <a id="structFRHAPI__PortalUseRuleset_1a1eaacc7180f1b8c2e0783e4498ee1bb3"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PortalUseRuleset_1a6916d73cee5a641a1e30b2b0543dcf59)`() const` <a id="structFRHAPI__PortalUseRuleset_1a6916d73cee5a641a1e30b2b0543dcf59"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PortalUseRuleset_1af1ba3ac076609280a06bf2eea6db94e6)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__PortalUseRuleset_1af1ba3ac076609280a06bf2eea6db94e6"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__PortalUseRuleset_1a0e624bd83b3ca823a2ba9f7f570e0ccc)`()` <a id="structFRHAPI__PortalUseRuleset_1a0e624bd83b3ca823a2ba9f7f570e0ccc"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 <br>
 #### `public inline TMap< FString, TArray< ERHAPI_InventoryPortal > > & `[`GetRules`](#structFRHAPI__PortalUseRuleset_1a8c522e8de05ec2ab20cc171123d63278)`()` <a id="structFRHAPI__PortalUseRuleset_1a8c522e8de05ec2ab20cc171123d63278"></a>

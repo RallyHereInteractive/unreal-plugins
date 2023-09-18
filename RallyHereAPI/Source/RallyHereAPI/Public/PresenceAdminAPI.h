@@ -159,7 +159,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetKnownPlatforms : public FRequest
     virtual ~FRequest_AdminGetKnownPlatforms() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -198,7 +198,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
     virtual ~FRequest_AdminGetPlayerPresence() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -239,7 +239,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
     virtual ~FRequest_AdminGetPlayerPresenceId() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -280,7 +280,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
     virtual ~FRequest_AdminGetRequestingCcu() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -320,7 +320,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : publ
     virtual ~FRequest_AdminGetRequestingCcuAllPlatformCombined() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -360,7 +360,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : pu
     virtual ~FRequest_AdminGetRequestingCcuAllPlatformIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -401,7 +401,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FReque
     virtual ~FRequest_AdminGetRequestingCcuIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -441,7 +441,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public 
     virtual ~FRequest_AdminGetRequestingCcuPlatformCombined() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -482,7 +482,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : publi
     virtual ~FRequest_AdminGetRequestingCcuPlatformIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -524,7 +524,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
     virtual ~FRequest_AdminGetTotalCcu() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -564,7 +564,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FR
     virtual ~FRequest_AdminGetTotalCcuAllPlatformCombined() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -604,7 +604,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public 
     virtual ~FRequest_AdminGetTotalCcuAllPlatformIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -645,7 +645,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
     virtual ~FRequest_AdminGetTotalCcuIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -685,7 +685,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequ
     virtual ~FRequest_AdminGetTotalCcuPlatformCombined() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -726,7 +726,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRe
     virtual ~FRequest_AdminGetTotalCcuPlatformIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -768,7 +768,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
     virtual ~FRequest_AdminGetUpdatingCcu() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -808,7 +808,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public
     virtual ~FRequest_AdminGetUpdatingCcuAllPlatformCombined() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -848,7 +848,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : publ
     virtual ~FRequest_AdminGetUpdatingCcuAllPlatformIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -889,7 +889,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
     virtual ~FRequest_AdminGetUpdatingCcuIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -929,7 +929,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FR
     virtual ~FRequest_AdminGetUpdatingCcuPlatformCombined() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -970,7 +970,7 @@ struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public 
     virtual ~FRequest_AdminGetUpdatingCcuPlatformIndividual() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1012,7 +1012,7 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
     virtual ~FRequest_AdminUpdatePlayerLastSeen() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -1057,7 +1057,7 @@ struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
     virtual ~FRequest_AdminUpdatePlayerLastSeenId() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

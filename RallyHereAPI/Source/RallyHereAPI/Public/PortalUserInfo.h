@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief 
+ * @brief Portal user info
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
@@ -41,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Platform for the user */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
@@ -50,6 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     /** @brief Sets the value of Platform */
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
+    /** @brief Portal ID. *DEPRECATED* use `platform` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Portal PortalId{  };
     /** @brief Gets the value of PortalId */
@@ -59,6 +61,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     /** @brief Sets the value of PortalId */
     void SetPortalId(ERHAPI_Portal NewValue) { PortalId = NewValue;  }
 
+    /** @brief Platform User ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString PortalUserId{  };
     /** @brief Gets the value of PortalUserId */
@@ -68,6 +71,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     /** @brief Sets the value of PortalUserId */
     void SetPortalUserId(FString NewValue) { PortalUserId = NewValue;  }
 
+    /** @brief Display name */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString DisplayName{  };
     /** @brief Gets the value of DisplayName */

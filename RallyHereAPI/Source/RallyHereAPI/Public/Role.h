@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Role object that is used to define a role for a player
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Unique Role ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString RoleId{  };
     /** @brief Gets the value of RoleId */
@@ -48,6 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     /** @brief Sets the value of RoleId */
     void SetRoleId(FString NewValue) { RoleId = NewValue;  }
 
+    /** @brief Custom data for the role */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_JsonObject CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
@@ -70,6 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief List of loot table item ids that are fulfilled for the player when they begin a new inventory session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<int32> LoginLootRewards_Optional{  };
     /** @brief true if LoginLootRewards_Optional has been set to a value */

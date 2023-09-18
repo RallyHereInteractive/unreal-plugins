@@ -10,6 +10,10 @@
 
 #include <imgui.h>
 
+//$$ BEGIN - Support ImPlot
+#include "implot.h"
+//$$ END - Support ImPlot
+
 #include <string>
 
 
@@ -95,6 +99,11 @@ private:
 	void BroadcastMultiContextDebug();
 
 	ImGuiContext* Context;
+
+	//$$ BEGIN - Support ImPlot
+	ImPlotContext* PlotContext;
+	//$$ END - Support ImPlot
+
 
 	FVector2D DisplaySize = FVector2D::ZeroVector;
 	float DPIScale = 1.f;

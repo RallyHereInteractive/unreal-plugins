@@ -65,7 +65,7 @@ FString FAPI::GetURL() const
     return Url;
 }
 
-FString FAPI::GetName() const
+FName FAPI::GetName() const
 {
     return Name;
 }

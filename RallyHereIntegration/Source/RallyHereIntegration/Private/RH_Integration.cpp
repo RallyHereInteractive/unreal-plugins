@@ -8,6 +8,7 @@
 #include "Misc/ConfigCacheIni.h"
 #include "Serialization/JsonSerializer.h"
 #include "RH_WebRequests.h"
+#include "RH_Diagnostics.h"
 
 static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetBaseUrl(
 	TEXT("rh.setbaseurl"),
@@ -20,10 +21,11 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetBaseUrl(
 				return;
 			}
 
-			FString NewBaseURL = Args.Num() >= 0 ? Args[0] : FString();
-			NewBaseURL.TrimQuotesInline();
-			FRallyHereIntegrationModule::Get().LockBaseURL(!NewBaseURL.IsEmpty());
-			FRallyHereIntegrationModule::Get().SetBaseURL(MoveTemp(NewBaseURL), TEXT("Console Command"));
+			bool bHasValue = Args.Num() > 0;
+			FString NewValue = bHasValue ? Args[0] : FString();
+			NewValue.TrimQuotesInline();
+			FRallyHereIntegrationModule::Get().LockBaseURL(bHasValue);
+			FRallyHereIntegrationModule::Get().SetBaseURL(MoveTemp(NewValue), TEXT("Console Command"));
 			Ar.Logf(TEXT("Updated Base URL to %s"), *FRallyHereIntegrationModule::Get().GetBaseURL());
 		}));
 
@@ -68,10 +70,11 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetSandboxId(
 				return;
 			}
 
-			FString NewSandboxId = Args.Num() >= 0 ? Args[0] : FString();
-			NewSandboxId.TrimQuotesInline();
-			FRallyHereIntegrationModule::Get().LockSandboxId(!NewSandboxId.IsEmpty());
-			FRallyHereIntegrationModule::Get().SetSandboxId(MoveTemp(NewSandboxId), TEXT("Console Command"));
+			bool bHasValue = Args.Num() > 0;
+			FString NewValue = bHasValue ? Args[0] : FString();
+			NewValue.TrimQuotesInline();
+			FRallyHereIntegrationModule::Get().LockSandboxId(bHasValue);
+			FRallyHereIntegrationModule::Get().SetSandboxId(MoveTemp(NewValue), TEXT("Console Command"));
 			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
 			Ar.Logf(TEXT("Updated Sandbox ID to %s"), *FRallyHereIntegrationModule::Get().GetSandboxId());
@@ -112,7 +115,7 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHGetSandboxId(
 
 static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
 	TEXT("rh.setclientid"),
-	TEXT("Set the client ID used to log into the RallyHere API"),
+	TEXT("Set the client ID used to log into the RallyHere API, not specifying any id will clear the override and use the default id, and an empty id will override to not use an id"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
 		{	
 			if (!FRallyHereIntegrationModule::IsAvailable())
@@ -120,11 +123,12 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
 				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
 				return;
 			}
-			FString NewClientId = Args.Num() > 0 ? Args[0] : FString();
-			NewClientId.TrimQuotesInline();
-			FRallyHereIntegrationModule::Get().LockClientId(!NewClientId.IsEmpty());
-			FRallyHereIntegrationModule::Get().SetClientId(MoveTemp(NewClientId), TEXT("Console Command"));		
-			Ar.Logf(TEXT("Updated Client ID to [%s]"), *NewClientId);
+			bool bHasValue = Args.Num() > 0;
+			FString NewValue = bHasValue ? Args[0] : FString();
+			NewValue.TrimQuotesInline();
+			FRallyHereIntegrationModule::Get().LockClientId(bHasValue);
+			FRallyHereIntegrationModule::Get().SetClientId(MoveTemp(NewValue), TEXT("Console Command"));
+			Ar.Logf(TEXT("Updated Client ID to [%s]"), *NewValue);
 		}));
 
 static FAutoConsoleCommandWithOutputDevice ConsoleRHGetClientId(
@@ -151,10 +155,11 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientSecret(
 				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
 				return;
 			}
-			FString NewClientSecret = Args.Num() >= 0 ? Args[0] : FString();
-			NewClientSecret.TrimQuotesInline();
-			FRallyHereIntegrationModule::Get().LockClientSecret(!NewClientSecret.IsEmpty());
-			FRallyHereIntegrationModule::Get().SetClientSecret(MoveTemp(NewClientSecret), TEXT("Console Command"));
+			bool bHasValue = Args.Num() > 0;
+			FString NewValue = bHasValue ? Args[0] : FString();
+			NewValue.TrimQuotesInline();
+			FRallyHereIntegrationModule::Get().LockClientSecret(bHasValue);
+			FRallyHereIntegrationModule::Get().SetClientSecret(MoveTemp(NewValue), TEXT("Console Command"));
 			Ar.Logf(TEXT("Updated Client Secret to [**SECRET**]"));
 		}));
 
@@ -182,7 +187,7 @@ void URH_Integration::Initialize()
 	for (const auto& Key : Settings->DefaultOSSCommandLineKeys)
 	{
 		FString temp;
-		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
 			UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Update Default OSS Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *temp, *Key);
 			GConfig->SetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), *temp, GEngineIni);
@@ -209,8 +214,11 @@ void URH_Integration::Initialize()
 	// Go ahead and load a base URL in case one was passed through at startup
 	ResolveBaseURL();
 
-	WebRequestTracker = NewObject<URH_WebRequests>(this, URH_WebRequests::StaticClass(), NAME_None);
+	WebRequestTracker = NewObject<URH_WebRequests>(this);
 	WebRequestTracker->Initialize(&APIs);
+
+	Diagnostics = NewObject<URH_Diagnostics>(this);
+	Diagnostics->Initialize();
 }
 
 void URH_Integration::Uninitialize()
@@ -218,6 +226,9 @@ void URH_Integration::Uninitialize()
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	WebRequestTracker->Uninitialize();
 	WebRequestTracker = nullptr;
+
+	Diagnostics->Uninitialize();
+	Diagnostics = nullptr;
 
 	for (auto& API : APIs.GetAllAPIs())
 	{
@@ -235,6 +246,29 @@ void URH_Integration::SetBaseURL(FString InBaseUrl, FString Source)
 	if (ResolvedBaseUrl.EndsWith(TEXT("/")))
 	{
 		ResolvedBaseUrl = ResolvedBaseUrl.LeftChop(1);
+	}
+
+	// Be defensive for URL schemes to avoid routing issues
+	{
+		const FString SchemeSeparator{ TEXT("://") };
+		const FString SchemeHttp{ TEXT("http") };
+		const FString SchemeHttps{ TEXT("https") };
+		FString UrlScheme;
+		FString UrlContent;
+		if (!ResolvedBaseUrl.Split(SchemeSeparator, &UrlScheme, &UrlContent, ESearchCase::Type::CaseSensitive))
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] URL (%s) is missing scheme prefix.  Prepending https:// to avoid routing issues"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedBaseUrl);
+			ResolvedBaseUrl = SchemeHttps + SchemeSeparator + ResolvedBaseUrl;
+		}
+		else if (UrlScheme.IsEmpty())
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] URL (%s) has empty scheme prefix.  Prepending https to avoid routing issues"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedBaseUrl);
+			ResolvedBaseUrl = SchemeHttps + ResolvedBaseUrl;
+		}
+		else if (!UrlScheme.StartsWith(SchemeHttp))
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] URL (%s) has unknown scheme prefix.  Is This intentional?"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedBaseUrl);
+		}
 	}
 
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedBaseUrl,
@@ -267,7 +301,7 @@ void URH_Integration::ResolveBaseURL()
 	for (const auto& Key : Settings->BaseURLCommandLineKeys)
 	{
 		FString temp;
-		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
 			SetBaseURL(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
@@ -276,6 +310,7 @@ void URH_Integration::ResolveBaseURL()
 
 
 	{
+		// check sandbox
 		const auto SandboxId = GetSandboxId();
 		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
 		if (Sandbox != nullptr && !Sandbox->BaseUrl.IsEmpty())
@@ -283,13 +318,23 @@ void URH_Integration::ResolveBaseURL()
 			SetBaseURL(Sandbox->BaseUrl, TEXT("Sandbox:") + SandboxId);
 			return;
 		}
+
+		// check default sandbox as a fallback
+		Sandbox = &Settings->DefaultSandboxConfiguration;
+		if (Sandbox != nullptr && !Sandbox->BaseUrl.IsEmpty())
+		{
+			SetBaseURL(Sandbox->BaseUrl, TEXT("Default Sandbox:") + SandboxId);
+			return;
+		}
 	}
 
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	if (!Settings->BaseUrl.IsEmpty())
 	{
 		SetBaseURL(Settings->BaseUrl, TEXT("URH_IntegrationSettings::BaseURL"));
 		return;
 	}
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a base URL"), ANSI_TO_TCHAR(__FUNCTION__));
 }
@@ -412,7 +457,7 @@ void URH_Integration::ResolveClientId()
 	for (const auto& Key : Settings->ClientIdCommandLineKeys)
 	{
 		FString temp;
-		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
 			SetClientId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
@@ -420,6 +465,7 @@ void URH_Integration::ResolveClientId()
 	}
 
 	{
+		// check sandbox
 		const auto SandboxId = GetSandboxId();
 		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
 		if (Sandbox != nullptr && !Sandbox->ClientId.IsEmpty())
@@ -427,13 +473,23 @@ void URH_Integration::ResolveClientId()
 			SetClientId(Sandbox->ClientId, TEXT("Sandbox:") + SandboxId);
 			return;
 		}
+
+		// check default sandbox as a fallback
+		Sandbox = &Settings->DefaultSandboxConfiguration;
+		if (Sandbox != nullptr && !Sandbox->ClientId.IsEmpty())
+		{
+			SetClientId(Sandbox->ClientId, TEXT("Default Sandbox:") + SandboxId);
+			return;
+		}
 	}
 
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	if (!Settings->ClientId.IsEmpty())
 	{
 		SetClientId(Settings->ClientId, TEXT("INI: RH_IntegrationSettings - ClientId"));
 		return;
 	}
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
 }
@@ -466,26 +522,39 @@ void URH_Integration::ResolveClientSecret()
 	for (const auto& Key : Settings->ClientSecretCommandLineKeys)
 	{
 		FString temp;
-		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp) && !temp.IsEmpty())
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
 			SetClientSecret(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
 		}
 	}
 
-	const auto SandboxId = GetSandboxId();
-	const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
-	if (Sandbox != nullptr && !Sandbox->ClientSecret.IsEmpty())
 	{
-		SetClientSecret(Sandbox->ClientSecret, TEXT("Sandbox:") + SandboxId);
-		return;
+		// check sandbox
+		const auto SandboxId = GetSandboxId();
+		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
+		if (Sandbox != nullptr && !Sandbox->ClientSecret.IsEmpty())
+		{
+			SetClientSecret(Sandbox->ClientSecret, TEXT("Sandbox:") + SandboxId);
+			return;
+		}
+
+		// check default sandbox as a fallback
+		Sandbox = &Settings->DefaultSandboxConfiguration;
+		if (Sandbox != nullptr && !Sandbox->ClientSecret.IsEmpty())
+		{
+			SetClientSecret(Sandbox->ClientSecret, TEXT("Default Sandbox:") + SandboxId);
+			return;
+		}
 	}
 
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	if (!Settings->ClientSecret.IsEmpty())
 	{
 		SetClientSecret(Settings->ClientSecret, TEXT("INI: RH_IntegrationSettings - ClientSecret"));
 		return;
 	}
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
 }

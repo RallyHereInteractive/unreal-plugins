@@ -22,6 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_Vendor::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
     if (Type_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("type"));
@@ -58,6 +63,12 @@ bool FRHAPI_Vendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
     if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
     {

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_JoinParams`](#structFRHAPI__JoinParams) | 
+`struct `[`FRHAPI_JoinParams`](#structFRHAPI__JoinParams) | Parameters provided by the allocation system or an instance on how to connect.
 
 ## struct `FRHAPI_JoinParams` <a id="structFRHAPI__JoinParams"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_JoinParams
   : public FRHAPI_Model
 ```
+
+Parameters provided by the allocation system or an instance on how to connect.
 
 #### Summary
 

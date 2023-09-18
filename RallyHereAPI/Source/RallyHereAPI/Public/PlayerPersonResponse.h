@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Response for getting a player&#39;s info
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Player ID *DEPRECATED* use `player_uuid` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PlayerId{ 0 };
     /** @brief Gets the value of PlayerId */
@@ -52,6 +53,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
     /** @brief Sets the value of PlayerId to its default  */
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
+    /** @brief Player UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
@@ -61,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
     /** @brief Sets the value of PlayerUuid */
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
+    /** @brief *DEPRECATED* use `active_player_uuid` instead.  Active player ID, if the player has an active player. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ActivePlayerId_Optional{  };
     /** @brief true if ActivePlayerId_Optional has been set to a value */
@@ -87,6 +90,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
     /** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
     void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
+    /** @brief Active player UUID, if the player has an active player. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ActivePlayerUuid_Optional{  };
     /** @brief true if ActivePlayerUuid_Optional has been set to a value */
@@ -109,6 +113,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPersonResponse : public FRHAPI_Model
      /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
     void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false; }
 
+    /** @brief Person ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PersonId{  };
     /** @brief Gets the value of PersonId */

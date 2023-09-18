@@ -385,7 +385,7 @@ public:
 	/**
 	 * @brief Blueprint compatible delegate fired whenever the session is updated.
 	 */
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Updated"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionUpdatedDelegate;
 	/**
 	 * @brief Delegate fired whenever the session is not found.
@@ -394,7 +394,7 @@ public:
 	/**
 	 * @brief Blueprint compatible delegate fired whenever the session is not found.
 	 */
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Not Found"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Not Found"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionNotFoundDelegate;
 	/**
 	 * @brief Delegate fired whenever the session member list changes with details about the change
@@ -403,7 +403,7 @@ public:
 	/**
 	 * @brief Blueprint compatible delegate fired whenever the session member list changes with details about the change
 	 */
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Member Changed"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Member Changed"))
 	FRH_OnSessionMemberStateChangedDynamicDelegate BLUEPRINT_OnSessionMemberStateChangedDelegate;
 
 	/**
@@ -434,9 +434,10 @@ public:
 	float GetPollTimeRemaining();
 	/**
 	 * @brief Forces a polling call even if the polling is waiting till next time to pulse.
+	 * @param [in] bClearETag If true, the ETag will be cleared before the poll.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
-	void ForcePollForUpdate();
+	void ForcePollForUpdate(bool bClearETag = false);
 
 	/**
 	 * @brief Add a deferred poll to the list of polls to run in sequence
@@ -598,17 +599,19 @@ public:
 	 * @brief Invites a player to the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
 	 * @param [in] Team The target team that the player will be associated with in the session.
+	 * @param [in] CustomData The custom data for the invite
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
-	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InvitePlayer, ); }
+	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InvitePlayer, ); }
 	/**
 	 * @brief Blueprint compatible version of InvitePlayer
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
+	 * @param [in] CustomData The custom data for the invite
 	 * @param [in] Team The target team that the player will be associated with in the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Invite Player", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_InvitePlayer(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InvitePlayer(PlayerUuid, Team, Delegate); }
+	void BLUEPRINT_InvitePlayer(UPARAM(ref) const FGuid& PlayerUuid, int32 Team, UPARAM(ref) const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InvitePlayer(PlayerUuid, Team, CustomData, Delegate); }
 	/**
 	 * @brief Kicks a player from the session.
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
@@ -621,7 +624,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Kick Player", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickPlayer(PlayerUuid, Delegate); }
+	void BLUEPRINT_KickPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickPlayer(PlayerUuid, Delegate); }
 	/**
 	 * @brief Sets a new leader for the session.
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
@@ -634,7 +637,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the leader change.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Set Leader", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { SetLeader(PlayerUuid, Delegate); }
+	void BLUEPRINT_SetLeader(UPARAM(ref) const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { SetLeader(PlayerUuid, Delegate); }
 	/**
 	 * @brief Changes the team a given player is associated with in the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
@@ -649,7 +652,22 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Change Player Team", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { ChangePlayerTeam(PlayerUuid, Team, Delegate); }
+	void BLUEPRINT_ChangePlayerTeam(UPARAM(ref) const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { ChangePlayerTeam(PlayerUuid, Team, Delegate); }
+	/**
+	 * @brief Changes the session player's custom data.
+	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
+	 * @param [in] CustomData The custom data map to set the player's to
+	 * @param [in] Delegate Callback delegate for the session being updated by the player update
+	 */
+	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdatePlayerCustomData, ); }
+	/**
+	 * @brief Blueprint compatible version of UpdatePlayerCustomData.
+	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
+	 * @param [in] CustomData The custom data map to set the player's to
+	 * @param [in] Delegate Callback delegate for the session being updated by the player update
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Update Player Custom Data", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_UpdatePlayerCustomData(UPARAM(ref) const FGuid& PlayerUuid, UPARAM(ref) const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdatePlayerCustomData(PlayerUuid, CustomData, Delegate); }
 	/**
 	 * @brief Leaves the session.
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
@@ -824,11 +842,11 @@ public:
 	 */
 	virtual bool IsOffline() const override { return true; }
 	/** @brief Currently not supported for offline sessions */
-	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
 	virtual void KickPlayer(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void SetLeader(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Changes the team a given player is associated with in the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
@@ -836,6 +854,8 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
 	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/** @brief Currently not supported for offline sessions */
+	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Leaves the session.
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
@@ -924,19 +944,43 @@ public:
 	static void BLUEPRINT_CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { CreateOrJoinByType(CreateParams, SessionOwner, Delegate); }
 	/**
 	 * @brief Joins a specific queue with the session to be matchmade with others.
+	 * @param [in] Request The request for joining the queue.
+	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
+	 */
+	virtual void JoinQueue(const FRHAPI_QueueJoinRequest& Request, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	/**
+	 * @brief Simplified version of queue join, joins a specific queue with the session to be matchmade with others.
 	 * @param [in] QueueId The Id of the queue being joined.
 	 * @param [in] MatchmakingTags Specific data to be passed in as extra params for matchmaking.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
 	 */
-	virtual void JoinQueue(const FString& QueueId, const TArray<FString> MatchmakingTags = TArray<FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	virtual void JoinQueue(const FString& QueueId, const TArray<FString> MatchmakingTags = TArray<FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock())
+	{
+		FRHAPI_QueueJoinRequest Request = {};
+		FRHAPI_AdditionalJoinParams AdditionalParams = {};
+		Request.QueueId = QueueId;
+		AdditionalParams.SetTags(MatchmakingTags);
+		Request.SetAdditionalJoinParams(AdditionalParams);
+		JoinQueue(Request, Delegate);
+	}
 	/**
 	 * @brief Blueprint copmatible version of JoinQueue
 	 * @param [in] QueueId The Id of the queue being joined.
 	 * @param [in] MatchmakingTags Specific data to be passed in as extra params for matchmaking.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Queue", AutoCreateRefTerm = "MatchmakingTags,Delegate"))
-	void BLUEPRINT_JoinQueue(const FString& QueueId, const TArray<FString>& MatchmakingTags, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { JoinQueue(QueueId, MatchmakingTags, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Queue (Simple)", AutoCreateRefTerm = "MatchmakingTags,Delegate"))
+	void BLUEPRINT_JoinQueue(const FString& QueueId, const TArray<FString>& MatchmakingTags, const FRH_OnSessionUpdatedDynamicDelegate& Delegate)
+	{
+		JoinQueue(QueueId, MatchmakingTags, Delegate);
+	}
+	/**
+	 * @brief Blueprint copmatible version of JoinQueue
+	 * @param [in] Request The request for joining the queue.
+	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Queue", AutoCreateRefTerm = "Request,Delegate"))
+	void BLUEPRINT_JoinQueueEx(const FRHAPI_QueueJoinRequest& Request, const FRH_OnSessionUpdatedDynamicDelegate& Delegate)	{ JoinQueue(Request, Delegate); }
 	/**
 	 * @brief Leaves the currently active matchmaking queue.
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
@@ -966,10 +1010,11 @@ public:
 	/**
 	 * @brief Invites a player to the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
+	 * @param [in] CustomData The custom data for the invite
 	 * @param [in] Team The target team that the player will be associated with in the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
-	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Kicks a player from the session.
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
@@ -989,6 +1034,13 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
 	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief Changes the session player's custom data.
+	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
+	 * @param [in] CustomData The custom data map to set the player's to
+	 * @param [in] Delegate Callback delegate for the session being updated by the player update
+	 */
+	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Leaves the session.
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.

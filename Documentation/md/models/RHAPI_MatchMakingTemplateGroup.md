@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_MatchMakingTemplateGroup`](#structFRHAPI__MatchMakingTemplateGroup) | 
+`struct `[`FRHAPI_MatchMakingTemplateGroup`](#structFRHAPI__MatchMakingTemplateGroup) | DEPRECATED A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used.
 
 ## struct `FRHAPI_MatchMakingTemplateGroup` <a id="structFRHAPI__MatchMakingTemplateGroup"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_MatchMakingTemplateGroup
   : public FRHAPI_Model
 ```
+
+DEPRECATED A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used.
 
 #### Summary
 

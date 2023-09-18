@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FFriendsV1API::FFriendsV1API() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("FriendsV1");
+    Name = FName(TEXT("FriendsV1"));
 }
 
 FFriendsV1API::~FFriendsV1API() {}
@@ -88,9 +88,10 @@ FRequest_AddFriend::FRequest_AddFriend()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AddFriend::GetSimplifiedPath() const
+FName FRequest_AddFriend::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}"));
+    return Path;
 }
 
 FString FRequest_AddFriend::ComputePath() const
@@ -284,9 +285,10 @@ FRequest_AddNotes::FRequest_AddNotes()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AddNotes::GetSimplifiedPath() const
+FName FRequest_AddNotes::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}/notes"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}/notes"));
+    return Path;
 }
 
 FString FRequest_AddNotes::ComputePath() const
@@ -474,9 +476,10 @@ FRequest_DeleteFriend::FRequest_DeleteFriend()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteFriend::GetSimplifiedPath() const
+FName FRequest_DeleteFriend::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}"));
+    return Path;
 }
 
 FString FRequest_DeleteFriend::ComputePath() const
@@ -656,9 +659,10 @@ FRequest_DeleteFriends::FRequest_DeleteFriends()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteFriends::GetSimplifiedPath() const
+FName FRequest_DeleteFriends::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend"));
+    return Path;
 }
 
 FString FRequest_DeleteFriends::ComputePath() const
@@ -819,9 +823,10 @@ FRequest_DeleteNotes::FRequest_DeleteNotes()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteNotes::GetSimplifiedPath() const
+FName FRequest_DeleteNotes::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}/notes"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}/notes"));
+    return Path;
 }
 
 FString FRequest_DeleteNotes::ComputePath() const
@@ -978,9 +983,10 @@ FRequest_GetFriendRelationship::FRequest_GetFriendRelationship()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetFriendRelationship::GetSimplifiedPath() const
+FName FRequest_GetFriendRelationship::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend/{other_player_id}"));
+    return Path;
 }
 
 FString FRequest_GetFriendRelationship::ComputePath() const
@@ -1160,9 +1166,10 @@ FRequest_GetFriendsListForPlayer::FRequest_GetFriendsListForPlayer()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetFriendsListForPlayer::GetSimplifiedPath() const
+FName FRequest_GetFriendsListForPlayer::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/friend"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/friend"));
+    return Path;
 }
 
 FString FRequest_GetFriendsListForPlayer::ComputePath() const

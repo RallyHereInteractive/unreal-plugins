@@ -43,7 +43,7 @@ void FRHDTW_Entitlements::Do()
 				{
 					pEntitlementSubsystem->SubmitEntitlementsForLoggedInOSS(FRH_ProcessEntitlementCompletedDelegate::CreateLambda([this, pLocalPlayerSubsystem](bool bSuccess, FRHAPI_PlatformEntitlementProcessResult Result)
 						{
-							ActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] Processing entitlements with logged in OSS " + (bSuccess ? " succeeded" : "failed.") + LINE_TERMINATOR;
+							ActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Processing entitlements with logged in OSS ") + (bSuccess ? TEXT("succeeded") : TEXT("failed.")) + LINE_TERMINATOR;
 						}));
 				}
 			}));
@@ -59,7 +59,7 @@ void FRHDTW_Entitlements::Do()
 				if (URH_EntitlementSubsystem* pEntitlementSubsystem = pLocalPlayerSubsystem->GetEntitlementSubsystem())
 				{
 					pEntitlementSubsystem->GetEntitlementResults()->Empty();
-					ActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] Cleared saved entitlement results." + LINE_TERMINATOR;
+					ActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Cleared saved entitlement results.") LINE_TERMINATOR;
 				}
 			}));
 	}

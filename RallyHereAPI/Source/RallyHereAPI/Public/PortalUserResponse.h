@@ -40,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Portal user ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString PortalUserId_Optional{  };
     /** @brief true if PortalUserId_Optional has been set to a value */
@@ -62,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
      /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
     void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
+    /** @brief Portal ID *DEPRECATED* use `platform` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PortalId{ 0 };
     /** @brief Gets the value of PortalId */
@@ -75,6 +77,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     /** @brief Sets the value of PortalId to its default  */
     void SetPortalIdToDefault() { PortalId = 0;  }
 
+    /** @brief Platform */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
@@ -84,6 +87,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     /** @brief Sets the value of Platform */
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
+    /** @brief Display name */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString DisplayName_Optional{  };
     /** @brief true if DisplayName_Optional has been set to a value */
@@ -106,6 +110,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
      /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
     void ClearDisplayName() { DisplayName_IsSet = false; }
 
+    /** @brief Player ID *DEPRECATED* use `player_uuid` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PlayerId{ 0 };
     /** @brief Gets the value of PlayerId */
@@ -119,6 +124,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     /** @brief Sets the value of PlayerId to its default  */
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
+    /** @brief Player UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */

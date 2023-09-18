@@ -46,7 +46,7 @@ void URH_LocalPlayerPresenceSubsystem::UpdatePlayerPresenceSelf(RallyHereAPI::FR
 				Poller->DeferPollTimer();
 			}
 		}), 
-		FRH_GenericSuccessDelegate(),
+		FRH_GenericSuccessWithErrorDelegate(),
 		GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
 	);
 
@@ -68,7 +68,7 @@ void URH_LocalPlayerPresenceSubsystem::GetPlayerPresenceSelf(RallyHereAPI::FRequ
 			// this does not write to a local cache!
 			Delegate.ExecuteIfBound(Resp);
 		}),
-		FRH_GenericSuccessDelegate(),
+		FRH_GenericSuccessWithErrorDelegate(),
 		GetDefault<URH_IntegrationSettings>()->PresenceGetSelfPriority
 	);
 
@@ -179,7 +179,7 @@ void URH_LocalPlayerPresenceSubsystem::GetSettings(RallyHereAPI::FRequest_GetPre
 {
 	typedef RallyHereAPI::Traits_GetPresenceSettings BaseType;
 
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(Delegate, FRH_GenericSuccessDelegate(), GetDefault<URH_IntegrationSettings>()->PresenceGetSettingsPriority);
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(Delegate, FRH_GenericSuccessWithErrorDelegate(), GetDefault<URH_IntegrationSettings>()->PresenceGetSettingsPriority);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
 }

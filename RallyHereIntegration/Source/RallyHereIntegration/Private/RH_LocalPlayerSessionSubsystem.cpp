@@ -154,18 +154,15 @@ void URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete(bool bSucces
 {
 	SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginPollSessionsComplete, FColor::Purple);
 	OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
+	BLUEPRINT_OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
 }
 
 URH_PlayerInfoSubsystem* URH_LocalPlayerSessionSubsystem::GetPlayerInfoSubsystem() const
 {
-	auto* GI = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetGameInstance();
-	if (GI != nullptr)
+	auto* LP = GetLocalPlayerSubsystem();
+	if (LP != nullptr)
 	{
-		auto* RHGI = GI->GetSubsystem<URH_GameInstanceSubsystem>();
-		if (RHGI != nullptr)
-		{
-			return RHGI->GetPlayerInfoSubsystem();
-		}
+		return LP->GetPlayerInfoSubsystem();
 	}
 	return nullptr;
 }
@@ -639,12 +636,22 @@ void URH_LocalPlayerSessionSubsystem::PollForUpdate(const FRH_PollCompleteFunc& 
 	URH_SessionView::PollAllSessions(this, true, false, CompletionDelegate);
 }
 
-void URH_LocalPlayerSessionSubsystem::ForcePollForUpdate()
+void URH_LocalPlayerSessionSubsystem::ForcePollForUpdate(bool bClearETag)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	if (bClearETag)
+	{
+		AllSessionsETag.Reset();
+	}
+
 	if (Poller.IsValid())
 	{
 		Poller->ExecutePoll();
+	}
+	else
+	{
+		PollForUpdate(FRH_PollCompleteFunc());
 	}
 }
 
@@ -694,7 +701,7 @@ URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::CreatePlatformSyncer
 		{
 			// for now, only support RH sessions owned by a local player session subsystem
 			auto* OSS = GetOSS();
-			if (OSS != nullptr && OSS->GetSessionInterface() != nullptr && RH_GetPlatformIdFromOSSName(OSS->GetSubsystemName()).IsSet())
+			if (OSS != nullptr && OSS->GetSessionInterface() != nullptr && RH_GetPlatformFromOSSName(OSS->GetSubsystemName()).IsSet())
 			{
 				PlatformSyncer = NewObject<URH_PlatformSessionSyncer>(this);
 				if (PlatformSyncer->Initialize(SessionId, this))
@@ -749,7 +756,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
 	
 	// we need to join the session
-	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, FRH_GenericSuccessBlock());
+	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, FRH_GenericSuccessWithErrorBlock());
 }
 
 void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool bSuccesful, const int32 ControllerId, FUniqueNetIdPtr InvitingUserId, const FOnlineSessionSearchResult& Session)
@@ -769,7 +776,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool
 	if (bSuccesful)
 	{
 		// we need to join the session
-		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, FRH_GenericSuccessBlock());
+		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, FRH_GenericSuccessWithErrorBlock());
 	}
 }
 

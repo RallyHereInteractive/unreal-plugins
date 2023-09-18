@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionEventCreateRequest`](#structFRHAPI__SessionEventCreateRequest) | 
+`struct `[`FRHAPI_SessionEventCreateRequest`](#structFRHAPI__SessionEventCreateRequest) | A request body to create an event about a session.
 
 ## struct `FRHAPI_SessionEventCreateRequest` <a id="structFRHAPI__SessionEventCreateRequest"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionEventCreateRequest
   : public FRHAPI_Model
 ```
+
+A request body to create an event about a session.
 
 #### Summary
 

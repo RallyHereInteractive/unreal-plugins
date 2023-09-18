@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_BrowserInfo`](#structFRHAPI__BrowserInfo) | 
+`struct `[`FRHAPI_BrowserInfo`](#structFRHAPI__BrowserInfo) | Information about the browser resource in a session.
 
 ## struct `FRHAPI_BrowserInfo` <a id="structFRHAPI__BrowserInfo"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_BrowserInfo
   : public FRHAPI_Model
 ```
+
+Information about the browser resource in a session.
 
 #### Summary
 

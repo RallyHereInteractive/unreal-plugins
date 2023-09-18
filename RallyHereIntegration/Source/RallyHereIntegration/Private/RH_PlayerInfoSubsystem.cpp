@@ -222,6 +222,8 @@ URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Su
 {
 	PlayerPresence = CreateDefaultSubobject<URH_PlayerPresence>(TEXT("PlayerPresence"));
 
+	PlayerSessions = CreateDefaultSubobject<URH_PlayerSessions>(TEXT("PlayerSessions"));
+
 	PlayerInventory = CreateDefaultSubobject<URH_PlayerInventory>(TEXT("PlayerInventory"));
 	PlayerInventory->SetPlayerInfo(this);
 
@@ -242,6 +244,10 @@ void URH_PlayerInfo::InitializeForPlayer(const FGuid& Value)
 	{
 		PlayerPresence->PlayerUuid = Value;
 	}
+	if (PlayerSessions != nullptr)
+	{
+		PlayerSessions->PlayerUuid = Value;
+	}
 	PlayerInventory->Initialize();
 	PlayerNotifications->Initialize();
 }
@@ -256,16 +262,6 @@ void URH_PlayerInfo::StopStreamingNotifications(bool bClearCache)
 {
 	// stop streaming notifications for this context
 	PlayerNotifications->StopStreamingLatestNotifications(bClearCache);
-}
-
-ERHAPI_PlatformTypes_DEPRECATED URH_PlayerInfo::GetLoggedInPlatformType() const
-{
-	const FAuthContextPtr AuthContext = GetAuthContext();
-	if (AuthContext.IsValid() && AuthContext->IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED(AuthContext->GetLoginResult().GetValue().PortalId);
-	}
-	return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
 }
 
 ERHAPI_Platform URH_PlayerInfo::GetLoggedInPlatform() const
@@ -302,11 +298,6 @@ URH_PlayerPlatformInfo* URH_PlayerInfo::GetPlayerPlatformInfo(const FRH_PlayerPl
 	return nullptr;
 }
 
-void URH_PlayerInfo::GetLastKnownGamerTagAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType /*= ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
-{
-	GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, RH_GetPlatformFromPlatformType(PreferredPlatformType), Delegate, LocalPlayerSubsystem);
-}
-
 void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
 {
 	// Get platform type from logged in portal if PreferredPlatformType is not provided
@@ -320,7 +311,7 @@ void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshol
 		const FDateTime Now = FDateTime::UtcNow();
 		if (LastRequestPlatforms + StaleThreshold < Now)
 		{
-			FString OutDisplayName = FString("");
+			FString OutDisplayName;
 			Delegate.ExecuteIfBound(GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType), OutDisplayName);
 			return;
 		}
@@ -363,7 +354,7 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse(b
 		}
 	}
 
-	Delegate.ExecuteIfBound(false, FString(""));
+	Delegate.ExecuteIfBound(false, FString());
 }
 
 void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& SanitizedMessage, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameBlock Delegate)
@@ -387,7 +378,7 @@ void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& Saniti
 		return;
 	}
 
-	Delegate.ExecuteIfBound(false, FString(""));
+	Delegate.ExecuteIfBound(false, FString());
 }
 
 void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlatformsBlock Delegate /*= FRH_PlayerInfoGetPlatformsBlock()*/)
@@ -729,7 +720,6 @@ URH_PlayerPresence::URH_PlayerPresence(const FObjectInitializer& ObjectInitializ
 	, bInitialized(false)
 	, Status(ERHAPI_OnlineStatus::Offline)
 {
-	PresenceRequestDelay = 30.f;
 }
 
 UFUNCTION(BlueprintPure, Category = "Presence")
@@ -781,39 +771,21 @@ void URH_PlayerPresence::PollPresence(const FRH_PollCompleteFunc& Delegate)
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
 	Request.IfNoneMatch = ETag;
 
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<GetPresenceType>>(
-		GetPresenceType::Delegate::CreateUObject(this, &URH_PlayerPresence::HandleResponse),
-		FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess) {Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); }),
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetPresenceType>>(
+		GetPresenceType::Delegate::CreateUObject(this, &URH_PlayerPresence::Update),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) { ExecuteDelegates(bSuccess); Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); }),
 		GetDefault<URH_IntegrationSettings>()->PresenceGetOtherPriority
 	);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
 }
 
-void URH_PlayerPresence::HandleResponse(const GetPresenceType::Response& Resp)
+void URH_PlayerPresence::ExecuteDelegates(bool bSuccess)
 {
-	if (Resp.IsSuccessful())
+	if (bSuccess)
 	{
-		Update(Resp);
-		ExecuteDelegates(true, true);
-	}
-	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
-	{
-		// mark updated, so we do not try to update again soon
 		LastUpdated = FDateTime::UtcNow();
-		ExecuteDelegates(true, false);
-	}
-	else
-	{
-		ExecuteDelegates(false, false);
-	}
-}
-
-void URH_PlayerPresence::ExecuteDelegates(bool bSuccess, bool bUpdated)
-{
-	// only fire the general callbacks if we updated
-	if (bUpdated)
-	{
+	
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
 		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(this);
 		OnPresenceUpdatedDelegate.Broadcast(this);
@@ -828,8 +800,103 @@ void URH_PlayerPresence::ExecuteDelegates(bool bSuccess, bool bUpdated)
 	}
 
 	auto* PlayerInfo = GetPlayerInfo();
-	if (PlayerInfo != nullptr && bUpdated)
+	if (PlayerInfo != nullptr && bSuccess)
 	{
-		PlayerInfo->OnPresenceUpdated(this);
+		PlayerInfo->OnPresenceUpdated();
+	}
+}
+
+
+
+
+///
+
+URH_PlayerSessions::URH_PlayerSessions(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+	, bInitialized(false)
+{
+}
+
+UFUNCTION(BlueprintPure, Category = "Presence")
+URH_PlayerInfo* URH_PlayerSessions::GetPlayerInfo() const
+{
+	return Cast<URH_PlayerInfo>(GetOuter());
+}
+
+void URH_PlayerSessions::CheckPollStatus(const bool bForceUpdate)
+{
+	if (!ShouldPoll())
+	{
+		// no one is listening, disable polling
+		if (SessionsPoller.IsValid())
+		{
+			SessionsPoller->StopPoll();
+		}
+
+		return;
+	}
+
+	static FName PollTimerName(TEXT("PlayerSessions"));
+
+	// create a poller if one was not created yet
+	if (!SessionsPoller.IsValid())
+	{
+		SessionsPoller = FRH_PollControl::CreateAutoPoller();
+	}
+	
+	// only start if poller was not already started
+	if (SessionsPoller->IsInactive())
+	{
+		// kick immediately, as someone just became interested in this result
+		SessionsPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_PlayerSessions::PollSessions), PollTimerName, true);
+	}
+	else if (bForceUpdate)
+	{
+		SessionsPoller->ExecutePoll();
+	}
+}
+
+void URH_PlayerSessions::PollSessions(const FRH_PollCompleteFunc& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	GetSessionsType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.IfNoneMatch = ETag;
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetSessionsType>>(
+		GetSessionsType::Delegate::CreateUObject(this, &URH_PlayerSessions::Update),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) { ExecuteDelegates(bSuccess); Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); }),
+		GetDefault<URH_IntegrationSettings>()->SessionsGetOtherPriority
+	);
+
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+}
+
+void URH_PlayerSessions::ExecuteDelegates(bool bSuccess)
+{
+	if (bSuccess)
+	{
+		LastUpdated = FDateTime::UtcNow();
+	
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
+		BLUEPRINT_OnSessionsUpdatedDelegate.Broadcast(this);
+		OnSessionsUpdatedDelegate.Broadcast(this);
+	}
+
+	// copy the temporary request array before invoking, then clear
+	TArray<FRH_OnRequestPlayerSessionsBlock> Temp = TemporaryRequestDelegates;
+	TemporaryRequestDelegates.Reset();
+	for (auto& Delegate : Temp)
+	{
+		Delegate.ExecuteIfBound(bSuccess, this);
+	}
+
+	auto* PlayerInfo = GetPlayerInfo();
+	if (PlayerInfo != nullptr && bSuccess)
+	{
+		PlayerInfo->OnSessionsUpdated();
 	}
 }

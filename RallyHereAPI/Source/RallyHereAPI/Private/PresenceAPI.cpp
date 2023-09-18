@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FPresenceAPI::FPresenceAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Presence");
+    Name = FName(TEXT("Presence"));
 }
 
 FPresenceAPI::~FPresenceAPI() {}
@@ -88,9 +88,10 @@ FRequest_GetPlayerPresencePublicById::FRequest_GetPlayerPresencePublicById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerPresencePublicById::GetSimplifiedPath() const
+FName FRequest_GetPlayerPresencePublicById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/player/id/{player_id}/presence"));
+    static FName Path = FName(TEXT("/presence/v1/player/id/{player_id}/presence"));
+    return Path;
 }
 
 FString FRequest_GetPlayerPresencePublicById::ComputePath() const
@@ -271,9 +272,10 @@ FRequest_GetPlayerPresencePublicByUuid::FRequest_GetPlayerPresencePublicByUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerPresencePublicByUuid::GetSimplifiedPath() const
+FName FRequest_GetPlayerPresencePublicByUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/player/uuid/{player_uuid}/presence"));
+    static FName Path = FName(TEXT("/presence/v1/player/uuid/{player_uuid}/presence"));
+    return Path;
 }
 
 FString FRequest_GetPlayerPresencePublicByUuid::ComputePath() const
@@ -454,14 +456,15 @@ FRequest_GetPlayerPresenceSelf::FRequest_GetPlayerPresenceSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerPresenceSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerPresenceSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/player/me/presence"));
+    static FName Path = FName(TEXT("/presence/v1/player/me/presence"));
+    return Path;
 }
 
 FString FRequest_GetPlayerPresenceSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(UseCache.IsSet())
     {
@@ -623,14 +626,15 @@ FRequest_GetPresenceSettings::FRequest_GetPresenceSettings()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPresenceSettings::GetSimplifiedPath() const
+FName FRequest_GetPresenceSettings::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/settings"));
+    static FName Path = FName(TEXT("/presence/v1/settings"));
+    return Path;
 }
 
 FString FRequest_GetPresenceSettings::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -747,14 +751,15 @@ FRequest_UpdatePlayerPresenceSelf::FRequest_UpdatePlayerPresenceSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePlayerPresenceSelf::GetSimplifiedPath() const
+FName FRequest_UpdatePlayerPresenceSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/player/me/presence"));
+    static FName Path = FName(TEXT("/presence/v1/player/me/presence"));
+    return Path;
 }
 
 FString FRequest_UpdatePlayerPresenceSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(UseCache.IsSet())
     {

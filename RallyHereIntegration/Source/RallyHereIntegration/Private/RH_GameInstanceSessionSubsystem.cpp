@@ -19,7 +19,7 @@
 
 //==================================================================
 
-bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL)
+bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
 {
 	if (Session == nullptr)
 	{
@@ -65,7 +65,7 @@ bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* 
 	return false;
 }
 
-bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL)
+bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
 {
 	if (Session == nullptr)
 	{
@@ -610,7 +610,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessBlock Delegate)
+void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	if (ActiveSession != nullptr && !bHasBeenMarkedFubar)
 	{

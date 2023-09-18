@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FAuthAPI::FAuthAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Auth");
+    Name = FName(TEXT("Auth"));
 }
 
 FAuthAPI::~FAuthAPI() {}
@@ -88,14 +88,15 @@ FRequest_GenerateKey::FRequest_GenerateKey()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GenerateKey::GetSimplifiedPath() const
+FName FRequest_GenerateKey::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/generateKey"));
+    static FName Path = FName(TEXT("/users/v1/generateKey"));
+    return Path;
 }
 
 FString FRequest_GenerateKey::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -212,14 +213,15 @@ FRequest_GetAllPublicKeys::FRequest_GetAllPublicKeys()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllPublicKeys::GetSimplifiedPath() const
+FName FRequest_GetAllPublicKeys::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/publickeys"));
+    static FName Path = FName(TEXT("/users/v1/publickeys"));
+    return Path;
 }
 
 FString FRequest_GetAllPublicKeys::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -336,14 +338,15 @@ FRequest_GetPortalTokenDetails::FRequest_GetPortalTokenDetails()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPortalTokenDetails::GetSimplifiedPath() const
+FName FRequest_GetPortalTokenDetails::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/portaltoken/details"));
+    static FName Path = FName(TEXT("/users/v1/portaltoken/details"));
+    return Path;
 }
 
 FString FRequest_GetPortalTokenDetails::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -392,7 +395,8 @@ void FResponse_GetPortalTokenDetails::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Successful Response"));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_access_token_not_valid&#x60; - Nintendo access token is not valid - &#x60;nintendo_key_url_not_found&#x60; - Nintendo key url not found - &#x60;nintendo_retrieve_client_credentials_failed&#x60; - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - &#x60;nintendo_ppid_conversion_failed&#x60; - error during PPID conversion - &#x60;nintendo_ppid_conversion_too_many_accounts_found&#x60; - too many accounts found during PPID conversion - &#x60;nintendo_ppid_conversion_no_accounts_found&#x60; - no accounts found during PPID conversion - &#x60;nintendo_ppid_missing&#x60; - PPID is missing for user - &#x60;nintendo_ppid_key_not_valid&#x60; - Nintendo access token key is not valid - &#x60;nintendo_service_key_url_not_found&#x60; - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - &#x60;nintendo_service_access_token_not_valid&#x60; - Nintendo service access token is not valid - &#x60;nintendo_service_access_token_for_wrong_app&#x60; - Nintendo service access token is for the wrong app - &#x60;nintendo_oauth_env_not_found&#x60; - Nintendo oauth environment not found.  Check that the environment is configured correctly. - &#x60;nintendo_token_exchange_failed&#x60; - Problem exchanging code for token with Nintendo - &#x60;ps4_v1_disabled&#x60; - PS4 v1 authentication is currently disabled - &#x60;ps4_v1_token_empty&#x60; - PS4 v1 access token is empty - &#x60;ps4_v1_token_expired&#x60; - PS4 v1 access token is expired - &#x60;ps4_v1_token_exchange_failed&#x60; - Problem exchanging code for token with PS4 - &#x60;ps4_v1_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v1_id_token_not_valid&#x60; - PS4 v1 id token is not valid - &#x60;ps4_v1_token_details_disabled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_details_request_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3_disabled&#x60; - PS4 v3 authentication is currently disabled - &#x60;ps4_v3_token_details_disabled&#x60; - PS4 v3 token details are disabled - &#x60;ps4_v3_token_empty&#x60; - PS4 v3 access token is empty - &#x60;ps4_v3_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v3_id_token_not_valid&#x60; - PS4 v3 id token is not valid - &#x60;ps5_v3_disabled&#x60; - PS5 v3 authentication is currently disabled - &#x60;ps5_v3_token_details_disabled&#x60; - PS5 v3 token details are disabled - &#x60;ps5_v3_token_empty&#x60; - PS5 v3 access token is empty - &#x60;ps5_v3_id_token_request_failed&#x60; - Problem requesting id token from PS5 - &#x60;ps5_v3_id_token_not_valid&#x60; - PS5 v3 id token is not valid - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  "));
+		//SetResponseString(TEXT(" Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_access_token_not_valid&#x60; - Nintendo access token is not valid - &#x60;nintendo_no_environment_matches_env_id&#x60; - Nintendo environment not found for given environment ID - &#x60;nintendo_retrieve_client_credentials_failed&#x60; - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - &#x60;nintendo_ppid_conversion_failed&#x60; - error during PPID conversion - &#x60;nintendo_ppid_conversion_too_many_accounts_found&#x60; - too many accounts found during PPID conversion - &#x60;nintendo_ppid_conversion_no_accounts_found&#x60; - no accounts found during PPID conversion - &#x60;nintendo_ppid_missing&#x60; - PPID is missing for user - &#x60;nintendo_ppid_key_not_valid&#x60; - Nintendo access token key is not valid - &#x60;nintendo_service_key_url_not_found&#x60; - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - &#x60;nintendo_service_access_token_not_valid&#x60; - Nintendo service access token is not valid - &#x60;nintendo_service_access_token_for_wrong_app&#x60; - Nintendo service access token is for the wrong app - &#x60;nintendo_oauth_env_not_found&#x60; - Nintendo oauth environment not found.  Check that the environment is configured correctly. - &#x60;nintendo_token_exchange_failed&#x60; - Problem exchanging code for token with Nintendo - &#x60;ps4_v1_disabled&#x60; - PS4 v1 authentication is currently disabled - &#x60;ps4_v1_token_empty&#x60; - PS4 v1 access token is empty - &#x60;ps4_v1_token_expired&#x60; - PS4 v1 access token is expired - &#x60;ps4_v1_token_exchange_failed&#x60; - Problem exchanging code for token with PS4 - &#x60;ps4_v1_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v1_id_token_not_valid&#x60; - PS4 v1 id token is not valid - &#x60;ps4_v1_token_details_disabled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_details_request_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3_disabled&#x60; - PS4 v3 authentication is currently disabled - &#x60;ps4_v3_token_details_disabled&#x60; - PS4 v3 token details are disabled - &#x60;ps4_v3_token_empty&#x60; - PS4 v3 access token is empty - &#x60;ps4_v3_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v3_id_token_not_valid&#x60; - PS4 v3 id token is not valid - &#x60;ps5_v3_disabled&#x60; - PS5 v3 authentication is currently disabled - &#x60;ps5_v3_token_details_disabled&#x60; - PS5 v3 token details are disabled - &#x60;ps5_v3_token_empty&#x60; - PS5 v3 access token is empty - &#x60;ps5_v3_id_token_request_failed&#x60; - Problem requesting id token from PS5 - &#x60;ps5_v3_id_token_not_valid&#x60; - PS5 v3 id token is not valid - &#x60;psn_environment_permission_denied&#x60; - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for &#x60;sp-int&#x60; or &#x60;prod-qa&#x60; if the environment is not whitelisted to access the PSN environment. - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  "));
+        SetResponseString(TEXT("FResponse_GetPortalTokenDetails::SetHttpResponseCode(403)"));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -477,9 +481,10 @@ FRequest_GetPublicKeyById::FRequest_GetPublicKeyById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPublicKeyById::GetSimplifiedPath() const
+FName FRequest_GetPublicKeyById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/publickeys/{key_id}"));
+    static FName Path = FName(TEXT("/users/v1/publickeys/{key_id}"));
+    return Path;
 }
 
 FString FRequest_GetPublicKeyById::ComputePath() const
@@ -612,14 +617,15 @@ FRequest_Login::FRequest_Login()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Login::GetSimplifiedPath() const
+FName FRequest_Login::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/login"));
+    static FName Path = FName(TEXT("/users/v1/login"));
+    return Path;
 }
 
 FString FRequest_Login::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -689,7 +695,8 @@ void FResponse_Login::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespons
         SetResponseString(TEXT("Successful Response"));
         break;
     case 403:
-        SetResponseString(TEXT("User authentication failed.  See error code and description for further details.  Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_access_token_not_valid&#x60; - Nintendo access token is not valid - &#x60;nintendo_key_url_not_found&#x60; - Nintendo key url not found - &#x60;nintendo_retrieve_client_credentials_failed&#x60; - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - &#x60;nintendo_ppid_conversion_failed&#x60; - error during PPID conversion - &#x60;nintendo_ppid_conversion_too_many_accounts_found&#x60; - too many accounts found during PPID conversion - &#x60;nintendo_ppid_conversion_no_accounts_found&#x60; - no accounts found during PPID conversion - &#x60;nintendo_ppid_missing&#x60; - PPID is missing for user - &#x60;nintendo_ppid_key_not_valid&#x60; - Nintendo access token key is not valid - &#x60;nintendo_service_key_url_not_found&#x60; - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - &#x60;nintendo_service_access_token_not_valid&#x60; - Nintendo service access token is not valid - &#x60;nintendo_service_access_token_for_wrong_app&#x60; - Nintendo service access token is for the wrong app - &#x60;nintendo_oauth_env_not_found&#x60; - Nintendo oauth environment not found.  Check that the environment is configured correctly. - &#x60;nintendo_token_exchange_failed&#x60; - Problem exchanging code for token with Nintendo - &#x60;ps4_v1_disabled&#x60; - PS4 v1 authentication is currently disabled - &#x60;ps4_v1_token_empty&#x60; - PS4 v1 access token is empty - &#x60;ps4_v1_token_expired&#x60; - PS4 v1 access token is expired - &#x60;ps4_v1_token_exchange_failed&#x60; - Problem exchanging code for token with PS4 - &#x60;ps4_v1_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v1_id_token_not_valid&#x60; - PS4 v1 id token is not valid - &#x60;ps4_v1_token_details_disabled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_details_request_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3_disabled&#x60; - PS4 v3 authentication is currently disabled - &#x60;ps4_v3_token_details_disabled&#x60; - PS4 v3 token details are disabled - &#x60;ps4_v3_token_empty&#x60; - PS4 v3 access token is empty - &#x60;ps4_v3_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v3_id_token_not_valid&#x60; - PS4 v3 id token is not valid - &#x60;ps5_v3_disabled&#x60; - PS5 v3 authentication is currently disabled - &#x60;ps5_v3_token_details_disabled&#x60; - PS5 v3 token details are disabled - &#x60;ps5_v3_token_empty&#x60; - PS5 v3 access token is empty - &#x60;ps5_v3_id_token_request_failed&#x60; - Problem requesting id token from PS5 - &#x60;ps5_v3_id_token_not_valid&#x60; - PS5 v3 id token is not valid - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  "));
+		//SetResponseString(TEXT("User authentication failed.  See error code and description for further details.  Error Codes: - &#x60;internal_error&#x60; - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator. - &#x60;no_redirects_configured&#x60; - No redirect urls setup for oauth. - &#x60;redirect_uri_does_not_match&#x60; - Redirect URI does not match a configured value. - &#x60;error_occurred_during_exchange&#x60; - An error occurred while exchanging a code for token. - &#x60;failed_to_verify_state&#x60; - Failed to verify the state associated with the request. - &#x60;failed_to_save_state&#x60; - Error occurred saving the state. - &#x60;failed_to_save_tokens&#x60; - Problem saving tokens.  Contact an administrator - &#x60;too_many_users&#x60; - Account has too many users associated with it.  Contact an administrator - &#x60;user_auth_restricted&#x60; - Authentication for this user has been restricted - &#x60;user_needs_agreements&#x60; - User has not accepted all required agreements.  See response for list of agreements required - &#x60;error_retrieving_player_results&#x60; - Error retrieving player results - &#x60;failed_to_retrieve_roles&#x60; - Failed to retrieve roles - &#x60;amazon_disabled&#x60; - Amazon authentication is currently disabled - &#x60;amazon_token_empty&#x60; - Amazon access token is empty - &#x60;amazon_invalid_access_token&#x60; - Amazon access token is invalid - &#x60;amazon_token_exchange_failed&#x60; - Problem exchanging code for token with Amazon - &#x60;anon_disabled&#x60; - Anon authentication is currently disabled - &#x60;anon_token_empty&#x60; - Anon access token is empty - &#x60;apple_disabled&#x60; - Apple authentication is currently disabled - &#x60;apple_token_empty&#x60; - Apple access token is empty - &#x60;apple_failed_key_lookup&#x60; - Failed to retrieve keys from Apple - &#x60;apple_token_exchange_failed&#x60; - Problem exchanging code for token with Apple - &#x60;apple_token_key_not_valid&#x60; - public key not found - &#x60;apple_token_not_valid&#x60; - Apple access token is not valid - &#x60;authorization_code_not_found&#x60; - Authorization code not found or expired - &#x60;basic_disabled&#x60; - Basic authentication is currently disabled - &#x60;basic_token_empty&#x60; - Basic access token is empty - &#x60;basic_auth_incorrect_format&#x60; - Basic auth should be formatted like &#x60;USERNAME:PASSWORD&#x60; - &#x60;basic_auth_credentials_not_found&#x60; - Basic auth credentials not found - &#x60;epic_disabled&#x60; - Epic authentication is currently disabled - &#x60;epic_token_empty&#x60; - Epic access token is empty - &#x60;epic_v1_token_key_id_invalid&#x60; - Epic v1 token contains an invalid key id - &#x60;epic_v1_token_invalid&#x60; - Epic v1 token is invalid - &#x60;epic_v2_keys_not_available&#x60; - Epic v2 keys are not available.  Please contact an administrator - &#x60;epic_v2_token_invalid&#x60; - Epic v2 token is invalid - &#x60;epic_oauth_token_exchange_failed&#x60; - Problem exchanging code for token with Epic - &#x60;google_disabled&#x60; - Google authentication is currently disabled - &#x60;google_token_empty&#x60; - Google access token is empty - &#x60;google_keys_not_available&#x60; - Google keys are not available.  Please contact an administrator - &#x60;google_token_not_valid&#x60; - Google access token is not valid - &#x60;google_token_exchange_failed&#x60; - Problem exchanging code for token with Google - &#x60;nintendo_disabled&#x60; - Nintendo authentication is currently disabled - &#x60;nintendo_access_token_not_valid&#x60; - Nintendo access token is not valid - &#x60;nintendo_no_environment_matches_env_id&#x60; - Nintendo environment not found for given environment ID - &#x60;nintendo_retrieve_client_credentials_failed&#x60; - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID. - &#x60;nintendo_ppid_conversion_failed&#x60; - error during PPID conversion - &#x60;nintendo_ppid_conversion_too_many_accounts_found&#x60; - too many accounts found during PPID conversion - &#x60;nintendo_ppid_conversion_no_accounts_found&#x60; - no accounts found during PPID conversion - &#x60;nintendo_ppid_missing&#x60; - PPID is missing for user - &#x60;nintendo_ppid_key_not_valid&#x60; - Nintendo access token key is not valid - &#x60;nintendo_service_key_url_not_found&#x60; - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL. - &#x60;nintendo_service_access_token_not_valid&#x60; - Nintendo service access token is not valid - &#x60;nintendo_service_access_token_for_wrong_app&#x60; - Nintendo service access token is for the wrong app - &#x60;nintendo_oauth_env_not_found&#x60; - Nintendo oauth environment not found.  Check that the environment is configured correctly. - &#x60;nintendo_token_exchange_failed&#x60; - Problem exchanging code for token with Nintendo - &#x60;ps4_v1_disabled&#x60; - PS4 v1 authentication is currently disabled - &#x60;ps4_v1_token_empty&#x60; - PS4 v1 access token is empty - &#x60;ps4_v1_token_expired&#x60; - PS4 v1 access token is expired - &#x60;ps4_v1_token_exchange_failed&#x60; - Problem exchanging code for token with PS4 - &#x60;ps4_v1_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v1_id_token_not_valid&#x60; - PS4 v1 id token is not valid - &#x60;ps4_v1_token_details_disabled&#x60; - PS4 v1 token details are disabled - &#x60;ps4_v1_token_details_request_failed&#x60; - Problem requesting token details from PS4 - &#x60;ps4_v3_disabled&#x60; - PS4 v3 authentication is currently disabled - &#x60;ps4_v3_token_details_disabled&#x60; - PS4 v3 token details are disabled - &#x60;ps4_v3_token_empty&#x60; - PS4 v3 access token is empty - &#x60;ps4_v3_id_token_request_failed&#x60; - Problem requesting id token from PS4 - &#x60;ps4_v3_id_token_not_valid&#x60; - PS4 v3 id token is not valid - &#x60;ps5_v3_disabled&#x60; - PS5 v3 authentication is currently disabled - &#x60;ps5_v3_token_details_disabled&#x60; - PS5 v3 token details are disabled - &#x60;ps5_v3_token_empty&#x60; - PS5 v3 access token is empty - &#x60;ps5_v3_id_token_request_failed&#x60; - Problem requesting id token from PS5 - &#x60;ps5_v3_id_token_not_valid&#x60; - PS5 v3 id token is not valid - &#x60;psn_environment_permission_denied&#x60; - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for &#x60;sp-int&#x60; or &#x60;prod-qa&#x60; if the environment is not whitelisted to access the PSN environment. - &#x60;refresh_disabled&#x60; - Refresh authentication is currently disabled - &#x60;refresh_token_empty&#x60; - Refresh token is empty - &#x60;refresh_token_not_found&#x60; - Refresh token was not found or has expired - &#x60;refresh_token_invalid_user&#x60; - Refresh token refrences invalid user - &#x60;refresh_token_client_id_mismatch&#x60; - Client ID for new token request did not match original token - &#x60;steam_disabled&#x60; - Steam authentication is currently disabled - &#x60;steam_token_empty&#x60; - Steam code (Ticket) is empty - &#x60;steam_token_exchange_failed&#x60; - Problem exchanging code (ticket) for token with Steam - &#x60;steam_user_vacbanned&#x60; - User is VAC banned - &#x60;steam_user_publisherbanned&#x60; - User is publisher banned - &#x60;twitch_disabled&#x60; - Twitch authentication is currently disabled - &#x60;twitch_token_empty&#x60; - Twitch access token is empty - &#x60;twitch_token_invalid&#x60; - Twitch access token is not valid - &#x60;twitch_keys_not_available&#x60; - Twitch keys are not available.  Please contact an administrator - &#x60;twitch_token_exchange_failed&#x60; - Problem exchanging code for token with Twitch - &#x60;xbox_disabled&#x60; - Xbox authentication is currently disabled - &#x60;xbox_xsts_token_empty&#x60; - Xbox XSTS token is empty - &#x60;xbox_xsts_token_invalid&#x60; - Xbox XSTS token is not valid - &#x60;xbox_xtoken_invalid&#x60; - Xbox XToken is not valid - &#x60;xbox_access_token_request_failed&#x60; - Problem requesting access token from Xbox - &#x60;xbox_xsts_token_exchange_failed&#x60; - Problem exchanging access token for XSTS token with Xbox - &#x60;xbox_xtoken_exchange_failed&#x60; - Problem exchanging XSTS token for XToken with Xbox  "));
+        SetResponseString(TEXT("FResponse_Login::SetHttpResponseCode(403)"));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -774,14 +781,15 @@ FRequest_Logout::FRequest_Logout()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Logout::GetSimplifiedPath() const
+FName FRequest_Logout::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/logout"));
+    static FName Path = FName(TEXT("/users/v1/logout"));
+    return Path;
 }
 
 FString FRequest_Logout::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -912,9 +920,10 @@ FRequest_OauthLogin::FRequest_OauthLogin()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_OauthLogin::GetSimplifiedPath() const
+FName FRequest_OauthLogin::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/oauth/login/{platform}"));
+    static FName Path = FName(TEXT("/users/v1/oauth/login/{platform}"));
+    return Path;
 }
 
 FString FRequest_OauthLogin::ComputePath() const
@@ -1086,9 +1095,10 @@ FRequest_OauthResponse::FRequest_OauthResponse()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_OauthResponse::GetSimplifiedPath() const
+FName FRequest_OauthResponse::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/oauth/response/{platform}"));
+    static FName Path = FName(TEXT("/users/v1/oauth/response/{platform}"));
+    return Path;
 }
 
 FString FRequest_OauthResponse::ComputePath() const
@@ -1260,14 +1270,15 @@ FRequest_OauthTokenExchange::FRequest_OauthTokenExchange()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_OauthTokenExchange::GetSimplifiedPath() const
+FName FRequest_OauthTokenExchange::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/oauth/token"));
+    static FName Path = FName(TEXT("/users/v1/oauth/token"));
+    return Path;
 }
 
 FString FRequest_OauthTokenExchange::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1411,14 +1422,15 @@ FRequest_Token::FRequest_Token()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Token::GetSimplifiedPath() const
+FName FRequest_Token::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/oauth/token"));
+    static FName Path = FName(TEXT("/users/v2/oauth/token"));
+    return Path;
 }
 
 FString FRequest_Token::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1560,14 +1572,15 @@ FRequest_Verify::FRequest_Verify()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Verify::GetSimplifiedPath() const
+FName FRequest_Verify::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/verify"));
+    static FName Path = FName(TEXT("/users/v1/verify"));
+    return Path;
 }
 
 FString FRequest_Verify::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

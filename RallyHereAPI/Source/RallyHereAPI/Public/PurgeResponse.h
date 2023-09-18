@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Purge response from a purge request
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Person ID that will be purged */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PersonId{  };
     /** @brief Gets the value of PersonId */
@@ -78,6 +79,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     /** @brief Sets the value of LastModifiedOn */
     void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
 
+    /** @brief Status of the purge request */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Status{  };
     /** @brief Gets the value of Status */

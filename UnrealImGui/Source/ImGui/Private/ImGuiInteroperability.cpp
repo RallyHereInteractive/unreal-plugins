@@ -112,6 +112,20 @@ namespace ImGuiInterops
 				KeyMap[ImGuiKey_X] = GetKeyIndex(EKeys::X);
 				KeyMap[ImGuiKey_Y] = GetKeyIndex(EKeys::Y);
 				KeyMap[ImGuiKey_Z] = GetKeyIndex(EKeys::Z);
+//$$ BEGIN AP - Adding function keys to work with ImGui
+				KeyMap[ImGuiKey_F1] = GetKeyIndex(EKeys::F1);
+				KeyMap[ImGuiKey_F2] = GetKeyIndex(EKeys::F2);
+				KeyMap[ImGuiKey_F3] = GetKeyIndex(EKeys::F3);
+				KeyMap[ImGuiKey_F4] = GetKeyIndex(EKeys::F4);
+				KeyMap[ImGuiKey_F5] = GetKeyIndex(EKeys::F5);
+				KeyMap[ImGuiKey_F6] = GetKeyIndex(EKeys::F6);
+				KeyMap[ImGuiKey_F7] = GetKeyIndex(EKeys::F7);
+				KeyMap[ImGuiKey_F8] = GetKeyIndex(EKeys::F8);
+				KeyMap[ImGuiKey_F9] = GetKeyIndex(EKeys::F9);
+				KeyMap[ImGuiKey_F10] = GetKeyIndex(EKeys::F10);
+				KeyMap[ImGuiKey_F11] = GetKeyIndex(EKeys::F11);
+				KeyMap[ImGuiKey_F12] = GetKeyIndex(EKeys::F12);
+//$$ END AP
 			}
 
 			ImGuiTypes::FKeyMap KeyMap;

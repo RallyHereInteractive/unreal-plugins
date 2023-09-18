@@ -144,7 +144,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogAll : public FRequest
     virtual ~FRequest_GetCatalogAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -187,7 +187,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSet : public FR
     virtual ~FRequest_GetCatalogInventoryBucketUseRuleSet() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -231,7 +231,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogInventoryBucketUseRuleSetsAll : publi
     virtual ~FRequest_GetCatalogInventoryBucketUseRuleSetsAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -274,7 +274,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogItem : public FRequest
     virtual ~FRequest_GetCatalogItem() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -318,7 +318,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogItemsAll : public FRequest
     virtual ~FRequest_GetCatalogItemsAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -361,7 +361,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogLoot : public FRequest
     virtual ~FRequest_GetCatalogLoot() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -405,7 +405,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogLootsAll : public FRequest
     virtual ~FRequest_GetCatalogLootsAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -448,7 +448,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRuleset : public FRequest
     virtual ~FRequest_GetCatalogPortalUseRuleset() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -492,7 +492,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogPortalUseRulesetsAll : public FReques
     virtual ~FRequest_GetCatalogPortalUseRulesetsAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -535,7 +535,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogPricePoint : public FRequest
     virtual ~FRequest_GetCatalogPricePoint() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -579,7 +579,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogPricePointsAll : public FRequest
     virtual ~FRequest_GetCatalogPricePointsAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -622,7 +622,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogTimeFrame : public FRequest
     virtual ~FRequest_GetCatalogTimeFrame() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -666,7 +666,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogTimeFramesAll : public FRequest
     virtual ~FRequest_GetCatalogTimeFramesAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -709,7 +709,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogVendor : public FRequest
     virtual ~FRequest_GetCatalogVendor() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -753,7 +753,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogVendorsAll : public FRequest
     virtual ~FRequest_GetCatalogVendorsAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -796,7 +796,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogXpAll : public FRequest
     virtual ~FRequest_GetCatalogXpAll() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -839,7 +839,7 @@ struct RALLYHEREAPI_API FRequest_GetCatalogXpTable : public FRequest
     virtual ~FRequest_GetCatalogXpTable() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

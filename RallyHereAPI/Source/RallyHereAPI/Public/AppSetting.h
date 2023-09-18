@@ -58,6 +58,29 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     const FString& GetValue() const { return Value; }
     /** @brief Sets the value of Value */
     void SetValue(FString NewValue) { Value = NewValue;  }
+
+    /** @brief Notes to describe the key value pair */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString Notes_Optional{  };
+    /** @brief true if Notes_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Notes_IsSet{ false };
+    /** @brief Gets the value of Notes_Optional, regardless of it having been set */
+    FString& GetNotes() { return Notes_Optional; }
+    /** @brief Gets the value of Notes_Optional, regardless of it having been set */
+    const FString& GetNotes() const { return Notes_Optional; }
+    /** @brief Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetNotes(const FString& DefaultValue) const { if (Notes_IsSet) return Notes_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false */
+    bool GetNotes(FString& OutValue) const { if (Notes_IsSet) OutValue = Notes_Optional; return Notes_IsSet; }
+    /** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetNotesOrNull() { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
+    /** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetNotesOrNull() const { if (Notes_IsSet) return &Notes_Optional; return nullptr; }
+    /** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true */
+    void SetNotes(FString NewValue) { Notes_Optional = NewValue; Notes_IsSet = true; }
+     /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
+    void ClearNotes() { Notes_IsSet = false; }
 };
 
 /** @} */

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_AdditionalJoinParams`](#structFRHAPI__AdditionalJoinParams) | 
+`struct `[`FRHAPI_AdditionalJoinParams`](#structFRHAPI__AdditionalJoinParams) | Additional parameters to apply to a matchmaking ticket.
 
 ## struct `FRHAPI_AdditionalJoinParams` <a id="structFRHAPI__AdditionalJoinParams"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_AdditionalJoinParams
   : public FRHAPI_Model
 ```
+
+Additional parameters to apply to a matchmaking ticket.
 
 #### Summary
 

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_TrueskillTeam`](#structFRHAPI__TrueskillTeam) | 
+`struct `[`FRHAPI_TrueskillTeam`](#structFRHAPI__TrueskillTeam) | One team of players from a match along with their placement in the match, and previous trueskill data about all of the players.
 
 ## struct `FRHAPI_TrueskillTeam` <a id="structFRHAPI__TrueskillTeam"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_TrueskillTeam
   : public FRHAPI_Model
 ```
+
+One team of players from a match along with their placement in the match, and previous trueskill data about all of the players.
 
 #### Summary
 

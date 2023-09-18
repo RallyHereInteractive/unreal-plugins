@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FConfigurationV1API::FConfigurationV1API() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("ConfigurationV1");
+    Name = FName(TEXT("ConfigurationV1"));
 }
 
 FConfigurationV1API::~FConfigurationV1API() {}
@@ -88,14 +88,15 @@ FRequest_GetFriendsAndBlockLimits::FRequest_GetFriendsAndBlockLimits()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetFriendsAndBlockLimits::GetSimplifiedPath() const
+FName FRequest_GetFriendsAndBlockLimits::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/configuration"));
+    static FName Path = FName(TEXT("/friends/v1/configuration"));
+    return Path;
 }
 
 FString FRequest_GetFriendsAndBlockLimits::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

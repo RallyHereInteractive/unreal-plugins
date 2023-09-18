@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FBlockedV1API::FBlockedV1API() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("BlockedV1");
+    Name = FName(TEXT("BlockedV1"));
 }
 
 FBlockedV1API::~FBlockedV1API() {}
@@ -88,9 +88,10 @@ FRequest_Block::FRequest_Block()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Block::GetSimplifiedPath() const
+FName FRequest_Block::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/block/{other_player_id}"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/block/{other_player_id}"));
+    return Path;
 }
 
 FString FRequest_Block::ComputePath() const
@@ -241,9 +242,10 @@ FRequest_GetBlocked::FRequest_GetBlocked()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetBlocked::GetSimplifiedPath() const
+FName FRequest_GetBlocked::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/block/{other_player_id}"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/block/{other_player_id}"));
+    return Path;
 }
 
 FString FRequest_GetBlocked::ComputePath() const
@@ -394,9 +396,10 @@ FRequest_GetBlockedListForPlayer::FRequest_GetBlockedListForPlayer()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetBlockedListForPlayer::GetSimplifiedPath() const
+FName FRequest_GetBlockedListForPlayer::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/block"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/block"));
+    return Path;
 }
 
 FString FRequest_GetBlockedListForPlayer::ComputePath() const
@@ -587,9 +590,10 @@ FRequest_Unblock::FRequest_Unblock()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Unblock::GetSimplifiedPath() const
+FName FRequest_Unblock::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v1/player/{player_id}/block/{other_player_id}"));
+    static FName Path = FName(TEXT("/friends/v1/player/{player_id}/block/{other_player_id}"));
+    return Path;
 }
 
 FString FRequest_Unblock::ComputePath() const

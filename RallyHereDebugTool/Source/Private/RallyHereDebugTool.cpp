@@ -7,6 +7,7 @@
 #include "ImGuiModule.h"
 #include "Misc/CString.h"
 #include "Containers/StringConv.h"
+#include "ImGuiInputHandler.h"
 
 #include "RH_Integration.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -36,7 +37,10 @@
 #include "RHDTW_WebRequests.h"
 #include "RHDTW_Purge.h"
 #include "RHDTW_Catalog.h"
+#include "RHDTW_CustomEndpoint.h"
 #include "RHDTW_Notifications.h"
+#include "RHDTW_Analytics.h"
+#include "RHDTW_About.h"
 
 #include "Runtime/Launch/Resources/Version.h"
 
@@ -51,7 +55,7 @@ URallyHereDebugTool::URallyHereDebugTool()
 
 	bActive = false;
 
-	SeparatorIndex = INDEX_NONE;
+	ToggleUIKeyBindAsImGuiKey = ImGuiKey_None;
 }
 
 void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
@@ -61,70 +65,61 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 	CheckForFirstEverSelectValidLocalPlayer();
 
 	PlayersWindow = MakeShared<FRHDTW_Players>();
-	PlayersWindow->Init(this, TEXT("Player Repository"), true);
+	PlayersWindow->Init(this, TEXT("Player Repository"));
 
 	LoginWindow = MakeShared<FRHDTW_Login>();
-	LoginWindow->Init(this, TEXT("Login"), true);
+	LoginWindow->Init(this, TEXT("Login"));
 
 	OutputLogWindow = MakeShared<FRHDTW_OutputLog>();
-	OutputLogWindow->Init(this, TEXT("Output Log"), true);
-
-	SeparatorIndex = 3;
+	OutputLogWindow->Init(this, TEXT("Output Log"));
 
 	CatalogWindow = MakeShared<FRHDTW_Catalog>();
-	CatalogWindow->Init(this, TEXT("Catalog"), true);
+	CatalogWindow->Init(this, TEXT("Catalog"));
 
 	ConfigWindow = MakeShared<FRHDTW_Config>();
-	ConfigWindow->Init(this, TEXT("Config"), true);
+	ConfigWindow->Init(this, TEXT("Config"));
 
 	EntitlementsWindow = MakeShared<FRHDTW_Entitlements>();
-	EntitlementsWindow->Init(this, TEXT("Entitlements"), true);
+	EntitlementsWindow->Init(this, TEXT("Entitlements"));
 
 	FriendsWindow = MakeShared<FRHDTW_Friends>();
-	FriendsWindow->Init(this, TEXT("Friends"), true);
+	FriendsWindow->Init(this, TEXT("Friends"));
 
 	PlayerInventoryWindow = MakeShared<FRHDTW_PlayerInventory>();
-	PlayerInventoryWindow->Init(this, TEXT("Inventory"), true);
+	PlayerInventoryWindow->Init(this, TEXT("Inventory"));
 
 	PresenceWindow = MakeShared<FRHDTW_Presence>();
-	PresenceWindow->Init(this, TEXT("Presence"), true);
+	PresenceWindow->Init(this, TEXT("Presence"));
 
 	NotificationsWindow = MakeShared<FRHDTW_Notifications>();
-	NotificationsWindow->Init(this, TEXT("Notifications"), true);
+	NotificationsWindow->Init(this, TEXT("Notifications"));
 
 	PlayerPlatformsWindow = MakeShared<FRHDTW_PlayerPlatforms>();
-	PlayerPlatformsWindow->Init(this, TEXT("Platforms"), true);
+	PlayerPlatformsWindow->Init(this, TEXT("Platforms"));
 
 	PurgeWindow = MakeShared<FRHDTW_Purge>();
-	PurgeWindow->Init(this, TEXT("Purge"), true);
+	PurgeWindow->Init(this, TEXT("Purge"));
 
 	PlayerSessionsWindow = MakeShared<FRHDTW_PlayerSessions>();
-	PlayerSessionsWindow->Init(this, TEXT("Ranks"), true);
+	PlayerSessionsWindow->Init(this, TEXT("Ranks"));
 
 	SessionWindow = MakeShared<FRHDTW_Session>();
-	SessionWindow->Init(this, TEXT("Session"), true);
+	SessionWindow->Init(this, TEXT("Session"));
 
 	PlayerSettingsWindow = MakeShared<FRHDTW_PlayerSettings>();
-	PlayerSettingsWindow->Init(this, TEXT("Settings"), true);
+	PlayerSettingsWindow->Init(this, TEXT("Settings"));
+
+	CustomEndpointWindow = MakeShared<FRHDTW_CustomEndpoint>();
+	CustomEndpointWindow->Init(this, TEXT("Custom Endpoint"));
 
 	WebRequestsWindow = MakeShared<FRHDTW_WebRequests>();
-	WebRequestsWindow->Init(this, TEXT("Web Requests"), true);
+	WebRequestsWindow->Init(this, TEXT("Web Requests"));
 
-	int32 WindowIndex = 0;
-	for (const TWeakPtr<FRH_DebugToolWindow>& weakWindow : AppWindows)
-	{
-		if (TSharedPtr<FRH_DebugToolWindow> window = weakWindow.Pin())
-		{
-			if (const auto& findVisibility = SavedWindowVisibilities.Find(window->Name))
-			{
-				window->bShow = *findVisibility;
-			}
-			else
-			{
-				SavedWindowVisibilities.Add(window->Name, true);
-			}
-		}
-	}
+	AnalyticsWindow = MakeShared<FRHDTW_Analytics>();
+	AnalyticsWindow->Init(this, TEXT("Analytics"));
+
+	AboutWindow = MakeShared<FRHDTW_About>();
+	AboutWindow->Init(this, TEXT("About"));
 
 	IRallyHereDebugToolModule::Get().GetSpawnToolDelegate().Broadcast(this);
 
@@ -218,18 +213,51 @@ void URallyHereDebugTool::DeselectInvalidLocalPlayers()
 	}
 }
 
+void URallyHereDebugTool::DeselectInvalidPlayerInfos()
+{
+	TArray<URH_PlayerInfo*> PlayerInfos = GetAllPlayerInfos();
+	for (auto localPlayerItr = SelectedPlayerInfos.CreateIterator(); localPlayerItr; ++localPlayerItr)
+	{
+		if (!localPlayerItr->IsValid() || PlayerInfos.Find(localPlayerItr->Get()) == INDEX_NONE)
+		{
+			localPlayerItr.RemoveCurrent();
+		}
+	}
+}
+
 void URallyHereDebugTool::CheckForFirstEverSelectValidLocalPlayer()
 {
 	DeselectInvalidLocalPlayers();
+	DeselectInvalidPlayerInfos();
 
 	if (!bHasSelectedLocalPlayerOnce)
 	{
+		bIsUsingLocalPlayerSandboxing = GetDefault<URH_IntegrationSettings>()->bLocalPlayerSubsystemSandboxing;
+
 		TArray<ULocalPlayer*> LocalPlayers = GetAllLocalPlayers();
 		for (auto localPlayerItr = LocalPlayers.CreateIterator(); localPlayerItr; ++localPlayerItr)
 		{
-			if (*localPlayerItr != nullptr)
+			auto LocalPlayer = *localPlayerItr;
+			if (LocalPlayer != nullptr)
 			{
-				SelectLocalPlayer(*localPlayerItr);
+				// select the local player
+				SelectLocalPlayer(LocalPlayer);
+
+				// set that player as our sandbox view, if we are using it
+				if (IsUsingLocalPlayerSandboxing())
+				{
+					SetSandboxPlayer(LocalPlayer);
+				}
+
+				// select the player info if we can
+				if (URH_LocalPlayerSubsystem* RHSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+				{
+					if (RHSS->GetLocalPlayerInfo() != nullptr)
+					{
+						SelectPlayerInfo(RHSS->GetLocalPlayerInfo());
+					}
+				}
+
 				break;
 			}
 		}
@@ -241,11 +269,49 @@ void URallyHereDebugTool::SelectLocalPlayer(ULocalPlayer* InLocalPlayer)
 	Template_SelectPlayer<ULocalPlayer>(InLocalPlayer, SelectedLocalPlayers, GetAllLocalPlayers());
 
 	bHasSelectedLocalPlayerOnce = bHasSelectedLocalPlayerOnce || InLocalPlayer != nullptr;
+
+	if (InLocalPlayer != nullptr)
+	{
+		if (URH_LocalPlayerSubsystem* RHSS = InLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+		{
+			if (RHSS->GetAuthContext().IsValid())
+			{
+				TWeakObjectPtr<ULocalPlayer> LocalPlayerWeak = InLocalPlayer;
+				RHSS->GetAuthContext()->OnLoginUserChanged().AddWeakLambda(this, [this, LocalPlayerWeak]()
+					{
+						ULocalPlayer* LocalPlayer = LocalPlayerWeak.Get();
+						if (LocalPlayer != nullptr)
+						{
+							if (URH_LocalPlayerSubsystem* RHSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+							{
+								if (SelectedLocalPlayers.Contains(LocalPlayer))
+								{
+									SelectPlayerInfo(RHSS->GetLocalPlayerInfo());
+								}
+							}
+						}
+					});
+			}
+		}
+	}
 }
 
 void URallyHereDebugTool::DeselectLocalPlayer(ULocalPlayer* InLocalPlayer)
 {
 	Template_DeselectPlayer<ULocalPlayer>(InLocalPlayer, SelectedLocalPlayers);
+
+	if (InLocalPlayer != nullptr)
+	{
+		if (URH_LocalPlayerSubsystem* RHSS = InLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+		{
+			if (RHSS->GetAuthContext().IsValid())
+			{
+				RHSS->GetAuthContext()->OnLoginUserChanged().RemoveAll(this);
+			}
+		}
+	}
+
+	DeselectInvalidPlayerInfos();
 }
 
 void URallyHereDebugTool::SelectAllLocalPlayers()
@@ -283,20 +349,37 @@ ULocalPlayer* URallyHereDebugTool::AddNewLocalPlayer()
 
 TArray<URH_PlayerInfo*> URallyHereDebugTool::GetAllPlayerInfos() const
 {
-	TArray<URH_PlayerInfo*> PlayerInfos;
-	if (auto pGameInstance = GetGameInstance())
+	URH_PlayerInfoSubsystem* pPI = nullptr;
+
+	auto* SandboxPlayer = GetSandboxPlayer();
+	if (IsUsingLocalPlayerSandboxing() && SandboxPlayer != nullptr)
 	{
-		if (auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
+		if (URH_LocalPlayerSubsystem* pRHLocalPlayerSubsystem = SandboxPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
 		{
-			if (URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = pGISubsystem->GetPlayerInfoSubsystem())
+			pPI = pRHLocalPlayerSubsystem->GetPlayerInfoSubsystem();
+		}		
+	}
+	else
+	{
+		if (auto pGameInstance = GetGameInstance())
+		{
+			if (auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
 			{
-				for (auto Pair : pRH_PlayerInfoSubsystem->GetPlayerInfos())
-				{
-					PlayerInfos.AddUnique(Pair.Value);
-				}
+				pPI = pGISubsystem->GetPlayerInfoSubsystem();
 			}
 		}
 	}
+
+	TArray<URH_PlayerInfo*> PlayerInfos;
+	
+	if (pPI != nullptr)
+	{
+		for (auto Pair : pPI->GetPlayerInfos())
+		{
+			PlayerInfos.AddUnique(Pair.Value);
+		}
+	}
+
 	return PlayerInfos;
 }
 
@@ -398,7 +481,7 @@ void URallyHereDebugTool::ToggleUI()
 	if (bActive && bDoOnce)
 	{
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-		FImGuiModule::Get().GetProperties().SetLoadSavedLayout(true);
+		FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, true);
 		bDoOnce = false;
 	}
 
@@ -412,80 +495,61 @@ void URallyHereDebugTool::DoImGui()
 {
 	if (ImGui::BeginMainMenuBar())
 	{
-		if (ImGui::BeginMenu("View"))
+		ImGuiIO& io = ImGui::GetIO();
+		if (ToggleUIKeyBindAsImGuiKey == ImGuiKey_None)
 		{
-			int counter = 0;
-			for (TArray<TWeakPtr<FRH_DebugToolWindow>>::TIterator It = AppWindows.CreateIterator(); It; ++It)
-			{
-				if (TSharedPtr<FRH_DebugToolWindow> window = It->Pin())
-				{
-					if (counter++ == SeparatorIndex)
-					{
-						ImGui::Separator();
-					}
-					window->RenderCheckbox();
-				}
-				else
-				{
-					It.RemoveCurrent();
-				}
-			}
-			ImGui::EndMenu();
+			ToggleUIKeyBindAsImGuiKey = UImGuiInputHandler::GetImGuiKeyFromFKey(URallyHereDebugToolSettings::Get()->ToggleUIKeyBind.Key, io);
+		}
+
+		bool bIsToggleKeybindActive = ImGui::IsKeyPressed(ToggleUIKeyBindAsImGuiKey);
+		
+		FString ButtonLabel = TEXT("Close (");
+		const FRallyHereDebugToolKeyInfo& ToggleKeybind = URallyHereDebugToolSettings::Get()->ToggleUIKeyBind;
+		if (ToggleKeybind.Shift == ECheckBoxState::Checked)
+		{
+			ButtonLabel += TEXT("Shift + ");
+			bIsToggleKeybindActive &= io.KeyShift;
+		}
+		if (ToggleKeybind.Alt == ECheckBoxState::Checked)
+		{
+			ButtonLabel += TEXT("Alt + ");
+			bIsToggleKeybindActive &= io.KeyAlt;
+		}
+		if (ToggleKeybind.Ctrl == ECheckBoxState::Checked || ToggleKeybind.Cmd == ECheckBoxState::Checked) // ImGui IO has no Cmd key
+		{
+			ButtonLabel += TEXT("Ctrl + ");
+			bIsToggleKeybindActive &= io.KeyCtrl;
+		}
+		ButtonLabel += ToggleKeybind.Key.ToString() + TEXT(")");
+
+		if (ImGui::Button(TCHAR_TO_UTF8(*ButtonLabel)) || bIsToggleKeybindActive)
+		{
+			ToggleUI();
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button("Close") && IsUIActive())
+		if (ImGui::Button("Reset Windows"))
 		{
-			ToggleUI();
+			FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, false);
 		}
 
 		if (FRallyHereIntegrationModule::IsAvailable())
 		{
 			ImGui::SameLine();
 			auto& Integration = FRallyHereIntegrationModule::Get();
-			ImGui::Text("%s - %s", TCHAR_TO_UTF8(*Integration.GetSandboxId()), TCHAR_TO_UTF8(*Integration.GetBaseURL()));
+			const FString sandboxText = Integration.GetSandboxId() + " - " + Integration.GetBaseURL();
+			ImGui::SameLine(ImGui::GetWindowWidth() - ImGui::CalcTextSize(TCHAR_TO_UTF8(*sandboxText)).x - 20);
+			ImGui::Text("%s", TCHAR_TO_UTF8(*sandboxText));
 		}
-
-		ImGui::SameLine(ImGui::GetWindowWidth() - 475);
-		if (ImGui::Button("Reset Windows") && IsUIActive())
-		{
-			for (const TWeakPtr<FRH_DebugToolWindow>& weakWindow : AppWindows)
-			{
-				if (TSharedPtr<FRH_DebugToolWindow> window = weakWindow.Pin())
-				{
-					window->bShow = true;
-				}
-			}
-
-			FImGuiModule::Get().GetProperties().SetLoadDefaultLayout(true);
-		}
-
-		ImGui::SameLine(ImGui::GetWindowWidth() - 350);
-		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		
 		ImGui::EndMainMenuBar();
 	}
-
-	bool bVisChanged = false;
 
 	for (const TWeakPtr<FRH_DebugToolWindow>& weakWindow : AppWindows)
 	{
 		if (TSharedPtr<FRH_DebugToolWindow> window = weakWindow.Pin())
 		{
-			// Cache off the visibility of the windows each frame
-			if (const auto& findVisibility = SavedWindowVisibilities.Find(window->Name))
-			{
-				if (*findVisibility != window->bShow)
-				{
-					*findVisibility = window->bShow;
-					bVisChanged = true;
-				}
-			}
 			window->RenderWindow();
 		}
-	}
-
-	if (bVisChanged)
-	{
-		SaveConfig();
 	}
 }

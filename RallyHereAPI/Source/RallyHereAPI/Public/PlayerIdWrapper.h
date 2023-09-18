@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Model for getting a player ID from a player UUID
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerIdWrapper : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIdWrapper : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Player ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PlayerId{ 0 };
     /** @brief Gets the value of PlayerId */

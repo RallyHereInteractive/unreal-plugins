@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PurgeRequest`](#structFRHAPI__PurgeRequest) | 
+`struct `[`FRHAPI_PurgeRequest`](#structFRHAPI__PurgeRequest) | Purge request to purge a person from the system. This will remove all data about that player from the system.
 
 ## struct `FRHAPI_PurgeRequest` <a id="structFRHAPI__PurgeRequest"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_PurgeRequest
   : public FRHAPI_Model
 ```
+
+Purge request to purge a person from the system. This will remove all data about that player from the system.
 
 #### Summary
 

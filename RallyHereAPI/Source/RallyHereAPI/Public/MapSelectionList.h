@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief A list of maps that can be chosen from when an instance is launching
+ * @brief DEPRECATED A list of maps that can be chosen from when an instance is launching
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
@@ -42,17 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
 
     /** @brief ID to uniquely identify this map selection list */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 MapSelectionListId{ 0 };
+    FString MapSelectionListId{  };
     /** @brief Gets the value of MapSelectionListId */
-    int32& GetMapSelectionListId() { return MapSelectionListId; }
+    FString& GetMapSelectionListId() { return MapSelectionListId; }
     /** @brief Gets the value of MapSelectionListId */
-    const int32& GetMapSelectionListId() const { return MapSelectionListId; }
+    const FString& GetMapSelectionListId() const { return MapSelectionListId; }
     /** @brief Sets the value of MapSelectionListId */
-    void SetMapSelectionListId(int32 NewValue) { MapSelectionListId = NewValue;  }
-    /** @brief Returns true if MapSelectionListId matches the default value */
-    bool IsMapSelectionListIdDefaultValue() const { return MapSelectionListId == 0; }
-    /** @brief Sets the value of MapSelectionListId to its default  */
-    void SetMapSelectionListIdToDefault() { MapSelectionListId = 0;  }
+    void SetMapSelectionListId(FString NewValue) { MapSelectionListId = NewValue;  }
 
     /** @brief List of maps that can be chosen in this selection list */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

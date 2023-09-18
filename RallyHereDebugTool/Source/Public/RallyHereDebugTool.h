@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "imgui.h"
 #include "RallyHereDebugTool.generated.h"
 
 class ULocalPlayer;
@@ -33,12 +34,17 @@ public:
 	TArray<ULocalPlayer*> GetAllSelectedLocalPlayers() const;
 	ULocalPlayer* GetFirstSelectedLocalPlayer() const;
 	void DeselectInvalidLocalPlayers();
+	void DeselectInvalidPlayerInfos();
 	void CheckForFirstEverSelectValidLocalPlayer();
 	void SelectLocalPlayer(ULocalPlayer* InLocalPlayer);
 	void DeselectLocalPlayer(ULocalPlayer* InLocalPlayer);
 	void SelectAllLocalPlayers();
 	void DeselectAllLocalPlayers();
 	ULocalPlayer* AddNewLocalPlayer();
+
+	bool IsUsingLocalPlayerSandboxing() const { return bIsUsingLocalPlayerSandboxing; }
+	void SetSandboxPlayer(ULocalPlayer* InLocalPlayer) { SelectedLocalPlayerSandbox = InLocalPlayer; }
+	ULocalPlayer* GetSandboxPlayer() const { return SelectedLocalPlayerSandbox.Get(); }
 
 	// Player Info selection
 	TArray<URH_PlayerInfo*> GetAllPlayerInfos() const;
@@ -68,6 +74,13 @@ public:
 	UPROPERTY(Transient)
 	bool bHasSelectedLocalPlayerOnce;
 
+	/** The LocalPlayer we are using for sandboxed views */
+	UPROPERTY(Transient)
+	TWeakObjectPtr<ULocalPlayer> SelectedLocalPlayerSandbox;
+	/** Whether we are using the local player sandboxing */
+	UPROPERTY(Transient)
+	bool bIsUsingLocalPlayerSandboxing;
+
 	/** Current selected PlayerInfos in RHDTW_Players */
 	UPROPERTY(Transient)
 	TArray<TWeakObjectPtr<URH_PlayerInfo>> SelectedPlayerInfos;
@@ -77,8 +90,8 @@ public:
 	TArray<TWeakObjectPtr<URH_PlayerInfo>> TargetedPlayerInfos;
 
 	bool bActive;
-
 	FSimpleMulticastDelegate OnActiveStateChanged;
+	ImGuiKey ToggleUIKeyBindAsImGuiKey;
 
 	TArray<TWeakPtr<FRH_DebugToolWindow>> AppWindows;
 
@@ -97,10 +110,10 @@ public:
 	TSharedPtr<struct FRHDTW_Purge> PurgeWindow;
 	TSharedPtr<struct FRHDTW_Catalog> CatalogWindow;
 	TSharedPtr<struct FRHDTW_Entitlements> EntitlementsWindow;
+	TSharedPtr<struct FRHDTW_CustomEndpoint> CustomEndpointWindow;
 	TSharedPtr<struct FRHDTW_Notifications> NotificationsWindow;
-
-	UPROPERTY(config)
-	TMap<FString, bool> SavedWindowVisibilities;
+	TSharedPtr<struct FRHDTW_Analytics> AnalyticsWindow;
+	TSharedPtr<struct FRHDTW_About> AboutWindow;
 
 private:
 #pragma region HELPER TEMPLATE FUNCTIONS
@@ -131,6 +144,4 @@ private:
 		}
 	}
 #pragma endregion
-
-	int SeparatorIndex;
 };

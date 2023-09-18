@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FMarketingAPI::FMarketingAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Marketing");
+    Name = FName(TEXT("Marketing"));
 }
 
 FMarketingAPI::~FMarketingAPI() {}
@@ -88,14 +88,15 @@ FRequest_GetMarketingCampaigns::FRequest_GetMarketingCampaigns()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetMarketingCampaigns::GetSimplifiedPath() const
+FName FRequest_GetMarketingCampaigns::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/marketing/campaign"));
+    static FName Path = FName(TEXT("/inventory/v1/marketing/campaign"));
+    return Path;
 }
 
 FString FRequest_GetMarketingCampaigns::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

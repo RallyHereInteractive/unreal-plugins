@@ -32,6 +32,7 @@ Fail_OSSAccountTypeNotSufficient            | OSS User's account type is not suf
 Fail_OSSUserNotFound            | OSS User was not found, even after OSS Login completed. This usually means that there is no connection to Xbox Live/PSN/etc
 Fail_OSSAgeRestriction            | OSS User does not meet age requirements for online play
 Fail_OSSPrivilegeCheck            | OSS User does not meet requirements for online play. See [FRH_LoginResult::PrivilegeResults](LocalPlayer.md#structFRH__LoginResult_1a0348a5f8c7982ea7a648276df7096998) and IOnlineIdentity::EPrivilegeResults
+Fail_OSSAuthToken            | OSS AuthToken could not be retrieved for a user that was logged into the OSS. This can be caused by a few reasons, such as the OSS account not being able to talk to the OSS network but being able to log into the account locally to the client machine
 Fail_MustAcceptAgreements            | User must accept all required agreements. See [FRH_LoginResult::bMustAcceptEULA](LocalPlayer.md#structFRH__LoginResult_1a3b1a5425c4ad3df85754d7828afa429f), [FRH_LoginResult::bMustAcceptTOS](LocalPlayer.md#structFRH__LoginResult_1a662f76700fe5dd56560bb7df514b0b6a), [FRH_LoginResult::bMustAcceptPP](LocalPlayer.md#structFRH__LoginResult_1a0f6674180918672b79770379a8af937c)
 Fail_RHDenied            | RH web login was denied. There are many reasons that can cause this, including misconfiguration of OSS IDs with the Rally Here APIs
 Fail_RHUnknown            | RH web login failed for an unknown reason. This usually means there was a server error of some kind.
@@ -61,6 +62,8 @@ Login Subsystem for the local player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public FRH_OnLoginCompleteMulticast `[`OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a843a3800206848baa22ddf46eb997e04) | Multicast delegate that gets broadcasted on login complete.
+`public FRH_OnLoginCompleteDynamicMulticast `[`BLUEPRINT_OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a75fecc81fac520458fa441c2d06d09d2) | Multicast delegate that gets broadcasted on login complete.
 `public FName `[`LoginOSSName`](#classURH__LocalPlayerLoginSubsystem_1a01d07f25f0c0000420aeaa3a9a124a85) | Online Subsystem to use for login. If not provided, will use the default OSS.
 `public FName `[`NicknameOSSName`](#classURH__LocalPlayerLoginSubsystem_1a1328f2314ce4640fa291c3ea6722c286) | Online Subsystem to use for getting the user's display name for Rally Here. If not provided, will use the Login OSS.
 `public bool `[`bLoginAllowStoredRefreshToken`](#classURH__LocalPlayerLoginSubsystem_1a37770d7b5203f211cdbb6aa79147393a) | Is the login process allowed to load/store a refresh token for future login attempts?
@@ -80,8 +83,8 @@ Login Subsystem for the local player.
 `public FString `[`SavedCredentialPrefix`](#classURH__LocalPlayerLoginSubsystem_1a5ff0051c770983ee18208136805b9754) | Prefix applied to the saved credentials on platforms that support storing the refresh token.
 `public virtual void `[`Initialize`](#classURH__LocalPlayerLoginSubsystem_1a938bd41c5c5fa6b5eacbeb43d0758a63)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18)`()` | Safely tears down the subsystem.
-`public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1a95a2ea67d33c6bb76dbdf0a471c8eeeb)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginComplete)` | Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
-`public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a37f75379657cee5e80d0ef78e4ea2dff)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginComplete)` | Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
+`public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1a3463e3fdeca22bed5fa2e67e984d1d28)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
+`public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
 `public void `[`Logout`](#classURH__LocalPlayerLoginSubsystem_1ae3394f883c697e57a705c23d8b0be23a)`()` | Requests a logout on the server clearing the players auth credentials.
 `public bool `[`ShowLoginProfileSelectionUI`](#classURH__LocalPlayerLoginSubsystem_1a34d838eda8e73f7eb58b56e99b8563c8)`(bool bShowOnlineOnly,FRH_OnProfileSelectionUIClosed OnClosed,`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType)` | Show an OSS-specific profile selection UI to the user. This is for Xbox and other platforms that support profile swapping. A valid profile is required to login on those platforms.
 `public bool `[`ShouldUseSavedCredentials`](#classURH__LocalPlayerLoginSubsystem_1a508f8e109c3ec8be8a8b3fc2cb4ded58)`() const` | Are saved credentials allowed for auto-login?
@@ -125,6 +128,16 @@ Login Subsystem for the local player.
 
 #### Members
 
+#### `public FRH_OnLoginCompleteMulticast `[`OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a843a3800206848baa22ddf46eb997e04) <a id="classURH__LocalPlayerLoginSubsystem_1a843a3800206848baa22ddf46eb997e04"></a>
+
+Multicast delegate that gets broadcasted on login complete.
+
+<br>
+#### `public FRH_OnLoginCompleteDynamicMulticast `[`BLUEPRINT_OnLoginComplete`](#classURH__LocalPlayerLoginSubsystem_1a75fecc81fac520458fa441c2d06d09d2) <a id="classURH__LocalPlayerLoginSubsystem_1a75fecc81fac520458fa441c2d06d09d2"></a>
+
+Multicast delegate that gets broadcasted on login complete.
+
+<br>
 #### `public FName `[`LoginOSSName`](#classURH__LocalPlayerLoginSubsystem_1a01d07f25f0c0000420aeaa3a9a124a85) <a id="classURH__LocalPlayerLoginSubsystem_1a01d07f25f0c0000420aeaa3a9a124a85"></a>
 
 Online Subsystem to use for login. If not provided, will use the default OSS.
@@ -220,12 +233,12 @@ Initialize the subsystem.
 Safely tears down the subsystem.
 
 <br>
-#### `public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1a95a2ea67d33c6bb76dbdf0a471c8eeeb)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginComplete)` <a id="classURH__LocalPlayerLoginSubsystem_1a95a2ea67d33c6bb76dbdf0a471c8eeeb"></a>
+#### `public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1a3463e3fdeca22bed5fa2e67e984d1d28)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` <a id="classURH__LocalPlayerLoginSubsystem_1a3463e3fdeca22bed5fa2e67e984d1d28"></a>
 
 Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
 
 <br>
-#### `public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a37f75379657cee5e80d0ef78e4ea2dff)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginComplete)` <a id="classURH__LocalPlayerLoginSubsystem_1a37f75379657cee5e80d0ef78e4ea2dff"></a>
+#### `public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` <a id="classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57"></a>
 
 Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
 
@@ -626,6 +639,7 @@ Subsystem to manage the local players presence.
 `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` | Starts polling to refresh the player's presence status.
 `public void `[`StopRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a95919d768be0b60ad1134052aff7ef2c)`()` | Stops polling to refresh the player's presence status.
 `public void `[`RefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a409192cc26f0fb395231023cf4449fa7)`()` | Forces an update of the players presence with a status change.
+`public bool `[`IsRefreshTimerActive`](#classURH__LocalPlayerPresenceSubsystem_1ac786e4bb032fc9711ec196868c6c6b30)`(float & TimeRemaining) const` | Returns whether the refresh timer is active. param [in].
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerPresenceSubsystem_1ab76093aeb1b7ae4313b979bfb5981f04) | Poller for the local presence.
 `protected ERHAPI_OnlineStatus `[`DesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101) | The Status that the local player is being changed to.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
@@ -702,6 +716,11 @@ Stops polling to refresh the player's presence status.
 Forces an update of the players presence with a status change.
 
 <br>
+#### `public bool `[`IsRefreshTimerActive`](#classURH__LocalPlayerPresenceSubsystem_1ac786e4bb032fc9711ec196868c6c6b30)`(float & TimeRemaining) const` <a id="classURH__LocalPlayerPresenceSubsystem_1ac786e4bb032fc9711ec196868c6c6b30"></a>
+
+Returns whether the refresh timer is active. param [in].
+
+<br>
 #### `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerPresenceSubsystem_1ab76093aeb1b7ae4313b979bfb5981f04) <a id="classURH__LocalPlayerPresenceSubsystem_1ab76093aeb1b7ae4313b979bfb5981f04"></a>
 
 Poller for the local presence.
@@ -747,10 +766,13 @@ Subsystem to manage sessions for the local player.
 `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a28a48c4ed60e8b00ad9de1f9b39e1217) | Multicast delegate triggered when a session managed by this subsystem is updated.
 `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a612a36a3c5862b352bea9c20b157fb1e) | Multicast delegate triggered when a session managed by this subsystem is added.
 `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a66e481e48c38b559766e07cf4b89b4f9) | Multicast delegate triggered when a session managed by this subsystem is removed.
+`public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3) | Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
+`public FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate `[`BLUEPRINT_OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad) | Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) | Multicast delegate triggered when a session managed by this subsystem is updated.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionAddedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a34c015e300be4c0474addf8f6d6d947b) | Multicast delegate triggered when a session managed by this subsystem is added.
 `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionRemovedDelegate`](#classURH__LocalPlayerSessionSubsystem_1af13b47604f229daf45aa56fdb25554cc) | Multicast delegate triggered when a session managed by this subsystem is removed.
-`public FOnLoginPollSessionsComplete `[`OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1ae0d40ffd4730a9386873869a942ece6d) | Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
+`public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a897c37a8854ad40a5ab9f75129a57e74) | Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
+`public FRH_OnLoginPollSessionsCompleteMulticastDelegate `[`OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1adf39311c4affa07453f6dd6cfeab6203) | Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
 `public  `[`URH_LocalPlayerSessionSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a038813e71ac05adf08f219b29d703891)`()` | 
 `public virtual void `[`Initialize`](#classURH__LocalPlayerSessionSubsystem_1a0f380ce4b08ba9e13a06496939bc14d7)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerSessionSubsystem_1a120580f60e2559621a29074257000119)`()` | Deinitialize the subsystem.
@@ -768,6 +790,7 @@ Subsystem to manage sessions for the local player.
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a8978774a71778d9d5a9b4f20f1ee85f6)`() const` | Utility function to look up the player info subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04)`() const` | Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSessionSubsystem_1a242dea7f5ff3092050c7d15ba05dc8a0)`() const` | Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` | Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
 `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1a3d9fcd23029eb2b1bfe559e918484601)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
@@ -788,7 +811,7 @@ Subsystem to manage sessions for the local player.
 `public void `[`StartPolling`](#classURH__LocalPlayerSessionSubsystem_1a46f1de5fd5535924cb742f82878b949a)`()` | Start polling for session template and membership updates.
 `public void `[`StopPolling`](#classURH__LocalPlayerSessionSubsystem_1ae11fbca181c0c52bd17cc06b701a12e1)`()` | Stop polling for session template and membership updates.
 `public void `[`PollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1a1a13b1d7c4f1993e553f95ec10966c5b)`(const FRH_PollCompleteFunc & Delegate)` | Poll function for use with [FRH_AutoPoller](Polling.md#structFRH__AutoPoller).
-`public void `[`ForcePollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1abe41fb28f171e1cf6e6100764de57579)`()` | Force an immediate poll.
+`public void `[`ForcePollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1a6f7a77ff7630f1beb1aa58e3943adda1)`(bool bClearETag)` | Force an immediate poll.
 `public float `[`GetPollTimeRemaining`](#classURH__LocalPlayerSessionSubsystem_1a27ce3d0bc063b3466f74c6b5e735696c)`() const` | Get the current time remaining on poll cycle, or -1.f if not polling.
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerSessionSubsystem_1a042e9dee585644aa339fd3b3b8e6ad12) | Poller for sessions.
 `protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__LocalPlayerSessionSubsystem_1a78953314d26e12a0aa43abd5828fe912) | Map of Template Ids to Session Templates.
@@ -838,6 +861,16 @@ Multicast delegate triggered when a session managed by this subsystem is added.
 Multicast delegate triggered when a session managed by this subsystem is removed.
 
 <br>
+#### `public FRH_OnSessionUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3) <a id="classURH__LocalPlayerSessionSubsystem_1a5eb7d010dfe8a9c83b977c694c3f8fd3"></a>
+
+Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
+
+<br>
+#### `public FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate `[`BLUEPRINT_OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad) <a id="classURH__LocalPlayerSessionSubsystem_1a4ad0823710a468816be02f3e600164ad"></a>
+
+Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
+
+<br>
 #### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionUpdatedDelegate`](#classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960) <a id="classURH__LocalPlayerSessionSubsystem_1a87ec0a5447e17ebbbda133342770d960"></a>
 
 Multicast delegate triggered when a session managed by this subsystem is updated.
@@ -853,7 +886,12 @@ Multicast delegate triggered when a session managed by this subsystem is added.
 Multicast delegate triggered when a session managed by this subsystem is removed.
 
 <br>
-#### `public FOnLoginPollSessionsComplete `[`OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1ae0d40ffd4730a9386873869a942ece6d) <a id="classURH__LocalPlayerSessionSubsystem_1ae0d40ffd4730a9386873869a942ece6d"></a>
+#### `public FRH_OnSessionUpdatedMulticastDelegate `[`OnSessionExpirationCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1a897c37a8854ad40a5ab9f75129a57e74) <a id="classURH__LocalPlayerSessionSubsystem_1a897c37a8854ad40a5ab9f75129a57e74"></a>
+
+Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
+
+<br>
+#### `public FRH_OnLoginPollSessionsCompleteMulticastDelegate `[`OnLoginPollSessionsCompleteDelegate`](#classURH__LocalPlayerSessionSubsystem_1adf39311c4affa07453f6dd6cfeab6203) <a id="classURH__LocalPlayerSessionSubsystem_1adf39311c4affa07453f6dd6cfeab6203"></a>
 
 Multicast delegate triggered when the initial poll after login is complete, to do first-time setup.
 
@@ -998,6 +1036,11 @@ Utility function to look up the OnlineSubsystem to use for session calls ([IRH_S
 Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
 <br>
+#### `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802"></a>
+
+Gets the Player UUID to use for player related calls (can be invalid)
+
+<br>
 #### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe"></a>
 
 Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
@@ -1014,7 +1057,7 @@ Platform Session synchronization object
 Gets the platform session synchronization object for a given platform session id.
 
 #### Parameters
-* `PlatofrmSessionId` Platform Session Id (as string) to look up the synchornization object wiht 
+* `PlatformSessionId` Platform Session Id (as string) to look up the synchornization object wiht 
 
 #### Returns
 Platform Session synchronization object
@@ -1170,7 +1213,7 @@ Poll function for use with [FRH_AutoPoller](Polling.md#structFRH__AutoPoller).
 * `PollComplete` delegate to restart the poll
 
 <br>
-#### `public void `[`ForcePollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1abe41fb28f171e1cf6e6100764de57579)`()` <a id="classURH__LocalPlayerSessionSubsystem_1abe41fb28f171e1cf6e6100764de57579"></a>
+#### `public void `[`ForcePollForUpdate`](#classURH__LocalPlayerSessionSubsystem_1a6f7a77ff7630f1beb1aa58e3943adda1)`(bool bClearETag)` <a id="classURH__LocalPlayerSessionSubsystem_1a6f7a77ff7630f1beb1aa58e3943adda1"></a>
 
 Force an immediate poll.
 
@@ -1484,7 +1527,12 @@ Subsystem to manage the local player.
 `public inline FORCEINLINE `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`GetPurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a5c2884b8b405e18804009f8b8cfeb245)`() const` | Gets the player's purge subsystem.
 `public inline FORCEINLINE `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1a3553f6723f3c694a2bf15f3bfd647774)`() const` | Gets the player's entitlement subsystem.
 `public `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__LocalPlayerSubsystem_1a690473c3123f603e2122e66ceb9f2e7f)`() const` | Gets the player's notification subsystem.
+`public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a83ad712487ec862359de2aad0cfdae27)`() const` | Gets the player's player info.
+`public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a12825ba4b3fc959d767fa24fdd42ac4a)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a00a862cfa4da207073201aa207456276)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected TArray< `[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111) | Array of plugins for the Local Player Subsystem.
+`protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) | Array of plugins for the Local Player Subsystem.
 `protected `[`URH_LocalPlayerLoginSubsystem`](LocalPlayer.md#classURH__LocalPlayerLoginSubsystem)` * `[`LoginSubsystem`](#classURH__LocalPlayerSubsystem_1a4c91f163e0d3ce122ff5945e94fbfd42) | The Login Subsystem for the player.
 `protected `[`URH_AdSubsystem`](Ads.md#classURH__AdSubsystem)` * `[`AdSubsystem`](#classURH__LocalPlayerSubsystem_1a7828f1874dcd91a147856a6919086273) | The Ad Subsystem for the player.
 `protected `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`FriendSubsystem`](#classURH__LocalPlayerSubsystem_1a71f593fae588e9f7afa7733eae6aafac) | The Friend Subsystem for the player.
@@ -1492,9 +1540,11 @@ Subsystem to manage the local player.
 `protected `[`URH_LocalPlayerPresenceSubsystem`](LocalPlayer.md#classURH__LocalPlayerPresenceSubsystem)` * `[`PresenceSubsystem`](#classURH__LocalPlayerSubsystem_1a1bc3544d5e09905d1a20b7d83af5087e) | The Presence Subsystem for the player.
 `protected `[`URH_PurgeSubsystem`](Purge.md#classURH__PurgeSubsystem)` * `[`PurgeSubsystem`](#classURH__LocalPlayerSubsystem_1a7e1beadec9fe8b854a37e4518b77c9cc) | The Purge Subsystem for the player.
 `protected `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`EntitlementSubsystem`](#classURH__LocalPlayerSubsystem_1abbb158bc2cd5dd965ba03363d64723ba) | The Entitlement Subsystem for the player.
+`protected `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`SandboxedPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a2f8620e8c3c50fdfea4ec0c39678b476) | The Sandboxed PlayerInfo Subsystem for the player.
 `protected TWeakObjectPtr< `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` > `[`PlayerInfoCache`](#classURH__LocalPlayerSubsystem_1a48fa6f3ba219852b90b6eaa9bf0ec5e4) | The Player Info associated with the local player.
 `protected FAuthContextPtr `[`AuthContext`](#classURH__LocalPlayerSubsystem_1a7db0fee21f61da0729bba78d7a892430) | The Local Players auth context.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a0b62ba4b9cb3fc8211a77636ba44dcd6)`(FSoftClassPath SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a1727d0a45f2f4d52aeb4100c80f79fad)`(FSoftClassPath SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 
@@ -1600,7 +1650,47 @@ Gets the player's entitlement subsystem.
 Gets the player's notification subsystem.
 
 <br>
+#### `public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a83ad712487ec862359de2aad0cfdae27)`() const` <a id="classURH__LocalPlayerSubsystem_1a83ad712487ec862359de2aad0cfdae27"></a>
+
+Gets the player's player info.
+
+<br>
+#### `public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a12825ba4b3fc959d767fa24fdd42ac4a)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__LocalPlayerSubsystem_1a12825ba4b3fc959d767fa24fdd42ac4a"></a>
+
+Custom Endpoint wrapper (for custom endpoints that require authentication)
+
+#### Parameters
+* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
+
+* `Delegate` The delegate to call when the call is complete (contains raw response)
+
+<br>
+#### `public void `[`CustomEndpoint`](#classURH__LocalPlayerSubsystem_1a00a862cfa4da207073201aa207456276)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock Delegate)` <a id="classURH__LocalPlayerSubsystem_1a00a862cfa4da207073201aa207456276"></a>
+
+Custom Endpoint wrapper (for custom endpoints that require authentication)
+
+#### Parameters
+* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
+
+* `Delegate` The delegate to call when the call is complete
+
+<br>
+#### `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` <a id="classURH__LocalPlayerSubsystem_1aa5c9cef7544050e91abe15452526fbd7"></a>
+
+Custom Endpoint wrapper (for custom endpoints that require authentication)
+
+#### Parameters
+* `[FRH_CustomEndpointRequestWrapper](Common.md#structFRH__CustomEndpointRequestWrapper)` Wrapper struct containing call information 
+
+* `Delegate` The delegate to call when the call is complete
+
+<br>
 #### `protected TArray< `[`URH_LocalPlayerSubsystemPlugin`](SubsystemBase.md#classURH__LocalPlayerSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111) <a id="classURH__LocalPlayerSubsystem_1aa1e0f18bd03b9082f4dfa3b87e294111"></a>
+
+Array of plugins for the Local Player Subsystem.
+
+<br>
+#### `protected TArray< `[`URH_SandboxedSubsystemPlugin`](SubsystemBase.md#classURH__SandboxedSubsystemPlugin)` * > `[`SandboxedSubsystemPlugins`](#classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101) <a id="classURH__LocalPlayerSubsystem_1a17f7feb3081a6a9ddd60220806af4101"></a>
 
 Array of plugins for the Local Player Subsystem.
 
@@ -1640,6 +1730,11 @@ The Purge Subsystem for the player.
 The Entitlement Subsystem for the player.
 
 <br>
+#### `protected `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`SandboxedPlayerInfoSubsystem`](#classURH__LocalPlayerSubsystem_1a2f8620e8c3c50fdfea4ec0c39678b476) <a id="classURH__LocalPlayerSubsystem_1a2f8620e8c3c50fdfea4ec0c39678b476"></a>
+
+The Sandboxed PlayerInfo Subsystem for the player.
+
+<br>
 #### `protected TWeakObjectPtr< `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` > `[`PlayerInfoCache`](#classURH__LocalPlayerSubsystem_1a48fa6f3ba219852b90b6eaa9bf0ec5e4) <a id="classURH__LocalPlayerSubsystem_1a48fa6f3ba219852b90b6eaa9bf0ec5e4"></a>
 
 The Player Info associated with the local player.
@@ -1651,6 +1746,17 @@ The Local Players auth context.
 
 <br>
 #### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a0b62ba4b9cb3fc8211a77636ba44dcd6)`(FSoftClassPath SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1a0b62ba4b9cb3fc8211a77636ba44dcd6"></a>
+
+Adds a plugin to the Game Instance Subsystem.
+
+#### Parameters
+* `SubsystemClassPath` The class path of the plugin to add. 
+
+#### Returns
+The plugin that was added.
+
+<br>
+#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a1727d0a45f2f4d52aeb4100c80f79fad)`(FSoftClassPath SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1a1727d0a45f2f4d52aeb4100c80f79fad"></a>
 
 Adds a plugin to the Game Instance Subsystem.
 

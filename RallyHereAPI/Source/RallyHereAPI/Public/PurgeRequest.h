@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Purge request to purge a person from the system.  This will remove all data about that player from the system.
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model

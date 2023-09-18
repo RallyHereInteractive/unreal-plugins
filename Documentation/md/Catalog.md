@@ -23,18 +23,18 @@ class used to define a Catalog Item.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`ETag`](#classURH__CatalogItem_1a8c1dbd0b72804d0d46c41cd75108f53e) | The identifier for the versioning of the item.
-`public inline int32 `[`GetItemId`](#classURH__CatalogItem_1adc17f68c9aa87328bf2eeecf65007e99)`() const` | Gets the Item Id.
+`public inline const int32 & `[`GetItemId`](#classURH__CatalogItem_1a7ecb1269ab1e84700fd005fedbb26e7f)`() const` | Gets the Item Id.
 `public inline ERHAPI_ItemType `[`GetType`](#classURH__CatalogItem_1af11d6a3b4504a9b72a644133b8595ae6)`() const` | Gets the Item Type.
-`public inline int32 `[`GetRefItemId`](#classURH__CatalogItem_1afd536fcb04d8a38c06c4e8a186e473c0)`() const` | Gets the Item Id of the referenced item.
+`public inline const int32 & `[`GetRefItemId`](#classURH__CatalogItem_1a03c924d08dbecb047a8c564913a08ea5)`() const` | Gets the Item Id of the referenced item.
 `public inline int32 `[`GetAvailabilityFlags`](#classURH__CatalogItem_1a72c9fe1bfa8b972d5a82df1be4ffb8d3)`() const` | Gets item availability flags.
-`public inline int32 `[`GetEntitledLootId`](#classURH__CatalogItem_1a9313556688e5404f87e676c1673bc9af)`() const` | Gets the entitled loot id.
+`public inline const int32 & `[`GetEntitledLootId`](#classURH__CatalogItem_1adad9aa7eb463097ea106badec999345d)`() const` | Gets the entitled loot id.
 `public inline int32 `[`GetLevelXpTableId`](#classURH__CatalogItem_1a4ee0060eff0c511de8165e31e4abe396)`() const` | Gets the Xp Table associated with the item.
 `public inline int32 `[`GetLevelVendorId`](#classURH__CatalogItem_1aecd9574fcd55a6f7040f742e5958acc9)`() const` | Gets the Vendor that grants rewards based on inventory count of the item.
-`public inline int32 `[`GetCouponDiscountCurrencyItemId`](#classURH__CatalogItem_1a7df15d0f40f33e7fbd3d854b698e0f19)`() const` | Gets the Item Id of the currency type this can discount.
+`public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#classURH__CatalogItem_1ad4bb34fa5ad217b51d5745167cf9b873)`() const` | Gets the Item Id of the currency type this can discount.
 `public inline float `[`GetCouponDiscountPercentage`](#classURH__CatalogItem_1a6ec70c25672e2b19483d6039a204c2d7)`() const` | Gets the precentage of the discount this item applies.
 `public inline bool `[`GetCouponConsumeOnUse`](#classURH__CatalogItem_1a50948a1e6a63de0412fbcdcabbec0444)`() const` | Gets if it will be consumed when used.
 `public inline FString `[`GetItemInventoryBucketUseRulesetId`](#classURH__CatalogItem_1a80314dea37e055585c4b702ad80f4a68)`() const` | Gets the set of rules of what platforms this item is available on.
-`public inline TArray< int32 > `[`GetCouponDiscountLoot`](#classURH__CatalogItem_1a519da78580475d431cff3984f97ba7cd)`() const` | Gets the list of loot ids this coupon can be applied to.
+`public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#classURH__CatalogItem_1a85ca1c0692135f88ea428114e8c0a2be)`() const` | Gets the list of loot ids this coupon can be applied to.
 `public inline void `[`InitializeFromCatalogItem`](#classURH__CatalogItem_1a95b0ceda53f211ff891be32ce2665753)`(`[`FRHAPI_Item`](models/RHAPI_Item.md#structFRHAPI__Item)` CatalogItem,int32 InItemId)` | Sets up the fata in the Catalog Item.
 `public inline void `[`Clear`](#classURH__CatalogItem_1af65ba6d8b9f24d27e9cce6ac341bae61)`()` | Clears all the data for the item.
 `protected int32 `[`ItemId`](#classURH__CatalogItem_1a51b19d9d9500568414f08f3a4d4b48a7) | The Item Id.
@@ -57,7 +57,7 @@ class used to define a Catalog Item.
 The identifier for the versioning of the item.
 
 <br>
-#### `public inline int32 `[`GetItemId`](#classURH__CatalogItem_1adc17f68c9aa87328bf2eeecf65007e99)`() const` <a id="classURH__CatalogItem_1adc17f68c9aa87328bf2eeecf65007e99"></a>
+#### `public inline const int32 & `[`GetItemId`](#classURH__CatalogItem_1a7ecb1269ab1e84700fd005fedbb26e7f)`() const` <a id="classURH__CatalogItem_1a7ecb1269ab1e84700fd005fedbb26e7f"></a>
 
 Gets the Item Id.
 
@@ -67,7 +67,7 @@ Gets the Item Id.
 Gets the Item Type.
 
 <br>
-#### `public inline int32 `[`GetRefItemId`](#classURH__CatalogItem_1afd536fcb04d8a38c06c4e8a186e473c0)`() const` <a id="classURH__CatalogItem_1afd536fcb04d8a38c06c4e8a186e473c0"></a>
+#### `public inline const int32 & `[`GetRefItemId`](#classURH__CatalogItem_1a03c924d08dbecb047a8c564913a08ea5)`() const` <a id="classURH__CatalogItem_1a03c924d08dbecb047a8c564913a08ea5"></a>
 
 Gets the Item Id of the referenced item.
 
@@ -77,7 +77,7 @@ Gets the Item Id of the referenced item.
 Gets item availability flags.
 
 <br>
-#### `public inline int32 `[`GetEntitledLootId`](#classURH__CatalogItem_1a9313556688e5404f87e676c1673bc9af)`() const` <a id="classURH__CatalogItem_1a9313556688e5404f87e676c1673bc9af"></a>
+#### `public inline const int32 & `[`GetEntitledLootId`](#classURH__CatalogItem_1adad9aa7eb463097ea106badec999345d)`() const` <a id="classURH__CatalogItem_1adad9aa7eb463097ea106badec999345d"></a>
 
 Gets the entitled loot id.
 
@@ -92,7 +92,7 @@ Gets the Xp Table associated with the item.
 Gets the Vendor that grants rewards based on inventory count of the item.
 
 <br>
-#### `public inline int32 `[`GetCouponDiscountCurrencyItemId`](#classURH__CatalogItem_1a7df15d0f40f33e7fbd3d854b698e0f19)`() const` <a id="classURH__CatalogItem_1a7df15d0f40f33e7fbd3d854b698e0f19"></a>
+#### `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#classURH__CatalogItem_1ad4bb34fa5ad217b51d5745167cf9b873)`() const` <a id="classURH__CatalogItem_1ad4bb34fa5ad217b51d5745167cf9b873"></a>
 
 Gets the Item Id of the currency type this can discount.
 
@@ -112,7 +112,7 @@ Gets if it will be consumed when used.
 Gets the set of rules of what platforms this item is available on.
 
 <br>
-#### `public inline TArray< int32 > `[`GetCouponDiscountLoot`](#classURH__CatalogItem_1a519da78580475d431cff3984f97ba7cd)`() const` <a id="classURH__CatalogItem_1a519da78580475d431cff3984f97ba7cd"></a>
+#### `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#classURH__CatalogItem_1a85ca1c0692135f88ea428114e8c0a2be)`() const` <a id="classURH__CatalogItem_1a85ca1c0692135f88ea428114e8c0a2be"></a>
 
 Gets the list of loot ids this coupon can be applied to.
 
@@ -197,6 +197,7 @@ List of Loot Table Items this item can be used as a coupon for.
 ```
 class URH_CatalogSubsystem
   : public URH_GameInstanceSubsystemPlugin
+  : public FTickableGameObject
 ```
 
 Class used to help track and interact with the catalog to get Items, Vendors, and their data.
@@ -212,8 +213,8 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public inline void `[`BLUEPRINT_GetCatalogAll`](#classURH__CatalogSubsystem_1acbc947298516a5aa8f4676455cd0cb9a)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogXpAll`](#classURH__CatalogSubsystem_1ac166404589ea9530e4906feb81b01dbe)`(FRH_CatalogCallBlock Delegate)` | Gets all of the xp tables in the catalog.
 `public inline void `[`BLUEPRINT_GetCatalogXpAll`](#classURH__CatalogSubsystem_1aaeb50b6cf551d93c71a1a47cf5a48ab1)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
-`public void `[`GetCatalogItem`](#classURH__CatalogSubsystem_1a0ecbba243df823abc071bf6396e06d80)`(int32 ItemId,FRH_CatalogCallBlock Delegate)` | Gets a specific item from the catalog.
-`public inline void `[`BLUEPRINT_GetCatalogItem`](#classURH__CatalogSubsystem_1ab515a213b247b86c208cc44a53a22b53)`(int32 ItemId,const FRH_CatalogCallDynamicDelegate & Delegate)` | 
+`public void `[`GetCatalogItem`](#classURH__CatalogSubsystem_1ab3630ab4e99a13bf6f60f295b343bdea)`(const int32 & ItemId,FRH_CatalogCallBlock Delegate)` | Gets a specific item from the catalog.
+`public inline void `[`BLUEPRINT_GetCatalogItem`](#classURH__CatalogSubsystem_1a7e2d0592c8f99de862718e2a4664b7cf)`(const int32 & ItemId,const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a96af4488ae5cc6dde79e9c89c8ecac0f)`(FRH_CatalogCallBlock Delegate)` | Gets all of the inventory bucket rulesets from the catalog.
 `public inline void `[`BLUEPRINT_GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a5a96fc774aa78d82e5cae3bfee4f79ca)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public void `[`GetCatalogPricePointsAll`](#classURH__CatalogSubsystem_1aff26ef27207e3f7232f01f9b33fb05be)`(FRH_CatalogCallBlock Delegate)` | Gets all of the price points from the catalog.
@@ -225,18 +226,18 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `public void `[`GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1a39a7dfdab31d14e448ce841ee0e12a9e)`(FRH_CatalogCallBlock Delegate)` | Gets the all catalog vendors.
 `public inline void `[`BLUEPRINT_GetCatalogVendorsAll`](#classURH__CatalogSubsystem_1a27e271a1db43f7c5b0a8528fd43265c4)`(const FRH_CatalogCallDynamicDelegate & Delegate)` | 
 `public bool `[`GetXpTable`](#classURH__CatalogSubsystem_1ada2141a6424f5ac1b9260569040f107c)`(int32 XpTableId,`[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` & XpTable) const` | Gets a cached Xp Table.
-`public inline bool `[`GetVendorItemByLootId`](#classURH__CatalogSubsystem_1a76b6de7e6855b091c7fb2c86c7b33739)`(int32 LootId,`[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & LootItem) const` | Gets a cached vendor item by its loot id.
-`public inline `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`GetCatalogItemByItemId`](#classURH__CatalogSubsystem_1a04efb2db20d80225684bee54173f365b)`(int32 ItemId) const` | Gets a cached catalog item by its item id.
+`public inline bool `[`GetVendorItemByLootId`](#classURH__CatalogSubsystem_1a0bcddd352d02c73bb3d036af295e72d7)`(const int32 & LootId,`[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & LootItem) const` | Gets a cached vendor item by its loot id.
+`public inline `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`GetCatalogItemByItemId`](#classURH__CatalogSubsystem_1a644bf8911ea4f9ee33adef7b2fa9781c)`(const int32 & ItemId) const` | Gets a cached catalog item by its item id.
 `public inline bool `[`GetVendorById`](#classURH__CatalogSubsystem_1a17ffa20cdeea67b34ba968f9509ca3c3)`(int32 VendorId,`[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` & Vendor) const` | Gets a cached vendor by its vendor id.
 `public inline bool `[`GetPricePointById`](#classURH__CatalogSubsystem_1a5ef790f43afd0929945ab159dad0fb5a)`(FGuid PricePointGuid,`[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` & PricePoint) const` | Gets a cached price point by its price point guid.
 `public inline bool `[`GetPricePointById`](#classURH__CatalogSubsystem_1a102f2ca24bc0de032bbadccc2748faf3)`(int32 TimeFrameId,`[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` & TimeFrame) const` | Gets a cached time frame by its Time Frame Id.
 `public bool `[`CanRulesetUsePlatformForBucket`](#classURH__CatalogSubsystem_1af7b597a0de2ea0386b81c5ae52eecb0e)`(const FString & InventoryBucketRulesetId,ERHAPI_InventoryBucket TargetBucket,ERHAPI_InventoryBucket ItemInventoryBucket) const` | Checks if the ruleset can use the platform for the bucket.
-`public inline const TMap< int32, `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` > `[`GetVendors`](#classURH__CatalogSubsystem_1a2d45fd8fbebb4de642cd0e40778141ad)`() const` | Gets the cached vendors.
-`public inline const TMap< int32, `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * > `[`GetCatalogItems`](#classURH__CatalogSubsystem_1a56d3cfd482b6b0f085c753b8d99c8006)`() const` | Gets the cached catalog items.
-`public inline const TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`GetXpTables`](#classURH__CatalogSubsystem_1a8d75a8b6faa50f4c0a6a83d2d75e49e9)`() const` | Gets the xp tables.
-`public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > `[`GetInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1abc35729607a3037fc2d2a6720b7d3e43)`() const` | Gets the cached inventory bucket rule sets.
-`public inline const TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > `[`GetPricePoints`](#classURH__CatalogSubsystem_1a12492d2ca8407fb2ea78c0d6ed16ada0)`() const` | Gets the cached price points.
-`public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a73b96021b09bf4d7e375b4bd32b6bc64)`() const` | Gets the cached time frames.
+`public inline const TMap< int32, `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#classURH__CatalogSubsystem_1a293846a858b5060aafe476fa87eb789e)`() const` | Gets the cached vendors.
+`public inline const TMap< int32, `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * > & `[`GetCatalogItems`](#classURH__CatalogSubsystem_1af0b329e282e5ac99e915c85ad1359d25)`() const` | Gets the cached catalog items.
+`public inline const TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > & `[`GetXpTables`](#classURH__CatalogSubsystem_1a990c701f7fd1004659e9cd0b15f29480)`() const` | Gets the xp tables.
+`public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & `[`GetInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1a2657824ade5d1b5c06292e83b62d15e5)`() const` | Gets the cached inventory bucket rule sets.
+`public inline const TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & `[`GetPricePoints`](#classURH__CatalogSubsystem_1a0d8b46a9bb4e03b550fb96919281fe0f)`() const` | Gets the cached price points.
+`public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc)`() const` | Gets the cached time frames.
 `protected TArray< `[`FRHVendorGetRequest`](Catalog.md#structFRHVendorGetRequest)` > `[`VendorRequests`](#classURH__CatalogSubsystem_1af7893f5433b745ff5b189b81167d71a9) | Array of active vendor requests that are in flight and not responded ot yet.
 `protected TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`XpTables`](#classURH__CatalogSubsystem_1a659700dd6e8da2c852227489dce93c2a) | Xp Table Id to Xp Table Map.
 `protected TMap< int32, `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` > `[`CatalogVendors`](#classURH__CatalogSubsystem_1ac2c9e75cab5a2282cd7eabcb76d206d7) | Vendor Id to Vendor Map.
@@ -251,19 +252,24 @@ Class used to help track and interact with the catalog to get Items, Vendors, an
 `protected FString `[`GetCatalogVendorsAllETag`](#classURH__CatalogSubsystem_1a6eeaffe101e1e88748eb11f22f972302) | ETag of last GetCatalogVendorsAll call response.
 `protected FString `[`GetCatalogTimeFramesAllETag`](#classURH__CatalogSubsystem_1a71f792816adb9636fc226e70a98be22a) | ETag of last GetCatalogTimeFramesAll call response.
 `protected FString `[`GetCatalogInventoryBucketUseRuleSetsAllETag`](#classURH__CatalogSubsystem_1a087cc903b21b5a25a45b030cb4dce33e) | ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response.
+`protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`PendingGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a72a9e161cf234e6843e9b601e7bd925e) | Array of GetCatalogItemCalls yet to be sent to the API layer.
+`protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`SubmittedGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a661262ecd1024e523d6ab788f8e5ce22) | Array of GetCatalogItemCalls yet being executed by the API layer at this time.
 `protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379)`(int32 VendorId)` | Makes an API call for a single vendor Id.
 `protected virtual void `[`OnGetCatalogVendorResponse`](#classURH__CatalogSubsystem_1aa5b03bf7da3d901bd72292a524522683)`(const TGetCatalogVendor::Response & Resp,int32 VendorId)` | Handles the response to a Get Catalog Vendor call.
 `protected virtual void `[`OnGetCatalogVendorsAllResponse`](#classURH__CatalogSubsystem_1a434e0255109e81a6abe44d5192c77b20)`(const TGetCatalogVendorsAll::Response & Resp,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Vendor All call.
 `protected virtual void `[`OnGetCatalogAllResponse`](#classURH__CatalogSubsystem_1a04714f26a1d78a8fa7df60f0bf1b5f35)`(const TGetCatalogAll::Response & Resp,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog All call.
 `protected virtual void `[`OnGetCatalogXpAllResponse`](#classURH__CatalogSubsystem_1aff2454172ae69ea4ac092e5bda850440)`(const TGetCatalogXpAll::Response & Resp,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Xp All call.
-`protected virtual void `[`OnGetCatalogItemResponse`](#classURH__CatalogSubsystem_1a97648ec71df11fe0564c78c077241afa)`(const TGetCatalogItem::Response & Resp,int32 ItemId,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Item call.
+`protected virtual void `[`OnGetCatalogItemResponse`](#classURH__CatalogSubsystem_1a203b5ee176ba1f147306b32706c93b66)`(const TGetCatalogItem::Response & Resp,int32 ItemId)` | Handles the response to a Get Catalog Item call.
 `protected virtual void `[`OnGetCatalogInventoryBucketUseRuleSetsAllResponse`](#classURH__CatalogSubsystem_1aedf870cfb4469dab76c268bc520a0cc6)`(const TGetCatalogInventoryBucketUseRuleSetsAll::Response & Resp,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Inventory Bucked Use Rule Sets All call.
 `protected virtual void `[`OnGetCatalogPricePointsAllResponse`](#classURH__CatalogSubsystem_1a87b7734e4a6de126f49e8c51fc77a9bf)`(const TGetCatalogPricePointsAll::Response & Resp,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Price Points All call.
 `protected virtual void `[`OnGetCatalogTimeFramesAllResponse`](#classURH__CatalogSubsystem_1aa2032172e8d0c3952472bbb3df23f5bf)`(const TGetCatalogTimeFramesAll::Response & Resp,FRH_CatalogCallBlock Delegate)` | Handles the response to a Get Catalog Time Frames All call.
-`protected void `[`ParseAllXpTables`](#classURH__CatalogSubsystem_1a2c1377438d82ebe24ec87eeb3b8beed7)`(`[`FRHAPI_XpTables`](models/RHAPI_XpTables.md#structFRHAPI__XpTables)` Content)` | Parses Xp Tables response into the Xp Table Map.
-`protected void `[`ParseAllInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1af675315c090604778da2ec390b8ad96d)`(`[`FRHAPI_InventoryBucketUseRuleSets`](models/RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` Content)` | Parses Inventory Bucket Use Rule Sets response into the Inventory Bucket Use Ruleset Map.
-`protected `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`ParseCatalogItem`](#classURH__CatalogSubsystem_1a5f90d0a7c49ab8514260e1d1fc4a11aa)`(`[`FRHAPI_Item`](models/RHAPI_Item.md#structFRHAPI__Item)` CatalogItem,int32 ItemId)` | Parse a Catalog item into the class for it and stores it in the Catalog Items Map.
+`protected void `[`ParseAllXpTables`](#classURH__CatalogSubsystem_1a0da0440c219f11a65af436c93c6c7e76)`(const `[`FRHAPI_XpTables`](models/RHAPI_XpTables.md#structFRHAPI__XpTables)` & Content)` | Parses Xp Tables response into the Xp Table Map.
+`protected void `[`ParseAllInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1ad4785e6bfefa75c2d71e15e9050bbd2e)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](models/RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & Content)` | Parses Inventory Bucket Use Rule Sets response into the Inventory Bucket Use Ruleset Map.
+`protected `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`ParseCatalogItem`](#classURH__CatalogSubsystem_1a1b64044346794d4d883018023e6c0267)`(const `[`FRHAPI_Item`](models/RHAPI_Item.md#structFRHAPI__Item)` & CatalogItem,const int32 & ItemId)` | Parse a Catalog item into the class for it and stores it in the Catalog Items Map.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__CatalogSubsystem_1a381093c63e6e9c4ed6b66bfe04b7901d)`()` | Initializes the subsystem with defaults for its cached data.
+`protected virtual void `[`Tick`](#classURH__CatalogSubsystem_1a3516a7d39bcbf01f5d2706ea9afc1f28)`(float DeltaTime)` | Kick off pending requests to the API layer.
+`protected inline virtual bool `[`IsTickable`](#classURH__CatalogSubsystem_1af205f84045baf67b117220fec2015ca0)`() const` | Determine if there are pending requests.
+`protected inline virtual TStatId `[`GetStatId`](#classURH__CatalogSubsystem_1ac27e9ac9430094c764f9e68580a21f5e)`() const` | Gets the catalog subsystem stat Id.
 `typedef `[`TGetCatalogAll`](#classURH__CatalogSubsystem_1a1cf3a5efca0964238be8bde13cdc27f2) | Type Define for Get Catalog calls.
 `typedef `[`TGetCatalogXpAll`](#classURH__CatalogSubsystem_1a9f1bf618dbf35a16731771f43eb7b14d) | Type Define for Get Catalog Xp calls.
 `typedef `[`TGetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1aac9d74ede66689a3da316964f45d1cbd) | Type Define for Get Catalog Inventory Bucket Use Rule Set calls.
@@ -312,7 +318,7 @@ Gets all of the xp tables in the catalog.
 #### `public inline void `[`BLUEPRINT_GetCatalogXpAll`](#classURH__CatalogSubsystem_1aaeb50b6cf551d93c71a1a47cf5a48ab1)`(const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1aaeb50b6cf551d93c71a1a47cf5a48ab1"></a>
 
 <br>
-#### `public void `[`GetCatalogItem`](#classURH__CatalogSubsystem_1a0ecbba243df823abc071bf6396e06d80)`(int32 ItemId,FRH_CatalogCallBlock Delegate)` <a id="classURH__CatalogSubsystem_1a0ecbba243df823abc071bf6396e06d80"></a>
+#### `public void `[`GetCatalogItem`](#classURH__CatalogSubsystem_1ab3630ab4e99a13bf6f60f295b343bdea)`(const int32 & ItemId,FRH_CatalogCallBlock Delegate)` <a id="classURH__CatalogSubsystem_1ab3630ab4e99a13bf6f60f295b343bdea"></a>
 
 Gets a specific item from the catalog.
 
@@ -322,7 +328,7 @@ Gets a specific item from the catalog.
 * `Delegate` Callback when the API call is complete.
 
 <br>
-#### `public inline void `[`BLUEPRINT_GetCatalogItem`](#classURH__CatalogSubsystem_1ab515a213b247b86c208cc44a53a22b53)`(int32 ItemId,const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1ab515a213b247b86c208cc44a53a22b53"></a>
+#### `public inline void `[`BLUEPRINT_GetCatalogItem`](#classURH__CatalogSubsystem_1a7e2d0592c8f99de862718e2a4664b7cf)`(const int32 & ItemId,const FRH_CatalogCallDynamicDelegate & Delegate)` <a id="classURH__CatalogSubsystem_1a7e2d0592c8f99de862718e2a4664b7cf"></a>
 
 <br>
 #### `public void `[`GetCatalogInventoryBucketUseRuleSetsAll`](#classURH__CatalogSubsystem_1a96af4488ae5cc6dde79e9c89c8ecac0f)`(FRH_CatalogCallBlock Delegate)` <a id="classURH__CatalogSubsystem_1a96af4488ae5cc6dde79e9c89c8ecac0f"></a>
@@ -393,7 +399,7 @@ Gets a cached Xp Table.
 If true, the Xp Table was found.
 
 <br>
-#### `public inline bool `[`GetVendorItemByLootId`](#classURH__CatalogSubsystem_1a76b6de7e6855b091c7fb2c86c7b33739)`(int32 LootId,`[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & LootItem) const` <a id="classURH__CatalogSubsystem_1a76b6de7e6855b091c7fb2c86c7b33739"></a>
+#### `public inline bool `[`GetVendorItemByLootId`](#classURH__CatalogSubsystem_1a0bcddd352d02c73bb3d036af295e72d7)`(const int32 & LootId,`[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & LootItem) const` <a id="classURH__CatalogSubsystem_1a0bcddd352d02c73bb3d036af295e72d7"></a>
 
 Gets a cached vendor item by its loot id.
 
@@ -406,7 +412,7 @@ Gets a cached vendor item by its loot id.
 If true, the loot item was found.
 
 <br>
-#### `public inline `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`GetCatalogItemByItemId`](#classURH__CatalogSubsystem_1a04efb2db20d80225684bee54173f365b)`(int32 ItemId) const` <a id="classURH__CatalogSubsystem_1a04efb2db20d80225684bee54173f365b"></a>
+#### `public inline `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`GetCatalogItemByItemId`](#classURH__CatalogSubsystem_1a644bf8911ea4f9ee33adef7b2fa9781c)`(const int32 & ItemId) const` <a id="classURH__CatalogSubsystem_1a644bf8911ea4f9ee33adef7b2fa9781c"></a>
 
 Gets a cached catalog item by its item id.
 
@@ -471,32 +477,32 @@ Checks if the ruleset can use the platform for the bucket.
 If true, the item can be used for the specified bucket.
 
 <br>
-#### `public inline const TMap< int32, `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` > `[`GetVendors`](#classURH__CatalogSubsystem_1a2d45fd8fbebb4de642cd0e40778141ad)`() const` <a id="classURH__CatalogSubsystem_1a2d45fd8fbebb4de642cd0e40778141ad"></a>
+#### `public inline const TMap< int32, `[`FRHAPI_Vendor`](models/RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#classURH__CatalogSubsystem_1a293846a858b5060aafe476fa87eb789e)`() const` <a id="classURH__CatalogSubsystem_1a293846a858b5060aafe476fa87eb789e"></a>
 
 Gets the cached vendors.
 
 <br>
-#### `public inline const TMap< int32, `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * > `[`GetCatalogItems`](#classURH__CatalogSubsystem_1a56d3cfd482b6b0f085c753b8d99c8006)`() const` <a id="classURH__CatalogSubsystem_1a56d3cfd482b6b0f085c753b8d99c8006"></a>
+#### `public inline const TMap< int32, `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * > & `[`GetCatalogItems`](#classURH__CatalogSubsystem_1af0b329e282e5ac99e915c85ad1359d25)`() const` <a id="classURH__CatalogSubsystem_1af0b329e282e5ac99e915c85ad1359d25"></a>
 
 Gets the cached catalog items.
 
 <br>
-#### `public inline const TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > `[`GetXpTables`](#classURH__CatalogSubsystem_1a8d75a8b6faa50f4c0a6a83d2d75e49e9)`() const` <a id="classURH__CatalogSubsystem_1a8d75a8b6faa50f4c0a6a83d2d75e49e9"></a>
+#### `public inline const TMap< int32, `[`FRHAPI_XpTable`](models/RHAPI_XpTable.md#structFRHAPI__XpTable)` > & `[`GetXpTables`](#classURH__CatalogSubsystem_1a990c701f7fd1004659e9cd0b15f29480)`() const` <a id="classURH__CatalogSubsystem_1a990c701f7fd1004659e9cd0b15f29480"></a>
 
 Gets the xp tables.
 
 <br>
-#### `public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > `[`GetInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1abc35729607a3037fc2d2a6720b7d3e43)`() const` <a id="classURH__CatalogSubsystem_1abc35729607a3037fc2d2a6720b7d3e43"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_InventoryBucketUseRuleSet`](models/RHAPI_InventoryBucketUseRuleSet.md#structFRHAPI__InventoryBucketUseRuleSet)` > & `[`GetInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1a2657824ade5d1b5c06292e83b62d15e5)`() const` <a id="classURH__CatalogSubsystem_1a2657824ade5d1b5c06292e83b62d15e5"></a>
 
 Gets the cached inventory bucket rule sets.
 
 <br>
-#### `public inline const TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > `[`GetPricePoints`](#classURH__CatalogSubsystem_1a12492d2ca8407fb2ea78c0d6ed16ada0)`() const` <a id="classURH__CatalogSubsystem_1a12492d2ca8407fb2ea78c0d6ed16ada0"></a>
+#### `public inline const TMap< FGuid, `[`FRHAPI_PricePoint`](models/RHAPI_PricePoint.md#structFRHAPI__PricePoint)` > & `[`GetPricePoints`](#classURH__CatalogSubsystem_1a0d8b46a9bb4e03b550fb96919281fe0f)`() const` <a id="classURH__CatalogSubsystem_1a0d8b46a9bb4e03b550fb96919281fe0f"></a>
 
 Gets the cached price points.
 
 <br>
-#### `public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a73b96021b09bf4d7e375b4bd32b6bc64)`() const` <a id="classURH__CatalogSubsystem_1a73b96021b09bf4d7e375b4bd32b6bc64"></a>
+#### `public inline const TMap< int32, `[`FRHAPI_TimeFrame`](models/RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > & `[`GetTimeFrames`](#classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc)`() const` <a id="classURH__CatalogSubsystem_1a7742813d09d119e22df4a4d71aab73cc"></a>
 
 Gets the cached time frames.
 
@@ -571,6 +577,16 @@ ETag of last GetCatalogTimeFramesAll call response.
 ETag of last GetCatalogInventoryBucketUseRuleSetsAll call response.
 
 <br>
+#### `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`PendingGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a72a9e161cf234e6843e9b601e7bd925e) <a id="classURH__CatalogSubsystem_1a72a9e161cf234e6843e9b601e7bd925e"></a>
+
+Array of GetCatalogItemCalls yet to be sent to the API layer.
+
+<br>
+#### `protected TMap< int32, TArray< FRH_CatalogCallBlock > > `[`SubmittedGetCatalogItemCalls`](#classURH__CatalogSubsystem_1a661262ecd1024e523d6ab788f8e5ce22) <a id="classURH__CatalogSubsystem_1a661262ecd1024e523d6ab788f8e5ce22"></a>
+
+Array of GetCatalogItemCalls yet being executed by the API layer at this time.
+
+<br>
 #### `protected void `[`GetCatalogVendorSingle`](#classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379)`(int32 VendorId)` <a id="classURH__CatalogSubsystem_1ac215132f09ff28de858ccaa71867e379"></a>
 
 Makes an API call for a single vendor Id.
@@ -621,14 +637,14 @@ Handles the response to a Get Catalog Xp All call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected virtual void `[`OnGetCatalogItemResponse`](#classURH__CatalogSubsystem_1a97648ec71df11fe0564c78c077241afa)`(const TGetCatalogItem::Response & Resp,int32 ItemId,FRH_CatalogCallBlock Delegate)` <a id="classURH__CatalogSubsystem_1a97648ec71df11fe0564c78c077241afa"></a>
+#### `protected virtual void `[`OnGetCatalogItemResponse`](#classURH__CatalogSubsystem_1a203b5ee176ba1f147306b32706c93b66)`(const TGetCatalogItem::Response & Resp,int32 ItemId)` <a id="classURH__CatalogSubsystem_1a203b5ee176ba1f147306b32706c93b66"></a>
 
 Handles the response to a Get Catalog Item call.
 
 #### Parameters
-* `Resp` Response given for the call 
+* `Resp` Response given for the call. 
 
-* `Delegate` Delegate passed in for original call to respond to when call completes.
+* `ItemId` The Item Id being requested.
 
 <br>
 #### `protected virtual void `[`OnGetCatalogInventoryBucketUseRuleSetsAllResponse`](#classURH__CatalogSubsystem_1aedf870cfb4469dab76c268bc520a0cc6)`(const TGetCatalogInventoryBucketUseRuleSetsAll::Response & Resp,FRH_CatalogCallBlock Delegate)` <a id="classURH__CatalogSubsystem_1aedf870cfb4469dab76c268bc520a0cc6"></a>
@@ -636,7 +652,7 @@ Handles the response to a Get Catalog Item call.
 Handles the response to a Get Catalog Inventory Bucked Use Rule Sets All call.
 
 #### Parameters
-* `Resp` Response given for the call 
+* `Resp` Response given for the call. 
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
@@ -646,7 +662,7 @@ Handles the response to a Get Catalog Inventory Bucked Use Rule Sets All call.
 Handles the response to a Get Catalog Price Points All call.
 
 #### Parameters
-* `Resp` Response given for the call 
+* `Resp` Response given for the call. 
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
@@ -661,7 +677,7 @@ Handles the response to a Get Catalog Time Frames All call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected void `[`ParseAllXpTables`](#classURH__CatalogSubsystem_1a2c1377438d82ebe24ec87eeb3b8beed7)`(`[`FRHAPI_XpTables`](models/RHAPI_XpTables.md#structFRHAPI__XpTables)` Content)` <a id="classURH__CatalogSubsystem_1a2c1377438d82ebe24ec87eeb3b8beed7"></a>
+#### `protected void `[`ParseAllXpTables`](#classURH__CatalogSubsystem_1a0da0440c219f11a65af436c93c6c7e76)`(const `[`FRHAPI_XpTables`](models/RHAPI_XpTables.md#structFRHAPI__XpTables)` & Content)` <a id="classURH__CatalogSubsystem_1a0da0440c219f11a65af436c93c6c7e76"></a>
 
 Parses Xp Tables response into the Xp Table Map.
 
@@ -669,7 +685,7 @@ Parses Xp Tables response into the Xp Table Map.
 * `Content` Xp Tables to parse.
 
 <br>
-#### `protected void `[`ParseAllInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1af675315c090604778da2ec390b8ad96d)`(`[`FRHAPI_InventoryBucketUseRuleSets`](models/RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` Content)` <a id="classURH__CatalogSubsystem_1af675315c090604778da2ec390b8ad96d"></a>
+#### `protected void `[`ParseAllInventoryBucketUseRuleSets`](#classURH__CatalogSubsystem_1ad4785e6bfefa75c2d71e15e9050bbd2e)`(const `[`FRHAPI_InventoryBucketUseRuleSets`](models/RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` & Content)` <a id="classURH__CatalogSubsystem_1ad4785e6bfefa75c2d71e15e9050bbd2e"></a>
 
 Parses Inventory Bucket Use Rule Sets response into the Inventory Bucket Use Ruleset Map.
 
@@ -677,7 +693,7 @@ Parses Inventory Bucket Use Rule Sets response into the Inventory Bucket Use Rul
 * `Content` Inventory Bucket Use Rule Sets to parse.
 
 <br>
-#### `protected `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`ParseCatalogItem`](#classURH__CatalogSubsystem_1a5f90d0a7c49ab8514260e1d1fc4a11aa)`(`[`FRHAPI_Item`](models/RHAPI_Item.md#structFRHAPI__Item)` CatalogItem,int32 ItemId)` <a id="classURH__CatalogSubsystem_1a5f90d0a7c49ab8514260e1d1fc4a11aa"></a>
+#### `protected `[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * `[`ParseCatalogItem`](#classURH__CatalogSubsystem_1a1b64044346794d4d883018023e6c0267)`(const `[`FRHAPI_Item`](models/RHAPI_Item.md#structFRHAPI__Item)` & CatalogItem,const int32 & ItemId)` <a id="classURH__CatalogSubsystem_1a1b64044346794d4d883018023e6c0267"></a>
 
 Parse a Catalog item into the class for it and stores it in the Catalog Items Map.
 
@@ -693,6 +709,21 @@ The Catalog Item as its class.
 #### `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__CatalogSubsystem_1a381093c63e6e9c4ed6b66bfe04b7901d)`()` <a id="classURH__CatalogSubsystem_1a381093c63e6e9c4ed6b66bfe04b7901d"></a>
 
 Initializes the subsystem with defaults for its cached data.
+
+<br>
+#### `protected virtual void `[`Tick`](#classURH__CatalogSubsystem_1a3516a7d39bcbf01f5d2706ea9afc1f28)`(float DeltaTime)` <a id="classURH__CatalogSubsystem_1a3516a7d39bcbf01f5d2706ea9afc1f28"></a>
+
+Kick off pending requests to the API layer.
+
+<br>
+#### `protected inline virtual bool `[`IsTickable`](#classURH__CatalogSubsystem_1af205f84045baf67b117220fec2015ca0)`() const` <a id="classURH__CatalogSubsystem_1af205f84045baf67b117220fec2015ca0"></a>
+
+Determine if there are pending requests.
+
+<br>
+#### `protected inline virtual TStatId `[`GetStatId`](#classURH__CatalogSubsystem_1ac27e9ac9430094c764f9e68580a21f5e)`() const` <a id="classURH__CatalogSubsystem_1ac27e9ac9430094c764f9e68580a21f5e"></a>
+
+Gets the catalog subsystem stat Id.
 
 <br>
 #### `typedef `[`TGetCatalogAll`](#classURH__CatalogSubsystem_1a1cf3a5efca0964238be8bde13cdc27f2) <a id="classURH__CatalogSubsystem_1a1cf3a5efca0964238be8bde13cdc27f2"></a>

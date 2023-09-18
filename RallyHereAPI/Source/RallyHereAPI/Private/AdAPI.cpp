@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FAdAPI::FAdAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Ad");
+    Name = FName(TEXT("Ad"));
 }
 
 FAdAPI::~FAdAPI() {}
@@ -88,14 +88,15 @@ FRequest_BeginNewSession::FRequest_BeginNewSession()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_BeginNewSession::GetSimplifiedPath() const
+FName FRequest_BeginNewSession::GetSimplifiedPath() const
 {
-    return FString(TEXT("/ad/v1/session"));
+    static FName Path = FName(TEXT("/ad/v1/session"));
+    return Path;
 }
 
 FString FRequest_BeginNewSession::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -269,14 +270,15 @@ FRequest_FindOpportunities::FRequest_FindOpportunities()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_FindOpportunities::GetSimplifiedPath() const
+FName FRequest_FindOpportunities::GetSimplifiedPath() const
 {
-    return FString(TEXT("/ad/v1/opportunity"));
+    static FName Path = FName(TEXT("/ad/v1/opportunity"));
+    return Path;
 }
 
 FString FRequest_FindOpportunities::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -450,14 +452,15 @@ FRequest_UnityAdWatched::FRequest_UnityAdWatched()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UnityAdWatched::GetSimplifiedPath() const
+FName FRequest_UnityAdWatched::GetSimplifiedPath() const
 {
-    return FString(TEXT("/ad/v1/unity/ad/watched"));
+    static FName Path = FName(TEXT("/ad/v1/unity/ad/watched"));
+    return Path;
 }
 
 FString FRequest_UnityAdWatched::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("productid=")) + ToUrlString(Productid));
     QueryParams.Add(FString(TEXT("sid=")) + ToUrlString(Sid));
@@ -585,14 +588,15 @@ FRequest_UnityMediationAdWatched::FRequest_UnityMediationAdWatched()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
+FName FRequest_UnityMediationAdWatched::GetSimplifiedPath() const
 {
-    return FString(TEXT("/ad/v1/unity/mediation/watched"));
+    static FName Path = FName(TEXT("/ad/v1/unity/mediation/watched"));
+    return Path;
 }
 
 FString FRequest_UnityMediationAdWatched::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("customized_data=")) + ToUrlString(CustomizedData));
     QueryParams.Add(FString(TEXT("userId=")) + ToUrlString(UserId));
@@ -721,9 +725,10 @@ FRequest_UpdateOpportunityById::FRequest_UpdateOpportunityById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateOpportunityById::GetSimplifiedPath() const
+FName FRequest_UpdateOpportunityById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/ad/v1/opportunity/{opportunity_id}"));
+    static FName Path = FName(TEXT("/ad/v1/opportunity/{opportunity_id}"));
+    return Path;
 }
 
 FString FRequest_UpdateOpportunityById::ComputePath() const

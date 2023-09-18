@@ -9,7 +9,6 @@
 
 #include "CoreMinimal.h"
 #include "RallyHereAPIBaseModel.h"
-#include "Tickable.h"
 #include "HttpModule.h"
 
 DECLARE_STATS_GROUP(TEXT("RallyHereAPI"), STATGROUP_RallyHereAPI, STATCAT_Advanced);
@@ -48,7 +47,7 @@ public:
 
 typedef TMap<int32, TArray<TSharedPtr<struct FRallyHereAPIHttpRequestData>, TInlineAllocator<10>>> HttpRequestMap;
 
-class RALLYHEREAPI_API FRallyHereAPIHttpRequester : public FTickableGameObject
+class RALLYHEREAPI_API FRallyHereAPIHttpRequester
 {
 public:
     FRallyHereAPIHttpRequester();
@@ -74,19 +73,18 @@ public:
     {
         return Singleton;
     }
-    
+
     void SetMaxSimultaneousRequests(int32 InNum) { MaxSimultaneousRequests = InNum; }
 
-    virtual void Tick(float DeltaTime) override;
-
     void EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData);
-
-    virtual bool IsTickable() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
-    virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(FRH_HttpRequests, STATGROUP_RallyHereAPI); }
 
     void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
 
 private:
+    void QueueNextRequestCall();
+    void TryExecuteNextRequest();
+    bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
+
     static FRallyHereAPIHttpRequester* Singleton;
 
     HttpRequestMap HttpRequestQueue;

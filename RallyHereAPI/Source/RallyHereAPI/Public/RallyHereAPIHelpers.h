@@ -11,6 +11,7 @@
 #include "Serialization/JsonSerializer.h"
 #include "Dom/JsonObject.h"
 #include "Misc/Base64.h"
+#include "Misc/TVariant.h"
 #include "PlatformHttp.h"
 #include "Containers/Set.h"
 #include "RallyHereAPIHelpers.generated.h"
@@ -232,6 +233,19 @@ inline FStringFormatArg ToStringFormatArg(bool Value)
 	return FStringFormatArg(ToString(Value));
 }
 
+template<typename T, typename U>
+inline FStringFormatArg ToStringFormatArg(const TVariant<T,U>& Value)
+{
+	if (Value.template IsType<T>())
+	{
+		return ToStringFormatArg(Value.template Get<T>());
+	}
+	else
+	{
+		return ToStringFormatArg(Value.template Get<U>());
+	}
+}
+
 inline FString ToString(const TArray<uint8>& Value)
 {
 	return Base64UrlEncode(Value);
@@ -365,7 +379,7 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FRHAPI_Model
 	Value.WriteJson(Writer);
 }
 
-template<typename T, typename std::enable_if<!std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
+template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const T& Value)
 {
 	Writer->WriteValue(Value);
@@ -404,6 +418,20 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const TMap<FString
 	}
 	Writer->WriteObjectEnd();
 }
+
+template<typename T, typename U>
+inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const TVariant<T, U>& Value)
+{
+	if (Value.template IsType<T>())
+	{
+		return WriteJsonValue(Writer, Value.template Get<T>());
+	}
+	else
+	{
+		return WriteJsonValue(Writer, Value.template Get<U>());
+	}
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -448,6 +476,39 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FDateTime& 
 	}
 	else
 		return false;
+}
+
+template<typename T, typename U>
+inline bool TryGetJsonValueTVariant(const TSharedPtr<FJsonObject>& JsonObject, TVariant<T, U>& Value)
+{
+	for (const auto& It : (*JsonObject).Values)
+	{
+		T TmpValue;
+		if (TryGetJsonValue(It.Value, TmpValue))
+		{
+			Value.template Set<T>(TmpValue);
+			return true;
+		}
+
+		U TmpValue2;
+		if (TryGetJsonValue(It.Value, TmpValue2))
+		{
+			Value.template Set<U>(TmpValue2);
+			return true;
+		}
+	}
+	return false;
+}
+
+template<typename T, typename U>
+inline bool TryGetJsonValueTVariant(const TSharedPtr<FJsonValue>& JsonValue, TVariant<T, U>& Value)
+{
+	const TSharedPtr<FJsonObject>* Object;
+	if (JsonValue->TryGetObject(Object))
+	{
+		return (TryGetJsonValueTVariant(*Object, Value));
+	}
+	return false;
 }
 
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FGuid& Value)
@@ -507,7 +568,19 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FRHAPI_Mode
 	return Value.FromJson(JsonValue);
 }
 
-template<typename T, typename std::enable_if<!std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
+template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
+inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, T& Value)
+{
+	return TryGetJsonValueTVariant(JsonObject, Value);
+}
+
+template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
+{
+	return TryGetJsonValueTVariant(JsonValue, Value);
+}
+
+template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<FRHAPI_Model, T>::value, int>::type = 0>
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
 {
 	T TmpValue;
@@ -599,6 +672,28 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, const FSt
 		return false;
 	}
 	return true; // Absence of optional value is not a parsing error
+}
+
+template<typename T, typename U>
+inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, const FString& Key, TVariant<T, U>& Value)
+{
+	for (const auto& It : JsonObject->Values)
+	{
+		T TmpValue;
+		if (TryGetJsonValue(It.Value, TmpValue))
+		{
+			Value.template Set<T>(TmpValue);
+			return true;
+		}
+
+		U TmpValue2;
+		if (TryGetJsonValue(It.Value, TmpValue2))
+		{
+			Value.template Set<U>(TmpValue2);
+			return true;
+		}
+	}
+	return false;
 }
 
 }

@@ -49,9 +49,13 @@ void FRHDTW_Config::Do()
 
 	if (ImGui::BeginTabItem("App Settings"))
 	{
-		ImGui::BeginChild("App Settings");
 		DoRhConfigTab(pRH_ConfigSubsystem);
-		ImGui::EndChild();
+		ImGui::EndTabItem();
+	}
+
+	if (ImGui::BeginTabItem("Time"))
+	{
+		DoRhTimeTab(pRH_ConfigSubsystem);
 		ImGui::EndTabItem();
 	}
 
@@ -63,7 +67,7 @@ void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 	if (ImGui::Button("Refresh"))
 	{
 		AppSettingsActionResult.Empty();
-		auto Delegate = FRH_GenericSuccessDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchAppSettings);
+		auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchAppSettings);
 		pRH_ConfigSubsystem->FetchAppSettings(Delegate);
 	}
 
@@ -78,7 +82,7 @@ void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 	
 	ImGui::Separator();
 	
-	if (ImGui::BeginTable("HotfixMapTable", 2, RH_TableFlagsPropSizing))
+	if (ImGui::BeginTable("AppSettingsMapTable", 2, RH_TableFlagsPropSizing))
 	{
 		// Header
 		ImGui::TableSetupColumn("Key");
@@ -98,7 +102,7 @@ void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 	}
 }
 
-void FRHDTW_Config::HandleFetchAppSettings(bool bSuccess)
+void FRHDTW_Config::HandleFetchAppSettings(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 {
 	if (bSuccess)
 	{
@@ -107,5 +111,56 @@ void FRHDTW_Config::HandleFetchAppSettings(bool bSuccess)
 	else
 	{
 		AppSettingsActionResult = FString::Printf(TEXT("Refresh App Settings failed"));
+	}
+}
+
+
+void FRHDTW_Config::DoRhTimeTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
+{
+	if (ImGui::Button("Refresh"))
+	{
+		AppSettingsActionResult.Empty();
+		auto Delegate = FRH_GenericSuccessWithErrorDelegate::CreateSP(SharedThis(this), &FRHDTW_Config::HandleFetchTime);
+		pRH_ConfigSubsystem->RefreshServerTimeCache(Delegate);
+	}
+
+	ImGui::Text("%s", TCHAR_TO_UTF8(*TimeActionResult));
+
+	ImGui::Separator();
+
+	const auto& ServerTimeCache = pRH_ConfigSubsystem->GetServerTimeCache();
+
+	FDateTime LocalTime = ServerTimeCache.GetLocalTime();
+	FDateTime ServerTime;
+	FTimespan TimeDrift;
+
+	bool bHasServerTime = ServerTimeCache.GetServerTime(ServerTime);
+	bool bHasTimeDrift = ServerTimeCache.GetServerTimeDrift(TimeDrift);
+
+	TOptional<FDateTime> ServerTimeOpt;
+	if (bHasServerTime)
+	{
+		ServerTimeOpt = ServerTime;
+	}
+	TOptional<FTimespan> TimeDriftOpt;
+	if (bHasTimeDrift)
+	{
+		TimeDriftOpt = TimeDrift;
+	}
+
+	ImGuiDisplayCopyableValue(TEXT("Local Time"), LocalTime, ECopyMode::KeyValue);
+	ImGuiDisplayCopyableValue(TEXT("Server Time"), ServerTimeOpt, ECopyMode::KeyValue);
+	ImGuiDisplayCopyableValue(TEXT("Time Drift"), TimeDriftOpt, ECopyMode::KeyValue);
+}
+
+void FRHDTW_Config::HandleFetchTime(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+{
+	if (bSuccess)
+	{
+		TimeActionResult = FString::Printf(TEXT("Refresh Time succeeded."));
+	}
+	else
+	{
+		TimeActionResult = FString::Printf(TEXT("Refresh Time failed"));
 	}
 }

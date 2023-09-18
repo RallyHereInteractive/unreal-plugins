@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_RankConfig`](#structFRHAPI__RankConfig) | 
+`struct `[`FRHAPI_RankConfig`](#structFRHAPI__RankConfig) | Configuration about a specific rank type.
 
 ## struct `FRHAPI_RankConfig` <a id="structFRHAPI__RankConfig"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_RankConfig
   : public FRHAPI_Model
 ```
+
+Configuration about a specific rank type.
 
 #### Summary
 

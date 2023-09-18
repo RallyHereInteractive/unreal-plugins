@@ -91,15 +91,17 @@ protected:
 
 	void DoSessionLookup()
 	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		// Read session data
 		RallyHereAPI::Traits_GetSessionById::Request Request;
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
-
-		if (SessionOwner.IsValid())
-		{
-			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
-		}
+		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
 
 		auto HttpRequest = RallyHereAPI::Traits_GetSessionById::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionLookupHelper::OnSessionLookup), TaskPriority);
 		if (!HttpRequest)
@@ -110,12 +112,17 @@ protected:
 
 	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
 	{
-		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+		if (!SessionOwner.IsValid())
 		{
-			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
-			RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
 
-			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+		if (Resp.IsSuccessful())
+		{
+			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
+			
+			CheckTemplateForSessionCache();
 		}
 		else if (Resp.GetHttpResponseCode() == (EHttpResponseCodes::NotModified))
 		{
@@ -128,40 +135,95 @@ protected:
 			RHSession = Cast<URH_JoinedSession>(RHSessionView);
 			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 		}
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound && Resp.GetJsonResponse().IsValid())
+		{
+			// this could be due to the API being down, or due to the session being missing, so check further
+			const TSharedPtr<FJsonObject>* JsonObject = nullptr;
+			FString ErrorCodeDesc;
+			if (Resp.GetJsonResponse()->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("error_code"), ErrorCodeDesc))
+			{
+				if (ErrorCodeDesc == TEXT("session_not_found")) // todo - const somewhere?
+				{
+					auto* ExistingSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+					if (ExistingSession != nullptr)
+					{
+						SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionNotFound, FColor::Purple);
+						ExistingSession->BLUEPRINT_OnSessionNotFoundDelegate.Broadcast(ExistingSession);
+						ExistingSession->OnSessionNotFoundDelegate.Broadcast(ExistingSession);
+					}
+					Failed(TEXT("Session Not Found"));
+					return;
+				}
+			}
+
+			Failed(TEXT("Lookup Failed"));
+		}
 		else
 		{
-			if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound && Resp.GetJsonResponse().IsValid())
-			{
-				// this could be due to the API being down, or due to the session being missing, so check further
-				const TSharedPtr<FJsonObject>* JsonObject = nullptr;
-				FString ErrorCodeDesc;
-				if (Resp.GetJsonResponse()->TryGetObject(JsonObject) && JsonObject != nullptr && JsonObject->Get()->TryGetStringField(TEXT("error_code"), ErrorCodeDesc))
-				{
-					if (ErrorCodeDesc == TEXT("session_not_found")) // todo - const somewhere?
-					{
-						auto* ExistingSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
-						if (ExistingSession != nullptr)
-						{
-							SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionNotFound, FColor::Purple);
-							ExistingSession->BLUEPRINT_OnSessionNotFoundDelegate.Broadcast(ExistingSession);
-							ExistingSession->OnSessionNotFoundDelegate.Broadcast(ExistingSession);
-						}
-						Failed(TEXT("Session Not Found"));
-						return;
-					}
-				}
-
-				Failed(TEXT("Lookup Failed"));
-			}
-			else
-			{
-				Failed(TEXT("Lookup Failed"));
-			}
+			Failed(TEXT("Lookup Failed"));
 		}
+	}
+
+	void CheckTemplateForSessionCache()
+	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		FRHAPI_SessionTemplate Template;
+		if (SessionOwner->GetTemplate(SessionCache.Data.Type, Template))
+		{
+			// template is already loaded, so go ahead with import
+			OnReadyForSessionImport();
+		}
+		else
+		{
+			RallyHereAPI::Traits_GetSessionTemplateByType::Request Request;
+			Request.AuthContext = GetAuthContext();
+			Request.SessionType = SessionCache.Data.Type;
+
+			auto HttpRequest = RallyHereAPI::Traits_GetSessionTemplateByType::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionTemplateByType::Delegate::CreateSP(this, &FRH_SessionLookupHelper::OnSessionTemplateLookup), TaskPriority);
+		}
+	}
+
+	void OnSessionTemplateLookup(const RallyHereAPI::Traits_GetSessionTemplateByType::Response& Resp)
+	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		if (Resp.IsSuccessful())
+		{
+			SessionOwner->ImportAPITemplate(Resp.Content);
+			OnReadyForSessionImport();
+		}
+		else
+		{
+			Failed(FString::Printf(TEXT("Failed to lookup session type %s for session %s"), *SessionCache.Data.Type, *SessionId));
+		}
+	}
+
+	void OnReadyForSessionImport()
+	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		SessionOwner->ImportAPISession(SessionCache);
+		RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+
+		Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 	}
 
 	FString SessionId;
 	TWeakObjectPtr<URH_JoinedSession> RHSession;
+	FRH_APISessionWithETag SessionCache;
 };
 
 
@@ -286,6 +348,12 @@ protected:
 
 	void QueryAllTemplates()
 	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		// Read template data
 		RallyHereAPI::Traits_GetAllSessionTemplates::Request Request;
 		Request.AuthContext = GetAuthContext();
@@ -350,6 +418,12 @@ protected:
 
 	void QueryAllSessions()
 	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		// Read session data
 		RallyHereAPI::Traits_GetPlayerSessionsSelf::Request Request;
 		Request.AuthContext = GetAuthContext();
@@ -366,7 +440,14 @@ protected:
 	void OnQueryAllSessions(const RallyHereAPI::Traits_GetPlayerSessionsSelf::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+		
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		if (Resp.IsSuccessful())
 		{
 			SessionIds.Empty();
 
@@ -437,6 +518,12 @@ protected:
 
 	void DoSessionLookup(const FString& SessionId)
 	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		if (!bPollAllSessions)
 		{
 			// if we are not polling all sessions, only poll new sessions
@@ -453,11 +540,7 @@ protected:
 		RallyHereAPI::FRequest_GetSessionById Request;
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
-
-		if (SessionOwner.IsValid())
-		{
-			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
-		}
+		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
 
 		LastSessionLookupId = SessionId;
 
@@ -471,6 +554,13 @@ protected:
 	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
 	{
 		HttpRequest = nullptr;
+
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		if (Resp.IsSuccessful())
 		{
 			// import the new session
@@ -494,6 +584,12 @@ protected:
 
 			RH_APIs::GetSessionsAPI().LeaveSessionByIdSelf(Request);
 		}
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::ServerError)
+		{
+			// we cannot not determine if the session is valid or not, and we have nothing to import.  Our ETag processing will prevent requerying that session as well (as it assumes we will have session objects querying themselves).
+			// therefore, clear our new ETag, so that we will do a full requery on the next cycle
+			NewAllSessionsETag.Reset();
+		}
 
 		// continue looking at sessions since failures on lookups are allowed.  This can happen if, for example, the session was removed between the initial poll and now (or if the session is bugged)
 		QueryNextSession();
@@ -501,6 +597,12 @@ protected:
 
 	void ReconcileSessionsWithOwner()
 	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		SessionOwner->ReconcileAPISessions(SessionIds, NewAllSessionsETag);
 
 		Completed(true);
@@ -601,6 +703,12 @@ public:
 	{
 		Started();
 
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		SessionId = InSessionId;
 
 		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
@@ -665,6 +773,7 @@ public:
 	virtual void Start(const ERHAPI_Platform& Platform, const FString& PlatformSessionIdStr)
 	{
 		Started();
+
 		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
 		{
 			const auto OSS = SessionOwner->GetOSS();
@@ -697,11 +806,10 @@ protected:
 			// set our new session id
 			SessionId = Resp.Content.SessionId;
 
-			// the response contains the full session, so import it into our owner
-			SessionOwner->ImportAPISession(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
-			RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+			// the response has the full session info, so set the cache and continue on to the template check
+			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
 
-			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+			CheckTemplateForSessionCache();
 		}
 		else
 		{

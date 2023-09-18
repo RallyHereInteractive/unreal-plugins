@@ -4,6 +4,7 @@
 #include "UObject/Object.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "RH_Common.h"
+#include "RH_Properties.h"
 #include "RH_CatalogSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "Misc/Optional.h"
@@ -72,7 +73,12 @@ public:
 	 * @param Delegate Callback if the poll is successful.
 	 * @return True if a call was made.
 	 */
-	bool RequestOrders(FRH_GenericSuccessBlock Delegate);
+	bool RequestOrders(FRH_GenericSuccessWithErrorBlock Delegate);
+	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
+	FORCEINLINE bool RequestOrders(FRH_GenericSuccessBlock Delegate)
+	{
+		return RequestOrders(RH_ConvertGenericSucessDelegateBlock(Delegate));
+	}
 	/**
 	 * @brief Id of the pending order.
 	 */
@@ -258,7 +264,12 @@ public:
 	 * @param Delegate Callback with the players orders.
 	 * @return True if the call was made.
 	 */
-	bool RequestOrders(FRH_GenericSuccessBlock Delegate);
+	bool RequestOrders(FRH_GenericSuccessWithErrorBlock Delegate);
+	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
+	FORCEINLINE bool RequestOrders(FRH_GenericSuccessBlock Delegate)
+	{
+		return RequestOrders(RH_ConvertGenericSucessDelegateBlock(Delegate));
+	}
 	/**
 	 * @brief List of delegates listening for order.
 	 */
@@ -296,12 +307,12 @@ public:
 	* @brief Gets the Loot Item the order is for.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry")
-	const FRHAPI_Loot GetLootItem() const { return LootItem; }
+	const FRHAPI_Loot& GetLootItem() const { return LootItem; }
 	/**
 	* @brief Gets the Loot Id of the loot item.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry")
-	int32 GetLootId() const { return LootId; }
+	const int32& GetLootId() const { return LootId; }
 	/**
 	* @brief Gets the amount of the loot item the order is for.
 	*/
@@ -316,7 +327,7 @@ public:
 	 * @brief Gets the item id of the item being used to pay for the order.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry")
-	int32 GetPriceItemId() const { return PriceItemId; }
+	const int32& GetPriceItemId() const { return PriceItemId; }
 	/**
 	 * @brief Gets the amount of the item being used for payment, this is verified to match the expected price.
 	 */
@@ -326,7 +337,7 @@ public:
 	 * @brief Gets the item id of a coupon item being used if one is being applied for an item discount.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem | Player Order Entry")
-	int32 GetCouponItemId() const { return CouponItemId; }
+	const int32& GetCouponItemId() const { return CouponItemId; }
 	/**
 	* @brief Adds custom data to the order entry.
 	* @param [in] Key The key for the custom data.
@@ -423,22 +434,22 @@ struct RALLYHEREINTEGRATION_API FRH_ItemInventory
 	/**
 	* @brief Unique Id of the inventory record.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	FGuid InventoryId;
 	/**
 	* @brief The ownership type of the record.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	ERHAPI_InventoryType InventoryType;
 	/**
 	* @brief The item id of the record.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	int32 ItemId;
 	/**
 	* @brief Amount of the record.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	int32 Count;
 	/**
 	* @brief If the record is a rental, when the rental expires.
@@ -447,17 +458,17 @@ struct RALLYHEREINTEGRATION_API FRH_ItemInventory
 	/**
 	* @brief The time that the record was first recorded.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	FDateTime Acquired;
 	/**
 	* @brief Custom data that is stored on the record.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	TMap<FString, FString> CustomData;
 	/**
 	* @brief The bucket that the inventory record is in.
 	*/
-	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Item Inventory")
+	UPROPERTY(Transient, EditDefaultsOnly, BlueprintReadOnly, Category = "Inventory Subsystem | Item Inventory")
 	ERHAPI_InventoryBucket Bucket;
 
 	/**
@@ -466,7 +477,7 @@ struct RALLYHEREINTEGRATION_API FRH_ItemInventory
 	FRH_ItemInventory() :
 		InventoryId(FGuid()),
 		InventoryType(ERHAPI_InventoryType::Persistent),
-		ItemId(0),
+		ItemId(int32()),
 		Count(0),
 		Acquired(FDateTime::MinValue()),
 		Bucket(ERHAPI_InventoryBucket::None)
@@ -509,7 +520,7 @@ struct RALLYHEREINTEGRATION_API FRH_ItemInventory
 	* @param [in] ItemIdOfInventory The Item Id for the record.
 	* @param [in] Inventory The inventory record from the API call.
 	*/
-	void Init(const int32 ItemIdOfInventory, const FRHAPI_InventoryRecord& Inventory)
+	void Init(const int32& ItemIdOfInventory, const FRHAPI_InventoryRecord& Inventory)
 	{
 		InventoryId = Inventory.InventoryId;
 		InventoryType = Inventory.Type;
@@ -717,28 +728,26 @@ public:
 	* @param [in] ItemId The id of the item requesting count of.
 	* @param [in] Delegate Callback with the count of the inventory item.
 	*/
-	void GetInventoryCount(int32 ItemId, const FRH_GetInventoryCountBlock& Delegate = FRH_GetInventoryCountBlock()) const;
+	void GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountBlock& Delegate = FRH_GetInventoryCountBlock()) const;
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory Count", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetInventoryCount(int32 ItemId, const FRH_GetInventoryCountDynamicDelegate& Delegate) { GetInventoryCount(ItemId, Delegate); }
-
+	void BLUEPRINT_GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountDynamicDelegate& Delegate) { GetInventoryCount(ItemId, Delegate); }
 	/**
 	* @brief Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
 	* @param [in] ItemId The id of the item requesting count of.
 	* @param [in] Delegate Callback with the state of the items ownership.
 	*/
-	void IsInventoryItemOwned(int32 ItemId, const FRH_GetInventoryStateBlock& Delegate = FRH_GetInventoryStateBlock()) const;
+	void IsInventoryItemOwned(const int32& ItemId, const FRH_GetInventoryStateBlock& Delegate = FRH_GetInventoryStateBlock()) const;
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Is Inventory Item Owned", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_IsInventoryItemOwned(int32 ItemId, const FRH_GetInventoryStateDynamicDelegate& Delegate) { IsInventoryItemOwned(ItemId, Delegate); }	
+	void BLUEPRINT_IsInventoryItemOwned(const int32& ItemId, const FRH_GetInventoryStateDynamicDelegate& Delegate) { IsInventoryItemOwned(ItemId, Delegate); }
 
 	/**
 	* @brief Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
 	* @param [in] ItemId The id of the item requesting count of.
 	* @param [in] Delegate Callback with the state of the items rented status.
 	*/
-	void IsInventoryItemRented(int32 ItemId, const FRH_GetInventoryStateBlock& Delegate = FRH_GetInventoryStateBlock()) const;
+	void IsInventoryItemRented(const int32& ItemId, const FRH_GetInventoryStateBlock& Delegate = FRH_GetInventoryStateBlock()) const;
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Is Inventory Item Rented", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_IsInventoryItemRented(int32 ItemId, const FRH_GetInventoryStateDynamicDelegate& Delegate) { IsInventoryItemRented(ItemId, Delegate); }
-
+	void BLUEPRINT_IsInventoryItemRented(const int32& ItemId, const FRH_GetInventoryStateDynamicDelegate& Delegate) { IsInventoryItemRented(ItemId, Delegate); }
 	/**
 	* @brief Gets the active inventory session for the player.
 	* @return The active inventory session.
@@ -750,7 +759,7 @@ public:
 	* @brief Gets the cached inventory for the player.
 	* @return Array of inventory records.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	TArray<FRH_ItemInventory> GetAllCachedInventory() const;
 	
 	/**
@@ -758,15 +767,15 @@ public:
 	* @param [in] ItemId The id of the item requesting inventory records for.
 	* @return Array of inventory records.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
-	TArray<FRH_ItemInventory> GetCachedInventoryForItem(const int32 ItemId) const;
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
+	TArray<FRH_ItemInventory> GetCachedInventoryForItem(const int32& ItemId) const;
 	
 	/**
 	* @brief Gets the cached inventory records for multiple item ids for the player.
 	* @param [in] ItemIds The ids of the item requesting inventory records for.
 	* @return Array of inventory records.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	TArray<FRH_ItemInventory> GetCachedInventoryForItems(const TArray<int32>& ItemIds) const;
 	
 	/**
@@ -774,7 +783,7 @@ public:
 	* @param [in] Type The type of inventory records being requested.
 	* @return Array of inventory records.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	TArray<FRH_ItemInventory> GetCachedInventoryForType(const ERHAPI_InventoryType& Type) const;
 	
 	/**
@@ -783,7 +792,7 @@ public:
 	* @param [in] Type The type of inventory records being requested.
 	* @return Array of inventory records.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	TArray<FRH_ItemInventory> GetCachedInventoryForItemsAndTypes(const TArray<int32>& ItemIds, const TArray<ERHAPI_InventoryType>& Types) const;
 	
 	/**
@@ -792,14 +801,14 @@ public:
 	* @param [out] Item The inventory record requested.
 	* @return If true, the inventory record was found.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	bool GetCachedInventoryForInventoryId(const FGuid& InventoryId, FRH_ItemInventory& Item) const;
 
 	/**
 	* @brief Gets all order results that have come in for the player.
 	* @return Array of order results.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Inventory Subsystem")
+	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	const TArray<FRHAPI_PlayerOrder>& GetOrderResults() const { return CachedOrderResults; }
 
 	/**
@@ -850,27 +859,46 @@ public:
 	* @param [in] OrderEntries Array of orders being requested
 	* @param [in] Delegate Callback delegate for the completion of the order request
 	*/
-	UE_DEPRECATED(5.0, "This function has been deprecated, use CreateNewPlayerOrder and set the FillType on the OrderEntries")
-	void CreatePlayerOrder(ERHAPI_PlayerOrderEntryType FillType, ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate = FRH_OrderResultBlock());
-	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Player Order Deprecated", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use CreateNewPlayerOrder and set the FillType on the OrderEntries"))
+	UE_DEPRECATED(5.0, "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries")
+	void CreatePlayerOrder(ERHAPI_PlayerOrderEntryType FillType, ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate = FRH_OrderResultBlock())
+	{
+		for (URH_PlayerOrderEntry* Entry : OrderEntries)
+		{
+			Entry->FillType = FillType;
+		}
+		CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate);
+	}
+	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create Player Order Deprecated", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries"))
 	void BLUEPRINT_CreatePlayerOrder(ERHAPI_PlayerOrderEntryType FillType, ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate)
 	{
 		for (URH_PlayerOrderEntry* Entry : OrderEntries)
 		{
 			Entry->FillType = FillType;
 		}
-		CreateNewPlayerOrder(OrderSource, OrderEntries, Delegate);
+		CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate);
 	}
 
 	/**
-	* @brief Creates an order for the player, used for purchasing and other loot related actions
-	* @param [in] OrderSource Where the order is being created from
-	* @param [in] OrderEntries Array of orders being requested
-	* @param [in] Delegate Callback delegate for the completion of the order request
+	* @brief Creates an order for the player, used for purchasing and other loot related actions.
+	* @param [in] OrderSource Where the order is being created from.
+	* @param [in] OrderEntries Array of orders being requested.
+	* @param [in] Delegate Callback delegate for the completion of the order request.
 	*/
-	void CreateNewPlayerOrder(ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate = FRH_OrderResultBlock());
+	UE_DEPRECATED(5.0, "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries")
+	void CreateNewPlayerOrder(ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate = FRH_OrderResultBlock()) { CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create New Player Order Deprecated", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use CreateNewPlayerOrder and set IsTransaction, as well as the FillType on the OrderEntries"))
+	void BLUEPRINT_CreateNewPlayerOrder(ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate) { CreateNewPlayerOrder(OrderSource, false, OrderEntries, Delegate); }
+
+	/**
+	* @brief Creates an order for the player, used for purchasing and other loot related actions.
+	* @param [in] OrderSource Where the order is being created from.
+	* @param [in] IsTransaction If true, all orders must succeed for any to be completed.
+	* @param [in] OrderEntries Array of orders being requested.
+	* @param [in] Delegate Callback delegate for the completion of the order request.
+	*/
+	void CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool IsTransaction, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate = FRH_OrderResultBlock());
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Create New Player Order", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_CreateNewPlayerOrder(ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate) { CreateNewPlayerOrder(OrderSource, OrderEntries, Delegate); }
+	void BLUEPRINT_CreateNewPlayerOrder2(ERHAPI_Source OrderSource, bool IsTransaction, TArray<URH_PlayerOrderEntry*> OrderEntries, const FRH_OrderResultDynamicDelegate& Delegate) { CreateNewPlayerOrder(OrderSource, IsTransaction, OrderEntries, Delegate); }
 
 	/**
 	* @brief Creates an order for the player that redeems a promotion code.
@@ -989,7 +1017,7 @@ public:
 	* @brief Delegate to listen to changes to the players cached inventory.
 	*/
 	FRH_InventoryUpdatedDelegate OnInventoryCacheUpdated;
-	UPROPERTY(BlueprintAssignable, Category = "Inventory Subsystem", meta = (DisplayName = "Bind On Inventory Cache Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Inventory Subsystem", meta = (DisplayName = "Bind On Inventory Cache Updated"))
 	FRH_InventoryUpdatedDynamicDelegate OnInventoryCacheUpdatedBP;
 
 protected:

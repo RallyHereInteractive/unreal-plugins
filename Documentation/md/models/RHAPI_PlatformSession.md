@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlatformSession`](#structFRHAPI__PlatformSession) | 
+`struct `[`FRHAPI_PlatformSession`](#structFRHAPI__PlatformSession) | A platform session resource in a RallyHere session.
 
 ## struct `FRHAPI_PlatformSession` <a id="structFRHAPI__PlatformSession"></a>
 
@@ -13,6 +13,8 @@ struct FRHAPI_PlatformSession
   : public FRHAPI_Model
 ```
 
+A platform session resource in a RallyHere session.
+
 #### Summary
 
  Members                        | Descriptions                                
@@ -20,7 +22,7 @@ struct FRHAPI_PlatformSession
 `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PlatformSession_1a2bae055e3f10ff588cd9f272f218503b) | Platform that this session is for.
 `public FString `[`PlatformSessionType`](#structFRHAPI__PlatformSession_1a6bb67ef7a058965a657d6c1a00853bad) | Platform-Specific Identifier for the Platform's template.
 `public FString `[`PlatformSessionIdBase64`](#structFRHAPI__PlatformSession_1a1035f971a914bc5547232d34e673898c) | Platform session's unique identifier.
-`public TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > `[`Players`](#structFRHAPI__PlatformSession_1a457c7e431c6f6dc18bd781d09ba5d5fb) | Players in the platform session.
+`public TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > `[`Players`](#structFRHAPI__PlatformSession_1a457c7e431c6f6dc18bd781d09ba5d5fb) | DEPRECATED. PlatformSessions no longer keep tracking of players. Players in the platform session.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSession_1a9892c6b70fc4a33cb19ec43e5ea10d0a) | Product defined custom data fields about the platform session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlatformSession_1a1868b2138d2cf1feca6c1f300a104cea) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformSession_1a6ad407802c93e51ba4ad6b2ea8b90f26)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -65,7 +67,7 @@ Platform session's unique identifier.
 <br>
 #### `public TArray< `[`FRHAPI_PlatformSessionPlayer`](RHAPI_PlatformSessionPlayer.md#structFRHAPI__PlatformSessionPlayer)` > `[`Players`](#structFRHAPI__PlatformSession_1a457c7e431c6f6dc18bd781d09ba5d5fb) <a id="structFRHAPI__PlatformSession_1a457c7e431c6f6dc18bd781d09ba5d5fb"></a>
 
-Players in the platform session.
+DEPRECATED. PlatformSessions no longer keep tracking of players. Players in the platform session.
 
 <br>
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlatformSession_1a9892c6b70fc4a33cb19ec43e5ea10d0a) <a id="structFRHAPI__PlatformSession_1a9892c6b70fc4a33cb19ec43e5ea10d0a"></a>

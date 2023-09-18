@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerRankUpdateResponse`](#structFRHAPI__PlayerRankUpdateResponse) | 
+`struct `[`FRHAPI_PlayerRankUpdateResponse`](#structFRHAPI__PlayerRankUpdateResponse) | Response to successfully updating players&#39; ranks.
 
 ## struct `FRHAPI_PlayerRankUpdateResponse` <a id="structFRHAPI__PlayerRankUpdateResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_PlayerRankUpdateResponse
   : public FRHAPI_Model
 ```
+
+Response to successfully updating players&#39; ranks.
 
 #### Summary
 

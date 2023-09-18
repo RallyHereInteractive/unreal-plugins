@@ -170,7 +170,7 @@ Processor class used to make entitlment process calls.
 `protected TArray< FPurchaseReceipt > `[`Receipts`](#classFRH__EntitlementProcessor_1a8ea9a176b97a2e6588623c1da581ace3) | Array of reciepts from the online subsystem entitlment check.
 `protected FHttpRequestPtr `[`HttpRequest`](#classFRH__EntitlementProcessor_1a0875d568dc89e3e6bd17a5810b5dbf74) | Http Request for processing entitlements with the core.
 `protected inline void `[`QueryEntitlements`](#classFRH__EntitlementProcessor_1a14594e7f19296138edf1f3a60b4db5d5)`()` | Queries entitlements from the online subsystem.
-`protected inline void `[`QueryEntitlementsComplete`](#classFRH__EntitlementProcessor_1a8f0aaad559a3865a7931f03934df4c36)`(const FOnlineError & Result,IOnlineSubsystem * ProvidedOSS,FString AuthToken)` | Response from the online subsystem query entitlements call.
+`protected inline void `[`QueryEntitlementsComplete`](#classFRH__EntitlementProcessor_1a737af4be11827f1273e85f34cda32782)`(const FOnlineError & Result,IOnlineSubsystem * ProvidedOSS)` | Response from the online subsystem query entitlements call.
 `protected inline void `[`ValidateEntitlementReceipts`](#classFRH__EntitlementProcessor_1a48daa7a8dba548f2a76a045cf41f931b)`()` | Validates the entitlement receipts if needed by the platform.
 `protected inline void `[`OnReceiptValidationComplete`](#classFRH__EntitlementProcessor_1afb74c96dc7449b0f1cba41d37ce3bc95)`(const FOnlineError & Result,const FString & ValidationInfo)` | Response from the online subsystem validate entitlements call.
 `protected inline void `[`ProcessPlatformInventory`](#classFRH__EntitlementProcessor_1a6d7cf63dfeed08d563941c1b7eda9341)`()` | Processes the platform inventory and stores as cached responses.
@@ -297,16 +297,14 @@ Http Request for processing entitlements with the core.
 Queries entitlements from the online subsystem.
 
 <br>
-#### `protected inline void `[`QueryEntitlementsComplete`](#classFRH__EntitlementProcessor_1a8f0aaad559a3865a7931f03934df4c36)`(const FOnlineError & Result,IOnlineSubsystem * ProvidedOSS,FString AuthToken)` <a id="classFRH__EntitlementProcessor_1a8f0aaad559a3865a7931f03934df4c36"></a>
+#### `protected inline void `[`QueryEntitlementsComplete`](#classFRH__EntitlementProcessor_1a737af4be11827f1273e85f34cda32782)`(const FOnlineError & Result,IOnlineSubsystem * ProvidedOSS)` <a id="classFRH__EntitlementProcessor_1a737af4be11827f1273e85f34cda32782"></a>
 
 Response from the online subsystem query entitlements call.
 
 #### Parameters
 * `Result` The result of the query. 
 
-* `ProvidedOSS` The OSS that provided the result. 
-
-* `AuthToken` The auth token of entitlement subsystems owner.
+* `ProvidedOSS` The OSS that provided the result.
 
 <br>
 #### `protected inline void `[`ValidateEntitlementReceipts`](#classFRH__EntitlementProcessor_1a48daa7a8dba548f2a76a045cf41f931b)`()` <a id="classFRH__EntitlementProcessor_1a48daa7a8dba548f2a76a045cf41f931b"></a>

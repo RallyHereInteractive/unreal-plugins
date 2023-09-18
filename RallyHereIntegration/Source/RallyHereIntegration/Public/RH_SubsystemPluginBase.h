@@ -53,7 +53,12 @@ public:
 	/**
 	 * @brief Gets the Local Player Subsystem.
 	 */
-	URH_LocalPlayerSubsystem* GetLocalPlayerSubsystem() const;
+	virtual URH_LocalPlayerSubsystem* GetLocalPlayerSubsystem() const;
+	UFUNCTION(BlueprintPure, Category = "RallyHere|GameInstanceSubsystem")
+	/**
+	* @brief Get the Game Instance Subsystem.
+	*/
+	virtual URH_GameInstanceSubsystem* GetGameInstanceSubsystem() const;
 	/**
 	 * @brief Base handling when the local user changes, override to provide functionality
 	 */
@@ -82,7 +87,33 @@ public:
 	/**
 	 * @brief Get the Game Instance Subsystem.
 	 */
-	URH_GameInstanceSubsystem* GetGameInstanceSubsystem() const;
+	virtual URH_GameInstanceSubsystem* GetGameInstanceSubsystem() const;
+};
+
+
+/**
+ * @brief A plugin that can exist on the game instance as a global cache, or optionally on the local player as a sandboxed plugin
+ */
+UCLASS(BlueprintType, Abstract)
+class RALLYHEREINTEGRATION_API URH_SandboxedSubsystemPlugin : public URH_GameInstanceSubsystemPlugin
+{
+	GENERATED_BODY()
+public:
+	/**
+	 * @brief Gets the game instance Auth Context.
+	 */
+	virtual FAuthContextPtr GetAuthContext() const;
+	/**
+	* @brief Get the Game Instance Subsystem.
+	*/
+	virtual URH_GameInstanceSubsystem* GetGameInstanceSubsystem() const;
+
+protected:
+	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
+	/**
+	* @brief Gets the Local Player Subsystem.
+	*/
+	virtual URH_LocalPlayerSubsystem* GetLocalPlayerSubsystem() const;
 };
 
 /** @} */

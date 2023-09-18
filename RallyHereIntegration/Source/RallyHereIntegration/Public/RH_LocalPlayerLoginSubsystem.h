@@ -109,7 +109,7 @@ RALLYHEREINTEGRATION_API bool OSSCannotRelogin(FName OSSName);
 /** @ingroup LocalPlayer
  * @brief Struct for the login results.
  */
-USTRUCT()
+USTRUCT(BlueprintType)
 struct RALLYHEREINTEGRATION_API FRH_LoginResult
 {
     GENERATED_BODY()
@@ -153,6 +153,8 @@ public:
 
 DECLARE_DELEGATE_OneParam(FRH_OnLoginComplete, const FRH_LoginResult&);
 DECLARE_DELEGATE_TwoParams(FRH_OnProfileSelectionUIClosed, TSharedPtr<const FUniqueNetId>, const FOnlineError&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnLoginCompleteMulticast, const FRH_LoginResult&);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnLoginCompleteDynamicMulticast, const FRH_LoginResult&, Result);
 
 /** @ingroup LocalPlayer
  *  @{
@@ -183,7 +185,7 @@ public:
     void SubmitAutoLogin(bool bAcceptEULA = false,
                          bool bAcceptTOS = false,
                          bool bAcceptPP = false,
-                         FRH_OnLoginComplete OnLoginComplete = FRH_OnLoginComplete());
+                         FRH_OnLoginComplete OnLoginCompleteDelegate = FRH_OnLoginComplete());
 
     /**
       * @brief Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials,
@@ -197,8 +199,18 @@ public:
                      bool bAcceptEULA = false,
                      bool bAcceptTOS = false,
                      bool bAcceptPP = false,
-                     FRH_OnLoginComplete OnLoginComplete = FRH_OnLoginComplete());
+                     FRH_OnLoginComplete OnLoginCompleteDelegate = FRH_OnLoginComplete());
 
+	/**
+	 * @brief Multicast delegate that gets broadcasted on login complete.
+	 */
+	FRH_OnLoginCompleteMulticast OnLoginComplete;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted on login complete.
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Login")
+	FRH_OnLoginCompleteDynamicMulticast BLUEPRINT_OnLoginComplete;
 
     /**
      * @brief Requests a logout on the server clearing the players auth credentials.

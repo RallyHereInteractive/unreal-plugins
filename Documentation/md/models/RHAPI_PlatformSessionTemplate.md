@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlatformSessionTemplate`](#structFRHAPI__PlatformSessionTemplate) | 
+`struct `[`FRHAPI_PlatformSessionTemplate`](#structFRHAPI__PlatformSessionTemplate) | Template used to create new platform sessions for a specific type of platform. Configurable in the developer portal.
 
 ## struct `FRHAPI_PlatformSessionTemplate` <a id="structFRHAPI__PlatformSessionTemplate"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_PlatformSessionTemplate
   : public FRHAPI_Model
 ```
+
+Template used to create new platform sessions for a specific type of platform. Configurable in the developer portal.
 
 #### Summary
 

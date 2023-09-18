@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_MatchCreateResponse`](#structFRHAPI__MatchCreateResponse) | 
+`struct `[`FRHAPI_MatchCreateResponse`](#structFRHAPI__MatchCreateResponse) | The response to successfully creating a match on a session.
 
 ## struct `FRHAPI_MatchCreateResponse` <a id="structFRHAPI__MatchCreateResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_MatchCreateResponse
   : public FRHAPI_Model
 ```
+
+The response to successfully creating a match on a session.
 
 #### Summary
 

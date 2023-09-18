@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FPresenceAdminAPI::FPresenceAdminAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("PresenceAdmin");
+    Name = FName(TEXT("PresenceAdmin"));
 }
 
 FPresenceAdminAPI::~FPresenceAdminAPI() {}
@@ -88,14 +88,15 @@ FRequest_AdminGetKnownPlatforms::FRequest_AdminGetKnownPlatforms()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetKnownPlatforms::GetSimplifiedPath() const
+FName FRequest_AdminGetKnownPlatforms::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/platforms"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/platforms"));
+    return Path;
 }
 
 FString FRequest_AdminGetKnownPlatforms::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(UseCache.IsSet())
     {
@@ -237,9 +238,10 @@ FRequest_AdminGetPlayerPresence::FRequest_AdminGetPlayerPresence()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetPlayerPresence::GetSimplifiedPath() const
+FName FRequest_AdminGetPlayerPresence::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/player/uuid/{player_uuid}/presence"));
+    static FName Path = FName(TEXT("/presence/v1/admin/player/uuid/{player_uuid}/presence"));
+    return Path;
 }
 
 FString FRequest_AdminGetPlayerPresence::ComputePath() const
@@ -394,9 +396,10 @@ FRequest_AdminGetPlayerPresenceId::FRequest_AdminGetPlayerPresenceId()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetPlayerPresenceId::GetSimplifiedPath() const
+FName FRequest_AdminGetPlayerPresenceId::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/player/id/{player_id}/presence"));
+    static FName Path = FName(TEXT("/presence/v1/admin/player/id/{player_id}/presence"));
+    return Path;
 }
 
 FString FRequest_AdminGetPlayerPresenceId::ComputePath() const
@@ -551,14 +554,15 @@ FRequest_AdminGetRequestingCcu::FRequest_AdminGetRequestingCcu()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetRequestingCcu::GetSimplifiedPath() const
+FName FRequest_AdminGetRequestingCcu::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/requesting/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/requesting/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetRequestingCcu::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -702,14 +706,15 @@ FRequest_AdminGetRequestingCcuAllPlatformCombined::FRequest_AdminGetRequestingCc
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetRequestingCcuAllPlatformCombined::GetSimplifiedPath() const
+FName FRequest_AdminGetRequestingCcuAllPlatformCombined::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/requesting/allplatforms/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/requesting/allplatforms/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetRequestingCcuAllPlatformCombined::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -853,14 +858,15 @@ FRequest_AdminGetRequestingCcuAllPlatformIndividual::FRequest_AdminGetRequesting
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetRequestingCcuAllPlatformIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetRequestingCcuAllPlatformIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/requesting/allplatforms/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/requesting/allplatforms/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetRequestingCcuAllPlatformIndividual::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -1004,14 +1010,15 @@ FRequest_AdminGetRequestingCcuIndividual::FRequest_AdminGetRequestingCcuIndividu
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetRequestingCcuIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetRequestingCcuIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/requesting/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/requesting/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetRequestingCcuIndividual::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -1155,9 +1162,10 @@ FRequest_AdminGetRequestingCcuPlatformCombined::FRequest_AdminGetRequestingCcuPl
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetRequestingCcuPlatformCombined::GetSimplifiedPath() const
+FName FRequest_AdminGetRequestingCcuPlatformCombined::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/requesting/platform/{platform}/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/requesting/platform/{platform}/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetRequestingCcuPlatformCombined::ComputePath() const
@@ -1311,9 +1319,10 @@ FRequest_AdminGetRequestingCcuPlatformIndividual::FRequest_AdminGetRequestingCcu
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetRequestingCcuPlatformIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetRequestingCcuPlatformIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/requesting/platform/{platform}/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/requesting/platform/{platform}/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetRequestingCcuPlatformIndividual::ComputePath() const
@@ -1467,14 +1476,15 @@ FRequest_AdminGetTotalCcu::FRequest_AdminGetTotalCcu()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetTotalCcu::GetSimplifiedPath() const
+FName FRequest_AdminGetTotalCcu::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/total/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/total/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetTotalCcu::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -1618,14 +1628,15 @@ FRequest_AdminGetTotalCcuAllPlatformCombined::FRequest_AdminGetTotalCcuAllPlatfo
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetTotalCcuAllPlatformCombined::GetSimplifiedPath() const
+FName FRequest_AdminGetTotalCcuAllPlatformCombined::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/total/allplatforms/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/total/allplatforms/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetTotalCcuAllPlatformCombined::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -1769,14 +1780,15 @@ FRequest_AdminGetTotalCcuAllPlatformIndividual::FRequest_AdminGetTotalCcuAllPlat
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetTotalCcuAllPlatformIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetTotalCcuAllPlatformIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/total/allplatforms/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/total/allplatforms/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetTotalCcuAllPlatformIndividual::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -1920,14 +1932,15 @@ FRequest_AdminGetTotalCcuIndividual::FRequest_AdminGetTotalCcuIndividual()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetTotalCcuIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetTotalCcuIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/total/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/total/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetTotalCcuIndividual::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -2071,9 +2084,10 @@ FRequest_AdminGetTotalCcuPlatformCombined::FRequest_AdminGetTotalCcuPlatformComb
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetTotalCcuPlatformCombined::GetSimplifiedPath() const
+FName FRequest_AdminGetTotalCcuPlatformCombined::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/total/platform/{platform}/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/total/platform/{platform}/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetTotalCcuPlatformCombined::ComputePath() const
@@ -2227,9 +2241,10 @@ FRequest_AdminGetTotalCcuPlatformIndividual::FRequest_AdminGetTotalCcuPlatformIn
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetTotalCcuPlatformIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetTotalCcuPlatformIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/total/platform/{platform}/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/total/platform/{platform}/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetTotalCcuPlatformIndividual::ComputePath() const
@@ -2383,14 +2398,15 @@ FRequest_AdminGetUpdatingCcu::FRequest_AdminGetUpdatingCcu()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetUpdatingCcu::GetSimplifiedPath() const
+FName FRequest_AdminGetUpdatingCcu::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/updating/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/updating/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetUpdatingCcu::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -2534,14 +2550,15 @@ FRequest_AdminGetUpdatingCcuAllPlatformCombined::FRequest_AdminGetUpdatingCcuAll
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetUpdatingCcuAllPlatformCombined::GetSimplifiedPath() const
+FName FRequest_AdminGetUpdatingCcuAllPlatformCombined::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/updating/allplatforms/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/updating/allplatforms/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetUpdatingCcuAllPlatformCombined::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -2685,14 +2702,15 @@ FRequest_AdminGetUpdatingCcuAllPlatformIndividual::FRequest_AdminGetUpdatingCcuA
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetUpdatingCcuAllPlatformIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetUpdatingCcuAllPlatformIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/updating/allplatforms/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/updating/allplatforms/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetUpdatingCcuAllPlatformIndividual::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -2836,14 +2854,15 @@ FRequest_AdminGetUpdatingCcuIndividual::FRequest_AdminGetUpdatingCcuIndividual()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetUpdatingCcuIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetUpdatingCcuIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/updating/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/updating/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetUpdatingCcuIndividual::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("begin=")) + ToUrlString(Begin));
     QueryParams.Add(FString(TEXT("end=")) + ToUrlString(End));
@@ -2987,9 +3006,10 @@ FRequest_AdminGetUpdatingCcuPlatformCombined::FRequest_AdminGetUpdatingCcuPlatfo
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetUpdatingCcuPlatformCombined::GetSimplifiedPath() const
+FName FRequest_AdminGetUpdatingCcuPlatformCombined::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/updating/platform/{platform}/combined"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/updating/platform/{platform}/combined"));
+    return Path;
 }
 
 FString FRequest_AdminGetUpdatingCcuPlatformCombined::ComputePath() const
@@ -3143,9 +3163,10 @@ FRequest_AdminGetUpdatingCcuPlatformIndividual::FRequest_AdminGetUpdatingCcuPlat
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminGetUpdatingCcuPlatformIndividual::GetSimplifiedPath() const
+FName FRequest_AdminGetUpdatingCcuPlatformIndividual::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/ccu/updating/platform/{platform}/individual"));
+    static FName Path = FName(TEXT("/presence/v1/admin/ccu/updating/platform/{platform}/individual"));
+    return Path;
 }
 
 FString FRequest_AdminGetUpdatingCcuPlatformIndividual::ComputePath() const
@@ -3299,9 +3320,10 @@ FRequest_AdminUpdatePlayerLastSeen::FRequest_AdminUpdatePlayerLastSeen()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminUpdatePlayerLastSeen::GetSimplifiedPath() const
+FName FRequest_AdminUpdatePlayerLastSeen::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/player/uuid/{player_uuid}/last_seen"));
+    static FName Path = FName(TEXT("/presence/v1/admin/player/uuid/{player_uuid}/last_seen"));
+    return Path;
 }
 
 FString FRequest_AdminUpdatePlayerLastSeen::ComputePath() const
@@ -3487,9 +3509,10 @@ FRequest_AdminUpdatePlayerLastSeenId::FRequest_AdminUpdatePlayerLastSeenId()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AdminUpdatePlayerLastSeenId::GetSimplifiedPath() const
+FName FRequest_AdminUpdatePlayerLastSeenId::GetSimplifiedPath() const
 {
-    return FString(TEXT("/presence/v1/admin/player/id/{player_id}/last_seen"));
+    static FName Path = FName(TEXT("/presence/v1/admin/player/id/{player_id}/last_seen"));
+    return Path;
 }
 
 FString FRequest_AdminUpdatePlayerLastSeenId::ComputePath() const

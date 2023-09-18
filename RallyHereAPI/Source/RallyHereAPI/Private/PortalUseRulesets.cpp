@@ -22,6 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_PortalUseRulesets::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
     if (Rulesets_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("rulesets"));
@@ -43,6 +48,12 @@ bool FRHAPI_PortalUseRulesets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonRulesetsField = (*Object)->TryGetField(TEXT("rulesets"));
     if (JsonRulesetsField.IsValid() && !JsonRulesetsField->IsNull())
     {

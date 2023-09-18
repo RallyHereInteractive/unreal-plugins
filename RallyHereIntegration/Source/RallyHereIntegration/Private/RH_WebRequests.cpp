@@ -1,27 +1,15 @@
 
 #include "RH_WebRequests.h"
 #include "RallyHereIntegrationModule.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_ConfigSubsystem.h"
+#include "RH_Diagnostics.h"
 
 #include "Misc/App.h"
 #include "Misc/FileHelper.h"
 #include "Engine/Engine.h"
 #include "Misc/DateTime.h"
 #include "HAL/FileManager.h"
-
-static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHLogWebRequests(
-	TEXT("rh.logWebRequests"),
-	TEXT("Logs Web Requests to a file, uses WebRequests.json if no file is provided"),
-	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{
-			if (!FRallyHereIntegrationModule::IsAvailable())
-			{
-				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
-				return;
-			}
-
-			FString File = (Args.Num() > 0) ? Args[0] :"WebRequests.json";
-			FRallyHereIntegrationModule::Get().GetWebRequestTracker()->LogTrackedWebRequestsToFile(File);
-		}));
 
 namespace
 {
@@ -53,7 +41,7 @@ namespace
 	{
 		static TArray<FString> StandardFields = { TEXT("Authorization") };
 		static TArray<FString> LoginFields = StandardFields;
-		if (RequestMetadata.SimplifiedPath.Contains(TEXT("/login")))
+		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")))
 		{
 			return LoginFields;
 		}
@@ -64,7 +52,7 @@ namespace
 	{
 		static TArray<FString> StandardFields;
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
-		if (RequestMetadata.SimplifiedPath.Contains(TEXT("/login")))
+		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")))
 		{
 			return LoginFields;
 		}
@@ -171,9 +159,9 @@ void URH_WebRequests::Uninitialize()
 	APIs = nullptr;
 }
 
-const TArray<FString> URH_WebRequests::GetAPINames() const
+const TArray<FName> URH_WebRequests::GetAPINames() const
 {
-	TArray<FString> Results;
+	TArray<FName> Results;
 	if (APIs != nullptr)
 	{
 		for (const auto* API : APIs->GetAllAPIs())
@@ -217,39 +205,7 @@ void URH_WebRequests::SetLogAllWebRequests(bool bValue)
 	}
 }
 
-bool URH_WebRequests::GetTrackAllWebRequests() const
-{
-	if (APIs != nullptr)
-	{
-		for (const auto* API : APIs->GetAllAPIs())
-		{
-			if (API != nullptr)
-			{
-				if (!GetTrackWebRequests(API->GetName()))
-				{
-					return false;
-				}
-			}
-		}
-	}
-
-	return true;
-}
-void URH_WebRequests::SetTrackAllWebRequests(bool bValue)
-{
-	if (APIs != nullptr)
-	{
-		for (const auto* API : APIs->GetAllAPIs())
-		{
-			if (API != nullptr)
-			{
-				SetTrackWebRequests(API->GetName(), bValue);
-			}
-		}
-	}
-}
-
-const TArray<TSharedPtr<FRH_WebRequest>> URH_WebRequests::GetTrackedRequests() const
+const TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>& URH_WebRequests::GetTrackedRequests() const
 {
 	return TrackedRequests;
 }
@@ -267,17 +223,19 @@ void URH_WebRequests::OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& 
 {
 	OnWebRequestStarted_Log(RequestMetadata, HttpRequest, API);
 	OnWebRequestStarted_Track(RequestMetadata, HttpRequest, API);
+	OnWebRequestStarted_RecordTimestamp(RequestMetadata, HttpRequest, API);
 }
 
 void URH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
 {
-	bool bShouldTrack = API != nullptr && GetTrackWebRequests(API->GetName());
-	if (!bShouldTrack)
+	if (API == nullptr)
 	{
 		return;
 	}
 
 	auto Request = MakeShared<FRH_WebRequest>();
+	Request->APIName = API->GetName();
+	Request->Timestamp = FDateTime::Now();
 	Request->Metadata = RequestMetadata;
 	Request->Verb = HttpRequest->GetVerb();
 	Request->URL = HttpRequest->GetURL();
@@ -301,8 +259,26 @@ void URH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 		}
 	}
 
-	TrackedRequests.Add(Request);
+	TrackedRequests.AddTail(Request);
 	TrackedRequestsById.Emplace(Request->Metadata.Identifier, Request);
+
+	if (!bRetainWebRequests)
+	{
+		int numElementsToBeRemoved = TrackedRequests.Num() - TrackedRequestsCountLimit;
+		if (numElementsToBeRemoved > 0)
+		{
+			// clean up the tracked request by id map
+			const auto NodeToRemove = TrackedRequests.GetHead();
+			if (NodeToRemove->GetValue().IsValid())
+			{
+				TrackedRequestsById.Remove(NodeToRemove->GetValue()->Metadata.Identifier);
+			}
+
+			// remove the node from the list
+			TrackedRequests.RemoveNode(NodeToRemove);
+			--numElementsToBeRemoved;
+		}
+	}
 }
 
 void URH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
@@ -318,6 +294,16 @@ void URH_WebRequests::OnWebRequestStarted_Log(const RallyHereAPI::FRequestMetada
 	LogHttpBase(*HttpRequest, Prefix, GetSensitiveHeadersForRequest(RequestMetadata), GetSensitiveFieldsForRequest(RequestMetadata));
 }
 
+void URH_WebRequests::OnWebRequestStarted_RecordTimestamp(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API)
+{
+	if (API == nullptr)
+	{
+		return;
+	}
+	APINameToCallCountMap.FindOrAdd(API->GetName())++;
+	SimplifiedPathToCallCountMap.FindOrAdd(RequestMetadata.SimplifiedPath)++;
+}
+
 void URH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, RallyHereAPI::FAPI* API)
 {
 	OnWebRequestCompleted_Log(Response, HttpRequest, HttpResponse, bSuccess, bWillRetryWithAuth, API);
@@ -326,8 +312,7 @@ void URH_WebRequests::OnWebRequestCompleted(const RallyHereAPI::FResponse& Respo
 
 void URH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, RallyHereAPI::FAPI* API)
 {
-	bool bShouldTrack = API != nullptr && GetTrackWebRequests(API->GetName());
-	if (!bShouldTrack)
+	if (API == nullptr)
 	{
 		return;
 	}
@@ -376,38 +361,8 @@ void URH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 	}
 }
 
-FString URH_WebRequests::LogTrackedWebRequestsToFile(const FString& Filename) const
+TSharedPtr<FJsonObject> URH_WebRequests::LogTrackedWebRequestsToJSON() const
 {
-	TSharedPtr<FJsonObject> AllWebRequestsJson = MakeShareable(new FJsonObject);
-
-	AllWebRequestsJson->SetStringField("Application-Name", FApp::GetName());
-	AllWebRequestsJson->SetStringField("Project-Name", FApp::HasProjectName() ? FApp::GetProjectName() : FString(""));
-	AllWebRequestsJson->SetStringField("Build-Version", FApp::GetBuildVersion());
-
-	bool isInEditor = GEngine != nullptr ? GEngine->IsEditor() : false;
-	AllWebRequestsJson->SetBoolField("Is-In-Editor", isInEditor);
-
-	FString Mode;
-	if (IsRunningDedicatedServer())
-	{
-		Mode = "Dedicated-Server";
-	}
-	else if (IsRunningClientOnly())
-	{
-		Mode = "Client-Only";
-	}
-	else if (IsRunningGame())
-	{
-		Mode = "Game";
-	}
-	else
-	{
-		Mode = "Unknown";
-	}
-	AllWebRequestsJson->SetStringField("Mode", Mode);
-
-	AllWebRequestsJson->SetStringField("Timestamp", FDateTime::Now().ToString());
-
 	TArray<TSharedPtr<FJsonValue>> RequestsArray;
 	for (const auto& Request : TrackedRequests)
 	{
@@ -415,33 +370,10 @@ FString URH_WebRequests::LogTrackedWebRequestsToFile(const FString& Filename) co
 		TSharedRef<FJsonValueObject> RequestJsonValue = MakeShareable(new FJsonValueObject(RequestJson));
 		RequestsArray.Add(RequestJsonValue);
 	}
-	AllWebRequestsJson->SetArrayField("Web-Requests", RequestsArray);
+	TSharedPtr<FJsonObject> WebRequestsObject = MakeShareable(new FJsonObject);
+	WebRequestsObject->SetArrayField(TEXT("Web-Requests"), RequestsArray);
 
-	FString FileOutput;
-	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&FileOutput);
-	FJsonSerializer::Serialize(AllWebRequestsJson.ToSharedRef(), Writer);
-
-	// Make dir
-	FString ProjectLogDir = FPaths::ProjectLogDir();
-	if (FPaths::IsRelative(ProjectLogDir))
-	{
-		ProjectLogDir = FPaths::ConvertRelativePathToFull(ProjectLogDir);
-	}
-	IFileManager::Get().MakeDirectory(*ProjectLogDir, true);
-
-	FString FullFilename = Filename;
-	if (FullFilename == FPaths::GetCleanFilename(FullFilename))
-	{
-		FullFilename = FPaths::Combine(ProjectLogDir, FullFilename);
-	}
-
-	if (FFileHelper::SaveStringToFile(FileOutput, *FullFilename, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
-	{
-		UE_LOG(LogRallyHereIntegration, Log, TEXT("Saved web requests to %s"), *FullFilename);
-		return FullFilename;
-	}
-
-	return FString();
+	return WebRequestsObject;
 }
 
 FString URH_WebRequests::FormatWebRequestToJsonBlob(const FRH_WebRequest& request) const
@@ -461,15 +393,15 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 
 	// Request
 	TSharedPtr<FJsonObject> Request = MakeShareable(new FJsonObject);
-	Request->SetStringField("Verb", request.Verb);
-	Request->SetStringField("URL", request.URL);
-	Request->SetNumberField("RetryCount", request.Metadata.RetryCount);
+	Request->SetStringField(TEXT("Verb"), request.Verb);
+	Request->SetStringField(TEXT("URL"), request.URL);
+	Request->SetNumberField(TEXT("RetryCount"), request.Metadata.RetryCount);
 
 	auto Reader = TJsonReaderFactory<>::Create(request.Content);
 	TSharedPtr<FJsonValue> JsonValue;
 	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 	{
-		Request->SetField("Content", JsonValue);
+		Request->SetField(TEXT("Content"), JsonValue);
 	}
 
 	TSharedPtr<FJsonObject> RequestHeader = MakeShareable(new FJsonObject);
@@ -477,23 +409,30 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 	{
 		RequestHeader->SetStringField(pair.Key, pair.Value);
 	}
-	Request->SetObjectField("Header", RequestHeader);
+	Request->SetObjectField(TEXT("Headers"), RequestHeader);
 
-	WebRequestJson->SetObjectField("Request", Request);
+	WebRequestJson->SetObjectField(TEXT("Request"), Request);
+
+	// Metadata
+	TSharedPtr<FJsonObject> Metadata = MakeShareable(new FJsonObject);
+	Metadata->SetStringField(TEXT("Identifier"), request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens));
+	Metadata->SetStringField(TEXT("Simplified Path"), request.Metadata.SimplifiedPath.ToString());
+	Metadata->SetNumberField(TEXT("Retry Count"), request.Metadata.RetryCount);
+	WebRequestJson->SetObjectField(TEXT("Metadata"), Metadata);
 
 	// Responses
 	TArray<TSharedPtr<FJsonValue>> ResponsesArray;
 	for (int32 x = 0; x < request.Responses.Num(); ++x)
 	{
 		TSharedPtr<FJsonObject> Response = MakeShareable(new FJsonObject);
-		Response->SetNumberField("Response-Index", x);
-		Response->SetBoolField("Http-Success", request.Responses[x].ResponseSuccess);
-		Response->SetNumberField("Response-Code", request.Responses[x].ResponseCode);
+		Response->SetNumberField(TEXT("Response-Index"), x);
+		Response->SetBoolField(TEXT("Http-Success"), request.Responses[x].ResponseSuccess);
+		Response->SetNumberField(TEXT("Response-Code"), request.Responses[x].ResponseCode);
 
 		Reader = TJsonReaderFactory<>::Create(request.Responses[x].Content);
 		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 		{
-			Response->SetField("Content", JsonValue);
+			Response->SetField(TEXT("Content"), JsonValue);
 		}
 
 		TSharedPtr<FJsonObject> ResponseHeader = MakeShareable(new FJsonObject);
@@ -501,12 +440,152 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 		{
 			ResponseHeader->SetStringField(pair.Key, pair.Value);
 		}
-		Response->SetObjectField("Header", ResponseHeader);
+		Response->SetObjectField(TEXT("Headers"), ResponseHeader);
 
 		TSharedRef<FJsonValueObject> ResponseJsonValue = MakeShareable(new FJsonValueObject(Response));
 		ResponsesArray.Add(ResponseJsonValue);
 	}
-	WebRequestJson->SetArrayField("Responses", ResponsesArray);
+	WebRequestJson->SetArrayField(TEXT("Responses"), ResponsesArray);
 
 	return WebRequestJson;
+}
+
+void URH_WebRequests::GetRecentCallCountMaps(TMap<FName, int32>* OutAPIRecentCallCountMap, TMap<FName, int32>* OutURLRecentCallCountMap) const
+{
+	if (OutAPIRecentCallCountMap == nullptr && OutURLRecentCallCountMap == nullptr)
+	{
+		return;
+	}
+	if (OutAPIRecentCallCountMap)
+	{
+		OutAPIRecentCallCountMap->Reset();
+	}
+	if (OutURLRecentCallCountMap)
+	{
+		OutURLRecentCallCountMap->Reset();
+	}
+
+	FDateTime TimeLimit = FDateTime::Now() - FTimespan(0, 1, 0);
+	for (auto WebRequestPtr : GetTrackedRequests())
+	{
+		if (FRH_WebRequest* request = WebRequestPtr.Get())
+		{
+			if (request->Timestamp < TimeLimit)
+			{
+				continue;
+			}
+			if (OutAPIRecentCallCountMap)
+			{
+				OutAPIRecentCallCountMap->FindOrAdd(request->APIName)++;
+			}
+			if (OutURLRecentCallCountMap)
+			{
+				OutURLRecentCallCountMap->FindOrAdd(request->Metadata.SimplifiedPath)++;
+			}
+		}
+	}
+}
+
+void URH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutBurstMapByAPIName, TMap<FName, TTuple<int32, int32>>* OutBurstMapByURL) const
+{
+	if (OutBurstMapByAPIName == nullptr && OutBurstMapByURL == nullptr)
+	{
+		return;
+	}
+	if (OutBurstMapByAPIName != nullptr)
+	{
+		OutBurstMapByAPIName->Reset();
+	}
+	if (OutBurstMapByURL != nullptr)
+	{
+		OutBurstMapByURL->Reset();
+	}
+
+	FTimespan burstTimeThreshold = FTimespan(0, 0, BurstTimeThresholdInSeconds);
+	auto DetectBurstsAndPopulateMap = [this, burstTimeThreshold](TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>& RequestsIterator, 
+																FRH_WebRequest* StartingRequest, 
+																auto& IsMatch, 
+																auto& GetKeyFromRequest,
+																TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>>& CurrentBurstRequestsMap, 
+																TMap<FName, TTuple<int32, int32>>* OutBurstMap)
+	{
+		int currentIntervalCallCount = 1;
+		auto listNode = RequestsIterator.GetNode();
+		TSet<TSharedPtr<FRH_WebRequest>> currentBurstRequests;
+		currentBurstRequests.Add(listNode->GetValue());
+
+		while (listNode->GetNextNode() != nullptr) // Check 5s interval from startingRequest
+		{
+			listNode = listNode->GetNextNode();
+			auto nodeRequest = listNode->GetValue().Get();
+			if (nodeRequest == nullptr || !IsMatch(nodeRequest, StartingRequest))
+			{
+				continue;
+			}
+			if (nodeRequest->Timestamp > StartingRequest->Timestamp + burstTimeThreshold)
+			{
+				break;
+			}
+			++currentIntervalCallCount;
+			currentBurstRequests.Add(listNode->GetValue());
+		}
+
+		FName key = GetKeyFromRequest(StartingRequest);
+		if (currentIntervalCallCount >= BurstCountThreshold) // this is a burst
+		{
+			CurrentBurstRequestsMap.FindOrAdd(key).Append(currentBurstRequests);
+		}
+		else // not a burst, end the set and increment count
+		{
+			if (CurrentBurstRequestsMap.Contains(key) && CurrentBurstRequestsMap[key].Num() > 0)
+			{
+				const int32 burstSize = CurrentBurstRequestsMap[key].Num();
+				OutBurstMap->FindOrAdd(key).Key++;
+				OutBurstMap->FindOrAdd(key).Value = FMath::Max(OutBurstMap->FindOrAdd(key).Value, burstSize);
+				CurrentBurstRequestsMap[key].Reset();
+			}
+		}
+	};
+
+	// For API Name map
+	auto IsMatchByAPIName = [](FRH_WebRequest* Request1, FRH_WebRequest* Request2) -> bool
+	{
+		return Request1->APIName == Request2->APIName;
+	};
+	// For API Name map
+	auto GetAPINameFromRequest = [](FRH_WebRequest* Request) -> FName
+	{
+		return Request->APIName;
+	};
+	// For URL map
+	auto IsMatchByURL = [](FRH_WebRequest* Request1, FRH_WebRequest* Request2) -> bool
+	{
+		return Request1->Metadata.SimplifiedPath == Request2->Metadata.SimplifiedPath;
+	};
+	// For URL map
+	auto GetURLFromRequest = [](FRH_WebRequest* Request) -> FName
+	{
+		return Request->Metadata.SimplifiedPath;
+	};
+
+	FDateTime TimeLimit = FDateTime::Now() - FTimespan(0, 1, 0);
+	TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>> APINameToCurrentBurstRequests;
+	TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>> URLToCurrentBurstRequests;
+
+	for (auto requestsIterator = TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>(GetTrackedRequests().GetHead()); requestsIterator.GetNode() != nullptr; requestsIterator++)
+	{
+		auto startingRequest = requestsIterator.GetNode()->GetValue().Get();
+		if (startingRequest == nullptr || startingRequest->Timestamp < TimeLimit) // not within last 60s
+		{
+			continue;
+		}
+		if (OutBurstMapByAPIName != nullptr)
+		{
+			DetectBurstsAndPopulateMap(requestsIterator, startingRequest, IsMatchByAPIName, GetAPINameFromRequest, APINameToCurrentBurstRequests, OutBurstMapByAPIName);
+		}
+		if (OutBurstMapByURL != nullptr)
+		{
+			DetectBurstsAndPopulateMap(requestsIterator, startingRequest, IsMatchByURL, GetURLFromRequest, URLToCurrentBurstRequests, OutBurstMapByURL);
+		}
+	}
 }

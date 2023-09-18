@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_ConnectionInfo`](#structFRHAPI__ConnectionInfo) | 
+`struct `[`FRHAPI_ConnectionInfo`](#structFRHAPI__ConnectionInfo) | Connection info about the requesting client.
 
 ## struct `FRHAPI_ConnectionInfo` <a id="structFRHAPI__ConnectionInfo"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_ConnectionInfo
   : public FRHAPI_Model
 ```
+
+Connection info about the requesting client.
 
 #### Summary
 

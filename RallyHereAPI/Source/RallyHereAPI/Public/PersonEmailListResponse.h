@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Response for updating a person&#39;s email list subscriptions
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of all email list ids the user is subscribed to */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<int32> EmailListIds{  };
     /** @brief Gets the value of EmailListIds */

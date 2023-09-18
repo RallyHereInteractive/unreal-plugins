@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Response for getting a person&#39;s info
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Person ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PersonId_Optional{  };
     /** @brief true if PersonId_Optional has been set to a value */
@@ -61,6 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
      /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
     void ClearPersonId() { PersonId_IsSet = false; }
 
+    /** @brief Active player ID, if the person has an active player. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ActivePlayerId_Optional{  };
     /** @brief true if ActivePlayerId_Optional has been set to a value */
@@ -87,6 +89,7 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
     /** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
     void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
+    /** @brief Email address */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Email_Optional{  };
     /** @brief true if Email_Optional has been set to a value */

@@ -35,4 +35,5 @@ struct FRHDTW_Login : public FRH_DebugToolWindow
 
 private:
 	FString ML_Result;
+	FString LPAddRemoveNotice;
 };

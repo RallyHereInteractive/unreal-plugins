@@ -22,8 +22,13 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchMakingTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("mmr_group_method"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(MmrGroupMethod));
+    if (MatchMakingTemplateId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("match_making_template_id"));
+        RallyHereAPI::WriteJsonValue(Writer, MatchMakingTemplateId_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("mmr_grouping_method"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(MmrGroupingMethod));
     if (Ruleset_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("ruleset"));
@@ -42,8 +47,14 @@ bool FRHAPI_MatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMmrGroupMethodField = (*Object)->TryGetField(TEXT("mmr_group_method"));
-    ParseSuccess &= JsonMmrGroupMethodField.IsValid() && !JsonMmrGroupMethodField->IsNull() && TryGetJsonValue(JsonMmrGroupMethodField, MmrGroupMethod);
+    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateIdField = (*Object)->TryGetField(TEXT("match_making_template_id"));
+    if (JsonMatchMakingTemplateIdField.IsValid() && !JsonMatchMakingTemplateIdField->IsNull())
+    {
+        MatchMakingTemplateId_IsSet = TryGetJsonValue(JsonMatchMakingTemplateIdField, MatchMakingTemplateId_Optional);
+        ParseSuccess &= MatchMakingTemplateId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMmrGroupingMethodField = (*Object)->TryGetField(TEXT("mmr_grouping_method"));
+    ParseSuccess &= JsonMmrGroupingMethodField.IsValid() && !JsonMmrGroupingMethodField->IsNull() && TryGetJsonValue(JsonMmrGroupingMethodField, MmrGroupingMethod);
     const TSharedPtr<FJsonValue> JsonRulesetField = (*Object)->TryGetField(TEXT("ruleset"));
     if (JsonRulesetField.IsValid() && !JsonRulesetField->IsNull())
     {

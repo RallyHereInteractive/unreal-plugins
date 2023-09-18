@@ -72,18 +72,16 @@ public:
 	void ToggleDemo() { SetShowDemo(!ShowDemo()); }
 
 	//$$KAB - BEGIN - Add support for loading a layout from INI between frames
-	void SetLoadSavedLayout(bool bReload) { bLoadSavedLayout = bReload; }
-	bool ShouldLoadSavedLayout() const { return bLoadSavedLayout; }
-
-	void SetLoadDefaultLayout(bool bReload) { bLoadDefaultLayout = bReload; }
-	bool ShouldLoadDefaultLayout() const { return bLoadDefaultLayout; }
+	bool ShouldLoadSavedLayout() { return bLoadSavedLayout; }
+	FString GetLayoutToLoad() const { return LayoutToLoad; }
+	void SetLayoutToLoad(const FString& InLayout, bool bLoadSavedIfExists) { LayoutToLoad = InLayout; bLoadSavedLayout = bLoadSavedIfExists; }
 	//$$KAB - END - Add support for loading a layout from INI between frames
 
 private:
 
 	//$$KAB - BEGIN - Add support for loading a layout from INI between frames
-	bool bLoadDefaultLayout = false;
 	bool bLoadSavedLayout = false;
+	FString LayoutToLoad = "";
 	//$$KAB - END - Add support for loading a layout from INI between frames
 
 	bool bInputEnabled = false;

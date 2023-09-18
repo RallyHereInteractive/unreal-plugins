@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionTeam`](#structFRHAPI__SessionTeam) | 
+`struct `[`FRHAPI_SessionTeam`](#structFRHAPI__SessionTeam) | A team of SessionPlayers in a session.
 
 ## struct `FRHAPI_SessionTeam` <a id="structFRHAPI__SessionTeam"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionTeam
   : public FRHAPI_Model
 ```
+
+A team of SessionPlayers in a session.
 
 #### Summary
 

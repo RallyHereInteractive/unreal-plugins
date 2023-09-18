@@ -47,7 +47,7 @@ struct RALLYHEREAPI_API FRequest_GetFriendsAndBlockLimits : public FRequest
     virtual ~FRequest_GetFriendsAndBlockLimits() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

@@ -1,10 +1,8 @@
-
+#include "Dom/JsonValue.h"
 #include "RH_ImGuiUtilities.h"
 
 // used for copy support
-#if PLATFORM_ALLOWS_COPY
 #include "HAL/PlatformApplicationMisc.h"
-#endif
 
 void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
@@ -27,7 +25,7 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMo
 		{
 			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
 			{
-				FString Tooltip = FString("Copy content:").Append(LINE_TERMINATOR).Append(Value);
+				FString Tooltip = FString(TEXT("Copy content:")).Append(LINE_TERMINATOR).Append(Value);
 				ImGui::SetTooltip("%s", TCHAR_TO_UTF8(*Tooltip));
 			}
 		}
@@ -92,6 +90,11 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FDateTime& Value, ECopy
 	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
+void ImGuiDisplayCopyableValue(const FString& Key, const FTimespan& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
+{
+	FString ValueString = Value.ToString();
+	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
+}
 
 void ImGuiDisplayCopyableValue(const FString& Key, const int32& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
@@ -99,15 +102,59 @@ void ImGuiDisplayCopyableValue(const FString& Key, const int32& Value, ECopyMode
 	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
-void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FString& Key)
+void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FString& Key, const FString& Label)
 {
-	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8 (*FString::Printf(TEXT("Custom Data##%s"), *Key)), RH_DefaultTreeFlags))
+	bool bCanCopyToClipboard = false;
+#if PLATFORM_ALLOWS_COPY
+	bCanCopyToClipboard = true;
+#endif
+	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8 (*FString::Printf(TEXT("%s##%s"), *Label, *Key)), RH_DefaultTreeFlags))
 	{
 		if (CustomData.Num() > 0)
 		{
-			for (const auto& pair : CustomData)
+			if (ImGui::BeginTable(TCHAR_TO_UTF8(*FString::Printf(TEXT("CustomDataTable##%s"), *Key)), bCanCopyToClipboard ? 3 : 2, RH_TableFlagsFitSizing))
 			{
-				ImGuiDisplayCopyableValue(pair.Key, pair.Value);
+				ImGui::TableSetupColumn("Key");
+				ImGui::TableSetupColumn("Value");
+				if (bCanCopyToClipboard)
+				{
+					ImGui::TableSetupColumn("Action");
+				}
+				ImGui::TableHeadersRow();
+
+				int32 Id = 0;
+				for (const auto& pair : CustomData)
+				{
+					ImGui::PushID(Id++);
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*pair.Key));
+					ImGui::TableNextColumn();
+					// Parse potential JSON
+					auto Reader = TJsonReaderFactory<>::Create(pair.Value);
+					TSharedPtr<FJsonObject> JsonObject;
+					if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+					{
+						FString OutJsonString;
+						TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutJsonString);
+						FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
+						ImGui::Text("%s", TCHAR_TO_UTF8(*OutJsonString));
+					}
+					else
+					{
+						ImGui::Text("%s", TCHAR_TO_UTF8(*pair.Value));
+					}
+					if (bCanCopyToClipboard)
+					{
+						ImGui::TableNextColumn();
+						if (ImGui::SmallButton("Copy"))
+						{
+							FPlatformApplicationMisc::ClipboardCopy(*pair.Value);
+						}
+					}
+					ImGui::PopID();
+				}
+				ImGui::EndTable();
 			}
 		}
 		else
@@ -140,7 +187,189 @@ FString ImGuiGetStringFromTextInputBuffer(TArray<ANSICHAR>& Buffer)
 FString GetShortUuid(const FGuid& Uuid)
 {
 	FString result = Uuid.ToString(EGuidFormats::DigitsWithHyphens); // Full UUID by default
-	FString theRest = FString("");
-	Uuid.ToString(EGuidFormats::DigitsWithHyphens).Split(FString("-"), &result, &theRest, ESearchCase::CaseSensitive);
+	FString theRest = FString();
+	Uuid.ToString(EGuidFormats::DigitsWithHyphens).Split(FString(TEXT("-")), &result, &theRest, ESearchCase::CaseSensitive);
 	return result;
+}
+
+void ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasCopyAllButton)
+{
+	if (JsonObject.IsValid())
+	{
+		for (auto jsonValueIt = JsonObject->Values.CreateConstIterator(); jsonValueIt; ++jsonValueIt)
+		{
+			const TSharedPtr<FJsonObject>* ValueAsObject;
+			if ((*jsonValueIt).Value->TryGetObject(ValueAsObject))
+			{
+				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*(*jsonValueIt).Key), RH_DefaultTreeFlags))
+				{
+					ImGuiDisplayJsonObject(*ValueAsObject, false);
+					ImGui::TreePop();
+				}
+			}
+			else
+			{
+				ImGuiDisplayCopyableValue((*jsonValueIt).Key, (*jsonValueIt).Value->AsString(), ECopyMode::KeyValue);
+			}
+		}
+	}
+	if (bHasCopyAllButton)
+	{
+#if PLATFORM_ALLOWS_COPY
+		if (ImGui::Button("Copy JSON to Clipboard"))
+		{
+			FString OutputString;
+			TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
+			FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
+
+			FPlatformApplicationMisc::ClipboardCopy(*OutputString);
+		}
+#endif
+	}
+}
+
+void FImGuiCustomDataStager::DisplayCustomDataStager(bool bDefaultOpen /*= true*/)
+{
+	ImGuiTreeNodeFlags flags = bDefaultOpen ? RH_DefaultTreeFlagsDefaultOpen : RH_DefaultTreeFlags;
+	const FString HeaderText = Name.IsEmpty() ? TEXT("Custom Data Stager") : Name + TEXT(" - Custom Data Stager");
+	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderText), flags))
+	{
+		const FString RemoveAllBtnLabel = TEXT("Remove All Fields##") + Name;
+		if (ImGui::SmallButton(TCHAR_TO_UTF8(*RemoveAllBtnLabel)))
+		{
+			Fields.Empty();
+		}
+
+		const FString TableName = TEXT("CustomDataTable##") + Name;
+		if (ImGui::BeginTable(TCHAR_TO_UTF8(*TableName), 3, RH_TableFlagsFitSizing | ImGuiTableFlags_NoSavedSettings))
+		{
+			ImGui::TableSetupColumn("Key", ImGuiTableColumnFlags_None, 250);
+			ImGui::TableSetupColumn("Value", ImGuiTableColumnFlags_None, 250);
+			ImGui::TableSetupColumn("Action", ImGuiTableColumnFlags_None, 100);
+			ImGui::TableHeadersRow();
+
+			int IndexToRemove = INDEX_NONE;
+			for (int i = 0; i < Fields.Num(); i++)
+			{
+				ImGui::PushID(i);
+				ImGui::TableNextRow();
+				ImGui::TableNextColumn();
+				ImGui::SetNextItemWidth(250.f);
+				const FString KeyEditLabel = TEXT("##KeyEdit") + Name;
+				ImGui::InputText(TCHAR_TO_UTF8(*KeyEditLabel), Fields[i].KeyInput.GetData(), Fields[i].KeyInput.Num());
+				
+				ImGui::TableNextColumn();
+				// Check for potential JSON?
+				ConvertToJsonStringIfValid(Fields[i].ValueInput);
+				ImGui::SetNextItemWidth(250.f);
+				const FString ValueEditLabel = TEXT("##ValueEdit") + Name;
+				ImGui::InputTextMultiline(TCHAR_TO_UTF8(*ValueEditLabel), Fields[i].ValueInput.GetData(), Fields[i].ValueInput.Num(), ImVec2(0, ImGui::CalcTextSize(Fields[i].ValueInput.GetData()).y + TextInputPadding), ImGuiInputTextFlags_AllowTabInput);
+
+				ImGui::TableNextColumn();
+				const FString RemoveBtnLabel = TEXT("Remove##") + Name;
+				if (ImGui::SmallButton(TCHAR_TO_UTF8(*RemoveBtnLabel)))
+				{
+					IndexToRemove = i;
+				}
+				ImGui::PopID();
+			}
+
+			if (IndexToRemove != INDEX_NONE)
+			{
+				Fields.RemoveAt(IndexToRemove);
+			}
+
+			// Add new row
+			ImGui::TableNextRow();
+			static const FColor AddRowColor = FColor(51, 105, 173, 50);
+			ImGui::TableSetBgColor(ImGuiTableBgTarget_RowBg0, AddRowColor.ToPackedABGR());
+			ImGui::TableNextColumn();
+			ImGui::SetNextItemWidth(250.f);
+			const FString KeyAddLabel = TEXT("##KeyAdd") + Name;
+			ImGui::InputText(TCHAR_TO_UTF8(*KeyAddLabel), AddKeyInput.GetData(), AddKeyInput.Num());
+			
+			ImGui::TableNextColumn();
+			ImGui::SetNextItemWidth(250.f);
+			const FString ValueAddLabel = TEXT("##ValueAdd") + Name;
+			ImGui::InputTextMultiline(TCHAR_TO_UTF8(*ValueAddLabel), AddValueInput.GetData(), AddValueInput.Num(), ImVec2(0, ImGui::CalcTextSize(AddValueInput.GetData()).y + TextInputPadding), ImGuiInputTextFlags_AllowTabInput);
+			
+			ImGui::TableNextColumn();
+			const FString AddFieldLabel = TEXT("Add Field##") + Name;
+			if (ImGui::SmallButton(TCHAR_TO_UTF8(*AddFieldLabel)))
+			{
+				KeyValueInputPair NewPair = KeyValueInputPair();
+				NewPair.KeyInput = AddKeyInput;
+				NewPair.ValueInput = AddValueInput;
+				Fields.Add(NewPair);
+
+				AddKeyInput.Reset();
+				AddValueInput.Reset();
+				AddKeyInput.SetNumZeroed(KeyInputLength);
+				AddValueInput.SetNumZeroed(ValueInputLength);
+			}
+
+			ImGui::EndTable();
+		}
+
+		Warnings.Empty();
+		for (int i = 0; i < Fields.Num(); i++)
+		{
+			if (Fields.FindLast(Fields[i]) != i)
+			{
+				Warnings += TEXT("Row ") + FString::FromInt(i) + TEXT(" has a duplicate Key.") LINE_TERMINATOR;
+			}
+		}
+		if (!Warnings.IsEmpty())
+		{
+			static const FColor WarningTextColor = FColor(255, 102, 102, 255);
+			ImGui::PushStyleColor(ImGuiCol_Text, WarningTextColor.ToPackedABGR());
+			ImGui::Text("%s", TCHAR_TO_UTF8(*Warnings));
+			ImGui::PopStyleColor(1);
+		}
+
+		ImGui::TreePop();
+	}
+}
+
+void FImGuiCustomDataStager::ConvertToJsonStringIfValid(TArray<ANSICHAR>& InString) const
+{
+	const FString ValueAsFString = UTF8_TO_TCHAR(InString.GetData());
+	auto Reader = TJsonReaderFactory<>::Create(ValueAsFString);
+	TSharedPtr<FJsonObject> JsonObject;
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+		FString OutJsonString;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutJsonString);
+		FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
+
+		ImGuiCopyStringToTextInputBuffer(OutJsonString, InString);
+	}
+}
+void FImGuiCustomDataStager::GetCustomDataMap(TMap<FString, FString>& OutMap)
+{
+	OutMap.Empty(Fields.Num());
+	for (auto& Pair : Fields)
+	{
+		FString KeyAsFString = ImGuiGetStringFromTextInputBuffer(Pair.KeyInput);
+		// Use first pair that has this key
+		if (!OutMap.Contains(KeyAsFString))
+		{
+			OutMap.Emplace(ImGuiGetStringFromTextInputBuffer(Pair.KeyInput), ImGuiGetStringFromTextInputBuffer(Pair.ValueInput));
+		}
+	}
+}
+void FImGuiCustomDataStager::SetDataFromMap(const TMap<FString, FString>& InMap)
+{
+	Fields.Empty(InMap.Num());
+	for (auto Pair : InMap)
+	{
+		KeyValueInputPair NewPair = KeyValueInputPair();
+		NewPair.KeyInput.SetNumZeroed(KeyInputLength);
+		NewPair.ValueInput.SetNumZeroed(ValueInputLength);
+
+		ImGuiCopyStringToTextInputBuffer(Pair.Key, NewPair.KeyInput);
+		ImGuiCopyStringToTextInputBuffer(Pair.Value, NewPair.ValueInput);
+
+		Fields.Add(NewPair);
+	}
 }

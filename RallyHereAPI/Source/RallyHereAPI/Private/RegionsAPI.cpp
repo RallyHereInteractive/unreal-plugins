@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FRegionsAPI::FRegionsAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Regions");
+    Name = FName(TEXT("Regions"));
 }
 
 FRegionsAPI::~FRegionsAPI() {}
@@ -88,14 +88,15 @@ FRequest_GetAllRegions::FRequest_GetAllRegions()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllRegions::GetSimplifiedPath() const
+FName FRequest_GetAllRegions::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/regions"));
+    static FName Path = FName(TEXT("/session/v1/regions"));
+    return Path;
 }
 
 FString FRequest_GetAllRegions::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(Cursor.IsSet())
     {

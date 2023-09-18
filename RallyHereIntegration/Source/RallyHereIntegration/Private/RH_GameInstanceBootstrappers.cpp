@@ -155,7 +155,11 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 
 		BeginServerLogin();
 
+#if RH_FROM_ENGINE_VERSION(5,3)
+		FCoreDelegates::GetApplicationWillTerminateDelegate().AddUObject(this, &URH_GameInstanceServerBootstrapper::ApplicationTerminationNotify);
+#else
 		FCoreDelegates::ApplicationWillTerminateDelegate.AddUObject(this, &URH_GameInstanceServerBootstrapper::ApplicationTerminationNotify);
+#endif
 	}
 	else
 	{
@@ -204,7 +208,7 @@ namespace RallyHere
 {
 	namespace TermSignalHandler
 	{
-		uint8 ExitStatusOverride = INDEX_NONE;
+		uint8 ExitStatusOverride = 0;
 		bool bHasReceivedTermSignal = false;
 
 		void TerminationSignalHandler()
@@ -355,7 +359,7 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
 
-		if (RallyHere::TermSignalHandler::ExitStatusOverride != INDEX_NONE)
+		if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
 		{
 			FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);
 		}
@@ -755,7 +759,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 						BootstrappingResult.AllocationInfo.SessionId = Resp.Content.GetSessionId();
 					}
 				}), 
-			FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this](bool bSuccess)
+			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& Error)
 				{
 					if (bSuccess && BootstrappingResult.IsValid())
 					{
@@ -1037,7 +1041,7 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(bool bSucc
 		}
 		else
 		{
-			if (RallyHere::TermSignalHandler::ExitStatusOverride != INDEX_NONE)
+			if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
 			{
 				FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);
 			}

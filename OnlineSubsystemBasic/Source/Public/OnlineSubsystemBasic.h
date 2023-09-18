@@ -8,7 +8,7 @@
 typedef TSharedPtr<class FOnlineIdentityBasic, ESPMode::ThreadSafe> FOnlineIdentityBasicPtr;
 
 /**
- *	FOnlineSubsystemEpic - Implementation of the online subsystem for Epic services
+ *	FOnlineSubsystemBasic - Implementation of the online subsystem for Basic login type
  */
 class ONLINESUBSYSTEMBASIC_API FOnlineSubsystemBasic : public FOnlineSubsystemImpl
 {

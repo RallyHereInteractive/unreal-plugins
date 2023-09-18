@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FUsersAPI::FUsersAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Users");
+    Name = FName(TEXT("Users"));
 }
 
 FUsersAPI::~FUsersAPI() {}
@@ -88,14 +88,15 @@ FRequest_DequeueMeForPurge::FRequest_DequeueMeForPurge()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DequeueMeForPurge::GetSimplifiedPath() const
+FName FRequest_DequeueMeForPurge::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/purge"));
+    static FName Path = FName(TEXT("/users/v1/person/me/purge"));
+    return Path;
 }
 
 FString FRequest_DequeueMeForPurge::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -229,9 +230,10 @@ FRequest_DequeuePersonForPurge::FRequest_DequeuePersonForPurge()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
+FName FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/purge"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
+    return Path;
 }
 
 FString FRequest_DequeuePersonForPurge::ComputePath() const
@@ -378,14 +380,15 @@ FRequest_DisableCrossProgression::FRequest_DisableCrossProgression()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DisableCrossProgression::GetSimplifiedPath() const
+FName FRequest_DisableCrossProgression::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/cross-progression/disable"));
+    static FName Path = FName(TEXT("/users/v1/cross-progression/disable"));
+    return Path;
 }
 
 FString FRequest_DisableCrossProgression::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -516,14 +519,15 @@ FRequest_EnableCrossProgression::FRequest_EnableCrossProgression()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_EnableCrossProgression::GetSimplifiedPath() const
+FName FRequest_EnableCrossProgression::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/cross-progression/enable"));
+    static FName Path = FName(TEXT("/users/v1/cross-progression/enable"));
+    return Path;
 }
 
 FString FRequest_EnableCrossProgression::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -654,14 +658,15 @@ FRequest_GetAllRoles::FRequest_GetAllRoles()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllRoles::GetSimplifiedPath() const
+FName FRequest_GetAllRoles::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/role"));
+    static FName Path = FName(TEXT("/users/v1/role"));
+    return Path;
 }
 
 FString FRequest_GetAllRoles::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -795,9 +800,10 @@ FRequest_GetPerson::FRequest_GetPerson()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPerson::GetSimplifiedPath() const
+FName FRequest_GetPerson::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/info"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/info"));
+    return Path;
 }
 
 FString FRequest_GetPerson::ComputePath() const
@@ -944,9 +950,10 @@ FRequest_GetPersonEmailList::FRequest_GetPersonEmailList()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPersonEmailList::GetSimplifiedPath() const
+FName FRequest_GetPersonEmailList::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/email/list"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/email/list"));
+    return Path;
 }
 
 FString FRequest_GetPersonEmailList::ComputePath() const
@@ -1093,14 +1100,15 @@ FRequest_GetPersonEmailListForSelf::FRequest_GetPersonEmailListForSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPersonEmailListForSelf::GetSimplifiedPath() const
+FName FRequest_GetPersonEmailListForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/email/list"));
+    static FName Path = FName(TEXT("/users/v1/person/me/email/list"));
+    return Path;
 }
 
 FString FRequest_GetPersonEmailListForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1234,14 +1242,15 @@ FRequest_GetPersonForSelf::FRequest_GetPersonForSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPersonForSelf::GetSimplifiedPath() const
+FName FRequest_GetPersonForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/info"));
+    static FName Path = FName(TEXT("/users/v1/person/me/info"));
+    return Path;
 }
 
 FString FRequest_GetPersonForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1375,9 +1384,10 @@ FRequest_GetPlayerIdFromPlayerUuid::FRequest_GetPlayerIdFromPlayerUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
+FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player/{player_uuid}/id"));
+    static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/id"));
+    return Path;
 }
 
 FString FRequest_GetPlayerIdFromPlayerUuid::ComputePath() const
@@ -1530,14 +1540,15 @@ FRequest_GetPlayerIdFromPlayerUuidForSelf::FRequest_GetPlayerIdFromPlayerUuidFor
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerIdFromPlayerUuidForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player/me/id"));
+    static FName Path = FName(TEXT("/users/v2/player/me/id"));
+    return Path;
 }
 
 FString FRequest_GetPlayerIdFromPlayerUuidForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1677,9 +1688,10 @@ FRequest_GetPlayerLinkedPortals::FRequest_GetPlayerLinkedPortals()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
+FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/player/{player_id}/linked_portals"));
+    static FName Path = FName(TEXT("/users/v1/player/{player_id}/linked_portals"));
+    return Path;
 }
 
 FString FRequest_GetPlayerLinkedPortals::ComputePath() const
@@ -1829,9 +1841,10 @@ FRequest_GetPlayerLinks::FRequest_GetPlayerLinks()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerLinks::GetSimplifiedPath() const
+FName FRequest_GetPlayerLinks::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player/{player_uuid}/links"));
+    static FName Path = FName(TEXT("/users/v2/player/{player_uuid}/links"));
+    return Path;
 }
 
 FString FRequest_GetPlayerLinks::ComputePath() const
@@ -1981,14 +1994,15 @@ FRequest_GetPlayerLinksForSelf::FRequest_GetPlayerLinksForSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerLinksForSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerLinksForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player/me/links"));
+    static FName Path = FName(TEXT("/users/v2/player/me/links"));
+    return Path;
 }
 
 FString FRequest_GetPlayerLinksForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2125,9 +2139,10 @@ FRequest_GetPlayerUuidFromPlayerId::FRequest_GetPlayerUuidFromPlayerId()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/player/{player_id}/uuid"));
+    static FName Path = FName(TEXT("/users/v1/player/{player_id}/uuid"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerId::ComputePath() const
@@ -2277,14 +2292,15 @@ FRequest_GetPlayerUuidFromPlayerIdForSelf::FRequest_GetPlayerUuidFromPlayerIdFor
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidFromPlayerIdForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/player/me/uuid"));
+    static FName Path = FName(TEXT("/users/v1/player/me/uuid"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2421,14 +2437,15 @@ FRequest_GetPlayerUuidFromPlayerIdForSelfV2::FRequest_GetPlayerUuidFromPlayerIdF
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidFromPlayerIdForSelfV2::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player/me/uuid"));
+    static FName Path = FName(TEXT("/users/v2/player/me/uuid"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdForSelfV2::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2565,9 +2582,10 @@ FRequest_GetPlayerUuidFromPlayerIdV2::FRequest_GetPlayerUuidFromPlayerIdV2()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player/{player_id}/uuid"));
+    static FName Path = FName(TEXT("/users/v2/player/{player_id}/uuid"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidFromPlayerIdV2::ComputePath() const
@@ -2717,14 +2735,15 @@ FRequest_GetPlayersPaged::FRequest_GetPlayersPaged()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayersPaged::GetSimplifiedPath() const
+FName FRequest_GetPlayersPaged::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v2/player:iterate"));
+    static FName Path = FName(TEXT("/users/v2/player:iterate"));
+    return Path;
 }
 
 FString FRequest_GetPlayersPaged::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(Cursor.IsSet())
     {
@@ -2876,14 +2895,15 @@ FRequest_GetQueuePurgeStatusForMe::FRequest_GetQueuePurgeStatusForMe()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPath() const
+FName FRequest_GetQueuePurgeStatusForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/purge"));
+    static FName Path = FName(TEXT("/users/v1/person/me/purge"));
+    return Path;
 }
 
 FString FRequest_GetQueuePurgeStatusForMe::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -3020,9 +3040,10 @@ FRequest_GetQueuePurgeStatusForPerson::FRequest_GetQueuePurgeStatusForPerson()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
+FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/purge"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
+    return Path;
 }
 
 FString FRequest_GetQueuePurgeStatusForPerson::ComputePath() const
@@ -3172,14 +3193,15 @@ FRequest_Link::FRequest_Link()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Link::GetSimplifiedPath() const
+FName FRequest_Link::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/link"));
+    static FName Path = FName(TEXT("/users/v1/link"));
+    return Path;
 }
 
 FString FRequest_Link::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -3324,14 +3346,15 @@ FRequest_LookupPlayerByPortal::FRequest_LookupPlayerByPortal()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_LookupPlayerByPortal::GetSimplifiedPath() const
+FName FRequest_LookupPlayerByPortal::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/player"));
+    static FName Path = FName(TEXT("/users/v1/player"));
+    return Path;
 }
 
 FString FRequest_LookupPlayerByPortal::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(DisplayName.IsSet())
     {
@@ -3488,14 +3511,15 @@ FRequest_QueueMeForPurge::FRequest_QueueMeForPurge()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_QueueMeForPurge::GetSimplifiedPath() const
+FName FRequest_QueueMeForPurge::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/purge"));
+    static FName Path = FName(TEXT("/users/v1/person/me/purge"));
+    return Path;
 }
 
 FString FRequest_QueueMeForPurge::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -3646,9 +3670,10 @@ FRequest_QueuePersonForPurge::FRequest_QueuePersonForPurge()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_QueuePersonForPurge::GetSimplifiedPath() const
+FName FRequest_QueuePersonForPurge::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/purge"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/purge"));
+    return Path;
 }
 
 FString FRequest_QueuePersonForPurge::ComputePath() const
@@ -3806,14 +3831,15 @@ FRequest_Unlink::FRequest_Unlink()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_Unlink::GetSimplifiedPath() const
+FName FRequest_Unlink::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/unlink"));
+    static FName Path = FName(TEXT("/users/v1/unlink"));
+    return Path;
 }
 
 FString FRequest_Unlink::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -3944,9 +3970,10 @@ FRequest_UpdatePerson::FRequest_UpdatePerson()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePerson::GetSimplifiedPath() const
+FName FRequest_UpdatePerson::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/info"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/info"));
+    return Path;
 }
 
 FString FRequest_UpdatePerson::ComputePath() const
@@ -4104,9 +4131,10 @@ FRequest_UpdatePersonEmailList::FRequest_UpdatePersonEmailList()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
+FName FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/{person_id}/email/list"));
+    static FName Path = FName(TEXT("/users/v1/person/{person_id}/email/list"));
+    return Path;
 }
 
 FString FRequest_UpdatePersonEmailList::ComputePath() const
@@ -4264,14 +4292,15 @@ FRequest_UpdatePersonEmailListForSelf::FRequest_UpdatePersonEmailListForSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPath() const
+FName FRequest_UpdatePersonEmailListForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/email/list"));
+    static FName Path = FName(TEXT("/users/v1/person/me/email/list"));
+    return Path;
 }
 
 FString FRequest_UpdatePersonEmailListForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -4419,14 +4448,15 @@ FRequest_UpdatePersonForSelf::FRequest_UpdatePersonForSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePersonForSelf::GetSimplifiedPath() const
+FName FRequest_UpdatePersonForSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/person/me/info"));
+    static FName Path = FName(TEXT("/users/v1/person/me/info"));
+    return Path;
 }
 
 FString FRequest_UpdatePersonForSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -4574,14 +4604,15 @@ FRequest_UpsertContact::FRequest_UpsertContact()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpsertContact::GetSimplifiedPath() const
+FName FRequest_UpsertContact::GetSimplifiedPath() const
 {
-    return FString(TEXT("/users/v1/sendinblue/contact"));
+    static FName Path = FName(TEXT("/users/v1/sendinblue/contact"));
+    return Path;
 }
 
 FString FRequest_UpsertContact::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

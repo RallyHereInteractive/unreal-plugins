@@ -18,7 +18,8 @@
 
 #include "RH_LocalPlayerSessionSubsystem.generated.h"
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnLoginPollSessionsComplete, bool);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnLoginPollSessionsCompleteMulticastDelegate, bool);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate, bool, bSuccess);
 
 class URH_LocalPlayerSubsystem;
 
@@ -322,7 +323,7 @@ public:
 	/**
 	* @brief Force an immediate poll
 	*/
-	void ForcePollForUpdate();
+	void ForcePollForUpdate(bool bClearETag = false);
 	/**
 	* @brief Get the current time remaining on poll cycle, or -1.f if not polling
 	*/
@@ -332,23 +333,29 @@ public:
 	/**
 	* @brief Multicast delegate triggered when a session managed by this subsystem is updated
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Updated"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionUpdatedDelegate;
 	/**
 	* @brief Multicast delegate triggered when a session managed by this subsystem is added
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Added"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Added"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionAddedDelegate;
 	/**
 	* @brief Multicast delegate triggered when a session managed by this subsystem is removed
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Removed"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Removed"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionRemovedDelegate;
 	/**
 	* @brief Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "Session", meta = (DisplayName = "On Session Expiration Complete"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Expiration Complete"))
 	FRH_OnSessionUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionExpirationCompleteDelegate;
+
+	/**
+	* @brief Multicast delegate triggered when the initial poll after login is complete, to do first-time setup
+	*/
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Login Poll Sessions Complete"))
+	FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate BLUEPRINT_OnLoginPollSessionsCompleteDelegate;
 
 	/**
 	* @brief Multicast delegate triggered when a session managed by this subsystem is updated
@@ -366,11 +373,10 @@ public:
 	* @brief Multicast delegate triggered when a session managed by this subsystem is fully expired (happens after removal)
 	*/
 	FRH_OnSessionUpdatedMulticastDelegate OnSessionExpirationCompleteDelegate;
-
 	/**
 	* @brief Multicast delegate triggered when the initial poll after login is complete, to do first-time setup
 	*/
-	FOnLoginPollSessionsComplete OnLoginPollSessionsCompleteDelegate;
+	FRH_OnLoginPollSessionsCompleteMulticastDelegate OnLoginPollSessionsCompleteDelegate;
 
 protected:
 	/**

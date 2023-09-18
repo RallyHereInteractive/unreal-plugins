@@ -19,7 +19,6 @@ limitations under the License.
 
 #include "CoreMinimal.h"
 #include "{{unrealModuleName}}BaseModel.h"
-#include "Tickable.h"
 #include "HttpModule.h"
 {{#imports}}{{{import}}}
 {{/imports}}
@@ -62,7 +61,7 @@ public:
 
 typedef TMap<int32, TArray<TSharedPtr<struct F{{unrealModuleName}}HttpRequestData>, TInlineAllocator<10>>> HttpRequestMap;
 
-class {{dllapi}} F{{unrealModuleName}}HttpRequester : public FTickableGameObject
+class {{dllapi}} F{{unrealModuleName}}HttpRequester
 {
 public:
     F{{unrealModuleName}}HttpRequester();
@@ -88,19 +87,18 @@ public:
     {
         return Singleton;
     }
-    
+
     void SetMaxSimultaneousRequests(int32 InNum) { MaxSimultaneousRequests = InNum; }
 
-    virtual void Tick(float DeltaTime) override;
-
     void EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData);
-
-    virtual bool IsTickable() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
-    virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(FRH_HttpRequests, STATGROUP_{{unrealModuleName}}); }
 
     void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
 
 private:
+    void QueueNextRequestCall();
+    void TryExecuteNextRequest();
+    bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
+
     static F{{unrealModuleName}}HttpRequester* Singleton;
 
     HttpRequestMap HttpRequestQueue;

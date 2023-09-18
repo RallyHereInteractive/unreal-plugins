@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PortalUserInfo`](#structFRHAPI__PortalUserInfo) | 
+`struct `[`FRHAPI_PortalUserInfo`](#structFRHAPI__PortalUserInfo) | Portal user info.
 
 ## struct `FRHAPI_PortalUserInfo` <a id="structFRHAPI__PortalUserInfo"></a>
 
@@ -13,14 +13,16 @@ struct FRHAPI_PortalUserInfo
   : public FRHAPI_Model
 ```
 
+Portal user info.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06) | 
-`public ERHAPI_Portal `[`PortalId`](#structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644) | 
-`public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) | 
-`public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) | 
+`public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06) | Platform for the user.
+`public ERHAPI_Portal `[`PortalId`](#structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644) | Portal ID. *DEPRECATED* use `platform` instead.
+`public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) | Platform User ID.
+`public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) | Display name.
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserInfo_1a2344390b2002ec9ee2cfcb5fc80d346d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` | Gets the value of Platform.
@@ -40,14 +42,22 @@ struct FRHAPI_PortalUserInfo
 
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06) <a id="structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06"></a>
 
+Platform for the user.
+
 <br>
 #### `public ERHAPI_Portal `[`PortalId`](#structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644) <a id="structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644"></a>
+
+Portal ID. *DEPRECATED* use `platform` instead.
 
 <br>
 #### `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) <a id="structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab"></a>
 
+Platform User ID.
+
 <br>
 #### `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) <a id="structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0"></a>
+
+Display name.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e"></a>

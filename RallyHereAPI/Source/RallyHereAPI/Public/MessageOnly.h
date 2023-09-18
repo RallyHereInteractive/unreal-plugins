@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Message only response
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MessageOnly : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_MessageOnly : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Message */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Message{  };
     /** @brief Gets the value of Message */

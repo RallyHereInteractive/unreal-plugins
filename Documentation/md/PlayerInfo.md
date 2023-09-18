@@ -5,6 +5,7 @@
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `class `[`URH_PlayerPresence`](#classURH__PlayerPresence) | Player Presence class used to store player presence data.
+`class `[`URH_PlayerSessions`](#classURH__PlayerSessions) | Player Sessions class used to store player session membership information.
 `class `[`URH_PlayerPlatformInfo`](#classURH__PlayerPlatformInfo) | Stores information a specific platform the player has linked to their account.
 `class `[`URH_PlayerInfo`](#classURH__PlayerInfo) | Stores and fetchs all the information about a given player.
 `class `[`URH_PlayerInfoSubsystem`](#classURH__PlayerInfoSubsystem) | Subsystem used to track and request information about players.
@@ -24,7 +25,6 @@ Player Presence class used to store player presence data.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public float `[`PresenceRequestDelay`](#classURH__PlayerPresence_1af59f35a0f2bcbb134c4daec99058efd5) | Configurable delay between presence update requests.
 `public bool `[`bInitialized`](#classURH__PlayerPresence_1a3f6af11e501d2f96fe4b520e193e46da) | Tracks if the Presence has been initialized.
 `public ERHAPI_OnlineStatus `[`Status`](#classURH__PlayerPresence_1a51af6d5a0caf4f5e47e4498a7bb3e456) | Online status of the player.
 `public FString `[`Message`](#classURH__PlayerPresence_1abd625e3be04fcb0527bbc719dc929d6e) | Message set by a player to display on their presence information.
@@ -48,17 +48,11 @@ Player Presence class used to store player presence data.
 `protected FRH_AutoPollerPtr `[`PresencePoller`](#classURH__PlayerPresence_1a733193654e8f5783c4d69380ec946686) | Poller for the players presence.
 `protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerPresence_1a46f7f69fa125dbdcbda3b0a8c0281c34)`() const` | Gets if the poller should be actively polling, only polls if something cares about it.
 `protected void `[`PollPresence`](#classURH__PlayerPresence_1a6d563892989854c37ca316298c0f7edc)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players presence.
-`protected virtual void `[`HandleResponse`](#classURH__PlayerPresence_1a6122d86a3e88b065046cb880e44da8e4)`(const GetPresenceType::Response & Resp)` | Handles the response to a Presence poll.
-`protected virtual void `[`ExecuteDelegates`](#classURH__PlayerPresence_1adf6ada3585cd439c09521570a306f1d5)`(bool bSuccess,bool bUpdated)` | Handles executing any delegate listeners for the players presence.
+`protected virtual void `[`ExecuteDelegates`](#classURH__PlayerPresence_1a81e83d51d446fcd89c4d5f7c5519c0e4)`(bool bSuccess)` | Handles executing any delegate listeners for the players presence.
 `typedef `[`GetPresenceType`](#classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214) | 
 
 #### Members
 
-#### `public float `[`PresenceRequestDelay`](#classURH__PlayerPresence_1af59f35a0f2bcbb134c4daec99058efd5) <a id="classURH__PlayerPresence_1af59f35a0f2bcbb134c4daec99058efd5"></a>
-
-Configurable delay between presence update requests.
-
-<br>
 #### `public bool `[`bInitialized`](#classURH__PlayerPresence_1a3f6af11e501d2f96fe4b520e193e46da) <a id="classURH__PlayerPresence_1a3f6af11e501d2f96fe4b520e193e46da"></a>
 
 Tracks if the Presence has been initialized.
@@ -192,25 +186,165 @@ Starts a poll of the players presence.
 * `Delegate` Callback delegate for the poll.
 
 <br>
-#### `protected virtual void `[`HandleResponse`](#classURH__PlayerPresence_1a6122d86a3e88b065046cb880e44da8e4)`(const GetPresenceType::Response & Resp)` <a id="classURH__PlayerPresence_1a6122d86a3e88b065046cb880e44da8e4"></a>
-
-Handles the response to a Presence poll.
-
-#### Parameters
-* `Resp` Response given for the poll.
-
-<br>
-#### `protected virtual void `[`ExecuteDelegates`](#classURH__PlayerPresence_1adf6ada3585cd439c09521570a306f1d5)`(bool bSuccess,bool bUpdated)` <a id="classURH__PlayerPresence_1adf6ada3585cd439c09521570a306f1d5"></a>
+#### `protected virtual void `[`ExecuteDelegates`](#classURH__PlayerPresence_1a81e83d51d446fcd89c4d5f7c5519c0e4)`(bool bSuccess)` <a id="classURH__PlayerPresence_1a81e83d51d446fcd89c4d5f7c5519c0e4"></a>
 
 Handles executing any delegate listeners for the players presence.
 
 #### Parameters
-* `bSuccess` If the poll was successful. 
-
-* `bUpdated` If the poll updated the presence.
+* `bSuccess` If the poll was successful.
 
 <br>
 #### `typedef `[`GetPresenceType`](#classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214) <a id="classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214"></a>
+
+<br>
+## class `URH_PlayerSessions` <a id="classURH__PlayerSessions"></a>
+
+```
+class URH_PlayerSessions
+  : public UObject
+```
+
+Player Sessions class used to store player session membership information.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public bool `[`bInitialized`](#classURH__PlayerSessions_1a30bb48d8307e142e04960dcc1e9256f5) | Tracks if the Presence has been initialized.
+`public FGuid `[`PlayerUuid`](#classURH__PlayerSessions_1ae2b7f7a6ea620af20b267980081fa7a1) | Players unique identifier.
+`public FDateTime `[`LastUpdated`](#classURH__PlayerSessions_1aecfe8c9469d2bc7080457d5636b0404f) | The last time the players session data was updated on the client.
+`public FString `[`ETag`](#classURH__PlayerSessions_1a9f9cebbae2067bc4b0f813531f19b903) | ETag to track if the session list is stale during requests.
+`public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) | 
+`public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a64fc4ec7f3776ac0420da639183df59b) | Blueprint delegate to listen for sessions updates.
+`public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a7739454886f42eb35d0bb043c9a5f4fe) | Native delegate to listen for sessions updates.
+`public TArray< FRH_OnRequestPlayerSessionsBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerSessions_1a209f56744d0a9207e9a775bc474a9f4a) | Delegates stored to response to currently active requests.
+`public inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` | Stores the response data from an API presence request.
+`public inline void `[`MarkUpdated`](#classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da)`()` | Sets the last updated time to now.
+`public inline void `[`MarkDirty`](#classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b)`()` | Clears the last updated time to force an update.
+`public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1afd99cdd505a5f2135568374b0c70306d)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
+`public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsDynamicDelegate & Delegate)` | 
+`public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9)`() const` | Gets the PlayerInfo that owns this Player Presence.
+`public void `[`CheckPollStatus`](#classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
+`protected FRH_AutoPollerPtr `[`SessionsPoller`](#classURH__PlayerSessions_1adcdf9391c758196a1ce00b648f897c6d) | Poller for the players presence.
+`protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerSessions_1a1650dfe4743702dd125c8b584e96e263)`() const` | Gets if the poller should be actively polling, only polls if something cares about it.
+`protected void `[`PollSessions`](#classURH__PlayerSessions_1a26d7c63218d1c3cd1b91293cf5b6bd4a)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players presence.
+`protected virtual void `[`ExecuteDelegates`](#classURH__PlayerSessions_1ae34694cba191f48499bae15e8a13336c)`(bool bSuccess)` | Handles executing any delegate listeners for the players presence.
+`typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) | 
+
+#### Members
+
+#### `public bool `[`bInitialized`](#classURH__PlayerSessions_1a30bb48d8307e142e04960dcc1e9256f5) <a id="classURH__PlayerSessions_1a30bb48d8307e142e04960dcc1e9256f5"></a>
+
+Tracks if the Presence has been initialized.
+
+<br>
+#### `public FGuid `[`PlayerUuid`](#classURH__PlayerSessions_1ae2b7f7a6ea620af20b267980081fa7a1) <a id="classURH__PlayerSessions_1ae2b7f7a6ea620af20b267980081fa7a1"></a>
+
+Players unique identifier.
+
+<br>
+#### `public FDateTime `[`LastUpdated`](#classURH__PlayerSessions_1aecfe8c9469d2bc7080457d5636b0404f) <a id="classURH__PlayerSessions_1aecfe8c9469d2bc7080457d5636b0404f"></a>
+
+The last time the players session data was updated on the client.
+
+<br>
+#### `public FString `[`ETag`](#classURH__PlayerSessions_1a9f9cebbae2067bc4b0f813531f19b903) <a id="classURH__PlayerSessions_1a9f9cebbae2067bc4b0f813531f19b903"></a>
+
+ETag to track if the session list is stale during requests.
+
+<br>
+#### `public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) <a id="classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab"></a>
+
+<br>
+#### `public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a64fc4ec7f3776ac0420da639183df59b) <a id="classURH__PlayerSessions_1a64fc4ec7f3776ac0420da639183df59b"></a>
+
+Blueprint delegate to listen for sessions updates.
+
+<br>
+#### `public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a7739454886f42eb35d0bb043c9a5f4fe) <a id="classURH__PlayerSessions_1a7739454886f42eb35d0bb043c9a5f4fe"></a>
+
+Native delegate to listen for sessions updates.
+
+<br>
+#### `public TArray< FRH_OnRequestPlayerSessionsBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerSessions_1a209f56744d0a9207e9a775bc474a9f4a) <a id="classURH__PlayerSessions_1a209f56744d0a9207e9a775bc474a9f4a"></a>
+
+Delegates stored to response to currently active requests.
+
+<br>
+#### `public inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` <a id="classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e"></a>
+
+Stores the response data from an API presence request.
+
+#### Parameters
+* `Other` The presence data to store.
+
+<br>
+#### `public inline void `[`MarkUpdated`](#classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da)`()` <a id="classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da"></a>
+
+Sets the last updated time to now.
+
+<br>
+#### `public inline void `[`MarkDirty`](#classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b)`()` <a id="classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b"></a>
+
+Clears the last updated time to force an update.
+
+<br>
+#### `public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1afd99cdd505a5f2135568374b0c70306d)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock Delegate)` <a id="classURH__PlayerSessions_1afd99cdd505a5f2135568374b0c70306d"></a>
+
+Enqueues an update request for the players presence information from the RallyHere API.
+
+#### Parameters
+* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsDynamicDelegate & Delegate)` <a id="classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec"></a>
+
+<br>
+#### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9)`() const` <a id="classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9"></a>
+
+Gets the PlayerInfo that owns this Player Presence.
+
+#### Returns
+The PlayerInfo that owns the Presence.
+
+<br>
+#### `public void `[`CheckPollStatus`](#classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983)`(const bool bForceUpdate)` <a id="classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983"></a>
+
+Updates the poll status to be active or inactive based on if it should currently be polling.
+
+#### Parameters
+* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+
+<br>
+#### `protected FRH_AutoPollerPtr `[`SessionsPoller`](#classURH__PlayerSessions_1adcdf9391c758196a1ce00b648f897c6d) <a id="classURH__PlayerSessions_1adcdf9391c758196a1ce00b648f897c6d"></a>
+
+Poller for the players presence.
+
+<br>
+#### `protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerSessions_1a1650dfe4743702dd125c8b584e96e263)`() const` <a id="classURH__PlayerSessions_1a1650dfe4743702dd125c8b584e96e263"></a>
+
+Gets if the poller should be actively polling, only polls if something cares about it.
+
+<br>
+#### `protected void `[`PollSessions`](#classURH__PlayerSessions_1a26d7c63218d1c3cd1b91293cf5b6bd4a)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerSessions_1a26d7c63218d1c3cd1b91293cf5b6bd4a"></a>
+
+Starts a poll of the players presence.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll.
+
+<br>
+#### `protected virtual void `[`ExecuteDelegates`](#classURH__PlayerSessions_1ae34694cba191f48499bae15e8a13336c)`(bool bSuccess)` <a id="classURH__PlayerSessions_1ae34694cba191f48499bae15e8a13336c"></a>
+
+Handles executing any delegate listeners for the players presence.
+
+#### Parameters
+* `bSuccess` If the poll was successful.
+
+<br>
+#### `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) <a id="classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92"></a>
 
 <br>
 ## class `URH_PlayerPlatformInfo` <a id="classURH__PlayerPlatformInfo"></a>
@@ -230,10 +364,8 @@ Stores information a specific platform the player has linked to their account.
 `public FString `[`DisplayName`](#classURH__PlayerPlatformInfo_1a056f2023dd209b4807ac14a699cd594e) | Last seen display name for the player on the platform.
 `public inline FORCEINLINE `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`GetPlayerPlatformId`](#classURH__PlayerPlatformInfo_1a01087e75b35b862c18d8579f9d84a7ba)`() const` | Gets the Platform Id struct for the player.
 `public inline FORCEINLINE FString `[`GetPlatformUserId`](#classURH__PlayerPlatformInfo_1abf743e9775a21e9526ec50775f9491c1)`() const` | Gets the Platform Id for the player.
-`public inline FORCEINLINE `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetPlatformType`](#classURH__PlayerPlatformInfo_1a93274a42e76b93d812b314f2fe9172f0)`() const` | Gets the Platform Type for the player.
 `public inline FORCEINLINE ERHAPI_Platform `[`GetPlatform`](#classURH__PlayerPlatformInfo_1a3dd011d8a3919bc528adc47cad307cf0)`() const` | Gets the Platform Type for the player.
 `public inline FORCEINLINE FString `[`GetLastKnownDisplayName`](#classURH__PlayerPlatformInfo_1ab91b2f7ba0378669bc1a2b756c2ba940)`() const` | Gets the display name stored the last time this player logged in to the Rally Here server.
-`public inline FORCEINLINE FString `[`GetLastKnownGamerTag`](#classURH__PlayerPlatformInfo_1a610b77cd7c43987a57fdb465166b23fd)`() const` | 
 
 #### Members
 
@@ -263,14 +395,6 @@ Gets the Platform Id for the player.
 The players Platform Unique Id.
 
 <br>
-#### `public inline FORCEINLINE `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetPlatformType`](#classURH__PlayerPlatformInfo_1a93274a42e76b93d812b314f2fe9172f0)`() const` <a id="classURH__PlayerPlatformInfo_1a93274a42e76b93d812b314f2fe9172f0"></a>
-
-Gets the Platform Type for the player.
-
-#### Returns
-The players Platform Type.
-
-<br>
 #### `public inline FORCEINLINE ERHAPI_Platform `[`GetPlatform`](#classURH__PlayerPlatformInfo_1a3dd011d8a3919bc528adc47cad307cf0)`() const` <a id="classURH__PlayerPlatformInfo_1a3dd011d8a3919bc528adc47cad307cf0"></a>
 
 Gets the Platform Type for the player.
@@ -285,9 +409,6 @@ Gets the display name stored the last time this player logged in to the Rally He
 
 #### Returns
 The players display name for the platform.
-
-<br>
-#### `public inline FORCEINLINE FString `[`GetLastKnownGamerTag`](#classURH__PlayerPlatformInfo_1a610b77cd7c43987a57fdb465166b23fd)`() const` <a id="classURH__PlayerPlatformInfo_1a610b77cd7c43987a57fdb465166b23fd"></a>
 
 <br>
 ## class `URH_PlayerInfo` <a id="classURH__PlayerInfo"></a>
@@ -305,8 +426,11 @@ Stores and fetchs all the information about a given player.
 --------------------------------|---------------------------------------------
 `public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__PlayerInfo_1a54c7f292baed18ac0874999ed4aa6887) | Blueprint delegate to listen for presence updates.
 `public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__PlayerInfo_1ac74aa80ca135a273f845baa99a260b52) | Native delegate to listen for presence updates.
+`public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1af04e5c65d01d1fc0112f5ba31251b803) | Blueprint delegate to listen for session list updates.
+`public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1a08a5bcbd89a31745fe2d338a73c57d40) | Native delegate to listen for session list updates.
 `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` | Gets the players Unique player Id.
 `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` | Gets The players presence class.
+`public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players presence class.
 `public inline FORCEINLINE TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480)`()` | Gets the associated platform ids of the player.
 `public inline FORCEINLINE const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1ab0617adb51499a0c8ce36ef60693e6d6)`() const` | Gets the associated platform ids of the player.
 `public TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1a3896d84ba5481158ce3cfc62b39e064e)`() const` | Gets the associated platforms of the player.
@@ -321,12 +445,8 @@ Stores and fetchs all the information about a given player.
 `public void `[`InitializeForPlayer`](#classURH__PlayerInfo_1a38608b8b57751e9db1c1dcfb818d0506)`(const FGuid & PlayerUuid)` | Initialized the player info from a given Player Unique Id.
 `public void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a0f65a3d2b00d1372995c0c44b1a85f1b)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Gets the last known display name for the player, will make required API calls to retrieve the information if needed.
 `public inline void `[`BLUEPRINT_GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a2a5f9d31fb4c1096e06d68569d617257)`(const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` | 
-`public void `[`GetLastKnownGamerTagAsync`](#classURH__PlayerInfo_1a56f98529fbf0ffcb99d400956992d67a)`(const FTimespan & StaleThreshold,bool bForceRefresh,`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | 
-`public inline void `[`BLUEPRINT_GetLastKnownGamerTagAsync`](#classURH__PlayerInfo_1ada7eb0523199375166557dbd51156171)`(const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FTimespan & StaleThreshold,bool bForceRefresh,`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` | 
 `public bool `[`GetLastKnownDisplayName`](#classURH__PlayerInfo_1a1013650527f7be680adc07896e49d555)`(FString & OutDisplayName,ERHAPI_Platform PreferredPlatformType) const` | Gets the last known display name for the player.
 `public inline bool `[`BLUEPRINT_GetLastKnownDisplayName`](#classURH__PlayerInfo_1a4b096747849fe22e2c7934fb3212bb85)`(ERHAPI_Platform PreferredPlatformType,FString & OutDisplayName) const` | 
-`public bool `[`GetLastKnownGamerTag`](#classURH__PlayerInfo_1ac046b56507099dead286c0f8b357d735)`(FString & OutGamerTag,`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType) const` | 
-`public inline bool `[`BLUEPRINT_GetLastKnownGamerTag`](#classURH__PlayerInfo_1a266492236a5c2c41bd27f4c91cb60020)`(`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType,FString & OutGamerTag) const` | 
 `public void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1ad28653f3570b4d39ced6c98a307b615e)`(const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlatformsBlock Delegate)` | Gets the players linked platforms via API call.
 `public inline void `[`BLUEPRINT_GetLinkedPlatformInfo`](#classURH__PlayerInfo_1a17dd835ef46a8418e6cf760eb076d01d)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsDynamicDelegate & Delegate)` | 
 `public void `[`GetPlayerSettings`](#classURH__PlayerInfo_1ab85a2c934ed797040400e40f43f5f7e4)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlayerSettingsBlock Delegate)` | Gets the players settings information for a given type.
@@ -338,7 +458,6 @@ Stores and fetchs all the information about a given player.
 `public void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1a491ffa1dfb6f946de2603f5bc35bfbc5)`(int32 RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Sets the players settings information for a given type.
 `public inline void `[`BLUEPRINT_UpdatePlayerRanking`](#classURH__PlayerInfo_1abb8b8d604a9e5ad5b32f1dee62dd2dad)`(int32 RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` | 
 `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInfo_1a38aa7a072a97be36bc623a9cda702cdf)`() const` | Gets the local Auth Context for making API calls.
-`public `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetLoggedInPlatformType`](#classURH__PlayerInfo_1a54baed57c96dfcccda812501791594f9)`() const` | Gets the local users logged in platform type.
 `public ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__PlayerInfo_1ad8fc7aea229a59d52a1c9e3491b8d168)`() const` | Gets the local users logged in platform type.
 `protected FGuid `[`RHPlayerUuid`](#classURH__PlayerInfo_1abd6b1bad2e1044b59af44d04f822cef1) | The Unique Player Id for the player.
 `protected TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > `[`PlayerSettingsByTypeId`](#classURH__PlayerInfo_1a17fa2a55af8c7efa708db4871753ae07) | Cache of Player Settings Data by their settings types.
@@ -346,6 +465,7 @@ Stores and fetchs all the information about a given player.
 `protected TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > `[`SetPlayerSettingResponses`](#classURH__PlayerInfo_1ae9c58905a224f950cec5f6fc65de81f3) | Used when requesting multiple Player Settings Updates to track all their responses.
 `protected TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > `[`LinkedPlayerPlatforms`](#classURH__PlayerInfo_1a9f74bbf7a958d7a5a00d7daa8c159c2f) | Cache of all platforms the player is linked to.
 `protected `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`PlayerPresence`](#classURH__PlayerInfo_1ae3c851503d0b5b8c024dc55252acb688) | The players Presence Information.
+`protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) | The players Sessions Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
 `protected `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`PlayerNotifications`](#classURH__PlayerInfo_1ac1eb1a25b4d89a7f7c75cbb6d4c9e4a8) | The Players Inventory Subsystem.
 `protected TMap< int32, `[`FRHAPI_PlayerRankResponse`](models/RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a9bafd2e8ef5a501cb7ac975b8b80481e) | List of the player's rankings.
@@ -359,7 +479,8 @@ Stores and fetchs all the information about a given player.
 `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a3334ad5988e4ff00343a33b696de048d)`(const SetSettings::Response & Response,FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
 `protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1ac72546c26880ce2caa1d5a24e7a098d2)`(const GetRankings::Response & Response,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
 `protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1ac885a100d7db3dfab8bcb7e3a6ab05c9)`(const UpdateRanking::Response & Response,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Update Player Ranking call.
-`protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a3ca7d1b771ed3353fdcd29330a1aa78e)`(`[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * InPlayerPresence)` | Helper to broadcast results from player presences being updated.
+`protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01)`()` | Helper to broadcast results from player presences being updated.
+`protected inline virtual void `[`OnSessionsUpdated`](#classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550)`()` | Helper to broadcast results from player sessions list being updated.
 `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) | 
 `typedef `[`GetSettings`](#classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9) | 
 `typedef `[`SetSettings`](#classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11) | 
@@ -378,6 +499,16 @@ Blueprint delegate to listen for presence updates.
 Native delegate to listen for presence updates.
 
 <br>
+#### `public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1af04e5c65d01d1fc0112f5ba31251b803) <a id="classURH__PlayerInfo_1af04e5c65d01d1fc0112f5ba31251b803"></a>
+
+Blueprint delegate to listen for session list updates.
+
+<br>
+#### `public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1a08a5bcbd89a31745fe2d338a73c57d40) <a id="classURH__PlayerInfo_1a08a5bcbd89a31745fe2d338a73c57d40"></a>
+
+Native delegate to listen for session list updates.
+
+<br>
 #### `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` <a id="classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4"></a>
 
 Gets the players Unique player Id.
@@ -387,6 +518,14 @@ The players Unique Player Id.
 
 <br>
 #### `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` <a id="classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568"></a>
+
+Gets The players presence class.
+
+#### Returns
+The players presence class.
+
+<br>
+#### `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` <a id="classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4"></a>
 
 Gets The players presence class.
 
@@ -509,12 +648,6 @@ Gets the last known display name for the player, will make required API calls to
 #### `public inline void `[`BLUEPRINT_GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a2a5f9d31fb4c1096e06d68569d617257)`(const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1a2a5f9d31fb4c1096e06d68569d617257"></a>
 
 <br>
-#### `public void `[`GetLastKnownGamerTagAsync`](#classURH__PlayerInfo_1a56f98529fbf0ffcb99d400956992d67a)`(const FTimespan & StaleThreshold,bool bForceRefresh,`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` <a id="classURH__PlayerInfo_1a56f98529fbf0ffcb99d400956992d67a"></a>
-
-<br>
-#### `public inline void `[`BLUEPRINT_GetLastKnownGamerTagAsync`](#classURH__PlayerInfo_1ada7eb0523199375166557dbd51156171)`(const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FTimespan & StaleThreshold,bool bForceRefresh,`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1ada7eb0523199375166557dbd51156171"></a>
-
-<br>
 #### `public bool `[`GetLastKnownDisplayName`](#classURH__PlayerInfo_1a1013650527f7be680adc07896e49d555)`(FString & OutDisplayName,ERHAPI_Platform PreferredPlatformType) const` <a id="classURH__PlayerInfo_1a1013650527f7be680adc07896e49d555"></a>
 
 Gets the last known display name for the player.
@@ -529,12 +662,6 @@ If the call successfully found a display name for the player already stored on t
 
 <br>
 #### `public inline bool `[`BLUEPRINT_GetLastKnownDisplayName`](#classURH__PlayerInfo_1a4b096747849fe22e2c7934fb3212bb85)`(ERHAPI_Platform PreferredPlatformType,FString & OutDisplayName) const` <a id="classURH__PlayerInfo_1a4b096747849fe22e2c7934fb3212bb85"></a>
-
-<br>
-#### `public bool `[`GetLastKnownGamerTag`](#classURH__PlayerInfo_1ac046b56507099dead286c0f8b357d735)`(FString & OutGamerTag,`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType) const` <a id="classURH__PlayerInfo_1ac046b56507099dead286c0f8b357d735"></a>
-
-<br>
-#### `public inline bool `[`BLUEPRINT_GetLastKnownGamerTag`](#classURH__PlayerInfo_1a266492236a5c2c41bd27f4c91cb60020)`(`[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` PreferredPlatformType,FString & OutGamerTag) const` <a id="classURH__PlayerInfo_1a266492236a5c2c41bd27f4c91cb60020"></a>
 
 <br>
 #### `public void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1ad28653f3570b4d39ced6c98a307b615e)`(const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlatformsBlock Delegate)` <a id="classURH__PlayerInfo_1ad28653f3570b4d39ced6c98a307b615e"></a>
@@ -622,14 +749,6 @@ Gets the local Auth Context for making API calls.
 Local auth context for the given player or instance
 
 <br>
-#### `public `[`ERHAPI_PlatformTypes_DEPRECATED`](undefined.md#group__Common_1ga8d2aa1d87e398a5548531751e8cea759)` `[`GetLoggedInPlatformType`](#classURH__PlayerInfo_1a54baed57c96dfcccda812501791594f9)`() const` <a id="classURH__PlayerInfo_1a54baed57c96dfcccda812501791594f9"></a>
-
-Gets the local users logged in platform type.
-
-#### Returns
-The Platform type of the local user
-
-<br>
 #### `public ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__PlayerInfo_1ad8fc7aea229a59d52a1c9e3491b8d168)`() const` <a id="classURH__PlayerInfo_1ad8fc7aea229a59d52a1c9e3491b8d168"></a>
 
 Gets the local users logged in platform type.
@@ -666,6 +785,11 @@ Cache of all platforms the player is linked to.
 #### `protected `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`PlayerPresence`](#classURH__PlayerInfo_1ae3c851503d0b5b8c024dc55252acb688) <a id="classURH__PlayerInfo_1ae3c851503d0b5b8c024dc55252acb688"></a>
 
 The players Presence Information.
+
+<br>
+#### `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) <a id="classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd"></a>
+
+The players Sessions Information.
 
 <br>
 #### `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) <a id="classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da"></a>
@@ -786,12 +910,14 @@ Handles the response to a Update Player Ranking call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a3ca7d1b771ed3353fdcd29330a1aa78e)`(`[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * InPlayerPresence)` <a id="classURH__PlayerInfo_1a3ca7d1b771ed3353fdcd29330a1aa78e"></a>
+#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01)`()` <a id="classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01"></a>
 
 Helper to broadcast results from player presences being updated.
 
-#### Parameters
-* `InPlayerPresence` The updated Player Presence.
+<br>
+#### `protected inline virtual void `[`OnSessionsUpdated`](#classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550)`()` <a id="classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550"></a>
+
+Helper to broadcast results from player sessions list being updated.
 
 <br>
 #### `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) <a id="classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6"></a>
@@ -813,7 +939,7 @@ Helper to broadcast results from player presences being updated.
 
 ```
 class URH_PlayerInfoSubsystem
-  : public URH_GameInstanceSubsystemPlugin
+  : public URH_SandboxedSubsystemPlugin
   : public FTickableGameObject
 ```
 
@@ -834,6 +960,8 @@ Subsystem used to track and request information about players.
 `public inline void `[`AddPlayerLink`](#classURH__PlayerInfoSubsystem_1a7dff591ef7779e9b7fc24f778c819ad4)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId,const FGuid & PlayerUuid)` | Adds a platform mapping for a given player.
 `public void `[`LookupPlayer`](#classURH__PlayerInfoSubsystem_1ab4fce576a416140f17e7595d4796caee)`(FString PlayerName,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Searchs for all players who use the given display name via API Call.
 `public inline void `[`BLUEPRINT_LookupPlayer`](#classURH__PlayerInfoSubsystem_1af49782e7e30900e743e026d08a5f991b)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` | 
+`public void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a2a5701f96ce81aa12d70067ff15d8fb5)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Searchs for players associated with the given platform and platform user id via API Call.
+`public inline void `[`BLUEPRINT_LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1acf620014114fa3f12ec521960f84d779)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` | 
 `public `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1a4ccb69f748014aa9baddae76250b7e31)`(const FGuid & PlayerUuid)` | Remove a specific Player Info from PlayerInfoSubsystem's cache.
 `public virtual void `[`Tick`](#classURH__PlayerInfoSubsystem_1abf83de825c346653c1bc3cba1df75815)`(float DeltaTime)` | Unreals basic Tick function.
 `public inline virtual bool `[`IsTickable`](#classURH__PlayerInfoSubsystem_1a49b75fe691775b67c9af6a818d2e4592)`() const` | Gets if currently tickable.
@@ -845,6 +973,7 @@ Subsystem used to track and request information about players.
 `protected virtual void `[`ClearPlayerInfoCache`](#classURH__PlayerInfoSubsystem_1a2ddbe40cfed50b7e76437aec24e4c054)`()` | Clears the cached player infos.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__PlayerInfoSubsystem_1a5e14a7f60c320b9a2186e33726f7e5ee)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual void `[`OnLookupPlayerResponse`](#classURH__PlayerInfoSubsystem_1a4f0fc4fcd0d0cf7e5e61526884a0f3a9)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player call.
+`protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a574ec17989951c62b243b7b5d54f2ede)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player By Platform User Id call.
 `typedef `[`TLookupPlayer`](#classURH__PlayerInfoSubsystem_1a221cacf49cc61a7df9b7e791befbb312) | 
 
 #### Members
@@ -945,6 +1074,21 @@ Searchs for all players who use the given display name via API Call.
 #### `public inline void `[`BLUEPRINT_LookupPlayer`](#classURH__PlayerInfoSubsystem_1af49782e7e30900e743e026d08a5f991b)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` <a id="classURH__PlayerInfoSubsystem_1af49782e7e30900e743e026d08a5f991b"></a>
 
 <br>
+#### `public void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a2a5701f96ce81aa12d70067ff15d8fb5)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a2a5701f96ce81aa12d70067ff15d8fb5"></a>
+
+Searchs for players associated with the given platform and platform user id via API Call.
+
+#### Parameters
+* `Platform` The platform used for the lookup 
+
+* `PlatformUserId` The platform user id used for the lookup 
+
+* `Delegate` Callback with the all PlayerInfos that are found with that display name
+
+<br>
+#### `public inline void `[`BLUEPRINT_LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1acf620014114fa3f12ec521960f84d779)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` <a id="classURH__PlayerInfoSubsystem_1acf620014114fa3f12ec521960f84d779"></a>
+
+<br>
 #### `public `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1a4ccb69f748014aa9baddae76250b7e31)`(const FGuid & PlayerUuid)` <a id="classURH__PlayerInfoSubsystem_1a4ccb69f748014aa9baddae76250b7e31"></a>
 
 Remove a specific Player Info from PlayerInfoSubsystem's cache.
@@ -1004,6 +1148,16 @@ Initializes the subsystem with defaults for its cached data.
 #### `protected virtual void `[`OnLookupPlayerResponse`](#classURH__PlayerInfoSubsystem_1a4f0fc4fcd0d0cf7e5e61526884a0f3a9)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a4f0fc4fcd0d0cf7e5e61526884a0f3a9"></a>
 
 Handles the response to a Lookup Player call.
+
+#### Parameters
+* `Resp` Response given for the call 
+
+* `Delegate` Delegate passed in for original call to respond to when call completes.
+
+<br>
+#### `protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a574ec17989951c62b243b7b5d54f2ede)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a574ec17989951c62b243b7b5d54f2ede"></a>
+
+Handles the response to a Lookup Player By Platform User Id call.
 
 #### Parameters
 * `Resp` Response given for the call 

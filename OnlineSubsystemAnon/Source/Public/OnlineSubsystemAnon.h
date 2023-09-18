@@ -8,7 +8,7 @@
 typedef TSharedPtr<class FOnlineIdentityAnon, ESPMode::ThreadSafe> FOnlineIdentityAnonPtr;
 
 /**
- *	FOnlineSubsystemEpic - Implementation of the online subsystem for Epic services
+ *	FOnlineSubsystemAnon - Implementation of the online subsystem for Anon login type
  */
 class ONLINESUBSYSTEMANON_API FOnlineSubsystemAnon : public FOnlineSubsystemImpl
 {

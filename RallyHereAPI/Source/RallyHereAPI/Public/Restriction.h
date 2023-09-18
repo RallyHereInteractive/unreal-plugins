@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief 
+ * @brief Restriction applied to a player
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
@@ -40,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Type of restriction */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_RestrictionType Type{  };
     /** @brief Gets the value of Type */
@@ -49,6 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
     /** @brief Sets the value of Type */
     void SetType(ERHAPI_RestrictionType NewValue) { Type = NewValue;  }
 
+    /** @brief Reason the restriction was applied */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Reason_Optional{  };
     /** @brief true if Reason_Optional has been set to a value */
@@ -71,6 +73,7 @@ struct RALLYHEREAPI_API FRHAPI_Restriction : public FRHAPI_Model
      /** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
     void ClearReason() { Reason_IsSet = false; }
 
+    /** @brief Date the restriction expires.  Null means the restriction is permanent */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FDateTime Expiration_Optional{  };
     /** @brief true if Expiration_Optional has been set to a value */

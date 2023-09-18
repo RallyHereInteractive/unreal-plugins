@@ -65,7 +65,7 @@ FGuid URH_PlayerInventory::GetRHPlayerUuid() const
 	return PlayerInfo ? PlayerInfo->GetRHPlayerUuid() : FGuid(); 
 }
 
-void URH_PlayerInventory::GetInventoryCount(int32 ItemId, const FRH_GetInventoryCountBlock& Delegate) const
+void URH_PlayerInventory::GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountBlock& Delegate) const
 {
 	if (ItemId > 0)
 	{
@@ -134,7 +134,7 @@ void URH_PlayerInventory::GetInventoryCount_INTERNAL(URH_CatalogItem* Item, cons
 	Delegate.ExecuteIfBound(Count);
 }
 
-void URH_PlayerInventory::IsInventoryItemOwned(int32 ItemId, const FRH_GetInventoryStateBlock& Delegate) const
+void URH_PlayerInventory::IsInventoryItemOwned(const int32& ItemId, const FRH_GetInventoryStateBlock& Delegate) const
 {
 	if (ItemId > 0)
 	{
@@ -194,7 +194,7 @@ void URH_PlayerInventory::IsInventoryItemOwned_INTERNAL(URH_CatalogItem* Item, c
 	Delegate.ExecuteIfBound(false);
 }
 
-void URH_PlayerInventory::IsInventoryItemRented(int32 ItemId, const FRH_GetInventoryStateBlock& Delegate) const
+void URH_PlayerInventory::IsInventoryItemRented(const int32& ItemId, const FRH_GetInventoryStateBlock& Delegate) const
 {
 	if (ItemId > 0)
 	{
@@ -355,7 +355,7 @@ TArray<FRH_ItemInventory> URH_PlayerInventory::GetAllCachedInventory() const
 	return GetCachedInventoryForItems({});
 }
 
-TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItem(const int32 ItemId) const
+TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItem(const int32& ItemId) const
 {
 	return GetCachedInventoryForItems({ ItemId });
 }
@@ -444,7 +444,8 @@ void URH_PlayerInventory::GetInventory(TArray<int32> ItemIds, const FRH_OnInvent
 
 	Request.PlayerUuid = GetRHPlayerUuid();
 	Request.AuthContext = GetAuthContext();
-	if (ItemIds.Num() > 0)
+
+	if (ItemIds.Num())
 	{
 		Request.ItemIds = ItemIds;
 	}
@@ -812,7 +813,7 @@ void URH_PlayerInventory::PollInventory(const FRH_PollCompleteFunc& Delegate)
 		return;
 	}
 
-	OrderWatch->RequestOrders(FRH_GenericSuccessDelegate::CreateLambda([Delegate](bool bSuccess) { Delegate.ExecuteIfBound(bSuccess, true); }));
+	OrderWatch->RequestOrders(FRH_GenericSuccessWithErrorDelegate::CreateLambda([Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) { Delegate.ExecuteIfBound(bSuccess, true); }));
 }
 
 
@@ -825,7 +826,7 @@ void URH_PlayerInventory::PollPendingInventory(const FRH_PollCompleteFunc& Deleg
 		return;
 	}
 
-	auto CompletionDelegate = FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess)
+	auto CompletionDelegate = FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 		{
 			if (bSuccess)
 			{
@@ -1070,42 +1071,7 @@ void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerO
 	}
 }
 
-void URH_PlayerInventory::CreatePlayerOrder(ERHAPI_PlayerOrderEntryType FillType, ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate)
-{
-	auto Request = TCreateOrder::Request();
-
-	Request.AuthContext = GetAuthContext();
-
-	if (!Request.AuthContext.IsValid())
-	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
-		return;
-	}
-
-	for (URH_PlayerOrderEntry* Entry : OrderEntries)
-	{
-		Entry->FillType = FillType;
-	}
-
-	// #RHTODO: Expose or remove PlayerOrderCreate.ClientOrderRefId
-	PopulateInstanceData(Request.PlayerOrderCreate);
-	Request.PlayerOrderCreate.SetSource(OrderSource);
-	Request.PlayerUuid = GetRHPlayerUuid();
-	WriteOrderEntries(Request.PlayerOrderCreate.Entries, OrderEntries);
-
-	if (Request.PlayerOrderCreate.Entries.Num() == 0)
-	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
-		return;
-	}
-
-	if (!TCreateOrder::DoCall(RH_APIs::GetInventoryAPI(), Request, TCreateOrder::Delegate::CreateUObject(this, &URH_PlayerInventory::CreatePlayerOrderResponse, Delegate, OrderEntries), GetDefault<URH_IntegrationSettings>()->InventoryCreateOrderPriority))
-	{
-		Delegate.ExecuteIfBound(GetPlayerInfo(), OrderEntries, FRHAPI_PlayerOrder());
-	}
-}
-
-void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate)
+void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool IsTransaction, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate)
 {
 	auto Request = TCreateOrder::Request();
 
@@ -1119,6 +1085,7 @@ void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, TArray
 
 	// #RHTODO: Expose or remove PlayerOrderCreate.ClientOrderRefId
 	PopulateInstanceData(Request.PlayerOrderCreate);
+	Request.PlayerOrderCreate.SetIsTransaction(IsTransaction);
 	Request.PlayerOrderCreate.SetSource(OrderSource);
 	Request.PlayerUuid = GetRHPlayerUuid();
 	WriteOrderEntries(Request.PlayerOrderCreate.Entries, OrderEntries);
@@ -1309,12 +1276,12 @@ URH_PlayerInventory* URH_PlayerOrderWatch::GetPlayerInventory() const
 }
 
 
-bool URH_PlayerOrderWatch::RequestOrders(FRH_GenericSuccessBlock Delegate)
+bool URH_PlayerOrderWatch::RequestOrders(FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	auto* PlayerInventory = GetPlayerInventory();
 	if (!PlayerInventory)
 	{
-		Delegate.ExecuteIfBound(false);
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 		return false;
 	}
 
@@ -1324,7 +1291,7 @@ bool URH_PlayerOrderWatch::RequestOrders(FRH_GenericSuccessBlock Delegate)
 
 	if (!Request.AuthContext.IsValid())
 	{
-		Delegate.ExecuteIfBound(false);
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 		return false;
 	}
 
@@ -1381,12 +1348,12 @@ URH_PlayerInventory* URH_PendingOrder::GetPlayerInventory() const
 	return CastChecked<URH_PlayerInventory>(GetOuter());
 }
 
-bool URH_PendingOrder::RequestOrders(FRH_GenericSuccessBlock Delegate)
+bool URH_PendingOrder::RequestOrders(FRH_GenericSuccessWithErrorBlock Delegate)
 {
 	auto* PlayerInventory = GetPlayerInventory();
 	if (!PlayerInventory)
 	{
-		Delegate.ExecuteIfBound(false);
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 		return false;
 	}
 
@@ -1396,7 +1363,7 @@ bool URH_PendingOrder::RequestOrders(FRH_GenericSuccessBlock Delegate)
 
 	if (!Request.AuthContext.IsValid())
 	{
-		Delegate.ExecuteIfBound(false);
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 		return false;
 	}
 

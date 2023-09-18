@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FKeyClaimsAPI::FKeyClaimsAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("KeyClaims");
+    Name = FName(TEXT("KeyClaims"));
 }
 
 FKeyClaimsAPI::~FKeyClaimsAPI() {}
@@ -88,9 +88,10 @@ FRequest_ClaimPlayerUuidUnclaimedKeyClaim::FRequest_ClaimPlayerUuidUnclaimedKeyC
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ClaimPlayerUuidUnclaimedKeyClaim::GetSimplifiedPath() const
+FName FRequest_ClaimPlayerUuidUnclaimedKeyClaim::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_ClaimPlayerUuidUnclaimedKeyClaim::ComputePath() const
@@ -252,9 +253,10 @@ FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::FRequest_ClaimPlayerUuidUnclaime
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::GetSimplifiedPath() const
+FName FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::ComputePath() const
@@ -415,9 +417,10 @@ FRequest_ClaimUnclaimedKeyClaim::FRequest_ClaimUnclaimedKeyClaim()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ClaimUnclaimedKeyClaim::GetSimplifiedPath() const
+FName FRequest_ClaimUnclaimedKeyClaim::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_ClaimUnclaimedKeyClaim::ComputePath() const
@@ -579,9 +582,10 @@ FRequest_ClaimUnclaimedKeyClaimForMe::FRequest_ClaimUnclaimedKeyClaimForMe()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ClaimUnclaimedKeyClaimForMe::GetSimplifiedPath() const
+FName FRequest_ClaimUnclaimedKeyClaimForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_ClaimUnclaimedKeyClaimForMe::ComputePath() const
@@ -742,9 +746,10 @@ FRequest_GetKeyClaim::FRequest_GetKeyClaim()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetKeyClaim::GetSimplifiedPath() const
+FName FRequest_GetKeyClaim::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_GetKeyClaim::ComputePath() const
@@ -895,9 +900,10 @@ FRequest_GetKeyClaimForMe::FRequest_GetKeyClaimForMe()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetKeyClaimForMe::GetSimplifiedPath() const
+FName FRequest_GetKeyClaimForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_GetKeyClaimForMe::ComputePath() const
@@ -1047,9 +1053,10 @@ FRequest_GetKeyClaims::FRequest_GetKeyClaims()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetKeyClaims::GetSimplifiedPath() const
+FName FRequest_GetKeyClaims::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/keyClaim"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/keyClaim"));
+    return Path;
 }
 
 FString FRequest_GetKeyClaims::ComputePath() const
@@ -1199,14 +1206,15 @@ FRequest_GetKeyClaimsForMe::FRequest_GetKeyClaimsForMe()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetKeyClaimsForMe::GetSimplifiedPath() const
+FName FRequest_GetKeyClaimsForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/keyClaim"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/keyClaim"));
+    return Path;
 }
 
 FString FRequest_GetKeyClaimsForMe::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1343,14 +1351,15 @@ FRequest_GetKeyClaimsForMyUuid::FRequest_GetKeyClaimsForMyUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetKeyClaimsForMyUuid::GetSimplifiedPath() const
+FName FRequest_GetKeyClaimsForMyUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/keyClaim"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/keyClaim"));
+    return Path;
 }
 
 FString FRequest_GetKeyClaimsForMyUuid::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1487,9 +1496,10 @@ FRequest_GetPlayerUuidKeyClaim::FRequest_GetPlayerUuidKeyClaim()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidKeyClaim::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidKeyClaim::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidKeyClaim::ComputePath() const
@@ -1640,9 +1650,10 @@ FRequest_GetPlayerUuidKeyClaimSelf::FRequest_GetPlayerUuidKeyClaimSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidKeyClaimSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidKeyClaimSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/keyClaim/{key_claim_uuid}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/keyClaim/{key_claim_uuid}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidKeyClaimSelf::ComputePath() const
@@ -1792,9 +1803,10 @@ FRequest_GetPlayerUuidKeyClaims::FRequest_GetPlayerUuidKeyClaims()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidKeyClaims::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidKeyClaims::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/keyClaim"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/keyClaim"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidKeyClaims::ComputePath() const

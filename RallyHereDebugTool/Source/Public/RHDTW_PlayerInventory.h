@@ -2,6 +2,7 @@
 
 #include "RH_DebugToolWindow.h"
 #include <string>
+#include "RH_ImGuiUtilities.h"
 
 struct FRHDTW_PlayerInventory : public FRH_DebugToolWindow
 {
@@ -71,10 +72,7 @@ private:
 	int32 InputCount;
 	TArray<ANSICHAR> InputExpires;
 	TArray<ANSICHAR> ModifyInventoryIdInput;
-	TArray<ANSICHAR> InputCustomDataKey;
-	TArray<ANSICHAR> InputCustomDataValue;
 	FString ModifyInventoryResult;
-	TMap<FString, FString> StagedCustomData;
 	int32 SelectedCreateInventoryTypes;
 	TArray<ERHAPI_CreateInventoryType> CreateInventoryTypes =
 	{
@@ -173,5 +171,7 @@ private:
 	};
 	TArray<std::string> InventoryBucketStrings;
 	TArray<const ANSICHAR*> InventoryBucketChars;
+
+	FImGuiCustomDataStager CustomDataStager;
 };
 

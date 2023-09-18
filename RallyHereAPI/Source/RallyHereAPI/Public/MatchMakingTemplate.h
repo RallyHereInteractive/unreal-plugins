@@ -19,7 +19,7 @@
  */
 
 /**
- * @brief Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of
+ * @brief DEPRECATED Configuration about what rules must be satisfied to use this template, and what matchmaking profiles the ticket will be a part of
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplate : public FRHAPI_Model
@@ -42,15 +42,38 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplate : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief ID for this unique MatchMakingTemplate */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FGuid MatchMakingTemplateId_Optional{  };
+    /** @brief true if MatchMakingTemplateId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MatchMakingTemplateId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set */
+    FGuid& GetMatchMakingTemplateId() { return MatchMakingTemplateId_Optional; }
+    /** @brief Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set */
+    const FGuid& GetMatchMakingTemplateId() const { return MatchMakingTemplateId_Optional; }
+    /** @brief Gets the value of MatchMakingTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetMatchMakingTemplateId(const FGuid& DefaultValue) const { if (MatchMakingTemplateId_IsSet) return MatchMakingTemplateId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingTemplateId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingTemplateId(FGuid& OutValue) const { if (MatchMakingTemplateId_IsSet) OutValue = MatchMakingTemplateId_Optional; return MatchMakingTemplateId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetMatchMakingTemplateIdOrNull() { if (MatchMakingTemplateId_IsSet) return &MatchMakingTemplateId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetMatchMakingTemplateIdOrNull() const { if (MatchMakingTemplateId_IsSet) return &MatchMakingTemplateId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true */
+    void SetMatchMakingTemplateId(FGuid NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false */
+    void ClearMatchMakingTemplateId() { MatchMakingTemplateId_IsSet = false; }
+
     /** @brief What method should be used to calculate a group's MMR based on the individual player's ranks */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_MMRGroupingMethod MmrGroupMethod{  };
-    /** @brief Gets the value of MmrGroupMethod */
-    ERHAPI_MMRGroupingMethod& GetMmrGroupMethod() { return MmrGroupMethod; }
-    /** @brief Gets the value of MmrGroupMethod */
-    const ERHAPI_MMRGroupingMethod& GetMmrGroupMethod() const { return MmrGroupMethod; }
-    /** @brief Sets the value of MmrGroupMethod */
-    void SetMmrGroupMethod(ERHAPI_MMRGroupingMethod NewValue) { MmrGroupMethod = NewValue;  }
+    ERHAPI_MMRGroupingMethod MmrGroupingMethod{  };
+    /** @brief Gets the value of MmrGroupingMethod */
+    ERHAPI_MMRGroupingMethod& GetMmrGroupingMethod() { return MmrGroupingMethod; }
+    /** @brief Gets the value of MmrGroupingMethod */
+    const ERHAPI_MMRGroupingMethod& GetMmrGroupingMethod() const { return MmrGroupingMethod; }
+    /** @brief Sets the value of MmrGroupingMethod */
+    void SetMmrGroupingMethod(ERHAPI_MMRGroupingMethod NewValue) { MmrGroupingMethod = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MatchMakingRuleset Ruleset_Optional{  };

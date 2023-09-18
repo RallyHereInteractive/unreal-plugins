@@ -89,7 +89,7 @@ struct RALLYHEREAPI_API FHttpRetryParams
 struct RALLYHEREAPI_API FRequestMetadata
 {
     FGuid Identifier;
-    FString SimplifiedPath;
+    FName SimplifiedPath;
     int32 RetryCount = 0;
 };
 
@@ -99,7 +99,7 @@ public:
     virtual ~FRequest() = default;
     virtual bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const = 0;
     virtual FString ComputePath() const = 0;
-    virtual FString GetSimplifiedPath() const = 0;
+    virtual FName GetSimplifiedPath() const = 0;
     virtual TSharedPtr<FAuthContext> GetAuthContext() const { return nullptr; }
     const FRequestMetadata& GetRequestMetadata() const { return RequestMetadata; }
 
@@ -159,7 +159,7 @@ public:
      * Note: several fallback endpoints can be configured in request retry policies, see Request::SetShouldRetry */
     void SetURL(const FString& Url);
     FString GetURL() const;
-    FString GetName() const;
+    FName GetName() const;
 
     /* Adds global header params to all requests */
     void AddHeaderParam(const FString& Key, const FString& Value);
@@ -191,7 +191,7 @@ protected:
     void RetryRequestAfterAuth(bool bAuthSuccess, TSharedRef<FRequestPendingAuthRetry> Request, FHttpRequestCompleteDelegate ResponseDelegate, FRequestMetadata RequestMetadata, int32 Priority);
 
     FString Url;
-    FString Name;
+    FName Name;
     TMap<FString, FString> AdditionalHeaderParams;
     mutable FHttpRetrySystem::FManager* RetryManager = nullptr;
     mutable TUniquePtr<FHttpRetryManager> DefaultRetryManager;

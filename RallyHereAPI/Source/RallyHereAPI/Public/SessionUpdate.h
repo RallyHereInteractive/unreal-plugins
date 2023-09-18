@@ -84,6 +84,33 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
     void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief Flag for if players can freely join this session without an invite */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Joinable_Optional{  };
+    /** @brief true if Joinable_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Joinable_IsSet{ false };
+    /** @brief Gets the value of Joinable_Optional, regardless of it having been set */
+    bool& GetJoinable() { return Joinable_Optional; }
+    /** @brief Gets the value of Joinable_Optional, regardless of it having been set */
+    const bool& GetJoinable() const { return Joinable_Optional; }
+    /** @brief Gets the value of Joinable_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetJoinable(const bool& DefaultValue) const { if (Joinable_IsSet) return Joinable_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false */
+    bool GetJoinable(bool& OutValue) const { if (Joinable_IsSet) OutValue = Joinable_Optional; return Joinable_IsSet; }
+    /** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetJoinableOrNull() { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
+    /** @brief Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetJoinableOrNull() const { if (Joinable_IsSet) return &Joinable_Optional; return nullptr; }
+    /** @brief Sets the value of Joinable_Optional and also sets Joinable_IsSet to true */
+    void SetJoinable(bool NewValue) { Joinable_Optional = NewValue; Joinable_IsSet = true; }
+     /** @brief Clears the value of Joinable_Optional and sets Joinable_IsSet to false */
+    void ClearJoinable() { Joinable_Optional = false; Joinable_IsSet = false; }
+    /** @brief Returns true if Joinable_Optional is set and matches the default value */
+    bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
+    /** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
+    void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
 };
 
 /** @} */
