@@ -480,7 +480,9 @@ void URallyHereDebugTool::ToggleUI()
 
 	if (bActive && bDoOnce)
 	{
+#ifdef WITH_IMGUI_DOCK_SUPPORT
 		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+#endif
 		FImGuiModule::Get().GetProperties().SetLayoutToLoad(URallyHereDebugToolSettings::Get()->DefaultWindowPositions, true);
 		bDoOnce = false;
 	}

@@ -35,6 +35,7 @@ URH_BootstrappingSettings::URH_BootstrappingSettings(const FObjectInitializer& O
 URH_GameInstanceServerBootstrapper::URH_GameInstanceServerBootstrapper()
 	: Super()
 {
+	DefaultBootstrapMode = ERH_ServerBootstrapMode::Disabled;
 	BootstrapMode = ERH_ServerBootstrapMode::Disabled;
 	BootstrapStep = ERH_ServerBootstrapFlowStep::Unstarted;
 

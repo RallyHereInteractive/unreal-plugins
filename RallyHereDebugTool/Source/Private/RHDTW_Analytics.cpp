@@ -3,7 +3,10 @@
 #include "imgui.h"
 #include "RH_WebRequests.h"
 #include "RH_ImGuiUtilities.h"
+
+#ifdef WITH_IMGUI_IMPLOT
 #include "implot.h"
+#endif
 
 #include "RHDTW_Analytics.h"
 
@@ -132,6 +135,7 @@ void FRHDTW_Analytics::Do()
 #pragma region REUSABLE HELPERS
 void FRHDTW_Analytics::DoCallCountPlot(const TMap<FName, int32>& CountAllTime, TMap<FName, int32>& CountRecent, bool bAllTime, const FString& PlotName, const FString& CategoryName, const FString& FilterString)
 {
+#ifdef WITH_IMGUI_IMPLOT
 	TMap<FName, int32>& MapToUse = CountRecent;
 	MapToUse = bAllTime ? CountAllTime : CountRecent;
 
@@ -171,10 +175,12 @@ void FRHDTW_Analytics::DoCallCountPlot(const TMap<FName, int32>& CountAllTime, T
 
 		ImPlot::EndPlot();
 	}
+#endif
 }
 
 void FRHDTW_Analytics::DoTimelinePlot(URH_WebRequests* WebRequestsTracker, const FString& FilterString, TFunctionRef<FName(FRH_WebRequest*)> GetKeyFromRequest)
 {
+#ifdef WITH_IMGUI_IMPLOT
 	static const int SecondsInOneMinute = 60;
 	const auto& TrackedRequests = WebRequestsTracker->GetTrackedRequests();
 	const FDateTime TimeMin = FDateTime::Now() - FTimespan(0, 1, 0);
@@ -273,6 +279,7 @@ void FRHDTW_Analytics::DoTimelinePlot(URH_WebRequests* WebRequestsTracker, const
 
 		ImPlot::EndPlot();
 	}
+#endif
 }
 
 void FRHDTW_Analytics::DoTable(const TMap<FName, int32>& CountAllTime, TMap<FName, int32>& CountRecent, TMap<FName, TTuple<int32, int32>>& Bursts, const FString& TableName, const FString& CategoryName, const FString& FilterString)

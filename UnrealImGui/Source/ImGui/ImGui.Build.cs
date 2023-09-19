@@ -41,6 +41,11 @@ public class ImGui : ModuleRules
 			}
 			);
 
+		//$$ BEGIN ImPlot support
+		PublicDefinitions.Add("WITH_IMGUI_IMPLOT");
+		PublicDefinitions.Add("WITH_IMGUI_DOCK_SUPPORT");
+		//$$ END
+
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
