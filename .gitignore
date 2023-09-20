@@ -1,6 +1,7 @@
 
 
 # Ignore intermediate or generated files
+*/Binaries/
 */Intermediate/
 
 # Ignore documentation generated intermediate files
