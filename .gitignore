@@ -1,0 +1,10 @@
+
+
+# Ignore intermediate or generated files
+*/Intermediate/
+
+# Ignore documentation generated intermediate files
+Documentation/html/
+Documentation/latex/
+Documentation/xml/
+
