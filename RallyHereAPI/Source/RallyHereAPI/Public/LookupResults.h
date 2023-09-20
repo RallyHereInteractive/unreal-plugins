@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief 
+ * @brief Lookup results for a player query
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
@@ -41,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of display names and the players that match that display name */
     TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>> DisplayNames_Optional{  };
     /** @brief true if DisplayNames_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -62,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
      /** @brief Clears the value of DisplayNames_Optional and sets DisplayNames_IsSet to false */
     void ClearDisplayNames() { DisplayNames_IsSet = false; }
 
+    /** @brief *DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id */
     TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatforms_Optional{  };
     /** @brief true if IdentityPlatforms_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -83,6 +85,7 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
      /** @brief Clears the value of IdentityPlatforms_Optional and sets IdentityPlatforms_IsSet to false */
     void ClearIdentityPlatforms() { IdentityPlatforms_IsSet = false; }
 
+    /** @brief List of platforms and the players that match that platform user id */
     TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatformsByPlatform_Optional{  };
     /** @brief true if IdentityPlatformsByPlatform_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

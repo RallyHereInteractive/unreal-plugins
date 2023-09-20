@@ -7,6 +7,8 @@
 #include "RallyHereAPI/Public/Platform.h"
 #include "UObject/WeakInterfacePtr.h"
 
+#include "CustomAPI.h"
+
 #include "InventoryPortal.h"
 #include "InventoryBucket.h"
 #include "GrantType.h"
@@ -20,7 +22,7 @@
 #define WITH_HIREZ_ENGINE 0
 #endif
 
-DECLARE_LOG_CATEGORY_EXTERN(LogRallyHereIntegration, Log, All);
+RALLYHEREINTEGRATION_API DECLARE_LOG_CATEGORY_EXTERN(LogRallyHereIntegration, Log, All);
 extern FString GRallyHereIntegrationIni;
 
 #define RH_BELOW_ENGINE_VERSION(Major, Minor)  (ENGINE_MAJOR_VERSION < (Major) || (ENGINE_MAJOR_VERSION == (Major) && ENGINE_MINOR_VERSION < (Minor)))
@@ -28,10 +30,10 @@ extern FString GRallyHereIntegrationIni;
 
 #ifndef RH_GETENUMSTRING
 #if RH_FROM_ENGINE_VERSION(5, 1)
-#define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString("Invalid - are you sure enum uses UENUM() macro?") )
+#define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString(TEXT("Invalid - are you sure enum uses UENUM() macro?")) )
 #define RH_GETENUMFROMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true)->GetValueByNameString(evalue) : INDEX_NONE )
 #else
-#define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true) != nullptr) ? FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString("Invalid - are you sure enum uses UENUM() macro?") )
+#define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true) != nullptr) ? FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString(TEXT("Invalid - are you sure enum uses UENUM() macro?")) )
 #define RH_GETENUMFROMSTRING(package, etype, evalue) ( (FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true) != nullptr) ? FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true)->GetValueByNameString(evalue) : INDEX_NONE )
 #endif
 #endif
@@ -65,23 +67,13 @@ template<typename OptionalType>
 FORCEINLINE const OptionalType* GetPtrOrNull(const TOptional<OptionalType>& Opt) { return Opt.IsSet() ? &Opt.GetValue() : nullptr; }
 #endif
 
-bool RH_GetPlayerIdFromLocalPlayer(const class ULocalPlayer* pLocalPlayer, FGuid* outUuid);
+bool RALLYHEREINTEGRATION_API RH_GetPlayerIdFromLocalPlayer(const class ULocalPlayer* pLocalPlayer, FGuid* outUuid);
 
-TOptional<ERHAPI_PlatformID> RALLYHEREINTEGRATION_API RH_GetPlatformIdFromOSSName(FName OSSName);
 TOptional<ERHAPI_Platform> RALLYHEREINTEGRATION_API RH_GetPlatformFromOSSName(FName OSSName);
 ERHAPI_ClientType RALLYHEREINTEGRATION_API RH_GetClientTypeFromOSSName(FName OSSName);
 TOptional<ERHAPI_GrantType> RALLYHEREINTEGRATION_API RH_GetGrantTypeFromOSSName(FName OSSName);
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform);
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
-
-// Helper functions to convert between deprecated value until removed.
-ERHAPI_Platform RALLYHEREINTEGRATION_API RH_GetPlatformFromPlatformType(ERHAPI_PlatformTypes_DEPRECATED PlatformTypes);
-ERHAPI_PlatformTypes_DEPRECATED RALLYHEREINTEGRATION_API RH_GetPlatformTypeFromPlatform(ERHAPI_Platform Platform);
-
-UE_DEPRECATED(5.0, "This function has been deprecated, use RH_GetInventoryBucketFromPlatform")
-ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatformType(ERHAPI_PlatformTypes_DEPRECATED PlatformType);
-UE_DEPRECATED(5.0, "This function has been deprecated, use RH_GetPlatformFromOSSName")
-ERHAPI_PlatformTypes_DEPRECATED RALLYHEREINTEGRATION_API RH_GetPlatformTypeFromOSSName(FName OSSName);
 
 /** @defgroup Common RallyHere Common
  *  @{
@@ -94,17 +86,18 @@ class RALLYHEREINTEGRATION_API FRH_AsyncTaskHelper : public TSharedFromThis<FRH_
 {
 protected:
 	/** @brief Default constructor. */
-	FRH_AsyncTaskHelper() = default;
+	FRH_AsyncTaskHelper()
+		: TaskPriority(0)
+	{
+
+	}
 	/** @brief Constructor with a priority for the task helper. */
 	FRH_AsyncTaskHelper(int32 InPriority)
+		: TaskPriority(InPriority)
 	{
-		TaskPriority = InPriority;
 	}
 	/** @brief Default destructor. */
 	virtual ~FRH_AsyncTaskHelper() = default;
-
-	/** @brief Abstract function for fetching the name of the asynchronous task. */
-	virtual FString GetName() const = 0;
 
 	/** @brief Abstract function called when the asynchronous tasks completes regardless of success or failure. */
 	virtual void ExecuteCallback(bool bSuccess) const = 0;
@@ -118,6 +111,9 @@ protected:
 		check(bInitialized);
 
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("%s started"), *GetName());
+
+		StartedTime = FDateTime::Now();
+
 		OngoingRequests.Add(AsShared());
 	}
 
@@ -159,12 +155,29 @@ protected:
 			{
 				SelfRef->ExecuteCallback(bSuccess);	// only fire callbacks if we are initialized, otherwise we are likely in the middle of shutdown and callback memory may no longer be valid
 			}
+
+			SelfRef->EndedTime = FDateTime::Now();
+
 			SelfRef->Cleanup();
 		}
 	}
 
+public:
 	/** @brief Returns whether or not the task is currently executing. */
 	FORCEINLINE bool IsRunning() const { return OngoingRequests.Contains(AsShared()); }
+
+	/** @brief Abstract function for fetching the name of the asynchronous task. */
+	virtual FString GetName() const = 0;
+
+	/** @brief Gets the TaskPriority */
+	FORCEINLINE int32 GetTaskPriority() const { return TaskPriority; }
+
+	/** @brief Gets the Duration the task has been running for */
+	FORCEINLINE FTimespan GetDuration() const { return IsRunning() ? (FDateTime::Now() - StartedTime) : StartedTime - EndedTime; }
+
+	static const TArray<TSharedRef<FRH_AsyncTaskHelper>>& GetOngoingRequests() { return OngoingRequests; }
+
+protected:
 
 	static TArray<TSharedRef<FRH_AsyncTaskHelper>> OngoingRequests;
 	static bool bInitialized;
@@ -190,6 +203,8 @@ protected:
 	}
 
 	int32 TaskPriority;
+	FDateTime StartedTime;
+	FDateTime EndedTime;
 
 	friend class FRallyHereIntegrationModule; // allow the integration module to call Initialize/Uninitialize
 };
@@ -239,86 +254,6 @@ DECLARE_DELEGATE_OneParam(FRH_GenericSuccessDelegate, bool);
 /** @brief Generic blueprint and native delegate used to report success or failure */
 DECLARE_RH_DELEGATE_BLOCK(FRH_GenericSuccessBlock, FRH_GenericSuccessDelegate, FRH_GenericSuccessDynamicDelegate, bool)
 
-/**
- * @brief Templated helper class for asynchronously executing basic RallyHere API queries
- */
-template<typename BaseType>
-class FRH_SimpleQueryHelper : public FRH_AsyncTaskHelper
-{
-public:
-	/**
-	 * @brief Constructor allowing for the specification of callback delegates
-	 * @param [in] InUpdateDelegate Templated delegate to call with the API's response if query successfully completes
-	 * @param [in] InCompleteDelegate Generic completion delegate called regardless of success or failure
-	 */
-	FRH_SimpleQueryHelper(typename BaseType::Delegate InUpdateDelegate = BaseType::Delegate(), FRH_GenericSuccessBlock InCompleteDelegate = FRH_GenericSuccessBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
-		: FRH_AsyncTaskHelper(InPriority)
-		, UpdateDelegate(InUpdateDelegate)
-		, Delegate(InCompleteDelegate)
-	{
-	}
-
-	/**
-	 * @brief Begins the task of asynchronously querying the API 
-	 * @param [in] API API target for the query (i.e. User, Session, Inventory, etc.) 
-	 * @param [in] Request Templated request data for the query
-	 * @param [in] Priority The Priority of the call, lower is higher priority
-	 */
-	virtual void Start(typename BaseType::API& API, const typename BaseType::Request& Request)
-	{
-		Started();
-
-		HttpRequest = BaseType::DoCall(API, Request, BaseType::Delegate::CreateSP(this, &FRH_SimpleQueryHelper::OnQueryComplete), TaskPriority);
-		if (!HttpRequest)
-		{
-			Failed(TEXT("Could not create http request to query queues"));
-		}
-	}
-
-	/**
-	 * @brief Called once the asynchronous query has returned a response
-	 * @param [in] Resp Templated response data for the query
-	 */
-	void OnQueryComplete(const typename BaseType::Response& Resp)
-	{
-		HttpRequest = nullptr;
-		if (Resp.IsSuccessful())
-		{
-			UpdateDelegate.ExecuteIfBound(Resp);
-			Completed(true);
-		}
-		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
-		{
-			Completed(true);
-		}
-		else
-		{
-			Failed(TEXT("Query Failed"));
-		}
-	}
-
-	/** @brief Gets the templated name for this object */
-	virtual FString GetName() const override
-	{
-		static FString Name(FString::Printf(TEXT("FRH_SimpleQueryHelper<%s>"), *BaseType::Name));
-		return Name;
-	}
-	
-	/** @brief Executes the generic delegate associated with this asynchronous task forwarding bSuccess */
-	virtual void ExecuteCallback(bool bSuccess) const override
-	{
-		Delegate.ExecuteIfBound(bSuccess);
-	}
-
-protected:
-	/** @brief Templated delegate to call with the API's response if query successfully completes */
-	typename BaseType::Delegate UpdateDelegate;
-	/** @brief Generic completion delegate called regardless of success or failure */
-	FRH_GenericSuccessBlock Delegate;
-
-	/** @brief The HTTP request object used to query the API */
-	FHttpRequestPtr HttpRequest;
-};
 
 /**
  * @brief Generic handler for HTTP request errors.
@@ -380,6 +315,206 @@ struct FRH_ErrorInfo
 		}
 	}
 };
+
+/** @brief Generic blueprint friendly delegate used to report success or failure with error info */
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_GenericSuccessWithErrorDynamicDelegate, bool, bSuccess, const FRH_ErrorInfo&, ErrorInfo);
+/** @brief Generic native-only delegate used to report success or failure */
+DECLARE_DELEGATE_TwoParams(FRH_GenericSuccessWithErrorDelegate, bool, const FRH_ErrorInfo&);
+/** @brief Generic blueprint and native delegate used to report success or failure */
+DECLARE_RH_DELEGATE_BLOCK(FRH_GenericSuccessWithErrorBlock, FRH_GenericSuccessWithErrorDelegate, FRH_GenericSuccessWithErrorDynamicDelegate, bool, const FRH_ErrorInfo&)
+
+// conversion macro to convert to the with-error type from a success-only type
+FORCEINLINE FRH_GenericSuccessWithErrorBlock RH_ConvertGenericSucessDelegateBlock(const FRH_GenericSuccessBlock& InDelegate)
+{
+	FRH_GenericSuccessWithErrorBlock OutSuccessWithErrorDelegate;
+
+	OutSuccessWithErrorDelegate.Delegate.BindLambda([InDelegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		{
+			InDelegate.ExecuteIfBound(bSuccess);
+		});
+
+	return OutSuccessWithErrorDelegate;
+}
+
+/**
+ * @brief Templated helper class for asynchronously executing basic RallyHere API queries
+ */
+template<typename BaseType>
+class FRH_SimpleQueryHelper : public FRH_AsyncTaskHelper
+{
+public:
+	/**
+	 * @brief Constructor allowing for the specification of callback delegates
+	 * @param [in] InUpdateDelegate Templated delegate to call with the API's response if query successfully completes
+	 * @param [in] InCompleteDelegate Generic completion delegate called regardless of success or failure
+	 */
+	FRH_SimpleQueryHelper(typename BaseType::Delegate InUpdateDelegate = BaseType::Delegate(), FRH_GenericSuccessWithErrorBlock InCompleteDelegate = FRH_GenericSuccessWithErrorBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_AsyncTaskHelper(InPriority)
+		, UpdateDelegate(InUpdateDelegate)
+		, Delegate(InCompleteDelegate)
+	{
+	}
+
+	/**
+	 * @brief Constructor allowing for the specification of callback delegates
+	 * @param [in] InUpdateDelegate Templated delegate to call with the API's response if query successfully completes
+	 * @param [in] InCompleteDelegate Generic completion delegate called regardless of success or failure
+	 */
+	UE_DEPRECATED(5.0, "FRH_SimpleQueryHelper has converted to using FRH_GenericSuccessWithErrorBlock for completion callbacks, please convert your code to use the new type")
+	FRH_SimpleQueryHelper(typename BaseType::Delegate InUpdateDelegate = BaseType::Delegate(), FRH_GenericSuccessBlock InCompleteDelegate = FRH_GenericSuccessBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_AsyncTaskHelper(InPriority)
+		, UpdateDelegate(InUpdateDelegate)
+		, Delegate(RH_ConvertGenericSucessDelegateBlock(InCompleteDelegate))
+	{
+	}
+
+	/**
+	 * @brief Begins the task of asynchronously querying the API 
+	 * @param [in] API API target for the query (i.e. User, Session, Inventory, etc.) 
+	 * @param [in] Request Templated request data for the query
+	 * @param [in] Priority The Priority of the call, lower is higher priority
+	 */
+	virtual void Start(typename BaseType::API& API, const typename BaseType::Request& Request)
+	{
+		Started();
+
+		HttpRequest = BaseType::DoCall(API, Request, BaseType::Delegate::CreateSP(this, &FRH_SimpleQueryHelper::OnQueryComplete), TaskPriority);
+		if (!HttpRequest)
+		{
+			Failed(TEXT("Could not create http request to query queues"));
+		}
+	}
+
+	/**
+	 * @brief Called once the asynchronous query has returned a response
+	 * @param [in] Resp Templated response data for the query
+	 */
+	void OnQueryComplete(const typename BaseType::Response& Resp)
+	{
+		HttpRequest = nullptr;
+
+		ErrorInfo.ImportErrorInfo(Resp);
+
+		if (Resp.IsSuccessful())
+		{
+			UpdateDelegate.ExecuteIfBound(Resp);
+			Completed(true);
+		}
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified)
+		{
+			Completed(true);
+		}
+		else
+		{
+			Failed(TEXT("Query Failed"));
+		}
+	}
+
+	/** @brief Gets the templated name for this object */
+	virtual FString GetName() const override
+	{
+		static FString Name(FString::Printf(TEXT("FRH_SimpleQueryHelper<%s>"), *BaseType::Name));
+		return Name;
+	}
+	
+	/** @brief Executes the generic delegate associated with this asynchronous task forwarding bSuccess */
+	virtual void ExecuteCallback(bool bSuccess) const override
+	{
+		Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+	}
+
+protected:
+	/** @brief Templated delegate to call with the API's response if query successfully completes */
+	typename BaseType::Delegate UpdateDelegate;
+	/** @brief Generic completion delegate called regardless of success or failure */
+	FRH_GenericSuccessWithErrorBlock Delegate;
+
+	/** @brief The HTTP request object used to query the API */
+	FHttpRequestPtr HttpRequest;
+
+	/** Error Information */
+	FRH_ErrorInfo ErrorInfo;
+};
+
+/** @brief Wrapper calls for custom endpoint requests */
+USTRUCT(BlueprintType)
+struct FRH_CustomEndpointRequestWrapper
+{
+	GENERATED_BODY()
+
+	/** Http Endpoint ID that is mapped to a URL */
+	UPROPERTY(EditAnywhere, Category = "RallyHereAPI|CustomEndpoint")
+	FString EndpointId;
+
+	/** Call Priority */
+	UPROPERTY(EditAnywhere, Category = "RallyHereAPI|CustomEndpoint")
+	int32 Priority;
+
+	/** Http Body as Json */
+	UPROPERTY(EditAnywhere, Category = "RallyHereAPI|CustomEndpoint")
+	FRHAPI_JsonValue Body;
+
+	/** Http Content Type */
+	UPROPERTY(EditAnywhere, Category = "RallyHereAPI|CustomEndpoint")
+	FString ContentType;
+
+	FRH_CustomEndpointRequestWrapper()
+		: Priority(DefaultRallyHereAPIPriority)
+		, Body()
+	{
+	}
+};
+
+/** @brief Wrapper calls for custom endpoint responses */
+USTRUCT(BlueprintType)
+struct FRH_CustomEndpointResponseWrapper
+{
+	GENERATED_BODY()
+	
+	/** Http Response Code */
+	UPROPERTY(VisibleInstanceOnly, Category = "RallyHereAPI|CustomEndpoint")
+	int32 HttpResponseCode;
+
+	/** Http Headers */
+	UPROPERTY(VisibleInstanceOnly, Category = "RallyHereAPI|CustomEndpoint")
+	TArray<FString> HttpHeaders;
+
+	/** Http Body as Json */
+	UPROPERTY(VisibleInstanceOnly, Category = "RallyHereAPI|CustomEndpoint")
+	FRHAPI_JsonValue HttpBody;
+
+	/** Parsed RallyHere error */
+	UPROPERTY(VisibleInstanceOnly, Category = "RallyHereAPI|CustomEndpoint")
+	FRH_ErrorInfo RHErrorInfo;
+
+	FRH_CustomEndpointResponseWrapper()
+		: HttpResponseCode(0)
+		, HttpBody()
+		, RHErrorInfo()
+	{
+	}
+
+	FRH_CustomEndpointResponseWrapper(const RallyHereAPI::FResponse_CustomEndpointSend& Resp)
+		: HttpResponseCode(Resp.GetHttpResponseCode())
+		, HttpBody(Resp.Content)
+		, RHErrorInfo(Resp)
+	{
+		if (Resp.GetHttpResponse().IsValid())
+		{
+			HttpHeaders = Resp.GetHttpResponse()->GetAllHeaders();
+		}
+	}
+};
+
+/** @brief Dynamic delegate used for custom endpoint calls */
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_CustomEndpointDynamicDelegate, const FRH_CustomEndpointResponseWrapper&, CustomResponseWrapper);
+/** @brief Native delegate used for custom endpoint calls */
+DECLARE_DELEGATE_OneParam(FRH_CustomEndpointDelegate, const FRH_CustomEndpointResponseWrapper&);
+/** @brief Generic blueprint and native delegate used to report success or failure */
+DECLARE_RH_DELEGATE_BLOCK(FRH_CustomEndpointDelegateBlock, FRH_CustomEndpointDelegate, FRH_CustomEndpointDynamicDelegate, const FRH_CustomEndpointResponseWrapper&)
+
 
 /**
  * @brief All known platforms (some no longer supported), deprecated
@@ -504,58 +639,6 @@ public:
 FORCEINLINE uint32 GetTypeHash(const FRH_PlayerPlatformId& PlatformId)
 {
 	return HashCombine(GetTypeHash(PlatformId.UserId), (uint32)PlatformId.PlatformType);
-}
-
-namespace PlatformStrings
-{
-	const FName Sweat = FName(TEXT("Sweat"));
-	const FName Free = FName(TEXT("Free"));
-	const FName Unknown = FName(TEXT("Unknown"));
-	const FName Anon = FName(TEXT("Anon"));
-	const FName Xbox = FName(TEXT("Xbox"));
-	const FName Playstation = FName(TEXT("PSN"));
-	const FName Nintendo = FName(TEXT("Nintendo"));
-	const FName Google = FName(TEXT("Google"));
-	const FName Apple = FName(TEXT("Apple"));
-	const FName Epic = FName(TEXT("Epic"));
-	const FName Steam = FName(TEXT("Steam"));
-	const FName Amazon = FName(TEXT("Amazon"));
-	const FName Twitch = FName(TEXT("Twitch"));
-
-	static FName GetPlatformStringFromEInventoryId(ERHAPI_InventoryPortal InventoryPortal)
-	{
-		switch (InventoryPortal)
-		{
-		case ERHAPI_InventoryPortal::Free: 
-			return Free;
-		case ERHAPI_InventoryPortal::Sweat: 
-			return Sweat;
-		case ERHAPI_InventoryPortal::Anon: 
-			return Anon;
-		case ERHAPI_InventoryPortal::Amazon:
-			return Amazon;
-		case ERHAPI_InventoryPortal::Steam: 
-			return Steam;
-		case ERHAPI_InventoryPortal::Psn: 
-			return Playstation;
-		case ERHAPI_InventoryPortal::XboxLive: 
-			return Xbox;
-		case ERHAPI_InventoryPortal::Google: 
-		case ERHAPI_InventoryPortal::GooglePlay:
-			return Google;
-		case ERHAPI_InventoryPortal::Twitch: 
-			return Twitch;
-		case ERHAPI_InventoryPortal::NintendoSwitch: 
-		case ERHAPI_InventoryPortal::Nintendo:
-			return Nintendo;
-		case ERHAPI_InventoryPortal::Apple: 
-			return Apple;
-		case ERHAPI_InventoryPortal::Epic: 
-			return Epic;
-		}
-
-		return Unknown;
-	}
 }
 
 /** 

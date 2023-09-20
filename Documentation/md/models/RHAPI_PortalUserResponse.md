@@ -17,14 +17,14 @@ struct FRHAPI_PortalUserResponse
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`PortalUserId_Optional`](#structFRHAPI__PortalUserResponse_1aa4044be39cec42ef3d95b808606ca2ae) | 
+`public FString `[`PortalUserId_Optional`](#structFRHAPI__PortalUserResponse_1aa4044be39cec42ef3d95b808606ca2ae) | Portal user ID.
 `public bool `[`PortalUserId_IsSet`](#structFRHAPI__PortalUserResponse_1ac7b290f0f2bbe598c77e652c134bdade) | true if PortalUserId_Optional has been set to a value
-`public int32 `[`PortalId`](#structFRHAPI__PortalUserResponse_1a1e7b5c3a59e3c42f4818ea2597b99eb0) | 
-`public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserResponse_1abc32c735669c374aca93d5acd7085d3f) | 
-`public FString `[`DisplayName_Optional`](#structFRHAPI__PortalUserResponse_1a77bbe891aceb9ccd53b8c053a9d57466) | 
+`public int32 `[`PortalId`](#structFRHAPI__PortalUserResponse_1a1e7b5c3a59e3c42f4818ea2597b99eb0) | Portal ID *DEPRECATED* use `platform` instead.
+`public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserResponse_1abc32c735669c374aca93d5acd7085d3f) | Platform.
+`public FString `[`DisplayName_Optional`](#structFRHAPI__PortalUserResponse_1a77bbe891aceb9ccd53b8c053a9d57466) | Display name.
 `public bool `[`DisplayName_IsSet`](#structFRHAPI__PortalUserResponse_1a758e573c69f5c1d4ad97895109cdcee0) | true if DisplayName_Optional has been set to a value
-`public int32 `[`PlayerId`](#structFRHAPI__PortalUserResponse_1a2d6b6d603819120e125c82b880776263) | 
-`public FGuid `[`PlayerUuid`](#structFRHAPI__PortalUserResponse_1a66933b04170b4adc512d07ccf09d0ddf) | 
+`public int32 `[`PlayerId`](#structFRHAPI__PortalUserResponse_1a2d6b6d603819120e125c82b880776263) | Player ID *DEPRECATED* use `player_uuid` instead.
+`public FGuid `[`PlayerUuid`](#structFRHAPI__PortalUserResponse_1a66933b04170b4adc512d07ccf09d0ddf) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1a821a0e1dc1846b6cf1b53279a6a4e33e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserResponse_1a3747cae157a78d0f9f59c85f4b2c9ddd)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ac1fff9577bf2fc695ee3575a632e3afb)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
@@ -64,6 +64,8 @@ struct FRHAPI_PortalUserResponse
 
 #### `public FString `[`PortalUserId_Optional`](#structFRHAPI__PortalUserResponse_1aa4044be39cec42ef3d95b808606ca2ae) <a id="structFRHAPI__PortalUserResponse_1aa4044be39cec42ef3d95b808606ca2ae"></a>
 
+Portal user ID.
+
 <br>
 #### `public bool `[`PortalUserId_IsSet`](#structFRHAPI__PortalUserResponse_1ac7b290f0f2bbe598c77e652c134bdade) <a id="structFRHAPI__PortalUserResponse_1ac7b290f0f2bbe598c77e652c134bdade"></a>
 
@@ -72,11 +74,17 @@ true if PortalUserId_Optional has been set to a value
 <br>
 #### `public int32 `[`PortalId`](#structFRHAPI__PortalUserResponse_1a1e7b5c3a59e3c42f4818ea2597b99eb0) <a id="structFRHAPI__PortalUserResponse_1a1e7b5c3a59e3c42f4818ea2597b99eb0"></a>
 
+Portal ID *DEPRECATED* use `platform` instead.
+
 <br>
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserResponse_1abc32c735669c374aca93d5acd7085d3f) <a id="structFRHAPI__PortalUserResponse_1abc32c735669c374aca93d5acd7085d3f"></a>
 
+Platform.
+
 <br>
 #### `public FString `[`DisplayName_Optional`](#structFRHAPI__PortalUserResponse_1a77bbe891aceb9ccd53b8c053a9d57466) <a id="structFRHAPI__PortalUserResponse_1a77bbe891aceb9ccd53b8c053a9d57466"></a>
+
+Display name.
 
 <br>
 #### `public bool `[`DisplayName_IsSet`](#structFRHAPI__PortalUserResponse_1a758e573c69f5c1d4ad97895109cdcee0) <a id="structFRHAPI__PortalUserResponse_1a758e573c69f5c1d4ad97895109cdcee0"></a>
@@ -86,8 +94,12 @@ true if DisplayName_Optional has been set to a value
 <br>
 #### `public int32 `[`PlayerId`](#structFRHAPI__PortalUserResponse_1a2d6b6d603819120e125c82b880776263) <a id="structFRHAPI__PortalUserResponse_1a2d6b6d603819120e125c82b880776263"></a>
 
+Player ID *DEPRECATED* use `player_uuid` instead.
+
 <br>
 #### `public FGuid `[`PlayerUuid`](#structFRHAPI__PortalUserResponse_1a66933b04170b4adc512d07ccf09d0ddf) <a id="structFRHAPI__PortalUserResponse_1a66933b04170b4adc512d07ccf09d0ddf"></a>
+
+Player UUID.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1a821a0e1dc1846b6cf1b53279a6a4e33e)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PortalUserResponse_1a821a0e1dc1846b6cf1b53279a6a4e33e"></a>

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_QueuesResponse`](#structFRHAPI__QueuesResponse) | 
+`struct `[`FRHAPI_QueuesResponse`](#structFRHAPI__QueuesResponse) | DEPRECATED - A list of configuration about queues.
 
 ## struct `FRHAPI_QueuesResponse` <a id="structFRHAPI__QueuesResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_QueuesResponse
   : public FRHAPI_Model
 ```
+
+DEPRECATED - A list of configuration about queues.
 
 #### Summary
 

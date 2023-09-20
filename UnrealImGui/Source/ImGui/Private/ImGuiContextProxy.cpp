@@ -82,6 +82,10 @@ FImGuiContextProxy::FImGuiContextProxy(const FString& InName, int32 InContextInd
 	// Create context.
 	Context = ImGui::CreateContext(InFontAtlas);
 
+	//$$ BEGIN - Support ImPlot
+	PlotContext = ImPlot::CreateContext();
+	//$$ END - Support ImPlot
+
 	// Set this context in ImGui for initialization (any allocations will be tracked in this context).
 	SetAsCurrent();
 
@@ -112,6 +116,13 @@ FImGuiContextProxy::FImGuiContextProxy(const FString& InName, int32 InContextInd
 
 FImGuiContextProxy::~FImGuiContextProxy()
 {
+	//$$ BEGIN - Support ImPlot
+	if (PlotContext)
+	{
+		ImPlot::DestroyContext(PlotContext);
+	}
+	//$$ END - Support ImPlot
+
 	if (Context)
 	{
 		// It seems that to properly shutdown context we need to set it as the current one (at least in this framework
@@ -223,25 +234,17 @@ void FImGuiContextProxy::BeginFrame(float DeltaTime)
 #endif
 
 		//$$KAB - BEGIN - Add support for loading a layout from INI between frames
-		if (FImGuiModule::Get().GetProperties().ShouldLoadSavedLayout())
+		if (!FImGuiModule::Get().GetProperties().GetLayoutToLoad().IsEmpty())
 		{
-			if (FPaths::FileExists(IO.IniFilename))
+			if (FImGuiModule::Get().GetProperties().ShouldLoadSavedLayout() && FPaths::FileExists(IO.IniFilename))
 			{
 				ImGui::LoadIniSettingsFromDisk(IO.IniFilename);
 			}
 			else
 			{
-				// Default to Default if no saved data exists.
-				FString ConfigFileName = FPaths::EnginePluginsDir() / TEXT("RallyHere/RallyHereDebugTool/Config/DefaultImGuiLayout.ini");
-				ImGui::LoadIniSettingsFromDisk(TCHAR_TO_UTF8(*ConfigFileName));
+				ImGui::LoadIniSettingsFromMemory(TCHAR_TO_UTF8(*FImGuiModule::Get().GetProperties().GetLayoutToLoad()), 0);
 			}
-			FImGuiModule::Get().GetProperties().SetLoadSavedLayout(false);
-		}
-		else if (FImGuiModule::Get().GetProperties().ShouldLoadDefaultLayout())
-		{
-			FString ConfigFileName = FPaths::EnginePluginsDir() / TEXT("RallyHere/RallyHereDebugTool/Config/DefaultImGuiLayout.ini");
-			ImGui::LoadIniSettingsFromDisk(TCHAR_TO_UTF8(*ConfigFileName));
-			FImGuiModule::Get().GetProperties().SetLoadDefaultLayout(false);
+			FImGuiModule::Get().GetProperties().SetLayoutToLoad("", false);
 		}
 		//$$KAB - END - Add support for loading a layout from INI between frames
 

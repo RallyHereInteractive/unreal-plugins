@@ -11,13 +11,17 @@ struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 
-	void DoViewSettings(URH_PlayerInfo* ActivePlayerInfo);
-	void DoModifySettings(URH_PlayerInfo* ActivePlayerInfo);
+	void DoViewSettings();
+	void DoModifySettings();
 
 	int32 SettingVersionNum;
 	TArray<ANSICHAR> SettingsIdInput;
 	TArray<ANSICHAR> ModifySettingsIdInput;
 	TArray<ANSICHAR> ModifySettingsKeyInput;
 	TArray<ANSICHAR> ModifySettingsJsonInput;
+
+private:
+	FString SetPlayerSettingsActionResult;
+	void HandleSetPlayerSettingsResponse(bool bSuccess, FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid);
 };
 

@@ -110,6 +110,9 @@ FRHDTW_Login::FRHDTW_Login()
 	ML_RefreshTokenBuffer.SetNumZeroed(100);
 	ML_RangeFrom = 0;
 	ML_RangeTo = 0;
+
+	ML_Result.Empty();
+	LPAddRemoveNotice.Empty();
 }
 
 FRHDTW_Login::~FRHDTW_Login()
@@ -136,7 +139,7 @@ void FRHDTW_Login::Do()
 		}
 		else
 		{
-			ML_Result = FString("");
+			ML_Result = FString();
 		}
 
 		ImGui::EndTabBar();
@@ -257,6 +260,8 @@ void FRHDTW_Login::DoMassLoginTab()
 	ImGui::Checkbox("Accept TOS", &ML_bAcceptTOS);
 	ImGui::Checkbox("Accept PP", &ML_bAcceptPP);
 
+	ImGui::Text("%s", TCHAR_TO_UTF8(*ML_Result));
+
 	if (ImGui::Button("Create and Login"))
 	{
 		for (int i = ML_RangeFrom; i <= ML_RangeTo; i++)
@@ -279,9 +284,36 @@ void FRHDTW_Login::DoMassLoginTab()
 			}
 		}
 
-		ML_Result = FString("PLAYERS CREATED");
+		ML_Result = FString(TEXT("PLAYERS CREATED"));
 	}
-	ImGui::Text("%s", TCHAR_TO_UTF8(*ML_Result));
+
+	ImGui::Separator();
+
+	ImGui::Text("%s", TCHAR_TO_UTF8(*LPAddRemoveNotice));
+
+	if (ImGui::Button("Add Local Player"))
+	{
+		if (ULocalPlayer* lp = pOwner->AddNewLocalPlayer())
+		{
+			LPAddRemoveNotice = TEXT("Added new Local Player.");
+		}
+		else
+		{
+			LPAddRemoveNotice = TEXT("Failed to add new Local Player.");
+		}
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Remove Selected Local Players"))
+	{
+		int counter = 0;
+		ForEachSelectedLocalPlayer(FRHDT_LPAction::CreateLambda([&counter](ULocalPlayer* pLocalPlayer) mutable
+			{
+				UGameplayStatics::RemovePlayer(pLocalPlayer->GetPlayerController(pLocalPlayer->GetWorld()), true);
+				counter++;
+			}));
+
+		LPAddRemoveNotice = TEXT("Removed ") + FString::FromInt(counter) + TEXT(" selected Local Players.");
+	}
 
 	ImGui::Separator();
 

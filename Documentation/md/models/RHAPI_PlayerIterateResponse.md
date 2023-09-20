@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerIterateResponse`](#structFRHAPI__PlayerIterateResponse) | 
+`struct `[`FRHAPI_PlayerIterateResponse`](#structFRHAPI__PlayerIterateResponse) | Response from the player iteration API.
 
 ## struct `FRHAPI_PlayerIterateResponse` <a id="structFRHAPI__PlayerIterateResponse"></a>
 
@@ -13,13 +13,15 @@ struct FRHAPI_PlayerIterateResponse
   : public FRHAPI_Model
 ```
 
+Response from the player iteration API.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > `[`Players_Optional`](#structFRHAPI__PlayerIterateResponse_1a895663738640e3f67d3d20211adcd661) | 
+`public TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > `[`Players_Optional`](#structFRHAPI__PlayerIterateResponse_1a895663738640e3f67d3d20211adcd661) | List of players. An empty list means iteration is complete.
 `public bool `[`Players_IsSet`](#structFRHAPI__PlayerIterateResponse_1a51461700ce92c4a32e1903aad24aaa8c) | true if Players_Optional has been set to a value
-`public FString `[`Cursor_Optional`](#structFRHAPI__PlayerIterateResponse_1a9ea6d8b48377942433369e5349dfd988) | 
+`public FString `[`Cursor_Optional`](#structFRHAPI__PlayerIterateResponse_1a9ea6d8b48377942433369e5349dfd988) | Cursor to continue iteration.
 `public bool `[`Cursor_IsSet`](#structFRHAPI__PlayerIterateResponse_1af92e8c04e13e466c9bda9f079ec7ab26) | true if Cursor_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerIterateResponse_1ae047a2b72135182d9cb1bde67abe65d9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerIterateResponse_1a4d6c005845d4166283e53bcd91b4e753)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -46,6 +48,8 @@ struct FRHAPI_PlayerIterateResponse
 
 #### `public TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > `[`Players_Optional`](#structFRHAPI__PlayerIterateResponse_1a895663738640e3f67d3d20211adcd661) <a id="structFRHAPI__PlayerIterateResponse_1a895663738640e3f67d3d20211adcd661"></a>
 
+List of players. An empty list means iteration is complete.
+
 <br>
 #### `public bool `[`Players_IsSet`](#structFRHAPI__PlayerIterateResponse_1a51461700ce92c4a32e1903aad24aaa8c) <a id="structFRHAPI__PlayerIterateResponse_1a51461700ce92c4a32e1903aad24aaa8c"></a>
 
@@ -53,6 +57,8 @@ true if Players_Optional has been set to a value
 
 <br>
 #### `public FString `[`Cursor_Optional`](#structFRHAPI__PlayerIterateResponse_1a9ea6d8b48377942433369e5349dfd988) <a id="structFRHAPI__PlayerIterateResponse_1a9ea6d8b48377942433369e5349dfd988"></a>
+
+Cursor to continue iteration.
 
 <br>
 #### `public bool `[`Cursor_IsSet`](#structFRHAPI__PlayerIterateResponse_1af92e8c04e13e466c9bda9f079ec7ab26) <a id="structFRHAPI__PlayerIterateResponse_1af92e8c04e13e466c9bda9f079ec7ab26"></a>

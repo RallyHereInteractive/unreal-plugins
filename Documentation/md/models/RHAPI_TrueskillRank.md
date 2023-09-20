@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_TrueskillRank`](#structFRHAPI__TrueskillRank) | 
+`struct `[`FRHAPI_TrueskillRank`](#structFRHAPI__TrueskillRank) | Additional data about a specific player&#39;s rank and previous match in order to make trueskill calculations.
 
 ## struct `FRHAPI_TrueskillRank` <a id="structFRHAPI__TrueskillRank"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_TrueskillRank
   : public FRHAPI_Model
 ```
+
+Additional data about a specific player&#39;s rank and previous match in order to make trueskill calculations.
 
 #### Summary
 

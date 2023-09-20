@@ -212,6 +212,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendListUpdated, FColor::Purple);
 			FriendListUpdatedDelegate.Broadcast(UpdatedFriends);
+			BLUEPRINT_FriendListUpdatedDelegate.Broadcast(UpdatedFriends);
 			FriendsCached = true;
 		}
 		else
@@ -220,6 +221,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 			for (const auto UpdatedFriend : UpdatedFriends)
 			{
 				FriendUpdatedDelegate.Broadcast(UpdatedFriend);
+				BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 			}
 		}
 
@@ -303,6 +305,7 @@ void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType:
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
 			FriendUpdatedDelegate.Broadcast(UpdatedFriend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 		}
 	}
 
@@ -445,6 +448,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
 			FriendUpdatedDelegate.Broadcast(UpdatedFriend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 		}
 	}
 	else if (RetryEtagFailureCount && Resp.GetHttpResponseCode() == EHttpResponseCodes::PrecondFailed)
@@ -464,6 +468,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdateError, FColor::Purple);
 		const auto& ErrorCode = ExtractErrorCodeFromResponse(Resp.GetHttpResponse());
 		FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
+		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, static_cast<FriendshipStatus>(Resp.Content.Status));
@@ -551,6 +556,7 @@ void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Respons
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
 			FriendUpdatedDelegate.Broadcast(UpdatedFriend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 		}
 	}
 	else if (RetryEtagFailureCount && Resp.GetHttpResponseCode() == EHttpResponseCodes::PrecondFailed)
@@ -570,6 +576,7 @@ void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Respons
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdateError, FColor::Purple);
 		const auto& ErrorCode = ExtractErrorCodeFromResponse(Resp.GetHttpResponse());
 		FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
+		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Request.OtherPlayerUuid);
@@ -652,6 +659,7 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
 				FriendUpdatedDelegate.Broadcast(Friend);
+				BLUEPRINT_FriendUpdatedDelegate.Broadcast(Friend);
 			}
 		}
 	}
@@ -672,9 +680,104 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdateError, FColor::Purple);
 		const auto& ErrorCode = ExtractErrorCodeFromResponse(Resp.GetHttpResponse());
 		FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
+		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 	}
 	
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, Resp.Content.GetNotes(TEXT("")));
+}
+
+bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate)
+{
+	if (!PlayerUuid.IsValid())
+	{
+		return false;
+	}
+
+	auto Request = DeleteNotesType::Request();
+	auto AuthContext = GetAuthContext();
+	Request.OtherPlayerUuid = PlayerUuid;
+	Request.AuthContext = AuthContext;
+
+	FGuid ActivePlayerUuid;
+	if (AuthContext->GetLoginResult().IsSet() && AuthContext->GetLoginResult()->GetActivePlayerUuid(ActivePlayerUuid) && ActivePlayerUuid.IsValid())
+	{
+		Request.PlayerUuid = ActivePlayerUuid;
+	}
+	else
+	{
+		return false;
+	}
+
+	const auto Friend = GetFriendByUuid(Request.OtherPlayerUuid);
+	if (!Friend || Friend->Etag.IsEmpty())
+	{
+		auto GetRequest = GetFriendRelationshipType::Request();
+		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
+		SetDefaultParamsForGetFriendRequest(GetRequest);
+
+		if (GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+			this, &URH_FriendSubsystem::OnFetchFriendForDeleteNote,
+			Delegate, Request, 0), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	Request.IfMatch.Emplace(Friend->Etag);
+
+	if (!DeleteNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, DeleteNotesType::Delegate::CreateUObject(
+		this, &URH_FriendSubsystem::OnDeleteNotesResponse,
+		Delegate, Request, 1), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority))
+	{
+		Delegate.ExecuteIfBound(false, FGuid());
+		return false;
+	}
+
+	return true;
+}
+
+void URH_FriendSubsystem::OnDeleteNotesResponse(const DeleteNotesType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, DeleteNotesType::Request Request, int32 RetryEtagFailureCount)
+{
+	if (Resp.IsSuccessful())
+	{
+		if (const auto Friend = GetFriendByUuid(Request.OtherPlayerUuid))
+		{
+			Friend->Notes.Empty();
+ 			Friend->PreviousRHFriendshipStatus = Friend->RHFriendshipStatus;
+ 			Friend->LastModifiedOn = FDateTime::Now();
+			Friend->Etag = Resp.GetHttpResponse()->GetHeader("etag");
+
+			{
+				SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
+				FriendUpdatedDelegate.Broadcast(Friend);
+				BLUEPRINT_FriendUpdatedDelegate.Broadcast(Friend);
+			}
+		}
+	}
+	else if (RetryEtagFailureCount && Resp.GetHttpResponseCode() == EHttpResponseCodes::PrecondFailed)
+	{
+		const auto NewRetryCount = RetryEtagFailureCount - 1;
+		auto GetRequest = GetFriendRelationshipType::Request();
+		GetRequest.OtherPlayerUuid = Request.OtherPlayerUuid;
+		SetDefaultParamsForGetFriendRequest(GetRequest);
+
+		GetFriendRelationshipType::DoCall(RH_APIs::GetFriendsV2API(), GetRequest, GetFriendRelationshipType::Delegate::CreateUObject(
+			this, &URH_FriendSubsystem::OnFetchFriendForDeleteNote,
+			Delegate, Request, NewRetryCount), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority);
+		return;
+	}
+	else
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdateError, FColor::Purple);
+		const auto& ErrorCode = ExtractErrorCodeFromResponse(Resp.GetHttpResponse());
+		FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
+		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
+	}
+
+	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Request.OtherPlayerUuid);
 }
 
 void URH_FriendSubsystem::OSSReadFriendsList(const FString& ListName /* = "Default"*/)
@@ -845,6 +948,7 @@ void URH_FriendSubsystem::UpdatePlatformFriends(TArray<URH_PlatformFriend*>& New
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendListUpdated, FColor::Purple);
 		FriendListUpdatedDelegate.Broadcast(UpdatedFriends);
+		BLUEPRINT_FriendListUpdatedDelegate.Broadcast(UpdatedFriends);
 	}
 	else
 	{
@@ -852,6 +956,7 @@ void URH_FriendSubsystem::UpdatePlatformFriends(TArray<URH_PlatformFriend*>& New
 		for (const auto UpdatedFriend : UpdatedFriends)
 		{
 			FriendUpdatedDelegate.Broadcast(UpdatedFriend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 		}
 	}
 }
@@ -947,6 +1052,7 @@ void URH_FriendSubsystem::ClearBlockedCache()
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedListUpdated, FColor::Purple);
 		const TArray<FRHAPI_BlockedPlayer> EmptyArray;
 		BlockedListUpdatedDelegate.Broadcast(EmptyArray);
+		BLUEPRINT_BlockedListUpdatedDelegate.Broadcast(EmptyArray);
 	}
 
 	{
@@ -954,6 +1060,7 @@ void URH_FriendSubsystem::ClearBlockedCache()
 		for (const auto& OldEntry : OldEntries)
 		{
 			BlockedPlayerUpdatedDelegate.Broadcast(OldEntry, false);
+			BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(OldEntry, false);
 		}
 	}
 }
@@ -971,6 +1078,7 @@ void URH_FriendSubsystem::ClearRHFriendCache()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendListUpdated, FColor::Purple);
 		FriendListUpdatedDelegate.Broadcast(Out);
+		BLUEPRINT_FriendListUpdatedDelegate.Broadcast(Out);
 	}
 	
 	{
@@ -978,6 +1086,7 @@ void URH_FriendSubsystem::ClearRHFriendCache()
 		for (const auto UpdatedFriend : Out)
 		{
 			FriendUpdatedDelegate.Broadcast(UpdatedFriend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 		}
 	}
 	
@@ -1040,6 +1149,25 @@ void URH_FriendSubsystem::OnFetchFriendForAddNote(const GetFriendRelationshipTyp
 	AddNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, AddNotesType::Delegate::CreateUObject(
 			this, &URH_FriendSubsystem::OnAddNotesResponse,
 			Delegate, Request, RetryEtagFailureCount), GetDefault<URH_IntegrationSettings>()->AddFriendNotesPriority);
+}
+
+void URH_FriendSubsystem::OnFetchFriendForDeleteNote(const GetFriendRelationshipType::Response& Resp,
+													FRH_GenericFriendWithUuidBlock Delegate,
+													DeleteNotesType::Request Request,
+													int32 RetryEtagFailureCount)
+{
+	if (Resp.IsSuccessful())
+	{
+		Request.IfMatch.Emplace(Resp.GetHttpResponse()->GetHeader("etag"));
+	}
+	else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
+	{
+		Request.IfMatch.Reset();
+	}
+
+	DeleteNotesType::DoCall(RH_APIs::GetFriendsV2API(), Request, DeleteNotesType::Delegate::CreateUObject(
+		this, &URH_FriendSubsystem::OnDeleteNotesResponse,
+		Delegate, Request, RetryEtagFailureCount), GetDefault<URH_IntegrationSettings>()->DeleteFriendNotesPriority);
 }
 
 void URH_FriendSubsystem::RemoveAllFriendsWithNoRelationships(TArray<URH_RHFriendAndPlatformFriend*>& OutArray)
@@ -1145,6 +1273,7 @@ void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::R
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedListUpdated, FColor::Purple);
 			BlockedListUpdatedDelegate.Broadcast(BroadcastingArray);
+			BLUEPRINT_BlockedListUpdatedDelegate.Broadcast(BroadcastingArray);
 		}
 
 		{
@@ -1154,6 +1283,7 @@ void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::R
 				if (!BlockedPlayersUUIDs.Contains(OldEntry))
 				{
 					BlockedPlayerUpdatedDelegate.Broadcast(OldEntry, false);
+					BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(OldEntry, false);
 				}
 			}
 		}
@@ -1168,6 +1298,7 @@ void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::R
 					}))
 				{
 					BlockedPlayerUpdatedDelegate.Broadcast(Entry.BlockedPlayerUuid, true);
+					BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(Entry.BlockedPlayerUuid, true);
 				}
 			}
 		}
@@ -1220,6 +1351,7 @@ void URH_FriendSubsystem::OnFetchBlockedPlayerResponse(const GetBlockedType::Res
 		auto blocked = Resp.Content;
 		BlockedPlayersUUIDs.Emplace(PlayerUuid);
 		BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
+		BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304, PlayerUuid);
@@ -1266,12 +1398,14 @@ void URH_FriendSubsystem::OnBlockPlayerResponse(const BlockType::Response& Resp,
 		auto blocked = Resp.Content;
 		BlockedPlayersUUIDs.Emplace(PlayerUuid);
 		BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
+		BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, true);
 	}
 	else
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedPlayerUpdatedError, FColor::Purple);
 		const auto& ErrorCode = ExtractErrorCodeFromResponse(Resp.GetHttpResponse());
 		BlockedPlayerUpdateErrorDelegate.Broadcast(PlayerUuid, ErrorCode);
+		BLUEPRINT_BlockedPlayerUpdateErrorDelegate.Broadcast(PlayerUuid, ErrorCode);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), PlayerUuid);
@@ -1317,12 +1451,14 @@ void URH_FriendSubsystem::OnUnblockPlayerResponse(const UnblockType::Response& R
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedPlayerUpdated, FColor::Purple);
 		BlockedPlayersUUIDs.Remove(PlayerUuid);
 		BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, false);
+		BLUEPRINT_BlockedPlayerUpdatedDelegate.Broadcast(PlayerUuid, false);
 	}
 	else
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastBlockedPlayerUpdatedError, FColor::Purple);
 		const auto& ErrorCode = ExtractErrorCodeFromResponse(Resp.GetHttpResponse());
 		BlockedPlayerUpdateErrorDelegate.Broadcast(PlayerUuid, ErrorCode);
+		BLUEPRINT_BlockedPlayerUpdateErrorDelegate.Broadcast(PlayerUuid, ErrorCode);
 	}
 
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), PlayerUuid);
@@ -1451,24 +1587,7 @@ URH_PlayerInfoSubsystem* URH_FriendSubsystem::GetRH_PlayerInfoSubsystem() const
 {
 	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
 	{
-		if (LPSS->GetLocalPlayer() == nullptr)
-		{
-			return nullptr;
-		}		
-		const auto pGameInstance = LPSS->GetLocalPlayer()->GetGameInstance();
-		if (pGameInstance == nullptr)
-		{
-			return nullptr;
-		}
-
-		const auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
-		if (pGISubsystem == nullptr)
-		{
-			return nullptr;
-		}
-
-		URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = pGISubsystem->GetPlayerInfoSubsystem();
-		return pRH_PlayerInfoSubsystem;
+		return LPSS->GetPlayerInfoSubsystem();
 	}
 
 	return nullptr;
@@ -1582,67 +1701,101 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 
 ///
 
+URH_FriendSubsystem* URH_RHFriendAndPlatformFriend::GetFriendSubsystem() const
+{
+	return CastChecked<URH_FriendSubsystem>(GetOuter());
+}
+
 FString URH_RHFriendAndPlatformFriend::GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/) const
 {
-	if (UWorld* World = GetWorld())
-	{
-		if (UGameInstance* GameInstance = World->GetGameInstance())
-		{
-			if (URH_GameInstanceSubsystem* GISubsystem = GameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
-			{
-				if (URH_PlayerInfoSubsystem* PlayerInfoSubsystem = GISubsystem->GetPlayerInfoSubsystem())
-				{
-					if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetPlayerInfo(PlayerAndPlatformInfo.PlayerUuid))
-					{
-						FString DisplayName;
-						if (PlayerInfo->GetLastKnownDisplayName(DisplayName, PreferredPlatformType))
-						{
-							return DisplayName;
-						}
-					}
+	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
 
-					if (URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId))
-					{
-						return PlayerPlatformInfo->GetLastKnownDisplayName();
-					}
-				}
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetPlayerInfo(PlayerAndPlatformInfo.PlayerUuid))
+		{
+			FString DisplayName;
+			if (PlayerInfo->GetLastKnownDisplayName(DisplayName, PreferredPlatformType))
+			{
+				return DisplayName;
 			}
+		}
+
+		if (URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId))
+		{
+			return PlayerPlatformInfo->GetLastKnownDisplayName();
 		}
 	}
 
 	return FString();
 }
 
-void URH_RHFriendAndPlatformFriend::GetLastKnownGamerTagAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType /*= ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/) const
+void URH_RHFriendAndPlatformFriend::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/) const
 {
-	return GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, RH_GetPlatformFromPlatformType(PreferredPlatformType), Delegate, LocalPlayerSubsystem);
+	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
+
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetPlayerInfo(PlayerAndPlatformInfo.PlayerUuid))
+		{
+			PlayerInfo->GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate);
+			return;
+		}
+
+		if (const URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId))
+		{
+			Delegate.ExecuteIfBound(true, PlayerPlatformInfo->GetLastKnownDisplayName());
+			return;
+		}
+
+		Delegate.ExecuteIfBound(false, FString());
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(false, FString());
+	}
 }
 
-void URH_RHFriendAndPlatformFriend::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/) const
+void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock Delegate /*= FRH_GetRHPlayerUuidBlock()*/)
 {
-	if (const UWorld* World = GetWorld())
+	if (GetRHPlayerUuid().IsValid())
 	{
-		if (const UGameInstance* GameInstance = World->GetGameInstance())
+		Delegate.ExecuteIfBound(true, GetRHPlayerUuid());
+		return;
+	}
+
+	if (!GetPlayerAndPlatformInfo().PlayerPlatformId.IsValid())
+	{
+		Delegate.ExecuteIfBound(false, FGuid());
+		return;
+	}
+
+	auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		PlayerInfoSubsystem->LookupPlayerByPlatformUserId(GetPlayerAndPlatformInfo().PlayerPlatformId, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([this, Delegate](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
 		{
-			if (const URH_GameInstanceSubsystem* GISubsystem = GameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
+			if (bSuccess && PlayerInfos.IsValidIndex(0) && PlayerInfos[0] != nullptr)
 			{
-				if (const URH_PlayerInfoSubsystem* PlayerInfoSubsystem = GISubsystem->GetPlayerInfoSubsystem())
+				const auto PlayerUuid = PlayerInfos[0]->GetRHPlayerUuid();
+				if (PlayerUuid.IsValid())
 				{
-					if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetPlayerInfo(PlayerAndPlatformInfo.PlayerUuid))
-					{
-						PlayerInfo->GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate, LocalPlayerSubsystem);
-						return;
-					}
-
-					if (const URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId))
-					{
-						Delegate.ExecuteIfBound(true, PlayerPlatformInfo->GetLastKnownDisplayName());
-						return;
-					}
-
-					Delegate.ExecuteIfBound(false, FString());
+					PlayerAndPlatformInfo.PlayerUuid = PlayerUuid;
+					Delegate.ExecuteIfBound(true, PlayerUuid);
+				}
+				else
+				{
+					Delegate.ExecuteIfBound(false, FGuid());
 				}
 			}
-		}
+			else
+			{
+				Delegate.ExecuteIfBound(false, FGuid());
+			}
+		}));
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(false, FGuid());
 	}
 }

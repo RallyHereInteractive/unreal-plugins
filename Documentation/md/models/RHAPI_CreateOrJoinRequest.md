@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_CreateOrJoinRequest`](#structFRHAPI__CreateOrJoinRequest) | 
+`struct `[`FRHAPI_CreateOrJoinRequest`](#structFRHAPI__CreateOrJoinRequest) | A request body for a player to join a session.
 
 ## struct `FRHAPI_CreateOrJoinRequest` <a id="structFRHAPI__CreateOrJoinRequest"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_CreateOrJoinRequest
   : public FRHAPI_Model
 ```
+
+A request body for a player to join a session.
 
 #### Summary
 

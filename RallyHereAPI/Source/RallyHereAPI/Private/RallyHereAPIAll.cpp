@@ -14,6 +14,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&Catalog);
     AllAPIs.Add(&Config);
     AllAPIs.Add(&ConfigurationV1);
+    AllAPIs.Add(&Custom);
     AllAPIs.Add(&Discovery);
     AllAPIs.Add(&Entitlements);
     AllAPIs.Add(&FriendsV1);
@@ -110,6 +111,16 @@ FConfigurationV1API& FRallyHereAPIAll::GetConfigurationV1()
 const FConfigurationV1API& FRallyHereAPIAll::GetConfigurationV1() const
 {
     return ConfigurationV1;
+}
+
+FCustomAPI& FRallyHereAPIAll::GetCustom()
+{
+    return Custom;
+}
+
+const FCustomAPI& FRallyHereAPIAll::GetCustom() const
+{
+    return Custom;
 }
 
 FDiscoveryAPI& FRallyHereAPIAll::GetDiscovery()

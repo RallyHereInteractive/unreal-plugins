@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionPlayer`](#structFRHAPI__SessionPlayer) | 
+`struct `[`FRHAPI_SessionPlayer`](#structFRHAPI__SessionPlayer) | A player resource in a session.
 
 ## struct `FRHAPI_SessionPlayer` <a id="structFRHAPI__SessionPlayer"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionPlayer
   : public FRHAPI_Model
 ```
+
+A player resource in a session.
 
 #### Summary
 

@@ -21,6 +21,10 @@
 #include <Kismet2/DebuggerCommands.h>
 #endif // WITH_EDITOR
 
+//$$ BEGIN AP
+#include "ImGuiInteroperability.h"
+#include "imgui.h"
+//$$ END AP
 
 DEFINE_LOG_CATEGORY(LogImGuiInputHandler);
 
@@ -357,3 +361,17 @@ void UImGuiInputHandler::BeginDestroy()
 	}
 }
 
+//$$ BEGIN AP - Static function to do the mapping from Unreal FKey to ImGuiKey
+ImGuiKey UImGuiInputHandler::GetImGuiKeyFromFKey(const FKey& InFKey, const ImGuiIO& IO)
+{
+	const uint32 KeyIndex = ImGuiInterops::GetKeyIndex(InFKey);
+	for (int i = 0; i < sizeof(IO.KeyMap) / sizeof(ImGuiKey); i++)
+	{
+		if (IO.KeyMap[i] == KeyIndex)
+		{
+			return (ImGuiKey)i;
+		}
+	}
+	return ImGuiKey_None;
+}
+//$$ END AP

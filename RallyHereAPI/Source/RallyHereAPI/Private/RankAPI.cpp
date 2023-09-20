@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FRankAPI::FRankAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Rank");
+    Name = FName(TEXT("Rank"));
 }
 
 FRankAPI::~FRankAPI() {}
@@ -88,9 +88,10 @@ FRequest_GetAllPlayerUuidRanks::FRequest_GetAllPlayerUuidRanks()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllPlayerUuidRanks::GetSimplifiedPath() const
+FName FRequest_GetAllPlayerUuidRanks::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/player/{player_uuid}/rank"));
+    static FName Path = FName(TEXT("/rank/v1/player/{player_uuid}/rank"));
+    return Path;
 }
 
 FString FRequest_GetAllPlayerUuidRanks::ComputePath() const
@@ -234,14 +235,15 @@ FRequest_GetAllPlayerUuidRanksSelf::FRequest_GetAllPlayerUuidRanksSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllPlayerUuidRanksSelf::GetSimplifiedPath() const
+FName FRequest_GetAllPlayerUuidRanksSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/player/me/rank"));
+    static FName Path = FName(TEXT("/rank/v1/player/me/rank"));
+    return Path;
 }
 
 FString FRequest_GetAllPlayerUuidRanksSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -372,14 +374,15 @@ FRequest_GetAllRankConfig::FRequest_GetAllRankConfig()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllRankConfig::GetSimplifiedPath() const
+FName FRequest_GetAllRankConfig::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/rank"));
+    static FName Path = FName(TEXT("/rank/v1/rank"));
+    return Path;
 }
 
 FString FRequest_GetAllRankConfig::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -510,9 +513,10 @@ FRequest_GetPlayerUuidRank::FRequest_GetPlayerUuidRank()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidRank::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidRank::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/player/{player_uuid}/rank/{rank_id}"));
+    static FName Path = FName(TEXT("/rank/v1/player/{player_uuid}/rank/{rank_id}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidRank::ComputePath() const
@@ -657,9 +661,10 @@ FRequest_GetPlayerUuidRankSelf::FRequest_GetPlayerUuidRankSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidRankSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidRankSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/player/me/rank/{rank_id}"));
+    static FName Path = FName(TEXT("/rank/v1/player/me/rank/{rank_id}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidRankSelf::ComputePath() const
@@ -803,9 +808,10 @@ FRequest_GetRankConfig::FRequest_GetRankConfig()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetRankConfig::GetSimplifiedPath() const
+FName FRequest_GetRankConfig::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/rank/{rank_id}"));
+    static FName Path = FName(TEXT("/rank/v1/rank/{rank_id}"));
+    return Path;
 }
 
 FString FRequest_GetRankConfig::ComputePath() const
@@ -949,9 +955,10 @@ FRequest_UpdatePlayerUuidRank::FRequest_UpdatePlayerUuidRank()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePlayerUuidRank::GetSimplifiedPath() const
+FName FRequest_UpdatePlayerUuidRank::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/player/{player_uuid}/rank/{rank_id}"));
+    static FName Path = FName(TEXT("/rank/v1/player/{player_uuid}/rank/{rank_id}"));
+    return Path;
 }
 
 FString FRequest_UpdatePlayerUuidRank::ComputePath() const
@@ -1107,9 +1114,10 @@ FRequest_UpdatePlayerUuidRankSelf::FRequest_UpdatePlayerUuidRankSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPath() const
+FName FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/player/me/rank/{rank_id}"));
+    static FName Path = FName(TEXT("/rank/v1/player/me/rank/{rank_id}"));
+    return Path;
 }
 
 FString FRequest_UpdatePlayerUuidRankSelf::ComputePath() const
@@ -1264,14 +1272,15 @@ FRequest_UpdateRankingsTrueskillV1::FRequest_UpdateRankingsTrueskillV1()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateRankingsTrueskillV1::GetSimplifiedPath() const
+FName FRequest_UpdateRankingsTrueskillV1::GetSimplifiedPath() const
 {
-    return FString(TEXT("/rank/v1/rank:calculate-trueskill"));
+    static FName Path = FName(TEXT("/rank/v1/rank:calculate-trueskill"));
+    return Path;
 }
 
 FString FRequest_UpdateRankingsTrueskillV1::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

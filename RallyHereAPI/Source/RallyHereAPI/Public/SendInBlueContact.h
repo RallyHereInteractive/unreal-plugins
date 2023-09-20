@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief SendInBlue contact
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Email address */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Email{  };
     /** @brief Gets the value of Email */
@@ -48,6 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     /** @brief Sets the value of Email */
     void SetEmail(FString NewValue) { Email = NewValue;  }
 
+    /** @brief Attributes */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_JsonObject Attributes_Optional{  };
     /** @brief true if Attributes_Optional has been set to a value */
@@ -70,6 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
      /** @brief Clears the value of Attributes_Optional and sets Attributes_IsSet to false */
     void ClearAttributes() { Attributes_IsSet = false; }
 
+    /** @brief Email blacklisted */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool EmailBlacklisted_Optional{  };
     /** @brief true if EmailBlacklisted_Optional has been set to a value */
@@ -96,6 +99,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     /** @brief Sets the value of EmailBlacklisted_Optional to its default and also sets EmailBlacklisted_IsSet to true */
     void SetEmailBlacklistedToDefault() { EmailBlacklisted_Optional = false; EmailBlacklisted_IsSet = true; }
 
+    /** @brief List IDs */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<int32> ListIds_Optional{  };
     /** @brief true if ListIds_Optional has been set to a value */
@@ -118,6 +122,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
      /** @brief Clears the value of ListIds_Optional and sets ListIds_IsSet to false */
     void ClearListIds() { ListIds_IsSet = false; }
 
+    /** @brief Unlink list IDs */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<int32> UnlinkListIds_Optional{  };
     /** @brief true if UnlinkListIds_Optional has been set to a value */
@@ -140,6 +145,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
      /** @brief Clears the value of UnlinkListIds_Optional and sets UnlinkListIds_IsSet to false */
     void ClearUnlinkListIds() { UnlinkListIds_IsSet = false; }
 
+    /** @brief Update enabled */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool UpdateEnabled_Optional{  };
     /** @brief true if UpdateEnabled_Optional has been set to a value */

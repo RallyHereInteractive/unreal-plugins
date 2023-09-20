@@ -173,7 +173,7 @@ public:
 	FRHDTW_OutputLog();
 	virtual ~FRHDTW_OutputLog();
 
-	virtual void Init(URallyHereDebugTool* InOwner, const FString& InName, bool bInShow = false) override;
+	virtual void Init(URallyHereDebugTool* InOwner, const FString& InName) override;
 	virtual void Uninit() override;
 	virtual void Do() override;
 
@@ -228,6 +228,9 @@ protected:
 	bool bIsUserScrolled;
 
 	float LastScrollY;
+
+	/** For copying to clipboard */
+	FString CopyText;
 
 private:
 	///** Called by Slate when the filter box changes text. */

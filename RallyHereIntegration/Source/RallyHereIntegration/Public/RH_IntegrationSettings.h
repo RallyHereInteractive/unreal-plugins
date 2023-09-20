@@ -19,7 +19,7 @@ USTRUCT()
 struct FRH_SandboxConfiguration
 {
 	GENERATED_BODY()
-	/** @brief Sandbox Id. */
+	/** @brief Sandbox Name, for use with client side sandbox lookups and overrides. */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString SandboxId;
 
@@ -34,6 +34,10 @@ struct FRH_SandboxConfiguration
 	/** @brief RallyHere Client secret. Must be associated with the defined client ID */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString ClientSecret;
+
+	/** @brief RallyHere PlayerExperience reporting URL */
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	FString PlayerExperienceReportURL;
 };
 
 /**
@@ -49,17 +53,24 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Connectivity
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/** @brief RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API */
+	/** @brief DEPRECATED - RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API */
+	UE_DEPRECATED(5.0, "Please use DefaultSandboxConfiguration instead")
     UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
     FString BaseUrl;
 
-	/** @brief RallyHere Client ID. Determines the available permissions for RallyHere APIs */
+	/** @brief DEPRECATED - RallyHere Client ID. Determines the available permissions for RallyHere APIs */
+	UE_DEPRECATED(5.0, "Please use DefaultSandboxConfiguration instead")
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString ClientId;
 
-	/** @brief RallyHere Client secret. Must be associated with the defined client ID */
+	/** @brief DEPRECATED - RallyHere Client secret. Must be associated with the defined client ID */
+	UE_DEPRECATED(5.0, "Please use DefaultSandboxConfiguration instead")
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString ClientSecret;
+
+	/** @brief RallyHere default sandbox configuration */
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (ShowOnlyInnerProperties))
+	FRH_SandboxConfiguration DefaultSandboxConfiguration;
 
 	/** @brief Per-Sandbox configuration overrides. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys) */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (ShowOnlyInnerProperties))
@@ -165,6 +176,10 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath MatchmakingBrowserCacheClass;
 
+	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	bool bLocalPlayerSubsystemSandboxing;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// API Priorities
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,6 +246,9 @@ public:
 	/** @brief Sets the request priority of Add Friend Notes calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Friend API Priority", AdvancedDisplay)
 	int32 AddFriendNotesPriority;
+	/** @brief Sets the request priority of Delete Friend Notes calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Friend API Priority", AdvancedDisplay)
+	int32 DeleteFriendNotesPriority;
 	/** @brief Sets the request priority of Fetch Blocked List calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Friend API Priority", AdvancedDisplay)
 	int32 FetchBlockedListPriority;
@@ -369,6 +387,9 @@ public:
 	/** @brief Sets the request priority of Session By Type calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionGetByTypePriority;
+	/** @brief Sets the request priority of Get Other Sessions calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionsGetOtherPriority;
 	/** @brief Sets the request priority of Get Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
 	int32 SettingsGetPriority;

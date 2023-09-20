@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief 
+ * @brief Response for getting a player&#39;s linked portals
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
@@ -50,6 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
     /** @brief Sets the value of Player */
     void SetPlayer(FRHAPI_PlayerPersonResponse NewValue) { Player = NewValue;  }
 
+    /** @brief List of linked portals */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PortalUserResponse> LinkedPortals{  };
     /** @brief Gets the value of LinkedPortals */

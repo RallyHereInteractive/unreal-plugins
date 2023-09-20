@@ -22,32 +22,34 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 	FGameModeEvents::GameModePreLoginEvent.AddUObject(this, &URH_GameInstanceSubsystem::GameModePreloginEvent);
 
+	const auto* Settings = GetDefault<URH_IntegrationSettings>();
+
 	// Create Subsystem plugins
 	if (bEnableGameSessions)
 	{
-		SessionSubsystem = AddSubsystemPlugin<URH_GameInstanceSessionSubsystem>(GetDefault<URH_IntegrationSettings>()->GameInstanceSessionInfoSubsystemClass);
+		SessionSubsystem = AddSubsystemPlugin<URH_GameInstanceSessionSubsystem>(Settings->GameInstanceSessionInfoSubsystemClass);
 
 		if (DEFAULT_IsServerBootstrappingEnabled())
 		{
-			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>(GetDefault<URH_IntegrationSettings>()->GameInstanceServerBootstrappermClass);
+			ServerBootstrapper = AddSubsystemPlugin<URH_GameInstanceServerBootstrapper>(Settings->GameInstanceServerBootstrappermClass);
 		}
 		else if (DEFAULT_IsClientBootstrappingEnabled())
 		{
-			ClientBootstrapper = AddSubsystemPlugin<URH_GameInstanceClientBootstrapper>(GetDefault<URH_IntegrationSettings>()->GameInstanceClientBootstrapperClass);
+			ClientBootstrapper = AddSubsystemPlugin<URH_GameInstanceClientBootstrapper>(Settings->GameInstanceClientBootstrapperClass);
 		}
 	}
 	
-	PlayerInfoSubsystem = AddSubsystemPlugin<URH_PlayerInfoSubsystem>(GetDefault<URH_IntegrationSettings>()->PlayerInfoSubsystemClass);
-	CatalogSubsystem = AddSubsystemPlugin<URH_CatalogSubsystem>(GetDefault<URH_IntegrationSettings>()->CatalogSubsystemClass);
-	ConfigSubsystem = AddSubsystemPlugin<URH_ConfigSubsystem>(GetDefault<URH_IntegrationSettings>()->ConfigSubsystemClass);
+	PlayerInfoSubsystem = AddSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
+	CatalogSubsystem = AddSubsystemPlugin<URH_CatalogSubsystem>(Settings->CatalogSubsystemClass);
+	ConfigSubsystem = AddSubsystemPlugin<URH_ConfigSubsystem>(Settings->ConfigSubsystemClass);
 
 	if (bEnableSessionBrowser)
 	{
-		SessionSearchCache = AddSubsystemPlugin<URH_SessionBrowserCache>(GetDefault<URH_IntegrationSettings>()->SessionBrowserCacheClass);
+		SessionSearchCache = AddSubsystemPlugin<URH_SessionBrowserCache>(Settings->SessionBrowserCacheClass);
 	}
 	if (bEnableMatchmakingBrowser)
 	{
-		MatchmakingCache = AddSubsystemPlugin<URH_MatchmakingBrowserCache>(GetDefault<URH_IntegrationSettings>()->MatchmakingBrowserCacheClass);
+		MatchmakingCache = AddSubsystemPlugin<URH_MatchmakingBrowserCache>(Settings->MatchmakingBrowserCacheClass);
 	}
 
 	// Initialize all plugins
@@ -100,6 +102,12 @@ void URH_GameInstanceSubsystem::GameModePreloginEvent(class AGameModeBase* GameM
 
 bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Connection, FString& ErrorMessage) const
 {
+	// if error message is already set, something else already failed
+	if (ErrorMessage.Len() > 0)
+	{
+		return false;
+	}
+
 	if (Connection == nullptr)
 	{
 		ErrorMessage = TEXT("Connection is null");
@@ -110,7 +118,7 @@ bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Conne
 	auto* World = GetGameInstance()->GetWorld();
 	FString RequestURL = Connection->RequestURL;
 
-	auto* pRH_Conn = Cast<URH_IpConnection>(Connection);
+	auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(Connection);
 	if (pRH_Conn != nullptr)
 	{
 		bool bFound = false;
@@ -161,9 +169,18 @@ bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Conne
 					}
 				}
 
-				if (SessionSecurityToken != nullptr && *SessionSecurityToken != LoginSecurityToken)
+				if (SessionSecurityToken != nullptr)
 				{
-					ErrorMessage = TEXT("RH Security Token mismatch");
+					if (*SessionSecurityToken != LoginSecurityToken)
+					{
+						ErrorMessage = TEXT("RH Security Token mismatch");
+						return false;
+					}
+				}
+				else if (IsRunningDedicatedServer() && GetServerBootstrapper() != nullptr && GetServerBootstrapper()->IsBootstrapModeEnabled())
+				{
+					// if we are running a dedicated server and the server bootstrapper is enabled, failing to find a token probably means that the server is not part of a valid joinable session
+					ErrorMessage = TEXT("Security token could not be validated");
 					return false;
 				}
 			}
@@ -171,4 +188,36 @@ bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Conne
 	}
 
 	return true;
+}
+
+void URH_GameInstanceSubsystem::CustomEndpoint(const FRH_CustomEndpointRequestWrapper& RequestWrapper, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_CustomEndpointSend BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.EndpointId = RequestWrapper.EndpointId;
+	if (RequestWrapper.ContentType.Len() > 0)
+	{
+		Request.ContentType = RequestWrapper.ContentType;
+	}
+	if (RequestWrapper.Body.GetValue().IsValid())
+	{
+		Request.Body = RequestWrapper.Body;
+	}
+
+	BaseType::DoCall(RH_APIs::GetAPIs().GetCustom(), Request, Delegate, RequestWrapper.Priority);
+
+}
+
+void URH_GameInstanceSubsystem::CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock Delegate)
+{
+	auto InternalDelegate = RallyHereAPI::FDelegate_CustomEndpointSend::CreateLambda([Delegate](const RallyHereAPI::FResponse_CustomEndpointSend& Resp)
+		{
+			FRH_CustomEndpointResponseWrapper ResponseWrapper(Resp);
+			Delegate.ExecuteIfBound(ResponseWrapper);
+		});
+	CustomEndpoint(Request, InternalDelegate);
 }

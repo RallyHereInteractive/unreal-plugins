@@ -38,24 +38,6 @@ void FRHDTW_PlayerSessions::Do()
 
 		ImGui::EndTabBar();
 	}
-
-	URallyHereDebugTool* pOwner = GetOwner();
-	if (pOwner == nullptr)
-	{
-		return;
-	}
-
-	if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
-	{
-		ImGui::Text("Selected Player Id: %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
-		ImGui::Separator();
-
-		
-	}
-	else
-	{
-		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
-	}
 }
 
 void FRHDTW_PlayerSessions::DoViewRankings()
@@ -155,10 +137,10 @@ void FRHDTW_PlayerSessions::HandleUpdateRankingResponse(bool bSuccess, const TAr
 {
 	if (bSuccess)
 	{
-		UpdateRankingActionResult += "[" + GetShortUuid(PlayerUuid) + "] Update player ranking succeeded." + LINE_TERMINATOR;
+		UpdateRankingActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Update player ranking succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		UpdateRankingActionResult += "[" + GetShortUuid(PlayerUuid) + "] Update player ranking failed." + LINE_TERMINATOR;
+		UpdateRankingActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Update player ranking failed.") LINE_TERMINATOR;
 	}
 }

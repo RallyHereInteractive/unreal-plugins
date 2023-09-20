@@ -33,7 +33,8 @@ Base class to handle pending orders waiting for a final response.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`OrderId`](#classURH__PendingOrder_1a83c5e4bd5c467fc44bec8737feba31aa) | Id of the pending order.
-`public bool `[`RequestOrders`](#classURH__PendingOrder_1a904167c76ee45f849f4998163d82a02f)`(FRH_GenericSuccessBlock Delegate)` | Polls to see if the order has completed.
+`public bool `[`RequestOrders`](#classURH__PendingOrder_1a01d69b95c94ec0b62590d85945f40051)`(FRH_GenericSuccessWithErrorBlock Delegate)` | Polls to see if the order has completed.
+`public inline FORCEINLINE bool `[`RequestOrders`](#classURH__PendingOrder_1a7c1d552f9d9ffc702312e2b1554b8210)`(FRH_GenericSuccessBlock Delegate)` | 
 `protected inline virtual void `[`BroadcastComplete`](#classURH__PendingOrder_1a126b51538c0d0d8ca39acaa494c1c432)`(`[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * PlayerInventory,const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Triggers a broadcasts when the order is sucessfully processed.
 `protected virtual void `[`RequestOrdersResponse`](#classURH__PendingOrder_1a803ce919c79362b8053b81abef0cc13e)`(const TGetOrderById::Response & Resp)` | Handles the response to a Get Player Order call.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PendingOrder_1a3c1cb4a28a04ff48aa50a4c4e8c2250d)`() const` | Gets the Player Inventory.
@@ -45,7 +46,7 @@ Base class to handle pending orders waiting for a final response.
 Id of the pending order.
 
 <br>
-#### `public bool `[`RequestOrders`](#classURH__PendingOrder_1a904167c76ee45f849f4998163d82a02f)`(FRH_GenericSuccessBlock Delegate)` <a id="classURH__PendingOrder_1a904167c76ee45f849f4998163d82a02f"></a>
+#### `public bool `[`RequestOrders`](#classURH__PendingOrder_1a01d69b95c94ec0b62590d85945f40051)`(FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__PendingOrder_1a01d69b95c94ec0b62590d85945f40051"></a>
 
 Polls to see if the order has completed.
 
@@ -54,6 +55,9 @@ Polls to see if the order has completed.
 
 #### Returns
 True if a call was made.
+
+<br>
+#### `public inline FORCEINLINE bool `[`RequestOrders`](#classURH__PendingOrder_1a7c1d552f9d9ffc702312e2b1554b8210)`(FRH_GenericSuccessBlock Delegate)` <a id="classURH__PendingOrder_1a7c1d552f9d9ffc702312e2b1554b8210"></a>
 
 <br>
 #### `protected inline virtual void `[`BroadcastComplete`](#classURH__PendingOrder_1a126b51538c0d0d8ca39acaa494c1c432)`(`[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * PlayerInventory,const `[`FRHAPI_PlayerOrder`](models/RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` <a id="classURH__PendingOrder_1a126b51538c0d0d8ca39acaa494c1c432"></a>
@@ -285,7 +289,8 @@ Class to track watches on players orders.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< FRH_OrderDetailsBlock > `[`Delegates`](#classURH__PlayerOrderWatch_1a478e3d65d0b3ef1816a434fab2a2434e) | List of delegates listening for order.
-`public bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1ab54bf607381382e4833509f1645df6e3)`(FRH_GenericSuccessBlock Delegate)` | Gets the players orders.
+`public bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a63105fcc8fc60b2a7914f6b35cb3ad99)`(FRH_GenericSuccessWithErrorBlock Delegate)` | Gets the players orders.
+`public inline FORCEINLINE bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a4af19a5b093c2dd8af733f46811a1773)`(FRH_GenericSuccessBlock Delegate)` | 
 `protected FString `[`Cursor`](#classURH__PlayerOrderWatch_1ac296a67c627387c8eec532497fd458fc) | Cursor location of last player orders response.
 `protected virtual void `[`RequestOrdersResponse`](#classURH__PlayerOrderWatch_1a156cada0b20a90e20017c618b28b1723)`(const TGetOrders::Response & Resp)` | Handles the response to a Get Player Order call.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`GetPlayerInventory`](#classURH__PlayerOrderWatch_1a49c22be3b3f0b9e3ef8170766cb1b392)`() const` | Gets the Player Inventory.
@@ -297,7 +302,7 @@ Class to track watches on players orders.
 List of delegates listening for order.
 
 <br>
-#### `public bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1ab54bf607381382e4833509f1645df6e3)`(FRH_GenericSuccessBlock Delegate)` <a id="classURH__PlayerOrderWatch_1ab54bf607381382e4833509f1645df6e3"></a>
+#### `public bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a63105fcc8fc60b2a7914f6b35cb3ad99)`(FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__PlayerOrderWatch_1a63105fcc8fc60b2a7914f6b35cb3ad99"></a>
 
 Gets the players orders.
 
@@ -306,6 +311,9 @@ Gets the players orders.
 
 #### Returns
 True if the call was made.
+
+<br>
+#### `public inline FORCEINLINE bool `[`RequestOrders`](#classURH__PlayerOrderWatch_1a4af19a5b093c2dd8af733f46811a1773)`(FRH_GenericSuccessBlock Delegate)` <a id="classURH__PlayerOrderWatch_1a4af19a5b093c2dd8af733f46811a1773"></a>
 
 <br>
 #### `protected FString `[`Cursor`](#classURH__PlayerOrderWatch_1ac296a67c627387c8eec532497fd458fc) <a id="classURH__PlayerOrderWatch_1ac296a67c627387c8eec532497fd458fc"></a>
@@ -349,13 +357,13 @@ Player Order Entry class defines the data of an Order used to submit one to the 
 `public int32 `[`CouponItemId`](#classURH__PlayerOrderEntry_1a81d35b761d82023ac6b29c949d2f182f) | The item id of a coupon item being used if one is being applied for an item discount.
 `public TMap< FString, FString > `[`CustomData`](#classURH__PlayerOrderEntry_1a465d00f2f73358c3509caf95166df187) | Custom data for the given order to be placed on the item.
 `public inline ERHAPI_PlayerOrderEntryType `[`GetFillType`](#classURH__PlayerOrderEntry_1a14ca340eba40b938357e21e65c6fa439)`() const` | Gets the Fill Type of the order.
-`public inline const `[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` `[`GetLootItem`](#classURH__PlayerOrderEntry_1a425969f3c4f081ea34e35f4c5d9990bb)`() const` | Gets the Loot Item the order is for.
-`public inline int32 `[`GetLootId`](#classURH__PlayerOrderEntry_1a31a022de9c1111b7b98da719d2d03848)`() const` | Gets the Loot Id of the loot item.
+`public inline const `[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & `[`GetLootItem`](#classURH__PlayerOrderEntry_1aba95d130fe7f689319afdc0bb55e74ac)`() const` | Gets the Loot Item the order is for.
+`public inline const int32 & `[`GetLootId`](#classURH__PlayerOrderEntry_1a9bae2b65520001d9a63d48b9a8d1fb20)`() const` | Gets the Loot Id of the loot item.
 `public inline int32 `[`GetQuantity`](#classURH__PlayerOrderEntry_1afdd804405384e6adb0adb7ecd310457f)`() const` | Gets the amount of the loot item the order is for.
 `public inline FString `[`GetExternalTransactionId`](#classURH__PlayerOrderEntry_1a2b09affa4faea2a67c5e988138f51e02)`() const` | Gets the id that the client can provide for the order for record keeping.
-`public inline int32 `[`GetPriceItemId`](#classURH__PlayerOrderEntry_1a86e82302cbb3eea92bff1f1840837e37)`() const` | Gets the item id of the item being used to pay for the order.
+`public inline const int32 & `[`GetPriceItemId`](#classURH__PlayerOrderEntry_1a35d0954118cbfb8d9886c29fcfc59932)`() const` | Gets the item id of the item being used to pay for the order.
 `public inline int32 `[`GetPrice`](#classURH__PlayerOrderEntry_1aab86a728d3883a34a8e5e06de40d3057)`() const` | Gets the amount of the item being used for payment, this is verified to match the expected price.
-`public inline int32 `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a3b37517329316d20d464e2da64c952bc)`() const` | Gets the item id of a coupon item being used if one is being applied for an item discount.
+`public inline const int32 & `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367)`() const` | Gets the item id of a coupon item being used if one is being applied for an item discount.
 `public inline void `[`AddCustomData`](#classURH__PlayerOrderEntry_1a61764974114c2ae68fc78d64bd9e692b)`(const FString & Key,const FString & Value)` | Adds custom data to the order entry.
 
 #### Members
@@ -410,12 +418,12 @@ Custom data for the given order to be placed on the item.
 Gets the Fill Type of the order.
 
 <br>
-#### `public inline const `[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` `[`GetLootItem`](#classURH__PlayerOrderEntry_1a425969f3c4f081ea34e35f4c5d9990bb)`() const` <a id="classURH__PlayerOrderEntry_1a425969f3c4f081ea34e35f4c5d9990bb"></a>
+#### `public inline const `[`FRHAPI_Loot`](models/RHAPI_Loot.md#structFRHAPI__Loot)` & `[`GetLootItem`](#classURH__PlayerOrderEntry_1aba95d130fe7f689319afdc0bb55e74ac)`() const` <a id="classURH__PlayerOrderEntry_1aba95d130fe7f689319afdc0bb55e74ac"></a>
 
 Gets the Loot Item the order is for.
 
 <br>
-#### `public inline int32 `[`GetLootId`](#classURH__PlayerOrderEntry_1a31a022de9c1111b7b98da719d2d03848)`() const` <a id="classURH__PlayerOrderEntry_1a31a022de9c1111b7b98da719d2d03848"></a>
+#### `public inline const int32 & `[`GetLootId`](#classURH__PlayerOrderEntry_1a9bae2b65520001d9a63d48b9a8d1fb20)`() const` <a id="classURH__PlayerOrderEntry_1a9bae2b65520001d9a63d48b9a8d1fb20"></a>
 
 Gets the Loot Id of the loot item.
 
@@ -430,7 +438,7 @@ Gets the amount of the loot item the order is for.
 Gets the id that the client can provide for the order for record keeping.
 
 <br>
-#### `public inline int32 `[`GetPriceItemId`](#classURH__PlayerOrderEntry_1a86e82302cbb3eea92bff1f1840837e37)`() const` <a id="classURH__PlayerOrderEntry_1a86e82302cbb3eea92bff1f1840837e37"></a>
+#### `public inline const int32 & `[`GetPriceItemId`](#classURH__PlayerOrderEntry_1a35d0954118cbfb8d9886c29fcfc59932)`() const` <a id="classURH__PlayerOrderEntry_1a35d0954118cbfb8d9886c29fcfc59932"></a>
 
 Gets the item id of the item being used to pay for the order.
 
@@ -440,7 +448,7 @@ Gets the item id of the item being used to pay for the order.
 Gets the amount of the item being used for payment, this is verified to match the expected price.
 
 <br>
-#### `public inline int32 `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a3b37517329316d20d464e2da64c952bc)`() const` <a id="classURH__PlayerOrderEntry_1a3b37517329316d20d464e2da64c952bc"></a>
+#### `public inline const int32 & `[`GetCouponItemId`](#classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367)`() const` <a id="classURH__PlayerOrderEntry_1a0db41c510ffc7be86684f03d6ff26367"></a>
 
 Gets the item id of a coupon item being used if one is being applied for an item discount.
 
@@ -475,15 +483,15 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public FGuid `[`GetRHPlayerUuid`](#classURH__PlayerInventory_1a6221e2b60badb614cfca6e21e2faa4a4)`() const` | Gets the associated player infos Unique Player Id.
 `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInventory_1a3a84905032703b5b266900783db7e9b0)`() const` | Gets the Auth Context that has authority to operate on this players inventory.
 `public inline void `[`SetPlayerInfo`](#classURH__PlayerInventory_1a76b4f19b926a83f287c3515acd8b9150)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * InPlayerInfo)` | Sets the Player Info owner of the subsystem.
-`public void `[`GetInventoryCount`](#classURH__PlayerInventory_1a61de71ccf0e6bf91e7a5b72d0d08afd7)`(int32 ItemId,const FRH_GetInventoryCountBlock & Delegate) const` | Gets the Players Inventory Count of the item for the connected platform, async pulls needed item data if it isn't already cached.
-`public inline void `[`BLUEPRINT_GetInventoryCount`](#classURH__PlayerInventory_1afd16d0fdeeb84075adf140d1bfcd218f)`(int32 ItemId,const FRH_GetInventoryCountDynamicDelegate & Delegate)` | 
-`public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1a0cc9d9ff182ec2d52958f9cede388cd5)`(int32 ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
-`public inline void `[`BLUEPRINT_IsInventoryItemOwned`](#classURH__PlayerInventory_1a3249adb6fa1b56ead76a5bde1e414d89)`(int32 ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` | 
-`public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a627a4e3e2a0dcfe6db9b46e55880c7f9)`(int32 ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
-`public inline void `[`BLUEPRINT_IsInventoryItemRented`](#classURH__PlayerInventory_1aeb26158167cc7c8f7d56db83da0d0c3d)`(int32 ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` | 
+`public void `[`GetInventoryCount`](#classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5)`(const int32 & ItemId,const FRH_GetInventoryCountBlock & Delegate) const` | Gets the Players Inventory Count of the item for the connected platform, async pulls needed item data if it isn't already cached.
+`public inline void `[`BLUEPRINT_GetInventoryCount`](#classURH__PlayerInventory_1a254fc6a64aed8728a0dcf9c01ca2296d)`(const int32 & ItemId,const FRH_GetInventoryCountDynamicDelegate & Delegate)` | 
+`public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
+`public inline void `[`BLUEPRINT_IsInventoryItemOwned`](#classURH__PlayerInventory_1afa90ae8b66a60239929ef05d5337cafe)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` | 
+`public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
+`public inline void `[`BLUEPRINT_IsInventoryItemRented`](#classURH__PlayerInventory_1ab36d5d81ad11652bf2b8c2a334f56926)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` | 
 `public inline `[`FRH_InventorySession`](Inventory.md#structFRH__InventorySession)` `[`GetCachedInventorySession`](#classURH__PlayerInventory_1a8c4674c6b94f959c4dca36927eb4481e)`() const` | Gets the active inventory session for the player.
 `public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetAllCachedInventory`](#classURH__PlayerInventory_1aa9a20795832818701d0cf3d8fb130b16)`() const` | Gets the cached inventory for the player.
-`public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItem`](#classURH__PlayerInventory_1a193e37aaf9346e01088ae62cab92e87f)`(const int32 ItemId) const` | Gets the cached inventory records for an item id for the player.
+`public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItem`](#classURH__PlayerInventory_1ae1b7251813fb4ae6589ccfd36c22386a)`(const int32 & ItemId) const` | Gets the cached inventory records for an item id for the player.
 `public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItems`](#classURH__PlayerInventory_1aa1762801514e5f20f8c138c5c14fcd3f)`(const TArray< int32 > & ItemIds) const` | Gets the cached inventory records for multiple item ids for the player.
 `public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForType`](#classURH__PlayerInventory_1a8a2fddea1b120bf4c48b83dc198a9eca)`(const ERHAPI_InventoryType & Type) const` | Gets the cached inventory records for an inventory type for the player.
 `public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItemsAndTypes`](#classURH__PlayerInventory_1a836f80b9764b94874c0838e76d5aa4ed)`(const TArray< int32 > & ItemIds,const TArray< ERHAPI_InventoryType > & Types) const` | Gets the cached inventory records for multiple item ids that have the given inventory type for the player.
@@ -498,10 +506,12 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public inline void `[`BLUEPRINT_CreateInventorySessionForPlatform`](#classURH__PlayerInventory_1a8c2fee2331e9b749386e050edf242aa1)`(const ERHAPI_Platform Platform,const FRH_OnInventorySessionUpdateDynamicDelegate & Delegate)` | Calls the Inventory API to get the create an Inventory Session for the player for a given Platform.
 `public void `[`GetInventory`](#classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the the inventory for the player.
 `public inline void `[`BLUEPRINT_GetInventory`](#classURH__PlayerInventory_1a59fda737d3bb2ae67d9e28d0fb5ab1b0)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDynamicDelegate & Delegate)` | 
-`public void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a5d07ad6bd57b548325aea5ca298eef7d)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
+`public inline void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a5d07ad6bd57b548325aea5ca298eef7d)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
 `public inline void `[`BLUEPRINT_CreatePlayerOrder`](#classURH__PlayerInventory_1ad7b2561cea4c760a779a155c8f746b21)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` | 
-`public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a7a1cf3ebb3032957841c5b77932d3fe3)`(ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
+`public inline void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a7a1cf3ebb3032957841c5b77932d3fe3)`(ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
 `public inline void `[`BLUEPRINT_CreateNewPlayerOrder`](#classURH__PlayerInventory_1a315120b7b748d0196e718c18e3190bd5)`(ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` | 
+`public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a33d8cf59f2fb193dca3a30ab5ccaa9d1)`(ERHAPI_Source OrderSource,bool IsTransaction,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
+`public inline void `[`BLUEPRINT_CreateNewPlayerOrder2`](#classURH__PlayerInventory_1a059bd019f6598fed69e85a2050a8f806)`(ERHAPI_Source OrderSource,bool IsTransaction,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` | 
 `public void `[`RedeemPromoCode`](#classURH__PlayerInventory_1aec3be76c40b90d85dcd115c1d3ad57ad)`(const FString & PromoCode,FRH_PromoCodeResultBlock Delegate)` | Creates an order for the player that redeems a promotion code.
 `public inline void `[`BLUEPRINT_RedeemPromoCode`](#classURH__PlayerInventory_1a4098703781291ed8e38971f3f5e60bbc)`(const FString & PromoCode,const FRH_PromoCodeResultDynamicDelegate & Delegate)` | 
 `public void `[`SetOrderWatch`](#classURH__PlayerInventory_1a478b2d1f4f2ee0b26c9cb36ba9cd174b)`(FRH_OrderDetailsBlock Delegate)` | Sets a watch to start polling for orders for the player.
@@ -601,7 +611,7 @@ The local or instance Auth Context.
 Sets the Player Info owner of the subsystem.
 
 <br>
-#### `public void `[`GetInventoryCount`](#classURH__PlayerInventory_1a61de71ccf0e6bf91e7a5b72d0d08afd7)`(int32 ItemId,const FRH_GetInventoryCountBlock & Delegate) const` <a id="classURH__PlayerInventory_1a61de71ccf0e6bf91e7a5b72d0d08afd7"></a>
+#### `public void `[`GetInventoryCount`](#classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5)`(const int32 & ItemId,const FRH_GetInventoryCountBlock & Delegate) const` <a id="classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5"></a>
 
 Gets the Players Inventory Count of the item for the connected platform, async pulls needed item data if it isn't already cached.
 
@@ -611,10 +621,10 @@ Gets the Players Inventory Count of the item for the connected platform, async p
 * `Delegate` Callback with the count of the inventory item.
 
 <br>
-#### `public inline void `[`BLUEPRINT_GetInventoryCount`](#classURH__PlayerInventory_1afd16d0fdeeb84075adf140d1bfcd218f)`(int32 ItemId,const FRH_GetInventoryCountDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1afd16d0fdeeb84075adf140d1bfcd218f"></a>
+#### `public inline void `[`BLUEPRINT_GetInventoryCount`](#classURH__PlayerInventory_1a254fc6a64aed8728a0dcf9c01ca2296d)`(const int32 & ItemId,const FRH_GetInventoryCountDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a254fc6a64aed8728a0dcf9c01ca2296d"></a>
 
 <br>
-#### `public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1a0cc9d9ff182ec2d52958f9cede388cd5)`(int32 ItemId,const FRH_GetInventoryStateBlock & Delegate) const` <a id="classURH__PlayerInventory_1a0cc9d9ff182ec2d52958f9cede388cd5"></a>
+#### `public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` <a id="classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179"></a>
 
 Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
 
@@ -624,10 +634,10 @@ Gets if the player owns at least one of the item for the connected platform, asy
 * `Delegate` Callback with the state of the items ownership.
 
 <br>
-#### `public inline void `[`BLUEPRINT_IsInventoryItemOwned`](#classURH__PlayerInventory_1a3249adb6fa1b56ead76a5bde1e414d89)`(int32 ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a3249adb6fa1b56ead76a5bde1e414d89"></a>
+#### `public inline void `[`BLUEPRINT_IsInventoryItemOwned`](#classURH__PlayerInventory_1afa90ae8b66a60239929ef05d5337cafe)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1afa90ae8b66a60239929ef05d5337cafe"></a>
 
 <br>
-#### `public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a627a4e3e2a0dcfe6db9b46e55880c7f9)`(int32 ItemId,const FRH_GetInventoryStateBlock & Delegate) const` <a id="classURH__PlayerInventory_1a627a4e3e2a0dcfe6db9b46e55880c7f9"></a>
+#### `public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` <a id="classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245"></a>
 
 Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
 
@@ -637,7 +647,7 @@ Gets if the player has rented at least one of the item for the connected platfor
 * `Delegate` Callback with the state of the items rented status.
 
 <br>
-#### `public inline void `[`BLUEPRINT_IsInventoryItemRented`](#classURH__PlayerInventory_1aeb26158167cc7c8f7d56db83da0d0c3d)`(int32 ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1aeb26158167cc7c8f7d56db83da0d0c3d"></a>
+#### `public inline void `[`BLUEPRINT_IsInventoryItemRented`](#classURH__PlayerInventory_1ab36d5d81ad11652bf2b8c2a334f56926)`(const int32 & ItemId,const FRH_GetInventoryStateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1ab36d5d81ad11652bf2b8c2a334f56926"></a>
 
 <br>
 #### `public inline `[`FRH_InventorySession`](Inventory.md#structFRH__InventorySession)` `[`GetCachedInventorySession`](#classURH__PlayerInventory_1a8c4674c6b94f959c4dca36927eb4481e)`() const` <a id="classURH__PlayerInventory_1a8c4674c6b94f959c4dca36927eb4481e"></a>
@@ -656,7 +666,7 @@ Gets the cached inventory for the player.
 Array of inventory records.
 
 <br>
-#### `public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItem`](#classURH__PlayerInventory_1a193e37aaf9346e01088ae62cab92e87f)`(const int32 ItemId) const` <a id="classURH__PlayerInventory_1a193e37aaf9346e01088ae62cab92e87f"></a>
+#### `public TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > `[`GetCachedInventoryForItem`](#classURH__PlayerInventory_1ae1b7251813fb4ae6589ccfd36c22386a)`(const int32 & ItemId) const` <a id="classURH__PlayerInventory_1ae1b7251813fb4ae6589ccfd36c22386a"></a>
 
 Gets the cached inventory records for an item id for the player.
 
@@ -776,7 +786,7 @@ Calls the Inventory API to get the the inventory for the player.
 #### `public inline void `[`BLUEPRINT_GetInventory`](#classURH__PlayerInventory_1a59fda737d3bb2ae67d9e28d0fb5ab1b0)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a59fda737d3bb2ae67d9e28d0fb5ab1b0"></a>
 
 <br>
-#### `public void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a5d07ad6bd57b548325aea5ca298eef7d)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a5d07ad6bd57b548325aea5ca298eef7d"></a>
+#### `public inline void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a5d07ad6bd57b548325aea5ca298eef7d)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a5d07ad6bd57b548325aea5ca298eef7d"></a>
 
 Creates an order for the player, used for purchasing and other loot related actions.
 
@@ -793,19 +803,36 @@ Creates an order for the player, used for purchasing and other loot related acti
 #### `public inline void `[`BLUEPRINT_CreatePlayerOrder`](#classURH__PlayerInventory_1ad7b2561cea4c760a779a155c8f746b21)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1ad7b2561cea4c760a779a155c8f746b21"></a>
 
 <br>
-#### `public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a7a1cf3ebb3032957841c5b77932d3fe3)`(ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a7a1cf3ebb3032957841c5b77932d3fe3"></a>
+#### `public inline void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a7a1cf3ebb3032957841c5b77932d3fe3)`(ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a7a1cf3ebb3032957841c5b77932d3fe3"></a>
 
 Creates an order for the player, used for purchasing and other loot related actions.
 
 #### Parameters
-* `OrderSource` Where the order is being created from 
+* `OrderSource` Where the order is being created from. 
 
-* `OrderEntries` Array of orders being requested 
+* `OrderEntries` Array of orders being requested. 
 
-* `Delegate` Callback delegate for the completion of the order request
+* `Delegate` Callback delegate for the completion of the order request.
 
 <br>
 #### `public inline void `[`BLUEPRINT_CreateNewPlayerOrder`](#classURH__PlayerInventory_1a315120b7b748d0196e718c18e3190bd5)`(ERHAPI_Source OrderSource,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a315120b7b748d0196e718c18e3190bd5"></a>
+
+<br>
+#### `public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a33d8cf59f2fb193dca3a30ab5ccaa9d1)`(ERHAPI_Source OrderSource,bool IsTransaction,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a33d8cf59f2fb193dca3a30ab5ccaa9d1"></a>
+
+Creates an order for the player, used for purchasing and other loot related actions.
+
+#### Parameters
+* `OrderSource` Where the order is being created from. 
+
+* `IsTransaction` If true, all orders must succeed for any to be completed. 
+
+* `OrderEntries` Array of orders being requested. 
+
+* `Delegate` Callback delegate for the completion of the order request.
+
+<br>
+#### `public inline void `[`BLUEPRINT_CreateNewPlayerOrder2`](#classURH__PlayerInventory_1a059bd019f6598fed69e85a2050a8f806)`(ERHAPI_Source OrderSource,bool IsTransaction,TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > OrderEntries,const FRH_OrderResultDynamicDelegate & Delegate)` <a id="classURH__PlayerInventory_1a059bd019f6598fed69e85a2050a8f806"></a>
 
 <br>
 #### `public void `[`RedeemPromoCode`](#classURH__PlayerInventory_1aec3be76c40b90d85dcd115c1d3ad57ad)`(const FString & PromoCode,FRH_PromoCodeResultBlock Delegate)` <a id="classURH__PlayerInventory_1aec3be76c40b90d85dcd115c1d3ad57ad"></a>
@@ -1278,7 +1305,7 @@ Inventory Item struct for defining cached inventory items and making inventory w
 `public inline void `[`AddCustomData`](#structFRH__ItemInventory_1ad581781aa100288a7969a4cd53aa4b13)`(const FString & Key,const FString & Value)` | Adds custom data to the inventory record.
 `public inline int32 `[`RemoveCustomData`](#structFRH__ItemInventory_1ac05885e5b0cb125a91a8542bbad7e5eb)`(const FString & Key)` | Removes custom data to the inventory record.
 `public inline FString `[`FindCustomDataWithKey`](#structFRH__ItemInventory_1a1201f55743e40e451bcc26484f7c7d7f)`(const FString & Key)` | Gets custom data by key from the inventory record.
-`public inline void `[`Init`](#structFRH__ItemInventory_1a6a8422b2d9a97f2987e7070029afd862)`(const int32 ItemIdOfInventory,const `[`FRHAPI_InventoryRecord`](models/RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & Inventory)` | Initializes an inventory record from an Inventory Record API response.
+`public inline void `[`Init`](#structFRH__ItemInventory_1ae0ef931fa1341db81394d6a25ef0fde3)`(const int32 & ItemIdOfInventory,const `[`FRHAPI_InventoryRecord`](models/RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & Inventory)` | Initializes an inventory record from an Inventory Record API response.
 `public inline bool `[`operator==`](#structFRH__ItemInventory_1a90397dbaf2c27ccbca10ed24d9e8ab17)`(const `[`FRH_ItemInventory`](#structFRH__ItemInventory)` & Other) const` | Equals operator override for comparison.
 
 #### Members
@@ -1360,7 +1387,7 @@ Gets custom data by key from the inventory record.
 The value for the custome data.
 
 <br>
-#### `public inline void `[`Init`](#structFRH__ItemInventory_1a6a8422b2d9a97f2987e7070029afd862)`(const int32 ItemIdOfInventory,const `[`FRHAPI_InventoryRecord`](models/RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & Inventory)` <a id="structFRH__ItemInventory_1a6a8422b2d9a97f2987e7070029afd862"></a>
+#### `public inline void `[`Init`](#structFRH__ItemInventory_1ae0ef931fa1341db81394d6a25ef0fde3)`(const int32 & ItemIdOfInventory,const `[`FRHAPI_InventoryRecord`](models/RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & Inventory)` <a id="structFRH__ItemInventory_1ae0ef931fa1341db81394d6a25ef0fde3"></a>
 
 Initializes an inventory record from an Inventory Record API response.
 

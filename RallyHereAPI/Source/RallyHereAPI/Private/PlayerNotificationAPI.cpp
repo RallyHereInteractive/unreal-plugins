@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FPlayerNotificationAPI::FPlayerNotificationAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("PlayerNotification");
+    Name = FName(TEXT("PlayerNotification"));
 }
 
 FPlayerNotificationAPI::~FPlayerNotificationAPI() {}
@@ -88,9 +88,10 @@ FRequest_PlayerCreateNotification::FRequest_PlayerCreateNotification()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerCreateNotification::GetSimplifiedPath() const
+FName FRequest_PlayerCreateNotification::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/{player_uuid}/notification"));
+    static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification"));
+    return Path;
 }
 
 FString FRequest_PlayerCreateNotification::ComputePath() const
@@ -248,9 +249,10 @@ FRequest_PlayerGetNotificationById::FRequest_PlayerGetNotificationById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerGetNotificationById::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/{player_uuid}/notification/{notification_id}"));
+    static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification/{notification_id}"));
+    return Path;
 }
 
 FString FRequest_PlayerGetNotificationById::ComputePath() const
@@ -401,9 +403,10 @@ FRequest_PlayerGetNotificationByIdSelf::FRequest_PlayerGetNotificationByIdSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/me/notification/{notification_id}"));
+    static FName Path = FName(TEXT("/notification/v1/player/me/notification/{notification_id}"));
+    return Path;
 }
 
 FString FRequest_PlayerGetNotificationByIdSelf::ComputePath() const
@@ -550,9 +553,10 @@ FRequest_PlayerGetNotificationsPage::FRequest_PlayerGetNotificationsPage()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerGetNotificationsPage::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationsPage::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/{player_uuid}/notification"));
+    static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/notification"));
+    return Path;
 }
 
 FString FRequest_PlayerGetNotificationsPage::ComputePath() const
@@ -724,14 +728,15 @@ FRequest_PlayerGetNotificationsPageSelf::FRequest_PlayerGetNotificationsPageSelf
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerGetNotificationsPageSelf::GetSimplifiedPath() const
+FName FRequest_PlayerGetNotificationsPageSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/me/notification"));
+    static FName Path = FName(TEXT("/notification/v1/player/me/notification"));
+    return Path;
 }
 
 FString FRequest_PlayerGetNotificationsPageSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(PageSize.IsSet())
     {
@@ -890,9 +895,10 @@ FRequest_PlayerLongPollForNotifications::FRequest_PlayerLongPollForNotifications
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerLongPollForNotifications::GetSimplifiedPath() const
+FName FRequest_PlayerLongPollForNotifications::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/{player_uuid}/stream/notification/lp"));
+    static FName Path = FName(TEXT("/notification/v1/player/{player_uuid}/stream/notification/lp"));
+    return Path;
 }
 
 FString FRequest_PlayerLongPollForNotifications::ComputePath() const
@@ -1059,14 +1065,15 @@ FRequest_PlayerLongPollForNotificationsSelf::FRequest_PlayerLongPollForNotificat
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PlayerLongPollForNotificationsSelf::GetSimplifiedPath() const
+FName FRequest_PlayerLongPollForNotificationsSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/player/me/stream/notification/lp"));
+    static FName Path = FName(TEXT("/notification/v1/player/me/stream/notification/lp"));
+    return Path;
 }
 
 FString FRequest_PlayerLongPollForNotificationsSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(MaxPageSize.IsSet())
     {

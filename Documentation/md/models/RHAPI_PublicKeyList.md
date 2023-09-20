@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PublicKeyList`](#structFRHAPI__PublicKeyList) | 
+`struct `[`FRHAPI_PublicKeyList`](#structFRHAPI__PublicKeyList) | List of public keys for verifying Access Token JWTs. This is in the JWK Set format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-5](https://datatracker.ietf.org/doc/html/rfc7517#section-5).
 
 ## struct `FRHAPI_PublicKeyList` <a id="structFRHAPI__PublicKeyList"></a>
 
@@ -13,11 +13,13 @@ struct FRHAPI_PublicKeyList
   : public FRHAPI_Model
 ```
 
+List of public keys for verifying Access Token JWTs. This is in the JWK Set format as defined in [https://datatracker.ietf.org/doc/html/rfc7517#section-5](https://datatracker.ietf.org/doc/html/rfc7517#section-5).
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > `[`Keys`](#structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a) | 
+`public TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > `[`Keys`](#structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a) | List of public keys for verifying Access Token JWTs.
 `public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PublicKeyList_1a8c25ebaf73ef9daefeab572798243793)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > & `[`GetKeys`](#structFRHAPI__PublicKeyList_1a28b2056cffd0315aa4069ff32bc02e2b)`()` | Gets the value of Keys.
@@ -27,6 +29,8 @@ struct FRHAPI_PublicKeyList
 #### Members
 
 #### `public TArray< `[`FRHAPI_PublicKey`](RHAPI_PublicKey.md#structFRHAPI__PublicKey)` > `[`Keys`](#structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a) <a id="structFRHAPI__PublicKeyList_1a9f2304e8a8edbb03597d352a4a60415a"></a>
+
+List of public keys for verifying Access Token JWTs.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PublicKeyList_1a18900c214f8cb8ca4164d3f2a2f31012"></a>

@@ -145,6 +145,11 @@ public:
 			Failed(TEXT("No AuthContext provided"));
 			return;
 		}
+		if (!AuthContext->IsLoggedIn())
+		{
+			Failed(TEXT("Not Logged In"));
+			return;
+		}
 		QueryEntitlements();
 	}
 
@@ -157,7 +162,7 @@ protected:
 		if(PurchaseSubsystem != nullptr && !IsOverride)
 		{
 			PurchaseSubsystem->QueryReceipts(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), false,
-			FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessor::QueryEntitlementsComplete, OSS, EntitlementSubsystem->GetAuthContext()->GetLoginResult()->GetAccessToken()));
+			FOnQueryReceiptsComplete::CreateSP(this, &FRH_EntitlementProcessor::QueryEntitlementsComplete, OSS));
 		}
 		else
 		{
@@ -168,9 +173,8 @@ protected:
 	 * @brief Response from the online subsystem query entitlements call.
 	 * @param [in] Result The result of the query.
 	 * @param [in] ProvidedOSS The OSS that provided the result.
-	 * @param [in] AuthToken The auth token of entitlement subsystems owner.
 	 */
-	void QueryEntitlementsComplete(const FOnlineError& Result, IOnlineSubsystem* ProvidedOSS, FString AuthToken)
+	void QueryEntitlementsComplete(const FOnlineError& Result, IOnlineSubsystem* ProvidedOSS)
 	{
 		if (!Result.bSucceeded)
 		{

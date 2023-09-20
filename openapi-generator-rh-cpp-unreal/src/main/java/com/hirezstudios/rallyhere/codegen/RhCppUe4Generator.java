@@ -54,6 +54,8 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     protected String unrealEnumPrefix = "EUBP_";
     protected String unrealModelPrefix = "FUBP_";
     protected String outputDir = "";
+    protected String apiGenerationMode = "";
+    protected String stripBlueprintCompatibility = "";
     protected Set<String> pointerClasses = new HashSet<>();
     protected Map<String, String> namespaces = new HashMap<>();
     protected Set<String> systemIncludes = new HashSet<>();
@@ -112,7 +114,8 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         addOption("unrealModelPrefix", "Prefix to each Unreal blueprint exposed version of models (optional, defaults to FUBP_)",
                 this.unrealModelPrefix);
         addOption("outputDir", "Output directory for files within the unreal Public/Private folders", this.outputDir);
-
+        addOption("apiGenerationMode", "Mode switch for handling some generation different (optional, defaults to empty string)", this.apiGenerationMode);
+        addOption("stripBlueprintCompatibility", "Mode switch for disabling Bleuprint tags in code gen (optional, defaults to empty string)", this.stripBlueprintCompatibility);
         /**
          * Additional Properties.  These values can be passed to the templates and
          * are available in models, apis, and supporting files
@@ -126,6 +129,8 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         additionalProperties.put("cppNamespace", cppNamespace);
         additionalProperties.put("specCppNamespace", specCppNamespace);
         additionalProperties.put("unrealCategory", unrealCategory);
+        additionalProperties.put("apiGenerationMode", apiGenerationMode);
+        additionalProperties.put("stripBlueprintCompatibility", stripBlueprintCompatibility);
 
         /**
          * Language Specific Primitives.  These types will not trigger imports by
@@ -173,10 +178,12 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         typeMapping.put("set", "TSet");
         typeMapping.put("file", "HttpFileInput");
         typeMapping.put("UUID", "FGuid");
+        typeMapping.put("variant", "TVariant");
 
         importMapping = new HashMap<>();
         importMapping.put("HttpFileInput", "#include \"" + modelNamePrefix + "Helpers.h\"");
         importMapping.put("TSet", "#include \"Containers/Set.h\"");
+        importMapping.put("TVariant", "#include \"Misc/TVariant.h\"");
 
         namespaces = new HashMap<>();
         prefixedModels = new HashSet<>();
@@ -245,7 +252,18 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             unrealModelPrefix = (String) additionalProperties.get("unrealModelPrefix");
             updateSupportingFiles = true;
         }
-
+        
+        if (additionalProperties.containsKey("apiGenerationMode")) {
+            apiGenerationMode = (String) additionalProperties.get("apiGenerationMode"); 
+            updateSupportingFiles = true;
+        }
+        
+        if (additionalProperties.containsKey("stripBlueprintCompatibility")) {
+            stripBlueprintCompatibility = (String) additionalProperties.get("stripBlueprintCompatibility"); 
+            additionalProperties.put("isStripBlueprintCompatibility", stripBlueprintCompatibility.equals(""));
+            updateSupportingFiles = true;
+        }
+        
         languageSpecificPrimitives.add(unrealModelPrefix + "JsonObject");
         languageSpecificPrimitives.add(unrealModelPrefix + "JsonValue");
         typeMapping.put("object", unrealModelPrefix + "JsonObject");
@@ -264,8 +282,17 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         String privateOutDir = "Private" + File.separator + outputDirWithSeparator;
         supportingFiles.add(new SupportingFile("all-api-header.mustache", publicOutDir + unrealModuleName + "All.h"));
         supportingFiles.add(new SupportingFile("all-api-source.mustache", privateOutDir + unrealModuleName + "All.cpp"));
-        supportingFiles.add(new SupportingFile("auth-context-header.mustache", publicOutDir + unrealModuleName + "AuthContext.h"));
-        supportingFiles.add(new SupportingFile("auth-context-source.mustache", privateOutDir + unrealModuleName + "AuthContext.cpp"));
+        System.out.println(apiGenerationMode);
+        if (apiGenerationMode.equals("DEV"))
+        {
+            supportingFiles.add(new SupportingFile("dev-auth-context-header.mustache", publicOutDir + unrealModuleName + "AuthContext.h"));
+            supportingFiles.add(new SupportingFile("dev-auth-context-source.mustache", privateOutDir + unrealModuleName + "AuthContext.cpp"));
+        }
+        else
+        {
+            supportingFiles.add(new SupportingFile("auth-context-header.mustache", publicOutDir + unrealModuleName + "AuthContext.h"));
+            supportingFiles.add(new SupportingFile("auth-context-source.mustache", privateOutDir + unrealModuleName + "AuthContext.cpp"));
+        }
         supportingFiles.add(new SupportingFile("Build.cs.mustache", unrealModuleName + ".Build.cs"));
         supportingFiles.add(new SupportingFile("helpers-header.mustache", publicOutDir + unrealModuleName + "Helpers.h"));
         supportingFiles.add(new SupportingFile("helpers-source.mustache", privateOutDir + unrealModuleName + "Helpers.cpp"));
@@ -316,7 +343,11 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             return "using " + namespaces.get(name) + ";";
         } else if (systemIncludes.contains(name)) {
             return "#include <" + name + ">";
+        } else if (name.contains("TVariant"))
+        {
+            return "#include \"Misc/TVariant.h\"";
         }
+        
 
         String folder = outputDir;
         if (!folder.isEmpty())
@@ -329,7 +360,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             filename = name.substring(unrealModelPrefix.length());
         }
 
-        return "#include \"" + folder + filename + ".h\"";
+        return "#include \"" + folder + this.modelNamePrefix + filename + ".h\"";
     }
 
     @Override
@@ -411,6 +442,20 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             if (cs.getAllOf() != null && ModelUtils.getInterfaces(cs).size() == 1) {
                 return super.getSchemaType(p);
             }
+            else if (cs.getAnyOf() != null && apiGenerationMode.equals("DEV"))
+            {
+                List<Schema> list = cs.getAnyOf();
+                String Types = "";
+                for (int i = 0; i < list.size(); i++) 
+                {
+                    Types += getTypeDeclaration(list.get(i));
+                    if (i + 1 < list.size())
+                    {
+                        Types += ", ";
+                    }
+                }
+                return openAPIType + "<" + Types + ">";
+            }
         }
 
         if (pointerClasses.contains(openAPIType)) {
@@ -429,7 +474,13 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 
     @Override
     public String toDefaultValue(Schema p) {
-        if (ModelUtils.isStringSchema(p)) {
+        if (ModelUtils.isUUIDSchema(p)) {
+            if (p.getDefault() != null) {
+                return "FGuid(TEXT(\"" + p.getDefault().toString() + "\"))";
+            } else {
+                return null;
+            }
+        } else if (ModelUtils.isStringSchema(p)) {
             if (p.getDefault() != null) {
                 return "TEXT(\"" + p.getDefault().toString() + "\")";
             } else {
@@ -486,6 +537,22 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     @Override
     public String getSchemaType(Schema p) {
         String openAPIType = super.getSchemaType(p);
+
+        if (apiGenerationMode.equals("DEV"))
+        {
+            if (p instanceof ComposedSchema) {
+                ComposedSchema cs = (ComposedSchema)p;
+
+                if (cs.getAnyOf() != null) { // anyOf
+                    List<Schema> schemas = ModelUtils.getInterfaces(cs);
+                    List<String> names = new ArrayList<>();
+                    for (Schema s : schemas) {
+                        names.add(getSingleSchemaType(s));
+                    }
+                     return "TVariant<" + String.join(",", names) + ">";
+                }
+            }
+        }
 
         Schema referencedSchema = ModelUtils.getReferencedSchema(this.openAPI, p);
         if (referencedSchema.getEnum() != null && !referencedSchema.getEnum().isEmpty()) {
@@ -559,9 +626,24 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
                 if (cs.getAllOf() != null && ModelUtils.getInterfaces(cs).size() == 1) {
                     finalType = super.getSchemaType(schema);
                 }
+                else if (cs.getAnyOf() != null && apiGenerationMode.equals("DEV")) {
+                    resultName = "TVariant";
+                    List<Schema> list = cs.getAnyOf();
+                    String Types = "";
+                    for (int i = 0; i < list.size(); i++) 
+                    {
+                        Types += getTypeDeclaration(list.get(i));
+                        if (i + 1 < list.size())
+                        {
+                            Types += ", ";
+                        }
+                    }
+                    resultName += "<" + Types + ">";
+                    return resultName;
+                }
             }
 
-            String partialName = this.modelNamePrefix + sanitizeName(camelize(finalType));
+            String partialName = sanitizeName(camelize(finalType));
             if (schema != null && schema.getEnum() != null && !schema.getEnum().isEmpty()) {
                 resultName = unrealEnumPrefix + partialName;
             } else {

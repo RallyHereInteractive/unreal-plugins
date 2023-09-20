@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
@@ -83,6 +83,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     /** @brief Sets the value of Desc */
     void SetDesc(FString NewValue) { Desc = NewValue;  }
 
+    /** @brief Whether the user needs to accept the End User License Agreement */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool NeedsEula_Optional{  };
     /** @brief true if NeedsEula_Optional has been set to a value */
@@ -109,6 +110,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     /** @brief Sets the value of NeedsEula_Optional to its default and also sets NeedsEula_IsSet to true */
     void SetNeedsEulaToDefault() { NeedsEula_Optional = false; NeedsEula_IsSet = true; }
 
+    /** @brief Whether the user needs to accept the Terms of Service */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool NeedsTos_Optional{  };
     /** @brief true if NeedsTos_Optional has been set to a value */
@@ -135,6 +137,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     /** @brief Sets the value of NeedsTos_Optional to its default and also sets NeedsTos_IsSet to true */
     void SetNeedsTosToDefault() { NeedsTos_Optional = false; NeedsTos_IsSet = true; }
 
+    /** @brief Whether the user needs to accept the Privacy Policy */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool NeedsPrivacyPolicy_Optional{  };
     /** @brief true if NeedsPrivacyPolicy_Optional has been set to a value */

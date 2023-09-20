@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_InstanceInfo`](#structFRHAPI__InstanceInfo) | 
+`struct `[`FRHAPI_InstanceInfo`](#structFRHAPI__InstanceInfo) | Information about the instance resource in a session.
 
 ## struct `FRHAPI_InstanceInfo` <a id="structFRHAPI__InstanceInfo"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_InstanceInfo
   : public FRHAPI_Model
 ```
+
+Information about the instance resource in a session.
 
 #### Summary
 

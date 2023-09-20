@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_QueueJoinResponse`](#structFRHAPI__QueueJoinResponse) | 
+`struct `[`FRHAPI_QueueJoinResponse`](#structFRHAPI__QueueJoinResponse) | A response for successfully joining a matchmaking queue.
 
 ## struct `FRHAPI_QueueJoinResponse` <a id="structFRHAPI__QueueJoinResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_QueueJoinResponse
   : public FRHAPI_Model
 ```
+
+A response for successfully joining a matchmaking queue.
 
 #### Summary
 

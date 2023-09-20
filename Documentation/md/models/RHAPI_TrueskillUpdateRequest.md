@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_TrueskillUpdateRequest`](#structFRHAPI__TrueskillUpdateRequest) | 
+`struct `[`FRHAPI_TrueskillUpdateRequest`](#structFRHAPI__TrueskillUpdateRequest) | A request body to update players&#39; trueskill ratings from a match.
 
 ## struct `FRHAPI_TrueskillUpdateRequest` <a id="structFRHAPI__TrueskillUpdateRequest"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_TrueskillUpdateRequest
   : public FRHAPI_Model
 ```
+
+A request body to update players&#39; trueskill ratings from a match.
 
 #### Summary
 

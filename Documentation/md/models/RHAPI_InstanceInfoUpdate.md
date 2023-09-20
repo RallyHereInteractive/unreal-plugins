@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_InstanceInfoUpdate`](#structFRHAPI__InstanceInfoUpdate) | 
+`struct `[`FRHAPI_InstanceInfoUpdate`](#structFRHAPI__InstanceInfoUpdate) | A request body to update the instance resource in a session.
 
 ## struct `FRHAPI_InstanceInfoUpdate` <a id="structFRHAPI__InstanceInfoUpdate"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_InstanceInfoUpdate
   : public FRHAPI_Model
 ```
+
+A request body to update the instance resource in a session.
 
 #### Summary
 

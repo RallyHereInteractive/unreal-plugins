@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_RankData`](#structFRHAPI__RankData) | 
+`struct `[`FRHAPI_RankData`](#structFRHAPI__RankData) | Trueskill oriented ranked data about a player&#39;s skill and confidence levels.
 
 ## struct `FRHAPI_RankData` <a id="structFRHAPI__RankData"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_RankData
   : public FRHAPI_Model
 ```
+
+Trueskill oriented ranked data about a player&#39;s skill and confidence levels.
 
 #### Summary
 

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlatformSessionPlayer`](#structFRHAPI__PlatformSessionPlayer) | 
+`struct `[`FRHAPI_PlatformSessionPlayer`](#structFRHAPI__PlatformSessionPlayer) | A platform player resource in a platform session.
 
 ## struct `FRHAPI_PlatformSessionPlayer` <a id="structFRHAPI__PlatformSessionPlayer"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_PlatformSessionPlayer
   : public FRHAPI_Model
 ```
+
+A platform player resource in a platform session.
 
 #### Summary
 

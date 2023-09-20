@@ -13,8 +13,13 @@ FRallyHereAPIHttpRequester::FRallyHereAPIHttpRequester()
     PendingRequestCount = 0;
 }
 
-void FRallyHereAPIHttpRequester::Tick(float DeltaTime)
+void FRallyHereAPIHttpRequester::TryExecuteNextRequest()
 {
+    if (!CanExecuteRequest())
+    {
+        return;
+    }
+
     TArray<int32> Keys;
 
     if (HttpRequestQueue.GetKeys(Keys) > 0)
@@ -62,6 +67,8 @@ void FRallyHereAPIHttpRequester::OnResponse(FHttpRequestPtr HttpRequest, FHttpRe
 {
     PendingRequestCount--;
     ResponseDelegate.Execute(HttpRequest, HttpResponse, bSucceeded);
+    // Whenever we get a request response try to execute new requests if we have any.
+    QueueNextRequestCall();
 }
 
 void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHereAPIHttpRequestData> RequestData)
@@ -73,6 +80,29 @@ void FRallyHereAPIHttpRequester::EnqueueHttpRequest(TSharedPtr<struct FRallyHere
     else
     {
         HttpRequestQueue.Add(RequestData->Priority, {RequestData});
+    }
+    // Whenever we get a new request, try to execute requests
+    QueueNextRequestCall();
+}
+
+void FRallyHereAPIHttpRequester::QueueNextRequestCall()
+{
+    if (GIsEditor && !GIsPlayInEditorWorld)
+    {
+        TryExecuteNextRequest();
+    }
+    else
+    {
+        // Delay until next frame
+        FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([](float dts)
+        {
+            auto* Requester = FRallyHereAPIHttpRequester::Get();
+            if (Requester != nullptr) 
+            {
+                Requester->TryExecuteNextRequest(); 
+            }
+            return false;
+        }), 0.0f);
     }
 }
 

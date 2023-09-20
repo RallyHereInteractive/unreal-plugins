@@ -59,7 +59,7 @@ public:
 	* @param [in] SessionInfo The session being transitioned to.
 	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
 	*/
-	void SyncToSession(URH_JoinedSession* SessionInfo, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
+	virtual void SyncToSession(URH_JoinedSession* SessionInfo, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Sync to Session", AutoCreateRefTerm = "Delegate"))
 	/**
 	* @brief Blueprint compatible wrapper for SyncToSession
@@ -68,28 +68,28 @@ public:
 	/**
 	* @brief Gets the Session Data for the active session.
 	*/
-	const FRHAPI_InstanceInfo* GetInstance() const;
+	virtual const FRHAPI_InstanceInfo* GetInstance() const;
 	/**
 	* @brief Checks it the session data is for a locally hosted instance.
 	* @param [in] Instance The instance being checked.
 	* @return If true, the instance is hosted locally.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	bool IsLocallyHostedInstance(const FRHAPI_InstanceInfo& Instance) const;
+	virtual bool IsLocallyHostedInstance(const FRHAPI_InstanceInfo& Instance) const;
 	/**
 	* @brief Checks it the session is locally hosted.
 	* @param [in] Session The session being checked.
 	* @return If true, the session is hosted locally.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
+	virtual bool IsLocallyHostedSession(const URH_JoinedSession* Session) const { return Session->GetInstanceData() ? IsLocallyHostedInstance(*Session->GetInstanceData()) : false; }
 	/**
 	* @brief Checks if a given player in a session is local to the client.
 	* @param [in] Player The player being checked.
 	* @return If true, the player is local to the client.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	bool IsPlayerLocal(const FRHAPI_SessionPlayer& Player) const;
+	virtual bool IsPlayerLocal(const FRHAPI_SessionPlayer& Player) const;
 	/**
 	* @brief Gets the session that the instance is swapping to.
 	*/
@@ -111,12 +111,12 @@ public:
 	* @return If true, the session is ready for a map transition.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance")
-	bool IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog = false) const;
+	virtual bool IsReadyToJoinInstance(const URH_JoinedSession* Session, bool bLog = false) const;
 	/**
 	* @brief Starts the process of transitioning the instance to a new session.
 	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
 	*/
-	bool StartJoinInstanceFlow(FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
+	virtual bool StartJoinInstanceFlow(FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
 	/**
 	* @brief Blueprint compatible wrapper for StartJoinInstanceFlow
 	*/
@@ -128,7 +128,7 @@ public:
 	* @param [in] bCheckDesired If true, and the instance has a desired session, start joining that session.
 	* @param [in] Delegate Callback delegate for when the instance is left.
 	*/
-	void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
+	virtual void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
 	/**
 	* @brief Blueprint compatible wrapper for StartLeaveInstanceFlow
 	*/
@@ -139,12 +139,17 @@ public:
 	* @param [in] Reason The reason the instance was marked failed.
 	* @param [in] Delegate Callback delegate for if the instance was marked failed.
 	*/
-	void MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessBlock Delegate = FRH_GenericSuccessBlock());
+	virtual void MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
+	FORCEINLINE void MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessBlock Delegate)
+	{
+		MarkInstanceFubar(Reason, RH_ConvertGenericSucessDelegateBlock(Delegate));
+	}
 	/**
 	* @brief Blueprint compatible wrapper for MarkInstanceFubar
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Mark Instance Fubar", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessDynamicDelegate& Delegate) { MarkInstanceFubar(Reason, Delegate); }
+	void BLUEPRINT_MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { MarkInstanceFubar(Reason, Delegate); }
 
 	/**
 	 * @brief @brief Attempt to generate a join URL from a session.
@@ -153,7 +158,7 @@ public:
 	 * @param [out] outURL The URL to join the session.
 	 * @return If true, a join URL was generated.
 	 */
-	static bool GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL);
+	virtual bool GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 	/**
 	 * @brief @brief Attempt to generate a host URL from a session.
 	 * @param [in] Session The session a host url is being requested for.
@@ -161,7 +166,7 @@ public:
 	 * @param [out] outURL The Host URL fot the session.
 	 * @return If true, a host URL was generated.
 	 */
-	static bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL);
+	virtual bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
@@ -170,7 +175,7 @@ public:
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
 	 */
-	UPROPERTY(BlueprintReadWrite, Category = "Session|Instance", meta = (DisplayName = "OnBeaconCreated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "OnBeaconCreated"))
 	FRH_OnBeaconCreatedDynamicDelegate BLUEPRINT_OnBeaconCreated;
 
 protected:

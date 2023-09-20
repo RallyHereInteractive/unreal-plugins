@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_MatchmakingInfo`](#structFRHAPI__MatchmakingInfo) | 
+`struct `[`FRHAPI_MatchmakingInfo`](#structFRHAPI__MatchmakingInfo) | Info about the matchmaking status in a session.
 
 ## struct `FRHAPI_MatchmakingInfo` <a id="structFRHAPI__MatchmakingInfo"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_MatchmakingInfo
   : public FRHAPI_Model
 ```
+
+Info about the matchmaking status in a session.
 
 #### Summary
 

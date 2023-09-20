@@ -2,6 +2,7 @@
 #include "RallyHereDebugTool.h"
 #include "RHDTW_PlayerSettings.h"
 #include "imgui.h"
+#include "RH_ImGuiUtilities.h"
 
 FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	: Super()
@@ -13,6 +14,8 @@ FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	ModifySettingsIdInput.SetNumZeroed(64);
 	ModifySettingsKeyInput.SetNumZeroed(64);
 	ModifySettingsJsonInput.SetNumZeroed(4096);
+
+	SetPlayerSettingsActionResult.Empty();
 }
 
 FRHDTW_PlayerSettings::~FRHDTW_PlayerSettings()
@@ -21,46 +24,37 @@ FRHDTW_PlayerSettings::~FRHDTW_PlayerSettings()
 
 void FRHDTW_PlayerSettings::Do()
 {
-	URallyHereDebugTool* pOwner = GetOwner();
-	if (pOwner == nullptr)
+	if (ImGui::BeginTabBar("Settings", ImGuiTabBarFlags_FittingPolicyScroll))
 	{
-		return;
-	}
-
-	if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
-	{
-		ImGui::Text("Selected Player Id: %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
-		ImGui::Separator();
-
-		if (ImGui::BeginTabBar("Settings", ImGuiTabBarFlags_FittingPolicyScroll))
+		if (ImGui::BeginTabItem("View Settings", nullptr, ImGuiTabItemFlags_None))
 		{
-			if (ImGui::BeginTabItem("View Settings", nullptr, ImGuiTabItemFlags_None))
-			{
-				DoViewSettings(ActivePlayerInfo);
-				ImGui::EndTabItem();
-			}
-
-			if (ImGui::BeginTabItem("Modify Settings", nullptr, ImGuiTabItemFlags_None))
-			{
-				DoModifySettings(ActivePlayerInfo);
-				ImGui::EndTabItem();
-			}
-
-			ImGui::EndTabBar();
+			DoViewSettings();
+			ImGui::EndTabItem();
 		}
-	}
-	else
-	{
-		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
+
+		if (ImGui::BeginTabItem("Modify Settings", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoModifySettings();
+			ImGui::EndTabItem();
+		}
+
+		ImGui::EndTabBar();
 	}
 }
 
-void FRHDTW_PlayerSettings::DoViewSettings(URH_PlayerInfo* ActivePlayerInfo)
+void FRHDTW_PlayerSettings::DoViewSettings()
 {
+	URH_PlayerInfo* ActivePlayerInfo = nullptr;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo();
+	}
 	if (ActivePlayerInfo == nullptr)
 	{
+		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
 		return;
 	}
+	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
 
 	ImGui::InputText("Settings Id", SettingsIdInput.GetData(), SettingsIdInput.Num());
 
@@ -96,17 +90,32 @@ void FRHDTW_PlayerSettings::DoViewSettings(URH_PlayerInfo* ActivePlayerInfo)
 	}
 }
 
-void FRHDTW_PlayerSettings::DoModifySettings(URH_PlayerInfo* ActivePlayerInfo)
+void FRHDTW_PlayerSettings::DoModifySettings()
 {
-	if (ActivePlayerInfo == nullptr)
+	int NumSelectedPlayers = 0;
+	if (URallyHereDebugTool* pOwner = GetOwner())
 	{
+		NumSelectedPlayers = pOwner->GetAllSelectedPlayerInfos().Num();
+	}
+	if (NumSelectedPlayers <= 0)
+	{
+		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
 		return;
 	}
+	ImGui::Text("For [%d] selected players with UUIDs.", NumSelectedPlayers);
 
 	ImGui::InputText("Settings Id", ModifySettingsIdInput.GetData(), ModifySettingsIdInput.Num());
 	ImGui::InputText("Key", ModifySettingsKeyInput.GetData(), ModifySettingsKeyInput.Num());
 	ImGui::InputInt("Version", &SettingVersionNum);
 	ImGui::InputTextMultiline("Json Blob", ModifySettingsJsonInput.GetData(), ModifySettingsJsonInput.Num());
+
+	if (!SetPlayerSettingsActionResult.IsEmpty())
+	{
+		if (ImGui::CollapsingHeader("Modify Settings Action Result", RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*SetPlayerSettingsActionResult));
+		}
+	}
 
 	if (ImGui::Button("Modify Settings Data"))
 	{
@@ -122,9 +131,27 @@ void FRHDTW_PlayerSettings::DoModifySettings(URH_PlayerInfo* ActivePlayerInfo)
 		SettingData.SetV(SettingVersionNum);
 
 		DataWrapper.Content.Add(UTF8_TO_TCHAR(ModifySettingsKeyInput.GetData()), SettingData);
-		if (URallyHereDebugTool* pOwner = GetOwner())
-		{
-			ActivePlayerInfo->SetPlayerSettings(UTF8_TO_TCHAR(ModifySettingsIdInput.GetData()), DataWrapper);
-		}
+
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, &DataWrapper](URH_PlayerInfo* PlayerInfo)
+			{
+				SetPlayerSettingsActionResult.Empty();
+				if (PlayerInfo)
+				{
+					auto Delegate = FRH_PlayerInfoSetPlayerSettingsDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse, PlayerInfo->GetRHPlayerUuid());
+					PlayerInfo->SetPlayerSettings(UTF8_TO_TCHAR(ModifySettingsIdInput.GetData()), DataWrapper, MoveTemp(Delegate));
+				}
+			}));
+	}
+}
+
+void FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse(bool bSuccess, FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid)
+{
+	if (bSuccess)
+	{
+		SetPlayerSettingsActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Modifying settings succeeded.") LINE_TERMINATOR;
+	}
+	else
+	{
+		SetPlayerSettingsActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Modifying settings failed.") LINE_TERMINATOR;
 	}
 }

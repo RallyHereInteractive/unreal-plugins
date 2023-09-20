@@ -93,17 +93,23 @@ struct {{dllapi}} {{classname}} : public {{unrealModelPrefix}}Model
     /** @brief {{{.}}} */
     {{/description}}
     {{^isContainer}}
+    {{#isStripBlueprintCompatibility}}
     UPROPERTY(BlueprintReadOnly, Category = "{{unrealCategory}}")
+    {{/isStripBlueprintCompatibility}}
     {{/isContainer}}
     {{#isContainer}}
     {{^items.isContainer}}
+    {{#isStripBlueprintCompatibility}}
     UPROPERTY(BlueprintReadOnly, Category = "{{unrealCategory}}")
+    {{/isStripBlueprintCompatibility}}
     {{/items.isContainer}}
     {{/isContainer}}
     {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{/isEnum}} {{name}}{{^required}}_Optional{{/required}}{ {{#required}}{{#defaultValue}}{{{.}}}{{/defaultValue}}{{/required}} };
     {{^required}}
     /** @brief true if {{name}}_Optional has been set to a value */
+    {{#isStripBlueprintCompatibility}}
     UPROPERTY(BlueprintReadOnly, Category = "{{unrealCategory}}")
+    {{/isStripBlueprintCompatibility}}
     bool {{name}}_IsSet{ false };
     {{/required}}
     /** @brief Gets the value of {{name}}{{^required}}_Optional, regardless of it having been set{{/required}} */

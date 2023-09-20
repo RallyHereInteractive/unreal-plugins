@@ -4,7 +4,6 @@ public class RallyHereEditor : ModuleRules
 {
 	public RallyHereEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
-		bEnforceIWYU = false;
 		bTreatAsEngineModule = false;
 		bEnableUndefinedIdentifierWarnings = false;
 		bAllowConfidentialPlatformDefines = true;

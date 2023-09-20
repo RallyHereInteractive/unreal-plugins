@@ -119,7 +119,12 @@ public:
 	* @param [in] Session The Platform Session Search Result to join
 	* @param [in] Delegate The delegate to fire when the join is complete
 	*/
-	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, FRH_GenericSuccessBlock Delegate = FRH_GenericSuccessBlock());
+	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
+	FORCEINLINE static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, FRH_GenericSuccessBlock Delegate)
+	{
+		JoinRHSessionByPlatformSession(SessionOwner, Session, RH_ConvertGenericSucessDelegateBlock(Delegate));
+	}
 
 	/**
 	* @brief Marks the session as started (note - asynchronous)
@@ -162,7 +167,7 @@ public:
 	* @brief Notification delegates for when cleanup of this object has completed
 	*/
 	FRH_PlatformSessionSyncerCleanupDelegate OnCleanupComplete;
-	UPROPERTY(EditAnywhere, Category = "Session", meta = (DisplayName = "OnCleanupComplete"))
+	UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "Session", meta = (DisplayName = "OnCleanupComplete"))
 	FRH_PlatformSessionSyncerCleanupDynamicDelegate BLUEPRINT_OnCleanupComplete;
 
 	void SetCachedPlatformSessionInvite(const FOnlineSessionSearchResult& SessionInvite);
@@ -277,6 +282,11 @@ protected:
 	* @brief The cached platform session invite.
 	*/
 	TOptional<FOnlineSessionSearchResult> CachedSessionInvite;
+
+	/**
+	* @brief whether cleanup is deferred until the end of the current action
+	*/
+	bool bDeferCleanup = false;
 };
 
 /** @} */

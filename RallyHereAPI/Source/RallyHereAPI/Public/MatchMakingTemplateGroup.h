@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used
+ * @brief DEPRECATED A collection of MatchMakingTemplates that may be used when a session enters a queue. The first template that satisfies the necessary rules will be used
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroup : public FRHAPI_Model

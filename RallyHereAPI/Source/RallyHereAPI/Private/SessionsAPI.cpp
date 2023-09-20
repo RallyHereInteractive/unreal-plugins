@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FSessionsAPI::FSessionsAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Sessions");
+    Name = FName(TEXT("Sessions"));
 }
 
 FSessionsAPI::~FSessionsAPI() {}
@@ -88,9 +88,10 @@ FRequest_AddPlatformSessionToRallyHereSession::FRequest_AddPlatformSessionToRall
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
+FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}"));
+    static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/session/{session_id}"));
+    return Path;
 }
 
 FString FRequest_AddPlatformSessionToRallyHereSession::ComputePath() const
@@ -262,9 +263,10 @@ FRequest_CreateInstanceRequest::FRequest_CreateInstanceRequest()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateInstanceRequest::GetSimplifiedPath() const
+FName FRequest_CreateInstanceRequest::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/instance"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance"));
+    return Path;
 }
 
 FString FRequest_CreateInstanceRequest::ComputePath() const
@@ -419,14 +421,15 @@ FRequest_CreateMatch::FRequest_CreateMatch()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateMatch::GetSimplifiedPath() const
+FName FRequest_CreateMatch::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/match-made-session"));
+    static FName Path = FName(TEXT("/session/v1/match-made-session"));
+    return Path;
 }
 
 FString FRequest_CreateMatch::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -574,14 +577,15 @@ FRequest_CreateOrJoinSession::FRequest_CreateOrJoinSession()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateOrJoinSession::GetSimplifiedPath() const
+FName FRequest_CreateOrJoinSession::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session"));
+    static FName Path = FName(TEXT("/session/v1/session"));
+    return Path;
 }
 
 FString FRequest_CreateOrJoinSession::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -726,9 +730,10 @@ FRequest_CreateSessionEvent::FRequest_CreateSessionEvent()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateSessionEvent::GetSimplifiedPath() const
+FName FRequest_CreateSessionEvent::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/event"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/event"));
+    return Path;
 }
 
 FString FRequest_CreateSessionEvent::ComputePath() const
@@ -886,9 +891,10 @@ FRequest_DeleteBrowserInfo::FRequest_DeleteBrowserInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
+FName FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/browser"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/browser"));
+    return Path;
 }
 
 FString FRequest_DeleteBrowserInfo::ComputePath() const
@@ -1032,9 +1038,10 @@ FRequest_EndInstance::FRequest_EndInstance()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_EndInstance::GetSimplifiedPath() const
+FName FRequest_EndInstance::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/instance"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance"));
+    return Path;
 }
 
 FString FRequest_EndInstance::ComputePath() const
@@ -1198,9 +1205,10 @@ FRequest_EndMatch::FRequest_EndMatch()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_EndMatch::GetSimplifiedPath() const
+FName FRequest_EndMatch::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/match"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/match"));
+    return Path;
 }
 
 FString FRequest_EndMatch::ComputePath() const
@@ -1344,14 +1352,15 @@ FRequest_GetAllSessionTemplates::FRequest_GetAllSessionTemplates()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllSessionTemplates::GetSimplifiedPath() const
+FName FRequest_GetAllSessionTemplates::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/template"));
+    static FName Path = FName(TEXT("/session/v1/template"));
+    return Path;
 }
 
 FString FRequest_GetAllSessionTemplates::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1511,14 +1520,15 @@ FRequest_GetBrowserSessionsByType::FRequest_GetBrowserSessionsByType()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetBrowserSessionsByType::GetSimplifiedPath() const
+FName FRequest_GetBrowserSessionsByType::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/browser"));
+    static FName Path = FName(TEXT("/session/v1/browser"));
+    return Path;
 }
 
 FString FRequest_GetBrowserSessionsByType::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     QueryParams.Add(FString(TEXT("session_type=")) + ToUrlString(SessionType));
     if(Cursor.IsSet())
@@ -1685,14 +1695,15 @@ FRequest_GetConnectionInfoSelf::FRequest_GetConnectionInfoSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetConnectionInfoSelf::GetSimplifiedPath() const
+FName FRequest_GetConnectionInfoSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/connection-info"));
+    static FName Path = FName(TEXT("/session/v1/connection-info"));
+    return Path;
 }
 
 FString FRequest_GetConnectionInfoSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1832,9 +1843,10 @@ FRequest_GetPlatformSessionInfo::FRequest_GetPlatformSessionInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
+FName FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}"));
+    static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}"));
+    return Path;
 }
 
 FString FRequest_GetPlatformSessionInfo::ComputePath() const
@@ -2008,9 +2020,10 @@ FRequest_GetPlayerSessions::FRequest_GetPlayerSessions()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerSessions::GetSimplifiedPath() const
+FName FRequest_GetPlayerSessions::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/player/id/{player_id}/session"));
+    static FName Path = FName(TEXT("/session/v1/player/id/{player_id}/session"));
+    return Path;
 }
 
 FString FRequest_GetPlayerSessions::ComputePath() const
@@ -2154,9 +2167,10 @@ FRequest_GetPlayerSessionsByUuid::FRequest_GetPlayerSessionsByUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
+FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/player/uuid/{player_uuid}/session"));
+    static FName Path = FName(TEXT("/session/v1/player/uuid/{player_uuid}/session"));
+    return Path;
 }
 
 FString FRequest_GetPlayerSessionsByUuid::ComputePath() const
@@ -2326,14 +2340,15 @@ FRequest_GetPlayerSessionsSelf::FRequest_GetPlayerSessionsSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerSessionsSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerSessionsSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/player/me/session"));
+    static FName Path = FName(TEXT("/session/v1/player/me/session"));
+    return Path;
 }
 
 FString FRequest_GetPlayerSessionsSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2493,9 +2508,10 @@ FRequest_GetSessionByAllocationId::FRequest_GetSessionByAllocationId()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
+FName FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/allocation/{allocation_id}"));
+    static FName Path = FName(TEXT("/session/v1/session/allocation/{allocation_id}"));
+    return Path;
 }
 
 FString FRequest_GetSessionByAllocationId::ComputePath() const
@@ -2665,9 +2681,10 @@ FRequest_GetSessionById::FRequest_GetSessionById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSessionById::GetSimplifiedPath() const
+FName FRequest_GetSessionById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}"));
+    return Path;
 }
 
 FString FRequest_GetSessionById::ComputePath() const
@@ -2837,9 +2854,10 @@ FRequest_GetSessionEvents::FRequest_GetSessionEvents()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSessionEvents::GetSimplifiedPath() const
+FName FRequest_GetSessionEvents::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/event"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/event"));
+    return Path;
 }
 
 FString FRequest_GetSessionEvents::ComputePath() const
@@ -2995,9 +3013,10 @@ FRequest_GetSessionTemplateByType::FRequest_GetSessionTemplateByType()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
+FName FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/template/{session_type}"));
+    static FName Path = FName(TEXT("/session/v1/template/{session_type}"));
+    return Path;
 }
 
 FString FRequest_GetSessionTemplateByType::ComputePath() const
@@ -3167,9 +3186,10 @@ FRequest_JoinQueue::FRequest_JoinQueue()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_JoinQueue::GetSimplifiedPath() const
+FName FRequest_JoinQueue::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/queue"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/queue"));
+    return Path;
 }
 
 FString FRequest_JoinQueue::ComputePath() const
@@ -3324,9 +3344,10 @@ FRequest_JoinSessionByIdSelf::FRequest_JoinSessionByIdSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
+FName FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/player/me"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me"));
+    return Path;
 }
 
 FString FRequest_JoinSessionByIdSelf::ComputePath() const
@@ -3504,9 +3525,10 @@ FRequest_JoinSessionByPlatformSessionByUuid::FRequest_JoinSessionByPlatformSessi
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
+FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}"));
+    static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}"));
+    return Path;
 }
 
 FString FRequest_JoinSessionByPlatformSessionByUuid::ComputePath() const
@@ -3697,9 +3719,10 @@ FRequest_JoinSessionByPlatformSessionIdSelf::FRequest_JoinSessionByPlatformSessi
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
+FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me"));
+    static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me"));
+    return Path;
 }
 
 FString FRequest_JoinSessionByPlatformSessionIdSelf::ComputePath() const
@@ -3881,9 +3904,10 @@ FRequest_KickPlayerFromSessionById::FRequest_KickPlayerFromSessionById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
+FName FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"));
+    return Path;
 }
 
 FString FRequest_KickPlayerFromSessionById::ComputePath() const
@@ -4031,9 +4055,10 @@ FRequest_KickPlayerFromSessionByUuid::FRequest_KickPlayerFromSessionByUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
+FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"));
+    return Path;
 }
 
 FString FRequest_KickPlayerFromSessionByUuid::ComputePath() const
@@ -4201,9 +4226,10 @@ FRequest_LeaveQueue::FRequest_LeaveQueue()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_LeaveQueue::GetSimplifiedPath() const
+FName FRequest_LeaveQueue::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/queue"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/queue"));
+    return Path;
 }
 
 FString FRequest_LeaveQueue::ComputePath() const
@@ -4350,9 +4376,10 @@ FRequest_LeaveSessionByIdSelf::FRequest_LeaveSessionByIdSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
+FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/player/me"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me"));
+    return Path;
 }
 
 FString FRequest_LeaveSessionByIdSelf::ComputePath() const
@@ -4499,9 +4526,10 @@ FRequest_LeaveSessionByPlatformSessionByUuid::FRequest_LeaveSessionByPlatformSes
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
+FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}"));
+    static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/{player_uuid}"));
+    return Path;
 }
 
 FString FRequest_LeaveSessionByPlatformSessionByUuid::ComputePath() const
@@ -4653,9 +4681,10 @@ FRequest_LeaveSessionByPlatformSessionSelf::FRequest_LeaveSessionByPlatformSessi
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
+FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me"));
+    static FName Path = FName(TEXT("/session/v1/platform/{platform}/platform-session/{platform_session_id_base64}/player/me"));
+    return Path;
 }
 
 FString FRequest_LeaveSessionByPlatformSessionSelf::ComputePath() const
@@ -4806,9 +4835,10 @@ FRequest_PostBrowserInfo::FRequest_PostBrowserInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_PostBrowserInfo::GetSimplifiedPath() const
+FName FRequest_PostBrowserInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/browser"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/browser"));
+    return Path;
 }
 
 FString FRequest_PostBrowserInfo::ComputePath() const
@@ -4963,9 +4993,10 @@ FRequest_ReportFubar::FRequest_ReportFubar()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ReportFubar::GetSimplifiedPath() const
+FName FRequest_ReportFubar::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/instance/fubar"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance/fubar"));
+    return Path;
 }
 
 FString FRequest_ReportFubar::ComputePath() const
@@ -5120,9 +5151,10 @@ FRequest_StartMatch::FRequest_StartMatch()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_StartMatch::GetSimplifiedPath() const
+FName FRequest_StartMatch::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/match"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/match"));
+    return Path;
 }
 
 FString FRequest_StartMatch::ComputePath() const
@@ -5277,9 +5309,10 @@ FRequest_UpdateBrowserInfo::FRequest_UpdateBrowserInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
+FName FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/browser"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/browser"));
+    return Path;
 }
 
 FString FRequest_UpdateBrowserInfo::ComputePath() const
@@ -5434,9 +5467,10 @@ FRequest_UpdateInstanceInfo::FRequest_UpdateInstanceInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
+FName FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/instance"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/instance"));
+    return Path;
 }
 
 FString FRequest_UpdateInstanceInfo::ComputePath() const
@@ -5591,9 +5625,10 @@ FRequest_UpdateMatchInfo::FRequest_UpdateMatchInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateMatchInfo::GetSimplifiedPath() const
+FName FRequest_UpdateMatchInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/match"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/match"));
+    return Path;
 }
 
 FString FRequest_UpdateMatchInfo::ComputePath() const
@@ -5748,9 +5783,10 @@ FRequest_UpdateSessionById::FRequest_UpdateSessionById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateSessionById::GetSimplifiedPath() const
+FName FRequest_UpdateSessionById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}"));
+    return Path;
 }
 
 FString FRequest_UpdateSessionById::ComputePath() const
@@ -5925,9 +5961,10 @@ FRequest_UpdateSessionPlayerById::FRequest_UpdateSessionPlayerById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
+FName FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"));
+    return Path;
 }
 
 FString FRequest_UpdateSessionPlayerById::ComputePath() const
@@ -6086,9 +6123,10 @@ FRequest_UpdateSessionPlayerByUuid::FRequest_UpdateSessionPlayerByUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
+FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"));
+    return Path;
 }
 
 FString FRequest_UpdateSessionPlayerByUuid::ComputePath() const

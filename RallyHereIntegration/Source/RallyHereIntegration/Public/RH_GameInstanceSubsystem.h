@@ -8,6 +8,8 @@
 #include "GameFramework/OnlineReplStructs.h"
 #include "RH_SubsystemPluginBase.h"
 
+#include "CustomAPI.h"
+
 #include "RH_GameInstanceSubsystem.generated.h"
 
 class URH_GameInstanceSessionSubsystem;
@@ -117,6 +119,29 @@ public:
 	{
 		auto* Default = GetDefault<URH_GameInstanceSubsystem>();
 		return Default->ShouldCreateSubsystem(nullptr) && Default->bEnableGameSessions && Default->bEnableClientBootstrapper && !IsRunningDedicatedServer();
+	}
+
+	/**
+	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
+	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
+	* @param [in] Delegate The delegate to call when the call is complete (contains raw response)
+	*/
+	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate);
+	/**
+	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
+	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
+	* @param [in] Delegate The delegate to call when the call is complete
+	*/
+	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock Delegate = FRH_CustomEndpointDelegateBlock());
+	/**
+	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
+	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
+	* @param [in] Delegate The delegate to call when the call is complete
+	*/
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|LocalPlayerSubsystem", meta = (DisplayName = "Custom Endpoint", AutoCreateRefTerm = "Request, Delegate"))
+	void BLUEPRINT_CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDynamicDelegate& Delegate)
+	{
+		CustomEndpoint(Request, Delegate);
 	}
 
 protected:

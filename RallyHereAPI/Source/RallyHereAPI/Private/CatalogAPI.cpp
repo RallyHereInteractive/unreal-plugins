@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FCatalogAPI::FCatalogAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Catalog");
+    Name = FName(TEXT("Catalog"));
 }
 
 FCatalogAPI::~FCatalogAPI() {}
@@ -88,14 +88,15 @@ FRequest_GetCatalogAll::FRequest_GetCatalogAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog"));
+    return Path;
 }
 
 FString FRequest_GetCatalogAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -261,9 +262,10 @@ FRequest_GetCatalogInventoryBucketUseRuleSet::FRequest_GetCatalogInventoryBucket
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
+FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/inventory-bucket-use-rule-set/{inventory_bucket_use_ruleset_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/inventory-bucket-use-rule-set/{inventory_bucket_use_ruleset_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogInventoryBucketUseRuleSet::ComputePath() const
@@ -439,14 +441,15 @@ FRequest_GetCatalogInventoryBucketUseRuleSetsAll::FRequest_GetCatalogInventoryBu
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogInventoryBucketUseRuleSetsAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/inventory-bucket-use-rule-set"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/inventory-bucket-use-rule-set"));
+    return Path;
 }
 
 FString FRequest_GetCatalogInventoryBucketUseRuleSetsAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -612,9 +615,10 @@ FRequest_GetCatalogItem::FRequest_GetCatalogItem()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogItem::GetSimplifiedPath() const
+FName FRequest_GetCatalogItem::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/item/{item_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/item/{item_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogItem::ComputePath() const
@@ -790,14 +794,15 @@ FRequest_GetCatalogItemsAll::FRequest_GetCatalogItemsAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogItemsAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogItemsAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/item"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/item"));
+    return Path;
 }
 
 FString FRequest_GetCatalogItemsAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -963,9 +968,10 @@ FRequest_GetCatalogLoot::FRequest_GetCatalogLoot()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogLoot::GetSimplifiedPath() const
+FName FRequest_GetCatalogLoot::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/loot/{loot_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/loot/{loot_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogLoot::ComputePath() const
@@ -1141,14 +1147,15 @@ FRequest_GetCatalogLootsAll::FRequest_GetCatalogLootsAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogLootsAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogLootsAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/loot"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/loot"));
+    return Path;
 }
 
 FString FRequest_GetCatalogLootsAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1314,9 +1321,10 @@ FRequest_GetCatalogPortalUseRuleset::FRequest_GetCatalogPortalUseRuleset()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
+FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/portal-use-ruleset/{portal_use_ruleset_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/portal-use-ruleset/{portal_use_ruleset_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogPortalUseRuleset::ComputePath() const
@@ -1492,14 +1500,15 @@ FRequest_GetCatalogPortalUseRulesetsAll::FRequest_GetCatalogPortalUseRulesetsAll
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogPortalUseRulesetsAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/portal-use-ruleset"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/portal-use-ruleset"));
+    return Path;
 }
 
 FString FRequest_GetCatalogPortalUseRulesetsAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1665,9 +1674,10 @@ FRequest_GetCatalogPricePoint::FRequest_GetCatalogPricePoint()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
+FName FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/price-point/{price_point_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/price-point/{price_point_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogPricePoint::ComputePath() const
@@ -1843,14 +1853,15 @@ FRequest_GetCatalogPricePointsAll::FRequest_GetCatalogPricePointsAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogPricePointsAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogPricePointsAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/price-point"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/price-point"));
+    return Path;
 }
 
 FString FRequest_GetCatalogPricePointsAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2016,9 +2027,10 @@ FRequest_GetCatalogTimeFrame::FRequest_GetCatalogTimeFrame()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
+FName FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/time-frame/{time_frame_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/time-frame/{time_frame_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogTimeFrame::ComputePath() const
@@ -2194,14 +2206,15 @@ FRequest_GetCatalogTimeFramesAll::FRequest_GetCatalogTimeFramesAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogTimeFramesAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogTimeFramesAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/time-frame"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/time-frame"));
+    return Path;
 }
 
 FString FRequest_GetCatalogTimeFramesAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2367,9 +2380,10 @@ FRequest_GetCatalogVendor::FRequest_GetCatalogVendor()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogVendor::GetSimplifiedPath() const
+FName FRequest_GetCatalogVendor::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/vendor/{vendor_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/vendor/{vendor_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogVendor::ComputePath() const
@@ -2545,14 +2559,15 @@ FRequest_GetCatalogVendorsAll::FRequest_GetCatalogVendorsAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogVendorsAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogVendorsAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/vendor"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/vendor"));
+    return Path;
 }
 
 FString FRequest_GetCatalogVendorsAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2718,14 +2733,15 @@ FRequest_GetCatalogXpAll::FRequest_GetCatalogXpAll()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogXpAll::GetSimplifiedPath() const
+FName FRequest_GetCatalogXpAll::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/xp"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/xp"));
+    return Path;
 }
 
 FString FRequest_GetCatalogXpAll::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2891,9 +2907,10 @@ FRequest_GetCatalogXpTable::FRequest_GetCatalogXpTable()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetCatalogXpTable::GetSimplifiedPath() const
+FName FRequest_GetCatalogXpTable::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/catalog/xp/{xp_table_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/catalog/xp/{xp_table_id}"));
+    return Path;
 }
 
 FString FRequest_GetCatalogXpTable::ComputePath() const

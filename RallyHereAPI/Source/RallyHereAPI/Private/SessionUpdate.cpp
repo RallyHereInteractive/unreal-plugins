@@ -32,6 +32,11 @@ void FRHAPI_SessionUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
     }
+    if (Joinable_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("joinable"));
+        RallyHereAPI::WriteJsonValue(Writer, Joinable_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -54,6 +59,12 @@ bool FRHAPI_SessionUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
+    if (JsonJoinableField.IsValid() && !JsonJoinableField->IsNull())
+    {
+        Joinable_IsSet = TryGetJsonValue(JsonJoinableField, Joinable_Optional);
+        ParseSuccess &= Joinable_IsSet;
     }
 
     return ParseSuccess;

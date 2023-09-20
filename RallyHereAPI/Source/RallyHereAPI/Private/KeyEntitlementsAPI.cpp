@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FKeyEntitlementsAPI::FKeyEntitlementsAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("KeyEntitlements");
+    Name = FName(TEXT("KeyEntitlements"));
 }
 
 FKeyEntitlementsAPI::~FKeyEntitlementsAPI() {}
@@ -88,9 +88,10 @@ FRequest_ProcessKeyEntitlements::FRequest_ProcessKeyEntitlements()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ProcessKeyEntitlements::GetSimplifiedPath() const
+FName FRequest_ProcessKeyEntitlements::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/portal/{portal_id}/processKeyEntitlements"));
+    return Path;
 }
 
 FString FRequest_ProcessKeyEntitlements::ComputePath() const
@@ -238,9 +239,10 @@ FRequest_ProcessKeyEntitlementsPlayerUuid::FRequest_ProcessKeyEntitlementsPlayer
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ProcessKeyEntitlementsPlayerUuid::GetSimplifiedPath() const
+FName FRequest_ProcessKeyEntitlementsPlayerUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/portal/{portal_id}/processKeyEntitlements"));
+    return Path;
 }
 
 FString FRequest_ProcessKeyEntitlementsPlayerUuid::ComputePath() const
@@ -388,9 +390,10 @@ FRequest_ProcessKeyEntitlementsSelf::FRequest_ProcessKeyEntitlementsSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ProcessKeyEntitlementsSelf::GetSimplifiedPath() const
+FName FRequest_ProcessKeyEntitlementsSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/portal/{portal_id}/processKeyEntitlements"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/portal/{portal_id}/processKeyEntitlements"));
+    return Path;
 }
 
 FString FRequest_ProcessKeyEntitlementsSelf::ComputePath() const
@@ -537,9 +540,10 @@ FRequest_ProcessPlayerUuidEntitlementsSelf::FRequest_ProcessPlayerUuidEntitlemen
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ProcessPlayerUuidEntitlementsSelf::GetSimplifiedPath() const
+FName FRequest_ProcessPlayerUuidEntitlementsSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/portal/{portal_id}/processKeyEntitlements"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/portal/{portal_id}/processKeyEntitlements"));
+    return Path;
 }
 
 FString FRequest_ProcessPlayerUuidEntitlementsSelf::ComputePath() const

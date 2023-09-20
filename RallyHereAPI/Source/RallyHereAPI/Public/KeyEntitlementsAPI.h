@@ -63,7 +63,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlements : public FRequest
     virtual ~FRequest_ProcessKeyEntitlements() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -103,7 +103,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsPlayerUuid : public FRequ
     virtual ~FRequest_ProcessKeyEntitlementsPlayerUuid() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -143,7 +143,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsSelf : public FRequest
     virtual ~FRequest_ProcessKeyEntitlementsSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -182,7 +182,7 @@ struct RALLYHEREAPI_API FRequest_ProcessPlayerUuidEntitlementsSelf : public FReq
     virtual ~FRequest_ProcessPlayerUuidEntitlementsSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

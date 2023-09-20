@@ -7,6 +7,9 @@
 #include "Engine/LocalPlayer.h"
 #include "RH_PlatformSessionSyncer.h"
 
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_GameInstanceSessionSubsystem.h"
+
 // needed for offline sessions to mimic some API behavior
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
@@ -259,10 +262,19 @@ void URH_SessionView::PollForUpdate(const FRH_PollCompleteFunc& Delegate)
 	Helper->Start();
 }
 
-void URH_SessionView::ForcePollForUpdate()
+void URH_SessionView::ForcePollForUpdate(bool bClearEtag)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	AddDeferredPoll(FRH_DeferredSessionPoll(FRH_DeferredSessionPoll::Type::Forced, FRH_PollCompleteFunc()));
+	TOptional<FString> ETag;
+	if (bClearEtag)
+	{
+		ETag = FString();
+	}
+	else
+	{
+		ETag = GetETag();
+	}
+	AddDeferredPoll(FRH_DeferredSessionPoll(FRH_DeferredSessionPoll::Type::Forced, FRH_PollCompleteFunc(), ETag));
 }
 
 
@@ -291,16 +303,17 @@ void URH_SessionView::AddDeferredPoll(const FRH_DeferredSessionPoll& DeferredPol
 }
 void URH_SessionView::CheckDeferredPolls()
 {
-	if (Poller.IsValid())
+	// if no polls are deferred, do nothing
+	if (DeferredPolls.Num() == 0)
+	{
+		return;
+	}
+
+	// check if poller is active (it will not have a registered delegate if it is not)
+	if (Poller.IsValid() && Poller->IsActive())
 	{
 		// if the poller is executing, wait until it finishes
 		if (Poller->IsExecuting())
-		{
-			return;
-		}
-
-		// if no polls are deferred, do nothing
-		if (DeferredPolls.Num() == 0)
 		{
 			return;
 		}
@@ -309,12 +322,39 @@ void URH_SessionView::CheckDeferredPolls()
 		WaitingPolls = DeferredPolls;
 		DeferredPolls.Empty();
 
+		// treat a poll request with a set but empty etag as a request to clear the ETag before the poll ("our data is outdated")
+		for (auto& Poll : WaitingPolls)
+		{
+			if (Poll.ETag.IsSet() && Poll.ETag.GetValue().IsEmpty())
+			{
+				// clear the ETag
+				SessionData.ETag.Reset();
+				break;
+			}
+		}
+
 		// execute the poll
 		Poller->ExecutePoll();
 	}
 	else
 	{
+		// copy deferred polls into waiting list, which will be notified upon completiong
+		WaitingPolls = DeferredPolls;
 		DeferredPolls.Empty();
+
+		// treat a poll request with a set but empty etag as a request to clear the ETag before the poll ("our data is outdated")
+		for (auto& Poll : WaitingPolls)
+		{
+			if (Poll.ETag.IsSet() && Poll.ETag.GetValue().IsEmpty())
+			{
+				// clear the ETag
+				SessionData.ETag.Reset();
+				break;
+			}
+		}
+
+		// manually run poll
+		PollForUpdate(FRH_PollCompleteFunc());
 	}
 }
 
@@ -547,8 +587,12 @@ AOnlineBeaconClient* URH_JoinedSession::CreateBeacon(ULocalPlayer* Player, TSubc
 		// this function intentionally does not check the IsBeacon flag, as that is not necessarily required to work, and mostly is there for optimization purposes
 		if (UWorld* World = GEngine->GetWorldFromContextObject(Player, EGetWorldErrorMode::LogAndReturnNull))
 		{
+			auto* GISS = World->GetGameInstance() != nullptr ? World->GetGameInstance()->GetSubsystem<URH_GameInstanceSubsystem>() : nullptr;
+			auto GISession = GISS != nullptr ? GISS->GetSessionSubsystem() : nullptr;
+
 			FURL ConnectURL, TempURL;
-			if (URH_GameInstanceSessionSubsystem::GenerateJoinURL(this, TempURL, ConnectURL))
+
+			if (GISession != nullptr && GISession->GenerateJoinURL(this, TempURL, ConnectURL))
 			{
 				ARH_OnlineBeaconClient* Beacon = World->SpawnActor<ARH_OnlineBeaconClient>(BeaconClass);
 				if (Beacon != nullptr)
@@ -625,7 +669,7 @@ URH_OfflineSession::URH_OfflineSession(const FObjectInitializer& ObjectInitializ
 {
 }
 
-void URH_OfflineSession::InvitePlayer(const FGuid& PlayerId, int32 Team, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::InvitePlayer(const FGuid& PlayerId, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this);
@@ -692,6 +736,29 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, F
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
 	Delegate.ExecuteIfBound(true, this);
+}
+
+void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+{
+	FRH_APISessionWithETag UpdateWrapper(SessionData);
+	auto& Update = UpdateWrapper.Data;
+
+	for (int i = 0; i < Update.Teams.Num(); ++i)
+	{
+		auto& SessionTeam = Update.Teams[i];
+		for (auto& TeamPlayer : SessionTeam.Players)
+		{
+			if (TeamPlayer.PlayerUuid == PlayerUuid)
+			{
+				TeamPlayer.SetCustomData(CustomData);
+				ImportSessionUpdateToAllPlayers(UpdateWrapper);
+				Delegate.ExecuteIfBound(true, this);
+				return;
+			}
+		}
+	}
+
+	Delegate.ExecuteIfBound(false, this);
 }
 
 void URH_OfflineSession::Leave(bool bFromOSS, FRH_OnSessionUpdatedDelegateBlock Delegate)
@@ -988,7 +1055,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	Helper->Start();
 }
 
-void URH_OnlineSession::JoinQueue(const FString& QueueId, const TArray<FString> MatchmakingTags, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::JoinQueue(const FRHAPI_QueueJoinRequest& JoinRequest, const FRH_OnSessionUpdatedDelegateBlock Delegate)
 {
 	// todo - check if player is already in queue?  Data may be old or in flight
 
@@ -999,13 +1066,7 @@ void URH_OnlineSession::JoinQueue(const FString& QueueId, const TArray<FString> 
 	BaseType::Request Request;
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
-	Request.QueueJoinRequest.QueueId = QueueId;
-	if (MatchmakingTags.Num() > 0)
-	{
-		FRHAPI_AdditionalJoinParams AdditionalJoinParams = {};
-		AdditionalJoinParams.SetTags(MatchmakingTags);
-		Request.QueueJoinRequest.SetAdditionalJoinParams(AdditionalJoinParams);
-	}
+	Request.QueueJoinRequest = JoinRequest;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
 	Helper->Start(Request);
@@ -1024,7 +1085,7 @@ void URH_OnlineSession::JoinById(const FString& SessionId, TScriptInterface<IRH_
 	Helper->Start(SessionId);
 }
 
-void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
 {
 	// TODO - check that players is not already in this session?
 
@@ -1038,6 +1099,10 @@ void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, FRH_On
 	Request.PlayerUuid = PlayerUuid;
 	Request.SessionPlayerUpdateRequest.SetStatus(ERHAPI_SessionPlayerStatus::Invited);
 	Request.SessionPlayerUpdateRequest.SetTeamId(Team);
+	if (CustomData.Num() > 0)
+	{
+		Request.SessionPlayerUpdateRequest.SetCustomData(CustomData);
+	}
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
 	Helper->Start(Request);
@@ -1091,6 +1156,24 @@ void URH_OnlineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, FR
 	Request.SessionId = GetSessionId();
 	Request.PlayerUuid = PlayerUuid;
 	Request.SessionPlayerUpdateRequest.SetTeamId(Team);
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionChangeTeamsPriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+{
+	// TODO - check that players is in this session?
+
+	typedef RallyHereAPI::Traits_UpdateSessionPlayerByUuid BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.PlayerUuid = PlayerUuid;
+	Request.SessionPlayerUpdateRequest.SetCustomData(CustomData);
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionChangeTeamsPriority);
 	Helper->Start(Request);

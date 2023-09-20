@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_InstanceFubar`](#structFRHAPI__InstanceFubar) | 
+`struct `[`FRHAPI_InstanceFubar`](#structFRHAPI__InstanceFubar) | Information about an instance that has been determined to be FUBAR.
 
 ## struct `FRHAPI_InstanceFubar` <a id="structFRHAPI__InstanceFubar"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_InstanceFubar
   : public FRHAPI_Model
 ```
+
+Information about an instance that has been determined to be FUBAR.
 
 #### Summary
 

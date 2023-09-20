@@ -194,7 +194,7 @@ public:
 		{
 			for (auto Profile : TemplateOption.Profiles)
 			{
-				Result.Add(Profile.InstanceLaunchTemplateId);
+				Result.Add(Profile.GetInstanceLaunchTemplateId());
 			}
 		}
 
@@ -242,7 +242,7 @@ public:
 
 	/** @brief Custom data that will be passed to the session during the instance launch request */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	const TMap<FString, FString>& GetCustomData() const { return TemplateInfo.CustomData; }
+	const TMap<FString, FString>& GetCustomData() const { return TemplateInfo.GetCustomData(); }
 	/**
 	 * @brief Imports template info from an API call.
 	 * @param [in] APITemplate Template info from API call.
@@ -340,7 +340,7 @@ public:
 	}
 	/** @brief Delegate to listen for matchmaking regions updated. */
 	FRegionSettingsUpdatedDelegate OnRegionsUpdatedNative;
-	UPROPERTY(EditInstanceOnly, Category = "Matchmaking|Region")
+	UPROPERTY(EditInstanceOnly, BlueprintAssignable, Category = "Matchmaking|Region")
 	FRegionSettingsUpdatedDynamicDelegate OnRegionsUpdated;
 	/** @brief Clears the cache of all queues and templates. */
 	void ClearCache()

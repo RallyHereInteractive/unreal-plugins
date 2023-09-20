@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_Session`](#structFRHAPI__Session) | 
+`struct `[`FRHAPI_Session`](#structFRHAPI__Session) | A session resource.
 
 ## struct `FRHAPI_Session` <a id="structFRHAPI__Session"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_Session
   : public FRHAPI_Model
 ```
+
+A session resource.
 
 #### Summary
 

@@ -41,6 +41,11 @@ public class ImGui : ModuleRules
 			}
 			);
 
+		//$$ BEGIN ImPlot support
+		PublicDefinitions.Add("WITH_IMGUI_IMPLOT");
+		PublicDefinitions.Add("WITH_IMGUI_DOCK_SUPPORT");
+		//$$ END
+
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
@@ -68,8 +73,9 @@ public class ImGui : ModuleRules
 				"Engine",
 				"InputCore",
 				"Slate",
-				"SlateCore"
+				"SlateCore",
 				// ... add private dependencies that you statically link with here ...	
+				"PosixShim"
 			}
 			);
 

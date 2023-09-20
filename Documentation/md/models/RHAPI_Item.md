@@ -19,6 +19,8 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Item_1ab4471f233af6d1c7692344d7dc338a47) | Custom data associated with the resource.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__Item_1a9672eb702f349f9b39e8de502b307f16) | true if CustomData_Optional has been set to a value
 `public ERHAPI_ItemType `[`Type_Optional`](#structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe) | The type of item.
 `public bool `[`Type_IsSet`](#structFRHAPI__Item_1a0cc1c2c5e9833d046535ee67c6044d5b) | true if Type_Optional has been set to a value
 `public int32 `[`LegacyType_Optional`](#structFRHAPI__Item_1a9105c322f788b420009e19957dc9ef3f) | 
@@ -51,6 +53,14 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Item_1a0d52a68ad73bca520721e74545ee2084) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Item_1a687dd73fd3d8a4ac35d1f9e632b3460d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Item_1a23d9459ebb2ebc9a8fc3781de9621ac9)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a9877423eeda4551d0bcce4e413010756)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5ebebbc4accead78b04905b5c948c8b4)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5e66fa669417adc7f827c588bac9173d)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__Item_1a3925a150ee30d43bf0234cf1127104c3)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a389c7829835ae2f827bce3502727c3bc)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a5cc497718caf078f6dd085bb4d559bea)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__Item_1a49ff21f8fec4d08ee632f8b80e4b8bf0)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`ClearCustomData`](#structFRHAPI__Item_1a48d100ed90f7baca2adbf58f396992f3)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a49d7d21797f5c8b07132e77c2ea1d923)`()` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1aa9476bcc0de419b823716064af6f58f4)`() const` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a726e036301d0b7fe5e66ffd83fa6616b)`(const ERHAPI_ItemType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -194,6 +204,16 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 
 #### Members
 
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Item_1ab4471f233af6d1c7692344d7dc338a47) <a id="structFRHAPI__Item_1ab4471f233af6d1c7692344d7dc338a47"></a>
+
+Custom data associated with the resource.
+
+<br>
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__Item_1a9672eb702f349f9b39e8de502b307f16) <a id="structFRHAPI__Item_1a9672eb702f349f9b39e8de502b307f16"></a>
+
+true if CustomData_Optional has been set to a value
+
+<br>
 #### `public ERHAPI_ItemType `[`Type_Optional`](#structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe) <a id="structFRHAPI__Item_1afe34e2073c58c7e118c14e292e75b4fe"></a>
 
 The type of item.
@@ -349,6 +369,46 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
+
+<br>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a9877423eeda4551d0bcce4e413010756)`()` <a id="structFRHAPI__Item_1a9877423eeda4551d0bcce4e413010756"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5ebebbc4accead78b04905b5c948c8b4)`() const` <a id="structFRHAPI__Item_1a5ebebbc4accead78b04905b5c948c8b4"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5e66fa669417adc7f827c588bac9173d)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__Item_1a5e66fa669417adc7f827c588bac9173d"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__Item_1a3925a150ee30d43bf0234cf1127104c3)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__Item_1a3925a150ee30d43bf0234cf1127104c3"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a389c7829835ae2f827bce3502727c3bc)`()` <a id="structFRHAPI__Item_1a389c7829835ae2f827bce3502727c3bc"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a5cc497718caf078f6dd085bb4d559bea)`() const` <a id="structFRHAPI__Item_1a5cc497718caf078f6dd085bb4d559bea"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__Item_1a49ff21f8fec4d08ee632f8b80e4b8bf0)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__Item_1a49ff21f8fec4d08ee632f8b80e4b8bf0"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__Item_1a48d100ed90f7baca2adbf58f396992f3)`()` <a id="structFRHAPI__Item_1a48d100ed90f7baca2adbf58f396992f3"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 <br>
 #### `public inline ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a49d7d21797f5c8b07132e77c2ea1d923)`()` <a id="structFRHAPI__Item_1a49d7d21797f5c8b07132e77c2ea1d923"></a>

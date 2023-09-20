@@ -346,7 +346,7 @@ void URH_MatchmakingBrowserCache::SearchRegions(FRH_OnRegionSearchCompleteDelega
 					}
 				}
 			}),
-		FRH_GenericSuccessDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess)
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				Delegate.ExecuteIfBound(bSuccess, GetAllRegions());
 			}),

@@ -49,6 +49,12 @@ static FImGuiContextHandle ImGuiContextPtrHandle(ImGuiContextPtr);
 #include "imgui_draw.cpp"
 #include "imgui_widgets.cpp"
 
+//$$ BEGIN - Support ImPlot
+#include "implot.cpp"
+#include "implot_items.cpp"
+#include "implot_demo.cpp"
+//$$ END - Support ImPlot
+
 #if PLATFORM_WINDOWS
 #include <Windows/HideWindowsPlatformTypes.h>
 #endif // PLATFORM_WINDOWS

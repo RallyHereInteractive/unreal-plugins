@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_AgreementMessage`](#structFRHAPI__AgreementMessage) | 
+`struct `[`FRHAPI_AgreementMessage`](#structFRHAPI__AgreementMessage) | Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy.
 
 ## struct `FRHAPI_AgreementMessage` <a id="structFRHAPI__AgreementMessage"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_AgreementMessage
   : public FRHAPI_Model
 ```
+
+Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy.
 
 #### Summary
 
@@ -21,11 +23,11 @@ struct FRHAPI_AgreementMessage
 `public bool `[`AuthSuccess_IsSet`](#structFRHAPI__AgreementMessage_1a4bed655f80f9c37f889530f5493c9c98) | true if AuthSuccess_Optional has been set to a value
 `public FString `[`ErrorCode`](#structFRHAPI__AgreementMessage_1ae83c4271a95b301e2cbf385809e8e3bb) | 
 `public FString `[`Desc`](#structFRHAPI__AgreementMessage_1a341feccacab82ba00edf1bc819948b68) | 
-`public bool `[`NeedsEula_Optional`](#structFRHAPI__AgreementMessage_1a080b82ee1915127652fd6c4080dae3fb) | 
+`public bool `[`NeedsEula_Optional`](#structFRHAPI__AgreementMessage_1a080b82ee1915127652fd6c4080dae3fb) | Whether the user needs to accept the End User License Agreement.
 `public bool `[`NeedsEula_IsSet`](#structFRHAPI__AgreementMessage_1ac42e50d11a3620d0db931ea7cde62345) | true if NeedsEula_Optional has been set to a value
-`public bool `[`NeedsTos_Optional`](#structFRHAPI__AgreementMessage_1a878df1d6fb0437cd07eadad56bd8df08) | 
+`public bool `[`NeedsTos_Optional`](#structFRHAPI__AgreementMessage_1a878df1d6fb0437cd07eadad56bd8df08) | Whether the user needs to accept the Terms of Service.
 `public bool `[`NeedsTos_IsSet`](#structFRHAPI__AgreementMessage_1abd60f2debe16b2924f731615d3e6a841) | true if NeedsTos_Optional has been set to a value
-`public bool `[`NeedsPrivacyPolicy_Optional`](#structFRHAPI__AgreementMessage_1a99d643a23f43e3f9508584d2cb3c3ecd) | 
+`public bool `[`NeedsPrivacyPolicy_Optional`](#structFRHAPI__AgreementMessage_1a99d643a23f43e3f9508584d2cb3c3ecd) | Whether the user needs to accept the Privacy Policy.
 `public bool `[`NeedsPrivacyPolicy_IsSet`](#structFRHAPI__AgreementMessage_1a0fc51c53961a3d1b7b5ff9cbd5784fa0) | true if NeedsPrivacyPolicy_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__AgreementMessage_1a7c23aac9b13afd476198e45e0c380cc7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__AgreementMessage_1a8c963c13ac21dd41a28d5fc01766e7c0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -94,6 +96,8 @@ true if AuthSuccess_Optional has been set to a value
 <br>
 #### `public bool `[`NeedsEula_Optional`](#structFRHAPI__AgreementMessage_1a080b82ee1915127652fd6c4080dae3fb) <a id="structFRHAPI__AgreementMessage_1a080b82ee1915127652fd6c4080dae3fb"></a>
 
+Whether the user needs to accept the End User License Agreement.
+
 <br>
 #### `public bool `[`NeedsEula_IsSet`](#structFRHAPI__AgreementMessage_1ac42e50d11a3620d0db931ea7cde62345) <a id="structFRHAPI__AgreementMessage_1ac42e50d11a3620d0db931ea7cde62345"></a>
 
@@ -102,6 +106,8 @@ true if NeedsEula_Optional has been set to a value
 <br>
 #### `public bool `[`NeedsTos_Optional`](#structFRHAPI__AgreementMessage_1a878df1d6fb0437cd07eadad56bd8df08) <a id="structFRHAPI__AgreementMessage_1a878df1d6fb0437cd07eadad56bd8df08"></a>
 
+Whether the user needs to accept the Terms of Service.
+
 <br>
 #### `public bool `[`NeedsTos_IsSet`](#structFRHAPI__AgreementMessage_1abd60f2debe16b2924f731615d3e6a841) <a id="structFRHAPI__AgreementMessage_1abd60f2debe16b2924f731615d3e6a841"></a>
 
@@ -109,6 +115,8 @@ true if NeedsTos_Optional has been set to a value
 
 <br>
 #### `public bool `[`NeedsPrivacyPolicy_Optional`](#structFRHAPI__AgreementMessage_1a99d643a23f43e3f9508584d2cb3c3ecd) <a id="structFRHAPI__AgreementMessage_1a99d643a23f43e3f9508584d2cb3c3ecd"></a>
+
+Whether the user needs to accept the Privacy Policy.
 
 <br>
 #### `public bool `[`NeedsPrivacyPolicy_IsSet`](#structFRHAPI__AgreementMessage_1a0fc51c53961a3d1b7b5ff9cbd5784fa0) <a id="structFRHAPI__AgreementMessage_1a0fc51c53961a3d1b7b5ff9cbd5784fa0"></a>

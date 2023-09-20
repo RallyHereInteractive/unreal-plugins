@@ -28,8 +28,11 @@ void FRHAPI_InstanceLaunchTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer)
     RallyHereAPI::WriteJsonValue(Writer, MapSelectionList);
     Writer->WriteIdentifierPrefix(TEXT("default_host_type"));
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(DefaultHostType));
-    Writer->WriteIdentifierPrefix(TEXT("custom_data"));
-    RallyHereAPI::WriteJsonValue(Writer, CustomData);
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -48,7 +51,11 @@ bool FRHAPI_InstanceLaunchTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonV
     const TSharedPtr<FJsonValue> JsonDefaultHostTypeField = (*Object)->TryGetField(TEXT("default_host_type"));
     ParseSuccess &= JsonDefaultHostTypeField.IsValid() && !JsonDefaultHostTypeField->IsNull() && TryGetJsonValue(JsonDefaultHostTypeField, DefaultHostType);
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
-    ParseSuccess &= JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull() && TryGetJsonValue(JsonCustomDataField, CustomData);
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
 
     return ParseSuccess;
 }

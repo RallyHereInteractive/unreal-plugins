@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FDiscoveryAPI::FDiscoveryAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Discovery");
+    Name = FName(TEXT("Discovery"));
 }
 
 FDiscoveryAPI::~FDiscoveryAPI() {}
@@ -88,14 +88,15 @@ FRequest_GetDiscovery::FRequest_GetDiscovery()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetDiscovery::GetSimplifiedPath() const
+FName FRequest_GetDiscovery::GetSimplifiedPath() const
 {
-    return FString(TEXT("/config/v1/discovery"));
+    static FName Path = FName(TEXT("/config/v1/discovery"));
+    return Path;
 }
 
 FString FRequest_GetDiscovery::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

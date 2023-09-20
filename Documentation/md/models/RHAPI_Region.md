@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_Region`](#structFRHAPI__Region) | 
+`struct `[`FRHAPI_Region`](#structFRHAPI__Region) | Information about a specific region.
 
 ## struct `FRHAPI_Region` <a id="structFRHAPI__Region"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_Region
   : public FRHAPI_Model
 ```
+
+Information about a specific region.
 
 #### Summary
 

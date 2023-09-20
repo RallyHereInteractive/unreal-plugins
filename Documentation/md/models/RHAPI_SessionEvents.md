@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionEvents`](#structFRHAPI__SessionEvents) | 
+`struct `[`FRHAPI_SessionEvents`](#structFRHAPI__SessionEvents) | A list of events that occurred in a session.
 
 ## struct `FRHAPI_SessionEvents` <a id="structFRHAPI__SessionEvents"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionEvents
   : public FRHAPI_Model
 ```
+
+A list of events that occurred in a session.
 
 #### Summary
 

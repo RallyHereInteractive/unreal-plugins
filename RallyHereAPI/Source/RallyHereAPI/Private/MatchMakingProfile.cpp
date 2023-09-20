@@ -31,6 +31,31 @@ void FRHAPI_MatchMakingProfile::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     }
     Writer->WriteIdentifierPrefix(TEXT("instance_launch_template_id"));
     RallyHereAPI::WriteJsonValue(Writer, InstanceLaunchTemplateId);
+    if (RankId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("rank_id"));
+        RallyHereAPI::WriteJsonValue(Writer, RankId_Optional);
+    }
+    if (NumSides_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("num_sides"));
+        RallyHereAPI::WriteJsonValue(Writer, NumSides_Optional);
+    }
+    if (MaxPlayersPerSide_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
+        RallyHereAPI::WriteJsonValue(Writer, MaxPlayersPerSide_Optional);
+    }
+    if (MinPlayersPerSide_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("min_players_per_side"));
+        RallyHereAPI::WriteJsonValue(Writer, MinPlayersPerSide_Optional);
+    }
+    if (LegacyConfig_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
+        RallyHereAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -52,6 +77,36 @@ bool FRHAPI_MatchMakingProfile::FromJson(const TSharedPtr<FJsonValue>& JsonValue
     }
     const TSharedPtr<FJsonValue> JsonInstanceLaunchTemplateIdField = (*Object)->TryGetField(TEXT("instance_launch_template_id"));
     ParseSuccess &= JsonInstanceLaunchTemplateIdField.IsValid() && !JsonInstanceLaunchTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceLaunchTemplateIdField, InstanceLaunchTemplateId);
+    const TSharedPtr<FJsonValue> JsonRankIdField = (*Object)->TryGetField(TEXT("rank_id"));
+    if (JsonRankIdField.IsValid() && !JsonRankIdField->IsNull())
+    {
+        RankId_IsSet = TryGetJsonValue(JsonRankIdField, RankId_Optional);
+        ParseSuccess &= RankId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonNumSidesField = (*Object)->TryGetField(TEXT("num_sides"));
+    if (JsonNumSidesField.IsValid() && !JsonNumSidesField->IsNull())
+    {
+        NumSides_IsSet = TryGetJsonValue(JsonNumSidesField, NumSides_Optional);
+        ParseSuccess &= NumSides_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
+    if (JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull())
+    {
+        MaxPlayersPerSide_IsSet = TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide_Optional);
+        ParseSuccess &= MaxPlayersPerSide_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMinPlayersPerSideField = (*Object)->TryGetField(TEXT("min_players_per_side"));
+    if (JsonMinPlayersPerSideField.IsValid() && !JsonMinPlayersPerSideField->IsNull())
+    {
+        MinPlayersPerSide_IsSet = TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide_Optional);
+        ParseSuccess &= MinPlayersPerSide_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
+    if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
+    {
+        LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
+        ParseSuccess &= LegacyConfig_IsSet;
+    }
 
     return ParseSuccess;
 }

@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_MatchMakingRuleset`](#structFRHAPI__MatchMakingRuleset) | 
+`struct `[`FRHAPI_MatchMakingRuleset`](#structFRHAPI__MatchMakingRuleset) | A collection of rules that are used to determine whether a MatchMakingTemplate should be used.
 
 ## struct `FRHAPI_MatchMakingRuleset` <a id="structFRHAPI__MatchMakingRuleset"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_MatchMakingRuleset
   : public FRHAPI_Model
 ```
+
+A collection of rules that are used to determine whether a MatchMakingTemplate should be used.
 
 #### Summary
 

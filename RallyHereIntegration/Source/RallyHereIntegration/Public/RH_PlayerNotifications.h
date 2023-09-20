@@ -143,7 +143,7 @@ public:
 	/**
 	 * @brief Delegate to listen to for when a notification is streamed.
 	 */
-	UPROPERTY(BlueprintReadWrite, Category = "Notification|Streaming")
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Notification|Streaming")
 	FRH_OnNotificationStreamedDynamicDelegate OnNotificationStreamedDynamic;
 	/**
 	 * @brief Delegate to listen to for when a notification is streamed.

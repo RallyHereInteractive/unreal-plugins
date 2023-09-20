@@ -46,7 +46,7 @@ struct RALLYHEREAPI_API FRequest_GetDiscovery : public FRequest
     virtual ~FRequest_GetDiscovery() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
 
 };
 

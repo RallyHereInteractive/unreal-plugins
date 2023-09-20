@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PurgeResponse`](#structFRHAPI__PurgeResponse) | 
+`struct `[`FRHAPI_PurgeResponse`](#structFRHAPI__PurgeResponse) | Purge response from a purge request.
 
 ## struct `FRHAPI_PurgeResponse` <a id="structFRHAPI__PurgeResponse"></a>
 
@@ -13,15 +13,17 @@ struct FRHAPI_PurgeResponse
   : public FRHAPI_Model
 ```
 
+Purge response from a purge request.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FGuid `[`PersonId`](#structFRHAPI__PurgeResponse_1a5c1a68cb15784ef97033f8fdef69752f) | 
+`public FGuid `[`PersonId`](#structFRHAPI__PurgeResponse_1a5c1a68cb15784ef97033f8fdef69752f) | Person ID that will be purged.
 `public FDateTime `[`PurgeOn`](#structFRHAPI__PurgeResponse_1a76ab4b56bf8bcc1ee2717e272e15f5f5) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public FDateTime `[`CreatedOn`](#structFRHAPI__PurgeResponse_1a6215470fcde60f39e993f606ba4e2922) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public FDateTime `[`LastModifiedOn`](#structFRHAPI__PurgeResponse_1aa86e276e2423d1f196fa4ee24d390d12) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
-`public FString `[`Status`](#structFRHAPI__PurgeResponse_1ab7e558d3cf6553cb712431e7aa5792e9) | 
+`public FString `[`Status`](#structFRHAPI__PurgeResponse_1ab7e558d3cf6553cb712431e7aa5792e9) | Status of the purge request.
 `public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1a88e0dc69546b865f618871dd78006032)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PurgeResponse_1a4dba4031f20426243fd8f51e0f1ba211)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a31b719c156406a34cef0a6ca8452cb81)`()` | Gets the value of PersonId.
@@ -44,6 +46,8 @@ struct FRHAPI_PurgeResponse
 
 #### `public FGuid `[`PersonId`](#structFRHAPI__PurgeResponse_1a5c1a68cb15784ef97033f8fdef69752f) <a id="structFRHAPI__PurgeResponse_1a5c1a68cb15784ef97033f8fdef69752f"></a>
 
+Person ID that will be purged.
+
 <br>
 #### `public FDateTime `[`PurgeOn`](#structFRHAPI__PurgeResponse_1a76ab4b56bf8bcc1ee2717e272e15f5f5) <a id="structFRHAPI__PurgeResponse_1a76ab4b56bf8bcc1ee2717e272e15f5f5"></a>
 
@@ -61,6 +65,8 @@ Datetime that enforces that a timezone is given. Unix timestamps are allowed and
 
 <br>
 #### `public FString `[`Status`](#structFRHAPI__PurgeResponse_1ab7e558d3cf6553cb712431e7aa5792e9) <a id="structFRHAPI__PurgeResponse_1ab7e558d3cf6553cb712431e7aa5792e9"></a>
+
+Status of the purge request.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1a88e0dc69546b865f618871dd78006032)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PurgeResponse_1a88e0dc69546b865f618871dd78006032"></a>

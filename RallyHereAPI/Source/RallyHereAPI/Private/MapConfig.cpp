@@ -22,8 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MapConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("map_game_id"));
-    RallyHereAPI::WriteJsonValue(Writer, MapGameId);
+    if (MapGameId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("map_game_id"));
+        RallyHereAPI::WriteJsonValue(Writer, MapGameId_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("map_name"));
     RallyHereAPI::WriteJsonValue(Writer, MapName);
     if (Mode_IsSet)
@@ -31,8 +34,11 @@ void FRHAPI_MapConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("mode"));
         RallyHereAPI::WriteJsonValue(Writer, Mode_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("selection_chance"));
-    RallyHereAPI::WriteJsonValue(Writer, SelectionChance);
+    if (SelectionChance_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("selection_chance"));
+        RallyHereAPI::WriteJsonValue(Writer, SelectionChance_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -50,7 +56,11 @@ bool FRHAPI_MapConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     bool ParseSuccess = true;
 
     const TSharedPtr<FJsonValue> JsonMapGameIdField = (*Object)->TryGetField(TEXT("map_game_id"));
-    ParseSuccess &= JsonMapGameIdField.IsValid() && !JsonMapGameIdField->IsNull() && TryGetJsonValue(JsonMapGameIdField, MapGameId);
+    if (JsonMapGameIdField.IsValid() && !JsonMapGameIdField->IsNull())
+    {
+        MapGameId_IsSet = TryGetJsonValue(JsonMapGameIdField, MapGameId_Optional);
+        ParseSuccess &= MapGameId_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
     ParseSuccess &= JsonMapNameField.IsValid() && !JsonMapNameField->IsNull() && TryGetJsonValue(JsonMapNameField, MapName);
     const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
@@ -60,7 +70,11 @@ bool FRHAPI_MapConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         ParseSuccess &= Mode_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonSelectionChanceField = (*Object)->TryGetField(TEXT("selection_chance"));
-    ParseSuccess &= JsonSelectionChanceField.IsValid() && !JsonSelectionChanceField->IsNull() && TryGetJsonValue(JsonSelectionChanceField, SelectionChance);
+    if (JsonSelectionChanceField.IsValid() && !JsonSelectionChanceField->IsNull())
+    {
+        SelectionChance_IsSet = TryGetJsonValue(JsonSelectionChanceField, SelectionChance_Optional);
+        ParseSuccess &= SelectionChance_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {

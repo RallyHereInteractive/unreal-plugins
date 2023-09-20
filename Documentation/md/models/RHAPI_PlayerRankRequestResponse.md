@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerRankRequestResponse`](#structFRHAPI__PlayerRankRequestResponse) | 
+`struct `[`FRHAPI_PlayerRankRequestResponse`](#structFRHAPI__PlayerRankRequestResponse) | Response to successfully requesting all of a player&#39;s ranks.
 
 ## struct `FRHAPI_PlayerRankRequestResponse` <a id="structFRHAPI__PlayerRankRequestResponse"></a>
 
@@ -13,11 +13,13 @@ struct FRHAPI_PlayerRankRequestResponse
   : public FRHAPI_Model
 ```
 
+Response to successfully requesting all of a player&#39;s ranks.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`PlayerRanks`](#structFRHAPI__PlayerRankRequestResponse_1ac818b287026b56e3dd2346a1cdf1bb6d) | List of players ranks.
+`public TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`PlayerRanks`](#structFRHAPI__PlayerRankRequestResponse_1ac818b287026b56e3dd2346a1cdf1bb6d) | List of player's ranks.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankRequestResponse_1ab201b6de11c6c8d4274b4c0d2f6514e8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankRequestResponse_1a39c12de11a6042ed0bac431b60dfe1d2)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetPlayerRanks`](#structFRHAPI__PlayerRankRequestResponse_1a187a105bbbfac3f43e9c3197eecb0c17)`()` | Gets the value of PlayerRanks.
@@ -28,7 +30,7 @@ struct FRHAPI_PlayerRankRequestResponse
 
 #### `public TArray< `[`FRHAPI_PlayerRankResponse`](RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`PlayerRanks`](#structFRHAPI__PlayerRankRequestResponse_1ac818b287026b56e3dd2346a1cdf1bb6d) <a id="structFRHAPI__PlayerRankRequestResponse_1ac818b287026b56e3dd2346a1cdf1bb6d"></a>
 
-List of players ranks.
+List of player's ranks.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankRequestResponse_1ab201b6de11c6c8d4274b4c0d2f6514e8)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankRequestResponse_1ab201b6de11c6c8d4274b4c0d2f6514e8"></a>

@@ -134,6 +134,7 @@ void FRHDTW_Catalog::DoShowItems(URH_CatalogSubsystem* catalog)
 		ImGui::TableSetupColumn("Inventory Bucket Id");
 		ImGui::TableHeadersRow();
 
+		// #RHTODO: Once Legacy Item Id is gone no need to sort
 		TArray<int32> ItemIds;
 		catalog->GetCatalogItems().GetKeys(ItemIds);
 		ItemIds.Sort([](const int32& A, const int32& B)
@@ -147,6 +148,7 @@ void FRHDTW_Catalog::DoShowItems(URH_CatalogSubsystem* catalog)
 			if (URH_CatalogItem* CatalogItem = catalog->GetCatalogItemByItemId(ItemId))
 			{
 				ImGui::PushID(ItemId);
+				
 				ImGui::TableNextRow();
 				
 				ImGui::TableNextColumn();
@@ -310,12 +312,18 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 
 	int32 VendorItemIndex = 0;
 
-	for (const auto& VendorPair : catalog->GetVendors())
+	TArray<int32> VendorKeys;
+	catalog->GetVendors().GetKeys(VendorKeys);
+	VendorKeys.Sort([](int32 A, int32 B) { return A < B; });
+
+	for (const auto& VendorKey : VendorKeys)
 	{
-		ImGui::PushID(VendorPair.Key);
-		if (ImGui::CollapsingHeader(std::to_string(VendorPair.Key).c_str()))
+		const auto& Vendor = catalog->GetVendors()[VendorKey];
+
+		ImGui::PushID(VendorKey);
+		if (ImGui::CollapsingHeader(std::to_string(VendorKey).c_str()))
 		{
-			ImGui::Text("Type = %s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_VendorType", VendorPair.Value.GetType(ERHAPI_VendorType::Recipe))));
+			ImGui::Text("Type = %s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_VendorType", Vendor.GetType(ERHAPI_VendorType::Recipe))));
 			ImGui::Separator();
 
 			if (ImGui::BeginTable("VendorDetailsTable", 8, RH_TableFlagsPropSizing))
@@ -332,7 +340,7 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 				ImGui::TableHeadersRow();
 
 				// Content
-				if (const auto& LootItems = VendorPair.Value.GetLootOrNull())
+				if (const auto& LootItems = Vendor.GetLootOrNull())
 				{
 					for (const auto& VendorItemPair : (*LootItems))
 					{
@@ -442,7 +450,7 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 
 										TArray<URH_PlayerOrderEntry*> PlayerOrderEntries;
 										PlayerOrderEntries.Push(NewPlayerOrderEntry);
-										pRH_LocalPlayerSubsystem->GetLocalPlayerInfo()->GetPlayerInventory()->CreateNewPlayerOrder(ERHAPI_Source::Client, PlayerOrderEntries);
+										pRH_LocalPlayerSubsystem->GetLocalPlayerInfo()->GetPlayerInventory()->CreateNewPlayerOrder(ERHAPI_Source::Client, false, PlayerOrderEntries);
 									}
 								}
 							}
@@ -501,10 +509,16 @@ void FRHDTW_Catalog::DoShowXpTables(URH_CatalogSubsystem* catalog)
 		return;
 	}
 
-	for (const auto& xpTablePair : xpTables)
+	TArray<int32> XpTableKeys;
+	xpTables.GetKeys(XpTableKeys);
+	XpTableKeys.Sort([](int32 A, int32 B) { return A < B; });
+
+	for (const auto& xpTableKey : XpTableKeys)
 	{
-		ImGui::PushID(xpTablePair.Key);
-		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), xpTablePair.Key))))
+		const auto& xpTable = xpTables[xpTableKey];
+
+		ImGui::PushID(xpTableKey);
+		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), xpTableKey))))
 		{
 			if (ImGui::BeginTable("XpTableDetailsTable", 2, RH_TableFlagsPropSizing))
 			{
@@ -514,7 +528,7 @@ void FRHDTW_Catalog::DoShowXpTables(URH_CatalogSubsystem* catalog)
 				ImGui::TableHeadersRow();
 
 				// Content
-				if (const auto& Entries = xpTablePair.Value.GetXpEntriesOrNull())
+				if (const auto& Entries = xpTable.GetXpEntriesOrNull())
 				{
 					int32 i = 0;
 					for (const auto& xpEntry : (*Entries))
@@ -649,7 +663,7 @@ void FRHDTW_Catalog::DoShowPricePoints(URH_CatalogSubsystem* catalog)
 	for (const auto& pricePointPair : pricePoints)
 	{
 		ImGui::PushID(TCHAR_TO_UTF8(*pricePointPair.Key.ToString()));
-		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*pricePointPair.Value.GetName())))
+		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*pricePointPair.Key.ToString(EGuidFormats::DigitsWithHyphens))))
 		{
 			DoShowPricePoint(pricePointPair);
 		}
@@ -659,8 +673,7 @@ void FRHDTW_Catalog::DoShowPricePoints(URH_CatalogSubsystem* catalog)
 
 void FRHDTW_Catalog::DoShowPricePoint(const TPair<FGuid, FRHAPI_PricePoint>& pricePointPair)
 {
-	ImGui::Text("Name = %s", TCHAR_TO_UTF8(*pricePointPair.Value.GetName()));
-	ImGui::Text("ID = %s", TCHAR_TO_UTF8(*pricePointPair.Key.ToString()));
+	ImGuiDisplayCopyableValue(pricePointPair.Key.ToString(), pricePointPair.Key, ECopyMode::Value, true);
 	bool IsStrict, IsCap;
 	pricePointPair.Value.GetStrictFlag(IsStrict);
 	pricePointPair.Value.GetCapFlag(IsCap);

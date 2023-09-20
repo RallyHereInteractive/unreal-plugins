@@ -19,12 +19,22 @@ A collection of Inventory Bucket Use Rules.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1a4374570f7a6d6a2118db206d13102262) | Custom data associated with the resource.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1af60fc9b377629639c7025d662e902ea1) | true if CustomData_Optional has been set to a value
 `public TMap< FString, TArray< ERHAPI_InventoryBucket > > `[`Rules_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1adabe35c0c43a1efc7d7e500bee62361c) | 
 `public bool `[`Rules_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1aa50ffc24695f9e0ff5d1e739e9d59468) | true if Rules_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1a17b67b628e51e41059c636d81be35b61) | 
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1a4fa08d3e6e9d4463b4b8fbcc18f4eea4) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InventoryBucketUseRuleSet_1a13237921eba8c49f52fec51ea978c65a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventoryBucketUseRuleSet_1aa8dc9bb6d89b39bc4563007af760539e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aab4d4efda7fe884ab72b2756b26bd6f7)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a1097b915c8cd4068e5610dcb36afc6ef)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a3f74937f016677ed751d2eb26d49dd1f)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a9c8fe85adf370d1953ef9ceceaf27650)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a4593fcce0bb67164bb2405d161eda834)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1acef1cf57857cead46bac4f8938515300)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a19de57e29e4691424bd6f004eb4cbcef)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`ClearCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aa7d7014a319b6cdfa75c8ffbc29df9a8)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1aced5f3ac4be8df47774a321d5526b74b)`()` | Gets the value of Rules_Optional, regardless of it having been set.
 `public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1adf6b0f28861588e7cd5100baf7588c19)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
 `public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a6a5c4e4ff275d2dc60a12437367a67bd)`(const TMap< FString, TArray< ERHAPI_InventoryBucket >> & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -44,6 +54,16 @@ A collection of Inventory Bucket Use Rules.
 
 #### Members
 
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1a4374570f7a6d6a2118db206d13102262) <a id="structFRHAPI__InventoryBucketUseRuleSet_1a4374570f7a6d6a2118db206d13102262"></a>
+
+Custom data associated with the resource.
+
+<br>
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__InventoryBucketUseRuleSet_1af60fc9b377629639c7025d662e902ea1) <a id="structFRHAPI__InventoryBucketUseRuleSet_1af60fc9b377629639c7025d662e902ea1"></a>
+
+true if CustomData_Optional has been set to a value
+
+<br>
 #### `public TMap< FString, TArray< ERHAPI_InventoryBucket > > `[`Rules_Optional`](#structFRHAPI__InventoryBucketUseRuleSet_1adabe35c0c43a1efc7d7e500bee62361c) <a id="structFRHAPI__InventoryBucketUseRuleSet_1adabe35c0c43a1efc7d7e500bee62361c"></a>
 
 <br>
@@ -77,6 +97,46 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
+
+<br>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aab4d4efda7fe884ab72b2756b26bd6f7)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aab4d4efda7fe884ab72b2756b26bd6f7"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a1097b915c8cd4068e5610dcb36afc6ef)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a1097b915c8cd4068e5610dcb36afc6ef"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a3f74937f016677ed751d2eb26d49dd1f)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a3f74937f016677ed751d2eb26d49dd1f"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a9c8fe85adf370d1953ef9ceceaf27650)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a9c8fe85adf370d1953ef9ceceaf27650"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a4593fcce0bb67164bb2405d161eda834)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a4593fcce0bb67164bb2405d161eda834"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1acef1cf57857cead46bac4f8938515300)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1acef1cf57857cead46bac4f8938515300"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a19de57e29e4691424bd6f004eb4cbcef)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a19de57e29e4691424bd6f004eb4cbcef"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aa7d7014a319b6cdfa75c8ffbc29df9a8)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aa7d7014a319b6cdfa75c8ffbc29df9a8"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 <br>
 #### `public inline TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1aced5f3ac4be8df47774a321d5526b74b)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aced5f3ac4be8df47774a321d5526b74b"></a>

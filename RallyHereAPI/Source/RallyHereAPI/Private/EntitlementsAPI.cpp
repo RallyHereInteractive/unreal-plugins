@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FEntitlementsAPI::FEntitlementsAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Entitlements");
+    Name = FName(TEXT("Entitlements"));
 }
 
 FEntitlementsAPI::~FEntitlementsAPI() {}
@@ -88,14 +88,15 @@ FRequest_ProcessPlatformEntitlementForMe::FRequest_ProcessPlatformEntitlementFor
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ProcessPlatformEntitlementForMe::GetSimplifiedPath() const
+FName FRequest_ProcessPlatformEntitlementForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/entitlement"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/entitlement"));
+    return Path;
 }
 
 FString FRequest_ProcessPlatformEntitlementForMe::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -240,9 +241,10 @@ FRequest_ProcessPlatformEntitlementsByPlayerUuid::FRequest_ProcessPlatformEntitl
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() const
+FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/entitlement"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/entitlement"));
+    return Path;
 }
 
 FString FRequest_ProcessPlatformEntitlementsByPlayerUuid::ComputePath() const
@@ -397,9 +399,10 @@ FRequest_RetrieveEntitlementsByPlayerUuid::FRequest_RetrieveEntitlementsByPlayer
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_RetrieveEntitlementsByPlayerUuid::GetSimplifiedPath() const
+FName FRequest_RetrieveEntitlementsByPlayerUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/entitlement/request/{request_id}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/entitlement/request/{request_id}"));
+    return Path;
 }
 
 FString FRequest_RetrieveEntitlementsByPlayerUuid::ComputePath() const
@@ -544,9 +547,10 @@ FRequest_RetrieveEntitlementsForMe::FRequest_RetrieveEntitlementsForMe()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_RetrieveEntitlementsForMe::GetSimplifiedPath() const
+FName FRequest_RetrieveEntitlementsForMe::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/entitlement/request/{request_id}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/entitlement/request/{request_id}"));
+    return Path;
 }
 
 FString FRequest_RetrieveEntitlementsForMe::ComputePath() const

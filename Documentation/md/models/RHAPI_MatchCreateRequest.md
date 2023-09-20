@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_MatchCreateRequest`](#structFRHAPI__MatchCreateRequest) | 
+`struct `[`FRHAPI_MatchCreateRequest`](#structFRHAPI__MatchCreateRequest) | A request to create a match resource on a session.
 
 ## struct `FRHAPI_MatchCreateRequest` <a id="structFRHAPI__MatchCreateRequest"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_MatchCreateRequest
   : public FRHAPI_Model
 ```
+
+A request to create a match resource on a session.
 
 #### Summary
 

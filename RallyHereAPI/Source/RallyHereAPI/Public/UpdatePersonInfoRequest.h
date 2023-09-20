@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief Request to update a person&#39;s info
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_UpdatePersonInfoRequest : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdatePersonInfoRequest : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Email address to update to */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Email{  };
     /** @brief Gets the value of Email */

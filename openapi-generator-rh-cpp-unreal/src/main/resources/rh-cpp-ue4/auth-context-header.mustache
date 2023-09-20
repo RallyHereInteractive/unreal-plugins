@@ -21,7 +21,7 @@ limitations under the License.
 #include "{{unrealModuleName}}BaseModel.h"
 #include "LoginResult.h"
 #include "TokenResponse.h"
-#include "RallyHereAPIAuthContext.generated.h"
+#include "{{unrealModuleName}}AuthContext.generated.h"
 
 {{#cppNamespaceDeclarations}}
 namespace {{this}}
@@ -88,10 +88,10 @@ private:
 }
 {{/cppNamespaceDeclarations}}
 
-typedef TSharedPtr<RallyHereAPI::FAuthContext> FAuthContextPtr;
+typedef TSharedPtr<{{unrealModuleName}}::FAuthContext> FAuthContextPtr;
 
 USTRUCT(BlueprintType)
-struct {{dllapi}} FRHAPI_AuthContext
+struct {{dllapi}} {{unrealModelPrefix}}AuthContext
 {
 	GENERATED_BODY()
 	
@@ -100,12 +100,12 @@ struct {{dllapi}} FRHAPI_AuthContext
 	
 	FAuthContextPtr AuthContext;
 	
-	FRHAPI_AuthContext()
+	{{unrealModelPrefix}}AuthContext()
 		: Dummy(0)
 		, AuthContext(nullptr)
 	{}
 	
-	FRHAPI_AuthContext(const FAuthContextPtr& InAuthContext)
+	{{unrealModelPrefix}}AuthContext(const FAuthContextPtr& InAuthContext)
 		: Dummy(0)
 		, AuthContext(InAuthContext)
 	{}

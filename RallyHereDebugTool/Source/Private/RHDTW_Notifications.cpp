@@ -98,32 +98,49 @@ void FRHDTW_Notifications::Do()
 		ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
 	}
 
-	if (ImGui::Button("Start Streaming"))
+	bool someoneNotStreaming = false;
+	for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
 	{
-		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
+		URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
+		if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
 		{
-			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+			if (!LPSS->GetPlayerNotifications()->IsStreaming())
 			{
-				LPSS->GetPlayerNotifications()->StartStreamingLatestNotifications();
-			}
-		}
-	}
-	ImGui::SameLine();
-	if (ImGui::Button("Stop Streaming"))
-	{
-		for (auto* LocalPlayer : pOwner->GetAllSelectedLocalPlayers())
-		{
-			URH_LocalPlayerSubsystem* LPSS = LocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
-			{
-				LPSS->GetPlayerNotifications()->StopStreamingLatestNotifications();
+				someoneNotStreaming = true;
+				break;
 			}
 		}
 	}
 
+	if (someoneNotStreaming)
+	{
+		if (ImGui::Button("Start Streaming"))
+		{
+			ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([](URH_LocalPlayerSubsystem* LPSS)
+				{
+					if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+					{
+						LPSS->GetPlayerNotifications()->StartStreamingLatestNotifications();
+					}
+				}));
+		}
+	}
+	else
+	{
+		if (ImGui::Button("Stop Streaming"))
+		{
+			ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([](URH_LocalPlayerSubsystem* LPSS)
+				{
+					if (LPSS && LPSS->GetPlayerNotifications() != nullptr)
+					{
+						LPSS->GetPlayerNotifications()->StopStreamingLatestNotifications();
+					}
+				}));
+		}
+	}
+
 	int32 NumNotifications = 150;
-	ImGui::SetNextItemWidth(50);
+	ImGui::SetNextItemWidth(100);
 	if (ImGui::InputInt("History Size Per Player", &NumNotifications))
 	{
 		NumNotifications = FMath::Clamp(NumNotifications, 0, 1000);

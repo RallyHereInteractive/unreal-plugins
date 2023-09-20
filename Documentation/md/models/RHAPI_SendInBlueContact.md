@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SendInBlueContact`](#structFRHAPI__SendInBlueContact) | 
+`struct `[`FRHAPI_SendInBlueContact`](#structFRHAPI__SendInBlueContact) | SendInBlue contact.
 
 ## struct `FRHAPI_SendInBlueContact` <a id="structFRHAPI__SendInBlueContact"></a>
 
@@ -13,20 +13,22 @@ struct FRHAPI_SendInBlueContact
   : public FRHAPI_Model
 ```
 
+SendInBlue contact.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`Email`](#structFRHAPI__SendInBlueContact_1aa5f9c11c8565c4f5de86c3296bd82ec5) | 
-`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`Attributes_Optional`](#structFRHAPI__SendInBlueContact_1a768398f30f35727e97ae0553e80fdccb) | 
+`public FString `[`Email`](#structFRHAPI__SendInBlueContact_1aa5f9c11c8565c4f5de86c3296bd82ec5) | Email address.
+`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`Attributes_Optional`](#structFRHAPI__SendInBlueContact_1a768398f30f35727e97ae0553e80fdccb) | Attributes.
 `public bool `[`Attributes_IsSet`](#structFRHAPI__SendInBlueContact_1ad2a67f41968390d4cf2677aa34479667) | true if Attributes_Optional has been set to a value
-`public bool `[`EmailBlacklisted_Optional`](#structFRHAPI__SendInBlueContact_1a4eb54281e103d49aa7a401f1a4380843) | 
+`public bool `[`EmailBlacklisted_Optional`](#structFRHAPI__SendInBlueContact_1a4eb54281e103d49aa7a401f1a4380843) | Email blacklisted.
 `public bool `[`EmailBlacklisted_IsSet`](#structFRHAPI__SendInBlueContact_1adb78d96f39655a66f12d5e76393649ab) | true if EmailBlacklisted_Optional has been set to a value
-`public TArray< int32 > `[`ListIds_Optional`](#structFRHAPI__SendInBlueContact_1afd9ccd77f63a9a86a39a8cf17ed4667c) | 
+`public TArray< int32 > `[`ListIds_Optional`](#structFRHAPI__SendInBlueContact_1afd9ccd77f63a9a86a39a8cf17ed4667c) | List IDs.
 `public bool `[`ListIds_IsSet`](#structFRHAPI__SendInBlueContact_1ac9547f84f1829532edee0b6ff99ed08c) | true if ListIds_Optional has been set to a value
-`public TArray< int32 > `[`UnlinkListIds_Optional`](#structFRHAPI__SendInBlueContact_1a1faa2eb247b45d3fe26774ec02aad67f) | 
+`public TArray< int32 > `[`UnlinkListIds_Optional`](#structFRHAPI__SendInBlueContact_1a1faa2eb247b45d3fe26774ec02aad67f) | Unlink list IDs.
 `public bool `[`UnlinkListIds_IsSet`](#structFRHAPI__SendInBlueContact_1a229c851fe9bc2c4e48ae3249962279fc) | true if UnlinkListIds_Optional has been set to a value
-`public bool `[`UpdateEnabled_Optional`](#structFRHAPI__SendInBlueContact_1a227fe444e6106d9b8ed68078776f8fb0) | 
+`public bool `[`UpdateEnabled_Optional`](#structFRHAPI__SendInBlueContact_1a227fe444e6106d9b8ed68078776f8fb0) | Update enabled.
 `public bool `[`UpdateEnabled_IsSet`](#structFRHAPI__SendInBlueContact_1a4479e2d747f83edd483a4864a864fd1b) | true if UpdateEnabled_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SendInBlueContact_1afd153a9f368a76d84691a109a842129a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SendInBlueContact_1afee18ef1912e56f08af2f4acab2559f8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -82,8 +84,12 @@ struct FRHAPI_SendInBlueContact
 
 #### `public FString `[`Email`](#structFRHAPI__SendInBlueContact_1aa5f9c11c8565c4f5de86c3296bd82ec5) <a id="structFRHAPI__SendInBlueContact_1aa5f9c11c8565c4f5de86c3296bd82ec5"></a>
 
+Email address.
+
 <br>
 #### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`Attributes_Optional`](#structFRHAPI__SendInBlueContact_1a768398f30f35727e97ae0553e80fdccb) <a id="structFRHAPI__SendInBlueContact_1a768398f30f35727e97ae0553e80fdccb"></a>
+
+Attributes.
 
 <br>
 #### `public bool `[`Attributes_IsSet`](#structFRHAPI__SendInBlueContact_1ad2a67f41968390d4cf2677aa34479667) <a id="structFRHAPI__SendInBlueContact_1ad2a67f41968390d4cf2677aa34479667"></a>
@@ -93,6 +99,8 @@ true if Attributes_Optional has been set to a value
 <br>
 #### `public bool `[`EmailBlacklisted_Optional`](#structFRHAPI__SendInBlueContact_1a4eb54281e103d49aa7a401f1a4380843) <a id="structFRHAPI__SendInBlueContact_1a4eb54281e103d49aa7a401f1a4380843"></a>
 
+Email blacklisted.
+
 <br>
 #### `public bool `[`EmailBlacklisted_IsSet`](#structFRHAPI__SendInBlueContact_1adb78d96f39655a66f12d5e76393649ab) <a id="structFRHAPI__SendInBlueContact_1adb78d96f39655a66f12d5e76393649ab"></a>
 
@@ -100,6 +108,8 @@ true if EmailBlacklisted_Optional has been set to a value
 
 <br>
 #### `public TArray< int32 > `[`ListIds_Optional`](#structFRHAPI__SendInBlueContact_1afd9ccd77f63a9a86a39a8cf17ed4667c) <a id="structFRHAPI__SendInBlueContact_1afd9ccd77f63a9a86a39a8cf17ed4667c"></a>
+
+List IDs.
 
 <br>
 #### `public bool `[`ListIds_IsSet`](#structFRHAPI__SendInBlueContact_1ac9547f84f1829532edee0b6ff99ed08c) <a id="structFRHAPI__SendInBlueContact_1ac9547f84f1829532edee0b6ff99ed08c"></a>
@@ -109,6 +119,8 @@ true if ListIds_Optional has been set to a value
 <br>
 #### `public TArray< int32 > `[`UnlinkListIds_Optional`](#structFRHAPI__SendInBlueContact_1a1faa2eb247b45d3fe26774ec02aad67f) <a id="structFRHAPI__SendInBlueContact_1a1faa2eb247b45d3fe26774ec02aad67f"></a>
 
+Unlink list IDs.
+
 <br>
 #### `public bool `[`UnlinkListIds_IsSet`](#structFRHAPI__SendInBlueContact_1a229c851fe9bc2c4e48ae3249962279fc) <a id="structFRHAPI__SendInBlueContact_1a229c851fe9bc2c4e48ae3249962279fc"></a>
 
@@ -116,6 +128,8 @@ true if UnlinkListIds_Optional has been set to a value
 
 <br>
 #### `public bool `[`UpdateEnabled_Optional`](#structFRHAPI__SendInBlueContact_1a227fe444e6106d9b8ed68078776f8fb0) <a id="structFRHAPI__SendInBlueContact_1a227fe444e6106d9b8ed68078776f8fb0"></a>
+
+Update enabled.
 
 <br>
 #### `public bool `[`UpdateEnabled_IsSet`](#structFRHAPI__SendInBlueContact_1a4479e2d747f83edd483a4864a864fd1b) <a id="structFRHAPI__SendInBlueContact_1a4479e2d747f83edd483a4864a864fd1b"></a>

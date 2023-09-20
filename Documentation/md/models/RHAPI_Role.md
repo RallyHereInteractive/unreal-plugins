@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_Role`](#structFRHAPI__Role) | 
+`struct `[`FRHAPI_Role`](#structFRHAPI__Role) | Role object that is used to define a role for a player.
 
 ## struct `FRHAPI_Role` <a id="structFRHAPI__Role"></a>
 
@@ -13,14 +13,16 @@ struct FRHAPI_Role
   : public FRHAPI_Model
 ```
 
+Role object that is used to define a role for a player.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`RoleId`](#structFRHAPI__Role_1a52f32f8c3152eec8e2eaba9bcfc8f8b5) | 
-`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__Role_1ab56bcc46d8e231e0c8970cf4b28806c4) | 
+`public FString `[`RoleId`](#structFRHAPI__Role_1a52f32f8c3152eec8e2eaba9bcfc8f8b5) | Unique Role ID.
+`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__Role_1ab56bcc46d8e231e0c8970cf4b28806c4) | Custom data for the role.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__Role_1a7009c6fa9d36ddb72c54a9658b63e42d) | true if CustomData_Optional has been set to a value
-`public TArray< int32 > `[`LoginLootRewards_Optional`](#structFRHAPI__Role_1a5085d5aa449f92dbb0cb0c236f476b86) | 
+`public TArray< int32 > `[`LoginLootRewards_Optional`](#structFRHAPI__Role_1a5085d5aa449f92dbb0cb0c236f476b86) | List of loot table item ids that are fulfilled for the player when they begin a new inventory session.
 `public bool `[`LoginLootRewards_IsSet`](#structFRHAPI__Role_1a6e132dc93f9582659561567ad17f151c) | true if LoginLootRewards_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Role_1a229641efe3ca109c0f3c7b53422b42ad)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Role_1ae845c90d963aeb9ae58170a483d25275)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -48,8 +50,12 @@ struct FRHAPI_Role
 
 #### `public FString `[`RoleId`](#structFRHAPI__Role_1a52f32f8c3152eec8e2eaba9bcfc8f8b5) <a id="structFRHAPI__Role_1a52f32f8c3152eec8e2eaba9bcfc8f8b5"></a>
 
+Unique Role ID.
+
 <br>
 #### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`CustomData_Optional`](#structFRHAPI__Role_1ab56bcc46d8e231e0c8970cf4b28806c4) <a id="structFRHAPI__Role_1ab56bcc46d8e231e0c8970cf4b28806c4"></a>
+
+Custom data for the role.
 
 <br>
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__Role_1a7009c6fa9d36ddb72c54a9658b63e42d) <a id="structFRHAPI__Role_1a7009c6fa9d36ddb72c54a9658b63e42d"></a>
@@ -58,6 +64,8 @@ true if CustomData_Optional has been set to a value
 
 <br>
 #### `public TArray< int32 > `[`LoginLootRewards_Optional`](#structFRHAPI__Role_1a5085d5aa449f92dbb0cb0c236f476b86) <a id="structFRHAPI__Role_1a5085d5aa449f92dbb0cb0c236f476b86"></a>
+
+List of loot table item ids that are fulfilled for the player when they begin a new inventory session.
 
 <br>
 #### `public bool `[`LoginLootRewards_IsSet`](#structFRHAPI__Role_1a6e132dc93f9582659561567ad17f151c) <a id="structFRHAPI__Role_1a6e132dc93f9582659561567ad17f151c"></a>

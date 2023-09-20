@@ -42,6 +42,7 @@ Synchronization object to sync state between a Rally Here Session and a Platform
 `public inline TScriptInterface< `[`IRH_SessionOwnerInterface`](Session.md#classIRH__SessionOwnerInterface)` > `[`GetSessionOwner`](#classURH__PlatformSessionSyncer_1a93019be39c8791d4b38444fb211bd358)`() const` | Get the session owner interface that this object is using to look up session information.
 `public bool `[`IsLocalPlayerScout`](#classURH__PlatformSessionSyncer_1a762dcd01299ad8ff18492cb77866f2e3)`() const` | Get whether the local player is the "scout" - the player responsible for creation of the platform session if one does not exist.
 `public inline bool `[`IsCleaningUp`](#classURH__PlatformSessionSyncer_1a56fab737635bb1cb79148b48367c0c67)`() const` | Whether this object is in the process of, or has completed, cleanup.
+`public inline bool `[`IsCleanupComplete`](#classURH__PlatformSessionSyncer_1a4decfdb383f62eb2c9a81c6de2a94451)`() const` | Whether this object has completed, cleanup.
 `public bool `[`StartPlatformSession`](#classURH__PlatformSessionSyncer_1a124cb07781977a4bdcbb0e02151ed8ff)`()` | Marks the session as started (note - asynchronous)
 `public bool `[`EndPlatformSession`](#classURH__PlatformSessionSyncer_1aa5839bbbc6243e4351a8cfa082c1f5a7)`()` | Marks the session as ended (note - asynchronous)
 `public void `[`OnPlatformSessionCreated`](#classURH__PlatformSessionSyncer_1a27b57b55c768d340784fa44fc2ef1bfd)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been created (from the session owner, as the synchronization object does not bind the callback directly)
@@ -49,12 +50,15 @@ Synchronization object to sync state between a Rally Here Session and a Platform
 `public void `[`OnPlatformSessionStarted`](#classURH__PlatformSessionSyncer_1abd85032c4a9c68852f20cef487df1eca)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been started (from the session owner, as the synchronization object does not bind the callback directly)
 `public void `[`OnPlatformSessionEnded`](#classURH__PlatformSessionSyncer_1a54870f9e337e72d2dffaf64d138ee53a)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been ended (from the session owner, as the synchronization object does not bind the callback directly)
 `public void `[`OnPlatformSessionDestroyed`](#classURH__PlatformSessionSyncer_1a7ac6006922d5d82af25b2a79edd00dd4)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been destroyed (from the session owner, as the synchronization object does not bind the callback directly)
+`public void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` | Handler for whenever the associated session is updated.
+`public void `[`SetCachedPlatformSessionInvite`](#classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001)`(const FOnlineSessionSearchResult & SessionInvite)` | 
 `protected `[`ESyncActionState`](Session.md#classURH__PlatformSessionSyncer_1a816ad7c372b612eeee431e84824ebfe3)` `[`CurrentSyncActionState`](#classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea) | The current state of the syncer.
 `protected FRH_SessionOwnerPtr `[`SessionOwner`](#classURH__PlatformSessionSyncer_1abdc13532c721a2d0593b177ae19833e5) | Owner of the session.
 `protected FString `[`RHSessionId`](#classURH__PlatformSessionSyncer_1a2782a9152c7bf68ed0bd908b95c4301f) | Rally Here session Id.
 `protected FName `[`OSSSessionName`](#classURH__PlatformSessionSyncer_1ac4bc77d7e8275889c8050bf1a09f2e97) | Name of the session.
 `protected ERHAPI_Platform `[`RHPlatform`](#classURH__PlatformSessionSyncer_1ae2dda53f9229c02025c41c2203792892) | Internal platoform for the session.
-`protected void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` | Handler for whenever the associated session is updated.
+`protected TOptional< FOnlineSessionSearchResult > `[`CachedSessionInvite`](#classURH__PlatformSessionSyncer_1afd327c8b4ac82aabcdd3063ca15432f2) | The cached platform session invite.
+`protected bool `[`bDeferCleanup`](#classURH__PlatformSessionSyncer_1a1339e4f23791197848afeed8d7169651) | whether cleanup is deferred until the end of the current action
 `protected void `[`CheckState`](#classURH__PlatformSessionSyncer_1a23d3f73c7f9620cc04ad9457400a46d1)`()` | Check our current state against the session, and decide if we need to take any action.
 `protected void `[`KickOffState`](#classURH__PlatformSessionSyncer_1a7ef1b9e41501848a79253d0a62fe8119)`(`[`ESyncActionState`](Session.md#classURH__PlatformSessionSyncer_1a816ad7c372b612eeee431e84824ebfe3)` NewState)` | Change to a new state.
 `protected void `[`SyncActionComplete`](#classURH__PlatformSessionSyncer_1a2d6a7ac31e0470a8ec4bcdf637fa204d)`(bool bSuccess,bool bDeferFrame)` | Called when a Sync Action State is complete.
@@ -152,6 +156,11 @@ Get whether the local player is the "scout" - the player responsible for creatio
 Whether this object is in the process of, or has completed, cleanup.
 
 <br>
+#### `public inline bool `[`IsCleanupComplete`](#classURH__PlatformSessionSyncer_1a4decfdb383f62eb2c9a81c6de2a94451)`() const` <a id="classURH__PlatformSessionSyncer_1a4decfdb383f62eb2c9a81c6de2a94451"></a>
+
+Whether this object has completed, cleanup.
+
+<br>
 #### `public bool `[`StartPlatformSession`](#classURH__PlatformSessionSyncer_1a124cb07781977a4bdcbb0e02151ed8ff)`()` <a id="classURH__PlatformSessionSyncer_1a124cb07781977a4bdcbb0e02151ed8ff"></a>
 
 Marks the session as started (note - asynchronous)
@@ -187,6 +196,17 @@ Notification helper to let the synchronization object know that a session has be
 Notification helper to let the synchronization object know that a session has been destroyed (from the session owner, as the synchronization object does not bind the callback directly)
 
 <br>
+#### `public void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` <a id="classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270"></a>
+
+Handler for whenever the associated session is updated.
+
+#### Parameters
+* `UpdatedSession` The session that was updated.
+
+<br>
+#### `public void `[`SetCachedPlatformSessionInvite`](#classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001)`(const FOnlineSessionSearchResult & SessionInvite)` <a id="classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001"></a>
+
+<br>
 #### `protected `[`ESyncActionState`](Session.md#classURH__PlatformSessionSyncer_1a816ad7c372b612eeee431e84824ebfe3)` `[`CurrentSyncActionState`](#classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea) <a id="classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea"></a>
 
 The current state of the syncer.
@@ -212,12 +232,14 @@ Name of the session.
 Internal platoform for the session.
 
 <br>
-#### `protected void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` <a id="classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270"></a>
+#### `protected TOptional< FOnlineSessionSearchResult > `[`CachedSessionInvite`](#classURH__PlatformSessionSyncer_1afd327c8b4ac82aabcdd3063ca15432f2) <a id="classURH__PlatformSessionSyncer_1afd327c8b4ac82aabcdd3063ca15432f2"></a>
 
-Handler for whenever the associated session is updated.
+The cached platform session invite.
 
-#### Parameters
-* `UpdatedSession` The session that was updated.
+<br>
+#### `protected bool `[`bDeferCleanup`](#classURH__PlatformSessionSyncer_1a1339e4f23791197848afeed8d7169651) <a id="classURH__PlatformSessionSyncer_1a1339e4f23791197848afeed8d7169651"></a>
+
+whether cleanup is deferred until the end of the current action
 
 <br>
 #### `protected void `[`CheckState`](#classURH__PlatformSessionSyncer_1a23d3f73c7f9620cc04ad9457400a46d1)`()` <a id="classURH__PlatformSessionSyncer_1a23d3f73c7f9620cc04ad9457400a46d1"></a>
@@ -303,7 +325,8 @@ Get the online subsystem session interface for the platform session.
 
 ```
 class URH_SessionBrowserCache
-  : public URH_GameInstanceSubsystemPlugin
+  : public URH_SandboxedSubsystemPlugin
+  : public IRH_SessionOwnerInterface
 ```
 
 Simple container class to hold session view data, does not have its own auth context, relies upon getting it from elsewhere during calls, so that it can be used to cache across multiple players.
@@ -315,12 +338,22 @@ Simple container class to hold session view data, does not have its own auth con
 `public  `[`URH_SessionBrowserCache`](#classURH__SessionBrowserCache_1a62c14a0d2d7a4319ffdb92ad829e6ba0)`()` | Default constructor.
 `public void `[`Search`](#classURH__SessionBrowserCache_1a54a2b334691c06563c123ad6721cdd55)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & params,FRH_OnSessionSearchCompleteDelegateBlock Delegate)` | Makes a call to search for session browsers.
 `public inline void `[`BLUEPRINT_Search`](#classURH__SessionBrowserCache_1aef57a504c6238f35f6040a3c8b0f2b13)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & params,FRH_OnSessionSearchCompleteDynamicDelegate Delegate)` | 
-`public inline `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1a9c9a5e70058fcefa9fc618ec4cda567e)`(const FString & SessionId) const` | Gets a cached session by Session Id.
-`public inline TOptional< FString > `[`GetETagForSession`](#classURH__SessionBrowserCache_1a1d6f5d3f5caeaf12377646bb7b475cab)`(const FString & SessionId) const` | Gets the ETag for a session by Session Id.
-`public bool `[`GetTemplate`](#classURH__SessionBrowserCache_1a99bb22543c8e651c7c63dc9483ebe98b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets the session template for a given session type.
-`public void `[`ImportAPISession`](#classURH__SessionBrowserCache_1aeda1c65bacddfdf8dbbaa39edfbc1156)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Adds a session into the session cache.
-`public void `[`ImportAPITemplate`](#classURH__SessionBrowserCache_1a71db13fbfa18f91a3f313cca01a9eddd)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Adds a new session template type to the templates.
 `public inline void `[`ClearCache`](#classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920)`(bool bClearTemplates)` | Clears the cached sessions, and optionally the cached templates.
+`public virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__SessionBrowserCache_1a097ea9b50702c214574c512697427337)`() const` | Gets the auth context to use for API calls for the session owner.
+`public virtual void `[`ImportAPISession`](#classURH__SessionBrowserCache_1ad7879d7762f0c548483d4b0f04558b97)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Adds a session into the session cache.
+`public virtual void `[`ImportAPITemplate`](#classURH__SessionBrowserCache_1a59bae44be9047e2b2e107c27644eb6b0)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Adds a new session template type to the templates.
+`public inline virtual void `[`ReconcileAPISessions`](#classURH__SessionBrowserCache_1a7a48b9bc8e42931554b041b05818fd95)`(const TArray< FString > & SessionIds,const TOptional< FString > ETag)` | Updates the list of sessions to only those that are active.
+`public inline virtual void `[`ReconcileAPITemplates`](#classURH__SessionBrowserCache_1ae0afeb0444bff1d91e0f3f10d2f61f3a)`(const TArray< FString > & InTemplates,const TOptional< FString > ETag)` | Updates the list of session templates to those that are active.
+`public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__SessionBrowserCache_1ac59f177acf3996badf4dd9907c0e66e8)`() const` | Gets the PlayerInfo Subsystem.
+`public inline virtual IOnlineSubsystem * `[`GetOSS`](#classURH__SessionBrowserCache_1a83aee966f46fa0846e717d03fd9d9963)`() const` | Gets the Online Subsystem to use for OSS calls.
+`public inline virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e)`() const` | Gets the etag to use for a "Get all Templates" type query.
+`public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__SessionBrowserCache_1af673c57a58cd96f48687778033b0c9e4)`() const` | Gets the etag to use for a "Get all Sessions" type query.
+`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
+`public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1aa64b3bc0c50822dfc08403fa30416907)`(const FString & SessionId) const` | Gets a session by its id.
+`public virtual bool `[`GetTemplate`](#classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 
 #### Members
 
@@ -342,36 +375,20 @@ Makes a call to search for session browsers.
 #### `public inline void `[`BLUEPRINT_Search`](#classURH__SessionBrowserCache_1aef57a504c6238f35f6040a3c8b0f2b13)`(const `[`FRH_SessionBrowserSearchParams`](Session.md#structFRH__SessionBrowserSearchParams)` & params,FRH_OnSessionSearchCompleteDynamicDelegate Delegate)` <a id="classURH__SessionBrowserCache_1aef57a504c6238f35f6040a3c8b0f2b13"></a>
 
 <br>
-#### `public inline `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1a9c9a5e70058fcefa9fc618ec4cda567e)`(const FString & SessionId) const` <a id="classURH__SessionBrowserCache_1a9c9a5e70058fcefa9fc618ec4cda567e"></a>
+#### `public inline void `[`ClearCache`](#classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920)`(bool bClearTemplates)` <a id="classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920"></a>
 
-Gets a cached session by Session Id.
-
-#### Parameters
-* `SessionId` The Session Id of the requested session.
-
-<br>
-#### `public inline TOptional< FString > `[`GetETagForSession`](#classURH__SessionBrowserCache_1a1d6f5d3f5caeaf12377646bb7b475cab)`(const FString & SessionId) const` <a id="classURH__SessionBrowserCache_1a1d6f5d3f5caeaf12377646bb7b475cab"></a>
-
-Gets the ETag for a session by Session Id.
+Clears the cached sessions, and optionally the cached templates.
 
 #### Parameters
-* `SessionId` The Session Id of the requested session.
+* `bClearTemplates` If true, clear the templates as well.
 
 <br>
-#### `public bool `[`GetTemplate`](#classURH__SessionBrowserCache_1a99bb22543c8e651c7c63dc9483ebe98b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__SessionBrowserCache_1a99bb22543c8e651c7c63dc9483ebe98b"></a>
+#### `public virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__SessionBrowserCache_1a097ea9b50702c214574c512697427337)`() const` <a id="classURH__SessionBrowserCache_1a097ea9b50702c214574c512697427337"></a>
 
-Gets the session template for a given session type.
-
-#### Parameters
-* `Type` The session type to get the template for. 
-
-* `Template` The session template for the given type. 
-
-#### Returns
-True if the template was found, false otherwise.
+Gets the auth context to use for API calls for the session owner.
 
 <br>
-#### `public void `[`ImportAPISession`](#classURH__SessionBrowserCache_1aeda1c65bacddfdf8dbbaa39edfbc1156)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` <a id="classURH__SessionBrowserCache_1aeda1c65bacddfdf8dbbaa39edfbc1156"></a>
+#### `public virtual void `[`ImportAPISession`](#classURH__SessionBrowserCache_1ad7879d7762f0c548483d4b0f04558b97)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` <a id="classURH__SessionBrowserCache_1ad7879d7762f0c548483d4b0f04558b97"></a>
 
 Adds a session into the session cache.
 
@@ -379,7 +396,7 @@ Adds a session into the session cache.
 * `Session` The session to add.
 
 <br>
-#### `public void `[`ImportAPITemplate`](#classURH__SessionBrowserCache_1a71db13fbfa18f91a3f313cca01a9eddd)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` <a id="classURH__SessionBrowserCache_1a71db13fbfa18f91a3f313cca01a9eddd"></a>
+#### `public virtual void `[`ImportAPITemplate`](#classURH__SessionBrowserCache_1a59bae44be9047e2b2e107c27644eb6b0)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` <a id="classURH__SessionBrowserCache_1a59bae44be9047e2b2e107c27644eb6b0"></a>
 
 Adds a new session template type to the templates.
 
@@ -387,12 +404,88 @@ Adds a new session template type to the templates.
 * `Template` The template ot add.
 
 <br>
-#### `public inline void `[`ClearCache`](#classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920)`(bool bClearTemplates)` <a id="classURH__SessionBrowserCache_1ab6fc51bbfa94876b68dc96846fe3c920"></a>
+#### `public inline virtual void `[`ReconcileAPISessions`](#classURH__SessionBrowserCache_1a7a48b9bc8e42931554b041b05818fd95)`(const TArray< FString > & SessionIds,const TOptional< FString > ETag)` <a id="classURH__SessionBrowserCache_1a7a48b9bc8e42931554b041b05818fd95"></a>
 
-Clears the cached sessions, and optionally the cached templates.
+Updates the list of sessions to only those that are active.
 
 #### Parameters
-* `bClearTemplates` If true, clear the templates as well.
+* `SessionIds` The list of sessions that we are reconciling against. 
+
+* `ETag` The ETag to use for the update.
+
+<br>
+#### `public inline virtual void `[`ReconcileAPITemplates`](#classURH__SessionBrowserCache_1ae0afeb0444bff1d91e0f3f10d2f61f3a)`(const TArray< FString > & InTemplates,const TOptional< FString > ETag)` <a id="classURH__SessionBrowserCache_1ae0afeb0444bff1d91e0f3f10d2f61f3a"></a>
+
+Updates the list of session templates to those that are active.
+
+#### Parameters
+* `InTemplates` The list of templates that we are reconciling against. 
+
+* `ETag` The ETag to use for the update.
+
+<br>
+#### `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__SessionBrowserCache_1ac59f177acf3996badf4dd9907c0e66e8)`() const` <a id="classURH__SessionBrowserCache_1ac59f177acf3996badf4dd9907c0e66e8"></a>
+
+Gets the PlayerInfo Subsystem.
+
+<br>
+#### `public inline virtual IOnlineSubsystem * `[`GetOSS`](#classURH__SessionBrowserCache_1a83aee966f46fa0846e717d03fd9d9963)`() const` <a id="classURH__SessionBrowserCache_1a83aee966f46fa0846e717d03fd9d9963"></a>
+
+Gets the Online Subsystem to use for OSS calls.
+
+<br>
+#### `public inline virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131)`() const` <a id="classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131"></a>
+
+Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e)`() const` <a id="classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e"></a>
+
+Gets the etag to use for a "Get all Templates" type query.
+
+<br>
+#### `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__SessionBrowserCache_1af673c57a58cd96f48687778033b0c9e4)`() const` <a id="classURH__SessionBrowserCache_1af673c57a58cd96f48687778033b0c9e4"></a>
+
+Gets the etag to use for a "Get all Sessions" type query.
+
+<br>
+#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf)`() const` <a id="classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf"></a>
+
+Used to get all sessions, primarily for get all sessions polling where etag matches.
+
+<br>
+#### `public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1aa64b3bc0c50822dfc08403fa30416907)`(const FString & SessionId) const` <a id="classURH__SessionBrowserCache_1aa64b3bc0c50822dfc08403fa30416907"></a>
+
+Gets a session by its id.
+
+#### Parameters
+* `SessionId` The Session Id to get. 
+
+#### Returns
+The Session with the given Id.
+
+<br>
+#### `public virtual bool `[`GetTemplate`](#classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` <a id="classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd"></a>
+
+Gets a session template by type.
+
+#### Parameters
+* `Type` the Type of template to get. 
+
+* `Template` The session template being retrieved. 
+
+#### Returns
+If true, the template was found.
+
+<br>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` <a id="classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed"></a>
+
+Gets the platform synchronization object using the rally here session id.
+
+<br>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b"></a>
+
+Gets the platform synchronization object using the platform session id.
 
 <br>
 ## class `URH_SessionView` <a id="classURH__SessionView"></a>
@@ -444,7 +537,7 @@ Base class providing functionality for viewing session data and interacting with
 `public void `[`StopPolling`](#classURH__SessionView_1aa34ca34af04d8bcb3200d48395c242c2)`()` | Stops the polling for session updates.
 `public void `[`DeferPolling`](#classURH__SessionView_1a09c8faf3934af2d317d955cbd5da5ed3)`()` | Defers the polling for session updates (in case an out-of-band update was received)
 `public float `[`GetPollTimeRemaining`](#classURH__SessionView_1aa57cc3f86e075380283f9a7a22d07a06)`()` | Gets the current time remaining in the poll cycle in seconds. Returns -1.f if poll is inactive or is executing.
-`public void `[`ForcePollForUpdate`](#classURH__SessionView_1adcf17d2f0cc4e85d973485db472775af)`()` | Forces a polling call even if the polling is waiting till next time to pulse.
+`public void `[`ForcePollForUpdate`](#classURH__SessionView_1a3dcdea9537922b7c533929b05dc5c885)`(bool bClearETag)` | Forces a polling call even if the polling is waiting till next time to pulse.
 `public void `[`AddDeferredPoll`](#classURH__SessionView_1a7e207452f3a5b71dcf74642d7d15aa9e)`(const `[`FRH_DeferredSessionPoll`](Session.md#structFRH__DeferredSessionPoll)` & DeferredPoll)` | Add a deferred poll to the list of polls to run in sequence.
 `public void `[`CheckDeferredPolls`](#classURH__SessionView_1aaf1a897f37236897e788f33d2c34304a)`()` | Check and potentially kick off a deferred poll.
 `protected `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` `[`SessionData`](#classURH__SessionView_1a2323a589459ab11bb6ee7596d234d7df) | The Session Data with Etag.
@@ -683,9 +776,12 @@ Defers the polling for session updates (in case an out-of-band update was receiv
 Gets the current time remaining in the poll cycle in seconds. Returns -1.f if poll is inactive or is executing.
 
 <br>
-#### `public void `[`ForcePollForUpdate`](#classURH__SessionView_1adcf17d2f0cc4e85d973485db472775af)`()` <a id="classURH__SessionView_1adcf17d2f0cc4e85d973485db472775af"></a>
+#### `public void `[`ForcePollForUpdate`](#classURH__SessionView_1a3dcdea9537922b7c533929b05dc5c885)`(bool bClearETag)` <a id="classURH__SessionView_1a3dcdea9537922b7c533929b05dc5c885"></a>
 
 Forces a polling call even if the polling is waiting till next time to pulse.
+
+#### Parameters
+* `bClearETag` If true, the ETag will be cleared before the poll.
 
 <br>
 #### `public void `[`AddDeferredPoll`](#classURH__SessionView_1a7e207452f3a5b71dcf74642d7d15aa9e)`(const `[`FRH_DeferredSessionPoll`](Session.md#structFRH__DeferredSessionPoll)` & DeferredPoll)` <a id="classURH__SessionView_1a7e207452f3a5b71dcf74642d7d15aa9e"></a>
@@ -803,10 +899,11 @@ Offline Sessions are sessions the session owner is actively a member of that are
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public inline virtual bool `[`IsOffline`](#classURH__OfflineSession_1afb29afef2455da0af98c31af0ac31f92)`() const` | Gets that the session is offline.
-`public virtual void `[`InvitePlayer`](#classURH__OfflineSession_1a208a5f6dcc88605003dab2e16276a40d)`(const FGuid & PlayerUuid,int32 Team,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Currently not supported for offline sessions.
+`public virtual void `[`InvitePlayer`](#classURH__OfflineSession_1a2092323e61cc9ffc383d51168153ea8a)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`KickPlayer`](#classURH__OfflineSession_1a96a88b3e908240be05d657a711f6a857)`(const FGuid & PlayerUuid,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Currently not supported for offline sessions.
-`public virtual void `[`SetLeader`](#classURH__OfflineSession_1a593fcf24e7ecea3b94386c83b85d3fde)`(const FGuid & PlayerUuid,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Currently not supported for offline sessions.
+`public virtual void `[`SetLeader`](#classURH__OfflineSession_1a3c37d431e64d53d8194f2ab2582cd167)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OfflineSession_1afa21c920d6c30158f0c41f9f52d10737)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Changes the team a given player is associated with in the session.
+`public virtual void `[`UpdatePlayerCustomData`](#classURH__OfflineSession_1a6592897ea65a98914483563dbfb91ba1)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`Leave`](#classURH__OfflineSession_1a0abaa8b64c4c5db8fa4a0e76694fd6d2)`(bool bFromOSSSession,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OfflineSession_1a12e217b3335ebd60bcd70bf81fa560d6)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OfflineSession_1a14682216e32e4dfaf985cf9f3bd7ffed)`(FRH_OnSessionUpdatedDelegateBlock Delegate)` | Shutdown the existing instance for the session.
@@ -824,7 +921,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 Gets that the session is offline.
 
 <br>
-#### `public virtual void `[`InvitePlayer`](#classURH__OfflineSession_1a208a5f6dcc88605003dab2e16276a40d)`(const FGuid & PlayerUuid,int32 Team,FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OfflineSession_1a208a5f6dcc88605003dab2e16276a40d"></a>
+#### `public virtual void `[`InvitePlayer`](#classURH__OfflineSession_1a2092323e61cc9ffc383d51168153ea8a)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OfflineSession_1a2092323e61cc9ffc383d51168153ea8a"></a>
 
 Currently not supported for offline sessions.
 
@@ -834,7 +931,7 @@ Currently not supported for offline sessions.
 Currently not supported for offline sessions.
 
 <br>
-#### `public virtual void `[`SetLeader`](#classURH__OfflineSession_1a593fcf24e7ecea3b94386c83b85d3fde)`(const FGuid & PlayerUuid,FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OfflineSession_1a593fcf24e7ecea3b94386c83b85d3fde"></a>
+#### `public virtual void `[`SetLeader`](#classURH__OfflineSession_1a3c37d431e64d53d8194f2ab2582cd167)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OfflineSession_1a3c37d431e64d53d8194f2ab2582cd167"></a>
 
 Currently not supported for offline sessions.
 
@@ -849,6 +946,11 @@ Changes the team a given player is associated with in the session.
 * `Team` The target team that the player will be associated with in the session. 
 
 * `Delegate` Callback delegate for the session being updated by the team change.
+
+<br>
+#### `public virtual void `[`UpdatePlayerCustomData`](#classURH__OfflineSession_1a6592897ea65a98914483563dbfb91ba1)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OfflineSession_1a6592897ea65a98914483563dbfb91ba1"></a>
+
+Currently not supported for offline sessions.
 
 <br>
 #### `public virtual void `[`Leave`](#classURH__OfflineSession_1a0abaa8b64c4c5db8fa4a0e76694fd6d2)`(bool bFromOSSSession,FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OfflineSession_1a0abaa8b64c4c5db8fa4a0e76694fd6d2"></a>
@@ -943,17 +1045,22 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public const TArray< FString > & `[`MatchmakingTags`](#classURH__OnlineSession_1a3d02eff30ffd63efd45ba406a77a095c) | 
+`public const TArray< FString > const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__OnlineSession_1a2bc77310ae4517d14bae417fe4e3f020) | 
 `public inline virtual bool `[`IsOffline`](#classURH__OnlineSession_1af734641e6fe04130aadcfb7a6ed1d58a)`() const` | Gets that an online session is not an offline session.
 `public virtual void `[`ImportAPISession`](#classURH__OnlineSession_1a4fe7233a68b23d1ca4985d3b0e103ef5)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & newSessionData,const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & newTemplate)` | Update a session from the owner, implies a template update.
 `public virtual void `[`Expire`](#classURH__OnlineSession_1abd9d440d9079d657622f572afe3ae9de)`(FRH_OnSessionExpiredDelegate Delegate)` | Called when the session was removed from our session list. Cleans up state then trigger callback on owner.
-`public virtual void `[`JoinQueue`](#classURH__OnlineSession_1a29b7ca98ebc2bb66382f335c8da97e37)`(const FString & QueueId,const TArray< FString > MatchmakingTags,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Joins a specific queue with the session to be matchmade with others.
-`public inline void `[`BLUEPRINT_JoinQueue`](#classURH__OnlineSession_1a18be3435bba8d4fdc3635087efd381b4)`(const FString & QueueId,const TArray< FString > & MatchmakingTags,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint copmatible version of JoinQueue.
+`public virtual void `[`JoinQueue`](#classURH__OnlineSession_1a2c0e1d918efccde7ea534b48805b6bf6)`(const `[`FRHAPI_QueueJoinRequest`](models/RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Joins a specific queue with the session to be matchmade with others.
+`public inline virtual void `[`JoinQueue`](#classURH__OnlineSession_1a29b7ca98ebc2bb66382f335c8da97e37)`(const FString & QueueId,const TArray< FString > MatchmakingTags,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Simplified version of queue join, joins a specific queue with the session to be matchmade with others.
+`public  `[`UFUNCTION`](#classURH__OnlineSession_1a4e4d322afa4582235311cf5c2c0ba763)`(BlueprintCallable,Category,meta) const` | Blueprint copmatible version of JoinQueue.
+`public inline void `[`BLUEPRINT_JoinQueueEx`](#classURH__OnlineSession_1a077e94f81edf865ddc55168c9ce2a353)`(const `[`FRHAPI_QueueJoinRequest`](models/RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint copmatible version of JoinQueue.
 `public virtual void `[`LeaveQueue`](#classURH__OnlineSession_1a0a754169c7844f9ba6ab79032de1c503)`(const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Leaves the currently active matchmaking queue.
 `public inline void `[`BLUEPRINT_LeaveQueue`](#classURH__OnlineSession_1a3c807b01d9d8b0f4f7be9b492dc3e991)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of LeaveQueue.
-`public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1ad70ea12303fcd653ebe61b924226cfc4)`(const FGuid & PlayerUuid,int32 Team,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Invites a player to the session.
+`public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1af878c4844afab4e1c60417895339fb71)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Invites a player to the session.
 `public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a49280c5f4adb5a7042efe2f2baae02e7)`(const FGuid & PlayerUuid,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Kicks a player from the session.
 `public virtual void `[`SetLeader`](#classURH__OnlineSession_1a6390169011f034c47a71e05afe9c01b2)`(const FGuid & PlayerUuid,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Sets a new leader for the session.
 `public virtual void `[`ChangePlayerTeam`](#classURH__OnlineSession_1ae7f710b8ed44602fb6ee2bb835fb98ee)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Changes the team a given player is associated with in the session.
+`public virtual void `[`UpdatePlayerCustomData`](#classURH__OnlineSession_1a1abc1f9bba0656624759e27a8bd9f4bd)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` | Changes the session player's custom data.
 `public virtual void `[`Leave`](#classURH__OnlineSession_1a40be583c2bd361b8486c3a31da5071a7)`(bool bFromOSSSession,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OnlineSession_1a766abe6bfc854d504d3b45ec4d82d7be)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,FRH_OnSessionUpdatedDelegateBlock Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OnlineSession_1ab82b0a5ac97ba6683a74d4cb42e6cead)`(FRH_OnSessionUpdatedDelegateBlock Delegate)` | Shutdown the existing instance for the session.
@@ -965,6 +1072,12 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 
 #### Members
 
+#### `public const TArray< FString > & `[`MatchmakingTags`](#classURH__OnlineSession_1a3d02eff30ffd63efd45ba406a77a095c) <a id="classURH__OnlineSession_1a3d02eff30ffd63efd45ba406a77a095c"></a>
+
+<br>
+#### `public const TArray< FString > const FRH_OnSessionUpdatedDynamicDelegate & `[`Delegate`](#classURH__OnlineSession_1a2bc77310ae4517d14bae417fe4e3f020) <a id="classURH__OnlineSession_1a2bc77310ae4517d14bae417fe4e3f020"></a>
+
+<br>
 #### `public inline virtual bool `[`IsOffline`](#classURH__OnlineSession_1af734641e6fe04130aadcfb7a6ed1d58a)`() const` <a id="classURH__OnlineSession_1af734641e6fe04130aadcfb7a6ed1d58a"></a>
 
 Gets that an online session is not an offline session.
@@ -988,9 +1101,19 @@ Called when the session was removed from our session list. Cleans up state then 
 * `Delegate` The delegate to call when the session is removed.
 
 <br>
-#### `public virtual void `[`JoinQueue`](#classURH__OnlineSession_1a29b7ca98ebc2bb66382f335c8da97e37)`(const FString & QueueId,const TArray< FString > MatchmakingTags,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1a29b7ca98ebc2bb66382f335c8da97e37"></a>
+#### `public virtual void `[`JoinQueue`](#classURH__OnlineSession_1a2c0e1d918efccde7ea534b48805b6bf6)`(const `[`FRHAPI_QueueJoinRequest`](models/RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1a2c0e1d918efccde7ea534b48805b6bf6"></a>
 
 Joins a specific queue with the session to be matchmade with others.
+
+#### Parameters
+* `Request` The request for joining the queue. 
+
+* `Delegate` Callback delegate on the session being updated from joining matchmaking.
+
+<br>
+#### `public inline virtual void `[`JoinQueue`](#classURH__OnlineSession_1a29b7ca98ebc2bb66382f335c8da97e37)`(const FString & QueueId,const TArray< FString > MatchmakingTags,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1a29b7ca98ebc2bb66382f335c8da97e37"></a>
+
+Simplified version of queue join, joins a specific queue with the session to be matchmade with others.
 
 #### Parameters
 * `QueueId` The Id of the queue being joined. 
@@ -1000,7 +1123,7 @@ Joins a specific queue with the session to be matchmade with others.
 * `Delegate` Callback delegate on the session being updated from joining matchmaking.
 
 <br>
-#### `public inline void `[`BLUEPRINT_JoinQueue`](#classURH__OnlineSession_1a18be3435bba8d4fdc3635087efd381b4)`(const FString & QueueId,const TArray< FString > & MatchmakingTags,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__OnlineSession_1a18be3435bba8d4fdc3635087efd381b4"></a>
+#### `public  `[`UFUNCTION`](#classURH__OnlineSession_1a4e4d322afa4582235311cf5c2c0ba763)`(BlueprintCallable,Category,meta) const` <a id="classURH__OnlineSession_1a4e4d322afa4582235311cf5c2c0ba763"></a>
 
 Blueprint copmatible version of JoinQueue.
 
@@ -1008,6 +1131,16 @@ Blueprint copmatible version of JoinQueue.
 * `QueueId` The Id of the queue being joined. 
 
 * `MatchmakingTags` Specific data to be passed in as extra params for matchmaking. 
+
+* `Delegate` Callback delegate on the session being updated from joining matchmaking.
+
+<br>
+#### `public inline void `[`BLUEPRINT_JoinQueueEx`](#classURH__OnlineSession_1a077e94f81edf865ddc55168c9ce2a353)`(const `[`FRHAPI_QueueJoinRequest`](models/RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` <a id="classURH__OnlineSession_1a077e94f81edf865ddc55168c9ce2a353"></a>
+
+Blueprint copmatible version of JoinQueue.
+
+#### Parameters
+* `Request` The request for joining the queue. 
 
 * `Delegate` Callback delegate on the session being updated from joining matchmaking.
 
@@ -1028,12 +1161,14 @@ Blueprint compatible version of LeaveQueue.
 * `Delegate` Callback delegate on the session being updated from leaving matchmaking.
 
 <br>
-#### `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1ad70ea12303fcd653ebe61b924226cfc4)`(const FGuid & PlayerUuid,int32 Team,FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1ad70ea12303fcd653ebe61b924226cfc4"></a>
+#### `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1af878c4844afab4e1c60417895339fb71)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1af878c4844afab4e1c60417895339fb71"></a>
 
 Invites a player to the session.
 
 #### Parameters
 * `PlayerUuid` The unique player Id to invite to the session. 
+
+* `CustomData` The custom data for the invite 
 
 * `Team` The target team that the player will be associated with in the session. 
 
@@ -1070,6 +1205,18 @@ Changes the team a given player is associated with in the session.
 * `Team` The target team that the player will be associated with in the session. 
 
 * `Delegate` Callback delegate for the session being updated by the team change.
+
+<br>
+#### `public virtual void `[`UpdatePlayerCustomData`](#classURH__OnlineSession_1a1abc1f9bba0656624759e27a8bd9f4bd)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1a1abc1f9bba0656624759e27a8bd9f4bd"></a>
+
+Changes the session player's custom data.
+
+#### Parameters
+* `PlayerUuid` The unique player Id whose custom data will be updated 
+
+* `CustomData` The custom data map to set the player's to 
+
+* `Delegate` Callback delegate for the session being updated by the player update
 
 <br>
 #### `public virtual void `[`Leave`](#classURH__OnlineSession_1a40be583c2bd361b8486c3a31da5071a7)`(bool bFromOSSSession,FRH_OnSessionUpdatedDelegateBlock Delegate)` <a id="classURH__OnlineSession_1a40be583c2bd361b8486c3a31da5071a7"></a>
@@ -1180,6 +1327,7 @@ Session Owner Interface.
 `public class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classIRH__SessionOwnerInterface_1abcf3e2921d15c88817b0a82b936b0f35)`() const` | Gets the PlayerInfo Subsystem.
 `public IOnlineSubsystem * `[`GetOSS`](#classIRH__SessionOwnerInterface_1a3ede591e11069d01484302cbdc7acf25)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public inline virtual FGuid `[`GetPlayerUuid`](#classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
 `public inline TOptional< FString > `[`GetETagForSession`](#classIRH__SessionOwnerInterface_1a1af5c13f953285114e7e0ba2c7133c1d)`(const FString & SessionId) const` | Gets the Etag for a given Session.
 `public TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classIRH__SessionOwnerInterface_1aebf9f97e3204d81b31c92e3a5e6ba63d)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public TOptional< FString > `[`GetETagForAllSessionsPoll`](#classIRH__SessionOwnerInterface_1a745015623671711254ef390ee9cb7802)`() const` | Gets the etag to use for a "Get all Sessions" type query.
@@ -1245,6 +1393,11 @@ Gets the Online Subsystem to use for OSS calls.
 #### `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` <a id="classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf"></a>
 
 Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public inline virtual FGuid `[`GetPlayerUuid`](#classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8)`() const` <a id="classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8"></a>
+
+Gets the Player UUID to use for player related calls (can be invalid)
 
 <br>
 #### `public inline TOptional< FString > `[`GetETagForSession`](#classIRH__SessionOwnerInterface_1a1af5c13f953285114e7e0ba2c7133c1d)`(const FString & SessionId) const` <a id="classIRH__SessionOwnerInterface_1a1af5c13f953285114e7e0ba2c7133c1d"></a>
@@ -1316,8 +1469,10 @@ Struct containing the search paramaters for Session Browsers.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`SessionType`](#structFRH__SessionBrowserSearchParams_1a25ef289d60be155f1caeaddd19c5cc0a) | The Type of Session to search for.
+`public TArray< FString > `[`SessionIds`](#structFRH__SessionBrowserSearchParams_1a323e62b2ff94b8be30c0fb7b92914568) | If specified, skip search lookup and instead query these specific session ids.
 `public int32 `[`Cursor`](#structFRH__SessionBrowserSearchParams_1a987cdfb2a54b641a8724c578d4900bfc) | The indicator of what page to request of results.
 `public int32 `[`PageSize`](#structFRH__SessionBrowserSearchParams_1a8de9c480f8dedf19d415e564fe201e96) | The size of each page of results.
+`public bool `[`bCacheSessionDetails`](#structFRH__SessionBrowserSearchParams_1ac0749ac4e9ddb43e11b231fe31b08758) | Whether to query and cache the session data from the search result.
 `public inline  `[`FRH_SessionBrowserSearchParams`](#structFRH__SessionBrowserSearchParams_1ac8b5657a750ea3b355f344334f9048c0)`()` | Default constructor.
 `public inline FString `[`GetDescription`](#structFRH__SessionBrowserSearchParams_1af1c20cb69cc90ba84f385b67489bae24)`() const` | Returns display of search params for toolings/logging.
 
@@ -1328,6 +1483,11 @@ Struct containing the search paramaters for Session Browsers.
 The Type of Session to search for.
 
 <br>
+#### `public TArray< FString > `[`SessionIds`](#structFRH__SessionBrowserSearchParams_1a323e62b2ff94b8be30c0fb7b92914568) <a id="structFRH__SessionBrowserSearchParams_1a323e62b2ff94b8be30c0fb7b92914568"></a>
+
+If specified, skip search lookup and instead query these specific session ids.
+
+<br>
 #### `public int32 `[`Cursor`](#structFRH__SessionBrowserSearchParams_1a987cdfb2a54b641a8724c578d4900bfc) <a id="structFRH__SessionBrowserSearchParams_1a987cdfb2a54b641a8724c578d4900bfc"></a>
 
 The indicator of what page to request of results.
@@ -1336,6 +1496,11 @@ The indicator of what page to request of results.
 #### `public int32 `[`PageSize`](#structFRH__SessionBrowserSearchParams_1a8de9c480f8dedf19d415e564fe201e96) <a id="structFRH__SessionBrowserSearchParams_1a8de9c480f8dedf19d415e564fe201e96"></a>
 
 The size of each page of results.
+
+<br>
+#### `public bool `[`bCacheSessionDetails`](#structFRH__SessionBrowserSearchParams_1ac0749ac4e9ddb43e11b231fe31b08758) <a id="structFRH__SessionBrowserSearchParams_1ac0749ac4e9ddb43e11b231fe31b08758"></a>
+
+Whether to query and cache the session data from the search result.
 
 <br>
 #### `public inline  `[`FRH_SessionBrowserSearchParams`](#structFRH__SessionBrowserSearchParams_1ac8b5657a750ea3b355f344334f9048c0)`()` <a id="structFRH__SessionBrowserSearchParams_1ac8b5657a750ea3b355f344334f9048c0"></a>

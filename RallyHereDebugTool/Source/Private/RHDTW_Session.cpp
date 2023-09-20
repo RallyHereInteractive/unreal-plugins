@@ -3,7 +3,6 @@
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_Session.h"
 #include "imgui.h"
-#include "RH_ImGuiUtilities.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/GameInstance.h"
 #include "RallyHereDebugToolSettings.h"
@@ -14,6 +13,7 @@
 #include "RH_GameInstanceBootstrappers.h"
 #include "RH_MatchmakingBrowser.h"
 #include "RH_PlatformSessionSyncer.h"
+#include "RH_PlayerInfoSubsystem.h"
 
 #include "RH_Beacons.h"
 
@@ -28,8 +28,8 @@ FRHDTW_Session::FRHDTW_Session()
 	JoinByIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	CreateByTypeSessionTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 	CreateByTypeRegionIdString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
+	SessionActionResult.Empty();
 
-	InvitePlayerUuidString.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	InvitePlayerTeam = 0;
 	JoinQueueByIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 
@@ -51,15 +51,26 @@ FRHDTW_Session::FRHDTW_Session()
 	FRH_SessionBrowserSearchParams params;
 	SearchCursor = params.Cursor;
 	SearchPageSize = params.PageSize;
+	SearchCacheSessions = params.bCacheSessionDetails;
 
 	FRH_QueueSearchParams queueSearchParams;
 	QueueSearchCursor = queueSearchParams.Cursor;
 	QueueSearchPageSize = queueSearchParams.PageSize;
 	bFilterInactiveQueues = true;
+
+	InstanceCustomDataStager.SetName("Instance Startup");
+	InvitePlayerCustomDataStager.SetName("Invite Players");
 }
 
 FRHDTW_Session::~FRHDTW_Session()
 {
+	if (UpdatePlayerCustomDataStagers.Num() > 0)
+	{
+		for (auto Pair : UpdatePlayerCustomDataStagers)
+		{
+			delete Pair.Value;
+		}
+	}
 }
 
 void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_GameInstanceSessionSubsystem* pGISessionSubsystem)
@@ -164,6 +175,7 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 
 			ImGui::SameLine();
 			int32 NewTeamId = TeamId;
+			ImGui::SetNextItemWidth(200.f);
 			if (ImGui::InputInt("#Change Team", &NewTeamId, 1, 0))
 			{
 				NewTeamId = FMath::Max(NewTeamId, 0);
@@ -181,6 +193,32 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 		ImGuiDisplayCopyableValue(TEXT("Joined"), Player.GetJoinedOrNull());
 
 		ImGuiDisplayCustomData(Player.GetCustomData());
+
+		FImGuiCustomDataStager* PlayerCustomDataStager = nullptr;
+		if (Player.GetPlayerUuid().IsValid())
+		{
+			if (!UpdatePlayerCustomDataStagers.Contains(Player.GetPlayerUuid()))
+			{
+				UpdatePlayerCustomDataStagers.Emplace(Player.GetPlayerUuid(), new FImGuiCustomDataStager());
+				UpdatePlayerCustomDataStagers[Player.GetPlayerUuid()]->SetName(GetShortUuid(Player.GetPlayerUuid()));
+				if (Player.GetCustomData().Num() > 0)
+				{
+					UpdatePlayerCustomDataStagers[Player.GetPlayerUuid()]->SetDataFromMap(Player.GetCustomData());
+				}
+			}
+			PlayerCustomDataStager = UpdatePlayerCustomDataStagers[Player.GetPlayerUuid()];
+		}
+
+		if (PlayerCustomDataStager != nullptr)
+		{
+			PlayerCustomDataStager->DisplayCustomDataStager(false);
+			if (ImGui::Button("Update Custom Data"))
+			{
+				TMap<FString, FString> CustomData;
+				PlayerCustomDataStager->GetCustomDataMap(CustomData);
+				RHJoinedSession->UpdatePlayerCustomData(Player.PlayerUuid, CustomData);
+			}
+		}
 
 		ImGui::TreePop();
 	}
@@ -223,6 +261,70 @@ void FRHDTW_Session::ImGuiDisplaySessionTemplate(const FRHAPI_SessionTemplate& T
 	{
 		ImGuiDisplayCopyableValue(TEXT("SessionType"), Template.GetSessionType());
 		ImGuiDisplayCopyableValue(TEXT("EngineSessionType"), Template.GetEngineSessionTypeOrNull());
+		ImGuiDisplayCopyableValue(TEXT("CanJoinMatchmaking"), Template.GetCanJoinMatchmakingOrNull());
+		ImGuiDisplayCopyableValue(TEXT("CanBeCreatedByPlayersDirectly"), Template.GetCanBeCreatedByPlayersDirectlyOrNull());
+		ImGuiDisplayCopyableValue(TEXT("Joinable"), Template.GetJoinableOrNull());
+		ImGuiDisplayCopyableValue(TEXT("AutoAddToBrowser"), Template.GetAutoAddToBrowserOrNull());
+
+		ImGuiDisplayCustomData(Template.GetAutoBrowserParamsOrNull(), TEXT("AutoBrowserParams"), TEXT("AutoBrowserParams"));
+
+		ImGuiDisplayCopyableValue(TEXT("CanBeAddedToServerBrowser"), Template.GetCanBeAddedToServerBrowserOrNull());
+		ImGuiDisplayCopyableValue(TEXT("KeepAliveOnEmpty"), Template.GetKeepAliveOnEmptyOrNull());
+
+		auto* PlatformTemplates = Template.GetPlatformTemplatesOrNull();
+
+		if (ImGui::TreeNodeEx("PlatformTemplates", RH_DefaultTreeFlags))
+		{
+			if (PlatformTemplates != nullptr)
+			{
+				for (auto& PlatformTemplate : *PlatformTemplates)
+				{
+					FString PlatformTemplateHeaderString = FString::Printf(TEXT("Platform: %s"), *EnumToString(PlatformTemplate.Value.GetPlatform()));
+
+					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*PlatformTemplateHeaderString), RH_DefaultTreeFlagsLeaf))
+					{
+						ImGuiDisplayCopyableValue(TEXT("Platform"), EnumToString(PlatformTemplate.Value.GetPlatform()));
+						ImGuiDisplayCopyableValue(TEXT("PlatformId"), EnumToString(PlatformTemplate.Value.GetPlatformId()));
+						ImGuiDisplayCopyableValue(TEXT("PlatformSessionType"), PlatformTemplate.Value.GetPlatformSessionType());
+						ImGuiDisplayCopyableValue(TEXT("MaxPlayers"), PlatformTemplate.Value.GetMaxPlayersOrNull());
+						ImGuiDisplayCustomData(PlatformTemplate.Value.GetCustomData());
+
+						ImGui::TreePop();
+					}
+				}
+			}
+			else
+			{
+				ImGui::Text("No PlatformTemplates");
+			}
+
+			ImGui::TreePop();
+		}
+
+		if (const auto InstanceStartupParams = Template.GetAutoStartupParamsOrNull())
+		{
+			if (ImGui::TreeNodeEx("AutoStartupParams", RH_DefaultTreeFlagsLeaf))
+			{
+				ImGuiDisplayCopyableValue(TEXT("Map"), InstanceStartupParams->Map);
+				ImGuiDisplayCopyableValue(TEXT("Mode"), InstanceStartupParams->GetMode());
+				ImGuiDisplayCopyableValue(TEXT("MiscParams"), InstanceStartupParams->MiscParams);
+				ImGuiDisplayCustomData(InstanceStartupParams->GetCustomData());
+
+				ImGui::TreePop();
+			}
+		}
+		else
+		{
+			ImGui::Text("No AutoStartupParams");
+		}
+
+		ImGuiDisplayCopyableValue(TEXT("MinSessionCount"), Template.GetMinSessionCountOrNull());
+
+		ImGuiDisplayCustomData(Template.GetCustomDataOrNull());
+
+		ImGuiDisplayCopyableValue(TEXT("NumTeams"), Template.GetNumTeamsOrNull());
+		ImGuiDisplayCopyableValue(TEXT("PlayersPerTeam"), Template.GetPlayersPerTeamOrNull());
+		ImGuiDisplayCopyableValue(TEXT("CanChangeOwnTeam"), Template.GetCanChangeOwnTeamOrNull());
 
 		ImGui::TreePop();
 	}
@@ -267,9 +369,14 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 	{
 		if (RHSession != nullptr && RHSession->IsOnline())
 		{
-			if (ImGui::Button("Force Refresh"))
+			if (ImGui::Button("Refresh"))
 			{
 				RHSession->ForcePollForUpdate();
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Force Refresh"))
+			{
+				RHSession->ForcePollForUpdate(true);
 			}
 
 			auto UpdateTimer = RHSession->GetPollTimeRemaining();
@@ -429,10 +536,20 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				InstanceStartupParams.SetCustomData(CustomData);
 			}
 
+			InstanceCustomDataStager.DisplayCustomDataStager(false);
+
 			InstanceRequest.SetInstanceStartupParams(InstanceStartupParams);
+
+			auto SetCustomData = [this, InstanceRequest]() mutable
+			{
+				TMap<FString, FString> OutCustomData;
+				InstanceCustomDataStager.GetCustomDataMap(OutCustomData);
+				InstanceRequest.SetCustomData(OutCustomData);
+			};
 
 			if (ImGui::Button("Request Player Instance"))
 			{
+				SetCustomData();
 				InstanceRequest.SetHostType(ERHAPI_HostType::Player);
 				RHJoinedSession->RequestInstance(InstanceRequest);
 			}
@@ -443,6 +560,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				ImGui::SameLine();
 				if (ImGui::Button("Request Dedicated Instance"))
 				{
+					SetCustomData();
 					InstanceRequest.SetHostType(ERHAPI_HostType::Dedicated);
 					RHJoinedSession->RequestInstance(InstanceRequest);
 				}
@@ -484,7 +602,9 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				ImGui::SameLine();
 				if (ImGui::Button("Join Queue"))
 				{
-					RHOnlineSession->JoinQueue(FString(UTF8_TO_TCHAR(JoinQueueByIdString.GetData())));
+					FRHAPI_QueueJoinRequest JoinQueueRequest;
+					JoinQueueRequest.QueueId = ImGuiGetStringFromTextInputBuffer(JoinQueueByIdString);
+					RHOnlineSession->JoinQueue(JoinQueueRequest);
 				}
 			}
 
@@ -522,22 +642,53 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					{
 						ImGuiDisplaySessionPlayer(RHSession, Player, TeamId, pGISessionSubsystem);
 					}
+
+					// Remove obsolete custom data stagers
+					TArray<FGuid> Keys;
+					UpdatePlayerCustomDataStagers.GenerateKeyArray(Keys);
+					for (FGuid UUIDKey : Keys)
+					{
+						if (!Team.Players.ContainsByPredicate([UUIDKey](const FRHAPI_SessionPlayer& Player)
+							{
+								return Player.GetPlayerUuid() == UUIDKey;
+							}))
+						{
+							// No longer in player list, remove stager
+							delete UpdatePlayerCustomDataStagers[UUIDKey];
+							UpdatePlayerCustomDataStagers.Remove(UUIDKey);
+						}
+					}
+
 					ImGui::TreePop();
 				}
 			}
 
+			ImGui::TreePop();
+		}
+
+		if (ImGui::TreeNodeEx("Invite Players", RH_DefaultTreeFlags))
+		{
 			if (RHJoinedSession != nullptr)
 			{
-				ImGui::SetNextItemWidth(300.f);
-				ImGui::InputText("PlayerUuid", InvitePlayerUuidString.GetData(), InvitePlayerUuidString.Num());
-				ImGui::SameLine();
+				int NumTargetedPlayers = 0;
+				if (URallyHereDebugTool* pOwner = GetOwner())
+				{
+					NumTargetedPlayers = pOwner->GetAllTargetedPlayerInfos().Num();
+				}
 				ImGui::SetNextItemWidth(150.f);
 				ImGui::InputInt("Team", &InvitePlayerTeam, 1, 0);
-				ImGui::SameLine();
-				if (ImGui::Button("Invite"))
+				InvitePlayerCustomDataStager.DisplayCustomDataStager(false);
+				if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("Invite [%d] Targeted Players"), NumTargetedPlayers))))
 				{
-					FGuid tempGuid(UTF8_TO_TCHAR(InvitePlayerUuidString.GetData()));
-					RHJoinedSession->InvitePlayer(tempGuid);
+					TMap<FString, FString> CustomData;
+					InvitePlayerCustomDataStager.GetCustomDataMap(CustomData);
+					ForEachTargetedRHPlayer(FRHDT_RHPAction::CreateLambda([this, RHJoinedSession, CustomData](URH_PlayerInfo* PlayerInfo)
+						{
+							if (PlayerInfo)
+							{
+								RHJoinedSession->InvitePlayer(PlayerInfo->GetRHPlayerUuid(), InvitePlayerTeam, CustomData);
+							}
+						}));
 				}
 			}
 
@@ -596,14 +747,55 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 	}
 }
 
-void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSubsystem* pGISubsystem)
+void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem)
 {
+	int NumSelectedPlayers = 0;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
+	}
+	if (NumSelectedPlayers <= 0)
+	{
+		ImGui::Text("%s", "Please select a local player (has Controller Id) in Player Repository.");
+		return;
+	}
+	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
+
+	URH_LocalPlayerSessionSubsystem* firstLPSessionSS = nullptr;
+	FString firstSelectedPlayerNote = FString();
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		if (ULocalPlayer* pLocalPlayer = pOwner->GetFirstSelectedLocalPlayer())
+		{
+			firstSelectedPlayerNote = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pOwner->GetFirstSelectedLocalPlayer()->GetControllerId());
+			if (URH_LocalPlayerSubsystem* LPSS = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>(GetFirstSelectedLocalPlayer()))
+			{
+				firstLPSessionSS = LPSS->GetSessionSubsystem();
+			}
+		}
+	}
+
 	ImGui::InputText("##JoinByID", JoinByIdString.GetData(), JoinByIdString.Num());
 	ImGui::SameLine();
 	if (ImGui::Button("Join (SessionId)"))
 	{
-		// join the system by JoinbyIdString
-		pLPSessionSubsystem->JoinSessionById(ImGuiGetStringFromTextInputBuffer(JoinByIdString));
+		SessionActionResult.Empty();
+		// Join the system by JoinbyIdString
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this](URH_LocalPlayerSubsystem* LPSS)
+			{
+				if (LPSS)
+				{
+					if (URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem = LPSS->GetSessionSubsystem())
+					{
+						auto Delegate = FRH_OnSessionUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleSessionUpdatedResult, LPSS->GetPlayerUuid());
+						pLPSessionSubsystem->JoinSessionById(ImGuiGetStringFromTextInputBuffer(JoinByIdString), MoveTemp(Delegate));
+					}
+					else
+					{
+						SessionActionResult += TEXT("[") + GetShortUuid(LPSS->GetPlayerUuid()) + TEXT("] RH_LocalPlayerSessionSubsystem unavailable.") LINE_TERMINATOR;
+					}
+				}
+			}));
 	}
 
 	ImGui::Separator();
@@ -611,7 +803,12 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_LocalPlayerSessionSubsystem*
 	FString SelectedTemplateName = ImGuiGetStringFromTextInputBuffer(CreateByTypeSessionTypeString);
 	if (ImGui::BeginCombo("##CreateByType", CreateByTypeSessionTypeString.GetData()))
 	{
-		auto Templates = pLPSessionSubsystem->GetTemplates();
+		TArray<FRHAPI_SessionTemplate> Templates;
+		if (firstLPSessionSS)
+		{
+			Templates = firstLPSessionSS->GetTemplates();
+		}
+		
 		for (auto& Template : Templates)
 		{
 			bool bIsSelected = SelectedTemplateName == Template.SessionType;
@@ -634,9 +831,12 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_LocalPlayerSessionSubsystem*
 	}
 	{
 		FRHAPI_SessionTemplate Template;
-		if (pLPSessionSubsystem->GetTemplate(ImGuiGetStringFromTextInputBuffer(CreateByTypeSessionTypeString), Template))
+		if (firstLPSessionSS)
 		{
-			ImGuiDisplaySessionTemplate(Template);
+			if (firstLPSessionSS->GetTemplate(ImGuiGetStringFromTextInputBuffer(CreateByTypeSessionTypeString), Template))
+			{
+				ImGuiDisplaySessionTemplate(Template);
+			}
 		}
 	}
 
@@ -644,6 +844,7 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_LocalPlayerSessionSubsystem*
 	ImGui::InputText("Region Id", CreateByTypeRegionIdString.GetData(), CreateByTypeRegionIdString.Num());
 	if (ImGui::Button("Create/Join (Type)"))
 	{
+		SessionActionResult.Empty();
 		// join the system by JoinbyIdString
 		FRHAPI_CreateOrJoinRequest Params = {};
 		Params.SetSessionType(ImGuiGetStringFromTextInputBuffer(CreateByTypeSessionTypeString));
@@ -653,32 +854,68 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_LocalPlayerSessionSubsystem*
 			Params.SetRegionId(RegionId);
 		}
 		Params.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
-		pLPSessionSubsystem->CreateOrJoinSessionByType(Params);
+
+		ForEachSelectedLocalRHPlayer(FRHDT_RHLPAction::CreateLambda([this, Params](URH_LocalPlayerSubsystem* LPSS)
+			{
+				if (LPSS)
+				{
+					if (URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem = LPSS->GetSessionSubsystem())
+					{
+						auto Delegate = FRH_OnSessionUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleSessionUpdatedResult, LPSS->GetPlayerUuid());
+						pLPSessionSubsystem->CreateOrJoinSessionByType(Params, MoveTemp(Delegate));
+					}
+					else
+					{
+						SessionActionResult += TEXT("[") + GetShortUuid(LPSS->GetPlayerUuid()) + TEXT("] RH_LocalPlayerSessionSubsystem unavailable.") LINE_TERMINATOR;
+					}
+				}
+			}));
+
+	}
+
+	if (!SessionActionResult.IsEmpty())
+	{
+		if (ImGui::CollapsingHeader("Session Action Result", RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*SessionActionResult));
+		}
 	}
 
 	ImGui::Separator();
 	ImGui::Separator();
 
-	ImGui::Text("Sessions");
-	if (ImGui::Button("Force Refresh"))
+	if (firstLPSessionSS)
 	{
-		pLPSessionSubsystem->ForcePollForUpdate();
-	}
+		ImGui::Text("%s", TCHAR_TO_UTF8(*firstSelectedPlayerNote));
 
-	auto UpdateTimer = pLPSessionSubsystem->GetPollTimeRemaining();
-	if (UpdateTimer >= 0)
-	{
-		FTimespan PollTime = FTimespan::FromSeconds(UpdateTimer);
-
+		ImGui::Text("Sessions");
+		if (ImGui::Button("Refresh"))
+		{
+			firstLPSessionSS->ForcePollForUpdate();
+		}
 		ImGui::SameLine();
-		ImGui::Text("Next Global Poll: (%s)", TCHAR_TO_UTF8(*PollTime.ToString()));
+		if (ImGui::Button("Force Refresh"))
+		{
+			firstLPSessionSS->ForcePollForUpdate(true);
+		}
+
+		auto UpdateTimer = firstLPSessionSS->GetPollTimeRemaining();
+		if (UpdateTimer >= 0)
+		{
+			FTimespan PollTime = FTimespan::FromSeconds(UpdateTimer);
+
+			ImGui::SameLine();
+			ImGui::Text("Next Global Poll: (%s)", TCHAR_TO_UTF8(*PollTime.ToString()));
+		}
+
+		TArray<URH_SessionView*> Sessions = firstLPSessionSS->GetSessions();
+		for (auto& Session : Sessions)
+		{
+			ImGuiDisplaySession(Session->GetSessionWithETag(), Session, firstLPSessionSS, pGISubsystem ? pGISubsystem->GetSessionSubsystem() : nullptr);
+		}
 	}
 
-	TArray<URH_SessionView*> Sessions = pLPSessionSubsystem->GetSessions();
-	for (auto& Session : Sessions)
-	{
-		ImGuiDisplaySession(Session->GetSessionWithETag(), Session, pLPSessionSubsystem, pGISubsystem ? pGISubsystem->GetSessionSubsystem() : nullptr);
-	}
+
 
 	// Offline mode testing
 	ImGui::Separator();
@@ -693,7 +930,146 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_LocalPlayerSessionSubsystem*
 	}
 }
 
-void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSubsystem* pGISubsystem)
+
+void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem)
+{
+	URallyHereDebugTool* pOwner = GetOwner();
+	if (pOwner == nullptr)
+	{
+		ImGui::Text("URallyHereDebugTool not available.");
+		return;
+	}
+
+	int NumSelectedPlayers = pOwner->GetAllSelectedPlayerInfos().Num();
+	if (NumSelectedPlayers <= 0)
+	{
+		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
+		return;
+	}
+	ImGui::Text("For [%d] selected players with UUIDs.", NumSelectedPlayers);
+
+
+	if (ImGui::Button("Refresh Sessions List"))
+	{
+		GetPlayerSessionsResult.Empty();
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
+			{
+				if (PlayerInfo)
+				{
+					if (auto pp = PlayerInfo->GetSessions())
+					{
+						pp->RequestUpdate(false, FRH_OnRequestPlayerSessionsDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleGetPlayerSessions, PlayerInfo->GetRHPlayerUuid()));
+					}
+					else
+					{
+						GetPlayerSessionsResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] No sessions found on player info.") LINE_TERMINATOR;
+					}
+				}
+			}));
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Refresh Sessions List (Force)"))
+	{
+		GetPlayerSessionsResult.Empty();
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this](URH_PlayerInfo* PlayerInfo)
+			{
+				if (PlayerInfo)
+				{
+					if (auto pp = PlayerInfo->GetSessions())
+					{
+						pp->RequestUpdate(true, FRH_OnRequestPlayerSessionsDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleGetPlayerSessions, PlayerInfo->GetRHPlayerUuid()));
+					}
+					else
+					{
+						GetPlayerSessionsResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] No presence found on player info.") LINE_TERMINATOR;
+					}
+				}
+			}));
+	}
+
+	if (!GetPlayerSessionsResult.IsEmpty())
+	{
+		if (ImGui::CollapsingHeader("Get Sessions Action Result", RH_DefaultTreeFlagsDefaultOpen))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*GetPlayerSessionsResult));
+		}
+	}
+	ImGui::Separator();
+
+
+	if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
+	{
+		ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+
+		if (auto pSessionsWrapper = ActivePlayerInfo->GetSessions())
+		{
+			TArray<FString> SessionTypes;
+			TArray<FString> SessionIds;
+
+			auto* pGISessionSearchCache = pGISubsystem != nullptr ? pGISubsystem->GetSessionSearchCache() : nullptr;
+
+			auto* SessionsMap = pSessionsWrapper->Sessions.GetSessionsOrNull();
+
+			if (!pSessionsWrapper->bInitialized)
+			{
+				ImGui::Text("Session data has not been requested");
+			}
+			else if (SessionsMap == nullptr || SessionsMap->Num() <= 0)
+			{
+				// no sessions presently
+				ImGui::Text("No Sessions");
+			}
+			else
+			{
+				for (auto pair : *SessionsMap)
+				{
+					const auto SessionIdSet = pair.Value.GetSessionIdsOrNull();
+					if (SessionIdSet && SessionIdSet->Num() > 0)
+					{
+						SessionIds.Append(SessionIdSet->Array());
+					}
+
+					const auto PendingInvites = pair.Value.GetPendingInvitesOrNull();
+					if (PendingInvites && PendingInvites->Num() > 0)
+					{
+						TArray<FString> InviteSessionIds;
+						PendingInvites->GenerateKeyArray(InviteSessionIds);
+						SessionIds.Append(InviteSessionIds);
+					}
+				}
+
+				for (const auto& SessionId : SessionIds)
+				{
+					URH_SessionView* RHSession = nullptr;
+					if (pGISessionSearchCache != nullptr)
+					{
+						RHSession = pGISessionSearchCache->GetSessionById(SessionId);
+					}
+
+					if (RHSession != nullptr)
+					{
+						// session display has its own refresh functionality
+						ImGuiDisplaySession(RHSession->GetSessionWithETag(), RHSession, nullptr, pGISubsystem ? pGISubsystem->GetSessionSubsystem() : nullptr);
+					}
+					else
+					{
+						ImGuiDisplayCopyableValue(TEXT("SessionId"), SessionId);
+						ImGui::SameLine();
+						if (pGISessionSearchCache != nullptr)
+						{
+							if (ImGui::SmallButton("Get Session Details"))
+							{
+								URH_SessionView::PollSingleSession(SessionId, pGISessionSearchCache);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISubsystem)
 {
 	auto pGISessionSearchCache = pGISubsystem != nullptr ? pGISubsystem->GetSessionSearchCache() : nullptr;
 	if (pGISessionSearchCache == nullptr)
@@ -702,9 +1078,29 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_LocalPlayerSessionSubsystem*
 		return;
 	}
 
+	URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem = nullptr;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		if (ULocalPlayer* pLocalPlayer = pOwner->GetFirstSelectedLocalPlayer())
+		{
+			FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pOwner->GetFirstSelectedLocalPlayer()->GetControllerId());
+			ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
+
+			if (URH_LocalPlayerSubsystem* LPSS = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>(GetFirstSelectedLocalPlayer()))
+			{
+				pLPSessionSubsystem = LPSS->GetSessionSubsystem();
+			}
+		}
+		else
+		{
+			ImGui::Text("Please select a local player (has Controller Id) in Player Repository. Local Player Subsystem currently required to search queues.");
+			return;
+		}
+	}
+
 	if (pLPSessionSubsystem == nullptr)
 	{
-		ImGui::Text("Local Player Subsystem currently required to get template information");
+		ImGui::Text("RH_LocalPlayerSessionSubstem unavailable.");
 		return;
 	}
 
@@ -739,6 +1135,8 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_LocalPlayerSessionSubsystem*
 	ImGui::SameLine();
 	ImGui::SetNextItemWidth(150.f);
 	ImGui::InputInt("Page Size", &SearchPageSize);
+	ImGui::SameLine();
+	ImGui::Checkbox("Fetch Session Details", &SearchCacheSessions);
 
 	if (ImGui::Button("Search"))
 	{
@@ -747,6 +1145,7 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_LocalPlayerSessionSubsystem*
 		params.SessionType = UTF8_TO_TCHAR(SearchByTypeString.GetData());
 		params.Cursor = SearchCursor;
 		params.PageSize = SearchPageSize;
+		params.bCacheSessionDetails = SearchCacheSessions;
 		pLPSessionSubsystem->SearchForSessions(params, FRH_OnSessionSearchCompleteDelegate::CreateSP(this, &FRHDTW_Session::HandleBrowserSearchResult));
 	}
 
@@ -771,22 +1170,36 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_LocalPlayerSessionSubsystem*
 		FString HeaderString = FString::Printf(TEXT("Search #%d: %s"), i, *Result.GetDescription());
 
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
-		{		
-			if (Result.Sessions.Num() <= 0)
+		{
+			if (Result.SessionInfos.Num() <= 0)
 			{
 				ImGui::Text("No matching sessions found");
 			}
 			else
 			{
-				for (auto Session : Result.Sessions)
+				for (auto SessionInfo : Result.SessionInfos)
 				{
-					if (Session.IsValid())
+					FString SessionId = SessionInfo.SessionId;
+
+					// check if we have a cached session
+					auto Session = pGISessionSearchCache->GetSessionById(SessionId);
+					if (Session != nullptr)
 					{
-						ImGuiDisplaySession(Session->GetSessionWithETag(), Session.Get(), pLPSessionSubsystem, pGISubsystem ? pGISubsystem->GetSessionSubsystem() : nullptr);
+						ImGuiDisplaySession(Session->GetSessionWithETag(), Session, pLPSessionSubsystem, pGISubsystem ? pGISubsystem->GetSessionSubsystem() : nullptr);
 					}
 					else
 					{
-						ImGui::Text("Stale/Null Result");
+						ImGuiDisplayCopyableValue(TEXT("SessionId"), SessionId);
+						ImGui::SameLine();
+						if (pGISessionSearchCache != nullptr)
+						{
+							if (ImGui::SmallButton("Get Session Details"))
+							{
+								URH_SessionView::PollSingleSession(SessionId, pGISessionSearchCache);
+							}
+						}
+
+						ImGuiDisplayCustomData(SessionInfo.GetCustomDataOrNull());
 					}
 				}
 			}
@@ -797,7 +1210,7 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_LocalPlayerSessionSubsystem*
 }
 
 
-void FRHDTW_Session::ImGuiDisplayQueuesBrowser(URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSubsystem* pGISubsystem)
+void FRHDTW_Session::ImGuiDisplayQueuesBrowser(URH_GameInstanceSubsystem* pGISubsystem)
 {
 	auto pGIMatchmakingCache = pGISubsystem != nullptr ? pGISubsystem->GetMatchmakingCache() : nullptr;
 	if (pGIMatchmakingCache == nullptr)
@@ -806,9 +1219,29 @@ void FRHDTW_Session::ImGuiDisplayQueuesBrowser(URH_LocalPlayerSessionSubsystem* 
 		return;
 	}
 
+	URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem = nullptr;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		if (ULocalPlayer* pLocalPlayer = pOwner->GetFirstSelectedLocalPlayer())
+		{
+			FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pOwner->GetFirstSelectedLocalPlayer()->GetControllerId());
+			ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
+
+			if (URH_LocalPlayerSubsystem* LPSS = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>(GetFirstSelectedLocalPlayer()))
+			{
+				pLPSessionSubsystem = LPSS->GetSessionSubsystem();
+			}
+		}
+		else
+		{
+			ImGui::Text("Please select a local player (has Controller Id) in Player Repository. Local Player Subsystem currently required to search queues.");
+			return;
+		}
+	}
+
 	if (pLPSessionSubsystem == nullptr)
 	{
-		ImGui::Text("Local Player Subsystem currently required to search queues");
+		ImGui::Text("RH_LocalPlayerSessionSubstem unavailable.");
 		return;
 	}
 
@@ -854,7 +1287,6 @@ void FRHDTW_Session::ImGuiDisplayQueuesBrowser(URH_LocalPlayerSessionSubsystem* 
 		}
 		ImGui::EndCombo();
 	}
-
 
 	{
 		// make sure we re-read the selected session in case it changed
@@ -994,7 +1426,7 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 											auto MapIdentifier = FString::Printf(TEXT("%d"), Map.GetMapGameId());
 											if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MapIdentifier), RH_DefaultTreeFlagsLeaf))
 											{
-												ImGuiDisplayCopyableValue(TEXT("MapId"), MapIdentifier);
+												ImGuiDisplayCopyableValue(TEXT("MapId"), Map.GetMapGameId());
 												ImGuiDisplayCopyableValue(TEXT("Map"), Map.GetMapName());
 												ImGuiDisplayCopyableValue(TEXT("GameMode"), Map.GetModeOrNull());
 												ImGuiDisplayCopyableValue(TEXT("Chance"), Map.GetSelectionChance());
@@ -1102,55 +1534,50 @@ void FRHDTW_Session::ImGuiDisplayRegionsBrowser(URH_GameInstanceSubsystem* pGISu
 
 void FRHDTW_Session::Do()
 {
-	auto pGameInstance = GetGameInstance();
-	if (pGameInstance == nullptr)
+	URallyHereDebugTool* pOwner = GetOwner();
+	if (pOwner == nullptr)
 	{
-		ImGui::Text("ERROR - No Game Instance Found");
+		ImGui::Text("URallyHereDebugTool not available.");
 		return;
 	}
 
-	if (URallyHereDebugTool* pOwner = GetOwner())
+	auto pGameInstance = GetGameInstance();
+	if (pGameInstance == nullptr)
 	{
-		if (pOwner->GetFirstSelectedLocalPlayer() == nullptr)
-		{
-			ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
-			return;
-		}
-		else
-		{
-			FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pOwner->GetFirstSelectedLocalPlayer()->GetControllerId());
-			ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
-		}
+		ImGui::Text("No Game Instance Found");
+		return;
 	}
 
 	auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
 	auto pGISessionSubsystem = pGISubsystem != nullptr ? pGISubsystem->GetSessionSubsystem() : nullptr;
 	auto pGISessionSearchCache = pGISubsystem != nullptr ? pGISubsystem->GetSessionSearchCache() : nullptr;
-
 	auto pGIMatchmakingCache = pGISubsystem != nullptr ? pGISubsystem->GetMatchmakingCache() : nullptr;
-
-	auto pLPSubsystem = GetSelectedRH_LocalPlayerSubsystem();
-	auto pLPSessionSubsystem = pLPSubsystem != nullptr ? pLPSubsystem->GetSessionSubsystem() : nullptr;
 
 
 	static ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
 	if (ImGui::BeginTabBar("Sessions", tab_bar_flags))
 	{
-		if (pLPSessionSubsystem != nullptr && ImGui::BeginTabItem("Player", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Local Player", nullptr, ImGuiTabItemFlags_None))
 		{
-			ImGuiDisplayPlayerSessions(pLPSessionSubsystem, pGISubsystem);
+			ImGuiDisplayLocalPlayerSessions(pGISubsystem);
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Player", nullptr, ImGuiTabItemFlags_None))
+		{
+			ImGuiDisplayPlayerSessions(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 
 		if (pGISessionSearchCache != nullptr && ImGui::BeginTabItem("Browser", nullptr, ImGuiTabItemFlags_None))
 		{
-			ImGuiDisplaySessionBrowser(pLPSessionSubsystem, pGISubsystem);
+			ImGuiDisplaySessionBrowser(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 
 		if (pGIMatchmakingCache != nullptr && ImGui::BeginTabItem("Queues", nullptr, ImGuiTabItemFlags_None))
 		{
-			ImGuiDisplayQueuesBrowser(pLPSessionSubsystem, pGISubsystem);
+			ImGuiDisplayQueuesBrowser(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 
@@ -1172,3 +1599,40 @@ void FRHDTW_Session::HandleBrowserSearchResult(bool bSuccess, const FRH_SessionB
 		ResultCache.Add(MoveTemp(TempResult));
 	}
 }
+
+void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession* SessionData, FGuid PlayerUuid)
+{
+	if (bSuccess)
+	{
+		SessionActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Session action succeeded.") LINE_TERMINATOR;
+	}
+	else
+	{
+		SessionActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Session action failed.") LINE_TERMINATOR;
+	}
+}
+
+void FRHDTW_Session::HandleGetPlayerSessions(bool bSuccess, URH_PlayerSessions* SessionsData, FGuid PlayerUuid)
+{
+	if (bSuccess)
+	{
+		GetPlayerSessionsResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Get Player Sessions succeeded.") LINE_TERMINATOR;
+	}
+	else
+	{
+		GetPlayerSessionsResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Get Player Sessions failed.") LINE_TERMINATOR;
+	}
+}
+
+void FRHDTW_Session::HandleGetPlayerSessionsDetails(bool bSuccess, const FRH_SessionBrowserSearchResult& Result)
+{
+	if (bSuccess)
+	{
+		GetPlayerSessionsResult += TEXT("Get Player Sessions Details succeeded.") LINE_TERMINATOR;
+	}
+	else
+	{
+		GetPlayerSessionsResult += TEXT("Get Player Sessions Details failed.") LINE_TERMINATOR;
+	}
+}
+

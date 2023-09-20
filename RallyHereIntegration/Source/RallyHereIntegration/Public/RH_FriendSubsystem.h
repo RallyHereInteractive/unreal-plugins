@@ -13,6 +13,10 @@
 #include "RH_Polling.h"
 #include "RH_FriendSubsystem.generated.h"
 
+class URH_FriendSubsystem;
+class URH_PlatformFriend;
+class URH_RHFriendAndPlatformFriend;
+
 /** @ingroup Friends
  * @brief Status of players' friend relationship
  */
@@ -31,12 +35,19 @@ enum class FriendshipStatus : uint8
 	RH_FriendRequestDeclinedByOther,
 };
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FriendListUpdatedDelegate, const TArray<URH_RHFriendAndPlatformFriend*>&);
-DECLARE_MULTICAST_DELEGATE_OneParam(FriendUpdatedDelegate, URH_RHFriendAndPlatformFriend*);
-DECLARE_MULTICAST_DELEGATE_TwoParams(FriendUpdateErrorDelegate, const FGuid&, const FName&);
-DECLARE_MULTICAST_DELEGATE_OneParam(BlockedListUpdatedDelegate, const TArray<FRHAPI_BlockedPlayer>&);
-DECLARE_MULTICAST_DELEGATE_TwoParams(BlockedPlayerUpdatedDelegate, const FGuid&, const bool);
-DECLARE_MULTICAST_DELEGATE_TwoParams(BlockedPlayerUpdateErrorDelegate, const FGuid&, const FName&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_FriendListUpdatedDelegate, const TArray<URH_RHFriendAndPlatformFriend*>&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_FriendUpdatedDelegate, URH_RHFriendAndPlatformFriend*);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_FriendUpdateErrorDelegate, const FGuid&, const FName&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_BlockedListUpdatedDelegate, const TArray<FRHAPI_BlockedPlayer>&);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdatedDelegate, const FGuid&, const bool);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdateErrorDelegate, const FGuid&, const FName&);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_FriendListUpdatedDynamicDelegate, const TArray<URH_RHFriendAndPlatformFriend*>&, FriendList);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_FriendUpdatedDynamicDelegate, URH_RHFriendAndPlatformFriend*, Friend);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_FriendUpdateErrorDynamicDelegate, const FGuid&, PlayerId, const FName&, Error);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_BlockedListUpdatedDynamicDelegate, const TArray<FRHAPI_BlockedPlayer>&, Blocked);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdatedDynamicDelegate, const FGuid&, PlayerId, const bool, bSuccess);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdateErrorDynamicDelegate, const FGuid&, PlayerId, const FName&, Error);
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_GenericFriendDynamicDelegate, bool, bSuccess);
@@ -58,6 +69,11 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_AddNotesDynamicDelegate, bool, bSuccess
 DECLARE_DELEGATE_ThreeParams(FRH_AddNotesDelegate, bool, const FGuid&, const FString&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_AddNotesBlock, FRH_AddNotesDelegate, FRH_AddNotesDynamicDelegate, bool, const FGuid&, const FString&);
 
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_GetRHPlayerUuidDynamicDelegate, bool, bSuccess, const FGuid&, PlayerUuid);
+DECLARE_DELEGATE_TwoParams(FRH_GetRHPlayerUuidDelegate, bool, const FGuid&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_GetRHPlayerUuidBlock, FRH_GetRHPlayerUuidDelegate, FRH_GetRHPlayerUuidDynamicDelegate, bool, const FGuid&)
+
 /** @defgroup Friends RallyHere Friends
  *  @{
  */
@@ -65,7 +81,7 @@ DECLARE_RH_DELEGATE_BLOCK(FRH_AddNotesBlock, FRH_AddNotesDelegate, FRH_AddNotesD
 /**
  * @brief Platform Friend class tracks all the information for a user you have a relationship with on your platform.
  */
-UCLASS(BlueprintType, Config=RallyHereIntegration, DefaultConfig)
+UCLASS(BlueprintType, Config=RallyHereIntegration, DefaultConfig, Within=RH_FriendSubsystem)
 class RALLYHEREINTEGRATION_API URH_PlatformFriend : public UObject
 {
 	GENERATED_BODY()
@@ -76,8 +92,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
 	FString GetClientDisplayName() const { return DisplayName; }
 
-	UFUNCTION(BlueprintPure, Category = "Platform Friend", meta=(DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetClientDisplayName"))
-	FString GetClientGamerTag() const { return DisplayName; }
 	/**
 	 * @brief Gets the rich presence of the user on their platform.
 	 */
@@ -91,13 +105,14 @@ public:
 	/**
 	* @brief Gets the type of platform.
 	*/
-	UFUNCTION(BlueprintPure, Category = "Platform Friend", meta = (DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetPlatformBase"))
-	ERHAPI_PlatformTypes_DEPRECATED GetPlatform() const { return RH_GetPlatformTypeFromPlatform(PlayerPlatformId.PlatformType); }
+	UFUNCTION(BlueprintPure, Category = "Platform Friend")
+	ERHAPI_Platform GetPlatform() const { return PlayerPlatformId.PlatformType; }
 	/**
 	 * @brief Gets the type of platform.
 	 */
+	UE_DEPRECATED(5.0, "Use GetPlatform() instead of GetPlatformBase()")
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
-	ERHAPI_Platform GetPlatformBase() const { return PlayerPlatformId.PlatformType; } // #RHTODO: When GetPlatform is removed rename this with a redirector and deprecate.
+	ERHAPI_Platform GetPlatformBase() const { return GetPlatform(); }
 	/**
 	 * @brief Gets the users unique platform player id.
 	 */
@@ -261,17 +276,20 @@ protected:
 /**
  * @brief RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform Friend together
  */
-UCLASS(BlueprintType, Config=RallyHereIntegration, DefaultConfig)
+UCLASS(BlueprintType, Config=RallyHereIntegration, DefaultConfig, Within=RH_FriendSubsystem)
 class RALLYHEREINTEGRATION_API URH_RHFriendAndPlatformFriend : public UObject
 {
 	GENERATED_BODY()
 	friend class URH_FriendSubsystem;
 
 public:
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	class URH_FriendSubsystem* GetFriendSubsystem() const;
+
 	/**
 	* @brief Blueprint delegate to listen for presence updates.
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "RH And Platform Friend", meta = (DisplayName = "On Presence Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "RH And Platform Friend", meta = (DisplayName = "On Presence Updated"))
 	FRH_OnPresenceUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
 	/**
 	* @brief Native delegate to listen for presence updates.
@@ -489,22 +507,23 @@ public:
 	/**
 	* @brief Gets a platform friend object for the specified platform if it exists.
 	*/
-	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetPlatformFriend with ERHAPI_Platform"))
-	URH_PlatformFriend* GetPlatformFriend(ERHAPI_PlatformTypes_DEPRECATED Platform) const
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	URH_PlatformFriend* GetPlatformFriend(ERHAPI_Platform Platform) const
 	{
-		return GetPlatformFriendBase(RH_GetPlatformFromPlatformType(Platform));
+		const auto PlatformFriend = PlatformFriends.FindByPredicate([Platform](const URH_PlatformFriend* PlatformFriend)
+			{
+				return PlatformFriend->GetPlatform() == Platform;
+			});
+		return PlatformFriend ? *PlatformFriend : nullptr;
 	}
 	/**
 	* @brief Gets a platform friend object for the specified platform if it exists.
 	*/
-	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
-	URH_PlatformFriend* GetPlatformFriendBase(ERHAPI_Platform Platform) const // #RHTODO: When GetPlatformFriend is removed rename this with a redirector and deprecate.
+	UE_DEPRECATED(5.0, "Please use GetPlatformFriend instead.")
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetPlatformFriend"))
+	URH_PlatformFriend* GetPlatformFriendBase(ERHAPI_Platform Platform) const
 	{
-		const auto PlatformFriend = PlatformFriends.FindByPredicate([Platform](const URH_PlatformFriend* PlatformFriend)
-			{
-				return PlatformFriend->GetPlatformBase() == Platform;
-			});
-		return PlatformFriend ? *PlatformFriend : nullptr;
+		return GetPlatformFriend(Platform);
 	}
 	/**
 	* @brief Gets all of the players platform friend entries.
@@ -523,22 +542,24 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	FString GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon) const;
-	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta=(DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetLastKnownDisplayName"))
-	FString GetLastKnownGamerTag(ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType = ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN) const { return GetLastKnownDisplayName(RH_GetPlatformFromPlatformType(PreferredPlatformType)); }
 	/**
 	* @brief Gets the last known display name for the player, will request from API as needed.
+	* @param PlayerInfoSubsystem The subsystem to use for the lookup
 	* @param StaleThreshold The time threshold to consider the cached display name stale.
 	* @param bForceRefresh If true will force a request from the API.
 	* @param PreferredPlatformType The preferred platform to get the display name from.
 	* @param Delegate The delegate to call when the request is complete.
 	*/
-	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr) const;
+	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock()) const;
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetLastKnownDisplayNameAsync(const URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate, LocalPlayerSubsystem); }
-	UE_DEPRECATED(5.0, "This function has been deprecated, use GetLastKnownDisplayNameAsync")
-	void GetLastKnownGamerTagAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType = ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr) const;
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Gamer Tag Async", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetLastKnownDisplayNameAsync"))
-	void BLUEPRINT_GetLastKnownGamerTagAsync(const URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, RH_GetPlatformFromPlatformType(PreferredPlatformType), Delegate, LocalPlayerSubsystem); }
+	void BLUEPRINT_GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate); }
+	/**
+	* @brief Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo. 
+	* @param Delegate The delegate to call when the request is complete.
+	*/
+	void GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock Delegate = FRH_GetRHPlayerUuidBlock());
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get RH Player UUID Name Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidDynamicDelegate& Delegate) { GetRHPlayerUuidAsync(Delegate); }
 
 protected:
 	/** @brief Player Info and Platform Info combined. */
@@ -614,31 +635,63 @@ public:
 	typedef RallyHereAPI::Traits_DeleteFriendV2 DeleteFriendType;
 	/** @brief Type Define for Add Friend Notes calls. */
 	typedef RallyHereAPI::Traits_AddNotesV2 AddNotesType;
+	/** @brief Type Define for Delete Friend Notes calls. */
+	typedef RallyHereAPI::Traits_DeleteNotesV2 DeleteNotesType;
 
 	/**
 	 * @brief Delegate that fires whenever the friends list is updated.
 	 */
-	FriendListUpdatedDelegate FriendListUpdatedDelegate;
+	FRH_FriendListUpdatedDelegate FriendListUpdatedDelegate;
+	/**
+	 * @brief Delegate that fires whenever the friends list is updated.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend List Updated"))
+	FRH_FriendListUpdatedDynamicDelegate BLUEPRINT_FriendListUpdatedDelegate;
 	/**
 	 * @brief Delegate that fires whenever a friend is updated.
 	 */
-	FriendUpdatedDelegate FriendUpdatedDelegate;
+	FRH_FriendUpdatedDelegate FriendUpdatedDelegate;
+	/**
+	 * @brief Delegate that fires whenever a friend is updated.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend Player Updated"))
+	FRH_FriendUpdatedDynamicDelegate BLUEPRINT_FriendUpdatedDelegate;
 	/**
 	 * @brief Delegate that fires whenever a friend API call fails.
 	 */
-	FriendUpdateErrorDelegate FriendUpdateErrorDelegate;
+	FRH_FriendUpdateErrorDelegate FriendUpdateErrorDelegate;
+	/**
+	 * @brief Delegate that fires whenever a friend API call fails.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend Player Update Error"))
+	FRH_FriendUpdateErrorDynamicDelegate BLUEPRINT_FriendUpdateErrorDelegate;
 	/**
 	 * @brief Delegate that fires whenever blocked players list is updated.
 	 */
-	BlockedListUpdatedDelegate BlockedListUpdatedDelegate;
+	FRH_BlockedListUpdatedDelegate BlockedListUpdatedDelegate;
+	/**
+	 * @brief Delegate that fires whenever blocked players list is updated.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked List Updated"))
+	FRH_BlockedListUpdatedDynamicDelegate BLUEPRINT_BlockedListUpdatedDelegate;
 	/**
 	 * @brief Delegate that fires whenever a blocked player is updated.
 	 */
-	BlockedPlayerUpdatedDelegate BlockedPlayerUpdatedDelegate;
+	FRH_BlockedPlayerUpdatedDelegate BlockedPlayerUpdatedDelegate;
+	/**
+	 * @brief Delegate that fires whenever a blocked player is updated.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked Player Updated"))
+	FRH_BlockedPlayerUpdatedDynamicDelegate BLUEPRINT_BlockedPlayerUpdatedDelegate;
 	/**
 	 * @brief Delegate that fires whenever blocked player API call fails.
 	 */
-	BlockedPlayerUpdateErrorDelegate BlockedPlayerUpdateErrorDelegate;
+	FRH_BlockedPlayerUpdateErrorDelegate BlockedPlayerUpdateErrorDelegate;
+	/**
+	 * @brief Delegate that fires whenever blocked player API call fails.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked Player Update Error"))
+	FRH_BlockedPlayerUpdateErrorDynamicDelegate BLUEPRINT_BlockedPlayerUpdateErrorDelegate;
 	
 	/**
 	* @brief Initialize the subsystem.
@@ -648,6 +701,10 @@ public:
 	* @brief Safely tears down the subsystem.
 	*/
     virtual void Deinitialize();
+
+	/** @brief Helper function to get the Player Info Subsystem that owns this. */
+	UFUNCTION(BlueprintPure, Category = "Friend Subsystem", meta = (DisplayName = "Get Player Info Subsystem"))
+	URH_PlayerInfoSubsystem* GetRH_PlayerInfoSubsystem() const;
 
 #pragma region API Requests
 	/**
@@ -695,6 +752,15 @@ public:
 	bool AddNotes(const FGuid& PlayerUuid, const FString& Notes, FRH_AddNotesBlock Delegate = FRH_AddNotesBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Add Notes", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_AddNotes(UPARAM(ref) const FGuid& PlayerUuid, UPARAM(ref) const FString& Notes, const FRH_AddNotesDynamicDelegate& Delegate) { return AddNotes(PlayerUuid, Notes, Delegate); }
+	/**
+	* @brief Calls the Friends API to delete personal notes for another player.
+	* @param [in] PlayerUUID The unique player id of the friend to whose notes will be modified.
+	* @param [in] Delegate Callback delegate for when the call completes.
+	* @return If true, the call was executed.
+	*/
+	bool DeleteNotes(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Delete Notes", AutoCreateRefTerm = "Delegate"))
+	bool BLUEPRINT_DeleteNotes(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return DeleteNotes(PlayerUuid, Delegate); }
 	/**
 	* @brief Calls the Friends API to get the list of players you have blocked.
 	* @param [in] Delegate Callback delegate for when the call completes.
@@ -916,6 +982,7 @@ protected:
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
 			FriendUpdatedDelegate.Broadcast(Friend);
+			BLUEPRINT_FriendUpdatedDelegate.Broadcast(Friend);
 		}
 	}
 
@@ -954,6 +1021,13 @@ protected:
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
 	virtual void OnAddNotesResponse(const AddNotesType::Response& Resp, FRH_AddNotesBlock Delegate, AddNotesType::Request Request, int32 RetryEtagFailureCount);
+	/**
+	* @brief Handles the response to a Delete Friend Notes call.
+	* @param [in] Resp Response given for the call.
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
+	*/
+	virtual void OnDeleteNotesResponse(const DeleteNotesType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, DeleteNotesType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Get Blocked List call.
 	* @param [in] Resp Response given for the call.
@@ -1002,6 +1076,16 @@ protected:
 										FRH_AddNotesBlock Delegate,
 										AddNotesType::Request Request, int32 RetryEtagFailureCount);
 	/**
+	* @brief Handles the response to a Fetch Friend For Delete Note call.
+	* @param [in] Resp Response given for the call.
+	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	* @param [in] Request The Request used to make the fetch friend call.
+	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
+	*/
+	virtual void OnFetchFriendForDeleteNote(const GetFriendRelationshipType::Response& Resp,
+											FRH_GenericFriendWithUuidBlock Delegate,
+											DeleteNotesType::Request Request, int32 RetryEtagFailureCount);
+	/**
 	* @brief Handles the response to a Fetch Friend For Remove call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
@@ -1038,8 +1122,6 @@ protected:
 	 * @return The error code.
 	 */
 	FName ExtractErrorCodeFromResponse(const FHttpResponsePtr& Response) const;
-	/** @brief Helper function to get the Player Info Subsystem that owns this. */
-	URH_PlayerInfoSubsystem* GetRH_PlayerInfoSubsystem() const;
 
 	// OSS friends update
 	/**

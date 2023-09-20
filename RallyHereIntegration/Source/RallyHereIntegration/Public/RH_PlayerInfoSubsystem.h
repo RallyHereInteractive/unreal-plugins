@@ -7,6 +7,7 @@
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereIntegrationModule.h"
 #include "SettingsAPI.h"
+#include "SessionsAPI.h"
 #include "RankAPI.h"
 #include "Engine/EngineTypes.h"
 #include "RH_Common.h"
@@ -73,6 +74,16 @@ DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnRequestPlayerPresenceDynamicDelegate, b
 DECLARE_DELEGATE_TwoParams(FRH_OnRequestPlayerPresenceDelegate, bool, URH_PlayerPresence*);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnRequestPlayerPresenceBlock, FRH_OnRequestPlayerPresenceDelegate, FRH_OnRequestPlayerPresenceDynamicDelegate, bool, URH_PlayerPresence*)
 
+// multicast delegates to notify listeners of session events
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate, URH_PlayerSessions*, SessionData);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerSessionsUpdatedMulticastDelegate, URH_PlayerSessions*);
+
+// non multicast delegates for update request tracking
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnRequestPlayerSessionsDynamicDelegate, bool, bSuccess, URH_PlayerSessions*, SessionData);
+DECLARE_DELEGATE_TwoParams(FRH_OnRequestPlayerSessionsDelegate, bool, URH_PlayerSessions*);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnRequestPlayerSessionsBlock, FRH_OnRequestPlayerSessionsDelegate, FRH_OnRequestPlayerSessionsDynamicDelegate, bool, URH_PlayerSessions*)
+
 /** @defgroup PlayerInfo RallyHere Player Info
  *  @{
  */
@@ -87,12 +98,6 @@ class RALLYHEREINTEGRATION_API URH_PlayerPresence : public UObject
 
 public:
 	typedef RallyHereAPI::Traits_GetPlayerPresencePublicByUuid GetPresenceType;
-
-	/**
-	* @brief Configurable delay between presence update requests.
-	*/
-	UPROPERTY(Config, BlueprintReadOnly, Category = Presence)
-	float PresenceRequestDelay;
 
 	/**
 	* @brief Tracks if the Presence has been initialized.
@@ -142,7 +147,7 @@ public:
 	/**
 	 * @brief Blueprint delegate to listen for presence updates.
 	 */
-	UPROPERTY(BlueprintReadWrite, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "On Presence Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "On Presence Updated"))
 	FRH_OnPresenceUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
 	/**
 	* @brief Native delegate to listen for presence updates.
@@ -244,16 +249,139 @@ protected:
 	 */
 	void PollPresence(const FRH_PollCompleteFunc& Delegate);
 	/**
-	 * @brief Handles the response to a Presence poll.
-	 * @param [in] Resp Response given for the poll.
+	 * @brief Handles executing any delegate listeners for the players presence.
+	 * @param bSuccess If the poll was successful.
+	 */
+	virtual void ExecuteDelegates(bool bSuccess);
+};
+
+
+/**
+ * @brief Player Sessions class used to store player session membership information
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerSessions : public UObject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid GetSessionsType;
+
+	/**
+	* @brief Tracks if the Presence has been initialized.
 	*/
-	virtual void HandleResponse(const GetPresenceType::Response& Resp);
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	bool bInitialized;
+	/**
+	* @brief Players unique identifier.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FGuid PlayerUuid;
+	/**
+	* @brief The last time the players session data was updated on the client.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FDateTime LastUpdated;
+	/**
+	* @brief ETag to track if the session list is stale during requests.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FString ETag;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FRHAPI_PlayerSessions Sessions;
+
+	/**
+	 * @brief Blueprint delegate to listen for sessions updates.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Sessions", meta = (DisplayName = "On Sessions Updated"))
+	FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionsUpdatedDelegate;
+	/**
+	* @brief Native delegate to listen for sessions updates.
+	*/
+	FRH_OnPlayerSessionsUpdatedMulticastDelegate OnSessionsUpdatedDelegate;
+	/**
+	* @brief Delegates stored to response to currently active requests.
+	*/
+	TArray<FRH_OnRequestPlayerSessionsBlock> TemporaryRequestDelegates;
+
+	/**
+	 * @brief Stores the response data from an API presence request.
+	 * @param Other The presence data to store.
+	 */
+	virtual void Update(const GetSessionsType::Response& Other)
+	{
+		bInitialized = true;
+
+		ETag = Other.ETag.Get(FString());
+		Sessions = Other.Content;
+	}
+
+	/**
+	 * @brief Sets the last updated time to now.
+	 */
+	void MarkUpdated()
+	{
+		LastUpdated = FDateTime::UtcNow();
+	}
+	
+	/**
+	 * @brief Clears the last updated time to force an update.
+	 */
+	void MarkDirty()
+	{
+		LastUpdated = FDateTime();
+	}
+
+	/**
+	* @brief Enqueues an update request for the players presence information from the RallyHere API.
+	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+	* @param [in] Delegate Callback delegate for the request.
+	*/
+	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerSessionsBlock Delegate = FRH_OnRequestPlayerSessionsBlock())
+	{
+		TemporaryRequestDelegates.Add(Delegate);
+		CheckPollStatus(bForceUpdate);
+	}
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "Get Presence Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RequestUpdate(bool bForceUpdate, const FRH_OnRequestPlayerSessionsDynamicDelegate& Delegate) { RequestUpdate(bForceUpdate, Delegate); }
+
+	/**
+	* @brief Gets the PlayerInfo that owns this Player Presence.
+	* @return The PlayerInfo that owns the Presence.
+	*/	
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Presence")
+	class URH_PlayerInfo* GetPlayerInfo() const;
+
+	/**
+	* @brief Updates the poll status to be active or inactive based on if it should currently be polling.
+	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+	*/
+	void CheckPollStatus(const bool bForceUpdate = false);
+protected:
+	/**
+	 * @brief Poller for the players presence.
+	 */
+	FRH_AutoPollerPtr SessionsPoller;
+	/**
+	 * @brief Gets if the poller should be actively polling, only polls if something cares about it.
+	 */
+	virtual bool ShouldPoll() const
+	{
+		return !(TemporaryRequestDelegates.Num() == 0
+			&& !BLUEPRINT_OnSessionsUpdatedDelegate.IsBound()
+			&& !OnSessionsUpdatedDelegate.IsBound());
+	}
+	/**
+	 * @brief Starts a poll of the players presence.
+	 * @param Delegate Callback delegate for the poll.
+	 */
+	void PollSessions(const FRH_PollCompleteFunc& Delegate);
 	/**
 	 * @brief Handles executing any delegate listeners for the players presence.
 	 * @param bSuccess If the poll was successful.
-	 * @param bUpdated If the poll updated the presence.
 	 */
-	virtual void ExecuteDelegates(bool bSuccess, bool bUpdated);
+	virtual void ExecuteDelegates(bool bSuccess);
 };
 
 /**
@@ -299,12 +427,6 @@ public:
 	* @brief Gets the Platform Type for the player.
 	* @return The players Platform Type.
 	*/
-	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Platform Info", meta = (DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetPlatform"))
-	FORCEINLINE ERHAPI_PlatformTypes_DEPRECATED GetPlatformType() const { return RH_GetPlatformTypeFromPlatform(PlayerPlatformId.PlatformType); }
-	/**
-	* @brief Gets the Platform Type for the player.
-	* @return The players Platform Type.
-	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Platform Info")
 	FORCEINLINE ERHAPI_Platform GetPlatform() const { return PlayerPlatformId.PlatformType; }
 	/**
@@ -313,8 +435,6 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Platform Info")
 	FORCEINLINE FString GetLastKnownDisplayName() const { return DisplayName; }
-	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Platform Info", meta=(DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetLastKnownDisplayName"))
-	FORCEINLINE FString GetLastKnownGamerTag() const { return GetLastKnownDisplayName(); }
 
 	/**
 	 * @brief Players Platform ID struct.
@@ -356,6 +476,13 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerPresence* GetPresence() const { return PlayerPresence;}
+
+	/**
+	* @brief Gets The players presence class.
+	* @return The players presence class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerSessions* GetSessions() const { return PlayerSessions;}
 
 	/**
 	* @brief Gets the associated platform ids of the player.
@@ -447,11 +574,6 @@ public:
 	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr);
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate, LocalPlayerSubsystem); }
-
-	UE_DEPRECATED(5.0, "This function has been deprecated, use GetLastKnownDisplayNameAsync")
-	void GetLastKnownGamerTagAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType = ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr);
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Gamer Tag Async", AutoCreateRefTerm = "Delegate", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetLastKnownDisplayNameAsync"))
-	void BLUEPRINT_GetLastKnownGamerTagAsync(const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, RH_GetPlatformFromPlatformType(PreferredPlatformType), Delegate, LocalPlayerSubsystem); }
 	
 	/**
 	* @brief Gets the last known display name for the player.
@@ -462,11 +584,6 @@ public:
 	bool GetLastKnownDisplayName(FString& OutDisplayName, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon) const;
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name"))
 	bool BLUEPRINT_GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType, FString& OutDisplayName) const { return GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType); }
-
-	UE_DEPRECATED(5.0, "This function has been deprecated, use GetLastKnownDisplayName")
-	bool GetLastKnownGamerTag(FString& OutGamerTag, ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType = ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN) const;
-	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Gamer Tag", DeprecatedFunction, DeprecationMessage = "This function has been deprecated, use GetLastKnownDisplayName"))
-	bool BLUEPRINT_GetLastKnownGamerTag(ERHAPI_PlatformTypes_DEPRECATED PreferredPlatformType, FString& OutGamerTag) const { return GetLastKnownDisplayName(OutGamerTag, RH_GetPlatformFromPlatformType(PreferredPlatformType)); }
 	
 	/**
 	* @brief Gets the players linked platforms via API call.
@@ -527,12 +644,6 @@ public:
 	 * @brief Gets the local users logged in platform type.
 	 * @return The Platform type of the local user
 	 */
-	UE_DEPRECATED(5.0, "This function has been deprecated, use GetLoggedInPlatform")
-	ERHAPI_PlatformTypes_DEPRECATED GetLoggedInPlatformType() const;
-	/**
-	 * @brief Gets the local users logged in platform type.
-	 * @return The Platform type of the local user
-	 */
 	ERHAPI_Platform GetLoggedInPlatform() const;
 	/**
 	* @brief Blueprint delegate to listen for presence updates.
@@ -543,6 +654,15 @@ public:
 	* @brief Native delegate to listen for presence updates.
 	*/
 	FRH_OnPresenceUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
+	/**
+	* @brief Blueprint delegate to listen for session list updates.
+	*/
+	UPROPERTY(BlueprintReadWrite, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Sessions Updated"))
+	FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionsUpdatedDelegate;
+	/**
+	* @brief Native delegate to listen for session list updates.
+	*/
+	FRH_OnPlayerSessionsUpdatedMulticastDelegate OnSessionsUpdatedDelegate;
 
 protected:
 	/**
@@ -575,6 +695,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetPresence, Category = "Presence")
 	URH_PlayerPresence* PlayerPresence;
+	/**
+	 * @brief The players Sessions Information.
+	 */
+	UPROPERTY(BlueprintGetter = GetSessions, Category = "Sessions")
+	URH_PlayerSessions* PlayerSessions;
 	/**
 	 * @brief The Players Inventory Subsystem.
 	 */
@@ -655,13 +780,21 @@ protected:
 	virtual void OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
 	/**
 	 * @brief Helper to broadcast results from player presences being updated.
-	 * @param InPlayerPresence The updated Player Presence.
 	 */
-	virtual void OnPresenceUpdated(URH_PlayerPresence* InPlayerPresence)
+	virtual void OnPresenceUpdated()
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
 		OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
 		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
+	}
+	/**
+	 * @brief Helper to broadcast results from player sessions list being updated.
+	 */
+	virtual void OnSessionsUpdated()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionsUpdated, FColor::Purple);
+		OnSessionsUpdatedDelegate.Broadcast(PlayerSessions);
+		BLUEPRINT_OnSessionsUpdatedDelegate.Broadcast(PlayerSessions);
 	}
 
 	// allow player info subsystem to directly set data in some cases
@@ -669,6 +802,9 @@ protected:
 
 	// allow player presence to call OnPresenceUpdated, so we do not rely on a callback binding
 	friend class URH_PlayerPresence;
+
+	// allow player sessions to call OnSessionsUpdated, so we do not rely on a callback binding
+	friend class URH_PlayerSessions;
 };
 
 /**
@@ -696,7 +832,7 @@ struct FRH_PlayerAndPlatformInfo
  * @brief Subsystem used to track and request information about players.
  */
 UCLASS(BlueprintType)
-class RALLYHEREINTEGRATION_API URH_PlayerInfoSubsystem : public URH_GameInstanceSubsystemPlugin, public FTickableGameObject
+class RALLYHEREINTEGRATION_API URH_PlayerInfoSubsystem : public URH_SandboxedSubsystemPlugin, public FTickableGameObject
 {
     GENERATED_BODY()
 

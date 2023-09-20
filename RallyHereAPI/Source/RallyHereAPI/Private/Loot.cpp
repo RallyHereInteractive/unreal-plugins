@@ -22,6 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_Loot::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("loot_id"));
     RallyHereAPI::WriteJsonValue(Writer, LootId);
     Writer->WriteIdentifierPrefix(TEXT("vendor_id"));
@@ -167,6 +172,12 @@ bool FRHAPI_Loot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
     ParseSuccess &= JsonLootIdField.IsValid() && !JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId);
     const TSharedPtr<FJsonValue> JsonVendorIdField = (*Object)->TryGetField(TEXT("vendor_id"));

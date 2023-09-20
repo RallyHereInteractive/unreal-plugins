@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_LoginResult`](#structFRHAPI__LoginResult) | 
+`struct `[`FRHAPI_LoginResult`](#structFRHAPI__LoginResult) | Login result.
 
 ## struct `FRHAPI_LoginResult` <a id="structFRHAPI__LoginResult"></a>
 
@@ -13,34 +13,36 @@ struct FRHAPI_LoginResult
   : public FRHAPI_Model
 ```
 
+Login result.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_Platform `[`Platform`](#structFRHAPI__LoginResult_1a6a195b87e1d22fa5b77b86e7d376ebd1) | 
-`public int32 `[`PortalId`](#structFRHAPI__LoginResult_1a3898b1b959f1ff5f3cc950e0d547ba32) | 
-`public FString `[`PortalUserId`](#structFRHAPI__LoginResult_1a9237ecf76d2eb6d9ed3a804e3980b741) | 
-`public FString `[`DisplayName`](#structFRHAPI__LoginResult_1ae364a213c068323650e9601609858258) | 
+`public ERHAPI_Platform `[`Platform`](#structFRHAPI__LoginResult_1a6a195b87e1d22fa5b77b86e7d376ebd1) | Platform.
+`public int32 `[`PortalId`](#structFRHAPI__LoginResult_1a3898b1b959f1ff5f3cc950e0d547ba32) | Portal ID *DEPRECATED* use `platform` instead.
+`public FString `[`PortalUserId`](#structFRHAPI__LoginResult_1a9237ecf76d2eb6d9ed3a804e3980b741) | Portal user ID.
+`public FString `[`DisplayName`](#structFRHAPI__LoginResult_1ae364a213c068323650e9601609858258) | Display name.
 `public `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` `[`PortalParentAuthResult_Optional`](#structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b) | 
 `public bool `[`PortalParentAuthResult_IsSet`](#structFRHAPI__LoginResult_1ad84a4150a336bc1f6f55819dea19dff2) | true if PortalParentAuthResult_Optional has been set to a value
 `public TArray< FString > `[`Permissions_Optional`](#structFRHAPI__LoginResult_1a2841f8f618dc2680f7ab4c6899561cd9) | List of permissions for this user.
 `public bool `[`Permissions_IsSet`](#structFRHAPI__LoginResult_1a0c607dca5488bdf74bd28eaaef59d5f0) | true if Permissions_Optional has been set to a value
 `public TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > `[`Restrictions_Optional`](#structFRHAPI__LoginResult_1a4586cd52c8ed381811e2a1a4c61859f3) | List of restrictions on this player.
 `public bool `[`Restrictions_IsSet`](#structFRHAPI__LoginResult_1a2a25d29775c9306078e4a7c19c1f6786) | true if Restrictions_Optional has been set to a value
-`public int32 `[`ActivePlayerId`](#structFRHAPI__LoginResult_1a1c655acbbbf60ee0ce3148ecccec823f) | 
-`public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__LoginResult_1a1fe87a5018d006aab99028203b01251a) | 
+`public int32 `[`ActivePlayerId`](#structFRHAPI__LoginResult_1a1c655acbbbf60ee0ce3148ecccec823f) | Active player ID. *DEPRECATED* use `active_player_uuid` instead.
+`public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__LoginResult_1a1fe87a5018d006aab99028203b01251a) | Active player UUID.
 `public bool `[`ActivePlayerUuid_IsSet`](#structFRHAPI__LoginResult_1ac02d484f09e284db376db17de8e2db41) | true if ActivePlayerUuid_Optional has been set to a value
-`public int32 `[`RoleId_Optional`](#structFRHAPI__LoginResult_1afebeb425c411703bca06d59456ba9d0d) | 
+`public int32 `[`RoleId_Optional`](#structFRHAPI__LoginResult_1afebeb425c411703bca06d59456ba9d0d) | Role ID.
 `public bool `[`RoleId_IsSet`](#structFRHAPI__LoginResult_1aa2242500dd115b30cdcb6e9e33c2a231) | true if RoleId_Optional has been set to a value
-`public FGuid `[`PersonId`](#structFRHAPI__LoginResult_1ab83a5487d85f800109203fd8fdff8803) | 
-`public FString `[`AccessToken_Optional`](#structFRHAPI__LoginResult_1a5974b3b5de07ae97a0e1d64830c025ca) | 
+`public FGuid `[`PersonId`](#structFRHAPI__LoginResult_1ab83a5487d85f800109203fd8fdff8803) | Person ID.
+`public FString `[`AccessToken_Optional`](#structFRHAPI__LoginResult_1a5974b3b5de07ae97a0e1d64830c025ca) | Access token that can be used for future requests.
 `public bool `[`AccessToken_IsSet`](#structFRHAPI__LoginResult_1abae8091fc3254a451a6dcbf785626995) | true if AccessToken_Optional has been set to a value
-`public FString `[`RefreshToken_Optional`](#structFRHAPI__LoginResult_1a47cc38d2d92dc2a188de95ff1b9b48a1) | 
+`public FString `[`RefreshToken_Optional`](#structFRHAPI__LoginResult_1a47cc38d2d92dc2a188de95ff1b9b48a1) | Refresh token that can be used to refresh authentication for a new access token.
 `public bool `[`RefreshToken_IsSet`](#structFRHAPI__LoginResult_1a52e874f6fbb4991b98d673a1e75f8756) | true if RefreshToken_Optional has been set to a value
-`public FGuid `[`PublisherUuid`](#structFRHAPI__LoginResult_1ad7cd2550323daecbe38dd81afcb599e2) | 
-`public FGuid `[`TenantUuid`](#structFRHAPI__LoginResult_1a7421186147416414e5e5807959dc056f) | 
-`public FGuid `[`ConfigElectorUuid`](#structFRHAPI__LoginResult_1a016a390d6851b1892d0829fbd8f0f116) | 
-`public FGuid `[`ClientUuid`](#structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213) | 
+`public FGuid `[`PublisherUuid`](#structFRHAPI__LoginResult_1ad7cd2550323daecbe38dd81afcb599e2) | Publisher UUID.
+`public FGuid `[`TenantUuid`](#structFRHAPI__LoginResult_1a7421186147416414e5e5807959dc056f) | Tenant UUID.
+`public FGuid `[`ConfigElectorUuid`](#structFRHAPI__LoginResult_1a016a390d6851b1892d0829fbd8f0f116) | Config elector UUID.
+`public FGuid `[`ClientUuid`](#structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213) | Client UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__LoginResult_1af9386114ff2777a0a15b36708f6e5f09)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LoginResult_1aa5959a551d8a530e874d75d5595f88d8)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__LoginResult_1a712826e629138103d8339c89233ffe80)`()` | Gets the value of Platform.
@@ -142,14 +144,22 @@ struct FRHAPI_LoginResult
 
 #### `public ERHAPI_Platform `[`Platform`](#structFRHAPI__LoginResult_1a6a195b87e1d22fa5b77b86e7d376ebd1) <a id="structFRHAPI__LoginResult_1a6a195b87e1d22fa5b77b86e7d376ebd1"></a>
 
+Platform.
+
 <br>
 #### `public int32 `[`PortalId`](#structFRHAPI__LoginResult_1a3898b1b959f1ff5f3cc950e0d547ba32) <a id="structFRHAPI__LoginResult_1a3898b1b959f1ff5f3cc950e0d547ba32"></a>
+
+Portal ID *DEPRECATED* use `platform` instead.
 
 <br>
 #### `public FString `[`PortalUserId`](#structFRHAPI__LoginResult_1a9237ecf76d2eb6d9ed3a804e3980b741) <a id="structFRHAPI__LoginResult_1a9237ecf76d2eb6d9ed3a804e3980b741"></a>
 
+Portal user ID.
+
 <br>
 #### `public FString `[`DisplayName`](#structFRHAPI__LoginResult_1ae364a213c068323650e9601609858258) <a id="structFRHAPI__LoginResult_1ae364a213c068323650e9601609858258"></a>
+
+Display name.
 
 <br>
 #### `public `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` `[`PortalParentAuthResult_Optional`](#structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b) <a id="structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b"></a>
@@ -182,8 +192,12 @@ true if Restrictions_Optional has been set to a value
 <br>
 #### `public int32 `[`ActivePlayerId`](#structFRHAPI__LoginResult_1a1c655acbbbf60ee0ce3148ecccec823f) <a id="structFRHAPI__LoginResult_1a1c655acbbbf60ee0ce3148ecccec823f"></a>
 
+Active player ID. *DEPRECATED* use `active_player_uuid` instead.
+
 <br>
 #### `public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__LoginResult_1a1fe87a5018d006aab99028203b01251a) <a id="structFRHAPI__LoginResult_1a1fe87a5018d006aab99028203b01251a"></a>
+
+Active player UUID.
 
 <br>
 #### `public bool `[`ActivePlayerUuid_IsSet`](#structFRHAPI__LoginResult_1ac02d484f09e284db376db17de8e2db41) <a id="structFRHAPI__LoginResult_1ac02d484f09e284db376db17de8e2db41"></a>
@@ -193,6 +207,8 @@ true if ActivePlayerUuid_Optional has been set to a value
 <br>
 #### `public int32 `[`RoleId_Optional`](#structFRHAPI__LoginResult_1afebeb425c411703bca06d59456ba9d0d) <a id="structFRHAPI__LoginResult_1afebeb425c411703bca06d59456ba9d0d"></a>
 
+Role ID.
+
 <br>
 #### `public bool `[`RoleId_IsSet`](#structFRHAPI__LoginResult_1aa2242500dd115b30cdcb6e9e33c2a231) <a id="structFRHAPI__LoginResult_1aa2242500dd115b30cdcb6e9e33c2a231"></a>
 
@@ -201,8 +217,12 @@ true if RoleId_Optional has been set to a value
 <br>
 #### `public FGuid `[`PersonId`](#structFRHAPI__LoginResult_1ab83a5487d85f800109203fd8fdff8803) <a id="structFRHAPI__LoginResult_1ab83a5487d85f800109203fd8fdff8803"></a>
 
+Person ID.
+
 <br>
 #### `public FString `[`AccessToken_Optional`](#structFRHAPI__LoginResult_1a5974b3b5de07ae97a0e1d64830c025ca) <a id="structFRHAPI__LoginResult_1a5974b3b5de07ae97a0e1d64830c025ca"></a>
+
+Access token that can be used for future requests.
 
 <br>
 #### `public bool `[`AccessToken_IsSet`](#structFRHAPI__LoginResult_1abae8091fc3254a451a6dcbf785626995) <a id="structFRHAPI__LoginResult_1abae8091fc3254a451a6dcbf785626995"></a>
@@ -212,6 +232,8 @@ true if AccessToken_Optional has been set to a value
 <br>
 #### `public FString `[`RefreshToken_Optional`](#structFRHAPI__LoginResult_1a47cc38d2d92dc2a188de95ff1b9b48a1) <a id="structFRHAPI__LoginResult_1a47cc38d2d92dc2a188de95ff1b9b48a1"></a>
 
+Refresh token that can be used to refresh authentication for a new access token.
+
 <br>
 #### `public bool `[`RefreshToken_IsSet`](#structFRHAPI__LoginResult_1a52e874f6fbb4991b98d673a1e75f8756) <a id="structFRHAPI__LoginResult_1a52e874f6fbb4991b98d673a1e75f8756"></a>
 
@@ -220,14 +242,22 @@ true if RefreshToken_Optional has been set to a value
 <br>
 #### `public FGuid `[`PublisherUuid`](#structFRHAPI__LoginResult_1ad7cd2550323daecbe38dd81afcb599e2) <a id="structFRHAPI__LoginResult_1ad7cd2550323daecbe38dd81afcb599e2"></a>
 
+Publisher UUID.
+
 <br>
 #### `public FGuid `[`TenantUuid`](#structFRHAPI__LoginResult_1a7421186147416414e5e5807959dc056f) <a id="structFRHAPI__LoginResult_1a7421186147416414e5e5807959dc056f"></a>
+
+Tenant UUID.
 
 <br>
 #### `public FGuid `[`ConfigElectorUuid`](#structFRHAPI__LoginResult_1a016a390d6851b1892d0829fbd8f0f116) <a id="structFRHAPI__LoginResult_1a016a390d6851b1892d0829fbd8f0f116"></a>
 
+Config elector UUID.
+
 <br>
 #### `public FGuid `[`ClientUuid`](#structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213) <a id="structFRHAPI__LoginResult_1aa28597bee651583c0631fcef0d952213"></a>
+
+Client UUID.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__LoginResult_1af9386114ff2777a0a15b36708f6e5f09)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__LoginResult_1af9386114ff2777a0a15b36708f6e5f09"></a>

@@ -35,6 +35,7 @@ Private/CreateOrJoinRequest.cpp
 Private/CrossplayInput.cpp
 Private/CrossplayPlatform.cpp
 Private/CrossplayPreferences.cpp
+Private/CustomAPI.cpp
 Private/Determiner.cpp
 Private/DiscoveryAPI.cpp
 Private/DiscoveryResponse.cpp
@@ -64,6 +65,7 @@ Private/InstanceJoinableStatus.cpp
 Private/InstanceLaunchTemplate.cpp
 Private/InstanceNotificationAPI.cpp
 Private/InstanceRequest.cpp
+Private/InstanceRequestTemplate.cpp
 Private/InstanceSourceProvider.cpp
 Private/InstanceStartupParams.cpp
 Private/Inventory.cpp
@@ -86,6 +88,7 @@ Private/ItemInventory.cpp
 Private/ItemType.cpp
 Private/Items.cpp
 Private/JoinParams.cpp
+Private/KVsResponse.cpp
 Private/KeyClaim.cpp
 Private/KeyClaims.cpp
 Private/KeyClaimsAPI.cpp
@@ -100,7 +103,9 @@ Private/Loot.cpp
 Private/Loots.cpp
 Private/MMRGroupingMethod.cpp
 Private/MapConfig.cpp
+Private/MapConfigV2.cpp
 Private/MapSelectionList.cpp
+Private/MapSelectionListV2.cpp
 Private/MarketingAPI.cpp
 Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
@@ -108,10 +113,13 @@ Private/MatchCreateRequest.cpp
 Private/MatchCreateResponse.cpp
 Private/MatchInfo.cpp
 Private/MatchMakingProfile.cpp
+Private/MatchMakingProfileV2.cpp
 Private/MatchMakingRuleset.cpp
 Private/MatchMakingSessionRequest.cpp
 Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
+Private/MatchMakingTemplateGroupV2.cpp
+Private/MatchMakingTemplateV2.cpp
 Private/MatchmakingInfo.cpp
 Private/MessageOnly.cpp
 Private/Notes.cpp
@@ -192,10 +200,12 @@ Private/PurgeRequest.cpp
 Private/PurgeResponse.cpp
 Private/QuantityType.cpp
 Private/QueueConfig.cpp
+Private/QueueConfigV2.cpp
 Private/QueueJoinRequest.cpp
 Private/QueueJoinResponse.cpp
 Private/QueuesAPI.cpp
 Private/QueuesResponse.cpp
+Private/QueuesResponseV2.cpp
 Private/RallyHereAPIAll.cpp
 Private/RallyHereAPIAuthContext.cpp
 Private/RallyHereAPIBaseModel.cpp
@@ -213,6 +223,7 @@ Private/Restriction.cpp
 Private/RestrictionType.cpp
 Private/Role.cpp
 Private/Rule.cpp
+Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/SendInBlueContact.cpp
 Private/Session.cpp
@@ -294,6 +305,7 @@ Public/CreateOrJoinRequest.h
 Public/CrossplayInput.h
 Public/CrossplayPlatform.h
 Public/CrossplayPreferences.h
+Public/CustomAPI.h
 Public/Determiner.h
 Public/DiscoveryAPI.h
 Public/DiscoveryResponse.h
@@ -323,6 +335,7 @@ Public/InstanceJoinableStatus.h
 Public/InstanceLaunchTemplate.h
 Public/InstanceNotificationAPI.h
 Public/InstanceRequest.h
+Public/InstanceRequestTemplate.h
 Public/InstanceSourceProvider.h
 Public/InstanceStartupParams.h
 Public/Inventory.h
@@ -345,6 +358,7 @@ Public/ItemInventory.h
 Public/ItemType.h
 Public/Items.h
 Public/JoinParams.h
+Public/KVsResponse.h
 Public/KeyClaim.h
 Public/KeyClaims.h
 Public/KeyClaimsAPI.h
@@ -359,7 +373,9 @@ Public/Loot.h
 Public/Loots.h
 Public/MMRGroupingMethod.h
 Public/MapConfig.h
+Public/MapConfigV2.h
 Public/MapSelectionList.h
+Public/MapSelectionListV2.h
 Public/MarketingAPI.h
 Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
@@ -367,10 +383,13 @@ Public/MatchCreateRequest.h
 Public/MatchCreateResponse.h
 Public/MatchInfo.h
 Public/MatchMakingProfile.h
+Public/MatchMakingProfileV2.h
 Public/MatchMakingRuleset.h
 Public/MatchMakingSessionRequest.h
 Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
+Public/MatchMakingTemplateGroupV2.h
+Public/MatchMakingTemplateV2.h
 Public/MatchmakingInfo.h
 Public/MessageOnly.h
 Public/Notes.h
@@ -451,10 +470,12 @@ Public/PurgeRequest.h
 Public/PurgeResponse.h
 Public/QuantityType.h
 Public/QueueConfig.h
+Public/QueueConfigV2.h
 Public/QueueJoinRequest.h
 Public/QueueJoinResponse.h
 Public/QueuesAPI.h
 Public/QueuesResponse.h
+Public/QueuesResponseV2.h
 Public/RallyHereAPIAll.h
 Public/RallyHereAPIAuthContext.h
 Public/RallyHereAPIBaseModel.h
@@ -472,6 +493,7 @@ Public/Restriction.h
 Public/RestrictionType.h
 Public/Role.h
 Public/Rule.h
+Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/SendInBlueContact.h
 Public/Session.h

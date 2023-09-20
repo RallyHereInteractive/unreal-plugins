@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FInstanceNotificationAPI::FInstanceNotificationAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("InstanceNotification");
+    Name = FName(TEXT("InstanceNotification"));
 }
 
 FInstanceNotificationAPI::~FInstanceNotificationAPI() {}
@@ -88,9 +88,10 @@ FRequest_InstanceCreateNotification::FRequest_InstanceCreateNotification()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_InstanceCreateNotification::GetSimplifiedPath() const
+FName FRequest_InstanceCreateNotification::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/instance/{instance_id}/notification"));
+    static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/notification"));
+    return Path;
 }
 
 FString FRequest_InstanceCreateNotification::ComputePath() const
@@ -248,9 +249,10 @@ FRequest_InstanceGetNotificationById::FRequest_InstanceGetNotificationById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_InstanceGetNotificationById::GetSimplifiedPath() const
+FName FRequest_InstanceGetNotificationById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/instance/{instance_id}/notification/{notification_id}"));
+    static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/notification/{notification_id}"));
+    return Path;
 }
 
 FString FRequest_InstanceGetNotificationById::ComputePath() const
@@ -401,9 +403,10 @@ FRequest_InstanceGetNotificationsPage::FRequest_InstanceGetNotificationsPage()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_InstanceGetNotificationsPage::GetSimplifiedPath() const
+FName FRequest_InstanceGetNotificationsPage::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/instance/{instance_id}/notification"));
+    static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/notification"));
+    return Path;
 }
 
 FString FRequest_InstanceGetNotificationsPage::ComputePath() const
@@ -575,9 +578,10 @@ FRequest_InstanceLongPollForNotifications::FRequest_InstanceLongPollForNotificat
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_InstanceLongPollForNotifications::GetSimplifiedPath() const
+FName FRequest_InstanceLongPollForNotifications::GetSimplifiedPath() const
 {
-    return FString(TEXT("/notification/v1/instance/{instance_id}/stream/notification/lp"));
+    static FName Path = FName(TEXT("/notification/v1/instance/{instance_id}/stream/notification/lp"));
+    return Path;
 }
 
 FString FRequest_InstanceLongPollForNotifications::ComputePath() const

@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FInventoryAPI::FInventoryAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Inventory");
+    Name = FName(TEXT("Inventory"));
 }
 
 FInventoryAPI::~FInventoryAPI() {}
@@ -88,9 +88,10 @@ FRequest_CreateNewInventorySession::FRequest_CreateNewInventorySession()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewInventorySession::GetSimplifiedPath() const
+FName FRequest_CreateNewInventorySession::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/session"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/session"));
+    return Path;
 }
 
 FString FRequest_CreateNewInventorySession::ComputePath() const
@@ -245,9 +246,10 @@ FRequest_CreateNewInventorySessionByPlayerUuid::FRequest_CreateNewInventorySessi
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPath() const
+FName FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/session"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/session"));
+    return Path;
 }
 
 FString FRequest_CreateNewInventorySessionByPlayerUuid::ComputePath() const
@@ -402,14 +404,15 @@ FRequest_CreateNewInventorySessionByPlayerUuidSelf::FRequest_CreateNewInventoryS
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewInventorySessionByPlayerUuidSelf::GetSimplifiedPath() const
+FName FRequest_CreateNewInventorySessionByPlayerUuidSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/session"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/session"));
+    return Path;
 }
 
 FString FRequest_CreateNewInventorySessionByPlayerUuidSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -554,14 +557,15 @@ FRequest_CreateNewInventorySessionSelf::FRequest_CreateNewInventorySessionSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewInventorySessionSelf::GetSimplifiedPath() const
+FName FRequest_CreateNewInventorySessionSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/session"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/session"));
+    return Path;
 }
 
 FString FRequest_CreateNewInventorySessionSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -706,9 +710,10 @@ FRequest_CreateNewPlayerOrder::FRequest_CreateNewPlayerOrder()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewPlayerOrder::GetSimplifiedPath() const
+FName FRequest_CreateNewPlayerOrder::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/order"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/order"));
+    return Path;
 }
 
 FString FRequest_CreateNewPlayerOrder::ComputePath() const
@@ -866,14 +871,15 @@ FRequest_CreateNewPlayerOrderSelf::FRequest_CreateNewPlayerOrderSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewPlayerOrderSelf::GetSimplifiedPath() const
+FName FRequest_CreateNewPlayerOrderSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/order"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/order"));
+    return Path;
 }
 
 FString FRequest_CreateNewPlayerOrderSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1021,9 +1027,10 @@ FRequest_CreateNewPlayerUuidOrder::FRequest_CreateNewPlayerUuidOrder()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPath() const
+FName FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/order"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/order"));
+    return Path;
 }
 
 FString FRequest_CreateNewPlayerUuidOrder::ComputePath() const
@@ -1181,14 +1188,15 @@ FRequest_CreateNewPlayerUuidOrderSelf::FRequest_CreateNewPlayerUuidOrderSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreateNewPlayerUuidOrderSelf::GetSimplifiedPath() const
+FName FRequest_CreateNewPlayerUuidOrderSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/order"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/order"));
+    return Path;
 }
 
 FString FRequest_CreateNewPlayerUuidOrderSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1336,9 +1344,10 @@ FRequest_CreatePlayerInventory::FRequest_CreatePlayerInventory()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreatePlayerInventory::GetSimplifiedPath() const
+FName FRequest_CreatePlayerInventory::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/inventory"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory"));
+    return Path;
 }
 
 FString FRequest_CreatePlayerInventory::ComputePath() const
@@ -1496,14 +1505,15 @@ FRequest_CreatePlayerInventorySelf::FRequest_CreatePlayerInventorySelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreatePlayerInventorySelf::GetSimplifiedPath() const
+FName FRequest_CreatePlayerInventorySelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/inventory"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/inventory"));
+    return Path;
 }
 
 FString FRequest_CreatePlayerInventorySelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1651,9 +1661,10 @@ FRequest_CreatePlayerInventoryUuid::FRequest_CreatePlayerInventoryUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreatePlayerInventoryUuid::GetSimplifiedPath() const
+FName FRequest_CreatePlayerInventoryUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
+    return Path;
 }
 
 FString FRequest_CreatePlayerInventoryUuid::ComputePath() const
@@ -1811,14 +1822,15 @@ FRequest_CreatePlayerInventoryUuidSelf::FRequest_CreatePlayerInventoryUuidSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_CreatePlayerInventoryUuidSelf::GetSimplifiedPath() const
+FName FRequest_CreatePlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/inventory"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/inventory"));
+    return Path;
 }
 
 FString FRequest_CreatePlayerInventoryUuidSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1966,9 +1978,10 @@ FRequest_GetInventorySessionInfo::FRequest_GetInventorySessionInfo()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetInventorySessionInfo::GetSimplifiedPath() const
+FName FRequest_GetInventorySessionInfo::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/session"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/session"));
+    return Path;
 }
 
 FString FRequest_GetInventorySessionInfo::ComputePath() const
@@ -2112,9 +2125,10 @@ FRequest_GetInventorySessionInfoByPlayerUuid::FRequest_GetInventorySessionInfoBy
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPath() const
+FName FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/session"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/session"));
+    return Path;
 }
 
 FString FRequest_GetInventorySessionInfoByPlayerUuid::ComputePath() const
@@ -2258,14 +2272,15 @@ FRequest_GetInventorySessionInfoByPlayerUuidSelf::FRequest_GetInventorySessionIn
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetInventorySessionInfoByPlayerUuidSelf::GetSimplifiedPath() const
+FName FRequest_GetInventorySessionInfoByPlayerUuidSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/session"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/session"));
+    return Path;
 }
 
 FString FRequest_GetInventorySessionInfoByPlayerUuidSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2396,14 +2411,15 @@ FRequest_GetInventorySessionInfoSelf::FRequest_GetInventorySessionInfoSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetInventorySessionInfoSelf::GetSimplifiedPath() const
+FName FRequest_GetInventorySessionInfoSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/session"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/session"));
+    return Path;
 }
 
 FString FRequest_GetInventorySessionInfoSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -2534,9 +2550,10 @@ FRequest_GetPlayerInventory::FRequest_GetPlayerInventory()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerInventory::GetSimplifiedPath() const
+FName FRequest_GetPlayerInventory::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/inventory"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory"));
+    return Path;
 }
 
 FString FRequest_GetPlayerInventory::ComputePath() const
@@ -2691,14 +2708,15 @@ FRequest_GetPlayerInventorySelf::FRequest_GetPlayerInventorySelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerInventorySelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerInventorySelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/inventory"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/inventory"));
+    return Path;
 }
 
 FString FRequest_GetPlayerInventorySelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(ItemIds.IsSet())
     {
@@ -2843,9 +2861,10 @@ FRequest_GetPlayerInventoryUuid::FRequest_GetPlayerInventoryUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerInventoryUuid::GetSimplifiedPath() const
+FName FRequest_GetPlayerInventoryUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
+    return Path;
 }
 
 FString FRequest_GetPlayerInventoryUuid::ComputePath() const
@@ -3000,14 +3019,15 @@ FRequest_GetPlayerInventoryUuidSelf::FRequest_GetPlayerInventoryUuidSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerInventoryUuidSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/inventory"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/inventory"));
+    return Path;
 }
 
 FString FRequest_GetPlayerInventoryUuidSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(ItemIds.IsSet())
     {
@@ -3152,9 +3172,10 @@ FRequest_GetPlayerOrderById::FRequest_GetPlayerOrderById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerOrderById::GetSimplifiedPath() const
+FName FRequest_GetPlayerOrderById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/order/{order_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/order/{order_id}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerOrderById::ComputePath() const
@@ -3302,9 +3323,10 @@ FRequest_GetPlayerOrderByIdSelf::FRequest_GetPlayerOrderByIdSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/order/{order_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/order/{order_id}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerOrderByIdSelf::ComputePath() const
@@ -3451,9 +3473,10 @@ FRequest_GetPlayerOrders::FRequest_GetPlayerOrders()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerOrders::GetSimplifiedPath() const
+FName FRequest_GetPlayerOrders::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/order"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/order"));
+    return Path;
 }
 
 FString FRequest_GetPlayerOrders::ComputePath() const
@@ -3617,14 +3640,15 @@ FRequest_GetPlayerOrdersSelf::FRequest_GetPlayerOrdersSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerOrdersSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerOrdersSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/order"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/order"));
+    return Path;
 }
 
 FString FRequest_GetPlayerOrdersSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(StartingPosition.IsSet())
     {
@@ -3778,9 +3802,10 @@ FRequest_GetPlayerUuidOrderById::FRequest_GetPlayerUuidOrderById()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidOrderById::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidOrderById::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/order/{order_id}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/order/{order_id}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidOrderById::ComputePath() const
@@ -3928,9 +3953,10 @@ FRequest_GetPlayerUuidOrderByIdSelf::FRequest_GetPlayerUuidOrderByIdSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/order/{order_id}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/order/{order_id}"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidOrderByIdSelf::ComputePath() const
@@ -4077,9 +4103,10 @@ FRequest_GetPlayerUuidOrders::FRequest_GetPlayerUuidOrders()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidOrders::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidOrders::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/order"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/order"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidOrders::ComputePath() const
@@ -4243,14 +4270,15 @@ FRequest_GetPlayerUuidOrdersSelf::FRequest_GetPlayerUuidOrdersSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetPlayerUuidOrdersSelf::GetSimplifiedPath() const
+FName FRequest_GetPlayerUuidOrdersSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/order"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/order"));
+    return Path;
 }
 
 FString FRequest_GetPlayerUuidOrdersSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
     if(StartingPosition.IsSet())
     {
@@ -4404,9 +4432,10 @@ FRequest_ModifyManyPlayerInventory::FRequest_ModifyManyPlayerInventory()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyManyPlayerInventory::GetSimplifiedPath() const
+FName FRequest_ModifyManyPlayerInventory::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/inventory"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory"));
+    return Path;
 }
 
 FString FRequest_ModifyManyPlayerInventory::ComputePath() const
@@ -4564,14 +4593,15 @@ FRequest_ModifyManyPlayerInventorySelf::FRequest_ModifyManyPlayerInventorySelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyManyPlayerInventorySelf::GetSimplifiedPath() const
+FName FRequest_ModifyManyPlayerInventorySelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/inventory"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/inventory"));
+    return Path;
 }
 
 FString FRequest_ModifyManyPlayerInventorySelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -4719,9 +4749,10 @@ FRequest_ModifyManyPlayerInventoryUuid::FRequest_ModifyManyPlayerInventoryUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPath() const
+FName FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory"));
+    return Path;
 }
 
 FString FRequest_ModifyManyPlayerInventoryUuid::ComputePath() const
@@ -4879,14 +4910,15 @@ FRequest_ModifyManyPlayerInventoryUuidSelf::FRequest_ModifyManyPlayerInventoryUu
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyManyPlayerInventoryUuidSelf::GetSimplifiedPath() const
+FName FRequest_ModifyManyPlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/inventory"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/inventory"));
+    return Path;
 }
 
 FString FRequest_ModifyManyPlayerInventoryUuidSelf::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -5034,9 +5066,10 @@ FRequest_ModifyPlayerInventory::FRequest_ModifyPlayerInventory()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyPlayerInventory::GetSimplifiedPath() const
+FName FRequest_ModifyPlayerInventory::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/{player_id}/inventory/{inventory_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/{player_id}/inventory/{inventory_id}"));
+    return Path;
 }
 
 FString FRequest_ModifyPlayerInventory::ComputePath() const
@@ -5195,9 +5228,10 @@ FRequest_ModifyPlayerInventorySelf::FRequest_ModifyPlayerInventorySelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyPlayerInventorySelf::GetSimplifiedPath() const
+FName FRequest_ModifyPlayerInventorySelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v1/player/me/inventory/{inventory_id}"));
+    static FName Path = FName(TEXT("/inventory/v1/player/me/inventory/{inventory_id}"));
+    return Path;
 }
 
 FString FRequest_ModifyPlayerInventorySelf::ComputePath() const
@@ -5355,9 +5389,10 @@ FRequest_ModifyPlayerInventoryUuid::FRequest_ModifyPlayerInventoryUuid()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPath() const
+FName FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/{player_uuid}/inventory/{inventory_id}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/{player_uuid}/inventory/{inventory_id}"));
+    return Path;
 }
 
 FString FRequest_ModifyPlayerInventoryUuid::ComputePath() const
@@ -5516,9 +5551,10 @@ FRequest_ModifyPlayerInventoryUuidSelf::FRequest_ModifyPlayerInventoryUuidSelf()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPath() const
+FName FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/inventory/v2/player/me/inventory/{inventory_id}"));
+    static FName Path = FName(TEXT("/inventory/v2/player/me/inventory/{inventory_id}"));
+    return Path;
 }
 
 FString FRequest_ModifyPlayerInventoryUuidSelf::ComputePath() const

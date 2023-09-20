@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PersonInfoResponse`](#structFRHAPI__PersonInfoResponse) | 
+`struct `[`FRHAPI_PersonInfoResponse`](#structFRHAPI__PersonInfoResponse) | Response for getting a person&#39;s info.
 
 ## struct `FRHAPI_PersonInfoResponse` <a id="structFRHAPI__PersonInfoResponse"></a>
 
@@ -13,15 +13,17 @@ struct FRHAPI_PersonInfoResponse
   : public FRHAPI_Model
 ```
 
+Response for getting a person&#39;s info.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FGuid `[`PersonId_Optional`](#structFRHAPI__PersonInfoResponse_1a15fb6d340c496b10078584551091b39c) | 
+`public FGuid `[`PersonId_Optional`](#structFRHAPI__PersonInfoResponse_1a15fb6d340c496b10078584551091b39c) | Person ID.
 `public bool `[`PersonId_IsSet`](#structFRHAPI__PersonInfoResponse_1a87e0b874455b6011cd39dcf767ea30ec) | true if PersonId_Optional has been set to a value
-`public int32 `[`ActivePlayerId_Optional`](#structFRHAPI__PersonInfoResponse_1a61def40c5bab540afe269d7d85de9c66) | 
+`public int32 `[`ActivePlayerId_Optional`](#structFRHAPI__PersonInfoResponse_1a61def40c5bab540afe269d7d85de9c66) | Active player ID, if the person has an active player.
 `public bool `[`ActivePlayerId_IsSet`](#structFRHAPI__PersonInfoResponse_1af159facae488624991b49f348421998b) | true if ActivePlayerId_Optional has been set to a value
-`public FString `[`Email_Optional`](#structFRHAPI__PersonInfoResponse_1ae1b5739f1b696af14a9f90a885fbaba5) | 
+`public FString `[`Email_Optional`](#structFRHAPI__PersonInfoResponse_1ae1b5739f1b696af14a9f90a885fbaba5) | Email address.
 `public bool `[`Email_IsSet`](#structFRHAPI__PersonInfoResponse_1ad1a4fb8de953a5e933e2250a6f80dd27) | true if Email_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PersonInfoResponse_1a999bd82da327328e8dc6bfc43f9e8f61)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PersonInfoResponse_1a8874b620d30ed90233111181d268b85c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -56,6 +58,8 @@ struct FRHAPI_PersonInfoResponse
 
 #### `public FGuid `[`PersonId_Optional`](#structFRHAPI__PersonInfoResponse_1a15fb6d340c496b10078584551091b39c) <a id="structFRHAPI__PersonInfoResponse_1a15fb6d340c496b10078584551091b39c"></a>
 
+Person ID.
+
 <br>
 #### `public bool `[`PersonId_IsSet`](#structFRHAPI__PersonInfoResponse_1a87e0b874455b6011cd39dcf767ea30ec) <a id="structFRHAPI__PersonInfoResponse_1a87e0b874455b6011cd39dcf767ea30ec"></a>
 
@@ -64,6 +68,8 @@ true if PersonId_Optional has been set to a value
 <br>
 #### `public int32 `[`ActivePlayerId_Optional`](#structFRHAPI__PersonInfoResponse_1a61def40c5bab540afe269d7d85de9c66) <a id="structFRHAPI__PersonInfoResponse_1a61def40c5bab540afe269d7d85de9c66"></a>
 
+Active player ID, if the person has an active player.
+
 <br>
 #### `public bool `[`ActivePlayerId_IsSet`](#structFRHAPI__PersonInfoResponse_1af159facae488624991b49f348421998b) <a id="structFRHAPI__PersonInfoResponse_1af159facae488624991b49f348421998b"></a>
 
@@ -71,6 +77,8 @@ true if ActivePlayerId_Optional has been set to a value
 
 <br>
 #### `public FString `[`Email_Optional`](#structFRHAPI__PersonInfoResponse_1ae1b5739f1b696af14a9f90a885fbaba5) <a id="structFRHAPI__PersonInfoResponse_1ae1b5739f1b696af14a9f90a885fbaba5"></a>
+
+Email address.
 
 <br>
 #### `public bool `[`Email_IsSet`](#structFRHAPI__PersonInfoResponse_1ad1a4fb8de953a5e933e2250a6f80dd27) <a id="structFRHAPI__PersonInfoResponse_1ad1a4fb8de953a5e933e2250a6f80dd27"></a>

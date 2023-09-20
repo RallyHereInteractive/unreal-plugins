@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_Restriction`](#structFRHAPI__Restriction) | 
+`struct `[`FRHAPI_Restriction`](#structFRHAPI__Restriction) | Restriction applied to a player.
 
 ## struct `FRHAPI_Restriction` <a id="structFRHAPI__Restriction"></a>
 
@@ -13,14 +13,16 @@ struct FRHAPI_Restriction
   : public FRHAPI_Model
 ```
 
+Restriction applied to a player.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_RestrictionType `[`Type`](#structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1) | 
-`public FString `[`Reason_Optional`](#structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f) | 
+`public ERHAPI_RestrictionType `[`Type`](#structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1) | Type of restriction.
+`public FString `[`Reason_Optional`](#structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f) | Reason the restriction was applied.
 `public bool `[`Reason_IsSet`](#structFRHAPI__Restriction_1a33efc2fe715a3c3ee06ec148ab82a239) | true if Reason_Optional has been set to a value
-`public FDateTime `[`Expiration_Optional`](#structFRHAPI__Restriction_1aa9e2bfa5e8c955b12b209034e64c5e57) | 
+`public FDateTime `[`Expiration_Optional`](#structFRHAPI__Restriction_1aa9e2bfa5e8c955b12b209034e64c5e57) | Date the restriction expires. Null means the restriction is permanent.
 `public bool `[`Expiration_IsSet`](#structFRHAPI__Restriction_1ae0bb6d1bcce99870a53bd773b2740cf2) | true if Expiration_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Restriction_1a5a03667bdf37bfdf85209ed872024579)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Restriction_1ad9b9b26c7c642e5d5c0d08fb4625a43f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -48,8 +50,12 @@ struct FRHAPI_Restriction
 
 #### `public ERHAPI_RestrictionType `[`Type`](#structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1) <a id="structFRHAPI__Restriction_1a4563f4ef4361eacf1e83acde5aa9e9b1"></a>
 
+Type of restriction.
+
 <br>
 #### `public FString `[`Reason_Optional`](#structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f) <a id="structFRHAPI__Restriction_1acb07c004735610b31b0326e85867841f"></a>
+
+Reason the restriction was applied.
 
 <br>
 #### `public bool `[`Reason_IsSet`](#structFRHAPI__Restriction_1a33efc2fe715a3c3ee06ec148ab82a239) <a id="structFRHAPI__Restriction_1a33efc2fe715a3c3ee06ec148ab82a239"></a>
@@ -58,6 +64,8 @@ true if Reason_Optional has been set to a value
 
 <br>
 #### `public FDateTime `[`Expiration_Optional`](#structFRHAPI__Restriction_1aa9e2bfa5e8c955b12b209034e64c5e57) <a id="structFRHAPI__Restriction_1aa9e2bfa5e8c955b12b209034e64c5e57"></a>
+
+Date the restriction expires. Null means the restriction is permanent.
 
 <br>
 #### `public bool `[`Expiration_IsSet`](#structFRHAPI__Restriction_1ae0bb6d1bcce99870a53bd773b2740cf2) <a id="structFRHAPI__Restriction_1ae0bb6d1bcce99870a53bd773b2740cf2"></a>

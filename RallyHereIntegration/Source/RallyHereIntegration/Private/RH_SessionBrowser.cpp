@@ -2,17 +2,17 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "SessionsAPI.h"
+#include "RH_GameInstanceSubsystem.h"
 
 
 URH_SessionBrowserCache::URH_SessionBrowserCache()
 {
 }
 
-typedef TWeakObjectPtr<URH_SessionBrowserCache> SessionBrowserCachePtr;
 class FRH_SessionBrowserSearchHelper : public FRH_AsyncTaskHelper
 {
 public:
-	FRH_SessionBrowserSearchHelper(SessionBrowserCachePtr InSessionOwner, FAuthContextPtr InAuthContext, FRH_OnSessionSearchCompleteDelegateBlock InDelegate)
+	FRH_SessionBrowserSearchHelper(FRH_SessionOwnerPtr InSessionOwner, FAuthContextPtr InAuthContext, FRH_OnSessionSearchCompleteDelegateBlock InDelegate)
 		: FRH_AsyncTaskHelper()
 		, SessionOwner(InSessionOwner)
 		, AuthContext(InAuthContext)
@@ -26,8 +26,20 @@ public:
 		Started();
 
 		SearchParams = InSearchParams;
-		QueryAllSessions();
+		RemainingSessionIds = SearchParams.SessionIds;
+
+		if (RemainingSessionIds.Num() > 0)
+		{
+			// if specific session ids are specified, skip search and just look them up
+			QueryNextSession();
+		}
+		else
+		{
+			// perform search
+			QueryAllSessions();
+		}
 	}
+
 protected:
 	typedef RallyHereAPI::Traits_GetBrowserSessionsByType QuerySessionByType;
 	typedef RallyHereAPI::Traits_GetAllSessionTemplates QueryTemplates;
@@ -52,20 +64,21 @@ protected:
 		HttpRequest = nullptr;
 		if (Resp.IsSuccessful() && SessionOwner.IsValid())
 		{
-			SessionIds.Empty();
+			RemainingSessionIds.Empty();
 
-			for (auto BrowserSession : Resp.Content.BrowserSessions)
-			{
-				SessionIds.Add(BrowserSession.SessionId);
-			}
+			SessionInfos = Resp.Content.BrowserSessions;
 
-			if (SessionIds.Num() <= 0)
+			if (SessionInfos.Num() <= 0)
 			{
 				Completed(true);
 				return;
 			}
 
-			RemainingSessionIds = SessionIds;
+			for (auto BrowserSession : SessionInfos)
+			{
+				RemainingSessionIds.Add(BrowserSession.SessionId);
+			}
+
 			QueryNextSession();
 		}
 		else
@@ -76,7 +89,7 @@ protected:
 
 	void QueryNextSession()
 	{
-		if (RemainingSessionIds.Num() > 0)
+		if (SearchParams.bCacheSessionDetails && RemainingSessionIds.Num() > 0)
 		{
 			FString SessionId = RemainingSessionIds.Pop(false);
 
@@ -95,6 +108,12 @@ protected:
 
 	void DoSessionLookup(const FString& SessionId)
 	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		// Read session data
 		RallyHereAPI::FRequest_GetSessionById Request;
 		Request.AuthContext = AuthContext;
@@ -114,18 +133,22 @@ protected:
 	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
 	{
 		HttpRequest = nullptr;
+
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
 		if (Resp.IsSuccessful())
 		{
 			Sessions.Add(FRH_APISessionWithETag(Resp.Content, Resp.ETag));
 
-			if (SessionOwner.IsValid())
+			// make sure we have the template
+			FRHAPI_SessionTemplate temp;
+			if (!SessionOwner->GetTemplate(Resp.Content.Type, temp))
 			{
-				// make sure we have the template
-				FRHAPI_SessionTemplate temp;
-				if (!SessionOwner->GetTemplate(Resp.Content.Type, temp))
-				{
-					bMissingTemplates = true;
-				}
+				bMissingTemplates = true;
 			}
 
 			QueryNextSession();
@@ -158,7 +181,14 @@ protected:
 	void OnQueryAllTemplates(const QueryTemplates::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && SessionOwner.IsValid())
+
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		if (Resp.IsSuccessful())
 		{
 			TArray<FRHAPI_SessionTemplate> TemplatesArray;
 			if (const auto TemplatesMap = Resp.Content.GetTemplatesOrNull())
@@ -185,12 +215,15 @@ protected:
 
 	void ReconcileSessionsWithOwner()
 	{
-		if (SessionOwner.IsValid())
+		if (!SessionOwner.IsValid())
 		{
-			for (auto Session : Sessions)
-			{
-				SessionOwner->ImportAPISession(Session);
-			}
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		for (auto Session : Sessions)
+		{
+			SessionOwner->ImportAPISession(Session);
 		}
 		
 		Completed(true);
@@ -205,25 +238,33 @@ protected:
 	{
 		FRH_SessionBrowserSearchResult Result;
 		Result.SearchParams = SearchParams;
-		for (auto SessionId : SessionIds)
+		Result.SessionInfos = SessionInfos;
+
+		// if caching was requested, add the sessions to the result
+		if (SearchParams.bCacheSessionDetails)
 		{
-			URH_SessionView* RHSession = SessionOwner->GetSessionById(SessionId);
-			if (RHSession != nullptr)
+			for (auto SessionInfo : SessionInfos)
 			{
-				Result.Sessions.Add(RHSession);
+				URH_SessionView* RHSession = SessionOwner->GetSessionById(SessionInfo.GetSessionId());
+				if (RHSession != nullptr)
+				{
+					Result.Sessions.Add(RHSession);
+				}
 			}
 		}
+
 		Delegate.ExecuteIfBound(bSuccess, Result);
 	}
 
-	SessionBrowserCachePtr SessionOwner;
+	FRH_SessionOwnerPtr SessionOwner;
 	FAuthContextPtr AuthContext;
 	FRH_OnSessionSearchCompleteDelegateBlock Delegate;
 
 	FRH_SessionBrowserSearchParams SearchParams;
 
 	FHttpRequestPtr HttpRequest;
-	TArray<FString> SessionIds, RemainingSessionIds;
+	TArray<FRHAPI_BrowserSessionInfo> SessionInfos;
+	TArray<FString> RemainingSessionIds;
 	TArray<FRH_APISessionWithETag> Sessions;
 	bool bMissingTemplates;
 };
@@ -232,6 +273,11 @@ void URH_SessionBrowserCache::Search(const FRH_SessionBrowserSearchParams& param
 {
 	auto Helper = MakeShared<FRH_SessionBrowserSearchHelper>(this, GetAuthContext(), Delegate);
 	Helper->Start(params);
+}
+
+FAuthContextPtr URH_SessionBrowserCache::GetSessionAuthContext() const
+{
+	return GetAuthContext();
 }
 
 void URH_SessionBrowserCache::ImportAPISession(const FRH_APISessionWithETag& SessionWrapper)
@@ -269,6 +315,18 @@ void URH_SessionBrowserCache::ImportAPISession(const FRH_APISessionWithETag& Ses
 	}
 }
 
+void URH_SessionBrowserCache::ImportAPITemplate(const FRHAPI_SessionTemplate& Template)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.SessionType);
+
+	Templates.Add(Template.SessionType, Template);
+}
+
+URH_PlayerInfoSubsystem* URH_SessionBrowserCache::GetPlayerInfoSubsystem() const
+{
+	return GetGameInstanceSubsystem()->GetPlayerInfoSubsystem();
+}
+
 bool URH_SessionBrowserCache::GetTemplate(const FString& Type, FRHAPI_SessionTemplate& Template) const
 {
 	auto ptr = Templates.Find(Type);
@@ -278,11 +336,4 @@ bool URH_SessionBrowserCache::GetTemplate(const FString& Type, FRHAPI_SessionTem
 		return true;
 	}
 	return false;
-}
-
-void URH_SessionBrowserCache::ImportAPITemplate(const FRHAPI_SessionTemplate& Template)
-{
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *Template.SessionType);
-
-	Templates.Add(Template.SessionType, Template);
 }

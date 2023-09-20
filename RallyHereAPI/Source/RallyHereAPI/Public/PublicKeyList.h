@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief 
+ * @brief List of public keys for verifying Access Token JWTs.  This is in the JWK Set format as defined in https://datatracker.ietf.org/doc/html/rfc7517#section-5
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PublicKeyList : public FRHAPI_Model
@@ -40,6 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PublicKeyList : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief List of public keys for verifying Access Token JWTs */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_PublicKey> Keys{  };
     /** @brief Gets the value of Keys */

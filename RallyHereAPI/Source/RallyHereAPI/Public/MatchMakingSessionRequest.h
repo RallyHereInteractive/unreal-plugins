@@ -62,13 +62,49 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingSessionRequest : public FRHAPI_Model
 
     /** @brief Which launch template should be used to request an instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FGuid InstanceLaunchTemplateId{  };
-    /** @brief Gets the value of InstanceLaunchTemplateId */
-    FGuid& GetInstanceLaunchTemplateId() { return InstanceLaunchTemplateId; }
-    /** @brief Gets the value of InstanceLaunchTemplateId */
-    const FGuid& GetInstanceLaunchTemplateId() const { return InstanceLaunchTemplateId; }
-    /** @brief Sets the value of InstanceLaunchTemplateId */
-    void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
+    FGuid InstanceLaunchTemplateId_Optional{  };
+    /** @brief true if InstanceLaunchTemplateId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool InstanceLaunchTemplateId_IsSet{ false };
+    /** @brief Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set */
+    FGuid& GetInstanceLaunchTemplateId() { return InstanceLaunchTemplateId_Optional; }
+    /** @brief Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set */
+    const FGuid& GetInstanceLaunchTemplateId() const { return InstanceLaunchTemplateId_Optional; }
+    /** @brief Gets the value of InstanceLaunchTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetInstanceLaunchTemplateId(const FGuid& DefaultValue) const { if (InstanceLaunchTemplateId_IsSet) return InstanceLaunchTemplateId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of InstanceLaunchTemplateId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetInstanceLaunchTemplateId(FGuid& OutValue) const { if (InstanceLaunchTemplateId_IsSet) OutValue = InstanceLaunchTemplateId_Optional; return InstanceLaunchTemplateId_IsSet; }
+    /** @brief Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetInstanceLaunchTemplateIdOrNull() { if (InstanceLaunchTemplateId_IsSet) return &InstanceLaunchTemplateId_Optional; return nullptr; }
+    /** @brief Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetInstanceLaunchTemplateIdOrNull() const { if (InstanceLaunchTemplateId_IsSet) return &InstanceLaunchTemplateId_Optional; return nullptr; }
+    /** @brief Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true */
+    void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId_Optional = NewValue; InstanceLaunchTemplateId_IsSet = true; }
+     /** @brief Clears the value of InstanceLaunchTemplateId_Optional and sets InstanceLaunchTemplateId_IsSet to false */
+    void ClearInstanceLaunchTemplateId() { InstanceLaunchTemplateId_IsSet = false; }
+
+    /** @brief Which launch template should be used to request an instance */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FGuid InstanceRequestTemplateId_Optional{  };
+    /** @brief true if InstanceRequestTemplateId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool InstanceRequestTemplateId_IsSet{ false };
+    /** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+    FGuid& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId_Optional; }
+    /** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+    const FGuid& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId_Optional; }
+    /** @brief Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetInstanceRequestTemplateId(const FGuid& DefaultValue) const { if (InstanceRequestTemplateId_IsSet) return InstanceRequestTemplateId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetInstanceRequestTemplateId(FGuid& OutValue) const { if (InstanceRequestTemplateId_IsSet) OutValue = InstanceRequestTemplateId_Optional; return InstanceRequestTemplateId_IsSet; }
+    /** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetInstanceRequestTemplateIdOrNull() { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
+    /** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetInstanceRequestTemplateIdOrNull() const { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
+    /** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true */
+    void SetInstanceRequestTemplateId(FGuid NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
+     /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
+    void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false; }
 
     /** @brief Region to start the instance in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

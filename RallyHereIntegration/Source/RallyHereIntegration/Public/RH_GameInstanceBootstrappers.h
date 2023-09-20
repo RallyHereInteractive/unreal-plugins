@@ -218,40 +218,36 @@ protected:
 	/** @brief Set the SIGTERM(Unix) handlers that allow intercepting the SIGTERM signal to trigger a soft stop */
 	static void SetTerminationSignalHandler();
 	/** @brief Callback binding for the default engine SIGTERM / CTRL - C(Windows) handlers - these are indicating an IMMEDIATE shutdown - will defer to game thread if needed */
-	void ApplicationTerminationNotify();
+	virtual void ApplicationTerminationNotify();
 	/** @brief Callback binding for the default engine SIGTERM / CTRL - C(Windows) handlers - these are indicating an IMMEDIATE shutdown - runs in the game thread */
-	void HandleAppTerminatedGameThread();
+	virtual void HandleAppTerminatedGameThread();
 
 	/** @brief Fallback routine that does its best to leave the session we have loaded */
-	void BestEffortLeaveSession();
+	virtual void BestEffortLeaveSession();
 
 	/**
 	* @brief Updates the current bootstrapping step, and handles step change logic
 	* @param [in] NewStep The new step to transition to
 	*/
-	void UpdateBootstrapStep(ERH_ServerBootstrapFlowStep NewStep);
+	virtual void UpdateBootstrapStep(ERH_ServerBootstrapFlowStep NewStep);
 
 	/**
 	* @brief Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic
 	*/
-	void OnBootstrappingFailed();
+	virtual void OnBootstrappingFailed();
 	/**
 	* @brief Bootstrapping Flow [Complete] - trigger bootstrapping complete and handles completion logic.  Note that recycling may start a new bootstrapping flow
 	*/
-	void OnBootstrappingComplete();
+	virtual void OnBootstrappingComplete();
 
 	/**
 	* @brief Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API
 	*/
-	void BeginServerLogin();
-	/**
-	* @brief Bootstrapping Flow [LoggingIn] - get the platform OSS to use to generate login credentials
-	*/
-	IOnlineSubsystem* GetLoginOSS() const;
+	virtual void BeginServerLogin();
 	/**
 	* @brief Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials
 	*/
-	void BeginOSSLogin();
+	virtual void BeginOSSLogin();
 	/**
 	* @brief Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use
 	* @param [in] ControllerId The controller id that was used to login
@@ -259,133 +255,133 @@ protected:
 	* @param [in] UniqueId The unique id of the user that logged in
 	* @param [in] ErrorMessage The error message if the login failed
 	*/
-	void OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage);
+	virtual void OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage);
 	/**
 	* @brief Bootstrapping Flow [Login] - completion callback for RallyHere API login
 	* @param [in] bSuccess Whether or not the login was successful
 	*/
-	void OnServerLoginComplete(bool bSuccess);
+	virtual void OnServerLoginComplete(bool bSuccess);
 
 	/**
 	* @brief Bootstrapping Flow [Recycle] - start a new recycle loop
 	*/
-	void Recycle();
+	virtual void Recycle();
 
 	/**
 	* @brief Bootstrapping Flow [Registration][Allocation][AutoCreate] - start the process of registering with the game host provider
 	*/
-	void BeginRegistration();
+	virtual void BeginRegistration();
 
 	/**
 	* @brief Bootstrapping Flow [Registration][Allocation][AutoCreate] - begin connecting to the provider
 	*/
-	void BeginConnecting();
+	virtual void BeginConnecting();
 	/**
 	* @brief Bootstrapping Flow [Registration][Allocation][AutoCreate] - completion callback for connecting to the provider
 	* @param [in] bSuccess Whether or not the connection was successful
 	*/
-	void OnConnectComplete(bool bSuccess);
+	virtual void OnConnectComplete(bool bSuccess);
 	/**
 	* @brief Bootstrapping Flow [Registration][Allocation] - register with provider and wait for an allocation
 	*/
-	void BeginRegister();
+	virtual void BeginRegister();
 	/**
 	* @brief Bootstrapping Flow [Registration][Allocation] - completion callback for registering with the provider
 	* @param [in] bSuccess Whether or not the connection was successful
 	*/
-	void OnRegisterComplete(bool bSucess);
+	virtual void OnRegisterComplete(bool bSucess);
 	/**
 	* @brief Bootstrapping Flow [Registration][Allocation] - completion callback for allocation being ready
 	* @param [in] Status Whether or not the allocation was successful or had an error
 	* @param [in] AllocationInfo The allocation info that was produced
 	*/
-	void OnAllocationComplete(ERH_AllocationStatus Status, const FRH_GameHostAllocationInfo& AllocationInfo);
+	virtual void OnAllocationComplete(ERH_AllocationStatus Status, const FRH_GameHostAllocationInfo& AllocationInfo);
 	/**
 	* @brief Bootstrapping Flow [Registration][AutoCreate] - begin a reservation so that the provider can know about this server
 	*/
-	void BeginReservation();
+	virtual void BeginReservation();
 	/**
 	* @brief Bootstrapping Flow [Registration][AutoCreate] - completion callback for reservation creation
 	* @param [in] bSuccess Whether or not the reservation was successful
 	*/
-	void OnReservationComplete(bool bSuccess);
+	virtual void OnReservationComplete(bool bSuccess);
 	/**
 	* @brief Bootstrapping Flow [Registration][AutoCreate] - inform the provider that this server is self-allocated
 	*/
-	void BeginSelfAllocate();
+	virtual void BeginSelfAllocate();
 	/**
 	* @brief Bootstrapping Flow [Registration][AutoCreate] - completion callback for self allocation
 	* @param [in] bSuccess Whether or not the self allocation was successful
 	*/
-	void OnSelfAllocateComplete(bool bSuccess);
+	virtual void OnSelfAllocateComplete(bool bSuccess);
 
 	/**
 	* @brief Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result.  Checks the result and then checks for an instance.  Either creates and instance, or forwards on to OnSessionInstanceCreationCompleted()
 	* @param [in] bSuccess Whether or not the registration was successful
 	* @param [in] Result The bootstrapping result that was produced
 	*/
-	void OnRegistrationFinalizerComplete(bool bSuccess, const FRH_BootstrappingResult& Result);
+	virtual void OnRegistrationFinalizerComplete(bool bSuccess, const FRH_BootstrappingResult& Result);
 
 	/**
 	* @brief Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result
 	* @param [in] bSuccess Whether or not the instance was successfully created
 	* @param [in] RHSession The session that was created with an instance
 	*/
-	void OnSessionInstanceCreationCompleted(bool bSuccess, URH_JoinedSession* RHSession);
+	virtual void OnSessionInstanceCreationCompleted(bool bSuccess, URH_JoinedSession* RHSession);
 
 	/**
 	* @brief Bootstrapping Flow [SyncingToSession] - begin the process of synchronizing the session state into RH_GameInstanceSessionSubsystem
 	*/
-	void SyncToSession();
+	virtual void SyncToSession();
 	/**
 	* @brief Bootstrapping Flow [SyncingToSession] - completiong callback for session sync
 	* @param [in] bSuccess Whether or not the session sync was successful
 	*/
-	void OnSyncToSessionComplete(bool bSuccess);
+	virtual void OnSyncToSessionComplete(bool bSuccess);
 
 	/**
 	* @brief Notification callback that the session we have synced to was updated
 	* @param [in] Session The updated session
 	*/
-	void OnSessionUpdated(URH_SessionView* Session);
+	virtual void OnSessionUpdated(URH_SessionView* Session);
 	/**
 	* @brief Notification callback that the session we have synced to was not found
 	* @param [in] Session The session that was not found
 	*/
-	void OnSessionNotFound(URH_SessionView* Session);
+	virtual void OnSessionNotFound(URH_SessionView* Session);
 
 	/**
 	* @brief Utility function to clean up state after an instance removal and attempt to recycle
 	*/
-	void CleanupAfterInstanceRemoval();
+	virtual void CleanupAfterInstanceRemoval();
 	/**
 	* @brief Completion callback for session and instance cleanup
 	*/
-	void OnCleanupSessionSyncComplete(bool bSuccess);
+	virtual void OnCleanupSessionSyncComplete(bool bSuccess);
 	/**
 	* @brief Gets whether we should recycle the state after cleanup
 	*/
-	bool ShouldRecycleAfterCleanup() const;
+	virtual bool ShouldRecycleAfterCleanup() const;
 
 	// GameHostProvider flow
 public:
 	/**
 	* @brief bound callback triggered to provide stats to the game host provider
 	*/
-	void OnGameHostProviderStats(FRH_GameHostProviderStats& Stats);
+	virtual void OnGameHostProviderStats(FRH_GameHostProviderStats& Stats);
 	/**
 	* @brief Tick function
 	* @param [in] DeltaTime The time since the last tick
 	*/
-	void Tick(float DeltaTime) override; 
+	virtual void Tick(float DeltaTime) override;
 	/**
 	* @brief Whether or not to tick this object
 	*/
-	bool IsTickable() const override;
+	virtual bool IsTickable() const override;
 	/**
 	* @brief What stat id to use to report for the tick
 	*/
-	TStatId GetStatId() const override;
+	virtual TStatId GetStatId() const override;
 	
 public:
 	/**
@@ -393,6 +389,10 @@ public:
 	*/
 	virtual FAuthContextPtr GetAuthContext() const { return AuthContext; };
 	
+	/** @brief Get the current bootstrapping mode */
+	UFUNCTION(BlueprintGetter, Category = "Session")
+	virtual URH_OnlineSession* GetSession() const { return RHSession; }
+
 	// IRH_SessionOwnerInterface support
 	/**
 	* Gets the auth context to use for API calls for the session owner.
@@ -453,7 +453,10 @@ public:
 	virtual TArray<URH_SessionView*> GetAllSessionsForPolling() const override
 	{
 		TArray<URH_SessionView*> Result;
-		Result.Add(RHSession);
+		if (RHSession != nullptr)
+		{
+			Result.Add(RHSession);
+		}
 		return Result;
 	}
 	/**
@@ -500,7 +503,7 @@ protected:
 	TOptional<FString> AllTemplatesETag;
 	
 	/** The current session we are using */
-	UPROPERTY(VisibleInstanceOnly, Category = "Session")
+	UPROPERTY(VisibleInstanceOnly, Category = "Session", BlueprintGetter=GetSession)
 	URH_OnlineSession* RHSession;	// simplying assumption - single session for dedicated server
 	
 	/** The default type of session to create when using AutoCreate bootstrapping mode */
@@ -541,5 +544,5 @@ public:
 
 	/** Utility function to create an offline session */
 	UFUNCTION(BlueprintCallable, Category = "Session")
-	void CreateOfflineSession();
+	virtual void CreateOfflineSession();
 };

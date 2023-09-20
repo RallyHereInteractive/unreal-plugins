@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_UpdatePersonInfoRequest`](#structFRHAPI__UpdatePersonInfoRequest) | 
+`struct `[`FRHAPI_UpdatePersonInfoRequest`](#structFRHAPI__UpdatePersonInfoRequest) | Request to update a person&#39;s info.
 
 ## struct `FRHAPI_UpdatePersonInfoRequest` <a id="structFRHAPI__UpdatePersonInfoRequest"></a>
 
@@ -13,11 +13,13 @@ struct FRHAPI_UpdatePersonInfoRequest
   : public FRHAPI_Model
 ```
 
+Request to update a person&#39;s info.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) | 
+`public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) | Email address to update to.
 `public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1a761aa4132a1c2e9a303b08d59d1e6197)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a27ed6dc5682a17500361ca5e956a9eaa)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1af78a67575dd9865d044c07949b497844)`()` | Gets the value of Email.
@@ -27,6 +29,8 @@ struct FRHAPI_UpdatePersonInfoRequest
 #### Members
 
 #### `public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) <a id="structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e"></a>
+
+Email address to update to.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1a761aa4132a1c2e9a303b08d59d1e6197)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a761aa4132a1c2e9a303b08d59d1e6197"></a>

@@ -132,6 +132,8 @@ ARH_OnlineBeaconClient::ARH_OnlineBeaconClient(const FObjectInitializer& ObjectI
 // override to inject our login options, which we use for validation that the player is part of the proper session
 void ARH_OnlineBeaconClient::NotifyControlMessage(UNetConnection* Connection, uint8 MessageType, class FInBunch& Bunch)
 {
+	// 5.3 added support for GetLoginOptions(), so this override is not needed past that version
+#if RH_BELOW_ENGINE_VERSION(5,3)
 	if (NetDriver->ServerConnection && MessageType == NMT_Challenge)
 	{
 		check(Connection == NetDriver->ServerConnection);
@@ -147,6 +149,14 @@ void ARH_OnlineBeaconClient::NotifyControlMessage(UNetConnection* Connection, ui
 			// build a URL
 			FURL URL(nullptr, TEXT(""), TRAVEL_Absolute);
 			FString URLString;
+#if RH_FROM_ENGINE_VERSION(5,2)
+			FString AuthTicket = GetAuthTicket(*Connection->PlayerId);
+			if (!AuthTicket.IsEmpty())
+			{
+				URL.AddOption(*FString::Printf(TEXT("AuthTicket=%s"), *AuthTicket));
+			}
+			
+#endif
 
 			// Add stored login options
 			URL.AddOption(*LoginOptions);
@@ -187,6 +197,7 @@ void ARH_OnlineBeaconClient::NotifyControlMessage(UNetConnection* Connection, ui
 		}
 	}
 	else
+#endif
 	{
 		Super::NotifyControlMessage(Connection, MessageType, Bunch);
 	}

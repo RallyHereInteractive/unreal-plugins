@@ -5,8 +5,14 @@
 #include "Misc/CoreDelegates.h"
 #include "RallyHereDebugToolSettings.h"
 #include "RallyHereDebugTool.h"
+#include "RH_ImGuiUtilities.h"
 
 #include "imgui.h"
+
+// used for copy support
+#if PLATFORM_ALLOWS_COPY
+#include "HAL/PlatformApplicationMisc.h"
+#endif
 
 namespace RH_OutputLog
 {
@@ -200,6 +206,7 @@ FRHDTW_OutputLog::FRHDTW_OutputLog()
 	bShowMenuBar = true;
 	AdditionalWindowFlags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 	SearchLogBuffer.AddZeroed(SearchLogBuffer.GetSlack());
+	CopyText.Empty();
 }
 
 FRHDTW_OutputLog::~FRHDTW_OutputLog()
@@ -213,9 +220,9 @@ FRHDTW_OutputLog::~FRHDTW_OutputLog()
 	bIsBoundToGLog = false;
 }
 
-void FRHDTW_OutputLog::Init(URallyHereDebugTool* InOwner, const FString& InName, bool bInShow /*= false*/)
+void FRHDTW_OutputLog::Init(URallyHereDebugTool* InOwner, const FString& InName)
 {
-	FRH_DebugToolWindow::Init(InOwner, InName, bInShow);
+	FRH_DebugToolWindow::Init(InOwner, InName);
 
 	if (OutputLogHistory.IsValid())
 	{
@@ -302,6 +309,17 @@ void FRHDTW_OutputLog::Do()
 			}
 			ImGui::EndMenu();
 		}
+#if PLATFORM_ALLOWS_COPY
+		if (ImGui::Button("Copy View to Clipboard"))
+		{
+			FPlatformApplicationMisc::ClipboardCopy(*CopyText);
+		}
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("Copy the current visible log segment to clipboard.");
+		}
+#endif
+
 		if (ImGui::InputTextWithHint("##SearchLog", "Search Log", SearchLogBuffer.GetData(), SearchLogBuffer.Num()))
 		{
 			Filter.SetFilterText( FText::AsCultureInvariant( UTF8_TO_TCHAR(SearchLogBuffer.GetData()) ) );
@@ -350,6 +368,7 @@ void FRHDTW_OutputLog::Do()
 
 	ProcessPendingMessages();
 
+	CopyText.Empty();
 	ImGuiListClipper clipper;
 	clipper.Begin(FilteredMessages.Num());
 	while (clipper.Step())
@@ -363,6 +382,16 @@ void FRHDTW_OutputLog::Do()
 			ImGui::PushStyleColor(ImGuiCol_Text, col);
 			ImGui::TextUnformatted(item);
 			ImGui::PopStyleColor();
+
+			// Only save line 0 if line 1 is also in, since ImGuiListClipper always process line 0.
+			if (i == 1)
+			{
+				CopyText += FString(FilteredMessages[0]->GetMessageAsANSIString()) + LINE_TERMINATOR;
+			}
+			if (i != 0)
+			{
+				CopyText += FString(item) + LINE_TERMINATOR;
+			}
 		}
 	}
 

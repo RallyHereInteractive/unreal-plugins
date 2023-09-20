@@ -14,9 +14,12 @@ struct FRHDTW_Config : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 	void DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
+	void DoRhTimeTab(URH_ConfigSubsystem* pRH_ConfigSubsystem);
 
-	void HandleFetchAppSettings(bool bSuccess);
+	void HandleFetchAppSettings(bool bSuccess, const FRH_ErrorInfo& ErrorInfo);
+	void HandleFetchTime(bool bSuccess, const FRH_ErrorInfo& ErrorInfo);
 
 	FString AppSettingsActionResult;
+	FString TimeActionResult;
 
 };

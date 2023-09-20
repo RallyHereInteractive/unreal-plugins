@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FSiteAPI::FSiteAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Site");
+    Name = FName(TEXT("Site"));
 }
 
 FSiteAPI::~FSiteAPI() {}
@@ -88,14 +88,15 @@ FRequest_GetSiteSettings::FRequest_GetSiteSettings()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSiteSettings::GetSimplifiedPath() const
+FName FRequest_GetSiteSettings::GetSimplifiedPath() const
 {
-    return FString(TEXT("/config/v1/site"));
+    static FName Path = FName(TEXT("/config/v1/site"));
+    return Path;
 }
 
 FString FRequest_GetSiteSettings::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 

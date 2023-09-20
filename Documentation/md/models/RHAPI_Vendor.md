@@ -19,6 +19,8 @@ A collection of Loot and how to fulfill them.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5) | Custom data associated with the resource.
+`public bool `[`CustomData_IsSet`](#structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2) | true if CustomData_Optional has been set to a value
 `public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) | Determines how the Vendor fulfills the loot.
 `public bool `[`Type_IsSet`](#structFRHAPI__Vendor_1a2b43a4bd9314bb4dda95366e7465eab2) | true if Type_Optional has been set to a value
 `public int32 `[`LegacyType_Optional`](#structFRHAPI__Vendor_1a7ddc9fd486f80acdd94206d576727874) | 
@@ -31,6 +33,14 @@ A collection of Loot and how to fulfill them.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Vendor_1a02cff5941552eb97b863c0504e9279ed) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Vendor_1aabb9e1249de388316e3afe9c4450b83a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Vendor_1aadb2125b79d9369fa89d5428c18c6a5b)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1a956ab93f7b49d4d44c94b268740772e1)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1ac17d955d814ce05a9025657201ea2f2d)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1a50d47bcfb078339affc57a7180c1c3e6)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__Vendor_1a8105f764906c77a60c614e9c3c685f18)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a4183b612a36de5eabae8d1a3d11debaf)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a443f7f3b5a4d61b855258c8410498176)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`ClearCustomData`](#structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7)`()` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1ae21da9d6ed5959edd48a777e7b6ff3a3)`() const` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a8f67f4cd42adea280e7d6b01414cbefa)`(const ERHAPI_VendorType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -78,6 +88,16 @@ A collection of Loot and how to fulfill them.
 
 #### Members
 
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5) <a id="structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5"></a>
+
+Custom data associated with the resource.
+
+<br>
+#### `public bool `[`CustomData_IsSet`](#structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2) <a id="structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2"></a>
+
+true if CustomData_Optional has been set to a value
+
+<br>
 #### `public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) <a id="structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782"></a>
 
 Determines how the Vendor fulfills the loot.
@@ -139,6 +159,46 @@ Writes the data from this object into the specified JSON Writer stream.
 
 #### Parameters
 * `Writer` JSON Writer stream to push .
+
+<br>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1a956ab93f7b49d4d44c94b268740772e1)`()` <a id="structFRHAPI__Vendor_1a956ab93f7b49d4d44c94b268740772e1"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1ac17d955d814ce05a9025657201ea2f2d)`() const` <a id="structFRHAPI__Vendor_1ac17d955d814ce05a9025657201ea2f2d"></a>
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Vendor_1a50d47bcfb078339affc57a7180c1c3e6)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__Vendor_1a50d47bcfb078339affc57a7180c1c3e6"></a>
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__Vendor_1a8105f764906c77a60c614e9c3c685f18)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__Vendor_1a8105f764906c77a60c614e9c3c685f18"></a>
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a4183b612a36de5eabae8d1a3d11debaf)`()` <a id="structFRHAPI__Vendor_1a4183b612a36de5eabae8d1a3d11debaf"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a443f7f3b5a4d61b855258c8410498176)`() const` <a id="structFRHAPI__Vendor_1a443f7f3b5a4d61b855258c8410498176"></a>
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa"></a>
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearCustomData`](#structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367)`()` <a id="structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367"></a>
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
 <br>
 #### `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7)`()` <a id="structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7"></a>

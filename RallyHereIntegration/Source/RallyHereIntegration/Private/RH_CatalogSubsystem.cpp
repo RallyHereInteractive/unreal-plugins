@@ -198,7 +198,7 @@ void URH_CatalogSubsystem::OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Res
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
 }
 
-void URH_CatalogSubsystem::GetCatalogItem(int32 ItemId, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogItem(const int32& ItemId, FRH_CatalogCallBlock Delegate)
 {
 	// #RHTODO: Implement refreshing item based on Etag
 
@@ -245,7 +245,7 @@ void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Respo
 	SubmittedGetCatalogItemCalls.Remove(ItemId);
 }
 
-void URH_CatalogSubsystem::ParseAllXpTables(FRHAPI_XpTables Content)
+void URH_CatalogSubsystem::ParseAllXpTables(const FRHAPI_XpTables& Content)
 {
 	if (const auto NewXpTables = Content.GetXpTablesOrNull())
 	{
@@ -291,7 +291,7 @@ void URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(con
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
 }
 
-void URH_CatalogSubsystem::ParseAllInventoryBucketUseRuleSets(FRHAPI_InventoryBucketUseRuleSets Content)
+void URH_CatalogSubsystem::ParseAllInventoryBucketUseRuleSets(const FRHAPI_InventoryBucketUseRuleSets& Content)
 {
 	InventoryBucketUseRuleSets.Empty();
 	const auto RuleSets = Content.GetRuleSetsOrNull();
@@ -481,7 +481,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 	}
 }
 
-URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(FRHAPI_Item CatalogItem, int32 ItemId)
+URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(const FRHAPI_Item& CatalogItem, const int32& ItemId)
 {
 	// Find or create the Item we are updating
 	URH_CatalogItem* Item = nullptr;
@@ -664,7 +664,7 @@ void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTi
 
 ///
 
-bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price)
+bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, const int32& CurrencyItemId, int32 Quantity, int32& Price)
 {
 	for (const auto& PriceBreakpoint : PriceBreakpoints)
 	{
@@ -679,12 +679,12 @@ bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoi
 	return false;
 }
 
-bool URH_CatalogBlueprintLibrary::IsCouponApplicableForItem(URH_CatalogItem* CouponItem, FRHAPI_Loot CatalogVendorItem)
+bool URH_CatalogBlueprintLibrary::IsCouponApplicableForItem(URH_CatalogItem* CouponItem, const FRHAPI_Loot& CatalogVendorItem)
 { 
 	return IsCouponApplicableForLootId(CouponItem, CatalogVendorItem.GetLootId());
 }
 
-bool URH_CatalogBlueprintLibrary::IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, int32 LootId)
+bool URH_CatalogBlueprintLibrary::IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, const int32& LootId)
 {
 	if (CouponItem != nullptr)
 	{
@@ -704,7 +704,7 @@ int32 URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(URH_CatalogItem* Cou
 	return Price;
 }
 
-int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(FRHAPI_XpTable XpTable, int32 XpLevel) 
+int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(const FRHAPI_XpTable& XpTable, int32 XpLevel) 
 {
 	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
 	{
@@ -727,7 +727,7 @@ int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(FRHAPI_XpTable XpTable, int32 Xp
 	return INDEX_NONE;
 }
 
-int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(FRHAPI_XpTable XpTable, int64 XpPoints) 
+int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(const FRHAPI_XpTable& XpTable, int64 XpPoints) 
 {
 	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
 	{
@@ -746,13 +746,13 @@ int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(FRHAPI_XpTable XpTable, int64 Xp
 	return 0;
 }
 
-bool URH_CatalogBlueprintLibrary::GetVendorItemById(const FRHAPI_Vendor& Vendor, int32 LootId, FRHAPI_Loot& LootItem)
+bool URH_CatalogBlueprintLibrary::GetVendorItemById(const FRHAPI_Vendor& Vendor, const int32& LootId, FRHAPI_Loot& LootItem)
 {
 	if (const auto& LootItems = Vendor.GetLootOrNull())
 	{
 		for (const auto& VendorItemPair : (*LootItems))
 		{
-			if (VendorItemPair.Value.GetLootId() == LootId)
+			if (LootId == VendorItemPair.Value.GetLootId())
 			{
 				LootItem = VendorItemPair.Value;
 				return true;

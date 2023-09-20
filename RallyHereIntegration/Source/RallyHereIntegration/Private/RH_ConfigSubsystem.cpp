@@ -25,15 +25,15 @@ void URH_ConfigSubsystem::Initialize()
 	InitPropertiesWithDefaultValues();
 
 	AppSettingsPoller = FRH_PollControl::CreateAutoPoller();
-
-	// start timer to check for updates
+	
 	if (bAutomaticallyPollConfigurationData)
 	{
+		// start timer to check for updates
 		StartAppSettingsRefreshTimer();
 	}
 
 	// bind callback that checks if we are automatically applying hotfix data on settings change.  Check is internal so it can itself be hotfixed
-	AppSettingsUpdatedDelegate.AddLambda([](URH_ConfigSubsystem* pConfig)
+	OnSettingsUpdated.AddLambda([](URH_ConfigSubsystem* pConfig)
 	{
 		if (pConfig->bAutomaticallyApplyHotfixData)
 		{
@@ -66,7 +66,7 @@ void URH_ConfigSubsystem::InitPropertiesWithDefaultValues()
 	GConfig->ForEachEntry(Visitor, TEXT("RallyHereFeatures"), GRallyHereIntegrationIni);
 }
 
-void URH_ConfigSubsystem::FetchAppSettings(const FRH_GenericSuccessDelegate& Delegate)
+void URH_ConfigSubsystem::FetchAppSettings(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -86,7 +86,7 @@ void URH_ConfigSubsystem::FetchAppSettings(const FRH_GenericSuccessDelegate& Del
 void URH_ConfigSubsystem::PollAppSettings(const FRH_PollCompleteFunc& Delegate)
 {
 	// fetch with the above delegate wrappered into a lambda to convert the type
-	FetchAppSettings(FRH_GenericSuccessDelegate::CreateLambda([Delegate](bool bSuccess) {Delegate.ExecuteIfBound(bSuccess, true); }));
+	FetchAppSettings(FRH_GenericSuccessWithErrorDelegate::CreateLambda([Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) {Delegate.ExecuteIfBound(bSuccess, true); }));
 }
 
 
@@ -112,11 +112,22 @@ void URH_ConfigSubsystem::OnFetchAppSettings(const RallyHereAPI::FResponse_GetAp
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastAppSettingsUpdated, FColor::Purple);
 			AppSettingsUpdatedDelegate.Broadcast(this);
+			OnSettingsUpdated.Broadcast(this);
+			BLUEPRINT_OnSettingsUpdated.Broadcast(this);
 		}
 
 		if (AppSettingsPoller.IsValid())
 		{
 			AppSettingsPoller->DeferPollTimer();
+		}
+
+		// if we have not yet received a server time update, and we successfully retrieved appsettings, try to retrieve time.  This allows us to piggyback the time update on the appsettings update until it succeeds once
+		// and uses the appsettings success as a good indicator of API health (otherwise, an initial kickoff could fail once and leave us in a bad state)
+		FDateTime ServerTime;
+		if (bAutomaticallyPollConfigurationData && !GetServerTime(ServerTime))
+		{
+			// kick off time update
+			RefreshServerTimeCache();
 		}
 	}
 }
@@ -140,6 +151,36 @@ void URH_ConfigSubsystem::StopAppSettingsRefreshTimer()
 	{
 		AppSettingsPoller->StopPoll();
 	}
+}
+
+void URH_ConfigSubsystem::RefreshServerTimeCache(FRH_GenericSuccessWithErrorBlock Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_GetUtcTime BaseType;
+
+	BaseType::Request Request;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					ServerTimeCache.ImportAPITime(Resp);
+
+					FDateTime LocalTime = ServerTimeCache.GetLocalTime();
+					FDateTime ServerTime;
+					ServerTimeCache.GetServerTime(ServerTime);
+					FTimespan Drift;
+					ServerTimeCache.GetServerTimeDrift(Drift);
+
+					UE_LOG(LogRallyHereIntegration, Log, TEXT("Received time from server, local time %s, server time %s, drift %s"), *LocalTime.ToString(), *ServerTime.ToString(), *Drift.ToString())
+				}
+			}),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->FetchAppSettingsPriority);
+
+	Helper->Start(RH_APIs::GetAPIs().GetTime(), Request);
 }
 
 void URH_ConfigSubsystem::TriggerHotfixProcessing()

@@ -29,188 +29,60 @@ bool RH_GetPlayerIdFromLocalPlayer(const ULocalPlayer* pLocalPlayer, FGuid* outP
 	return false;
 }
 
-TOptional<ERHAPI_PlatformID> RH_GetPlatformIdFromOSSName(FName OSSName)
-{
-	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Steam;
-	}
-	else if (OSSName == EOS_SUBSYSTEM || OSSName == EOSPLUS_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Epic;
-	}
-	else if (OSSName == PS4_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Psn;
-	}
-	else if (OSSName == PS5_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Psn;
-	}
-	else if (OSSName == GDK_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::XboxLive;
-	}
-	else if (OSSName == SWITCH_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::NintendoSwitch;
-	}
-	else if (OSSName == APPLE_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Apple;
-	}
-	else if (OSSName == GOOGLE_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Google;
-	}
-	else if (OSSName == ANON_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformID::Anon;
-	}
-	else
-	{
-		return {};
-	}
-}
-
 TOptional<ERHAPI_Platform> RH_GetPlatformFromOSSName(FName OSSName)
 {
-	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
+	FString PlatformName;
+	GConfig->GetString(TEXT("PlatformFromOSSNameMap"), *OSSName.ToString(), PlatformName, GRallyHereIntegrationIni);
+
+	TOptional<ERHAPI_Platform> OutPlatform;
+	auto Platform = RH_GETENUMFROMSTRING("/Script/RallyHereAPI", "ERHAPI_Platform", PlatformName);
+	if (Platform != INDEX_NONE)
 	{
-		return ERHAPI_Platform::Steam;
+		OutPlatform = static_cast<ERHAPI_Platform>(Platform);
 	}
-	else if (OSSName == EOS_SUBSYSTEM || OSSName == EOSPLUS_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::Epic;
-	}
-	else if (OSSName == PS4_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::Psn;
-	}
-	else if (OSSName == PS5_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::Psn;
-	}
-	else if (OSSName == GDK_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::XboxLive;
-	}
-	else if (OSSName == SWITCH_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::NintendoSwitch;
-	}
-	else if (OSSName == APPLE_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::Apple;
-	}
-	else if (OSSName == GOOGLE_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::Google;
-	}
-	else if (OSSName == ANON_SUBSYSTEM)
-	{
-		return ERHAPI_Platform::Anon;
-	}
-	else
-	{
-		return {};
-	}
+
+	return OutPlatform;
 }
 
 ERHAPI_ClientType RH_GetClientTypeFromOSSName(FName OSSName)
 {
-	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
+	FString ClientTypeName;
+	GConfig->GetString(TEXT("ClientTypeFromOSSNameMap"), *OSSName.ToString(), ClientTypeName, GRallyHereIntegrationIni);
+
+	ERHAPI_ClientType OutClientType = ERHAPI_ClientType::Unknown;
+	auto ClientType = RH_GETENUMFROMSTRING("/Script/RallyHereAPI", "ERHAPI_ClientType", ClientTypeName);
+	if (ClientType != INDEX_NONE)
 	{
-		return ERHAPI_ClientType::Win;
+		OutClientType = static_cast<ERHAPI_ClientType>(ClientType);
 	}
-	else if (OSSName == EOS_SUBSYSTEM || OSSName == EOSPLUS_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::Win;
-	}
-	else if (OSSName == PS4_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::PS4;
-	}
-	else if (OSSName == PS5_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::PS5;
-	}
-	else if (OSSName == GDK_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::Xboxone;
-	}
-	else if (OSSName == SWITCH_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::_Switch;
-	}
-	else if (OSSName == APPLE_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::Ios;
-	}
-	else if (OSSName == GOOGLE_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::Android;
-	}
-	else if (OSSName == ANON_SUBSYSTEM)
-	{
-		return ERHAPI_ClientType::Win;
-	}
-	else
-	{
-		return ERHAPI_ClientType::Unknown;
-	}
+
+	return OutClientType;
 }
 
 TOptional<ERHAPI_GrantType> RH_GetGrantTypeFromOSSName(FName OSSName)
 {
-	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Steam;
-	}
-	else if (OSSName == EOS_SUBSYSTEM || OSSName == EOSPLUS_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Epic;
-	}
-	else if (OSSName == PS4_SUBSYSTEM)
+	FString OSSNameString = OSSName.ToString();
+
+	// detect PS4 crossgen support
+	if (OSSName == PS4_SUBSYSTEM)
 	{
 		if (GConfig->GetBoolOrDefault(TEXT("CrossgenSupport"), TEXT("bEnableCrossgenSupport"), false, GEngineIni))
 		{
-			return ERHAPI_GrantType::PS4V3;
+			OSSNameString += TEXT("_CrossGen");
 		}
-		return ERHAPI_GrantType::PS4V1;
 	}
-	else if (OSSName == PS5_SUBSYSTEM)
+
+	FString GrantTypeName;
+	GConfig->GetString(TEXT("GrantTypeFromOSSNameMap"), *OSSNameString, GrantTypeName, GRallyHereIntegrationIni);
+
+	TOptional<ERHAPI_GrantType> OutGrantType;
+	auto GrantType = RH_GETENUMFROMSTRING("/Script/RallyHereAPI", "ERHAPI_GrantType", GrantTypeName);
+	if (GrantType != INDEX_NONE)
 	{
-		return ERHAPI_GrantType::PS5V3;
+		OutGrantType = static_cast<ERHAPI_GrantType>(GrantType);
 	}
-	else if (OSSName == LIVE_SUBSYSTEM || OSSName == GDK_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Xboxlive;
-	}
-	else if (OSSName == SWITCH_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::NintendoSwitch;
-	}
-	else if (OSSName == APPLE_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Apple;
-	}
-	else if (OSSName == GOOGLE_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Google;
-	}
-	else if (OSSName == ANON_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Anon;
-	}
-	else if (OSSName == BASIC_SUBSYSTEM)
-	{
-		return ERHAPI_GrantType::Basic;
-	}
-	else
-	{
-		return {};
-	}
+
+	return OutGrantType;
 }
 
 ERHAPI_InventoryBucket RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform)
@@ -287,119 +159,4 @@ ERHAPI_InventoryBucket RH_GetInventoryBucketFromPlatform(ERHAPI_Platform Platfor
 	}
 
 	return ERHAPI_InventoryBucket::None;
-}
-
-ERHAPI_PlatformTypes_DEPRECATED RH_GetPlatformTypeFromOSSName(FName OSSName)
-{
-	if (OSSName == STEAM_SUBSYSTEM || OSSName == STEAMV2_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_STEAM;
-	}
-	else if (OSSName == EOS_SUBSYSTEM || OSSName == EOSPLUS_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_EPIC;
-	}
-	else if (OSSName == PS4_SUBSYSTEM || OSSName == PS5_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_PSN;
-	}
-	else if (OSSName == LIVE_SUBSYSTEM || OSSName == GDK_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_XBOX_LIVE;
-	}
-	else if (OSSName == SWITCH_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO_SWITCH;
-	}
-	else if (OSSName == APPLE_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_APPLE;
-	}
-	else if (OSSName == GOOGLE_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_GOOGLE;
-	}
-	else if (OSSName == ANON_SUBSYSTEM)
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_ANON;
-	}
-	else
-	{
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
-	}
-}
-
-ERHAPI_Platform RH_GetPlatformFromPlatformType(ERHAPI_PlatformTypes_DEPRECATED PlatformTypes)
-{
-	switch (PlatformTypes)
-	{
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_ANON:
-		return ERHAPI_Platform::Anon;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_AMAZON:
-		return ERHAPI_Platform::Steam;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_STEAM:
-		return ERHAPI_Platform::Steam;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_PSN:
-		return ERHAPI_Platform::Psn;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_XBOX_LIVE:
-		return ERHAPI_Platform::XboxLive;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_GOOGLE:
-		return ERHAPI_Platform::Google;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_TWITCH:
-		return ERHAPI_Platform::Twitch;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO_SWITCH:
-		return ERHAPI_Platform::NintendoSwitch;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_APPLE:
-		return ERHAPI_Platform::Apple;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO:
-		return ERHAPI_Platform::NintendoNaid;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_EPIC:
-		return ERHAPI_Platform::Epic;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_GOOGLE_PLAY:
-		return ERHAPI_Platform::GooglePlay;
-	case ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO_PPID:
-		return ERHAPI_Platform::NintendoPpid;
-	}
-
-	return ERHAPI_Platform::Anon;
-}
-
-ERHAPI_PlatformTypes_DEPRECATED RH_GetPlatformTypeFromPlatform(ERHAPI_Platform Platform)
-{
-	switch (Platform)
-	{
-	case ERHAPI_Platform::Anon:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_ANON;
-	case ERHAPI_Platform::Amazon:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_AMAZON;
-	case ERHAPI_Platform::Steam:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_STEAM;
-	case ERHAPI_Platform::Psn:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_PSN;
-	case ERHAPI_Platform::XboxLive:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_XBOX_LIVE;
-	case ERHAPI_Platform::Google:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_GOOGLE;
-	case ERHAPI_Platform::Twitch:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_TWITCH;
-	case ERHAPI_Platform::NintendoSwitch:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO_SWITCH;
-	case ERHAPI_Platform::Apple:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_APPLE;
-	case ERHAPI_Platform::NintendoNaid:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO;
-	case ERHAPI_Platform::Epic:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_EPIC;
-	case ERHAPI_Platform::GooglePlay:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_GOOGLE_PLAY;
-	case ERHAPI_Platform::NintendoPpid:
-		return ERHAPI_PlatformTypes_DEPRECATED::PT_NINTENDO_PPID;
-	}
-
-	return ERHAPI_PlatformTypes_DEPRECATED::PT_UNKNOWN;
-}
-
-ERHAPI_InventoryBucket RH_GetInventoryBucketFromPlatformType(ERHAPI_PlatformTypes_DEPRECATED PlatformType)
-{
-	return RH_GetInventoryBucketFromPlatform(RH_GetPlatformFromPlatformType(PlatformType));
 }

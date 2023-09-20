@@ -19,7 +19,7 @@
  */
 
 /**
- * @brief 
+ * @brief Login result
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
@@ -42,6 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Platform */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
@@ -51,6 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of Platform */
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
+    /** @brief Portal ID *DEPRECATED* use `platform` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 PortalId{ 0 };
     /** @brief Gets the value of PortalId */
@@ -64,6 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of PortalId to its default  */
     void SetPortalIdToDefault() { PortalId = 0;  }
 
+    /** @brief Portal user ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString PortalUserId{  };
     /** @brief Gets the value of PortalUserId */
@@ -73,6 +76,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of PortalUserId */
     void SetPortalUserId(FString NewValue) { PortalUserId = NewValue;  }
 
+    /** @brief Display name */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString DisplayName{  };
     /** @brief Gets the value of DisplayName */
@@ -150,6 +154,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
      /** @brief Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false */
     void ClearRestrictions() { Restrictions_IsSet = false; }
 
+    /** @brief Active player ID. *DEPRECATED* use `active_player_uuid` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ActivePlayerId{ 0 };
     /** @brief Gets the value of ActivePlayerId */
@@ -163,6 +168,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of ActivePlayerId to its default  */
     void SetActivePlayerIdToDefault() { ActivePlayerId = 0;  }
 
+    /** @brief Active player UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ActivePlayerUuid_Optional{  };
     /** @brief true if ActivePlayerUuid_Optional has been set to a value */
@@ -185,6 +191,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
      /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
     void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false; }
 
+    /** @brief Role ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 RoleId_Optional{  };
     /** @brief true if RoleId_Optional has been set to a value */
@@ -211,6 +218,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of RoleId_Optional to its default and also sets RoleId_IsSet to true */
     void SetRoleIdToDefault() { RoleId_Optional = 0; RoleId_IsSet = true; }
 
+    /** @brief Person ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PersonId{  };
     /** @brief Gets the value of PersonId */
@@ -220,6 +228,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of PersonId */
     void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
 
+    /** @brief Access token that can be used for future requests */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString AccessToken_Optional{  };
     /** @brief true if AccessToken_Optional has been set to a value */
@@ -246,6 +255,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of AccessToken_Optional to its default and also sets AccessToken_IsSet to true */
     void SetAccessTokenToDefault() { AccessToken_Optional = TEXT(""); AccessToken_IsSet = true; }
 
+    /** @brief Refresh token that can be used to refresh authentication for a new access token */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString RefreshToken_Optional{  };
     /** @brief true if RefreshToken_Optional has been set to a value */
@@ -268,6 +278,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
      /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
     void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
+    /** @brief Publisher UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid PublisherUuid{  };
     /** @brief Gets the value of PublisherUuid */
@@ -277,6 +288,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of PublisherUuid */
     void SetPublisherUuid(FGuid NewValue) { PublisherUuid = NewValue;  }
 
+    /** @brief Tenant UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid TenantUuid{  };
     /** @brief Gets the value of TenantUuid */
@@ -286,6 +298,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of TenantUuid */
     void SetTenantUuid(FGuid NewValue) { TenantUuid = NewValue;  }
 
+    /** @brief Config elector UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ConfigElectorUuid{  };
     /** @brief Gets the value of ConfigElectorUuid */
@@ -295,6 +308,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     /** @brief Sets the value of ConfigElectorUuid */
     void SetConfigElectorUuid(FGuid NewValue) { ConfigElectorUuid = NewValue;  }
 
+    /** @brief Client UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid ClientUuid{  };
     /** @brief Gets the value of ClientUuid */

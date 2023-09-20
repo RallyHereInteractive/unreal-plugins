@@ -81,6 +81,7 @@ Main integration layer handler.
 `public void `[`ResolveClientSecret`](#classURH__Integration_1acf88cad66d6acbf99495f8895da38917)`()` | Check for a client secret across several sources and assign the first non-empty value to the APIs:
 `public inline void `[`LockClientSecret`](#classURH__Integration_1a05204a2d20528a3b4f59952368ae1814)`(bool bLocked)` | Updates the locked status of the Client Secret.
 `public inline class `[`URH_WebRequests`](WebRequest.md#classURH__WebRequests)` * `[`GetWebRequestTracker`](#classURH__Integration_1aa0eca33c0d2add66db9ecf8d169325a0)`() const` | Gets the Web Request Tracker.
+`public inline class `[`URH_Diagnostics`](Diagnostics.md#classURH__Diagnostics)` * `[`GetDiagnostics`](#classURH__Integration_1a9031d6508ab6dd48cbfa74e9e698fbdb)`() const` | Gets the Diagnostic Reporter.
 
 #### Members
 
@@ -241,5 +242,10 @@ Updates the locked status of the Client Secret.
 #### `public inline class `[`URH_WebRequests`](WebRequest.md#classURH__WebRequests)` * `[`GetWebRequestTracker`](#classURH__Integration_1aa0eca33c0d2add66db9ecf8d169325a0)`() const` <a id="classURH__Integration_1aa0eca33c0d2add66db9ecf8d169325a0"></a>
 
 Gets the Web Request Tracker.
+
+<br>
+#### `public inline class `[`URH_Diagnostics`](Diagnostics.md#classURH__Diagnostics)` * `[`GetDiagnostics`](#classURH__Integration_1a9031d6508ab6dd48cbfa74e9e698fbdb)`() const` <a id="classURH__Integration_1a9031d6508ab6dd48cbfa74e9e698fbdb"></a>
+
+Gets the Diagnostic Reporter.
 
 <br>

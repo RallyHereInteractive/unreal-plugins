@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PersonEmailListRequest`](#structFRHAPI__PersonEmailListRequest) | 
+`struct `[`FRHAPI_PersonEmailListRequest`](#structFRHAPI__PersonEmailListRequest) | Request to update a person&#39;s email list subscriptions.
 
 ## struct `FRHAPI_PersonEmailListRequest` <a id="structFRHAPI__PersonEmailListRequest"></a>
 
@@ -13,11 +13,13 @@ struct FRHAPI_PersonEmailListRequest
   : public FRHAPI_Model
 ```
 
+Request to update a person&#39;s email list subscriptions.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public TArray< int32 > `[`EmailListIds_Optional`](#structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d) | 
+`public TArray< int32 > `[`EmailListIds_Optional`](#structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d) | List of all email list ids the user is subscribed to, even if already subscribed before request.
 `public bool `[`EmailListIds_IsSet`](#structFRHAPI__PersonEmailListRequest_1a3da41bb7b8e4e445cbe45a9d9090f3d5) | true if EmailListIds_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PersonEmailListRequest_1a6f8e407240eb7ef9d57c32cf1bfee7ab)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PersonEmailListRequest_1a5f71385e182f178080469e5ff0a11ad5)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -33,6 +35,8 @@ struct FRHAPI_PersonEmailListRequest
 #### Members
 
 #### `public TArray< int32 > `[`EmailListIds_Optional`](#structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d) <a id="structFRHAPI__PersonEmailListRequest_1a40e9b3ec056a3c2567d794c697c7082d"></a>
+
+List of all email list ids the user is subscribed to, even if already subscribed before request.
 
 <br>
 #### `public bool `[`EmailListIds_IsSet`](#structFRHAPI__PersonEmailListRequest_1a3da41bb7b8e4e445cbe45a9d9090f3d5) <a id="structFRHAPI__PersonEmailListRequest_1a3da41bb7b8e4e445cbe45a9d9090f3d5"></a>

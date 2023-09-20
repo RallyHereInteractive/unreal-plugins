@@ -13,6 +13,7 @@
 #include "AppSetting.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "KVsResponse.h"
 
 namespace RallyHereAPI
 {
@@ -20,11 +21,14 @@ using RallyHereAPI::ToStringFormatArg;
 using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
+struct FRequest_GetAppSettingsAll;
+struct FResponse_GetAppSettingsAll;
 struct FRequest_GetAppSettingsClient;
 struct FResponse_GetAppSettingsClient;
 struct FRequest_GetAppSettingsServer;
 struct FResponse_GetAppSettingsServer;
 
+DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsAll, const FResponse_GetAppSettingsAll&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsClient, const FResponse_GetAppSettingsClient&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAppSettingsServer, const FResponse_GetAppSettingsServer&);
 
@@ -34,13 +38,60 @@ public:
     FConfigAPI();
     virtual ~FConfigAPI();
 
+    FHttpRequestPtr GetAppSettingsAll(const FRequest_GetAppSettingsAll& Request, const FDelegate_GetAppSettingsAll& Delegate = FDelegate_GetAppSettingsAll(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetAppSettingsClient(const FRequest_GetAppSettingsClient& Request, const FDelegate_GetAppSettingsClient& Delegate = FDelegate_GetAppSettingsClient(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetAppSettingsServer(const FRequest_GetAppSettingsServer& Request, const FDelegate_GetAppSettingsServer& Delegate = FDelegate_GetAppSettingsServer(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
+    void OnGetAppSettingsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAppSettingsClientResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsClient Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAppSettingsServerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAppSettingsServer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
+};
+
+/* Get App Settings All
+ *
+ * If authenticated and with correct permissions, will return all KVs. Otherwise it will only return non secret KVs.
+*/
+struct RALLYHEREAPI_API FRequest_GetAppSettingsAll : public FRequest
+{
+    FRequest_GetAppSettingsAll();
+    virtual ~FRequest_GetAppSettingsAll() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* If specified, will only return the KVs with the specified keys */
+    TOptional<TArray<FString>> KeysToInclude;
+    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+    TOptional<FString> IfNoneMatch;
+};
+
+struct RALLYHEREAPI_API FResponse_GetAppSettingsAll : public FResponse
+{
+    FResponse_GetAppSettingsAll(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetAppSettingsAll() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_KVsResponse Content;
+    // Headers
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> ETag;
+};
+
+struct RALLYHEREAPI_API Traits_GetAppSettingsAll
+{
+    typedef FRequest_GetAppSettingsAll Request;
+    typedef FResponse_GetAppSettingsAll Response;
+    typedef FDelegate_GetAppSettingsAll Delegate;
+    typedef FConfigAPI API;
+    static FString Name;
+	
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAppSettingsAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get App Settings Client
@@ -53,7 +104,7 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsClient : public FRequest
     virtual ~FRequest_GetAppSettingsClient() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
 
     /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
     TOptional<FString> IfNoneMatch;
@@ -94,7 +145,7 @@ struct RALLYHEREAPI_API FRequest_GetAppSettingsServer : public FRequest
     virtual ~FRequest_GetAppSettingsServer() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

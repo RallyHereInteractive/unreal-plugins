@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_LookupResults`](#structFRHAPI__LookupResults) | 
+`struct `[`FRHAPI_LookupResults`](#structFRHAPI__LookupResults) | Lookup results for a player query.
 
 ## struct `FRHAPI_LookupResults` <a id="structFRHAPI__LookupResults"></a>
 
@@ -13,15 +13,17 @@ struct FRHAPI_LookupResults
   : public FRHAPI_Model
 ```
 
+Lookup results for a player query.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > > > `[`DisplayNames_Optional`](#structFRHAPI__LookupResults_1a2792e7ea1c67e9bc83be3cc6f8d8f160) | 
+`public TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > > > `[`DisplayNames_Optional`](#structFRHAPI__LookupResults_1a2792e7ea1c67e9bc83be3cc6f8d8f160) | List of display names and the players that match that display name.
 `public bool `[`DisplayNames_IsSet`](#structFRHAPI__LookupResults_1a2dd1caa9fe26b2aaa70966f118305219) | true if DisplayNames_Optional has been set to a value
-`public TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > `[`IdentityPlatforms_Optional`](#structFRHAPI__LookupResults_1a9b38e82b534a20dd79def5df5af49cec) | 
+`public TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > `[`IdentityPlatforms_Optional`](#structFRHAPI__LookupResults_1a9b38e82b534a20dd79def5df5af49cec) | *DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id
 `public bool `[`IdentityPlatforms_IsSet`](#structFRHAPI__LookupResults_1a7916bca0eb141f565ec7062291c9d8d1) | true if IdentityPlatforms_Optional has been set to a value
-`public TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > `[`IdentityPlatformsByPlatform_Optional`](#structFRHAPI__LookupResults_1a3c33f2087e0f5524231bdf41ad7b1627) | 
+`public TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > `[`IdentityPlatformsByPlatform_Optional`](#structFRHAPI__LookupResults_1a3c33f2087e0f5524231bdf41ad7b1627) | List of platforms and the players that match that platform user id.
 `public bool `[`IdentityPlatformsByPlatform_IsSet`](#structFRHAPI__LookupResults_1a52b71e32ef449b8d56b700674005b0ce) | true if IdentityPlatformsByPlatform_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__LookupResults_1acd0574081cdfebd31f70443f17a3977c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LookupResults_1aeb52b89da73d14f90f831f2cf343f66e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -54,6 +56,8 @@ struct FRHAPI_LookupResults
 
 #### `public TArray< TMap< FString, TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > > > `[`DisplayNames_Optional`](#structFRHAPI__LookupResults_1a2792e7ea1c67e9bc83be3cc6f8d8f160) <a id="structFRHAPI__LookupResults_1a2792e7ea1c67e9bc83be3cc6f8d8f160"></a>
 
+List of display names and the players that match that display name.
+
 <br>
 #### `public bool `[`DisplayNames_IsSet`](#structFRHAPI__LookupResults_1a2dd1caa9fe26b2aaa70966f118305219) <a id="structFRHAPI__LookupResults_1a2dd1caa9fe26b2aaa70966f118305219"></a>
 
@@ -62,6 +66,8 @@ true if DisplayNames_Optional has been set to a value
 <br>
 #### `public TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > `[`IdentityPlatforms_Optional`](#structFRHAPI__LookupResults_1a9b38e82b534a20dd79def5df5af49cec) <a id="structFRHAPI__LookupResults_1a9b38e82b534a20dd79def5df5af49cec"></a>
 
+*DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id
+
 <br>
 #### `public bool `[`IdentityPlatforms_IsSet`](#structFRHAPI__LookupResults_1a7916bca0eb141f565ec7062291c9d8d1) <a id="structFRHAPI__LookupResults_1a7916bca0eb141f565ec7062291c9d8d1"></a>
 
@@ -69,6 +75,8 @@ true if IdentityPlatforms_Optional has been set to a value
 
 <br>
 #### `public TMap< FString, TArray< `[`FRHAPI_PlatformIdentityLookupResults`](RHAPI_PlatformIdentityLookupResults.md#structFRHAPI__PlatformIdentityLookupResults)` > > `[`IdentityPlatformsByPlatform_Optional`](#structFRHAPI__LookupResults_1a3c33f2087e0f5524231bdf41ad7b1627) <a id="structFRHAPI__LookupResults_1a3c33f2087e0f5524231bdf41ad7b1627"></a>
+
+List of platforms and the players that match that platform user id.
 
 <br>
 #### `public bool `[`IdentityPlatformsByPlatform_IsSet`](#structFRHAPI__LookupResults_1a52b71e32ef449b8d56b700674005b0ce) <a id="structFRHAPI__LookupResults_1a52b71e32ef449b8d56b700674005b0ce"></a>

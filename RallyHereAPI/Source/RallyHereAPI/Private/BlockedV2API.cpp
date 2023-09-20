@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FBlockedV2API::FBlockedV2API() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("BlockedV2");
+    Name = FName(TEXT("BlockedV2"));
 }
 
 FBlockedV2API::~FBlockedV2API() {}
@@ -88,9 +88,10 @@ FRequest_BlockV2::FRequest_BlockV2()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_BlockV2::GetSimplifiedPath() const
+FName FRequest_BlockV2::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
+    static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
+    return Path;
 }
 
 FString FRequest_BlockV2::ComputePath() const
@@ -241,9 +242,10 @@ FRequest_GetBlockedListForPlayerV2::FRequest_GetBlockedListForPlayerV2()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetBlockedListForPlayerV2::GetSimplifiedPath() const
+FName FRequest_GetBlockedListForPlayerV2::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v2/player/{player_uuid}/block"));
+    static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block"));
+    return Path;
 }
 
 FString FRequest_GetBlockedListForPlayerV2::ComputePath() const
@@ -434,9 +436,10 @@ FRequest_GetBlockedV2::FRequest_GetBlockedV2()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetBlockedV2::GetSimplifiedPath() const
+FName FRequest_GetBlockedV2::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
+    static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
+    return Path;
 }
 
 FString FRequest_GetBlockedV2::ComputePath() const
@@ -587,9 +590,10 @@ FRequest_UnblockV2::FRequest_UnblockV2()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_UnblockV2::GetSimplifiedPath() const
+FName FRequest_UnblockV2::GetSimplifiedPath() const
 {
-    return FString(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
+    static FName Path = FName(TEXT("/friends/v2/player/{player_uuid}/block/{other_player_uuid}"));
+    return Path;
 }
 
 FString FRequest_UnblockV2::ComputePath() const

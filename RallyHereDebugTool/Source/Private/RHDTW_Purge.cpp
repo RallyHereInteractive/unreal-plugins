@@ -69,7 +69,7 @@ void FRHDTW_Purge::Do()
 					}
 					else
 					{
-						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+						PurgeActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] RH_PurgeSubsystem not found.") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -89,7 +89,7 @@ void FRHDTW_Purge::Do()
 					}
 					else
 					{
-						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+						PurgeActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] RH_PurgeSubsystem not found.") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -110,7 +110,7 @@ void FRHDTW_Purge::Do()
 					}
 					else
 					{
-						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+						PurgeActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] RH_PurgeSubsystem not found.") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -131,7 +131,7 @@ void FRHDTW_Purge::Do()
 					}
 					else
 					{
-						PurgeActionResult += "[" + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + "] RH_PurgeSubsystem not found." + LINE_TERMINATOR;
+						PurgeActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] RH_PurgeSubsystem not found.") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -176,11 +176,11 @@ void FRHDTW_Purge::HandleEnqueueMeForPurge(bool success, FRHAPI_PurgeResponse Pu
 {
 	if (success)
 	{
-		PurgeActionResult =+ "[" + GetShortUuid(PlayerUuid) + "] Enqueue Me for Purge succeeded." + LINE_TERMINATOR;
+		PurgeActionResult =+ TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Enqueue Me for Purge succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Enqueue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
+		PurgeActionResult =+ TEXT("[") + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Enqueue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
 	}
 }
 
@@ -188,11 +188,11 @@ void FRHDTW_Purge::HandleDequeueMeForPurge(bool success, FRHAPI_PurgeResponse Pu
 {
 	if (success)
 	{
-		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + "] Dequeue Me for Purge succeeded." + LINE_TERMINATOR;
+		PurgeActionResult =+ TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Dequeue Me for Purge succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Dequeue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
+		PurgeActionResult =+TEXT("[") + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Dequeue Me for Purge failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
 	}
 }
 
@@ -200,10 +200,10 @@ void FRHDTW_Purge::HandleGetMyPurgeStatus(bool success, FRHAPI_PurgeResponse Pur
 {
 	if (success)
 	{
-		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + "] Refresh Purge Status succeeded." + LINE_TERMINATOR;
+		PurgeActionResult =+TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Refresh Purge Status succeeded.") LINE_TERMINATOR;
 	}
 	else
 	{
-		PurgeActionResult = +"[" + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Refresh Purge Status failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
+		PurgeActionResult =+TEXT("[") + GetShortUuid(PlayerUuid) + FString::Printf(TEXT("] Refresh Purge Status failed with status code %d. Response: %s "), Error.ResponseCode, *Error.ResponseContent) + LINE_TERMINATOR;
 	}
 }

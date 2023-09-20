@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerPersonResponse`](#structFRHAPI__PlayerPersonResponse) | 
+`struct `[`FRHAPI_PlayerPersonResponse`](#structFRHAPI__PlayerPersonResponse) | Response for getting a player&#39;s info.
 
 ## struct `FRHAPI_PlayerPersonResponse` <a id="structFRHAPI__PlayerPersonResponse"></a>
 
@@ -13,17 +13,19 @@ struct FRHAPI_PlayerPersonResponse
   : public FRHAPI_Model
 ```
 
+Response for getting a player&#39;s info.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public int32 `[`PlayerId`](#structFRHAPI__PlayerPersonResponse_1a280f3f2e11117ce512ad294bb77b986a) | 
-`public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a7519b55e22e6a9c02dc80cbfc9d6b2f6) | 
-`public int32 `[`ActivePlayerId_Optional`](#structFRHAPI__PlayerPersonResponse_1a71d20d8453e439a2338a4796f4f7c9cc) | 
+`public int32 `[`PlayerId`](#structFRHAPI__PlayerPersonResponse_1a280f3f2e11117ce512ad294bb77b986a) | Player ID *DEPRECATED* use `player_uuid` instead.
+`public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a7519b55e22e6a9c02dc80cbfc9d6b2f6) | Player UUID.
+`public int32 `[`ActivePlayerId_Optional`](#structFRHAPI__PlayerPersonResponse_1a71d20d8453e439a2338a4796f4f7c9cc) | *DEPRECATED* use `active_player_uuid` instead. Active player ID, if the player has an active player.
 `public bool `[`ActivePlayerId_IsSet`](#structFRHAPI__PlayerPersonResponse_1a1fe5e1c6848bc0efc3bf1a3c82357c9e) | true if ActivePlayerId_Optional has been set to a value
-`public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__PlayerPersonResponse_1a3dde1fe982714d74c0fd44719367decb) | 
+`public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__PlayerPersonResponse_1a3dde1fe982714d74c0fd44719367decb) | Active player UUID, if the player has an active player.
 `public bool `[`ActivePlayerUuid_IsSet`](#structFRHAPI__PlayerPersonResponse_1a7e4f80a38d2b12f0420786801305dffd) | true if ActivePlayerUuid_Optional has been set to a value
-`public FGuid `[`PersonId`](#structFRHAPI__PlayerPersonResponse_1a7c9c64673c5f4060541b705be6a68e4e) | 
+`public FGuid `[`PersonId`](#structFRHAPI__PlayerPersonResponse_1a7c9c64673c5f4060541b705be6a68e4e) | Person ID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPersonResponse_1aae962d8a5cb967cb7bcd382cc1188962)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerPersonResponse_1a07e5f87c8b258ba8b4b5f9cf24294188)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPersonResponse_1afed3098f55fb2c1175b20d5f9a469f11)`()` | Gets the value of PlayerId.
@@ -60,11 +62,17 @@ struct FRHAPI_PlayerPersonResponse
 
 #### `public int32 `[`PlayerId`](#structFRHAPI__PlayerPersonResponse_1a280f3f2e11117ce512ad294bb77b986a) <a id="structFRHAPI__PlayerPersonResponse_1a280f3f2e11117ce512ad294bb77b986a"></a>
 
+Player ID *DEPRECATED* use `player_uuid` instead.
+
 <br>
 #### `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerPersonResponse_1a7519b55e22e6a9c02dc80cbfc9d6b2f6) <a id="structFRHAPI__PlayerPersonResponse_1a7519b55e22e6a9c02dc80cbfc9d6b2f6"></a>
 
+Player UUID.
+
 <br>
 #### `public int32 `[`ActivePlayerId_Optional`](#structFRHAPI__PlayerPersonResponse_1a71d20d8453e439a2338a4796f4f7c9cc) <a id="structFRHAPI__PlayerPersonResponse_1a71d20d8453e439a2338a4796f4f7c9cc"></a>
+
+*DEPRECATED* use `active_player_uuid` instead. Active player ID, if the player has an active player.
 
 <br>
 #### `public bool `[`ActivePlayerId_IsSet`](#structFRHAPI__PlayerPersonResponse_1a1fe5e1c6848bc0efc3bf1a3c82357c9e) <a id="structFRHAPI__PlayerPersonResponse_1a1fe5e1c6848bc0efc3bf1a3c82357c9e"></a>
@@ -74,6 +82,8 @@ true if ActivePlayerId_Optional has been set to a value
 <br>
 #### `public FGuid `[`ActivePlayerUuid_Optional`](#structFRHAPI__PlayerPersonResponse_1a3dde1fe982714d74c0fd44719367decb) <a id="structFRHAPI__PlayerPersonResponse_1a3dde1fe982714d74c0fd44719367decb"></a>
 
+Active player UUID, if the player has an active player.
+
 <br>
 #### `public bool `[`ActivePlayerUuid_IsSet`](#structFRHAPI__PlayerPersonResponse_1a7e4f80a38d2b12f0420786801305dffd) <a id="structFRHAPI__PlayerPersonResponse_1a7e4f80a38d2b12f0420786801305dffd"></a>
 
@@ -81,6 +91,8 @@ true if ActivePlayerUuid_Optional has been set to a value
 
 <br>
 #### `public FGuid `[`PersonId`](#structFRHAPI__PlayerPersonResponse_1a7c9c64673c5f4060541b705be6a68e4e) <a id="structFRHAPI__PlayerPersonResponse_1a7c9c64673c5f4060541b705be6a68e4e"></a>
+
+Person ID.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPersonResponse_1aae962d8a5cb967cb7bcd382cc1188962)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerPersonResponse_1aae962d8a5cb967cb7bcd382cc1188962"></a>

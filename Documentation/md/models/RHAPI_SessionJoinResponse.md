@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_SessionJoinResponse`](#structFRHAPI__SessionJoinResponse) | 
+`struct `[`FRHAPI_SessionJoinResponse`](#structFRHAPI__SessionJoinResponse) | Response when a player successfully joins a session.
 
 ## struct `FRHAPI_SessionJoinResponse` <a id="structFRHAPI__SessionJoinResponse"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_SessionJoinResponse
   : public FRHAPI_Model
 ```
+
+Response when a player successfully joins a session.
 
 #### Summary
 

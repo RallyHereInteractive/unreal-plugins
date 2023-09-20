@@ -312,12 +312,25 @@ void FRHDTW_Players::Do()
 		}
 	}
 
-	if (ImGui::BeginTable("PlayersTable", 7, RH_TableFlagsPropSizing))
+	int32 numColumns = 7;
+
+	if (pOwner->IsUsingLocalPlayerSandboxing())
+	{
+		++numColumns;
+	}
+
+	if (ImGui::BeginTable("PlayersTable", numColumns, RH_TableFlagsPropSizing))
 	{
 		// Header
 		ImGui::TableSetupColumn("Select");
 		ImGui::TableSetupColumn("Target");
 		ImGui::TableSetupColumn("Controller ID");
+
+		if (pOwner->IsUsingLocalPlayerSandboxing())
+		{
+			ImGui::TableSetupColumn("Active View");
+		}
+
 		ImGui::TableSetupColumn("Display Name");
 		ImGui::TableSetupColumn("Player UUID");
 		ImGui::TableSetupColumn("Platforms");
@@ -464,13 +477,33 @@ void FRHDTW_Players::Do()
 			}
 			else
 			{
-				ImGui::Text("Not logged in.");
+				ImGui::Text("Not found.");
 			}
 
 			ImGui::TableNextColumn();
 			if (Player.LocalPlayer)
 			{
 				ImGui::Text("%d", Player.LocalPlayer->GetControllerId());
+			}
+
+			
+			if (pOwner->IsUsingLocalPlayerSandboxing())
+			{
+				ImGui::TableNextColumn();
+				if (Player.LocalPlayer != nullptr)
+				{
+					if (ImGui::RadioButton("##ActiveView", pOwner->GetSandboxPlayer() == Player.LocalPlayer))
+					{
+						if (pOwner->GetSandboxPlayer() != Player.LocalPlayer)
+						{
+							pOwner->SetSandboxPlayer(Player.LocalPlayer);
+						}
+						else
+						{
+							pOwner->SetSandboxPlayer(nullptr);
+						}
+					}
+				}
 			}
 			
 			ImGui::TableNextColumn();
@@ -491,7 +524,7 @@ void FRHDTW_Players::Do()
 			}
 			else
 			{
-				ImGui::Text("Not logged in.");
+				ImGui::Text("Not found.");
 			}
 
 			ImGui::TableNextColumn();
@@ -501,7 +534,7 @@ void FRHDTW_Players::Do()
 			}
 			else
 			{
-				ImGui::Text("Not logged in.");
+				ImGui::Text("Not found.");
 			}
 
 			ImGui::TableNextColumn();
@@ -518,7 +551,7 @@ void FRHDTW_Players::Do()
 			}
 			else
 			{
-				ImGui::Text("Not logged in.");
+				ImGui::Text("Not found.");
 			}
 
 			ImGui::TableNextColumn();
@@ -536,7 +569,7 @@ void FRHDTW_Players::Do()
 			}
 			else
 			{
-				ImGui::Text("Not logged in.");
+				ImGui::Text("Not found.");
 			}
 
 			ImGui::PopID();

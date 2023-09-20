@@ -15,8 +15,13 @@ F{{unrealModuleName}}HttpRequester::F{{unrealModuleName}}HttpRequester()
     PendingRequestCount = 0;
 }
 
-void F{{unrealModuleName}}HttpRequester::Tick(float DeltaTime)
+void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest()
 {
+    if (!CanExecuteRequest())
+    {
+        return;
+    }
+
     TArray<int32> Keys;
 
     if (HttpRequestQueue.GetKeys(Keys) > 0)
@@ -64,6 +69,8 @@ void F{{unrealModuleName}}HttpRequester::OnResponse(FHttpRequestPtr HttpRequest,
 {
     PendingRequestCount--;
     ResponseDelegate.Execute(HttpRequest, HttpResponse, bSucceeded);
+    // Whenever we get a request response try to execute new requests if we have any.
+    QueueNextRequestCall();
 }
 
 void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{{unrealModuleName}}HttpRequestData> RequestData)
@@ -75,6 +82,29 @@ void F{{unrealModuleName}}HttpRequester::EnqueueHttpRequest(TSharedPtr<struct F{
     else
     {
         HttpRequestQueue.Add(RequestData->Priority, {RequestData});
+    }
+    // Whenever we get a new request, try to execute requests
+    QueueNextRequestCall();
+}
+
+void F{{unrealModuleName}}HttpRequester::QueueNextRequestCall()
+{
+    if (GIsEditor && !GIsPlayInEditorWorld)
+    {
+        TryExecuteNextRequest();
+    }
+    else
+    {
+        // Delay until next frame
+        FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([](float dts)
+        {
+            auto* Requester = F{{unrealModuleName}}HttpRequester::Get();
+            if (Requester != nullptr) 
+            {
+                Requester->TryExecuteNextRequest(); 
+            }
+            return false;
+        }), 0.0f);
     }
 }
 

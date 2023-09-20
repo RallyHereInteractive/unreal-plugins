@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief A list of configuration about queues
+ * @brief DEPRECATED - A list of configuration about queues
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model

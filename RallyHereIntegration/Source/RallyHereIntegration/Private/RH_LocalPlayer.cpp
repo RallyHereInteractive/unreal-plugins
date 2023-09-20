@@ -6,6 +6,73 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_SessionData.h"
 
+///////////////////////////////////////////////////////////////////////////////
+
+FGuid IRH_LocalPlayerInterface::GetRHPlayerUuid() const
+{
+	const auto LPSS = GetRH_LocalPlayerSubsystem();
+	if (LPSS != nullptr)
+	{
+		return LPSS->GetPlayerUuid();
+	}
+	return FGuid();
+}
+
+URH_GameInstanceSubsystem* IRH_LocalPlayerInterface::GetRH_GameInstanceSubsystem() const
+{
+	const auto LPSS = GetRH_LocalPlayerSubsystem();
+
+	if (LPSS != nullptr)
+	{
+		const auto World = LPSS->GetWorld();
+		if (World != nullptr)
+		{
+			const auto* GI = World->GetGameInstance();
+			if (GI != nullptr)
+			{
+				return GI->GetSubsystem<URH_GameInstanceSubsystem>();
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+FString IRH_LocalPlayerInterface::GetPlayerUuidForServerAuth() const
+{
+	auto* pLPSubsystem = GetRH_LocalPlayerSubsystem();
+
+	if (pLPSubsystem != nullptr && pLPSubsystem->IsLoggedIn())
+	{
+		return pLPSubsystem->GetPlayerUuid().ToString();
+	}
+
+	return FString();
+}
+
+FString IRH_LocalPlayerInterface::GetSecurityTokenForServerAuth() const
+{
+	const auto* RH_GISS = GetRH_GameInstanceSubsystem();
+	if (RH_GISS != nullptr && RH_GISS->GetSessionSubsystem() && RH_GISS->GetSessionSubsystem()->GetActiveSession() != nullptr)
+	{
+		const auto* Session = RH_GISS->GetSessionSubsystem()->GetActiveSession();
+		if (Session->GetInstanceData() != nullptr)
+		{
+			if (const auto JoinParams = Session->GetInstanceData()->GetJoinParamsOrNull())
+			{
+				if (const auto CustomData = JoinParams->GetCustomDataOrNull())
+				{
+					if (const FString* SecurityToken = CustomData->Find(RH_SessionCustomDataKeys::SessionSecurityTokenName))
+					{
+						return *SecurityToken;
+					}
+				}
+			}
+		}
+	}
+
+	return FString();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -31,60 +98,13 @@ FString URH_LocalPlayer::GetGameLoginOptions() const
 	return options;
 }
 
-FString URH_LocalPlayer::GetPlayerUuidForServerAuth() const
-{
-	auto* pLPSubsystem = GetRH_LocalPlayerSubsystem();
-
-	if (pLPSubsystem != nullptr && pLPSubsystem->IsLoggedIn())
-	{
-		return pLPSubsystem->GetPlayerUuid().ToString();
-	}
-
-	return FString();
-}
-
-FString URH_LocalPlayer::GetSecurityTokenForServerAuth() const
-{
-	const auto* GI = GetGameInstance();
-	if (GI != nullptr)
-	{
-		const auto* RH_GISS = GI->GetSubsystem<URH_GameInstanceSubsystem>();
-		if (RH_GISS != nullptr && RH_GISS->GetSessionSubsystem() && RH_GISS->GetSessionSubsystem()->GetActiveSession() != nullptr)
-		{
-			const auto* Session = RH_GISS->GetSessionSubsystem()->GetActiveSession();
-			if (Session->GetInstanceData() != nullptr)
-			{
-				if (const auto JoinParams = Session->GetInstanceData()->GetJoinParamsOrNull())
-				{
-					if (const auto CustomData = JoinParams->GetCustomDataOrNull())
-					{
-						if (const FString* SecurityToken = CustomData->Find(RH_SessionCustomDataKeys::SessionSecurityTokenName))
-						{
-							return *SecurityToken;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	return FString();
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
-URH_IpConnection::URH_IpConnection(const FObjectInitializer& ObjectInitializer) :
-	Super(ObjectInitializer)
-{
-	RH_PlayerUuid.Invalidate();
-
-	bRH_RemoteIsLoggedIn = false;
-}
-
-void URH_IpConnection::ImportPlayerOptionsfromURL(bool& bFound, bool& bValid)
+void IRH_IpConnectionInterface::ImportPlayerOptionsfromURL(bool& bFound, bool& bValid)
 {
 	// make a temporary URL to make parsing easier
-	FURL temp(nullptr, *RequestURL, TRAVEL_Absolute);
+	FURL temp(nullptr, *GetImportRequestURL(), TRAVEL_Absolute);
 
 	const TCHAR* RHPlayerUuidRawString = temp.GetOption(TEXT("RHPlayerUuid="), nullptr);
 
@@ -112,4 +132,11 @@ void URH_IpConnection::ImportPlayerOptionsfromURL(bool& bFound, bool& bValid)
 
 	bFound = bFoundPlayerUuid;
 	bValid = bRH_RemoteIsLoggedIn;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+URH_IpConnection::URH_IpConnection(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
 }

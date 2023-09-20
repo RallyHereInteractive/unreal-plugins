@@ -8,6 +8,8 @@
 #include "Subsystems/LocalPlayerSubsystem.h"
 #include "RH_Common.h"
 
+#include "CustomAPI.h"
+
 #include "RH_LocalPlayerSubsystem.generated.h"
 
 class URH_LocalPlayerLoginSubsystem;
@@ -132,7 +134,39 @@ public:
 	*/
 	UFUNCTION(BlueprintGetter, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_PlayerNotifications* GetPlayerNotifications() const;
+
+	// Sandboxed plugins
+	/**
+	* @brief Gets the player's player info.
+	*/
+	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
+	URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const;
 	
+
+	/**
+	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
+	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
+	* @param [in] Delegate The delegate to call when the call is complete (contains raw response)
+	*/
+	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate);
+	/**
+	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
+	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
+	* @param [in] Delegate The delegate to call when the call is complete
+	*/
+	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock Delegate = FRH_CustomEndpointDelegateBlock());
+	/**
+	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
+	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
+	* @param [in] Delegate The delegate to call when the call is complete
+	*/
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|LocalPlayerSubsystem", meta = (DisplayName = "Custom Endpoint", AutoCreateRefTerm = "Request, Delegate"))
+	void BLUEPRINT_CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDynamicDelegate& Delegate)
+	{
+		CustomEndpoint(Request, Delegate);
+	}
+
+
 protected:
 	/** @brief Array of plugins for the Local Player Subsystem. */
 	UPROPERTY()
@@ -155,6 +189,30 @@ protected:
 		
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
 		SubsystemPlugins.Add(Subsystem);
+		return Subsystem;
+	}
+
+	/** @brief Array of plugins for the Local Player Subsystem. */
+	UPROPERTY()
+	TArray<URH_SandboxedSubsystemPlugin*> SandboxedSubsystemPlugins;
+	/**
+	 * @brief Adds a plugin to the Game Instance Subsystem.
+	 * @param [in] SubsystemClassPath The class path of the plugin to add.
+	 * @return The plugin that was added.
+	 */
+	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_SandboxedSubsystemPlugin>::Value, bool>::Type = true>
+	UClassToUse* AddSandboxedSubsystemPlugin(FSoftClassPath SubsystemClassPath)
+	{
+		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
+
+		// If an invalid class type was specified we fall back to the default.
+		if (!SubsystemClass)
+		{
+			SubsystemClass = UClassToUse::StaticClass();
+		}
+		
+		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
+		SandboxedSubsystemPlugins.Add(Subsystem);
 		return Subsystem;
 	}
 
@@ -186,6 +244,12 @@ protected:
 	/** @brief The Entitlement Subsystem for the player. */
 	UPROPERTY(BlueprintGetter = GetEntitlementSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_EntitlementSubsystem* EntitlementSubsystem;
+
+	// Sandboxed subsystems.  If enabled, these provide a local per-player result cache, rather than using the global cache.
+	/** @brief The Sandboxed PlayerInfo Subsystem for the player. */
+	UPROPERTY(BlueprintGetter = GetPlayerInfoSubsystem, Category = "RallyHere|LocalPlayerSubsystem")
+	URH_PlayerInfoSubsystem* SandboxedPlayerInfoSubsystem;
+
 	/** The Player Info associated with the local player. */
 	TWeakObjectPtr<URH_PlayerInfo> PlayerInfoCache;
 	/** The Local Players auth context. */

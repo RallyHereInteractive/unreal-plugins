@@ -5,6 +5,7 @@
 #include "RH_DebugToolWindow.h"
 #include "RH_LocalPlayerPresenceSubsystem.h"
 #include <string>
+#include "RH_ImGuiUtilities.h"
 
 #include "UsersAPI.h"
 
@@ -36,22 +37,11 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 	int32 StatusInput{0};
 	std::string MessageInput{""};
 	bool DoNotDisturbInput{false};
-	std::string CustomPropertyInput{""};
-	std::string CustomValueInput{""};
 	FString LastUpdateResult;
 	
 	void HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_UpdatePlayerPresenceSelf& Resp, FGuid PlayerUuid);
 	/** @} */
 
-	/**
-	 * \defgroup Settings
-	 * @{
-	 */
-	int32 SelfPingIntervalSeconds{0};
-	int32 LastSeenAgeConsideredOfflineSeconds{0};
-	std::string LastSettingsUpdateResult{""};
-	
-	void HandleGetSettings(const RallyHereAPI::FResponse_GetPresenceSettings& Resp);
-	/** @} */
+	FImGuiCustomDataStager CustomDataStager;
 #pragma endregion
 };

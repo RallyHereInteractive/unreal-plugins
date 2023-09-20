@@ -26,22 +26,32 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	AuthContext->OnLoginComplete().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserLoggedIn);
 	AuthContext->OnLoginUserChanged().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserChanged);
 
+	const auto* Settings = GetDefault<URH_IntegrationSettings>();
+
     // Create Subsystems
 	// Create all the subsystem objects first, so they can refer to each other during initialization
-    LoginSubsystem = AddSubsystemPlugin<URH_LocalPlayerLoginSubsystem>(GetDefault<URH_IntegrationSettings>()->LocalPlayerLoginSubsystemClass);
-	AdSubsystem = AddSubsystemPlugin<URH_AdSubsystem>(GetDefault<URH_IntegrationSettings>()->AdSubsystemClass);
-    FriendSubsystem = AddSubsystemPlugin<URH_FriendSubsystem>(GetDefault<URH_IntegrationSettings>()->FriendSubsystemClass);
-	SessionSubsystem = AddSubsystemPlugin<URH_LocalPlayerSessionSubsystem>(GetDefault<URH_IntegrationSettings>()->LocalPlayerSessionSubsystemClass);
-	PresenceSubsystem = AddSubsystemPlugin<URH_LocalPlayerPresenceSubsystem>(GetDefault<URH_IntegrationSettings>()->LocalPlayerPresenceSubsystemClass);
-	PurgeSubsystem = AddSubsystemPlugin<URH_PurgeSubsystem>(GetDefault<URH_IntegrationSettings>()->PurgeSubsystemClass);
-	EntitlementSubsystem = AddSubsystemPlugin<URH_EntitlementSubsystem>(GetDefault<URH_IntegrationSettings>()->EntitlementSubsystemClass);
+    LoginSubsystem = AddSubsystemPlugin<URH_LocalPlayerLoginSubsystem>(Settings->LocalPlayerLoginSubsystemClass);
+	AdSubsystem = AddSubsystemPlugin<URH_AdSubsystem>(Settings->AdSubsystemClass);
+    FriendSubsystem = AddSubsystemPlugin<URH_FriendSubsystem>(Settings->FriendSubsystemClass);
+	SessionSubsystem = AddSubsystemPlugin<URH_LocalPlayerSessionSubsystem>(Settings->LocalPlayerSessionSubsystemClass);
+	PresenceSubsystem = AddSubsystemPlugin<URH_LocalPlayerPresenceSubsystem>(Settings->LocalPlayerPresenceSubsystemClass);
+	PurgeSubsystem = AddSubsystemPlugin<URH_PurgeSubsystem>(Settings->PurgeSubsystemClass);
+	EntitlementSubsystem = AddSubsystemPlugin<URH_EntitlementSubsystem>(Settings->EntitlementSubsystemClass);
+
+	if (Settings->bLocalPlayerSubsystemSandboxing)
+	{
+		SandboxedPlayerInfoSubsystem = AddSandboxedSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
+	}
 
 	// Initialize Subsystems
 	for (auto Plugin : SubsystemPlugins)
 	{
 		Plugin->Initialize();
 	}
-	
+	for (auto Plugin : SandboxedSubsystemPlugins)
+	{
+		Plugin->Initialize();
+	}
 }
 
 void URH_LocalPlayerSubsystem::Deinitialize()
@@ -49,6 +59,11 @@ void URH_LocalPlayerSubsystem::Deinitialize()
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	// Deinitialize Subsystems
+	for (auto Plugin : SandboxedSubsystemPlugins)
+	{
+		Plugin->Deinitialize();
+	}
+	SandboxedSubsystemPlugins.Reset();
 	for (auto Plugin : SubsystemPlugins)
 	{
 		Plugin->Deinitialize();
@@ -188,9 +203,13 @@ int32 URH_LocalPlayerSubsystem::GetPlatformUserId() const
 }
 #endif
 
-
-URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
+URH_PlayerInfoSubsystem* URH_LocalPlayerSubsystem::GetPlayerInfoSubsystem() const
 {
+	if (SandboxedPlayerInfoSubsystem != nullptr)
+	{
+		return SandboxedPlayerInfoSubsystem;
+	}
+
 	auto pGameInstance = GetLocalPlayer()->GetGameInstance();
 	if (pGameInstance == nullptr)
 	{
@@ -203,7 +222,12 @@ URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
 		return nullptr;
 	}
 
-	URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = pGISubsystem->GetPlayerInfoSubsystem();
+	return pGISubsystem->GetPlayerInfoSubsystem();
+}
+
+URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
+{
+	auto pRH_PlayerInfoSubsystem = GetPlayerInfoSubsystem();
 	if (pRH_PlayerInfoSubsystem == nullptr)
 	{
 		return nullptr;
@@ -242,21 +266,6 @@ IOnlineSubsystem* URH_LocalPlayerSubsystem::GetOSS(const FName& SubsystemName) c
         }
     }
 
-    if (IOnlineSubsystem* NativeOSS = IOnlineSubsystem::GetByPlatform(true))
-    {
-    	// For PiE, we need to get at the specific instance of the subsystem for this particular player
-    	const FName Name = Online::GetUtils()->GetOnlineIdentifier(GetLocalPlayer()->GetWorld(), NativeOSS->GetSubsystemName());
-    	if (Name != NativeOSS->GetInstanceName())
-    	{
-            if (IOnlineSubsystem* FoundOSS = IOnlineSubsystem::Get(Name))
-            {
-                return FoundOSS;
-            }
-        }
-    	
-    	return NativeOSS;
-    }
-
     if (IOnlineSubsystem* DefaultOSS = IOnlineSubsystem::Get(NAME_None))
     {
     	// For PiE, we need to get at the specific instance of the subsystem for this particular player
@@ -283,4 +292,36 @@ URH_PlayerNotifications* URH_LocalPlayerSubsystem::GetPlayerNotifications() cons
 		return LocalPlayerInfo->GetPlayerNotifications();
 	}
 	return nullptr;
+}
+
+void URH_LocalPlayerSubsystem::CustomEndpoint(const FRH_CustomEndpointRequestWrapper& RequestWrapper, const RallyHereAPI::FDelegate_CustomEndpointSend& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_CustomEndpointSend BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.EndpointId = RequestWrapper.EndpointId;
+	if (RequestWrapper.ContentType.Len() > 0)
+	{
+		Request.ContentType = RequestWrapper.ContentType;
+	}
+	if (RequestWrapper.Body.GetValue().IsValid())
+	{
+		Request.Body = RequestWrapper.Body;
+	}
+
+	BaseType::DoCall(RH_APIs::GetAPIs().GetCustom(), Request, Delegate, RequestWrapper.Priority);
+
+}
+
+void URH_LocalPlayerSubsystem::CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock Delegate)
+{
+	auto InternalDelegate = RallyHereAPI::FDelegate_CustomEndpointSend::CreateLambda([Delegate](const RallyHereAPI::FResponse_CustomEndpointSend& Resp)
+		{
+			FRH_CustomEndpointResponseWrapper ResponseWrapper(Resp);
+			Delegate.ExecuteIfBound(ResponseWrapper);
+		});
+	CustomEndpoint(Request, InternalDelegate);
 }

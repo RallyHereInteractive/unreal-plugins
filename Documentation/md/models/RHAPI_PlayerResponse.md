@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerResponse`](#structFRHAPI__PlayerResponse) | 
+`struct `[`FRHAPI_PlayerResponse`](#structFRHAPI__PlayerResponse) | Response for getting a player&#39;s info.
 
 ## struct `FRHAPI_PlayerResponse` <a id="structFRHAPI__PlayerResponse"></a>
 
@@ -13,12 +13,14 @@ struct FRHAPI_PlayerResponse
   : public FRHAPI_Model
 ```
 
+Response for getting a player&#39;s info.
+
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public int32 `[`PlayerId`](#structFRHAPI__PlayerResponse_1ad310dc7254bc7601cb78f946655b4896) | 
-`public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerResponse_1adc688a62eabd80c3cfde9688e61bd030) | 
+`public int32 `[`PlayerId`](#structFRHAPI__PlayerResponse_1ad310dc7254bc7601cb78f946655b4896) | Player ID *DEPRECATED* use `player_uuid` instead.
+`public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerResponse_1adc688a62eabd80c3cfde9688e61bd030) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerResponse_1ad95f65d26ed9beae939f37a4cd5bc765)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerResponse_1af73853ee9ac143469af094d5046b6845)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a57e3b6edbaf4c9725ed93ee10d9c1871)`()` | Gets the value of PlayerId.
@@ -34,8 +36,12 @@ struct FRHAPI_PlayerResponse
 
 #### `public int32 `[`PlayerId`](#structFRHAPI__PlayerResponse_1ad310dc7254bc7601cb78f946655b4896) <a id="structFRHAPI__PlayerResponse_1ad310dc7254bc7601cb78f946655b4896"></a>
 
+Player ID *DEPRECATED* use `player_uuid` instead.
+
 <br>
 #### `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerResponse_1adc688a62eabd80c3cfde9688e61bd030) <a id="structFRHAPI__PlayerResponse_1adc688a62eabd80c3cfde9688e61bd030"></a>
+
+Player UUID.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerResponse_1ad95f65d26ed9beae939f37a4cd5bc765)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerResponse_1ad95f65d26ed9beae939f37a4cd5bc765"></a>

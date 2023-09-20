@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_QueueConfig`](#structFRHAPI__QueueConfig) | 
+`struct `[`FRHAPI_QueueConfig`](#structFRHAPI__QueueConfig) | DEPRECATED - V1 Configuration about a specific queue.
 
 ## struct `FRHAPI_QueueConfig` <a id="structFRHAPI__QueueConfig"></a>
 
@@ -12,6 +12,8 @@
 struct FRHAPI_QueueConfig
   : public FRHAPI_Model
 ```
+
+DEPRECATED - V1 Configuration about a specific queue.
 
 #### Summary
 

@@ -18,7 +18,7 @@ namespace RallyHereAPI
 FSettingsAPI::FSettingsAPI() : FAPI()
 {
     Url = TEXT("http://localhost");
-    Name = TEXT("Settings");
+    Name = FName(TEXT("Settings"));
 }
 
 FSettingsAPI::~FSettingsAPI() {}
@@ -88,9 +88,10 @@ FRequest_DeleteAllPlayerIdSettingsForSettingType::FRequest_DeleteAllPlayerIdSett
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
+FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
+    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
+    return Path;
 }
 
 FString FRequest_DeleteAllPlayerIdSettingsForSettingType::ComputePath() const
@@ -241,9 +242,10 @@ FRequest_DeleteAllPlayerUuidSettingsForSettingType::FRequest_DeleteAllPlayerUuid
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
+FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
+    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
+    return Path;
 }
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingType::ComputePath() const
@@ -394,9 +396,10 @@ FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::FRequest_DeleteAllPlayer
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
+FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
+    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
+    return Path;
 }
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
@@ -546,9 +549,10 @@ FRequest_DeleteSinglePlayerIdSetting::FRequest_DeleteSinglePlayerIdSetting()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
+FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_DeleteSinglePlayerIdSetting::ComputePath() const
@@ -700,9 +704,10 @@ FRequest_DeleteSinglePlayerUuidSetting::FRequest_DeleteSinglePlayerUuidSetting()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
+FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_DeleteSinglePlayerUuidSetting::ComputePath() const
@@ -854,9 +859,10 @@ FRequest_DeleteSinglePlayerUuidSettingSelf::FRequest_DeleteSinglePlayerUuidSetti
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
+FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_DeleteSinglePlayerUuidSettingSelf::ComputePath() const
@@ -1007,9 +1013,10 @@ FRequest_GetAllPlayerIdSettingsForSettingType::FRequest_GetAllPlayerIdSettingsFo
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
+FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
+    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key"));
+    return Path;
 }
 
 FString FRequest_GetAllPlayerIdSettingsForSettingType::ComputePath() const
@@ -1168,9 +1175,10 @@ FRequest_GetAllPlayerUuidSettingsForSettingType::FRequest_GetAllPlayerUuidSettin
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
+FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
+    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key"));
+    return Path;
 }
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingType::ComputePath() const
@@ -1329,9 +1337,10 @@ FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::FRequest_GetAllPlayerUuidSe
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
+FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
+    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key"));
+    return Path;
 }
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
@@ -1489,14 +1498,15 @@ FRequest_GetConfigForAllSettingTypes::FRequest_GetConfigForAllSettingTypes()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetConfigForAllSettingTypes::GetSimplifiedPath() const
+FName FRequest_GetConfigForAllSettingTypes::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/setting_type"));
+    static FName Path = FName(TEXT("/settings/v1/setting_type"));
+    return Path;
 }
 
 FString FRequest_GetConfigForAllSettingTypes::ComputePath() const
 {
-    FString Path = GetSimplifiedPath();
+    FString Path = GetSimplifiedPath().ToString();
     return Path;
 }
 
@@ -1624,9 +1634,10 @@ FRequest_GetConfigForSingleSettingTypeAllVersions::FRequest_GetConfigForSingleSe
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() const
+FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/setting_type/{setting_type_id}/v"));
+    static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v"));
+    return Path;
 }
 
 FString FRequest_GetConfigForSingleSettingTypeAllVersions::ComputePath() const
@@ -1773,9 +1784,10 @@ FRequest_GetConfigForSingleSettingTypeAndVersion::FRequest_GetConfigForSingleSet
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() const
+FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"));
+    static FName Path = FName(TEXT("/settings/v1/setting_type/{setting_type_id}/v/{setting_version_id}"));
+    return Path;
 }
 
 FString FRequest_GetConfigForSingleSettingTypeAndVersion::ComputePath() const
@@ -1923,9 +1935,10 @@ FRequest_GetSinglePlayerIdSetting::FRequest_GetSinglePlayerIdSetting()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
+FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_GetSinglePlayerIdSetting::ComputePath() const
@@ -2077,9 +2090,10 @@ FRequest_GetSinglePlayerUuidSetting::FRequest_GetSinglePlayerUuidSetting()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
+FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_GetSinglePlayerUuidSetting::ComputePath() const
@@ -2231,9 +2245,10 @@ FRequest_GetSinglePlayerUuidSettingSelf::FRequest_GetSinglePlayerUuidSettingSelf
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
+FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_GetSinglePlayerUuidSettingSelf::ComputePath() const
@@ -2384,9 +2399,10 @@ FRequest_SetSinglePlayerIdSetting::FRequest_SetSinglePlayerIdSetting()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
+FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v1/player/{player_id}/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_SetSinglePlayerIdSetting::ComputePath() const
@@ -2552,9 +2568,10 @@ FRequest_SetSinglePlayerUuidSetting::FRequest_SetSinglePlayerUuidSetting()
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
+FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v2/player/{player_uuid}/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_SetSinglePlayerUuidSetting::ComputePath() const
@@ -2720,9 +2737,10 @@ FRequest_SetSinglePlayerUuidSettingSelf::FRequest_SetSinglePlayerUuidSettingSelf
     RequestMetadata.RetryCount = 0;
 }
 
-FString FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
+FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 {
-    return FString(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+    static FName Path = FName(TEXT("/settings/v2/player/me/setting_type/{setting_type_id}/key/{key}"));
+    return Path;
 }
 
 FString FRequest_SetSinglePlayerUuidSettingSelf::ComputePath() const

@@ -67,7 +67,7 @@ struct RALLYHEREAPI_API FRequest_InstanceCreateNotification : public FRequest
     virtual ~FRequest_InstanceCreateNotification() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -99,7 +99,7 @@ struct RALLYHEREAPI_API Traits_InstanceCreateNotification
 
 /* Get Notification By Id
  *
- * Retrieve a single notification by id  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:instance:*&#x60;,&#x60;notification:instance:read&#x60;
+ * Retrieve a single notification by id  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:instance:read&#x60;,&#x60;notification:instance:*&#x60;
 */
 struct RALLYHEREAPI_API FRequest_InstanceGetNotificationById : public FRequest
 {
@@ -107,7 +107,7 @@ struct RALLYHEREAPI_API FRequest_InstanceGetNotificationById : public FRequest
     virtual ~FRequest_InstanceGetNotificationById() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -139,7 +139,7 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationById
 
 /* Get Notifications Page
  *
- * Get recent notifications ordered from the newest to the oldest.  It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API. The first notification returned from this will be the newest one we can find, and older ones will be further down the page (or on later pages).  This API is useful for displaying a list of the most recent notifications to the user, only requesting further pages when the user requests a bigger list.  Client are expected to poll this endpoint regularly.  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:instance:*&#x60;,&#x60;notification:instance:read&#x60;
+ * Get recent notifications ordered from the newest to the oldest.  It is important to stress that this endpoint returns notifications in reverse order compared to the streaming API. The first notification returned from this will be the newest one we can find, and older ones will be further down the page (or on later pages).  This API is useful for displaying a list of the most recent notifications to the user, only requesting further pages when the user requests a bigger list.  Client are expected to poll this endpoint regularly.  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:instance:read&#x60;,&#x60;notification:instance:*&#x60;
 */
 struct RALLYHEREAPI_API FRequest_InstanceGetNotificationsPage : public FRequest
 {
@@ -147,7 +147,7 @@ struct RALLYHEREAPI_API FRequest_InstanceGetNotificationsPage : public FRequest
     virtual ~FRequest_InstanceGetNotificationsPage() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
@@ -185,7 +185,7 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationsPage
 
 /* Long Poll For Notifications
  *
- * This endpoint will return notifications newer than &#x60;exclude_before&#x60;.  This endpoint returns notifications from older to newer, which is the opposite of the paging API.  This operation is a long-poll.  That means we will keep the connection open until we get any notification or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return the notifications found.  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:instance:*&#x60;,&#x60;notification:instance:read&#x60;
+ * This endpoint will return notifications newer than &#x60;exclude_before&#x60;.  This endpoint returns notifications from older to newer, which is the opposite of the paging API.  This operation is a long-poll.  That means we will keep the connection open until we get any notification or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return the notifications found.  This version can be used for any client provided its id (with proper permissions)  Requires permissions: Any of &#x60;notification:instance:read&#x60;,&#x60;notification:instance:*&#x60;
 */
 struct RALLYHEREAPI_API FRequest_InstanceLongPollForNotifications : public FRequest
 {
@@ -193,7 +193,7 @@ struct RALLYHEREAPI_API FRequest_InstanceLongPollForNotifications : public FRequ
     virtual ~FRequest_InstanceLongPollForNotifications() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
-    FString GetSimplifiedPath() const override;
+    FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;

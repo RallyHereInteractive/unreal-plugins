@@ -5,8 +5,9 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 pushd $DIR
 
-OPENAPI_SPEC_LOCATION="https://raw.githubusercontent.com/RallyHereInteractive/openapi-spec-sandbox/main/sandbox.openapi.json"
-OUTPUT_DIR="./Source/RallyHereAPI"
+OPENAPI_SPEC_LOCATION=""
+OUTPUT_DIR=""
+ADDITIONAL_PROPERTIES=""
 
 ########################################
 # Check params
@@ -20,6 +21,11 @@ while [[ $# -gt 0 ]]; do
       ;;
     -o|--output)
       OUTPUT_DIR="$2"
+      shift # past argument
+      shift # past value
+      ;;
+     -p|--properties)
+      ADDITIONAL_PROPERTIES="$2"
       shift # past argument
       shift # past value
       ;;
@@ -56,6 +62,5 @@ java -cp \
     -i "$OPENAPI_SPEC_LOCATION" \
     --generator-name="rh-cpp-ue4" \
     --output="$OUTPUT_DIR" \
-    --additional-properties="unrealModuleName=RallyHereAPI,specCppNamespace=RallyHereAPI,unrealCategory=RallyHere,unrealEnumPrefix=ERHAPI_,unrealModelPrefix=FRHAPI_"
-
+    --additional-properties="$ADDITIONAL_PROPERTIES"
 popd

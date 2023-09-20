@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief OAuth2 Token Response
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
@@ -39,6 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Result access token */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString AccessToken{  };
     /** @brief Gets the value of AccessToken */
@@ -48,6 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     /** @brief Sets the value of AccessToken */
     void SetAccessToken(FString NewValue) { AccessToken = NewValue;  }
 
+    /** @brief Result token type */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString TokenType{  };
     /** @brief Gets the value of TokenType */
@@ -57,6 +59,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     /** @brief Sets the value of TokenType */
     void SetTokenType(FString NewValue) { TokenType = NewValue;  }
 
+    /** @brief Result refresh token that can be used to get new access tokens */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString RefreshToken_Optional{  };
     /** @brief true if RefreshToken_Optional has been set to a value */
@@ -79,6 +82,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
      /** @brief Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false */
     void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
+    /** @brief Result access token expiration time in seconds */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 ExpiresIn{ 0 };
     /** @brief Gets the value of ExpiresIn */
