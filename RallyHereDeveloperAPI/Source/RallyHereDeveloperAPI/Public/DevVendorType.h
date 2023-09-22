@@ -13,7 +13,7 @@
 
 
 /**
- * @brief Determine how the Vendor fulfills the Loot. 
+ * @brief Determine how the Vendor fulfills the Loot.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_DevVendorType : uint8
