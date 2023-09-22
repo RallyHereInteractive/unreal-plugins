@@ -9,7 +9,6 @@
 SRallyHereEditorLoginWidget::SRallyHereEditorLoginWidget()
 	: SCompoundWidget()
 {
-	CallbackURL = "http://localhost:1299/";
 }
 
 SRallyHereEditorLoginWidget::~SRallyHereEditorLoginWidget()
@@ -27,7 +26,7 @@ void SRallyHereEditorLoginWidget::Construct(const FArguments& InArgs, const TSha
 
 	LoginStateGuid = FGuid::NewGuid();
 
-	FString InitialURL = SandboxConfig->AuthUrl + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + CallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
+	FString InitialURL = SandboxConfig->AuthUrl + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + SandboxConfig->LoginCallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
 
 	ChildSlot
 	[

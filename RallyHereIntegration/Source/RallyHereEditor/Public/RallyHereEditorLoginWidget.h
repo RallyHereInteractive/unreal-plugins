@@ -22,8 +22,6 @@ public:
 	virtual bool SupportsKeyboardFocus() const override { return true; }
 	bool HandleBrowserBeforeBrowse(const FString& Url, const FWebNavigationRequest& Request);
 
-	FString CallbackURL;
-
 private:
 	FGuid LoginStateGuid;
 };
