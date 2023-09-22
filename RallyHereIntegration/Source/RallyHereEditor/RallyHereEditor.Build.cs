@@ -4,6 +4,7 @@ public class RallyHereEditor : ModuleRules
 {
 	public RallyHereEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
+		bEnforceIWYU = false;
 		bTreatAsEngineModule = false;
 		bEnableUndefinedIdentifierWarnings = false;
 		bAllowConfidentialPlatformDefines = true;
@@ -25,7 +26,13 @@ public class RallyHereEditor : ModuleRules
 				"UnrealEd",
 				"RallyHereIntegration",
 				"DeveloperSettings",
-				"GameplayTags"
+				"GameplayTags",
+				"SlateCore",
+				"Slate",
+				"ToolWidgets",
+				"RallyHereDeveloperAPI",
+				"WebBrowserWidget",
+				"Json",
 			}
 		);
 
@@ -35,6 +42,17 @@ public class RallyHereEditor : ModuleRules
 				"AssetRegistry",
 				"Slate",
 				"SlateCore",
+				"Projects",
+				"InputCore",
+				"EditorFramework",
+				"UnrealEd",
+				"ToolMenus",
+				"CoreUObject",
+				"Engine",
+				"WebBrowser",
+				"WebBrowserWidget",
+				"WorkspaceMenuStructure",
+				"PropertyEditor"
 			}
 		);
 
