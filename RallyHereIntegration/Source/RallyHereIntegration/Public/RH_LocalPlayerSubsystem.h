@@ -76,6 +76,16 @@ public:
 	*/
 	int32 GetPlatformUserId() const;
 #endif
+
+	/**
+	* @brief Gets the player's analytics provider
+	*/
+	virtual TSharedPtr<class IAnalyticsProvider> GetAnalyticsProvider() const { return AnalyticsProvider; }
+	/**
+	* @brief Gets the player's analytics provider
+	*/
+	virtual TSharedPtr<class IAnalyticsProvider> CreateAnalyticsProvider();
+
 	/**
 	* @brief Gets the player's player info.
 	*/
@@ -221,6 +231,10 @@ protected:
 	 * @param [in] bSuccess True if the login was successful, false otherwise.
 	 */
 	virtual void OnUserLoggedIn(bool bSuccess);
+	/**
+	 * @brief Called whenever the user logs out explicitly.
+	 */
+	virtual void OnUserLoggedOut();
 	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
 	virtual void OnUserChanged();
 	/** @brief The Login Subsystem for the player. */
@@ -254,6 +268,9 @@ protected:
 	TWeakObjectPtr<URH_PlayerInfo> PlayerInfoCache;
 	/** The Local Players auth context. */
 	FAuthContextPtr AuthContext;
+
+	/** The Analytics Provider for the player. */
+	TSharedPtr<class IAnalyticsProvider> AnalyticsProvider;
 };
 
 /** @} */

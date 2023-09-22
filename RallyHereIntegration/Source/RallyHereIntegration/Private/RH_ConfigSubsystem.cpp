@@ -1,4 +1,4 @@
-﻿#include "RH_ConfigSubsystem.h"
+#include "RH_ConfigSubsystem.h"
 
 #include "RallyHereIntegrationModule.h"
 #include "Misc/ConfigCacheIni.h"
@@ -111,7 +111,11 @@ void URH_ConfigSubsystem::OnFetchAppSettings(const RallyHereAPI::FResponse_GetAp
 
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastAppSettingsUpdated, FColor::Purple);
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
 			AppSettingsUpdatedDelegate.Broadcast(this);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
 			OnSettingsUpdated.Broadcast(this);
 			BLUEPRINT_OnSettingsUpdated.Broadcast(this);
 		}

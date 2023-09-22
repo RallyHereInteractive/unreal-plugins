@@ -1,0 +1,20 @@
+{
+	"FileVersion" : 3,
+
+	"FriendlyName" : "Analytics RallyHere",
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"CreatedBy": "Rally Here Interactive, Inc.",
+    "CreatedByURL": "rallyhere.gg",
+	"Description": "Analytics Provider for RallyHere",
+	"Category": "RallyHere",
+	"EnabledByDefault" : true,
+
+    "Modules": [
+        {
+            "Name": "AnalyticsRallyHere",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+        }
+    ]
+}
