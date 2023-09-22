@@ -26,7 +26,7 @@ void SRallyHereEditorLoginWidget::Construct(const FArguments& InArgs, const TSha
 
 	LoginStateGuid = FGuid::NewGuid();
 
-	FString InitialURL = SandboxConfig->AuthUrl + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + SandboxConfig->LoginCallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
+	FString InitialURL = SandboxConfig->AuthUrl + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + Settings->LoginCallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
 
 	ChildSlot
 	[
@@ -39,7 +39,8 @@ void SRallyHereEditorLoginWidget::Construct(const FArguments& InArgs, const TSha
 
 bool SRallyHereEditorLoginWidget::HandleBrowserBeforeBrowse(const FString& URL, const FWebNavigationRequest& Request)
 {
-	if (URL.Contains(CallbackURL) && !URL.Contains("redirect_uri="))
+	auto* Settings = GetDefault<URH_DevIntegrationSettings>();
+	if (URL.Contains(Settings->LoginCallbackURL) && !URL.Contains("redirect_uri="))
 	{
 		UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: URL: %s"), *URL);
 
