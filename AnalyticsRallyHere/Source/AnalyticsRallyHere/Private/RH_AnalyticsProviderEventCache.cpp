@@ -16,14 +16,14 @@ namespace EventCacheStatic
 {
 	static float PayloadPercentageOfMaxForWarning = 1.00f;
 	FAutoConsoleVariableRef CvarPayloadPercentageOfMaxForWarning(
-		TEXT("AnalyticsET.PayloadPercentageOfMaxForWarning"),
+		TEXT("AnalyticsRallyHere.PayloadPercentageOfMaxForWarning"),
 		PayloadPercentageOfMaxForWarning,
 		TEXT("Percentage of the maximum payload for an EventCache that will trigger a warning message, listing the events in the payload. This is intended to be used to investigate spammy or slow telemetry.")
 	);
 
 	static float PayloadFlushTimeSecForWarning = 0.001f;
 	FAutoConsoleVariableRef CvarPayloadFlushTimeSecForWarning(
-		TEXT("AnalyticsET.PayloadFlushTimeSecForWarning"),
+		TEXT("AnalyticsRallyHere.PayloadFlushTimeSecForWarning"),
 		PayloadFlushTimeSecForWarning,
 		TEXT("Time in seconds that flushing an EventCache payload can take before it will trigger a warning message, listing the events in the payload. This is intended to be used to investigate spammy or slow telemetry.")
 	);
@@ -523,21 +523,3 @@ int32 FRH_AnalyticsProviderEventCache::GetSetPreallocatedPayloadSize() const
 {
 	return PreallocatedPayloadSize;
 }
-
-// Automation tests
-#if WITH_DEV_AUTOMATION_TESTS
-#include "Misc/AutomationTest.h"
-#include <limits>
-
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FAnalyticsProviderETEventCacheTest, "System.Analytics.AnalyticsETEventCache", EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::SmokeFilter)
-bool FAnalyticsProviderETEventCacheTest::RunTest(const FString& Parameters)
-{
-	// Zero out the DateOffset so we can test against constant strings.
-	TGuardValue<bool> GuardTestSetting(EventCacheStatic::bUseZeroDateOffset, true);
-
-	// TODO - tests
-
-	return true;
-}
-
-#endif
