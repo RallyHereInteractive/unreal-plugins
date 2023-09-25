@@ -134,21 +134,6 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 		}
 	}
 
-	// make sure auth context has the new user, in case any subsystems emit events
-	if (AnalyticsProvider.IsValid())
-	{
-		auto PlayerUuid = GetPlayerUuid();
-		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));
-
-		if (bSuccess)
-		{
-			AnalyticsProvider->RecordEvent(TEXT("login"));
-		}
-		else
-		{
-			AnalyticsProvider->RecordEvent(TEXT("loginFailed"));
-		}
-	}
 }
 
 void URH_LocalPlayerSubsystem::OnUserLoggedOut()
