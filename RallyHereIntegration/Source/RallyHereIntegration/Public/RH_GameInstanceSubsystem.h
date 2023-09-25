@@ -223,6 +223,29 @@ protected:
 	UPROPERTY(config)
 	/** @brief If set, the Player Id must be valid before being allowed to connect. */
 	bool bRequireValidPlayerIdsForJoining = true;
+
+	/** @brief Handle application going into suspension (these involve the application losing focus). */
+	virtual void AppSuspendCallbackInGameThread();
+	/** @brief Handle application resuming from suspension (these involve the application losing focus). */
+	virtual void AppResumeCallbackInGameThread();
+	/** @brief Handle application deactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)). */
+	virtual void AppDeactivatedCallbackInGameThread();
+	/** @brief Handle application reactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)). */
+	virtual void AppReactivatedCallbackInGameThread();
+
+private:
+	/** @brief Handle application going into suspension (these involve the application losing focus). */
+	void AppSuspendCallback();
+	FDelegateHandle AppSuspendHandle;
+	/** @brief Handle application resuming from suspension (these involve the application losing focus). */
+	void AppResumeCallback();
+	FDelegateHandle AppResumeHandle;
+	/** @brief Handle application deactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)). */
+	void AppDeactivatedCallback();
+	FDelegateHandle AppDeactivatedHandle;
+	/** @brief Handle application reactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)). */
+	void AppReactivatedCallback();
+	FDelegateHandle AppReactivatedHandle;
 };
 
 /** @} */
