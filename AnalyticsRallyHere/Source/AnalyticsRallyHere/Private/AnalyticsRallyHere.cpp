@@ -22,6 +22,7 @@ TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const FAna
 	if (GetConfigValue.IsBound())
 	{
 		Config ConfigValues;
+		ConfigValues.APIKey = GetConfigValue.Execute(Config::GetKeyNameForAPIKey(), true);
 		ConfigValues.APIServer = GetConfigValue.Execute(Config::GetKeyNameForAPIServer(), true);
 		return CreateAnalyticsProvider(ConfigValues);
 	}

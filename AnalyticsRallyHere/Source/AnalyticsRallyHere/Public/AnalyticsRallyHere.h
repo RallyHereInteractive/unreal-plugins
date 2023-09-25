@@ -46,20 +46,10 @@ public:
 	*/
 	struct Config
 	{
-		/** APIKey - Get from your account manager */
+		/** APIKey - Get from your account manager (can be empty) */
 		FString APIKey;
 		/** API Server - Base URL to send events. Set this to an empty string to essentially create a NULL analytics provider that will be non-null, but won't actually send events. */
 		FString APIServer;
-		/** Alt API Servers - Base URLs to send events on retry. */
-		TArray<FString> AltAPIServers;
-		/**
-		 * AppVersion - defines the app version passed to the provider. By default this will be FEngineVersion::Current(), but you can supply your own.
-		 * As a convenience, you can use -AnalyticsAppVersion=XXX to force the AppVersion to a specific value. Useful for playtest etc where you want to define a specific version string dynamically.
-		 * If you supply your own Version string, occurrences of "%VERSION%" are replaced with FEngineVersion::Current(). ie, -AnalyticsAppVersion=MyCustomID-%VERSION%.
-		 */
-		FString AppVersion;
-		/** When true, sends events using the legacy ET protocol that passes all attributes as URL parameters. Defaults to false. */
-		bool UseLegacyProtocol = false;
 		/** When true (default), events are dropped if flush fails */
 		bool bDropEventsOnFlushFailure = true;
 		/** Maximum number of retries to attempt. */
@@ -78,10 +68,6 @@ public:
 		static FString GetKeyNameForAPIKey() { return TEXT("RHAPIKey"); }
 		/** KeyName required for APIServer configuration. */
 		static FString GetKeyNameForAPIServer() { return TEXT("RHAPIServer"); }
-		/** KeyName required for AppVersion configuration. */
-		static FString GetKeyNameForAppVersion() { return TEXT("RHAppVersion"); }
-		/** Optional parameter to use the legacy backend protocol. */
-		static FString GetKeyNameForUseLegacyProtocol() { return TEXT("UseLegacyProtocol"); }
 
 
 	};

@@ -52,7 +52,8 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& Config
 	}
 
 	// Set the number of retries to the number of retry URLs that have been passed in.
-	uint32 RetryLimitCount = 0; // ConfigValues.AltAPIServers.Num();
+	TArray<FString> AltAPIServers; // ConfigValues.AltAPIServers.Num();
+	uint32 RetryLimitCount = AltAPIServers.Num();
 
 	HttpRetryManager = MakeShared<FHttpRetrySystem::FManager>(
 		FHttpRetrySystem::FRetryLimitCountSetting(RetryLimitCount),
@@ -62,7 +63,7 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& Config
 	// If we have retry domains defined, insert the default domain into the list
 	if (RetryLimitCount > 0)
 	{
-		TArray<FString> TmpAltAPIServers = ConfigValues.AltAPIServers;
+		TArray<FString> TmpAltAPIServers = AltAPIServers;
 
 		FString DefaultUrlDomain = FPlatformHttp::GetUrlDomain(Config.APIServer);
 		if (!TmpAltAPIServers.Contains(DefaultUrlDomain))
@@ -83,15 +84,7 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& Config
 
 	UE_LOG(LogAnalytics, Verbose, TEXT("[%s] Initializing RallyHere Analytics provider"), *Config.APIKey);
 
-	// default to FEngineVersion::Current() if one is not provided, append FEngineVersion::Current() otherwise.
-	FString ConfigAppVersion = ConfigValues.AppVersion;
-	// Allow the cmdline to force a specific AppVersion so it can be set dynamically.
-	FParse::Value(FCommandLine::Get(), TEXT("ANALYTICSAPPVERSION="), ConfigAppVersion, false);
-	Config.AppVersion = ConfigAppVersion.IsEmpty()
-		? FString(FApp::GetBuildVersion())
-		: ConfigAppVersion.Replace(TEXT("%VERSION%"), FApp::GetBuildVersion(), ESearchCase::CaseSensitive);
-
-	UE_LOG(LogAnalytics, Display, TEXT("[%s] APIServer = %s. AppVersion = %s"), *Config.APIKey, *Config.APIServer, *Config.AppVersion);
+	UE_LOG(LogAnalytics, Display, TEXT("[%s] APIServer = %s"), *Config.APIKey, *Config.APIServer);
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
@@ -390,7 +383,7 @@ void FRH_AnalyticsProvider::EventRequestComplete(FHttpRequestPtr HttpRequest, FH
 void FRH_AnalyticsProvider::SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains)
 {
 	// See if anything is actually changing before going through the work to flush and reset the URLs.
-	if (Config.APIServer == UrlEndpoint && Config.AltAPIServers == AltDomains)
+	if (Config.APIServer == UrlEndpoint) // && Config.AltAPIServers == AltDomains)
 	{
 		return;
 	}
@@ -399,7 +392,7 @@ void FRH_AnalyticsProvider::SetURLEndpoint(const FString& UrlEndpoint, const TAr
 	FlushEvents();
 
 	Config.APIServer = UrlEndpoint;
-	Config.AltAPIServers = AltDomains;
+	// Config.AltAPIServers = AltDomains;
 
 	// Set the number of retries to the number of retry URLs that have been passed in.
 	uint32 RetryLimitCount = AltDomains.Num();
