@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
+﻿// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
 #pragma once
 
 #include "RH_DebugToolWindow.h"

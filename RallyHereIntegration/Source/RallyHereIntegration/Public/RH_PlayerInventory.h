@@ -1081,7 +1081,7 @@ protected:
 	 * @brief Helper function to broadcast inventory changes.
 	 * @param ItemIds The item ids that have been updated.
 	 */
-	void BroadcastOnInventoryCacheUpdated(TArray<int32> ItemIds) 
+	void BroadcastOnInventoryCacheUpdated(const TArray<int32>& ItemIds) 
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastInventoryCacheUpdated, FColor::Purple);
 		OnInventoryCacheUpdated.ExecuteIfBound(ItemIds, PlayerInfo);
