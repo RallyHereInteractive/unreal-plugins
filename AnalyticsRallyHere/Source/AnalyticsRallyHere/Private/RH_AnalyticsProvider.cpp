@@ -150,7 +150,7 @@ bool FRH_AnalyticsProvider::StartSession(const TArray<FAnalyticsEventAttribute>&
 	}
 	FGuid SessionGUID;
 	FPlatformMisc::CreateGuid(SessionGUID);
-	SessionID = SessionGUID.ToString(EGuidFormats::DigitsWithHyphensInBraces);
+	SessionID = SessionGUID.ToString(EGuidFormats::DigitsWithHyphens);
 
 	// add session ID to attributes
 	static FString SessionIdKey(TEXT("sessionID"));
@@ -266,7 +266,7 @@ void FRH_AnalyticsProvider::SetUserID(const FString& InUserID)
 {
 	if (UserID == InUserID)
 	{
-		UE_LOG(LogAnalytics, Log, TEXT("[%s] SetUserId %s already has that user id"), *Config.APIKey);
+		UE_LOG(LogAnalytics, Log, TEXT("[%s] SetUserId %s already has that user id"), *Config.APIKey, *InUserID);
 		return;
 	}
 
