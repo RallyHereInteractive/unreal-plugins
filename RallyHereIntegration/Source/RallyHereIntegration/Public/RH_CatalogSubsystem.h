@@ -54,7 +54,7 @@ public:
 	* @brief Constructor with vendor Id List.
 	* @param [in] InVendorIds List of vendor Ids to get.
 	*/
-	FRHVendorGetRequest(TArray<int32> InVendorIds)
+	FRHVendorGetRequest(const TArray<int32>& InVendorIds)
 		: Delegate(FRH_CatalogCallBlock())
 	{
 		VendorIds.Append(InVendorIds);
@@ -65,7 +65,7 @@ public:
 	* @param [in] InDelegate Delegate to call when vendor fetch completes.
 	* @param [in] InVendorIds List of vendor Ids to get.
 	*/
-	FRHVendorGetRequest(FRH_CatalogCallBlock InDelegate, TArray<int32> InVendorIds)
+	FRHVendorGetRequest(const FRH_CatalogCallBlock& InDelegate, const TArray<int32>& InVendorIds)
 		: Delegate(InDelegate)
 	{
 		VendorIds.Append(InVendorIds);
@@ -84,7 +84,7 @@ public:
 	 * @brief Gets the Item Id.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	const int32& GetItemId() const { return ItemId; }
+	int32 GetItemId() const { return ItemId; }
 	/**
 	 * @brief Gets the Item Type.
 	 */
@@ -94,7 +94,7 @@ public:
 	 * @brief Gets the Item Id of the referenced item.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	const int32& GetRefItemId() const { return RefItemId; }
+	int32 GetRefItemId() const { return RefItemId; }
 	/**
 	 * @brief Gets item availability flags.
 	 */
@@ -104,7 +104,7 @@ public:
 	 * @brief Gets the entitled loot id.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	const int32& GetEntitledLootId() const { return EntitledLootId; }
+	int32 GetEntitledLootId() const { return EntitledLootId; }
 	/**
 	 * @brief Gets the Xp Table associated with the item.
 	 */
@@ -119,7 +119,7 @@ public:
 	 * @brief Gets the Item Id of the currency type this can discount.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	const int32& GetCouponDiscountCurrencyItemId() const { return CouponDiscountCurrencyItemId; }
+	int32 GetCouponDiscountCurrencyItemId() const { return CouponDiscountCurrencyItemId; }
 	/**
 	 * @brief Gets the precentage of the discount this item applies.
 	 */
@@ -134,7 +134,7 @@ public:
 	 * @brief Gets the set of rules of what platforms this item is available on.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem | Catalog Item")
-	FString GetItemInventoryBucketUseRulesetId() const { return ItemInventoryBucketUseRuleSetId; }
+	const FString& GetItemInventoryBucketUseRulesetId() const { return ItemInventoryBucketUseRuleSetId; }
 	/**
 	 * @brief Gets the list of loot ids this coupon can be applied to.
 	 */
@@ -150,7 +150,7 @@ public:
 	 * @param CatalogItem The API layer item to initialize from.
 	 * @param InItemId The Item Id.
 	 */
-	void InitializeFromCatalogItem(FRHAPI_Item CatalogItem, int32 InItemId)
+	void InitializeFromCatalogItem(const FRHAPI_Item& CatalogItem, int32 InItemId)
 	{
 		ItemId = InItemId;
 
@@ -275,14 +275,14 @@ public:
 	* @brief Gets the entire catalog at once.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogAll(FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogAll(Delegate); }
 	/**
 	* @brief Gets all of the xp tables in the catalog.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogXpAll(FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogXpAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Xp All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogXpAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogXpAll(Delegate); }
 	/**
@@ -290,28 +290,28 @@ public:
 	* @param [in] ItemId The item id of the item to get.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogItem(const int32& ItemId, FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogItem(int32 ItemId, const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Item", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetCatalogItem(const int32& ItemId, const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogItem(ItemId, Delegate); }
+	void BLUEPRINT_GetCatalogItem(int32 ItemId, const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogItem(ItemId, Delegate); }
 	/**
 	* @brief Gets all of the inventory bucket rulesets from the catalog.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogInventoryBucketUseRuleSetsAll(FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogInventoryBucketUseRuleSetsAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Inventory Bucket Use Rulesets All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogInventoryBucketUseRuleSetsAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogInventoryBucketUseRuleSetsAll(Delegate); }
 	/**
 	* @brief Gets all of the price points from the catalog.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogPricePointsAll(FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogPricePointsAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Price Points All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogPricePointsAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogPricePointsAll(Delegate); }
 	/**
 	* @brief Gets all of the time frames from the catalog.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogTimeFramesAll(FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogTimeFramesAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Time Frames All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogTimeFramesAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogTimeFramesAll(Delegate); }
 	/**
@@ -325,7 +325,7 @@ public:
 	* @brief Gets the all catalog vendors.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetCatalogVendorsAll(FRH_CatalogCallBlock Delegate = FRH_CatalogCallBlock());
+	void GetCatalogVendorsAll(const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Vendors All", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogVendorsAll(const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogVendorsAll(Delegate); }
 	/**
@@ -342,7 +342,7 @@ public:
 	* @param [out] LootItem The loot item to be returned.
 	* @return If true, the loot item was found.
 	*/
-	bool GetVendorItemByLootId(const int32& LootId, FRHAPI_Loot& LootItem) const
+	bool GetVendorItemByLootId(int32 LootId, FRHAPI_Loot& LootItem) const
 	{
 		if (auto const& findItem = CatalogLootItems.Find(LootId))
 		{
@@ -356,7 +356,7 @@ public:
 	* @param [in] ItemId The Item Id used to look up the catalog item.
 	* @return The catalog item if found, otherwise nullptr.
 	*/
-	URH_CatalogItem* GetCatalogItemByItemId(const int32& ItemId) const
+	URH_CatalogItem* GetCatalogItemByItemId(int32 ItemId) const
 	{
 		if (auto const& findItem = CatalogItems.Find(ItemId))
 		{
@@ -385,7 +385,7 @@ public:
 	* @param [out] PricePoint The price point to be returned.
 	* @return If true, the price point was found.
 	*/
-	bool GetPricePointById(FGuid PricePointGuid, FRHAPI_PricePoint& PricePoint) const
+	bool GetPricePointById(const FGuid& PricePointGuid, FRHAPI_PricePoint& PricePoint) const
 	{
 		if (PricePointGuid.IsValid())
 		{
@@ -467,19 +467,19 @@ protected:
 	* @param [in] Resp Response given for the call
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnGetCatalogVendorsAllResponse(const TGetCatalogVendorsAll::Response& Resp, FRH_CatalogCallBlock Delegate);
+	virtual void OnGetCatalogVendorsAllResponse(const TGetCatalogVendorsAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/**
 	* @brief Handles the response to a Get Catalog All call
 	* @param [in] Resp Response given for the call
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnGetCatalogAllResponse(const TGetCatalogAll::Response& Resp, FRH_CatalogCallBlock Delegate);
+	virtual void OnGetCatalogAllResponse(const TGetCatalogAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/**
 	* @brief Handles the response to a Get Catalog Xp All call
 	* @param [in] Resp Response given for the call
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Response& Resp, FRH_CatalogCallBlock Delegate);
+	virtual void OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/**
 	* @brief Handles the response to a Get Catalog Item call.
 	* @param [in] Resp Response given for the call.
@@ -491,19 +491,19 @@ protected:
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(const TGetCatalogInventoryBucketUseRuleSetsAll::Response& Resp, FRH_CatalogCallBlock Delegate);
+	virtual void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(const TGetCatalogInventoryBucketUseRuleSetsAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/**
 	* @brief Handles the response to a Get Catalog Price Points All call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnGetCatalogPricePointsAllResponse(const TGetCatalogPricePointsAll::Response& Resp, FRH_CatalogCallBlock Delegate);
+	virtual void OnGetCatalogPricePointsAllResponse(const TGetCatalogPricePointsAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/**
 	* @brief Handles the response to a Get Catalog Time Frames All call
 	* @param [in] Resp Response given for the call
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, FRH_CatalogCallBlock Delegate);
+	virtual void OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, const FRH_CatalogCallBlock Delegate);
 	/** @brief Array of active vendor requests that are in flight and not responded ot yet. */
 	UPROPERTY(Transient)
 	TArray<FRHVendorGetRequest> VendorRequests;
@@ -563,7 +563,7 @@ protected:
 	 * @param [in] ItemId Item Id of the item being parsed.
 	 * @return The Catalog Item as its class.
 	 */
-	URH_CatalogItem* ParseCatalogItem(const FRHAPI_Item& CatalogItem, const int32& ItemId);
+	URH_CatalogItem* ParseCatalogItem(const FRHAPI_Item& CatalogItem, int32 ItemId);
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	virtual void InitPropertiesWithDefaultValues();
 	
@@ -594,7 +594,7 @@ public:
 	* @return If true, a valid price has been found
 	*/
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem", meta = (DisplayName = "Get Unit Price "))
-	static bool GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, const int32& CurrencyItemId, int32 Quantity, int32& Price);
+	static bool GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price);
 	/**
 	* @brief Gets if the coupon item can be used to discount a vendor item.
 	* @param [in] Coupon Item The item that is being used as a coupon.
@@ -610,7 +610,7 @@ public:
 	* @return If true, the coupon can be used to discount the item.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
-	static bool IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, const int32& LootId);
+	static bool IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, int32 LootId);
 	/**
 	* @brief Gets the modified price based on the discount precentage of the coupon.
 	* @param [in] Coupon Item The item that is being used as a coupon.
@@ -643,7 +643,7 @@ public:
 	* @return If found, returns true.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
-	static bool GetVendorItemById(const FRHAPI_Vendor& Vendor, const int32& LootId, FRHAPI_Loot& LootItem);
+	static bool GetVendorItemById(const FRHAPI_Vendor& Vendor, int32 LootId, FRHAPI_Loot& LootItem);
 };
 
 /** @} */

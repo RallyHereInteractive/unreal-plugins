@@ -210,7 +210,7 @@ const TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>& URH_WebRequests::GetTracked
 	return TrackedRequests;
 }
 
-const FRH_WebRequest* URH_WebRequests::GetTrackedRequestById(FGuid id) const
+const FRH_WebRequest* URH_WebRequests::GetTrackedRequestById(const FGuid& id) const
 {
 	if (auto req = TrackedRequestsById.Find(id))
 	{

@@ -185,7 +185,7 @@ public:
     void SubmitAutoLogin(bool bAcceptEULA = false,
                          bool bAcceptTOS = false,
                          bool bAcceptPP = false,
-                         FRH_OnLoginComplete OnLoginCompleteDelegate = FRH_OnLoginComplete());
+                         const FRH_OnLoginComplete& OnLoginCompleteDelegate = FRH_OnLoginComplete());
 
     /**
       * @brief Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials,
@@ -220,7 +220,7 @@ public:
     /** @brief Show an OSS-specific profile selection UI to the user.  This is for Xbox and other platforms that support profile swapping.
       * A valid profile is required to login on those platforms
       */
-    bool ShowLoginProfileSelectionUI(bool bShowOnlineOnly = false, FRH_OnProfileSelectionUIClosed OnClosed = FRH_OnProfileSelectionUIClosed(), ERHAPI_LocalPlayerLoginOSS OSSType = ERHAPI_LocalPlayerLoginOSS::Login);
+    bool ShowLoginProfileSelectionUI(bool bShowOnlineOnly = false, const FRH_OnProfileSelectionUIClosed& OnClosed = FRH_OnProfileSelectionUIClosed(), ERHAPI_LocalPlayerLoginOSS OSSType = ERHAPI_LocalPlayerLoginOSS::Login);
 
     /** @brief Online Subsystem to use for login.  If not provided, will use the default OSS */
     UPROPERTY(Config)

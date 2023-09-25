@@ -61,7 +61,7 @@ void URH_EntitlementSubsystem::HandleNotification(const FRHAPI_Notification& Not
 }
 
 
-void URH_EntitlementSubsystem::SubmitEntitlementsForLoggedInOSS(FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate, FRH_GetPlatformRegionDelegate PlatformRegionDelegate)
+void URH_EntitlementSubsystem::SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate, const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate)
 {
 	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
 			GetOSS(),
@@ -76,7 +76,7 @@ void URH_EntitlementSubsystem::SubmitEntitlementsForLoggedInOSS(FRH_ProcessEntit
 	Helper->Start();
 }
 
-void URH_EntitlementSubsystem::SubmitEntitlementsForOSS(ERHAPI_Platform platform, FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate, FRH_GetPlatformRegionDelegate PlatformRegionDelegate)
+void URH_EntitlementSubsystem::SubmitEntitlementsForOSS(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate, const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate)
 {
 	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
 			GetOSS(),
@@ -86,7 +86,7 @@ void URH_EntitlementSubsystem::SubmitEntitlementsForOSS(ERHAPI_Platform platform
 			GetTimerManager(),
 			EntitlementProcessorCompleteDelegate,
 			PlatformRegionDelegate,
-			std::optional<ERHAPI_Platform>{platform}
+			std::optional<ERHAPI_Platform>{Platform}
 		);
 	Helper->Start();
 }

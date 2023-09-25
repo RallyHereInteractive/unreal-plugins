@@ -148,7 +148,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 }
 
 void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcceptTOS, bool bAcceptPP,
-                                                    FRH_OnLoginComplete OnLoginCompleteDelegate)
+                                                    const FRH_OnLoginComplete& OnLoginCompleteDelegate)
 {
     FOnlineAccountCredentials Credentials;
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_TYPE="), Credentials.Type);
@@ -468,7 +468,7 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSLoginComplete(int32 ControllerId,
 }
 
 bool URH_LocalPlayerLoginSubsystem::ShowLoginProfileSelectionUI(bool bShowOnlineOnly,
-                                                                FRH_OnProfileSelectionUIClosed OnClosed,
+                                                                const FRH_OnProfileSelectionUIClosed& OnClosed,
                                                                 ERHAPI_LocalPlayerLoginOSS OSSType)
 {
     auto OSS = GetOSS(OSSType);

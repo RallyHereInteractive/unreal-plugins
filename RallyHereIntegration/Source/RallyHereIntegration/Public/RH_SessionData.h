@@ -377,7 +377,7 @@ public:
 	 * @brief Called when the session was removed from our session list. Cleans up state then trigger callback on owner.
 	 * @param [in] Delegate The delegate to call when the session is removed.
 	 */
-	virtual void Expire(FRH_OnSessionExpiredDelegate Delegate);
+	virtual void Expire(const FRH_OnSessionExpiredDelegate& Delegate);
 	/**
 	 * @brief Delegate fired whenever the session is updated.
 	 */
@@ -455,13 +455,13 @@ public:
 	 * @param [in] SessionOwner Owner of the session being polled.
 	 * @param [in] Delegate Callback delegate that the polled session has been updated.
 	 */
-	static void PollSingleSession(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	static void PollSingleSession(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @brief Polls all sessions with an owner for an update.
 	 * @param [in] SessionOwner Owner of the session being polled.
 	 * @param [in] Delegate Callback delegate that the polled session has been updated.
 	 */
-	static void PollAllSessions(TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, bool bPollMembership = true, bool bPollAllSessions = false, FRH_OnPollAllSessionsDelegate Delegate = FRH_OnPollAllSessionsDelegate());
+	static void PollAllSessions(TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, bool bPollMembership = true, bool bPollAllSessions = false, const FRH_OnPollAllSessionsDelegate& Delegate = FRH_OnPollAllSessionsDelegate());
 
 protected:
 	/**
@@ -511,7 +511,7 @@ public:
 	 * @brief Accepts to join the session.
 	 * @param [in] Delegate The callback delegate for the session being updated by the join.
 	 */
-	virtual void Join(const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	virtual void Join(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @brief Blueprint compatible version of Join
 	 * @param [in] Delegate The callback delegate for the session being updated by the join.
@@ -522,7 +522,7 @@ public:
 	 * @brief Declines to join the session.
 	 * @param [in] Delegate The callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	virtual void Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @brief Blueprint compatible version of Leave
 	 * @param [in] Delegate The callback delegate for the session being updated by the leave.
@@ -562,7 +562,7 @@ public:
 	 * @brief Called when the session was removed from our session list. Cleans up state then trigger callback on owner.
 	 * @param [in] Delegate The delegate to call when the session is removed.
 	 */
-	virtual void Expire(FRH_OnSessionExpiredDelegate Delegate);
+	virtual void Expire(const FRH_OnSessionExpiredDelegate& Delegate);
 	/**
 	 * @brief Gets if the players in the session are being watched for presence updates.
 	 */
@@ -602,7 +602,7 @@ public:
 	 * @param [in] CustomData The custom data for the invite
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
-	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InvitePlayer, ); }
+	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InvitePlayer, ); }
 	/**
 	 * @brief Blueprint compatible version of InvitePlayer
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
@@ -617,7 +617,7 @@ public:
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
-	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickPlayer, ); }
+	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickPlayer, ); }
 	/**
 	 * @brief Blueprint compatible version of KickPlayer
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
@@ -630,7 +630,7 @@ public:
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leader change.
 	 */
-	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::SetLeader, ); }
+	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::SetLeader, ); }
 	/**
 	 * @brief Blueprint compatible version of SetLeader
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
@@ -644,7 +644,7 @@ public:
 	 * @param [in] Team The target team that the player will be associated with in the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
-	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::ChangePlayerTeam, ); }
+	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::ChangePlayerTeam, ); }
 	/**
 	 * @brief Blueprint compatible version of ChangePlayerTeam
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
@@ -659,7 +659,7 @@ public:
 	 * @param [in] CustomData The custom data map to set the player's to
 	 * @param [in] Delegate Callback delegate for the session being updated by the player update
 	 */
-	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdatePlayerCustomData, ); }
+	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdatePlayerCustomData, ); }
 	/**
 	 * @brief Blueprint compatible version of UpdatePlayerCustomData.
 	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
@@ -673,7 +673,7 @@ public:
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(bool bFromOSSSession, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::Leave, ); }
+	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::Leave, ); }
 	/**
 	 * @brief Blueprint compatible version of Leave
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
@@ -686,7 +686,7 @@ public:
 	 * @param [in] InstanceRequest Details for the instance being requested.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance creation, or failure.
 	 */
-	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::RequestInstance, ); }
+	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::RequestInstance, ); }
 	/**
 	 * @brief Blueprint compatible version of RequestInstance
 	 * @param [in] InstanceRequest Details for the instance being requested.
@@ -698,7 +698,7 @@ public:
 	 * @brief Shutdown the existing instance for the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
-	virtual void EndInstance(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::EndInstance, ); };
+	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::EndInstance, ); };
 	/**
 	 * @brief Blueprint compatible version of EndInstance
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
@@ -709,7 +709,7 @@ public:
 	 * @brief Starts the match of the instance on the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
 	 */
-	virtual void StartMatch(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::StartMatch, ); };
+	virtual void StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::StartMatch, ); };
 	/**
 	 * @brief Blueprint compatible version of StartMatch
 	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
@@ -720,7 +720,7 @@ public:
 	 * @brief Ends the match of the instance on the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
 	 */
-	virtual void EndMatch(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::EndMatch, ); };
+	virtual void EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::EndMatch, ); };
 	/**
 	 * @brief Blueprint compatible version of EndMatch
 	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
@@ -732,7 +732,7 @@ public:
 	* @param [in] Update The session info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new session data.
 	*/
-	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateSessionInfo, ); };
+	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateSessionInfo, ); };
 	/**
 	* @brief Blueprint compatible of UpdateSessionInfo
 	* @param [in] Update The session info for the update.
@@ -750,7 +750,7 @@ public:
 	* @param [in] Update The instance info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
 	*/
-	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateInstanceInfo, ); };
+	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateInstanceInfo, ); };
 	/**
 	* @brief Blueprint compatible version of UpdateInstanceInfo
 	* @param [in] Update The instance info for the update.
@@ -769,7 +769,7 @@ public:
 	* @param [in] CustomData The new browser data for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
 	*/
-	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateBrowserInfo, ); };
+	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateBrowserInfo, ); };
 	/**
 	* @brief Blueprint compatible version of UpdateBrowserInfo
 	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
@@ -842,47 +842,47 @@ public:
 	 */
 	virtual bool IsOffline() const override { return true; }
 	/** @brief Currently not supported for offline sessions */
-	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void KickPlayer(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Changes the team a given player is associated with in the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
 	 * @param [in] Team The target team that the player will be associated with in the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
-	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Leaves the session.
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(bool bFromOSSSession, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Attempt to create a new instance for the session.
 	 * @param [in] InstanceRequest Details for the instance being requested.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance creation, or failure.
 	 */
-	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Shutdown the existing instance for the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
-	virtual void EndInstance(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Starts the match of the instance on the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
 	 */
-	virtual void StartMatch(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Ends the match of the instance on the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
 	 */
-	virtual void EndMatch(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 
 	// Host only functions
 	/**
@@ -890,14 +890,14 @@ public:
 	* @param [in] Update The session info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new session data.
 	*/
-	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	* @brief Updates the sessions instance info.
 	* @param [in] Update The instance info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
 	*/
-	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
-	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 
 protected:
 	void ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update);
@@ -925,7 +925,7 @@ public:
 	 * @brief Called when the session was removed from our session list. Cleans up state then trigger callback on owner.
 	 * @param [in] Delegate The delegate to call when the session is removed.
 	 */
-	virtual void Expire(FRH_OnSessionExpiredDelegate Delegate);
+	virtual void Expire(const FRH_OnSessionExpiredDelegate& Delegate);
 
 	/**
 	 * @brief Will create a session in most cases, though sessions configured as a hub in their template may perform a join instead.
@@ -933,7 +933,7 @@ public:
 	 * @param [in] SessionOwner The owner of the session.
 	 * @param [in] Delegate Callback delegate on the session being updated from create/join.
 	 */
-	static void CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	static void CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Create Or Join By Type", AutoCreateRefTerm = "CreateParams,Delegate"))
 	/**
 	* @brief Blueprint compatible version of CreateOrJoinByType
@@ -947,14 +947,14 @@ public:
 	 * @param [in] Request The request for joining the queue.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
 	 */
-	virtual void JoinQueue(const FRHAPI_QueueJoinRequest& Request, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	virtual void JoinQueue(const FRHAPI_QueueJoinRequest& Request, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @brief Simplified version of queue join, joins a specific queue with the session to be matchmade with others.
 	 * @param [in] QueueId The Id of the queue being joined.
 	 * @param [in] MatchmakingTags Specific data to be passed in as extra params for matchmaking.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
 	 */
-	virtual void JoinQueue(const FString& QueueId, const TArray<FString> MatchmakingTags = TArray<FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock())
+	virtual void JoinQueue(const FString& QueueId, const TArray<FString>& MatchmakingTags = TArray<FString>(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock())
 	{
 		FRHAPI_QueueJoinRequest Request = {};
 		FRHAPI_AdditionalJoinParams AdditionalParams = {};
@@ -985,7 +985,7 @@ public:
 	 * @brief Leaves the currently active matchmaking queue.
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
 	 */
-	virtual void LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	virtual void LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @brief Blueprint compatible version of LeaveQueue
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
@@ -998,7 +998,7 @@ public:
 	 * @param [in] SessionOwner Owner of the session to join.
 	 * @param [in] Delegate Callback deledate with an update of the session being joined.
 	 */
-	static void JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	static void JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @brief Blueprint compatible version of JoinById
 	 * @param [in] SessionId Id of the session to join.
@@ -1014,60 +1014,60 @@ public:
 	 * @param [in] Team The target team that the player will be associated with in the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
-	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Kicks a player from the session.
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
-	virtual void KickPlayer(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Sets a new leader for the session.
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leader change.
 	 */
-	virtual void SetLeader(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Changes the team a given player is associated with in the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
 	 * @param [in] Team The target team that the player will be associated with in the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the team change.
 	 */
-	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Changes the session player's custom data.
 	 * @param [in] PlayerUuid The unique player Id whose custom data will be updated
 	 * @param [in] CustomData The custom data map to set the player's to
 	 * @param [in] Delegate Callback delegate for the session being updated by the player update
 	 */
-	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Leaves the session.
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(bool bFromOSSSession, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Attempt to create a new instance for the session.
 	 * @param [in] InstanceRequest Details for the instance being requested.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance creation, or failure.
 	 */
-	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Shutdown the existing instance for the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
-	virtual void EndInstance(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Starts the match of the instance on the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
 	 */
-	virtual void StartMatch(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Ends the match of the instance on the session.
 	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
 	 */
-	virtual void EndMatch(FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 
 	// Host only functions
 	/**
@@ -1075,20 +1075,20 @@ public:
 	* @param [in] Update The session info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new session data.
 	*/
-	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	* @brief Updates the sessions instance info.
 	* @param [in] Update The instance info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
 	*/
-	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	* @brief Updates the sessions browser info.
 	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
 	* @param [in] CustomData The new browser data for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
 	*/
-	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 };
 
 /** @ingroup Session
@@ -1127,14 +1127,14 @@ public:
 	 * @param [in] SessionIds The list of sessions that we are reconciling against.
 	 * @param [in] ETag The ETag to use for the update.
 	 */
-	virtual void ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag = TOptional<FString>()) = 0;
+	virtual void ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString>& ETag = TOptional<FString>()) = 0;
 
 	/**
 	 * @brief Updates the list of session templates to those that are active.
 	 * @param [in] InTemplates The list of templates that we are reconciling against.
 	 * @param [in] ETag The ETag to use for the update.
 	 */
-	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString> ETag = TOptional<FString>()) = 0;
+	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString>& ETag = TOptional<FString>()) = 0;
 
 	/**
 	 * @brief Gets the PlayerInfo Subsystem.

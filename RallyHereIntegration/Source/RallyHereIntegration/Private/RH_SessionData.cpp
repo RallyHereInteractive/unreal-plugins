@@ -169,7 +169,7 @@ void URH_SessionView::ImportTemplate(const FRHAPI_SessionTemplate& newTemplate)
 	Template = newTemplate;
 }
 
-void URH_SessionView::Expire(FRH_OnSessionExpiredDelegate Delegate)
+void URH_SessionView::Expire(const FRH_OnSessionExpiredDelegate& Delegate)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 
@@ -358,7 +358,7 @@ void URH_SessionView::CheckDeferredPolls()
 	}
 }
 
-void URH_SessionView::PollSingleSession(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_SessionView::PollSingleSession(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionId);
 
@@ -366,7 +366,7 @@ void URH_SessionView::PollSingleSession(const FString& SessionId, TScriptInterfa
 	Helper->Start();
 }
 
-void URH_SessionView::PollAllSessions(TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, bool bPollMembership, bool bPollAllSessions, FRH_OnPollAllSessionsDelegate Delegate)
+void URH_SessionView::PollAllSessions(TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, bool bPollMembership, bool bPollAllSessions, const FRH_OnPollAllSessionsDelegate& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	auto Helper = MakeShared<FRH_SessionPollAllHelper>(MakeWeakInterface(SessionOwner), bPollMembership, bPollAllSessions, Delegate, GetDefault<URH_IntegrationSettings>()->SessionPollPriority);
@@ -381,12 +381,12 @@ URH_InvitedSession::URH_InvitedSession(const FObjectInitializer& ObjectInitializ
 {
 }
 
-void URH_InvitedSession::Join(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_InvitedSession::Join(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	URH_OnlineSession::JoinById(GetSessionId(), GetSessionOwner(), Delegate);
 }
 
-void URH_InvitedSession::Leave(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_InvitedSession::Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_LeaveSessionByIdSelf>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
 }
@@ -503,7 +503,7 @@ void URH_JoinedSession::SetWatchingPlayers(bool bWatch)
 	}
 }
 
-void URH_JoinedSession::Expire(FRH_OnSessionExpiredDelegate Delegate)
+void URH_JoinedSession::Expire(const FRH_OnSessionExpiredDelegate& Delegate)
 {
 	// stop watching players
 	SetWatchingPlayers(false);
@@ -669,25 +669,25 @@ URH_OfflineSession::URH_OfflineSession(const FObjectInitializer& ObjectInitializ
 {
 }
 
-void URH_OfflineSession::InvitePlayer(const FGuid& PlayerId, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::InvitePlayer(const FGuid& PlayerId, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this);
 }
 
-void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this);
 }
 
-void URH_OfflineSession::SetLeader(const FGuid& PlayerId, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::SetLeader(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this);
 }
 
-void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
 	auto& Update = UpdateWrapper.Data;
@@ -738,7 +738,7 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, F
 	Delegate.ExecuteIfBound(true, this);
 }
 
-void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
 	auto& Update = UpdateWrapper.Data;
@@ -761,7 +761,7 @@ void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const T
 	Delegate.ExecuteIfBound(false, this);
 }
 
-void URH_OfflineSession::Leave(bool bFromOSS, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// for now, empty player list to remove all players from the session, then import to clean up
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
@@ -772,7 +772,7 @@ void URH_OfflineSession::Leave(bool bFromOSS, FRH_OnSessionUpdatedDelegateBlock 
 	Delegate.ExecuteIfBound(true, this);
 }
 
-void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (GetSessionData().GetInstanceOrNull())
@@ -835,7 +835,7 @@ void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceR
 		Delegate.ExecuteIfBound(false, this);
 	}
 }
-void URH_OfflineSession::EndInstance(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (!GetSessionData().GetInstanceOrNull())
@@ -855,7 +855,7 @@ void URH_OfflineSession::EndInstance(FRH_OnSessionUpdatedDelegateBlock Delegate)
 	Delegate.ExecuteIfBound(true, this);
 }
 
-void URH_OfflineSession::StartMatch(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (GetSessionData().GetMatchOrNull())
@@ -885,7 +885,7 @@ void URH_OfflineSession::StartMatch(FRH_OnSessionUpdatedDelegateBlock Delegate)
 
 	Delegate.ExecuteIfBound(true, this);
 }
-void URH_OfflineSession::EndMatch(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (!GetSessionData().GetMatchOrNull())
@@ -905,7 +905,7 @@ void URH_OfflineSession::EndMatch(FRH_OnSessionUpdatedDelegateBlock Delegate)
 	Delegate.ExecuteIfBound(true, this);
 }
 
-void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	
@@ -935,7 +935,7 @@ void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionIn
 }
 
 
-void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& InstanceInfoUpdate, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& InstanceInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	if (!GetSessionData().GetInstanceOrNull())
@@ -972,7 +972,7 @@ void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Ins
 	Delegate.ExecuteIfBound(true, this);
 }
 
-void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	
@@ -1033,13 +1033,13 @@ void URH_OnlineSession::ImportAPISession(const FRH_APISessionWithETag& newSessio
 	Super::ImportAPISession(newSessionData, newTemplate);
 }
 
-void URH_OnlineSession::Expire(FRH_OnSessionExpiredDelegate Delegate)
+void URH_OnlineSession::Expire(const FRH_OnSessionExpiredDelegate& Delegate)
 {
 	// call super last, as it may fire delegate
 	Super::Expire(Delegate);
 }
 
-void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s@%s"), ANSI_TO_TCHAR(__FUNCTION__), *CreateParams.GetSessionType(), *CreateParams.GetRegionId(TEXT("<UNSET>")));
 	
@@ -1055,7 +1055,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	Helper->Start();
 }
 
-void URH_OnlineSession::JoinQueue(const FRHAPI_QueueJoinRequest& JoinRequest, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::JoinQueue(const FRHAPI_QueueJoinRequest& JoinRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// todo - check if player is already in queue?  Data may be old or in flight
 
@@ -1071,12 +1071,12 @@ void URH_OnlineSession::JoinQueue(const FRHAPI_QueueJoinRequest& JoinRequest, co
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
 	Helper->Start(Request);
 }
-void URH_OnlineSession::LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_LeaveQueue>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeaveQueuePriority);
 }
 
-void URH_OnlineSession::JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_JoinSessionByIdSelf BaseType;
 	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
@@ -1085,7 +1085,7 @@ void URH_OnlineSession::JoinById(const FString& SessionId, TScriptInterface<IRH_
 	Helper->Start(SessionId);
 }
 
-void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// TODO - check that players is not already in this session?
 
@@ -1108,7 +1108,7 @@ void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, const 
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// TODO - check that players is already in this session?
 
@@ -1125,7 +1125,7 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, FRH_OnSessionUpdated
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::SetLeader(const FGuid& PlayerUuid, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// TODO - check that players is in this session?
 
@@ -1143,7 +1143,7 @@ void URH_OnlineSession::SetLeader(const FGuid& PlayerUuid, FRH_OnSessionUpdatedD
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// TODO - check that players is in this session?
 
@@ -1161,7 +1161,7 @@ void URH_OnlineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, FR
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// TODO - check that players is in this session?
 
@@ -1179,12 +1179,12 @@ void URH_OnlineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TM
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::Leave(bool bFromOSS, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_LeaveSessionByIdSelf>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
 }
 
-void URH_OnlineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_CreateInstanceRequest BaseType;
 	auto SessionId = GetSessionId();
@@ -1198,21 +1198,21 @@ void URH_OnlineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRe
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionRequestInstancePriority);
 	Helper->Start(Request);
 }
-void URH_OnlineSession::EndInstance(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_EndInstance>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionEndInstancePriority);
 }
 
-void URH_OnlineSession::StartMatch(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_StartMatch>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionStartMatchPriority);
 }
-void URH_OnlineSession::EndMatch(FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_EndMatch>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionEndMatchPriority);
 }
 
-void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_UpdateSessionById BaseType;
 	BaseType::Request Request;
@@ -1224,7 +1224,7 @@ void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, FR
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_UpdateInstanceInfo BaseType;
 	BaseType::Request Request;
@@ -1236,7 +1236,7 @@ void URH_OnlineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Upda
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, FRH_OnSessionUpdatedDelegateBlock Delegate)
+void URH_OnlineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 

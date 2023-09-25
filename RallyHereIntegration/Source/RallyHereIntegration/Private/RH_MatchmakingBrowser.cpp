@@ -109,7 +109,7 @@ protected:
 	TArray<FString> QueueIds;
 };
 
-void URH_MatchmakingBrowserCache::SearchQueues(const FRH_QueueSearchParams& params, FRH_OnQueueSearchCompleteDelegateBlock Delegate)
+void URH_MatchmakingBrowserCache::SearchQueues(const FRH_QueueSearchParams& params, const FRH_OnQueueSearchCompleteDelegateBlock& Delegate)
 {
 	auto Helper = MakeShared<FRH_QueueBrowserSearchHelper>(this, GetAuthContext(), Delegate);
 	Helper->Start(params);
@@ -205,7 +205,7 @@ protected:
 	
 };
 
-void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& TemplateId, FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock Delegate)
+void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& TemplateId, const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock& Delegate)
 {
 	auto Helper = MakeShared<FRH_TemplateGroupSearchHelper>(this, GetAuthContext(), Delegate);
 	Helper->Start(TemplateId);
@@ -301,7 +301,7 @@ protected:
 
 };
 
-void URH_MatchmakingBrowserCache::SearchInstanceLaunchTemplate(const FGuid& TemplateId, FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock Delegate)
+void URH_MatchmakingBrowserCache::SearchInstanceLaunchTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock& Delegate)
 {
 	auto Helper = MakeShared<FRH_InstanceLaunchTemplateSearchHelper>(this, GetAuthContext(), Delegate);
 	Helper->Start(TemplateId);
@@ -323,7 +323,7 @@ void URH_MatchmakingBrowserCache::ImportAPIInstanceLaunchTemplate(const FRHAPI_I
 	TemplateWrapper->ImportAPIInstanceLaunchTemplate(APITemplate, ETag);
 }
 
-void URH_MatchmakingBrowserCache::SearchRegions(FRH_OnRegionSearchCompleteDelegateBlock Delegate)
+void URH_MatchmakingBrowserCache::SearchRegions(const FRH_OnRegionSearchCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	typedef RallyHereAPI::Traits_GetSiteSettings BaseType;

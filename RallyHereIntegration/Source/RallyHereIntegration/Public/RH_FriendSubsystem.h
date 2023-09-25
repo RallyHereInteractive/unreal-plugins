@@ -90,13 +90,13 @@ public:
 	 * @brief Gets the display name of the user on their platform.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
-	FString GetClientDisplayName() const { return DisplayName; }
+	const FString& GetClientDisplayName() const { return DisplayName; }
 
 	/**
 	 * @brief Gets the rich presence of the user on their platform.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
-    FString GetRichPresenceInfo() const { return RichPresenceInfo; }
+    const FString& GetRichPresenceInfo() const { return RichPresenceInfo; }
 	/**
 	 * @brief Gets a struct of the players platform and unique platform player id.
 	 */
@@ -448,7 +448,7 @@ public:
 	* @brief Gets the players unique player id.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend", meta = (DisplayName = "Get RH Player UUID"))
-	FGuid GetRHPlayerUuid() const
+	const FGuid& GetRHPlayerUuid() const
 	{
 		return PlayerAndPlatformInfo.PlayerUuid;
 	}
@@ -480,7 +480,7 @@ public:
 	* @brief Gets the last time the players friend data was modified.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
-	FDateTime GetLastModifiedOn() const
+	const FDateTime& GetLastModifiedOn() const
 	{
 		return LastModifiedOn;
 	}
@@ -488,7 +488,7 @@ public:
 	* @brief Gets any notes the player has set for this player.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
-	FString GetNotes() const
+	const FString& GetNotes() const
 	{
 		return Notes;
 	}
@@ -529,7 +529,7 @@ public:
 	* @brief Gets all of the players platform friend entries.
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
-	const TArray<URH_PlatformFriend*> GetPlatformFriends() const { return PlatformFriends; }
+	const TArray<URH_PlatformFriend*>& GetPlatformFriends() const { return PlatformFriends; }
 	/**
 	* @brief Gets the wrapper of the players RH and platform info.
 	*/
@@ -550,14 +550,14 @@ public:
 	* @param PreferredPlatformType The preferred platform to get the display name from.
 	* @param Delegate The delegate to call when the request is complete.
 	*/
-	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock()) const;
+	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock& Delegate = FRH_PlayerInfoGetDisplayNameBlock()) const;
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate); }
 	/**
 	* @brief Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo. 
 	* @param Delegate The delegate to call when the request is complete.
 	*/
-	void GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock Delegate = FRH_GetRHPlayerUuidBlock());
+	void GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock& Delegate = FRH_GetRHPlayerUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get RH Player UUID Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidDynamicDelegate& Delegate) { GetRHPlayerUuidAsync(Delegate); }
 
@@ -712,7 +712,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool FetchFriendsList(FRH_GenericFriendBlock Delegate = FRH_GenericFriendBlock());
+	bool FetchFriendsList(const FRH_GenericFriendBlock& Delegate = FRH_GenericFriendBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Friends List", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchFriendsList(const FRH_GenericFriendDynamicDelegate& Delegate) { return FetchFriendsList(Delegate); }
 	/**
@@ -721,7 +721,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool FetchFriend(const FGuid& PlayerUUID, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	bool FetchFriend(const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Friend", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchFriend(UPARAM(ref) const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return FetchFriend(PlayerUUID, Delegate); }
 	/**
@@ -730,7 +730,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool AddFriend(const FGuid& PlayerUuid, FRH_AddFriendBlock Delegate = FRH_AddFriendBlock());
+	bool AddFriend(const FGuid& PlayerUuid, const FRH_AddFriendBlock& Delegate = FRH_AddFriendBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Add Friend", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_AddFriend(UPARAM(ref) const FGuid& PlayerUuid, const FRH_AddFriendDynamicDelegate& Delegate) { return AddFriend(PlayerUuid, Delegate); }
 	/**
@@ -739,7 +739,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool RemoveFriend(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	bool RemoveFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Remove Friend", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_RemoveFriend(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return RemoveFriend(PlayerUuid, Delegate); }
 	/**
@@ -749,7 +749,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool AddNotes(const FGuid& PlayerUuid, const FString& Notes, FRH_AddNotesBlock Delegate = FRH_AddNotesBlock());
+	bool AddNotes(const FGuid& PlayerUuid, const FString& Notes, const FRH_AddNotesBlock& Delegate = FRH_AddNotesBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Add Notes", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_AddNotes(UPARAM(ref) const FGuid& PlayerUuid, UPARAM(ref) const FString& Notes, const FRH_AddNotesDynamicDelegate& Delegate) { return AddNotes(PlayerUuid, Notes, Delegate); }
 	/**
@@ -758,7 +758,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool DeleteNotes(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	bool DeleteNotes(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Delete Notes", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_DeleteNotes(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return DeleteNotes(PlayerUuid, Delegate); }
 	/**
@@ -766,7 +766,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool FetchBlockedList(FRH_GenericFriendBlock Delegate = FRH_GenericFriendBlock());
+	bool FetchBlockedList(const FRH_GenericFriendBlock& Delegate = FRH_GenericFriendBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Blocked List", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchBlockedList(const FRH_GenericFriendDynamicDelegate& Delegate) { return FetchBlockedList(Delegate); }
 	/**
@@ -775,7 +775,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool FetchBlockedPlayer(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	bool FetchBlockedPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Fetch Blocked Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_FetchBlockedPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return FetchBlockedPlayer(PlayerUuid, Delegate); };
 	/**
@@ -784,7 +784,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool BlockPlayer(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	bool BlockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Block Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_BlockPlayer(UPARAM(ref) const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return BlockPlayer(PlayerUUID, Delegate); };
 	/**
@@ -793,7 +793,7 @@ public:
 	* @param [in] Delegate Callback delegate for when the call completes.
 	* @return If true, the call was executed.
 	*/
-	bool UnblockPlayer(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate = FRH_GenericFriendWithUuidBlock());
+	bool UnblockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Unblock Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_UnblockPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return UnblockPlayer(PlayerUuid, Delegate); }
 	
@@ -992,20 +992,20 @@ protected:
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnFetchFriendsListResponse(const GetFriendsListType::Response& Resp, FRH_GenericFriendBlock Delegate);
+	virtual void OnFetchFriendsListResponse(const GetFriendsListType::Response& Resp, const FRH_GenericFriendBlock Delegate);
 	/**
 	* @brief Handles the response to a Fetch Friend call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnFetchFriendResponse(const GetFriendRelationshipType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate);
+	virtual void OnFetchFriendResponse(const GetFriendRelationshipType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate);
 	/**
 	* @brief Handles the response to a Add Friend call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
-	virtual void OnAddFriendResponse(const AddFriendType::Response& Resp, FRH_AddFriendBlock Delegate, AddFriendType::Request Request, int32 RetryEtagFailureCount);
+	virtual void OnAddFriendResponse(const AddFriendType::Response& Resp, const FRH_AddFriendBlock Delegate, const AddFriendType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Remove Friend call.
 	* @param [in] Resp Response given for the call.
@@ -1013,48 +1013,48 @@ protected:
 	* @param [in] Request The Request used to make the remove friend call.
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
-	virtual void OnRemoveFriendResponse(const DeleteFriendType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, DeleteFriendType::Request Request, int32 RetryEtagFailureCount);
+	virtual void OnRemoveFriendResponse(const DeleteFriendType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const DeleteFriendType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Add Friend Notes call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
-	virtual void OnAddNotesResponse(const AddNotesType::Response& Resp, FRH_AddNotesBlock Delegate, AddNotesType::Request Request, int32 RetryEtagFailureCount);
+	virtual void OnAddNotesResponse(const AddNotesType::Response& Resp, const FRH_AddNotesBlock Delegate, const AddNotesType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Delete Friend Notes call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
-	virtual void OnDeleteNotesResponse(const DeleteNotesType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, DeleteNotesType::Request Request, int32 RetryEtagFailureCount);
+	virtual void OnDeleteNotesResponse(const DeleteNotesType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const DeleteNotesType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Get Blocked List call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	virtual void OnFetchBlockedListResponse(const GetBlockedListType::Response& Resp, FRH_GenericFriendBlock Delegate);
+	virtual void OnFetchBlockedListResponse(const GetBlockedListType::Response& Resp, const FRH_GenericFriendBlock Delegate);
 	/**
 	* @brief Handles the response to a Get Blocked Player call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] PlayerUuid The UUID of the player that is being requested.
 	*/
-	virtual void OnFetchBlockedPlayerResponse(const GetBlockedType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid);
+	virtual void OnFetchBlockedPlayerResponse(const GetBlockedType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid);
 	/**
 	* @brief Handles the response to a Block Player call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] PlayerUuid The UUID of the player that is being blocked.
 	*/
-	virtual void OnBlockPlayerResponse(const BlockType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid);
+	virtual void OnBlockPlayerResponse(const BlockType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid);
 	/**
 	* @brief Handles the response to a Unblock Player call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	* @param [in] PlayerUuid The UUID of the player that is being unblocked.
 	*/
-	virtual void OnUnblockPlayerResponse(const UnblockType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid);
+	virtual void OnUnblockPlayerResponse(const UnblockType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid);
 	/**
 	* @brief Handles the response to a Fetch Friend For Add call.
 	* @param [in] Resp Response given for the call.
@@ -1063,8 +1063,8 @@ protected:
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
 	virtual void OnFetchFriendForAdd(const GetFriendRelationshipType::Response& Resp,
-										FRH_AddFriendBlock Delegate,
-										  AddFriendType::Request Request, int32 RetryEtagFailureCount);
+									 const FRH_AddFriendBlock Delegate,
+									 AddFriendType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Fetch Friend For Add Note call.
 	* @param [in] Resp Response given for the call.
@@ -1073,8 +1073,8 @@ protected:
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
 	virtual void OnFetchFriendForAddNote(const GetFriendRelationshipType::Response& Resp,
-										FRH_AddNotesBlock Delegate,
-										AddNotesType::Request Request, int32 RetryEtagFailureCount);
+										 const FRH_AddNotesBlock Delegate,
+										 AddNotesType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Fetch Friend For Delete Note call.
 	* @param [in] Resp Response given for the call.
@@ -1083,7 +1083,7 @@ protected:
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
 	virtual void OnFetchFriendForDeleteNote(const GetFriendRelationshipType::Response& Resp,
-											FRH_GenericFriendWithUuidBlock Delegate,
+											const FRH_GenericFriendWithUuidBlock Delegate,
 											DeleteNotesType::Request Request, int32 RetryEtagFailureCount);
 	/**
 	* @brief Handles the response to a Fetch Friend For Remove call.
@@ -1093,14 +1093,14 @@ protected:
 	* @param [in] RetryEtagFailureCount Number of times this has failed, to determine course of action.
 	*/
 	virtual void OnFetchFriendForRemove(const GetFriendRelationshipType::Response& Resp,
-										FRH_GenericFriendWithUuidBlock Delegate,
-										  DeleteFriendType::Request Request, int32 RetryEtagFailureCount);
+										const FRH_GenericFriendWithUuidBlock Delegate,
+										DeleteFriendType::Request Request, int32 RetryEtagFailureCount);
 #pragma endregion // API Request Handlers
 	/**
 	 * @brief Updates the cached Platforms friends with the new set of friends data.
 	 * @param [in] NewFriends New platform friend data.
 	 */
-	void UpdatePlatformFriends(TArray<URH_PlatformFriend*>& NewFriends);
+	void UpdatePlatformFriends(const TArray<URH_PlatformFriend*>& NewFriends);
 	/**
 	 * @brief Removes all friends from the cached data that have no relationship to the player the subsystem is for.
 	 * @param [out] OutArray Array of players that were removed.

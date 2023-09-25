@@ -349,7 +349,7 @@ public:
 	 * @param [in] InUpdateDelegate Templated delegate to call with the API's response if query successfully completes
 	 * @param [in] InCompleteDelegate Generic completion delegate called regardless of success or failure
 	 */
-	FRH_SimpleQueryHelper(typename BaseType::Delegate InUpdateDelegate = BaseType::Delegate(), FRH_GenericSuccessWithErrorBlock InCompleteDelegate = FRH_GenericSuccessWithErrorBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+	FRH_SimpleQueryHelper(const typename BaseType::Delegate& InUpdateDelegate = BaseType::Delegate(), const FRH_GenericSuccessWithErrorBlock& InCompleteDelegate = FRH_GenericSuccessWithErrorBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
 		: FRH_AsyncTaskHelper(InPriority)
 		, UpdateDelegate(InUpdateDelegate)
 		, Delegate(InCompleteDelegate)
@@ -362,7 +362,7 @@ public:
 	 * @param [in] InCompleteDelegate Generic completion delegate called regardless of success or failure
 	 */
 	UE_DEPRECATED(5.0, "FRH_SimpleQueryHelper has converted to using FRH_GenericSuccessWithErrorBlock for completion callbacks, please convert your code to use the new type")
-	FRH_SimpleQueryHelper(typename BaseType::Delegate InUpdateDelegate = BaseType::Delegate(), FRH_GenericSuccessBlock InCompleteDelegate = FRH_GenericSuccessBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+	FRH_SimpleQueryHelper(const typename BaseType::Delegate& InUpdateDelegate = BaseType::Delegate(), const FRH_GenericSuccessBlock& InCompleteDelegate = FRH_GenericSuccessBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
 		: FRH_AsyncTaskHelper(InPriority)
 		, UpdateDelegate(InUpdateDelegate)
 		, Delegate(RH_ConvertGenericSucessDelegateBlock(InCompleteDelegate))
@@ -625,7 +625,7 @@ public:
 	{}
 
 	/** @brief Constructor for specifying user ID and platform type */
-	FRH_PlayerPlatformId(FString InUserId, ERHAPI_Platform InPlatformType)
+	FRH_PlayerPlatformId(const FString& InUserId, ERHAPI_Platform InPlatformType)
 		: UserId(InUserId)
 		, PlatformType(InPlatformType)
 	{}
@@ -644,7 +644,7 @@ FORCEINLINE uint32 GetTypeHash(const FRH_PlayerPlatformId& PlatformId)
 /** 
  * @brief Helper function to break a fully qualified URL into a base URL, API name, and an array of API parameters
  * @param [in] URL The fully qualified URL that we want to break apart
- * @param [out] BaseURL The base URL of the specified fully qualified URL
+ * @param [in] BaseURL The base URL of the specified fully qualified URL
  * @param [out] APIName The name of the API the URL is hitting
  * @param [out] APIParams The array of API parameters from the URL
  * @return Semi-unique hash value for the given platform id

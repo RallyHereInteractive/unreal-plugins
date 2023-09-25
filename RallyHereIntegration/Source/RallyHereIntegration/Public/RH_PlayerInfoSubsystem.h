@@ -208,7 +208,7 @@ public:
 	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
 	* @param [in] Delegate Callback delegate for the request.
 	*/
-	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerPresenceBlock Delegate = FRH_OnRequestPlayerPresenceBlock())
+	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerPresenceBlock& Delegate = FRH_OnRequestPlayerPresenceBlock())
 	{
 		TemporaryRequestDelegates.Add(Delegate);
 		CheckPollStatus(bForceUpdate);
@@ -338,7 +338,7 @@ public:
 	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
 	* @param [in] Delegate Callback delegate for the request.
 	*/
-	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerSessionsBlock Delegate = FRH_OnRequestPlayerSessionsBlock())
+	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerSessionsBlock& Delegate = FRH_OnRequestPlayerSessionsBlock())
 	{
 		TemporaryRequestDelegates.Add(Delegate);
 		CheckPollStatus(bForceUpdate);
@@ -541,7 +541,7 @@ public:
 	* @return The players stored settings data.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
-	const TMap<FString, FRH_PlayerSettingsDataWrapper> GetAllStoredPlayerSettings() const { return PlayerSettingsByTypeId; }
+	const TMap<FString, FRH_PlayerSettingsDataWrapper>& GetAllStoredPlayerSettings() const { return PlayerSettingsByTypeId; }
 
 	/**
 	* @brief Gets all the players stored ranking data.
@@ -571,7 +571,7 @@ public:
 	* @param [in] PreferredPlatformType If set, then that specific platforms display name will be returned if possible, otherwise will use your local platforms, otherwise the first platform found for the player.
 	* @param [in] Delegate Callback with the players display name.
 	*/
-	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr);
+	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock& Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr);
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate, LocalPlayerSubsystem); }
 	
@@ -591,7 +591,7 @@ public:
 	* @param [in] bForceRefresh If true, will force a re-request of the players information.
 	* @param [in] Delegate Callback with the players linked platforms.
 	*/
-	void GetLinkedPlatformInfo(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, FRH_PlayerInfoGetPlatformsBlock Delegate = FRH_PlayerInfoGetPlatformsBlock());
+	void GetLinkedPlatformInfo(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlatformsBlock& Delegate = FRH_PlayerInfoGetPlatformsBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Linked Platform Info", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLinkedPlatformInfo(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlatformsDynamicDelegate& Delegate) { GetLinkedPlatformInfo(StaleThreshold, bForceRefresh, Delegate); }
 
@@ -602,7 +602,7 @@ public:
 	* @param [in] bForceRefresh If true, will force a re-request of the players information.
 	* @param [in] Delegate Callback with the players settings for the given type.
 	*/
-	void GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, FRH_PlayerInfoGetPlayerSettingsBlock Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
+	void GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate = FRH_PlayerInfoGetPlayerSettingsBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetPlayerSettings(SettingTypeId, StaleThreshold, bForceRefresh, Delegate); }
 
@@ -612,7 +612,7 @@ public:
 	* @param [in] SettingsData Data to be stored into the players settings.
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
-	void SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, FRH_PlayerInfoSetPlayerSettingsBlock Delegate = FRH_PlayerInfoSetPlayerSettingsBlock());
+	void SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate = FRH_PlayerInfoSetPlayerSettingsBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Set Player Settings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper SettingsData, const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate& Delegate) { SetPlayerSettings(SettingTypeId, SettingsData, Delegate); }
 
@@ -622,7 +622,7 @@ public:
 	* @param [in] bForceRefresh If true, will force a re-request of the players information.
 	* @param [in] Delegate Callback with the players ranking for the given type.
 	*/
-	void GetPlayerRankings(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, FRH_PlayerInfoGetPlayerRankingsBlock Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
+	void GetPlayerRankings(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Player Rankings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetPlayerRankings(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate& Delegate) { GetPlayerRankings(StaleThreshold, bForceRefresh, Delegate); }
 
@@ -632,7 +632,7 @@ public:
 	* @param [in] SettingsData Data to be stored into the players settings.
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
-	void UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, FRH_PlayerInfoGetPlayerRankingsBlock Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
+	void UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Update Player Ranking", AutoCreateRefTerm = "RankData,Delegate"))
 	void BLUEPRINT_UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate& Delegate) { UpdatePlayerRanking(RankId, RankData, Delegate); }
 	/**
@@ -648,7 +648,7 @@ public:
 	/**
 	* @brief Blueprint delegate to listen for presence updates.
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Presence Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Presence Updated"))
 	FRH_OnPresenceUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
 	/**
 	* @brief Native delegate to listen for presence updates.
@@ -657,7 +657,7 @@ public:
 	/**
 	* @brief Blueprint delegate to listen for session list updates.
 	*/
-	UPROPERTY(BlueprintReadWrite, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Sessions Updated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Sessions Updated"))
 	FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionsUpdatedDelegate;
 	/**
 	* @brief Native delegate to listen for session list updates.
@@ -749,14 +749,14 @@ protected:
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-	virtual void OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, FRH_PlayerInfoGetPlatformsBlock Delegate);
+	virtual void OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, const FRH_PlayerInfoGetPlatformsBlock Delegate);
 	/**
 	 * @brief Handles the response to a Get Player Settings call.
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 * @param [in] SettinyTypeId The type of settings that were requested.
 	 */
-	virtual void OnGetPlayerSettingsResponse(const GetSettings::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId);
+	virtual void OnGetPlayerSettingsResponse(const GetSettings::Response& Response, const FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId);
 	/**
 	 * @brief Handles the response to a Set Player Settings call.
 	 * @param [in] Resp Response given for the call
@@ -765,19 +765,19 @@ protected:
 	 * @param [in] SettingKey The key of the setting that was updated.
 	 * @param [in] SettingsData The data of the setting that was updated.
 	 */
-	virtual void OnSetPlayerSettingsResponse(const SetSettings::Response& Response, FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData);
+	virtual void OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData);
 	/**
 	 * @brief Handles the response to a Get Player Rankings call.
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-	virtual void OnGetPlayerRankingsResponse(const GetRankings::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
+	virtual void OnGetPlayerRankingsResponse(const GetRankings::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
 	/**
 	 * @brief Handles the response to a Update Player Ranking call.
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-	virtual void OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
+	virtual void OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
 	/**
 	 * @brief Helper to broadcast results from player presences being updated.
 	 */
@@ -908,7 +908,7 @@ public:
 	* @param [in] PlayerName The display name we want to search for
 	* @param [in] Delegate Callback with the all PlayerInfos that are found with that display name
 	*/
-	void LookupPlayer(FString PlayerName, FRH_PlayerInfoLookupPlayerBlock Delegate = FRH_PlayerInfoLookupPlayerBlock());
+	void LookupPlayer(FString PlayerName, const FRH_PlayerInfoLookupPlayerBlock& Delegate = FRH_PlayerInfoLookupPlayerBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem", meta = (DisplayName = "Lookup Player", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LookupPlayer(FString PlayerName, const FRH_PlayerInfoLookupPlayerDynamicDelegate& Delegate) { LookupPlayer(PlayerName, Delegate); }
 
@@ -918,7 +918,7 @@ public:
 	* @param [in] PlatformUserId The platform user id used for the lookup
 	* @param [in] Delegate Callback with the all PlayerInfos that are found with that display name
 	*/
-	void LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, FRH_PlayerInfoLookupPlayerBlock Delegate = FRH_PlayerInfoLookupPlayerBlock());
+	void LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, const FRH_PlayerInfoLookupPlayerBlock& Delegate = FRH_PlayerInfoLookupPlayerBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem", meta = (DisplayName = "Lookup Player By Platform Id", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, const FRH_PlayerInfoLookupPlayerDynamicDelegate& Delegate) { LookupPlayerByPlatformUserId(PlayerPlatformId, Delegate); }
 
@@ -960,13 +960,13 @@ protected:
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-	virtual void OnLookupPlayerResponse(const TLookupPlayer::Response& Response, FRH_PlayerInfoLookupPlayerBlock Delegate);
+	virtual void OnLookupPlayerResponse(const TLookupPlayer::Response& Response, const FRH_PlayerInfoLookupPlayerBlock Delegate);
 	/**
 	 * @brief Handles the response to a Lookup Player By Platform User Id call.
 	 * @param [in] Resp Response given for the call
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-	virtual void OnLookupPlayerByPlatformUserIdResponse(const TLookupPlayer::Response& Response, FRH_PlayerInfoLookupPlayerBlock Delegate);
+	virtual void OnLookupPlayerByPlatformUserIdResponse(const TLookupPlayer::Response& Response, const FRH_PlayerInfoLookupPlayerBlock Delegate);
 };
 
 /** @} */
