@@ -240,7 +240,7 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 			Payload.Add(TEXT('\0'));
 			// Recreate the URLPath for logging because we do not want to escape the parameters when logging.
 			// We cannot simply UrlEncode the entire Path after logging it because UrlEncode(Params) != UrlEncode(Param1) & UrlEncode(Param2) ...
-			FString LogString = FString::Printf(TEXT("[%s] AnalyticsRallyHere URL:%s. Payload:%s"),
+			FString LogString = FString::Printf(TEXT("[%s] GETS request for URL:%s. Payload:%s"),
 				*Config.APIKey,
 				*Config.APIServer,
 				UTF8_TO_TCHAR(Payload.GetData()));
