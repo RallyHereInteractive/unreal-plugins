@@ -51,45 +51,19 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& Config
 		UE_LOG(LogAnalytics, Fatal, TEXT("AnalyticsRallyHere: APIServer (%s) cannot be empty!"), *Config.APIServer);
 	}
 
-	// Set the number of retries to the number of retry URLs that have been passed in.
-	TArray<FString> AltAPIServers; // ConfigValues.AltAPIServers.Num();
-	uint32 RetryLimitCount = AltAPIServers.Num();
-
 	HttpRetryManager = MakeShared<FHttpRetrySystem::FManager>(
-		FHttpRetrySystem::FRetryLimitCountSetting(RetryLimitCount),
+		FHttpRetrySystem::FRetryLimitCountSetting(Config.RetryLimitCount),
 		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting()
 		);
 
-	// If we have retry domains defined, insert the default domain into the list
-	if (RetryLimitCount > 0)
-	{
-		TArray<FString> TmpAltAPIServers = AltAPIServers;
+	UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Initializing RallyHere Analytics provider"));
 
-		FString DefaultUrlDomain = FPlatformHttp::GetUrlDomain(Config.APIServer);
-		if (!TmpAltAPIServers.Contains(DefaultUrlDomain))
-		{
-			TmpAltAPIServers.Insert(DefaultUrlDomain, 0);
-		}
-
-		RetryServers = MakeShared<FHttpRetrySystem::FRetryDomains, ESPMode::ThreadSafe>(MoveTemp(TmpAltAPIServers));
-	}
-
-	// force very verbose logging if we are force-disabling events.
-	bool bForceDisableCaching = FParse::Param(FCommandLine::Get(), TEXT("ANALYTICSDISABLECACHING"));
-	if (bForceDisableCaching)
-	{
-		UE_SET_LOG_VERBOSITY(LogAnalytics, VeryVerbose);
-		bShouldCacheEvents = false;
-	}
-
-	UE_LOG(LogAnalytics, Verbose, TEXT("[%s] Initializing RallyHere Analytics provider"), *Config.APIKey);
-
-	UE_LOG(LogAnalytics, Display, TEXT("[%s] APIServer = %s"), *Config.APIKey, *Config.APIServer);
+	UE_LOG(LogAnalytics, Display, TEXT("APIServer = %s"), *Config.APIServer);
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 {
-	QUICK_SCOPE_CYCLE_COUNTER(STAT_FAnalyticsProviderET_Tick);
+	QUICK_SCOPE_CYCLE_COUNTER(STAT_FRH_AnalyticsProvider_Tick);
 
 	HttpRetryManager->Update();
 
@@ -113,7 +87,7 @@ bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 	{
 		if (GFrameCounter == LastFrameCounterFlushed && RH_AnalyticsProviderCvars::PreventMultipleFlushesInOneFrame)
 		{
-			UE_LOG(LogAnalytics, Verbose, TEXT("[%s] Tried to flush, but another analytics provider has already flushed this frame. Deferring until next frame."), *Config.APIKey);
+			UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Tried to flush, but another analytics provider has already flushed this frame. Deferring until next frame."));
 		}
 		else
 		{
@@ -134,14 +108,14 @@ bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 
 FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
 {
-	UE_LOG(LogAnalytics, Verbose, TEXT("[%s] Destroying RallyHere Analytics provider"), *Config.APIKey);
+	UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Destroying RallyHere Analytics provider"));
 	bInDestructor = true;
 	EndSession();
 }
 
 bool FRH_AnalyticsProvider::StartSession(const TArray<FAnalyticsEventAttribute>& Attributes)
 {
-	UE_LOG(LogAnalytics, Log, TEXT("[%s] AnalyticsRallyHere::StartSession"), *Config.APIKey);
+	UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession"));
 
 	// end/flush previous session before staring new one
 	if (bSessionInProgress)
@@ -190,14 +164,14 @@ TSharedRef<IHttpRequest, ESPMode::ThreadSafe> FRH_AnalyticsProvider::CreateReque
 		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting(),
 		FHttpRetrySystem::FRetryResponseCodes(),
 		FHttpRetrySystem::FRetryVerbs(),
-		RetryServers);
+		FHttpRetrySystem::FRetryDomainsPtr());
 
 	return HttpRequest;
 }
 
 void FRH_AnalyticsProvider::FlushEvents()
 {
-	QUICK_SCOPE_CYCLE_COUNTER(STAT_FAnalyticsProviderET_FlushEvents);
+	QUICK_SCOPE_CYCLE_COUNTER(STAT_FRH_AnalyticsProvider_FlushEvents);
 	// Warn if this takes more than 2 ms
 	SCOPE_TIME_GUARD_MS(TEXT("FRH_AnalyticsProvider::FlushEvents"), 2);
 
@@ -216,15 +190,9 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 		return;
 	}
 
-	//ANALYTICS_FLUSH_TRACKING_BEGIN();
-	int EventCount = 0;
-	int PayloadSize = 0;
-
 	if(ensure(FModuleManager::Get().IsModuleLoaded("HTTP")))
 	{
-		TArray<uint8> Payload = EventCache.FlushCacheUTF8();
-
-		PayloadSize = Payload.Num();
+		TArray<uint8> Payload = EventCache.FlushCache();
 
 		// This should never be done in production. MUCH slower!
 		if (UE_LOG_ACTIVE(LogAnalytics, VeryVerbose))
@@ -233,8 +201,7 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 			Payload.Add(TEXT('\0'));
 			// Recreate the URLPath for logging because we do not want to escape the parameters when logging.
 			// We cannot simply UrlEncode the entire Path after logging it because UrlEncode(Params) != UrlEncode(Param1) & UrlEncode(Param2) ...
-			FString LogString = FString::Printf(TEXT("[%s] GETS request for URL:%s. Payload:%s"),
-				*Config.APIKey,
+			FString LogString = FString::Printf(TEXT("[RHAnalytics] GETS request for [%s]. Payload:%s"),
 				*Config.APIServer,
 				UTF8_TO_TCHAR(Payload.GetData()));
 			UE_LOG(LogAnalytics, VeryVerbose, TEXT("%s"), *LogString);
@@ -259,18 +226,17 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 			HttpRequest->ProcessRequest();
 		}
 	}
-	//ANALYTICS_FLUSH_TRACKING_END(PayloadSize, EventCount);
 }
 
 void FRH_AnalyticsProvider::SetUserID(const FString& InUserID)
 {
 	if (UserID == InUserID)
 	{
-		UE_LOG(LogAnalytics, Log, TEXT("[%s] SetUserId %s already has that user id"), *Config.APIKey, *InUserID);
+		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] SetUserId %s already has that user id"), *InUserID);
 		return;
 	}
 
-	UE_LOG(LogAnalytics, Log, TEXT("[%s] SetUserId %s"), *Config.APIKey, *InUserID);
+	UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] SetUserId %s"), *InUserID);
 	// Flush any cached events that would be using the old UserID.
 	FlushEvents();
 	UserID = InUserID;
@@ -303,14 +269,14 @@ bool FRH_AnalyticsProvider::SetSessionID(const FString& InSessionID)
 		// Flush any cached events that would be using the old SessionID.
 		FlushEvents();
 		SessionID = InSessionID;
-		UE_LOG(LogAnalytics, Log, TEXT("[%s] Forcing SessionID to %s."), *Config.APIKey, *SessionID);
+		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] Forcing SessionID to %s."), *SessionID);
 	}
 	return true;
 }
 
 bool FRH_AnalyticsProvider::ShouldRecordEvent(const FString& EventName) const
 {
-	return !IsActingAsNullProvider();
+	return true; // TODO whitelist/blacklist check
 }
 
 void FRH_AnalyticsProvider::RecordEvent(const FString& EventName, const TArray<FAnalyticsEventAttribute>& Attributes)
@@ -368,7 +334,7 @@ void FRH_AnalyticsProvider::EventRequestComplete(FHttpRequestPtr HttpRequest, FH
 	bool bEventsDelivered = false;
 	if (HttpResponse.IsValid())
 	{
-		UE_LOG(LogAnalytics, VeryVerbose, TEXT("[%s] GETS response for [%s]. Code: %d. Payload: %s"), *Config.APIKey, *HttpRequest->GetURL(), HttpResponse->GetResponseCode(), *HttpResponse->GetContentAsString());
+		UE_LOG(LogAnalytics, VeryVerbose, TEXT("[RHAnalytics] GETS response for [%s]. Code: %d. Payload: %s"), *HttpRequest->GetURL(), HttpResponse->GetResponseCode(), *HttpResponse->GetContentAsString());
 		if (EHttpResponseCodes::IsOk(HttpResponse->GetResponseCode()))
 		{
 			bEventsDelivered = true;
@@ -376,50 +342,7 @@ void FRH_AnalyticsProvider::EventRequestComplete(FHttpRequestPtr HttpRequest, FH
 	}
 	else
 	{
-		UE_LOG(LogAnalytics, VeryVerbose, TEXT("[%s] GETS response for [%s]. No response"), *Config.APIKey, *HttpRequest->GetURL());
-	}
-}
-
-void FRH_AnalyticsProvider::SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains)
-{
-	// See if anything is actually changing before going through the work to flush and reset the URLs.
-	if (Config.APIServer == UrlEndpoint) // && Config.AltAPIServers == AltDomains)
-	{
-		return;
-	}
-
-	// flush existing events before changing URL domains.
-	FlushEvents();
-
-	Config.APIServer = UrlEndpoint;
-	// Config.AltAPIServers = AltDomains;
-
-	// Set the number of retries to the number of retry URLs that have been passed in.
-	uint32 RetryLimitCount = AltDomains.Num();
-
-	HttpRetryManager->SetDefaultRetryLimit(RetryLimitCount);
-
-	TArray<FString> TmpAltAPIServers = AltDomains;
-
-	// If we have retry domains defined, insert the default domain into the list
-	if (RetryLimitCount > 0)
-	{
-		FString DefaultUrlDomain = FPlatformHttp::GetUrlDomain(Config.APIServer);
-		if (!TmpAltAPIServers.Contains(DefaultUrlDomain))
-		{
-			TmpAltAPIServers.Insert(DefaultUrlDomain, 0);
-		}
-
-		RetryServers = MakeShared<FHttpRetrySystem::FRetryDomains, ESPMode::ThreadSafe>(MoveTemp(TmpAltAPIServers));
-	}
-	else
-	{
-		RetryServers.Reset();
-	}
-
-	if (Config.APIServer.IsEmpty())
-	{
-		UE_LOG(LogAnalytics, Warning, TEXT("AnalyticsRallyHere: APIServer is empty for APIKey (%s), converting to a NULL provider!"), *Config.APIKey);
+		UE_LOG(LogAnalytics, VeryVerbose, TEXT("[RHAnalytics] GETS response for [%s]. No response"), *HttpRequest->GetURL());
 	}
 }
 

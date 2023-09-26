@@ -53,7 +53,6 @@ public:
 	virtual bool AppendSetDefaultEventAttribute(const FString& Key, const FString& Value);
 	virtual bool ClearDefaultEventAttribute(const FString& Key);
 
-	virtual void SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains);
 	virtual void BlockUntilFlushed(float InTimeoutSec);
 	virtual ~FRH_AnalyticsProvider();
 
@@ -61,10 +60,6 @@ public:
 
 private:
 	void FlushEventsOnce();
-	bool IsActingAsNullProvider() const
-	{
-		return false;
-	}
 
 	/** Create a request utilizing HttpRetry domains */
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> CreateRequest();

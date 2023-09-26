@@ -16,7 +16,7 @@
 /**
  * Mixin class for RallyHere implementors.
  * The purpose of this class is to support the concept of caching events that are added via the standard RecordEvent API
- * and serializing them into a payload in a Json format compatible with Epic's backend data collectors.
+ * and serializing them into a payload in a Json format compatible with RallyHere's backend data collectors.
  * The job of transporting these payloads to an external collector (generally expected to be via HTTP) is left to
  * higher level classes to implement.
  *
@@ -77,7 +77,7 @@ public:
 	bool ClearDefaultAttribute(const FString& AttributeName);
 
 	/** Flushes the cache as a UTF8 char array. Returns a uint8 because that's what IHttpRequest prefers. If nothing is cached, returns an empty array. */
-	TArray<uint8> FlushCacheUTF8();
+	TArray<uint8> FlushCache();
 
 	/**
 	* Determines whether we have anything we need to flush, either a queued flush or existing events in the payload.

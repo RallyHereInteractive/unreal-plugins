@@ -1,7 +1,5 @@
 // Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
 
-// Based on AnalyticsProviderET from UE 5.1.0
-
 #pragma once
 
 #include "AnalyticsProviderConfigurationDelegate.h"
@@ -56,9 +54,9 @@ public:
 		uint32 RetryLimitCount = 0;
 		/** Maximum time to elapse before forcing events to be flushed. Use a negative value to use the defaults (60 sec). */
 		float FlushIntervalSec = -1.f;
-		/** Maximum size a payload can reach before we force a flush of the payload. Use a negative value to use the defaults. See FAnalyticsProviderETEventCache. */
+		/** Maximum size a payload can reach before we force a flush of the payload. Use a negative value to use the defaults. See FRH_AnalyticsProviderEventCache. */
 		int32 MaximumPayloadSize = -1;
-		/** We preallocate a payload. It defaults to the Maximum configured payload size (see FAnalyticsProviderETEventCache). Use a negative value use the default. See FAnalyticsProviderETEventCache. */
+		/** We preallocate a payload. It defaults to the Maximum configured payload size (see FAnalyticsProviderETEventCache). Use a negative value use the default. See FRH_AnalyticsProviderEventCache. */
 		int32 PreallocatedPayloadSize = -1;
 
 		/** Default ctor to ensure all values have their proper default. */

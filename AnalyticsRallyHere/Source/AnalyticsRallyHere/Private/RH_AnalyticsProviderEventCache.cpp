@@ -188,6 +188,12 @@ namespace EventCacheStatic
 		// we are going to write UTF8 directly into our payload buffer.
 		AppendString(Buffer, PayloadTemplate, PayloadTemplateLength);
 	}
+
+	inline void AppendPayloadTrailer(TArray<uint8>& Buffer)
+	{
+		// we are going to write UTF8 directly into our payload buffer.
+		AppendString(Buffer, PayloadTrailer, PayloadTrailerLength);
+	}
 }
 
 FRH_AnalyticsProviderEventCache::FRH_AnalyticsProviderEventCache(int32 InMaximumPayloadSize, int32 InPreallocatedPayloadSize)
@@ -203,7 +209,7 @@ FRH_AnalyticsProviderEventCache::FRH_AnalyticsProviderEventCache(int32 InMaximum
 	{
 		// default to 100KB.
 		MaximumPayloadSize = 100*1024;
-		GConfig->GetInt(TEXT("AnalyticsProviderETEventCache"), TEXT("MaximumPayloadSize"), MaximumPayloadSize, GEngineIni);
+		GConfig->GetInt(TEXT("FRH_AnalyticsProviderEventCache"), TEXT("MaximumPayloadSize"), MaximumPayloadSize, GEngineIni);
 	}
 
 	if (PreallocatedPayloadSize < 0)
@@ -288,7 +294,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	// Add } to clouse out the event
 	CachedEventUTF8Stream.Add(static_cast<uint8>('}'));
 	// put the payload trailer back on
-	EventCacheStatic::AppendString(CachedEventUTF8Stream, EventCacheStatic::PayloadTrailer, EventCacheStatic::PayloadTrailerLength);
+	EventCacheStatic::AppendPayloadTrailer(CachedEventUTF8Stream);
 	const int32 NewBufferSize = CachedEventUTF8Stream.Num();
 
 	// Add the EventEntry
@@ -401,7 +407,7 @@ bool FRH_AnalyticsProviderEventCache::ClearDefaultAttribute(const FString& Attri
 	return ExistingIndex != INDEX_NONE;
 }
 
-TArray<uint8> FRH_AnalyticsProviderEventCache::FlushCacheUTF8()
+TArray<uint8> FRH_AnalyticsProviderEventCache::FlushCache()
 {
 	FScopeLock ScopedLock(&CachedEventsCS);
 
