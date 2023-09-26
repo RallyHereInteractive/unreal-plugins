@@ -38,6 +38,16 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			ClientBootstrapper = AddSubsystemPlugin<URH_GameInstanceClientBootstrapper>(Settings->GameInstanceClientBootstrapperClass);
 		}
 	}
+
+	if (!IsRunningDedicatedServer())
+	{
+		// Register for application activated event (returning from suspension on consoles)
+		AppSuspendHandle = FCoreDelegates::ApplicationWillEnterBackgroundDelegate.AddUObject(this, &URH_GameInstanceSubsystem::AppSuspendCallback);
+		AppResumeHandle = FCoreDelegates::ApplicationHasEnteredForegroundDelegate.AddUObject(this, &URH_GameInstanceSubsystem::AppResumeCallback);
+
+		AppDeactivatedHandle = FCoreDelegates::ApplicationWillDeactivateDelegate.AddUObject(this, &URH_GameInstanceSubsystem::AppDeactivatedCallback);
+		AppReactivatedHandle = FCoreDelegates::ApplicationHasReactivatedDelegate.AddUObject(this, &URH_GameInstanceSubsystem::AppReactivatedCallback);
+	}
 	
 	PlayerInfoSubsystem = AddSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
 	CatalogSubsystem = AddSubsystemPlugin<URH_CatalogSubsystem>(Settings->CatalogSubsystemClass);
@@ -80,6 +90,23 @@ void URH_GameInstanceSubsystem::Deinitialize()
 	ConfigSubsystem = nullptr;
 	SessionSearchCache = nullptr;
 	MatchmakingCache = nullptr;
+
+	if (AppSuspendHandle.IsValid())
+	{
+		FCoreDelegates::ApplicationWillEnterBackgroundDelegate.Remove(AppSuspendHandle);
+	}
+	if (AppResumeHandle.IsValid())
+	{
+		FCoreDelegates::ApplicationHasEnteredForegroundDelegate.Remove(AppResumeHandle);
+	}
+	if (AppDeactivatedHandle.IsValid())
+	{
+		FCoreDelegates::ApplicationWillDeactivateDelegate.Remove(AppDeactivatedHandle);
+	}
+	if (AppReactivatedHandle.IsValid())
+	{
+		FCoreDelegates::ApplicationHasReactivatedDelegate.Remove(AppReactivatedHandle);
+	}
 }
 
 void URH_GameInstanceSubsystem::GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage)
@@ -220,4 +247,98 @@ void URH_GameInstanceSubsystem::CustomEndpoint(const FRH_CustomEndpointRequestWr
 			Delegate.ExecuteIfBound(ResponseWrapper);
 		});
 	CustomEndpoint(Request, InternalDelegate);
+}
+
+void URH_GameInstanceSubsystem::AppSuspendCallback()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppSuspendCallback()"));
+	// This delegate can be called from 'any' thread, so do the Logoff() call on the game thread
+	DECLARE_CYCLE_STAT(TEXT("URH_GameInstanceSubsystem::AppSuspendCallback"), STAT_GameInstanceSubsystem_AppSuspendCallback, STATGROUP_TaskGraphTasks);
+
+	const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+		FSimpleDelegateGraphTask::FDelegate::CreateUObject(this, &URH_GameInstanceSubsystem::AppSuspendCallbackInGameThread),
+		GET_STATID(STAT_GameInstanceSubsystem_AppSuspendCallback),
+		nullptr,
+		ENamedThreads::GameThread);
+
+	FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
+}
+
+void URH_GameInstanceSubsystem::AppSuspendCallbackInGameThread()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppSuspendCallbackInGameThread()"));
+}
+
+void URH_GameInstanceSubsystem::AppDeactivatedCallback()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppDeactivatedCallback()"));
+	// This delegate can be called from 'any' thread, so do the Logoff() call on the game thread
+	DECLARE_CYCLE_STAT(TEXT("URH_GameInstanceSubsystem::AppDeactivatedCallback"), STAT_GameInstanceSubsystem_AppDeactivatedCallback, STATGROUP_TaskGraphTasks);
+
+	if (IsInGameThread())
+	{
+		AppDeactivatedCallbackInGameThread();
+	}
+	else
+	{
+		const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+			FSimpleDelegateGraphTask::FDelegate::CreateUObject(this, &URH_GameInstanceSubsystem::AppDeactivatedCallbackInGameThread),
+			GET_STATID(STAT_GameInstanceSubsystem_AppDeactivatedCallback),
+			nullptr,
+			ENamedThreads::GameThread);
+
+		FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
+	}
+}
+
+void URH_GameInstanceSubsystem::AppDeactivatedCallbackInGameThread()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppDeactivatedCallbackInGameThread()"));
+}
+
+void URH_GameInstanceSubsystem::AppReactivatedCallback()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppReactivatedCallback()"));
+	// This delegate can be called from 'any' thread, so do the Logoff() call on the game thread
+	DECLARE_CYCLE_STAT(TEXT("URH_GameInstanceSubsystem::AppReactivatedCallback"), STAT_FPComClient_AppReactivatedCallback, STATGROUP_TaskGraphTasks);
+
+	if (IsInGameThread())
+	{
+		AppReactivatedCallbackInGameThread();
+	}
+	else
+	{
+		const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+			FSimpleDelegateGraphTask::FDelegate::CreateUObject(this, &URH_GameInstanceSubsystem::AppReactivatedCallbackInGameThread),
+			GET_STATID(STAT_FPComClient_AppReactivatedCallback),
+			nullptr,
+			ENamedThreads::GameThread);
+
+		FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
+	}
+}
+
+void URH_GameInstanceSubsystem::AppReactivatedCallbackInGameThread()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppReactivatedCallbackInGameThread()"));
+}
+
+void URH_GameInstanceSubsystem::AppResumeCallback()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppResumeCallback()"));
+	// This delegate can be called from 'any' thread, so do the Logoff() call on the game thread
+	DECLARE_CYCLE_STAT(TEXT("URH_GameInstanceSubsystem::AppResumeCallback"), STAT_RHClient_AppResumeCallback, STATGROUP_TaskGraphTasks);
+
+	const FGraphEventRef Task = FSimpleDelegateGraphTask::CreateAndDispatchWhenReady(
+		FSimpleDelegateGraphTask::FDelegate::CreateUObject(this, &URH_GameInstanceSubsystem::AppResumeCallbackInGameThread),
+		GET_STATID(STAT_RHClient_AppResumeCallback),
+		nullptr,
+		ENamedThreads::GameThread);
+
+	FTaskGraphInterface::Get().WaitUntilTaskCompletes(Task);
+}
+
+void URH_GameInstanceSubsystem::AppResumeCallbackInGameThread()
+{
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("URH_GameInstanceSubsystem::AppResumeCallbackInGameThread()"));
 }
