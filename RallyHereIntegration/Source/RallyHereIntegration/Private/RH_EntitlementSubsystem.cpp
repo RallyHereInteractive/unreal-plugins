@@ -91,7 +91,7 @@ void URH_EntitlementSubsystem::SubmitEntitlementsForOSS(ERHAPI_Platform platform
 	Helper->Start();
 }
 
-void URH_EntitlementSubsystem::QueryStoreOffersById(const TArray<FString>& OfferIds, const FRH_QueryStoreOffersBlock& Delegate)
+void URH_EntitlementSubsystem::QueryStoreOffersById(const TArray<FString>& OfferIds, const FRH_GenericSuccessBlock& Delegate)
 {
 	if (IOnlineStoreV2Ptr Store = GetStoreSubsystem())
 	{
@@ -106,7 +106,7 @@ void URH_EntitlementSubsystem::QueryStoreOffersById(const TArray<FString>& Offer
 	}
 }
 
-void URH_EntitlementSubsystem::OnQueryStoreOffersById(bool bSuccess, const TArray<FUniqueOfferId>& Offers, const FString& Error, const FRH_QueryStoreOffersBlock Delegate)
+void URH_EntitlementSubsystem::OnQueryStoreOffersById(bool bSuccess, const TArray<FUniqueOfferId>& Offers, const FString& Error, const FRH_GenericSuccessBlock Delegate)
 {
 	if (!bSuccess)
 	{
