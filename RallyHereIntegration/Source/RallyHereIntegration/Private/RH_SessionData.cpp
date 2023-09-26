@@ -1242,7 +1242,7 @@ void URH_OnlineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FStr
 
 	if (bEnable)
 	{
-		typedef RallyHereAPI::Traits_UpdateBrowserInfo BaseType;
+		typedef RallyHereAPI::Traits_PostBrowserInfo BaseType;
 		BaseType::Request Request;
 		Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 		Request.SessionId = GetSessionId();

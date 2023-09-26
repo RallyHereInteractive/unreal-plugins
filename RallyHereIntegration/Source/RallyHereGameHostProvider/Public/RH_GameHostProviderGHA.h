@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "RH_GameHostProviderInterface.h"
 #include "Tickable.h"
 
