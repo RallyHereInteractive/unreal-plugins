@@ -20,6 +20,12 @@ class URH_LocalPlayerSubsystem;
 DECLARE_DELEGATE_TwoParams(FRH_ProcessEntitlementCompletedDelegate, bool /*Success*/, FRHAPI_PlatformEntitlementProcessResult) 
 DECLARE_DELEGATE_RetVal(ERHAPI_PlatformRegion, FRH_GetPlatformRegionDelegate)
 
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_QueryStoreOffersDynamicDelegate, bool, bSuccess);
+DECLARE_DELEGATE_OneParam(FRH_QueryStoreOffersDelegate, bool);
+DECLARE_RH_DELEGATE_BLOCK(FRH_QueryStoreOffersBlock, FRH_QueryStoreOffersDelegate, FRH_QueryStoreOffersDynamicDelegate, bool)
+
+
 /** @defgroup Entitlement RallyHere Entitlement
  *  @{
  */
@@ -67,6 +73,25 @@ public:
 	void SubmitEntitlementsForOSS(ERHAPI_Platform platform, FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
 	                              FRH_GetPlatformRegionDelegate PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
 	/**
+	* @brief Queries the OSS to get the store offers for the given offer ids.
+	* @param [in] OfferIds List of SKUs to request offers for.
+	* @param [in] Delegate callback for getting offers.
+	*/
+	void QueryStoreOffersById(const TArray<FString>& OfferIds, const FRH_QueryStoreOffersBlock& Delegate = FRH_QueryStoreOffersBlock());
+	/**
+	* @brief Response from OSS for Store Offer By Id Query.
+	* @param [in] bSuccess If the call to the OSS was successful.
+	* @param [in] Offers Offers returned by the OSS.
+	* @param [in] Error The error if the call was not successful.
+	* @param [in] Delegate callback for getting offers.
+	*/
+	void OnQueryStoreOffersById(bool bSuccess, const TArray<FUniqueOfferId>& Offers, const FString& Error, const FRH_QueryStoreOffersBlock Delegate);
+	/**
+	* @brief Helper function to get the cached store offers from the OSS.
+	* @param [out] OutOffers The offers cached in the store OSS.
+	*/
+	void GetCachedStoreOffers(TArray<FOnlineStoreOfferRef>& OutOffers);
+	/**
 	 * @brief Gets the map of all processed entitlement results.
 	 */
 	TMap<FString, FRHAPI_PlatformEntitlementProcessResult>* GetEntitlementResults();
@@ -79,6 +104,9 @@ public:
 	 * @brief Gets the set entitlement OSS Name.
 	 */
 	FName GetEntitlementOSSName();
+
+	/** @brief Helper to the store subsystem subsystem. */
+	IOnlineStoreV2Ptr GetStoreSubsystem() const;
 protected:
 	/** @brief Helper to get the engines Timer Manager. */
 	FTimerManager& GetTimerManager();

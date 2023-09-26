@@ -11,6 +11,12 @@ public:
 
 	FRHDTW_Entitlements();
 	virtual void Do() override;
+
+	virtual void DoEntitlementsTab();
+	virtual void DoStoreOffersTab();
+
 private:
 	FString ActionResult;
+
+	TArray<ANSICHAR> SKURequestInput;
 };
