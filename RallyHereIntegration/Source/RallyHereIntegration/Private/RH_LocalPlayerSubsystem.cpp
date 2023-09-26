@@ -7,6 +7,8 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "Net/OnlineEngineInterface.h"
+#include "Analytics.h"
+#include "Interfaces/IAnalyticsProvider.h"
 
 #include "RH_LocalPlayerLoginSubsystem.h"
 #include "RH_LocalPlayerPresenceSubsystem.h"
@@ -24,6 +26,7 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
     AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
 	AuthContext->OnLoginComplete().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserLoggedIn);
+	AuthContext->OnLogout().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserLoggedOut);
 	AuthContext->OnLoginUserChanged().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserChanged);
 
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
@@ -43,6 +46,9 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		SandboxedPlayerInfoSubsystem = AddSandboxedSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
 	}
 
+	// get the default configured provider
+	CreateAnalyticsProvider();
+
 	// Initialize Subsystems
 	for (auto Plugin : SubsystemPlugins)
 	{
@@ -52,11 +58,21 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	{
 		Plugin->Initialize();
 	}
+
+	if (AnalyticsProvider.IsValid())
+	{
+		AnalyticsProvider->StartSession();
+	}
 }
 
 void URH_LocalPlayerSubsystem::Deinitialize()
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	if (AnalyticsProvider.IsValid())
+	{
+		AnalyticsProvider->EndSession();
+	}
 
 	// Deinitialize Subsystems
 	for (auto Plugin : SandboxedSubsystemPlugins)
@@ -117,6 +133,16 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 			}
 		}
 	}
+
+}
+
+void URH_LocalPlayerSubsystem::OnUserLoggedOut()
+{
+	// trigger login as failure, to push logout to game instance
+	OnUserLoggedIn(false);
+
+	// trigger use change, to handle user delta resposne
+	OnUserChanged();
 }
 
 void URH_LocalPlayerSubsystem::OnUserChanged()
@@ -139,6 +165,12 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 	{
 		Plugin->OnUserChanged();
 		Plugin->OnUserChanged(OldUuid, OldPlayerInfo);
+	}
+
+	if (AnalyticsProvider.IsValid())
+	{
+		auto PlayerUuid = GetPlayerUuid();
+		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));
 	}
 
 	PlayerInfoCache = GetLocalPlayerInfo();
@@ -202,6 +234,17 @@ int32 URH_LocalPlayerSubsystem::GetPlatformUserId() const
 	return GetLocalPlayer()->GetControllerId();
 }
 #endif
+
+TSharedPtr<class IAnalyticsProvider> URH_LocalPlayerSubsystem::CreateAnalyticsProvider()
+{
+	// todo - use sandbox configuration to change URL
+	if (!AnalyticsProvider.IsValid())
+	{
+		AnalyticsProvider = FAnalytics::Get().GetDefaultConfiguredProvider();
+	}
+
+	return AnalyticsProvider;
+}
 
 URH_PlayerInfoSubsystem* URH_LocalPlayerSubsystem::GetPlayerInfoSubsystem() const
 {

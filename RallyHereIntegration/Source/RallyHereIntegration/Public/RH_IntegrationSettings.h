@@ -38,6 +38,10 @@ struct FRH_SandboxConfiguration
 	/** @brief RallyHere PlayerExperience reporting URL */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString PlayerExperienceReportURL;
+
+	/** @brief RallyHere PlayerExperience reporting URL */
+	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
+	FString AnalyticsURL;
 };
 
 /**
