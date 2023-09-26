@@ -7,6 +7,7 @@
 
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "RallyHereDeveloperAPIModule.h"
+#include "RallyHereDeveloperAPIHelpers.h"
 //#include "AuthAPI.h"
 
 namespace RallyHereDeveloperAPI
