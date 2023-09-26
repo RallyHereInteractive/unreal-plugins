@@ -91,6 +91,39 @@ void URH_EntitlementSubsystem::SubmitEntitlementsForOSS(ERHAPI_Platform Platform
 	Helper->Start();
 }
 
+void URH_EntitlementSubsystem::QueryStoreOffersById(const TArray<FString>& OfferIds, const FRH_GenericSuccessBlock& Delegate)
+{
+	if (IOnlineStoreV2Ptr Store = GetStoreSubsystem())
+	{
+		Store->QueryOffersById(*GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId().Get(), 
+			OfferIds, 
+			FOnQueryOnlineStoreOffersComplete::CreateUObject(this, &URH_EntitlementSubsystem::OnQueryStoreOffersById, Delegate)
+		);
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(false);
+	}
+}
+
+void URH_EntitlementSubsystem::OnQueryStoreOffersById(bool bSuccess, const TArray<FUniqueOfferId>& Offers, const FString& Error, const FRH_GenericSuccessBlock Delegate)
+{
+	if (!bSuccess)
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("URH_EntitlementSubsystem::OnQueryStoreOffersById returned error %s"), *Error);
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+}
+
+void URH_EntitlementSubsystem::GetCachedStoreOffers(TArray<FOnlineStoreOfferRef>& OutOffers)
+{
+	if (IOnlineStoreV2Ptr Store = GetStoreSubsystem())
+	{
+		Store->GetOffers(OutOffers);
+	}
+}
+
 TMap<FString, FRHAPI_PlatformEntitlementProcessResult>* URH_EntitlementSubsystem::GetEntitlementResults()
 {
 	return &EntitlementProcessResultMap;
@@ -123,6 +156,27 @@ IOnlinePurchasePtr URH_EntitlementSubsystem::GetPurchaseSubsystem() const
 	{
 		IOnlinePurchasePtr purchase = OSS->GetPurchaseInterface();
 		return purchase;
+	}
+
+	return nullptr;
+}
+
+IOnlineStoreV2Ptr URH_EntitlementSubsystem::GetStoreSubsystem() const
+{
+	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+	{
+		if (LPSS->GetLocalPlayer() == nullptr)
+		{
+			return nullptr;
+		}
+
+		IOnlineSubsystem* oss = LPSS->GetOSS();
+		if (oss == nullptr)
+		{
+			return nullptr;
+		}
+
+		return oss->GetStoreV2Interface();
 	}
 
 	return nullptr;
