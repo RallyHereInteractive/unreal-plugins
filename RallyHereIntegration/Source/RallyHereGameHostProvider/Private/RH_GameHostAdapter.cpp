@@ -1,4 +1,8 @@
 
+#include "CoreMinimal.h"
+#include "HAL/PlatformProcess.h"
+#include "Misc/CommandLine.h"
+
 THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapter.h"
 THIRD_PARTY_INCLUDES_END

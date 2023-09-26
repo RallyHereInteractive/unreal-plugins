@@ -3,6 +3,10 @@
 #include "RH_GameHostAdapter.h"
 #include "Misc/App.h"
 #include "Misc/EngineVersion.h"
+#include "Misc/Paths.h"
+#include "Tickable.h"
+#include "Misc/ScopeExit.h"
+#include "Async/TaskGraphInterfaces.h"
 
 THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapter.h"
