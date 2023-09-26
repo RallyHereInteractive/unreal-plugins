@@ -79,7 +79,7 @@ bool URH_PlatformSessionSyncer::Initialize(const FString& InSessionId, FRH_Sessi
 	return true;
 }
 
-void URH_PlatformSessionSyncer::Cleanup(FSimpleDelegate CompletionDelegate)
+void URH_PlatformSessionSyncer::Cleanup(const FSimpleDelegate& CompletionDelegate)
 {
 	// add delegate first in case cleanup happens in line.
 	OnCleanupComplete.AddLambda([CompletionDelegate](URH_PlatformSessionSyncer* Syncer) { CompletionDelegate.ExecuteIfBound(); });
@@ -184,7 +184,7 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 	return false;;
 }
 
-void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	if (SessionInvite.Session.SessionInfo.IsValid() && SessionOwner.IsValid())
 	{

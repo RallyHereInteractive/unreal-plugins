@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "CoreMinimal.h"
 #include "Containers/Map.h"
@@ -172,9 +172,9 @@ public:
 	/**
 	* @brief Requests the server time cache to be updated
 	*/
-	void RefreshServerTimeCache(FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	void RefreshServerTimeCache(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
-	FORCEINLINE void RefreshServerTimeCache(FRH_GenericSuccessBlock Delegate)
+	FORCEINLINE void RefreshServerTimeCache(const FRH_GenericSuccessBlock& Delegate)
 	{
 		RefreshServerTimeCache(RH_ConvertGenericSucessDelegateBlock(Delegate));
 	}

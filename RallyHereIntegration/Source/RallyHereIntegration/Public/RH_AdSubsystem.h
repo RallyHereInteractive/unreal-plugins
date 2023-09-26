@@ -85,19 +85,19 @@ protected:
 	 * @param [in] Resp Response given for the call.
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-    virtual void OnBeginNewSession(const RallyHereAPI::FResponse_BeginNewSession& Resp, RallyHereAPI::FDelegate_BeginNewSession Delegate);
+    virtual void OnBeginNewSession(const RallyHereAPI::FResponse_BeginNewSession& Resp, const RallyHereAPI::FDelegate_BeginNewSession Delegate);
 	/**
 	 * @brief Handles the response to a Find Ad Oppertunities call.
 	 * @param [in] Resp Response given for the call.
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-    virtual void OnFindOpportunities(const RallyHereAPI::FResponse_FindOpportunities& Resp, RallyHereAPI::FDelegate_FindOpportunities Delegate);
+    virtual void OnFindOpportunities(const RallyHereAPI::FResponse_FindOpportunities& Resp, const RallyHereAPI::FDelegate_FindOpportunities Delegate);
 	/**
 	 * @brief Handles the response to a Update Ad Oppertunities call.
 	 * @param [in] Resp Response given for the call.
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
-    virtual void OnUpdateOpportunityById(const RallyHereAPI::FResponse_UpdateOpportunityById& Resp, RallyHereAPI::FDelegate_UpdateOpportunityById Delegate);
+    virtual void OnUpdateOpportunityById(const RallyHereAPI::FResponse_UpdateOpportunityById& Resp, const RallyHereAPI::FDelegate_UpdateOpportunityById Delegate);
 	/** @brief Cached Ad Oppertunities. */
     TArray<FRHAPI_AdOpportunity> Opportunities;
 	/** @brief Ad API token used by the subsystem to make ad calls. */

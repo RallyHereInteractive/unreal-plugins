@@ -138,7 +138,7 @@ URH_PlayerInfo* URH_PlayerInfoSubsystem::RemovePlayerInfoFromCache(const FGuid& 
 	return nullptr;
 }
 
-void URH_PlayerInfoSubsystem::LookupPlayer(FString PlayerName, FRH_PlayerInfoLookupPlayerBlock Delegate)
+void URH_PlayerInfoSubsystem::LookupPlayer(FString PlayerName, const FRH_PlayerInfoLookupPlayerBlock& Delegate)
 {
 	auto Request = TLookupPlayer::Request();
 
@@ -151,7 +151,7 @@ void URH_PlayerInfoSubsystem::LookupPlayer(FString PlayerName, FRH_PlayerInfoLoo
 	}
 }
 
-void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Response& Response, FRH_PlayerInfoLookupPlayerBlock Delegate)
+void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Response& Response, const FRH_PlayerInfoLookupPlayerBlock Delegate)
 {
 	TArray<URH_PlayerInfo*> OutInfos;
 
@@ -175,7 +175,7 @@ void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Respon
 	Delegate.ExecuteIfBound(OutInfos.Num() > 0, OutInfos);
 }
 
-void URH_PlayerInfoSubsystem::LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, FRH_PlayerInfoLookupPlayerBlock Delegate)
+void URH_PlayerInfoSubsystem::LookupPlayerByPlatformUserId(FRH_PlayerPlatformId PlayerPlatformId, const FRH_PlayerInfoLookupPlayerBlock& Delegate)
 {
 	auto Request = TLookupPlayer::Request();
 
@@ -189,7 +189,7 @@ void URH_PlayerInfoSubsystem::LookupPlayerByPlatformUserId(FRH_PlayerPlatformId 
 	}
 }
 
-void URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse(const TLookupPlayer::Response& Response, FRH_PlayerInfoLookupPlayerBlock Delegate)
+void URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse(const TLookupPlayer::Response& Response, const FRH_PlayerInfoLookupPlayerBlock Delegate)
 {
 	TArray<URH_PlayerInfo*> OutInfos;
 
@@ -298,7 +298,7 @@ URH_PlayerPlatformInfo* URH_PlayerInfo::GetPlayerPlatformInfo(const FRH_PlayerPl
 	return nullptr;
 }
 
-void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
+void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock& Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
 {
 	// Get platform type from logged in portal if PreferredPlatformType is not provided
 	if (PreferredPlatformType == ERHAPI_Platform::Anon)
@@ -381,7 +381,7 @@ void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& Saniti
 	Delegate.ExecuteIfBound(false, FString());
 }
 
-void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlatformsBlock Delegate /*= FRH_PlayerInfoGetPlatformsBlock()*/)
+void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlatformsBlock& Delegate /*= FRH_PlayerInfoGetPlatformsBlock()*/)
 {
 	if (LastRequestPlatforms.GetTicks() != 0 && !bForceRefresh)
 	{
@@ -402,7 +402,7 @@ void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = 
 	}
 }
 
-void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, FRH_PlayerInfoGetPlatformsBlock Delegate)
+void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Response& Response, const FRH_PlayerInfoGetPlatformsBlock Delegate)
 {
 	TArray<URH_PlayerPlatformInfo*> Infos;
 	if (Response.IsSuccessful())
@@ -444,7 +444,7 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Resp
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), Infos);
 }
 
-void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlayerSettingsBlock Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
+void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
 {
 	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
 	{
@@ -491,7 +491,7 @@ void URH_PlayerInfo::OnGetPlayerSettingsResponse(const GetSettings::Response& Re
 	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
 }
 
-void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, FRH_PlayerInfoSetPlayerSettingsBlock Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
+void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
 {
 	// Disallow duplicate active requested SettingTypeIds
 	if (PendingSettingRequestsByTypeId.Contains(SettingTypeId))
@@ -542,7 +542,7 @@ void URH_PlayerInfo::SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerS
 	}
 }
 
-void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
+void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
 {
 	if (Response.IsSuccessful())
 	{
@@ -585,7 +585,7 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 }
 
 
-void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, FRH_PlayerInfoGetPlayerRankingsBlock Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
+void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
 {
 	FDateTime Now = FDateTime::UtcNow();
 	if (LastRequestRankings.GetTicks() != 0 && (LastRequestRankings + StaleThreshold) < Now && !bForceRefresh)
@@ -607,7 +607,7 @@ void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTim
 	}
 }
 
-void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
+void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
 {
 	if (Response.IsSuccessful())
 	{
@@ -626,7 +626,7 @@ void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Re
 	Delegate.ExecuteIfBound(true, Values);
 }
 
-void URH_PlayerInfo::UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, FRH_PlayerInfoGetPlayerRankingsBlock Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
+void URH_PlayerInfo::UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
 {
 	auto Request = UpdateRanking::Request();
 	Request.PlayerUuid = GetRHPlayerUuid();
@@ -642,7 +642,7 @@ void URH_PlayerInfo::UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUp
 	}
 }
 
-void URH_PlayerInfo::OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
+void URH_PlayerInfo::OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)
 {
 	if (Response.IsSuccessful())
 	{
