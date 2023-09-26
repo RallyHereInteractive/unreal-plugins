@@ -8,9 +8,7 @@
 #include "Misc/ScopeExit.h"
 #include "Async/TaskGraphInterfaces.h"
 
-THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapter.h"
-THIRD_PARTY_INCLUDES_END
 
 bool FRH_GameHostProviderGHA::IsAvailable()
 {
