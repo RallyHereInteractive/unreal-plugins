@@ -63,7 +63,7 @@ void URH_FriendSubsystem::InitPropertiesWithDefaultValues()
 	BlockedPlayersETag = {};
 }
 
-bool URH_FriendSubsystem::FetchFriendsList(FRH_GenericFriendBlock Delegate /* = FRH_GenericFriendBlock() */)
+bool URH_FriendSubsystem::FetchFriendsList(const FRH_GenericFriendBlock& Delegate /* = FRH_GenericFriendBlock() */)
 {
 	auto Request = GetFriendsListType::Request();
 
@@ -94,7 +94,7 @@ bool URH_FriendSubsystem::FetchFriendsList(FRH_GenericFriendBlock Delegate /* = 
 	return true;
 }
 
-void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::Response& Resp, FRH_GenericFriendBlock Delegate)
+void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::Response& Resp, const FRH_GenericFriendBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -234,7 +234,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304);
 }
 
-bool URH_FriendSubsystem::FetchFriend(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate /* = FRH_GenericFriendWithUuidBlock() */)
+bool URH_FriendSubsystem::FetchFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -257,7 +257,7 @@ bool URH_FriendSubsystem::FetchFriend(const FGuid& PlayerUuid, FRH_GenericFriend
 	return true;
 }
 
-void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate)
+void URH_FriendSubsystem::OnFetchFriendResponse(const GetFriendRelationshipType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -348,7 +348,7 @@ bool URH_FriendSubsystem::SetDefaultParamsForGetFriendRequest(GetFriendRelations
 	return true;
 }
 
-bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, FRH_AddFriendBlock Delegate /* = FRH_AddFriendBlock() */)
+bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, const FRH_AddFriendBlock& Delegate /* = FRH_AddFriendBlock() */)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -399,7 +399,7 @@ bool URH_FriendSubsystem::AddFriend(const FGuid& PlayerUuid, FRH_AddFriendBlock 
 	return true;
 }
 
-void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Resp, FRH_AddFriendBlock Delegate, AddFriendType::Request Request, int32 RetryEtagFailureCount)
+void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Resp, const FRH_AddFriendBlock Delegate, const AddFriendType::Request Request, int32 RetryEtagFailureCount)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -474,7 +474,7 @@ void URH_FriendSubsystem::OnAddFriendResponse(const AddFriendType::Response& Res
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, static_cast<FriendshipStatus>(Resp.Content.Status));
 }
 
-bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate /*= FRH_GenericFriendWithUuidBlock()*/)
+bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /*= FRH_GenericFriendWithUuidBlock()*/)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -527,7 +527,7 @@ bool URH_FriendSubsystem::RemoveFriend(const FGuid& PlayerUuid, FRH_GenericFrien
 	return true;
 }
 
-void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, DeleteFriendType::Request Request, int32 RetryEtagFailureCount)
+void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const DeleteFriendType::Request Request, int32 RetryEtagFailureCount)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -582,7 +582,7 @@ void URH_FriendSubsystem::OnRemoveFriendResponse(const DeleteFriendType::Respons
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Request.OtherPlayerUuid);
 }
 
-bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes, FRH_AddNotesBlock Delegate /* = FRH_AddNotesBlock() */)
+bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes, const FRH_AddNotesBlock& Delegate /* = FRH_AddNotesBlock() */)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -636,7 +636,7 @@ bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes
 	return true;
 }
 
-void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp, FRH_AddNotesBlock Delegate, AddNotesType::Request Request, int32 RetryEtagFailureCount)
+void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp, const FRH_AddNotesBlock Delegate, const AddNotesType::Request Request, int32 RetryEtagFailureCount)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -686,7 +686,7 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, Resp.Content.GetNotes(TEXT("")));
 }
 
-bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate)
+bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -739,7 +739,7 @@ bool URH_FriendSubsystem::DeleteNotes(const FGuid& PlayerUuid, FRH_GenericFriend
 	return true;
 }
 
-void URH_FriendSubsystem::OnDeleteNotesResponse(const DeleteNotesType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, DeleteNotesType::Request Request, int32 RetryEtagFailureCount)
+void URH_FriendSubsystem::OnDeleteNotesResponse(const DeleteNotesType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const DeleteNotesType::Request Request, int32 RetryEtagFailureCount)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -886,7 +886,7 @@ void URH_FriendSubsystem::UpdateWithOSSFriends(const FString& ListName /* = "Def
 	UpdatePlatformFriends(RHPlatformFriends);
 }
 
-void URH_FriendSubsystem::UpdatePlatformFriends(TArray<URH_PlatformFriend*>& NewFriends)
+void URH_FriendSubsystem::UpdatePlatformFriends(const TArray<URH_PlatformFriend*>& NewFriends)
 {
 	for (const auto Friend : Friends)
 	{
@@ -1095,7 +1095,7 @@ void URH_FriendSubsystem::ClearRHFriendCache()
 }
 
 void URH_FriendSubsystem::OnFetchFriendForAdd(const GetFriendRelationshipType::Response& Resp,
-												FRH_AddFriendBlock Delegate,
+												const FRH_AddFriendBlock Delegate,
 												AddFriendType::Request Request,
 												int32 RetryEtagFailureCount)
 {
@@ -1114,8 +1114,8 @@ void URH_FriendSubsystem::OnFetchFriendForAdd(const GetFriendRelationshipType::R
 }
 
 void URH_FriendSubsystem::OnFetchFriendForRemove(const GetFriendRelationshipType::Response& Resp,
-												FRH_GenericFriendWithUuidBlock Delegate,
-                                                DeleteFriendType::Request Request,
+												const FRH_GenericFriendWithUuidBlock Delegate,
+												DeleteFriendType::Request Request,
                                                 int32 RetryEtagFailureCount)
 {
 	if (Resp.IsSuccessful())
@@ -1133,7 +1133,7 @@ void URH_FriendSubsystem::OnFetchFriendForRemove(const GetFriendRelationshipType
 }
 
 void URH_FriendSubsystem::OnFetchFriendForAddNote(const GetFriendRelationshipType::Response& Resp,
-												FRH_AddNotesBlock Delegate,
+												const FRH_AddNotesBlock Delegate,
                                                 AddNotesType::Request Request,
                                                 int32 RetryEtagFailureCount)
 {
@@ -1152,7 +1152,7 @@ void URH_FriendSubsystem::OnFetchFriendForAddNote(const GetFriendRelationshipTyp
 }
 
 void URH_FriendSubsystem::OnFetchFriendForDeleteNote(const GetFriendRelationshipType::Response& Resp,
-													FRH_GenericFriendWithUuidBlock Delegate,
+													const FRH_GenericFriendWithUuidBlock Delegate,
 													DeleteNotesType::Request Request,
 													int32 RetryEtagFailureCount)
 {
@@ -1218,7 +1218,7 @@ void URH_FriendSubsystem::RemoveAllFriendsWithNoRelationships(TArray<URH_RHFrien
 	}
 }
 
-bool URH_FriendSubsystem::FetchBlockedList(FRH_GenericFriendBlock Delegate /* = FRH_GenericFriendBlock() */)
+bool URH_FriendSubsystem::FetchBlockedList(const FRH_GenericFriendBlock& Delegate /* = FRH_GenericFriendBlock() */)
 {
 	auto Request = GetBlockedListType::Request();
 	auto AuthContext = GetAuthContext();
@@ -1248,7 +1248,7 @@ bool URH_FriendSubsystem::FetchBlockedList(FRH_GenericFriendBlock Delegate /* = 
 	return true;
 }
 
-void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::Response& Resp, FRH_GenericFriendBlock Delegate)
+void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::Response& Resp, const FRH_GenericFriendBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -1312,7 +1312,7 @@ void URH_FriendSubsystem::OnFetchBlockedListResponse(const GetBlockedListType::R
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304);
 }
 
-bool URH_FriendSubsystem::FetchBlockedPlayer(const FGuid& PlayerUUID, FRH_GenericFriendWithUuidBlock Delegate /* = FRH_GenericFriendWithUuidBlock() */)
+bool URH_FriendSubsystem::FetchBlockedPlayer(const FGuid& PlayerUUID, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
 {
 	if (!PlayerUUID.IsValid())
 	{
@@ -1343,7 +1343,7 @@ bool URH_FriendSubsystem::FetchBlockedPlayer(const FGuid& PlayerUUID, FRH_Generi
 	return true;
 }
 
-void URH_FriendSubsystem::OnFetchBlockedPlayerResponse(const GetBlockedType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
+void URH_FriendSubsystem::OnFetchBlockedPlayerResponse(const GetBlockedType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -1357,7 +1357,7 @@ void URH_FriendSubsystem::OnFetchBlockedPlayerResponse(const GetBlockedType::Res
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == 304, PlayerUuid);
 }
 
-bool URH_FriendSubsystem::BlockPlayer(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate /* = FRH_GenericFriendWithUuidBlock() */)
+bool URH_FriendSubsystem::BlockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -1390,7 +1390,7 @@ bool URH_FriendSubsystem::BlockPlayer(const FGuid& PlayerUuid, FRH_GenericFriend
 	return true;
 }
 
-void URH_FriendSubsystem::OnBlockPlayerResponse(const BlockType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
+void URH_FriendSubsystem::OnBlockPlayerResponse(const BlockType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -1411,7 +1411,7 @@ void URH_FriendSubsystem::OnBlockPlayerResponse(const BlockType::Response& Resp,
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), PlayerUuid);
 }
 
-bool URH_FriendSubsystem::UnblockPlayer(const FGuid& PlayerUuid, FRH_GenericFriendWithUuidBlock Delegate /* = FRH_GenericFriendWithUuidBlock() */)
+bool URH_FriendSubsystem::UnblockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate /* = FRH_GenericFriendWithUuidBlock() */)
 {
 	if (!PlayerUuid.IsValid())
 	{
@@ -1444,7 +1444,7 @@ bool URH_FriendSubsystem::UnblockPlayer(const FGuid& PlayerUuid, FRH_GenericFrie
 	return true;
 }
 
-void URH_FriendSubsystem::OnUnblockPlayerResponse(const UnblockType::Response& Resp, FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
+void URH_FriendSubsystem::OnUnblockPlayerResponse(const UnblockType::Response& Resp, const FRH_GenericFriendWithUuidBlock Delegate, const FGuid PlayerUuid)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -1730,7 +1730,7 @@ FString URH_RHFriendAndPlatformFriend::GetLastKnownDisplayName(ERHAPI_Platform P
 	return FString();
 }
 
-void URH_RHFriendAndPlatformFriend::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/) const
+void URH_RHFriendAndPlatformFriend::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock& Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/) const
 {
 	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
 
@@ -1756,7 +1756,7 @@ void URH_RHFriendAndPlatformFriend::GetLastKnownDisplayNameAsync(const FTimespan
 	}
 }
 
-void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock Delegate /*= FRH_GetRHPlayerUuidBlock()*/)
+void URH_RHFriendAndPlatformFriend::GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock& Delegate /*= FRH_GetRHPlayerUuidBlock()*/)
 {
 	if (GetRHPlayerUuid().IsValid())
 	{

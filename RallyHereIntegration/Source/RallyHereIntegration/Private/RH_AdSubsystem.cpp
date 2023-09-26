@@ -65,7 +65,7 @@ FHttpRequestPtr URH_AdSubsystem::BeginNewSession(RallyHereAPI::FRequest_BeginNew
 }
 
 void URH_AdSubsystem::OnBeginNewSession(const RallyHereAPI::FResponse_BeginNewSession& Resp,
-                                        RallyHereAPI::FDelegate_BeginNewSession Delegate)
+                                        const RallyHereAPI::FDelegate_BeginNewSession Delegate)
 {
     if (Resp.IsSuccessful() && !Resp.XHzAdApiToken.IsSet() && !Resp.XHzAdApiToken->IsEmpty())
     {
@@ -103,7 +103,7 @@ FHttpRequestPtr URH_AdSubsystem::FindOpportunities(RallyHereAPI::FRequest_FindOp
 }
 
 void URH_AdSubsystem::OnFindOpportunities(const RallyHereAPI::FResponse_FindOpportunities& Resp,
-                                          RallyHereAPI::FDelegate_FindOpportunities Delegate)
+                                          const RallyHereAPI::FDelegate_FindOpportunities Delegate)
 {
     if (Resp.IsSuccessful())
     {
@@ -128,14 +128,14 @@ FHttpRequestPtr URH_AdSubsystem::UpdateOpportunityById(RallyHereAPI::FRequest_Up
         Request.XHzAdApiToken = XHzAdApiToken;
     }
     return RH_APIs::GetAdAPI().UpdateOpportunityById(Request,
-                                                                                      RallyHereAPI::FDelegate_UpdateOpportunityById::CreateUObject(
-                                                                                          this,
-                                                                                          &URH_AdSubsystem::OnUpdateOpportunityById,
-                                                                                          Delegate), GetDefault<URH_IntegrationSettings>()->UpdateAdOppertunitiesPriority);
+                                                     RallyHereAPI::FDelegate_UpdateOpportunityById::CreateUObject(
+                                                         this,
+                                                         &URH_AdSubsystem::OnUpdateOpportunityById,
+                                                         Delegate), GetDefault<URH_IntegrationSettings>()->UpdateAdOppertunitiesPriority);
 }
 
 void URH_AdSubsystem::OnUpdateOpportunityById(const RallyHereAPI::FResponse_UpdateOpportunityById& Resp,
-                                              RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)
+                                              const RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)
 {
     if (Resp.IsSuccessful() && Resp.XHzAdApiToken.IsSet() && !Resp.XHzAdApiToken->IsEmpty())
     {

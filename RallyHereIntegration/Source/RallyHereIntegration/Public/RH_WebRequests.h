@@ -75,7 +75,7 @@ public:
 	* @brief Gets a specific request that has been tracked.
 	* @param [in] id The id of the request to get.
 	*/
-	const FRH_WebRequest* GetTrackedRequestById(FGuid id) const;
+	const FRH_WebRequest* GetTrackedRequestById(const FGuid& id) const;
 	/**
 	 * @brief Clears all tracked requests out.
 	 */

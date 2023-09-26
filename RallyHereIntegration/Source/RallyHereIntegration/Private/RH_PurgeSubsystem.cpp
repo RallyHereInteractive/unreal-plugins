@@ -20,7 +20,7 @@ void URH_PurgeSubsystem::OnUserChanged()
 	PurgeStatus = FRHAPI_PurgeResponse();
 }
 
-bool URH_PurgeSubsystem::EnqueueMeForPurge(TOptional<FDateTime> PurgeTime, FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
+bool URH_PurgeSubsystem::EnqueueMeForPurge(const TOptional<FDateTime>& PurgeTime, const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate)
 {
 	auto Request = RallyHereAPI::FRequest_QueueMeForPurge();
 	Request.AuthContext = GetAuthContext();
@@ -38,7 +38,7 @@ bool URH_PurgeSubsystem::EnqueueMeForPurge(TOptional<FDateTime> PurgeTime, FRH_O
 	return true;
 }
 
-bool URH_PurgeSubsystem::DequeueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
+bool URH_PurgeSubsystem::DequeueMeForPurge(const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate)
 {
 	auto Request = RallyHereAPI::FRequest_DequeueMeForPurge();
 	Request.AuthContext = GetAuthContext();
@@ -56,7 +56,7 @@ bool URH_PurgeSubsystem::DequeueMeForPurge(FRH_OnPurgeStatusUpdatedDelegateBlock
 	return true;
 }
 
-bool URH_PurgeSubsystem::QueryMyPurgeStatus(FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
+bool URH_PurgeSubsystem::QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDelegateBlock& Delegate)
 {
 	auto Request = RallyHereAPI::FRequest_GetQueuePurgeStatusForMe();
 	Request.AuthContext = GetAuthContext();
@@ -75,7 +75,7 @@ bool URH_PurgeSubsystem::QueryMyPurgeStatus(FRH_OnPurgeStatusUpdatedDelegateBloc
 }
 
 void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge& Resp,
-                           FRH_OnPurgeStatusUpdatedDelegateBlock Delegate) 
+                           const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate) 
 {
 	if (Resp.IsSuccessful())
 	{
@@ -97,7 +97,7 @@ void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge
 }
 
 void URH_PurgeSubsystem::OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForPurge& Resp,
-                           FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
+                           const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -113,7 +113,7 @@ void URH_PurgeSubsystem::OnDequeueMe(const RallyHereAPI::FResponse_DequeueMeForP
 }
 
 void URH_PurgeSubsystem::OnGetMyPurgeStatus(const RallyHereAPI::FResponse_GetQueuePurgeStatusForMe& Resp,
-                           FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
+                           const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{

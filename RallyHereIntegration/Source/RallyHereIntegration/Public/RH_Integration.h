@@ -44,7 +44,7 @@ public:
 	 * @param [in] InSandboxId Id of the Sandbox to use.
 	 * @param [in] Source The source of the sandbox change, for logging.
 	 */
-    void SetSandboxId(FString InSandboxId, FString Source = TEXT("Direct"));
+    void SetSandboxId(FString InSandboxId, const FString& Source = TEXT("Direct"));
 	/**
 	 * @brief Get the current Sandbox Id (will run ResolveSandboxId if there isn't one)
 	 */
@@ -74,7 +74,7 @@ public:
      * @param [in] InBaseURL The base URL to use.
      * @param [in] Source The source of the base URL change, for logging.
 	 */
-    void SetBaseURL(FString InBaseUrl, FString Source = TEXT("Direct"));
+    void SetBaseURL(FString InBaseUrl, const FString& Source = TEXT("Direct"));
 
 	/**
 	 * @brief Get the current base URL (will run ResolveBaseURL if there isn't one) 
@@ -106,7 +106,7 @@ public:
 	 * @param InClientId The client ID to use.
 	 * @param [in] Source The source of the base Client Id Change, for logging.
 	 */
-	void SetClientId(FString InClientId, FString Source = TEXT("Direct"));
+	void SetClientId(FString InClientId, const FString& Source = TEXT("Direct"));
 
 	/**
 	 * @brief Get the current client ID (will run ResolveClientId if there isn't one).
@@ -138,7 +138,7 @@ public:
 	 * @param InClientSecret The client secret to use.
 	 * @param Source The source of the base Client Secret Change, for logging.
 	 */
-	void SetClientSecret(FString InClientSecret, FString Source = TEXT("Direct"));
+	void SetClientSecret(FString InClientSecret, const FString& Source = TEXT("Direct"));
 
 	/**
 	 * @brief Get the current client secret (will run ResolveClientSecret if there isn't one).

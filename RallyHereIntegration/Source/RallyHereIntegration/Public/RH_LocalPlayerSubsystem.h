@@ -164,7 +164,7 @@ public:
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
 	* @param [in] Delegate The delegate to call when the call is complete
 	*/
-	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock Delegate = FRH_CustomEndpointDelegateBlock());
+	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock& Delegate = FRH_CustomEndpointDelegateBlock());
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
@@ -187,7 +187,7 @@ protected:
 	 * @return The plugin that was added.
 	 */
 	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_LocalPlayerSubsystemPlugin>::Value, bool>::Type = true>
-	UClassToUse* AddSubsystemPlugin(FSoftClassPath SubsystemClassPath)
+	UClassToUse* AddSubsystemPlugin(const FSoftClassPath& SubsystemClassPath)
 	{
 		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
 
@@ -211,7 +211,7 @@ protected:
 	 * @return The plugin that was added.
 	 */
 	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_SandboxedSubsystemPlugin>::Value, bool>::Type = true>
-	UClassToUse* AddSandboxedSubsystemPlugin(FSoftClassPath SubsystemClassPath)
+	UClassToUse* AddSandboxedSubsystemPlugin(const FSoftClassPath& SubsystemClassPath)
 	{
 		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
 

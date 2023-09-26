@@ -413,13 +413,13 @@ public:
 	 * @param [in] SessionIds The list of sessions that we are reconciling against.
 	 * @param [in] ETag The ETag to use for the update.
 	*/
-	virtual void ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag = TOptional<FString>()) override;
+	virtual void ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString>& ETag = TOptional<FString>()) override;
 	/**
 	 * @brief Updates the list of session templates to those that are active.
 	 * @param [in] InTemplates The list of templates that we are reconciling against.
 	 * @param [in] ETag The ETag to use for the update.
 	*/
-	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString> ETag = TOptional<FString>()) override;
+	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString>& ETag = TOptional<FString>()) override;
 	/**
 	* @brief Gets the PlayerInfo Subsystem.
 	*/

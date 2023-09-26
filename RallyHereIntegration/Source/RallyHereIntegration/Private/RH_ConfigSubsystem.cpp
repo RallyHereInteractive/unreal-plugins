@@ -157,7 +157,7 @@ void URH_ConfigSubsystem::StopAppSettingsRefreshTimer()
 	}
 }
 
-void URH_ConfigSubsystem::RefreshServerTimeCache(FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_ConfigSubsystem::RefreshServerTimeCache(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 

@@ -269,7 +269,7 @@ protected:
 	bool bMissingTemplates;
 };
 
-void URH_SessionBrowserCache::Search(const FRH_SessionBrowserSearchParams& params, FRH_OnSessionSearchCompleteDelegateBlock Delegate)
+void URH_SessionBrowserCache::Search(const FRH_SessionBrowserSearchParams& params, const FRH_OnSessionSearchCompleteDelegateBlock& Delegate)
 {
 	auto Helper = MakeShared<FRH_SessionBrowserSearchHelper>(this, GetAuthContext(), Delegate);
 	Helper->Start(params);

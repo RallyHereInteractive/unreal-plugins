@@ -37,7 +37,7 @@ void URH_PlayerInventory::InitPropertiesWithDefaultValues()
 	}
 }
 
-FAuthContextPtr URH_PlayerInventory::GetAuthContext() const
+const FAuthContextPtr URH_PlayerInventory::GetAuthContext() const
 {
 	if (const URH_PlayerInfoSubsystem* PSS = GetPlayerInfo()->GetPlayerInfoSubsystem())
 	{
@@ -60,7 +60,7 @@ void URH_PlayerInventory::OnUserChanged()
 	}
 }
 
-FGuid URH_PlayerInventory::GetRHPlayerUuid() const
+const FGuid URH_PlayerInventory::GetRHPlayerUuid() const
 { 
 	return PlayerInfo ? PlayerInfo->GetRHPlayerUuid() : FGuid(); 
 }
@@ -280,7 +280,7 @@ void URH_PlayerInventory::CreateInventorySession(const TOptional<ERHAPI_Platform
 	}
 }
 
-void URH_PlayerInventory::HandleCreateInventorySession(const RallyHereAPI::FResponse_CreateNewInventorySessionByPlayerUuid& Response, FRH_OnInventorySessionUpdateDelegateBlock Delegate)
+void URH_PlayerInventory::HandleCreateInventorySession(const RallyHereAPI::FResponse_CreateNewInventorySessionByPlayerUuid& Response, const FRH_OnInventorySessionUpdateDelegateBlock Delegate)
 {
 	if (Response.IsSuccessful())
 	{
@@ -325,7 +325,7 @@ void URH_PlayerInventory::GetInventorySession(const FRH_OnInventorySessionUpdate
 	}
 }
 
-void URH_PlayerInventory::HandleGetInventorySession(const RallyHereAPI::FResponse_GetInventorySessionInfoByPlayerUuid& Response, FRH_OnInventorySessionUpdateDelegateBlock Delegate)
+void URH_PlayerInventory::HandleGetInventorySession(const RallyHereAPI::FResponse_GetInventorySessionInfoByPlayerUuid& Response, const FRH_OnInventorySessionUpdateDelegateBlock Delegate)
 {
 	if (Response.IsSuccessful())
 	{
@@ -350,22 +350,22 @@ void URH_PlayerInventory::HandleGetInventorySession(const RallyHereAPI::FRespons
 }
 
 
-TArray<FRH_ItemInventory> URH_PlayerInventory::GetAllCachedInventory() const
+const TArray<FRH_ItemInventory> URH_PlayerInventory::GetAllCachedInventory() const
 {
 	return GetCachedInventoryForItems({});
 }
 
-TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItem(const int32& ItemId) const
+const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItem(const int32& ItemId) const
 {
 	return GetCachedInventoryForItems({ ItemId });
 }
 
-TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItems(const TArray<int32>& ItemIds) const
+const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItems(const TArray<int32>& ItemIds) const
 {
 	return GetCachedInventoryForItemsAndTypes(ItemIds, {});
 }
 
-TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItemsAndTypes(const TArray<int32>& ItemIds, const TArray<ERHAPI_InventoryType>& Types) const
+const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItemsAndTypes(const TArray<int32>& ItemIds, const TArray<ERHAPI_InventoryType>& Types) const
 {
 	TArray<FRH_ItemInventory> Results;
 
@@ -416,7 +416,7 @@ TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItemsAndType
 	return Results;
 }
 
-TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForType(const ERHAPI_InventoryType& Type) const
+const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForType(const ERHAPI_InventoryType& Type) const
 {
 	return GetCachedInventoryForItemsAndTypes({}, {Type});
 }
@@ -462,7 +462,7 @@ void URH_PlayerInventory::GetInventory(TArray<int32> ItemIds, const FRH_OnInvent
 }
 
 void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPlayerInventoryUuid& Response,
-	const TArray<int32> ItemIds, FRH_OnInventoryUpdateDelegateBlock Delegate)
+	const TArray<int32> ItemIds, const FRH_OnInventoryUpdateDelegateBlock Delegate)
 {
 	if (!Response.IsSuccessful())
 	{
@@ -553,7 +553,7 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 	Delegate.ExecuteIfBound(true);
 }
 
-void URH_PlayerInventory::CreateInventory(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const ERHAPI_Source Source, 
+void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const ERHAPI_Source Source, 
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
 	if (CreateInventories.Num() <= 0)
@@ -601,7 +601,7 @@ void URH_PlayerInventory::CreateInventory(const TOptional<FGuid> ClientOrderRefe
 }
 
 void URH_PlayerInventory::HandleCreateInventory(const RallyHereAPI::FResponse_CreatePlayerInventoryUuid& Response,
-	FRH_OnInventoryUpdateDelegateBlock Delegate)
+	const FRH_OnInventoryUpdateDelegateBlock Delegate)
 {
 	if (Response.Content.OrderId.IsEmpty())
 	{
@@ -627,7 +627,7 @@ void URH_PlayerInventory::HandleCreateInventory(const RallyHereAPI::FResponse_Cr
 	Delegate.ExecuteIfBound(true);
 }
 
-void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source, 
+void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source, 
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
 	if (UpdateInventories.Num() <= 0)
@@ -673,7 +673,7 @@ void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid> ClientOrderRefe
 }
 
 void URH_PlayerInventory::HandleUpdateInventory(const RallyHereAPI::FResponse_ModifyManyPlayerInventoryUuid& Response,
-	FRH_OnInventoryUpdateDelegateBlock Delegate)
+	const FRH_OnInventoryUpdateDelegateBlock Delegate)
 {
 	if (Response.Content.OrderId.IsEmpty())
 	{
@@ -850,7 +850,7 @@ void URH_PlayerInventory::PollPendingInventory(const FRH_PollCompleteFunc& Deleg
 	PendingOrders.Last()->RequestOrders(CompletionDelegate);
 }
 
-void URH_PlayerInventory::RedeemPromoCode(const FString& PromoCode, FRH_PromoCodeResultBlock Delegate)
+void URH_PlayerInventory::RedeemPromoCode(const FString& PromoCode, const FRH_PromoCodeResultBlock& Delegate)
 {
 	auto Request = TCreateOrder::Request();
 
@@ -876,7 +876,7 @@ void URH_PlayerInventory::RedeemPromoCode(const FString& PromoCode, FRH_PromoCod
 	}
 }
 
-void URH_PlayerInventory::RedeemPromoCodeResponse(const TCreateOrder::Response& Resp, FRH_PromoCodeResultBlock Delegate, FString PromoCode)
+void URH_PlayerInventory::RedeemPromoCodeResponse(const TCreateOrder::Response& Resp, const FRH_PromoCodeResultBlock Delegate, const FString PromoCode)
 {
 	if (Resp.Content.OrderId.IsEmpty())
 	{
@@ -1071,7 +1071,7 @@ void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerO
 	}
 }
 
-void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool IsTransaction, TArray<URH_PlayerOrderEntry*> OrderEntries, FRH_OrderResultBlock Delegate)
+void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool IsTransaction, const TArray<URH_PlayerOrderEntry*>& OrderEntries, const FRH_OrderResultBlock& Delegate)
 {
 	auto Request = TCreateOrder::Request();
 
@@ -1102,7 +1102,7 @@ void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool I
 	}
 }
 
-void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate>& Entries, TArray<URH_PlayerOrderEntry*> OrderEntries)
+void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate>& Entries, const TArray<URH_PlayerOrderEntry*>& OrderEntries)
 {
 	if (URH_CatalogSubsystem* CatalogSubsystem = GetCatalogSubsystem())
 	{
@@ -1149,7 +1149,7 @@ void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate
 	}
 }
 
-void URH_PlayerInventory::CreatePlayerOrderResponse(const TCreateOrder::Response& Resp, FRH_OrderResultBlock Delegate, TArray<URH_PlayerOrderEntry*> OrderEntries)
+void URH_PlayerInventory::CreatePlayerOrderResponse(const TCreateOrder::Response& Resp, const FRH_OrderResultBlock Delegate, const TArray<URH_PlayerOrderEntry*> OrderEntries)
 {
 	if (Resp.Content.OrderId.IsEmpty())
 	{
@@ -1192,7 +1192,7 @@ void URH_PlayerInventory::ClearPendingOrder(const FRHAPI_PlayerOrder& OrderResul
 	}
 }
 
-void URH_PlayerInventory::SetOrderWatch(FRH_OrderDetailsBlock Delegate)
+void URH_PlayerInventory::SetOrderWatch(const FRH_OrderDetailsBlock& Delegate)
 {
 	if (OrderWatch == nullptr)
 	{
@@ -1202,7 +1202,7 @@ void URH_PlayerInventory::SetOrderWatch(FRH_OrderDetailsBlock Delegate)
 	OrderWatch->Delegates.Add(Delegate);
 }
 
-void URH_PlayerInventory::ClearOrderWatch(FRH_OrderDetailsBlock Delegate)
+void URH_PlayerInventory::ClearOrderWatch(const FRH_OrderDetailsBlock& Delegate)
 {
 	if (OrderWatch != nullptr)
 	{
@@ -1218,7 +1218,7 @@ void URH_PlayerInventory::ClearOrderWatch(FRH_OrderDetailsBlock Delegate)
 	}
 }
 
-void URH_PlayerInventory::AddPendingOrdersFromEntitlementsArray(TArray<FRHAPI_PlatformEntitlement>& Entitlements, FRH_OrderDetailsBlock Delegate)
+void URH_PlayerInventory::AddPendingOrdersFromEntitlementsArray(const TArray<FRHAPI_PlatformEntitlement>& Entitlements, const FRH_OrderDetailsBlock& Delegate)
 {
 	for (const FRHAPI_PlatformEntitlement& Entitlement : Entitlements)
 	{
@@ -1234,7 +1234,7 @@ void URH_PlayerInventory::AddPendingOrdersFromEntitlementsArray(TArray<FRHAPI_Pl
 	}
 }
 
-void URH_PlayerInventory::AddPendingOrdersFromEntitlementResult(const FRHAPI_PlatformEntitlementProcessResult& EntitlementResult, FRH_OrderDetailsBlock Delegate)
+void URH_PlayerInventory::AddPendingOrdersFromEntitlementResult(const FRHAPI_PlatformEntitlementProcessResult& EntitlementResult, const FRH_OrderDetailsBlock& Delegate)
 {
 	TArray<FRHAPI_PlatformEntitlement> Entitlements;
 	if (EntitlementResult.GetClientEntitlements(Entitlements))
@@ -1276,7 +1276,7 @@ URH_PlayerInventory* URH_PlayerOrderWatch::GetPlayerInventory() const
 }
 
 
-bool URH_PlayerOrderWatch::RequestOrders(FRH_GenericSuccessWithErrorBlock Delegate)
+bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	auto* PlayerInventory = GetPlayerInventory();
 	if (!PlayerInventory)
@@ -1348,7 +1348,7 @@ URH_PlayerInventory* URH_PendingOrder::GetPlayerInventory() const
 	return CastChecked<URH_PlayerInventory>(GetOuter());
 }
 
-bool URH_PendingOrder::RequestOrders(FRH_GenericSuccessWithErrorBlock Delegate)
+bool URH_PendingOrder::RequestOrders(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	auto* PlayerInventory = GetPlayerInventory();
 	if (!PlayerInventory)
@@ -1465,17 +1465,17 @@ void URH_InventoryBlueprintLibrary::RemoveCustomDataFromItemInventory(FRH_ItemIn
 	ItemInventory.RemoveCustomData(Key);
 }
 
-FString URH_InventoryBlueprintLibrary::FindCustomDataOnItemInventory(FRH_ItemInventory& ItemInventory, const FString& Key)
+FString URH_InventoryBlueprintLibrary::FindCustomDataOnItemInventory(const FRH_ItemInventory& ItemInventory, const FString& Key)
 {
 	return ItemInventory.FindCustomDataWithKey(Key);
 }
 
-bool URH_InventoryBlueprintLibrary::InitCreateInventoryWithItemInventoryValues(FRH_CreateInventory CreateInventory, FRH_ItemInventory& ItemInventory)
+bool URH_InventoryBlueprintLibrary::InitCreateInventoryWithItemInventoryValues(FRH_CreateInventory CreateInventory, const FRH_ItemInventory& ItemInventory)
 {
 	return CreateInventory.InitFromItemInventory(ItemInventory);
 }
 
-bool URH_InventoryBlueprintLibrary::InitUpdateInventoryWithItemInventoryValues(FRH_UpdateInventory UpdateInventory, FRH_ItemInventory& ItemInventory)
+bool URH_InventoryBlueprintLibrary::InitUpdateInventoryWithItemInventoryValues(FRH_UpdateInventory UpdateInventory, const FRH_ItemInventory& ItemInventory)
 {
 	return UpdateInventory.InitFromItemInventory(ItemInventory);
 }

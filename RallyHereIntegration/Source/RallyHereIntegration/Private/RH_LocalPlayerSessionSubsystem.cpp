@@ -415,7 +415,7 @@ void URH_LocalPlayerSessionSubsystem::ImportAPISession(const FRH_APISessionWithE
 	check(!ExpiringSessions.Contains(Session.SessionId));
 }
 
-void URH_LocalPlayerSessionSubsystem::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag)
+void URH_LocalPlayerSessionSubsystem::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString>& ETag)
 {
 	// build a list of sessions not in the list
 	TArray<FString> SessionIdsToRemove;
@@ -460,7 +460,7 @@ void URH_LocalPlayerSessionSubsystem::ImportAPITemplate(const FRHAPI_SessionTemp
 	}
 }
 
-void URH_LocalPlayerSessionSubsystem::ReconcileAPITemplates(const TArray<FString>& TemplateNames, const TOptional<FString> ETag)
+void URH_LocalPlayerSessionSubsystem::ReconcileAPITemplates(const TArray<FString>& TemplateNames, const TOptional<FString>& ETag)
 {
 	// build a list of sessions not in the list
 	TArray<FString> TemplatesToRemove;
@@ -569,7 +569,7 @@ bool URH_LocalPlayerSessionSubsystem::GetTemplate(const FString& Type, FRHAPI_Se
 	return false;
 }
 
-void URH_LocalPlayerSessionSubsystem::SearchForSessions(const FRH_SessionBrowserSearchParams& params, FRH_OnSessionSearchCompleteDelegateBlock Delegate)
+void URH_LocalPlayerSessionSubsystem::SearchForSessions(const FRH_SessionBrowserSearchParams& params, const FRH_OnSessionSearchCompleteDelegateBlock& Delegate)
 {
 	auto pGameInstance = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetGameInstance();
 	bool bSearched = false;

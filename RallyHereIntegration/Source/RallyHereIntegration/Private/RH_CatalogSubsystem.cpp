@@ -66,7 +66,7 @@ void URH_CatalogSubsystem::InitPropertiesWithDefaultValues()
 	GetCatalogInventoryBucketUseRuleSetsAllETag = {};
 }
 
-void URH_CatalogSubsystem::GetCatalogAll(FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogAll::Request();
 
@@ -83,7 +83,7 @@ void URH_CatalogSubsystem::GetCatalogAll(FRH_CatalogCallBlock Delegate)
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -166,7 +166,7 @@ void URH_CatalogSubsystem::OnGetCatalogAllResponse(const TGetCatalogAll::Respons
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
 }
 
-void URH_CatalogSubsystem::GetCatalogXpAll(FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogXpAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogXpAll::Request();
 
@@ -183,7 +183,7 @@ void URH_CatalogSubsystem::GetCatalogXpAll(FRH_CatalogCallBlock Delegate)
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -198,7 +198,7 @@ void URH_CatalogSubsystem::OnGetCatalogXpAllResponse(const TGetCatalogXpAll::Res
 	Delegate.ExecuteIfBound(Resp.IsSuccessful());
 }
 
-void URH_CatalogSubsystem::GetCatalogItem(const int32& ItemId, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogItem(int32 ItemId, const FRH_CatalogCallBlock& Delegate)
 {
 	// #RHTODO: Implement refreshing item based on Etag
 
@@ -259,7 +259,7 @@ void URH_CatalogSubsystem::ParseAllXpTables(const FRHAPI_XpTables& Content)
 	}
 }
 
-void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogInventoryBucketUseRuleSetsAll::Request();
 
@@ -276,7 +276,7 @@ void URH_CatalogSubsystem::GetCatalogInventoryBucketUseRuleSetsAll(FRH_CatalogCa
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(const TGetCatalogInventoryBucketUseRuleSetsAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogInventoryBucketUseRuleSetsAllResponse(const TGetCatalogInventoryBucketUseRuleSetsAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -481,7 +481,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 	}
 }
 
-URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(const FRHAPI_Item& CatalogItem, const int32& ItemId)
+URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(const FRHAPI_Item& CatalogItem, int32 ItemId)
 {
 	// Find or create the Item we are updating
 	URH_CatalogItem* Item = nullptr;
@@ -523,7 +523,7 @@ URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(const FRHAPI_Item& Catal
 	return Item;
 }
 
-void URH_CatalogSubsystem::GetCatalogVendorsAll(FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogVendorsAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogVendorsAll::Request();
 
@@ -540,7 +540,7 @@ void URH_CatalogSubsystem::GetCatalogVendorsAll(FRH_CatalogCallBlock Delegate)
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse(const TGetCatalogVendorsAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse(const TGetCatalogVendorsAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -582,7 +582,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorsAllResponse(const TGetCatalogVendo
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
-void URH_CatalogSubsystem::GetCatalogPricePointsAll(FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogPricePointsAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogPricePointsAll::Request();
 
@@ -599,7 +599,7 @@ void URH_CatalogSubsystem::GetCatalogPricePointsAll(FRH_CatalogCallBlock Delegat
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse(const TGetCatalogPricePointsAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse(const TGetCatalogPricePointsAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -622,7 +622,7 @@ void URH_CatalogSubsystem::OnGetCatalogPricePointsAllResponse(const TGetCatalogP
 	Delegate.ExecuteIfBound(Resp.IsSuccessful() || Resp.GetHttpResponseCode() == EHttpResponseCodes::NotModified);
 }
 
-void URH_CatalogSubsystem::GetCatalogTimeFramesAll(FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::GetCatalogTimeFramesAll(const FRH_CatalogCallBlock& Delegate)
 {
 	auto Request = TGetCatalogTimeFramesAll::Request();
 
@@ -639,7 +639,7 @@ void URH_CatalogSubsystem::GetCatalogTimeFramesAll(FRH_CatalogCallBlock Delegate
 	}
 }
 
-void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, FRH_CatalogCallBlock Delegate)
+void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTimeFramesAll::Response& Resp, const FRH_CatalogCallBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -664,7 +664,7 @@ void URH_CatalogSubsystem::OnGetCatalogTimeFramesAllResponse(const TGetCatalogTi
 
 ///
 
-bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, const int32& CurrencyItemId, int32 Quantity, int32& Price)
+bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoint>& PriceBreakpoints, int32 CurrencyItemId, int32 Quantity, int32& Price)
 {
 	for (const auto& PriceBreakpoint : PriceBreakpoints)
 	{
@@ -684,7 +684,7 @@ bool URH_CatalogBlueprintLibrary::IsCouponApplicableForItem(URH_CatalogItem* Cou
 	return IsCouponApplicableForLootId(CouponItem, CatalogVendorItem.GetLootId());
 }
 
-bool URH_CatalogBlueprintLibrary::IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, const int32& LootId)
+bool URH_CatalogBlueprintLibrary::IsCouponApplicableForLootId(URH_CatalogItem* CouponItem, int32 LootId)
 {
 	if (CouponItem != nullptr)
 	{
@@ -746,7 +746,7 @@ int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(const FRHAPI_XpTable& XpTable, i
 	return 0;
 }
 
-bool URH_CatalogBlueprintLibrary::GetVendorItemById(const FRHAPI_Vendor& Vendor, const int32& LootId, FRHAPI_Loot& LootItem)
+bool URH_CatalogBlueprintLibrary::GetVendorItemById(const FRHAPI_Vendor& Vendor, int32 LootId, FRHAPI_Loot& LootItem)
 {
 	if (const auto& LootItems = Vendor.GetLootOrNull())
 	{

@@ -50,7 +50,7 @@ public:
 	* @brief Clean up the synchronization object, typically used when the RallyHere session is expired
 	* @param [in] CompletionDelegate Delegate to call when cleanup is complete
 	*/
-	void Cleanup(FSimpleDelegate CompletionDelegate = FSimpleDelegate());
+	void Cleanup(const FSimpleDelegate& CompletionDelegate = FSimpleDelegate());
 
 	/**
 	* @brief Get the RallyHere session id that this object is synchronizing to
@@ -119,7 +119,7 @@ public:
 	* @param [in] Session The Platform Session Search Result to join
 	* @param [in] Delegate The delegate to fire when the join is complete
 	*/
-	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
 	FORCEINLINE static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, FRH_GenericSuccessBlock Delegate)
 	{
