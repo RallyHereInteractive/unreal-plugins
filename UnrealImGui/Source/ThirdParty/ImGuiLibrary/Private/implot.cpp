@@ -137,8 +137,21 @@ You can read releases logs https://github.com/epezent/implot/releases for more d
 #define PLATFORM_SUPPORTS_WINDOWS_TIME 0
 #endif
 #define PLATFORM_SUPPORTS_C23_TIME (!PLATFORM_SUPPORTS_WINDOWS_TIME)
+
+#define PLATFORM_SUPPORTS_TIMEGM PLATFORM_SUPPORTS_C23_TIME
 // sony platforms do not implement timegm
-#define PLATFORM_SUPPORTS_TIMEGM (PLATFORM_SUPPORTS_C23_TIME && !(PLATFORM_PS4 || PLATFORM_PS5))
+#ifdef PLATFORM_PS4
+	#if PLATFORM_PS4
+		#undef PLATFORM_SUPPORTS_TIMEGM
+		#define PLATFORM_SUPPORTS_TIMEGM 0
+	#endif
+#endif
+#ifdef PLATFORM_PS5
+	#if PLATFORM_PS5
+	#undef PLATFORM_SUPPORTS_TIMEGM
+	#define PLATFORM_SUPPORTS_TIMEGM 0
+	#endif
+#endif
 //$$ END
 
 #include "implot.h"
