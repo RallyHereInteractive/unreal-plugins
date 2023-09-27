@@ -8,114 +8,48 @@ URH_MatchmakingBrowserCache::URH_MatchmakingBrowserCache()
 {
 }
 
-typedef TWeakObjectPtr<URH_MatchmakingBrowserCache> MatchmakingBrowserCachePtr;
-
-class FRH_QueueBrowserSearchHelper : public FRH_AsyncTaskHelper
-{
-public:
-	FRH_QueueBrowserSearchHelper(MatchmakingBrowserCachePtr InMatchmakingOwner, FAuthContextPtr InAuthContext, FRH_OnQueueSearchCompleteDelegateBlock InDelegate)
-		: FRH_AsyncTaskHelper()
-		, MatchmakingOwner(InMatchmakingOwner)
-		, AuthContext(InAuthContext)
-		, Delegate(InDelegate)
-	{
-	}
-
-	virtual void Start(const FRH_QueueSearchParams& InSearchParams)
-	{
-		Started();
-
-		SearchParams = InSearchParams;
-		DoQuery();
-	}
-protected:
-	typedef RallyHereAPI::Traits_GetAllQueueInfo QueryType;
-
-	void DoQuery()
-	{
-		QueryType::Request Request;
-		Request.AuthContext = AuthContext;
-		Request.Cursor = SearchParams.Cursor;
-		Request.PageSize = SearchParams.PageSize;
-		// todo - ETag
-
-		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_QueueBrowserSearchHelper::OnQueryComplete), GetDefault<URH_IntegrationSettings>()->GetAllQueueInfoPriority);
-		if (!HttpRequest)
-		{
-			Failed(TEXT("Could not create http request to query queues"));
-		}
-	}
-
-	void OnQueryComplete(const QueryType::Response& Resp)
-	{
-		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && MatchmakingOwner.IsValid())
-		{
-			QueueIds.Reset(Resp.Content.Queues.Num());
-
-			if (Resp.Content.Queues.Num() <= 0)
-			{
-				Completed(true);
-				return;
-			}
-
-			for (const auto& Queue : Resp.Content.Queues)
-			{
-				QueueIds.Add(Queue.QueueId);
-				if (MatchmakingOwner != nullptr)
-				{
-					MatchmakingOwner->ImportAPIQueue(Queue, Resp.ETag.Get(TEXT("")));
-				}
-			}
-
-			Completed(true);
-		}
-		else
-		{
-			Failed(TEXT("Query All Queues Failed"));
-		}
-	}
-
-	virtual FString GetName() const override
-	{
-		static FString Name(TEXT("FRH_QueueBrowserSearchHelper"));
-		return Name;
-	}
-	virtual void ExecuteCallback(bool bSuccess) const override
-	{
-		FRH_QueueSearchResult Result;
-		Result.SearchParams = SearchParams;
-		if (MatchmakingOwner.IsValid() && bSuccess)
-		{
-		for (const auto& QueueId : QueueIds)
-		{
-				URH_MatchmakingQueueInfo* RHQueue = MatchmakingOwner->GetQueue(QueueId);
-			if (RHQueue != nullptr)
-			{
-				Result.Queues.Add(RHQueue);
-			}
-		}
-		}
-		Delegate.ExecuteIfBound(bSuccess, Result);
-	}
-
-	MatchmakingBrowserCachePtr MatchmakingOwner;
-	FAuthContextPtr AuthContext;
-	FRH_OnQueueSearchCompleteDelegateBlock Delegate;
-
-	FRH_QueueSearchParams SearchParams;
-
-	FHttpRequestPtr HttpRequest;
-	TArray<FString> QueueIds;
-};
-
 void URH_MatchmakingBrowserCache::SearchQueues(const FRH_QueueSearchParams& params, const FRH_OnQueueSearchCompleteDelegateBlock& Delegate)
 {
-	auto Helper = MakeShared<FRH_QueueBrowserSearchHelper>(this, GetAuthContext(), Delegate);
-	Helper->Start(params);
+	typedef RallyHereAPI::Traits_GetAllQueueInfoV2 BaseType;
+
+	TSharedRef<FRH_QueueSearchResult> Result = MakeShareable(new FRH_QueueSearchResult);
+	Result->SearchParams = params;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Result](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					for (const auto& Queue : Resp.Content.Queues)
+					{
+						ImportAPIQueue(Queue, Resp.ETag.Get(TEXT("")));
+
+						// add to the result
+						auto* ImportedQueue = GetQueue(Queue.QueueId);
+						if (ImportedQueue != nullptr)
+						{
+							Result->Queues.Add(ImportedQueue);
+						}
+					}
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Result, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, Result.Get(), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetAllQueueInfoPriority
+		);
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.Cursor = params.Cursor;
+	Request.PageSize = params.PageSize;
+	// todo: etag
+
+	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
 }
 
-void URH_MatchmakingBrowserCache::ImportAPIQueue(const FRHAPI_QueueConfig& APIQueue, const FString& ETag)
+void URH_MatchmakingBrowserCache::ImportAPIQueue(const FRHAPI_QueueConfigV2& APIQueue, const FString& ETag)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APIQueue.QueueId);
 
@@ -131,87 +65,43 @@ void URH_MatchmakingBrowserCache::ImportAPIQueue(const FRHAPI_QueueConfig& APIQu
 	QueueWrapper->ImportAPIQueue(APIQueue, ETag);
 }
 
-
-class FRH_TemplateGroupSearchHelper : public FRH_AsyncTaskHelper
-{
-public:
-	FRH_TemplateGroupSearchHelper(MatchmakingBrowserCachePtr InMatchmakingOwner, FAuthContextPtr InAuthContext, FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock InDelegate)
-		: FRH_AsyncTaskHelper()
-		, MatchmakingOwner(InMatchmakingOwner)
-		, AuthContext(InAuthContext)
-		, Delegate(InDelegate)
-	{
-	}
-
-	virtual void Start(const FGuid& InSearchTemplateGroupId)
-	{
-		Started();
-
-		SearchTemplateGroupId = InSearchTemplateGroupId;
-		DoQuery();
-	}
-protected:
-	typedef RallyHereAPI::Traits_GetMatchMakingTemplates QueryType;
-
-	void DoQuery()
-	{
-		QueryType::Request Request;
-		Request.AuthContext = AuthContext;
-		Request.TemplateGroupId = SearchTemplateGroupId;
-		// todo - ETag
-
-		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_TemplateGroupSearchHelper::OnQueryComplete), GetDefault<URH_IntegrationSettings>()->GetMatchmakingTemplatePriority);
-		if (!HttpRequest)
-		{
-			Failed(TEXT("Could not create http request to query templates"));
-		}
-	}
-
-	void OnQueryComplete(const QueryType::Response& Resp)
-	{
-		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && MatchmakingOwner.IsValid())
-		{
-			MatchmakingOwner->ImportAPITemplateGroup(Resp.Content, Resp.ETag.Get(TEXT("")));
-			TemplateGroup = MatchmakingOwner->GetMatchmakingTemplateGroup(Resp.Content.TemplateGroupId);
-
-			Completed(true);
-	}
-	else
-	{
-			Failed(TEXT("Query Failed"));
-		}
-	}
-
-	virtual FString GetName() const override
-	{
-		static FString Name(TEXT("FRH_TemplateGroupSearchHelper"));
-		return Name;
-	}
-	virtual void ExecuteCallback(bool bSuccess) const override
-	{
-		Delegate.ExecuteIfBound(bSuccess, TemplateGroup.Get());
-	}
-
-	MatchmakingBrowserCachePtr MatchmakingOwner;
-	FAuthContextPtr AuthContext;
-	FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock Delegate;
-
-	FGuid SearchTemplateGroupId;
-	TWeakObjectPtr<URH_MatchmakingTemplateGroupInfo> TemplateGroup;
-
-	FHttpRequestPtr HttpRequest;
-	
-	
-};
-
 void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& TemplateId, const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock& Delegate)
 {
-	auto Helper = MakeShared<FRH_TemplateGroupSearchHelper>(this, GetAuthContext(), Delegate);
-	Helper->Start(TemplateId);
+	typedef RallyHereAPI::Traits_SessiongetMatchMakingTemplates BaseType;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					ImportAPITemplateGroup(Resp.Content, Resp.ETag.Get(TEXT("")));
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, GetMatchmakingTemplateGroup(TemplateId), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetMatchmakingTemplatePriority
+		);
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.TemplateGroupId = TemplateId;
+
+	const auto* Existing = GetMatchmakingTemplateGroup(TemplateId);
+	if (Existing != nullptr)
+	{
+		// if we have an etag, use it
+		if (Existing->GetETag().Len() > 0)
+		{
+			Request.IfNoneMatch = Existing->GetETag();
+		}
+	}
+
+	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
 }
 
-void URH_MatchmakingBrowserCache::ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroup& APITemplate, const FString& ETag)
+void URH_MatchmakingBrowserCache::ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplate, const FString& ETag)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.TemplateGroupId.ToString(EGuidFormats::DigitsWithHyphens));
 
@@ -227,97 +117,53 @@ void URH_MatchmakingBrowserCache::ImportAPITemplateGroup(const FRHAPI_MatchMakin
 	TemplateWrapper->ImportAPITemplateGroup(APITemplate, ETag);
 }
 
-
-class FRH_InstanceLaunchTemplateSearchHelper : public FRH_AsyncTaskHelper
+void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock& Delegate)
 {
-public:
-	FRH_InstanceLaunchTemplateSearchHelper(MatchmakingBrowserCachePtr InMatchmakingOwner, FAuthContextPtr InAuthContext, FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock InDelegate)
-		: FRH_AsyncTaskHelper()
-		, MatchmakingOwner(InMatchmakingOwner)
-		, AuthContext(InAuthContext)
-		, Delegate(InDelegate)
+	typedef RallyHereAPI::Traits_GetInstanceRequestTemplate BaseType;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					ImportAPIInstanceRequestTemplate(Resp.Content, Resp.ETag.Get(TEXT("")));
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, GetInstanceRequestTemplate(TemplateId), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetMatchmakingTemplatePriority
+		);
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.InstanceRequestTemplateId = TemplateId;
+
+	const auto* Existing = GetMatchmakingTemplateGroup(TemplateId);
+	if (Existing != nullptr)
 	{
-	}
-
-	virtual void Start(const FGuid& InSearchTemplateId)
-	{
-		Started();
-
-		SearchTemplateId = InSearchTemplateId;
-		DoQuery();
-	}
-protected:
-	typedef RallyHereAPI::Traits_GetAllMapGameInfo QueryType;
-
-	void DoQuery()
-	{
-		QueryType::Request Request;
-		Request.AuthContext = AuthContext;
-		Request.InstanceLaunchTemplateId = SearchTemplateId;
-		// todo - ETag
-
-		HttpRequest = QueryType::DoCall(RH_APIs::GetQueuesAPI(), Request, QueryType::Delegate::CreateSP(this, &FRH_InstanceLaunchTemplateSearchHelper::OnQueryComplete), GetDefault<URH_IntegrationSettings>()->GetMapGameInfoPriority);
-		if (!HttpRequest)
+		// if we have an etag, use it
+		if (Existing->GetETag().Len() > 0)
 		{
-			Failed(TEXT("Could not create http request to query templates"));
+			Request.IfNoneMatch = Existing->GetETag();
 		}
 	}
 
-	void OnQueryComplete(const QueryType::Response& Resp)
-	{
-		HttpRequest = nullptr;
-		if (Resp.IsSuccessful() && MatchmakingOwner.IsValid())
-		{
-			MatchmakingOwner->ImportAPIInstanceLaunchTemplate(Resp.Content, Resp.ETag.Get(TEXT("")));
-			Template = MatchmakingOwner->GetInstanceLaunchTemplate(Resp.Content.InstanceLaunchTemplateId);
-
-			Completed(true);
-		}
-		else
-		{
-			Failed(TEXT("Query Failed"));
-		}
-	}
-
-	virtual FString GetName() const override
-	{
-		static FString Name(TEXT("FRH_InstanceLaunchTemplateSearchHelper"));
-		return Name;
-	}
-	virtual void ExecuteCallback(bool bSuccess) const override
-	{
-		Delegate.ExecuteIfBound(bSuccess, Template.Get());
-	}
-
-	MatchmakingBrowserCachePtr MatchmakingOwner;
-	FAuthContextPtr AuthContext;
-	FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock Delegate;
-
-	FGuid SearchTemplateId;
-	TWeakObjectPtr<URH_InstanceLaunchTemplate> Template;
-
-	FHttpRequestPtr HttpRequest;
-
-
-};
-
-void URH_MatchmakingBrowserCache::SearchInstanceLaunchTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock& Delegate)
-{
-	auto Helper = MakeShared<FRH_InstanceLaunchTemplateSearchHelper>(this, GetAuthContext(), Delegate);
-	Helper->Start(TemplateId);
+	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
 }
 
-void URH_MatchmakingBrowserCache::ImportAPIInstanceLaunchTemplate(const FRHAPI_InstanceLaunchTemplate& APITemplate, const FString& ETag)
+void URH_MatchmakingBrowserCache::ImportAPIInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& ETag)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.InstanceLaunchTemplateId.ToString(EGuidFormats::DigitsWithHyphens));
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.InstanceRequestTemplateId.ToString(EGuidFormats::DigitsWithHyphens));
 
-	auto existingPtr = InstanceLaunchTemplateCache.Find(APITemplate.InstanceLaunchTemplateId);
-	URH_InstanceLaunchTemplate* TemplateWrapper = existingPtr ? *existingPtr : nullptr;
+	auto existingPtr = InstanceRequestTemplateCache.Find(APITemplate.InstanceRequestTemplateId);
+	URH_InstanceRequestTemplate* TemplateWrapper = existingPtr ? *existingPtr : nullptr;
 
 	if (TemplateWrapper == nullptr)
 	{
-		TemplateWrapper = NewObject<URH_InstanceLaunchTemplate>(this);
-		InstanceLaunchTemplateCache.Add(APITemplate.InstanceLaunchTemplateId, TemplateWrapper);
+		TemplateWrapper = NewObject<URH_InstanceRequestTemplate>(this);
+		InstanceRequestTemplateCache.Add(APITemplate.InstanceRequestTemplateId, TemplateWrapper);
 	}
 
 	TemplateWrapper->ImportAPIInstanceLaunchTemplate(APITemplate, ETag);
@@ -348,7 +194,7 @@ void URH_MatchmakingBrowserCache::SearchRegions(const FRH_OnRegionSearchComplete
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				Delegate.ExecuteIfBound(bSuccess, GetAllRegions());
+				Delegate.ExecuteIfBound(bSuccess, GetAllRegions(), ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->GetSiteSettingsPriority
 	);

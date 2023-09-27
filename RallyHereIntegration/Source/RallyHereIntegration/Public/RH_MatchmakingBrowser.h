@@ -67,30 +67,31 @@ struct RALLYHEREINTEGRATION_API FRH_QueueSearchResult
 	}
 };
 
-// generic delegate for multiple types of session events
+// delegate for queue search complete
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnQueueSearchCompleteDynamicDelegate, bool, bSuccess, const FRH_QueueSearchResult&, SearchResult);
-DECLARE_DELEGATE_TwoParams(FRH_OnQueueSearchCompleteDelegate, bool, const FRH_QueueSearchResult&);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnQueueSearchCompleteDelegateBlock, FRH_OnQueueSearchCompleteDelegate, FRH_OnQueueSearchCompleteDynamicDelegate, bool, const FRH_QueueSearchResult&);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnQueueSearchCompleteDynamicDelegate, bool, bSuccess, const FRH_QueueSearchResult&, SearchResult, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnQueueSearchCompleteDelegate, bool, const FRH_QueueSearchResult&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnQueueSearchCompleteDelegateBlock, FRH_OnQueueSearchCompleteDelegate, FRH_OnQueueSearchCompleteDynamicDelegate, bool, const FRH_QueueSearchResult&, const FRH_ErrorInfo&);
 
-// generic delegate for multiple types of session events
+// delegate for matchmaking template search complete
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate, bool, bSuccess, URH_MatchmakingTemplateGroupInfo*, Result);
-DECLARE_DELEGATE_TwoParams(FRH_OnGetMatchmakingTemplateGroupCompleteDelegate, bool, const URH_MatchmakingTemplateGroupInfo*);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock, FRH_OnGetMatchmakingTemplateGroupCompleteDelegate, FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate, bool, URH_MatchmakingTemplateGroupInfo*);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate, bool, bSuccess, URH_MatchmakingTemplateGroupInfo*, Result, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnGetMatchmakingTemplateGroupCompleteDelegate, bool, const URH_MatchmakingTemplateGroupInfo*, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock, FRH_OnGetMatchmakingTemplateGroupCompleteDelegate, FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate, bool, URH_MatchmakingTemplateGroupInfo*, const FRH_ErrorInfo&);
 
-// generic delegate for multiple types of session events
+// delegate for instance request template search complete
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnGetInstanceLaunchTemplateCompleteDynamicDelegate, bool, bSuccess, URH_InstanceLaunchTemplate*, Result);
-DECLARE_DELEGATE_TwoParams(FRH_OnGetInstanceLaunchTemplateCompleteDelegate, bool, const URH_InstanceLaunchTemplate*);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock, FRH_OnGetInstanceLaunchTemplateCompleteDelegate, FRH_OnGetInstanceLaunchTemplateCompleteDynamicDelegate, bool, URH_InstanceLaunchTemplate*);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate, bool, bSuccess, URH_InstanceRequestTemplate*, Result, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnGetInstanceRequestTemplateCompleteDelegate, bool, const URH_InstanceRequestTemplate*, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock, FRH_OnGetInstanceRequestTemplateCompleteDelegate, FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate, bool, URH_InstanceRequestTemplate*, const FRH_ErrorInfo&);
 
-// generic delegate for multiple types of session events
+// delegate for region search complete
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnRegionSearchCompleteDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_SiteSettings>&, Result);
-DECLARE_DELEGATE_TwoParams(FRH_OnRegionSearchCompleteDelegate, bool, const TArray<FRHAPI_SiteSettings>&);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnRegionSearchCompleteDelegateBlock, FRH_OnRegionSearchCompleteDelegate, FRH_OnRegionSearchCompleteDynamicDelegate, bool, const TArray<FRHAPI_SiteSettings>&);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnRegionSearchCompleteDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_SiteSettings>&, Result, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnRegionSearchCompleteDelegate, bool, const TArray<FRHAPI_SiteSettings>&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnRegionSearchCompleteDelegateBlock, FRH_OnRegionSearchCompleteDelegate, FRH_OnRegionSearchCompleteDynamicDelegate, bool, const TArray<FRHAPI_SiteSettings>&, const FRH_ErrorInfo&);
 
+// multicast delegates for region search complete
 DECLARE_MULTICAST_DELEGATE_OneParam(FRegionSettingsUpdatedDelegate, URH_MatchmakingBrowserCache*);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRegionSettingsUpdatedDynamicDelegate, URH_MatchmakingBrowserCache*, Result);
 
@@ -106,46 +107,28 @@ class RALLYHEREINTEGRATION_API URH_MatchmakingQueueInfo : public UObject
 {
 	GENERATED_BODY()
 	/** @brief The configuration of the queue. */
-	FRHAPI_QueueConfig QueueInfo;
+	FRHAPI_QueueConfigV2 QueueInfo;
 	/** @brief ETag of last queue info update. */
 	FString ETag;
 public:
 	/** @brief Gets the queue info. */
-	const FRHAPI_QueueConfig& GetQueueInfo() const { return QueueInfo; }
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const FRHAPI_QueueConfigV2& GetQueueInfo() const { return QueueInfo; }
 	/** @brief Gets the Etag for the queue info. */
 	const FString& GetETag() const { return ETag; }
 
 	/** @brief The ID for the queue, should not be used for display purposes */
 	UFUNCTION(BlueprintPure, Category="Matchmaking|Queues")
 	const FString& GetQueueId() const { return QueueInfo.QueueId; }
-
 	/** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	bool IsActive() const { return QueueInfo.Active; }
-	/** @brief Which rank this queue should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example) */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	int32 GetRankingType() const { return QueueInfo.RankingType; }
-	/** @brief The number of sides a game in this queue will have (2 in a 1v1 and 3 in a 1v1v1 for example */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	int32 GetNumSides() const { return QueueInfo.NumSides; }
-	/** @brief The maximum number of players that can be on each team */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	int32 GetMaxPlayersPerSide() const { return QueueInfo.MaxPlayersPerSide; }
-	/** @brief The minimum number of players that can be on each team */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	int32 GetMinPlayersPerSide() const { return QueueInfo.MinPlayersPerSide; }
-	/** @brief The maximum size of a group that can join this queue */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	int32 GetMaxQueueGroupSize() const { return QueueInfo.MaxQueueGroupSize; }
-	/** @brief ID for which group of matchmaking templates/rules will be used when joining this queue */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	const FGuid& GetMatchMakingTemplateGroupId() const { return QueueInfo.MatchMakingTemplateGroupId; }
+	bool IsActive() const { return QueueInfo.GetActive(); }
 	/**
 	 * @brief Imports queue info from an API call.
 	 * @param [in] APIQueue Queue info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPIQueue(const FRHAPI_QueueConfig& APIQueue, const FString& InETag)
+	void ImportAPIQueue(const FRHAPI_QueueConfigV2& APIQueue, const FString& InETag)
 	{
 		QueueInfo = APIQueue;
 		ETag = InETag;
@@ -165,12 +148,13 @@ class RALLYHEREINTEGRATION_API URH_MatchmakingTemplateGroupInfo : public UObject
 {
 	GENERATED_BODY()
 	/** @brief The configuration of the template. */
-	FRHAPI_MatchMakingTemplateGroup TemplateInfo;
+	FRHAPI_MatchMakingTemplateGroupV2 TemplateInfo;
 	/** @brief ETag of last template update. */
 	FString ETag;
 public:
 	/** @brief Gets the template info. */
-	const FRHAPI_MatchMakingTemplateGroup& GetInfo() const { return TemplateInfo; }
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const FRHAPI_MatchMakingTemplateGroupV2& GetInfo() const { return TemplateInfo; }
 	/** @brief Gets the Etag for the template info. */
 	const FString& GetETag() const { return ETag; }
 
@@ -187,14 +171,14 @@ public:
 
 	/** @brief ID for which instance launch template this queue will use */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	const TArray<FGuid> GetPossibleInstanceLaunchTemplateIds() const
+	const TArray<FGuid> GetPossibleInstanceRequestTemplateIds() const
 	{
 		TArray<FGuid> Result;
 		for (auto TemplateOption : TemplateInfo.TemplateOptions)
 		{
 			for (auto Profile : TemplateOption.Profiles)
 			{
-				Result.Add(Profile.GetInstanceLaunchTemplateId());
+				Result.Add(Profile.GetInstanceRequestTemplateId());
 			}
 		}
 
@@ -205,7 +189,7 @@ public:
 	 * @param [in] APITemplateGroup Template info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroup& APITemplateGroup, const FString& InETag)
+	void ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplateGroup, const FString& InETag)
 	{
 		TemplateInfo = APITemplateGroup;
 		ETag = InETag;
@@ -218,27 +202,27 @@ public:
 };
 
 /**
- * @brief Class to organize a Instance Launch Templates information.
+ * @brief Class to organize a Instance Request Templates information.
  */
 UCLASS()
-class RALLYHEREINTEGRATION_API URH_InstanceLaunchTemplate : public UObject
+class RALLYHEREINTEGRATION_API URH_InstanceRequestTemplate : public UObject
 {
 	GENERATED_BODY()
 	/** @brief The configuration of the template. */
-	FRHAPI_InstanceLaunchTemplate TemplateInfo;
+	FRHAPI_InstanceRequestTemplate TemplateInfo;
 	/** @brief ETag of last template update. */
 	FString ETag;
 public:
 	/** @brief Gets the template info. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	const FRHAPI_InstanceLaunchTemplate& GetInfo() const { return TemplateInfo; }
+	const FRHAPI_InstanceRequestTemplate& GetInfo() const { return TemplateInfo; }
 	/** @brief Gets the Etag for the template info. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
 	const FString& GetETag() const { return ETag; }
 
 	/** @brief ID to uniquely identify this instance launch template */
 	UFUNCTION(BlueprintPure, Category="Matchmaking|Queues")
-	const FGuid& GetInstanceLaunchTemplateId() const { return TemplateInfo.InstanceLaunchTemplateId; }
+	const FGuid& GetInstanceRequestTemplateId() const { return TemplateInfo.InstanceRequestTemplateId; }
 
 	/** @brief Custom data that will be passed to the session during the instance launch request */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
@@ -248,7 +232,7 @@ public:
 	 * @param [in] APITemplate Template info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPIInstanceLaunchTemplate(const FRHAPI_InstanceLaunchTemplate& APITemplate, const FString& InETag)
+	void ImportAPIInstanceLaunchTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& InETag)
 	{
 		TemplateInfo = APITemplate;
 		ETag = InETag;
@@ -256,7 +240,7 @@ public:
 	/** @brief Gets a description of the template, display its id for debugging. */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("Instance Launch Template: %s"), *GetInstanceLaunchTemplateId().ToString(EGuidFormats::DigitsWithHyphens));
+		return FString::Printf(TEXT("Instance Launch Template: %s"), *GetInstanceRequestTemplateId().ToString(EGuidFormats::DigitsWithHyphens));
 	}
 };
 
@@ -293,9 +277,9 @@ public:
 	 * @param [in] TemplateId The matchmaking template to search for.
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
-	void SearchInstanceLaunchTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock& Delegate = FRH_OnGetInstanceLaunchTemplateCompleteDelegateBlock());
-	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Template Group", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_SearchInstanceLaunchTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceLaunchTemplateCompleteDynamicDelegate& Delegate) { SearchInstanceLaunchTemplate(TemplateId, Delegate); }
+	void SearchInstanceRequestTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock& Delegate = FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Instance Request Template", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_SearchInstanceRequestTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate& Delegate) { SearchInstanceRequestTemplate(TemplateId, Delegate); }
 	/**
 	 * @brief Search for matchmaking regions.
 	 * @param [in] Delegate Callback with the results of the search.
@@ -325,11 +309,11 @@ public:
 		auto ptr = TemplateGroupCache.Find(TemplateGroupId);
 		return ptr != nullptr ? (*ptr) : nullptr;
 	}
-	/** @brief Get a cached instance launch template by Template Id. */
+	/** @brief Get a cached instance request template by Template Id. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	URH_InstanceLaunchTemplate* GetInstanceLaunchTemplate(const FGuid& InstanceLaunchTemplateId) const
+	URH_InstanceRequestTemplate* GetInstanceRequestTemplate(const FGuid& InstanceRequestTemplateId) const
 	{
-		auto ptr = InstanceLaunchTemplateCache.Find(InstanceLaunchTemplateId);
+		auto ptr = InstanceRequestTemplateCache.Find(InstanceRequestTemplateId);
 		return ptr != nullptr ? (*ptr) : nullptr;
 	}
 	/** @brief Get all cached matchmaking regions. */
@@ -347,26 +331,27 @@ public:
 	{
 		QueueCache.Reset();
 		TemplateGroupCache.Reset();
-		InstanceLaunchTemplateCache.Reset();
+		InstanceRequestTemplateCache.Reset();
+		RegionsCache.Reset();
 	}
 	/**
 	 * @brief Imports queue info from an API call.
 	 * @param [in] APIQueue Queue info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPIQueue(const FRHAPI_QueueConfig& APIQueue, const FString& ETag);
+	void ImportAPIQueue(const FRHAPI_QueueConfigV2& APIQueue, const FString& ETag);
 	/**
 	 * @brief Imports template info from an API call.
 	 * @param [in] APITemplateGroup Template info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroup& APITemplateGroup, const FString& ETag);
+	void ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplateGroup, const FString& ETag);
 	/**
 	 * @brief Imports template info from an API call.
 	 * @param [in] APITemplate Template info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPIInstanceLaunchTemplate(const FRHAPI_InstanceLaunchTemplate& APITemplate, const FString& ETag);
+	void ImportAPIInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& ETag);
 
 protected:
 	/** @brief Map of Queue Id to Queue Infos. */
@@ -377,7 +362,7 @@ protected:
 	TMap<FGuid, URH_MatchmakingTemplateGroupInfo*> TemplateGroupCache;
 	/** @brief Map of Template Id to Instance Launch Template Infos. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Queue")
-	TMap<FGuid, URH_InstanceLaunchTemplate*> InstanceLaunchTemplateCache;
+	TMap<FGuid, URH_InstanceRequestTemplate*> InstanceRequestTemplateCache;
 	/** @brief Array of Regions. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Region")
 	TArray<FRHAPI_SiteSettings> RegionsCache;

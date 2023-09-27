@@ -65,7 +65,7 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const 
 
 
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FString & Key = "", const FString& Label = TEXT("Custom Data"));
-FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TMap<FString, FString>* CustomData, const FString& Key = "", const FString& Label = TEXT("Custom Data"))
+FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TMap<FString, FString>* CustomData, const FString& Key = TEXT(""), const FString& Label = TEXT("Custom Data"))
 {
 	if (CustomData != nullptr)
 	{
@@ -81,7 +81,7 @@ FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TMap<FStrin
 		}
 	}
 }
-FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TOptional<TMap<FString, FString>>& CustomData, const FString& Key = "", const FString& Label = TEXT("Custom Data"))
+FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayCustomData(const TOptional<TMap<FString, FString>>& CustomData, const FString& Key = TEXT(""), const FString & Label = TEXT("Custom Data"))
 {
 	ImGuiDisplayCustomData(GetPtrOrNull(CustomData), Key, Label);
 }
