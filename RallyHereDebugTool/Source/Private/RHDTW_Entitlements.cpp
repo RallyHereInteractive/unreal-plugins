@@ -241,7 +241,7 @@ void FRHDTW_Entitlements::DoStoreOffersTab()
 	{
 		// Header
 		ImGui::TableSetupColumn("Link");
-		ImGui::TableSetupColumn("Currrency Code");
+		ImGui::TableSetupColumn("Currency Code");
 		ImGui::TableSetupColumn("Name");
 		ImGui::TableSetupColumn("Long Desc");
 		ImGui::TableSetupColumn("Desc");
