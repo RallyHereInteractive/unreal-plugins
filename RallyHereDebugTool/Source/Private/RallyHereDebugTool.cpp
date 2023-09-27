@@ -121,6 +121,9 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 	AboutWindow = MakeShared<FRHDTW_About>();
 	AboutWindow->Init(this, TEXT("About"));
 
+	SavedWindowVisibilities.Add(LoginWindow->Name, true);
+	SavedWindowVisibilities.Add(OutputLogWindow->Name, true);
+
 	IRallyHereDebugToolModule::Get().GetSpawnToolDelegate().Broadcast(this);
 
 	FWorldDelegates::OnWorldPostActorTick.AddUObject(this, &URallyHereDebugTool::OnPostActorTick);
@@ -495,8 +498,42 @@ void URallyHereDebugTool::ToggleUI()
 
 void URallyHereDebugTool::DoImGui()
 {
+#ifndef WITH_IMGUI_DOCK_SUPPORT
+	bool bAllowWindowViewSelection = true;
+#else 
+	bool bAllowWindowViewSelection = false;
+#endif
+
 	if (ImGui::BeginMainMenuBar())
 	{
+		if (bAllowWindowViewSelection)
+		{
+			if (ImGui::BeginMenu("View"))
+			{
+				int counter = 0;
+				for (TArray<TWeakPtr<FRH_DebugToolWindow>>::TIterator It = AppWindows.CreateIterator(); It; ++It)
+				{
+					if (TSharedPtr<FRH_DebugToolWindow> window = It->Pin())
+					{
+						bool* bSavedShow = SavedWindowVisibilities.Find(window->Name);
+						bool bShow = bSavedShow ? *bSavedShow : false;
+						if (ImGui::Checkbox(TCHAR_TO_ANSI(*window->Name), &bShow))
+						{
+							SavedWindowVisibilities.Add(window->Name, bShow);
+						}
+
+					}
+					else
+					{
+						It.RemoveCurrent();
+					}
+				}
+				ImGui::EndMenu();
+			}
+
+			ImGui::SameLine();
+		}
+
 		ImGuiIO& io = ImGui::GetIO();
 		if (ToggleUIKeyBindAsImGuiKey == ImGuiKey_None)
 		{
@@ -551,7 +588,12 @@ void URallyHereDebugTool::DoImGui()
 	{
 		if (TSharedPtr<FRH_DebugToolWindow> window = weakWindow.Pin())
 		{
-			window->RenderWindow();
+			// if visibility flag exists and is true, render the window
+			const auto& findVisibility = SavedWindowVisibilities.Find(window->Name);
+			if (!bAllowWindowViewSelection || (findVisibility  && *findVisibility))
+			{
+				window->RenderWindow();
+			}
 		}
 	}
 }

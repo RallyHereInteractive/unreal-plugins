@@ -115,6 +115,8 @@ public:
 	TSharedPtr<struct FRHDTW_Analytics> AnalyticsWindow;
 	TSharedPtr<struct FRHDTW_About> AboutWindow;
 
+	TMap<FString, bool> SavedWindowVisibilities;
+
 private:
 #pragma region HELPER TEMPLATE FUNCTIONS
 	template<typename T> void Template_SelectPlayer(T* Player, TArray<TWeakObjectPtr<T>>& SelectedList, TArray<T*> AllList)
