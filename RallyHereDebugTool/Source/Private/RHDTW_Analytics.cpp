@@ -3,6 +3,7 @@
 #include "imgui.h"
 #include "RH_WebRequests.h"
 #include "RH_ImGuiUtilities.h"
+#include <string>
 
 #ifdef WITH_IMGUI_IMPLOT
 #include "implot.h"

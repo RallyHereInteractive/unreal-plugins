@@ -5,10 +5,12 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
+#include "Engine/Engine.h"
 #include "SessionsAPI.h"
 #include "RH_Beacons.h"
 
 // used to validate state of local players before joining an instance
+#include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
 

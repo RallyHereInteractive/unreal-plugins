@@ -1,6 +1,7 @@
 
 #include "RH_SubsystemPluginBase.h"
 #include "Engine/GameInstance.h"
+#include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 
