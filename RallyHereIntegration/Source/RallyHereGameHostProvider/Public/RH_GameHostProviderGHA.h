@@ -1,13 +1,13 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
 #include "RH_GameHostProviderInterface.h"
 #include "Tickable.h"
 
 THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapterFwd.h"
 THIRD_PARTY_INCLUDES_END
-
 
 /** @ingroup GameHostProviderInterface
  *  @{

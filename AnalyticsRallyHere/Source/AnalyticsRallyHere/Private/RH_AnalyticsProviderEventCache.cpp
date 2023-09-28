@@ -12,7 +12,7 @@
 #include "HAL/IConsoleManager.h"
 #include "HAL/PlatformTime.h"
 
-namespace EventCacheStatic
+namespace RHEventCacheStatic
 {
 	static float PayloadPercentageOfMaxForWarning = 1.00f;
 	FAutoConsoleVariableRef CvarPayloadPercentageOfMaxForWarning(
@@ -40,7 +40,7 @@ namespace EventCacheStatic
 
 	inline int ComputeAttributeSize(const TArray<FAnalyticsEventAttribute>& Attributes)
 	{
-		return Algo::Accumulate(Attributes, 0, [](int Accum, const FAnalyticsEventAttribute& Attr) { return Accum + EventCacheStatic::ComputeAttributeSize(Attr); });
+		return Algo::Accumulate(Attributes, 0, [](int Accum, const FAnalyticsEventAttribute& Attr) { return Accum + RHEventCacheStatic::ComputeAttributeSize(Attr); });
 	}
 
 	inline int ComputeEventSize(const FString& EventName, const TArray<FAnalyticsEventAttribute>& Attributes, int CurrentDefaultAttributeSizeEstimate)
@@ -217,7 +217,7 @@ FRH_AnalyticsProviderEventCache::FRH_AnalyticsProviderEventCache(int32 InMaximum
 		PreallocatedPayloadSize = MaximumPayloadSize;
 	}
 	// allocate the payload buffer to the maximum size, and insert the payload template to start with.
-	EventCacheStatic::InitializePayloadBuffer(CachedEventUTF8Stream, PreallocatedPayloadSize);
+	RHEventCacheStatic::InitializePayloadBuffer(CachedEventUTF8Stream, PreallocatedPayloadSize);
 }
 
 // We start with {"eventList":[]}
@@ -227,7 +227,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	FScopeLock ScopedLock(&CachedEventsCS);
 
 	// If we estimate that 110% of the size estimate (in case there are a lot of Json escaping or multi-byte UTF8 chars) will exceed our max payload, queue up a flush. 
-	const int32 EventSizeEstimate = EventCacheStatic::ComputeEventSize(EventName, Attributes, CachedDefaultAttributeUTF8Stream.Num());
+	const int32 EventSizeEstimate = RHEventCacheStatic::ComputeEventSize(EventName, Attributes, CachedDefaultAttributeUTF8Stream.Num());
 	if (CachedEventUTF8Stream.Num() + (EventSizeEstimate * 11 / 10) > MaximumPayloadSize)
 	{
 		UE_LOG(LogAnalytics, VeryVerbose, TEXT("AddToCache for event (%s) may overflow MaximumPayloadSize (%d). Payload is currently (%d) bytes, and event will use an estimated (%d) bytes. Queuing up existing payload for flush before adding this event."), *EventName, MaximumPayloadSize, CachedEventUTF8Stream.Num(), EventSizeEstimate);
@@ -239,28 +239,28 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	CachedEventUTF8Stream.Reserve(CachedEventUTF8Stream.Num() + EventSizeEstimate + 10);
 
 	// We will use this to esacpe the Json of our strings to avoid allocations.
-	EventCacheStatic::FJsonStringBuilder EscapedJsonBuffer;
+	RHEventCacheStatic::FJsonStringBuilder EscapedJsonBuffer;
 
 	// strip the payload tail off
-	CachedEventUTF8Stream.SetNum(CachedEventUTF8Stream.Num() - EventCacheStatic::PayloadTrailerLength, false);
+	CachedEventUTF8Stream.SetNum(CachedEventUTF8Stream.Num() - RHEventCacheStatic::PayloadTrailerLength, false);
 	if (CachedEventEntries.Num() > 0)
 	{
 		// If we already have an event in there, start with a comma.
 		CachedEventUTF8Stream.Add(static_cast<uint8>(','));
 	}
 	// Add {"eventName":
-	EventCacheStatic::AppendString(CachedEventUTF8Stream, "{\"eventName\":", 13);
+	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, "{\"eventName\":", 13);
 	// Add "<EVENTNAME>"
-	EventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, EventName, false);
+	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, EventName, false);
 	// Add ,"eventTimestamp:
-	EventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventTimestamp\":", 18);
+	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventTimestamp\":", 18);
 	// Add "<date>"
 	FDateTime Now = FDateTime::UtcNow();;
-	EventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, Now.ToString(), false);
+	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, Now.ToString(), false);
 	// Add ,"eventUUID":"
-	EventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventUUID\":", 13);
+	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventUUID\":", 13);
 	// Add "<GUID>"
-	EventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens), false);
+	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens), false);
 
 	// append default attributes
 	CachedEventUTF8Stream.Append(CachedDefaultAttributeUTF8Stream);
@@ -269,7 +269,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	if (Attributes.Num() > 0)
 	{
 		// Add ,"eventParams":{
-		EventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventParams\":{", 16);
+		RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventParams\":{", 16);
 
 		// the append event attribute logic will add a leading comma, so we need to remember where the first element is so we can replace it with whitespace
 		const int32 FirstElementLeadingOffset = CachedEventUTF8Stream.Num();
@@ -277,7 +277,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 		// for each attribute, add ,"<NAME>":<VALUE>
 		for (const FAnalyticsEventAttribute& Attr : Attributes)
 		{
-			EventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
+			RHEventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
 		}
 
 		if (CachedEventUTF8Stream.IsValidIndex(FirstElementLeadingOffset))
@@ -294,7 +294,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	// Add } to clouse out the event
 	CachedEventUTF8Stream.Add(static_cast<uint8>('}'));
 	// put the payload trailer back on
-	EventCacheStatic::AppendPayloadTrailer(CachedEventUTF8Stream);
+	RHEventCacheStatic::AppendPayloadTrailer(CachedEventUTF8Stream);
 	const int32 NewBufferSize = CachedEventUTF8Stream.Num();
 
 	// Add the EventEntry
@@ -314,14 +314,14 @@ void FRH_AnalyticsProviderEventCache::SetDefaultAttributes(TArray<FAnalyticsEven
 	CachedDefaultAttributes = MoveTemp(DefaultAttributes);
 
 	// presize the UTF8 stream that will store the pre-serialized default attribute buffer
-	const int32 EstimatedAttributesSize = EventCacheStatic::ComputeAttributeSize(CachedDefaultAttributes) + 10;
+	const int32 EstimatedAttributesSize = RHEventCacheStatic::ComputeAttributeSize(CachedDefaultAttributes) + 10;
 	CachedDefaultAttributeUTF8Stream.Reset(EstimatedAttributesSize);
 	if (CachedDefaultAttributes.Num() > 0)
 	{
-		EventCacheStatic::FJsonStringBuilder EscapedJsonBuffer;
+		RHEventCacheStatic::FJsonStringBuilder EscapedJsonBuffer;
 		for (const FAnalyticsEventAttribute& Attr : CachedDefaultAttributes)
 		{
-			EventCacheStatic::AppendEventAttribute(CachedDefaultAttributeUTF8Stream, EscapedJsonBuffer, Attr);
+			RHEventCacheStatic::AppendEventAttribute(CachedDefaultAttributeUTF8Stream, EscapedJsonBuffer, Attr);
 		}
 	}
 }
@@ -451,7 +451,7 @@ void FRH_AnalyticsProviderEventCache::QueueFlush()
 	{
 		FTimespan DateOffset = CurrentTime - Entry.TimeStamp;
 		// clamp thee timespan > 0 and less than 1 day.
-		if (EventCacheStatic::bUseZeroDateOffset || DateOffset.GetTicks() < 0)
+		if (RHEventCacheStatic::bUseZeroDateOffset || DateOffset.GetTicks() < 0)
 		{
 			DateOffset = FTimespan(0);
 		}
@@ -472,7 +472,7 @@ void FRH_AnalyticsProviderEventCache::QueueFlush()
 
 	// see if it took too long or we have a really large payload. If so, log out the events.
 	const double EndTime = FPlatformTime::Seconds();
-	if ((EndTime - StartTime) > EventCacheStatic::PayloadFlushTimeSecForWarning || CachedEventUTF8Stream.Num() > (int32)(MaximumPayloadSize * EventCacheStatic::PayloadPercentageOfMaxForWarning))
+	if ((EndTime - StartTime) > RHEventCacheStatic::PayloadFlushTimeSecForWarning || CachedEventUTF8Stream.Num() > (int32)(MaximumPayloadSize * RHEventCacheStatic::PayloadPercentageOfMaxForWarning))
 	{
 		UE_LOG(LogAnalytics, Warning, TEXT("EventCache either took too long to flush (%.3f ms) or had a very large payload (%.3f KB, %d events). Listing events in the payload for investigation:"), (EndTime-StartTime) * 1000, CachedEventUTF8Stream.Num() / 1024.f, CachedEventEntries.Num());
 		for (const FAnalyticsEventEntry& Entry : CachedEventEntries)
@@ -486,7 +486,7 @@ void FRH_AnalyticsProviderEventCache::QueueFlush()
 	CachedEventEntries.Reset();
 	FlushQueue.Add(MoveTemp(CachedEventUTF8Stream));
 	// reset our payload with the empty payload template. This will incure an allocation, which is the only allocation this function makes.
-	EventCacheStatic::InitializePayloadBuffer(CachedEventUTF8Stream, PreallocatedPayloadSize);
+	RHEventCacheStatic::InitializePayloadBuffer(CachedEventUTF8Stream, PreallocatedPayloadSize);
 }
 
 

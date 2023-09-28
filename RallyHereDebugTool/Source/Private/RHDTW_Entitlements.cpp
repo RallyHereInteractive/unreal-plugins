@@ -287,11 +287,11 @@ void FRHDTW_Entitlements::DoStoreOffersTab()
 			ImGui::TableNextColumn();
 			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().GetDisplayPrice().ToString()));
 			ImGui::TableNextColumn();
-			ImGui::Text("%ld", StoreOffer.Get().NumericPrice);
+			ImGui::Text("%lld", StoreOffer.Get().NumericPrice);
 			ImGui::TableNextColumn();
 			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().GetDisplayRegularPrice().ToString()));
 			ImGui::TableNextColumn();
-			ImGui::Text("%ld", StoreOffer.Get().RegularPrice);
+			ImGui::Text("%lld", StoreOffer.Get().RegularPrice);
 			ImGui::TableNextColumn();
 			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().OfferId));
 		}

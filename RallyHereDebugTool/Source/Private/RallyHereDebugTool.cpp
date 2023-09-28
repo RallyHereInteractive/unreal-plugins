@@ -16,6 +16,8 @@
 #include "RH_PlayerInfoSubsystem.h"
 
 #include "Engine/LocalPlayer.h"
+#include "Engine/World.h"
+#include "Framework/Application/SlateApplication.h"
 #include "Kismet/GameplayStatics.h"
 #include "OnlineSubsystem.h"
 #include "RallyHereIntegrationModule.h"

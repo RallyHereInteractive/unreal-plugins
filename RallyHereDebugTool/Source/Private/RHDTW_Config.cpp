@@ -1,7 +1,8 @@
-﻿#include "RallyHereDebugToolModule.h"
+#include "RallyHereDebugToolModule.h"
 #include "RHDTW_Config.h"
 
 #include "imgui.h"
+#include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_ConfigSubsystem.h"
 

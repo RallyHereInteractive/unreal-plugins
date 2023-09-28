@@ -4,6 +4,7 @@
 #include "OnlineSubsystemBasicPrivate.h"
 #include "OnlineError.h"
 #include "Misc/CommandLine.h"
+#include "Misc/FileHelper.h"
 #include "Runtime/Launch/Resources/Version.h"
 
 FOnlineIdentityBasic::FOnlineIdentityBasic(FOnlineSubsystemBasic* InSubsystem) :
