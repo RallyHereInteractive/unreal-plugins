@@ -1,6 +1,12 @@
 
 #pragma once
 
+#include "CoreMinimal.h"
+
+// this entire file is effectively a "third party" file, so enforce the third party include flags (as defined in CoreMinimal.h) to make sure it works properly
+// this is done here rather than at point of use, as the UHT / UBT system wants to treat this as a "first party" file and enforce unreal include orders
+THIRD_PARTY_INCLUDES_START
+
 #include "RH_GameHostAdapterFwd.h"
 
 extern void (*rallyhere_global_init)();
@@ -91,3 +97,5 @@ protected:
 	static GameHostAdapterImporter* Importer;
 	static size_t Count;
 };
+
+THIRD_PARTY_INCLUDES_END

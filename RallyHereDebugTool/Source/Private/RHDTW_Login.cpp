@@ -3,6 +3,7 @@
 #include "RH_ImGuiUtilities.h"
 
 #include "Engine/LocalPlayer.h"
+#include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 
 #include "RH_LocalPlayerLoginSubsystem.h"

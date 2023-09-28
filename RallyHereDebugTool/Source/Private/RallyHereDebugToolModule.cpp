@@ -7,6 +7,7 @@
 #include "ImGuiModule.h"
 
 #include "Kismet/GameplayStatics.h"
+#include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "HAL/ConsoleManager.h"
 #include "UObject/ObjectKey.h"

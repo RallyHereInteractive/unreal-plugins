@@ -1,7 +1,10 @@
 
-THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapter.h"
-THIRD_PARTY_INCLUDES_END
+
+#include "CoreMinimal.h"
+#include "HAL/PlatformProcess.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Paths.h"
 #include "Ssl.h"
 
 void (*rallyhere_global_init)();

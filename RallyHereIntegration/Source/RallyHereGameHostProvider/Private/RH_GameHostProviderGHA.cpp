@@ -1,12 +1,14 @@
 
 #include "RH_GameHostProviderGHA.h"
-#include "RH_GameHostAdapter.h"
+#include "Async/TaskGraphInterfaces.h"
 #include "Misc/App.h"
 #include "Misc/EngineVersion.h"
+#include "Misc/Paths.h"
+#include "Tickable.h"
+#include "Misc/ScopeExit.h"
+#include "Async/TaskGraphInterfaces.h"
 
-THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapter.h"
-THIRD_PARTY_INCLUDES_END
 
 bool FRH_GameHostProviderGHA::IsAvailable()
 {

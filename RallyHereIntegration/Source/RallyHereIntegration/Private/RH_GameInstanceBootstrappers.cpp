@@ -9,6 +9,8 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
+#include "Engine/LocalPlayer.h"
+#include "Misc/CoreDelegates.h"
 
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"
@@ -1204,7 +1206,7 @@ void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWi
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag)
+void URH_GameInstanceServerBootstrapper::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString>& ETag)
 {
 	
 }
@@ -1223,7 +1225,7 @@ void URH_GameInstanceServerBootstrapper::ImportAPITemplate(const FRHAPI_SessionT
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::ReconcileAPITemplates(const TArray<FString>& TemplateNames, const TOptional<FString> ETag)
+void URH_GameInstanceServerBootstrapper::ReconcileAPITemplates(const TArray<FString>& TemplateNames, const TOptional<FString>& ETag)
 {
 	// build a list of sessions not in the list
 	TArray<FString> TemplatesToRemove;

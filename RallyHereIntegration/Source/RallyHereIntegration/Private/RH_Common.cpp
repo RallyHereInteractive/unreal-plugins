@@ -2,6 +2,7 @@
 #include "RH_Common.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "Engine/LocalPlayer.h"
+#include "Misc/ConfigCacheIni.h"
 #include "RH_LocalPlayerSubsystem.h"
 
 DEFINE_LOG_CATEGORY(LogRallyHereIntegration);

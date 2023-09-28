@@ -10,6 +10,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Misc/CommandLine.h"
 #include "UObject/Package.h"
+#include "Interfaces/IAnalyticsProvider.h"
 
 FString ToString(ERHAPI_LoginResult Val)
 {
@@ -140,6 +141,31 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
         break;
     }
 
+	// update analytics provider before triggering callbacks, so that any callbacks that trigger analytics events will be recorded with the new player id
+	auto* LPSubsystem = GetLocalPlayerSubsystem();
+	if (LPSubsystem != nullptr && LPSubsystem->GetAnalyticsProvider().IsValid())
+	{
+		auto* AnalyticsProvider = LPSubsystem->GetAnalyticsProvider().Get();
+		
+		// use local player subsystem accessor for ease of use, rather than cracking auth context ourselves
+		FGuid PlayerUuid = LPSubsystem->GetPlayerUuid();
+		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));
+
+		if (Res.Result == ERHAPI_LoginResult::Success)
+		{
+			AnalyticsProvider->RecordEvent(TEXT("login"));
+		}
+		else
+		{
+			TArray<FAnalyticsEventAttribute> Attributes;
+
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("errorType"), ToString(Res.Result)));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("ossError"), Res.OSSErrorMessage));
+
+			AnalyticsProvider->RecordEvent(TEXT("loginFailed"), Attributes);
+		}
+	}
+
     Req.OnLoginComplete.ExecuteIfBound(Res);
 
 	SCOPED_NAMED_EVENT(RallyHere_BroadcastOnLoginComplete, FColor::Purple);
@@ -148,7 +174,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 }
 
 void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcceptTOS, bool bAcceptPP,
-                                                    FRH_OnLoginComplete OnLoginCompleteDelegate)
+                                                    const FRH_OnLoginComplete& OnLoginCompleteDelegate)
 {
     FOnlineAccountCredentials Credentials;
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_TYPE="), Credentials.Type);
@@ -468,7 +494,7 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSLoginComplete(int32 ControllerId,
 }
 
 bool URH_LocalPlayerLoginSubsystem::ShowLoginProfileSelectionUI(bool bShowOnlineOnly,
-                                                                FRH_OnProfileSelectionUIClosed OnClosed,
+                                                                const FRH_OnProfileSelectionUIClosed& OnClosed,
                                                                 ERHAPI_LocalPlayerLoginOSS OSSType)
 {
     auto OSS = GetOSS(OSSType);

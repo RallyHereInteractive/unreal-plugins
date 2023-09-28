@@ -239,7 +239,7 @@ void URH_Integration::Uninitialize()
 	RetryManager = nullptr;
 }
 
-void URH_Integration::SetBaseURL(FString InBaseUrl, FString Source)
+void URH_Integration::SetBaseURL(FString InBaseUrl, const FString& Source)
 {
 	ResolvedBaseUrl = MoveTemp(InBaseUrl);
 
@@ -339,7 +339,7 @@ void URH_Integration::ResolveBaseURL()
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a base URL"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
-void URH_Integration::SetSandboxId(FString InSandboxId, FString Source)
+void URH_Integration::SetSandboxId(FString InSandboxId, const FString& Source)
 {
 	ResolvedSandboxId = MoveTemp(InSandboxId);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedSandboxId,
@@ -428,7 +428,7 @@ void URH_Integration::ResolveSandboxId()
 }
 
 
-void URH_Integration::SetClientId(FString InClientId, FString Source)
+void URH_Integration::SetClientId(FString InClientId, const FString& Source)
 {
 	ResolvedClientId = MoveTemp(InClientId);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedClientId,
@@ -494,7 +494,7 @@ void URH_Integration::ResolveClientId()
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
-void URH_Integration::SetClientSecret(FString InClientSecret, FString Source)
+void URH_Integration::SetClientSecret(FString InClientSecret, const FString& Source)
 {
 	ResolvedClientSecret = MoveTemp(InClientSecret);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *Source);

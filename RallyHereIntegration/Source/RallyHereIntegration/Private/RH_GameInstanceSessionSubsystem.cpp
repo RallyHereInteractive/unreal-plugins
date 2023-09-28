@@ -5,10 +5,12 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
+#include "Engine/Engine.h"
 #include "SessionsAPI.h"
 #include "RH_Beacons.h"
 
 // used to validate state of local players before joining an instance
+#include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
 
@@ -313,7 +315,7 @@ ARH_OnlineBeaconHost* URH_GameInstanceSessionSubsystem::CreateBeaconHost(UWorld*
 	return pBeaconHost;
 }
 
-void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionInfo, FRH_GameInstanceSessionSyncBlock Delegate)
+void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionInfo, const FRH_GameInstanceSessionSyncBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -474,7 +476,7 @@ bool URH_GameInstanceSessionSubsystem::IsPlayerLocal(const FRHAPI_SessionPlayer&
 	return false;
 }
 
-bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSessionSyncBlock Delegate)
+bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -567,7 +569,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(FRH_GameInstanceSes
 	return false;
 }
 
-void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, FRH_GameInstanceSessionSyncBlock Delegate)
+void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, const FRH_GameInstanceSessionSyncBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -610,7 +612,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessWithErrorBlock Delegate)
+void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	if (ActiveSession != nullptr && !bHasBeenMarkedFubar)
 	{

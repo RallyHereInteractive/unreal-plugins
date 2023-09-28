@@ -6,6 +6,7 @@
 #include "InventoryAPI.h"
 #include "OnlineError.h"
 #include "OnlineSubsystem.h"
+#include "TimerManager.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
 #include "Interfaces/OnlineIdentityInterface.h"
@@ -56,16 +57,35 @@ public:
 	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
 	 * @param [in] PlatformRegionDelegate Delegate callback for getting the platform region.
 	 */
-	void SubmitEntitlementsForLoggedInOSS(FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
-	                                      FRH_GetPlatformRegionDelegate PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
+	void SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
+	                                      const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
 	/**
 	 * @brief Start Async Task to Process Entitlements for a specific OSS.
-	 * @param [in] platform The OSS to process entitlements for.
+	 * @param [in] Platform The OSS to process entitlements for.
 	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
 	 * @param [in] PlatformRegionDelegate Delegate callback for getting the platform region.
 	 */
-	void SubmitEntitlementsForOSS(ERHAPI_Platform platform, FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
-	                              FRH_GetPlatformRegionDelegate PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
+	void SubmitEntitlementsForOSS(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
+	                              const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
+	/**
+	* @brief Queries the OSS to get the store offers for the given offer ids.
+	* @param [in] OfferIds List of SKUs to request offers for.
+	* @param [in] Delegate callback for getting offers.
+	*/
+	void QueryStoreOffersById(const TArray<FString>& OfferIds, const FRH_GenericSuccessBlock& Delegate = FRH_GenericSuccessBlock());
+	/**
+	* @brief Response from OSS for Store Offer By Id Query.
+	* @param [in] bSuccess If the call to the OSS was successful.
+	* @param [in] Offers Offers returned by the OSS.
+	* @param [in] Error The error if the call was not successful.
+	* @param [in] Delegate callback for getting offers.
+	*/
+	void OnQueryStoreOffersById(bool bSuccess, const TArray<FUniqueOfferId>& Offers, const FString& Error, const FRH_GenericSuccessBlock Delegate);
+	/**
+	* @brief Helper function to get the cached store offers from the OSS.
+	* @param [out] OutOffers The offers cached in the store OSS.
+	*/
+	void GetCachedStoreOffers(TArray<FOnlineStoreOfferRef>& OutOffers);
 	/**
 	 * @brief Gets the map of all processed entitlement results.
 	 */
@@ -79,6 +99,9 @@ public:
 	 * @brief Gets the set entitlement OSS Name.
 	 */
 	FName GetEntitlementOSSName();
+
+	/** @brief Helper to the store subsystem subsystem. */
+	IOnlineStoreV2Ptr GetStoreSubsystem() const;
 protected:
 	/** @brief Helper to get the engines Timer Manager. */
 	FTimerManager& GetTimerManager();
@@ -107,12 +130,12 @@ public:
 	 */
 	FRH_EntitlementProcessor(URH_EntitlementSubsystem* InEntitlementSubsystem,
 		IOnlineSubsystem* InOSS,
-		const IOnlinePurchasePtr &InPurchaseSubsystem,
+		const IOnlinePurchasePtr& InPurchaseSubsystem,
 		int32 InLocalUserNum,
 		FUniqueNetIdWrapper InPlatformUserId,
-		FTimerManager &InTimerManager,
-		FRH_ProcessEntitlementCompletedDelegate InProcessorCompleteDelegate,
-		FRH_GetPlatformRegionDelegate InGetPlatformRegionDelegate,
+		FTimerManager& InTimerManager,
+		const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate,
+		const FRH_GetPlatformRegionDelegate& InGetPlatformRegionDelegate,
 		std::optional<ERHAPI_Platform> InOverridePlatform)
 		: EntitlementSubsystem(InEntitlementSubsystem)
 		, OSS(InOSS)

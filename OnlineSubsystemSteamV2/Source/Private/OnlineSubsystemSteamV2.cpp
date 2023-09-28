@@ -1,5 +1,6 @@
 #include "OnlineSubsystemSteamV2.h"
 #include "Misc/App.h"
+#include "HAL/RunnableThread.h"
 #include "CoreMinimal.h"
 
 #include "OnlineSubsystemSteam.h"

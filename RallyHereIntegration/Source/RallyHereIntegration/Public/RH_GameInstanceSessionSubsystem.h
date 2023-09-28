@@ -59,7 +59,7 @@ public:
 	* @param [in] SessionInfo The session being transitioned to.
 	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
 	*/
-	virtual void SyncToSession(URH_JoinedSession* SessionInfo, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
+	virtual void SyncToSession(URH_JoinedSession* SessionInfo, const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Sync to Session", AutoCreateRefTerm = "Delegate"))
 	/**
 	* @brief Blueprint compatible wrapper for SyncToSession
@@ -116,7 +116,7 @@ public:
 	* @brief Starts the process of transitioning the instance to a new session.
 	* @param [in] Delegate Callback delegate for when the session is now active, or failed to transition.
 	*/
-	virtual bool StartJoinInstanceFlow(FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
+	virtual bool StartJoinInstanceFlow(const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
 	/**
 	* @brief Blueprint compatible wrapper for StartJoinInstanceFlow
 	*/
@@ -128,7 +128,7 @@ public:
 	* @param [in] bCheckDesired If true, and the instance has a desired session, start joining that session.
 	* @param [in] Delegate Callback delegate for when the instance is left.
 	*/
-	virtual void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, FRH_GameInstanceSessionSyncBlock Delegate = FRH_GameInstanceSessionSyncBlock());
+	virtual void StartLeaveInstanceFlow(bool bAlreadyDisconnected = false, bool bCheckDesired = false, const FRH_GameInstanceSessionSyncBlock& Delegate = FRH_GameInstanceSessionSyncBlock());
 	/**
 	* @brief Blueprint compatible wrapper for StartLeaveInstanceFlow
 	*/
@@ -139,9 +139,9 @@ public:
 	* @param [in] Reason The reason the instance was marked failed.
 	* @param [in] Delegate Callback delegate for if the instance was marked failed.
 	*/
-	virtual void MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessWithErrorBlock Delegate = FRH_GenericSuccessWithErrorBlock());
+	virtual void MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
-	FORCEINLINE void MarkInstanceFubar(const FString& Reason, FRH_GenericSuccessBlock Delegate)
+	FORCEINLINE void MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessBlock& Delegate)
 	{
 		MarkInstanceFubar(Reason, RH_ConvertGenericSucessDelegateBlock(Delegate));
 	}

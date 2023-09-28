@@ -76,6 +76,16 @@ public:
 	*/
 	int32 GetPlatformUserId() const;
 #endif
+
+	/**
+	* @brief Gets the player's analytics provider
+	*/
+	virtual TSharedPtr<class IAnalyticsProvider> GetAnalyticsProvider() const { return AnalyticsProvider; }
+	/**
+	* @brief Gets the player's analytics provider
+	*/
+	virtual TSharedPtr<class IAnalyticsProvider> CreateAnalyticsProvider();
+
 	/**
 	* @brief Gets the player's player info.
 	*/
@@ -154,7 +164,7 @@ public:
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
 	* @param [in] Delegate The delegate to call when the call is complete
 	*/
-	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock Delegate = FRH_CustomEndpointDelegateBlock());
+	void CustomEndpoint(const FRH_CustomEndpointRequestWrapper& Request, const FRH_CustomEndpointDelegateBlock& Delegate = FRH_CustomEndpointDelegateBlock());
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
 	* @param [in] FRH_CustomEndpointRequestWrapper Wrapper struct containing call information
@@ -177,7 +187,7 @@ protected:
 	 * @return The plugin that was added.
 	 */
 	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_LocalPlayerSubsystemPlugin>::Value, bool>::Type = true>
-	UClassToUse* AddSubsystemPlugin(FSoftClassPath SubsystemClassPath)
+	UClassToUse* AddSubsystemPlugin(const FSoftClassPath& SubsystemClassPath)
 	{
 		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
 
@@ -201,7 +211,7 @@ protected:
 	 * @return The plugin that was added.
 	 */
 	template<typename UClassToUse, typename TEnableIf<TIsDerivedFrom<UClassToUse, URH_SandboxedSubsystemPlugin>::Value, bool>::Type = true>
-	UClassToUse* AddSandboxedSubsystemPlugin(FSoftClassPath SubsystemClassPath)
+	UClassToUse* AddSandboxedSubsystemPlugin(const FSoftClassPath& SubsystemClassPath)
 	{
 		UClass* SubsystemClass = SubsystemClassPath.TryLoadClass<UClassToUse>();
 
@@ -221,6 +231,10 @@ protected:
 	 * @param [in] bSuccess True if the login was successful, false otherwise.
 	 */
 	virtual void OnUserLoggedIn(bool bSuccess);
+	/**
+	 * @brief Called whenever the user logs out explicitly.
+	 */
+	virtual void OnUserLoggedOut();
 	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
 	virtual void OnUserChanged();
 	/** @brief The Login Subsystem for the player. */
@@ -254,6 +268,9 @@ protected:
 	TWeakObjectPtr<URH_PlayerInfo> PlayerInfoCache;
 	/** The Local Players auth context. */
 	FAuthContextPtr AuthContext;
+
+	/** The Analytics Provider for the player. */
+	TSharedPtr<class IAnalyticsProvider> AnalyticsProvider;
 };
 
 /** @} */

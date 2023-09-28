@@ -182,7 +182,7 @@ public:
 	* @param [in] CreateParams Creation paramters for the session
 	* @param [in] Delegate delegate to trigger when complete
 	*/
-	void CreateOrJoinSessionByType(const FRHAPI_CreateOrJoinRequest& CreateParams, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock())
+	void CreateOrJoinSessionByType(const FRHAPI_CreateOrJoinRequest& CreateParams, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock())
 	{
 		URH_OnlineSession::CreateOrJoinByType(CreateParams, this, Delegate);
 	}
@@ -201,7 +201,7 @@ public:
 	* @param [in] SessionId The session id to join
 	* @param [in] Delegate delegate to trigger when complete
 	*/
-	void JoinSessionById(const FString& SessionId, FRH_OnSessionUpdatedDelegateBlock Delegate = FRH_OnSessionUpdatedDelegateBlock())
+	void JoinSessionById(const FString& SessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock())
 	{
 		URH_OnlineSession::JoinById(SessionId, this, Delegate);
 	}
@@ -231,13 +231,13 @@ public:
 	* @param [in] SessionIds The list of session ids to reconcile against
 	* @param [in] ETag optional ETag to use when querying all sessions for optimization
 	*/
-	virtual void ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString> ETag = TOptional<FString>()) override;
+	virtual void ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString>& ETag = TOptional<FString>()) override;
 	/**
 	* @brief Reconciles the list of template SessionTypes with this subsystem, removing any templates that are no longer in the list, then updates the stored ETag for the local player's templatelist (IRH_SessionOwnerInterface requirement)
 	* @param [in] InTemplates The list of template names (SessionType) ids to reconcile against
 	* @param [in] ETag optional ETag to use when querying all templates for optimization
 	*/
-	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString> ETag = TOptional<FString>()) override;
+	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString>& ETag = TOptional<FString>()) override;
 
 	/**
 	* @brief Looks up a template from within this subsystem (IRH_SessionOwnerInterface requirement)
@@ -292,7 +292,7 @@ public:
 	* @param [in] Params Search parameters for the browser search
 	* @param [in] Delegate Delegate to trigger once complete
 	*/
-	void SearchForSessions(const FRH_SessionBrowserSearchParams& Params, FRH_OnSessionSearchCompleteDelegateBlock Delegate = FRH_OnSessionSearchCompleteDelegateBlock());
+	void SearchForSessions(const FRH_SessionBrowserSearchParams& Params, const FRH_OnSessionSearchCompleteDelegateBlock& Delegate = FRH_OnSessionSearchCompleteDelegateBlock());
 	/**
 	* @brief Blueprint compatible version of SearchForSessions
 	* @param [in] Params Search parameters for the browser search

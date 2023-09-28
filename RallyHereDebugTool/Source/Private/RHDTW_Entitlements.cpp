@@ -16,9 +16,31 @@ FRHDTW_Entitlements::FRHDTW_Entitlements()
 {
 	DefaultPos = FVector2D(610, 20);
 	ActionResult.Empty();
+	SKURequestInput.SetNumZeroed(256);
 }
 
 void FRHDTW_Entitlements::Do()
+{
+	static ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_FittingPolicyResizeDown | ImGuiTabBarFlags_FittingPolicyScroll;
+	if (ImGui::BeginTabBar("Entitlements", tab_bar_flags))
+	{
+		if (ImGui::BeginTabItem("Entitlements", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoEntitlementsTab();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Store Offers", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoStoreOffersTab();
+			ImGui::EndTabItem();
+		}
+
+		ImGui::EndTabBar();
+	}
+}
+
+void FRHDTW_Entitlements::DoEntitlementsTab()
 {
 	int NumSelectedPlayers = 0;
 	if (URallyHereDebugTool* pOwner = GetOwner())
@@ -167,6 +189,113 @@ void FRHDTW_Entitlements::Do()
 				ImGui::EndTable();
 			}
 		}
-		ImGui::PopID();
+	}
+}
+
+void FRHDTW_Entitlements::DoStoreOffersTab()
+{
+	int NumSelectedPlayers = 0;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
+	}
+
+	if (NumSelectedPlayers <= 0)
+	{
+		ImGui::Text("Please select a local player (has Controller Id) in Player Repository.");
+		return;
+	}
+
+	const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
+	FString Note = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pLocalPlayer->GetControllerId());
+	ImGui::Text("%s", TCHAR_TO_UTF8(*Note));
+
+	URH_EntitlementSubsystem* pRH_EntitlementSubsystem = nullptr;
+	if (const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+	{
+		pRH_EntitlementSubsystem = pRH_LocalPlayerSubsystem->GetEntitlementSubsystem();
+	}
+	if (pRH_EntitlementSubsystem == nullptr)
+	{
+		ImGui::Text("%s", "URH_EntitlementSubsystem not available.");
+		return;
+	}
+
+	ImGui::InputText("SKU Request", SKURequestInput.GetData(), SKURequestInput.Num());
+	if (ImGui::Button("Query Store"))
+	{
+		const FString InputAsString = UTF8_TO_TCHAR(SKURequestInput.GetData());
+		// #RHTODO: Parse comma separated offers ids
+		TArray<FString> OfferIds;
+		OfferIds.Push(InputAsString);
+		pRH_EntitlementSubsystem->QueryStoreOffersById(OfferIds);
+	}
+
+	ImGui::Separator();
+
+	TArray<FOnlineStoreOfferRef> StoreOffers;
+
+	pRH_EntitlementSubsystem->GetCachedStoreOffers(StoreOffers);
+
+	if (ImGui::BeginTable("StoreOffersTable", 10, RH_TableFlagsPropSizing))
+	{
+		// Header
+		ImGui::TableSetupColumn("Link");
+		ImGui::TableSetupColumn("Currency Code");
+		ImGui::TableSetupColumn("Name");
+		ImGui::TableSetupColumn("Long Desc");
+		ImGui::TableSetupColumn("Desc");
+		ImGui::TableSetupColumn("Display Price");
+		ImGui::TableSetupColumn("Numeric Price");
+		ImGui::TableSetupColumn("Display Regular Price");
+		ImGui::TableSetupColumn("Numeric Regular Price");
+		ImGui::TableSetupColumn("SKU");
+		ImGui::TableHeadersRow();
+
+		// Content
+		for (auto const& StoreOffer : StoreOffers)
+		{
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("GOTO##%s"), *StoreOffer.Get().OfferId))))
+			{
+				if (const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
+				{
+					if (IOnlineSubsystem* OSS = pRH_LocalPlayerSubsystem->GetOSS())
+					{
+						const auto PlayerId = pLocalPlayer->GetPreferredUniqueNetId();
+						const IOnlinePurchasePtr Purchase = OSS->GetPurchaseInterface();
+
+						if (Purchase.IsValid() && PlayerId.IsValid())
+						{
+							FOnPurchaseCheckoutComplete Delegate;
+							FPurchaseCheckoutRequest Request;
+							Request.AddPurchaseOffer(TEXT(""), StoreOffer.Get().OfferId, 1);
+							Purchase->Checkout(*PlayerId, Request, Delegate);
+						}
+					}
+				}
+			}
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().CurrencyCode));
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().Title.ToString()));
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().LongDescription.ToString()));
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().Description.ToString()));
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().GetDisplayPrice().ToString()));
+			ImGui::TableNextColumn();
+			ImGui::Text("%lld", StoreOffer.Get().NumericPrice);
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().GetDisplayRegularPrice().ToString()));
+			ImGui::TableNextColumn();
+			ImGui::Text("%lld", StoreOffer.Get().RegularPrice);
+			ImGui::TableNextColumn();
+			ImGui::Text("%s", TCHAR_TO_UTF8(*StoreOffer.Get().OfferId));
+		}
+
+		ImGui::EndTable();
 	}
 }
