@@ -74,13 +74,26 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 
     /** @brief List of map preferences in order from most desired, to least desired */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FString> MapPreferences{  };
-    /** @brief Gets the value of MapPreferences */
-    TArray<FString>& GetMapPreferences() { return MapPreferences; }
-    /** @brief Gets the value of MapPreferences */
-    const TArray<FString>& GetMapPreferences() const { return MapPreferences; }
-    /** @brief Sets the value of MapPreferences */
-    void SetMapPreferences(TArray<FString> NewValue) { MapPreferences = NewValue;  }
+    TArray<FString> MapPreferences_Optional{  };
+    /** @brief true if MapPreferences_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MapPreferences_IsSet{ false };
+    /** @brief Gets the value of MapPreferences_Optional, regardless of it having been set */
+    TArray<FString>& GetMapPreferences() { return MapPreferences_Optional; }
+    /** @brief Gets the value of MapPreferences_Optional, regardless of it having been set */
+    const TArray<FString>& GetMapPreferences() const { return MapPreferences_Optional; }
+    /** @brief Gets the value of MapPreferences_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TArray<FString>& GetMapPreferences(const TArray<FString>& DefaultValue) const { if (MapPreferences_IsSet) return MapPreferences_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MapPreferences_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMapPreferences(TArray<FString>& OutValue) const { if (MapPreferences_IsSet) OutValue = MapPreferences_Optional; return MapPreferences_IsSet; }
+    /** @brief Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr */
+    TArray<FString>* GetMapPreferencesOrNull() { if (MapPreferences_IsSet) return &MapPreferences_Optional; return nullptr; }
+    /** @brief Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr */
+    const TArray<FString>* GetMapPreferencesOrNull() const { if (MapPreferences_IsSet) return &MapPreferences_Optional; return nullptr; }
+    /** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true */
+    void SetMapPreferences(TArray<FString> NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true; }
+     /** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
+    void ClearMapPreferences() { MapPreferences_IsSet = false; }
 };
 
 /** @} */

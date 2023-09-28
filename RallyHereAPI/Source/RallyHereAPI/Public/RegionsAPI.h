@@ -40,7 +40,7 @@ private:
 
 /* Get All Regions
  *
- * Get all of the enabled regions and their configuration  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
+ * Get all of the enabled regions and their configuration  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;   Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllRegions : public FRequest
 {

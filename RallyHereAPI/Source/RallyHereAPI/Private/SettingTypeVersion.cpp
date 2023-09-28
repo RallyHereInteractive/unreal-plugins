@@ -34,6 +34,11 @@ void FRHAPI_SettingTypeVersion::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     }
     Writer->WriteIdentifierPrefix(TEXT("value_jsonschema"));
     RallyHereAPI::WriteJsonValue(Writer, ValueJsonschema);
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -59,6 +64,12 @@ bool FRHAPI_SettingTypeVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue
     }
     const TSharedPtr<FJsonValue> JsonValueJsonschemaField = (*Object)->TryGetField(TEXT("value_jsonschema"));
     ParseSuccess &= JsonValueJsonschemaField.IsValid() && !JsonValueJsonschemaField->IsNull() && TryGetJsonValue(JsonValueJsonschemaField, ValueJsonschema);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
 
     return ParseSuccess;
 }
