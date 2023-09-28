@@ -67,7 +67,7 @@ void URH_MatchmakingBrowserCache::ImportAPIQueue(const FRHAPI_QueueConfigV2& API
 
 void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& TemplateId, const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock& Delegate)
 {
-	typedef RallyHereAPI::Traits_SessiongetMatchMakingTemplates BaseType;
+	typedef RallyHereAPI::Traits_GetMatchMakingTemplatesV2 BaseType;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
