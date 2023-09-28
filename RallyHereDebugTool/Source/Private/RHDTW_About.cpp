@@ -1,6 +1,7 @@
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
 #include "imgui.h"
+#include "Engine/World.h"
 #include "RH_ImGuiUtilities.h"
 #include "RH_Diagnostics.h"
 

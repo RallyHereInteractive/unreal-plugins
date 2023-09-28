@@ -1,10 +1,13 @@
 
 #include "RH_SessionData.h"
+#include "Engine/Engine.h"
+#include "Engine/World.h"
 #include "RH_SessionHelpers.h"
 #include "RH_Integration.h"
 #include "TimerManager.h"
 #include "Misc/EngineVersion.h"
 #include "Engine/LocalPlayer.h"
+#include "Engine/GameInstance.h"
 #include "RH_PlatformSessionSyncer.h"
 
 #include "RH_GameInstanceSubsystem.h"

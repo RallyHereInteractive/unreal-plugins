@@ -6,6 +6,7 @@
 #include "InventoryAPI.h"
 #include "OnlineError.h"
 #include "OnlineSubsystem.h"
+#include "TimerManager.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_Common.h"
 #include "Interfaces/OnlineIdentityInterface.h"

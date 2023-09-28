@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Async/TaskGraphInterfaces.h"
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "InventoryAPI.h"
@@ -8,6 +9,7 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_SubsystemPluginBase.h"
+#include "Tickable.h"
 
 #include "RH_CatalogSubsystem.generated.h"
 

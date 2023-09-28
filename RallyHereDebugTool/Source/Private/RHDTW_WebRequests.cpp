@@ -7,6 +7,7 @@
 #include "imgui.h"
 #include "RH_ImGuiUtilities.h"
 #include "Engine/LocalPlayer.h"
+#include "Engine/World.h"
 #include "RallyHereDebugToolSettings.h"
 #include <string>
 #include "Math/Color.h"

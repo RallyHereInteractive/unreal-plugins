@@ -2,6 +2,7 @@
 #include "RHDTW_Catalog.h"
 
 #include "imgui.h"
+#include "Engine/GameInstance.h"
 #include "RH_ImGuiUtilities.h"
 #include "RH_CatalogSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"

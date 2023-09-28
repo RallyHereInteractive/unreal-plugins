@@ -1,11 +1,12 @@
 // Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
 #pragma once
 
+#include "Engine/EngineBaseTypes.h"
+#include "Engine/LocalPlayer.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "imgui.h"
 #include "RallyHereDebugTool.generated.h"
 
-class ULocalPlayer;
 class URH_PlayerInfo;
 class URallyHereDebugTool;
 struct FRH_DebugToolWindow;
