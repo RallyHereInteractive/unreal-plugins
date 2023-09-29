@@ -1,5 +1,6 @@
 #include "CoreMinimal.h"
 #include "RallyHereEditor.h"
+#include "RallyHereDeveloperAPIAll.h"
 #include "Widgets/SWidget.h"
 #include "Editor/PropertyEditor/Public/IPropertyTypeCustomization.h"
 

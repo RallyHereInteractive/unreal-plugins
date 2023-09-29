@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 #include "RallyHereDeveloperAPIAuthContext.h"
+#include "Widgets/Docking/SDockTab.h"
 #include "UnrealEd.h"
 #include "RH_DevIntegration.h"
 

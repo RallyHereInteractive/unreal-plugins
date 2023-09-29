@@ -2,6 +2,7 @@
 #pragma once
 
 #include "RallyHereEditor.h"
+#include "Widgets/SCompoundWidget.h"
 
 DECLARE_DELEGATE(FRH_OnCustomDataUpdated);
 

@@ -4,6 +4,7 @@
 #include "RallyHereEditor.h"
 #include "RallyHereEditorCustomDataWidget.h"
 #include "Widgets/Docking/SDockTab.h"
+#include "Widgets/SCompoundWidget.h"
 
 DECLARE_DELEGATE_TwoParams(FRH_OnLootUpdate, const FGuid&, TSharedPtr<FRHAPI_DevLoot>);
 
@@ -47,9 +48,11 @@ class SRallyHereEditorVendorRow : public STableRow<TSharedPtr<FRHAPI_DevVendor>>
 	void RemoveCachedLoot(const FGuid& LootId, TSharedPtr<FRHAPI_DevLoot> Loot);
 	void UpdateCachedLoot(const FGuid& LootId, TSharedPtr<FRHAPI_DevLoot> Loot);
 
+	typedef RallyHereDeveloperAPI::Traits_SandboxGetLoot TSandboxGetLoot;
+
 protected:
 	FReply OnFetchLoot();
-	//void OnFetchLootResponse(const TSandboxGetVendors::Response& Resp);
+	void OnFetchLootResponse(const TSandboxGetLoot::Response& Resp);
 	void OnLootFilterTextChanged(const FText& SearchText);
 	TSharedRef<ITableRow> MakeListViewLootWidget(TSharedPtr<FRHAPI_DevLoot> InItem, const TSharedRef<STableViewBase>& OwnerTable);
 

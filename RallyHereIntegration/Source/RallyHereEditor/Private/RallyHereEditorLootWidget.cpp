@@ -16,6 +16,19 @@
 
 #define LOCTEXT_NAMESPACE "RallyHereEditorLootWidget"
 
+bool GetAuthContext(FDevAuthContextPtr& AuthContext)
+{
+	AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
+
+	if (!AuthContext->IsLoggedIn())
+	{
+		AuthContext->Refresh();
+		return false;
+	}
+
+	return true;
+}
+
 SRallyHereEditorLootWidget::SRallyHereEditorLootWidget()
 	: SCompoundWidget()
 {
@@ -74,11 +87,8 @@ FReply SRallyHereEditorLootWidget::OnFetchVendors()
 {
 	auto Request = TSandboxGetVendors::Request();
 
-	Request.AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
-
-	if (!Request.AuthContext->IsLoggedIn())
+	if (!GetAuthContext(Request.AuthContext))
 	{
-		Request.AuthContext->Refresh();
 		return FReply::Handled();
 	}
 
@@ -96,6 +106,12 @@ FReply SRallyHereEditorLootWidget::OnFetchVendors()
 void SRallyHereEditorLootWidget::OnFetchVendorsResponse(const TSandboxGetVendors::Response& Resp)
 {
 	CachedVendors.Empty();
+
+	if (!Resp.IsSuccessful())
+	{
+		FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FetchVendorsError", "An Error occured when attempting to get vendors."));
+		return;
+	}
 
 	if (const auto& Data = Resp.Content.GetDataOrNull())
 	{
@@ -172,7 +188,7 @@ void SRallyHereEditorVendorRow::Construct(const FArguments& InArgs, const TShare
 				SNew(SExpandableArea)
 				.InitiallyCollapsed(true)
 				.Padding(0.0f)
-				.AreaTitle(FText::FromString(FString::Printf(TEXT("Vendor Id: (%s) - %s"), *InVendor.Get()->GetVendorId().ToString(EGuidFormats::DigitsWithHyphensLower), *InVendor.Get()->GetName())))
+				.AreaTitle(FText::FromString(FString::Printf(TEXT("Vendor Id: (%s) - %s"), *InVendor.Get()->GetVendorId().ToString(EGuidFormats::DigitsWithHyphens), *InVendor.Get()->GetName())))
 				.BodyContent()
 				[
 					SNew(SVerticalBox)
@@ -241,7 +257,54 @@ void SRallyHereEditorVendorRow::Construct(const FArguments& InArgs, const TShare
 
 FReply SRallyHereEditorVendorRow::OnFetchLoot()
 {
+	auto Request = TSandboxGetLoot::Request();
+
+	if (!GetAuthContext(Request.AuthContext))
+	{
+		return FReply::Handled();
+	}
+
+	auto* Settings = GetDefault<URH_DevIntegrationSettings>();
+	const FRH_DevSandboxConfiguration* SandboxConfig = Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId());
+	FGuid::Parse(SandboxConfig->SandboxGuid, Request.SandboxId);
+
+	Request.VendorIds = { Vendor.Get()->GetVendorId() };
+
+	if (!TSandboxGetLoot::DoCall(RH_DevAPIs::GetCatalogAPI(), Request, TSandboxGetLoot::Delegate::CreateRaw(this, &SRallyHereEditorVendorRow::OnFetchLootResponse)))
+	{
+		FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FetchLootError", "An Error occured when attempting to get loot."));
+	}
 	return FReply::Handled();
+}
+
+void SRallyHereEditorVendorRow::OnFetchLootResponse(const TSandboxGetLoot::Response& Resp)
+{
+	CachedLoot.Empty();
+
+	if (!Resp.IsSuccessful())
+	{
+		FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FetchLootError", "An Error occured when attempting to get loot."));
+		return;
+	}
+
+	if (const auto& Data = Resp.Content.GetDataOrNull())
+	{
+		if ((*Data).Num() == 0)
+		{
+			FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FetchLootNoneFoundError", "No Loot was found."));
+		}
+
+		for (const auto& Loot : (*Data))
+		{
+			CachedLoot.Add(MakeShared<FRHAPI_DevLoot>(Loot));
+		}
+	}
+	else
+	{
+		FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("FetchLootNoneFoundError", "No Loot was found."));
+	}
+
+	LootListView->RebuildList();
 }
 
 void SRallyHereEditorVendorRow::OnLootFilterTextChanged(const FText& SearchText)
@@ -443,7 +506,7 @@ TSharedRef<ITableRow> SRallyHereEditorVendorRow::MakeListViewLootWidget(TSharedP
 				} \
 				IsDirty = true; \
 				LootDirtyBox.Get()->Invalidate(EInvalidateWidget::Visibility); \
-				TextBlock.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *LootUpdateRequest.Get##Variable(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower)))); \
+				TextBlock.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *LootUpdateRequest.Get##Variable(FGuid()).ToString(EGuidFormats::DigitsWithHyphens)))); \
 			})) \
 		] \
 		+SHorizontalBox::Slot() \
@@ -463,7 +526,7 @@ TSharedRef<ITableRow> SRallyHereEditorVendorRow::MakeListViewLootWidget(TSharedP
 			{ \
 				IsDirty = true; \
 				LootUpdateRequest.Clear##Variable(); \
-				TextBlock.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *LootUpdateRequest.Get##Variable(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower)))); \
+				TextBlock.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *LootUpdateRequest.Get##Variable(FGuid()).ToString(EGuidFormats::DigitsWithHyphens)))); \
 			})) \
 		] \
 	] \
@@ -504,9 +567,9 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 	OnLootDeleteDelegate = OnDeleteLootDelegate;
 	HydrateLootUpdateRequest();
 
-	ItemIdText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("(%s)"), *InLoot.Get()->GetItemId().ToString(EGuidFormats::DigitsWithHyphensLower))));
-	RequiredItemIdText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("(%s)"), *InLoot.Get()->GetRequiredItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower))));
-	QuantityMultiInventoryItemIdText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetQuantityMultiInventoryItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower))));
+	ItemIdText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("(%s)"), *InLoot.Get()->GetItemId().ToString(EGuidFormats::DigitsWithHyphens))));
+	RequiredItemIdText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("(%s)"), *InLoot.Get()->GetRequiredItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens))));
+	QuantityMultiInventoryItemIdText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetQuantityMultiInventoryItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens))));
 	NameText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("%s"), *Loot.Get()->GetName(""))));
 	DescriptionText = SNew(STextBlock).Text(FText::FromString(FString::Printf(TEXT("%s"), *Loot.Get()->GetDescription(""))));
 
@@ -560,7 +623,7 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 	}
 
 	FText AreaTitle = !IsNewLoot ?
-		FText::FromString(FString::Printf(TEXT("Loot Id: (%s) - %s"), *InLoot.Get()->GetLootId().ToString(EGuidFormats::DigitsWithHyphensLower), *GetLootRowName())) :
+		FText::FromString(FString::Printf(TEXT("Loot Id: (%s) - %s"), *InLoot.Get()->GetLootId().ToString(EGuidFormats::DigitsWithHyphens), *GetLootRowName())) :
 		LOCTEXT("CreateNewTitle", "New Loot");
 
 	LootExpandableArea = SNew(SExpandableArea)
@@ -595,7 +658,7 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 							SNew(SEditableTextBox)
 							.Text_Lambda([this]
 							{
-								return FText::FromString(LootUpdateRequest.GetSubVendorId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower));
+								return FText::FromString(LootUpdateRequest.GetSubVendorId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens));
 							})
 							.OnTextCommitted_Lambda([this](const FText& InNewText, ETextCommit::Type InCommitType)
 							{
@@ -633,7 +696,7 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 							SNew(SEditableTextBox)
 							.Text_Lambda([this]
 							{
-								return FText::FromString(LootUpdateRequest.GetTimeFrameId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower));
+								return FText::FromString(LootUpdateRequest.GetTimeFrameId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens));
 							})
 							.OnTextCommitted_Lambda([this](const FText& InNewText, ETextCommit::Type InCommitType)
 							{
@@ -677,7 +740,7 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 							SNew(SEditableTextBox)
 							.Text_Lambda([this]
 							{
-								return FText::FromString(LootUpdateRequest.GetCurrentPricePointId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower));
+								return FText::FromString(LootUpdateRequest.GetCurrentPricePointId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens));
 							})
 							.OnTextCommitted_Lambda([this](const FText& InNewText, ETextCommit::Type InCommitType)
 							{
@@ -706,7 +769,7 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 							SNew(SEditableTextBox)
 							.Text_Lambda([this]
 							{
-								return FText::FromString(LootUpdateRequest.GetPreSalePricePointId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower));
+								return FText::FromString(LootUpdateRequest.GetPreSalePricePointId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens));
 							})
 							.OnTextCommitted_Lambda([this](const FText& InNewText, ETextCommit::Type InCommitType)
 							{
@@ -774,51 +837,52 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 }
 
 #define COPY_OPTIONAL_VALUE(PropertyName, Source, Target) \
-	if (const auto Value = Source##Get##PropertyName##OrNull()) \
+	if (const auto Value = Source##.Get##PropertyName##OrNull()) \
 	{ \
-		Target##Set##PropertyName(*Value); \
+		Target##.Set##PropertyName(*Value); \
 	} \
 	else \
 	{ \
-		Target##Clear##PropertyName(); \
+		Target##.Clear##PropertyName(); \
 	}
 
 #define COPY_OPTIONAL_VALUE_WITH_DEFAULT(PropertyName, Source, Target, DefaultValue) \
-	if (const auto Value = Source##Get##PropertyName##OrNull()) \
+	if (const auto Value = Source##.Get##PropertyName##OrNull()) \
 	{ \
-		Target##Set##PropertyName(*Value); \
+		Target##.Set##PropertyName(*Value); \
 	} \
 	else \
 	{ \
-		Target##Set##PropertyName(DefaultValue); \
+		Target##.Set##PropertyName(DefaultValue); \
 	}
 
 void SRallyHereEditorLootRow::HydrateLootUpdateRequest()
 {
 	IsDirty = false;
-	COPY_OPTIONAL_VALUE(CustomData, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(Name, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(Description, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(ItemId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(SubVendorId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(Quantity, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(Active, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(SortOrder, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(DropWeight, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(FillInNewOrder, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(AllowPartialBundles, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(RequiredItemId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(RequiredItemCount, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(StackLimit, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(QuantityType, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(QuantityMultiInventoryItemId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(IsClaimableByClient, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(TimeFrameId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(UseInventoryBucket, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(XpQuantityTransformType, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(CurrentPricePointId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(PreSalePricePointId, Loot.Get()->, LootUpdateRequest.)
-	COPY_OPTIONAL_VALUE(HardQuantityMaximum, Loot.Get()->, LootUpdateRequest.)
+
+	COPY_OPTIONAL_VALUE(CustomData, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(Name, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(Description, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(ItemId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(SubVendorId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(Quantity, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(Active, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(SortOrder, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(DropWeight, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(FillInNewOrder, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(AllowPartialBundles, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(RequiredItemId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(RequiredItemCount, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(StackLimit, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(QuantityType, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(QuantityMultiInventoryItemId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(IsClaimableByClient, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(TimeFrameId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(UseInventoryBucket, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(XpQuantityTransformType, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(CurrentPricePointId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(PreSalePricePointId, (*Loot), LootUpdateRequest)
+	COPY_OPTIONAL_VALUE(HardQuantityMaximum, (*Loot), LootUpdateRequest)
 	LootUpdateRequest.SetInventorySelectorType(Loot.Get()->GetInventorySelectorType());
 	LootUpdateRequest.SetInventoryOperation(Loot.Get()->GetInventoryOperation());
 	LootUpdateRequest.SetVendorId(Loot.Get()->GetVendorId());
@@ -827,9 +891,9 @@ void SRallyHereEditorLootRow::HydrateLootUpdateRequest()
 FReply SRallyHereEditorLootRow::OnRevertLoot()
 {
 	HydrateLootUpdateRequest();
-	ItemIdText.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetLootId().ToString(EGuidFormats::DigitsWithHyphensLower))));
-	RequiredItemIdText.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetRequiredItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower))));
-	QuantityMultiInventoryItemIdText.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetQuantityMultiInventoryItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphensLower))));
+	ItemIdText.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetLootId().ToString(EGuidFormats::DigitsWithHyphens))));
+	RequiredItemIdText.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetRequiredItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens))));
+	QuantityMultiInventoryItemIdText.Get()->SetText(FText::FromString(FString::Printf(TEXT("(%s)"), *Loot.Get()->GetQuantityMultiInventoryItemId(FGuid()).ToString(EGuidFormats::DigitsWithHyphens))));
 	NameText.Get()->SetText(FText::FromString(FString::Printf(TEXT("%s"), *Loot.Get()->GetName(""))));
 	DescriptionText.Get()->SetText(FText::FromString(FString::Printf(TEXT("%s"), *Loot.Get()->GetDescription(""))));
 	LootDirtyBox.Get()->Invalidate(EInvalidateWidget::Visibility);
@@ -848,11 +912,8 @@ FReply SRallyHereEditorLootRow::OnUpdateLoot()
 {
 	auto Request = TSandboxUpdateLoot::Request();
 
-	Request.AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
-
-	if (!Request.AuthContext->IsLoggedIn())
+	if (!GetAuthContext(Request.AuthContext))
 	{
-		Request.AuthContext->Refresh();
 		return FReply::Handled();
 	}
 
@@ -896,11 +957,8 @@ FReply SRallyHereEditorLootRow::OnCreateLoot()
 {
 	auto Request = TSandboxCreateLoot::Request();
 
-	Request.AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
-
-	if (!Request.AuthContext->IsLoggedIn())
+	if (!GetAuthContext(Request.AuthContext))
 	{
-		Request.AuthContext->Refresh();
 		return FReply::Handled();
 	}
 
@@ -916,30 +974,30 @@ FReply SRallyHereEditorLootRow::OnCreateLoot()
 
 	FRHAPI_DevCreateLootRequest CreateLootRequest;
 
-	COPY_OPTIONAL_VALUE(CustomData, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(Name, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(Description, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(ItemId, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(SubVendorId, LootUpdateRequest., CreateLootRequest.)
+	COPY_OPTIONAL_VALUE(CustomData, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(Name, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(Description, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(ItemId, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(SubVendorId, LootUpdateRequest, CreateLootRequest)
 	// Override the default to 1 in quantity from 0 for ease of use.
-	COPY_OPTIONAL_VALUE_WITH_DEFAULT(Quantity, LootUpdateRequest., CreateLootRequest., 1)
-	COPY_OPTIONAL_VALUE(Active, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(SortOrder, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(DropWeight, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(FillInNewOrder, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(AllowPartialBundles, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(RequiredItemId, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(RequiredItemCount, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(StackLimit, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(QuantityType, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(QuantityMultiInventoryItemId, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(IsClaimableByClient, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(TimeFrameId, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(UseInventoryBucket, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(XpQuantityTransformType, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(CurrentPricePointId, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(PreSalePricePointId, LootUpdateRequest., CreateLootRequest.)
-	COPY_OPTIONAL_VALUE(HardQuantityMaximum, LootUpdateRequest., CreateLootRequest.)
+	COPY_OPTIONAL_VALUE_WITH_DEFAULT(Quantity, LootUpdateRequest, CreateLootRequest, 1)
+	COPY_OPTIONAL_VALUE(Active, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(SortOrder, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(DropWeight, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(FillInNewOrder, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(AllowPartialBundles, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(RequiredItemId, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(RequiredItemCount, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(StackLimit, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(QuantityType, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(QuantityMultiInventoryItemId, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(IsClaimableByClient, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(TimeFrameId, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(UseInventoryBucket, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(XpQuantityTransformType, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(CurrentPricePointId, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(PreSalePricePointId, LootUpdateRequest, CreateLootRequest)
+	COPY_OPTIONAL_VALUE(HardQuantityMaximum, LootUpdateRequest, CreateLootRequest)
 	CreateLootRequest.SetVendorId(Loot.Get()->GetVendorId());
 	CreateLootRequest.SetInventorySelectorType(LootUpdateRequest.GetInventorySelectorType());
 	CreateLootRequest.SetInventoryOperation(LootUpdateRequest.GetInventoryOperation());
@@ -995,11 +1053,8 @@ FReply SRallyHereEditorLootRow::OnDeleteLoot()
 	{
 		auto Request = TSandboxDeleteLoot::Request();
 
-		Request.AuthContext = FModuleManager::Get().LoadModuleChecked<FRallyHereEditorModule>(FRallyHereEditorModule::GetModuleName()).GetAuthContext();
-
-		if (!Request.AuthContext->IsLoggedIn())
+		if (!GetAuthContext(Request.AuthContext))
 		{
-			Request.AuthContext->Refresh();
 			return FReply::Handled();
 		}
 
@@ -1038,12 +1093,12 @@ FString SRallyHereEditorLootRow::GetLootRowName()
 
 	if (LootUpdateRequest.GetItemId(Id))
 	{
-		RowName += "Item: (" + Id.ToString(EGuidFormats::DigitsWithHyphensLower) + ") ";
+		RowName += "Item: (" + Id.ToString(EGuidFormats::DigitsWithHyphens) + ") ";
 	}
 	
 	if (LootUpdateRequest.GetSubVendorId(Id))
 	{
-		RowName += "SubVendor: (" + Id.ToString(EGuidFormats::DigitsWithHyphensLower) + ")";
+		RowName += "SubVendor: (" + Id.ToString(EGuidFormats::DigitsWithHyphens) + ")";
 	}
 
 	return RowName;
@@ -1051,6 +1106,7 @@ FString SRallyHereEditorLootRow::GetLootRowName()
 
 void SRallyHereEditorLootRow::OnBrowseToItemId(const FGuid& ItemId)
 {
+	// This searches all registered assets with the asset manager for any assets whose data has a member named based on the ItemIdPropertyName setting that is marked Asset Registry Searchable.
 	static const FName nmItemId(TEXT("ItemId"));
 	if (ItemId.IsValid())
 	{
@@ -1095,6 +1151,8 @@ void SRallyHereEditorLootRow::OnBrowseToItemId(const FGuid& ItemId)
 			}
 		}
 	}
+
+	FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("BrowseToAssetError", "Could not find an asset that matched this item id."));
 }
 
 bool SRallyHereEditorLootRow::GetSelectedAssetItemId(FGuid& Id) const

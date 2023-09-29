@@ -2,6 +2,7 @@
 #pragma once
 
 #include "Widgets/Docking/SDockTab.h"
+#include "Widgets/SCompoundWidget.h"
 
 class SRallyHereEditorWebRequestWidget : public SCompoundWidget
 {

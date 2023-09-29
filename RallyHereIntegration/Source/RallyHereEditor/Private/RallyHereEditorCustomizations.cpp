@@ -98,7 +98,7 @@ void FRH_RHLegacyIdToGuidCustomization::CustomizeHeader(TSharedRef<class IProper
 				.AutoWidth()
 				[
 					SNew(STextBlock)
-					.Text(FText::FromString(FString::Printf(L"%s", *Id.ToString(EGuidFormats::DigitsWithHyphensLower))))
+					.Text(FText::FromString(FString::Printf(L"%s", *Id.ToString(EGuidFormats::DigitsWithHyphens))))
 				]
 			]
 			+SVerticalBox::Slot()
@@ -148,7 +148,7 @@ FReply FRH_RHLegacyIdToGuidCustomization::OnGenerateIdClicked()
 		.AutoHeight()
 		[
 			SNew(STextBlock)
-			.Text(LOCTEXT("CreateItemPrompt", "Input a FriendlyName for this item to be displayed in the Config Tool"))
+			.Text(LOCTEXT("CreateItemPrompt", "Input a FriendlyName (Developer Facingg Only) for this item to be displayed in the Dev Portal"))
 		]
 	+ SVerticalBox::Slot()
 		.AutoHeight()
@@ -269,7 +269,7 @@ void FRH_RHItemIdCustomization::OnFriendlyNameSubmitted(const FString& FriendlyN
 
 void FRH_RHItemIdCustomization::OnCreateCatalogItemResponse(const TSandboxCreateItems::Response& Resp)
 {
-	if (!Resp.Content.Num())
+	if (!Resp.Content.Num() || !Resp.IsSuccessful())
 	{
 		FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("CreateItemError", "An Error occured when attempting to create the item."));
 		return;
