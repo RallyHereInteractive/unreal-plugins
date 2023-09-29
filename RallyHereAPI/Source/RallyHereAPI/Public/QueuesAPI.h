@@ -70,7 +70,7 @@ private:
 
 /* Get All Map Game Info
  *
- * Get the config used to launch an instance by the launch template id. Launch template ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;   Required Session Permissions: None **DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal
+ * Get the config used to launch an instance by the launch template id. Launch template ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None **DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal
 */
 struct RALLYHEREAPI_API FRequest_GetAllMapGameInfo : public FRequest
 {
@@ -114,7 +114,7 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
 
 /* Get All Queue Info
  *
- * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;   Required Session Permissions: None **DEPRECATED** - Use the V2 endpoint instead
+ * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None **DEPRECATED** - Use the V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfo : public FRequest
 {
@@ -159,7 +159,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
 
 /* Get All Queue Info V2
  *
- * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;   Required Session Permissions: None
+ * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfoV2 : public FRequest
 {
@@ -204,7 +204,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
 
 /* Get Instance Request Template
  *
- * Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;   Required Session Permissions: None
+ * Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetInstanceRequestTemplate : public FRequest
 {
@@ -248,7 +248,7 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
 
 /* Get Match Making Templates
  *
- * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;queues&#x60; config endpoints  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;               Required Session Permissions: None **DEPRECATED** Use the V2 endpoint instead
+ * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;queues&#x60; config endpoints  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;               Required Session Permissions: None **DEPRECATED** Use the V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplates : public FRequest
 {
@@ -292,7 +292,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
 
 /* Get Match Making Templates V2
  *
- * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;queues&#x60; config endpoints  Required Permissions:   For any player (including themselves)any of: &#x60;session:read:config&#x60;, &#x60;session:*&#x60;   Required Session Permissions: None **DEPRECATED** Use the V2 endpoint instead
+ * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;queues&#x60; config endpoints  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None **DEPRECATED** Use the V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplatesV2 : public FRequest
 {

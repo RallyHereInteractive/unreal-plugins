@@ -22,8 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchMakingTemplateGroupV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("template_group_id"));
-    RallyHereAPI::WriteJsonValue(Writer, TemplateGroupId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_template_group_id"));
+    RallyHereAPI::WriteJsonValue(Writer, MatchMakingTemplateGroupId);
     Writer->WriteIdentifierPrefix(TEXT("template_options"));
     RallyHereAPI::WriteJsonValue(Writer, TemplateOptions);
     if (RequiredItemIds_IsSet)
@@ -42,8 +42,8 @@ bool FRHAPI_MatchMakingTemplateGroupV2::FromJson(const TSharedPtr<FJsonValue>& J
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonTemplateGroupIdField = (*Object)->TryGetField(TEXT("template_group_id"));
-    ParseSuccess &= JsonTemplateGroupIdField.IsValid() && !JsonTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonTemplateGroupIdField, TemplateGroupId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
+    ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && !JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId);
     const TSharedPtr<FJsonValue> JsonTemplateOptionsField = (*Object)->TryGetField(TEXT("template_options"));
     ParseSuccess &= JsonTemplateOptionsField.IsValid() && !JsonTemplateOptionsField->IsNull() && TryGetJsonValue(JsonTemplateOptionsField, TemplateOptions);
     const TSharedPtr<FJsonValue> JsonRequiredItemIdsField = (*Object)->TryGetField(TEXT("required_item_ids"));

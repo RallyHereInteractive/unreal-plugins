@@ -24,8 +24,8 @@ void FRHAPI_MapConfigV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("map_id"));
     RallyHereAPI::WriteJsonValue(Writer, MapId);
-    Writer->WriteIdentifierPrefix(TEXT("map_name"));
-    RallyHereAPI::WriteJsonValue(Writer, MapName);
+    Writer->WriteIdentifierPrefix(TEXT("name"));
+    RallyHereAPI::WriteJsonValue(Writer, Name);
     if (Mode_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("mode"));
@@ -51,8 +51,8 @@ bool FRHAPI_MapConfigV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     const TSharedPtr<FJsonValue> JsonMapIdField = (*Object)->TryGetField(TEXT("map_id"));
     ParseSuccess &= JsonMapIdField.IsValid() && !JsonMapIdField->IsNull() && TryGetJsonValue(JsonMapIdField, MapId);
-    const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
-    ParseSuccess &= JsonMapNameField.IsValid() && !JsonMapNameField->IsNull() && TryGetJsonValue(JsonMapNameField, MapName);
+    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+    ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
     const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
     if (JsonModeField.IsValid() && !JsonModeField->IsNull())
     {
