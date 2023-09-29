@@ -4,9 +4,6 @@ public class RallyHereEditor : ModuleRules
 {
 	public RallyHereEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
-		bEnforceIWYU = true;
-		bTreatAsEngineModule = true;
-		OptimizeCode = CodeOptimization.InNonDebugBuilds;
 		PCHUsage = PCHUsageMode.UseSharedPCHs;
 		PrivatePCHHeaderFile = "Public/RallyHereEditor.h";
 

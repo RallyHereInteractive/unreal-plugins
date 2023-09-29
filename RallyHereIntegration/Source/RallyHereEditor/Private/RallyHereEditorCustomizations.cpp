@@ -148,7 +148,7 @@ FReply FRH_RHLegacyIdToGuidCustomization::OnGenerateIdClicked()
 		.AutoHeight()
 		[
 			SNew(STextBlock)
-			.Text(LOCTEXT("CreateItemPrompt", "Input a FriendlyName (Developer Facingg Only) for this item to be displayed in the Dev Portal"))
+			.Text(LOCTEXT("CreateItemPrompt", "Input a FriendlyName (Developer Facing Only) for this item to be displayed in the Dev Portal"))
 		]
 	+ SVerticalBox::Slot()
 		.AutoHeight()
