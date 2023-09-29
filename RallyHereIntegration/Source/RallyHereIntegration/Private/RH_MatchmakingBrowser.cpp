@@ -103,15 +103,15 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 
 void URH_MatchmakingBrowserCache::ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplate, const FString& ETag)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.TemplateGroupId.ToString(EGuidFormats::DigitsWithHyphens));
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.GetMatchMakingTemplateGroupId().ToString(EGuidFormats::DigitsWithHyphens));
 
-	auto existingPtr = TemplateGroupCache.Find(APITemplate.TemplateGroupId);
+	auto existingPtr = TemplateGroupCache.Find(APITemplate.GetMatchMakingTemplateGroupId());
 	URH_MatchmakingTemplateGroupInfo* TemplateWrapper = existingPtr ? *existingPtr : nullptr;
 
 	if (TemplateWrapper == nullptr)
 	{
 		TemplateWrapper = NewObject<URH_MatchmakingTemplateGroupInfo>(this);
-		TemplateGroupCache.Add(APITemplate.TemplateGroupId, TemplateWrapper);
+		TemplateGroupCache.Add(APITemplate.GetMatchMakingTemplateGroupId(), TemplateWrapper);
 	}
 	
 	TemplateWrapper->ImportAPITemplateGroup(APITemplate, ETag);

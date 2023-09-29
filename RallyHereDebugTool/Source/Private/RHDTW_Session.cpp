@@ -1429,7 +1429,7 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 											if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MapIdentifier), RH_DefaultTreeFlagsLeaf))
 											{
 												ImGuiDisplayCopyableValue(TEXT("MapId"), Map.GetMapId());
-												ImGuiDisplayCopyableValue(TEXT("Map"), Map.GetMapName());
+												ImGuiDisplayCopyableValue(TEXT("Name"), Map.GetName());
 												ImGuiDisplayCopyableValue(TEXT("GameMode"), Map.GetModeOrNull());
 												ImGuiDisplayCopyableValue(TEXT("Weight"), Map.GetMapWeight());
 												ImGuiDisplayCustomData(Map.GetCustomData());

@@ -160,7 +160,7 @@ public:
 
 	/** @brief ID for this set of potential matchmaking templates */
 	UFUNCTION(BlueprintPure, Category="Matchmaking|Queues")
-	const FGuid& GetTemplateGroupId() const { return TemplateInfo.TemplateGroupId; }
+	const FGuid& GetTemplateGroupId() const { return TemplateInfo.GetMatchMakingTemplateGroupId(); }
 
 	///** @brief List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template */
 	//UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
