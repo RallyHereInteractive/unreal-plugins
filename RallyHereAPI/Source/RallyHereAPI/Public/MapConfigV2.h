@@ -51,13 +51,13 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
 
     /** @brief Name of the map the instance should load into */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString MapName{  };
-    /** @brief Gets the value of MapName */
-    FString& GetMapName() { return MapName; }
-    /** @brief Gets the value of MapName */
-    const FString& GetMapName() const { return MapName; }
-    /** @brief Sets the value of MapName */
-    void SetMapName(FString NewValue) { MapName = NewValue;  }
+    FString Name{  };
+    /** @brief Gets the value of Name */
+    FString& GetName() { return Name; }
+    /** @brief Gets the value of Name */
+    const FString& GetName() const { return Name; }
+    /** @brief Sets the value of Name */
+    void SetName(FString NewValue) { Name = NewValue;  }
 
     /** @brief Game mode for the instance to spawn in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

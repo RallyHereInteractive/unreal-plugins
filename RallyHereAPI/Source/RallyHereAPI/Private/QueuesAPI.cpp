@@ -902,7 +902,7 @@ FResponse_GetMatchMakingTemplates::FResponse_GetMatchMakingTemplates(FRequestMet
 
 FString Traits_GetMatchMakingTemplates::Name = TEXT("GetMatchMakingTemplates");
 
-FHttpRequestPtr FQueuesAPI::SessiongetMatchMakingTemplates(const FRequest_SessiongetMatchMakingTemplates& Request, const FDelegate_SessiongetMatchMakingTemplates& Delegate /*= FDelegate_SessiongetMatchMakingTemplates()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FQueuesAPI::GetMatchMakingTemplatesV2(const FRequest_GetMatchMakingTemplatesV2& Request, const FDelegate_GetMatchMakingTemplatesV2& Delegate /*= FDelegate_GetMatchMakingTemplatesV2()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
         return nullptr;
@@ -923,7 +923,7 @@ FHttpRequestPtr FQueuesAPI::SessiongetMatchMakingTemplates(const FRequest_Sessio
     RequestData->SetMetadata(Request.GetRequestMetadata());
 
     FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FQueuesAPI::OnSessiongetMatchMakingTemplatesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
     RequestData->SetDelegate(ResponseDelegate);
 
     auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
@@ -934,7 +934,7 @@ FHttpRequestPtr FQueuesAPI::SessiongetMatchMakingTemplates(const FRequest_Sessio
     return RequestData->HttpRequest;
 }
 
-void FQueuesAPI::OnSessiongetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SessiongetMatchMakingTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FQueuesAPI::OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplatesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
     FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -942,10 +942,10 @@ void FQueuesAPI::OnSessiongetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRe
     {
         // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
         // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FQueuesAPI::OnSessiongetMatchMakingTemplatesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+        ResponseDelegate.BindRaw(this, &FQueuesAPI::OnGetMatchMakingTemplatesV2Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
     }
 
-    FResponse_SessiongetMatchMakingTemplates Response{ RequestMetadata };
+    FResponse_GetMatchMakingTemplatesV2 Response{ RequestMetadata };
     const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
 
     {
@@ -960,20 +960,20 @@ void FQueuesAPI::OnSessiongetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRe
     }
 }
 
-FRequest_SessiongetMatchMakingTemplates::FRequest_SessiongetMatchMakingTemplates()
+FRequest_GetMatchMakingTemplatesV2::FRequest_GetMatchMakingTemplatesV2()
 {
     RequestMetadata.Identifier = FGuid::NewGuid();
     RequestMetadata.SimplifiedPath = GetSimplifiedPath();
     RequestMetadata.RetryCount = 0;
 }
 
-FName FRequest_SessiongetMatchMakingTemplates::GetSimplifiedPath() const
+FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPath() const
 {
     static FName Path = FName(TEXT("/session/v2/match-making-templates/{template_group_id}"));
     return Path;
 }
 
-FString FRequest_SessiongetMatchMakingTemplates::ComputePath() const
+FString FRequest_GetMatchMakingTemplatesV2::ComputePath() const
 {
     TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("template_group_id"), ToStringFormatArg(TemplateGroupId) }
@@ -984,7 +984,7 @@ FString FRequest_SessiongetMatchMakingTemplates::ComputePath() const
     return Path;
 }
 
-bool FRequest_SessiongetMatchMakingTemplates::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_GetMatchMakingTemplatesV2::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
     static const TArray<FString> Consumes = {  };
     //static const TArray<FString> Produces = { TEXT("application/json") };
@@ -999,12 +999,12 @@ bool FRequest_SessiongetMatchMakingTemplates::SetupHttpRequest(const FHttpReques
 
     if (!AuthContext)
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SessiongetMatchMakingTemplates - missing auth context"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchMakingTemplatesV2 - missing auth context"));
         return false;
     }
     if (!AuthContext->AddBearerToken(HttpRequest))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SessiongetMatchMakingTemplates - failed to add bearer token"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchMakingTemplatesV2 - failed to add bearer token"));
         return false;
     }
 
@@ -1019,14 +1019,14 @@ bool FRequest_SessiongetMatchMakingTemplates::SetupHttpRequest(const FHttpReques
     }
     else
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_SessiongetMatchMakingTemplates - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchMakingTemplatesV2 - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
         return false;
     }
 
     return true;
 }
 
-void FResponse_SessiongetMatchMakingTemplates::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+void FResponse_GetMatchMakingTemplatesV2::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
 {
     FResponse::SetHttpResponseCode(InHttpResponseCode);
     switch ((int)InHttpResponseCode)
@@ -1043,7 +1043,7 @@ void FResponse_SessiongetMatchMakingTemplates::SetHttpResponseCode(EHttpResponse
     }
 }
 
-bool FResponse_SessiongetMatchMakingTemplates::ParseHeaders()
+bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
 {
     // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
     TMap<FString, FString> HeadersMap;
@@ -1063,17 +1063,17 @@ bool FResponse_SessiongetMatchMakingTemplates::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_SessiongetMatchMakingTemplates::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_GetMatchMakingTemplatesV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
 }
 
-FResponse_SessiongetMatchMakingTemplates::FResponse_SessiongetMatchMakingTemplates(FRequestMetadata InRequestMetadata) :
+FResponse_GetMatchMakingTemplatesV2::FResponse_GetMatchMakingTemplatesV2(FRequestMetadata InRequestMetadata) :
     FResponse(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_SessiongetMatchMakingTemplates::Name = TEXT("SessiongetMatchMakingTemplates");
+FString Traits_GetMatchMakingTemplatesV2::Name = TEXT("GetMatchMakingTemplatesV2");
 
 
 }

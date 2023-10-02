@@ -29,8 +29,11 @@ void FRHAPI_QueueJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
         RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("map_preferences"));
-    RallyHereAPI::WriteJsonValue(Writer, MapPreferences);
+    if (MapPreferences_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("map_preferences"));
+        RallyHereAPI::WriteJsonValue(Writer, MapPreferences_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -51,7 +54,11 @@ bool FRHAPI_QueueJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         ParseSuccess &= AdditionalJoinParams_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonMapPreferencesField = (*Object)->TryGetField(TEXT("map_preferences"));
-    ParseSuccess &= JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull() && TryGetJsonValue(JsonMapPreferencesField, MapPreferences);
+    if (JsonMapPreferencesField.IsValid() && !JsonMapPreferencesField->IsNull())
+    {
+        MapPreferences_IsSet = TryGetJsonValue(JsonMapPreferencesField, MapPreferences_Optional);
+        ParseSuccess &= MapPreferences_IsSet;
+    }
 
     return ParseSuccess;
 }

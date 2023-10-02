@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
 
     /** @brief ID of the matchmaking profile to join */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString ProfileId{  };
-    /** @brief Gets the value of ProfileId */
-    FString& GetProfileId() { return ProfileId; }
-    /** @brief Gets the value of ProfileId */
-    const FString& GetProfileId() const { return ProfileId; }
-    /** @brief Sets the value of ProfileId */
-    void SetProfileId(FString NewValue) { ProfileId = NewValue;  }
+    FString MatchMakingProfileId{  };
+    /** @brief Gets the value of MatchMakingProfileId */
+    FString& GetMatchMakingProfileId() { return MatchMakingProfileId; }
+    /** @brief Gets the value of MatchMakingProfileId */
+    const FString& GetMatchMakingProfileId() const { return MatchMakingProfileId; }
+    /** @brief Sets the value of MatchMakingProfileId */
+    void SetMatchMakingProfileId(FString NewValue) { MatchMakingProfileId = NewValue;  }
 
     /** @brief What mode to set on the matchmaking profile (normal, backfill etc) */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
