@@ -6,6 +6,7 @@
 #include "Misc/MessageDialog.h"
 #include "Dialogs/Dialogs.h"
 #include "Dialog/SCustomDialog.h"
+#include "ScopedTransaction.h"
 #include "Widgets/DeclarativeSyntaxSupport.h"
 #include "PropertyHandle.h"
 #include "PropertyCustomizationHelpers.h"

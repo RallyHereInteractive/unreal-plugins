@@ -2,8 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-#include "RallyHereAPIAll.h"
-#include "RallyHereAPIHelpers.h"
+#include "RallyHereDeveloperAPIAll.h"
+#include "RallyHereDeveloperAPIHelpers.h"
 
 #include "RH_DevWebRequests.generated.h"
 
