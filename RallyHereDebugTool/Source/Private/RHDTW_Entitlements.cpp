@@ -111,6 +111,7 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 		return;
 	}
 
+	int32 RequestIndex = 0;
 	for (const auto& pair : *pRH_EntitlementSubsystem->GetEntitlementResults())
 	{
 		FRHAPI_PlatformEntitlementProcessResult result = pair.Value;
@@ -128,10 +129,8 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 		{
 			label += FString::Printf(TEXT("%s - Request ID - %s"), *result.GetStatus(), *result.GetRequestId());
 		}
-		label += "###request-id";
-		// label += TCHAR_TO_UTF8(*result.GetRequestId());
-		
-		// ImGui::PushID(TCHAR_TO_UTF8(*result.GetRequestId()));
+		label += FString::Printf(TEXT("##request%d"), RequestIndex++);
+
 		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*label)))
 		{
 			ImGui::Text("Status : %s", TCHAR_TO_UTF8(*result.Status_Optional));
