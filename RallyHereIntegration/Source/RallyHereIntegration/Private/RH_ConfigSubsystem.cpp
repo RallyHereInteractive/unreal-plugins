@@ -97,6 +97,9 @@ void URH_ConfigSubsystem::OnFetchAppSettings(const RallyHereAPI::FResponse_GetAp
 	// todo - check for differences / use ETag
 	if (Resp.IsSuccessful())
 	{
+		// clear out old settings
+		AppSettings.Reset();
+
 		// Load Default Feature Flags
 		FKeyValueSink Visitor;
 		Visitor.BindLambda([&](const FString& Key, const FString& Value) { AppSettings.Add(Key, Value); });
