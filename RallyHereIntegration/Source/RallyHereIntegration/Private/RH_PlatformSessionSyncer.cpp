@@ -138,8 +138,7 @@ void URH_PlatformSessionSyncer::SetCachedPlatformSessionInvite(const FOnlineSess
 
 bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 {
-	// TODO - come up with a scouting rule.  For now, hope that the first player in that cant find a session can scout quickly enough
-
+	// determine if we are the scout for the platform by seeing if we have the lowest value player uuid for the platform
 	auto RHSession = GetRHSession();
 	if (RHSession == nullptr || !SessionOwner.IsValid())
 	{
@@ -388,7 +387,13 @@ bool URH_PlatformSessionSyncer::SetSyncActionState(ESyncActionState NewState)
 			return false;
 		}
 	}
+
+	auto OldState = CurrentSyncActionState;
 	CurrentSyncActionState = NewState;
+
+	OnStateChanged.Broadcast(this, OldState, NewState);
+	BLUEPRINT_OnStateChanged.Broadcast(this, OldState, NewState);
+
 	KickOffState(CurrentSyncActionState);
 	return true;
 }
@@ -797,7 +802,17 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 					else
 					{
 						UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session search was not successful"), ANSI_TO_TCHAR(__FUNCTION__));
-						SyncActionComplete(false);
+
+						if (IsLocalPlayerScout())
+						{
+							// we are the scout and failed to join, attempt to rectify the issue
+							OnScoutFailedToJoin();
+						}
+						else
+						{
+							// we are not the scout and failed to join, so go to an error state
+							SyncActionComplete(false);
+						}
 					}
 				})
 			);
@@ -855,6 +870,12 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 				SyncActionComplete(true);
 				return;
 			}
+			else if (IsLocalPlayerScout())
+			{
+				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session join error %s, local player is scout, trying to rectify"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
+				OnScoutFailedToJoin();
+				return;
+			}
 			else
 			{
 				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session join error %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
@@ -867,6 +888,51 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 	}
 
 	SyncActionComplete(false);
+}
+
+void URH_PlatformSessionSyncer::OnScoutFailedToJoin()
+{
+	if (!SessionOwner.IsValid())
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session Owner is null"), ANSI_TO_TCHAR(__FUNCTION__));
+		SyncActionComplete(false);
+		return;
+	}
+
+	auto RHSession = GetRHSession();
+	if (RHSession == nullptr)
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - RH Session is null"), ANSI_TO_TCHAR(__FUNCTION__));
+		SyncActionComplete(false);
+		return;
+	}
+
+	UE_LOG(LogRHSession, Warning, TEXT("[%s] - Platform session delete not implemented"), ANSI_TO_TCHAR(__FUNCTION__));
+	SyncActionComplete(false);
+	/*
+	typedef RallyHereAPI::Traits_RemovePlatformSessionFromRallyHereSession BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = RHSession->GetSessionId();
+	Request.Platform = RHPlatform;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(SessionOwner, RHSession->GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_JoinedSession* Session)
+		{
+			if (bSuccess)
+			{
+				UE_LOG(LogRHSession, Log, TEXT("[%s] - Updated session to remove platform session id"), ANSI_TO_TCHAR(__FUNCTION__));
+			}
+			else
+			{
+				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Failed to update session to remove platform session id"), ANSI_TO_TCHAR(__FUNCTION__));
+			}
+			SyncActionComplete(bSuccess);
+		}),
+		GetDefault<URH_IntegrationSettings>()->SessionUpdateWithPlatformSessionPriority);
+
+	Helper->Start(Request);
+	*/
 }
 
 void URH_PlatformSessionSyncer::LeavePlatformSession()

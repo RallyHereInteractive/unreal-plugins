@@ -24,13 +24,42 @@ class URH_PlatformSessionSyncer;
 /** Session id setting name, used to store the RH Session id on the platform session objects */
 #define SETTING_RALLYHERE_SESSION_ID FName(TEXT("SESSIONRALLYHEREID"))
 
+/** @ingroup Session
+ *  @{
+ */
+
+ /*
+ * Flow Meta Steps (used in multiple flows)
+ * (meta) OSS Join Session = OSS Find Session -> OSS Join Sessoin
+ * (meta) OSS Leave Session = OSS End Session -> OSS Remove Session (local players?)
+ */
+
+ /** @brief Sync Action state enum. */
+UENUM(BlueprintType)
+enum class ESyncActionState : uint8
+{
+	Uninitialized, // we have not yet been initialize
+	Unsynchronized, // we are not synchronized, and should be checking for actions to take
+	CreatePlatformSession, // Flow = OSS Create Session -> RH Update Session with Platform Session Info
+	JoinPlatformSession, // Flow = (meta) OSS Join Session
+	LeavePlatformSession, // Flow = (meta) OSS End Session
+	UpdateRHSession, // Flow = RH Update Session with Platform Session Info
+	Synchronized, // we have synchronized our state
+	Error, // we have encountered an error, and should not be taking any actions until a new kick off
+
+	// these states are special, anything beyond this point is a terminal state
+	Cleanup, // we are cleaning up state, and no longer listening for updates
+	CleanupComplete, // cleanup is done (we are in a terminal state)
+};
+
 /** Delegates for when platform synchronization objects are cleaned up */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_PlatformSessionSyncerCleanupDynamicDelegate, URH_PlatformSessionSyncer*, Syncer);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_PlatformSessionSyncerCleanupDelegate, URH_PlatformSessionSyncer*);
 
-/** @ingroup Session
- *  @{
- */
+/** Delegates for when platform synchronization objects have state changes */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FRH_PlatformSessionSyncerStateChangedDynamicDelegate, URH_PlatformSessionSyncer*, Syncer, ESyncActionState, OldState, ESyncActionState, NewState);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRH_PlatformSessionSyncerStateChangedDelegate, URH_PlatformSessionSyncer*, ESyncActionState, ESyncActionState);
+
 
 /** @brief Synchronization object to sync state between a Rally Here Session and a Platform Session (such as a Steam session) */
 UCLASS(Config = RallyHereIntegration, DefaultConfig)
@@ -38,6 +67,7 @@ class RALLYHEREINTEGRATION_API URH_PlatformSessionSyncer : public UObject
 {
 	GENERATED_UCLASS_BODY()
 public:
+
 	/** 
 	* @brief Initialize the sycnrhonization object with a RallyHere session id and a session owner - requires that the owner contain that session 
 	* @param [in] InSessionId The Rally Here session id for which we are synchronizing state
@@ -62,7 +92,7 @@ public:
 	* @brief Helper function to get the RallyHere session objcet from the session owner (based on the result of GetRHSessionId())
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
-	URH_JoinedSession* GetRHSession() const;
+	virtual URH_JoinedSession* GetRHSession() const;
 	
 	/**
 	* @brief Helper function to get the Platform Session Id from the RallyHere session object (based on the result of GetRHSession())
@@ -70,7 +100,7 @@ public:
 	* @return Whether the platform session id was successfully filled in
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
-	bool GetPlatformSessionIdFromRHSession(FUniqueNetIdRepl& PlatformSessionId) const;
+	virtual bool GetPlatformSessionIdFromRHSession(FUniqueNetIdRepl& PlatformSessionId) const;
 
 	/**
 	* @brief Get the platform session object that this object is synchronizing to from the OnlineSubsystem
@@ -82,6 +112,7 @@ public:
 	* @param [out] PlatformSessionId The platform session id to fill in
 	* @return Whether the platform session id was successfully filled in
 	*/
+	UFUNCTION(BlueprintPure, Category = "Session")
 	bool GetPlatformSessionIdFromPlatformSession(FUniqueNetIdRepl& PlatformSessionId) const;
 
 	/**
@@ -101,17 +132,32 @@ public:
 	/**
 	* @brief Get whether the local player is the "scout" - the player responsible for creation of the platform session if one does not exist
 	*/
-	bool IsLocalPlayerScout() const;
+	UFUNCTION(BlueprintPure, Category = "Session")
+	virtual bool IsLocalPlayerScout() const;
+
+	/**
+	* @brief Get the current sync action state of this object
+	*/
+	UFUNCTION(BlueprintPure, Category = "Session")
+	virtual ESyncActionState GetCurrentSyncActionState() const { return CurrentSyncActionState; }
+
+	/**
+	* @brief Whether this object is in the process of, or has completed, synchronization
+	*/
+	UFUNCTION(BlueprintPure, Category = "Session")
+	virtual bool IsSynchronized() const { return CurrentSyncActionState == ESyncActionState::Synchronized; }
 	
 	/**
 	* @brief Whether this object is in the process of, or has completed, cleanup
 	*/
-	bool IsCleaningUp() const { return CurrentSyncActionState == ESyncActionState::Cleanup || CurrentSyncActionState == ESyncActionState::CleanupComplete; }
+	UFUNCTION(BlueprintPure, Category = "Session")
+	virtual bool IsCleaningUp() const { return CurrentSyncActionState == ESyncActionState::Cleanup || CurrentSyncActionState == ESyncActionState::CleanupComplete; }
 
 	/**
 	* @brief Whether this object has completed, cleanup
 	*/
-	bool IsCleanupComplete() const { return CurrentSyncActionState == ESyncActionState::CleanupComplete; }
+	UFUNCTION(BlueprintPure, Category = "Session")
+	virtual bool IsCleanupComplete() const { return CurrentSyncActionState == ESyncActionState::CleanupComplete; }
 	
 	/** 
 	* @brief Static helper function to join a rally here session based off a platform session search result (received/accepted invites from the OSS typically come in the form of search results)
@@ -129,33 +175,35 @@ public:
 	/**
 	* @brief Marks the session as started (note - asynchronous)
 	*/
-	bool StartPlatformSession();
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual bool StartPlatformSession();
 	
 	/**
 	* @brief Marks the session as ended (note - asynchronous)
 	*/
-	bool EndPlatformSession();
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual bool EndPlatformSession();
 
 	/**
 	* @brief Notification helper to let the synchronization object know that a session has been created (from the session owner, as the synchronization object does not bind the callback directly)
 	*/
-	void OnPlatformSessionCreated(bool bSuccess);
+	virtual void OnPlatformSessionCreated(bool bSuccess);
 	/**
 	* @brief Notification helper to let the synchronization object know that a session has been joined (from the session owner, as the synchronization object does not bind the callback directly)
 	*/
-	void OnPlatformSessionJoined(EOnJoinSessionCompleteResult::Type Result);
+	virtual void OnPlatformSessionJoined(EOnJoinSessionCompleteResult::Type Result);
 	/**
 	* @brief Notification helper to let the synchronization object know that a session has been started (from the session owner, as the synchronization object does not bind the callback directly)
 	*/
-	void OnPlatformSessionStarted(bool bSuccess);
+	virtual void OnPlatformSessionStarted(bool bSuccess);
 	/**
 	* @brief Notification helper to let the synchronization object know that a session has been ended (from the session owner, as the synchronization object does not bind the callback directly)
 	*/
-	void OnPlatformSessionEnded(bool bSuccess);
+	virtual void OnPlatformSessionEnded(bool bSuccess);
 	/**
 	* @brief Notification helper to let the synchronization object know that a session has been destroyed (from the session owner, as the synchronization object does not bind the callback directly)
 	*/
-	void OnPlatformSessionDestroyed(bool bSuccess);
+	virtual void OnPlatformSessionDestroyed(bool bSuccess);
 
 	/**
 	 * @brief Handler for whenever the associated session is updated.
@@ -167,76 +215,65 @@ public:
 	* @brief Notification delegates for when cleanup of this object has completed
 	*/
 	FRH_PlatformSessionSyncerCleanupDelegate OnCleanupComplete;
-	UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "Session", meta = (DisplayName = "OnCleanupComplete"))
+	UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Cleanup Complete"))
 	FRH_PlatformSessionSyncerCleanupDynamicDelegate BLUEPRINT_OnCleanupComplete;
+
+	/**
+	* @brief Notification delegates for when cleanup of this object has completed
+	*/
+	FRH_PlatformSessionSyncerStateChangedDelegate OnStateChanged;
+	UPROPERTY(EditAnywhere, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On State Changed"))
+	FRH_PlatformSessionSyncerStateChangedDynamicDelegate BLUEPRINT_OnStateChanged;
 
 	void SetCachedPlatformSessionInvite(const FOnlineSessionSearchResult& SessionInvite);
 
 protected:
 
-	/*
-	* Flow Meta Steps (used in multiple flows)
-	* (meta) OSS Join Session = OSS Find Session -> OSS Join Sessoin
-	* (meta) OSS Leave Session = OSS End Session -> OSS Remove Session (local players?)
-	*/
-
-	/** @brief Sync Action state enum. */
-	enum class ESyncActionState
-	{
-		Uninitialized, // we have not yet been initialize
-		Unsynchronized, // we are not synchronized, and should be checking for actions to take
-		CreatePlatformSession, // Flow = OSS Create Session -> RH Update Session with Platform Session Info
-		JoinPlatformSession, // Flow = (meta) OSS Join Session
-		LeavePlatformSession, // Flow = (meta) OSS End Session
-		UpdateRHSession, // Flow = RH Update Session with Platform Session Info
-		Synchronized, // we have synchronized our state
-		Error, // we have encountered an error, and should not be taking any actions until a new kick off
-
-		// these states are special, anything beyond this point is a terminal state
-		Cleanup, // we are cleaning up state, and no longer listening for updates
-		CleanupComplete, // cleanup is done (we are in a terminal state)
-	};
 
 	/**
 	 * @brief Check our current state against the session, and decide if we need to take any action.
 	 */
-	void CheckState();
+	virtual void CheckState();
 	/**
 	 * @brief Change to a new state.
 	 * @param [in] NewState Target new state.
 	 */
-	void KickOffState(ESyncActionState NewState);
+	virtual void KickOffState(ESyncActionState NewState);
 	/**
 	 * @brief Called when a Sync Action State is complete.
 	 * @param [in] bSuccess Whether the action was successful.
 	 * @param [in] bDeferFrame Whether to defer the frame before checking the state again.
 	 */
-	void SyncActionComplete(bool bSuccess, bool bDeferFrame = true);
+	virtual void SyncActionComplete(bool bSuccess, bool bDeferFrame = true);
 	/**
 	 * @brief Take in information from the paired platform session into the RH Session.
 	 */
-	void UpdateRHSessionWithPlatformSession();
+	virtual void UpdateRHSessionWithPlatformSession();
 	/**
 	 * @brief Create a platform session.
 	 */
-	void CreatePlatformSession();
+	virtual void CreatePlatformSession();
 	/**
 	 * @brief Join the platform session.
 	 */
-	void JoinPlatformSession();
+	virtual void JoinPlatformSession();
 	/**
 	 * @brief Used by Join Platform session once found to join it.
 	 * @param [in] SearchResult The search result to join.
 	 */
-	void JoinFoundPlatformSession(const FOnlineSessionSearchResult& SearchResult);
+	virtual void JoinFoundPlatformSession(const FOnlineSessionSearchResult& SearchResult);
+	/**
+	 * @brief Handler for if scout fails to successfully join a specified session.  Attempt to rectify by clearing out session (which should trigger a new session creation)
+	 */
+	virtual void OnScoutFailedToJoin();
 	/**
 	 * @brief Leave the platform session.
 	 */
-	void LeavePlatformSession();
+	virtual void LeavePlatformSession();
 	/**
 	 * @brief Cleanup internal state of the session syncer.
 	 */
-	void CleanupInternal();
+	virtual void CleanupInternal();
 	/**
 	 * @brief The current state of the syncer.
 	 */
@@ -245,7 +282,7 @@ protected:
 	 * @brief Sets the new action state for the syncer.
 	 * @param [in] NewState New State to be in.
 	 */
-	bool SetSyncActionState(ESyncActionState NewState);
+	virtual bool SetSyncActionState(ESyncActionState NewState);
 	/**
 	 * @brief Owner of the session.
 	 */
@@ -253,15 +290,15 @@ protected:
 	/**
 	 * @brief Get the unique net id of the session owner.
 	 */
-	FUniqueNetIdWrapper	GetOSSUniqueId() const;
+	virtual FUniqueNetIdWrapper GetOSSUniqueId() const;
 	/**
 	 * @brief Get the online subsystem for the platform session.
 	 */
-	IOnlineSubsystem*	GetOSS() const;
+	virtual IOnlineSubsystem* GetOSS() const;
 	/**
 	 * @brief Get the online subsystem session interface for the platform session.
 	 */
-	IOnlineSessionPtr	GetOSSSessionInterface() const;
+	virtual IOnlineSessionPtr GetOSSSessionInterface() const;
 	/**
 	 * @brief Rally Here session Id.
 	 */
