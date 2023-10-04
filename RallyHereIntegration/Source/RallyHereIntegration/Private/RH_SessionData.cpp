@@ -533,11 +533,7 @@ FRHAPI_SessionUpdate URH_JoinedSession::GetSessionUpdateInfoDefaults() const
 
 	FRHAPI_SessionUpdate Update;
 
-	Update.SetRegionId(Session.GetRegionId(FString()));
-	if (Session.GetCustomData(Update.GetCustomData()))
-	{
-		Update.CustomData_IsSet = true;
-	}
+	// left for backwards compatiblity, but all elements are now optional, so should default to "not set"
 
 	return Update;
 }
