@@ -313,54 +313,45 @@ bool URH_PlatformSessionSyncer::GetPlatformSessionIdFromRHSession(FUniqueNetIdRe
 	auto RHSession = GetRHSession();
 	if (RHSession != nullptr && SessionOwner.IsValid())
 	{
-		const auto* PlatformSessionArrayPtr = RHSession->GetSessionData().GetPlatformSessionOrNull();
-		if (PlatformSessionArrayPtr != nullptr)
+		FRHAPI_PlatformSession PlatformSession;
+		if (RHSession->GetPlatformSession(RHPlatform, PlatformSession))
 		{
-			auto& PlatformSessionArray = *PlatformSessionArrayPtr;
-
-			for (auto& PlatformSession : PlatformSessionArray)
+			FString DecodedPlatformSessionId;
+			if (RallyHereAPI::Base64UrlDecode(PlatformSession.GetPlatformSessionIdBase64(), DecodedPlatformSessionId) && !DecodedPlatformSessionId.IsEmpty())
 			{
-				if (PlatformSession.GetPlatform() == RHPlatform)
+				// the following call unfortunately does not work properly, since it relies on the identity system and treats it like a player id
+				// RHPlatformSessionId.FromJson(DecodedPlatformSessionId);
+
+				// therefore, we need to crack the JSON value, then pass it into the session system creation utility function instead
+				auto OSSSession = GetOSSSessionInterface();
+				if (OSSSession.IsValid())
 				{
-					FString DecodedPlatformSessionId;
-					if (RallyHereAPI::Base64UrlDecode(PlatformSession.PlatformSessionIdBase64, DecodedPlatformSessionId) && !DecodedPlatformSessionId.IsEmpty())
+					TArray<FString> Tokens;
+
+					int32 NumTokens = DecodedPlatformSessionId.ParseIntoArray(Tokens, TEXT(":"));
+					if (NumTokens == 2)
 					{
-						// the following call unfortunately does not work properly, since it relies on the identity system and treats it like a player id
-						// RHPlatformSessionId.FromJson(DecodedPlatformSessionId);
+						FName Type = FName(*Tokens[0]);
+						RHPlatformSessionId = OSSSession->CreateSessionIdFromString(Tokens[1]);
 
-						// therefore, we need to crack the JSON value, then pass it into the session system creation utility function instead
-						auto OSSSession = GetOSSSessionInterface();
-						if (OSSSession.IsValid())
+						// the above function does not work well for EOS, since it has two different ID types for sessions.  Try falling back to player id creation which works in some cases properly
+						if (Type != RHPlatformSessionId.GetType())
 						{
-							TArray<FString> Tokens;
+							RHPlatformSessionId.FromJson(DecodedPlatformSessionId);
 
-							int32 NumTokens = DecodedPlatformSessionId.ParseIntoArray(Tokens, TEXT(":"));
-							if (NumTokens == 2)
+							if (Type != RHPlatformSessionId.GetType())
 							{
-								FName Type = FName(*Tokens[0]);
-								RHPlatformSessionId = OSSSession->CreateSessionIdFromString(Tokens[1]);
-
-								// the above function does not work well for EOS, since it has two different ID types for sessions.  Try falling back to player id creation which works in some cases properly
-								if (Type != RHPlatformSessionId.GetType())
-								{
-									RHPlatformSessionId.FromJson(DecodedPlatformSessionId);
-
-									if (Type != RHPlatformSessionId.GetType())
-									{
-										return false;
-									}
-								}
-							}
-							else if (NumTokens == 1)
-							{
-								RHPlatformSessionId = OSSSession->CreateSessionIdFromString(Tokens[0]);
+								return false;
 							}
 						}
-
-						return RHPlatformSessionId.IsValid();
 					}
-					break;
+					else if (NumTokens == 1)
+					{
+						RHPlatformSessionId = OSSSession->CreateSessionIdFromString(Tokens[0]);
+					}
 				}
+
+				return RHPlatformSessionId.IsValid();
 			}
 		}
 	}
@@ -907,15 +898,21 @@ void URH_PlatformSessionSyncer::OnScoutFailedToJoin()
 		return;
 	}
 
-	UE_LOG(LogRHSession, Warning, TEXT("[%s] - Platform session delete not implemented"), ANSI_TO_TCHAR(__FUNCTION__));
-	SyncActionComplete(false);
-	/*
-	typedef RallyHereAPI::Traits_RemovePlatformSessionFromRallyHereSession BaseType;
+	FRHAPI_PlatformSession PlatformSession;
+	if (!RHSession->GetPlatformSession(RHPlatform, PlatformSession))
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform session to remove"), ANSI_TO_TCHAR(__FUNCTION__));
+		SyncActionComplete(false);
+		return;
+	}
+
+	typedef RallyHereAPI::Traits_DeletePlatformSessionFromRallyHereSession BaseType;
 
 	BaseType::Request Request;
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = RHSession->GetSessionId();
-	Request.Platform = RHPlatform;
+	Request.Platform = PlatformSession.GetPlatform();
+	Request.PlatformSessionIdBase64 = PlatformSession.GetPlatformSessionIdBase64();
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(SessionOwner, RHSession->GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_JoinedSession* Session)
 		{
@@ -932,7 +929,6 @@ void URH_PlatformSessionSyncer::OnScoutFailedToJoin()
 		GetDefault<URH_IntegrationSettings>()->SessionUpdateWithPlatformSessionPriority);
 
 	Helper->Start(Request);
-	*/
 }
 
 void URH_PlatformSessionSyncer::LeavePlatformSession()

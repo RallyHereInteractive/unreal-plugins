@@ -83,6 +83,26 @@ bool URH_SessionView::GetInstanceCustomDataValue(const FString& Key, FString& Va
 	return false;
 }
 
+bool URH_SessionView::GetPlatformSession(ERHAPI_Platform Platform, FRHAPI_PlatformSession& OutPlatformSession) const
+{
+	const auto* PlatformSessionArrayPtr = GetSessionData().GetPlatformSessionOrNull();
+	if (PlatformSessionArrayPtr != nullptr)
+	{
+		auto& PlatformSessionArray = *PlatformSessionArrayPtr;
+
+		for (auto& PlatformSession : PlatformSessionArray)
+		{
+			if (PlatformSession.GetPlatform() == Platform)
+			{
+				OutPlatformSession = PlatformSession;
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
 void URH_SessionView::ImportAPISession(const FRH_APISessionWithETag& newSessionData, const FRHAPI_SessionTemplate& newTemplate)
 {
 	typedef TMap<FGuid, FRH_SessionMemberStatusState> MemberStateList;
