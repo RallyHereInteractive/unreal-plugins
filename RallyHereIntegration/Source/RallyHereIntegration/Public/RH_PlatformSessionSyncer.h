@@ -119,11 +119,16 @@ public:
 	* @param [in] Session The Platform Session Search Result to join
 	* @param [in] Delegate The delegate to fire when the join is complete
 	*/
-	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
-	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
+	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	UE_DEPRECATED(5.0, "Please use the version with join details")
+	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock())
+	{
+		JoinRHSessionByPlatformSession(SessionOwner, Session, URH_OnlineSession::GetJoinDetailDefaults(SessionOwner.GetObject()), Delegate);
+	}
+	UE_DEPRECATED(5.0, "Please use the version with the error delegate and join details")
 	FORCEINLINE static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, FRH_GenericSuccessBlock Delegate)
 	{
-		JoinRHSessionByPlatformSession(SessionOwner, Session, RH_ConvertGenericSucessDelegateBlock(Delegate));
+		JoinRHSessionByPlatformSession(SessionOwner, Session, URH_OnlineSession::GetJoinDetailDefaults(SessionOwner.GetObject()), RH_ConvertGenericSucessDelegateBlock(Delegate));
 	}
 
 	/**

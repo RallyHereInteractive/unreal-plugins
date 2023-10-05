@@ -184,7 +184,7 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 	return false;;
 }
 
-void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, const FRH_GenericSuccessWithErrorBlock& Delegate)
+void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	if (SessionInvite.Session.SessionInfo.IsValid() && SessionOwner.IsValid())
 	{
@@ -225,7 +225,7 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 					});
 
 				auto Helper = MakeShared<FRH_SessionJoinByPlatformIdHelper>(SessionOwner, CompletionDelegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
-				Helper->Start(PlatformOptional.GetValue(), PlatformSessionIdStr);
+				Helper->Start(PlatformOptional.GetValue(), PlatformSessionIdStr, JoinDetails);
 				return;
 			}
 		}

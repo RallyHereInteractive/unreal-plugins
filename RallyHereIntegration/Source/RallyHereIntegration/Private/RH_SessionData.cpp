@@ -1079,13 +1079,26 @@ void URH_OnlineSession::LeaveQueue(const FRH_OnSessionUpdatedDelegateBlock& Dele
 	DoRequestViaHelper<RallyHereAPI::Traits_LeaveQueue>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeaveQueuePriority);
 }
 
-void URH_OnlineSession::JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+FRHAPI_SelfSessionPlayerUpdateRequest URH_OnlineSession::GetJoinDetailDefaults(TScriptInterface<IRH_SessionOwnerInterface> SessionOwner)
+{
+	auto JoinDetails = FRHAPI_SelfSessionPlayerUpdateRequest();
+
+	// ensure JoinDetails have minimum requirements.
+	JoinDetails.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
+	auto OSS = SessionOwner->GetOSS();
+	JoinDetails.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
+	JoinDetails.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());
+
+	return JoinDetails;
+}
+
+void URH_OnlineSession::JoinByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_JoinSessionByIdSelf BaseType;
 	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
 
 	auto Helper = MakeShared<FRH_SessionJoinByIdHelper>(MakeWeakInterface(SessionOwner), Delegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
-	Helper->Start(SessionId);
+	Helper->Start(SessionId, JoinDetails);
 }
 
 void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)

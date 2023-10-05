@@ -756,7 +756,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
 	
 	// we need to join the session
-	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, FRH_GenericSuccessWithErrorBlock());
+	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
 }
 
 void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool bSuccesful, const int32 ControllerId, FUniqueNetIdPtr InvitingUserId, const FOnlineSessionSearchResult& Session)
@@ -776,7 +776,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool
 	if (bSuccesful)
 	{
 		// we need to join the session
-		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, FRH_GenericSuccessWithErrorBlock());
+		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
 	}
 }
 
