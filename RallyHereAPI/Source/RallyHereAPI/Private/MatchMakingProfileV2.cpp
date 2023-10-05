@@ -22,8 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchMakingProfileV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("profile_id"));
-    RallyHereAPI::WriteJsonValue(Writer, ProfileId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
+    RallyHereAPI::WriteJsonValue(Writer, MatchMakingProfileId);
     if (JoinMode_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("join_mode"));
@@ -67,8 +67,8 @@ bool FRHAPI_MatchMakingProfileV2::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonProfileIdField = (*Object)->TryGetField(TEXT("profile_id"));
-    ParseSuccess &= JsonProfileIdField.IsValid() && !JsonProfileIdField->IsNull() && TryGetJsonValue(JsonProfileIdField, ProfileId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
+    ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && !JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId);
     const TSharedPtr<FJsonValue> JsonJoinModeField = (*Object)->TryGetField(TEXT("join_mode"));
     if (JsonJoinModeField.IsValid() && !JsonJoinModeField->IsNull())
     {

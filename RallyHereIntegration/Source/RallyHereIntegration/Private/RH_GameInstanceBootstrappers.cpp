@@ -103,7 +103,7 @@ bool URH_GameInstanceServerBootstrapper::DetermineJoinParameters(FString& Public
 		}
 		if (PrivateConnStr.Len() > 0)
 		{
-			PrivateConnStr = TEXT("unreal://") + PublicConnStr;
+			PrivateConnStr = TEXT("unreal://") + PrivateConnStr;
 		}
 
 		return true;

@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroupV2 : public FRHAPI_Model
 
     /** @brief ID for this set of potential matchmaking templates */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FGuid TemplateGroupId{  };
-    /** @brief Gets the value of TemplateGroupId */
-    FGuid& GetTemplateGroupId() { return TemplateGroupId; }
-    /** @brief Gets the value of TemplateGroupId */
-    const FGuid& GetTemplateGroupId() const { return TemplateGroupId; }
-    /** @brief Sets the value of TemplateGroupId */
-    void SetTemplateGroupId(FGuid NewValue) { TemplateGroupId = NewValue;  }
+    FGuid MatchMakingTemplateGroupId{  };
+    /** @brief Gets the value of MatchMakingTemplateGroupId */
+    FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
+    /** @brief Gets the value of MatchMakingTemplateGroupId */
+    const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
+    /** @brief Sets the value of MatchMakingTemplateGroupId */
+    void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 
     /** @brief List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

@@ -1372,16 +1372,18 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 		ImGuiDisplayCopyableValue(TEXT("QueueId"), Queue->GetQueueId());
 		ImGuiDisplayCopyableValue(TEXT("Description"), Queue->GetDescription());
 
-		ImGui::Text("Active: %s", Queue->IsActive() ? "true" : "false");
-		ImGui::Text("RankingType: %d", Queue->GetRankingType());
-		ImGui::Text("NumSides: %d", Queue->GetNumSides());
-		ImGui::Text("MaxPlayersPerSide: %d", Queue->GetMaxPlayersPerSide());
-		ImGui::Text("MinPlayersPerSide: %d", Queue->GetMinPlayersPerSide());
-		ImGui::Text("MaxQueueGroupSize: %d", Queue->GetMaxQueueGroupSize());
-		ImGuiDisplayCopyableValue(TEXT("MatchMakingTemplateGroupId"), Queue->GetMatchMakingTemplateGroupId());
+		const auto& QueueInfo = Queue->GetQueueInfo();
+
+		ImGui::Text("Active: %s", QueueInfo.GetActive() ? "true" : "false");
+		ImGui::Text("MaxQueueGroupSize: %d", QueueInfo.GetMaxQueueGroupSize());
+
+		ImGuiDisplayCustomData(QueueInfo.GetLegacyConfigOrNull(), TEXT(""), TEXT("LegacyConfig"));
+
+		ImGuiDisplayCopyableValue(TEXT("MatchMakingTemplateGroupId"), QueueInfo.GetMatchMakingTemplateGroupId());		
+		
 		if (pBrowerCache != nullptr)
 		{
-			auto* TemplateGroup = pBrowerCache->GetMatchmakingTemplateGroup(Queue->GetMatchMakingTemplateGroupId());
+			auto* TemplateGroup = pBrowerCache->GetMatchmakingTemplateGroup(QueueInfo.GetMatchMakingTemplateGroupId());
 			if (TemplateGroup != nullptr)
 			{
 				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*TemplateGroup->GetDescription()), RH_DefaultTreeFlags))
@@ -1403,45 +1405,45 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 					}
 					ImGuiDisplayCopyableValue(TEXT("RequiredItems"), RequiredItemsString);
 
-					if (ImGui::TreeNodeEx("Possible Launch Templates", RH_DefaultTreeFlagsLeaf))
+					if (ImGui::TreeNodeEx("Possible Request Templates", RH_DefaultTreeFlagsLeaf))
 					{
-						TArray<FGuid> LaunchTemplateIds = TemplateGroup->GetPossibleInstanceLaunchTemplateIds();
+						TArray<FGuid> RequestTemplateIds = TemplateGroup->GetPossibleInstanceRequestTemplateIds();
 						if (pBrowerCache != nullptr)
 						{
-							for (auto& LaunchTemplateId : LaunchTemplateIds)
+							for (auto& RequestTemplateId : RequestTemplateIds)
 							{
 
-								if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*LaunchTemplateId.ToString(EGuidFormats::DigitsWithHyphens)), RH_DefaultTreeFlagsLeaf))
+								if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*RequestTemplateId.ToString(EGuidFormats::DigitsWithHyphens)), RH_DefaultTreeFlagsLeaf))
 								{
-									ImGuiDisplayCopyableValue(LaunchTemplateId.ToString(EGuidFormats::DigitsWithHyphens), LaunchTemplateId, ECopyMode::Value);
-									auto* LaunchTemplate = pBrowerCache->GetInstanceLaunchTemplate(LaunchTemplateId);
-									if (LaunchTemplate != nullptr)
+									ImGuiDisplayCopyableValue(RequestTemplateId.ToString(EGuidFormats::DigitsWithHyphens), RequestTemplateId, ECopyMode::Value);
+									auto* RequestTemplate = pBrowerCache->GetInstanceRequestTemplate(RequestTemplateId);
+									if (RequestTemplate != nullptr)
 									{
-										const auto& TemplateInfo = LaunchTemplate->GetInfo();
+										const auto& TemplateInfo = RequestTemplate->GetInfo();
 
 										const auto& MapList = TemplateInfo.GetMapSelectionList().GetMaps();
 
 										for (auto Map : MapList)
 										{
-											auto MapIdentifier = FString::Printf(TEXT("%d"), Map.GetMapGameId());
+											auto MapIdentifier = FString::Printf(TEXT("Map %s"), *Map.GetMapId());
 											if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MapIdentifier), RH_DefaultTreeFlagsLeaf))
 											{
-												ImGuiDisplayCopyableValue(TEXT("MapId"), Map.GetMapGameId());
-												ImGuiDisplayCopyableValue(TEXT("Map"), Map.GetMapName());
+												ImGuiDisplayCopyableValue(TEXT("MapId"), Map.GetMapId());
+												ImGuiDisplayCopyableValue(TEXT("Name"), Map.GetName());
 												ImGuiDisplayCopyableValue(TEXT("GameMode"), Map.GetModeOrNull());
-												ImGuiDisplayCopyableValue(TEXT("Chance"), Map.GetSelectionChance());
+												ImGuiDisplayCopyableValue(TEXT("Weight"), Map.GetMapWeight());
 												ImGuiDisplayCustomData(Map.GetCustomData());
 												ImGui::TreePop();
 											}
 										}
 
-										ImGuiDisplayCustomData(LaunchTemplate->GetCustomData());
+										ImGuiDisplayCustomData(RequestTemplate->GetCustomData());
 									}
 									else
 									{
-										if (ImGui::Button("Lookup Launch Template"))
+										if (ImGui::Button("Lookup Request Template"))
 										{
-											pBrowerCache->SearchInstanceLaunchTemplate(LaunchTemplateId);
+											pBrowerCache->SearchInstanceRequestTemplate(RequestTemplateId);
 										}
 									}
 
@@ -1451,9 +1453,9 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 						}
 						else
 						{
-							for (auto& LaunchTemplateId : LaunchTemplateIds)
+							for (auto& RequestTemplateId : RequestTemplateIds)
 							{
-								ImGuiDisplayCopyableValue(LaunchTemplateId.ToString(EGuidFormats::DigitsWithHyphens), LaunchTemplateId, ECopyMode::Value);
+								ImGuiDisplayCopyableValue(RequestTemplateId.ToString(EGuidFormats::DigitsWithHyphens), RequestTemplateId, ECopyMode::Value);
 							}
 						}
 
@@ -1469,7 +1471,7 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 				ImGui::SameLine();
 				if (ImGui::SmallButton("Lookup Template Group Id"))
 				{
-					pBrowerCache->SearchMatchmakingTemplateGroup(Queue->GetMatchMakingTemplateGroupId());
+					pBrowerCache->SearchMatchmakingTemplateGroup(QueueInfo.GetMatchMakingTemplateGroupId());
 				}
 			}
 		}
