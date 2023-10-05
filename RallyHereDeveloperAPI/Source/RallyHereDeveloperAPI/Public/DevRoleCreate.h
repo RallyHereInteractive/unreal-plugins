@@ -143,11 +143,11 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleCreate : public FRHAPI_DevModel
     /** @brief Sets the value of RoleId_Optional and also sets RoleId_IsSet to true */
     void SetRoleId(FGuid NewValue) { RoleId_Optional = NewValue; RoleId_IsSet = true; }
      /** @brief Clears the value of RoleId_Optional and sets RoleId_IsSet to false */
-    void ClearRoleId() { RoleId_Optional = FGuid(TEXT("f698515f-c38d-40bc-944f-68e0e1228cff")); RoleId_IsSet = false; }
+    void ClearRoleId() { RoleId_Optional = FGuid(TEXT("92044d78-7b86-469d-8d60-dec5e7435e75")); RoleId_IsSet = false; }
     /** @brief Returns true if RoleId_Optional is set and matches the default value */
-    bool IsRoleIdDefaultValue() const { return RoleId_IsSet && RoleId_Optional == FGuid(TEXT("f698515f-c38d-40bc-944f-68e0e1228cff")); }
+    bool IsRoleIdDefaultValue() const { return RoleId_IsSet && RoleId_Optional == FGuid(TEXT("92044d78-7b86-469d-8d60-dec5e7435e75")); }
     /** @brief Sets the value of RoleId_Optional to its default and also sets RoleId_IsSet to true */
-    void SetRoleIdToDefault() { RoleId_Optional = FGuid(TEXT("f698515f-c38d-40bc-944f-68e0e1228cff")); RoleId_IsSet = true; }
+    void SetRoleIdToDefault() { RoleId_Optional = FGuid(TEXT("92044d78-7b86-469d-8d60-dec5e7435e75")); RoleId_IsSet = true; }
 };
 
 /** @} */

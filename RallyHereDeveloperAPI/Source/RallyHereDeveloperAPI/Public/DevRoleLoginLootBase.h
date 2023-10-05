@@ -58,11 +58,11 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleLoginLootBase : public FRHAPI_Dev
     /** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true */
     void SetLootId(FString NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
      /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
-    void ClearLootId() { LootId_Optional = TEXT("02bf112d-a912-4f2e-a0de-dfe255e5edf5"); LootId_IsSet = false; }
+    void ClearLootId() { LootId_Optional = TEXT("cfa6d229-1166-4497-b2fc-4253264f2772"); LootId_IsSet = false; }
     /** @brief Returns true if LootId_Optional is set and matches the default value */
-    bool IsLootIdDefaultValue() const { return LootId_IsSet && LootId_Optional == TEXT("02bf112d-a912-4f2e-a0de-dfe255e5edf5"); }
+    bool IsLootIdDefaultValue() const { return LootId_IsSet && LootId_Optional == TEXT("cfa6d229-1166-4497-b2fc-4253264f2772"); }
     /** @brief Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true */
-    void SetLootIdToDefault() { LootId_Optional = TEXT("02bf112d-a912-4f2e-a0de-dfe255e5edf5"); LootId_IsSet = true; }
+    void SetLootIdToDefault() { LootId_Optional = TEXT("cfa6d229-1166-4497-b2fc-4253264f2772"); LootId_IsSet = true; }
 };
 
 /** @} */
