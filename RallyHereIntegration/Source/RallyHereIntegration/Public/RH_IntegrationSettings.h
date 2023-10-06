@@ -173,6 +173,9 @@ public:
 	/** @brief Extensible ConfigSubsystem class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath ConfigSubsystemClass;
+	/** @brief Extensible ConfigSubsystem class path. */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath SettingsSubsystemClass;
 	/** @brief Extensible SessionBrowserCache class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath SessionBrowserCacheClass;

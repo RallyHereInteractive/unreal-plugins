@@ -3,6 +3,8 @@
 #include "RHDTW_PlayerSettings.h"
 #include "imgui.h"
 #include "RH_ImGuiUtilities.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_SettingsSubsystem.h"
 
 FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	: Super()
@@ -152,44 +154,36 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 
 void FRHDTW_PlayerSettings::DoSettingsTypes()
 {
-	ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
-	if (pLocalPlayer == nullptr)
+	auto* GI = GetGameInstance();
+	if (GI == nullptr)
 	{
-		ImGui::Text("Requesting Types requires a logged in local player for Auth Context");
+		ImGui::Text("%s", "Could not find owning game instance.");
 		return;
 	}
 
-	URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-	if (pRH_LocalPlayerSubsystem == nullptr)
+	auto* pGISS = GI->GetSubsystem<URH_GameInstanceSubsystem>();
+	if (pGISS == nullptr)
 	{
-		ImGui::Text("Requesting Types requires a logged in local player for Auth Context");
+		ImGui::Text("%s", "URH_GameInstanceSubsystem not available.");
 		return;
 	}
 
-	if (!pRH_LocalPlayerSubsystem->GetAuthContext()->IsLoggedIn())
+	URH_SettingsSubsystem* pRH_SettingsSubsystem = pGISS->GetSettingsSubsystem();
+	if (pRH_SettingsSubsystem == nullptr)
 	{
-		ImGui::Text("Requesting Types requires a logged in local player for Auth Context");
+		ImGui::Text("%s", "URH_SettingsSubsystem not available.");
 		return;
 	}
 
 	if (ImGui::Button("Get Setting Types"))
 	{
-		typedef RallyHereAPI::Traits_GetConfigForAllSettingTypes TGetConfigSettings;		
-
-		auto Request = TGetConfigSettings::Request();
-		Request.AuthContext = pRH_LocalPlayerSubsystem->GetAuthContext();
-
-		TGetConfigSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, TGetConfigSettings::Delegate::CreateLambda([this](const TGetConfigSettings::Response& Resp)
-			{
-				CachedSettingsTypes.Empty();
-				CachedSettingsTypes.Append(Resp.Content);
-			}));
+		pRH_SettingsSubsystem->GetSettingTypes();
 	}
 	ImGui::Separator();
 
-	if (CachedSettingsTypes.Num() > 0)
+	if (pRH_SettingsSubsystem->GetCachedSettingTypes().Num() > 0)
 	{
-		for (const auto& Pair : CachedSettingsTypes)
+		for (const auto& Pair : pRH_SettingsSubsystem->GetCachedSettingTypes())
 		{
 			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*Pair.Key), RH_DefaultTreeFlagsDefaultOpen))
 			{

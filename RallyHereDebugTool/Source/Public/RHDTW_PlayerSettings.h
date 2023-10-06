@@ -24,7 +24,5 @@ struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 private:
 	FString SetPlayerSettingsActionResult;
 	void HandleSetPlayerSettingsResponse(bool bSuccess, FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid);
-
-	TMap<FString, FRHAPI_SettingType> CachedSettingsTypes;
 };
 
