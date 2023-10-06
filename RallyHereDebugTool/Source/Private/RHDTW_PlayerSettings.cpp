@@ -26,15 +26,21 @@ void FRHDTW_PlayerSettings::Do()
 {
 	if (ImGui::BeginTabBar("Settings", ImGuiTabBarFlags_FittingPolicyScroll))
 	{
-		if (ImGui::BeginTabItem("View Settings", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("View", nullptr, ImGuiTabItemFlags_None))
 		{
 			DoViewSettings();
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem("Modify Settings", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Modify", nullptr, ImGuiTabItemFlags_None))
 		{
 			DoModifySettings();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Types", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoSettingsTypes();
 			ImGui::EndTabItem();
 		}
 
@@ -141,6 +147,69 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 					PlayerInfo->SetPlayerSettings(UTF8_TO_TCHAR(ModifySettingsIdInput.GetData()), DataWrapper, MoveTemp(Delegate));
 				}
 			}));
+	}
+}
+
+void FRHDTW_PlayerSettings::DoSettingsTypes()
+{
+	ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
+	if (pLocalPlayer == nullptr)
+	{
+		ImGui::Text("Requesting Types requires a logged in local player for Auth Context");
+		return;
+	}
+
+	URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
+	if (pRH_LocalPlayerSubsystem == nullptr)
+	{
+		ImGui::Text("Requesting Types requires a logged in local player for Auth Context");
+		return;
+	}
+
+	if (!pRH_LocalPlayerSubsystem->GetAuthContext()->IsLoggedIn())
+	{
+		ImGui::Text("Requesting Types requires a logged in local player for Auth Context");
+		return;
+	}
+
+	if (ImGui::Button("Get Setting Types"))
+	{
+		typedef RallyHereAPI::Traits_GetConfigForAllSettingTypes TGetConfigSettings;		
+
+		auto Request = TGetConfigSettings::Request();
+		Request.AuthContext = pRH_LocalPlayerSubsystem->GetAuthContext();
+
+		TGetConfigSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, TGetConfigSettings::Delegate::CreateLambda([this](const TGetConfigSettings::Response& Resp)
+			{
+				CachedSettingsTypes.Empty();
+				CachedSettingsTypes.Append(Resp.Content);
+			}));
+	}
+	ImGui::Separator();
+
+	if (CachedSettingsTypes.Num() > 0)
+	{
+		for (const auto& Pair : CachedSettingsTypes)
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*Pair.Key), RH_DefaultTreeFlagsDefaultOpen))
+			{
+				for (const auto& VersionPair : Pair.Value.GetVersions())
+				{
+					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%s##%s"), *VersionPair.Key, *Pair.Key)), RH_DefaultTreeFlagsLeaf | ImGuiTreeNodeFlags_DefaultOpen))
+					{
+						FString OutJsonString;
+						TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutJsonString);
+						if (FJsonSerializer::Serialize(VersionPair.Value.GetValueJsonschema().GetObject().ToSharedRef(), Writer))
+						{
+							ImGui::Text("%s", TCHAR_TO_UTF8(*OutJsonString));
+						}
+
+						ImGui::TreePop();
+					}
+				}
+				ImGui::TreePop();
+			}
+		}
 	}
 }
 
