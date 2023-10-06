@@ -199,11 +199,20 @@ void ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasC
 		for (auto jsonValueIt = JsonObject->Values.CreateConstIterator(); jsonValueIt; ++jsonValueIt)
 		{
 			const TSharedPtr<FJsonObject>* ValueAsObject;
+			const TArray<TSharedPtr<FJsonValue>>* ValueAsArray;
 			if ((*jsonValueIt).Value->TryGetObject(ValueAsObject))
 			{
 				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*(*jsonValueIt).Key), RH_DefaultTreeFlags))
 				{
 					ImGuiDisplayJsonObject(*ValueAsObject, false);
+					ImGui::TreePop();
+				}
+			}
+			else if ((*jsonValueIt).Value->TryGetArray(ValueAsArray))
+			{
+				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*(*jsonValueIt).Key), RH_DefaultTreeFlags))
+				{
+					ImGuiDisplayJsonArray(*ValueAsArray);
 					ImGui::TreePop();
 				}
 			}
@@ -225,6 +234,35 @@ void ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasC
 			FPlatformApplicationMisc::ClipboardCopy(*OutputString);
 		}
 #endif
+	}
+}
+
+void ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray)
+{
+	for (int32 i = 0; i < JsonArray.Num(); ++i)
+	{
+		const TSharedPtr<FJsonObject>* ValueAsObject;
+		const TArray<TSharedPtr<FJsonValue>>* ValueAsArray;
+		if (JsonArray[i]->TryGetObject(ValueAsObject))
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("[%d]"), i)), RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayJsonObject(*ValueAsObject, false);
+				ImGui::TreePop();
+			}
+		}
+		else if (JsonArray[i]->TryGetArray(ValueAsArray))
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("[%d]"), i)), RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayJsonArray(*ValueAsArray);
+				ImGui::TreePop();
+			}
+		}
+		else
+		{
+			ImGuiDisplayCopyableValue(FString::Printf(TEXT("[%d]"), i), JsonArray[i]->AsString(), ECopyMode::KeyValue);
+		}
 	}
 }
 

@@ -173,6 +173,9 @@ public:
 	/** @brief Extensible ConfigSubsystem class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath ConfigSubsystemClass;
+	/** @brief Extensible ConfigSubsystem class path. */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath SettingsSubsystemClass;
 	/** @brief Extensible SessionBrowserCache class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath SessionBrowserCacheClass;
@@ -397,6 +400,9 @@ public:
 	/** @brief Sets the request priority of Get Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
 	int32 SettingsGetPriority;
+	/** @brief Sets the request priority of Get Settings Types calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
+	int32 SettingsGetTypesPriority;
 	/** @brief Sets the request priority of Update Settings calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
 	int32 SettingsUpdatePriority;

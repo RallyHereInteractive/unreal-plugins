@@ -3,6 +3,8 @@
 #include "RHDTW_PlayerSettings.h"
 #include "imgui.h"
 #include "RH_ImGuiUtilities.h"
+#include "RH_GameInstanceSubsystem.h"
+#include "RH_SettingsSubsystem.h"
 
 FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	: Super()
@@ -26,15 +28,21 @@ void FRHDTW_PlayerSettings::Do()
 {
 	if (ImGui::BeginTabBar("Settings", ImGuiTabBarFlags_FittingPolicyScroll))
 	{
-		if (ImGui::BeginTabItem("View Settings", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("View", nullptr, ImGuiTabItemFlags_None))
 		{
 			DoViewSettings();
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem("Modify Settings", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Modify", nullptr, ImGuiTabItemFlags_None))
 		{
 			DoModifySettings();
+			ImGui::EndTabItem();
+		}
+
+		if (ImGui::BeginTabItem("Types", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoSettingsTypes();
 			ImGui::EndTabItem();
 		}
 
@@ -141,6 +149,55 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 					PlayerInfo->SetPlayerSettings(UTF8_TO_TCHAR(ModifySettingsIdInput.GetData()), DataWrapper, MoveTemp(Delegate));
 				}
 			}));
+	}
+}
+
+void FRHDTW_PlayerSettings::DoSettingsTypes()
+{
+	auto* GI = GetGameInstance();
+	if (GI == nullptr)
+	{
+		ImGui::Text("%s", "Could not find owning game instance.");
+		return;
+	}
+
+	auto* pGISS = GI->GetSubsystem<URH_GameInstanceSubsystem>();
+	if (pGISS == nullptr)
+	{
+		ImGui::Text("%s", "URH_GameInstanceSubsystem not available.");
+		return;
+	}
+
+	URH_SettingsSubsystem* pRH_SettingsSubsystem = pGISS->GetSettingsSubsystem();
+	if (pRH_SettingsSubsystem == nullptr)
+	{
+		ImGui::Text("%s", "URH_SettingsSubsystem not available.");
+		return;
+	}
+
+	if (ImGui::Button("Get Setting Types"))
+	{
+		pRH_SettingsSubsystem->GetSettingTypes();
+	}
+	ImGui::Separator();
+
+	if (pRH_SettingsSubsystem->GetCachedSettingTypes().Num() > 0)
+	{
+		for (const auto& Pair : pRH_SettingsSubsystem->GetCachedSettingTypes())
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*Pair.Key), RH_DefaultTreeFlagsDefaultOpen))
+			{
+				for (const auto& VersionPair : Pair.Value.GetVersions())
+				{
+					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%s##%s"), *VersionPair.Key, *Pair.Key)), RH_DefaultTreeFlagsLeaf | ImGuiTreeNodeFlags_DefaultOpen))
+					{
+						ImGuiDisplayJsonObject(VersionPair.Value.GetValueJsonschema().GetObject(), true);
+						ImGui::TreePop();
+					}
+				}
+				ImGui::TreePop();
+			}
+		}
 	}
 }
 

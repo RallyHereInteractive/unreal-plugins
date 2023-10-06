@@ -13,6 +13,7 @@ struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 
 	void DoViewSettings();
 	void DoModifySettings();
+	void DoSettingsTypes();
 
 	int32 SettingVersionNum;
 	TArray<ANSICHAR> SettingsIdInput;
