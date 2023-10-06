@@ -66,6 +66,7 @@ public:
         if (Singleton != nullptr)
         {
             delete Singleton;
+			Singleton = nullptr;
         }
     }
 
