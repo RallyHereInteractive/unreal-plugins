@@ -5,7 +5,7 @@ URH_SettingsSubsystem::URH_SettingsSubsystem(const FObjectInitializer& ObjectIni
 {
 }
 
-void URH_SettingsSubsystem::GetSettingTypes(const FRH_GenericSuccessBlock& Delegate)
+void URH_SettingsSubsystem::GetSettingTypes(const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -16,9 +16,9 @@ void URH_SettingsSubsystem::GetSettingTypes(const FRH_GenericSuccessBlock& Deleg
 		{
 			CachedSettingsTypes.Empty();
 			CachedSettingsTypes.Append(Resp.Content);
-			Delegate.ExecuteIfBound(true);
+			//Delegate.ExecuteIfBound(true);
 		})))
 	{
-		Delegate.ExecuteIfBound(false);
+		//Delegate.ExecuteIfBound(false);
 	}
 }

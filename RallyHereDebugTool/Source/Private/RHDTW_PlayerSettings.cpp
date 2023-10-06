@@ -191,13 +191,7 @@ void FRHDTW_PlayerSettings::DoSettingsTypes()
 				{
 					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%s##%s"), *VersionPair.Key, *Pair.Key)), RH_DefaultTreeFlagsLeaf | ImGuiTreeNodeFlags_DefaultOpen))
 					{
-						FString OutJsonString;
-						TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutJsonString);
-						if (FJsonSerializer::Serialize(VersionPair.Value.GetValueJsonschema().GetObject().ToSharedRef(), Writer))
-						{
-							ImGui::Text("%s", TCHAR_TO_UTF8(*OutJsonString));
-						}
-
+						ImGuiDisplayJsonObject(VersionPair.Value.GetValueJsonschema().GetObject(), true);
 						ImGui::TreePop();
 					}
 				}

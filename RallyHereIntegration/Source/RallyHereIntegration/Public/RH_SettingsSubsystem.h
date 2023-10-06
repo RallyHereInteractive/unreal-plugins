@@ -26,9 +26,9 @@ public:
 	* @brief Gets all settings type configs.
 	* @param [in] Delegate Callback when the API call is complete.
 	*/
-	void GetSettingTypes(const FRH_GenericSuccessBlock& Delegate = FRH_GenericSuccessBlock());
+	void GetSettingTypes(const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	UFUNCTION(BlueprintCallable, Category = "Settings Subsystem", meta = (DisplayName = "Get Setting Types", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetSettingTypes(const FRH_GenericSuccessDynamicDelegate& Delegate) { GetSettingTypes(Delegate); }
+	void BLUEPRINT_GetSettingTypes(const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { GetSettingTypes(Delegate); }
 
 	/** @brief Gets Cached Settings Types */
 	UFUNCTION(BlueprintGetter)
