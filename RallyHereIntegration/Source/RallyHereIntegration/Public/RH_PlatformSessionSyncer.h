@@ -117,6 +117,7 @@ public:
 	* @brief Static helper function to join a rally here session based off a platform session search result (received/accepted invites from the OSS typically come in the form of search results)
 	* @param [in] SessionOwner The session owner object to use when joining the session
 	* @param [in] Session The Platform Session Search Result to join
+	* @param [in] JoinDetails The join details to use when joining the session
 	* @param [in] Delegate The delegate to fire when the join is complete
 	*/
 	static void JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& Session, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
