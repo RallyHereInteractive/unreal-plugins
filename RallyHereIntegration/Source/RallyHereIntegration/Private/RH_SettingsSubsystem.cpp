@@ -13,13 +13,10 @@ void URH_SettingsSubsystem::GetSettingTypes(const FRH_GenericSuccessWithErrorBlo
 	Request.AuthContext = GetAuthContext();
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetConfigSettings>>(
-		TGetConfigSettings::Delegate::CreateLambda([this, Delegate](const TGetConfigSettings::Response& Resp)
+		TGetConfigSettings::Delegate::CreateLambda([this](const TGetConfigSettings::Response& Resp)
 			{
-				if (Resp.IsSuccessful())
-				{
-					CachedSettingsTypes.Empty();
-					CachedSettingsTypes.Append(Resp.Content);
-				}
+				CachedSettingsTypes.Empty();
+				CachedSettingsTypes.Append(Resp.Content);
 			}),
 		Delegate,
 		GetDefault<URH_IntegrationSettings>()->SettingsGetTypesPriority
