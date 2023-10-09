@@ -166,10 +166,9 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 	}
 }
 
-void ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct)
+void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
 {
-	TFunction<void(const FString& Key, FProperty const*, FProperty const*, uint8 const*)> DisplayValueForProperty;
-	DisplayValueForProperty = [&](const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data)
+	auto DisplayValueForProperty = [&](const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data)
 	{
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();
@@ -200,7 +199,7 @@ void ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct)
 			}
 			else
 			{
-				ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), NumericProperty->GetFloatingPointPropertyValue(Data))));
+				ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%f"), NumericProperty->GetFloatingPointPropertyValue(Data))));
 			}
 		}
 		else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
@@ -224,7 +223,17 @@ void ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct)
 			FString	ValueStr;
 			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
 
-			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+			FGuid TestGuid;
+			FGuid::Parse(ValueStr, TestGuid);
+
+			if (TestGuid.IsValid())
+			{
+				ImGui::Text("%s", TCHAR_TO_UTF8(*TestGuid.ToString(EGuidFormats::DigitsWithHyphens)));
+			}
+			else
+			{
+				ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+			}
 		}
 		else if (FMapProperty const* MapProp = CastField<FMapProperty>(Property))
 		{
@@ -236,7 +245,7 @@ void ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct)
 					ImGui::TableSetupColumn("Value");
 					ImGui::TableHeadersRow();
 
-					FScriptMapHelper MapHelper(MapProp, Property->ContainerPtrToValuePtr<uint8>(Model));
+					FScriptMapHelper MapHelper(MapProp, Property->ContainerPtrToValuePtr<uint8>(&Model));
 					for (int32 i = 0; i < MapHelper.Num(); ++i)
 					{
 						FString	KeyStr;
@@ -261,7 +270,7 @@ void ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct)
 		{
 			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
 			{
-				ImGuiDisplayModelData((FRHAPI_Model*)StructProp->ContainerPtrToValuePtr<void>(Model), StructProp->Struct);
+				ImGuiDisplayModelData(*(FRHAPI_Model*)StructProp->ContainerPtrToValuePtr<void>(&Model), StructProp->Struct);
 				ImGui::TreePop();
 			}
 		}
@@ -315,7 +324,7 @@ void ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct)
 				PropName = PropName + "<?>";
 			}
 
-			DisplayValueForProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(Model));
+			DisplayValueForProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model));
 		}
 
 		ImGui::EndTable();

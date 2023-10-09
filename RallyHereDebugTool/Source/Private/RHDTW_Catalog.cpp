@@ -489,7 +489,7 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 					{
 						if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), VendorItemPair.Value.GetLootId())), RH_DefaultTreeFlags))
 						{
-							ImGuiDisplayModelData<FRHAPI_Loot>(&VendorItemPair.Value);
+							ImGuiDisplayModelData<FRHAPI_Loot>(VendorItemPair.Value);
 							ImGui::TreePop();
 						}
 					}

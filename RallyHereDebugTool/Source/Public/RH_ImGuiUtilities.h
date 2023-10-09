@@ -98,12 +98,12 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject>
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray);
 
 template<typename ModelType>
-void ImGuiDisplayModelData(const ModelType* Model)
+void ImGuiDisplayModelData(const ModelType& Model)
 {
 	ImGuiDisplayModelData(Model, ModelType::StaticStruct());
 }
 
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayModelData(const FRHAPI_Model* Model, const UStruct* Struct);
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct);
 
 void RALLYHEREDEBUGTOOL_API ImGuiCopyStringToTextInputBuffer(const FString& StringToCopy, TArray<ANSICHAR>& Buffer);
 
