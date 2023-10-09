@@ -25,6 +25,7 @@ FRHDTW_Session::FRHDTW_Session()
 {
 	DefaultPos = FVector2D(610, 20);
 
+	JoinByIdTeam = 0;
 	JoinByIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	CreateByTypeSessionTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 	CreateByTypeRegionIdString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
@@ -414,8 +415,18 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			{
 				if (pLPSessionSubsystem->GetSessionById(Session.SessionId) == nullptr)
 				{
+					ImGui::SetNextItemWidth(150.f);
+					ImGui::InputInt("Team", &JoinByIdTeam, 1, 0);
+					ImGui::SameLine();
+
+					auto JoinDetails = URH_OnlineSession::GetJoinDetailDefaults(pLPSessionSubsystem);
+					JoinDetails.SetTeamId(JoinByIdTeam);
+
+					
+
 					if (ImGui::Button("Join"))
 					{
+						URH_OnlineSession::JoinByIdEx(Session.SessionId, MoveTemp(JoinDetails), pLPSessionSubsystem);
 						pLPSessionSubsystem->JoinSessionById(Session.SessionId);
 					}
 				}
@@ -777,6 +788,9 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 
 	ImGui::InputText("##JoinByID", JoinByIdString.GetData(), JoinByIdString.Num());
 	ImGui::SameLine();
+	ImGui::SetNextItemWidth(150.f);
+	ImGui::InputInt("Team", &JoinByIdTeam, 1, 0);
+	ImGui::SameLine();
 	if (ImGui::Button("Join (SessionId)"))
 	{
 		SessionActionResult.Empty();
@@ -788,7 +802,11 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 					if (URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem = LPSS->GetSessionSubsystem())
 					{
 						auto Delegate = FRH_OnSessionUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleSessionUpdatedResult, LPSS->GetPlayerUuid());
-						pLPSessionSubsystem->JoinSessionById(ImGuiGetStringFromTextInputBuffer(JoinByIdString), MoveTemp(Delegate));
+
+						auto JoinDetails = URH_OnlineSession::GetJoinDetailDefaults(pLPSessionSubsystem);
+						JoinDetails.SetTeamId(JoinByIdTeam);
+
+						URH_OnlineSession::JoinByIdEx(ImGuiGetStringFromTextInputBuffer(JoinByIdString), MoveTemp(JoinDetails), pLPSessionSubsystem, MoveTemp(Delegate));
 					}
 					else
 					{

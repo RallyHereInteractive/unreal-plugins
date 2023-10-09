@@ -26,6 +26,7 @@ public:
 
 	virtual void Do() override;
 
+	int32 JoinByIdTeam;
 	TArray<ANSICHAR> JoinByIdString;
 	TArray<ANSICHAR> CreateByTypeSessionTypeString;
 	TArray<ANSICHAR> CreateByTypeRegionIdString;

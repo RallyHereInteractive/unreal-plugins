@@ -993,20 +993,44 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Queue", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LeaveQueue(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { LeaveQueue(Delegate); }
 	/**
+	 * @brief Gets a set of default join details for a session owner.
+	 * @param [in] SessionOwner Owner of the session to join.
+	 * @return default join details for a session owner.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Get Default Join Details"))
+	static FRHAPI_SelfSessionPlayerUpdateRequest GetJoinDetailDefaults(TScriptInterface<IRH_SessionOwnerInterface> SessionOwner);
+	/**
 	 * @brief Attempts to join a session by id. Requires that the player have permission to join the session to succeed.
 	 * @param [in] SessionId Id of the session to join.
 	 * @param [in] SessionOwner Owner of the session to join.
 	 * @param [in] Delegate Callback deledate with an update of the session being joined.
 	 */
-	static void JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	static void JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { JoinByIdEx(SessionId, GetJoinDetailDefaults(SessionOwner), SessionOwner, Delegate); }
 	/**
 	 * @brief Blueprint compatible version of JoinById
 	 * @param [in] SessionId Id of the session to join.
 	 * @param [in] SessionOwner Owner of the session to join.
 	 * @param [in] Delegate Callback deledate with an update of the session being joined.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join By Id", AutoCreateRefTerm = "Delegate"))
-	static void BLUEPRINT_JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { JoinById(SessionId, SessionOwner, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join By Id (Simple)", AutoCreateRefTerm = "Delegate"))
+	static void BLUEPRINT_JoinById(const FString& SessionId, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { JoinByIdEx(SessionId, GetJoinDetailDefaults(SessionOwner), SessionOwner, Delegate); }
+	/**
+	 * @brief Attempts to join a session by id. Requires that the player have permission to join the session to succeed.
+	 * @param [in] SessionId Id of the session to join.
+	 * @param [in] JoinDetails Details for the player joining the session.
+	 * @param [in] SessionOwner Owner of the session to join.
+	 * @param [in] Delegate Callback deledate with an update of the session being joined.
+	 */
+	static void JoinByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	/**
+	 * @brief Blueprint compatible version of JoinByIdEx
+	 * @param [in] SessionId Id of the session to join.
+	 * @param [in] JoinDetails Details for the player joining the session.
+	 * @param [in] SessionOwner Owner of the session to join.
+	 * @param [in] Delegate Callback deledate with an update of the session being joined.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join By Id", AutoCreateRefTerm = "JoinDetails, Delegate"))
+	static void BLUEPRINT_JoinByIdEx(const FString& SessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { JoinByIdEx(SessionId, JoinDetails, SessionOwner, Delegate); }
 	/**
 	 * @brief Invites a player to the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.

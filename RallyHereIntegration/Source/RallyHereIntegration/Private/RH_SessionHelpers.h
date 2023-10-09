@@ -701,6 +701,12 @@ public:
 
 	virtual void Start(const FString& InSessionId)
 	{
+		// backwards compatible hook
+		Start(InSessionId, URH_OnlineSession::GetJoinDetailDefaults(SessionOwner.GetObject()));
+	}
+
+	virtual void Start(const FString& InSessionId, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails)
+	{
 		Started();
 
 		if (!SessionOwner.IsValid())
@@ -713,14 +719,10 @@ public:
 
 		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
 		{
-			const auto OSS = SessionOwner->GetOSS();
-
 			BaseType::Request Request;
 			Request.AuthContext = SessionOwner->GetSessionAuthContext();
 			Request.SessionId = SessionId;
-			Request.SelfSessionPlayerUpdateRequest.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
-			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
-			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());
+			Request.SelfSessionPlayerUpdateRequest = JoinDetails;
 
 			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), Request, BaseType::Delegate::CreateSP(this, &FRH_SessionJoinByIdHelper::OnJoined), TaskPriority);
 			if (!HttpRequest)
@@ -770,22 +772,24 @@ public:
 	{
 	}
 
+	// backwards compatible hook
 	virtual void Start(const ERHAPI_Platform& Platform, const FString& PlatformSessionIdStr)
+	{
+		Start(Platform, PlatformSessionIdStr, URH_OnlineSession::GetJoinDetailDefaults(SessionOwner.GetObject()));
+	}
+
+	virtual void Start(const ERHAPI_Platform& Platform, const FString& PlatformSessionIdStr, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails)
 	{
 		Started();
 
 		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
 		{
-			const auto OSS = SessionOwner->GetOSS();
-
 			BaseType::Request Request;
 			Request.AuthContext = GetAuthContext();
 			Request.Platform = Platform;
 			Request.PlatformSessionIdBase64 = RallyHereAPI::Base64UrlEncode(PlatformSessionIdStr);
 
-			Request.SelfSessionPlayerUpdateRequest.SetClientVersion(URH_JoinedSession::GetClientVersionForSession());
-			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetPlatform(Platform);
-			Request.SelfSessionPlayerUpdateRequest.ClientSettings.SetInput(URH_JoinedSession::GetClientInputTypeForSession());
+			Request.SelfSessionPlayerUpdateRequest = JoinDetails;
 
 			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), Request, BaseType::Delegate::CreateSP(this, &FRH_SessionJoinByPlatformIdHelper::OnJoined), TaskPriority);
 			if (!HttpRequest)
