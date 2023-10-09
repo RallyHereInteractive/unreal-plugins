@@ -224,9 +224,8 @@ void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
 			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
 
 			FGuid TestGuid;
-			FGuid::Parse(ValueStr, TestGuid);
 
-			if (TestGuid.IsValid())
+			if (FGuid::Parse(ValueStr, TestGuid))
 			{
 				ImGui::Text("%s", TCHAR_TO_UTF8(*TestGuid.ToString(EGuidFormats::DigitsWithHyphens)));
 			}
