@@ -22,12 +22,12 @@ namespace RH_AnalyticsProviderCvars
 	);
 }
 
-TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const Config& ConfigValues) const
+TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const FAnalyticsET::Config& ConfigValues) const
 {
 	// If we didn't have a proper APIServer, return NULL
-	if (ConfigValues.APIServer.IsEmpty())
+	if (ConfigValues.APIServerET.IsEmpty())
 	{
-		UE_LOG(LogAnalytics, Warning, TEXT("CreateAnalyticsProvider config not contain required parameter %s"), *Config::GetKeyNameForAPIServer());
+		UE_LOG(LogAnalytics, Warning, TEXT("CreateAnalyticsProvider config not contain required parameter %s"), *FAnalyticsET::Config::GetKeyNameForAPIServer());
 		return NULL;
 	}
 	return MakeShared<FRH_AnalyticsProvider>(ConfigValues);
@@ -36,7 +36,7 @@ TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const Conf
 /**
  * Perform any initialization.
  */
-FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& ConfigValues)
+FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigValues)
 	: bSessionInProgress(false)
 	, Config(ConfigValues)
 	, FlushIntervalSec(ConfigValues.FlushIntervalSec < 0 ? DefaultFlushIntervalSec : ConfigValues.FlushIntervalSec)
@@ -46,9 +46,9 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& Config
 	// avoid preallocating space if we are using the legacy protocol.
 	, EventCache(ConfigValues.MaximumPayloadSize, ConfigValues.PreallocatedPayloadSize)
 {
-	if (Config.APIServer.IsEmpty())
+	if (Config.APIServerET.IsEmpty())
 	{
-		UE_LOG(LogAnalytics, Fatal, TEXT("AnalyticsRallyHere: APIServer (%s) cannot be empty!"), *Config.APIServer);
+		UE_LOG(LogAnalytics, Fatal, TEXT("AnalyticsRallyHere: APIServer (%s) cannot be empty!"), *Config.APIServerET);
 	}
 
 	HttpRetryManager = MakeShared<FHttpRetrySystem::FManager>(
@@ -58,7 +58,7 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FRH_Analytics::Config& Config
 
 	UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Initializing RallyHere Analytics provider"));
 
-	UE_LOG(LogAnalytics, Display, TEXT("APIServer = %s"), *Config.APIServer);
+	UE_LOG(LogAnalytics, Display, TEXT("APIServer = %s"), *Config.APIServerET);
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
@@ -113,7 +113,7 @@ FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
 	EndSession();
 }
 
-bool FRH_AnalyticsProvider::StartSession(const TArray<FAnalyticsEventAttribute>& Attributes)
+bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnalyticsEventAttribute>& Attributes)
 {
 	UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession"));
 
@@ -202,7 +202,7 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 			// Recreate the URLPath for logging because we do not want to escape the parameters when logging.
 			// We cannot simply UrlEncode the entire Path after logging it because UrlEncode(Params) != UrlEncode(Param1) & UrlEncode(Param2) ...
 			FString LogString = FString::Printf(TEXT("[RHAnalytics] GETS request for [%s]. Payload:%s"),
-				*Config.APIServer,
+				*Config.APIServerET,
 				UTF8_TO_TCHAR(Payload.GetData()));
 			UE_LOG(LogAnalytics, VeryVerbose, TEXT("%s"), *LogString);
 			Payload.SetNum(Payload.Num()-1);
@@ -213,7 +213,7 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 			// Create/send Http request for an event
 			TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = CreateRequest();
 			HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-			HttpRequest->SetURL(Config.APIServer);
+			HttpRequest->SetURL(Config.APIServerET);
 			HttpRequest->SetVerb(TEXT("POST"));
 			HttpRequest->SetContent(MoveTemp(Payload));
 
@@ -274,16 +274,28 @@ bool FRH_AnalyticsProvider::SetSessionID(const FString& InSessionID)
 	return true;
 }
 
-bool FRH_AnalyticsProvider::ShouldRecordEvent(const FString& EventName) const
+void FRH_AnalyticsProvider::SetShouldRecordEventFunc(const ShouldRecordEventFunction& InShouldRecordEventFunc)
 {
-	return true; // TODO whitelist/blacklist check
+	ShouldRecordEventFunc = InShouldRecordEventFunc;
 }
 
-void FRH_AnalyticsProvider::RecordEvent(const FString& EventName, const TArray<FAnalyticsEventAttribute>& Attributes)
+bool FRH_AnalyticsProvider::ShouldRecordEvent(const FString& EventName) const
+{
+	return (!ShouldRecordEventFunc || ShouldRecordEventFunc(*this, EventName));
+}
+
+void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes)
 {
 	// let higher level code filter the decision of whether to send the event
 	if (ShouldRecordEvent(EventName))
 	{
+		// fire any callbacks
+		for (const auto& Cb : EventRecordedCallbacks)
+		{
+			// we no longer track if the event was Json, each attribute does.
+			Cb(EventName, Attributes, false);
+		}
+
 		EventCache.AddToCache(EventName, Attributes);
 		// if we aren't caching events, flush immediately. This is really only for debugging as it will significantly affect bandwidth.
 		if (!bShouldCacheEvents)
@@ -326,6 +338,16 @@ bool FRH_AnalyticsProvider::AppendSetDefaultEventAttribute(const FString& Attrib
 bool FRH_AnalyticsProvider::ClearDefaultEventAttribute(const FString& AttributeName)
 {
 	return EventCache.ClearDefaultAttribute(AttributeName);
+}
+
+void FRH_AnalyticsProvider::SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains)
+{
+	Config.APIServerET = UrlEndpoint;
+}
+
+void FRH_AnalyticsProvider::SetEventCallback(const OnEventRecorded& Callback)
+{
+	EventRecordedCallbacks.Add(Callback);
 }
 
 void FRH_AnalyticsProvider::EventRequestComplete(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool)
