@@ -322,161 +322,182 @@ void FRHDTW_Catalog::DoShowVendors(URH_CatalogSubsystem* catalog)
 		const auto& Vendor = catalog->GetVendors()[VendorKey];
 
 		ImGui::PushID(VendorKey);
-		if (ImGui::CollapsingHeader(std::to_string(VendorKey).c_str()))
+		if (ImGui::TreeNodeEx(std::to_string(VendorKey).c_str(), RH_DefaultTreeFlags))
 		{
 			ImGui::Text("Type = %s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_VendorType", Vendor.GetType(ERHAPI_VendorType::Recipe))));
 			ImGui::Separator();
 
-			if (ImGui::BeginTable("VendorDetailsTable", 8, RH_TableFlagsPropSizing))
+			if (ImGui::TreeNodeEx("Summary", RH_DefaultTreeFlagsDefaultOpen))
 			{
-				// Header
-				ImGui::TableSetupColumn("Coupon");
-				ImGui::TableSetupColumn("Purchase");
-				ImGui::TableSetupColumn("Loot ID");
-				ImGui::TableSetupColumn("Active");
-				ImGui::TableSetupColumn("Ownership");
-				ImGui::TableSetupColumn("Item ID");
-				ImGui::TableSetupColumn("SLT ID");
-				ImGui::TableSetupColumn("Quantity");
-				ImGui::TableHeadersRow();
+				if (ImGui::BeginTable("VendorDetailsTable", 8, RH_TableFlagsPropSizing))
+				{
+					// Header
+					ImGui::TableSetupColumn("Coupon");
+					ImGui::TableSetupColumn("Purchase");
+					ImGui::TableSetupColumn("Loot ID");
+					ImGui::TableSetupColumn("Active");
+					ImGui::TableSetupColumn("Ownership");
+					ImGui::TableSetupColumn("Item ID");
+					ImGui::TableSetupColumn("SLT ID");
+					ImGui::TableSetupColumn("Quantity");
+					ImGui::TableHeadersRow();
 
-				// Content
+					// Content
+					if (const auto& LootItems = Vendor.GetLootOrNull())
+					{
+						for (const auto& VendorItemPair : (*LootItems))
+						{
+							ImGui::PushID(VendorItemPair.Value.GetLootId());
+							ImGui::TableNextRow();
+
+							TArray<URH_CatalogItem*> Coupons;
+							TArray<FString> CouponsItems = { TEXT("None") };
+
+							ImGui::TableNextColumn();
+							if (GetCouponsForItem(catalog, VendorItemPair.Value, Coupons))
+							{
+								for (const auto& Coupon : Coupons)
+								{
+									CouponsItems.Push(FString::Printf(TEXT("%d:%d%% Off"), Coupon->GetItemId(), (int32)(Coupon->GetCouponDiscountPercentage() * 100)));
+								}
+							}
+
+							// Dynamically a new SelectedCouponIndex if we need it
+							if (SelectedVendorCouponIndexs.Num() < VendorItemIndex + 1)
+							{
+								SelectedVendorCouponIndexs.Push(0);
+							}
+
+							if (SelectedVendorCouponIndexs[VendorItemIndex] > CouponsItems.Num())
+							{
+								SelectedVendorCouponIndexs[VendorItemIndex] = 0;
+							}
+
+							if (ImGui::BeginCombo(TCHAR_TO_UTF8(*FString::Printf(TEXT("##%d"), VendorItemPair.Value.GetLootId())), TCHAR_TO_UTF8(*CouponsItems[SelectedVendorCouponIndexs[VendorItemIndex]])))
+							{
+								for (int n = 0; n < CouponsItems.Num(); n++)
+								{
+									bool is_selected = (SelectedVendorCouponIndexs[VendorItemIndex] == n);
+									if (ImGui::Selectable(TCHAR_TO_UTF8(*CouponsItems[n]), is_selected))
+									{
+										SelectedVendorCouponIndexs[VendorItemIndex] = n;
+									}
+									if (is_selected)
+									{
+										ImGui::SetItemDefaultFocus();
+									}
+								}
+
+								ImGui::EndCombo();
+							}
+
+							ImGui::TableNextColumn();
+							int32 PriceIndex = 0;
+							FRHAPI_PricePoint PricePoint;
+
+							const auto& CurrentPricePointGuid = VendorItemPair.Value.GetCurrentPricePointGuidOrNull();
+
+							if (CurrentPricePointGuid && catalog->GetPricePointById(FGuid(*CurrentPricePointGuid), PricePoint))
+							{
+								if (const auto& CurrentBreakpoints = PricePoint.GetCurrentBreakpointsOrNull())
+								{
+									for (const auto& PriceBreakpoint : *CurrentBreakpoints)
+									{
+										int32 DisplayPrice = PriceBreakpoint.GetPrice();
+										int32 SelectedCouponItemId = 0;
+
+										if (SelectedVendorCouponIndexs[VendorItemIndex] > 0)
+										{
+											if (URH_CatalogItem* CouponItem = Coupons[SelectedVendorCouponIndexs[VendorItemIndex] - 1])
+											{
+												if (CouponItem->GetCouponDiscountCurrencyItemId() == PriceBreakpoint.GetPriceItemId())
+												{
+													SelectedCouponItemId = CouponItem->GetItemId();
+													DisplayPrice = URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(CouponItem, DisplayPrice);
+												}
+											}
+										}
+
+										if (PriceIndex != 0)
+										{
+											ImGui::SameLine();
+										}
+										PriceIndex++;
+										auto buttonName = FString::Printf(TEXT("%d:%d"), PriceBreakpoint.GetPriceItemId(), DisplayPrice);
+
+										// #RHTODO: Show presale prices on buttons?
+
+										if (ImGui::Button(TCHAR_TO_UTF8(*buttonName)))
+										{
+											const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
+											if (pLocalPlayer == nullptr)
+											{
+												return;
+											}
+
+											const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
+											if (pRH_LocalPlayerSubsystem == nullptr)
+											{
+												return;
+											}
+
+											URH_PlayerOrderEntry* NewPlayerOrderEntry = NewObject<URH_PlayerOrderEntry>();
+
+											NewPlayerOrderEntry->FillType = ERHAPI_PlayerOrderEntryType::PurchaseLoot;
+											NewPlayerOrderEntry->LootItem = VendorItemPair.Value;
+											NewPlayerOrderEntry->Quantity = 1;
+											NewPlayerOrderEntry->ExternalTransactionId = "IMGUI Purchase";
+											NewPlayerOrderEntry->PriceItemId = PriceBreakpoint.GetPriceItemId();
+											NewPlayerOrderEntry->Price = DisplayPrice;
+											NewPlayerOrderEntry->CouponItemId = SelectedCouponItemId;
+
+											TArray<URH_PlayerOrderEntry*> PlayerOrderEntries;
+											PlayerOrderEntries.Push(NewPlayerOrderEntry);
+											pRH_LocalPlayerSubsystem->GetLocalPlayerInfo()->GetPlayerInventory()->CreateNewPlayerOrder(ERHAPI_Source::Client, false, PlayerOrderEntries);
+										}
+									}
+								}
+							}
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", VendorItemPair.Value.GetLootId());
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", VendorItemPair.Value.GetActive(false) ? "X" : "");
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventorySelector", VendorItemPair.Value.GetInventorySelectorType(ERHAPI_InventorySelector::Invalid))));
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", VendorItemPair.Value.GetItemId(0));
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", VendorItemPair.Value.GetSubVendorId(0));
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", VendorItemPair.Value.GetQuantity(0));
+
+							ImGui::PopID();
+
+							VendorItemIndex++;
+						}
+					}
+
+					ImGui::EndTable();
+				}
+				ImGui::TreePop();
+			}
+			if (ImGui::TreeNodeEx("Full Details", RH_DefaultTreeFlags))
+			{
 				if (const auto& LootItems = Vendor.GetLootOrNull())
 				{
 					for (const auto& VendorItemPair : (*LootItems))
 					{
-						ImGui::PushID(VendorItemPair.Value.GetLootId());
-						ImGui::TableNextRow();
-
-						TArray<URH_CatalogItem*> Coupons;
-						TArray<FString> CouponsItems = { TEXT("None") };
-
-						ImGui::TableNextColumn();
-						if (GetCouponsForItem(catalog, VendorItemPair.Value, Coupons))
+						if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), VendorItemPair.Value.GetLootId())), RH_DefaultTreeFlags))
 						{
-							for (const auto& Coupon : Coupons)
-							{
-								CouponsItems.Push(FString::Printf(TEXT("%d:%d%% Off"), Coupon->GetItemId(), (int32)(Coupon->GetCouponDiscountPercentage() * 100)));
-							}
+							ImGuiDisplayModelData<FRHAPI_Loot>(&VendorItemPair.Value);
+							ImGui::TreePop();
 						}
-
-						// Dynamically a new SelectedCouponIndex if we need it
-						if (SelectedVendorCouponIndexs.Num() < VendorItemIndex + 1)
-						{
-							SelectedVendorCouponIndexs.Push(0);
-						}
-
-						if (SelectedVendorCouponIndexs[VendorItemIndex] > CouponsItems.Num())
-						{
-							SelectedVendorCouponIndexs[VendorItemIndex] = 0;
-						}
-
-						if (ImGui::BeginCombo(TCHAR_TO_UTF8(*FString::Printf(TEXT("##%d"), VendorItemPair.Value.GetLootId())), TCHAR_TO_UTF8(*CouponsItems[SelectedVendorCouponIndexs[VendorItemIndex]])))
-						{
-							for (int n = 0; n < CouponsItems.Num(); n++)
-							{
-								bool is_selected = (SelectedVendorCouponIndexs[VendorItemIndex] == n);
-								if (ImGui::Selectable(TCHAR_TO_UTF8(*CouponsItems[n]), is_selected))
-								{
-									SelectedVendorCouponIndexs[VendorItemIndex] = n;
-								}
-								if (is_selected)
-								{
-									ImGui::SetItemDefaultFocus();
-								}
-							}
-
-							ImGui::EndCombo();
-						}
-
-						ImGui::TableNextColumn();
-						int32 PriceIndex = 0;
-						FRHAPI_PricePoint PricePoint;
-
-						const auto& CurrentPricePointGuid = VendorItemPair.Value.GetCurrentPricePointGuidOrNull();
-
-						if (CurrentPricePointGuid && catalog->GetPricePointById(FGuid(*CurrentPricePointGuid), PricePoint))
-						{
-							if (const auto& CurrentBreakpoints = PricePoint.GetCurrentBreakpointsOrNull())
-							{
-								for (const auto& PriceBreakpoint : *CurrentBreakpoints)
-								{
-									int32 DisplayPrice = PriceBreakpoint.GetPrice();
-									int32 SelectedCouponItemId = 0;
-
-									if (SelectedVendorCouponIndexs[VendorItemIndex] > 0)
-									{
-										if (URH_CatalogItem* CouponItem = Coupons[SelectedVendorCouponIndexs[VendorItemIndex] - 1])
-										{
-											if (CouponItem->GetCouponDiscountCurrencyItemId() == PriceBreakpoint.GetPriceItemId())
-											{
-												SelectedCouponItemId = CouponItem->GetItemId();
-												DisplayPrice = URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(CouponItem, DisplayPrice);
-											}
-										}
-									}
-
-									if (PriceIndex != 0)
-									{
-										ImGui::SameLine();
-									}
-									PriceIndex++;
-									auto buttonName = FString::Printf(TEXT("%d:%d"), PriceBreakpoint.GetPriceItemId(), DisplayPrice);
-
-									// #RHTODO: Show presale prices on buttons?
-
-									if (ImGui::Button(TCHAR_TO_UTF8(*buttonName)))
-									{
-										const ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer();
-										if (pLocalPlayer == nullptr)
-										{
-											return;
-										}
-
-										const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
-										if (pRH_LocalPlayerSubsystem == nullptr)
-										{
-											return;
-										}
-
-										URH_PlayerOrderEntry* NewPlayerOrderEntry = NewObject<URH_PlayerOrderEntry>();
-
-										NewPlayerOrderEntry->FillType = ERHAPI_PlayerOrderEntryType::PurchaseLoot;
-										NewPlayerOrderEntry->LootItem = VendorItemPair.Value;
-										NewPlayerOrderEntry->Quantity = 1;
-										NewPlayerOrderEntry->ExternalTransactionId = "IMGUI Purchase";
-										NewPlayerOrderEntry->PriceItemId = PriceBreakpoint.GetPriceItemId();
-										NewPlayerOrderEntry->Price = DisplayPrice;
-										NewPlayerOrderEntry->CouponItemId = SelectedCouponItemId;
-
-										TArray<URH_PlayerOrderEntry*> PlayerOrderEntries;
-										PlayerOrderEntries.Push(NewPlayerOrderEntry);
-										pRH_LocalPlayerSubsystem->GetLocalPlayerInfo()->GetPlayerInventory()->CreateNewPlayerOrder(ERHAPI_Source::Client, false, PlayerOrderEntries);
-									}
-								}
-							}
-						}
-						ImGui::TableNextColumn();
-						ImGui::Text("%d", VendorItemPair.Value.GetLootId());
-						ImGui::TableNextColumn();
-						ImGui::Text("%s", VendorItemPair.Value.GetActive(false) ? "X" : "");
-						ImGui::TableNextColumn();
-						ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_InventorySelector", VendorItemPair.Value.GetInventorySelectorType(ERHAPI_InventorySelector::Invalid))));
-						ImGui::TableNextColumn();
-						ImGui::Text("%d", VendorItemPair.Value.GetItemId(0));
-						ImGui::TableNextColumn();
-						ImGui::Text("%d", VendorItemPair.Value.GetSubVendorId(0));
-						ImGui::TableNextColumn();
-						ImGui::Text("%d", VendorItemPair.Value.GetQuantity(0));
-
-						ImGui::PopID();
-
-						VendorItemIndex++;
 					}
 				}
 
-				ImGui::EndTable();
+				ImGui::TreePop();
 			}
+			ImGui::TreePop();
 		}
 		ImGui::PopID();
 	}
