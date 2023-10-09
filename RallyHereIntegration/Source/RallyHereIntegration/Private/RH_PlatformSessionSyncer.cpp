@@ -778,7 +778,17 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 						if (!OSSPlatformSessionId.IsValid())
 						{
 							UE_LOG(LogRHSession, Warning, TEXT("[%s] - Found session does not have a valid session id"), ANSI_TO_TCHAR(__FUNCTION__));
-							SyncActionComplete(false);
+							
+							if (IsLocalPlayerScout())
+							{
+								// we are the scout and failed to join, attempt to rectify the issue
+								OnScoutFailedToJoin();
+							}
+							else
+							{
+								// we are not the scout and failed to join, so go to an error state
+								SyncActionComplete(false);
+							}
 						}
 						else if (GetPlatformSessionIdFromRHSession(RHPlatformSessionId) && RHPlatformSessionId == OSSPlatformSessionId)
 						{
