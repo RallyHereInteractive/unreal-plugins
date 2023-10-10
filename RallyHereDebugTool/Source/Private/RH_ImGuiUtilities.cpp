@@ -166,13 +166,13 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 	}
 }
 
-void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data)
+void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data, uint8 const* IsSetData)
 {
 	if (IsSetProperty != nullptr)
 	{
 		if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(IsSetProperty))
 		{
-			if (!BoolProp->GetPropertyValue(Data))
+			if (!BoolProp->GetPropertyValue(IsSetData))
 			{
 				ImGui::Text("<UNSET>");
 				return;
@@ -245,9 +245,9 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
-					ImGuiDisplayProperty(KeyProp->GetName(), KeyProp, nullptr, MapHelper.GetKeyPtr(i));
+					ImGuiDisplayProperty(KeyProp->GetName(), KeyProp, nullptr, MapHelper.GetKeyPtr(i), nullptr);
 					ImGui::TableNextColumn();
-					ImGuiDisplayProperty(ValueProp->GetName(), ValueProp, nullptr, MapHelper.GetValuePtr(i));
+					ImGuiDisplayProperty(ValueProp->GetName(), ValueProp, nullptr, MapHelper.GetValuePtr(i), nullptr);
 				}
 
 				ImGui::EndTable();
@@ -279,7 +279,7 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 			FScriptArrayHelper ArrayHelper(ArrayProp, Data);
 			for (int32 i = 0; i < ArrayHelper.Num(); ++i)
 			{
-				ImGuiDisplayProperty(ArrayProp->GetName(), ArrayProp->Inner, nullptr, ArrayHelper.GetRawPtr(i));
+				ImGuiDisplayProperty(ArrayProp->GetName(), ArrayProp->Inner, nullptr, ArrayHelper.GetRawPtr(i), nullptr);
 			}
 			ImGui::TreePop();
 		}
@@ -330,7 +330,7 @@ void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
 			ImGui::TableNextColumn();
 			ImGui::Text(TCHAR_TO_UTF8(*PropName));
 			ImGui::TableNextColumn();
-			ImGuiDisplayProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model));
+			ImGuiDisplayProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model), IsSetProp != nullptr ? IsSetProp->ContainerPtrToValuePtr<uint8>(&Model) : nullptr);
 		}
 
 		ImGui::EndTable();
