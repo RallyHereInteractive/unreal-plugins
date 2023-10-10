@@ -316,20 +316,20 @@ public:
 	 */
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	FORCEINLINE FRHAPI_SessionTemplate GetTemplate() const { return Template; };
-	UFUNCTION(BlueprintPure, Category = "Session")
 	/**
 	 * @brief Gets the session ETag.
 	 */
+	UFUNCTION(BlueprintPure, Category = "Session")
 	FORCEINLINE FString GetETag() const { return SessionData.ETag.Get(FString()); };
-	UFUNCTION(BlueprintPure, Category="Session")
 	/**
 	 * @brief Gets the session Id.
 	 */
-	FORCEINLINE FString GetSessionId() const { return GetSessionData().SessionId; }
 	UFUNCTION(BlueprintPure, Category = "Session")
+	FORCEINLINE FString GetSessionId() const { return GetSessionData().SessionId; }
 	/**
 	 * @brief Gets the session type.
 	 */
+	UFUNCTION(BlueprintPure, Category = "Session")
 	FORCEINLINE FString GetSessionType() const { return GetSessionData().Type; }
 	/**
 	 * @brief Gets session custom data.
@@ -362,6 +362,14 @@ public:
 	 */
 	UFUNCTION(BlueprintPure, Category = "Session", meta = (DisplayName = "Get Session Browser Custom Data"))
 	TMap<FString, FString> GetBrowserCustomData() const;
+	/**
+	 * Get the platform session data for a specific platform id
+	 * @param [in] Platform The platform id to get the session data for
+	 * @param [out] OutPlatformSession The platform session data for the specified platform id
+	 * @return If true, the platform session data was found
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session", meta = (DisplayName = "Get Platform Session"))
+	bool GetPlatformSession(ERHAPI_Platform Platform, FRHAPI_PlatformSession& OutPlatformSession) const;
 	/**
 	 * @brief Update a session from the owner, implies a template update.
 	 * @param [in] newSessionData The new session data.

@@ -143,6 +143,9 @@ public:
 	/** @brief Extensible LocalPlayerSessionSubsystem class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath LocalPlayerSessionSubsystemClass;
+	/** @brief Extensible PlayerSessionSyncer class path. */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath SessionPlatformSyncerClass;
 	/** @brief Extensible LocalPlayerPresenceSubsystem class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath LocalPlayerPresenceSubsystemClass;

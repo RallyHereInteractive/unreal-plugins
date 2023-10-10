@@ -56,7 +56,7 @@ private:
 
 /* Process Platform Entitlement For Me
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves)any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementForMe : public FRequest
 {
@@ -95,7 +95,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
 
 /* Process Platform Entitlements By Player Uuid
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves)any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementsByPlayerUuid : public FRequest
 {
@@ -135,7 +135,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
 
 /* Retrieve Entitlements By Player Uuid
  *
- * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves)any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsByPlayerUuid : public FRequest
 {
@@ -175,7 +175,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
 
 /* Retrieve Entitlements For Me
  *
- * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves)any of: &#x60;inv:platform_entitlements:any&#x60;, &#x60;inv:*&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsForMe : public FRequest
 {

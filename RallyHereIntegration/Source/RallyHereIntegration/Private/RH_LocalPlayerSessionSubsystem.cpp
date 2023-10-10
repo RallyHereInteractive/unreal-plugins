@@ -9,6 +9,7 @@
 #include "RH_PlayerNotifications.h"
 #include "RH_PlatformSessionSyncer.h"
 #include "Interfaces/OnlineGameActivityInterface.h"
+#include "RH_IntegrationSettings.h"
 
 URH_LocalPlayerSessionSubsystem::URH_LocalPlayerSessionSubsystem()
 	: Super()
@@ -695,6 +696,19 @@ URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::CreatePlatformSyncer
 
 	if (PlatformSyncer == nullptr)
 	{
+		// try to load the class from the config
+		UClass* SyncerClass = URH_PlatformSessionSyncer::StaticClass();
+		{
+			auto OverrideClassConfig = GetDefault<URH_IntegrationSettings>()->SessionPlatformSyncerClass;
+			UClass* OverrideClass = OverrideClassConfig.TryLoadClass<URH_PlatformSessionSyncer>();
+
+			// If an invalid class type was specified we fall back to the default.
+			if (OverrideClass != nullptr)
+			{
+				SyncerClass = OverrideClass;
+			}
+		}
+
 		// do sanity checking before object creation while we can
 		FString SessionType;
 		if (JoinedSession != nullptr && JoinedSession->GetTemplate().GetEngineSessionType(SessionType))
@@ -703,7 +717,7 @@ URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::CreatePlatformSyncer
 			auto* OSS = GetOSS();
 			if (OSS != nullptr && OSS->GetSessionInterface() != nullptr && RH_GetPlatformFromOSSName(OSS->GetSubsystemName()).IsSet())
 			{
-				PlatformSyncer = NewObject<URH_PlatformSessionSyncer>(this);
+				PlatformSyncer = NewObject<URH_PlatformSessionSyncer>(this, SyncerClass);
 				if (PlatformSyncer->Initialize(SessionId, this))
 				{
 					PlatformSyncers.Add(SessionId, PlatformSyncer);
