@@ -258,21 +258,30 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 	}
 	else if (FStructProperty const* StructProp = CastField<FStructProperty>(Property))
 	{
-		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		if (StructProp->Struct->IsChildOf(FRHAPI_Model::StaticStruct()))
 		{
-			ImGuiDisplayModelData(*(FRHAPI_Model*)Data, StructProp->Struct);
-			ImGui::TreePop();
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Struct##%s"), *Key)), RH_DefaultTreeFlags))
+			{
+
+				ImGuiDisplayModelData(*(FRHAPI_Model*)Data, StructProp->Struct);
+				ImGui::TreePop();
+			}
+		}
+		else
+		{
+			ImGui::Text("ERROR: Struct Prop is not a FRHAPI_Model");
 		}
 	}
 	else if (FArrayProperty const* ArrayProp = CastField<FArrayProperty>(Property))
 	{
-		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Array##%s"), *Key)), RH_DefaultTreeFlags))
 		{
 			FScriptArrayHelper ArrayHelper(ArrayProp, Data);
 			for (int32 i = 0; i < ArrayHelper.Num(); ++i)
 			{
-				ImGuiDisplayProperty(ArrayProp->GetName(), ArrayProp, nullptr, ArrayHelper.GetRawPtr(i));
+				ImGuiDisplayProperty(ArrayProp->GetName(), ArrayProp->Inner, nullptr, ArrayHelper.GetRawPtr(i));
 			}
+			ImGui::TreePop();
 		}
 	}
 	else
