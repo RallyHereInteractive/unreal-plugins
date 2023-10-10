@@ -166,8 +166,6 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 	}
 }
 
-PRAGMA_DISABLE_OPTIMIZATION
-
 void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data)
 {
 	if (IsSetProperty != nullptr)
@@ -282,8 +280,6 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 		ImGui::Text("ERROR: Unknown Property Type");
 	}
 }
-
-PRAGMA_ENABLE_OPTIMIZATION
 
 void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
 {
