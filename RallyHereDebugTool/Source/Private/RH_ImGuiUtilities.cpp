@@ -166,129 +166,123 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 	}
 }
 
-void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
+void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data)
 {
-	auto DisplayValueForProperty = [&](const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data)
+	if (IsSetProperty != nullptr)
 	{
-		ImGui::TableNextRow();
-		ImGui::TableNextColumn();
-		ImGui::Text(TCHAR_TO_UTF8(*Key));
-		ImGui::TableNextColumn();
-
-		if (IsSetProperty != nullptr)
+		if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(IsSetProperty))
 		{
-			if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(IsSetProperty))
+			if (!BoolProp->GetPropertyValue(Data))
 			{
-				if (!BoolProp->GetPropertyValue(Data))
-				{
-					ImGui::Text("<UNSET>");
-					return;
-				}
+				ImGui::Text("<UNSET>");
+				return;
 			}
 		}
+	}
 
-		if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(Property))
+	if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(Property))
+	{
+		ImGui::Text(BoolProp->GetPropertyValue(Data) ? "TRUE" : "FALSE");
+	}
+	else if (FNumericProperty const* NumericProperty = CastField<FNumericProperty>(Property))
+	{
+		if (NumericProperty->IsInteger())
 		{
-			ImGui::Text(BoolProp->GetPropertyValue(Data) ? "TRUE" : "FALSE");
+			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), NumericProperty->GetSignedIntPropertyValue(Data))));
 		}
-		else if (FNumericProperty const* NumericProperty = CastField<FNumericProperty>(Property))
+		else
 		{
-			if (NumericProperty->IsInteger())
-			{
-				ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), NumericProperty->GetSignedIntPropertyValue(Data))));
-			}
-			else
-			{
-				ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%f"), NumericProperty->GetFloatingPointPropertyValue(Data))));
-			}
+			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%f"), NumericProperty->GetFloatingPointPropertyValue(Data))));
 		}
-		else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
+	}
+	else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
+	{
+		if (Property->HasMetaData("SerializeAsInteger"))
 		{
-			if (Property->HasMetaData("SerializeAsInteger"))
-			{
-				FNumericProperty* UnderlyingProperty = EnumProperty->GetUnderlyingProperty();
+			FNumericProperty* UnderlyingProperty = EnumProperty->GetUnderlyingProperty();
 
-				ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), UnderlyingProperty->GetSignedIntPropertyValue(Data))));
-			}
-			else
-			{
-				FString	ValueStr;
-				Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
-
-				ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
-			}
+			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), UnderlyingProperty->GetSignedIntPropertyValue(Data))));
 		}
-		else if (FStrProperty const* StringProperty = CastField<FStrProperty>(Property))
+		else
 		{
 			FString	ValueStr;
 			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
 
-			FGuid TestGuid;
-
-			if (FGuid::Parse(ValueStr, TestGuid))
-			{
-				ImGui::Text("%s", TCHAR_TO_UTF8(*TestGuid.ToString(EGuidFormats::DigitsWithHyphens)));
-			}
-			else
-			{
-				ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
-			}
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
 		}
-		else if (FMapProperty const* MapProp = CastField<FMapProperty>(Property))
+	}
+	else if (FStrProperty const* StringProperty = CastField<FStrProperty>(Property))
+	{
+		FString	ValueStr;
+		Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+
+		FGuid TestGuid;
+
+		if (FGuid::Parse(ValueStr, TestGuid))
 		{
-			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
-			{
-				if (ImGui::BeginTable("DataTable", 2, RH_TableFlagsPropSizing))
-				{
-					ImGui::TableSetupColumn("Key");
-					ImGui::TableSetupColumn("Value");
-					ImGui::TableHeadersRow();
-
-					FScriptMapHelper MapHelper(MapProp, Property->ContainerPtrToValuePtr<uint8>(&Model));
-					for (int32 i = 0; i < MapHelper.Num(); ++i)
-					{
-						FString	KeyStr;
-						FString	ValueStr;
-						MapHelper.GetKeyProperty()->ExportText_Direct(KeyStr, MapHelper.GetKeyPtr(i), MapHelper.GetKeyPtr(i), nullptr, PPF_None);
-						MapHelper.GetValueProperty()->ExportText_Direct(ValueStr, MapHelper.GetValuePtr(i), MapHelper.GetValuePtr(i), nullptr, PPF_None);
-
-						ImGui::TableNextRow();
-						ImGui::TableNextColumn();
-						ImGui::Text(TCHAR_TO_UTF8(*KeyStr));
-						ImGui::TableNextColumn();
-						ImGui::Text(TCHAR_TO_UTF8(*ValueStr));
-					}
-
-					ImGui::EndTable();
-
-				}
-				ImGui::TreePop();
-			}
-		}
-		else if (FStructProperty const* StructProp = CastField<FStructProperty>(Property))
-		{
-			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
-			{
-				ImGuiDisplayModelData(*(FRHAPI_Model*)StructProp->ContainerPtrToValuePtr<void>(&Model), StructProp->Struct);
-				ImGui::TreePop();
-			}
-		}
-		else if (FArrayProperty const* ArrayProp = CastField<FArrayProperty>(Property))
-		{
-			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
-			{
-				FString	ValueStr;
-				Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
-
-				ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
-			}
+			ImGui::Text("%s", TCHAR_TO_UTF8(*TestGuid.ToString(EGuidFormats::DigitsWithHyphens)));
 		}
 		else
 		{
-			ImGui::Text("ERROR: Unknown Property Type");
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
 		}
-	};
+	}
+	else if (FMapProperty const* MapProp = CastField<FMapProperty>(Property))
+	{
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		{
+			if (ImGui::BeginTable("DataTable", 2, RH_TableFlagsPropSizing))
+			{
+				ImGui::TableSetupColumn("Key");
+				ImGui::TableSetupColumn("Value");
+				ImGui::TableHeadersRow();
 
+				FScriptMapHelper MapHelper(MapProp, Data);
+				for (int32 i = 0; i < MapHelper.Num(); ++i)
+				{
+					FProperty* KeyProp = MapHelper.GetKeyProperty();
+					FProperty* ValueProp = MapHelper.GetValueProperty();
+
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					ImGuiDisplayProperty(KeyProp->GetName(), KeyProp, nullptr, MapHelper.GetPairPtr(i));
+					ImGui::TableNextColumn();
+					ImGuiDisplayProperty(ValueProp->GetName(), ValueProp, nullptr, MapHelper.GetPairPtr(i));
+				}
+
+				ImGui::EndTable();
+
+			}
+			ImGui::TreePop();
+		}
+	}
+	else if (FStructProperty const* StructProp = CastField<FStructProperty>(Property))
+	{
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		{
+			ImGuiDisplayModelData(*(FRHAPI_Model*)Data, StructProp->Struct);
+			ImGui::TreePop();
+		}
+	}
+	else if (FArrayProperty const* ArrayProp = CastField<FArrayProperty>(Property))
+	{
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		{
+			FScriptArrayHelper ArrayHelper(ArrayProp, Data);
+			for (int32 i = 0; i < ArrayHelper.Num(); ++i)
+			{
+				ImGuiDisplayProperty(ArrayProp->GetName(), ArrayProp, nullptr, ArrayHelper.GetRawPtr(i));
+			}
+		}
+	}
+	else
+	{
+		ImGui::Text("ERROR: Unknown Property Type");
+	}
+}
+
+void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
+{
 	TArray<FProperty*> ValueProperties;
 	TArray<FProperty*> IsSetProperties;
 
@@ -323,7 +317,11 @@ void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
 				PropName = PropName + "<?>";
 			}
 
-			DisplayValueForProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model));
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGui::Text(TCHAR_TO_UTF8(*PropName));
+			ImGui::TableNextColumn();
+			ImGuiDisplayProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model));
 		}
 
 		ImGui::EndTable();
