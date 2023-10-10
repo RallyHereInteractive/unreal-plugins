@@ -122,57 +122,76 @@ void FRHDTW_Catalog::DoShowItems(URH_CatalogSubsystem* catalog)
 		catalog->GetCatalogItem(ItemIdInput);
 	}
 
-	if (ImGui::BeginTable("CatalogItemDetailsTable", 8, RH_TableFlagsPropSizing))
-	{
-		// Header
-		ImGui::TableSetupColumn("Item Id");
-		ImGui::TableSetupColumn("Item Type");
-		ImGui::TableSetupColumn("Ref Item Id");
-		ImGui::TableSetupColumn("Availability Flags");
-		ImGui::TableSetupColumn("Entitled Loot Id");
-		ImGui::TableSetupColumn("Level Xp Table Id");
-		ImGui::TableSetupColumn("Level Vendor Id");
-		ImGui::TableSetupColumn("Inventory Bucket Id");
-		ImGui::TableHeadersRow();
-
-		// #RHTODO: Once Legacy Item Id is gone no need to sort
-		TArray<int32> ItemIds;
-		catalog->GetCatalogItems().GetKeys(ItemIds);
-		ItemIds.Sort([](const int32& A, const int32& B)
+	// #RHTODO: Once Legacy Item Id is gone no need to sort
+	TArray<int32> ItemIds;
+	catalog->GetCatalogItems().GetKeys(ItemIds);
+	ItemIds.Sort([](const int32& A, const int32& B)
 		{
 			return A < B;
 		});
-		
-		
+
+	if (ImGui::TreeNodeEx("Summary", RH_DefaultTreeFlagsDefaultOpen))
+	{
+		if (ImGui::BeginTable("CatalogItemDetailsTable", 8, RH_TableFlagsPropSizing))
+		{
+			// Header
+			ImGui::TableSetupColumn("Item Id");
+			ImGui::TableSetupColumn("Item Type");
+			ImGui::TableSetupColumn("Ref Item Id");
+			ImGui::TableSetupColumn("Availability Flags");
+			ImGui::TableSetupColumn("Entitled Loot Id");
+			ImGui::TableSetupColumn("Level Xp Table Id");
+			ImGui::TableSetupColumn("Level Vendor Id");
+			ImGui::TableSetupColumn("Inventory Bucket Id");
+			ImGui::TableHeadersRow();
+
+			for (const auto& ItemId : ItemIds)
+			{
+				if (URH_CatalogItem* CatalogItem = catalog->GetCatalogItemByItemId(ItemId))
+				{
+					ImGui::PushID(ItemId);
+
+					ImGui::TableNextRow();
+
+					ImGui::TableNextColumn();
+					ImGui::Text("%d", CatalogItem->GetItemId());
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_ItemType", CatalogItem->GetType())));
+					ImGui::TableNextColumn();
+					ImGui::Text("%d", CatalogItem->GetRefItemId());
+					ImGui::TableNextColumn();
+					ImGui::Text("%d", CatalogItem->GetAvailabilityFlags());
+					ImGui::TableNextColumn();
+					ImGui::Text("%d", CatalogItem->GetEntitledLootId());
+					ImGui::TableNextColumn();
+					ImGui::Text("%d", CatalogItem->GetLevelXpTableId());
+					ImGui::TableNextColumn();
+					ImGui::Text("%d", CatalogItem->GetLevelVendorId());
+					ImGui::TableNextColumn();
+					ImGui::Text("%s", TCHAR_TO_UTF8(*CatalogItem->GetItemInventoryBucketUseRulesetId()));
+
+					ImGui::PopID();
+				}
+			}
+			ImGui::EndTable();
+		}
+		ImGui::TreePop();
+	}
+	if (ImGui::TreeNodeEx("Full Details", RH_DefaultTreeFlags))
+	{
 		for (const auto& ItemId : ItemIds)
 		{
 			if (URH_CatalogItem* CatalogItem = catalog->GetCatalogItemByItemId(ItemId))
 			{
-				ImGui::PushID(ItemId);
-				
-				ImGui::TableNextRow();
-				
-				ImGui::TableNextColumn();
-				ImGui::Text("%d", CatalogItem->GetItemId());
-				ImGui::TableNextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_ItemType", CatalogItem->GetType())));
-				ImGui::TableNextColumn();
-				ImGui::Text("%d", CatalogItem->GetRefItemId());
-				ImGui::TableNextColumn();
-				ImGui::Text("%d", CatalogItem->GetAvailabilityFlags());
-				ImGui::TableNextColumn();
-				ImGui::Text("%d", CatalogItem->GetEntitledLootId());
-				ImGui::TableNextColumn();
-				ImGui::Text("%d", CatalogItem->GetLevelXpTableId());
-				ImGui::TableNextColumn();
-				ImGui::Text("%d", CatalogItem->GetLevelVendorId());
-				ImGui::TableNextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*CatalogItem->GetItemInventoryBucketUseRulesetId()));
-
-				ImGui::PopID();
+				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), ItemId)), RH_DefaultTreeFlags))
+				{
+					ImGuiDisplayModelData<FRHAPI_Item>(CatalogItem->APIItem);
+					ImGui::TreePop();
+				}
 			}
 		}
-		ImGui::EndTable();
+
+		ImGui::TreePop();
 	}
 }
 
@@ -539,34 +558,42 @@ void FRHDTW_Catalog::DoShowXpTables(URH_CatalogSubsystem* catalog)
 	{
 		const auto& xpTable = xpTables[xpTableKey];
 
-		ImGui::PushID(xpTableKey);
-		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), xpTableKey))))
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), xpTableKey)), RH_DefaultTreeFlags))
 		{
-			if (ImGui::BeginTable("XpTableDetailsTable", 2, RH_TableFlagsPropSizing))
+			if (ImGui::TreeNodeEx("Summary", RH_DefaultTreeFlagsDefaultOpen))
 			{
-				// Header
-				ImGui::TableSetupColumn("Level");
-				ImGui::TableSetupColumn("Quantity");
-				ImGui::TableHeadersRow();
-
-				// Content
-				if (const auto& Entries = xpTable.GetXpEntriesOrNull())
+				if (ImGui::BeginTable("XpTableDetailsTable", 2, RH_TableFlagsPropSizing))
 				{
-					int32 i = 0;
-					for (const auto& xpEntry : (*Entries))
-					{
-						ImGui::TableNextRow();
-						ImGui::TableNextColumn();
-						ImGui::Text("%d", i++);
-						ImGui::TableNextColumn();
-						ImGui::Text("%d", xpEntry.Value);
-					}
-				}
+					// Header
+					ImGui::TableSetupColumn("Level");
+					ImGui::TableSetupColumn("Quantity");
+					ImGui::TableHeadersRow();
 
-				ImGui::EndTable();
+					// Content
+					if (const auto& Entries = xpTable.GetXpEntriesOrNull())
+					{
+						int32 i = 0;
+						for (const auto& xpEntry : (*Entries))
+						{
+							ImGui::TableNextRow();
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", i++);
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", xpEntry.Value);
+						}
+					}
+
+					ImGui::EndTable();
+				}
+				ImGui::TreePop();
 			}
+			if (ImGui::TreeNodeEx("Full Details", RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayModelData<FRHAPI_XpTable>(xpTable);
+				ImGui::TreePop();
+			}
+			ImGui::TreePop();
 		}
-		ImGui::PopID();
 	}
 }
 

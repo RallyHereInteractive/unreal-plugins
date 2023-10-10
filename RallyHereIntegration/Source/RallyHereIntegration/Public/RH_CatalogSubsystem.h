@@ -148,6 +148,11 @@ public:
 	UPROPERTY(Transient)
 	FString ETag;
 	/**
+	 * @brief Copy of the underlying Catalog item.
+	 */
+	UPROPERTY(Transient)
+	FRHAPI_Item APIItem;
+	/**
 	 * @brief Sets up the fata in the Catalog Item.
 	 * @param CatalogItem The API layer item to initialize from.
 	 * @param InItemId The Item Id.
@@ -178,6 +183,7 @@ public:
 		{
 			CouponDiscountLoot.Append(*InCouponDiscountLoot);
 		}
+		APIItem = CatalogItem;
 	}
 
 	/**
