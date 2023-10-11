@@ -20,8 +20,6 @@ struct FRHDTW_Catalog : public FRH_DebugToolWindow
 	void DoShowItemInventoryBucketUseRuleSets(URH_CatalogSubsystem* catalog);
 	void DoShowTimeFrames(URH_CatalogSubsystem* catalog);
 	void DoShowPricePoints(URH_CatalogSubsystem* catalog);
-	void DoShowPricePoint(const TPair<FGuid, FRHAPI_PricePoint>& pp);
-	void DoShowPriceBreakpointList(const TArray<FRHAPI_PriceBreakpoint>& pbp);
 
 	bool GetCouponsForItem(URH_CatalogSubsystem* catalog, FRHAPI_Loot LootItem, TArray<URH_CatalogItem*>& Coupons);
 

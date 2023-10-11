@@ -659,44 +659,14 @@ void FRHDTW_Catalog::DoShowTimeFrames(URH_CatalogSubsystem* catalog)
 		return;
 
 	auto timeFrames = catalog->GetTimeFrames();
-	if (!timeFrames.Num())
-		return;
 
-	if (ImGui::BeginTable("TimeFramesTable", 7, RH_TableFlagsPropSizing))
+	for (const auto& timeFramePair : timeFrames)
 	{
-		// Header
-		ImGui::TableSetupColumn("Id");
-		ImGui::TableSetupColumn("Name");
-		ImGui::TableSetupColumn("Active");
-		ImGui::TableSetupColumn("Episode");
-		ImGui::TableSetupColumn("Hour Interval");
-		ImGui::TableSetupColumn("Start");
-		ImGui::TableSetupColumn("End");
-		ImGui::TableHeadersRow();
-
-		// Content
-		for (const auto& timeFramePair : timeFrames)
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), timeFramePair.Key)), RH_DefaultTreeFlagsDefaultOpen))
 		{
-			ImGui::TableNextRow();
-			FRHAPI_TimeFrame timeFrame = timeFramePair.Value;
-
-			ImGui::TableNextColumn();
-			ImGui::Text("%d", timeFramePair.Key);
-			ImGui::TableNextColumn();
-			ImGui::Text("%s", TCHAR_TO_UTF8(*timeFrame.GetName(TEXT(""))));
-			ImGui::TableNextColumn();
-			ImGui::Text("%s", timeFrame.GetActive(false) ? "X" : "");
-			ImGui::TableNextColumn();
-			ImGui::Text("%d", timeFrame.GetEpisode(0));
-			ImGui::TableNextColumn();
-			ImGui::Text("%d", timeFrame.GetHourInterval(0));
-			ImGui::TableNextColumn();
-			ImGui::Text("%s", TCHAR_TO_UTF8(*timeFrame.GetStart().ToIso8601()));
-			ImGui::TableNextColumn();
-			ImGui::Text("%s", TCHAR_TO_UTF8(*timeFrame.GetEnd().ToIso8601()));
+			ImGuiDisplayModelData<FRHAPI_TimeFrame>(timeFramePair.Value);
+			ImGui::TreePop();
 		}
-
-		ImGui::EndTable();
 	}
 }
 
@@ -706,67 +676,14 @@ void FRHDTW_Catalog::DoShowPricePoints(URH_CatalogSubsystem* catalog)
 		return;
 
 	auto pricePoints = catalog->GetPricePoints();
-	if (!pricePoints.Num())
-		return;
 
 	for (const auto& pricePointPair : pricePoints)
 	{
-		ImGui::PushID(TCHAR_TO_UTF8(*pricePointPair.Key.ToString()));
-		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*pricePointPair.Key.ToString(EGuidFormats::DigitsWithHyphens))))
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*pricePointPair.Key.ToString(EGuidFormats::DigitsWithHyphens)), RH_DefaultTreeFlags))
 		{
-			DoShowPricePoint(pricePointPair);
+			ImGuiDisplayCopyableValue(pricePointPair.Key.ToString(), pricePointPair.Key, ECopyMode::Value, true);
+			ImGuiDisplayModelData<FRHAPI_PricePoint>(pricePointPair.Value);
+			ImGui::TreePop();
 		}
-		ImGui::PopID();
-	}
-}
-
-void FRHDTW_Catalog::DoShowPricePoint(const TPair<FGuid, FRHAPI_PricePoint>& pricePointPair)
-{
-	ImGuiDisplayCopyableValue(pricePointPair.Key.ToString(), pricePointPair.Key, ECopyMode::Value, true);
-	bool IsStrict, IsCap;
-	pricePointPair.Value.GetStrictFlag(IsStrict);
-	pricePointPair.Value.GetCapFlag(IsCap);
-	ImGui::Text("Strict = %s", IsStrict ? "True" : "False");
-	ImGui::Text("Cap = %s", IsCap ? "True" : "False");
-
-	ImGui::Separator();
-
-	if (const auto& CurrentBreakpoints = pricePointPair.Value.GetCurrentBreakpointsOrNull())
-	{
-		ImGui::Text("Breakpoints");
-		DoShowPriceBreakpointList(*CurrentBreakpoints);
-	}
-
-	if (const auto& PresaleBreakpoints = pricePointPair.Value.GetPreSaleBreakpointsOrNull())
-	{
-		ImGui::Separator();
-		ImGui::Text("Pre Sale Breakpoints");
-		DoShowPriceBreakpointList(*PresaleBreakpoints);
-	}
-}
-
-void FRHDTW_Catalog::DoShowPriceBreakpointList(const TArray<FRHAPI_PriceBreakpoint>& pbp)
-{
-	if (ImGui::BeginTable("PriceBreakpointsTable", 3, RH_TableFlagsPropSizing))
-	{
-		// Header
-		ImGui::TableSetupColumn("Price Item ID");
-		ImGui::TableSetupColumn("Quantity");
-		ImGui::TableSetupColumn("Price");
-		ImGui::TableHeadersRow();
-
-		// Content
-		for (const auto& bp : pbp)
-		{
-			ImGui::TableNextRow();
-			ImGui::TableNextColumn();
-			ImGui::Text("%d", bp.GetPriceItemId());
-			ImGui::TableNextColumn();
-			ImGui::Text("%d", bp.GetQuantity());
-			ImGui::TableNextColumn();
-			ImGui::Text("%d", bp.GetPrice());
-		}
-
-		ImGui::EndTable();
 	}
 }
