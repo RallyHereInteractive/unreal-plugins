@@ -262,14 +262,16 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 		{
 			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Struct##%s"), *Key)), RH_DefaultTreeFlags))
 			{
-
 				ImGuiDisplayModelData(*(FRHAPI_Model*)Data, StructProp->Struct);
 				ImGui::TreePop();
 			}
 		}
 		else
 		{
-			ImGui::Text("ERROR: Struct Prop is not a FRHAPI_Model");
+			FString	ValueStr;
+			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
 		}
 	}
 	else if (FArrayProperty const* ArrayProp = CastField<FArrayProperty>(Property))
