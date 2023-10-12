@@ -1274,17 +1274,36 @@ void URH_OnlineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FStr
 
 	if (bEnable)
 	{
-		typedef RallyHereAPI::Traits_PostBrowserInfo BaseType;
-		BaseType::Request Request;
-		Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
-		Request.SessionId = GetSessionId();
-		Request.BrowserInfo.SetCustomData(CustomData);
+		// NOTE - this assumes that local state is up to date!
+		auto BrowserData = GetSessionData().GetBrowserOrNull();
+		if (BrowserData != nullptr)
+		{
+			// if the browser data is already set, we need to update it
+			typedef RallyHereAPI::Traits_UpdateBrowserInfo BaseType;
+			BaseType::Request Request;
+			Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+			Request.SessionId = GetSessionId();
+			Request.BrowserInfo.SetCustomData(CustomData);
 
-		const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
-		Helper->Start(Request);
+			const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
+			Helper->Start(Request);
+		}
+		else
+		{
+			// if the browser data is not set, we need to create it
+			typedef RallyHereAPI::Traits_PostBrowserInfo BaseType;
+			BaseType::Request Request;
+			Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+			Request.SessionId = GetSessionId();
+			Request.BrowserInfo.SetCustomData(CustomData);
+
+			const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
+			Helper->Start(Request);
+		}
 	}
 	else
 	{
+		// NOTE - this does not assume that local state is up to date!
 		DoRequestViaHelper<RallyHereAPI::Traits_DeleteBrowserInfo>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionDeleteBrowserInfoPriority);
 	}
 }
