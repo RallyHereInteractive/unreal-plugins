@@ -2,6 +2,8 @@
 
 #include "RH_DebugToolWindow.h"
 
+#include "RankAPI.h"
+
 struct FRHDTW_PlayerSessions : public FRH_DebugToolWindow
 {
 	typedef FRH_DebugToolWindow Super;

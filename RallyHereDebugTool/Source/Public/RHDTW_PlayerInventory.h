@@ -3,6 +3,7 @@
 #include "RH_DebugToolWindow.h"
 #include <string>
 #include "RH_ImGuiUtilities.h"
+#include "RH_PlayerInfoSubsystem.h"
 
 struct FRHDTW_PlayerInventory : public FRH_DebugToolWindow
 {

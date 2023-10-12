@@ -10,6 +10,7 @@
 #include "Engine/GameInstance.h"
 #include "RH_PlatformSessionSyncer.h"
 
+#include "RH_PlayerInfoSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
 

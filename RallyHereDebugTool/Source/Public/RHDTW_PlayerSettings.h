@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RH_DebugToolWindow.h"
+#include "RH_PlayerInfoSubsystem.h"
 
 struct FRHDTW_PlayerSettings : public FRH_DebugToolWindow
 {
