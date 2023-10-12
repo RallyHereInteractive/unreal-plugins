@@ -262,7 +262,7 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 		{
 			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Struct##%s"), *Key)), RH_DefaultTreeFlags))
 			{
-				ImGuiDisplayModelData(*(FRHAPI_Model*)Data, StructProp->Struct);
+				ImGuiDisplayModelData(*(FRHAPI_Model*)Data, *StructProp->Struct);
 				ImGui::TreePop();
 			}
 		}
@@ -292,12 +292,12 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 	}
 }
 
-void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct)
+void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct& Struct)
 {
 	TArray<FProperty*> ValueProperties;
 	TArray<FProperty*> IsSetProperties;
 
-	for (TFieldIterator<FProperty> It(Struct); It; ++It)
+	for (TFieldIterator<FProperty> It(&Struct); It; ++It)
 	{
 		FProperty* Property = *It;
 

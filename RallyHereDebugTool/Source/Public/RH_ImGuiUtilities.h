@@ -100,11 +100,11 @@ void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonV
 template<typename ModelType>
 void ImGuiDisplayModelData(const ModelType& Model)
 {
-	ImGuiDisplayModelData(Model, ModelType::StaticStruct());
+	ImGuiDisplayModelData(Model, *ModelType::StaticStruct());
 }
 
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data, uint8 const* IsSetData);
-void RALLYHEREDEBUGTOOL_API ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct* Struct);
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct& Struct);
 
 void RALLYHEREDEBUGTOOL_API ImGuiCopyStringToTextInputBuffer(const FString& StringToCopy, TArray<ANSICHAR>& Buffer);
 
