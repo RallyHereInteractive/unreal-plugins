@@ -1,11 +1,10 @@
 #pragma once
 
-#include <RH_FriendSubsystem.h>
-
 #include "CoreMinimal.h"
 #include "OnlineSubsystem.h"
 #include "RallyHereAPIAuthContext.h"
 #include "Subsystems/LocalPlayerSubsystem.h"
+#include "RH_SubsystemPluginBase.h"
 #include "RH_Common.h"
 
 #include "CustomAPI.h"

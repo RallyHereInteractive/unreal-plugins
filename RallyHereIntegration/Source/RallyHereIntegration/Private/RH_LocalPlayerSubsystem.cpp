@@ -77,12 +77,18 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 	// Deinitialize Subsystems
 	for (auto Plugin : SandboxedSubsystemPlugins)
 	{
-		Plugin->Deinitialize();
+		if (Plugin != nullptr)
+		{
+			Plugin->Deinitialize();
+		}
 	}
 	SandboxedSubsystemPlugins.Reset();
 	for (auto Plugin : SubsystemPlugins)
 	{
-		Plugin->Deinitialize();
+		if (Plugin != nullptr)
+		{
+			Plugin->Deinitialize();
+		}
 	}
 	SubsystemPlugins.Reset();
 
@@ -95,13 +101,16 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 	PurgeSubsystem = nullptr;
 	EntitlementSubsystem = nullptr;
 
-	AuthContext->OnLoginUserChanged().RemoveAll(this);
-    AuthContext = nullptr;
+	if (AuthContext.IsValid())
+	{
+		AuthContext->OnLoginUserChanged().RemoveAll(this);
+	}
+    AuthContext.Reset();
 }
 
 bool URH_LocalPlayerSubsystem::IsLoggedIn() const
 {
-	return AuthContext->IsLoggedIn();
+	return AuthContext.IsValid() && AuthContext->IsLoggedIn();
 }
 
 void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
@@ -186,10 +195,13 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 
 FGuid URH_LocalPlayerSubsystem::GetPlayerUuid() const
 {
-	auto LoginResult = AuthContext->GetLoginResult();
-	if (AuthContext->IsLoggedIn() && LoginResult.IsSet())
+	if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
 	{
-		return LoginResult->GetActivePlayerUuid(FGuid());
+		auto LoginResult = AuthContext->GetLoginResult();
+		if (LoginResult.IsSet())
+		{
+			return LoginResult->GetActivePlayerUuid(FGuid());
+		}
 	}
 
 	return FGuid();
