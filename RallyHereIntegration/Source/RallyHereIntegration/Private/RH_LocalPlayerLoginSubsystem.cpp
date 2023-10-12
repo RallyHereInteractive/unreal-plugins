@@ -4,6 +4,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "OnlineSubsystem.h"
 #include "Online.h"
+#include "Interfaces/OnlineIdentityInterface.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "WebAuthModule.h"
@@ -329,7 +330,7 @@ void URH_LocalPlayerLoginSubsystem::DoNicknameOSSLogin(FRH_PendingLoginRequest& 
     auto NicknameOSS = GetNicknameOSS();
     if (LoginOSS == NicknameOSS)
     {
-        DoRallyHereLogin(Req);
+        RetrieveOSSAuthToken(Req);
     }
     else
     {
@@ -549,7 +550,7 @@ void URH_LocalPlayerLoginSubsystem::DoNicknameOSSPrivilegeCheck(FRH_PendingLogin
 {
     if (!bNicknameOSSRequireOnlinePlayToLogin)
     {
-        DoRallyHereLogin(Req);
+        RetrieveOSSAuthToken(Req);
         return;
     }
     DoOSSPrivilegeCheck(Req, GetNicknameOSS(), &FRH_PendingLoginRequest::NicknameOSSUniqueId,
@@ -606,7 +607,7 @@ void URH_LocalPlayerLoginSubsystem::OnNicknameOSSPrivilegeResults(const FUniqueN
                                                 bNicknameOSSPromptAccountUpgradeIfInsufficient);
     if (bSuccess)
     {
-        DoRallyHereLogin(Req);
+        RetrieveOSSAuthToken(Req);
     }
 }
 
@@ -687,7 +688,47 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSPrivilegeResults(const FUniqueNetId& Us
     }
 }
 
-void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Req)
+void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthToken(FRH_PendingLoginRequest& Req)
+{
+	Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::None;
+
+	auto LoginOSS = GetLoginOSS();
+	auto LoginIdentity = LoginOSS ? LoginOSS->GetIdentityInterface() : nullptr;
+	if (LoginOSS == nullptr || !LoginIdentity)
+	{
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] Missing OSS Identity - check that the login OSS '%s' is valid"), ANSI_TO_TCHAR(__FUNCTION__),
+			LoginOSS ? *LoginOSS->GetSubsystemName().ToString() : TEXT("NotFound"));
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSMissing));
+		return;
+	}
+
+	int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
+
+	const auto AuthToken = LoginIdentity->GetAuthToken(ControllerId);
+
+	LoginIdentity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
+}
+
+void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthToken, FRH_PendingLoginRequest Req)
+{
+	if (bWasSuccessful)
+	{
+		DoRallyHereLogin(Req, AuthToken);
+	}
+	else
+	{
+		auto LoginOSS = GetLoginOSS();
+
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] Could not retrieve auth token - check that the login OSS '%s' was able to fully log in (ex: may have logged into a local account rather than a network account)"), ANSI_TO_TCHAR(__FUNCTION__),
+			LoginOSS ? *LoginOSS->GetSubsystemName().ToString() : TEXT("NotFound"));
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSAuthToken));
+		return;
+	}
+}
+
+void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Req, const FExternalAuthToken& AuthToken)
 {
     Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::None;
 
@@ -702,11 +743,15 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
         return;
     }
 
-    int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
+	if (GetLocalPlayerSubsystem()->GetLocalPlayer() == nullptr)
+	{
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] Missing local player"), ANSI_TO_TCHAR(__FUNCTION__));
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_LocalPlayerMissing));
+		return;
+	}
 
-	const auto AuthToken = LoginIdentity->GetAuthToken(ControllerId);
-
-	if (AuthToken.Len() <= 0)
+	if (!AuthToken.HasTokenString())
 	{
 		UE_LOG(LogRallyHereIntegration, Error,
 			TEXT("[%s] Empty auth token - check that the login OSS '%s' was able to fully log in (ex: may have logged into a local account rather than a network account)"), ANSI_TO_TCHAR(__FUNCTION__),
@@ -714,6 +759,8 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_OSSAuthToken));
 		return;
 	}
+
+	int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
 
 	// update the auth context with the current client id and secret in case it changed since prior logins
 	auto AuthContext = GetAuthContext();
@@ -746,7 +793,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
         }
 
         Request.LoginRequestV1.GrantType = *GrantType;
-        Request.LoginRequestV1.PortalAccessToken = AuthToken;
+        Request.LoginRequestV1.PortalAccessToken = AuthToken.TokenString;
         Request.LoginRequestV1.SetPortalDisplayName(NicknameIdentity->GetPlayerNickname(ControllerId));
 
         UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Login OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
@@ -789,10 +836,11 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Login request"),
            ANSI_TO_TCHAR(__FUNCTION__));
     auto HttpRequest = RH_APIs::GetAPIs().GetAuth().Login(Request,
-		                                                                                         RallyHereAPI::FDelegate_Login::CreateUObject(
-		                                                                                             this,
-		                                                                                             &URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete,
-		                                                                                             Req));
+		RallyHereAPI::FDelegate_Login::CreateUObject(
+		    this,
+		    &URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete,
+		    Req));
+
     if (!HttpRequest)
     {
         UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Failed to create request"), ANSI_TO_TCHAR(__FUNCTION__));
