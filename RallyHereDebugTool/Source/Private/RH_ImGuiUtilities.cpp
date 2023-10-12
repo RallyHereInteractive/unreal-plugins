@@ -108,7 +108,7 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 #if PLATFORM_ALLOWS_COPY
 	bCanCopyToClipboard = true;
 #endif
-	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8 (*FString::Printf(TEXT("%s##%s"), *Label, *Key)), RH_DefaultTreeFlags))
+	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%s##%s"), *Label, *Key)), RH_DefaultTreeFlags))
 	{
 		if (CustomData.Num() > 0)
 		{
@@ -163,6 +163,179 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 		}
 
 		ImGui::TreePop();
+	}
+}
+
+void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data, uint8 const* IsSetData)
+{
+	if (IsSetProperty != nullptr)
+	{
+		if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(IsSetProperty))
+		{
+			if (!BoolProp->GetPropertyValue(IsSetData))
+			{
+				ImGui::Text("<UNSET>");
+				return;
+			}
+		}
+	}
+
+	if (FBoolProperty const* BoolProp = CastField<FBoolProperty>(Property))
+	{
+		ImGui::Text(BoolProp->GetPropertyValue(Data) ? "TRUE" : "FALSE");
+	}
+	else if (FNumericProperty const* NumericProperty = CastField<FNumericProperty>(Property))
+	{
+		if (NumericProperty->IsInteger())
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), NumericProperty->GetSignedIntPropertyValue(Data))));
+		}
+		else
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%f"), NumericProperty->GetFloatingPointPropertyValue(Data))));
+		}
+	}
+	else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
+	{
+		if (Property->HasMetaData("SerializeAsInteger"))
+		{
+			FNumericProperty* UnderlyingProperty = EnumProperty->GetUnderlyingProperty();
+
+			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), UnderlyingProperty->GetSignedIntPropertyValue(Data))));
+		}
+		else
+		{
+			FString	ValueStr;
+			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+		}
+	}
+	else if (FStrProperty const* StringProperty = CastField<FStrProperty>(Property))
+	{
+		FString	ValueStr;
+		Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+
+		FGuid TestGuid;
+
+		if (FGuid::Parse(ValueStr, TestGuid))
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*TestGuid.ToString(EGuidFormats::DigitsWithHyphens)));
+		}
+		else
+		{
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+		}
+	}
+	else if (FMapProperty const* MapProp = CastField<FMapProperty>(Property))
+	{
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		{
+			if (ImGui::BeginTable("DataTable", 2, RH_TableFlagsPropSizing))
+			{
+				ImGui::TableSetupColumn("Key");
+				ImGui::TableSetupColumn("Value");
+				ImGui::TableHeadersRow();
+
+				FScriptMapHelper MapHelper(MapProp, Data);
+				for (int32 i = 0; i < MapHelper.Num(); ++i)
+				{
+					FProperty* KeyProp = MapHelper.GetKeyProperty();
+					FProperty* ValueProp = MapHelper.GetValueProperty();
+
+					ImGui::TableNextRow();
+					ImGui::TableNextColumn();
+					ImGuiDisplayProperty(KeyProp->GetName(), KeyProp, nullptr, MapHelper.GetKeyPtr(i), nullptr);
+					ImGui::TableNextColumn();
+					ImGuiDisplayProperty(ValueProp->GetName(), ValueProp, nullptr, MapHelper.GetValuePtr(i), nullptr);
+				}
+
+				ImGui::EndTable();
+
+			}
+			ImGui::TreePop();
+		}
+	}
+	else if (FStructProperty const* StructProp = CastField<FStructProperty>(Property))
+	{
+		if (StructProp->Struct->IsChildOf(FRHAPI_Model::StaticStruct()))
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Struct##%s"), *Key)), RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayModelData(*(FRHAPI_Model*)Data, *StructProp->Struct);
+				ImGui::TreePop();
+			}
+		}
+		else
+		{
+			FString	ValueStr;
+			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
+
+			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+		}
+	}
+	else if (FArrayProperty const* ArrayProp = CastField<FArrayProperty>(Property))
+	{
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Array##%s"), *Key)), RH_DefaultTreeFlags))
+		{
+			FScriptArrayHelper ArrayHelper(ArrayProp, Data);
+			for (int32 i = 0; i < ArrayHelper.Num(); ++i)
+			{
+				ImGuiDisplayProperty(ArrayProp->GetName(), ArrayProp->Inner, nullptr, ArrayHelper.GetRawPtr(i), nullptr);
+			}
+			ImGui::TreePop();
+		}
+	}
+	else
+	{
+		ImGui::Text("ERROR: Unknown Property Type");
+	}
+}
+
+void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct& Struct)
+{
+	TArray<FProperty*> ValueProperties;
+	TArray<FProperty*> IsSetProperties;
+
+	for (TFieldIterator<FProperty> It(&Struct); It; ++It)
+	{
+		FProperty* Property = *It;
+
+		if (Property->GetName().Contains(TEXT("_IsSet")))
+		{
+			IsSetProperties.Add(Property);
+			continue;
+		}
+
+		ValueProperties.Add(Property);
+	}
+
+	if (ImGui::BeginTable("DataTable", 2, RH_TableFlagsPropSizing))
+	{
+		ImGui::TableSetupColumn("Key");
+		ImGui::TableSetupColumn("Value");
+		ImGui::TableHeadersRow();
+
+		for (const auto& Prop : ValueProperties)
+		{
+			FProperty* IsSetProp = nullptr;
+			FString PropName = Prop->GetName();
+
+			if (Prop->GetName().Contains(TEXT("_Optional")))
+			{
+				PropName = PropName.LeftChop(9);
+				IsSetProp = *IsSetProperties.FindByPredicate([&](const FProperty* IsSetProp) { return IsSetProp->GetName() == PropName + TEXT("_IsSet"); });
+				PropName = PropName + "<?>";
+			}
+
+			ImGui::TableNextRow();
+			ImGui::TableNextColumn();
+			ImGui::Text(TCHAR_TO_UTF8(*PropName));
+			ImGui::TableNextColumn();
+			ImGuiDisplayProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model), IsSetProp != nullptr ? IsSetProp->ContainerPtrToValuePtr<uint8>(&Model) : nullptr);
+		}
+
+		ImGui::EndTable();
 	}
 }
 

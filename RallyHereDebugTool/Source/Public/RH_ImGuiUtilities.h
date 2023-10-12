@@ -97,6 +97,15 @@ FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayShortenedCopyableUuid(const 
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasCopyAllButton);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray);
 
+template<typename ModelType>
+void ImGuiDisplayModelData(const ModelType& Model)
+{
+	ImGuiDisplayModelData(Model, *ModelType::StaticStruct());
+}
+
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data, uint8 const* IsSetData);
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct& Struct);
+
 void RALLYHEREDEBUGTOOL_API ImGuiCopyStringToTextInputBuffer(const FString& StringToCopy, TArray<ANSICHAR>& Buffer);
 
 FString RALLYHEREDEBUGTOOL_API ImGuiGetStringFromTextInputBuffer(TArray<ANSICHAR>& Buffer);
