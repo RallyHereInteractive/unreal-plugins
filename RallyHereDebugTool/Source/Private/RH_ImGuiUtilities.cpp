@@ -166,7 +166,7 @@ void ImGuiDisplayCustomData(const TMap<FString, FString>& CustomData, const FStr
 	}
 }
 
-void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data, uint8 const* IsSetData)
+void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProperty const* IsSetProperty, uint8 const* Data, uint8 const* IsSetData, const FString& IdentifierKey)
 {
 	if (IsSetProperty != nullptr)
 	{
@@ -188,11 +188,11 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 	{
 		if (NumericProperty->IsInteger())
 		{
-			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), NumericProperty->GetSignedIntPropertyValue(Data))));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%d"), NumericProperty->GetSignedIntPropertyValue(Data)), ECopyMode::Value);
 		}
 		else
 		{
-			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%f"), NumericProperty->GetFloatingPointPropertyValue(Data))));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%f"), NumericProperty->GetFloatingPointPropertyValue(Data)), ECopyMode::Value);
 		}
 	}
 	else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
@@ -201,14 +201,14 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 		{
 			FNumericProperty* UnderlyingProperty = EnumProperty->GetUnderlyingProperty();
 
-			ImGui::Text("%s", TCHAR_TO_UTF8(*FString::Printf(TEXT("%d"), UnderlyingProperty->GetSignedIntPropertyValue(Data))));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%d"), UnderlyingProperty->GetSignedIntPropertyValue(Data)), ECopyMode::Value);
 		}
 		else
 		{
 			FString	ValueStr;
 			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
 
-			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
 		}
 	}
 	else if (FStrProperty const* StringProperty = CastField<FStrProperty>(Property))
@@ -220,16 +220,16 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 
 		if (FGuid::Parse(ValueStr, TestGuid))
 		{
-			ImGui::Text("%s", TCHAR_TO_UTF8(*TestGuid.ToString(EGuidFormats::DigitsWithHyphens)));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%s"), *TestGuid.ToString(EGuidFormats::DigitsWithHyphens)), ECopyMode::Value);
 		}
 		else
 		{
-			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
 		}
 	}
 	else if (FMapProperty const* MapProp = CastField<FMapProperty>(Property))
 	{
-		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s"), *Key)), RH_DefaultTreeFlags))
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Data##%s%s"), *Key, *IdentifierKey)), RH_DefaultTreeFlags))
 		{
 			if (ImGui::BeginTable("DataTable", 2, RH_TableFlagsPropSizing))
 			{
@@ -245,9 +245,9 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 
 					ImGui::TableNextRow();
 					ImGui::TableNextColumn();
-					ImGuiDisplayProperty(KeyProp->GetName(), KeyProp, nullptr, MapHelper.GetKeyPtr(i), nullptr);
+					ImGuiDisplayProperty(KeyProp->GetName(), KeyProp, nullptr, MapHelper.GetKeyPtr(i), nullptr, FString::Printf(TEXT("%d"), i));
 					ImGui::TableNextColumn();
-					ImGuiDisplayProperty(ValueProp->GetName(), ValueProp, nullptr, MapHelper.GetValuePtr(i), nullptr);
+					ImGuiDisplayProperty(ValueProp->GetName(), ValueProp, nullptr, MapHelper.GetValuePtr(i), nullptr, FString::Printf(TEXT("%d"), i));
 				}
 
 				ImGui::EndTable();
@@ -260,7 +260,7 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 	{
 		if (StructProp->Struct->IsChildOf(FRHAPI_Model::StaticStruct()))
 		{
-			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Struct##%s"), *Key)), RH_DefaultTreeFlags))
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Struct##%s%s"), *Key, *IdentifierKey)), RH_DefaultTreeFlags))
 			{
 				ImGuiDisplayModelData(*(FRHAPI_Model*)Data, *StructProp->Struct);
 				ImGui::TreePop();
@@ -271,12 +271,12 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 			FString	ValueStr;
 			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
 
-			ImGui::Text("%s", TCHAR_TO_UTF8(*ValueStr));
+			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
 		}
 	}
 	else if (FArrayProperty const* ArrayProp = CastField<FArrayProperty>(Property))
 	{
-		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Array##%s"), *Key)), RH_DefaultTreeFlags))
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Array##%s%s"), *Key, *IdentifierKey)), RH_DefaultTreeFlags))
 		{
 			FScriptArrayHelper ArrayHelper(ArrayProp, Data);
 			for (int32 i = 0; i < ArrayHelper.Num(); ++i)
