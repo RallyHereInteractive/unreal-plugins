@@ -11,7 +11,7 @@ struct FRHDTW_PlayerPlatforms : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 
-	void HandleGetLinkedPlatforms(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& LinkedPlatforms, FGuid PlayerUuid);
+	void HandleGetLinkedPlatforms(bool bSuccess, const TArray<class URH_PlayerPlatformInfo*>& LinkedPlatforms, FGuid PlayerUuid);
 	FString GetPlatformsActionResult;
 };
 

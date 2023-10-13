@@ -6,6 +6,7 @@
 #include "AnalyticsRallyHere.h"
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
+#include "IAnalyticsProviderET.h"
 #include "AnalyticsEventAttribute.h"
 #include "Misc/ScopeLock.h"
 #include "Containers/Ticker.h"
@@ -20,12 +21,12 @@
  * @brief Implementation of analytics for RallyHere GETS.
  */
 class ANALYTICSRALLYHERE_API FRH_AnalyticsProvider :
-	public IAnalyticsProvider,
+	public IAnalyticsProviderET,
 	public FTSTickerObjectBase,
 	public TSharedFromThis<FRH_AnalyticsProvider>
 {
 public:
-	FRH_AnalyticsProvider(const FRH_Analytics::Config& ConfigValues);
+	FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigValues);
 
 	// FTSTickerObjectBase
 
@@ -33,9 +34,23 @@ public:
 
 	// IAnalyticsProvider
 
-	virtual bool StartSession(const TArray<FAnalyticsEventAttribute>& Attributes) override;
+	/**
+	 * Unlike AnalyticsET, we do not use the version of guid with braces
+	 */
+	virtual bool StartSession(const TArray<FAnalyticsEventAttribute>& Attributes) override
+	{
+		FGuid SessionGUID;
+		FPlatformMisc::CreateGuid(SessionGUID);
+		return StartSession(SessionGUID.ToString(EGuidFormats::DigitsWithHyphens), Attributes);
+	}
+
+	virtual bool StartSession(FString InSessionID, const TArray<FAnalyticsEventAttribute>& Attributes) override;
 	virtual void EndSession() override;
 	virtual void FlushEvents() override;
+
+	// we do not currently handle these, but expose them for completeness and future use
+	virtual void SetAppID(FString&& AppId) override {};
+	virtual void SetAppVersion(FString&& AppVersion) override {};
 
 	virtual void SetUserID(const FString& InUserID) override;
 	virtual FString GetUserID() const override;
@@ -43,22 +58,29 @@ public:
 	virtual FString GetSessionID() const override;
 	virtual bool SetSessionID(const FString& InSessionID) override;
 
-	virtual bool ShouldRecordEvent(const FString& EventName) const;
-	virtual void RecordEvent(const FString& EventName, const TArray<FAnalyticsEventAttribute>& Attributes) override;
-	virtual void SetDefaultEventAttributes(TArray<FAnalyticsEventAttribute>&& Attributes);
-	virtual TArray<FAnalyticsEventAttribute> GetDefaultEventAttributesSafe() const;
-	virtual int32 GetDefaultEventAttributeCount() const;
-	virtual FAnalyticsEventAttribute GetDefaultEventAttribute(int AttributeIndex) const;
+	virtual void SetShouldRecordEventFunc(const ShouldRecordEventFunction& ShouldRecordEventFunc) override;
+	virtual bool ShouldRecordEvent(const FString& EventName) const override;
+
+	virtual void RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes) override;
+	virtual void SetDefaultEventAttributes(TArray<FAnalyticsEventAttribute>&& Attributes) override;
+	virtual TArray<FAnalyticsEventAttribute> GetDefaultEventAttributesSafe() const override;
+	virtual int32 GetDefaultEventAttributeCount() const override;
+	virtual FAnalyticsEventAttribute GetDefaultEventAttribute(int AttributeIndex) const override;
 
 	virtual bool AppendSetDefaultEventAttribute(const FString& Key, const FString& Value);
 	virtual bool ClearDefaultEventAttribute(const FString& Key);
 
-	virtual void BlockUntilFlushed(float InTimeoutSec);
+	virtual void SetEventCallback(const OnEventRecorded& Callback) override;
+
+	virtual void SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains) override;
+
+	virtual void BlockUntilFlushed(float InTimeoutSec) override;
 	virtual ~FRH_AnalyticsProvider();
 
-	virtual const FRH_Analytics::Config& GetConfig() const { return Config; }
+	// we use our own config object
+	virtual const FAnalyticsET::Config& GetConfig() const override { return Config; }
 
-private:
+protected:
 	void FlushEventsOnce();
 
 	/** Create a request utilizing HttpRetry domains */
@@ -66,7 +88,7 @@ private:
 
 	bool bSessionInProgress;
 	/** The current configuration (might be updated with respect to the one provided at construction). */
-	FRH_Analytics::Config Config;
+	FAnalyticsET::Config Config;
 	/** the unique UserID as passed to ET. */
 	FString UserID;
 	/** The session ID */
@@ -83,6 +105,11 @@ private:
 	bool bInDestructor;
 
 	FRH_AnalyticsProviderEventCache EventCache;
+
+	TArray<OnEventRecorded> EventRecordedCallbacks;
+
+	/** Event filter function */
+	ShouldRecordEventFunction ShouldRecordEventFunc;
 
 	/**
 	* Delegate called when an event Http request completes

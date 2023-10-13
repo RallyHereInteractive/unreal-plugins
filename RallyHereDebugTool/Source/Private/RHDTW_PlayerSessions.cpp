@@ -1,6 +1,7 @@
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
 #include "RHDTW_PlayerSessions.h"
+#include "RH_PlayerInfoSubsystem.h"
 #include "imgui.h"
 #include "RH_ImGuiUtilities.h"
 

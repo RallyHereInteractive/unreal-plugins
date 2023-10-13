@@ -10,13 +10,14 @@ namespace UnrealBuildTool.Rules
 				new string[]
 				{
 					"Core",
+					"Analytics",
+					"AnalyticsET",
 				}
 				);
 
 			PrivateDependencyModuleNames.AddRange(
 				new string[]
 				{
-					"Analytics",
 					"HTTP",
 					"Json",
                     // ... add private dependencies that you statically link with here ...
