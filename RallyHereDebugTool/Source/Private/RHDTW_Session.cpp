@@ -1544,25 +1544,25 @@ void FRHDTW_Session::Do()
 			ImGui::EndTabItem();
 		}
 
-		if (pGISessionSearchCache != nullptr && ImGui::BeginTabItem("Browser", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Browser", nullptr, ImGuiTabItemFlags_None))
 		{
 			ImGuiDisplaySessionBrowser(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 
-		if (pGIMatchmakingCache != nullptr && ImGui::BeginTabItem("Queues", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Queues", nullptr, ImGuiTabItemFlags_None))
 		{
 			ImGuiDisplayQueuesBrowser(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 
-		if (pGIMatchmakingCache != nullptr && ImGui::BeginTabItem("Regions", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Regions", nullptr, ImGuiTabItemFlags_None))
 		{
 			ImGuiDisplayRegionsBrowser(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 
-		if (pGIMatchmakingCache != nullptr && ImGui::BeginTabItem("Session Types", nullptr, ImGuiTabItemFlags_None))
+		if (ImGui::BeginTabItem("Session Types", nullptr, ImGuiTabItemFlags_None))
 		{
 			ImGuiDisplaySessionTypes(pGISubsystem);
 			ImGui::EndTabItem();
