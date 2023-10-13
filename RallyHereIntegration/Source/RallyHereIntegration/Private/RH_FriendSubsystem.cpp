@@ -1706,6 +1706,18 @@ URH_FriendSubsystem* URH_RHFriendAndPlatformFriend::GetFriendSubsystem() const
 	return CastChecked<URH_FriendSubsystem>(GetOuter());
 }
 
+URH_PlayerInfo* URH_RHFriendAndPlatformFriend::GetPlayerInfo() const
+{
+	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
+
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		return PlayerInfoSubsystem->GetPlayerInfo(PlayerAndPlatformInfo.PlayerUuid);
+	}
+
+	return nullptr;
+}
+
 FString URH_RHFriendAndPlatformFriend::GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/) const
 {
 	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();

@@ -536,6 +536,11 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	const FRH_PlayerAndPlatformInfo& GetPlayerAndPlatformInfo() const { return PlayerAndPlatformInfo; }
 	/**
+	* @brief Attempts to get the player info
+	*/
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	class URH_PlayerInfo* GetPlayerInfo() const;
+	/**
 	* @brief Gets the last known cached display name for the player.
 	* @param PreferredPlatformType The preferred platform to get the display name from.
 	* @return The players last seen display name, will try to find a valid display name even if on a different platform than the preferred.
