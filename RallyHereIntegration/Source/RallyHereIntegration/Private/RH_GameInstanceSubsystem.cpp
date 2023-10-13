@@ -2,6 +2,8 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "Engine/GameInstance.h"
+#include "Engine/World.h"
+#include "Misc/CoreDelegates.h"
 #include "GameFramework/GameModeBase.h"
 #include "RH_LocalPlayer.h"
 

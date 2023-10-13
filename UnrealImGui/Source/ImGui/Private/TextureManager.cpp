@@ -5,6 +5,10 @@
 #include <Engine/Texture2D.h>
 #include <Framework/Application/SlateApplication.h>
 
+//$$ BEGIN
+#include "RHITypes.h"
+//$$ END
+
 #include <algorithm>
 
 

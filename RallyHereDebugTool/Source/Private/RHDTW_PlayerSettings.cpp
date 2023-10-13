@@ -5,6 +5,7 @@
 #include "RH_ImGuiUtilities.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_SettingsSubsystem.h"
+#include "Engine/GameInstance.h"
 
 FRHDTW_PlayerSettings::FRHDTW_PlayerSettings()
 	: Super()

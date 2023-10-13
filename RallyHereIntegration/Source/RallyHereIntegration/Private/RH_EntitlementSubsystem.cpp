@@ -1,6 +1,7 @@
 #include "RH_EntitlementSubsystem.h"
 
 #include "Engine/LocalPlayer.h"
+#include "Engine/GameInstance.h"
 #include "OnlineSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
 #include "RH_LocalPlayerSubsystem.h"

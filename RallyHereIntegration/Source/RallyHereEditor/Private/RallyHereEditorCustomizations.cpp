@@ -8,6 +8,9 @@
 #include "Dialog/SCustomDialog.h"
 #include "ScopedTransaction.h"
 #include "Widgets/DeclarativeSyntaxSupport.h"
+#include "Widgets/Input/SButton.h"
+#include "Widgets/Text/STextBlock.h"
+#include "Widgets/Input/SEditableTextBox.h"
 #include "PropertyHandle.h"
 #include "PropertyCustomizationHelpers.h"
 

@@ -3,8 +3,7 @@
 #include "CoreMinimal.h"
 #include "ClientType.h"
 #include "RallyHereAPIAuthContext.h"
-#include "RallyHereAPI/Public/PlatformID.h"
-#include "RallyHereAPI/Public/Platform.h"
+#include "Platform.h"
 #include "UObject/WeakInterfacePtr.h"
 
 #include "CustomAPI.h"

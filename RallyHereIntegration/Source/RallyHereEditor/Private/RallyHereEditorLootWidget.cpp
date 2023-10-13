@@ -5,11 +5,15 @@
 #include "Widgets/Input/SNumericEntryBox.h"
 #include "Widgets/Layout/SExpandableArea.h"
 #include "Widgets/Input/SComboBox.h"
+#include "Widgets/Input/SButton.h"
+#include "Framework/MultiBox/MultiBoxBuilder.h"
 #include "PropertyCustomizationHelpers.h"
 #include "Engine/AssetManager.h"
+#include "Misc/MessageDialog.h"
 #include "RH_Common.h"
 #include "RH_Properties.h"
 #include "Engine/Engine.h"
+#include "Editor.h"
 #include "Dialogs/Dialogs.h"
 #include "Dialog/SCustomDialog.h"
 #include "RallyHereEditor.h"
@@ -454,7 +458,7 @@ TSharedRef<ITableRow> SRallyHereEditorVendorRow::MakeListViewLootWidget(TSharedP
 					FUIAction ItemAction(FExecuteAction::CreateLambda([this, EnumIndex]() \
 					{ \
 						IsDirty = true; \
-						LootUpdateRequest.Set##Variable(##EnumName(EnumIndex)); \
+						LootUpdateRequest.Set##Variable(EnumName(EnumIndex)); \
 					})); \
 					MenuBuilder.AddMenuEntry(EnumType->GetDisplayNameTextByIndex(EnumIndex), TAttribute<FText>(), FSlateIcon(), ItemAction); \
 				} \
@@ -837,23 +841,23 @@ void SRallyHereEditorLootRow::Construct(const FArguments& InArgs, const TSharedR
 }
 
 #define COPY_OPTIONAL_VALUE(PropertyName, Source, Target) \
-	if (const auto Value = Source##.Get##PropertyName##OrNull()) \
+	if (const auto Value = Source.Get##PropertyName##OrNull()) \
 	{ \
-		Target##.Set##PropertyName(*Value); \
+		Target.Set##PropertyName(*Value); \
 	} \
 	else \
 	{ \
-		Target##.Clear##PropertyName(); \
+		Target.Clear##PropertyName(); \
 	}
 
 #define COPY_OPTIONAL_VALUE_WITH_DEFAULT(PropertyName, Source, Target, DefaultValue) \
-	if (const auto Value = Source##.Get##PropertyName##OrNull()) \
+	if (const auto Value = Source.Get##PropertyName##OrNull()) \
 	{ \
-		Target##.Set##PropertyName(*Value); \
+		Target.Set##PropertyName(*Value); \
 	} \
 	else \
 	{ \
-		Target##.Set##PropertyName(DefaultValue); \
+		Target.Set##PropertyName(DefaultValue); \
 	}
 
 void SRallyHereEditorLootRow::HydrateLootUpdateRequest()

@@ -4,6 +4,7 @@
 #include "RallyHereEditor.h"
 #include "RallyHereEditorCustomDataWidget.h"
 #include "Widgets/Docking/SDockTab.h"
+#include "Widgets/Views/SListView.h"
 #include "Widgets/SCompoundWidget.h"
 
 DECLARE_DELEGATE_TwoParams(FRH_OnLootUpdate, const FGuid&, TSharedPtr<FRHAPI_DevLoot>);

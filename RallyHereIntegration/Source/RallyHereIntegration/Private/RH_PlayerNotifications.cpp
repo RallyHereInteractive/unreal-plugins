@@ -1,6 +1,6 @@
 #include "RH_PlayerNotifications.h"
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
-#include "RallyHereAPI/Public/NotificationCreate.h"
+#include "NotificationCreate.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_NotificationHelpers.h"
 #include "RH_PlayerInfoSubsystem.h"

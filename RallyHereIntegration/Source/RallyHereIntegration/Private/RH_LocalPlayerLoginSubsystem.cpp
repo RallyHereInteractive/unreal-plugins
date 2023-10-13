@@ -9,6 +9,8 @@
 #include "WebAuthModule.h"
 #include "Engine/LocalPlayer.h"
 #include "Misc/CommandLine.h"
+#include "Misc/CoreDelegates.h"
+#include "Async/TaskGraphInterfaces.h"
 #include "UObject/Package.h"
 #include "Interfaces/IAnalyticsProvider.h"
 
