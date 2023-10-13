@@ -2,6 +2,7 @@
 
 #include "RHDTW_Notifications.h"
 #include "RallyHereDebugToolModule.h"
+#include "RallyHereIntegrationModule.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RallyHereDebugTool.h"
 #include "imgui.h"

@@ -4,6 +4,7 @@
 #include "OnlineSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
 #include "RH_LocalPlayerSubsystem.h"
+#include "RH_PlayerInfoSubsystem.h"
 
 void URH_EntitlementSubsystem::Initialize()
 {

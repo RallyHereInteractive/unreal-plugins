@@ -3,6 +3,7 @@
 
 #include "PresenceAPI.h"
 #include "RH_DebugToolWindow.h"
+#include "RH_PlayerInfoSubsystem.h"
 #include "RH_LocalPlayerPresenceSubsystem.h"
 #include <string>
 #include "RH_ImGuiUtilities.h"

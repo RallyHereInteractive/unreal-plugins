@@ -6,6 +6,7 @@
 #include "RH_ImGuiUtilities.h"
 #include "RH_CatalogSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
+#include "RH_PlayerInfoSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 
 FRHDTW_Catalog::FRHDTW_Catalog()

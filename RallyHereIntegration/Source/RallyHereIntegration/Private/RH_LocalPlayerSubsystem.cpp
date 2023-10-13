@@ -14,6 +14,7 @@
 #include "RH_LocalPlayerPresenceSubsystem.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_AdSubsystem.h"
+#include "RH_FriendSubsystem.h"
 #include "RH_ConfigSubsystem.h"
 #include "RH_EntitlementSubsystem.h"
 #include "RH_PurgeSubsystem.h"

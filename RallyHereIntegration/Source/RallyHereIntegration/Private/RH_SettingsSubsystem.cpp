@@ -1,4 +1,9 @@
+
 #include "RH_SettingsSubsystem.h"
+
+#include "RallyHereIntegrationModule.h"
+#include "RH_Common.h"
+
 
 URH_SettingsSubsystem::URH_SettingsSubsystem(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

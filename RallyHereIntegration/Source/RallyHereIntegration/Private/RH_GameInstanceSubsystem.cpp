@@ -11,6 +11,7 @@
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_CatalogSubsystem.h"
 #include "RH_ConfigSubsystem.h"
+#include "RH_SettingsSubsystem.h"
 
 #include "RH_SessionBrowser.h"
 #include "RH_MatchmakingBrowser.h"
