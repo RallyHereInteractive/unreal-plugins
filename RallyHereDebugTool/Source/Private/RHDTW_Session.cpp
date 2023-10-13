@@ -254,83 +254,6 @@ void FRHDTW_Session::ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& I
 	}
 }
 
-void FRHDTW_Session::ImGuiDisplaySessionTemplate(const FRHAPI_SessionTemplate& Template)
-{
-	FString HeaderString = FString::Printf(TEXT("Type: %s"), *Template.SessionType);
-
-	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
-	{
-		ImGuiDisplayCopyableValue(TEXT("SessionType"), Template.GetSessionType());
-		ImGuiDisplayCopyableValue(TEXT("EngineSessionType"), Template.GetEngineSessionTypeOrNull());
-		ImGuiDisplayCopyableValue(TEXT("CanJoinMatchmaking"), Template.GetCanJoinMatchmakingOrNull());
-		ImGuiDisplayCopyableValue(TEXT("CanBeCreatedByPlayersDirectly"), Template.GetCanBeCreatedByPlayersDirectlyOrNull());
-		ImGuiDisplayCopyableValue(TEXT("Joinable"), Template.GetJoinableOrNull());
-		ImGuiDisplayCopyableValue(TEXT("AutoAddToBrowser"), Template.GetAutoAddToBrowserOrNull());
-
-		ImGuiDisplayCustomData(Template.GetAutoBrowserParamsOrNull(), TEXT("AutoBrowserParams"), TEXT("AutoBrowserParams"));
-
-		ImGuiDisplayCopyableValue(TEXT("CanBeAddedToServerBrowser"), Template.GetCanBeAddedToServerBrowserOrNull());
-		ImGuiDisplayCopyableValue(TEXT("KeepAliveOnEmpty"), Template.GetKeepAliveOnEmptyOrNull());
-
-		auto* PlatformTemplates = Template.GetPlatformTemplatesOrNull();
-
-		if (ImGui::TreeNodeEx("PlatformTemplates", RH_DefaultTreeFlags))
-		{
-			if (PlatformTemplates != nullptr)
-			{
-				for (auto& PlatformTemplate : *PlatformTemplates)
-				{
-					FString PlatformTemplateHeaderString = FString::Printf(TEXT("Platform: %s"), *EnumToString(PlatformTemplate.Value.GetPlatform()));
-
-					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*PlatformTemplateHeaderString), RH_DefaultTreeFlagsLeaf))
-					{
-						ImGuiDisplayCopyableValue(TEXT("Platform"), EnumToString(PlatformTemplate.Value.GetPlatform()));
-						ImGuiDisplayCopyableValue(TEXT("PlatformId"), EnumToString(PlatformTemplate.Value.GetPlatformId()));
-						ImGuiDisplayCopyableValue(TEXT("PlatformSessionType"), PlatformTemplate.Value.GetPlatformSessionType());
-						ImGuiDisplayCopyableValue(TEXT("MaxPlayers"), PlatformTemplate.Value.GetMaxPlayersOrNull());
-						ImGuiDisplayCustomData(PlatformTemplate.Value.GetCustomData());
-
-						ImGui::TreePop();
-					}
-				}
-			}
-			else
-			{
-				ImGui::Text("No PlatformTemplates");
-			}
-
-			ImGui::TreePop();
-		}
-
-		if (const auto InstanceStartupParams = Template.GetAutoStartupParamsOrNull())
-		{
-			if (ImGui::TreeNodeEx("AutoStartupParams", RH_DefaultTreeFlagsLeaf))
-			{
-				ImGuiDisplayCopyableValue(TEXT("Map"), InstanceStartupParams->Map);
-				ImGuiDisplayCopyableValue(TEXT("Mode"), InstanceStartupParams->GetMode());
-				ImGuiDisplayCopyableValue(TEXT("MiscParams"), InstanceStartupParams->MiscParams);
-				ImGuiDisplayCustomData(InstanceStartupParams->GetCustomData());
-
-				ImGui::TreePop();
-			}
-		}
-		else
-		{
-			ImGui::Text("No AutoStartupParams");
-		}
-
-		ImGuiDisplayCopyableValue(TEXT("MinSessionCount"), Template.GetMinSessionCountOrNull());
-
-		ImGuiDisplayCustomData(Template.GetCustomDataOrNull());
-
-		ImGuiDisplayCopyableValue(TEXT("NumTeams"), Template.GetNumTeamsOrNull());
-		ImGuiDisplayCopyableValue(TEXT("PlayersPerTeam"), Template.GetPlayersPerTeamOrNull());
-		ImGuiDisplayCopyableValue(TEXT("CanChangeOwnTeam"), Template.GetCanChangeOwnTeamOrNull());
-
-		ImGui::TreePop();
-	}
-}
-
 void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWrapper, URH_SessionView* RHSession, URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, URH_GameInstanceSessionSubsystem* pGISessionSubsystem)
 {
 	auto& Session = SessionWrapper.Data;
@@ -449,7 +372,6 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		{
 			Template.SessionType = Session.Type + TEXT(" <UNKNOWN TYPE>");
 		}
-		ImGuiDisplaySessionTemplate(Template);
 
 		ImGuiDisplayCopyableValue(TEXT("Region Id"), Session.GetRegionIdOrNull());
 
@@ -846,16 +768,6 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 			}
 		}
 		ImGui::EndCombo();
-	}
-	{
-		FRHAPI_SessionTemplate Template;
-		if (firstLPSessionSS)
-		{
-			if (firstLPSessionSS->GetTemplate(ImGuiGetStringFromTextInputBuffer(CreateByTypeSessionTypeString), Template))
-			{
-				ImGuiDisplaySessionTemplate(Template);
-			}
-		}
 	}
 
 	ImGui::SetNextItemWidth(150.f);
@@ -1552,6 +1464,49 @@ void FRHDTW_Session::ImGuiDisplayRegionsBrowser(URH_GameInstanceSubsystem* pGISu
 	}
 }
 
+void FRHDTW_Session::ImGuiDisplaySessionTypes(URH_GameInstanceSubsystem* pGISubsystem)
+{
+	int NumSelectedPlayers = 0;
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
+	}
+	if (NumSelectedPlayers <= 0)
+	{
+		ImGui::Text("%s", "Please select a local player (has Controller Id) in Player Repository.");
+		return;
+	}
+
+	URH_LocalPlayerSessionSubsystem* firstLPSessionSS = nullptr;
+	FString firstSelectedPlayerNote = FString();
+	if (URallyHereDebugTool* pOwner = GetOwner())
+	{
+		if (ULocalPlayer* pLocalPlayer = pOwner->GetFirstSelectedLocalPlayer())
+		{
+			firstSelectedPlayerNote = FString::Printf(TEXT("For first selected local player with Controller Id %d."), pOwner->GetFirstSelectedLocalPlayer()->GetControllerId());
+			if (URH_LocalPlayerSubsystem* LPSS = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>(GetFirstSelectedLocalPlayer()))
+			{
+				firstLPSessionSS = LPSS->GetSessionSubsystem();
+			}
+		}
+	}
+
+	TArray<FRHAPI_SessionTemplate> Templates;
+	if (firstLPSessionSS)
+	{
+		Templates = firstLPSessionSS->GetTemplates();
+	}
+
+	for (auto& Template : Templates)
+	{
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("Type: %s"), *Template.SessionType)), RH_DefaultTreeFlags))
+		{
+			ImGuiDisplayModelData<FRHAPI_SessionTemplate>(Template);
+			ImGui::TreePop();
+		}
+	}
+}
+
 void FRHDTW_Session::Do()
 {
 	URallyHereDebugTool* pOwner = GetOwner();
@@ -1604,6 +1559,12 @@ void FRHDTW_Session::Do()
 		if (pGIMatchmakingCache != nullptr && ImGui::BeginTabItem("Regions", nullptr, ImGuiTabItemFlags_None))
 		{
 			ImGuiDisplayRegionsBrowser(pGISubsystem);
+			ImGui::EndTabItem();
+		}
+
+		if (pGIMatchmakingCache != nullptr && ImGui::BeginTabItem("Session Types", nullptr, ImGuiTabItemFlags_None))
+		{
+			ImGuiDisplaySessionTypes(pGISubsystem);
 			ImGui::EndTabItem();
 		}
 

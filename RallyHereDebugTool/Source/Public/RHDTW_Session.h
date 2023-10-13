@@ -61,13 +61,12 @@ protected:
 	void ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplayPlayerSessions(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISubsystem);
+	void ImGuiDisplaySessionTypes(URH_GameInstanceSubsystem* pGISubsystem);
 
 	void ImGuiDisplayQueuesBrowser(URH_GameInstanceSubsystem* pGISubsystem);
 	void ImGuiDisplayQueue(const class URH_MatchmakingQueueInfo* Queue, URH_LocalPlayerSessionSubsystem* pLPSessionSubsystem, class URH_OnlineSession* pSelectedSession, class URH_MatchmakingBrowserCache* pBrowerCache);
 
 	void ImGuiDisplayRegionsBrowser(URH_GameInstanceSubsystem* pGISubsystem);
-
-	void ImGuiDisplaySessionTemplate(const struct FRHAPI_SessionTemplate& Template);
 
 	void HandleBrowserSearchResult(bool bSuccess, const FRH_SessionBrowserSearchResult& Result);
 	void HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession* SessionData, FGuid PlayerUuid);
