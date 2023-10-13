@@ -12,6 +12,7 @@
 #include "Modules/ModuleManager.h"
 #include "Templates/SharedPointer.h"
 #include "Templates/UnrealTemplate.h"
+#include "AnalyticsET.h"
 
 class IAnalyticsProvider;
 
@@ -39,36 +40,6 @@ public:
 	// Configuration functionality
 	//--------------------------------------------------------------------------
 public:
-	/**
-	 * Defines required configuration values for RallyHere analytics provider. 
-	*/
-	struct Config
-	{
-		/** APIKey - Get from your account manager (can be empty) */
-		FString APIKey;
-		/** API Server - Base URL to send events. Set this to an empty string to essentially create a NULL analytics provider that will be non-null, but won't actually send events. */
-		FString APIServer;
-		/** When true (default), events are dropped if flush fails */
-		bool bDropEventsOnFlushFailure = true;
-		/** Maximum number of retries to attempt. */
-		uint32 RetryLimitCount = 0;
-		/** Maximum time to elapse before forcing events to be flushed. Use a negative value to use the defaults (60 sec). */
-		float FlushIntervalSec = -1.f;
-		/** Maximum size a payload can reach before we force a flush of the payload. Use a negative value to use the defaults. See FRH_AnalyticsProviderEventCache. */
-		int32 MaximumPayloadSize = -1;
-		/** We preallocate a payload. It defaults to the Maximum configured payload size (see FAnalyticsProviderETEventCache). Use a negative value use the default. See FRH_AnalyticsProviderEventCache. */
-		int32 PreallocatedPayloadSize = -1;
-
-		/** Default ctor to ensure all values have their proper default. */
-		Config() = default;
-
-		/** KeyName required for APIKey configuration. */
-		static FString GetKeyNameForAPIKey() { return TEXT("RHAPIKey"); }
-		/** KeyName required for APIServer configuration. */
-		static FString GetKeyNameForAPIServer() { return TEXT("RHAPIServer"); }
-
-
-	};
 
 	//--------------------------------------------------------------------------
 	// provider factory functions
@@ -84,7 +55,7 @@ public:
 	/**
 	 * Construct an RH analytics provider directly from a config object.
 	 */
-	virtual TSharedPtr<IAnalyticsProvider> CreateAnalyticsProvider(const Config& ConfigValues) const;
+	virtual TSharedPtr<IAnalyticsProvider> CreateAnalyticsProvider(const FAnalyticsET::Config& ConfigValues) const;
 
 private:
 	virtual void StartupModule() override;
