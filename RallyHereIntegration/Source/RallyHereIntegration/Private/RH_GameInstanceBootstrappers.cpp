@@ -11,6 +11,7 @@
 #include "Engine/GameInstance.h"
 #include "Engine/LocalPlayer.h"
 #include "Misc/CoreDelegates.h"
+#include "Misc/CommandLine.h"
 
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"

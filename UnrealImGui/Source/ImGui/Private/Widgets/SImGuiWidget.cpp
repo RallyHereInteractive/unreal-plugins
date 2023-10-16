@@ -22,6 +22,10 @@
 #include <SlateOptMacros.h>
 #include <Widgets/SViewport.h>
 
+//$$ BEGIN
+#include "UnrealClient.h"
+//$$ END
+
 #include <utility>
 
 

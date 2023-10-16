@@ -6,6 +6,8 @@
 #include "RallyHereEditor.h"
 #include "RH_DevWebRequests.h"
 #include "Widgets/Layout/SExpandableArea.h"
+#include "Widgets/Input/SEditableTextBox.h"
+#include "Widgets/Text/STextBlock.h"
 #include "CoreGlobals.h"
 #include "Editor.h"
 #include "UnrealEdMisc.h"

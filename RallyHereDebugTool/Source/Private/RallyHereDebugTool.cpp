@@ -17,6 +17,7 @@
 
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
+#include "Engine/GameInstance.h"
 #include "Framework/Application/SlateApplication.h"
 #include "Kismet/GameplayStatics.h"
 #include "OnlineSubsystem.h"

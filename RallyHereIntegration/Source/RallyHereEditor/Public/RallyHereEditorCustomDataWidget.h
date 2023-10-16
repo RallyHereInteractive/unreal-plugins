@@ -3,6 +3,8 @@
 
 #include "RallyHereEditor.h"
 #include "Widgets/SCompoundWidget.h"
+#include "Widgets/Input/SEditableTextBox.h"
+#include "Widgets/SBoxPanel.h"
 
 DECLARE_DELEGATE(FRH_OnCustomDataUpdated);
 
