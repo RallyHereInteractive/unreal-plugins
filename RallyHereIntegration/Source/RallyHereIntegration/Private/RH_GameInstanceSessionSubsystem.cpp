@@ -137,6 +137,7 @@ void URH_GameInstanceSessionSubsystem::Deinitialize()
 	// explicitly do not sync state to null, just clear pointers
 	DesiredSession = nullptr;
 	ActiveSession = nullptr;
+	FallbackSecurityToken.Reset();
 
 	FWorldDelegates::OnPostWorldInitialization.RemoveAll(this);
 	if (GEngine != nullptr)
@@ -243,7 +244,11 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 				InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
 				if (!InstanceInfo.GetJoinParams().GetCustomData().Contains(RH_SessionCustomDataKeys::SessionSecurityTokenName))
 				{
-					InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::SessionSecurityTokenName, FGuid::NewGuid().ToString());
+					FString SecurityToken = FGuid::NewGuid().ToString();
+
+					FallbackSecurityToken = SecurityToken;
+
+					InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::SessionSecurityTokenName, SecurityToken);
 					InstanceInfo.GetJoinParams().CustomData_IsSet = true;
 					InstanceInfo.JoinParams_IsSet = true;
 				}
@@ -283,6 +288,33 @@ void URH_GameInstanceSessionSubsystem::OnTravelFailure(UWorld* World, ETravelFai
 	{
 		StartLeaveInstanceFlow(true);
 	}
+}
+
+void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* JoinedSession)
+{
+	auto OldSession = ActiveSession;
+	if (ActiveSession != nullptr)
+	{
+		check(ActiveSession->IsActive());
+		JoinedSession->SetActive(false);
+		JoinedSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
+		ActiveSession = nullptr;
+	}
+
+	ActiveSession = JoinedSession;
+	FallbackSecurityToken.Reset();
+
+	if (ActiveSession != nullptr)
+	{
+		check(!ActiveSession->IsActive());
+		JoinedSession->SetActive(true);
+		JoinedSession->SetWatchingPlayers(true);
+		ActiveSession = JoinedSession;
+	}
+
+	// fire delegates to allow registration of handler objects
+	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
+	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 }
 
 ARH_OnlineBeaconHost* URH_GameInstanceSessionSubsystem::CreateBeaconHost(UWorld* pWorld, uint32 Port, bool bShutdownWorldNetDriver)
@@ -511,9 +543,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 			UE_LOG(LogRallyHereIntegration, Log, TEXT("Setting travel to %s"), *hostURL.ToString());
 
 			// set state now before we start travel (which may fail in line)
-			DesiredSession->SetActive(true);
-			DesiredSession->SetWatchingPlayers(true);
-			ActiveSession = DesiredSession;
+			SetActiveSession(DesiredSession);
 
 			// clear fubar flag for new tracking
 			bHasBeenMarkedFubar = false;
@@ -544,9 +574,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("Setting travel to %s"), *JoinURL.ToString());
 
 		// set state now before we start travel (which may fail in line)
-		DesiredSession->SetActive(true);
-		DesiredSession->SetWatchingPlayers(true);
-		ActiveSession = DesiredSession;
+		SetActiveSession(DesiredSession);
 
 		FString JoinURLString;
 		{
@@ -597,9 +625,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	// clear out active session.
 	if (ActiveSession != nullptr)
 	{
-		ActiveSession->SetActive(false);
-		ActiveSession->SetWatchingPlayers(false);
-		ActiveSession = nullptr;
+		SetActiveSession(nullptr);
 	}
 
 	if (bCheckDesired && DesiredSession != nullptr)
