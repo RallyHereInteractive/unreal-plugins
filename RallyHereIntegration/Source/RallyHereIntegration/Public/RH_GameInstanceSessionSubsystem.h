@@ -33,6 +33,10 @@ UDELEGATE()
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnBeaconCreatedDynamicDelegate, ARH_OnlineBeaconHost*, Host);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnBeaconCreatedDelegate, ARH_OnlineBeaconHost*);
 
+UDELEGATE()
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDynamicDelegate, URH_JoinedSession*, OldSession, URH_JoinedSession*, NewSession);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDelegate, URH_JoinedSession*, URH_JoinedSession*);
+
 
 /** @ingroup GameInstance
  *  @{
@@ -100,6 +104,10 @@ public:
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
 	FORCEINLINE URH_JoinedSession* GetActiveSession() const { return ActiveSession; }
+	/**
+	* @brief Gets the fallback security token
+	*/
+	FORCEINLINE const TOptional<FString>& GetFallbackSessionSecurityToken() const { return FallbackSecurityToken; }
 	/**
 	* @brief Gets if the instance has been marked failed.
 	*/
@@ -175,8 +183,18 @@ public:
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
 	 */
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "OnBeaconCreated"))
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Beacon Created"))
 	FRH_OnBeaconCreatedDynamicDelegate BLUEPRINT_OnBeaconCreated;
+
+	/**
+	 * @brief Multicast delegate fired when the active session is changed
+	 */
+	FRH_OnActiveSessionChangedDelegate OnActiveSessionChanged;
+	/**
+	 * @brief Multicast delegate fired when the active session is changed
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session|Instance", meta = (DisplayName = "On Active Session Changed"))
+	FRH_OnActiveSessionChangedDynamicDelegate BLUEPRINT_OnActiveSessionChanged;
 
 protected:
 	/** @brief Session we want to sync to. */
@@ -185,9 +203,17 @@ protected:
 	/** @brief Session we are synced to. */
 	UPROPERTY(BlueprintGetter = GetActiveSession, Transient, Category = "Session|Instance")
 	URH_JoinedSession* ActiveSession;
+	/** @brief A fallback security token to be used while the security token set is in flight */
+	TOptional<FString> FallbackSecurityToken;
 	/** @brief If set, the session instance is failed and unrecoverable. */
 	UPROPERTY(BlueprintGetter = IsMarkedFubar, Transient, Category = "Session|Instance")
 	bool bHasBeenMarkedFubar;
+
+	/** 
+	 * @brief Sets the current active session
+	 * @param [in] Session to set as active session
+	 */
+	virtual void SetActiveSession(URH_JoinedSession* Session);
 	/**
 	 * @brief Called when the map completes loading.
 	 * @param [in] pWorld The world that was being traveled to.
