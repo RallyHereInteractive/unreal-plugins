@@ -90,6 +90,11 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchResult
 	UPROPERTY()
 	TArray<TWeakObjectPtr<URH_SessionView>> Sessions;
 	/**
+	 * @brief Cursor to use to request the next page of data
+	 */
+	UPROPERTY()
+	int32 NextPageCursor;
+	/**
 	 * @brief Returns summary of search results for tooling/logging.
 	 */
 	FString GetDescription() const

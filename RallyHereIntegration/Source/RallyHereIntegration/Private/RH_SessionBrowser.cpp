@@ -17,8 +17,9 @@ public:
 		, SessionOwner(InSessionOwner)
 		, AuthContext(InAuthContext)
 		, Delegate(InDelegate)
+		, NextPageCursor(0)
+		, bMissingTemplates(false)
 	{
-		bMissingTemplates = false;
 	}
 
 	virtual void Start(const FRH_SessionBrowserSearchParams& InSearchParams)
@@ -67,6 +68,7 @@ protected:
 			RemainingSessionIds.Empty();
 
 			SessionInfos = Resp.Content.BrowserSessions;
+			NextPageCursor = Resp.Content.Cursor;
 
 			if (SessionInfos.Num() <= 0)
 			{
@@ -239,6 +241,7 @@ protected:
 		FRH_SessionBrowserSearchResult Result;
 		Result.SearchParams = SearchParams;
 		Result.SessionInfos = SessionInfos;
+		Result.NextPageCursor = NextPageCursor;
 
 		// if caching was requested, add the sessions to the result
 		if (SearchParams.bCacheSessionDetails)
@@ -266,6 +269,7 @@ protected:
 	TArray<FRHAPI_BrowserSessionInfo> SessionInfos;
 	TArray<FString> RemainingSessionIds;
 	TArray<FRH_APISessionWithETag> Sessions;
+	int32 NextPageCursor;
 	bool bMissingTemplates;
 };
 
