@@ -188,6 +188,7 @@ bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Conne
 
 				// see if a security token was specified for the currently active session
 				const FString* SessionSecurityToken = nullptr;
+				const TOptional<FString> FallbackSessionSecurityToken = pRHSubsystem->GetSessionSubsystem()->GetFallbackSessionSecurityToken();
 				const auto* Session = pRHSubsystem->GetSessionSubsystem()->GetActiveSession();
 				if (Session != nullptr && Session->GetInstanceData() != nullptr)
 				{
@@ -205,6 +206,15 @@ bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Conne
 					if (*SessionSecurityToken != LoginSecurityToken)
 					{
 						ErrorMessage = TEXT("RH Security Token mismatch");
+						return false;
+					}
+				}
+				// this token is used to cover cases where clients attempt to connect before the server reads its own session data update to add the token
+				else if (FallbackSessionSecurityToken.IsSet())
+				{
+					if (FallbackSessionSecurityToken.GetValue() != LoginSecurityToken)
+					{
+						ErrorMessage = TEXT("RH Security Token (fallback) mismatch");
 						return false;
 					}
 				}
