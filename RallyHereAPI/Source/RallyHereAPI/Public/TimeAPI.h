@@ -58,7 +58,13 @@ struct RALLYHEREAPI_API FResponse_GetUtcTime : public FResponse
 
     FDateTime Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FDateTime& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetUtcTime

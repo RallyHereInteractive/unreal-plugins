@@ -164,10 +164,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Catalog& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogAll
@@ -212,10 +236,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSet : public F
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSet& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSet
@@ -259,10 +307,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogInventoryBucketUseRuleSetsAll : publ
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogInventoryBucketUseRuleSetsAll
@@ -307,10 +379,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogItem : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Item& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogItem
@@ -354,10 +450,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogItemsAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Items& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogItemsAll
@@ -402,10 +522,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogLoot : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Loot& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogLoot
@@ -449,10 +593,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogLootsAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Loots& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogLootsAll
@@ -497,10 +665,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRuleset : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PortalUseRuleset& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRuleset
@@ -544,10 +736,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPortalUseRulesetsAll : public FRespo
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPortalUseRulesetsAll
@@ -592,10 +808,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPricePoint : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PricePoint& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPricePoint
@@ -639,10 +879,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogPricePointsAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PricePoints& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogPricePointsAll
@@ -687,10 +951,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogTimeFrame : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_TimeFrame& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogTimeFrame
@@ -734,10 +1022,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogTimeFramesAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogTimeFramesAll
@@ -782,10 +1094,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogVendor : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Vendor& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogVendor
@@ -829,10 +1165,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogVendorsAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Vendors& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogVendorsAll
@@ -876,10 +1236,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogXpAll : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_XpTables& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogXpAll
@@ -924,10 +1308,34 @@ struct RALLYHEREAPI_API FResponse_GetCatalogXpTable : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_XpTable& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetCatalogXpTable

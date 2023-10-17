@@ -189,6 +189,20 @@ bool FResponse_GetAllMapGameInfo::TryGetContentFor200(FRHAPI_InstanceLaunchTempl
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllMapGameInfo::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetAllMapGameInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -382,6 +396,20 @@ bool FResponse_GetAllQueueInfo::ParseHeaders()
 bool FResponse_GetAllQueueInfo::TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllQueueInfo::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetAllQueueInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -579,6 +607,20 @@ bool FResponse_GetAllQueueInfoV2::TryGetContentFor200(FRHAPI_QueuesResponseV2& O
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllQueueInfoV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetAllQueueInfoV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -765,6 +807,20 @@ bool FResponse_GetInstanceRequestTemplate::ParseHeaders()
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetInstanceRequestTemplate::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetInstanceRequestTemplate::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -955,6 +1011,20 @@ bool FResponse_GetMatchMakingTemplates::TryGetContentFor200(FRHAPI_MatchMakingTe
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetMatchMakingTemplates::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetMatchMakingTemplates::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1141,6 +1211,20 @@ bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetMatchMakingTemplatesV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetMatchMakingTemplatesV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

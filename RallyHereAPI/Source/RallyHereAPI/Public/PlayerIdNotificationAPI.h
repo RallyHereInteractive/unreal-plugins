@@ -99,10 +99,28 @@ struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
 
     FRHAPI_NotificationCreateResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+
+    /* Response 400
+     Error Codes: - bad_id - Passed client id is not a valid id 
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
@@ -143,11 +161,33 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
 
     FRHAPI_Notification Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+
+    /* Response 400
+     Error Codes: - bad_id - Passed client id is not a valid id 
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+     Error Codes: - resource_not_found - Notification could not be found 
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
@@ -187,10 +227,28 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResp
 
     FRHAPI_Notification Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+     Error Codes: - resource_not_found - Notification could not be found 
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
@@ -237,10 +295,32 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FRespons
 
     FRHAPI_Notifications Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+    /* Response 304
+    Not Modified
+    */
+
+    /* Response 400
+     Error Codes: - bad_id - Passed client id is not a valid id 
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
@@ -286,9 +366,27 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FRes
 
     FRHAPI_Notifications Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+    /* Response 304
+    Not Modified
+    */
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
@@ -336,10 +434,28 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FRes
 
     FRHAPI_Notifications Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+    /* Response 400
+     Error Codes: - bad_id - Passed client id is not a valid id 
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
@@ -386,9 +502,23 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public 
 
     FRHAPI_Notifications Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+
+    /* Response 403
+     Error Codes: - insufficient_role - Insufficient Role access - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} 
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf

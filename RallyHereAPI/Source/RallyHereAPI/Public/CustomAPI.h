@@ -66,10 +66,28 @@ struct RALLYHEREAPI_API FResponse_CustomEndpointSend : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CustomEndpointSend

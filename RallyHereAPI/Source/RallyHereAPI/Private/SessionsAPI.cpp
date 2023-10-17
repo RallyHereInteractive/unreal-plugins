@@ -191,6 +191,20 @@ bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor200(FRHAPI_
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_AddPlatformSessionToRallyHereSession::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -204,6 +218,20 @@ bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor404(FRHAPI_
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_AddPlatformSessionToRallyHereSession::GetHeader409_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
 }
 
 bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -1236,6 +1264,20 @@ bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor409(FR
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_DeletePlatformSessionFromRallyHereSession::GetHeader409_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
+}
+
 bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1406,6 +1448,20 @@ bool FResponse_EndInstance::ParseHeaders()
         ETag = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_EndInstance::GetHeader204_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_EndInstance::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1753,6 +1809,20 @@ bool FResponse_GetAllSessionTemplates::TryGetContentFor200(FRHAPI_SessionTemplat
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAllSessionTemplates::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetAllSessionTemplates::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1941,6 +2011,20 @@ bool FResponse_GetBrowserSessionsByType::ParseHeaders()
 bool FResponse_GetBrowserSessionsByType::TryGetContentFor200(FRHAPI_BrowserResponse& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetBrowserSessionsByType::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetBrowserSessionsByType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2298,6 +2382,20 @@ bool FResponse_GetPlatformSessionInfo::TryGetContentFor200(FRHAPI_PlatformSessio
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetPlatformSessionInfo::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetPlatformSessionInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -2653,6 +2751,20 @@ bool FResponse_GetPlayerSessionsByUuid::TryGetContentFor200(FRHAPI_PlayerSession
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetPlayerSessionsByUuid::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetPlayerSessionsByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -2841,6 +2953,20 @@ bool FResponse_GetPlayerSessionsByUuidV2::TryGetContentFor200(FRHAPI_PlayerSessi
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetPlayerSessionsByUuidV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetPlayerSessionsByUuidV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -3022,6 +3148,20 @@ bool FResponse_GetPlayerSessionsSelf::ParseHeaders()
 bool FResponse_GetPlayerSessionsSelf::TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetPlayerSessionsSelf::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetPlayerSessionsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -3212,6 +3352,20 @@ bool FResponse_GetSessionByAllocationId::TryGetContentFor200(FRHAPI_Session& Out
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSessionByAllocationId::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetSessionByAllocationId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -3398,6 +3552,20 @@ bool FResponse_GetSessionById::ParseHeaders()
 bool FResponse_GetSessionById::TryGetContentFor200(FRHAPI_Session& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSessionById::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetSessionById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -3760,6 +3928,20 @@ bool FResponse_GetSessionTemplateByType::ParseHeaders()
 bool FResponse_GetSessionTemplateByType::TryGetContentFor200(FRHAPI_SessionTemplate& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetSessionTemplateByType::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetSessionTemplateByType::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -4131,6 +4313,20 @@ bool FResponse_JoinSessionByIdSelf::TryGetContentFor200(FRHAPI_SessionPlayerUpda
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_JoinSessionByIdSelf::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_JoinSessionByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -4345,6 +4541,20 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor200(FRHAPI_Se
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -4358,6 +4568,20 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor404(FRHAPI_Hz
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader409_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
 }
 
 bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -4555,6 +4779,20 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor200(FRHAPI_Se
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -4568,6 +4806,20 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor404(FRHAPI_Hz
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader409_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
 }
 
 bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -4912,6 +5164,20 @@ bool FResponse_KickPlayerFromSessionByUuid::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_KickPlayerFromSessionByUuid::GetHeader204_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_KickPlayerFromSessionByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -5096,6 +5362,20 @@ bool FResponse_KickPlayerFromSessionByUuidV2::ParseHeaders()
         ETag = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_KickPlayerFromSessionByUuidV2::GetHeader204_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_KickPlayerFromSessionByUuidV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -5613,6 +5893,20 @@ bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_H
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_LeaveSessionByPlatformSessionByUuid::GetHeader409_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
+}
+
 bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -5785,6 +6079,20 @@ bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor404(FRHAPI_HzA
 bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_LeaveSessionByPlatformSessionSelf::GetHeader409_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
 }
 
 bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -7013,6 +7321,20 @@ bool FResponse_UpdateSessionById::TryGetContentFor200(FRHAPI_Session& OutContent
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_UpdateSessionById::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_UpdateSessionById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -7392,6 +7714,20 @@ bool FResponse_UpdateSessionPlayerByUuid::TryGetContentFor200(FRHAPI_SessionPlay
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_UpdateSessionPlayerByUuid::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_UpdateSessionPlayerByUuid::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -7592,6 +7928,20 @@ bool FResponse_UpdateSessionPlayerByUuidV2::ParseHeaders()
 bool FResponse_UpdateSessionPlayerByUuidV2::TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_UpdateSessionPlayerByUuidV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_UpdateSessionPlayerByUuidV2::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

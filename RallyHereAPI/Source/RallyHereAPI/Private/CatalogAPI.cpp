@@ -190,6 +190,20 @@ bool FResponse_GetCatalogAll::TryGetContentFor200(FRHAPI_Catalog& OutContent) co
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -389,6 +403,20 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::TryGetContentFor200(FRHAPI_I
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogInventoryBucketUseRuleSet::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogInventoryBucketUseRuleSet::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -581,6 +609,20 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::TryGetContentFor200(FRHAPI_InventoryBucketUseRuleSets& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogInventoryBucketUseRuleSetsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -782,6 +824,20 @@ bool FResponse_GetCatalogItem::TryGetContentFor200(FRHAPI_Item& OutContent) cons
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogItem::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogItem::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -974,6 +1030,20 @@ bool FResponse_GetCatalogItemsAll::ParseHeaders()
 bool FResponse_GetCatalogItemsAll::TryGetContentFor200(FRHAPI_Items& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogItemsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogItemsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1175,6 +1245,20 @@ bool FResponse_GetCatalogLoot::TryGetContentFor200(FRHAPI_Loot& OutContent) cons
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogLoot::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogLoot::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1367,6 +1451,20 @@ bool FResponse_GetCatalogLootsAll::ParseHeaders()
 bool FResponse_GetCatalogLootsAll::TryGetContentFor200(FRHAPI_Loots& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogLootsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogLootsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1568,6 +1666,20 @@ bool FResponse_GetCatalogPortalUseRuleset::TryGetContentFor200(FRHAPI_PortalUseR
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogPortalUseRuleset::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogPortalUseRuleset::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1760,6 +1872,20 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
 bool FResponse_GetCatalogPortalUseRulesetsAll::TryGetContentFor200(FRHAPI_PortalUseRulesets& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogPortalUseRulesetsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogPortalUseRulesetsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1961,6 +2087,20 @@ bool FResponse_GetCatalogPricePoint::TryGetContentFor200(FRHAPI_PricePoint& OutC
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogPricePoint::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogPricePoint::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -2153,6 +2293,20 @@ bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
 bool FResponse_GetCatalogPricePointsAll::TryGetContentFor200(FRHAPI_PricePoints& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogPricePointsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogPricePointsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2354,6 +2508,20 @@ bool FResponse_GetCatalogTimeFrame::TryGetContentFor200(FRHAPI_TimeFrame& OutCon
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogTimeFrame::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogTimeFrame::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -2546,6 +2714,20 @@ bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
 bool FResponse_GetCatalogTimeFramesAll::TryGetContentFor200(FRHAPI_TimeFrames& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogTimeFramesAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogTimeFramesAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2747,6 +2929,20 @@ bool FResponse_GetCatalogVendor::TryGetContentFor200(FRHAPI_Vendor& OutContent) 
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogVendor::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogVendor::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -2941,6 +3137,20 @@ bool FResponse_GetCatalogVendorsAll::TryGetContentFor200(FRHAPI_Vendors& OutCont
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogVendorsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetCatalogVendorsAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -3133,6 +3343,20 @@ bool FResponse_GetCatalogXpAll::ParseHeaders()
 bool FResponse_GetCatalogXpAll::TryGetContentFor200(FRHAPI_XpTables& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogXpAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogXpAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -3332,6 +3556,20 @@ bool FResponse_GetCatalogXpTable::ParseHeaders()
 bool FResponse_GetCatalogXpTable::TryGetContentFor200(FRHAPI_XpTable& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogXpTable::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetCatalogXpTable::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

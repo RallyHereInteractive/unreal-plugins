@@ -2921,6 +2921,20 @@ bool FResponse_GetPlayerInventory::TryGetContentFor503(FRHAPI_HzApiErrorModel& O
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_GetPlayerInventory::GetHeader503_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
+}
+
 bool FResponse_GetPlayerInventory::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -3092,6 +3106,20 @@ bool FResponse_GetPlayerInventorySelf::TryGetContentFor422(FRHAPI_HTTPValidation
 bool FResponse_GetPlayerInventorySelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_GetPlayerInventorySelf::GetHeader503_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
 }
 
 bool FResponse_GetPlayerInventorySelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3272,6 +3300,20 @@ bool FResponse_GetPlayerInventoryUuid::TryGetContentFor503(FRHAPI_HzApiErrorMode
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_GetPlayerInventoryUuid::GetHeader503_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
+}
+
 bool FResponse_GetPlayerInventoryUuid::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -3443,6 +3485,20 @@ bool FResponse_GetPlayerInventoryUuidSelf::TryGetContentFor422(FRHAPI_HTTPValida
 bool FResponse_GetPlayerInventoryUuidSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Number of seconds after which to retry the request, when the server should have the resource available */
+TOptional<int32> FResponse_GetPlayerInventoryUuidSelf::GetHeader503_RetryAfter() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return 0;
 }
 
 bool FResponse_GetPlayerInventoryUuidSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

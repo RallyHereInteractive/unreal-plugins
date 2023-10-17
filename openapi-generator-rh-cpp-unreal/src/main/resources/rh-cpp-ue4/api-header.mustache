@@ -109,12 +109,22 @@ struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
     {{/headers.0}}
     {{#headers}}
     {{#description}}/* {{{.}}} */
-    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};{{/headers}}
+    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/headers}}
+
+    // Manual Response Helpers
     {{/responses.0}}
     {{#responses}}
+    /* Response {{code}}
+    {{{message}}}
+    */
     {{#dataType}}
     bool TryGetContentFor{{{code}}}({{{.}}}& OutContent) const;
     {{/dataType}}
+    {{#headers}}
+    {{#description}}/* {{{.}}} */
+    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} GetHeader{{code}}_{{name}}() const;
+    {{/headers}}
+
     {{/responses}}
 };
 

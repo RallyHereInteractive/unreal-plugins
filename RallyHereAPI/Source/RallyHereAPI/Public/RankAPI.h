@@ -108,9 +108,23 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
@@ -149,8 +163,18 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
@@ -189,8 +213,18 @@ struct RALLYHEREAPI_API FResponse_GetAllRankConfig : public FResponse
 
     FRHAPI_RankConfigRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRankConfig
@@ -231,9 +265,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
@@ -273,9 +321,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
@@ -315,9 +377,23 @@ struct RALLYHEREAPI_API FResponse_GetRankConfig : public FResponse
 
     FRHAPI_RankConfigRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetRankConfig
@@ -359,9 +435,23 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
@@ -402,9 +492,23 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
@@ -442,9 +546,23 @@ struct RALLYHEREAPI_API FResponse_UpdateRankingsTrueskillV1 : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1

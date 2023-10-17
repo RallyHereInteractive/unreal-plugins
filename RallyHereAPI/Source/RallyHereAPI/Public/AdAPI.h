@@ -92,9 +92,31 @@ struct RALLYHEREAPI_API FResponse_BeginNewSession : public FResponse
     // Headers
     /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
     TOptional<FString> XHzAdApiToken;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+    TOptional<FString> GetHeader200_XHzAdApiToken() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+    TOptional<FString> GetHeader500_XHzAdApiToken() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_BeginNewSession
@@ -139,9 +161,31 @@ struct RALLYHEREAPI_API FResponse_FindOpportunities : public FResponse
     // Headers
     /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
     TOptional<FString> XHzAdApiToken;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_AdOpportunities& OutContent) const;
+    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+    TOptional<FString> GetHeader200_XHzAdApiToken() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+    TOptional<FString> GetHeader500_XHzAdApiToken() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_FindOpportunities
@@ -186,8 +230,18 @@ struct RALLYHEREAPI_API FResponse_UnityAdWatched : public FResponse
 
     FString Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FString& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UnityAdWatched
@@ -234,8 +288,18 @@ struct RALLYHEREAPI_API FResponse_UnityMediationAdWatched : public FResponse
 
     FString Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FString& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UnityMediationAdWatched
@@ -281,9 +345,31 @@ struct RALLYHEREAPI_API FResponse_UpdateOpportunityById : public FResponse
     // Headers
     /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
     TOptional<FString> XHzAdApiToken;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+    TOptional<FString> GetHeader200_XHzAdApiToken() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+    TOptional<FString> GetHeader500_XHzAdApiToken() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateOpportunityById

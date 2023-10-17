@@ -99,9 +99,25 @@ struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
@@ -147,9 +163,25 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfo
@@ -195,9 +227,25 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
@@ -242,9 +290,25 @@ struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
@@ -289,9 +353,25 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
@@ -336,9 +416,25 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2

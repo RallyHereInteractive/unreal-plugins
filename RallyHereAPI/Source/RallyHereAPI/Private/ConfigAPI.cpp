@@ -192,6 +192,20 @@ bool FResponse_GetAppSettingsAll::TryGetContentFor200(FRHAPI_KVsResponse& OutCon
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAppSettingsAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetAppSettingsAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -357,6 +371,20 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
 bool FResponse_GetAppSettingsClient::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAppSettingsClient::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetAppSettingsClient::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -538,6 +566,20 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
 bool FResponse_GetAppSettingsServer::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetAppSettingsServer::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

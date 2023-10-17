@@ -389,6 +389,20 @@ bool FResponse_GetBlockedListForPlayerV2::TryGetContentFor200(FRHAPI_BlockedList
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetBlockedListForPlayerV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetBlockedListForPlayerV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);

@@ -299,11 +299,37 @@ struct RALLYHEREAPI_API FResponse_AddPlatformSessionToRallyHereSession : public 
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader409_RetryAfter() const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
@@ -344,9 +370,23 @@ struct RALLYHEREAPI_API FResponse_CreateInstanceRequest : public FResponse
 
     FRHAPI_InstanceInfo Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateInstanceRequest
@@ -386,10 +426,28 @@ struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateMatch
@@ -429,9 +487,23 @@ struct RALLYHEREAPI_API FResponse_CreateOrJoinSession : public FResponse
 
     FRHAPI_SessionJoinResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateOrJoinSession
@@ -472,10 +544,28 @@ struct RALLYHEREAPI_API FResponse_CreateSessionEvent : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateSessionEvent
@@ -515,8 +605,22 @@ struct RALLYHEREAPI_API FResponse_DeleteBrowserInfo : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
@@ -558,10 +662,34 @@ struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : pu
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader409_RetryAfter() const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
@@ -604,8 +732,24 @@ struct RALLYHEREAPI_API FResponse_EndInstance : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader204_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_EndInstance
@@ -645,9 +789,23 @@ struct RALLYHEREAPI_API FResponse_EndMatch : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_EndMatch
@@ -691,9 +849,25 @@ struct RALLYHEREAPI_API FResponse_GetAllSessionTemplates : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionTemplates& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
@@ -738,9 +912,25 @@ struct RALLYHEREAPI_API FResponse_GetBrowserSessionsByType : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_BrowserResponse& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
@@ -780,9 +970,23 @@ struct RALLYHEREAPI_API FResponse_GetConnectionInfoSelf : public FResponse
 
     FRHAPI_ConnectionInfo Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_ConnectionInfo& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
@@ -828,10 +1032,30 @@ struct RALLYHEREAPI_API FResponse_GetPlatformSessionInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
@@ -871,9 +1095,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessions : public FResponse
 
     FRHAPI_PlayerSessions Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessions
@@ -918,9 +1156,25 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuid : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
@@ -965,9 +1219,25 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuidV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
@@ -1011,9 +1281,25 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
@@ -1058,9 +1344,25 @@ struct RALLYHEREAPI_API FResponse_GetSessionByAllocationId : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
@@ -1105,9 +1407,25 @@ struct RALLYHEREAPI_API FResponse_GetSessionById : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionById
@@ -1149,9 +1467,23 @@ struct RALLYHEREAPI_API FResponse_GetSessionEvents : public FResponse
 
     FRHAPI_SessionEvents Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionEvents& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionEvents
@@ -1196,9 +1528,25 @@ struct RALLYHEREAPI_API FResponse_GetSessionTemplateByType : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionTemplate& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
@@ -1239,9 +1587,23 @@ struct RALLYHEREAPI_API FResponse_JoinQueue : public FResponse
 
     FRHAPI_QueueJoinResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_QueueJoinResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_JoinQueue
@@ -1285,10 +1647,30 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByIdSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
@@ -1335,11 +1717,37 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionByUuid : public FR
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader409_RetryAfter() const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
@@ -1384,11 +1792,37 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionIdSelf : public FR
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader409_RetryAfter() const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
@@ -1429,9 +1863,27 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionById : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
@@ -1475,9 +1927,29 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuid : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader204_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
@@ -1521,9 +1993,29 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuidV2 : public FRespon
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader204_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
@@ -1563,9 +2055,27 @@ struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_LeaveQueue
@@ -1605,9 +2115,27 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByIdSelf : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
@@ -1649,10 +2177,34 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public F
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader409_RetryAfter() const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
@@ -1693,10 +2245,34 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FRe
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    User is not authenticated, or does not have sufficient role access to perform request
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Platform Session or Platform Player doesn't exist.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader409_RetryAfter() const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
@@ -1737,9 +2313,23 @@ struct RALLYHEREAPI_API FResponse_PostBrowserInfo : public FResponse
 
     FRHAPI_BrowserInfo Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_PostBrowserInfo
@@ -1780,9 +2370,23 @@ struct RALLYHEREAPI_API FResponse_ReportFubar : public FResponse
 
     FRHAPI_JsonObject Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonObject& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ReportFubar
@@ -1823,9 +2427,23 @@ struct RALLYHEREAPI_API FResponse_StartMatch : public FResponse
 
     FRHAPI_MatchCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_MatchCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_StartMatch
@@ -1866,9 +2484,23 @@ struct RALLYHEREAPI_API FResponse_UpdateBrowserInfo : public FResponse
 
     FRHAPI_BrowserInfo Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
@@ -1909,9 +2541,23 @@ struct RALLYHEREAPI_API FResponse_UpdateInstanceInfo : public FResponse
 
     FRHAPI_InstanceInfo Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
@@ -1952,9 +2598,23 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchInfo : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateMatchInfo
@@ -1998,9 +2658,25 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionById : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionById
@@ -2042,10 +2718,28 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerById : public FResponse
 
     FRHAPI_SessionPlayerUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
@@ -2090,10 +2784,30 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuid : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
@@ -2138,10 +2852,30 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuidV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Session doesn't exist or Player is not a member of the session.  See error code for more info
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2

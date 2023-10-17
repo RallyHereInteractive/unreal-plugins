@@ -80,9 +80,23 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementForMe : public FResp
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
@@ -123,9 +137,23 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementsByPlayerUuid : publ
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
@@ -166,9 +194,23 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementsByPlayerUuid : public FRes
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
@@ -208,9 +250,23 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementsForMe : public FResponse
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_RetrieveEntitlementsForMe

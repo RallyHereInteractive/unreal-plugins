@@ -213,6 +213,20 @@ bool FResponse_AddFriendV2::TryGetContentFor200(FRHAPI_FriendRelationship& OutCo
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_AddFriendV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_AddFriendV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -429,6 +443,20 @@ bool FResponse_AddNotesV2::TryGetContentFor200(FRHAPI_FriendRelationship& OutCon
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_AddNotesV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_AddNotesV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -630,6 +658,20 @@ bool FResponse_DeleteFriendV2::ParseHeaders()
         ETag = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_DeleteFriendV2::GetHeader204_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_DeleteFriendV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1204,6 +1246,20 @@ bool FResponse_GetFriendRelationshipV2::TryGetContentFor200(FRHAPI_FriendRelatio
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetFriendRelationshipV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_GetFriendRelationshipV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1421,6 +1477,20 @@ bool FResponse_GetFriendsListForPlayerV2::ParseHeaders()
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor200(FRHAPI_FriendsList& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetFriendsListForPlayerV2::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_GetFriendsListForPlayerV2::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const

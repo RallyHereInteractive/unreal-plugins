@@ -81,11 +81,33 @@ struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponse
 
     FRHAPI_BlockedPlayer Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_BlockedPlayer& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_BlockV2
@@ -132,11 +154,39 @@ struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_BlockedList& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
@@ -177,11 +227,33 @@ struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponse
 
     FRHAPI_BlockedPlayer Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_BlockedPlayer& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedV2
@@ -222,10 +294,32 @@ struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UnblockV2

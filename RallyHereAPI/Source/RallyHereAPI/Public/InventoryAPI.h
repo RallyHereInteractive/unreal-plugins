@@ -250,9 +250,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySession : public FResponse
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
     bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySession
@@ -293,9 +307,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionByPlayerUuid : public
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
     bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuid
@@ -335,9 +363,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionByPlayerUuidSelf : pu
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
     bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuidSelf
@@ -377,9 +419,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionSelf : public FRespon
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
     bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySessionSelf
@@ -420,10 +476,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrder : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerOrder
@@ -463,10 +537,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerOrderSelf
@@ -507,10 +599,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrder : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrder
@@ -550,10 +660,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FRespons
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrderSelf
@@ -594,10 +722,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventory : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventory
@@ -637,10 +783,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventorySelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventorySelf
@@ -681,10 +845,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuid : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuid
@@ -724,10 +906,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuidSelf : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuidSelf
@@ -767,9 +967,23 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfo : public FResponse
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfo
@@ -809,9 +1023,23 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoByPlayerUuid : public F
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuid
@@ -850,8 +1078,18 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoByPlayerUuidSelf : publ
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuidSelf
@@ -890,8 +1128,18 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoSelf : public FResponse
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfoSelf
@@ -932,10 +1180,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventory : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventory
@@ -975,10 +1243,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventorySelf : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventorySelf
@@ -1019,10 +1307,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuid : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuid
@@ -1062,10 +1370,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuidSelf : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
     bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuidSelf
@@ -1106,10 +1434,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrderById : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrderById
@@ -1149,10 +1495,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrderByIdSelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrderByIdSelf
@@ -1200,9 +1564,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrders : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrders
@@ -1249,9 +1627,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrdersSelf : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrdersSelf
@@ -1292,10 +1684,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrderById : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderById
@@ -1335,10 +1745,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrderByIdSelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderByIdSelf
@@ -1386,9 +1814,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrders : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrders
@@ -1435,9 +1877,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrdersSelf : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrdersSelf
@@ -1478,10 +1934,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventory : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventory
@@ -1521,10 +1995,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventorySelf : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventorySelf
@@ -1565,10 +2057,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuid : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuid
@@ -1608,10 +2118,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuidSelf : public FRe
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuidSelf
@@ -1653,10 +2181,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventory : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventory
@@ -1697,10 +2243,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventorySelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventorySelf
@@ -1742,10 +2306,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuid : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuid
@@ -1786,10 +2368,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuidSelf : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
     bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuidSelf

@@ -198,6 +198,20 @@ bool FResponse_BeginNewSession::TryGetContentFor200(FRHAPI_JsonValue& OutContent
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_BeginNewSession::GetHeader200_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_BeginNewSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -206,6 +220,20 @@ bool FResponse_BeginNewSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutC
 bool FResponse_BeginNewSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_BeginNewSession::GetHeader500_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_BeginNewSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -395,6 +423,20 @@ bool FResponse_FindOpportunities::TryGetContentFor200(FRHAPI_AdOpportunities& Ou
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_FindOpportunities::GetHeader200_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_FindOpportunities::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -403,6 +445,20 @@ bool FResponse_FindOpportunities::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 bool FResponse_FindOpportunities::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_FindOpportunities::GetHeader500_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_FindOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -890,6 +946,20 @@ bool FResponse_UpdateOpportunityById::TryGetContentFor200(FRHAPI_JsonValue& OutC
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_UpdateOpportunityById::GetHeader200_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_UpdateOpportunityById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -898,6 +968,20 @@ bool FResponse_UpdateOpportunityById::TryGetContentFor403(FRHAPI_HzApiErrorModel
 bool FResponse_UpdateOpportunityById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_UpdateOpportunityById::GetHeader500_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_UpdateOpportunityById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

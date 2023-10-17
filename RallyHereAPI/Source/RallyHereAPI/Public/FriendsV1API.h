@@ -104,11 +104,39 @@ struct RALLYHEREAPI_API FResponse_AddFriend : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_FriendRelationshipV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 412
+    The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
+    */
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AddFriend
@@ -155,11 +183,35 @@ struct RALLYHEREAPI_API FResponse_AddNotes : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_FriendRelationshipV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AddNotes
@@ -205,10 +257,38 @@ struct RALLYHEREAPI_API FResponse_DeleteFriend : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader204_ETag() const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 412
+    The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
+    */
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriend
@@ -249,10 +329,32 @@ struct RALLYHEREAPI_API FResponse_DeleteFriends : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriends
@@ -295,10 +397,32 @@ struct RALLYHEREAPI_API FResponse_DeleteNotes : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteNotes
@@ -344,11 +468,39 @@ struct RALLYHEREAPI_API FResponse_GetFriendRelationship : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_FriendRelationshipV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendRelationship
@@ -395,11 +547,39 @@ struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayer : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_FriendsListV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendsListForPlayer

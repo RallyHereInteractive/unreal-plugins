@@ -3757,6 +3757,20 @@ bool FResponse_AdminUpdatePlayerLastSeen::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_AdminUpdatePlayerLastSeen::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -3964,6 +3978,20 @@ bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
 bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_AdminUpdatePlayerLastSeenId::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

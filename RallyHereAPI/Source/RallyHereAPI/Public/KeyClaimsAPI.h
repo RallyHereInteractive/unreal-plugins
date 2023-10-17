@@ -123,11 +123,33 @@ struct RALLYHEREAPI_API FResponse_ClaimPlayerUuidUnclaimedKeyClaim : public FRes
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaim
@@ -168,11 +190,33 @@ struct RALLYHEREAPI_API FResponse_ClaimPlayerUuidUnclaimedKeyClaimForMe : public
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe
@@ -214,11 +258,33 @@ struct RALLYHEREAPI_API FResponse_ClaimUnclaimedKeyClaim : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaim
@@ -259,11 +325,33 @@ struct RALLYHEREAPI_API FResponse_ClaimUnclaimedKeyClaimForMe : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaimForMe
@@ -304,11 +392,33 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaim : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaim
@@ -348,11 +458,33 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimForMe : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaimForMe
@@ -392,11 +524,33 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaims : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaims
@@ -435,10 +589,28 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimsForMe : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaimsForMe
@@ -477,10 +649,28 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimsForMyUuid : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaimsForMyUuid
@@ -521,11 +711,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaim : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaim
@@ -565,11 +777,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaimSelf : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaimSelf
@@ -609,11 +843,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaims : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaims

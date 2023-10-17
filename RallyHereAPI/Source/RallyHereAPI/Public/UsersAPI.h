@@ -229,8 +229,22 @@ struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DequeueMeForPurge
@@ -270,9 +284,27 @@ struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
@@ -310,7 +342,17 @@ struct RALLYHEREAPI_API FResponse_DisableCrossProgression : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
 };
 
 struct RALLYHEREAPI_API Traits_DisableCrossProgression
@@ -348,7 +390,17 @@ struct RALLYHEREAPI_API FResponse_EnableCrossProgression : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
 };
 
 struct RALLYHEREAPI_API Traits_EnableCrossProgression
@@ -387,9 +439,23 @@ struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponse
 
     TArray<FRHAPI_Role> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRoles
@@ -429,10 +495,28 @@ struct RALLYHEREAPI_API FResponse_GetPerson : public FResponse
 
     FRHAPI_PersonInfoResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPerson
@@ -472,10 +556,28 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponse
 
     FRHAPI_PersonEmailListResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailList
@@ -514,9 +616,23 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponse
 
     FRHAPI_PersonEmailListResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
@@ -555,9 +671,23 @@ struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponse
 
     FRHAPI_PersonInfoResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonForSelf
@@ -597,12 +727,38 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuid : public FResponse
 
     FRHAPI_PlayerIdWrapper Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
@@ -641,11 +797,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuidForSelf : public FRes
 
     FRHAPI_PlayerIdWrapper Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
@@ -685,11 +863,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinkedPortals : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
@@ -729,11 +929,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinks : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinks
@@ -772,10 +994,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
@@ -815,11 +1055,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerId : public FResponse
 
     FGuid Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FGuid& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
@@ -858,10 +1120,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelf : public FRes
 
     FGuid Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FGuid& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
@@ -900,10 +1180,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelfV2 : public FR
 
     FRHAPI_PlayerUuidFromId Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
@@ -943,11 +1241,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdV2 : public FResponse
 
     FRHAPI_PlayerUuidFromId Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
@@ -990,11 +1310,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponse
 
     FRHAPI_PlayerIterateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PlayerIterateResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayersPaged
@@ -1033,10 +1375,28 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
@@ -1076,11 +1436,33 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FRespons
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
@@ -1119,8 +1501,22 @@ struct RALLYHEREAPI_API FResponse_Link : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_Link
@@ -1167,10 +1563,28 @@ struct RALLYHEREAPI_API FResponse_LookupPlayerByPortal : public FResponse
 
     FRHAPI_LookupResults Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_LookupResults& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
@@ -1210,11 +1624,33 @@ struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
     bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
     bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_QueueMeForPurge
@@ -1255,10 +1691,28 @@ struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
     bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_QueuePersonForPurge
@@ -1296,7 +1750,17 @@ struct RALLYHEREAPI_API FResponse_Unlink : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
 };
 
 struct RALLYHEREAPI_API Traits_Unlink
@@ -1337,10 +1801,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePerson
@@ -1381,10 +1863,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
@@ -1424,10 +1924,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FRespons
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
@@ -1467,10 +1985,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
@@ -1510,10 +2046,28 @@ struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpsertContact

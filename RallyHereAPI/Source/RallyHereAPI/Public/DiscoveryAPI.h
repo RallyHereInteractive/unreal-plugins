@@ -59,7 +59,13 @@ struct RALLYHEREAPI_API FResponse_GetDiscovery : public FResponse
 
     FRHAPI_DiscoveryResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(FRHAPI_DiscoveryResponse& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetDiscovery

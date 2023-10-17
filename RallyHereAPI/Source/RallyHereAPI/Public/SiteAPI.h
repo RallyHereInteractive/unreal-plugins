@@ -62,8 +62,18 @@ struct RALLYHEREAPI_API FResponse_GetSiteSettings : public FResponse
 
     TArray<FRHAPI_SiteSettings> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
     bool TryGetContentFor200(TArray<FRHAPI_SiteSettings>& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetSiteSettings
