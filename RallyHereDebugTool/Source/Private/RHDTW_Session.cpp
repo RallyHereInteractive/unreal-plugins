@@ -1101,6 +1101,8 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
 		{
+			ImGuiDisplayCopyableValue(FString("Next Page Cursor"), Result.NextPageCursor);
+
 			if (Result.SessionInfos.Num() <= 0)
 			{
 				ImGui::Text("No matching sessions found");
