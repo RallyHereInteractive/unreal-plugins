@@ -52,7 +52,7 @@ public:
 	bool bFilterInactiveQueues;
 
 protected:
-	void ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
+	void ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_SessionView* RHSession, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
 	void ImGuiDisplayMatch(const FRHAPI_MatchInfo& Info);
 	void ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const FRHAPI_SessionPlayer& Player, int32 TeamId, URH_GameInstanceSessionSubsystem* pGISessionSubsystem);
 	void ImGuiDisplayPlatformSession(const FRHAPI_PlatformSession& Info);
@@ -76,7 +76,10 @@ protected:
 	void HandleGetPlayerSessionsDetails(bool bSuccess, const FRH_SessionBrowserSearchResult& Result);
 	FString GetPlayerSessionsDetailsResult;
 
+	FImGuiCustomDataStager InstanceStartupCustomDataStager;
 	FImGuiCustomDataStager InstanceCustomDataStager;
 	FImGuiCustomDataStager InvitePlayerCustomDataStager;
+	FImGuiCustomDataStager BrowserCustomDataStager;
+	FImGuiCustomDataStager SessionCustomDataStager;
 	TMap<FGuid, FImGuiCustomDataStager*> UpdatePlayerCustomDataStagers;
 };

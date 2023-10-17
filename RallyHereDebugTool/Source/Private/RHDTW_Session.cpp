@@ -59,8 +59,11 @@ FRHDTW_Session::FRHDTW_Session()
 	QueueSearchPageSize = queueSearchParams.PageSize;
 	bFilterInactiveQueues = true;
 
-	InstanceCustomDataStager.SetName("Instance Startup");
+	InstanceStartupCustomDataStager.SetName("Instance Startup");
+	InstanceCustomDataStager.SetName("Instance Update");
 	InvitePlayerCustomDataStager.SetName("Invite Players");
+	BrowserCustomDataStager.SetName("Browser");
+	SessionCustomDataStager.SetName("Session");
 }
 
 FRHDTW_Session::~FRHDTW_Session()
@@ -74,9 +77,11 @@ FRHDTW_Session::~FRHDTW_Session()
 	}
 }
 
-void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_GameInstanceSessionSubsystem* pGISessionSubsystem)
+void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_SessionView* RHSession, URH_GameInstanceSessionSubsystem* pGISessionSubsystem)
 {
 	const FString HeaderString = FString::Printf(TEXT("Instance ID: %s"), *Info.GetInstanceId(TEXT("<UNSET>")));
+
+	auto RHJoinedSession = Cast<URH_JoinedSession>(RHSession);
 
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
 	{
@@ -129,6 +134,24 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_G
 		ImGuiDisplayCopyableValue(TEXT("Created"), Info.Created);
 
 		ImGuiDisplayCustomData(Info.GetCustomData());
+
+		if (ImGui::TreeNodeEx("Update Instance State", RH_DefaultTreeFlags))
+		{
+			InstanceCustomDataStager.DisplayCustomDataStager(false, Info.GetCustomDataOrNull());
+
+			if (RHJoinedSession != nullptr && ImGui::Button("Update Instance Info"))
+			{
+				FRHAPI_InstanceInfoUpdate InstanceUpdate;
+
+				TMap<FString, FString> CustomData;
+				InstanceCustomDataStager.GetCustomDataMap(CustomData);
+				InstanceUpdate.SetCustomData(CustomData);
+
+				RHJoinedSession->UpdateInstanceInfo(InstanceUpdate);
+			}
+
+			ImGui::TreePop();
+		}
 
 		ImGui::TreePop();
 	}
@@ -212,7 +235,7 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 
 		if (PlayerCustomDataStager != nullptr)
 		{
-			PlayerCustomDataStager->DisplayCustomDataStager(false);
+			PlayerCustomDataStager->DisplayCustomDataStager(false, Player.GetCustomDataOrNull());
 			if (ImGui::Button("Update Custom Data"))
 			{
 				TMap<FString, FString> CustomData;
@@ -446,7 +469,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				}
 			}
 
-			ImGuiDisplayInstance(*Instance, pGISessionSubsystem);
+			ImGuiDisplayInstance(*Instance, RHSession, pGISessionSubsystem);
 		}
 		else if (RHJoinedSession != nullptr)
 		{
@@ -469,14 +492,14 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				InstanceStartupParams.SetCustomData(CustomData);
 			}
 
-			InstanceCustomDataStager.DisplayCustomDataStager(false);
+			InstanceStartupCustomDataStager.DisplayCustomDataStager(false);
 
 			InstanceRequest.SetInstanceStartupParams(InstanceStartupParams);
 
 			auto SetCustomData = [this, InstanceRequest]() mutable
 			{
 				TMap<FString, FString> OutCustomData;
-				InstanceCustomDataStager.GetCustomDataMap(OutCustomData);
+				InstanceStartupCustomDataStager.GetCustomDataMap(OutCustomData);
 				InstanceRequest.SetCustomData(OutCustomData);
 			};
 
@@ -550,10 +573,47 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			if (BrowserData)
 			{
 				ImGuiDisplayCustomData(BrowserData->GetCustomDataOrNull());
+
+				if (ImGui::TreeNodeEx("Update Browser", RH_DefaultTreeFlags))
+				{
+					BrowserCustomDataStager.DisplayCustomDataStager(false, BrowserData->GetCustomDataOrNull());
+
+					if (ImGui::Button("Update Browser Info"))
+					{
+						TMap<FString, FString> CustomData;
+						BrowserCustomDataStager.GetCustomDataMap(CustomData);
+
+						if (RHJoinedSession != nullptr)
+						{
+							RHJoinedSession->UpdateBrowserInfo(true, CustomData);
+						}
+					}
+					ImGui::SameLine();
+					if (ImGui::Button("Delete Browser Info"))
+					{
+						if (RHJoinedSession != nullptr)
+						{
+							RHJoinedSession->UpdateBrowserInfo(false, TMap<FString, FString>());
+						}
+					}
+				}
 			}
 			else
 			{
 				ImGui::Text("No Browser Info");
+
+				BrowserCustomDataStager.DisplayCustomDataStager(false);
+
+				if (ImGui::Button("Create Browser Info"))
+				{
+					TMap<FString, FString> CustomData;
+					BrowserCustomDataStager.GetCustomDataMap(CustomData);
+
+					if (RHJoinedSession != nullptr)
+					{
+						RHJoinedSession->UpdateBrowserInfo(true, CustomData);
+					}
+				}
 			}
 
 			ImGui::TreePop();
@@ -675,6 +735,24 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		ImGui::Text("CreatedByMatchmaking: %s", Session.GetCreatedByMatchmakingOrNull() ? (Session.GetCreatedByMatchmaking() ? "true" : "false") : "<UNSET>");
 
 		ImGuiDisplayCustomData(Session.GetCustomData());
+
+		if (ImGui::TreeNodeEx("Update Session State", RH_DefaultTreeFlags))
+		{
+			SessionCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
+
+			if (RHJoinedSession != nullptr && ImGui::Button("Update Session Info"))
+			{
+				FRHAPI_SessionUpdate SessionUpdate;
+
+				TMap<FString, FString> CustomData;
+				SessionCustomDataStager.GetCustomDataMap(CustomData);				
+				SessionUpdate.SetCustomData(CustomData);
+
+				RHJoinedSession->UpdateSessionInfo(SessionUpdate);
+			}
+
+			ImGui::TreePop();
+		}
 
 		ImGui::TreePop();
 	}
