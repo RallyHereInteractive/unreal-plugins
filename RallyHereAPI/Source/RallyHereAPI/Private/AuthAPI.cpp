@@ -136,6 +136,11 @@ void FResponse_GenerateKey::SetHttpResponseCode(EHttpResponseCodes::Type InHttpR
     }
 }
 
+bool FResponse_GenerateKey::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GenerateKey::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -884,6 +889,11 @@ void FResponse_Logout::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_Logout::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_Logout::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -1715,6 +1725,11 @@ void FResponse_Verify::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
         SetResponseString(TEXT("Forbidden"));
         break;
     }
+}
+
+bool FResponse_Verify::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_Verify::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

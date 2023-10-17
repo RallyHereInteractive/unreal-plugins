@@ -354,6 +354,11 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+bool FResponse_GetAppSettingsClient::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetAppSettingsClient::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -528,6 +533,11 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
         ETag = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetAppSettingsServer::TryGetContentFor200(TArray<FRHAPI_AppSetting>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAppSettingsServer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

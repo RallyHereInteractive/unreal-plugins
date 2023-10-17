@@ -122,6 +122,7 @@ struct RALLYHEREAPI_API FResponse_GenerateKey : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GenerateKey
@@ -316,6 +317,7 @@ struct RALLYHEREAPI_API FResponse_Logout : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
@@ -533,6 +535,7 @@ struct RALLYHEREAPI_API FResponse_Verify : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 

@@ -310,6 +310,7 @@ struct RALLYHEREAPI_API FResponse_DisableCrossProgression : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DisableCrossProgression
@@ -347,6 +348,7 @@ struct RALLYHEREAPI_API FResponse_EnableCrossProgression : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_EnableCrossProgression
@@ -385,6 +387,7 @@ struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponse
 
     TArray<FRHAPI_Role> Content;
 
+    bool TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
@@ -812,6 +815,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerId : public FResponse
 
     FGuid Content;
 
+    bool TryGetContentFor200(FGuid& OutContent) const;
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
@@ -854,6 +858,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelf : public FRes
 
     FGuid Content;
 
+    bool TryGetContentFor200(FGuid& OutContent) const;
     bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
@@ -1114,6 +1119,7 @@ struct RALLYHEREAPI_API FResponse_Link : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
@@ -1290,6 +1296,7 @@ struct RALLYHEREAPI_API FResponse_Unlink : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_Unlink
@@ -1330,6 +1337,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
@@ -1373,6 +1381,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
@@ -1415,6 +1424,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FRespons
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
@@ -1457,6 +1467,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
@@ -1499,6 +1510,7 @@ struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;

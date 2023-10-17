@@ -193,6 +193,11 @@ bool FResponse_BeginNewSession::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+bool FResponse_BeginNewSession::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_BeginNewSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -536,6 +541,11 @@ void FResponse_UnityAdWatched::SetHttpResponseCode(EHttpResponseCodes::Type InHt
     }
 }
 
+bool FResponse_UnityAdWatched::TryGetContentFor200(FString& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_UnityAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -676,6 +686,11 @@ void FResponse_UnityMediationAdWatched::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UnityMediationAdWatched::TryGetContentFor200(FString& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UnityMediationAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
@@ -868,6 +883,11 @@ bool FResponse_UpdateOpportunityById::ParseHeaders()
         XHzAdApiToken = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_UpdateOpportunityById::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateOpportunityById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

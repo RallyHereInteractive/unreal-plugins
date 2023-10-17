@@ -165,6 +165,11 @@ void FResponse_DeleteAllPlayerIdSettingsForSettingType::SetHttpResponseCode(EHtt
     }
 }
 
+bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DeleteAllPlayerIdSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -339,6 +344,11 @@ void FResponse_DeleteAllPlayerUuidSettingsForSettingType::SetHttpResponseCode(EH
     }
 }
 
+bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingType::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -510,6 +520,11 @@ void FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::SetHttpResponseCod
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -687,6 +702,11 @@ void FResponse_DeleteSinglePlayerIdSetting::SetHttpResponseCode(EHttpResponseCod
     }
 }
 
+bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DeleteSinglePlayerIdSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -862,6 +882,11 @@ void FResponse_DeleteSinglePlayerUuidSetting::SetHttpResponseCode(EHttpResponseC
     }
 }
 
+bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DeleteSinglePlayerUuidSetting::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -1034,6 +1059,11 @@ void FResponse_DeleteSinglePlayerUuidSettingSelf::SetHttpResponseCode(EHttpRespo
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSinglePlayerUuidSettingSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const

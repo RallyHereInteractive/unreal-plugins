@@ -918,6 +918,11 @@ bool FResponse_UpdatePlayerPresenceSelf::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);

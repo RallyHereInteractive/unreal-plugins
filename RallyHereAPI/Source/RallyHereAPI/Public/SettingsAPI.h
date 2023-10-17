@@ -153,6 +153,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
@@ -199,6 +200,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
@@ -243,6 +245,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
@@ -291,6 +294,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
@@ -339,6 +343,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
@@ -385,6 +390,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;

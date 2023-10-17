@@ -272,6 +272,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;

@@ -181,6 +181,11 @@ void FResponse_CustomEndpointSend::SetHttpResponseCode(EHttpResponseCodes::Type 
     }
 }
 
+bool FResponse_CustomEndpointSend::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_CustomEndpointSend::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);

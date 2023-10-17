@@ -66,6 +66,7 @@ struct RALLYHEREAPI_API FResponse_CustomEndpointSend : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;

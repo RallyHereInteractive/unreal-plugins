@@ -112,9 +112,9 @@ struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
     {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};{{/headers}}
     {{/responses.0}}
     {{#responses}}
-    {{#isModel}}
-    bool TryGetContentFor{{{code}}}({{{dataType}}}& OutContent) const;
-    {{/isModel}}
+    {{#dataType}}
+    bool TryGetContentFor{{{code}}}({{{.}}}& OutContent) const;
+    {{/dataType}}
     {{/responses}}
 };
 

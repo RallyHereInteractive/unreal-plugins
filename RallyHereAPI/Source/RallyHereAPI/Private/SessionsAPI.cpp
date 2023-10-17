@@ -540,6 +540,11 @@ void FResponse_CreateMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpR
     }
 }
 
+bool FResponse_CreateMatch::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_CreateMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -882,6 +887,11 @@ void FResponse_CreateSessionEvent::SetHttpResponseCode(EHttpResponseCodes::Type 
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_CreateSessionEvent::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateSessionEvent::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -1553,6 +1563,11 @@ void FResponse_EndMatch::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_EndMatch::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_EndMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
@@ -6108,6 +6123,11 @@ void FResponse_ReportFubar::SetHttpResponseCode(EHttpResponseCodes::Type InHttpR
     }
 }
 
+bool FResponse_ReportFubar::TryGetContentFor200(FRHAPI_JsonObject& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_ReportFubar::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -6793,6 +6813,11 @@ void FResponse_UpdateMatchInfo::SetHttpResponseCode(EHttpResponseCodes::Type InH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateMatchInfo::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateMatchInfo::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const

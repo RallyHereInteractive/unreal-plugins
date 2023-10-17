@@ -92,6 +92,7 @@ struct RALLYHEREAPI_API FResponse_BeginNewSession : public FResponse
     // Headers
     /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
     TOptional<FString> XHzAdApiToken;
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -185,6 +186,7 @@ struct RALLYHEREAPI_API FResponse_UnityAdWatched : public FResponse
 
     FString Content;
 
+    bool TryGetContentFor200(FString& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
@@ -232,6 +234,7 @@ struct RALLYHEREAPI_API FResponse_UnityMediationAdWatched : public FResponse
 
     FString Content;
 
+    bool TryGetContentFor200(FString& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
@@ -278,6 +281,7 @@ struct RALLYHEREAPI_API FResponse_UpdateOpportunityById : public FResponse
     // Headers
     /* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
     TOptional<FString> XHzAdApiToken;
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };

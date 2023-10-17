@@ -62,6 +62,7 @@ struct RALLYHEREAPI_API FResponse_GetSiteSettings : public FResponse
 
     TArray<FRHAPI_SiteSettings> Content;
 
+    bool TryGetContentFor200(TArray<FRHAPI_SiteSettings>& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 

@@ -175,6 +175,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -308,6 +309,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -350,6 +352,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : pub
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -392,6 +395,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : p
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -435,6 +439,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResp
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -478,6 +483,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -521,6 +527,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : publ
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -564,6 +571,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -606,6 +614,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public F
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -648,6 +657,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -691,6 +701,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -734,6 +745,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FRes
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -777,6 +789,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FR
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -820,6 +833,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -862,6 +876,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : publi
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -904,6 +919,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : pub
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -947,6 +963,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FRespon
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -990,6 +1007,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public F
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -1033,6 +1051,7 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
@@ -1128,6 +1147,7 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;

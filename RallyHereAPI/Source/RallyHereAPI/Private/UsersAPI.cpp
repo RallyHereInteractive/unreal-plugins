@@ -467,6 +467,11 @@ void FResponse_DisableCrossProgression::SetHttpResponseCode(EHttpResponseCodes::
     }
 }
 
+bool FResponse_DisableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DisableCrossProgression::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -604,6 +609,11 @@ void FResponse_EnableCrossProgression::SetHttpResponseCode(EHttpResponseCodes::T
         SetResponseString(TEXT("Forbidden"));
         break;
     }
+}
+
+bool FResponse_EnableCrossProgression::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_EnableCrossProgression::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -746,6 +756,11 @@ void FResponse_GetAllRoles::SetHttpResponseCode(EHttpResponseCodes::Type InHttpR
         SetResponseString(TEXT("Forbidden"));
         break;
     }
+}
+
+bool FResponse_GetAllRoles::TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllRoles::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
@@ -2445,6 +2460,11 @@ void FResponse_GetPlayerUuidFromPlayerId::SetHttpResponseCode(EHttpResponseCodes
     }
 }
 
+bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor200(FGuid& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetPlayerUuidFromPlayerId::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -2608,6 +2628,11 @@ void FResponse_GetPlayerUuidFromPlayerIdForSelf::SetHttpResponseCode(EHttpRespon
         SetResponseString(TEXT("Internal Server Error"));
         break;
     }
+}
+
+bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor200(FGuid& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPlayerUuidFromPlayerIdForSelf::TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const
@@ -3649,6 +3674,11 @@ void FResponse_Link::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponse
     }
 }
 
+bool FResponse_Link::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_Link::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -4343,6 +4373,11 @@ void FResponse_Unlink::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
     }
 }
 
+bool FResponse_Unlink::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_Unlink::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -4502,6 +4537,11 @@ void FResponse_UpdatePerson::SetHttpResponseCode(EHttpResponseCodes::Type InHttp
         SetResponseString(TEXT("Internal Server Error"));
         break;
     }
+}
+
+bool FResponse_UpdatePerson::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdatePerson::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
@@ -4680,6 +4720,11 @@ void FResponse_UpdatePersonEmailList::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
+bool FResponse_UpdatePersonEmailList::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_UpdatePersonEmailList::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -4849,6 +4894,11 @@ void FResponse_UpdatePersonEmailListForSelf::SetHttpResponseCode(EHttpResponseCo
         SetResponseString(TEXT("Internal Server Error"));
         break;
     }
+}
+
+bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdatePersonEmailListForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
@@ -5022,6 +5072,11 @@ void FResponse_UpdatePersonForSelf::SetHttpResponseCode(EHttpResponseCodes::Type
     }
 }
 
+bool FResponse_UpdatePersonForSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_UpdatePersonForSelf::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -5191,6 +5246,11 @@ void FResponse_UpsertContact::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Internal Server Error"));
         break;
     }
+}
+
+bool FResponse_UpsertContact::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpsertContact::TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const
