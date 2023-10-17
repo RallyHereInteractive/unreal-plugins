@@ -1104,46 +1104,50 @@ void URH_PlayerInventory::CreateNewPlayerOrder(ERHAPI_Source OrderSource, bool I
 
 void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate>& Entries, const TArray<URH_PlayerOrderEntry*>& OrderEntries)
 {
-	if (URH_CatalogSubsystem* CatalogSubsystem = GetCatalogSubsystem())
+	// transcribe the object order entries to the api structure
+	for (const auto& OrderEntry : OrderEntries)
 	{
-		for (const auto& OrderEntry : OrderEntries)
+		FRHAPI_PlayerOrderEntryCreate NewOrderEntry;
+		NewOrderEntry.Type = OrderEntry->GetFillType();
+
+		// specify the loot id if we have one, prefer the one from the loot item
+		if (OrderEntry->GetLootItem().GetLootId() > 0 || OrderEntry->GetLootId() > 0)
 		{
-			if (OrderEntry->GetLootItem().GetLootId() > 0 || OrderEntry->GetLootId() > 0)
-			{
-				FRHAPI_PlayerOrderEntryCreate NewOrderEntry;
-				NewOrderEntry.Type = OrderEntry->GetFillType();
-				NewOrderEntry.SetLootId(OrderEntry->GetLootItem().GetLootId() > 0 ? OrderEntry->GetLootItem().GetLootId() : OrderEntry->GetLootId());
-				NewOrderEntry.Quantity = OrderEntry->GetQuantity();
-				NewOrderEntry.SetExternalTranId(OrderEntry->GetExternalTransactionId());
-				if (OrderEntry->CustomData.Num() > 0)
-				{
-					NewOrderEntry.SetCustomData(OrderEntry->CustomData);
-				}
-
-				if (OrderEntry->GetFillType() == ERHAPI_PlayerOrderEntryType::PurchaseLoot)
-				{
-					// if we have the vendor data locally, add the ETag to the request so that the server can validate we match
-					FRHAPI_Vendor Vendor;
-					if (CatalogSubsystem->GetVendorById(OrderEntry->GetLootItem().GetVendorId(), Vendor))
-					{
-						if (const auto& CacheInfo = Vendor.GetCacheInfoOrNull())
-						{
-							NewOrderEntry.SetVendorEtag(CacheInfo->GetEtag());
-						}
-					}
-
-					// add local expected price information to the request so that the server can validate we match
-					FRHAPI_PurchasePrice NewPurchasePrice;
-					NewPurchasePrice.PriceItemId = OrderEntry->GetPriceItemId();
-					NewPurchasePrice.Price = OrderEntry->GetPrice();
-					NewPurchasePrice.SetPriceCouponItemId(OrderEntry->GetCouponItemId());
-
-					NewOrderEntry.SetPurchasePrice(NewPurchasePrice);
-				}
-
-				Entries.Push(NewOrderEntry);
-			}
+			NewOrderEntry.SetLootId(OrderEntry->GetLootItem().GetLootId() > 0 ? OrderEntry->GetLootItem().GetLootId() : OrderEntry->GetLootId());
 		}
+
+		NewOrderEntry.Quantity = OrderEntry->GetQuantity();
+		NewOrderEntry.SetExternalTranId(OrderEntry->GetExternalTransactionId());
+		if (OrderEntry->CustomData.Num() > 0)
+		{
+			NewOrderEntry.SetCustomData(OrderEntry->CustomData);
+		}
+
+		if (OrderEntry->GetFillType() == ERHAPI_PlayerOrderEntryType::PurchaseLoot)
+		{
+			// if we have the vendor data locally, add the ETag to the request so that the server can validate we match
+			FRHAPI_Vendor Vendor;
+			if (URH_CatalogSubsystem* CatalogSubsystem = GetCatalogSubsystem())
+			{
+				if (CatalogSubsystem->GetVendorById(OrderEntry->GetLootItem().GetVendorId(), Vendor))
+				{
+					if (const auto& CacheInfo = Vendor.GetCacheInfoOrNull())
+					{
+						NewOrderEntry.SetVendorEtag(CacheInfo->GetEtag());
+					}
+				}
+			}
+
+			// add local expected unit price information to the request so that the server can validate we match
+			FRHAPI_PurchasePrice NewPurchasePrice;
+			NewPurchasePrice.PriceItemId = OrderEntry->GetPriceItemId();
+			NewPurchasePrice.Price = OrderEntry->GetPrice();
+			NewPurchasePrice.SetPriceCouponItemId(OrderEntry->GetCouponItemId());
+
+			NewOrderEntry.SetPurchasePrice(NewPurchasePrice);
+		}
+
+		Entries.Push(NewOrderEntry);
 	}
 }
 
