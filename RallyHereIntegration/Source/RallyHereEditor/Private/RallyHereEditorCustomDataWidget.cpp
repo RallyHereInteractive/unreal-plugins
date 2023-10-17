@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "RallyHereEditorCustomDataWidget.h"
+#include "Widgets/Input/SButton.h"
+#include "Widgets/Text/STextBlock.h"
 #include "RallyHereEditor.h"
 
 #define LOCTEXT_NAMESPACE "RallyHereEditorCustomDataWidget"

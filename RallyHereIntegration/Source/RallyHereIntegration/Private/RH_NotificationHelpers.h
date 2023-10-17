@@ -2,13 +2,13 @@
 
 #include "CoreMinimal.h"
 #include "RH_Common.h"
-#include "RallyHereAPI/Public/Notifications.h"
-#include "RallyHereAPI/Public/PlayerNotificationAPI.h"
+#include "Notifications.h"
+#include "PlayerNotificationAPI.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_PlayerNotifications.h"
 #include "Tickable.h"
 #include "HttpModule.h"
-#include "../Public/RH_PlayerNotifications.h"
+#include "RH_PlayerNotifications.h"
 
 class FRH_NotificationStreamingLongPollHelper : public FRH_AsyncTaskHelper
 {

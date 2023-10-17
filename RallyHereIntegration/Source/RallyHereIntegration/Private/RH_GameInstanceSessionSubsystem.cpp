@@ -296,8 +296,8 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	if (ActiveSession != nullptr)
 	{
 		check(ActiveSession->IsActive());
-		JoinedSession->SetActive(false);
-		JoinedSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
+		ActiveSession->SetActive(false);
+		ActiveSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
 		ActiveSession = nullptr;
 	}
 
@@ -307,9 +307,8 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	if (ActiveSession != nullptr)
 	{
 		check(!ActiveSession->IsActive());
-		JoinedSession->SetActive(true);
-		JoinedSession->SetWatchingPlayers(true);
-		ActiveSession = JoinedSession;
+		ActiveSession->SetActive(true);
+		ActiveSession->SetWatchingPlayers(true);
 	}
 
 	// fire delegates to allow registration of handler objects

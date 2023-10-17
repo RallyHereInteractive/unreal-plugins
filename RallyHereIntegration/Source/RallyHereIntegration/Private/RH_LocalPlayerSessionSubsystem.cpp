@@ -6,6 +6,7 @@
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "Engine/LocalPlayer.h"
+#include "Engine/GameInstance.h"
 #include "RH_PlayerNotifications.h"
 #include "RH_PlatformSessionSyncer.h"
 #include "Interfaces/OnlineGameActivityInterface.h"

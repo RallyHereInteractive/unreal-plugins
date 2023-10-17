@@ -17,6 +17,8 @@
 #include "PlatformHttp.h"
 #include "HttpRetrySystem.h"
 
+#include "Misc/EngineVersionComparison.h"
+
 /**
  * @brief Implementation of analytics for RallyHere GETS.
  */
@@ -51,6 +53,9 @@ public:
 	// we do not currently handle these, but expose them for completeness and future use
 	virtual void SetAppID(FString&& AppId) override {};
 	virtual void SetAppVersion(FString&& AppVersion) override {};
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 3))
+	virtual void SetHeader(const FString& HeaderName, const FString& HeaderValue) override {}
+#endif
 
 	virtual void SetUserID(const FString& InUserID) override;
 	virtual FString GetUserID() const override;

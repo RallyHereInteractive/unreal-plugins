@@ -6,6 +6,8 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_SessionData.h"
+#include "Engine/World.h"
+#include "Engine/GameInstance.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -6,6 +6,7 @@
 #include "RH_ConfigSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "Engine/LocalPlayer.h"
+#include "Engine/GameInstance.h"
 #include "Net/OnlineEngineInterface.h"
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"

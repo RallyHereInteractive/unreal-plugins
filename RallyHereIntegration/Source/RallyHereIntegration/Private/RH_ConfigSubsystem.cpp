@@ -5,6 +5,7 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 
+#include "Engine/GameInstance.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "Modules/ModuleManager.h"
 #include "OnlineHotfixManager.h"

@@ -4,7 +4,6 @@
 #include "Modules/ModuleManager.h"
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "Widgets/Docking/SDockTab.h"
-#include "UnrealEd.h"
 #include "RH_DevIntegration.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogRallyHereEditor, All, All)
