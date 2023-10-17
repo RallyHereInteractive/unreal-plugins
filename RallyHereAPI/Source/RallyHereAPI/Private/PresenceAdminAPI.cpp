@@ -161,6 +161,16 @@ void FResponse_AdminGetKnownPlatforms::SetHttpResponseCode(EHttpResponseCodes::T
     }
 }
 
+bool FResponse_AdminGetKnownPlatforms::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetKnownPlatforms::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetKnownPlatforms::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -317,6 +327,26 @@ void FResponse_AdminGetPlayerPresence::SetHttpResponseCode(EHttpResponseCodes::T
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetPlayerPresence::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetPlayerPresence::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetPlayerPresence::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetPlayerPresence::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetPlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -477,6 +507,26 @@ void FResponse_AdminGetPlayerPresenceId::SetHttpResponseCode(EHttpResponseCodes:
     }
 }
 
+bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetPlayerPresenceId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetPlayerPresenceId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -627,6 +677,16 @@ void FResponse_AdminGetRequestingCcu::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetRequestingCcu::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetRequestingCcu::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetRequestingCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -781,6 +841,16 @@ void FResponse_AdminGetRequestingCcuAllPlatformCombined::SetHttpResponseCode(EHt
     }
 }
 
+bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetRequestingCcuAllPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -933,6 +1003,16 @@ void FResponse_AdminGetRequestingCcuAllPlatformIndividual::SetHttpResponseCode(E
     }
 }
 
+bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1083,6 +1163,16 @@ void FResponse_AdminGetRequestingCcuIndividual::SetHttpResponseCode(EHttpRespons
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetRequestingCcuIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1242,6 +1332,16 @@ void FResponse_AdminGetRequestingCcuPlatformCombined::SetHttpResponseCode(EHttpR
     }
 }
 
+bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetRequestingCcuPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1399,6 +1499,16 @@ void FResponse_AdminGetRequestingCcuPlatformIndividual::SetHttpResponseCode(EHtt
     }
 }
 
+bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetRequestingCcuPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1549,6 +1659,16 @@ void FResponse_AdminGetTotalCcu::SetHttpResponseCode(EHttpResponseCodes::Type In
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetTotalCcu::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetTotalCcu::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetTotalCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1703,6 +1823,16 @@ void FResponse_AdminGetTotalCcuAllPlatformCombined::SetHttpResponseCode(EHttpRes
     }
 }
 
+bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetTotalCcuAllPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1855,6 +1985,16 @@ void FResponse_AdminGetTotalCcuAllPlatformIndividual::SetHttpResponseCode(EHttpR
     }
 }
 
+bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetTotalCcuAllPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -2005,6 +2145,16 @@ void FResponse_AdminGetTotalCcuIndividual::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetTotalCcuIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2164,6 +2314,16 @@ void FResponse_AdminGetTotalCcuPlatformCombined::SetHttpResponseCode(EHttpRespon
     }
 }
 
+bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetTotalCcuPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -2321,6 +2481,16 @@ void FResponse_AdminGetTotalCcuPlatformIndividual::SetHttpResponseCode(EHttpResp
     }
 }
 
+bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetTotalCcuPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -2471,6 +2641,16 @@ void FResponse_AdminGetUpdatingCcu::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetUpdatingCcu::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetUpdatingCcu::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetUpdatingCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2625,6 +2805,16 @@ void FResponse_AdminGetUpdatingCcuAllPlatformCombined::SetHttpResponseCode(EHttp
     }
 }
 
+bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -2777,6 +2967,16 @@ void FResponse_AdminGetUpdatingCcuAllPlatformIndividual::SetHttpResponseCode(EHt
     }
 }
 
+bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -2927,6 +3127,16 @@ void FResponse_AdminGetUpdatingCcuIndividual::SetHttpResponseCode(EHttpResponseC
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetUpdatingCcuIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3086,6 +3296,16 @@ void FResponse_AdminGetUpdatingCcuPlatformCombined::SetHttpResponseCode(EHttpRes
     }
 }
 
+bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminGetUpdatingCcuPlatformCombined::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -3241,6 +3461,16 @@ void FResponse_AdminGetUpdatingCcuPlatformIndividual::SetHttpResponseCode(EHttpR
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminGetUpdatingCcuPlatformIndividual::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3432,6 +3662,21 @@ bool FResponse_AdminUpdatePlayerLastSeen::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminUpdatePlayerLastSeen::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_AdminUpdatePlayerLastSeen::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return true;
@@ -3619,6 +3864,21 @@ bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
         ETag = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_AdminUpdatePlayerLastSeenId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

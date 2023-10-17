@@ -172,6 +172,26 @@ void FResponse_PlayeridCreateNotification::SetHttpResponseCode(EHttpResponseCode
     }
 }
 
+bool FResponse_PlayeridCreateNotification::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotification::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotification::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotification::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayeridCreateNotification::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -326,6 +346,31 @@ void FResponse_PlayeridGetNotificationById::SetHttpResponseCode(EHttpResponseCod
     }
 }
 
+bool FResponse_PlayeridGetNotificationById::TryGetContentFor200(FRHAPI_Notification& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationById::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayeridGetNotificationById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -474,6 +519,26 @@ void FResponse_PlayeridGetNotificationByIdSelf::SetHttpResponseCode(EHttpRespons
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor200(FRHAPI_Notification& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationByIdSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -651,6 +716,26 @@ void FResponse_PlayeridGetNotificationsPage::SetHttpResponseCode(EHttpResponseCo
     }
 }
 
+bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationsPage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayeridGetNotificationsPage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -816,6 +901,21 @@ void FResponse_PlayeridGetNotificationsPageSelf::SetHttpResponseCode(EHttpRespon
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridGetNotificationsPageSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PlayeridGetNotificationsPageSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -988,6 +1088,26 @@ void FResponse_PlayeridLongPollForNotifications::SetHttpResponseCode(EHttpRespon
     }
 }
 
+bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridLongPollForNotifications::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayeridLongPollForNotifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1148,6 +1268,21 @@ void FResponse_PlayeridLongPollForNotificationsSelf::SetHttpResponseCode(EHttpRe
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor200(FRHAPI_Notifications& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridLongPollForNotificationsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_PlayeridLongPollForNotificationsSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -81,6 +81,11 @@ struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponse
 
     FRHAPI_BlockedPlayer Content;
 
+    bool TryGetContentFor200(FRHAPI_BlockedPlayer& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_BlockV2
@@ -90,7 +95,7 @@ struct RALLYHEREAPI_API Traits_BlockV2
     typedef FDelegate_BlockV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BlockV2(InRequest, InDelegate, Priority); }
 };
 
@@ -127,6 +132,11 @@ struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_BlockedList& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
@@ -136,7 +146,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
     typedef FDelegate_GetBlockedListForPlayerV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
@@ -167,6 +177,11 @@ struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponse
 
     FRHAPI_BlockedPlayer Content;
 
+    bool TryGetContentFor200(FRHAPI_BlockedPlayer& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedV2
@@ -176,7 +191,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedV2
     typedef FDelegate_GetBlockedV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedV2(InRequest, InDelegate, Priority); }
 };
 
@@ -207,6 +222,10 @@ struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponse
 
     
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UnblockV2
@@ -216,7 +235,7 @@ struct RALLYHEREAPI_API Traits_UnblockV2
     typedef FDelegate_UnblockV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnblockV2(InRequest, InDelegate, Priority); }
 };
 

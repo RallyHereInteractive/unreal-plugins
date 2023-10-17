@@ -59,6 +59,7 @@ struct RALLYHEREAPI_API FResponse_GetDiscovery : public FResponse
 
     FRHAPI_DiscoveryResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_DiscoveryResponse& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetDiscovery
@@ -68,7 +69,7 @@ struct RALLYHEREAPI_API Traits_GetDiscovery
     typedef FDelegate_GetDiscovery Delegate;
     typedef FDiscoveryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetDiscovery(InRequest, InDelegate, Priority); }
 };
 

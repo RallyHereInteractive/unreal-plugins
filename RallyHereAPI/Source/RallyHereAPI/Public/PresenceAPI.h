@@ -93,6 +93,10 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicById : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicById
@@ -102,7 +106,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicById
     typedef FDelegate_GetPlayerPresencePublicById Delegate;
     typedef FPresenceAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerPresencePublicById(InRequest, InDelegate, Priority); }
 };
 
@@ -139,6 +143,10 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresencePublicByUuid : public FRespon
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicByUuid
@@ -148,7 +156,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicByUuid
     typedef FDelegate_GetPlayerPresencePublicByUuid Delegate;
     typedef FPresenceAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerPresencePublicByUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -181,6 +189,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerPresenceSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerPresenceSelf
@@ -190,7 +201,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresenceSelf
     typedef FDelegate_GetPlayerPresenceSelf Delegate;
     typedef FPresenceAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerPresenceSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -217,6 +228,7 @@ struct RALLYHEREAPI_API FResponse_GetPresenceSettings : public FResponse
 
     FRHAPI_ClientVisibleSettings Content;
 
+    bool TryGetContentFor200(FRHAPI_ClientVisibleSettings& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPresenceSettings
@@ -226,7 +238,7 @@ struct RALLYHEREAPI_API Traits_GetPresenceSettings
     typedef FDelegate_GetPresenceSettings Delegate;
     typedef FPresenceAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPresenceSettings(InRequest, InDelegate, Priority); }
 };
 
@@ -260,6 +272,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerPresenceSelf
@@ -269,7 +284,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerPresenceSelf
     typedef FDelegate_UpdatePlayerPresenceSelf Delegate;
     typedef FPresenceAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerPresenceSelf(InRequest, InDelegate, Priority); }
 };
 

@@ -299,6 +299,11 @@ struct RALLYHEREAPI_API FResponse_AddPlatformSessionToRallyHereSession : public 
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
@@ -308,7 +313,7 @@ struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
     typedef FDelegate_AddPlatformSessionToRallyHereSession Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddPlatformSessionToRallyHereSession(InRequest, InDelegate, Priority); }
 };
 
@@ -339,6 +344,9 @@ struct RALLYHEREAPI_API FResponse_CreateInstanceRequest : public FResponse
 
     FRHAPI_InstanceInfo Content;
 
+    bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_CreateInstanceRequest
@@ -348,7 +356,7 @@ struct RALLYHEREAPI_API Traits_CreateInstanceRequest
     typedef FDelegate_CreateInstanceRequest Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateInstanceRequest(InRequest, InDelegate, Priority); }
 };
 
@@ -378,6 +386,9 @@ struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_CreateMatch
@@ -387,7 +398,7 @@ struct RALLYHEREAPI_API Traits_CreateMatch
     typedef FDelegate_CreateMatch Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatch(InRequest, InDelegate, Priority); }
 };
 
@@ -417,6 +428,9 @@ struct RALLYHEREAPI_API FResponse_CreateOrJoinSession : public FResponse
 
     FRHAPI_SessionJoinResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_SessionJoinResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_CreateOrJoinSession
@@ -426,7 +440,7 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
     typedef FDelegate_CreateOrJoinSession Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateOrJoinSession(InRequest, InDelegate, Priority); }
 };
 
@@ -457,6 +471,9 @@ struct RALLYHEREAPI_API FResponse_CreateSessionEvent : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_CreateSessionEvent
@@ -466,7 +483,7 @@ struct RALLYHEREAPI_API Traits_CreateSessionEvent
     typedef FDelegate_CreateSessionEvent Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateSessionEvent(InRequest, InDelegate, Priority); }
 };
 
@@ -496,6 +513,8 @@ struct RALLYHEREAPI_API FResponse_DeleteBrowserInfo : public FResponse
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
@@ -505,7 +524,7 @@ struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
     typedef FDelegate_DeleteBrowserInfo Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -537,6 +556,10 @@ struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : pu
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
@@ -546,7 +569,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
     typedef FDelegate_DeletePlatformSessionFromRallyHereSession Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeletePlatformSessionFromRallyHereSession(InRequest, InDelegate, Priority); }
 };
 
@@ -579,6 +602,8 @@ struct RALLYHEREAPI_API FResponse_EndInstance : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_EndInstance
@@ -588,7 +613,7 @@ struct RALLYHEREAPI_API Traits_EndInstance
     typedef FDelegate_EndInstance Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EndInstance(InRequest, InDelegate, Priority); }
 };
 
@@ -618,6 +643,8 @@ struct RALLYHEREAPI_API FResponse_EndMatch : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_EndMatch
@@ -627,7 +654,7 @@ struct RALLYHEREAPI_API Traits_EndMatch
     typedef FDelegate_EndMatch Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EndMatch(InRequest, InDelegate, Priority); }
 };
 
@@ -661,6 +688,9 @@ struct RALLYHEREAPI_API FResponse_GetAllSessionTemplates : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_SessionTemplates& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
@@ -670,7 +700,7 @@ struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
     typedef FDelegate_GetAllSessionTemplates Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllSessionTemplates(InRequest, InDelegate, Priority); }
 };
 
@@ -705,6 +735,9 @@ struct RALLYHEREAPI_API FResponse_GetBrowserSessionsByType : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_BrowserResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
@@ -714,7 +747,7 @@ struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
     typedef FDelegate_GetBrowserSessionsByType Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBrowserSessionsByType(InRequest, InDelegate, Priority); }
 };
 
@@ -744,6 +777,9 @@ struct RALLYHEREAPI_API FResponse_GetConnectionInfoSelf : public FResponse
 
     FRHAPI_ConnectionInfo Content;
 
+    bool TryGetContentFor200(FRHAPI_ConnectionInfo& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
@@ -753,7 +789,7 @@ struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
     typedef FDelegate_GetConnectionInfoSelf Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConnectionInfoSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -789,6 +825,10 @@ struct RALLYHEREAPI_API FResponse_GetPlatformSessionInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlatformSession& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
@@ -798,7 +838,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
     typedef FDelegate_GetPlatformSessionInfo Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlatformSessionInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -828,6 +868,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessions : public FResponse
 
     FRHAPI_PlayerSessions Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessions
@@ -837,7 +880,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
     typedef FDelegate_GetPlayerSessions Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessions(InRequest, InDelegate, Priority); }
 };
 
@@ -872,6 +915,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuid : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
@@ -881,7 +927,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
     typedef FDelegate_GetPlayerSessionsByUuid Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -916,6 +962,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsByUuidV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
@@ -925,7 +974,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuidV2
     typedef FDelegate_GetPlayerSessionsByUuidV2 Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsByUuidV2(InRequest, InDelegate, Priority); }
 };
 
@@ -959,6 +1008,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSessionsSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_PlayerSessions& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
@@ -968,7 +1020,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
     typedef FDelegate_GetPlayerSessionsSelf Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSessionsSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1003,6 +1055,9 @@ struct RALLYHEREAPI_API FResponse_GetSessionByAllocationId : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
@@ -1012,7 +1067,7 @@ struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
     typedef FDelegate_GetSessionByAllocationId Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionByAllocationId(InRequest, InDelegate, Priority); }
 };
 
@@ -1047,6 +1102,9 @@ struct RALLYHEREAPI_API FResponse_GetSessionById : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionById
@@ -1056,7 +1114,7 @@ struct RALLYHEREAPI_API Traits_GetSessionById
     typedef FDelegate_GetSessionById Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionById(InRequest, InDelegate, Priority); }
 };
 
@@ -1088,6 +1146,9 @@ struct RALLYHEREAPI_API FResponse_GetSessionEvents : public FResponse
 
     FRHAPI_SessionEvents Content;
 
+    bool TryGetContentFor200(FRHAPI_SessionEvents& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionEvents
@@ -1097,7 +1158,7 @@ struct RALLYHEREAPI_API Traits_GetSessionEvents
     typedef FDelegate_GetSessionEvents Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionEvents(InRequest, InDelegate, Priority); }
 };
 
@@ -1132,6 +1193,9 @@ struct RALLYHEREAPI_API FResponse_GetSessionTemplateByType : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_SessionTemplate& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
@@ -1141,7 +1205,7 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
     typedef FDelegate_GetSessionTemplateByType Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionTemplateByType(InRequest, InDelegate, Priority); }
 };
 
@@ -1172,6 +1236,9 @@ struct RALLYHEREAPI_API FResponse_JoinQueue : public FResponse
 
     FRHAPI_QueueJoinResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_QueueJoinResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_JoinQueue
@@ -1181,7 +1248,7 @@ struct RALLYHEREAPI_API Traits_JoinQueue
     typedef FDelegate_JoinQueue Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -1215,6 +1282,10 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByIdSelf : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
@@ -1224,7 +1295,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
     typedef FDelegate_JoinSessionByIdSelf Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByIdSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1261,6 +1332,11 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionByUuid : public FR
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
@@ -1270,7 +1346,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
     typedef FDelegate_JoinSessionByPlatformSessionByUuid Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -1305,6 +1381,11 @@ struct RALLYHEREAPI_API FResponse_JoinSessionByPlatformSessionIdSelf : public FR
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
@@ -1314,7 +1395,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
     typedef FDelegate_JoinSessionByPlatformSessionIdSelf Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.JoinSessionByPlatformSessionIdSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1345,6 +1426,9 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionById : public FResponse
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
@@ -1354,7 +1438,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
     typedef FDelegate_KickPlayerFromSessionById Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionById(InRequest, InDelegate, Priority); }
 };
 
@@ -1388,6 +1472,9 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuid : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
@@ -1397,7 +1484,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
     typedef FDelegate_KickPlayerFromSessionByUuid Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -1431,6 +1518,9 @@ struct RALLYHEREAPI_API FResponse_KickPlayerFromSessionByUuidV2 : public FRespon
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
@@ -1440,7 +1530,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
     typedef FDelegate_KickPlayerFromSessionByUuidV2 Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.KickPlayerFromSessionByUuidV2(InRequest, InDelegate, Priority); }
 };
 
@@ -1470,6 +1560,9 @@ struct RALLYHEREAPI_API FResponse_LeaveQueue : public FResponse
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_LeaveQueue
@@ -1479,7 +1572,7 @@ struct RALLYHEREAPI_API Traits_LeaveQueue
     typedef FDelegate_LeaveQueue Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -1509,6 +1602,9 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByIdSelf : public FResponse
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
@@ -1518,7 +1614,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
     typedef FDelegate_LeaveSessionByIdSelf Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByIdSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1550,6 +1646,10 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionByUuid : public F
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
@@ -1559,7 +1659,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
     typedef FDelegate_LeaveSessionByPlatformSessionByUuid Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionByUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -1590,6 +1690,10 @@ struct RALLYHEREAPI_API FResponse_LeaveSessionByPlatformSessionSelf : public FRe
 
     
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
@@ -1599,7 +1703,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
     typedef FDelegate_LeaveSessionByPlatformSessionSelf Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LeaveSessionByPlatformSessionSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1630,6 +1734,9 @@ struct RALLYHEREAPI_API FResponse_PostBrowserInfo : public FResponse
 
     FRHAPI_BrowserInfo Content;
 
+    bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PostBrowserInfo
@@ -1639,7 +1746,7 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
     typedef FDelegate_PostBrowserInfo Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PostBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -1670,6 +1777,8 @@ struct RALLYHEREAPI_API FResponse_ReportFubar : public FResponse
 
     FRHAPI_JsonObject Content;
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_ReportFubar
@@ -1679,7 +1788,7 @@ struct RALLYHEREAPI_API Traits_ReportFubar
     typedef FDelegate_ReportFubar Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ReportFubar(InRequest, InDelegate, Priority); }
 };
 
@@ -1710,6 +1819,9 @@ struct RALLYHEREAPI_API FResponse_StartMatch : public FResponse
 
     FRHAPI_MatchCreateResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_MatchCreateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_StartMatch
@@ -1719,7 +1831,7 @@ struct RALLYHEREAPI_API Traits_StartMatch
     typedef FDelegate_StartMatch Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.StartMatch(InRequest, InDelegate, Priority); }
 };
 
@@ -1750,6 +1862,9 @@ struct RALLYHEREAPI_API FResponse_UpdateBrowserInfo : public FResponse
 
     FRHAPI_BrowserInfo Content;
 
+    bool TryGetContentFor200(FRHAPI_BrowserInfo& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
@@ -1759,7 +1874,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
     typedef FDelegate_UpdateBrowserInfo Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateBrowserInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -1790,6 +1905,9 @@ struct RALLYHEREAPI_API FResponse_UpdateInstanceInfo : public FResponse
 
     FRHAPI_InstanceInfo Content;
 
+    bool TryGetContentFor200(FRHAPI_InstanceInfo& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
@@ -1799,7 +1917,7 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
     typedef FDelegate_UpdateInstanceInfo Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateInstanceInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -1830,6 +1948,8 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchInfo : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateMatchInfo
@@ -1839,7 +1959,7 @@ struct RALLYHEREAPI_API Traits_UpdateMatchInfo
     typedef FDelegate_UpdateMatchInfo Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateMatchInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -1873,6 +1993,9 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionById : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_Session& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionById
@@ -1882,7 +2005,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
     typedef FDelegate_UpdateSessionById Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionById(InRequest, InDelegate, Priority); }
 };
 
@@ -1914,6 +2037,10 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerById : public FResponse
 
     FRHAPI_SessionPlayerUpdateResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
@@ -1923,7 +2050,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
     typedef FDelegate_UpdateSessionPlayerById Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerById(InRequest, InDelegate, Priority); }
 };
 
@@ -1958,6 +2085,10 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuid : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
@@ -1967,7 +2098,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
     typedef FDelegate_UpdateSessionPlayerByUuid Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -2002,6 +2133,10 @@ struct RALLYHEREAPI_API FResponse_UpdateSessionPlayerByUuidV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_SessionPlayerUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2
@@ -2011,7 +2146,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2
     typedef FDelegate_UpdateSessionPlayerByUuidV2 Delegate;
     typedef FSessionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateSessionPlayerByUuidV2(InRequest, InDelegate, Priority); }
 };
 

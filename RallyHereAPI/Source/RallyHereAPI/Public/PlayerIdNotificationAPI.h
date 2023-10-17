@@ -99,6 +99,10 @@ struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
 
     FRHAPI_NotificationCreateResult Content;
 
+    bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
@@ -108,7 +112,7 @@ struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
     typedef FDelegate_PlayeridCreateNotification Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotification(InRequest, InDelegate, Priority); }
 };
 
@@ -139,6 +143,11 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
 
     FRHAPI_Notification Content;
 
+    bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
@@ -148,7 +157,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
     typedef FDelegate_PlayeridGetNotificationById Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationById(InRequest, InDelegate, Priority); }
 };
 
@@ -178,6 +187,10 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResp
 
     FRHAPI_Notification Content;
 
+    bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
@@ -187,7 +200,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
     typedef FDelegate_PlayeridGetNotificationByIdSelf Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationByIdSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -224,6 +237,10 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FRespons
 
     FRHAPI_Notifications Content;
 
+    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
@@ -233,7 +250,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
     typedef FDelegate_PlayeridGetNotificationsPage Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPage(InRequest, InDelegate, Priority); }
 };
 
@@ -269,6 +286,9 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FRes
 
     FRHAPI_Notifications Content;
 
+    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
@@ -278,7 +298,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
     typedef FDelegate_PlayeridGetNotificationsPageSelf Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridGetNotificationsPageSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -316,6 +336,10 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FRes
 
     FRHAPI_Notifications Content;
 
+    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
@@ -325,7 +349,7 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
     typedef FDelegate_PlayeridLongPollForNotifications Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotifications(InRequest, InDelegate, Priority); }
 };
 
@@ -362,6 +386,9 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public 
 
     FRHAPI_Notifications Content;
 
+    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf
@@ -371,7 +398,7 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotificationsSelf
     typedef FDelegate_PlayeridLongPollForNotificationsSelf Delegate;
     typedef FPlayerIdNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridLongPollForNotificationsSelf(InRequest, InDelegate, Priority); }
 };
 

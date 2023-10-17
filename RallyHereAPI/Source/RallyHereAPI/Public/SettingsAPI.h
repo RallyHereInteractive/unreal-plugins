@@ -153,6 +153,10 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
@@ -162,7 +166,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
     typedef FDelegate_DeleteAllPlayerIdSettingsForSettingType Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -195,6 +199,10 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
@@ -204,7 +212,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
     typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingType Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -235,6 +243,10 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
@@ -244,7 +256,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
     typedef FDelegate_DeleteAllPlayerUuidSettingsForSettingTypeSelf Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -279,6 +291,10 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
@@ -288,7 +304,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
     typedef FDelegate_DeleteSinglePlayerIdSetting Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
@@ -323,6 +339,10 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
@@ -332,7 +352,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
     typedef FDelegate_DeleteSinglePlayerUuidSetting Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
@@ -365,6 +385,10 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
@@ -374,7 +398,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
     typedef FDelegate_DeleteSinglePlayerUuidSettingSelf Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -409,6 +433,11 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
 
     TMap<FString, FRHAPI_SettingData> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
@@ -418,7 +447,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
     typedef FDelegate_GetAllPlayerIdSettingsForSettingType Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerIdSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -453,6 +482,11 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
 
     TMap<FString, FRHAPI_SettingData> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
@@ -462,7 +496,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
     typedef FDelegate_GetAllPlayerUuidSettingsForSettingType Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -495,6 +529,11 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
 
     TMap<FString, FRHAPI_SettingData> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
@@ -504,7 +543,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
     typedef FDelegate_GetAllPlayerUuidSettingsForSettingTypeSelf Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidSettingsForSettingTypeSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -533,6 +572,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForAllSettingTypes : public FResponse
 
     TMap<FString, FRHAPI_SettingType> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingType>& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
@@ -542,7 +582,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
     typedef FDelegate_GetConfigForAllSettingTypes Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForAllSettingTypes(InRequest, InDelegate, Priority); }
 };
 
@@ -572,6 +612,10 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
 
     TMap<FString, FRHAPI_SettingTypeVersion> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingTypeVersion>& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
@@ -581,7 +625,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAllVersions
     typedef FDelegate_GetConfigForSingleSettingTypeAllVersions Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAllVersions(InRequest, InDelegate, Priority); }
 };
 
@@ -612,6 +656,10 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
 
     FRHAPI_SettingTypeVersion Content;
 
+    bool TryGetContentFor200(FRHAPI_SettingTypeVersion& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
@@ -621,7 +669,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
     typedef FDelegate_GetConfigForSingleSettingTypeAndVersion Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetConfigForSingleSettingTypeAndVersion(InRequest, InDelegate, Priority); }
 };
 
@@ -656,6 +704,11 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
 
     FRHAPI_SettingData Content;
 
+    bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
@@ -665,7 +718,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
     typedef FDelegate_GetSinglePlayerIdSetting Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
@@ -700,6 +753,11 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
 
     FRHAPI_SettingData Content;
 
+    bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
@@ -709,7 +767,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
     typedef FDelegate_GetSinglePlayerUuidSetting Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
@@ -742,6 +800,11 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
 
     FRHAPI_SettingData Content;
 
+    bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
@@ -751,7 +814,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
     typedef FDelegate_GetSinglePlayerUuidSettingSelf Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -787,6 +850,12 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
 
     TMap<FString, FRHAPI_SettingData> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
@@ -796,7 +865,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
     typedef FDelegate_SetSinglePlayerIdSetting Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerIdSetting(InRequest, InDelegate, Priority); }
 };
 
@@ -832,6 +901,12 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
 
     TMap<FString, FRHAPI_SettingData> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
@@ -841,7 +916,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
     typedef FDelegate_SetSinglePlayerUuidSetting Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSetting(InRequest, InDelegate, Priority); }
 };
 
@@ -875,6 +950,12 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
 
     TMap<FString, FRHAPI_SettingData> Content;
 
+    bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
@@ -884,7 +965,7 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSettingSelf
     typedef FDelegate_SetSinglePlayerUuidSettingSelf Delegate;
     typedef FSettingsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.SetSinglePlayerUuidSettingSelf(InRequest, InDelegate, Priority); }
 };
 

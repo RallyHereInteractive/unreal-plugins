@@ -136,6 +136,11 @@ void FResponse_GetDiscovery::SetHttpResponseCode(EHttpResponseCodes::Type InHttp
     }
 }
 
+bool FResponse_GetDiscovery::TryGetContentFor200(FRHAPI_DiscoveryResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetDiscovery::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);

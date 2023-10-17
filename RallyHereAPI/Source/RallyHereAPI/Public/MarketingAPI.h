@@ -62,6 +62,10 @@ struct RALLYHEREAPI_API FResponse_GetMarketingCampaigns : public FResponse
 
     FRHAPI_MarketingCampaigns Content;
 
+    bool TryGetContentFor200(FRHAPI_MarketingCampaigns& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetMarketingCampaigns
@@ -71,7 +75,7 @@ struct RALLYHEREAPI_API Traits_GetMarketingCampaigns
     typedef FDelegate_GetMarketingCampaigns Delegate;
     typedef FMarketingAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMarketingCampaigns(InRequest, InDelegate, Priority); }
 };
 

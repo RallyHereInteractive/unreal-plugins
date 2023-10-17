@@ -156,6 +156,26 @@ void FResponse_GetMarketingCampaigns::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
+bool FResponse_GetMarketingCampaigns::TryGetContentFor200(FRHAPI_MarketingCampaigns& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetMarketingCampaigns::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetMarketingCampaigns::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetMarketingCampaigns::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetMarketingCampaigns::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);

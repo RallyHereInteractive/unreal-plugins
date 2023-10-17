@@ -62,6 +62,7 @@ struct RALLYHEREAPI_API FResponse_GetSiteSettings : public FResponse
 
     TArray<FRHAPI_SiteSettings> Content;
 
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetSiteSettings
@@ -71,7 +72,7 @@ struct RALLYHEREAPI_API Traits_GetSiteSettings
     typedef FDelegate_GetSiteSettings Delegate;
     typedef FSiteAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSiteSettings(InRequest, InDelegate, Priority); }
 };
 

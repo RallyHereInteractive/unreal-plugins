@@ -84,6 +84,10 @@ struct RALLYHEREAPI_API FResponse_InstanceCreateNotification : public FResponse
 
     FRHAPI_NotificationCreateResult Content;
 
+    bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_InstanceCreateNotification
@@ -93,7 +97,7 @@ struct RALLYHEREAPI_API Traits_InstanceCreateNotification
     typedef FDelegate_InstanceCreateNotification Delegate;
     typedef FInstanceNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceCreateNotification(InRequest, InDelegate, Priority); }
 };
 
@@ -124,6 +128,11 @@ struct RALLYHEREAPI_API FResponse_InstanceGetNotificationById : public FResponse
 
     FRHAPI_Notification Content;
 
+    bool TryGetContentFor200(FRHAPI_Notification& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_InstanceGetNotificationById
@@ -133,7 +142,7 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationById
     typedef FDelegate_InstanceGetNotificationById Delegate;
     typedef FInstanceNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceGetNotificationById(InRequest, InDelegate, Priority); }
 };
 
@@ -170,6 +179,10 @@ struct RALLYHEREAPI_API FResponse_InstanceGetNotificationsPage : public FRespons
 
     FRHAPI_Notifications Content;
 
+    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_InstanceGetNotificationsPage
@@ -179,7 +192,7 @@ struct RALLYHEREAPI_API Traits_InstanceGetNotificationsPage
     typedef FDelegate_InstanceGetNotificationsPage Delegate;
     typedef FInstanceNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceGetNotificationsPage(InRequest, InDelegate, Priority); }
 };
 
@@ -217,6 +230,10 @@ struct RALLYHEREAPI_API FResponse_InstanceLongPollForNotifications : public FRes
 
     FRHAPI_Notifications Content;
 
+    bool TryGetContentFor200(FRHAPI_Notifications& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_InstanceLongPollForNotifications
@@ -226,7 +243,7 @@ struct RALLYHEREAPI_API Traits_InstanceLongPollForNotifications
     typedef FDelegate_InstanceLongPollForNotifications Delegate;
     typedef FInstanceNotificationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceLongPollForNotifications(InRequest, InDelegate, Priority); }
 };
 

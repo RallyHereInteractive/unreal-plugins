@@ -158,6 +158,21 @@ void FResponse_GetAllPlayerUuidRanks::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
+bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllPlayerUuidRanks::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetAllPlayerUuidRanks::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -297,6 +312,16 @@ void FResponse_GetAllPlayerUuidRanksSelf::SetHttpResponseCode(EHttpResponseCodes
     }
 }
 
+bool FResponse_GetAllPlayerUuidRanksSelf::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllPlayerUuidRanksSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetAllPlayerUuidRanksSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -434,6 +459,16 @@ void FResponse_GetAllRankConfig::SetHttpResponseCode(EHttpResponseCodes::Type In
         SetResponseString(TEXT("Forbidden"));
         break;
     }
+}
+
+bool FResponse_GetAllRankConfig::TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllRankConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllRankConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -584,6 +619,21 @@ void FResponse_GetPlayerUuidRank::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
+bool FResponse_GetPlayerUuidRank::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPlayerUuidRank::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPlayerUuidRank::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetPlayerUuidRank::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -731,6 +781,21 @@ void FResponse_GetPlayerUuidRankSelf::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
+bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPlayerUuidRankSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetPlayerUuidRankSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -876,6 +941,21 @@ void FResponse_GetRankConfig::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetRankConfig::TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetRankConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetRankConfig::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetRankConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1037,6 +1117,21 @@ void FResponse_UpdatePlayerUuidRank::SetHttpResponseCode(EHttpResponseCodes::Typ
     }
 }
 
+bool FResponse_UpdatePlayerUuidRank::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdatePlayerUuidRank::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdatePlayerUuidRank::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_UpdatePlayerUuidRank::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1195,6 +1290,21 @@ void FResponse_UpdatePlayerUuidRankSelf::SetHttpResponseCode(EHttpResponseCodes:
     }
 }
 
+bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdatePlayerUuidRankSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_UpdatePlayerUuidRankSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1335,6 +1445,21 @@ void FResponse_UpdateRankingsTrueskillV1::SetHttpResponseCode(EHttpResponseCodes
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateRankingsTrueskillV1::TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateRankingsTrueskillV1::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateRankingsTrueskillV1::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateRankingsTrueskillV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

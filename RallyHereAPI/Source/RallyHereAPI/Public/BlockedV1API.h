@@ -81,6 +81,11 @@ struct RALLYHEREAPI_API FResponse_Block : public FResponse
 
     FRHAPI_BlockedPlayerV1 Content;
 
+    bool TryGetContentFor200(FRHAPI_BlockedPlayerV1& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_Block
@@ -90,7 +95,7 @@ struct RALLYHEREAPI_API Traits_Block
     typedef FDelegate_Block Delegate;
     typedef FBlockedV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Block(InRequest, InDelegate, Priority); }
 };
 
@@ -121,6 +126,11 @@ struct RALLYHEREAPI_API FResponse_GetBlocked : public FResponse
 
     FRHAPI_BlockedPlayerV1 Content;
 
+    bool TryGetContentFor200(FRHAPI_BlockedPlayerV1& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetBlocked
@@ -130,7 +140,7 @@ struct RALLYHEREAPI_API Traits_GetBlocked
     typedef FDelegate_GetBlocked Delegate;
     typedef FBlockedV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlocked(InRequest, InDelegate, Priority); }
 };
 
@@ -167,6 +177,11 @@ struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayer : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_BlockedListV1& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedListForPlayer
@@ -176,7 +191,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayer
     typedef FDelegate_GetBlockedListForPlayer Delegate;
     typedef FBlockedV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayer(InRequest, InDelegate, Priority); }
 };
 
@@ -207,6 +222,10 @@ struct RALLYHEREAPI_API FResponse_Unblock : public FResponse
 
     
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_Unblock
@@ -216,7 +235,7 @@ struct RALLYHEREAPI_API Traits_Unblock
     typedef FDelegate_Unblock Delegate;
     typedef FBlockedV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unblock(InRequest, InDelegate, Priority); }
 };
 

@@ -111,6 +111,11 @@ struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
     {{#description}}/* {{{.}}} */
     {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};{{/headers}}
     {{/responses.0}}
+    {{#responses}}
+    {{#isModel}}
+    bool TryGetContentFor{{{code}}}({{{dataType}}}& OutContent) const;
+    {{/isModel}}
+    {{/responses}}
 };
 
 struct {{dllapi}} Traits_{{operationIdCamelCase}}
@@ -120,7 +125,7 @@ struct {{dllapi}} Traits_{{operationIdCamelCase}}
     typedef FDelegate_{{operationIdCamelCase}} Delegate;
     typedef {{classname}} API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = Default{{unrealModuleName}}Priority) { return InAPI.{{operationIdCamelCase}}(InRequest, InDelegate, Priority); }
 };
 

@@ -104,6 +104,11 @@ struct RALLYHEREAPI_API FResponse_AddFriendV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_AddFriendV2
@@ -113,7 +118,7 @@ struct RALLYHEREAPI_API Traits_AddFriendV2
     typedef FDelegate_AddFriendV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriendV2(InRequest, InDelegate, Priority); }
 };
 
@@ -150,6 +155,11 @@ struct RALLYHEREAPI_API FResponse_AddNotesV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_AddNotesV2
@@ -159,7 +169,7 @@ struct RALLYHEREAPI_API Traits_AddNotesV2
     typedef FDelegate_AddNotesV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotesV2(InRequest, InDelegate, Priority); }
 };
 
@@ -195,6 +205,10 @@ struct RALLYHEREAPI_API FResponse_DeleteFriendV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriendV2
@@ -204,7 +218,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriendV2
     typedef FDelegate_DeleteFriendV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendV2(InRequest, InDelegate, Priority); }
 };
 
@@ -235,6 +249,10 @@ struct RALLYHEREAPI_API FResponse_DeleteFriendsV2 : public FResponse
 
     
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriendsV2
@@ -244,7 +262,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriendsV2
     typedef FDelegate_DeleteFriendsV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriendsV2(InRequest, InDelegate, Priority); }
 };
 
@@ -277,6 +295,10 @@ struct RALLYHEREAPI_API FResponse_DeleteNotesV2 : public FResponse
 
     
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DeleteNotesV2
@@ -286,7 +308,7 @@ struct RALLYHEREAPI_API Traits_DeleteNotesV2
     typedef FDelegate_DeleteNotesV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotesV2(InRequest, InDelegate, Priority); }
 };
 
@@ -322,6 +344,11 @@ struct RALLYHEREAPI_API FResponse_GetFriendRelationshipV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_FriendRelationship& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
@@ -331,7 +358,7 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationshipV2
     typedef FDelegate_GetFriendRelationshipV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationshipV2(InRequest, InDelegate, Priority); }
 };
 
@@ -368,6 +395,11 @@ struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayerV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_FriendsList& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendsListForPlayerV2
@@ -377,7 +409,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsListForPlayerV2
     typedef FDelegate_GetFriendsListForPlayerV2 Delegate;
     typedef FFriendsV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 

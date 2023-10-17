@@ -433,6 +433,15 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 
 {{/headers.0}}
 {{/responses.0}}
+{{#responses}}
+{{#isModel}}
+bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{dataType}}}& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+{{/isModel}}
+{{/responses}}
 bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     {{#returnType}}

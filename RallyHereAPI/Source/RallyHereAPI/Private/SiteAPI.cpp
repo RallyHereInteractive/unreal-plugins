@@ -150,6 +150,11 @@ void FResponse_GetSiteSettings::SetHttpResponseCode(EHttpResponseCodes::Type InH
     }
 }
 
+bool FResponse_GetSiteSettings::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetSiteSettings::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);

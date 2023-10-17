@@ -123,6 +123,11 @@ struct RALLYHEREAPI_API FResponse_ClaimPlayerUuidUnclaimedKeyClaim : public FRes
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaim
@@ -132,7 +137,7 @@ struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaim
     typedef FDelegate_ClaimPlayerUuidUnclaimedKeyClaim Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
 };
 
@@ -163,6 +168,11 @@ struct RALLYHEREAPI_API FResponse_ClaimPlayerUuidUnclaimedKeyClaimForMe : public
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe
@@ -172,7 +182,7 @@ struct RALLYHEREAPI_API Traits_ClaimPlayerUuidUnclaimedKeyClaimForMe
     typedef FDelegate_ClaimPlayerUuidUnclaimedKeyClaimForMe Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimPlayerUuidUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
@@ -204,6 +214,11 @@ struct RALLYHEREAPI_API FResponse_ClaimUnclaimedKeyClaim : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaim
@@ -213,7 +228,7 @@ struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaim
     typedef FDelegate_ClaimUnclaimedKeyClaim Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimUnclaimedKeyClaim(InRequest, InDelegate, Priority); }
 };
 
@@ -244,6 +259,11 @@ struct RALLYHEREAPI_API FResponse_ClaimUnclaimedKeyClaimForMe : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaimForMe
@@ -253,7 +273,7 @@ struct RALLYHEREAPI_API Traits_ClaimUnclaimedKeyClaimForMe
     typedef FDelegate_ClaimUnclaimedKeyClaimForMe Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ClaimUnclaimedKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
@@ -284,6 +304,11 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaim : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaim
@@ -293,7 +318,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaim
     typedef FDelegate_GetKeyClaim Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaim(InRequest, InDelegate, Priority); }
 };
 
@@ -323,6 +348,11 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimForMe : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaimForMe
@@ -332,7 +362,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimForMe
     typedef FDelegate_GetKeyClaimForMe Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimForMe(InRequest, InDelegate, Priority); }
 };
 
@@ -362,6 +392,11 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaims : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaims
@@ -371,7 +406,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaims
     typedef FDelegate_GetKeyClaims Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaims(InRequest, InDelegate, Priority); }
 };
 
@@ -400,6 +435,10 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimsForMe : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaimsForMe
@@ -409,7 +448,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMe
     typedef FDelegate_GetKeyClaimsForMe Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimsForMe(InRequest, InDelegate, Priority); }
 };
 
@@ -438,6 +477,10 @@ struct RALLYHEREAPI_API FResponse_GetKeyClaimsForMyUuid : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetKeyClaimsForMyUuid
@@ -447,7 +490,7 @@ struct RALLYHEREAPI_API Traits_GetKeyClaimsForMyUuid
     typedef FDelegate_GetKeyClaimsForMyUuid Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetKeyClaimsForMyUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -478,6 +521,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaim : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaim
@@ -487,7 +535,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaim
     typedef FDelegate_GetPlayerUuidKeyClaim Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaim(InRequest, InDelegate, Priority); }
 };
 
@@ -517,6 +565,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaimSelf : public FResponse
 
     FRHAPI_KeyClaim Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaim& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaimSelf
@@ -526,7 +579,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaimSelf
     typedef FDelegate_GetPlayerUuidKeyClaimSelf Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaimSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -556,6 +609,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidKeyClaims : public FResponse
 
     FRHAPI_KeyClaims Content;
 
+    bool TryGetContentFor200(FRHAPI_KeyClaims& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaims
@@ -565,7 +623,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidKeyClaims
     typedef FDelegate_GetPlayerUuidKeyClaims Delegate;
     typedef FKeyClaimsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidKeyClaims(InRequest, InDelegate, Priority); }
 };
 

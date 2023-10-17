@@ -229,6 +229,8 @@ struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponse
 
     
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DequeueMeForPurge
@@ -238,7 +240,7 @@ struct RALLYHEREAPI_API Traits_DequeueMeForPurge
     typedef FDelegate_DequeueMeForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
@@ -268,6 +270,9 @@ struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponse
 
     
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
@@ -277,7 +282,7 @@ struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
     typedef FDelegate_DequeuePersonForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
@@ -314,7 +319,7 @@ struct RALLYHEREAPI_API Traits_DisableCrossProgression
     typedef FDelegate_DisableCrossProgression Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DisableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
@@ -351,7 +356,7 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
     typedef FDelegate_EnableCrossProgression Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EnableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
@@ -380,6 +385,8 @@ struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponse
 
     TArray<FRHAPI_Role> Content;
 
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRoles
@@ -389,7 +396,7 @@ struct RALLYHEREAPI_API Traits_GetAllRoles
     typedef FDelegate_GetAllRoles Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRoles(InRequest, InDelegate, Priority); }
 };
 
@@ -419,6 +426,10 @@ struct RALLYHEREAPI_API FResponse_GetPerson : public FResponse
 
     FRHAPI_PersonInfoResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPerson
@@ -428,7 +439,7 @@ struct RALLYHEREAPI_API Traits_GetPerson
     typedef FDelegate_GetPerson Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPerson(InRequest, InDelegate, Priority); }
 };
 
@@ -458,6 +469,10 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponse
 
     FRHAPI_PersonEmailListResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailList
@@ -467,7 +482,7 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailList
     typedef FDelegate_GetPersonEmailList Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailList(InRequest, InDelegate, Priority); }
 };
 
@@ -496,6 +511,9 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponse
 
     FRHAPI_PersonEmailListResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
@@ -505,7 +523,7 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
     typedef FDelegate_GetPersonEmailListForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailListForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -534,6 +552,9 @@ struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponse
 
     FRHAPI_PersonInfoResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonForSelf
@@ -543,7 +564,7 @@ struct RALLYHEREAPI_API Traits_GetPersonForSelf
     typedef FDelegate_GetPersonForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -573,6 +594,12 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuid : public FResponse
 
     FRHAPI_PlayerIdWrapper Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
@@ -582,7 +609,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
     typedef FDelegate_GetPlayerIdFromPlayerUuid Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -611,6 +638,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuidForSelf : public FRes
 
     FRHAPI_PlayerIdWrapper Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
@@ -620,7 +652,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
     typedef FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuidForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -650,6 +682,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinkedPortals : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
@@ -659,7 +696,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
     typedef FDelegate_GetPlayerLinkedPortals Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinkedPortals(InRequest, InDelegate, Priority); }
 };
 
@@ -689,6 +726,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinks : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinks
@@ -698,7 +740,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinks
     typedef FDelegate_GetPlayerLinks Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinks(InRequest, InDelegate, Priority); }
 };
 
@@ -727,6 +769,10 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
@@ -736,7 +782,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
     typedef FDelegate_GetPlayerLinksForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinksForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -766,6 +812,10 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerId : public FResponse
 
     FGuid Content;
 
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
@@ -775,7 +825,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
     typedef FDelegate_GetPlayerUuidFromPlayerId Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerId(InRequest, InDelegate, Priority); }
 };
 
@@ -804,6 +854,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelf : public FRes
 
     FGuid Content;
 
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
@@ -813,7 +866,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
     typedef FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -842,6 +895,10 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelfV2 : public FR
 
     FRHAPI_PlayerUuidFromId Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
@@ -851,7 +908,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
     typedef FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelfV2(InRequest, InDelegate, Priority); }
 };
 
@@ -881,6 +938,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdV2 : public FResponse
 
     FRHAPI_PlayerUuidFromId Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
@@ -890,7 +952,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
     typedef FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate, Priority); }
 };
 
@@ -923,6 +985,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponse
 
     FRHAPI_PlayerIterateResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerIterateResponse& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayersPaged
@@ -932,7 +999,7 @@ struct RALLYHEREAPI_API Traits_GetPlayersPaged
     typedef FDelegate_GetPlayersPaged Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayersPaged(InRequest, InDelegate, Priority); }
 };
 
@@ -961,6 +1028,10 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
@@ -970,7 +1041,7 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
     typedef FDelegate_GetQueuePurgeStatusForMe Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForMe(InRequest, InDelegate, Priority); }
 };
 
@@ -1000,6 +1071,11 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FRespons
 
     FRHAPI_PurgeResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
@@ -1009,7 +1085,7 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
     typedef FDelegate_GetQueuePurgeStatusForPerson Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForPerson(InRequest, InDelegate, Priority); }
 };
 
@@ -1038,6 +1114,7 @@ struct RALLYHEREAPI_API FResponse_Link : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_Link
@@ -1047,7 +1124,7 @@ struct RALLYHEREAPI_API Traits_Link
     typedef FDelegate_Link Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Link(InRequest, InDelegate, Priority); }
 };
 
@@ -1084,6 +1161,10 @@ struct RALLYHEREAPI_API FResponse_LookupPlayerByPortal : public FResponse
 
     FRHAPI_LookupResults Content;
 
+    bool TryGetContentFor200(FRHAPI_LookupResults& OutContent) const;
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
@@ -1093,7 +1174,7 @@ struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
     typedef FDelegate_LookupPlayerByPortal Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LookupPlayerByPortal(InRequest, InDelegate, Priority); }
 };
 
@@ -1123,6 +1204,11 @@ struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+    bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_QueueMeForPurge
@@ -1132,7 +1218,7 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
     typedef FDelegate_QueueMeForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
@@ -1163,6 +1249,10 @@ struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+    bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_QueuePersonForPurge
@@ -1172,7 +1262,7 @@ struct RALLYHEREAPI_API Traits_QueuePersonForPurge
     typedef FDelegate_QueuePersonForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
@@ -1209,7 +1299,7 @@ struct RALLYHEREAPI_API Traits_Unlink
     typedef FDelegate_Unlink Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unlink(InRequest, InDelegate, Priority); }
 };
 
@@ -1240,6 +1330,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePerson
@@ -1249,7 +1342,7 @@ struct RALLYHEREAPI_API Traits_UpdatePerson
     typedef FDelegate_UpdatePerson Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePerson(InRequest, InDelegate, Priority); }
 };
 
@@ -1280,6 +1373,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
@@ -1289,7 +1385,7 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
     typedef FDelegate_UpdatePersonEmailList Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailList(InRequest, InDelegate, Priority); }
 };
 
@@ -1319,6 +1415,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FRespons
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
@@ -1328,7 +1427,7 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
     typedef FDelegate_UpdatePersonEmailListForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailListForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1358,6 +1457,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
@@ -1367,7 +1469,7 @@ struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
     typedef FDelegate_UpdatePersonForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1397,6 +1499,9 @@ struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponse
 
     FRHAPI_JsonValue Content;
 
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpsertContact
@@ -1406,7 +1511,7 @@ struct RALLYHEREAPI_API Traits_UpsertContact
     typedef FDelegate_UpsertContact Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpsertContact(InRequest, InDelegate, Priority); }
 };
 

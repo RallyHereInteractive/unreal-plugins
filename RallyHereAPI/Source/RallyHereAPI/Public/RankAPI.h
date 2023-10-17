@@ -108,6 +108,9 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
@@ -117,7 +120,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
     typedef FDelegate_GetAllPlayerUuidRanks Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanks(InRequest, InDelegate, Priority); }
 };
 
@@ -146,6 +149,8 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
@@ -155,7 +160,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
     typedef FDelegate_GetAllPlayerUuidRanksSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanksSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -184,6 +189,8 @@ struct RALLYHEREAPI_API FResponse_GetAllRankConfig : public FResponse
 
     FRHAPI_RankConfigRequestResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRankConfig
@@ -193,7 +200,7 @@ struct RALLYHEREAPI_API Traits_GetAllRankConfig
     typedef FDelegate_GetAllRankConfig Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRankConfig(InRequest, InDelegate, Priority); }
 };
 
@@ -224,6 +231,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
@@ -233,7 +243,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
     typedef FDelegate_GetPlayerUuidRank Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
@@ -263,6 +273,9 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
@@ -272,7 +285,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
     typedef FDelegate_GetPlayerUuidRankSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRankSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -302,6 +315,9 @@ struct RALLYHEREAPI_API FResponse_GetRankConfig : public FResponse
 
     FRHAPI_RankConfigRequestResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetRankConfig
@@ -311,7 +327,7 @@ struct RALLYHEREAPI_API Traits_GetRankConfig
     typedef FDelegate_GetRankConfig Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetRankConfig(InRequest, InDelegate, Priority); }
 };
 
@@ -343,6 +359,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
@@ -352,7 +371,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
     typedef FDelegate_UpdatePlayerUuidRank Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
@@ -383,6 +402,9 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
@@ -392,7 +414,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
     typedef FDelegate_UpdatePlayerUuidRankSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRankSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -420,6 +442,9 @@ struct RALLYHEREAPI_API FResponse_UpdateRankingsTrueskillV1 : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1
@@ -429,7 +454,7 @@ struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1
     typedef FDelegate_UpdateRankingsTrueskillV1 Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateRankingsTrueskillV1(InRequest, InDelegate, Priority); }
 };
 

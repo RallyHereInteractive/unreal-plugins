@@ -99,6 +99,9 @@ struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
@@ -108,7 +111,7 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
     typedef FDelegate_GetAllMapGameInfo Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -144,6 +147,9 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfo
@@ -153,7 +159,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
     typedef FDelegate_GetAllQueueInfo Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -189,6 +195,9 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
@@ -198,7 +207,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
     typedef FDelegate_GetAllQueueInfoV2 Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfoV2(InRequest, InDelegate, Priority); }
 };
 
@@ -233,6 +242,9 @@ struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
@@ -242,7 +254,7 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
     typedef FDelegate_GetInstanceRequestTemplate Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -277,6 +289,9 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
@@ -286,7 +301,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
     typedef FDelegate_GetMatchMakingTemplates Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
 };
 
@@ -321,6 +336,9 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+    bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
@@ -330,7 +348,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
     typedef FDelegate_GetMatchMakingTemplatesV2 Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplatesV2(InRequest, InDelegate, Priority); }
 };
 

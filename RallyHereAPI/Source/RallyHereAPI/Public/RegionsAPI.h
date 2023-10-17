@@ -65,6 +65,9 @@ struct RALLYHEREAPI_API FResponse_GetAllRegions : public FResponse
 
     FRHAPI_RegionsResponse Content;
 
+    bool TryGetContentFor200(FRHAPI_RegionsResponse& OutContent) const;
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRegions
@@ -74,7 +77,7 @@ struct RALLYHEREAPI_API Traits_GetAllRegions
     typedef FDelegate_GetAllRegions Delegate;
     typedef FRegionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRegions(InRequest, InDelegate, Priority); }
 };
 
