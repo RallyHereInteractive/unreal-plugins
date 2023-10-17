@@ -72,6 +72,9 @@ enum class ERHAPI_LoginResult : uint8
     /** RH web login was denied. There are many reasons that can cause this, including misconfiguration of OSS IDs with the Rally Here APIs */
     Fail_RHDenied,
 
+	/** Local player went missing during login process */
+	Fail_LocalPlayerMissing,
+
     /** RH web login failed for an unknown reason.  This usually means there was a server error of some kind. */
     Fail_RHUnknown,
 };
@@ -480,10 +483,23 @@ protected:
     virtual bool OnOSSPrivilegeResults(const FUniqueNetId& UniqueId, EUserPrivileges::Type Privilege, uint32 PrivilegeResults,
 									   FRH_PendingLoginRequest Req, IOnlineSubsystem* OSS, bool bPromptForAccountUpgradeIfInsufficient);
 	/**
+	 * @brief Start the retrieval of the OSS Auth Token.
+	 * @param [in] Req The pending login request.
+	 */
+	virtual void RetrieveOSSAuthToken(FRH_PendingLoginRequest& Req);
+	/**
+	 * @brief Start the login to Rally Here.
+	 * @param [in] LocalUserNum Local user number of the player logging in.
+	 * @param [in] bWasSuccessful Was the retrieval successful.
+	 * @param [in] AuthTokenWrapper The auth token wrapper.
+	 * @param [in] Req The pending login request.
+	 */
+	virtual void RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthToken, FRH_PendingLoginRequest Req);
+	/**
 	 * @brief Start the login to Rally Here.
 	 * @param [in] Req The pending login request.
 	 */
-    virtual void DoRallyHereLogin(FRH_PendingLoginRequest& Req);
+    virtual void DoRallyHereLogin(FRH_PendingLoginRequest& Req, const FExternalAuthToken& AuthToken);
 	/**
 	 * @brief Handle the response from the login to Rally Here.
 	 * @param [in] Resp Response from the login to Rally Here.
