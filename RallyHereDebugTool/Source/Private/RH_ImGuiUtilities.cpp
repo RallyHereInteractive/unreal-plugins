@@ -200,19 +200,10 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 	}
 	else if (FEnumProperty const* EnumProperty = CastField<FEnumProperty>(Property))
 	{
-		if (Property->HasMetaData("SerializeAsInteger"))
-		{
-			FNumericProperty* UnderlyingProperty = EnumProperty->GetUnderlyingProperty();
+		FString	ValueStr;
+		Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
 
-			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%d"), UnderlyingProperty->GetSignedIntPropertyValue(Data)), ECopyMode::Value);
-		}
-		else
-		{
-			FString	ValueStr;
-			Property->ExportText_Direct(ValueStr, Data, nullptr, nullptr, PPF_None);
-
-			ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
-		}
+		ImGuiDisplayCopyableValue(TEXT(""), FString::Printf(TEXT("%s"), *ValueStr), ECopyMode::Value);
 	}
 	else if (FStrProperty const* StringProperty = CastField<FStrProperty>(Property))
 	{
