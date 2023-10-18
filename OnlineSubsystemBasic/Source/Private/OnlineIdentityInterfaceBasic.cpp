@@ -285,3 +285,10 @@ void FOnlineIdentityBasic::Tick(float DeltaTime)
 {
 
 }
+
+void FOnlineIdentityBasic::GetLinkedAccountAuthToken(int32 LocalUserNum, const FOnGetLinkedAccountAuthTokenCompleteDelegate& Delegate) const
+{
+	FExternalAuthToken AuthToken;
+	AuthToken.TokenString = GetAuthToken(LocalUserNum);
+	Delegate.ExecuteIfBound(LocalUserNum, AuthToken.HasTokenString(), AuthToken);
+}

@@ -4,6 +4,7 @@
 #include "Engine/EngineBaseTypes.h"
 #include "Misc/Guid.h"
 #include "Templates/SharedPointer.h"
+#include "Interfaces/OnlineIdentityInterface.h"
 #include "RH_SubsystemPluginBase.h"
 #include "RH_GameHostProviderInterface.h"
 
@@ -249,6 +250,10 @@ protected:
 	*/
 	virtual void BeginOSSLogin();
 	/**
+	* @brief Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials
+	*/
+	virtual void BeginNullLogin();
+	/**
 	* @brief Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use
 	* @param [in] ControllerId The controller id that was used to login
 	* @param [in] bSuccessful Whether or not the login was successful
@@ -257,10 +262,17 @@ protected:
 	*/
 	virtual void OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage);
 	/**
+	 * @brief Start the login to Rally Here.
+	 * @param [in] LocalUserNum Local user number of the player logging in.
+	 * @param [in] bWasSuccessful Was the retrieval successful.
+	 * @param [in] AuthTokenWrapper The auth token wrapper.
+	 */
+	virtual void RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthTokenWrapper);
+	/**
 	* @brief Bootstrapping Flow [Login] - completion callback for RallyHere API login
 	* @param [in] bSuccess Whether or not the login was successful
 	*/
-	virtual void OnServerLoginComplete(bool bSuccess);
+	virtual void OnServerLoginComplete(bool bSuccess, const FRH_ErrorInfo& ErrorInfo = FRH_ErrorInfo());
 
 	/**
 	* @brief Bootstrapping Flow [Recycle] - start a new recycle loop
