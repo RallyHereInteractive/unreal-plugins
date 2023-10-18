@@ -29,9 +29,9 @@ DECLARE_LOG_CATEGORY_EXTERN(LogRHSession, Log, All);
 
 // generic delegate for multiple types of session events
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnSessionUpdatedDynamicDelegate, bool, bSuccess, URH_JoinedSession*, SessionData);
-DECLARE_DELEGATE_TwoParams(FRH_OnSessionUpdatedDelegate, bool, URH_JoinedSession*);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionUpdatedDelegateBlock, FRH_OnSessionUpdatedDelegate, FRH_OnSessionUpdatedDynamicDelegate, bool, URH_JoinedSession*);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnSessionUpdatedDynamicDelegate, bool, bSuccess, URH_JoinedSession*, SessionData, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnSessionUpdatedDelegate, bool, URH_JoinedSession*, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionUpdatedDelegateBlock, FRH_OnSessionUpdatedDelegate, FRH_OnSessionUpdatedDynamicDelegate, bool, URH_JoinedSession*, const FRH_ErrorInfo&);
 
 // multicast delegates to notify listeners of session events
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnSessionUpdatedMulticastDynamicDelegate, URH_SessionView*, UpdatedSession);

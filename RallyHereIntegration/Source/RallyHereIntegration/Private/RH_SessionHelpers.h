@@ -26,6 +26,7 @@ protected:
 	}
 
 	FRH_SessionOwnerPtr SessionOwner;
+	FRH_ErrorInfo ErrorInfo;
 };
 
 // Boilerplate class that supports running the RHSession's internal poll and waiting on a result (deduplicated and throttled, but requires a pre-existing RHSession)
@@ -60,7 +61,7 @@ protected:
 		}
 	}
 
-	void OnSessionPollComplete(bool bSuccess, bool)
+	void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
 	{
 		if (bSuccess && SessionOwner.IsValid())
 		{
@@ -112,6 +113,8 @@ protected:
 
 	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
 	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
 		if (!SessionOwner.IsValid())
 		{
 			Failed(TEXT("Session owner is invalid"));
@@ -190,6 +193,8 @@ protected:
 
 	void OnSessionTemplateLookup(const RallyHereAPI::Traits_GetSessionTemplateByType::Response& Resp)
 	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
 		if (!SessionOwner.IsValid())
 		{
 			Failed(TEXT("Session owner is invalid"));
@@ -224,6 +229,7 @@ protected:
 	FString SessionId;
 	TWeakObjectPtr<URH_JoinedSession> RHSession;
 	FRH_APISessionWithETag SessionCache;
+	FRH_ErrorInfo ErrorInfo;
 };
 
 
@@ -258,12 +264,15 @@ protected:
 
 	void OnRequestById(const typename BaseType::Response& Resp)
 	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
 		if (Resp.IsSuccessful())
 		{
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
 		{
+			ErrorInfo = FRH_ErrorInfo(Resp);
 			Failed(TEXT("Request Failed"));
 		}
 	}
@@ -275,7 +284,7 @@ protected:
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
-		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
 	}
 
 	FRH_OnSessionUpdatedDelegateBlock Delegate;
@@ -321,7 +330,7 @@ protected:
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
-		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
 	}
 
 	FRH_OnSessionUpdatedDelegateBlock Delegate;
@@ -662,6 +671,8 @@ public:
 protected:
 	void OnCreated(const BaseType::Response& Resp)
 	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
 		if (Resp.IsSuccessful())
 		{
 			// set our new session id
@@ -681,7 +692,7 @@ protected:
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
-		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
 	}
 
 	FRHAPI_CreateOrJoinRequest CreateParams;
@@ -738,6 +749,8 @@ public:
 protected:
 	void OnJoined(const BaseType::Response& Resp)
 	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
 		if (Resp.IsSuccessful())
 		{
 			DoSessionLookup();
@@ -755,7 +768,7 @@ protected:
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
-		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
 	}
 
 	FRH_OnSessionUpdatedDelegateBlock Delegate;
@@ -805,6 +818,8 @@ public:
 protected:
 	void OnJoined(const BaseType::Response& Resp)
 	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
 		if (Resp.IsSuccessful())
 		{
 			// set our new session id
@@ -828,7 +843,7 @@ protected:
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
-		Delegate.ExecuteIfBound(bSuccess, RHSession.Get());
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
 	}
 
 	FRH_OnSessionUpdatedDelegateBlock Delegate;

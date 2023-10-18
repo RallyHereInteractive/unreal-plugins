@@ -201,7 +201,7 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 
 			if (PlatformOptional.IsSet())
 			{
-				auto CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateLambda([SessionInvite, Delegate](bool bSuccess, URH_JoinedSession* Session)
+				auto CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateLambda([SessionInvite, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
 					{
 						if (bSuccess)
 						{
@@ -611,7 +611,7 @@ void URH_PlatformSessionSyncer::UpdateRHSessionWithPlatformSession()
 		Request.Platform = RHPlatform;
 		Request.PlatformSessionIdBase64 = Base64Str;
 
-		auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(SessionOwner, RHSession->GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_JoinedSession* Session)
+		auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(SessionOwner, RHSession->GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
 			{
 				if (bSuccess)
 				{
@@ -924,7 +924,7 @@ void URH_PlatformSessionSyncer::OnScoutFailedToJoin()
 	Request.Platform = PlatformSession.GetPlatform();
 	Request.PlatformSessionIdBase64 = PlatformSession.GetPlatformSessionIdBase64();
 
-	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(SessionOwner, RHSession->GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_JoinedSession* Session)
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(SessionOwner, RHSession->GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
 		{
 			if (bSuccess)
 			{

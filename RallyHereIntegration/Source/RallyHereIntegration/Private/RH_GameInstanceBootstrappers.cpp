@@ -843,7 +843,7 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bS
 			// create default instance data if needed
 			if (RHSession->GetInstanceData() != nullptr)
 			{
-				OnSessionInstanceCreationCompleted(true, RHSession);
+				OnSessionInstanceCreationCompleted(true, RHSession, FRH_ErrorInfo());
 			}
 			else
 			{
@@ -892,7 +892,7 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bS
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool bSuccess, URH_JoinedSession* CreatedRHSession)
+void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool bSuccess, URH_JoinedSession* CreatedRHSession, const FRH_ErrorInfo& ErrorInfo)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
