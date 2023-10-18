@@ -48,8 +48,8 @@ namespace RHEventCacheStatic
 		return
 			// "{eventName":"   EVENT_NAME     ",
 			14 + EventName.Len() + 2
-			// "eventTimestamp":"YYYY-MM-DD HH:MM:SS.MMM",
-			+ 43
+			// "eventTimestamp":"YYYY-MM-DDTHH:MM:SS.MMMZ",
+			+ 44
 			// "eventUUID":"00000000-0000-0000-0000-000000000000",
 			+ 51
 			// ATTRIBUTES_SIZE
@@ -256,7 +256,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventTimestamp\":", 18);
 	// Add "<date>"
 	FDateTime Now = FDateTime::UtcNow();;
-	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, Now.ToString(), false);
+	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, Now.ToIso8601(), false);
 	// Add ,"eventUUID":"
 	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventUUID\":", 13);
 	// Add "<GUID>"
