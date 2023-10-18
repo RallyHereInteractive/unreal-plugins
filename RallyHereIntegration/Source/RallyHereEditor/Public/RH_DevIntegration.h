@@ -53,10 +53,7 @@ public:
 
     /**
       * @brief Get the Sandbox ID used for finding the base URL from the first of the following sources:
-      * 1. Command line values from the keys in SandboxCommandLineKeys.  By default these are:
-      *     RallyHereSandboxX
-      *     RallyHereSandbox
-      *     RallyHereSandboxInternal
+      * 1. Command line values from the keys in SandboxCommandLineKeys.
       * 2. Results from GetSandboxId from the SandboxOSSName (or default if one is not provided)
       */
     void ResolveSandboxId();

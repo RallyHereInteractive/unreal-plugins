@@ -59,9 +59,9 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHGetBaseUrl(
 			Ar.Logf(TEXT("Base URL = %s"), *FRallyHereIntegrationModule::Get().GetBaseURL());
 		}));
 
-static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetSandboxId(
-	TEXT("rh.setsandboxid"),
-	TEXT("Set the Sandbox ID used for finding the Rally Here API base URL"),
+static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetEnvironmentId(
+	TEXT("rh.setenvid"),
+	TEXT("Set the Environment ID used for finding the Rally Here API base URL"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
 		{
 			if (!FRallyHereIntegrationModule::IsAvailable())
@@ -73,16 +73,16 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetSandboxId(
 			bool bHasValue = Args.Num() > 0;
 			FString NewValue = bHasValue ? Args[0] : FString();
 			NewValue.TrimQuotesInline();
-			FRallyHereIntegrationModule::Get().LockSandboxId(bHasValue);
-			FRallyHereIntegrationModule::Get().SetSandboxId(MoveTemp(NewValue), TEXT("Console Command"));
+			FRallyHereIntegrationModule::Get().LockEnvironmentId(bHasValue);
+			FRallyHereIntegrationModule::Get().SetEnvironmentId(MoveTemp(NewValue), TEXT("Console Command"));
 			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
-			Ar.Logf(TEXT("Updated Sandbox ID to %s"), *FRallyHereIntegrationModule::Get().GetSandboxId());
+			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
-static FAutoConsoleCommandWithOutputDevice ConsoleRHResolveSandboxId(
-	TEXT("rh.resolvesandboxid"),
-	TEXT("Resolve the Sandbox ID used for finding the Rally Here API base URL"),
+static FAutoConsoleCommandWithOutputDevice ConsoleRHResolveEnvironmentId(
+	TEXT("rh.resolveenvid"),
+	TEXT("Resolve the Environment ID used for finding the Rally Here API base URL"),
 	FConsoleCommandWithOutputDeviceDelegate::CreateLambda([](FOutputDevice& Ar)
 		{
 			if (!FRallyHereIntegrationModule::IsAvailable())
@@ -91,16 +91,16 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHResolveSandboxId(
 				return;
 			}
 
-			FRallyHereIntegrationModule::Get().LockSandboxId(false);
-			FRallyHereIntegrationModule::Get().ResolveSandboxId();
+			FRallyHereIntegrationModule::Get().LockEnvironmentId(false);
+			FRallyHereIntegrationModule::Get().ResolveEnvironmentId();
 			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
-			Ar.Logf(TEXT("Updated Sandbox ID to %s"), *FRallyHereIntegrationModule::Get().GetSandboxId());
+			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
-static FAutoConsoleCommandWithOutputDevice ConsoleRHGetSandboxId(
-	TEXT("rh.getsandboxid"),
-	TEXT("Get the Sandbox ID used for finding the Rally Here API base URL"),
+static FAutoConsoleCommandWithOutputDevice ConsoleRHGetEnvironmentId(
+	TEXT("rh.getenvid"),
+	TEXT("Get the Environment ID used for finding the Rally Here API base URL"),
 	FConsoleCommandWithOutputDeviceDelegate::CreateLambda([](FOutputDevice& Ar)
 		{
 			if (!FRallyHereIntegrationModule::IsAvailable())
@@ -109,7 +109,7 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHGetSandboxId(
 				return;
 			}
 
-			Ar.Logf(TEXT("Sandbox ID = %s"), *FRallyHereIntegrationModule::Get().GetSandboxId());
+			Ar.Logf(TEXT("Environment ID = %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
 
@@ -310,71 +310,53 @@ void URH_Integration::ResolveBaseURL()
 
 
 	{
-		// check sandbox
-		const auto SandboxId = GetSandboxId();
-		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
-		if (Sandbox != nullptr && !Sandbox->BaseUrl.IsEmpty())
+		// check environment
+		const auto EnvironmentId = GetEnvironmentId();
+		const auto* Environment = Settings->GetEnvironmentConfiguration(EnvironmentId);
+		if (Environment != nullptr && !Environment->BaseUrl.IsEmpty())
 		{
-			SetBaseURL(Sandbox->BaseUrl, TEXT("Sandbox:") + SandboxId);
+			SetBaseURL(Environment->BaseUrl, TEXT("Environment:") + EnvironmentId);
 			return;
 		}
 
-		// check default sandbox as a fallback
-		Sandbox = &Settings->DefaultSandboxConfiguration;
-		if (Sandbox != nullptr && !Sandbox->BaseUrl.IsEmpty())
+		// check default environment as a fallback
+		Environment = &Settings->DefaultEnvironmentConfiguration;
+		if (Environment != nullptr && !Environment->BaseUrl.IsEmpty())
 		{
-			SetBaseURL(Sandbox->BaseUrl, TEXT("Default Sandbox:") + SandboxId);
+			SetBaseURL(Environment->BaseUrl, TEXT("Default Environment:") + EnvironmentId);
 			return;
 		}
 	}
-
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS
-	if (!Settings->BaseUrl.IsEmpty())
-	{
-		SetBaseURL(Settings->BaseUrl, TEXT("URH_IntegrationSettings::BaseURL"));
-		return;
-	}
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a base URL"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
-void URH_Integration::SetSandboxId(FString InSandboxId, const FString& Source)
+void URH_Integration::SetEnvironmentId(FString InEnvironmentId, const FString& Source)
 {
-	ResolvedSandboxId = MoveTemp(InSandboxId);
-	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedSandboxId,
+	ResolvedEnvironmentId = MoveTemp(InEnvironmentId);
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedEnvironmentId,
 		*Source);
 }
 
-FString URH_Integration::GetSandboxId()
+FString URH_Integration::GetEnvironmentId()
 {
-	if (ResolvedSandboxId.IsEmpty())
+	if (ResolvedEnvironmentId.IsEmpty())
 	{
-		ResolveSandboxId();
+		ResolveEnvironmentId();
 	}
-	return ResolvedSandboxId;
+	return ResolvedEnvironmentId;
 }
 
-bool GetSandboxIdFromOSS(IOnlineSubsystem* OSS, FString& OutSandboxId, FString& OutSource)
+bool GetEnvironmentIdFromOSS(IOnlineSubsystem* OSS, FString& OutEnvironmentId, FString& OutSource)
 {
 	if (OSS)
 	{
-		FString SandboxId;
+		FString EnvironmentId;
 
-#if WITH_HIREZ_ENGINE
-		SandboxId = OSS->GetSandboxId();
-		if (!SandboxId.IsEmpty())
+		EnvironmentId = ToString(OSS->GetOnlineEnvironment());
+		if (!EnvironmentId.IsEmpty())
 		{
-			OutSandboxId = SandboxId;
-			OutSource = TEXT("OSS ") + OSS->GetSubsystemName().ToString() + TEXT(" sandbox");
-			return true;
-		}
-#endif
-
-		SandboxId = ToString(OSS->GetOnlineEnvironment());
-		if (!SandboxId.IsEmpty())
-		{
-			OutSandboxId = SandboxId;
+			OutEnvironmentId = EnvironmentId;
 			OutSource = TEXT("OSS ") + OSS->GetSubsystemName().ToString() + TEXT(" online environment");
 			return true;
 		}
@@ -382,9 +364,9 @@ bool GetSandboxIdFromOSS(IOnlineSubsystem* OSS, FString& OutSandboxId, FString& 
 	return false;
 }
 
-void URH_Integration::ResolveSandboxId()
+void URH_Integration::ResolveEnvironmentId()
 {
-	if (bIsSandboxIdLocked)
+	if (bIsEnvironmentIdLocked)
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Locked and will not change"), ANSI_TO_TCHAR(__FUNCTION__));
 		return;
@@ -392,39 +374,39 @@ void URH_Integration::ResolveSandboxId()
 
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
 
-	FString NewSandboxId;
-	for (const auto& Key : Settings->SandboxCommandLineKeys)
+	FString NewEnvironmentId;
+	for (const auto& Key : Settings->EnvironmentCommandLineKeys)
 	{
-		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), NewSandboxId))
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), NewEnvironmentId))
 		{
-			SetSandboxId(MoveTemp(NewSandboxId), TEXT("CmdLine '") + Key + TEXT("'"));
+			SetEnvironmentId(MoveTemp(NewEnvironmentId), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
 		}
 	}
 
 	FString Source;
-	if (!Settings->SandboxOSSName.IsNone())
+	if (!Settings->EnvironmentOSSName.IsNone())
 	{
-		if (GetSandboxIdFromOSS(IOnlineSubsystem::Get(Settings->SandboxOSSName), NewSandboxId, Source))
+		if (GetEnvironmentIdFromOSS(IOnlineSubsystem::Get(Settings->EnvironmentOSSName), NewEnvironmentId, Source))
 		{
-			SetSandboxId(MoveTemp(NewSandboxId), MoveTemp(Source));
+			SetEnvironmentId(MoveTemp(NewEnvironmentId), MoveTemp(Source));
 			return;
 		}
 	}
 
-	if (GetSandboxIdFromOSS(IOnlineSubsystem::GetByPlatform(true), NewSandboxId, Source))
+	if (GetEnvironmentIdFromOSS(IOnlineSubsystem::GetByPlatform(true), NewEnvironmentId, Source))
 	{
-		SetSandboxId(MoveTemp(NewSandboxId), MoveTemp(Source));
+		SetEnvironmentId(MoveTemp(NewEnvironmentId), MoveTemp(Source));
 		return;
 	}
 
-	if (GetSandboxIdFromOSS(IOnlineSubsystem::Get(NAME_None), NewSandboxId, Source))
+	if (GetEnvironmentIdFromOSS(IOnlineSubsystem::Get(NAME_None), NewEnvironmentId, Source))
 	{
-		SetSandboxId(MoveTemp(NewSandboxId), MoveTemp(Source));
+		SetEnvironmentId(MoveTemp(NewEnvironmentId), MoveTemp(Source));
 		return;
 	}
 
-	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a sandbox id"), ANSI_TO_TCHAR(__FUNCTION__));
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a environment id"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
 
@@ -465,31 +447,23 @@ void URH_Integration::ResolveClientId()
 	}
 
 	{
-		// check sandbox
-		const auto SandboxId = GetSandboxId();
-		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
-		if (Sandbox != nullptr && !Sandbox->ClientId.IsEmpty())
+		// check environment
+		const auto EnvironmentId = GetEnvironmentId();
+		const auto* Environment = Settings->GetEnvironmentConfiguration(EnvironmentId);
+		if (Environment != nullptr && !Environment->ClientId.IsEmpty())
 		{
-			SetClientId(Sandbox->ClientId, TEXT("Sandbox:") + SandboxId);
+			SetClientId(Environment->ClientId, TEXT("Environment:") + EnvironmentId);
 			return;
 		}
 
-		// check default sandbox as a fallback
-		Sandbox = &Settings->DefaultSandboxConfiguration;
-		if (Sandbox != nullptr && !Sandbox->ClientId.IsEmpty())
+		// check default environment as a fallback
+		Environment = &Settings->DefaultEnvironmentConfiguration;
+		if (Environment != nullptr && !Environment->ClientId.IsEmpty())
 		{
-			SetClientId(Sandbox->ClientId, TEXT("Default Sandbox:") + SandboxId);
+			SetClientId(Environment->ClientId, TEXT("Default Environment:") + EnvironmentId);
 			return;
 		}
 	}
-
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS
-	if (!Settings->ClientId.IsEmpty())
-	{
-		SetClientId(Settings->ClientId, TEXT("INI: RH_IntegrationSettings - ClientId"));
-		return;
-	}
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
 }
@@ -530,32 +504,24 @@ void URH_Integration::ResolveClientSecret()
 	}
 
 	{
-		// check sandbox
-		const auto SandboxId = GetSandboxId();
-		const auto* Sandbox = Settings->GetSandboxConfiguration(SandboxId);
-		if (Sandbox != nullptr && !Sandbox->ClientSecret.IsEmpty())
+		// check environment
+		const auto EnvironmentId = GetEnvironmentId();
+		const auto* Environment = Settings->GetEnvironmentConfiguration(EnvironmentId);
+		if (Environment != nullptr && !Environment->ClientSecret.IsEmpty())
 		{
-			SetClientSecret(Sandbox->ClientSecret, TEXT("Sandbox:") + SandboxId);
+			SetClientSecret(Environment->ClientSecret, TEXT("Environment:") + EnvironmentId);
 			return;
 		}
 
-		// check default sandbox as a fallback
-		Sandbox = &Settings->DefaultSandboxConfiguration;
-		if (Sandbox != nullptr && !Sandbox->ClientSecret.IsEmpty())
+		// check default environment as a fallback
+		Environment = &Settings->DefaultEnvironmentConfiguration;
+		if (Environment != nullptr && !Environment->ClientSecret.IsEmpty())
 		{
-			SetClientSecret(Sandbox->ClientSecret, TEXT("Default Sandbox:") + SandboxId);
+			SetClientSecret(Environment->ClientSecret, TEXT("Default Environment:") + EnvironmentId);
 			return;
 		}
 	}
-
-	PRAGMA_DISABLE_DEPRECATION_WARNINGS
-	if (!Settings->ClientSecret.IsEmpty())
-	{
-		SetClientSecret(Settings->ClientSecret, TEXT("INI: RH_IntegrationSettings - ClientSecret"));
-		return;
-	}
-	PRAGMA_ENABLE_DEPRECATION_WARNINGS
-
+	
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 

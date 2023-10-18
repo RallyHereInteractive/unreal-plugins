@@ -251,7 +251,7 @@ int32 URH_LocalPlayerSubsystem::GetPlatformUserId() const
 
 TSharedPtr<class IAnalyticsProvider> URH_LocalPlayerSubsystem::CreateAnalyticsProvider()
 {
-	// todo - use sandbox configuration to change URL
+	// todo - use environment configuration to change URL
 	if (!AnalyticsProvider.IsValid())
 	{
 		AnalyticsProvider = FAnalytics::Get().GetDefaultConfiguredProvider();

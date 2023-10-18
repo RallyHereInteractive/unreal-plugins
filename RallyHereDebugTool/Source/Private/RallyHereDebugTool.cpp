@@ -579,9 +579,9 @@ void URallyHereDebugTool::DoImGui()
 		{
 			ImGui::SameLine();
 			auto& Integration = FRallyHereIntegrationModule::Get();
-			const FString sandboxText = Integration.GetSandboxId() + " - " + Integration.GetBaseURL();
-			ImGui::SameLine(ImGui::GetWindowWidth() - ImGui::CalcTextSize(TCHAR_TO_UTF8(*sandboxText)).x - 20);
-			ImGui::Text("%s", TCHAR_TO_UTF8(*sandboxText));
+			const FString environmentText = Integration.GetEnvironmentId() + " - " + Integration.GetBaseURL();
+			ImGui::SameLine(ImGui::GetWindowWidth() - ImGui::CalcTextSize(TCHAR_TO_UTF8(*environmentText)).x - 20);
+			ImGui::Text("%s", TCHAR_TO_UTF8(*environmentText));
 		}
 		
 		ImGui::EndMainMenuBar();

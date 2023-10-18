@@ -89,26 +89,16 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	UsersGetLinkedPlatformsPriority = 900000;
 }
 
-const FRH_SandboxConfiguration* URH_IntegrationSettings::GetSandboxConfiguration(const FString& SandboxId) const
+const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const
 {
 	// prefer the SandboxConfigurations array, but fall back to the deprecated array for backwards compatibility
-	const auto* SandboxConfig = SandboxConfigurations.FindByPredicate([SandboxId](const FRH_SandboxConfiguration& Config) { return Config.SandboxId == SandboxId; });
-	if (SandboxConfig == nullptr)
-	{
-		PRAGMA_DISABLE_DEPRECATION_WARNINGS
-		SandboxConfig = SandboxURLs.FindByPredicate([&SandboxId](const FRH_SandboxConfiguration& Config) { return Config.SandboxId == SandboxId; });
-		if (SandboxConfig != nullptr)
-		{
-			UE_LOG(LogRallyHereIntegration, Warning, TEXT("SandboxURLs is deprecated. Please convert your configuration to SandboxConfigurations instead."));
-		}
-		PRAGMA_ENABLE_DEPRECATION_WARNINGS
-	}
+	const auto* EnvironmentConfig = EnvironmentConfigurations.FindByPredicate([EnvironmentId](const FRH_EnvironmentConfiguration& Config) { return Config.EnvironmentId == EnvironmentId; });
 
 	// if we could not find a sandbox, use the default one
-	if (SandboxConfig == nullptr)
+	if (EnvironmentConfig == nullptr)
 	{
-		SandboxConfig = &DefaultSandboxConfiguration;
+		EnvironmentConfig = &DefaultEnvironmentConfiguration;
 	}
 
-	return SandboxConfig;
+	return EnvironmentConfig;
 }

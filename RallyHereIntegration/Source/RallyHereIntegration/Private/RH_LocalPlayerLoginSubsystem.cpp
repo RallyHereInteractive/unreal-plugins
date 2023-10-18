@@ -47,7 +47,7 @@ FString URH_LocalPlayerLoginSubsystem::GetSavedCredentialEnvironment(FName OSSNa
     return SavedCredentialPrefix
         + TEXT("__") + OSSName.ToString()
         + TEXT("__") + FPlatformProcess::ExecutableName()
-        + TEXT("__") + FRallyHereIntegrationModule::Get().GetSandboxId()
+        + TEXT("__") + FRallyHereIntegrationModule::Get().GetEnvironmentId()
         + TEXT("__") + FRallyHereIntegrationModule::Get().GetBaseURL();
 }
 
@@ -489,7 +489,7 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSLoginComplete(int32 ControllerId,
 
     if (bResolveRallyHereBaseURLAfterOSSLogin)
     {
-		FRallyHereIntegrationModule::Get().ResolveSandboxId(); // force re-resolve resolve sandbox (can change during login process on Sony systems)
+		FRallyHereIntegrationModule::Get().ResolveEnvironmentId(); // force re-resolve resolve environment id (can change during login process on Sony systems)
         FRallyHereIntegrationModule::Get().ResolveBaseURL(); // force re-resolve base URL
     }
 

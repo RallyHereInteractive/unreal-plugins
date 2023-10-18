@@ -77,7 +77,7 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 
 	auto& IntegrationObject = FRallyHereIntegrationModule::Get();
 	
-	Metadata->SetStringField(TEXT("RH-Sandbox"), IntegrationObject.GetSandboxId());
+	Metadata->SetStringField(TEXT("RH-Environment"), IntegrationObject.GetEnvironmentId());
 	Metadata->SetStringField(TEXT("RH-BaseURL"), IntegrationObject.GetBaseURL());
 	Metadata->SetStringField(TEXT("RH-ClientId"), IntegrationObject.GetClientId());
 
