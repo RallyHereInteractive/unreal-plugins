@@ -319,7 +319,6 @@ struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
 };
 
 /* Disable Cross Progression
-
 */
 struct RALLYHEREAPI_API FRequest_DisableCrossProgression : public FRequest
 {
@@ -367,7 +366,6 @@ struct RALLYHEREAPI_API Traits_DisableCrossProgression
 };
 
 /* Enable Cross Progression
-
 */
 struct RALLYHEREAPI_API FRequest_EnableCrossProgression : public FRequest
 {
@@ -703,7 +701,7 @@ struct RALLYHEREAPI_API Traits_GetPersonForSelf
 
 /* Get Player Id From Player Uuid
  *
- * Get a player&#39;s id from their uuid.
+ * Get a player's id from their uuid.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuid : public FRequest
 {
@@ -774,7 +772,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
 
 /* Get Player Id From Player Uuid For Self
  *
- * Get a player&#39;s id from their uuid for the active player on the access token.
+ * Get a player's id from their uuid for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuidForSelf : public FRequest
 {
@@ -839,7 +837,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
 
 /* Get Player Linked Portals
  *
- * Get a player&#39;s linked portals.
+ * Get a player's linked portals.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinkedPortals : public FRequest
 {
@@ -905,7 +903,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
 
 /* Get Player Links
  *
- * Get a player&#39;s linked portals.
+ * Get a player's linked portals.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinks : public FRequest
 {
@@ -971,7 +969,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinks
 
 /* Get Player Links For Self
  *
- * Get a player&#39;s linked portals for the active player on the access token.
+ * Get a player's linked portals for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinksForSelf : public FRequest
 {
@@ -1031,7 +1029,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
 
 /* Get Player Uuid From Player Id
  *
- * Get a player&#39;s uuid from their id.
+ * Get a player's uuid from their id.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerId : public FRequest
 {
@@ -1097,7 +1095,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
 
 /* Get Player Uuid From Player Id For Self
  *
- * Get a player&#39;s uuid from their id for the active player on the access token.
+ * Get a player's uuid from their id for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelf : public FRequest
 {
@@ -1157,7 +1155,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
 
 /* Get Player Uuid From Player Id For Self V2
  *
- * Get a player&#39;s uuid from their id for the active player on the access token.
+ * Get a player's uuid from their id for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelfV2 : public FRequest
 {
@@ -1217,7 +1215,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
 
 /* Get Player Uuid From Player Id V2
  *
- * Get a player&#39;s uuid from their id.
+ * Get a player's uuid from their id.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdV2 : public FRequest
 {
@@ -1283,7 +1281,8 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
 
 /* Get Players Paged
  *
- * Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players. There is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.
+ * Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.
+ * There is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersPaged : public FRequest
 {
@@ -1477,7 +1476,6 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
 };
 
 /* Link
-
 */
 struct RALLYHEREAPI_API FRequest_Link : public FRequest
 {
@@ -1532,7 +1530,7 @@ struct RALLYHEREAPI_API Traits_Link
 
 /* Lookup Player By Portal
  *
- * Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call &#x60;/v1/player/{player_id}/linked_portals&#x60; for each player for that info, if necessary.
+ * Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.
 */
 struct RALLYHEREAPI_API FRequest_LookupPlayerByPortal : public FRequest
 {
@@ -1600,7 +1598,7 @@ struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
 
 /* Queue Me For Purge
  *
- * Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on &#x60;suggested_purge_time&#x60;.
+ * Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
 */
 struct RALLYHEREAPI_API FRequest_QueueMeForPurge : public FRequest
 {
@@ -1666,7 +1664,7 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
 
 /* Queue Person For Purge
  *
- * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on &#x60;suggested_purge_time&#x60;. Requires permission: purge:person:admin
+ * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`. Requires permission: purge:person:admin
 */
 struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 {
@@ -1727,7 +1725,6 @@ struct RALLYHEREAPI_API Traits_QueuePersonForPurge
 };
 
 /* Unlink
-
 */
 struct RALLYHEREAPI_API FRequest_Unlink : public FRequest
 {

@@ -56,7 +56,9 @@ private:
 
 /* Block
  *
- * Block the other Player. There is a max number of Players that can be blocked per Player.                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).                     &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:write
+ * Block the other Player. There is a max number of Players that can be blocked per Player.
+ *                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).
+ *                     <br/><br />Permissions Required: friend:block_list:write
 */
 struct RALLYHEREAPI_API FRequest_Block : public FRequest
 {
@@ -123,7 +125,7 @@ struct RALLYHEREAPI_API Traits_Block
 
 /* Get Blocked
  *
- * Get the Blocked Player&lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:read
+ * Get the Blocked Player<br/><br />Permissions Required: friend:block_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetBlocked : public FRequest
 {
@@ -190,7 +192,10 @@ struct RALLYHEREAPI_API Traits_GetBlocked
 
 /* Get Blocked List For Player
  *
- * Fetch the blocked list for the Player. &lt;br /&gt;&lt;br /&gt;                         &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response.                          Clients can utilize the &lt;i&gt;if-none-match&lt;/i&gt; header to avoid having to reload the response if it has not changed.                          &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:read
+ * Fetch the blocked list for the Player. <br /><br />
+ *                         <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                         Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. 
+ *                         <br/><br />Permissions Required: friend:block_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetBlockedListForPlayer : public FRequest
 {
@@ -269,7 +274,7 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayer
 
 /* Unblock
  *
- * Unblock the other Player&lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:write
+ * Unblock the other Player<br/><br />Permissions Required: friend:block_list:write
 */
 struct RALLYHEREAPI_API FRequest_Unblock : public FRequest
 {

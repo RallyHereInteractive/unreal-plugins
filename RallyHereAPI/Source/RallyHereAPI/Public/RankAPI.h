@@ -84,7 +84,10 @@ private:
 
 /* Get All Player Uuid Ranks
  *
- * Get all of a specific player&#39;s ranks  Required Permissions: &#x60;rank:read:self&#x60; for players acting on themselves, otherwise &#x60;rank:read:any&#x60;
+ * Get all of a specific player's ranks
+ * 
+ * Required Permissions: `rank:read:self` for players acting on themselves,
+ * otherwise `rank:read:any`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanks : public FRequest
 {
@@ -140,7 +143,9 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
 
 /* Get All Player Uuid Ranks Self
  *
- * Get all of current player&#39;s ranks  Required Permissions: &#x60;rank:read:self&#x60;
+ * Get all of current player's ranks
+ * 
+ * Required Permissions: `rank:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelf : public FRequest
 {
@@ -190,7 +195,9 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
 
 /* Get All Rank Config
  *
- * Get all rank configuration  Required Permissions: &#x60;rank:read:config&#x60;
+ * Get all rank configuration
+ * 
+ * Required Permissions: `rank:read:config`
 */
 struct RALLYHEREAPI_API FRequest_GetAllRankConfig : public FRequest
 {
@@ -240,7 +247,10 @@ struct RALLYHEREAPI_API Traits_GetAllRankConfig
 
 /* Get Player Uuid Rank
  *
- * Get a specific player&#39;s rank for a specific rank id              Required Permissions: &#x60;rank:read:self&#x60; for players acting on themselves,  otherwise &#x60;rank:read:any&#x60;
+ * Get a specific player's rank for a specific rank id
+ *             
+ * Required Permissions: `rank:read:self` for players acting on themselves, 
+ * otherwise `rank:read:any`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidRank : public FRequest
 {
@@ -297,7 +307,9 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
 
 /* Get Player Uuid Rank Self
  *
- * Get current player&#39;s rank for a specific rank id              Required Permissions: &#x60;rank:read:self&#x60;
+ * Get current player's rank for a specific rank id
+ *             
+ * Required Permissions: `rank:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelf : public FRequest
 {
@@ -353,7 +365,9 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
 
 /* Get Rank Config
  *
- * Get rank configuration for specific rank id  Required Permissions: &#x60;rank:read:config&#x60;
+ * Get rank configuration for specific rank id
+ * 
+ * Required Permissions: `rank:read:config`
 */
 struct RALLYHEREAPI_API FRequest_GetRankConfig : public FRequest
 {
@@ -409,7 +423,10 @@ struct RALLYHEREAPI_API Traits_GetRankConfig
 
 /* Update Player Uuid Rank
  *
- * Update a specific player&#39;s ranks to those that are provided. Ranks are taken as is  Required Permissions: &#x60;rank:update:self&#x60; for players acting on themselves,  otherwise &#x60;rank:update:any&#x60;
+ * Update a specific player's ranks to those that are provided. Ranks are taken as is
+ * 
+ * Required Permissions: `rank:update:self` for players acting on themselves, 
+ * otherwise `rank:update:any`
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRank : public FRequest
 {
@@ -467,7 +484,9 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
 
 /* Update Player Uuid Rank Self
  *
- * Update current player&#39;s ranks to those that are provided. Ranks are taken as is   Required Permissions: &#x60;rank:update:self&#x60;
+ * Update current player's ranks to those that are provided. Ranks are taken as is 
+ * 
+ * Required Permissions: `rank:update:self`
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelf : public FRequest
 {
@@ -524,7 +543,10 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
 
 /* Update Rankings Trueskill V1
  *
- * Run Trueskill V1 rank update on players and persist their new ranks Requires at least two teams, and the player&#39;s trueskill values before the last match was played  Required Permissions: &#x60;rank:update:any&#x60;
+ * Run Trueskill V1 rank update on players and persist their new ranks
+ * Requires at least two teams, and the player's trueskill values before the last match was played
+ * 
+ * Required Permissions: `rank:update:any`
 */
 struct RALLYHEREAPI_API FRequest_UpdateRankingsTrueskillV1 : public FRequest
 {

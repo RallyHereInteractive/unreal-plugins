@@ -62,7 +62,9 @@ private:
 
 /* Get Player Presence Public By Id
  *
- * Get the player&#39;s presence information. The status will be modified based on the following rules: - A status of invisible will be reported as offline - The status will become offline if older than the configured age
+ * Get the player's presence information. The status will be modified based on the following rules:
+ * - A status of invisible will be reported as offline
+ * - The status will become offline if older than the configured age
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicById : public FRequest
 {
@@ -132,7 +134,9 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicById
 
 /* Get Player Presence Public By Uuid
  *
- * Get the player&#39;s presence information. The status will be modified based on the following rules: - A status of invisible will be reported as offline - The status will become offline if older than the configured age
+ * Get the player's presence information. The status will be modified based on the following rules:
+ * - A status of invisible will be reported as offline
+ * - The status will become offline if older than the configured age
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerPresencePublicByUuid : public FRequest
 {
@@ -202,7 +206,8 @@ struct RALLYHEREAPI_API Traits_GetPlayerPresencePublicByUuid
 
 /* Get Player Presence Self
  *
- * Get the player&#39;s presence information. The status reflects the true value and is not modified before it is returned.
+ * Get the player's presence information. The status reflects the true value and is not modified before it
+ * is returned.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerPresenceSelf : public FRequest
 {
@@ -306,7 +311,10 @@ struct RALLYHEREAPI_API Traits_GetPresenceSettings
 
 /* Update Player Presence Self
  *
- * Update the player&#39;s online status and other presence data. If the player reports their online status as online or away, their \&quot;last_seen\&quot; presence info is updated. Player clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds. Otherwise they will be considered offline.
+ * Update the player's online status and other presence data.
+ * If the player reports their online status as online or away, their "last_seen" presence info is updated.
+ * Player clients are expected to send requests to this endpoint on an interval of self_ping_interval_seconds.
+ * Otherwise they will be considered offline.
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerPresenceSelf : public FRequest
 {

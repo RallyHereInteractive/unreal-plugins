@@ -36,7 +36,7 @@ import java.util.*;
 import java.io.File;
 
 import static org.openapitools.codegen.utils.StringUtils.camelize;
-import org.openapitools.codegen.CodegenProperty;
+
 import org.apache.commons.text.StringEscapeUtils;
 
 public class RhCppUe4Generator extends AbstractCppCodegen {
@@ -96,7 +96,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         apiTemplateFiles.put(
                 "api-source.mustache",   // the template to use
                 ".cpp");       // the extension for each file to write
-        
+
         addOption("unrealModuleName", "Name of the generated unreal module (optional)", this.unrealModuleName);
         addOption("cppNamespace", "C++ namespace for base (convention: name::space::for::api) (optional)",
                 this.cppNamespace);
@@ -131,6 +131,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         additionalProperties.put("unrealCategory", unrealCategory);
         additionalProperties.put("apiGenerationMode", apiGenerationMode);
         additionalProperties.put("stripBlueprintCompatibility", stripBlueprintCompatibility);
+        additionalProperties.put("lambdaCommentDescription", new RhDescriptionCommentLambda());
 
         /**
          * Language Specific Primitives.  These types will not trigger imports by
@@ -252,18 +253,18 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             unrealModelPrefix = (String) additionalProperties.get("unrealModelPrefix");
             updateSupportingFiles = true;
         }
-        
+
         if (additionalProperties.containsKey("apiGenerationMode")) {
-            apiGenerationMode = (String) additionalProperties.get("apiGenerationMode"); 
+            apiGenerationMode = (String) additionalProperties.get("apiGenerationMode");
             updateSupportingFiles = true;
         }
-        
+
         if (additionalProperties.containsKey("stripBlueprintCompatibility")) {
-            stripBlueprintCompatibility = (String) additionalProperties.get("stripBlueprintCompatibility"); 
+            stripBlueprintCompatibility = (String) additionalProperties.get("stripBlueprintCompatibility");
             additionalProperties.put("isStripBlueprintCompatibility", stripBlueprintCompatibility.equals(""));
             updateSupportingFiles = true;
         }
-        
+
         languageSpecificPrimitives.add(unrealModelPrefix + "JsonObject");
         languageSpecificPrimitives.add(unrealModelPrefix + "JsonValue");
         typeMapping.put("object", unrealModelPrefix + "JsonObject");
@@ -347,7 +348,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         {
             return "#include \"Misc/TVariant.h\"";
         }
-        
+
 
         String folder = outputDir;
         if (!folder.isEmpty())
@@ -446,7 +447,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             {
                 List<Schema> list = cs.getAnyOf();
                 String Types = "";
-                for (int i = 0; i < list.size(); i++) 
+                for (int i = 0; i < list.size(); i++)
                 {
                     Types += getTypeDeclaration(list.get(i));
                     if (i + 1 < list.size())
@@ -630,7 +631,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
                     resultName = "TVariant";
                     List<Schema> list = cs.getAnyOf();
                     String Types = "";
-                    for (int i = 0; i < list.size(); i++) 
+                    for (int i = 0; i < list.size(); i++)
                     {
                         Types += getTypeDeclaration(list.get(i));
                         if (i + 1 < list.size())
@@ -656,7 +657,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         schemaKeyToModelNameCache.put(camelizedType, resultName);
         return resultName;
     }
-    
+
     protected String toUnrealName(String name) {
         if (schemaKeyToModelNameCache.containsKey(name)) {
             name = schemaKeyToModelNameCache.get(name);
@@ -799,7 +800,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 	@Override
 	public void processOpenAPI(OpenAPI openAPI) {
 		super.processOpenAPI(openAPI);
-		
+
 		Map<String, Schema> schemas = ModelUtils.getSchemas(openAPI);
 		List<String> schemasToRemove = new ArrayList<>();
 		for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
@@ -814,11 +815,11 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 				}
 			}
 		}
-		
+
 		for (String schemaToRemove : schemasToRemove) {
 			schemas.remove(schemaToRemove);
 		}
-		
+
 		openAPI.getComponents().setSchemas(schemas);
 	}
 }

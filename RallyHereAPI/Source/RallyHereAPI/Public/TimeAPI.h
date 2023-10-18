@@ -37,7 +37,7 @@ private:
 
 /* Get Utc Time
  *
- * Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API&#39;s time and create a offset to act upon.
+ * Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API's time and create a offset to act upon.
 */
 struct RALLYHEREAPI_API FRequest_GetUtcTime : public FRequest
 {

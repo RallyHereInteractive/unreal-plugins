@@ -128,7 +128,11 @@ private:
 
 /* Delete All Player Id Settings For Setting Type
  *
- * Delete all player setting for a specific type  Required Permissions: &#x60;setting:write&#x60; for any player.  &#x60;setting:write:self&#x60; for the player of the access token.  **DEPRECATED** - Use v2 instead
+ * Delete all player setting for a specific type
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * 
+ * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
 {
@@ -195,7 +199,9 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
 
 /* Delete All Player Uuid Settings For Setting Type
  *
- * Delete all player setting for a specific type  Required Permissions: &#x60;setting:write&#x60; for any player.  &#x60;setting:write:self&#x60; for the player of the access token.
+ * Delete all player setting for a specific type
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
 {
@@ -264,7 +270,9 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
 
 /* Delete All Player Uuid Settings For Setting Type Self
  *
- * Delete all player setting for a specific type  Required Permissions: &#x60;setting:write&#x60; or &#x60;setting:write:self&#x60;
+ * Delete all player setting for a specific type
+ * 
+ * Required Permissions: `setting:write` or `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
@@ -331,7 +339,11 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
 
 /* Delete Single Player Id Setting
  *
- * Delete a single player setting      Required Permissions: &#x60;setting:write&#x60; for any player.  &#x60;setting:write:self&#x60; for the player of the access token.      **DEPRECATED** - Use v2 instead
+ * Delete a single player setting
+ *     
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ *     
+ * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
 {
@@ -402,7 +414,9 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
 
 /* Delete Single Player Uuid Setting
  *
- * Delete a single player setting  Required Permissions: &#x60;setting:write&#x60; for any player.  &#x60;setting:write:self&#x60; for the player of the access token.
+ * Delete a single player setting
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
 {
@@ -473,7 +487,9 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
 
 /* Delete Single Player Uuid Setting Self
  *
- * Delete a single player setting  Required Permissions: &#x60;setting:write&#x60; or &#x60;setting:write:self&#x60;
+ * Delete a single player setting
+ * 
+ * Required Permissions: `setting:write` or `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
 {
@@ -542,7 +558,11 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
 
 /* Get All Player Id Settings For Setting Type
  *
- * Get a list of all player settings for a specific Setting Type.  Required Permissions: &#x60;setting:read&#x60; for any player.  &#x60;setting:read:self&#x60; for the player of the access token.  **DEPRECATED** - Use v2 instead
+ * Get a list of all player settings for a specific Setting Type.
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * 
+ * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
 {
@@ -613,7 +633,9 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
 
 /* Get All Player Uuid Settings For Setting Type
  *
- * Get a list of all player settings for a specific Setting Type  Required Permissions: &#x60;setting:read&#x60; for any player.  &#x60;setting:read:self&#x60; for the player of the access token.
+ * Get a list of all player settings for a specific Setting Type
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
 {
@@ -684,7 +706,9 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
 
 /* Get All Player Uuid Settings For Setting Type Self
  *
- * Get a list of all player settings for a specific Setting Type  Required Permissions: &#x60;setting:read&#x60; or &#x60;setting:read:self&#x60;
+ * Get a list of all player settings for a specific Setting Type
+ * 
+ * Required Permissions: `setting:read` or `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
@@ -753,7 +777,9 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
 
 /* Get Config For All Setting Types
  *
- * Get all setting types and their configuration.      Required Permissions: &#x60;setting-config:read&#x60;
+ * Get all setting types and their configuration.
+ *     
+ * Required Permissions: `setting-config:read`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
 {
@@ -798,7 +824,9 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
 
 /* Get Config For Single Setting Type All Versions
  *
- * Get a configuration and all versions for a given setting type ID.      Required Permissions: &#x60;setting-config:read&#x60;
+ * Get a configuration and all versions for a given setting type ID.
+ *     
+ * Required Permissions: `setting-config:read`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : public FRequest
 {
@@ -921,7 +949,11 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
 
 /* Get Single Player Id Setting
  *
- * Get a single player setting  Required Permissions: &#x60;setting:read&#x60; for any player.  &#x60;setting:read:self&#x60; for the player of the access token.  **DEPRECATED** - Use v2 instead
+ * Get a single player setting
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
+ * 
+ * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
 {
@@ -992,7 +1024,9 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
 
 /* Get Single Player Uuid Setting
  *
- * Get a single player setting  Required Permissions: &#x60;setting:read&#x60; for any player.  &#x60;setting:read:self&#x60; for the player of the access token.
+ * Get a single player setting
+ * 
+ * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
 {
@@ -1063,7 +1097,9 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
 
 /* Get Single Player Uuid Setting Self
  *
- * Get a single player setting  Required Permissions: &#x60;setting:read&#x60; or &#x60;setting:read:self&#x60;
+ * Get a single player setting
+ * 
+ * Required Permissions: `setting:read` or `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
 {
@@ -1132,7 +1168,17 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
 
 /* Set Single Player Id Setting
  *
- * Update the value of a single player setting.  Required Permissions: &#x60;setting:write&#x60; for any player.  &#x60;setting:write:self&#x60; for the player of the access token.  If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling: * Setting Type &#x60;case&#x60; - Version &#x60;1&#x60; - key &#x60;create&#x60; - creates a new case set and returns the new key and data in the response.  * Setting Type &#x60;case&#x60; - Version &#x60;1&#x60; - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the &#x60;does_not_exist&#x60; error code.  * Setting Type &#x60;loadout&#x60; - Version &#x60;1&#x60; - key &#x60;create&#x60; - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key  * Setting Type &#x60;loadout&#x60; - Version &#x60;1&#x60; - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the &#x60;does_not_exist&#x60; error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.   **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.
+ * Update the value of a single player setting.
+ * 
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * 
+ * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key. 
+ * 
+ * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
 {
@@ -1209,7 +1255,15 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
 
 /* Set Single Player Uuid Setting
  *
- * Update the value of a single player setting.      Required Permissions: &#x60;setting:write&#x60; for any player.  &#x60;setting:write:self&#x60; for the player of the access token.  If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling: * Setting Type &#x60;case&#x60; - Version &#x60;1&#x60; - key &#x60;create&#x60; - creates a new case set and returns the new key and data in the response.  * Setting Type &#x60;case&#x60; - Version &#x60;1&#x60; - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the &#x60;does_not_exist&#x60; error code.  * Setting Type &#x60;loadout&#x60; - Version &#x60;1&#x60; - key &#x60;create&#x60; - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key  * Setting Type &#x60;loadout&#x60; - Version &#x60;1&#x60; - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the &#x60;does_not_exist&#x60; error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
+ * Update the value of a single player setting.
+ *     
+ * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
+ * 
+ * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
 {
@@ -1286,7 +1340,15 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 
 /* Set Single Player Uuid Setting Self
  *
- * Update the value of a single player setting.      Required Permissions: &#x60;setting:write&#x60; or &#x60;setting:write:self&#x60;  If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling: * Setting Type &#x60;case&#x60; - Version &#x60;1&#x60; - key &#x60;create&#x60; - creates a new case set and returns the new key and data in the response.  * Setting Type &#x60;case&#x60; - Version &#x60;1&#x60; - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the &#x60;does_not_exist&#x60; error code.  * Setting Type &#x60;loadout&#x60; - Version &#x60;1&#x60; - key &#x60;create&#x60; - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key  * Setting Type &#x60;loadout&#x60; - Version &#x60;1&#x60; - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the &#x60;does_not_exist&#x60; error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
+ * Update the value of a single player setting.
+ *     
+ * Required Permissions: `setting:write` or `setting:write:self`
+ * 
+ * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FRequest
 {

@@ -53,8 +53,10 @@ private:
 {{#operations}}
 {{#operation}}
 /* {{summary}}
-{{#notes}} *
- * {{.}}{{/notes}}
+{{#unescapedNotes}}
+ *
+{{#lambdaCommentDescription}}{{{.}}}{{/lambdaCommentDescription}}
+{{/unescapedNotes}}
 */
 struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 {

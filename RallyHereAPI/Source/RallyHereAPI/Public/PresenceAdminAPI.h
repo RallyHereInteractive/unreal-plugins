@@ -207,7 +207,8 @@ struct RALLYHEREAPI_API Traits_AdminGetKnownPlatforms
 
 /* Admin Get Player Presence
  *
- * Get the player&#39;s presence information. The status reflects the true value and is not modified before it is returned.
+ * Get the player's presence information. The status reflects the true value and is not modified before it
+ * is returned.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
 {
@@ -270,7 +271,8 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresence
 
 /* Admin Get Player Presence Id
  *
- * Get the player&#39;s presence information. The status reflects the true value and is not modified before it is returned.
+ * Get the player's presence information. The status reflects the true value and is not modified before it
+ * is returned.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
 {
@@ -333,7 +335,11 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
 
 /* Admin Get Requesting Ccu
  *
- * Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across the given time period. This stands in contrast to the individual request endpoint.  For example, if you request the CCU over an hour you&#39;ll receive one number in which players that were around over that time period will only be counted once.
+ * Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across
+ * the given time period. This stands in contrast to the individual request endpoint.
+ * 
+ * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
+ * counted once.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
 {
@@ -390,7 +396,6 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcu
 };
 
 /* Admin Get Requesting Ccu All Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : public FRequest
 {
@@ -447,7 +452,6 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformCombined
 };
 
 /* Admin Get Requesting Ccu All Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : public FRequest
 {
@@ -505,7 +509,9 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformIndividual
 
 /* Admin Get Requesting Ccu Individual
  *
- * Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested range. These values should not be combined directly unless you&#39;ve accounted for duplicates in some other way. The combined endpoint allows you to combine the values within a time range without counting the same player multiple times.
+ * Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested
+ * range. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to
+ * combine the values within a time range without counting the same player multiple times.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FRequest
 {
@@ -562,7 +568,6 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuIndividual
 };
 
 /* Admin Get Requesting Ccu Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public FRequest
 {
@@ -620,7 +625,6 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformCombined
 };
 
 /* Admin Get Requesting Ccu Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : public FRequest
 {
@@ -679,7 +683,11 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
 
 /* Admin Get Total Ccu
  *
- * Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time period. This stands in contrast to the individual request endpoint.  For example, if you request the CCU over an hour you&#39;ll receive one number in which players that were around over that time period will only be counted once.
+ * Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time
+ * period. This stands in contrast to the individual request endpoint.
+ * 
+ * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
+ * counted once.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
 {
@@ -736,7 +744,6 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcu
 };
 
 /* Admin Get Total Ccu All Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FRequest
 {
@@ -793,7 +800,6 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformCombined
 };
 
 /* Admin Get Total Ccu All Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public FRequest
 {
@@ -851,7 +857,9 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformIndividual
 
 /* Admin Get Total Ccu Individual
  *
- * Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These values should not be combined directly unless you&#39;ve accounted for duplicates in some other way. The combined endpoint allows you to combine the values within a time range without counting the same player multiple times.
+ * Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These
+ * values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine
+ * the values within a time range without counting the same player multiple times.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
 {
@@ -908,7 +916,6 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuIndividual
 };
 
 /* Admin Get Total Ccu Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequest
 {
@@ -966,7 +973,6 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformCombined
 };
 
 /* Admin Get Total Ccu Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRequest
 {
@@ -1025,7 +1031,11 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
 
 /* Admin Get Updating Ccu
  *
- * Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across the given time period. This stands in contrast to the individual request endpoint.  For example, if you request the CCU over an hour you&#39;ll receive one number in which players that were around over that time period will only be counted once.
+ * Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across
+ * the given time period. This stands in contrast to the individual request endpoint.
+ * 
+ * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
+ * counted once.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
 {
@@ -1082,7 +1092,6 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcu
 };
 
 /* Admin Get Updating Ccu All Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public FRequest
 {
@@ -1139,7 +1148,6 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformCombined
 };
 
 /* Admin Get Updating Ccu All Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : public FRequest
 {
@@ -1197,7 +1205,9 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformIndividual
 
 /* Admin Get Updating Ccu Individual
  *
- * Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested range. These values should not be combined directly unless you&#39;ve accounted for duplicates in some other way. The combined endpoint allows you to combine the values within a time range without counting the same player multiple times.
+ * Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested
+ * range. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to
+ * combine the values within a time range without counting the same player multiple times.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
 {
@@ -1254,7 +1264,6 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuIndividual
 };
 
 /* Admin Get Updating Ccu Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FRequest
 {
@@ -1312,7 +1321,6 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformCombined
 };
 
 /* Admin Get Updating Ccu Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public FRequest
 {
@@ -1371,7 +1379,8 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformIndividual
 
 /* Admin Update Player Last Seen
  *
- * Forcibly update the player&#39;s last_seen with the specified values. This enables an admin to set the last_seen time to something specific for testing.
+ * Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time
+ * to something specific for testing.
 */
 struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 {
@@ -1439,7 +1448,8 @@ struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeen
 
 /* Admin Update Player Last Seen Id
  *
- * Forcibly update the player&#39;s last_seen with the specified values. This enables an admin to set the last_seen time to something specific for testing.
+ * Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time
+ * to something specific for testing.
 */
 struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 {

@@ -101,7 +101,9 @@ private:
 
 /* Generate Key
  *
- * Generate and return a new key that matches the configuration required for private keys.  This does NOT add the key to any internal list, and is purely for convenience for maintainers
+ * Generate and return a new key that matches the configuration required for private keys.
+ * 
+ * This does NOT add the key to any internal list, and is purely for convenience for maintainers
 */
 struct RALLYHEREAPI_API FRequest_GenerateKey : public FRequest
 {
@@ -144,7 +146,9 @@ struct RALLYHEREAPI_API Traits_GenerateKey
 
 /* Get All Public Keys
  *
- * Get all the current public keys.  It is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)
+ * Get all the current public keys.
+ * 
+ * It is encouraged to get keys by id, rather than all at once (to more easily allow new keys to cycle though)
 */
 struct RALLYHEREAPI_API FRequest_GetAllPublicKeys : public FRequest
 {
@@ -186,7 +190,6 @@ struct RALLYHEREAPI_API Traits_GetAllPublicKeys
 };
 
 /* Get Portal Token Details
-
 */
 struct RALLYHEREAPI_API FRequest_GetPortalTokenDetails : public FRequest
 {
@@ -239,7 +242,6 @@ struct RALLYHEREAPI_API Traits_GetPortalTokenDetails
 };
 
 /* Get Public Key By Id
-
 */
 struct RALLYHEREAPI_API FRequest_GetPublicKeyById : public FRequest
 {
@@ -292,7 +294,9 @@ struct RALLYHEREAPI_API Traits_GetPublicKeyById
 
 /* Login
  *
- * This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.      This endpoint supports user-based authentication for a variety of platforms.
+ * This endpoint is used to authenticate a user and retrieve an access token for use with other RallyHere APIs.
+ *     
+ * This endpoint supports user-based authentication for a variety of platforms.
 */
 struct RALLYHEREAPI_API FRequest_Login : public FRequest
 {
@@ -349,7 +353,6 @@ struct RALLYHEREAPI_API Traits_Login
 };
 
 /* Logout
-
 */
 struct RALLYHEREAPI_API FRequest_Logout : public FRequest
 {
@@ -398,7 +401,12 @@ struct RALLYHEREAPI_API Traits_Logout
 
 /* Oauth Login
  *
- * This endpoint is used to initiate the OAuth authentication flow for a user.  If the platform has been configured correctly, this endpoint will redirect to the platform&#39;s login page.   Once the user has logged in, the platform should redirect them to the &#x60;/users/v1/oauth/response/{platform}&#x60; endpoint for the associated platform.    Errors will be immediately redirected to the requested &#x60;redirect_uri&#x60; (or the first configured redirect URI, if the requested URI is not configured).
+ * This endpoint is used to initiate the OAuth authentication flow for a user.
+ * 
+ * If the platform has been configured correctly, this endpoint will redirect to the platform's login page.  
+ * Once the user has logged in, the platform should redirect them to the `/users/v1/oauth/response/{platform}` endpoint for the associated platform.  
+ * 
+ * Errors will be immediately redirected to the requested `redirect_uri` (or the first configured redirect URI, if the requested URI is not configured).
 */
 struct RALLYHEREAPI_API FRequest_OauthLogin : public FRequest
 {
@@ -458,7 +466,7 @@ struct RALLYHEREAPI_API Traits_OauthLogin
 
 /* Oauth Response
  *
- * Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the &#x60;/users/v1/oauth/token&#x60; endpoint to get an access token for the user.
+ * Handle OAuth response from the platform.  Validates the response, and generates an authorization_code for the user.  The authorization_code can be used with the `/users/v1/oauth/token` endpoint to get an access token for the user.
 */
 struct RALLYHEREAPI_API FRequest_OauthResponse : public FRequest
 {
@@ -518,7 +526,7 @@ struct RALLYHEREAPI_API Traits_OauthResponse
 
 /* Oauth Token Exchange
  *
- * Exchange an authorization_code from the &#x60;/users/v1/oauth/response/{platform}&#x60; endpoint for an access token and refresh token.
+ * Exchange an authorization_code from the `/users/v1/oauth/response/{platform}` endpoint for an access token and refresh token.
 */
 struct RALLYHEREAPI_API FRequest_OauthTokenExchange : public FRequest
 {
@@ -574,7 +582,7 @@ struct RALLYHEREAPI_API Traits_OauthTokenExchange
 
 /* Token
  *
- * OAuth2 Token Endpoint. For more information see: &lt;a href&#x3D;\&quot;https://datatracker.ietf.org/doc/html/rfc6749#section-3.2\&quot; target&#x3D;\&quot;_blank\&quot;&gt;Token Endpoint Spec&lt;/a&gt;.
+ * OAuth2 Token Endpoint. For more information see: <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-3.2" target="_blank">Token Endpoint Spec</a>.
 */
 struct RALLYHEREAPI_API FRequest_Token : public FRequest
 {
@@ -624,7 +632,6 @@ struct RALLYHEREAPI_API Traits_Token
 };
 
 /* Verify
-
 */
 struct RALLYHEREAPI_API FRequest_Verify : public FRequest
 {
