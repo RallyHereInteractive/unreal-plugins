@@ -198,7 +198,7 @@ TOptional<FString> FResponse_GetCatalogAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -411,7 +411,7 @@ TOptional<FString> FResponse_GetCatalogInventoryBucketUseRuleSet::GetHeader200_E
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -619,7 +619,7 @@ TOptional<FString> FResponse_GetCatalogInventoryBucketUseRuleSetsAll::GetHeader2
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -832,7 +832,7 @@ TOptional<FString> FResponse_GetCatalogItem::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1040,7 +1040,7 @@ TOptional<FString> FResponse_GetCatalogItemsAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1253,7 +1253,7 @@ TOptional<FString> FResponse_GetCatalogLoot::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1461,7 +1461,7 @@ TOptional<FString> FResponse_GetCatalogLootsAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1674,7 +1674,7 @@ TOptional<FString> FResponse_GetCatalogPortalUseRuleset::GetHeader200_ETag() con
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1882,7 +1882,7 @@ TOptional<FString> FResponse_GetCatalogPortalUseRulesetsAll::GetHeader200_ETag()
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2095,7 +2095,7 @@ TOptional<FString> FResponse_GetCatalogPricePoint::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2303,7 +2303,7 @@ TOptional<FString> FResponse_GetCatalogPricePointsAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2516,7 +2516,7 @@ TOptional<FString> FResponse_GetCatalogTimeFrame::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2724,7 +2724,7 @@ TOptional<FString> FResponse_GetCatalogTimeFramesAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2937,7 +2937,7 @@ TOptional<FString> FResponse_GetCatalogVendor::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3145,7 +3145,7 @@ TOptional<FString> FResponse_GetCatalogVendorsAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3353,7 +3353,7 @@ TOptional<FString> FResponse_GetCatalogXpAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3566,7 +3566,7 @@ TOptional<FString> FResponse_GetCatalogXpTable::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

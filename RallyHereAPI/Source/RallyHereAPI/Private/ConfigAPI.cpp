@@ -200,7 +200,7 @@ TOptional<FString> FResponse_GetAppSettingsAll::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -381,7 +381,7 @@ TOptional<FString> FResponse_GetAppSettingsClient::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -576,7 +576,7 @@ TOptional<FString> FResponse_GetAppSettingsServer::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

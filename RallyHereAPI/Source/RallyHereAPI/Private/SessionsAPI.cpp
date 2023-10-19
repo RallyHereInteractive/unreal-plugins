@@ -199,7 +199,7 @@ TOptional<FString> FResponse_AddPlatformSessionToRallyHereSession::GetHeader200_
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -223,16 +223,14 @@ bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor409(FRHAPI_
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_AddPlatformSessionToRallyHereSession::GetHeader409_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -1269,16 +1267,14 @@ bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor409(FR
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_DeletePlatformSessionFromRallyHereSession::GetHeader409_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -1462,7 +1458,7 @@ TOptional<FString> FResponse_EndInstance::GetHeader204_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1821,7 +1817,7 @@ TOptional<FString> FResponse_GetAllSessionTemplates::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2025,7 +2021,7 @@ TOptional<FString> FResponse_GetBrowserSessionsByType::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2394,7 +2390,7 @@ TOptional<FString> FResponse_GetPlatformSessionInfo::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2763,7 +2759,7 @@ TOptional<FString> FResponse_GetPlayerSessionsByUuid::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -2965,7 +2961,7 @@ TOptional<FString> FResponse_GetPlayerSessionsByUuidV2::GetHeader200_ETag() cons
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3162,7 +3158,7 @@ TOptional<FString> FResponse_GetPlayerSessionsSelf::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3364,7 +3360,7 @@ TOptional<FString> FResponse_GetSessionByAllocationId::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3566,7 +3562,7 @@ TOptional<FString> FResponse_GetSessionById::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -3942,7 +3938,7 @@ TOptional<FString> FResponse_GetSessionTemplateByType::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -4325,7 +4321,7 @@ TOptional<FString> FResponse_JoinSessionByIdSelf::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -4553,7 +4549,7 @@ TOptional<FString> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader200_ET
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -4577,16 +4573,14 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_Hz
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader409_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -4793,7 +4787,7 @@ TOptional<FString> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader200_ET
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -4817,15 +4811,14 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor409(FRHAPI_Hz
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader409_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
-    }*/
+    }
     return 0;
 }
 
@@ -5179,7 +5172,7 @@ TOptional<FString> FResponse_KickPlayerFromSessionByUuid::GetHeader204_ETag() co
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -5379,7 +5372,7 @@ TOptional<FString> FResponse_KickPlayerFromSessionByUuidV2::GetHeader204_ETag() 
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -5903,16 +5896,14 @@ bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_H
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_LeaveSessionByPlatformSessionByUuid::GetHeader409_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -6093,16 +6084,14 @@ bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor409(FRHAPI_HzA
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_LeaveSessionByPlatformSessionSelf::GetHeader409_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -7340,7 +7329,7 @@ TOptional<FString> FResponse_UpdateSessionById::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -7733,7 +7722,7 @@ TOptional<FString> FResponse_UpdateSessionPlayerByUuid::GetHeader200_ETag() cons
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -7949,7 +7938,7 @@ TOptional<FString> FResponse_UpdateSessionPlayerByUuidV2::GetHeader200_ETag() co
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

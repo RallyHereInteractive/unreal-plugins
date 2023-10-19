@@ -397,7 +397,7 @@ TOptional<FString> FResponse_GetBlockedListForPlayerV2::GetHeader200_ETag() cons
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

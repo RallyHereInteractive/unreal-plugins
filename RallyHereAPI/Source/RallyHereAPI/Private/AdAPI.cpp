@@ -206,7 +206,7 @@ TOptional<FString> FResponse_BeginNewSession::GetHeader200_XHzAdApiToken() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -230,7 +230,7 @@ TOptional<FString> FResponse_BeginNewSession::GetHeader500_XHzAdApiToken() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -431,7 +431,7 @@ TOptional<FString> FResponse_FindOpportunities::GetHeader200_XHzAdApiToken() con
         FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -455,7 +455,7 @@ TOptional<FString> FResponse_FindOpportunities::GetHeader500_XHzAdApiToken() con
         FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -954,7 +954,7 @@ TOptional<FString> FResponse_UpdateOpportunityById::GetHeader200_XHzAdApiToken()
         FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -978,7 +978,7 @@ TOptional<FString> FResponse_UpdateOpportunityById::GetHeader500_XHzAdApiToken()
         FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
