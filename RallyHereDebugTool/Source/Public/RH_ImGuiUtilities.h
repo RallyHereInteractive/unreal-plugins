@@ -132,7 +132,7 @@ public:
 
 	void SetName(const FString& InName) { Name = InName; };
 
-	void DisplayCustomDataStager(bool bDefaultOpen = true);
+	void DisplayCustomDataStager(bool bDefaultOpen = true, const TMap<FString, FString>* CurrentState = nullptr);
 
 	void GetCustomDataMap(TMap<FString, FString>& OutMap);
 	void SetDataFromMap(const TMap<FString, FString>& InMap);

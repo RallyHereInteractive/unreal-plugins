@@ -433,12 +433,19 @@ void ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray)
 	}
 }
 
-void FImGuiCustomDataStager::DisplayCustomDataStager(bool bDefaultOpen /*= true*/)
+void FImGuiCustomDataStager::DisplayCustomDataStager(bool bDefaultOpen /*= true*/, const TMap<FString, FString>* CurrentState)
 {
 	ImGuiTreeNodeFlags flags = bDefaultOpen ? RH_DefaultTreeFlagsDefaultOpen : RH_DefaultTreeFlags;
 	const FString HeaderText = Name.IsEmpty() ? TEXT("Custom Data Stager") : Name + TEXT(" - Custom Data Stager");
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderText), flags))
 	{
+		// if current state is passed in, allow copying it
+		if (CurrentState != nullptr && ImGui::SmallButton("Copy Current"))
+		{
+			SetDataFromMap(*CurrentState);
+			ImGui::SameLine();
+		}
+
 		const FString RemoveAllBtnLabel = TEXT("Remove All Fields##") + Name;
 		if (ImGui::SmallButton(TCHAR_TO_UTF8(*RemoveAllBtnLabel)))
 		{
