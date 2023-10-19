@@ -395,11 +395,10 @@ void URH_GameInstanceServerBootstrapper::BeginServerLogin()
 	AuthContext->SetClientId(FRallyHereIntegrationModule::Get().GetClientId());
 	AuthContext->SetClientSecret(FRallyHereIntegrationModule::Get().GetClientSecret());
 
-	if (!AuthContext.IsValid() && AuthContext->GetRefreshToken().Len() > 0)
+	// if we are already login, just continue (refresh may be triggered during a call if needed)
+	if (AuthContext->IsLoggedIn())
 	{
-		// just refresh the login
-		auto Helper = MakeShared<FRH_ServerLoginUserHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
-		Helper->Start(ERHAPI_GrantType::Refresh, AuthContext->GetRefreshToken());
+		OnServerLoginComplete(true);
 	}
 	else
 	{
@@ -413,9 +412,7 @@ void URH_GameInstanceServerBootstrapper::BeginServerLogin()
 			}
 			else if (LoginOSS->GetSubsystemName() == NULL_SUBSYSTEM)
 			{
-				// special case for null subsystem - login without a user credential
-				auto Helper = MakeShared<FRH_ServerLoginNullHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
-				Helper->Start();
+				BeginNullLogin();
 			}
 			else
 			{
@@ -435,6 +432,8 @@ void URH_GameInstanceServerBootstrapper::BeginServerLogin()
 
 void URH_GameInstanceServerBootstrapper::BeginOSSLogin()
 {
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
 	auto* OSS = GetOSS();
 
 	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
@@ -465,6 +464,8 @@ void URH_GameInstanceServerBootstrapper::BeginOSSLogin()
 
 void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage)
 {
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
 	auto* OSS = GetOSS();
 
 	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
@@ -494,6 +495,42 @@ void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, 
 		return;
 	}
 
+	Identity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
+}
+
+void URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthTokenWrapper)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	auto* OSS = GetOSS();
+
+	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+	if (OSS == nullptr || !Identity.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnServerLoginComplete(false);
+		return;
+	}
+
+	if (!bWasSuccessful)
+	{
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] Could not retrieve auth token - check that the OSS '%s' was able to fully log in (ex: may have logged into a local account rather than a network account)"), ANSI_TO_TCHAR(__FUNCTION__),
+			*OSS->GetSubsystemName().ToString());
+
+		OnServerLoginComplete(false);
+		return;
+	}
+	else if (!AuthTokenWrapper.HasTokenString())
+	{
+		UE_LOG(LogRallyHereIntegration, Error,
+			TEXT("[%s] Auth token has no token string, and RH bootstrapping does not currently support a binary auth token"), ANSI_TO_TCHAR(__FUNCTION__),
+			*OSS->GetSubsystemName().ToString());
+
+		OnServerLoginComplete(false);
+		return;
+	}
+
 	auto GrantType = RH_GetGrantTypeFromOSSName(OSS->GetSubsystemName());
 	if (!GrantType.IsSet())
 	{
@@ -504,13 +541,52 @@ void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, 
 	}
 
 	// start a RH login helper
-	auto Helper = MakeShared<FRH_ServerLoginUserHelper>(AuthContext, FRH_ServerBootstrapLoginDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
-	Helper->Start(GrantType.GetValue(), Identity->GetAuthToken(ControllerId));
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere User Login request"), *GetName());
+	typedef RallyHereAPI::Traits_Login LoginType;
+
+	LoginType::Request Request;
+	Request.SetShouldRetry();
+	Request.AuthContext = AuthContext;
+	Request.LoginRequestV1.SetIncludeRefresh(true);
+	Request.LoginRequestV1.SetAcceptEula(true);
+	Request.LoginRequestV1.SetAcceptTos(true);
+	Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);
+	Request.LoginRequestV1.GrantType = GrantType.GetValue();
+	Request.LoginRequestV1.PortalAccessToken = AuthTokenWrapper.TokenString;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
+		LoginType::Delegate(),
+		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete),
+		GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
+
+	Helper->Start(RH_APIs::GetAuthAPI(), Request);
 }
 
-void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess)
+void URH_GameInstanceServerBootstrapper::BeginNullLogin()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// start a RH login helper
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Token Login request"), *GetName());
+	typedef RallyHereAPI::Traits_Token LoginType;
+
+	LoginType::Request Request;
+	Request.SetShouldRetry();
+	Request.AuthContext = AuthContext;
+	Request.TokenRequest.SetGrantType(ERHAPI_OAuthGrantType::ClientCredentials);
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
+		LoginType::Delegate(),
+		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete),
+		GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
+
+	Helper->Start(RH_APIs::GetAuthAPI(), Request);
+}
+
+void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
 	if (bSuccess)
 	{
 		if (BootstrapMode == ERH_ServerBootstrapMode::LoginOnly)
@@ -524,7 +600,11 @@ void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess)
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - RallyHere login was unsuccessful"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - RallyHere login was unsuccessful (Error Code %d, Error Resposne: [%s]")
+			, ANSI_TO_TCHAR(__FUNCTION__)
+			, ErrorInfo.ResponseCode
+			, *ErrorInfo.ResponseContent
+		);
 		OnBootstrappingFailed();
 	}
 }

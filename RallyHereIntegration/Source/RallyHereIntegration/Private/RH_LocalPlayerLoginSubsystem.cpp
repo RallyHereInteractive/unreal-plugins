@@ -707,8 +707,6 @@ void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthToken(FRH_PendingLoginRequest
 
 	int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
 
-	const auto AuthToken = LoginIdentity->GetAuthToken(ControllerId);
-
 	LoginIdentity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
 }
 
