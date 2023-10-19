@@ -319,6 +319,38 @@ inline FString CollectionToUrlString_multi(const TArray<T>& Collection, const TC
 
 //////////////////////////////////////////////////////////////////////////
 
+template<typename T>
+inline T FromHeaderString(const FString& Value)
+{
+	return Value;
+}
+
+template<>
+inline int32 FromHeaderString<int32>(const FString& Value)
+{
+	return FCString::Atoi(*Value);
+}
+
+template<>
+inline int64 FromHeaderString<int64>(const FString& Value)
+{
+	return FCString::Atoi64(*Value);
+}
+
+template<>
+inline float FromHeaderString<float>(const FString& Value)
+{
+	return FCString::Atof(*Value);
+}
+
+template<>
+inline double FromHeaderString<double>(const FString& Value)
+{
+	return FCString::Atod(*Value);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const TSharedPtr<FJsonValue>& Value)
 {
 	if (Value.IsValid())

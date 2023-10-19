@@ -208,7 +208,7 @@ TOptional<FString> FResponse_GetPlayerPresencePublicById::GetHeader200_ETag() co
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -426,7 +426,7 @@ TOptional<FString> FResponse_GetPlayerPresencePublicByUuid::GetHeader200_ETag() 
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -630,7 +630,7 @@ TOptional<FString> FResponse_GetPlayerPresenceSelf::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -973,7 +973,7 @@ TOptional<FString> FResponse_UpdatePlayerPresenceSelf::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

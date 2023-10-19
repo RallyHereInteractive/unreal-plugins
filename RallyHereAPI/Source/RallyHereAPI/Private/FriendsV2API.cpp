@@ -221,7 +221,7 @@ TOptional<FString> FResponse_AddFriendV2::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -451,7 +451,7 @@ TOptional<FString> FResponse_AddNotesV2::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -668,7 +668,7 @@ TOptional<FString> FResponse_DeleteFriendV2::GetHeader204_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1254,7 +1254,7 @@ TOptional<FString> FResponse_GetFriendRelationshipV2::GetHeader200_ETag() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1487,7 +1487,7 @@ TOptional<FString> FResponse_GetFriendsListForPlayerV2::GetHeader200_ETag() cons
         FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

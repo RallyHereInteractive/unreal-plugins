@@ -1102,7 +1102,7 @@ TOptional<FString> FResponse_OauthLogin::GetHeader307_Location() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("location"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};
@@ -1296,7 +1296,7 @@ TOptional<FString> FResponse_OauthResponse::GetHeader307_Location() const
         FString HeaderVal = HttpResponse->GetHeader(TEXT("location"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<FString>(HeaderVal);
         }
     }
     return TOptional<FString>{};

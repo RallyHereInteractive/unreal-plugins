@@ -450,7 +450,7 @@ bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& Out
         FString HeaderVal = HttpResponse->GetHeader(TEXT("{{baseName}}"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<{{{dataType}}}>(HeaderVal);
         }
     }
     {{#defaultValue}}

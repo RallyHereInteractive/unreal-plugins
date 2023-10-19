@@ -2924,16 +2924,14 @@ bool FResponse_GetPlayerInventory::TryGetContentFor503(FRHAPI_HzApiErrorModel& O
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_GetPlayerInventory::GetHeader503_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -3113,16 +3111,14 @@ bool FResponse_GetPlayerInventorySelf::TryGetContentFor503(FRHAPI_HzApiErrorMode
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_GetPlayerInventorySelf::GetHeader503_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -3307,16 +3303,14 @@ bool FResponse_GetPlayerInventoryUuid::TryGetContentFor503(FRHAPI_HzApiErrorMode
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_GetPlayerInventoryUuid::GetHeader503_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
@@ -3496,16 +3490,14 @@ bool FResponse_GetPlayerInventoryUuidSelf::TryGetContentFor503(FRHAPI_HzApiError
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_GetPlayerInventoryUuidSelf::GetHeader503_RetryAfter() const
 {
-	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
         if (!HeaderVal.IsEmpty())
         {
-            return HeaderVal;
+            return FromHeaderString<int32>(HeaderVal);
         }
     }
-	*/
     return 0;
 }
 
