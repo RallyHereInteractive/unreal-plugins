@@ -193,6 +193,49 @@ bool FResponse_BeginNewSession::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+bool FResponse_BeginNewSession::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_BeginNewSession::GetHeader200_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
+bool FResponse_BeginNewSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_BeginNewSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_BeginNewSession::GetHeader500_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_BeginNewSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -375,6 +418,49 @@ bool FResponse_FindOpportunities::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
+bool FResponse_FindOpportunities::TryGetContentFor200(FRHAPI_AdOpportunities& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_FindOpportunities::GetHeader200_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
+bool FResponse_FindOpportunities::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_FindOpportunities::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_FindOpportunities::GetHeader500_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
 bool FResponse_FindOpportunities::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -509,6 +595,16 @@ void FResponse_UnityAdWatched::SetHttpResponseCode(EHttpResponseCodes::Type InHt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UnityAdWatched::TryGetContentFor200(FString& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UnityAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UnityAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -646,6 +742,16 @@ void FResponse_UnityMediationAdWatched::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UnityMediationAdWatched::TryGetContentFor200(FString& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UnityMediationAdWatched::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UnityMediationAdWatched::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -833,6 +939,49 @@ bool FResponse_UpdateOpportunityById::ParseHeaders()
         XHzAdApiToken = *Val;
     }
     return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_UpdateOpportunityById::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_UpdateOpportunityById::GetHeader200_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
+}
+
+bool FResponse_UpdateOpportunityById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateOpportunityById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Provide this token to future requests for the same user to make their requests faster (as a new token doesn't need to be generated) */
+TOptional<FString> FResponse_UpdateOpportunityById::GetHeader500_XHzAdApiToken() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("x-hz-ad-api-token"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    return TOptional<FString>{};
 }
 
 bool FResponse_UpdateOpportunityById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

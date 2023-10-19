@@ -250,6 +250,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySession : public FResponse
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySession
@@ -259,7 +276,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySession
     typedef FDelegate_CreateNewInventorySession Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySession(InRequest, InDelegate, Priority); }
 };
 
@@ -290,6 +307,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionByPlayerUuid : public
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuid
@@ -299,7 +333,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuid
     typedef FDelegate_CreateNewInventorySessionByPlayerUuid Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -329,6 +363,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionByPlayerUuidSelf : pu
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuidSelf
@@ -338,7 +389,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionByPlayerUuidSelf
     typedef FDelegate_CreateNewInventorySessionByPlayerUuidSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionByPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -368,6 +419,23 @@ struct RALLYHEREAPI_API FResponse_CreateNewInventorySessionSelf : public FRespon
 
     FRHAPI_InventorySessionCreateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_InventorySessionCreateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewInventorySessionSelf
@@ -377,13 +445,15 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionSelf
     typedef FDelegate_CreateNewInventorySessionSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewInventorySessionSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Order
  *
- * Create a new Order for a specific player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
+ * Create a new Order for a specific player.
+ * 
+ * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrder : public FRequest
 {
@@ -408,6 +478,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrder : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerOrder
@@ -417,13 +509,15 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrder
     typedef FDelegate_CreateNewPlayerOrder Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerOrder(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Order Self
  *
- * Create a new Order for the current logged in player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
+ * Create a new Order for the current logged in player.
+ * 
+ * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrderSelf : public FRequest
 {
@@ -447,6 +541,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerOrderSelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerOrderSelf
@@ -456,13 +572,15 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrderSelf
     typedef FDelegate_CreateNewPlayerOrderSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerOrderSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Uuid Order
  *
- * Create a new Order for a specific player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
+ * Create a new Order for a specific player.
+ * 
+ * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrder : public FRequest
 {
@@ -487,6 +605,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrder : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrder
@@ -496,13 +636,15 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrder
     typedef FDelegate_CreateNewPlayerUuidOrder Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerUuidOrder(InRequest, InDelegate, Priority); }
 };
 
 /* Create New Player Uuid Order Self
  *
- * Create a new Order for the current logged in player.  Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
+ * Create a new Order for the current logged in player.
+ * 
+ * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrderSelf : public FRequest
 {
@@ -526,6 +668,28 @@ struct RALLYHEREAPI_API FResponse_CreateNewPlayerUuidOrderSelf : public FRespons
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrderSelf
@@ -535,7 +699,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrderSelf
     typedef FDelegate_CreateNewPlayerUuidOrderSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateNewPlayerUuidOrderSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -566,6 +730,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventory : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventory
@@ -575,7 +761,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventory
     typedef FDelegate_CreatePlayerInventory Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventory(InRequest, InDelegate, Priority); }
 };
 
@@ -605,6 +791,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventorySelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventorySelf
@@ -614,7 +822,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventorySelf
     typedef FDelegate_CreatePlayerInventorySelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
@@ -645,6 +853,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuid : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuid
@@ -654,7 +884,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuid
     typedef FDelegate_CreatePlayerInventoryUuid Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -684,6 +914,28 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerInventoryUuidSelf : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuidSelf
@@ -693,7 +945,7 @@ struct RALLYHEREAPI_API Traits_CreatePlayerInventoryUuidSelf
     typedef FDelegate_CreatePlayerInventoryUuidSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -723,6 +975,23 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfo : public FResponse
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfo
@@ -732,7 +1001,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfo
     typedef FDelegate_GetInventorySessionInfo Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfo(InRequest, InDelegate, Priority); }
 };
 
@@ -762,6 +1031,23 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoByPlayerUuid : public F
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuid
@@ -771,7 +1057,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuid
     typedef FDelegate_GetInventorySessionInfoByPlayerUuid Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -800,6 +1086,18 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoByPlayerUuidSelf : publ
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuidSelf
@@ -809,7 +1107,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoByPlayerUuidSelf
     typedef FDelegate_GetInventorySessionInfoByPlayerUuidSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoByPlayerUuidSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -838,6 +1136,18 @@ struct RALLYHEREAPI_API FResponse_GetInventorySessionInfoSelf : public FResponse
 
     FRHAPI_InventorySession Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventorySession& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInventorySessionInfoSelf
@@ -847,7 +1157,7 @@ struct RALLYHEREAPI_API Traits_GetInventorySessionInfoSelf
     typedef FDelegate_GetInventorySessionInfoSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInventorySessionInfoSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -878,6 +1188,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventory : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
+    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventory
@@ -887,7 +1221,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventory
     typedef FDelegate_GetPlayerInventory Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
@@ -917,6 +1251,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventorySelf : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
+    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventorySelf
@@ -926,7 +1284,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventorySelf
     typedef FDelegate_GetPlayerInventorySelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
@@ -957,6 +1315,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuid : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
+    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuid
@@ -966,7 +1348,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuid
     typedef FDelegate_GetPlayerInventoryUuid Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -996,6 +1378,30 @@ struct RALLYHEREAPI_API FResponse_GetPlayerInventoryUuidSelf : public FResponse
 
     FRHAPI_InventoryContextResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InventoryContextResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 503
+    Service was unable to fulfill the request at this time and should be retried after the Retry-After wait time
+    */
+    bool TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const;
+    /* Number of seconds after which to retry the request, when the server should have the resource available */
+    TOptional<int32> GetHeader503_RetryAfter() const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuidSelf
@@ -1005,7 +1411,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInventoryUuidSelf
     typedef FDelegate_GetPlayerInventoryUuidSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1036,6 +1442,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrderById : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrderById
@@ -1045,7 +1473,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrderById
     typedef FDelegate_GetPlayerOrderById Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrderById(InRequest, InDelegate, Priority); }
 };
 
@@ -1075,6 +1503,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrderByIdSelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrderByIdSelf
@@ -1084,7 +1534,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrderByIdSelf
     typedef FDelegate_GetPlayerOrderByIdSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrderByIdSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1122,6 +1572,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrders : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrders
@@ -1131,7 +1598,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrders
     typedef FDelegate_GetPlayerOrders Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrders(InRequest, InDelegate, Priority); }
 };
 
@@ -1168,6 +1635,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerOrdersSelf : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerOrdersSelf
@@ -1177,7 +1661,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerOrdersSelf
     typedef FDelegate_GetPlayerOrdersSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerOrdersSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1208,6 +1692,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrderById : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderById
@@ -1217,7 +1723,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderById
     typedef FDelegate_GetPlayerUuidOrderById Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrderById(InRequest, InDelegate, Priority); }
 };
 
@@ -1247,6 +1753,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrderByIdSelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Order was not found for player
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderByIdSelf
@@ -1256,7 +1784,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrderByIdSelf
     typedef FDelegate_GetPlayerUuidOrderByIdSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrderByIdSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1294,6 +1822,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrders : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrders
@@ -1303,7 +1848,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrders
     typedef FDelegate_GetPlayerUuidOrders Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrders(InRequest, InDelegate, Priority); }
 };
 
@@ -1340,6 +1885,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidOrdersSelf : public FResponse
 
     FRHAPI_PlayerOrdersResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrdersResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidOrdersSelf
@@ -1349,7 +1911,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidOrdersSelf
     typedef FDelegate_GetPlayerUuidOrdersSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidOrdersSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1380,6 +1942,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventory : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventory
@@ -1389,7 +1973,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventory
     typedef FDelegate_ModifyManyPlayerInventory Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
@@ -1419,6 +2003,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventorySelf : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventorySelf
@@ -1428,7 +2034,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventorySelf
     typedef FDelegate_ModifyManyPlayerInventorySelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1459,6 +2065,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuid : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuid
@@ -1468,7 +2096,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuid
     typedef FDelegate_ModifyManyPlayerInventoryUuid Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -1498,6 +2126,28 @@ struct RALLYHEREAPI_API FResponse_ModifyManyPlayerInventoryUuidSelf : public FRe
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuidSelf
@@ -1507,7 +2157,7 @@ struct RALLYHEREAPI_API Traits_ModifyManyPlayerInventoryUuidSelf
     typedef FDelegate_ModifyManyPlayerInventoryUuidSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyManyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1539,6 +2189,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventory : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventory
@@ -1548,7 +2220,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventory
     typedef FDelegate_ModifyPlayerInventory Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventory(InRequest, InDelegate, Priority); }
 };
 
@@ -1579,6 +2251,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventorySelf : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventorySelf
@@ -1588,7 +2282,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventorySelf
     typedef FDelegate_ModifyPlayerInventorySelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventorySelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1620,6 +2314,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuid : public FResponse
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuid
@@ -1629,7 +2345,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuid
     typedef FDelegate_ModifyPlayerInventoryUuid Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventoryUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -1660,6 +2376,28 @@ struct RALLYHEREAPI_API FResponse_ModifyPlayerInventoryUuidSelf : public FRespon
 
     FRHAPI_PlayerOrder Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerOrder& OutContent) const;
+
+    /* Response 202
+    Accepted
+    */
+    bool TryGetContentFor202(FRHAPI_PlayerOrderCreate& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuidSelf
@@ -1669,7 +2407,7 @@ struct RALLYHEREAPI_API Traits_ModifyPlayerInventoryUuidSelf
     typedef FDelegate_ModifyPlayerInventoryUuidSelf Delegate;
     typedef FInventoryAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ModifyPlayerInventoryUuidSelf(InRequest, InDelegate, Priority); }
 };
 

@@ -433,6 +433,41 @@ bool FResponse_{{operationIdCamelCase}}::ParseHeaders()
 
 {{/headers.0}}
 {{/responses.0}}
+{{#responses}}
+{{#dataType}}
+bool FResponse_{{operationIdCamelCase}}::TryGetContentFor{{{code}}}({{{.}}}& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+{{/dataType}}
+{{#headers}}
+{{#description}}/* {{{.}}} */
+{{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} FResponse_{{operationIdCamelCase}}::GetHeader{{code}}_{{name}}() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("{{baseName}}"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return HeaderVal;
+        }
+    }
+    {{#defaultValue}}
+    return {{{.}}};
+    {{/defaultValue}}
+    {{^defaultValue}}
+    {{#required}}
+    return {};
+    {{/required}}
+    {{^required}}
+    return TOptional<{{{dataType}}}>{};
+    {{/required}}
+    {{/defaultValue}}
+}
+
+{{/headers}}
+{{/responses}}
 bool FResponse_{{operationIdCamelCase}}::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     {{#returnType}}

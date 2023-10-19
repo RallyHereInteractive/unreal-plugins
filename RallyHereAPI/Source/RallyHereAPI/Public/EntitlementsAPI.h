@@ -56,7 +56,13 @@ private:
 
 /* Process Platform Entitlement For Me
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+ * 
+ * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementForMe : public FRequest
 {
@@ -80,6 +86,23 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementForMe : public FResp
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
@@ -89,13 +112,19 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
     typedef FDelegate_ProcessPlatformEntitlementForMe Delegate;
     typedef FEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlatformEntitlementForMe(InRequest, InDelegate, Priority); }
 };
 
 /* Process Platform Entitlements By Player Uuid
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.    Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results  Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
+ * 
+ * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementsByPlayerUuid : public FRequest
 {
@@ -120,6 +149,23 @@ struct RALLYHEREAPI_API FResponse_ProcessPlatformEntitlementsByPlayerUuid : publ
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
@@ -129,13 +175,17 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
     typedef FDelegate_ProcessPlatformEntitlementsByPlayerUuid Delegate;
     typedef FEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlatformEntitlementsByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Retrieve Entitlements By Player Uuid
  *
- * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Get the status of a platform entitlement request by request id.
+ *     
+ *     Required Permissions: 
+ * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsByPlayerUuid : public FRequest
 {
@@ -160,6 +210,23 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementsByPlayerUuid : public FRes
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
@@ -169,13 +236,17 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
     typedef FDelegate_RetrieveEntitlementsByPlayerUuid Delegate;
     typedef FEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.RetrieveEntitlementsByPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Retrieve Entitlements For Me
  *
- * Get the status of a platform entitlement request by request id.          Required Permissions:   For any player (including themselves)any of: &#x60;inv:*&#x60;, &#x60;inv:platform_entitlements:any&#x60;  For the player themselves: &#x60;inv:platform_entitlements:self&#x60;
+ * Get the status of a platform entitlement request by request id.
+ *     
+ *     Required Permissions: 
+ * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsForMe : public FRequest
 {
@@ -199,6 +270,23 @@ struct RALLYHEREAPI_API FResponse_RetrieveEntitlementsForMe : public FResponse
 
     FRHAPI_PlatformEntitlementProcessResult Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlatformEntitlementProcessResult& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_RetrieveEntitlementsForMe
@@ -208,7 +296,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsForMe
     typedef FDelegate_RetrieveEntitlementsForMe Delegate;
     typedef FEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.RetrieveEntitlementsForMe(InRequest, InDelegate, Priority); }
 };
 

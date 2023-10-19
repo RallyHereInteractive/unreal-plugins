@@ -62,6 +62,28 @@ struct RALLYHEREAPI_API FResponse_GetMarketingCampaigns : public FResponse
 
     FRHAPI_MarketingCampaigns Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_MarketingCampaigns& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetMarketingCampaigns
@@ -71,7 +93,7 @@ struct RALLYHEREAPI_API Traits_GetMarketingCampaigns
     typedef FDelegate_GetMarketingCampaigns Delegate;
     typedef FMarketingAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMarketingCampaigns(InRequest, InDelegate, Priority); }
 };
 

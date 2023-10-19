@@ -73,7 +73,13 @@ private:
 
 /* Add Friend
  *
- * Modify the friend&#39;s relationship status with the other Player. There is a max number of friends that can be added for a Player.                 The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update                  the player&#39;s notes for the other player. If you do not want to update or set the notes when adding the other player, then do not                  include a body.&lt;br /&gt;&lt;br /&gt; &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response and will match the etag value                  provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). &lt;b&gt;It is highly                  recommended to provide the etag value with the &lt;i&gt; if-match &lt;/i&gt; header to avoid lost updates.                  &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
+ * Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.
+ *                 The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update 
+ *                 the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not 
+ *                 include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
+ *                 provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly 
+ *                 recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. 
+ *                 <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_AddFriend : public FRequest
 {
@@ -104,6 +110,39 @@ struct RALLYHEREAPI_API FResponse_AddFriend : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_FriendRelationshipV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 412
+    The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AddFriend
@@ -113,13 +152,15 @@ struct RALLYHEREAPI_API Traits_AddFriend
     typedef FDelegate_AddFriend Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddFriend(InRequest, InDelegate, Priority); }
 };
 
 /* Add Notes
  *
- * Update Player&#39;s notes on the other player. Players can only add notes for players they have relationship&#39;s with.      The notes will be removed when the relationship is ended.     &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
+ * Update Player's notes on the other player. Players can only add notes for players they have relationship's with. 
+ *     The notes will be removed when the relationship is ended.
+ *     <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_AddNotes : public FRequest
 {
@@ -150,6 +191,35 @@ struct RALLYHEREAPI_API FResponse_AddNotes : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_FriendRelationshipV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AddNotes
@@ -159,13 +229,18 @@ struct RALLYHEREAPI_API Traits_AddNotes
     typedef FDelegate_AddNotes Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AddNotes(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friend
  *
- * Remove the friend&#39;s relationship status with the other Player.                  This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends &lt;br /&gt;&lt;br /&gt;                 &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response and will match the etag value                  provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). &lt;b&gt;It is highly                  recommended to provide the etag value with the &lt;i&gt; if-match &lt;/i&gt; header to avoid lost updates.                  &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
+ * Remove the friend's relationship status with the other Player. 
+ *                 This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />
+ *                 <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
+ *                 provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly 
+ *                 recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. 
+ *                 <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_DeleteFriend : public FRequest
 {
@@ -195,6 +270,38 @@ struct RALLYHEREAPI_API FResponse_DeleteFriend : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader204_ETag() const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 412
+    The resource's Etag does not match the Etag provided. Get the Etag from the Get request and try again
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriend
@@ -204,13 +311,13 @@ struct RALLYHEREAPI_API Traits_DeleteFriend
     typedef FDelegate_DeleteFriend Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriend(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Friends
  *
- * Remove the friend&#39;s relationship status with the other players &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
+ * Remove the friend's relationship status with the other players <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_DeleteFriends : public FRequest
 {
@@ -235,6 +342,32 @@ struct RALLYHEREAPI_API FResponse_DeleteFriends : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteFriends
@@ -244,13 +377,15 @@ struct RALLYHEREAPI_API Traits_DeleteFriends
     typedef FDelegate_DeleteFriends Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteFriends(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Notes
  *
- * Remove the Player&#39;s notes on the other player. Players can only add notes for players they have relationship&#39;s with.      The notes will be removed when the relationship is ended.     &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:write
+ * Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. 
+ *     The notes will be removed when the relationship is ended.
+ *     <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_DeleteNotes : public FRequest
 {
@@ -277,6 +412,32 @@ struct RALLYHEREAPI_API FResponse_DeleteNotes : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DeleteNotes
@@ -286,13 +447,17 @@ struct RALLYHEREAPI_API Traits_DeleteNotes
     typedef FDelegate_DeleteNotes Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteNotes(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friend Relationship
  *
- * Get the relationship status with the other Player. &lt;br /&gt; &lt;br /&gt;                 &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response.                  Clients can utilize the &lt;i&gt;if-none-match&lt;/i&gt; header to avoid having to reload the response if                  it has not changed or to use it to modify the relationship without loosing updates.                  &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:read
+ * Get the relationship status with the other Player. <br /> <br />
+ *                 <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                 Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if 
+ *                 it has not changed or to use it to modify the relationship without loosing updates. 
+ *                 <br/><br />Permissions Required: friend:friend_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetFriendRelationship : public FRequest
 {
@@ -322,6 +487,39 @@ struct RALLYHEREAPI_API FResponse_GetFriendRelationship : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_FriendRelationshipV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendRelationship
@@ -331,13 +529,16 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationship
     typedef FDelegate_GetFriendRelationship Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendRelationship(InRequest, InDelegate, Priority); }
 };
 
 /* Get Friends List For Player
  *
- * Fetch the friend&#39;s list for the Player and their relationship status with those friends. &lt;br /&gt;&lt;br /&gt;                 &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response.                  Clients and then utilize the &lt;i&gt;if-none-match&lt;/i&gt; header to avoid having to reload the response if it has not changed.                  &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:friend_list:read
+ * Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />
+ *                 <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                 Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. 
+ *                 <br/><br />Permissions Required: friend:friend_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayer : public FRequest
 {
@@ -368,6 +569,39 @@ struct RALLYHEREAPI_API FResponse_GetFriendsListForPlayer : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_FriendsListV1& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendsListForPlayer
@@ -377,7 +611,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsListForPlayer
     typedef FDelegate_GetFriendsListForPlayer Delegate;
     typedef FFriendsV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsListForPlayer(InRequest, InDelegate, Priority); }
 };
 

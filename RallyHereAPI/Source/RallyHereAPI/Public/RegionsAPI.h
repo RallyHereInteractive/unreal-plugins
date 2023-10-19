@@ -40,7 +40,13 @@ private:
 
 /* Get All Regions
  *
- * Get all of the enabled regions and their configuration  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
+ * Get all of the enabled regions and their configuration
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllRegions : public FRequest
 {
@@ -65,6 +71,23 @@ struct RALLYHEREAPI_API FResponse_GetAllRegions : public FResponse
 
     FRHAPI_RegionsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_RegionsResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRegions
@@ -74,7 +97,7 @@ struct RALLYHEREAPI_API Traits_GetAllRegions
     typedef FDelegate_GetAllRegions Delegate;
     typedef FRegionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRegions(InRequest, InDelegate, Priority); }
 };
 

@@ -84,7 +84,10 @@ private:
 
 /* Get All Player Uuid Ranks
  *
- * Get all of a specific player&#39;s ranks  Required Permissions: &#x60;rank:read:self&#x60; for players acting on themselves, otherwise &#x60;rank:read:any&#x60;
+ * Get all of a specific player's ranks
+ * 
+ * Required Permissions: `rank:read:self` for players acting on themselves,
+ * otherwise `rank:read:any`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanks : public FRequest
 {
@@ -108,6 +111,23 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanks : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
@@ -117,13 +137,15 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
     typedef FDelegate_GetAllPlayerUuidRanks Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanks(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Player Uuid Ranks Self
  *
- * Get all of current player&#39;s ranks  Required Permissions: &#x60;rank:read:self&#x60;
+ * Get all of current player's ranks
+ * 
+ * Required Permissions: `rank:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelf : public FRequest
 {
@@ -146,6 +168,18 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidRanksSelf : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
@@ -155,13 +189,15 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
     typedef FDelegate_GetAllPlayerUuidRanksSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllPlayerUuidRanksSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Rank Config
  *
- * Get all rank configuration  Required Permissions: &#x60;rank:read:config&#x60;
+ * Get all rank configuration
+ * 
+ * Required Permissions: `rank:read:config`
 */
 struct RALLYHEREAPI_API FRequest_GetAllRankConfig : public FRequest
 {
@@ -184,6 +220,18 @@ struct RALLYHEREAPI_API FResponse_GetAllRankConfig : public FResponse
 
     FRHAPI_RankConfigRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRankConfig
@@ -193,13 +241,16 @@ struct RALLYHEREAPI_API Traits_GetAllRankConfig
     typedef FDelegate_GetAllRankConfig Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRankConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Rank
  *
- * Get a specific player&#39;s rank for a specific rank id              Required Permissions: &#x60;rank:read:self&#x60; for players acting on themselves,  otherwise &#x60;rank:read:any&#x60;
+ * Get a specific player's rank for a specific rank id
+ *             
+ * Required Permissions: `rank:read:self` for players acting on themselves, 
+ * otherwise `rank:read:any`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidRank : public FRequest
 {
@@ -224,6 +275,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRank : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
@@ -233,13 +301,15 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
     typedef FDelegate_GetPlayerUuidRank Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid Rank Self
  *
- * Get current player&#39;s rank for a specific rank id              Required Permissions: &#x60;rank:read:self&#x60;
+ * Get current player's rank for a specific rank id
+ *             
+ * Required Permissions: `rank:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelf : public FRequest
 {
@@ -263,6 +333,23 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidRankSelf : public FResponse
 
     FRHAPI_PlayerRankRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
@@ -272,13 +359,15 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
     typedef FDelegate_GetPlayerUuidRankSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidRankSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Rank Config
  *
- * Get rank configuration for specific rank id  Required Permissions: &#x60;rank:read:config&#x60;
+ * Get rank configuration for specific rank id
+ * 
+ * Required Permissions: `rank:read:config`
 */
 struct RALLYHEREAPI_API FRequest_GetRankConfig : public FRequest
 {
@@ -302,6 +391,23 @@ struct RALLYHEREAPI_API FResponse_GetRankConfig : public FResponse
 
     FRHAPI_RankConfigRequestResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_RankConfigRequestResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetRankConfig
@@ -311,13 +417,16 @@ struct RALLYHEREAPI_API Traits_GetRankConfig
     typedef FDelegate_GetRankConfig Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetRankConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Uuid Rank
  *
- * Update a specific player&#39;s ranks to those that are provided. Ranks are taken as is  Required Permissions: &#x60;rank:update:self&#x60; for players acting on themselves,  otherwise &#x60;rank:update:any&#x60;
+ * Update a specific player's ranks to those that are provided. Ranks are taken as is
+ * 
+ * Required Permissions: `rank:update:self` for players acting on themselves, 
+ * otherwise `rank:update:any`
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRank : public FRequest
 {
@@ -343,6 +452,23 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRank : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
@@ -352,13 +478,15 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
     typedef FDelegate_UpdatePlayerUuidRank Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRank(InRequest, InDelegate, Priority); }
 };
 
 /* Update Player Uuid Rank Self
  *
- * Update current player&#39;s ranks to those that are provided. Ranks are taken as is   Required Permissions: &#x60;rank:update:self&#x60;
+ * Update current player's ranks to those that are provided. Ranks are taken as is 
+ * 
+ * Required Permissions: `rank:update:self`
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelf : public FRequest
 {
@@ -383,6 +511,23 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerUuidRankSelf : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
@@ -392,13 +537,16 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
     typedef FDelegate_UpdatePlayerUuidRankSelf Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerUuidRankSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Update Rankings Trueskill V1
  *
- * Run Trueskill V1 rank update on players and persist their new ranks Requires at least two teams, and the player&#39;s trueskill values before the last match was played  Required Permissions: &#x60;rank:update:any&#x60;
+ * Run Trueskill V1 rank update on players and persist their new ranks
+ * Requires at least two teams, and the player's trueskill values before the last match was played
+ * 
+ * Required Permissions: `rank:update:any`
 */
 struct RALLYHEREAPI_API FRequest_UpdateRankingsTrueskillV1 : public FRequest
 {
@@ -420,6 +568,23 @@ struct RALLYHEREAPI_API FResponse_UpdateRankingsTrueskillV1 : public FResponse
 
     FRHAPI_PlayerRankUpdateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerRankUpdateResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1
@@ -429,7 +594,7 @@ struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1
     typedef FDelegate_UpdateRankingsTrueskillV1 Delegate;
     typedef FRankAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateRankingsTrueskillV1(InRequest, InDelegate, Priority); }
 };
 

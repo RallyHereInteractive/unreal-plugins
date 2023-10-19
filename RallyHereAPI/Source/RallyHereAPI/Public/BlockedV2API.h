@@ -56,7 +56,9 @@ private:
 
 /* Block V2
  *
- * Block the other Player. There is a max number of Players that can be blocked per Player.                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).                     &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:write
+ * Block the other Player. There is a max number of Players that can be blocked per Player.
+ *                     The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits).
+ *                     <br/><br />Permissions Required: friend:block_list:write
 */
 struct RALLYHEREAPI_API FRequest_BlockV2 : public FRequest
 {
@@ -81,6 +83,33 @@ struct RALLYHEREAPI_API FResponse_BlockV2 : public FResponse
 
     FRHAPI_BlockedPlayer Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_BlockedPlayer& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_BlockV2
@@ -90,13 +119,16 @@ struct RALLYHEREAPI_API Traits_BlockV2
     typedef FDelegate_BlockV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.BlockV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked List For Player V2
  *
- * Fetch the blocked list for the Player. &lt;br /&gt;&lt;br /&gt;                         &lt;b&gt;Note:&lt;/b&gt; This API supports etags and will return the etag header when with the response.                          Clients can utilize the &lt;i&gt;if-none-match&lt;/i&gt; header to avoid having to reload the response if it has not changed.                         &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:read
+ * Fetch the blocked list for the Player. <br /><br />
+ *                         <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                         Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.
+ *                         <br/><br />Permissions Required: friend:block_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetBlockedListForPlayerV2 : public FRequest
 {
@@ -127,6 +159,39 @@ struct RALLYHEREAPI_API FResponse_GetBlockedListForPlayerV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_BlockedList& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
@@ -136,13 +201,13 @@ struct RALLYHEREAPI_API Traits_GetBlockedListForPlayerV2
     typedef FDelegate_GetBlockedListForPlayerV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedListForPlayerV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Blocked V2
  *
- * Get the Blocked Player &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:read
+ * Get the Blocked Player <br/><br />Permissions Required: friend:block_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetBlockedV2 : public FRequest
 {
@@ -167,6 +232,33 @@ struct RALLYHEREAPI_API FResponse_GetBlockedV2 : public FResponse
 
     FRHAPI_BlockedPlayer Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_BlockedPlayer& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetBlockedV2
@@ -176,13 +268,13 @@ struct RALLYHEREAPI_API Traits_GetBlockedV2
     typedef FDelegate_GetBlockedV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetBlockedV2(InRequest, InDelegate, Priority); }
 };
 
 /* Unblock V2
  *
- * Unblock the other Player &lt;br/&gt;&lt;br /&gt;Permissions Required: friend:block_list:write
+ * Unblock the other Player <br/><br />Permissions Required: friend:block_list:write
 */
 struct RALLYHEREAPI_API FRequest_UnblockV2 : public FRequest
 {
@@ -207,6 +299,32 @@ struct RALLYHEREAPI_API FResponse_UnblockV2 : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UnblockV2
@@ -216,7 +334,7 @@ struct RALLYHEREAPI_API Traits_UnblockV2
     typedef FDelegate_UnblockV2 Delegate;
     typedef FBlockedV2API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UnblockV2(InRequest, InDelegate, Priority); }
 };
 

@@ -53,8 +53,10 @@ private:
 {{#operations}}
 {{#operation}}
 /* {{summary}}
-{{#notes}} *
- * {{.}}{{/notes}}
+{{#unescapedNotes}}
+ *
+{{#lambdaCommentDescription}}{{{.}}}{{/lambdaCommentDescription}}
+{{/unescapedNotes}}
 */
 struct {{dllapi}} FRequest_{{operationIdCamelCase}} : public FRequest
 {
@@ -109,8 +111,23 @@ struct {{dllapi}} FResponse_{{operationIdCamelCase}} : public FResponse
     {{/headers.0}}
     {{#headers}}
     {{#description}}/* {{{.}}} */
-    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#required}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/required}};{{/headers}}
+    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/headers}}
+
+    // Manual Response Helpers
     {{/responses.0}}
+    {{#responses}}
+    /* Response {{code}}
+    {{{message}}}
+    */
+    {{#dataType}}
+    bool TryGetContentFor{{{code}}}({{{.}}}& OutContent) const;
+    {{/dataType}}
+    {{#headers}}
+    {{#description}}/* {{{.}}} */
+    {{/description}}{{^required}}TOptional<{{/required}}{{{dataType}}}{{^required}}>{{/required}} GetHeader{{code}}_{{name}}() const;
+    {{/headers}}
+
+    {{/responses}}
 };
 
 struct {{dllapi}} Traits_{{operationIdCamelCase}}
@@ -120,7 +137,7 @@ struct {{dllapi}} Traits_{{operationIdCamelCase}}
     typedef FDelegate_{{operationIdCamelCase}} Delegate;
     typedef {{classname}} API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = Default{{unrealModuleName}}Priority) { return InAPI.{{operationIdCamelCase}}(InRequest, InDelegate, Priority); }
 };
 

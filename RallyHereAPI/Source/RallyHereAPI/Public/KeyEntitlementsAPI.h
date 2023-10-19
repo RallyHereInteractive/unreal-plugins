@@ -80,6 +80,28 @@ struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlements : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessKeyEntitlements
@@ -89,7 +111,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlements
     typedef FDelegate_ProcessKeyEntitlements Delegate;
     typedef FKeyEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlements(InRequest, InDelegate, Priority); }
 };
 
@@ -120,6 +142,28 @@ struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsPlayerUuid : public FRes
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsPlayerUuid
@@ -129,7 +173,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsPlayerUuid
     typedef FDelegate_ProcessKeyEntitlementsPlayerUuid Delegate;
     typedef FKeyEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlementsPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
@@ -159,6 +203,28 @@ struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsSelf : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsSelf
@@ -168,7 +234,7 @@ struct RALLYHEREAPI_API Traits_ProcessKeyEntitlementsSelf
     typedef FDelegate_ProcessKeyEntitlementsSelf Delegate;
     typedef FKeyEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessKeyEntitlementsSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -198,6 +264,28 @@ struct RALLYHEREAPI_API FResponse_ProcessPlayerUuidEntitlementsSelf : public FRe
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_ProcessPlayerUuidEntitlementsSelf
@@ -207,7 +295,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlayerUuidEntitlementsSelf
     typedef FDelegate_ProcessPlayerUuidEntitlementsSelf Delegate;
     typedef FKeyEntitlementsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ProcessPlayerUuidEntitlementsSelf(InRequest, InDelegate, Priority); }
 };
 

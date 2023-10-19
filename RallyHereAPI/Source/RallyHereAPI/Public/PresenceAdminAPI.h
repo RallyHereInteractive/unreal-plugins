@@ -175,6 +175,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetKnownPlatforms
@@ -184,13 +201,14 @@ struct RALLYHEREAPI_API Traits_AdminGetKnownPlatforms
     typedef FDelegate_AdminGetKnownPlatforms Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetKnownPlatforms(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Player Presence
  *
- * Get the player&#39;s presence information. The status reflects the true value and is not modified before it is returned.
+ * Get the player's presence information. The status reflects the true value and is not modified before it
+ * is returned.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresence : public FRequest
 {
@@ -216,6 +234,28 @@ struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresence : public FResponse
 
     FRHAPI_PlayerPresence Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetPlayerPresence
@@ -225,13 +265,14 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresence
     typedef FDelegate_AdminGetPlayerPresence Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresence(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Player Presence Id
  *
- * Get the player&#39;s presence information. The status reflects the true value and is not modified before it is returned.
+ * Get the player's presence information. The status reflects the true value and is not modified before it
+ * is returned.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetPlayerPresenceId : public FRequest
 {
@@ -257,6 +298,28 @@ struct RALLYHEREAPI_API FResponse_AdminGetPlayerPresenceId : public FResponse
 
     FRHAPI_PlayerPresence Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerPresence& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
@@ -266,13 +329,17 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
     typedef FDelegate_AdminGetPlayerPresenceId Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetPlayerPresenceId(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu
  *
- * Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across the given time period. This stands in contrast to the individual request endpoint.  For example, if you request the CCU over an hour you&#39;ll receive one number in which players that were around over that time period will only be counted once.
+ * Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across
+ * the given time period. This stands in contrast to the individual request endpoint.
+ * 
+ * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
+ * counted once.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcu : public FRequest
 {
@@ -298,6 +365,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcu
@@ -307,12 +391,11 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcu
     typedef FDelegate_AdminGetRequestingCcu Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu All Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformCombined : public FRequest
 {
@@ -338,6 +421,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : pub
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformCombined
@@ -347,12 +447,11 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformCombined
     typedef FDelegate_AdminGetRequestingCcuAllPlatformCombined Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu All Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuAllPlatformIndividual : public FRequest
 {
@@ -378,6 +477,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : p
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformIndividual
@@ -387,13 +503,15 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuAllPlatformIndividual
     typedef FDelegate_AdminGetRequestingCcuAllPlatformIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Individual
  *
- * Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested range. These values should not be combined directly unless you&#39;ve accounted for duplicates in some other way. The combined endpoint allows you to combine the values within a time range without counting the same player multiple times.
+ * Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested
+ * range. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to
+ * combine the values within a time range without counting the same player multiple times.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuIndividual : public FRequest
 {
@@ -419,6 +537,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResp
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuIndividual
@@ -428,12 +563,11 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuIndividual
     typedef FDelegate_AdminGetRequestingCcuIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformCombined : public FRequest
 {
@@ -460,6 +594,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformCombined
@@ -469,12 +620,11 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformCombined
     typedef FDelegate_AdminGetRequestingCcuPlatformCombined Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Requesting Ccu Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetRequestingCcuPlatformIndividual : public FRequest
 {
@@ -501,6 +651,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : publ
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
@@ -510,13 +677,17 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
     typedef FDelegate_AdminGetRequestingCcuPlatformIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetRequestingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu
  *
- * Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time period. This stands in contrast to the individual request endpoint.  For example, if you request the CCU over an hour you&#39;ll receive one number in which players that were around over that time period will only be counted once.
+ * Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time
+ * period. This stands in contrast to the individual request endpoint.
+ * 
+ * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
+ * counted once.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcu : public FRequest
 {
@@ -542,6 +713,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcu
@@ -551,12 +739,11 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcu
     typedef FDelegate_AdminGetTotalCcu Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu All Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformCombined : public FRequest
 {
@@ -582,6 +769,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public F
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformCombined
@@ -591,12 +795,11 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformCombined
     typedef FDelegate_AdminGetTotalCcuAllPlatformCombined Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu All Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuAllPlatformIndividual : public FRequest
 {
@@ -622,6 +825,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformIndividual
@@ -631,13 +851,15 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuAllPlatformIndividual
     typedef FDelegate_AdminGetTotalCcuAllPlatformIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Individual
  *
- * Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These values should not be combined directly unless you&#39;ve accounted for duplicates in some other way. The combined endpoint allows you to combine the values within a time range without counting the same player multiple times.
+ * Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These
+ * values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine
+ * the values within a time range without counting the same player multiple times.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuIndividual : public FRequest
 {
@@ -663,6 +885,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuIndividual
@@ -672,12 +911,11 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuIndividual
     typedef FDelegate_AdminGetTotalCcuIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformCombined : public FRequest
 {
@@ -704,6 +942,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FRes
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformCombined
@@ -713,12 +968,11 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformCombined
     typedef FDelegate_AdminGetTotalCcuPlatformCombined Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Total Ccu Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetTotalCcuPlatformIndividual : public FRequest
 {
@@ -745,6 +999,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FR
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
@@ -754,13 +1025,17 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
     typedef FDelegate_AdminGetTotalCcuPlatformIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetTotalCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu
  *
- * Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across the given time period. This stands in contrast to the individual request endpoint.  For example, if you request the CCU over an hour you&#39;ll receive one number in which players that were around over that time period will only be counted once.
+ * Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across
+ * the given time period. This stands in contrast to the individual request endpoint.
+ * 
+ * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
+ * counted once.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcu : public FRequest
 {
@@ -786,6 +1061,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcu
@@ -795,12 +1087,11 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcu
     typedef FDelegate_AdminGetUpdatingCcu Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcu(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu All Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformCombined : public FRequest
 {
@@ -826,6 +1117,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : publi
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformCombined
@@ -835,12 +1143,11 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformCombined
     typedef FDelegate_AdminGetUpdatingCcuAllPlatformCombined Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu All Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuAllPlatformIndividual : public FRequest
 {
@@ -866,6 +1173,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : pub
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformIndividual
@@ -875,13 +1199,15 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuAllPlatformIndividual
     typedef FDelegate_AdminGetUpdatingCcuAllPlatformIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuAllPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Individual
  *
- * Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested range. These values should not be combined directly unless you&#39;ve accounted for duplicates in some other way. The combined endpoint allows you to combine the values within a time range without counting the same player multiple times.
+ * Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested
+ * range. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to
+ * combine the values within a time range without counting the same player multiple times.
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuIndividual : public FRequest
 {
@@ -907,6 +1233,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FRespon
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuIndividual
@@ -916,12 +1259,11 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuIndividual
     typedef FDelegate_AdminGetUpdatingCcuIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Platform Combined
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformCombined : public FRequest
 {
@@ -948,6 +1290,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public F
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformCombined
@@ -957,12 +1316,11 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformCombined
     typedef FDelegate_AdminGetUpdatingCcuPlatformCombined Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformCombined(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Get Updating Ccu Platform Individual
-
 */
 struct RALLYHEREAPI_API FRequest_AdminGetUpdatingCcuPlatformIndividual : public FRequest
 {
@@ -989,6 +1347,23 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformIndividual
@@ -998,13 +1373,14 @@ struct RALLYHEREAPI_API Traits_AdminGetUpdatingCcuPlatformIndividual
     typedef FDelegate_AdminGetUpdatingCcuPlatformIndividual Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminGetUpdatingCcuPlatformIndividual(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Update Player Last Seen
  *
- * Forcibly update the player&#39;s last_seen with the specified values. This enables an admin to set the last_seen time to something specific for testing.
+ * Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time
+ * to something specific for testing.
 */
 struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeen : public FRequest
 {
@@ -1034,6 +1410,29 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeen
@@ -1043,13 +1442,14 @@ struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeen
     typedef FDelegate_AdminUpdatePlayerLastSeen Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeen(InRequest, InDelegate, Priority); }
 };
 
 /* Admin Update Player Last Seen Id
  *
- * Forcibly update the player&#39;s last_seen with the specified values. This enables an admin to set the last_seen time to something specific for testing.
+ * Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time
+ * to something specific for testing.
 */
 struct RALLYHEREAPI_API FRequest_AdminUpdatePlayerLastSeenId : public FRequest
 {
@@ -1079,6 +1479,30 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeenId
@@ -1088,7 +1512,7 @@ struct RALLYHEREAPI_API Traits_AdminUpdatePlayerLastSeenId
     typedef FDelegate_AdminUpdatePlayerLastSeenId Delegate;
     typedef FPresenceAdminAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.AdminUpdatePlayerLastSeenId(InRequest, InDelegate, Priority); }
 };
 

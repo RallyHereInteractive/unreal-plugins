@@ -229,6 +229,22 @@ struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DequeueMeForPurge
@@ -238,7 +254,7 @@ struct RALLYHEREAPI_API Traits_DequeueMeForPurge
     typedef FDelegate_DequeueMeForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
@@ -268,6 +284,27 @@ struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponse
 
     
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
@@ -277,12 +314,11 @@ struct RALLYHEREAPI_API Traits_DequeuePersonForPurge
     typedef FDelegate_DequeuePersonForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DequeuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Disable Cross Progression
-
 */
 struct RALLYHEREAPI_API FRequest_DisableCrossProgression : public FRequest
 {
@@ -305,6 +341,17 @@ struct RALLYHEREAPI_API FResponse_DisableCrossProgression : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
 };
 
 struct RALLYHEREAPI_API Traits_DisableCrossProgression
@@ -314,12 +361,11 @@ struct RALLYHEREAPI_API Traits_DisableCrossProgression
     typedef FDelegate_DisableCrossProgression Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DisableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
 /* Enable Cross Progression
-
 */
 struct RALLYHEREAPI_API FRequest_EnableCrossProgression : public FRequest
 {
@@ -342,6 +388,17 @@ struct RALLYHEREAPI_API FResponse_EnableCrossProgression : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
 };
 
 struct RALLYHEREAPI_API Traits_EnableCrossProgression
@@ -351,7 +408,7 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
     typedef FDelegate_EnableCrossProgression Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.EnableCrossProgression(InRequest, InDelegate, Priority); }
 };
 
@@ -380,6 +437,23 @@ struct RALLYHEREAPI_API FResponse_GetAllRoles : public FResponse
 
     TArray<FRHAPI_Role> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_Role>& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllRoles
@@ -389,7 +463,7 @@ struct RALLYHEREAPI_API Traits_GetAllRoles
     typedef FDelegate_GetAllRoles Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllRoles(InRequest, InDelegate, Priority); }
 };
 
@@ -419,6 +493,28 @@ struct RALLYHEREAPI_API FResponse_GetPerson : public FResponse
 
     FRHAPI_PersonInfoResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPerson
@@ -428,7 +524,7 @@ struct RALLYHEREAPI_API Traits_GetPerson
     typedef FDelegate_GetPerson Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPerson(InRequest, InDelegate, Priority); }
 };
 
@@ -458,6 +554,28 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailList : public FResponse
 
     FRHAPI_PersonEmailListResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailList
@@ -467,7 +585,7 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailList
     typedef FDelegate_GetPersonEmailList Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailList(InRequest, InDelegate, Priority); }
 };
 
@@ -496,6 +614,23 @@ struct RALLYHEREAPI_API FResponse_GetPersonEmailListForSelf : public FResponse
 
     FRHAPI_PersonEmailListResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PersonEmailListResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
@@ -505,7 +640,7 @@ struct RALLYHEREAPI_API Traits_GetPersonEmailListForSelf
     typedef FDelegate_GetPersonEmailListForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonEmailListForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -534,6 +669,23 @@ struct RALLYHEREAPI_API FResponse_GetPersonForSelf : public FResponse
 
     FRHAPI_PersonInfoResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PersonInfoResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPersonForSelf
@@ -543,13 +695,13 @@ struct RALLYHEREAPI_API Traits_GetPersonForSelf
     typedef FDelegate_GetPersonForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPersonForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Id From Player Uuid
  *
- * Get a player&#39;s id from their uuid.
+ * Get a player's id from their uuid.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuid : public FRequest
 {
@@ -573,6 +725,38 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuid : public FResponse
 
     FRHAPI_PlayerIdWrapper Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
@@ -582,13 +766,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuid
     typedef FDelegate_GetPlayerIdFromPlayerUuid Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuid(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Id From Player Uuid For Self
  *
- * Get a player&#39;s id from their uuid for the active player on the access token.
+ * Get a player's id from their uuid for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerIdFromPlayerUuidForSelf : public FRequest
 {
@@ -611,6 +795,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerIdFromPlayerUuidForSelf : public FRes
 
     FRHAPI_PlayerIdWrapper Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerIdWrapper& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
@@ -620,13 +831,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerIdFromPlayerUuidForSelf
     typedef FDelegate_GetPlayerIdFromPlayerUuidForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerIdFromPlayerUuidForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Linked Portals
  *
- * Get a player&#39;s linked portals.
+ * Get a player's linked portals.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinkedPortals : public FRequest
 {
@@ -650,6 +861,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinkedPortals : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
@@ -659,13 +897,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinkedPortals
     typedef FDelegate_GetPlayerLinkedPortals Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinkedPortals(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Links
  *
- * Get a player&#39;s linked portals.
+ * Get a player's linked portals.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinks : public FRequest
 {
@@ -689,6 +927,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinks : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinks
@@ -698,13 +963,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinks
     typedef FDelegate_GetPlayerLinks Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinks(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Links For Self
  *
- * Get a player&#39;s linked portals for the active player on the access token.
+ * Get a player's linked portals for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerLinksForSelf : public FRequest
 {
@@ -727,6 +992,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponse
 
     FRHAPI_PlayerLinkedPortalsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerLinkedPortalsResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
@@ -736,13 +1023,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerLinksForSelf
     typedef FDelegate_GetPlayerLinksForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerLinksForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id
  *
- * Get a player&#39;s uuid from their id.
+ * Get a player's uuid from their id.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerId : public FRequest
 {
@@ -766,6 +1053,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerId : public FResponse
 
     FGuid Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FGuid& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
@@ -775,13 +1089,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerId
     typedef FDelegate_GetPlayerUuidFromPlayerId Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerId(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id For Self
  *
- * Get a player&#39;s uuid from their id for the active player on the access token.
+ * Get a player's uuid from their id for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelf : public FRequest
 {
@@ -804,6 +1118,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelf : public FRes
 
     FGuid Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FGuid& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
@@ -813,13 +1149,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelf
     typedef FDelegate_GetPlayerUuidFromPlayerIdForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id For Self V2
  *
- * Get a player&#39;s uuid from their id for the active player on the access token.
+ * Get a player's uuid from their id for the active player on the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdForSelfV2 : public FRequest
 {
@@ -842,6 +1178,28 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdForSelfV2 : public FR
 
     FRHAPI_PlayerUuidFromId Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
@@ -851,13 +1209,13 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdForSelfV2
     typedef FDelegate_GetPlayerUuidFromPlayerIdForSelfV2 Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdForSelfV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Uuid From Player Id V2
  *
- * Get a player&#39;s uuid from their id.
+ * Get a player's uuid from their id.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidFromPlayerIdV2 : public FRequest
 {
@@ -881,6 +1239,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayerUuidFromPlayerIdV2 : public FResponse
 
     FRHAPI_PlayerUuidFromId Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerUuidFromId& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
@@ -890,13 +1275,14 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidFromPlayerIdV2
     typedef FDelegate_GetPlayerUuidFromPlayerIdV2 Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerUuidFromPlayerIdV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Players Paged
  *
- * Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players. There is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.
+ * Iterate over all players.  This is a paginated API, so you will need to call it multiple times to get all players.
+ * There is no guaranteed ordering of players.  So if you need to run multiple iterations for comparison, you will need to sort the results.
 */
 struct RALLYHEREAPI_API FRequest_GetPlayersPaged : public FRequest
 {
@@ -923,6 +1309,33 @@ struct RALLYHEREAPI_API FResponse_GetPlayersPaged : public FResponse
 
     FRHAPI_PlayerIterateResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlayerIterateResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetPlayersPaged
@@ -932,7 +1345,7 @@ struct RALLYHEREAPI_API Traits_GetPlayersPaged
     typedef FDelegate_GetPlayersPaged Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayersPaged(InRequest, InDelegate, Priority); }
 };
 
@@ -961,6 +1374,28 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForMe : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
@@ -970,7 +1405,7 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
     typedef FDelegate_GetQueuePurgeStatusForMe Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForMe(InRequest, InDelegate, Priority); }
 };
 
@@ -1000,6 +1435,33 @@ struct RALLYHEREAPI_API FResponse_GetQueuePurgeStatusForPerson : public FRespons
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
@@ -1009,12 +1471,11 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
     typedef FDelegate_GetQueuePurgeStatusForPerson Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetQueuePurgeStatusForPerson(InRequest, InDelegate, Priority); }
 };
 
 /* Link
-
 */
 struct RALLYHEREAPI_API FRequest_Link : public FRequest
 {
@@ -1038,6 +1499,22 @@ struct RALLYHEREAPI_API FResponse_Link : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_Link
@@ -1047,13 +1524,13 @@ struct RALLYHEREAPI_API Traits_Link
     typedef FDelegate_Link Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Link(InRequest, InDelegate, Priority); }
 };
 
 /* Lookup Player By Portal
  *
- * Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call &#x60;/v1/player/{player_id}/linked_portals&#x60; for each player for that info, if necessary.
+ * Lookup players by various parameters.  Note that this does NOT find the active player, or other metadata about the resulting players.  It is suggested to call `/v1/player/{player_id}/linked_portals` for each player for that info, if necessary.
 */
 struct RALLYHEREAPI_API FRequest_LookupPlayerByPortal : public FRequest
 {
@@ -1084,6 +1561,28 @@ struct RALLYHEREAPI_API FResponse_LookupPlayerByPortal : public FResponse
 
     FRHAPI_LookupResults Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_LookupResults& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+    bool TryGetContentFor400(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
@@ -1093,13 +1592,13 @@ struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
     typedef FDelegate_LookupPlayerByPortal Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.LookupPlayerByPortal(InRequest, InDelegate, Priority); }
 };
 
 /* Queue Me For Purge
  *
- * Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on &#x60;suggested_purge_time&#x60;.
+ * Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
 */
 struct RALLYHEREAPI_API FRequest_QueueMeForPurge : public FRequest
 {
@@ -1123,6 +1622,33 @@ struct RALLYHEREAPI_API FResponse_QueueMeForPurge : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 409
+    Conflict
+    */
+    bool TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_QueueMeForPurge
@@ -1132,13 +1658,13 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
     typedef FDelegate_QueueMeForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueueMeForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Queue Person For Purge
  *
- * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on &#x60;suggested_purge_time&#x60;. Requires permission: purge:person:admin
+ * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`. Requires permission: purge:person:admin
 */
 struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 {
@@ -1163,6 +1689,28 @@ struct RALLYHEREAPI_API FResponse_QueuePersonForPurge : public FResponse
 
     FRHAPI_PurgeResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 202
+    Successful Response
+    */
+    bool TryGetContentFor202(FRHAPI_PurgeResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_QueuePersonForPurge
@@ -1172,12 +1720,11 @@ struct RALLYHEREAPI_API Traits_QueuePersonForPurge
     typedef FDelegate_QueuePersonForPurge Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.QueuePersonForPurge(InRequest, InDelegate, Priority); }
 };
 
 /* Unlink
-
 */
 struct RALLYHEREAPI_API FRequest_Unlink : public FRequest
 {
@@ -1200,6 +1747,17 @@ struct RALLYHEREAPI_API FResponse_Unlink : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+
 };
 
 struct RALLYHEREAPI_API Traits_Unlink
@@ -1209,7 +1767,7 @@ struct RALLYHEREAPI_API Traits_Unlink
     typedef FDelegate_Unlink Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.Unlink(InRequest, InDelegate, Priority); }
 };
 
@@ -1240,6 +1798,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePerson : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePerson
@@ -1249,7 +1829,7 @@ struct RALLYHEREAPI_API Traits_UpdatePerson
     typedef FDelegate_UpdatePerson Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePerson(InRequest, InDelegate, Priority); }
 };
 
@@ -1280,6 +1860,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailList : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
@@ -1289,7 +1891,7 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailList
     typedef FDelegate_UpdatePersonEmailList Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailList(InRequest, InDelegate, Priority); }
 };
 
@@ -1319,6 +1921,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonEmailListForSelf : public FRespons
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
@@ -1328,7 +1952,7 @@ struct RALLYHEREAPI_API Traits_UpdatePersonEmailListForSelf
     typedef FDelegate_UpdatePersonEmailListForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonEmailListForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1358,6 +1982,28 @@ struct RALLYHEREAPI_API FResponse_UpdatePersonForSelf : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
@@ -1367,7 +2013,7 @@ struct RALLYHEREAPI_API Traits_UpdatePersonForSelf
     typedef FDelegate_UpdatePersonForSelf Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePersonForSelf(InRequest, InDelegate, Priority); }
 };
 
@@ -1397,6 +2043,28 @@ struct RALLYHEREAPI_API FResponse_UpsertContact : public FResponse
 
     FRHAPI_JsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_MessageOnly& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+    /* Response 500
+    Internal Server Error
+    */
+    bool TryGetContentFor500(FRHAPI_MessageOnly& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_UpsertContact
@@ -1406,7 +2074,7 @@ struct RALLYHEREAPI_API Traits_UpsertContact
     typedef FDelegate_UpsertContact Delegate;
     typedef FUsersAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpsertContact(InRequest, InDelegate, Priority); }
 };
 

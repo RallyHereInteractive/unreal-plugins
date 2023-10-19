@@ -37,7 +37,7 @@ private:
 
 /* Get Utc Time
  *
- * Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API&#39;s time and create a offset to act upon.
+ * Returns the current UTC time for use by the game client. Allows a game client with a incorrect local time to compare against the API's time and create a offset to act upon.
 */
 struct RALLYHEREAPI_API FRequest_GetUtcTime : public FRequest
 {
@@ -58,6 +58,13 @@ struct RALLYHEREAPI_API FResponse_GetUtcTime : public FResponse
 
     FDateTime Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FDateTime& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetUtcTime
@@ -67,7 +74,7 @@ struct RALLYHEREAPI_API Traits_GetUtcTime
     typedef FDelegate_GetUtcTime Delegate;
     typedef FTimeAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetUtcTime(InRequest, InDelegate, Priority); }
 };
 

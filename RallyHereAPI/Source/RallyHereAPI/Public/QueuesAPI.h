@@ -70,7 +70,15 @@ private:
 
 /* Get All Map Game Info
  *
- * Get the config used to launch an instance by the launch template id. Launch template ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None **DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal
+ * Get the config used to launch an instance by the launch template id. Launch template ID can be found in
+ * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
+ * **DEPRECATED** - Use the /v1/instance-request-template endpoint instead. This endpoint does not support loading data from the developer-portal
 */
 struct RALLYHEREAPI_API FRequest_GetAllMapGameInfo : public FRequest
 {
@@ -99,6 +107,25 @@ struct RALLYHEREAPI_API FResponse_GetAllMapGameInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InstanceLaunchTemplate& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
@@ -108,13 +135,20 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
     typedef FDelegate_GetAllMapGameInfo Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllMapGameInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info
  *
- * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None **DEPRECATED** - Use the V2 endpoint instead
+ * Get all the available and active queues that sessions can try to join
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
+ * **DEPRECATED** - Use the V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfo : public FRequest
 {
@@ -144,6 +178,25 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfo : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_QueuesResponse& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfo
@@ -153,13 +206,19 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
     typedef FDelegate_GetAllQueueInfo Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfo(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Queue Info V2
  *
- * Get all the available and active queues that sessions can try to join  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
+ * Get all the available and active queues that sessions can try to join
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllQueueInfoV2 : public FRequest
 {
@@ -189,6 +248,25 @@ struct RALLYHEREAPI_API FResponse_GetAllQueueInfoV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_QueuesResponseV2& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
@@ -198,13 +276,20 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
     typedef FDelegate_GetAllQueueInfoV2 Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetAllQueueInfoV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Instance Request Template
  *
- * Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in MatchMakingProfiles that are return by the &#x60;/v1/match-making-templates/&#x60; endpoint  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None
+ * Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in
+ * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetInstanceRequestTemplate : public FRequest
 {
@@ -233,6 +318,25 @@ struct RALLYHEREAPI_API FResponse_GetInstanceRequestTemplate : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InstanceRequestTemplate& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
@@ -242,13 +346,21 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
     typedef FDelegate_GetInstanceRequestTemplate Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates
  *
- * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;queues&#x60; config endpoints  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;               Required Session Permissions: None **DEPRECATED** Use the V2 endpoint instead
+ * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information
+ * from the `queues` config endpoints
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ *             
+ * Required Session Permissions: None
+ * **DEPRECATED** Use the V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplates : public FRequest
 {
@@ -277,6 +389,25 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplates : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroup& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
@@ -286,13 +417,21 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
     typedef FDelegate_GetMatchMakingTemplates Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplates(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates V2
  *
- * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information from the &#x60;queues&#x60; config endpoints  Required Permissions:   For any player (including themselves)any of: &#x60;session:*&#x60;, &#x60;session:read:config&#x60;   Required Session Permissions: None **DEPRECATED** Use the V2 endpoint instead
+ * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information
+ * from the `queues` config endpoints
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
+ * **DEPRECATED** Use the V2 endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_GetMatchMakingTemplatesV2 : public FRequest
 {
@@ -321,6 +460,25 @@ struct RALLYHEREAPI_API FResponse_GetMatchMakingTemplatesV2 : public FResponse
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_MatchMakingTemplateGroupV2& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
@@ -330,7 +488,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
     typedef FDelegate_GetMatchMakingTemplatesV2 Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingTemplatesV2(InRequest, InDelegate, Priority); }
 };
 

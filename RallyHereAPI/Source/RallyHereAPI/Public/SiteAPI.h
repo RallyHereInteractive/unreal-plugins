@@ -39,7 +39,8 @@ private:
 
 /* Get Site Settings
  *
- * Returns a list of all the enabled Sites/Regions.              Deprecated as this endpoint has moved to the session api.
+ * Returns a list of all the enabled Sites/Regions. 
+ *             Deprecated as this endpoint has moved to the session api.
 */
 struct RALLYHEREAPI_API FRequest_GetSiteSettings : public FRequest
 {
@@ -62,6 +63,18 @@ struct RALLYHEREAPI_API FResponse_GetSiteSettings : public FResponse
 
     TArray<FRHAPI_SiteSettings> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_SiteSettings>& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetSiteSettings
@@ -71,7 +84,7 @@ struct RALLYHEREAPI_API Traits_GetSiteSettings
     typedef FDelegate_GetSiteSettings Delegate;
     typedef FSiteAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSiteSettings(InRequest, InDelegate, Priority); }
 };
 

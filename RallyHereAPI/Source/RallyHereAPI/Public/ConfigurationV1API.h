@@ -62,6 +62,18 @@ struct RALLYHEREAPI_API FResponse_GetFriendsAndBlockLimits : public FResponse
 
     FRHAPI_FriendsApiConfig Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_FriendsApiConfig& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
 };
 
 struct RALLYHEREAPI_API Traits_GetFriendsAndBlockLimits
@@ -71,7 +83,7 @@ struct RALLYHEREAPI_API Traits_GetFriendsAndBlockLimits
     typedef FDelegate_GetFriendsAndBlockLimits Delegate;
     typedef FConfigurationV1API API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetFriendsAndBlockLimits(InRequest, InDelegate, Priority); }
 };
 

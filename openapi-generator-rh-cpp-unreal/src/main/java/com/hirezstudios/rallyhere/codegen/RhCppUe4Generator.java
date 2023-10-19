@@ -133,6 +133,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         additionalProperties.put("unrealCategory", unrealCategory);
         additionalProperties.put("apiGenerationMode", apiGenerationMode);
         additionalProperties.put("stripBlueprintCompatibility", stripBlueprintCompatibility);
+        additionalProperties.put("lambdaCommentDescription", new RhDescriptionCommentLambda());
         additionalProperties.put("lambdaSplitString", new RhUnrealCppSplitStringLambda());
 
         /**
