@@ -396,7 +396,7 @@ void FResponse_{{operationIdCamelCase}}::SetHttpResponseCode(EHttpResponseCodes:
     {{#isDefault}}
     default:
     {{/isDefault}}
-        SetResponseString(TEXT("{{message}}"));
+        SetResponseString({{#lambdaSplitString}}{{message}}{{/lambdaSplitString}});
         break;
     {{/responses}}
     }
