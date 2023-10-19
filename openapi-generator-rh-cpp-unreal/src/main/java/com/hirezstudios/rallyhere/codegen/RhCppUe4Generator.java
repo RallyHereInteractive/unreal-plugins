@@ -1,6 +1,7 @@
 /*
  * Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
  * Copyright 2022 HiRez Studios
+ * Copyright 2023 RallyHere Interactive
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ import io.swagger.models.properties.*;
 import org.openapitools.codegen.languages.AbstractCppCodegen;
 import org.openapitools.codegen.model.ModelMap;
 import org.openapitools.codegen.model.ModelsMap;
+import org.openapitools.codegen.templating.mustache.SplitStringLambda;
 import org.openapitools.codegen.utils.CamelizeOption;
 import org.openapitools.codegen.utils.ModelUtils;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -132,6 +134,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
         additionalProperties.put("apiGenerationMode", apiGenerationMode);
         additionalProperties.put("stripBlueprintCompatibility", stripBlueprintCompatibility);
         additionalProperties.put("lambdaCommentDescription", new RhDescriptionCommentLambda());
+        additionalProperties.put("lambdaSplitString", new RhUnrealCppSplitStringLambda());
 
         /**
          * Language Specific Primitives.  These types will not trigger imports by
