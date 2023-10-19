@@ -40,33 +40,33 @@ public:
 	*/
     HttpRetryManagerPtr GetRetryManager() const { return RetryManager; }
 	/**
-	 * @brief Sets the sandbox for he connection.
-	 * @param [in] InSandboxId Id of the Sandbox to use.
-	 * @param [in] Source The source of the sandbox change, for logging.
+	 * @brief Sets the environment for he connection.
+	 * @param [in] InEnvironmentId Id of the Environment to use.
+	 * @param [in] Source The source of the environment change, for logging.
 	 */
-    void SetSandboxId(FString InSandboxId, const FString& Source = TEXT("Direct"));
+    void SetEnvironmentId(FString InEnvironmentId, const FString& Source = TEXT("Direct"));
 	/**
-	 * @brief Get the current Sandbox Id (will run ResolveSandboxId if there isn't one)
+	 * @brief Get the current Environment Id (will run ResolveEnvironmentId if there isn't one)
 	 */
-    FString GetSandboxId();
+    FString GetEnvironmentId();
 
     /**
-      * @brief Get the Sandbox ID used for finding the base URL from the first of the following sources:
-      * 1. Command line values from the keys in SandboxCommandLineKeys.  By default these are:
-      *     RallyHereSandboxX
-      *     RallyHereSandbox
-      *     RallyHereSandboxInternal
-      * 2. Results from GetSandboxId from the SandboxOSSName (or default if one is not provided)
+      * @brief Get the Environment ID used for finding the base URL from the first of the following sources:
+      * 1. Command line values from the keys in EnvironmentCommandLineKeys.  By default these are:
+      *     RallyHereEnvX
+      *     RallyHereEnv
+      *     RallyHereEnvInternal
+      * 2. Results from GetEnvironmentId from the EnvironmentOSSName (or default if one is not provided)
       */
-    void ResolveSandboxId();
+    void ResolveEnvironmentId();
 
 	/**
-	  * @brief Updates the locked status of the Sandbox Id.
-	  * @param [in] bLocked If locked, disables the ResolveSandboxId function.
+	  * @brief Updates the locked status of the Environment Id.
+	  * @param [in] bLocked If locked, disables the ResolveEnvironmentId function.
 	  */
-	void LockSandboxId(bool bLocked = true)
+	void LockEnvironmentId(bool bLocked = true)
 	{
-		bIsSandboxIdLocked = bLocked;
+		bIsEnvironmentIdLocked = bLocked;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public:
       *     RallyHereURLX
       *     RallyHereURL
       *     RallyHereURLInternal
-      * 2. ini value from the "RallyHereSandboxURL" section, where the key is the current sandboxId returned from GetSandboxId
+      * 2. ini value from the "RallyHereEnvURL" section, where the key is the current EnvironmentId returned from GetEnvironmentId
       * 3. ini value from the section for this class, with the "BaseUrl" key.
       */
     void ResolveBaseURL();
@@ -186,11 +186,11 @@ private:
     bool bIsBaseUrlLocked;
 
     UPROPERTY(Transient)
-    FString ResolvedSandboxId;
+    FString ResolvedEnvironmentId;
 
-	// Is the SandboxId locked - aka will not change during ResolveSandboxId calls.
+	// Is the EnvironmentId locked - aka will not change during ResolveEnvironmentId calls.
     UPROPERTY(Transient)
-    bool bIsSandboxIdLocked;
+    bool bIsEnvironmentIdLocked;
 
 	UPROPERTY(Transient)
     FString ResolvedClientId;

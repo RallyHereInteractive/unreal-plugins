@@ -638,7 +638,7 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 	{
 		FString arguments = FCommandLine::Get();
 
-		// if no rally here url was provided on the commandline, look it up and inject it (GHA does not know about sandbox lookups)
+		// if no rally here url was provided on the commandline, look it up and inject it (GHA does not know about environment lookups)
 		FString CommandlineURL;
 		if (!FParse::Value(*arguments, TEXT("rallyhereurl="), CommandlineURL))
 		{

@@ -13,15 +13,15 @@
  */
 
 /**
- * @brief Settings for Sandbox Configuration.  If set, these override the defaults when the SandboxId matches the specified sandbox id
+ * @brief Settings for Environment Configuration.  If set, these override the defaults when the EnvironmentId matches the specified environment id
  */
 USTRUCT()
-struct FRH_SandboxConfiguration
+struct FRH_EnvironmentConfiguration
 {
 	GENERATED_BODY()
-	/** @brief Sandbox Name, for use with client side sandbox lookups and overrides. */
+	/** @brief Environment Name, for use with client side environment lookups and overrides. */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-	FString SandboxId;
+	FString EnvironmentId;
 
 	/** @brief RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
@@ -57,44 +57,24 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Connectivity
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/** @brief DEPRECATED - RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API */
-	UE_DEPRECATED(5.0, "Please use DefaultSandboxConfiguration instead")
-    UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-    FString BaseUrl;
-
-	/** @brief DEPRECATED - RallyHere Client ID. Determines the available permissions for RallyHere APIs */
-	UE_DEPRECATED(5.0, "Please use DefaultSandboxConfiguration instead")
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-	FString ClientId;
-
-	/** @brief DEPRECATED - RallyHere Client secret. Must be associated with the defined client ID */
-	UE_DEPRECATED(5.0, "Please use DefaultSandboxConfiguration instead")
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-	FString ClientSecret;
-
-	/** @brief RallyHere default sandbox configuration */
+	/** @brief RallyHere default environment configuration */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (ShowOnlyInnerProperties))
-	FRH_SandboxConfiguration DefaultSandboxConfiguration;
+	FRH_EnvironmentConfiguration DefaultEnvironmentConfiguration;
 
-	/** @brief Per-Sandbox configuration overrides. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys) */
+	/** @brief Per-Environment configuration overrides. These environments are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see EnvironmentCommandLineKeys) */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity", meta = (ShowOnlyInnerProperties))
-	TArray<FRH_SandboxConfiguration> SandboxConfigurations;
+	TArray<FRH_EnvironmentConfiguration> EnvironmentConfigurations;
 
-	/** @brief Helper to get the configuration for a given sandbox by SandboxId */
-	const FRH_SandboxConfiguration* GetSandboxConfiguration(const FString& SandboxId) const;
-
-	/** @brief Per-Sandbox overrides for BaseUrl. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys) */
-	UE_DEPRECATED(5.0, "Please use GetSandboxConfiguration instead of accessing directly")
-	UPROPERTY(Config, meta=(ShowOnlyInnerProperties))
-	TArray<FRH_SandboxConfiguration> SandboxURLs;
+	/** @brief Helper to get the configuration for a given environment by EnvironmentId */
+	const FRH_EnvironmentConfiguration* GetEnvironmentConfiguration(const FString& EnvironmentId) const;
 
 	/** @brief Keys to check for on the command line for an override to the default BaseURL */
     UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
     TArray<FString> BaseURLCommandLineKeys;
 
-	/** @brief Keys to check for on the command line for an override to the default Sandbox when using SandboxConfigurations */
+	/** @brief Keys to check for on the command line for an override to the default Environment when using EnvironmentConfigurations */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
-    TArray<FString> SandboxCommandLineKeys;
+    TArray<FString> EnvironmentCommandLineKeys;
 
 	/** @brief Keys to check for on the command line for an override to the default OSS */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
@@ -108,9 +88,9 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
 	TArray<FString> ClientSecretCommandLineKeys;
 
-    /** @brief Online Subsystem to use for selecting the base URL sandbox.  If not provided, will use the default OSS */
+    /** @brief Online Subsystem to use for selecting the base URL environment.  If not provided, will use the default OSS */
     UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-    FName SandboxOSSName;
+    FName EnvironmentOSSName;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Sessions
