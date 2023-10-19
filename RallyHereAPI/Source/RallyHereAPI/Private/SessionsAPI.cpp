@@ -223,6 +223,7 @@ bool FResponse_AddPlatformSessionToRallyHereSession::TryGetContentFor409(FRHAPI_
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_AddPlatformSessionToRallyHereSession::GetHeader409_RetryAfter() const
 {
+	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
@@ -231,6 +232,7 @@ TOptional<int32> FResponse_AddPlatformSessionToRallyHereSession::GetHeader409_Re
             return HeaderVal;
         }
     }
+	*/
     return 0;
 }
 
@@ -1267,6 +1269,7 @@ bool FResponse_DeletePlatformSessionFromRallyHereSession::TryGetContentFor409(FR
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_DeletePlatformSessionFromRallyHereSession::GetHeader409_RetryAfter() const
 {
+	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
@@ -1275,6 +1278,7 @@ TOptional<int32> FResponse_DeletePlatformSessionFromRallyHereSession::GetHeader4
             return HeaderVal;
         }
     }
+	*/
     return 0;
 }
 
@@ -4573,6 +4577,7 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_Hz
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader409_RetryAfter() const
 {
+	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
@@ -4581,6 +4586,7 @@ TOptional<int32> FResponse_JoinSessionByPlatformSessionByUuid::GetHeader409_Retr
             return HeaderVal;
         }
     }
+	*/
     return 0;
 }
 
@@ -4811,6 +4817,7 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::TryGetContentFor409(FRHAPI_Hz
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader409_RetryAfter() const
 {
+	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
@@ -4818,7 +4825,7 @@ TOptional<int32> FResponse_JoinSessionByPlatformSessionIdSelf::GetHeader409_Retr
         {
             return HeaderVal;
         }
-    }
+    }*/
     return 0;
 }
 
@@ -5896,6 +5903,7 @@ bool FResponse_LeaveSessionByPlatformSessionByUuid::TryGetContentFor409(FRHAPI_H
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_LeaveSessionByPlatformSessionByUuid::GetHeader409_RetryAfter() const
 {
+	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
@@ -5904,6 +5912,7 @@ TOptional<int32> FResponse_LeaveSessionByPlatformSessionByUuid::GetHeader409_Ret
             return HeaderVal;
         }
     }
+	*/
     return 0;
 }
 
@@ -6084,6 +6093,7 @@ bool FResponse_LeaveSessionByPlatformSessionSelf::TryGetContentFor409(FRHAPI_HzA
 /* Number of seconds after which to retry the request, when the server should have the resource available */
 TOptional<int32> FResponse_LeaveSessionByPlatformSessionSelf::GetHeader409_RetryAfter() const
 {
+	/*
     if (HttpResponse)
     {
         FString HeaderVal = HttpResponse->GetHeader(TEXT("Retry-After"));
@@ -6092,6 +6102,7 @@ TOptional<int32> FResponse_LeaveSessionByPlatformSessionSelf::GetHeader409_Retry
             return HeaderVal;
         }
     }
+	*/
     return 0;
 }
 
