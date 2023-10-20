@@ -822,6 +822,33 @@ void URH_FriendSubsystem::OnReadOSSFriendsComplete(int32 LocalUserNum, bool bWas
 
 void URH_FriendSubsystem::OnOSSPresenceReceived(const FUniqueNetId& UserId, const TSharedRef<FOnlineUserPresence>& NewPresence)
 {
+	auto OSS = IOnlineSubsystem::Get();
+	if (OSS)
+	{
+		FRH_PlayerPlatformId PlayerPlatformId;
+		TOptional<ERHAPI_Platform> PlatformType = RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NULL_SUBSYSTEM);
+		PlayerPlatformId.PlatformType = PlatformType.IsSet() ? PlatformType.GetValue() : ERHAPI_Platform::Anon;
+		PlayerPlatformId.UserId = UserId.ToString();
+		
+		if (const auto ExistingFriend = GetFriendByPlatformId(PlayerPlatformId))
+		{
+			auto PlatformFriend = ExistingFriend->PlatformFriends.FindByPredicate(
+				[PlayerPlatformId](const URH_PlatformFriend* PlatformFriend)
+				{
+					return PlatformFriend->GetPlayerPlatformId() == PlayerPlatformId;
+				});
+
+			if (PlatformFriend)
+			{
+				(*PlatformFriend)->UpdatePresence(*NewPresence);
+				FriendUpdatedDelegate.Broadcast(ExistingFriend);
+				BLUEPRINT_FriendUpdatedDelegate.Broadcast(ExistingFriend);
+				return;
+			}
+		}
+	}
+
+	// if we fail to find a friend to update, then just update all OSS friends as a fallback
 	UpdateWithOSSFriends();
 }
 
