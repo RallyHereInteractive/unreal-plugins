@@ -97,10 +97,10 @@ class RALLYHEREAPI_API FRequest
 {
 public:
     FRequest()
-	{
-		// default to enabling retry
-		SetShouldRetry();
-	}
+    {
+        // default to enabling retry
+        SetShouldRetry();
+    }
     virtual ~FRequest() = default;
     virtual bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const = 0;
     virtual FString ComputePath() const = 0;
@@ -110,7 +110,7 @@ public:
 
     /* Enables retry and optionally sets a retry policy for this request */
     void SetShouldRetry(const FHttpRetryParams& Params = FHttpRetryParams()) { RetryParams = Params; }
-	void ClearShouldRetry() { RetryParams.Reset(); }
+    void ClearShouldRetry() { RetryParams.Reset(); }
     const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
 
 protected:
