@@ -223,14 +223,20 @@ public:
 		PlayerPlatformId.PlatformType = PlatformType.IsSet() ? PlatformType.GetValue() : ERHAPI_Platform::Anon;
 		PlayerPlatformId.UserId = OnlineFriend.GetUserId()->ToString();
 		DisplayName = OnlineFriend.GetDisplayName();
-		Joinable = Presence.bIsJoinable;
-		PlayingGame = Presence.bIsPlaying;
-		PlayingGame = Presence.bIsPlayingThisGame;
-		Online = Presence.bIsOnline;
 		PendingFriendRequestFromYou = OnlineFriend.GetInviteStatus() == EInviteStatus::PendingOutbound;
 		PendingFriendRequestToYou = OnlineFriend.GetInviteStatus() == EInviteStatus::PendingInbound;
 		Blocked = OnlineFriend.GetInviteStatus() == EInviteStatus::Blocked;
 		Friend = OnlineFriend.GetInviteStatus() == EInviteStatus::Accepted;
+
+		UpdatePresence(Presence);
+	}
+
+	void UpdatePresence(const FOnlineUserPresence& Presence)
+	{
+		Joinable = Presence.bIsJoinable;
+		PlayingGame = Presence.bIsPlaying;
+		PlayingThisGame = Presence.bIsPlayingThisGame;
+		Online = Presence.bIsOnline;
 		RichPresenceInfo = Presence.Status.StatusStr;
 	}
 
