@@ -24,6 +24,8 @@ void FRHAPI_SessionPlayerUpdateResponse::WriteJson(TSharedRef<TJsonWriter<>>& Wr
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("status"));
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(Status));
+    Writer->WriteIdentifierPrefix(TEXT("team_id"));
+    RallyHereAPI::WriteJsonValue(Writer, TeamId);
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -42,6 +44,8 @@ bool FRHAPI_SessionPlayerUpdateResponse::FromJson(const TSharedPtr<FJsonValue>& 
 
     const TSharedPtr<FJsonValue> JsonStatusField = (*Object)->TryGetField(TEXT("status"));
     ParseSuccess &= JsonStatusField.IsValid() && !JsonStatusField->IsNull() && TryGetJsonValue(JsonStatusField, Status);
+    const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
+    ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {

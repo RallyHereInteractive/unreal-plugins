@@ -68,6 +68,9 @@ Private/InstanceRequest.cpp
 Private/InstanceRequestTemplate.cpp
 Private/InstanceSourceProvider.cpp
 Private/InstanceStartupParams.cpp
+Private/InstanceStatus.cpp
+Private/InstanceStatusResponse.cpp
+Private/InstanceStatusUpdate.cpp
 Private/Inventory.cpp
 Private/InventoryAPI.cpp
 Private/InventoryBucket.cpp
@@ -338,6 +341,9 @@ Public/InstanceRequest.h
 Public/InstanceRequestTemplate.h
 Public/InstanceSourceProvider.h
 Public/InstanceStartupParams.h
+Public/InstanceStatus.h
+Public/InstanceStatusResponse.h
+Public/InstanceStatusUpdate.h
 Public/Inventory.h
 Public/InventoryAPI.h
 Public/InventoryBucket.h

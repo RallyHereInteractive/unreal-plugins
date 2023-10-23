@@ -49,6 +49,60 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
     /** @brief Sets the value of SessionId */
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
+    /** @brief Number of players actively in this session */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 PlayerCount_Optional{  };
+    /** @brief true if PlayerCount_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PlayerCount_IsSet{ false };
+    /** @brief Gets the value of PlayerCount_Optional, regardless of it having been set */
+    int32& GetPlayerCount() { return PlayerCount_Optional; }
+    /** @brief Gets the value of PlayerCount_Optional, regardless of it having been set */
+    const int32& GetPlayerCount() const { return PlayerCount_Optional; }
+    /** @brief Gets the value of PlayerCount_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetPlayerCount(const int32& DefaultValue) const { if (PlayerCount_IsSet) return PlayerCount_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PlayerCount_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlayerCount(int32& OutValue) const { if (PlayerCount_IsSet) OutValue = PlayerCount_Optional; return PlayerCount_IsSet; }
+    /** @brief Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetPlayerCountOrNull() { if (PlayerCount_IsSet) return &PlayerCount_Optional; return nullptr; }
+    /** @brief Returns a pointer to PlayerCount_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetPlayerCountOrNull() const { if (PlayerCount_IsSet) return &PlayerCount_Optional; return nullptr; }
+    /** @brief Sets the value of PlayerCount_Optional and also sets PlayerCount_IsSet to true */
+    void SetPlayerCount(int32 NewValue) { PlayerCount_Optional = NewValue; PlayerCount_IsSet = true; }
+     /** @brief Clears the value of PlayerCount_Optional and sets PlayerCount_IsSet to false */
+    void ClearPlayerCount() { PlayerCount_Optional = 0; PlayerCount_IsSet = false; }
+    /** @brief Returns true if PlayerCount_Optional is set and matches the default value */
+    bool IsPlayerCountDefaultValue() const { return PlayerCount_IsSet && PlayerCount_Optional == 0; }
+    /** @brief Sets the value of PlayerCount_Optional to its default and also sets PlayerCount_IsSet to true */
+    void SetPlayerCountToDefault() { PlayerCount_Optional = 0; PlayerCount_IsSet = true; }
+
+    /** @brief Maximum number of players that can be in this session */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 MaxPlayerCount_Optional{  };
+    /** @brief true if MaxPlayerCount_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MaxPlayerCount_IsSet{ false };
+    /** @brief Gets the value of MaxPlayerCount_Optional, regardless of it having been set */
+    int32& GetMaxPlayerCount() { return MaxPlayerCount_Optional; }
+    /** @brief Gets the value of MaxPlayerCount_Optional, regardless of it having been set */
+    const int32& GetMaxPlayerCount() const { return MaxPlayerCount_Optional; }
+    /** @brief Gets the value of MaxPlayerCount_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetMaxPlayerCount(const int32& DefaultValue) const { if (MaxPlayerCount_IsSet) return MaxPlayerCount_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MaxPlayerCount_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMaxPlayerCount(int32& OutValue) const { if (MaxPlayerCount_IsSet) OutValue = MaxPlayerCount_Optional; return MaxPlayerCount_IsSet; }
+    /** @brief Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetMaxPlayerCountOrNull() { if (MaxPlayerCount_IsSet) return &MaxPlayerCount_Optional; return nullptr; }
+    /** @brief Returns a pointer to MaxPlayerCount_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetMaxPlayerCountOrNull() const { if (MaxPlayerCount_IsSet) return &MaxPlayerCount_Optional; return nullptr; }
+    /** @brief Sets the value of MaxPlayerCount_Optional and also sets MaxPlayerCount_IsSet to true */
+    void SetMaxPlayerCount(int32 NewValue) { MaxPlayerCount_Optional = NewValue; MaxPlayerCount_IsSet = true; }
+     /** @brief Clears the value of MaxPlayerCount_Optional and sets MaxPlayerCount_IsSet to false */
+    void ClearMaxPlayerCount() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = false; }
+    /** @brief Returns true if MaxPlayerCount_Optional is set and matches the default value */
+    bool IsMaxPlayerCountDefaultValue() const { return MaxPlayerCount_IsSet && MaxPlayerCount_Optional == 0; }
+    /** @brief Sets the value of MaxPlayerCount_Optional to its default and also sets MaxPlayerCount_IsSet to true */
+    void SetMaxPlayerCountToDefault() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = true; }
+
     /** @brief Custom data with the listing of the instance in the Session browser */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
