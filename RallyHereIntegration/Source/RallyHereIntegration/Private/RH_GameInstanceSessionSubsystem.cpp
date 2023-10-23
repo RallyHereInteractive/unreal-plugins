@@ -121,6 +121,11 @@ void URH_GameInstanceSessionSubsystem::Initialize()
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	Super::Initialize();
 
+	if (!InstanceHealthPoller.IsValid())
+	{
+		InstanceHealthPoller = FRH_PollControl::CreateAutoPoller();
+	}
+
 	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &URH_GameInstanceSessionSubsystem::OnMapLoadComplete);
 	if (GEngine != nullptr)
 	{
@@ -138,6 +143,7 @@ void URH_GameInstanceSessionSubsystem::Deinitialize()
 	DesiredSession = nullptr;
 	ActiveSession = nullptr;
 	FallbackSecurityToken.Reset();
+	InstanceHealthPoller.Reset();
 
 	FWorldDelegates::OnPostWorldInitialization.RemoveAll(this);
 	if (GEngine != nullptr)
@@ -299,6 +305,11 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		ActiveSession->SetActive(false);
 		ActiveSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
 		ActiveSession = nullptr;
+
+		if (InstanceHealthPoller.IsValid())
+		{
+			InstanceHealthPoller->StopPoll();
+		}
 	}
 
 	ActiveSession = JoinedSession;
@@ -309,11 +320,68 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		check(!ActiveSession->IsActive());
 		ActiveSession->SetActive(true);
 		ActiveSession->SetWatchingPlayers(true);
+
+		// if this instance is locally hosted, set up health polling
+		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
+		{
+			if (InstanceHealthPoller.IsValid())
+			{
+				static FName PollTimerName(TEXT("InstanceHealth"));
+				InstanceHealthPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollInstanceHealth), PollTimerName, true);
+			}
+		}
 	}
 
 	// fire delegates to allow registration of handler objects
 	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
+}
+
+ERHAPI_InstanceStatus URH_GameInstanceSessionSubsystem::GetInstanceStatusToReport() const
+{
+	return ERHAPI_InstanceStatus::Healthy;
+}
+
+void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollCompleteFunc& Delegate)
+{
+	// make sure the active session is locally hosted
+	if (ActiveSession != nullptr && ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
+	{
+		auto* Instance = ActiveSession->GetInstanceData();
+
+		typedef RallyHereAPI::Traits_InstanceHealthCheck BaseType;
+
+		BaseType::Request Request = {};
+		Request.AuthContext = GetAuthContext();
+		Request.SessionId = ActiveSession->GetSessionId();
+		Request.InstanceStatusUpdate.SetInstanceStatus(GetInstanceStatusToReport());
+		
+		if (Instance != nullptr)
+		{
+			auto* InstanceId = Instance->GetInstanceIdOrNull();
+			if (InstanceId != nullptr)
+			{
+				Request.InstanceStatusUpdate.SetInstanceId(*InstanceId);
+			}
+		}
+
+		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+			BaseType::Delegate(),
+			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				// reset timer if we still have an active session
+				Delegate.ExecuteIfBound(bSuccess, ActiveSession != nullptr);
+			}),
+			GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+		);
+
+		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+	}
+	else
+	{
+		// stop the timer if no active session and instance
+		Delegate.ExecuteIfBound(false, false);
+	}
 }
 
 ARH_OnlineBeaconHost* URH_GameInstanceSessionSubsystem::CreateBeaconHost(UWorld* pWorld, uint32 Port, bool bShutdownWorldNetDriver)
@@ -654,7 +722,12 @@ void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, 
 		auto* Instance = ActiveSession->GetInstanceData();
 		if (Instance != nullptr)
 		{
-			Request.InstanceFubar.SetInstanceId(Instance->GetInstanceId());
+			auto* InstanceId = Instance->GetInstanceIdOrNull();
+			if (InstanceId != nullptr)
+			{
+				Request.InstanceFubar.SetInstanceId(*InstanceId);
+			}
+
 			if (Instance->HostType == ERHAPI_HostType::Player)
 			{
 				Request.InstanceFubar.SetInstanceSourceProvider(ERHAPI_InstanceSourceProvider::Player);

@@ -103,15 +103,16 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 			ImGuiDisplayCopyableValue(TEXT("HostPlayerUuid"), Info.GetHostPlayerUuidOrNull());
 		}
 
-		ImGui::Text("Joinability: %s", TCHAR_TO_UTF8(*EnumToString(Info.JoinStatus)));
+		ImGui::Text("Joinability: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetJoinStatus())));
+		ImGui::Text("Status: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetInstanceStatus())));
 
 		if (const auto InstanceStartupParams = Info.GetInstanceStartupParamsOrNull())
 		{
 			if (ImGui::TreeNodeEx("InstanceStartupParams", RH_DefaultTreeFlagsLeaf))
 			{
-				ImGuiDisplayCopyableValue(TEXT("Map"), InstanceStartupParams->Map);
+				ImGuiDisplayCopyableValue(TEXT("Map"), InstanceStartupParams->GetMap());
 				ImGuiDisplayCopyableValue(TEXT("Mode"), InstanceStartupParams->GetMode());
-				ImGuiDisplayCopyableValue(TEXT("MiscParams"), InstanceStartupParams->MiscParams);
+				ImGuiDisplayCopyableValue(TEXT("MiscParams"), InstanceStartupParams->GetMiscParams());
 				ImGuiDisplayCustomData(InstanceStartupParams->GetCustomData());
 
 				ImGui::TreePop();
@@ -122,8 +123,8 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 		{
 			if (ImGui::TreeNodeEx("JoinParams", RH_DefaultTreeFlagsLeaf))
 			{
-				ImGuiDisplayCopyableValue(TEXT("PublicConnStr"), JoinParams->PublicConnStr);
-				ImGuiDisplayCopyableValue(TEXT("PrivateConnStr"), JoinParams->PrivateConnStr);
+				ImGuiDisplayCopyableValue(TEXT("PublicConnStr"), JoinParams->GetPublicConnStr());
+				ImGuiDisplayCopyableValue(TEXT("PrivateConnStr"), JoinParams->GetPrivateConnStr());
 				ImGuiDisplayCustomData(JoinParams->GetCustomData());
 
 				ImGui::TreePop();
@@ -131,7 +132,7 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 		}
 
 		ImGuiDisplayCopyableValue(TEXT("Version"), Info.GetVersionOrNull());
-		ImGuiDisplayCopyableValue(TEXT("Created"), Info.Created);
+		ImGuiDisplayCopyableValue(TEXT("Created"), Info.GetCreated());
 
 		ImGuiDisplayCustomData(Info.GetCustomData());
 
@@ -626,10 +627,11 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			{
 				const auto& Team = Session.Teams[i];
 				const int32 TeamId = i;
-				FString TeamHeaderString = FString::Printf(TEXT("Team %d"), i);
+				FString TeamHeaderString = FString::Printf(TEXT("Team %d"), Team.GetTeamId());
 
 				if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*TeamHeaderString), RH_DefaultTreeFlags))
 				{
+					ImGuiDisplayCopyableValue(TEXT("TeamId"), Team.GetTeamId());
 					ImGuiDisplayCopyableValue(TEXT("MaxSize"), Team.GetMaxSize());
 					for (auto Player : Team.Players)
 					{
@@ -1199,7 +1201,7 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 					}
 					else
 					{
-						ImGuiDisplayCopyableValue(TEXT("SessionId"), SessionId);
+						ImGuiDisplayCopyableValue(TEXT("Session Id"), SessionId);
 						ImGui::SameLine();
 						if (pGISessionSearchCache != nullptr)
 						{
@@ -1208,6 +1210,10 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 								URH_SessionView::PollSingleSession(SessionId, pGISessionSearchCache);
 							}
 						}
+
+						
+						ImGuiDisplayCopyableValue(TEXT("Player Count"), SessionInfo.GetPlayerCountOrNull());
+						ImGuiDisplayCopyableValue(TEXT("Max Player Count"), SessionInfo.GetMaxPlayerCountOrNull());
 
 						ImGuiDisplayCustomData(SessionInfo.GetCustomDataOrNull());
 					}

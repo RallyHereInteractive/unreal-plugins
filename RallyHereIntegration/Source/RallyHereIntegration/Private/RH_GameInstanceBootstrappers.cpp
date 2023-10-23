@@ -600,7 +600,7 @@ void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess, co
 	}
 	else
 	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - RallyHere login was unsuccessful (Error Code %d, Error Resposne: [%s]")
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - RallyHere login was unsuccessful (Error Code %d, Error Response: [%s]")
 			, ANSI_TO_TCHAR(__FUNCTION__)
 			, ErrorInfo.ResponseCode
 			, *ErrorInfo.ResponseContent

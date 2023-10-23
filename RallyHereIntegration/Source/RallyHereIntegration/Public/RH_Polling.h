@@ -14,7 +14,16 @@
 struct FRH_AutoPoller;
 struct FRH_PollControl;
 
+/** 
+ * @brief delegate to notify that a poll is complete
+ * @param [in] bSuccess If the poll was successful.
+ * @param [in] bResetTimer If the timer should be reset.
+ */
 DECLARE_DELEGATE_TwoParams(FRH_PollCompleteFunc, bool, bool);
+/**
+ * @brief delegate to notify that a poll should execute
+ * @param [in] PollCompleteFunc Delegate to call when the poll is complete.
+ */
 DECLARE_DELEGATE_OneParam(FRH_PollFunc, const FRH_PollCompleteFunc&);
 
 typedef TSharedPtr<FRH_AutoPoller> FRH_AutoPollerPtr;

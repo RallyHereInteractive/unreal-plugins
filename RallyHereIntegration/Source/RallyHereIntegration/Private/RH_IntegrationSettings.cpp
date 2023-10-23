@@ -75,6 +75,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SessionUpdateBrowserInfoPriority = 700000;
 	SessionDeleteBrowserInfoPriority = 700000;
 	SessionInstanceMarkFubarPriority = 500000;
+	SessionInstanceHealthUpdatePriority = 900000;
 	SessionUpdateWithPlatformSessionPriority = 700000;
 	SessionGetTemplatePriority = 700000;
 	SessionGetByAllocationIdPriority = 700000;
