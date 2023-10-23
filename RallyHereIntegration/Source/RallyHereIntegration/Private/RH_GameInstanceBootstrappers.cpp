@@ -555,7 +555,7 @@ void URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete(int32 Loca
 	Request.LoginRequestV1.PortalAccessToken = AuthTokenWrapper.TokenString;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
-		LoginType::Delegate(),
+		LoginType::Delegate::CreateSP(AuthContext.Get(), &RallyHereAPI::FAuthContext::ProcessLogin),
 		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete),
 		GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
 
@@ -576,7 +576,7 @@ void URH_GameInstanceServerBootstrapper::BeginNullLogin()
 	Request.TokenRequest.SetGrantType(ERHAPI_OAuthGrantType::ClientCredentials);
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
-		LoginType::Delegate(),
+		LoginType::Delegate::CreateSP(AuthContext.Get(), &RallyHereAPI::FAuthContext::ProcessLoginToken),
 		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete),
 		GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
 
