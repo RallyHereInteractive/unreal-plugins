@@ -102,6 +102,7 @@ protected:
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
 		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
+		Request.RefreshTtl = true; // always refresh the session ttl when polling all via this helper
 
 		auto HttpRequest = RallyHereAPI::Traits_GetSessionById::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GetSessionById::Delegate::CreateSP(this, &FRH_SessionLookupHelper::OnSessionLookup), TaskPriority);
 		if (!HttpRequest)
@@ -541,6 +542,7 @@ protected:
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = SessionId;
 		Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
+		Request.RefreshTtl = true; // always refresh the session ttl when polling all
 
 		LastSessionLookupId = SessionId;
 

@@ -181,6 +181,7 @@ protected:
 			SessionByIdType::Request Request;
 			Request.SessionId = BootstrappingResult.AllocationInfo.SessionId.GetValue();
 			Request.AuthContext = AuthContext;
+			Request.RefreshTtl = true; // we are polling, so we want to refresh the session ttl
 
 			HttpRequest = SessionByIdType::DoCall(RH_APIs::GetSessionsAPI(), Request, SessionByIdType::Delegate::CreateSP(this, &FRH_SessionBootstrappingFinalizer::OnSessionLookupById), GetDefault<URH_IntegrationSettings>()->SessionGetBySessionIdPriority);			if (!HttpRequest)
 			{

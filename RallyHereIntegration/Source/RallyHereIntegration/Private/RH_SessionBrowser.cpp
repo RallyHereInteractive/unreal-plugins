@@ -120,6 +120,8 @@ protected:
 		RallyHereAPI::FRequest_GetSessionById Request;
 		Request.AuthContext = AuthContext;
 		Request.SessionId = SessionId;
+		Request.RefreshTtl = false; // for search looked up sessions, do not refresh TTL
+
 		if (SessionOwner.IsValid())
 		{
 			Request.IfNoneMatch = SessionOwner->GetETagForSession(SessionId);
