@@ -203,6 +203,7 @@ protected:
 		{
 			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Error Processing Platform Entitlements - Error Code: [%s] - Error Message: [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *Result.GetErrorCode(), *Result.GetErrorMessage().ToString());
 			Failed("Failed to query entitlements.");
+			return;
 		}
 		
 		PurchaseSubsystem->GetReceipts(*PlatformUserId, Receipts);
@@ -263,6 +264,7 @@ protected:
 		{
 			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Error Validating Entitlement Receipts - Error Code: [%s] - Error Message: [%s]"), ANSI_TO_TCHAR(__FUNCTION__), *Result.GetErrorCode(), *Result.GetErrorMessage().ToString());
 			Failed("Failed validate receipts.");
+			return;
 		}
 		
 		ReceiptsToValidateCount--;
@@ -338,7 +340,7 @@ protected:
 		
 		if (!HttpPtr)
 		{
-			Failed(TEXT("Failed to create login request"));
+			Failed(TEXT("Failed to create entitlements processing request"));
 		}
 	}
 	/**
@@ -382,7 +384,8 @@ protected:
 			if(CheckIfWeNeedToPoll())
 			{
 				StartPoll();
-			} else
+			}
+			else
 			{
 				FinalizePurchase();
 				Completed(true);
@@ -417,6 +420,11 @@ protected:
 		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().RetrieveEntitlementsByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_RetrieveEntitlementsByPlayerUuid::CreateSP(this,
 				&FRH_EntitlementProcessor::PollEntitlementComplete, Delegate), GetDefault<URH_IntegrationSettings>()->RetrievePlatformEntitlementsPriority);
+
+		if (!HttpPtr)
+		{
+			Failed(TEXT("Failed to create entitlements processing request via poll"));
+		}
 	}
 	/**
 	* @brief Handles the response to a Poll Entitlements call.
