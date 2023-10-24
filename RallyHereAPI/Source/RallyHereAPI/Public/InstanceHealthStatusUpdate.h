@@ -9,10 +9,10 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "InstanceStatus.h"
-#include "InstanceStatusUpdate.generated.h"
+#include "InstanceHealthStatus.h"
+#include "InstanceHealthStatusUpdate.generated.h"
 
-/** @defgroup RHAPI_InstanceStatusUpdate RallyHere API Model InstanceStatusUpdate
+/** @defgroup RHAPI_InstanceHealthStatusUpdate RallyHere API Model InstanceHealthStatusUpdate
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief A request body for an instances health check
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_InstanceStatusUpdate : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStatusUpdate : public FRHAPI_Model
 
     /** @brief The health status of the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_InstanceStatus InstanceStatus{  };
-    /** @brief Gets the value of InstanceStatus */
-    ERHAPI_InstanceStatus& GetInstanceStatus() { return InstanceStatus; }
-    /** @brief Gets the value of InstanceStatus */
-    const ERHAPI_InstanceStatus& GetInstanceStatus() const { return InstanceStatus; }
-    /** @brief Sets the value of InstanceStatus */
-    void SetInstanceStatus(ERHAPI_InstanceStatus NewValue) { InstanceStatus = NewValue;  }
+    ERHAPI_InstanceHealthStatus InstanceHealth{  };
+    /** @brief Gets the value of InstanceHealth */
+    ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth; }
+    /** @brief Gets the value of InstanceHealth */
+    const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth; }
+    /** @brief Sets the value of InstanceHealth */
+    void SetInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { InstanceHealth = NewValue;  }
 
     /** @brief The instance ID for the instance whose health you are reporting */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

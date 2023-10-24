@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "InstanceStatusUpdate.h"
+#include "InstanceHealthStatusUpdate.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,19 +17,19 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_InstanceStatusUpdate
+// Implementation for FRHAPI_InstanceHealthStatusUpdate
 
-void FRHAPI_InstanceStatusUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_InstanceHealthStatusUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("instance_status"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceStatus));
+    Writer->WriteIdentifierPrefix(TEXT("instance_health"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceHealth));
     Writer->WriteIdentifierPrefix(TEXT("instance_id"));
     RallyHereAPI::WriteJsonValue(Writer, InstanceId);
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_InstanceStatusUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_InstanceHealthStatusUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -37,8 +37,8 @@ bool FRHAPI_InstanceStatusUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonInstanceStatusField = (*Object)->TryGetField(TEXT("instance_status"));
-    ParseSuccess &= JsonInstanceStatusField.IsValid() && !JsonInstanceStatusField->IsNull() && TryGetJsonValue(JsonInstanceStatusField, InstanceStatus);
+    const TSharedPtr<FJsonValue> JsonInstanceHealthField = (*Object)->TryGetField(TEXT("instance_health"));
+    ParseSuccess &= JsonInstanceHealthField.IsValid() && !JsonInstanceHealthField->IsNull() && TryGetJsonValue(JsonInstanceHealthField, InstanceHealth);
     const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
     ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
 

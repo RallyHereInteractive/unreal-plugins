@@ -9,10 +9,10 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "InstanceStatus.h"
-#include "InstanceStatusResponse.generated.h"
+#include "InstanceHealthStatus.h"
+#include "InstanceHealthStatusResponse.generated.h"
 
-/** @defgroup RHAPI_InstanceStatusResponse RallyHere API Model InstanceStatusResponse
+/** @defgroup RHAPI_InstanceHealthStatusResponse RallyHere API Model InstanceHealthStatusResponse
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief Response body for an instance health check
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_InstanceStatusResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStatusResponse : public FRHAPI_Model
 
     /** @brief The new health status of the instance. It may not match the status sent up if too few health checks are being recieved */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_InstanceStatus UpdatedInstanceStatus{  };
-    /** @brief Gets the value of UpdatedInstanceStatus */
-    ERHAPI_InstanceStatus& GetUpdatedInstanceStatus() { return UpdatedInstanceStatus; }
-    /** @brief Gets the value of UpdatedInstanceStatus */
-    const ERHAPI_InstanceStatus& GetUpdatedInstanceStatus() const { return UpdatedInstanceStatus; }
-    /** @brief Sets the value of UpdatedInstanceStatus */
-    void SetUpdatedInstanceStatus(ERHAPI_InstanceStatus NewValue) { UpdatedInstanceStatus = NewValue;  }
+    ERHAPI_InstanceHealthStatus UpdatedInstanceHealth{  };
+    /** @brief Gets the value of UpdatedInstanceHealth */
+    ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() { return UpdatedInstanceHealth; }
+    /** @brief Gets the value of UpdatedInstanceHealth */
+    const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
+    /** @brief Sets the value of UpdatedInstanceHealth */
+    void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { UpdatedInstanceHealth = NewValue;  }
 };
 
 /** @} */

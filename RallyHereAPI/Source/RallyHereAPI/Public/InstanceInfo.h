@@ -10,9 +10,9 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "HostType.h"
+#include "InstanceHealthStatus.h"
 #include "InstanceJoinableStatus.h"
 #include "InstanceStartupParams.h"
-#include "InstanceStatus.h"
 #include "JoinParams.h"
 #include "InstanceInfo.generated.h"
 
@@ -308,26 +308,26 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
 
     /** @brief The current status of the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_InstanceStatus InstanceStatus_Optional{  };
-    /** @brief true if InstanceStatus_Optional has been set to a value */
+    ERHAPI_InstanceHealthStatus InstanceHealth_Optional{  };
+    /** @brief true if InstanceHealth_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool InstanceStatus_IsSet{ false };
-    /** @brief Gets the value of InstanceStatus_Optional, regardless of it having been set */
-    ERHAPI_InstanceStatus& GetInstanceStatus() { return InstanceStatus_Optional; }
-    /** @brief Gets the value of InstanceStatus_Optional, regardless of it having been set */
-    const ERHAPI_InstanceStatus& GetInstanceStatus() const { return InstanceStatus_Optional; }
-    /** @brief Gets the value of InstanceStatus_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_InstanceStatus& GetInstanceStatus(const ERHAPI_InstanceStatus& DefaultValue) const { if (InstanceStatus_IsSet) return InstanceStatus_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of InstanceStatus_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInstanceStatus(ERHAPI_InstanceStatus& OutValue) const { if (InstanceStatus_IsSet) OutValue = InstanceStatus_Optional; return InstanceStatus_IsSet; }
-    /** @brief Returns a pointer to InstanceStatus_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_InstanceStatus* GetInstanceStatusOrNull() { if (InstanceStatus_IsSet) return &InstanceStatus_Optional; return nullptr; }
-    /** @brief Returns a pointer to InstanceStatus_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_InstanceStatus* GetInstanceStatusOrNull() const { if (InstanceStatus_IsSet) return &InstanceStatus_Optional; return nullptr; }
-    /** @brief Sets the value of InstanceStatus_Optional and also sets InstanceStatus_IsSet to true */
-    void SetInstanceStatus(ERHAPI_InstanceStatus NewValue) { InstanceStatus_Optional = NewValue; InstanceStatus_IsSet = true; }
-     /** @brief Clears the value of InstanceStatus_Optional and sets InstanceStatus_IsSet to false */
-    void ClearInstanceStatus() { InstanceStatus_IsSet = false; }
+    bool InstanceHealth_IsSet{ false };
+    /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
+    ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth_Optional; }
+    /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
+    const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth_Optional; }
+    /** @brief Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_InstanceHealthStatus& GetInstanceHealth(const ERHAPI_InstanceHealthStatus& DefaultValue) const { if (InstanceHealth_IsSet) return InstanceHealth_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false */
+    bool GetInstanceHealth(ERHAPI_InstanceHealthStatus& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
+    /** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+    /** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+    /** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true */
+    void SetInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
+     /** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
+    void ClearInstanceHealth() { InstanceHealth_IsSet = false; }
 };
 
 /** @} */

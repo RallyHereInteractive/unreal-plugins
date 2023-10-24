@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "InstanceStatus.h"
+#include "InstanceHealthStatus.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,32 +17,32 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for ERHAPI_InstanceStatus
-FString EnumToString(const ERHAPI_InstanceStatus& Value)
+// Implementation for ERHAPI_InstanceHealthStatus
+FString EnumToString(const ERHAPI_InstanceHealthStatus& Value)
 {
     switch (Value)
     {
-    case ERHAPI_InstanceStatus::Healthy:
+    case ERHAPI_InstanceHealthStatus::Healthy:
         return TEXT("healthy");
-    case ERHAPI_InstanceStatus::Unhealthy:
+    case ERHAPI_InstanceHealthStatus::Unhealthy:
         return TEXT("unhealthy");
-    case ERHAPI_InstanceStatus::Degraded:
+    case ERHAPI_InstanceHealthStatus::Degraded:
         return TEXT("degraded");
-    case ERHAPI_InstanceStatus::Unknown:
+    case ERHAPI_InstanceHealthStatus::Unknown:
         return TEXT("unknown");
     }
 
-    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InstanceStatus::Values Value (%d)"), (int)Value);
+    UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_InstanceHealthStatus::Values Value (%d)"), (int)Value);
     return TEXT("");
 }
 
-bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceStatus& Value)
+bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceHealthStatus& Value)
 {
-    static TMap<FString, ERHAPI_InstanceStatus> StringToEnum = { 
-        { TEXT("healthy"), ERHAPI_InstanceStatus::Healthy },
-        { TEXT("unhealthy"), ERHAPI_InstanceStatus::Unhealthy },
-        { TEXT("degraded"), ERHAPI_InstanceStatus::Degraded },
-        { TEXT("unknown"), ERHAPI_InstanceStatus::Unknown },    };
+    static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = { 
+        { TEXT("healthy"), ERHAPI_InstanceHealthStatus::Healthy },
+        { TEXT("unhealthy"), ERHAPI_InstanceHealthStatus::Unhealthy },
+        { TEXT("degraded"), ERHAPI_InstanceHealthStatus::Degraded },
+        { TEXT("unknown"), ERHAPI_InstanceHealthStatus::Unknown },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);
     if(Found)
@@ -50,17 +50,17 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceStatus& Value)
     return Found != nullptr;
 }
 
-FStringFormatArg ToStringFormatArg(const ERHAPI_InstanceStatus& Value)
+FStringFormatArg ToStringFormatArg(const ERHAPI_InstanceHealthStatus& Value)
 {
     return FStringFormatArg(EnumToString(Value));
 }
 
-void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InstanceStatus& Value)
+void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InstanceHealthStatus& Value)
 {
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
-bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InstanceStatus& Value)
+bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InstanceHealthStatus& Value)
 {
     FString TmpValue;
     if (JsonValue->TryGetString(TmpValue))

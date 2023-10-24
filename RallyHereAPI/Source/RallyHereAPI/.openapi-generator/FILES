@@ -59,6 +59,9 @@ Private/HostType.cpp
 Private/HzApiErrorModel.cpp
 Private/Input.cpp
 Private/InstanceFubar.cpp
+Private/InstanceHealthStatus.cpp
+Private/InstanceHealthStatusResponse.cpp
+Private/InstanceHealthStatusUpdate.cpp
 Private/InstanceInfo.cpp
 Private/InstanceInfoUpdate.cpp
 Private/InstanceJoinableStatus.cpp
@@ -68,9 +71,6 @@ Private/InstanceRequest.cpp
 Private/InstanceRequestTemplate.cpp
 Private/InstanceSourceProvider.cpp
 Private/InstanceStartupParams.cpp
-Private/InstanceStatus.cpp
-Private/InstanceStatusResponse.cpp
-Private/InstanceStatusUpdate.cpp
 Private/Inventory.cpp
 Private/InventoryAPI.cpp
 Private/InventoryBucket.cpp
@@ -118,7 +118,6 @@ Private/MatchInfo.cpp
 Private/MatchMakingProfile.cpp
 Private/MatchMakingProfileV2.cpp
 Private/MatchMakingRuleset.cpp
-Private/MatchMakingSessionRequest.cpp
 Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
 Private/MatchMakingTemplateGroupV2.cpp
@@ -332,6 +331,9 @@ Public/HostType.h
 Public/HzApiErrorModel.h
 Public/Input.h
 Public/InstanceFubar.h
+Public/InstanceHealthStatus.h
+Public/InstanceHealthStatusResponse.h
+Public/InstanceHealthStatusUpdate.h
 Public/InstanceInfo.h
 Public/InstanceInfoUpdate.h
 Public/InstanceJoinableStatus.h
@@ -341,9 +343,6 @@ Public/InstanceRequest.h
 Public/InstanceRequestTemplate.h
 Public/InstanceSourceProvider.h
 Public/InstanceStartupParams.h
-Public/InstanceStatus.h
-Public/InstanceStatusResponse.h
-Public/InstanceStatusUpdate.h
 Public/Inventory.h
 Public/InventoryAPI.h
 Public/InventoryBucket.h
@@ -391,7 +390,6 @@ Public/MatchInfo.h
 Public/MatchMakingProfile.h
 Public/MatchMakingProfileV2.h
 Public/MatchMakingRuleset.h
-Public/MatchMakingSessionRequest.h
 Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
 Public/MatchMakingTemplateGroupV2.h

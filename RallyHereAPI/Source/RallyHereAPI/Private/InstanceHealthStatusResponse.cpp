@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "InstanceStatusResponse.h"
+#include "InstanceHealthStatusResponse.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,17 +17,17 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_InstanceStatusResponse
+// Implementation for FRHAPI_InstanceHealthStatusResponse
 
-void FRHAPI_InstanceStatusResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_InstanceHealthStatusResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("updated_instance_status"));
-    RallyHereAPI::WriteJsonValue(Writer, EnumToString(UpdatedInstanceStatus));
+    Writer->WriteIdentifierPrefix(TEXT("updated_instance_health"));
+    RallyHereAPI::WriteJsonValue(Writer, EnumToString(UpdatedInstanceHealth));
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_InstanceStatusResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_InstanceHealthStatusResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -35,8 +35,8 @@ bool FRHAPI_InstanceStatusResponse::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonUpdatedInstanceStatusField = (*Object)->TryGetField(TEXT("updated_instance_status"));
-    ParseSuccess &= JsonUpdatedInstanceStatusField.IsValid() && !JsonUpdatedInstanceStatusField->IsNull() && TryGetJsonValue(JsonUpdatedInstanceStatusField, UpdatedInstanceStatus);
+    const TSharedPtr<FJsonValue> JsonUpdatedInstanceHealthField = (*Object)->TryGetField(TEXT("updated_instance_health"));
+    ParseSuccess &= JsonUpdatedInstanceHealthField.IsValid() && !JsonUpdatedInstanceHealthField->IsNull() && TryGetJsonValue(JsonUpdatedInstanceHealthField, UpdatedInstanceHealth);
 
     return ParseSuccess;
 }

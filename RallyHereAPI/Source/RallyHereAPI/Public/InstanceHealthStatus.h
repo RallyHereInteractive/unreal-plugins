@@ -9,22 +9,22 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "InstanceStatus.generated.h"
+#include "InstanceHealthStatus.generated.h"
 
 
 /**
  * @brief An enumeration.
  */
 UENUM(BlueprintType)
-enum class ERHAPI_InstanceStatus : uint8
+enum class ERHAPI_InstanceHealthStatus : uint8
 {
     Healthy UMETA(ToolTip="Instance is in a healthy state"),
     Unhealthy UMETA(ToolTip="Instance is in an unhealthy state and cannot handle connections"),
     Degraded UMETA(ToolTip="Instance performance is degraded, and may be unable to handle new or existing connections"),
     Unknown UMETA(ToolTip="Instance health checks have stopped, and instance status is unknown"),
 };
-RALLYHEREAPI_API FString EnumToString(const ERHAPI_InstanceStatus& EnumValue);
-RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceStatus& EnumValue);
-RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_InstanceStatus& Value);
-RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InstanceStatus& Value);
-RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InstanceStatus& Value);
+RALLYHEREAPI_API FString EnumToString(const ERHAPI_InstanceHealthStatus& EnumValue);
+RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceHealthStatus& EnumValue);
+RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_InstanceHealthStatus& Value);
+RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InstanceHealthStatus& Value);
+RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InstanceHealthStatus& Value);
