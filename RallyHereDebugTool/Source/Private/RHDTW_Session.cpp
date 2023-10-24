@@ -104,7 +104,7 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 		}
 
 		ImGui::Text("Joinability: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetJoinStatus())));
-		ImGui::Text("Status: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetInstanceStatus())));
+		ImGui::Text("Health: %s", TCHAR_TO_UTF8(*EnumToString(Info.GetInstanceHealth())));
 
 		if (const auto InstanceStartupParams = Info.GetInstanceStartupParamsOrNull())
 		{

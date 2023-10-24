@@ -177,7 +177,10 @@ public:
 	 */
 	virtual bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 
-	virtual ERHAPI_InstanceStatus GetInstanceStatusToReport() const;
+	/**
+	 * @brief Gets the health status of the instance to report to the API
+	 */
+	virtual ERHAPI_InstanceHealthStatus GetInstanceHealthStatusToReport() const;
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.

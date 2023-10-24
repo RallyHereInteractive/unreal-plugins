@@ -337,9 +337,9 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 }
 
-ERHAPI_InstanceStatus URH_GameInstanceSessionSubsystem::GetInstanceStatusToReport() const
+ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthStatusToReport() const
 {
-	return ERHAPI_InstanceStatus::Healthy;
+	return ERHAPI_InstanceHealthStatus::Healthy;
 }
 
 void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollCompleteFunc& Delegate)
@@ -354,14 +354,14 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 		BaseType::Request Request = {};
 		Request.AuthContext = GetAuthContext();
 		Request.SessionId = ActiveSession->GetSessionId();
-		Request.InstanceStatusUpdate.SetInstanceStatus(GetInstanceStatusToReport());
+		Request.InstanceHealthStatusUpdate.SetInstanceHealth(GetInstanceHealthStatusToReport());
 		
 		if (Instance != nullptr)
 		{
 			auto* InstanceId = Instance->GetInstanceIdOrNull();
 			if (InstanceId != nullptr)
 			{
-				Request.InstanceStatusUpdate.SetInstanceId(*InstanceId);
+				Request.InstanceHealthStatusUpdate.SetInstanceId(*InstanceId);
 			}
 		}
 
