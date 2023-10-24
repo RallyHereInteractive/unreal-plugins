@@ -60,12 +60,12 @@ public:
 	void SubmitEntitlementsForLoggedInOSS(const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
 	                                      const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
 	/**
-	 * @brief Start Async Task to Process Entitlements for a specific OSS.
-	 * @param [in] Platform The OSS to process entitlements for.
+	 * @brief Start Async Task to Process Entitlements for a specific platform (non-OSS based)
+	 * @param [in] Platform The platform to process entitlements for.
 	 * @param [in] EntitlementProcessorCompleteDelegate Delegate callback for when the entitlement process is complete.
 	 * @param [in] PlatformRegionDelegate Delegate callback for getting the platform region.
 	 */
-	void SubmitEntitlementsForOSS(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
+	void SubmitEntitlementsForPlatform(ERHAPI_Platform Platform, const FRH_ProcessEntitlementCompletedDelegate& EntitlementProcessorCompleteDelegate = FRH_ProcessEntitlementCompletedDelegate(),
 	                              const FRH_GetPlatformRegionDelegate& PlatformRegionDelegate = FRH_GetPlatformRegionDelegate());
 	/**
 	* @brief Queries the OSS to get the store offers for the given offer ids.
@@ -136,7 +136,7 @@ public:
 		FTimerManager& InTimerManager,
 		const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate,
 		const FRH_GetPlatformRegionDelegate& InGetPlatformRegionDelegate,
-		std::optional<ERHAPI_Platform> InOverridePlatform)
+		TOptional<ERHAPI_Platform> InOverridePlatform)
 		: EntitlementSubsystem(InEntitlementSubsystem)
 		, OSS(InOSS)
 		, PurchaseSubsystem(InPurchaseSubsystem)
@@ -146,14 +146,14 @@ public:
 		, EntitlementProcessorCompleteDelegate(InProcessorCompleteDelegate)
 		, GetPlatformRegionDelegate(InGetPlatformRegionDelegate)
 	{
-		if (InOverridePlatform.has_value())
+		if (InOverridePlatform.IsSet())
 		{
 			IsOverride = true;
-			Platform = InOverridePlatform.value();
+			Platform = InOverridePlatform;
 		}
 		else
 		{
-			Platform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName()).Get(ERHAPI_Platform::Anon);
+			Platform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
 		}
 		AuthContext = EntitlementSubsystem->GetAuthContext();
 	}
@@ -171,6 +171,11 @@ public:
 		if (!AuthContext->IsLoggedIn())
 		{
 			Failed(TEXT("Not Logged In"));
+			return;
+		}
+		if (!Platform.IsSet())
+		{
+			Failed(TEXT("No valid platform"));
 			return;
 		}
 		QueryEntitlements();
@@ -309,15 +314,26 @@ protected:
 
 		FRHAPI_PlatformEntitlementProcessRequest entitlementRequest;
 		entitlementRequest.SetEntitlements(ProcessEntitlementResult.GetClientEntitlements());
-		entitlementRequest.PlatformId = EnumToString(Platform);
-		entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(EntitlementSubsystem->GetEntitlementOSSName());
+		entitlementRequest.SetPlatformId(EnumToString(Platform.GetValue()));
+
+		if (OSS != nullptr && !IsOverride)
+		{
+			entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(OSS->GetSubsystemName());
+			entitlementRequest.PlatformToken = OSS->GetIdentityInterface()->GetAuthToken(LocalUserNum);
+
+		}
+		else if (IsOverride && Platform.IsSet())
+		{
+			entitlementRequest.ClientType = RH_GetClientTypeFromOSSName(EntitlementSubsystem->GetEntitlementOSSName()); // note - use entitlement OSS, as platform overrides are not OSS based
+		}
+		else
+		{
+			Failed(TEXT("No OSS, and not using a platform override"));
+			return;
+		}
+
 		entitlementRequest.PlatformRegion = GetRegionFromTitleSettings();
 		entitlementRequest.TransactionId = ProcessEntitlementResult.TransactionId;
-
-		if (!IsOverride)
-		{
-			entitlementRequest.PlatformToken = OSS->GetIdentityInterface()->GetAuthToken(LocalUserNum);
-		}
 		
 		FGuid PlayerUuid;
 		if (AuthContext->GetLoginResult().IsSet())
@@ -542,7 +558,7 @@ protected:
 	/** @brief Delegate that fires when getting the platforms region. */
 	FRH_GetPlatformRegionDelegate GetPlatformRegionDelegate;
 	/** @brief Platform the entitlements are for. */
-	ERHAPI_Platform Platform;
+	TOptional<ERHAPI_Platform> Platform;
 	/** @brief If set, the platform is an override of the main connection platform. */
 	bool IsOverride = false;
 	/** @brief Unique Id for the process task. */
