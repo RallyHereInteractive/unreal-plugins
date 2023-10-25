@@ -26,6 +26,8 @@ void FRHAPI_SessionTeam::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     RallyHereAPI::WriteJsonValue(Writer, Players);
     Writer->WriteIdentifierPrefix(TEXT("max_size"));
     RallyHereAPI::WriteJsonValue(Writer, MaxSize);
+    Writer->WriteIdentifierPrefix(TEXT("team_id"));
+    RallyHereAPI::WriteJsonValue(Writer, TeamId);
     Writer->WriteObjectEnd();
 }
 
@@ -41,6 +43,8 @@ bool FRHAPI_SessionTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     ParseSuccess &= JsonPlayersField.IsValid() && !JsonPlayersField->IsNull() && TryGetJsonValue(JsonPlayersField, Players);
     const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
     ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
+    const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
+    ParseSuccess &= JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull() && TryGetJsonValue(JsonTeamIdField, TeamId);
 
     return ParseSuccess;
 }

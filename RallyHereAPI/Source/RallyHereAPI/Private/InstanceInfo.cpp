@@ -78,6 +78,11 @@ void FRHAPI_InstanceInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
     }
+    if (InstanceHealth_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("instance_health"));
+        RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceHealth_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -154,6 +159,12 @@ bool FRHAPI_InstanceInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonInstanceHealthField = (*Object)->TryGetField(TEXT("instance_health"));
+    if (JsonInstanceHealthField.IsValid() && !JsonInstanceHealthField->IsNull())
+    {
+        InstanceHealth_IsSet = TryGetJsonValue(JsonInstanceHealthField, InstanceHealth_Optional);
+        ParseSuccess &= InstanceHealth_IsSet;
     }
 
     return ParseSuccess;

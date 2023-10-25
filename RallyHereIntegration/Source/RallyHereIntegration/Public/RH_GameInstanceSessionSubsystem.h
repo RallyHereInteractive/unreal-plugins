@@ -9,6 +9,7 @@
 #include "RH_SubsystemPluginBase.h"
 
 #include "RH_SessionData.h"
+#include "RH_Polling.h"
 
 #include "RH_GameInstanceSessionSubsystem.generated.h"
 
@@ -177,6 +178,11 @@ public:
 	virtual bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 
 	/**
+	 * @brief Gets the health status of the instance to report to the API
+	 */
+	virtual ERHAPI_InstanceHealthStatus GetInstanceHealthStatusToReport() const;
+
+	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
 	 */
 	FRH_OnBeaconCreatedDelegate OnBeaconCreated;
@@ -208,6 +214,8 @@ protected:
 	/** @brief If set, the session instance is failed and unrecoverable. */
 	UPROPERTY(BlueprintGetter = IsMarkedFubar, Transient, Category = "Session|Instance")
 	bool bHasBeenMarkedFubar;
+	/** @brief Poller for the host's health check. */
+	FRH_AutoPollerPtr InstanceHealthPoller;
 
 	/** 
 	 * @brief Sets the current active session
@@ -241,6 +249,11 @@ protected:
 	 * @param [in] bShutdownWorldNetDriver If set, then the beacon shuts down the worlds Net Driver when created.
 	 */
 	virtual class ARH_OnlineBeaconHost* CreateBeaconHost(class UWorld* pWorld, uint32 ListenPort, bool bShutdownWorldNetDriver = true);
+	/**
+	 * @brief Called when instance health should be updated
+	 * @param [in] Delegate Callback delegate for when the health is updated.
+	 */
+	virtual void PollInstanceHealth(const FRH_PollCompleteFunc& Delegate);
 };
 
 /** @} */

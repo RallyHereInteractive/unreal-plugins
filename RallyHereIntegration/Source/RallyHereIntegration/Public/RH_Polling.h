@@ -14,7 +14,16 @@
 struct FRH_AutoPoller;
 struct FRH_PollControl;
 
+/** 
+ * @brief delegate to notify that a poll is complete
+ * @param [in] bSuccess If the poll was successful.
+ * @param [in] bResetTimer If the timer should be reset.
+ */
 DECLARE_DELEGATE_TwoParams(FRH_PollCompleteFunc, bool, bool);
+/**
+ * @brief delegate to notify that a poll should execute
+ * @param [in] PollCompleteFunc Delegate to call when the poll is complete.
+ */
 DECLARE_DELEGATE_OneParam(FRH_PollFunc, const FRH_PollCompleteFunc&);
 
 typedef TSharedPtr<FRH_AutoPoller> FRH_AutoPollerPtr;
@@ -37,11 +46,19 @@ struct FRH_PollTimerSetting
 	/** @brief Poll interval of the timer. */
 	UPROPERTY(EditAnywhere, Config, Category = "Timers")
 	float Interval;
+	/** @brief How much jitter to add to the timer. */
+	UPROPERTY(EditAnywhere, Config, Category = "Timers")
+	float JitterPct;
+	/** @brief How much jitter to add to the timer when started. */
+	UPROPERTY(EditAnywhere, Config, Category = "Timers")
+	float JitterPctInitial;
 	/** @brief Default constructor, 60 seconds timer. */
 	FRH_PollTimerSetting()
+		: TimerName(NAME_None)
+		, Interval(60.f)
+		, JitterPct(0.1f)
+		, JitterPctInitial(0.4f) // by default use a large initial jitter to desync timers
 	{
-		TimerName = NAME_None;
-		Interval = 60;
 	}
 };
 
@@ -63,13 +80,7 @@ public:
 	 * @brief Default polling time.
 	 */
 	UPROPERTY(EditAnywhere, Config, Category = "Timers")
-	float DefaultPollingInterval;
-	/**
-	 * @brief Gets a polling interval by name, or falls back to default if not found.
-	 * @param [in] TimerName Name of Timer to get interval for.
-	 */
-	UFUNCTION(Category = "Timers", meta=(ShowOnlyInnerProperties))
-	float GetPollingInterval(const FName& TimerName) const;
+	FRH_PollTimerSetting DefaultPollingTimer;
 };
 
 /**
@@ -87,6 +98,12 @@ protected:
 	TArray<FRH_AutoPollerWeakPtr> ExecutingPolls;
 	/** @brief Singleton for the poll controller. */
 	static FRH_PollControl* Singleton;
+
+	/**
+	 * @brief Array of all polling timers (overrides PollingIntervals).
+	 */
+	TArray<FRH_PollTimerSetting> PollingIntervalOverrides;
+
 	/** @brief Sorts the waiting pollers for by their next poll time. */
 	void SortWaitingPolls();
 public:
@@ -193,6 +210,48 @@ public:
 	virtual bool IsTickable() const { return true; }
 	/** Gets the poll controller stat Id. */
 	virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(FRH_PollControl, STATGROUP_TaskGraphTasks); }
+
+	/**
+	 * @brief Sets a polling interval override by name
+	 * @param [in] TimerName Name of Timer to set interval for.
+	 * @param [in] Interval Override Duration
+	 */
+	void SetPollingIntervalOverride(const FRH_PollTimerSetting& TimerSetting);
+	/**
+	 * @brief Clears a polling interval override by name
+	 * @param [in] TimerName Name of Timer to set interval for.
+	 */
+	void ClearPollingIntervalOverride(const FName& TimerName);
+
+	/**
+	 * @brief Gets the polling interval setting (including overrides) by timer name
+	 * @param [in] TimerName Name of Timer to set interval for.
+	 * @return Polling interval setting
+	 */
+	const FRH_PollTimerSetting& GetPollTimerSetting(const FName& TimerName) const;
+
+	/**
+	 * @brief Gets a polling interval by name, or falls back to default if not found.
+	 * @param [in] TimerName Name of Timer to get interval for.
+	 * @return Value of the polling interval
+	 */
+	float GetPollingInterval(const FName& TimerName) const
+	{
+		return GetPollTimerSetting(TimerName).Interval;
+	}
+	/**
+	 * @brief Gets a polling interval by name, or falls back to default if not found.  Adds configured jitter
+	 * @param [in] TimerName Name of Timer to get interval for.
+	 */
+	float GetPollingIntervalWithJitter(const FName& TimerName, bool bInitial = false) const
+	{
+		auto Config = GetPollTimerSetting(TimerName);
+
+		const float JitterAmout = bInitial ? Config.JitterPctInitial : Config.JitterPct;
+		const float Jitter = JitterAmout * FMath::FRandRange(-1.0, 1.0);
+		const float TimerInterval = Config.Interval;
+		return TimerInterval * (1.f + Jitter);
+	}
 };
 
 /**

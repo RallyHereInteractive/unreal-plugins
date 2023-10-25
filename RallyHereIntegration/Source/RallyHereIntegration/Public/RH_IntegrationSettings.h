@@ -362,6 +362,9 @@ public:
 	/** @brief Sets the request priority of Marking an Instane Fubar calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionInstanceMarkFubarPriority;
+	/** @brief Sets the request priority of Instance Health update calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionInstanceHealthUpdatePriority;
 	/** @brief Sets the request priority of Session Update With Platform Session calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionUpdateWithPlatformSessionPriority;

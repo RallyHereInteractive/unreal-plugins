@@ -24,6 +24,16 @@ void FRHAPI_BrowserSessionInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("session_id"));
     RallyHereAPI::WriteJsonValue(Writer, SessionId);
+    if (PlayerCount_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("player_count"));
+        RallyHereAPI::WriteJsonValue(Writer, PlayerCount_Optional);
+    }
+    if (MaxPlayerCount_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("max_player_count"));
+        RallyHereAPI::WriteJsonValue(Writer, MaxPlayerCount_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -42,6 +52,18 @@ bool FRHAPI_BrowserSessionInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     const TSharedPtr<FJsonValue> JsonSessionIdField = (*Object)->TryGetField(TEXT("session_id"));
     ParseSuccess &= JsonSessionIdField.IsValid() && !JsonSessionIdField->IsNull() && TryGetJsonValue(JsonSessionIdField, SessionId);
+    const TSharedPtr<FJsonValue> JsonPlayerCountField = (*Object)->TryGetField(TEXT("player_count"));
+    if (JsonPlayerCountField.IsValid() && !JsonPlayerCountField->IsNull())
+    {
+        PlayerCount_IsSet = TryGetJsonValue(JsonPlayerCountField, PlayerCount_Optional);
+        ParseSuccess &= PlayerCount_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMaxPlayerCountField = (*Object)->TryGetField(TEXT("max_player_count"));
+    if (JsonMaxPlayerCountField.IsValid() && !JsonMaxPlayerCountField->IsNull())
+    {
+        MaxPlayerCount_IsSet = TryGetJsonValue(JsonMaxPlayerCountField, MaxPlayerCount_Optional);
+        ParseSuccess &= MaxPlayerCount_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {

@@ -50,6 +50,20 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
     /** @brief Sets the value of Status */
     void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status = NewValue;  }
 
+    /** @brief Which team the player joined */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 TeamId{ 0 };
+    /** @brief Gets the value of TeamId */
+    int32& GetTeamId() { return TeamId; }
+    /** @brief Gets the value of TeamId */
+    const int32& GetTeamId() const { return TeamId; }
+    /** @brief Sets the value of TeamId */
+    void SetTeamId(int32 NewValue) { TeamId = NewValue;  }
+    /** @brief Returns true if TeamId matches the default value */
+    bool IsTeamIdDefaultValue() const { return TeamId == 0; }
+    /** @brief Sets the value of TeamId to its default  */
+    void SetTeamIdToDefault() { TeamId = 0;  }
+
     /** @brief Resulting custom data about the player */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };

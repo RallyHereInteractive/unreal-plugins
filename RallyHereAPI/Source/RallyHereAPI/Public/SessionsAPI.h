@@ -18,12 +18,14 @@
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "InstanceFubar.h"
+#include "InstanceHealthSettingsResponse.h"
+#include "InstanceHealthStatusResponse.h"
+#include "InstanceHealthStatusUpdate.h"
 #include "InstanceInfo.h"
 #include "InstanceInfoUpdate.h"
 #include "InstanceRequest.h"
 #include "MatchCreateRequest.h"
 #include "MatchCreateResponse.h"
-#include "MatchMakingSessionRequest.h"
 #include "PlatformSession.h"
 #include "PlayerSessions.h"
 #include "QueueJoinRequest.h"
@@ -49,8 +51,6 @@ struct FRequest_AddPlatformSessionToRallyHereSession;
 struct FResponse_AddPlatformSessionToRallyHereSession;
 struct FRequest_CreateInstanceRequest;
 struct FResponse_CreateInstanceRequest;
-struct FRequest_CreateMatch;
-struct FResponse_CreateMatch;
 struct FRequest_CreateOrJoinSession;
 struct FResponse_CreateOrJoinSession;
 struct FRequest_CreateSessionEvent;
@@ -87,6 +87,10 @@ struct FRequest_GetSessionEvents;
 struct FResponse_GetSessionEvents;
 struct FRequest_GetSessionTemplateByType;
 struct FResponse_GetSessionTemplateByType;
+struct FRequest_InstanceHealthCheck;
+struct FResponse_InstanceHealthCheck;
+struct FRequest_InstanceHealthConfig;
+struct FResponse_InstanceHealthConfig;
 struct FRequest_JoinQueue;
 struct FResponse_JoinQueue;
 struct FRequest_JoinSessionByIdSelf;
@@ -132,7 +136,6 @@ struct FResponse_UpdateSessionPlayerByUuidV2;
 
 DECLARE_DELEGATE_OneParam(FDelegate_AddPlatformSessionToRallyHereSession, const FResponse_AddPlatformSessionToRallyHereSession&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreateInstanceRequest, const FResponse_CreateInstanceRequest&);
-DECLARE_DELEGATE_OneParam(FDelegate_CreateMatch, const FResponse_CreateMatch&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreateOrJoinSession, const FResponse_CreateOrJoinSession&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreateSessionEvent, const FResponse_CreateSessionEvent&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteBrowserInfo, const FResponse_DeleteBrowserInfo&);
@@ -151,6 +154,8 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetSessionByAllocationId, const FResponse_Ge
 DECLARE_DELEGATE_OneParam(FDelegate_GetSessionById, const FResponse_GetSessionById&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetSessionEvents, const FResponse_GetSessionEvents&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetSessionTemplateByType, const FResponse_GetSessionTemplateByType&);
+DECLARE_DELEGATE_OneParam(FDelegate_InstanceHealthCheck, const FResponse_InstanceHealthCheck&);
+DECLARE_DELEGATE_OneParam(FDelegate_InstanceHealthConfig, const FResponse_InstanceHealthConfig&);
 DECLARE_DELEGATE_OneParam(FDelegate_JoinQueue, const FResponse_JoinQueue&);
 DECLARE_DELEGATE_OneParam(FDelegate_JoinSessionByIdSelf, const FResponse_JoinSessionByIdSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_JoinSessionByPlatformSessionByUuid, const FResponse_JoinSessionByPlatformSessionByUuid&);
@@ -181,7 +186,6 @@ public:
 
     FHttpRequestPtr AddPlatformSessionToRallyHereSession(const FRequest_AddPlatformSessionToRallyHereSession& Request, const FDelegate_AddPlatformSessionToRallyHereSession& Delegate = FDelegate_AddPlatformSessionToRallyHereSession(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr CreateInstanceRequest(const FRequest_CreateInstanceRequest& Request, const FDelegate_CreateInstanceRequest& Delegate = FDelegate_CreateInstanceRequest(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr CreateMatch(const FRequest_CreateMatch& Request, const FDelegate_CreateMatch& Delegate = FDelegate_CreateMatch(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr CreateOrJoinSession(const FRequest_CreateOrJoinSession& Request, const FDelegate_CreateOrJoinSession& Delegate = FDelegate_CreateOrJoinSession(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr CreateSessionEvent(const FRequest_CreateSessionEvent& Request, const FDelegate_CreateSessionEvent& Delegate = FDelegate_CreateSessionEvent(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr DeleteBrowserInfo(const FRequest_DeleteBrowserInfo& Request, const FDelegate_DeleteBrowserInfo& Delegate = FDelegate_DeleteBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -200,6 +204,8 @@ public:
     FHttpRequestPtr GetSessionById(const FRequest_GetSessionById& Request, const FDelegate_GetSessionById& Delegate = FDelegate_GetSessionById(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetSessionEvents(const FRequest_GetSessionEvents& Request, const FDelegate_GetSessionEvents& Delegate = FDelegate_GetSessionEvents(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetSessionTemplateByType(const FRequest_GetSessionTemplateByType& Request, const FDelegate_GetSessionTemplateByType& Delegate = FDelegate_GetSessionTemplateByType(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr InstanceHealthCheck(const FRequest_InstanceHealthCheck& Request, const FDelegate_InstanceHealthCheck& Delegate = FDelegate_InstanceHealthCheck(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr InstanceHealthConfig(const FRequest_InstanceHealthConfig& Request, const FDelegate_InstanceHealthConfig& Delegate = FDelegate_InstanceHealthConfig(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr JoinQueue(const FRequest_JoinQueue& Request, const FDelegate_JoinQueue& Delegate = FDelegate_JoinQueue(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr JoinSessionByIdSelf(const FRequest_JoinSessionByIdSelf& Request, const FDelegate_JoinSessionByIdSelf& Delegate = FDelegate_JoinSessionByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr JoinSessionByPlatformSessionByUuid(const FRequest_JoinSessionByPlatformSessionByUuid& Request, const FDelegate_JoinSessionByPlatformSessionByUuid& Delegate = FDelegate_JoinSessionByPlatformSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -225,7 +231,6 @@ public:
 private:
     void OnAddPlatformSessionToRallyHereSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AddPlatformSessionToRallyHereSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreateInstanceRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateInstanceRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreateOrJoinSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateOrJoinSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreateSessionEventResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSessionEvent Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeleteBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -244,6 +249,8 @@ private:
     void OnGetSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetSessionEventsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionEvents Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetSessionTemplateByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionTemplateByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnInstanceHealthCheckResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthCheck Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnInstanceHealthConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InstanceHealthConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnJoinQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnJoinSessionByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnJoinSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_JoinSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -273,7 +280,7 @@ private:
  * Add a platform session to an existing RallyHere session. The requesting player will be added to the platform session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update:platform`
+ * 	For any player (including themselves)any of: `session:update:platform`, `session:*`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission
@@ -291,6 +298,7 @@ struct RALLYHEREAPI_API FRequest_AddPlatformSessionToRallyHereSession : public F
     ERHAPI_Platform Platform;
     FString PlatformSessionIdBase64;
     FString SessionId;
+    TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_AddPlatformSessionToRallyHereSession : public FResponse
@@ -356,7 +364,7 @@ struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
  * Required Permissions: 
  * 	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
  * 
- *              
+ * 
  * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_CreateInstanceRequest : public FRequest
@@ -412,80 +420,13 @@ struct RALLYHEREAPI_API Traits_CreateInstanceRequest
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateInstanceRequest(InRequest, InDelegate, Priority); }
 };
 
-/* Create Match
- *
- * Create a match session based on matchmaking results. Only used by the matchmaking system, and not players
- * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:*`
- * 
- * 
- * Required Session Permissions: None
-*/
-struct RALLYHEREAPI_API FRequest_CreateMatch : public FRequest
-{
-    FRequest_CreateMatch();
-    virtual ~FRequest_CreateMatch() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FRHAPI_MatchMakingSessionRequest MatchMakingSessionRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponse
-{
-    FResponse_CreateMatch(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreateMatch() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_JsonValue Content;
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 404
-    Session doesn't exist or Player is not a member of the session.  See error code for more info
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_CreateMatch
-{
-    typedef FRequest_CreateMatch Request;
-    typedef FResponse_CreateMatch Response;
-    typedef FDelegate_CreateMatch Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatch(InRequest, InDelegate, Priority); }
-};
-
 /* Create Or Join Session
  *
  * Join the first publicly available session of given type. If there is no public session, and the session type
  * permits player made sessions, create a new session and put the player in it
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:create`
+ * 	For any player (including themselves)any of: `session:create`, `session:*`
  * 
  * 
  * Required Session Permissions: None
@@ -551,7 +492,7 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
  * relevant.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:event`
+ * 	For any player (including themselves)any of: `session:update:any`, `session:update:event`, `session:*`
  * 
  * 
  * Required Session Permissions: None
@@ -680,7 +621,7 @@ struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
  * Remove a platform session from a Rally Here session
  *                
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update:platform`
+ * 	For any player (including themselves)any of: `session:update:platform`, `session:*`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission
@@ -698,6 +639,7 @@ struct RALLYHEREAPI_API FRequest_DeletePlatformSessionFromRallyHereSession : pub
     ERHAPI_Platform Platform;
     FString PlatformSessionIdBase64;
     FString SessionId;
+    TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_DeletePlatformSessionFromRallyHereSession : public FResponse
@@ -757,7 +699,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
  * Required Permissions: 
  * 	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
  * 
- *              
+ * 
  * Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_EndInstance : public FRequest
@@ -883,7 +825,7 @@ struct RALLYHEREAPI_API Traits_EndMatch
  * Get the config about all session templates
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 	For any player (including themselves)any of: `session:read:config`, `session:*`
  * 
  * 
  * Required Session Permissions: None
@@ -951,7 +893,7 @@ struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
  * Get all public sessions of a specific type
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:browser`
+ * 	For any player (including themselves)any of: `session:read:browser`, `session:*`
  * 
  * 
  * Required Permissions: None
@@ -969,6 +911,7 @@ struct RALLYHEREAPI_API FRequest_GetBrowserSessionsByType : public FRequest
     FString SessionType;
     TOptional<int32> Cursor;
     TOptional<int32> PageSize;
+    TOptional<FString> RegionId;
 };
 
 struct RALLYHEREAPI_API FResponse_GetBrowserSessionsByType : public FResponse
@@ -1020,7 +963,7 @@ struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
  * Get public connection info for self
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 	For any player (including themselves)any of: `session:read:config`, `session:*`
  * 
  * 
  * Required Permissions: None
@@ -1082,7 +1025,7 @@ struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
  * Get information about a platform session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:platform`
+ * 	For any player (including themselves)any of: `session:read:platform`, `session:*`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission
@@ -1157,7 +1100,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
  * Get Sessions associated with a player by id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+ * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`
  * 	For the player themselves: `session:read-player:self`
  * 
  * Required Session Permissions: None
@@ -1221,7 +1164,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
  * Get Sessions associated with a player by uuid
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+ * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`
  * 	For the player themselves: `session:read-player:self`
  * 
  * Required Session Permissions: None
@@ -1291,7 +1234,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
  * Get Sessions associated with a player by uuid
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read-player:any`
+ * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`
  * 	For the player themselves: `session:read-player:self`
  * 
  * Required Session Permissions: None
@@ -1512,6 +1455,7 @@ struct RALLYHEREAPI_API FRequest_GetSessionById : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FString SessionId;
+    TOptional<bool> RefreshTtl;
     /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
     TOptional<FString> IfNoneMatch;
 };
@@ -1565,7 +1509,7 @@ struct RALLYHEREAPI_API Traits_GetSessionById
  * Get all events for the session.  Empty list means there is no event history for it.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`, `session:read:event`
+ * 	For any player (including themselves)any of: `session:read:event`, `session:read-player:any`, `session:*`
  * 
  * 
  * Required Session Permissions: None
@@ -1629,7 +1573,7 @@ struct RALLYHEREAPI_API Traits_GetSessionEvents
  * Get config about a session template by ID
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 	For any player (including themselves)any of: `session:read:config`, `session:*`
  * 
  * 
  * Required Session Permissions: None
@@ -1691,6 +1635,125 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetSessionTemplateByType(InRequest, InDelegate, Priority); }
+};
+
+/* Instance Health Check
+ *
+ * Endpoint to post health status of an instance
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves): `session:instance:health`
+ * 
+ * 
+ * session:instance:health
+*/
+struct RALLYHEREAPI_API FRequest_InstanceHealthCheck : public FRequest
+{
+    FRequest_InstanceHealthCheck();
+    virtual ~FRequest_InstanceHealthCheck() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FString SessionId;
+    FRHAPI_InstanceHealthStatusUpdate InstanceHealthStatusUpdate;
+};
+
+struct RALLYHEREAPI_API FResponse_InstanceHealthCheck : public FResponse
+{
+    FResponse_InstanceHealthCheck(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_InstanceHealthCheck() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_InstanceHealthStatusResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InstanceHealthStatusResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_InstanceHealthCheck
+{
+    typedef FRequest_InstanceHealthCheck Request;
+    typedef FResponse_InstanceHealthCheck Response;
+    typedef FDelegate_InstanceHealthCheck Delegate;
+    typedef FSessionsAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthCheck(InRequest, InDelegate, Priority); }
+};
+
+/* Instance Health Config
+ *
+ * Get config about expected poll rates for instance health, and when instances will go missing/unhealthy
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 
+ * 
+ * session:instance:health
+*/
+struct RALLYHEREAPI_API FRequest_InstanceHealthConfig : public FRequest
+{
+    FRequest_InstanceHealthConfig();
+    virtual ~FRequest_InstanceHealthConfig() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+};
+
+struct RALLYHEREAPI_API FResponse_InstanceHealthConfig : public FResponse
+{
+    FResponse_InstanceHealthConfig(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_InstanceHealthConfig() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_InstanceHealthSettingsResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_InstanceHealthSettingsResponse& OutContent) const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_InstanceHealthConfig
+{
+    typedef FRequest_InstanceHealthConfig Request;
+    typedef FResponse_InstanceHealthConfig Response;
+    typedef FDelegate_InstanceHealthConfig Delegate;
+    typedef FSessionsAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.InstanceHealthConfig(InRequest, InDelegate, Priority); }
 };
 
 /* Join Queue
@@ -1761,7 +1824,7 @@ struct RALLYHEREAPI_API Traits_JoinQueue
  * Join a session with currently authed player
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -1834,7 +1897,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
  * Join a platform session by platform ID and parent platform session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -1917,7 +1980,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
  * Join a platform session by ID, and the parent session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -1998,7 +2061,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
  * Kick or Remove a player from a session, or cancel an invite for a player to the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`
  * 
  * 
  * Required Session Permissions: None for players operating on themselves.
@@ -2068,7 +2131,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
  * Kick or Remove a player from a session, or cancel an invite for a player to the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`
  * 
  * 
  * Required Session Permissions: None for users operating on themselves. 
@@ -2142,7 +2205,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
  * Kick or Remove a player from a session, or cancel an invite for a player to the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`, `session:update-player:self`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:update-player:self`, `session:*`
  * 
  * 
  * Required Session Permissions: None for users operating on themselves. 
@@ -2347,7 +2410,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
  * Leave a platform session by platform ID and parent platform session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2422,7 +2485,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
  * Leave a platform session by platform ID and parent platform session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
+ * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2513,6 +2576,7 @@ struct RALLYHEREAPI_API FRequest_PostBrowserInfo : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FString SessionId;
     FRHAPI_BrowserInfo BrowserInfo;
+    TOptional<bool> RefreshTtl;
 };
 
 struct RALLYHEREAPI_API FResponse_PostBrowserInfo : public FResponse
@@ -2559,7 +2623,7 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
  * Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:update:fubar`
+ * 	For any player (including themselves)any of: `session:update:fubar`, `session:*`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.session_admin`
@@ -2751,7 +2815,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
  * Required Permissions: 
  * 	For any player (including themselves)any of: `session:update:any`, `session:*`, `session:update:self`
  * 
- *              
+ * 
  * Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_UpdateInstanceInfo : public FRequest
@@ -2943,7 +3007,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
  * Add or invite a player to the session, or change the status of a player already in the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`
+ * 	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited.
@@ -3015,7 +3079,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * Add or invite a player to the session, or change the status of a player already in the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`
+ * 	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 
@@ -3091,7 +3155,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
  * Add or invite a player to the session, or change the status of a player already in the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:promote:any`, `session:*`, `session:promote:self`
+ * 	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 
