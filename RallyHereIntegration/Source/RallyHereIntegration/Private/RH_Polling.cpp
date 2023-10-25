@@ -7,26 +7,8 @@ URH_PollingSettings::URH_PollingSettings(const FObjectInitializer& ObjectInitial
 {
 	CategoryName = TEXT("Plugins");
 	SectionName = TEXT("RallyHere Polling");
-
-	DefaultPollingInterval = 60.f;
 }
 
-float URH_PollingSettings::GetPollingInterval(const FName& TimerName) const
-{
-	const auto* TimerSetting = PollingIntervals.FindByPredicate(
-	[TimerName](const FRH_PollTimerSetting& TimerSetting)
-	{
-		return TimerSetting.TimerName == TimerName;
-	});
-
-	if (TimerSetting != nullptr)
-	{
-		return TimerSetting->Interval;
-	}
-
-	UE_LOG(LogRallyHereIntegration, Warning, TEXT("Polling Interval for %s requested, but not found"), *TimerName.ToString());
-	return DefaultPollingInterval;
-}
 
 /////////////////////////////////////////////////////////////
 
@@ -136,6 +118,52 @@ void FRH_PollControl::Tick(float DeltaTime)
 	}
 }
 
+const FRH_PollTimerSetting& FRH_PollControl::GetPollTimerSetting(const FName& TimerName) const
+{
+	// first check for override
+	const auto* TimerSettingOverride = PollingIntervalOverrides.FindByPredicate(
+		[TimerName](const FRH_PollTimerSetting& TimerSetting)
+		{
+			return TimerSetting.TimerName == TimerName;
+		});
+
+	if (TimerSettingOverride != nullptr)
+	{
+		return *TimerSettingOverride;
+	}
+
+	const auto* PollingSettings = GetDefault<URH_PollingSettings>();
+
+	const auto* TimerSetting = PollingSettings->PollingIntervals.FindByPredicate(
+		[TimerName](const FRH_PollTimerSetting& TimerSetting)
+		{
+			return TimerSetting.TimerName == TimerName;
+		});
+
+	if (TimerSetting != nullptr)
+	{
+		return *TimerSetting;
+	}
+
+	return PollingSettings->DefaultPollingTimer;
+}
+
+void FRH_PollControl::SetPollingIntervalOverride(const FRH_PollTimerSetting& Override)
+{
+	// remove old entry if it exists
+	ClearPollingIntervalOverride(Override.TimerName);
+
+	PollingIntervalOverrides.Add(Override);
+}
+
+void FRH_PollControl::ClearPollingIntervalOverride(const FName& TimerName)
+{
+	PollingIntervalOverrides.RemoveAll(
+		[TimerName](const FRH_PollTimerSetting& TimerSetting)
+		{
+			return TimerSetting.TimerName == TimerName;
+		});
+}
 
 /////////////////////////////////////////////////////////////
 
@@ -215,7 +243,18 @@ void FRH_AutoPoller::RestartTimer()
 
 void FRH_AutoPoller::DeferPollTimer()
 {
-	NextPollTime = FDateTime::Now() + FTimespan::FromSeconds(GetDefault<URH_PollingSettings>()->GetPollingIntervalWithJitter(TimerName));
+	auto* PollControl = FRH_PollControl::Get();
+	if (PollControl)
+	{
+		NextPollTime = FDateTime::Now() + FTimespan::FromSeconds(PollControl->GetPollingIntervalWithJitter(TimerName));
+	}
+	else
+	{
+		// if no controller instance, just pull raw from settings
+		const auto* PollingSettings = GetDefault<URH_PollingSettings>();
+
+		NextPollTime = FDateTime::Now() + FTimespan::FromSeconds(PollingSettings->DefaultPollingTimer.Interval);
+	}
 }
 
 void FRH_AutoPoller::ExecutePoll()
