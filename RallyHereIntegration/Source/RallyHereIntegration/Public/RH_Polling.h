@@ -46,11 +46,19 @@ struct FRH_PollTimerSetting
 	/** @brief Poll interval of the timer. */
 	UPROPERTY(EditAnywhere, Config, Category = "Timers")
 	float Interval;
+	/** @brief How much jitter to add to the timer. */
+	UPROPERTY(EditAnywhere, Config, Category = "Timers")
+	float JitterPct;
+	/** @brief How much jitter to add to the timer when started. */
+	UPROPERTY(EditAnywhere, Config, Category = "Timers")
+	float JitterPctInitial;
 	/** @brief Default constructor, 60 seconds timer. */
 	FRH_PollTimerSetting()
+		: TimerName(NAME_None)
+		, Interval(60.f)
+		, JitterPct(0.1f)
+		, JitterPctInitial(0.4f) // by default use a large initial jitter to desync timers
 	{
-		TimerName = NAME_None;
-		Interval = 60;
 	}
 };
 
@@ -79,6 +87,18 @@ public:
 	 */
 	UFUNCTION(Category = "Timers", meta=(ShowOnlyInnerProperties))
 	float GetPollingInterval(const FName& TimerName) const;
+	/**
+	 * @brief Gets a polling interval by name, or falls back to default if not found.  Adds configured jitter
+	 * @param [in] TimerName Name of Timer to get interval for.
+	 */
+	UFUNCTION(Category = "Timers", meta = (ShowOnlyInnerProperties))
+	float GetPollingIntervalWithJitter(const FName& TimerName, bool bInitial = false) const
+	{
+		const float JitterAmout = bInitial ? PollingIntervals[0].JitterPctInitial : PollingIntervals[0].JitterPct;
+		const float Jitter = JitterAmout * FMath::FRandRange(-1.0, 1.0);
+		const float TimerInterval = GetPollingInterval(TimerName);
+		return TimerInterval * (1.f + Jitter);
+	}
 };
 
 /**

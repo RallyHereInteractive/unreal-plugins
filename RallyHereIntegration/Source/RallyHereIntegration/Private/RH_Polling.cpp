@@ -215,7 +215,7 @@ void FRH_AutoPoller::RestartTimer()
 
 void FRH_AutoPoller::DeferPollTimer()
 {
-	NextPollTime = FDateTime::Now() + FTimespan::FromSeconds(GetDefault<URH_PollingSettings>()->GetPollingInterval(TimerName));
+	NextPollTime = FDateTime::Now() + FTimespan::FromSeconds(GetDefault<URH_PollingSettings>()->GetPollingIntervalWithJitter(TimerName));
 }
 
 void FRH_AutoPoller::ExecutePoll()
