@@ -236,7 +236,9 @@ namespace RallyHere
 			{
 				if (Signal == SIGTERM)
 				{
-					ExitStatusOverride = static_cast<uint8>(128 + Signal);
+					// do not set exit status override for SIGTERM, as we use it for normal shutdown
+					//ExitStatusOverride = static_cast<uint8>(128 + Signal);
+
 					TerminationSignalHandler();
 
 					if (OldTermAction.sa_flags & SA_SIGINFO)
