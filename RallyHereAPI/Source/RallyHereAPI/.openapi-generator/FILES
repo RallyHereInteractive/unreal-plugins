@@ -59,6 +59,7 @@ Private/HostType.cpp
 Private/HzApiErrorModel.cpp
 Private/Input.cpp
 Private/InstanceFubar.cpp
+Private/InstanceHealthSettingsResponse.cpp
 Private/InstanceHealthStatus.cpp
 Private/InstanceHealthStatusResponse.cpp
 Private/InstanceHealthStatusUpdate.cpp
@@ -331,6 +332,7 @@ Public/HostType.h
 Public/HzApiErrorModel.h
 Public/Input.h
 Public/InstanceFubar.h
+Public/InstanceHealthSettingsResponse.h
 Public/InstanceHealthStatus.h
 Public/InstanceHealthStatusResponse.h
 Public/InstanceHealthStatusUpdate.h
