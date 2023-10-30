@@ -327,6 +327,11 @@ protected:
 	TOptional<FOnlineSessionSearchResult> CachedSessionInvite;
 
 	/**
+	* @brief Backup pointer used during cleanup in case session has already been removed from owner when cleanup is triggered (ex: expiration has begun)
+	*/
+	TWeakObjectPtr<URH_JoinedSession> CleanupRHSession;
+
+	/**
 	* @brief whether cleanup is deferred until the end of the current action
 	*/
 	bool bDeferCleanup = false;

@@ -70,6 +70,7 @@ bool URH_PlatformSessionSyncer::Initialize(const FString& InSessionId, FRH_Sessi
 
 	// PAST THIS POINT, CLEANUP() MUST BE CALLED
 	// NOTE - RHSession->GetPlatformSyncer() will return nullptr until this function completes and registration finishes in the subsystem
+	CleanupRHSession = RHSession;
 
 	RHSession->OnSessionUpdatedDelegate.AddUObject(this, &URH_PlatformSessionSyncer::OnRHSessionUpdated);
 
@@ -109,7 +110,7 @@ void URH_PlatformSessionSyncer::Cleanup(const FSimpleDelegate& CompletionDelegat
 void URH_PlatformSessionSyncer::OnRHSessionUpdated(URH_SessionView* UpdatedSession)
 {
 	// once cleanup begins, ignore all updates
-	if (IsCleaningUp())
+	if (IsCleaningUp() || IsCleanupComplete())
 	{
 		return;
 	}
@@ -362,10 +363,16 @@ bool URH_PlatformSessionSyncer::GetPlatformSessionIdFromRHSession(FUniqueNetIdRe
 // State handling
 bool URH_PlatformSessionSyncer::SetSyncActionState(ESyncActionState NewState)
 {
+	// if we are already in a state, trivial success (do not run state change logic, state must be exited and re-entered)
+	if (NewState == CurrentSyncActionState)
+	{
+		return true;
+	}
+
 	// once cleanup starts, can only use cleanup states, and only transition to cleanup complete
 	if (IsCleaningUp())
 	{
-		if (NewState <= CurrentSyncActionState)
+		if (NewState < CurrentSyncActionState)
 		{
 			return false;
 		}
@@ -1005,6 +1012,15 @@ void URH_PlatformSessionSyncer::CleanupInternal()
 	
 	// unbind callbacks
 	auto RHSession = GetRHSession();
+
+	// use the backup pointer if it is available and our primary get did not succeed (can happen if the parent session was already removed from the session manager)
+	if (RHSession == nullptr && CleanupRHSession.IsValid())
+	{
+		RHSession = CleanupRHSession.Get();
+	}
+	// clear our our cleanup reference in case of re-entry
+	CleanupRHSession = nullptr;
+
 	if (RHSession != nullptr)
 	{
 		RHSession->OnSessionUpdatedDelegate.RemoveAll(this);
