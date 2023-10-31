@@ -9,18 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "PlayerRankResponse.h"
-#include "PlayerRankRequestResponse.generated.h"
+#include "RallyHereEvent.h"
+#include "EventList.generated.h"
 
-/** @defgroup RHAPI_PlayerRankRequestResponse RallyHere API Model PlayerRankRequestResponse
+/** @defgroup RHAPI_EventList RallyHere API Model EventList
  *  @{
  */
 
 /**
- * @brief DEPRECATED Response to successfully requesting all of a player&#39;s ranks
+ * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_EventList : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,15 +40,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of player's ranks */
+    /** @brief List of events */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_PlayerRankResponse> PlayerRanks{  };
-    /** @brief Gets the value of PlayerRanks */
-    TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() { return PlayerRanks; }
-    /** @brief Gets the value of PlayerRanks */
-    const TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() const { return PlayerRanks; }
-    /** @brief Sets the value of PlayerRanks */
-    void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse> NewValue) { PlayerRanks = NewValue;  }
+    TArray<FRHAPI_RallyHereEvent> EventList{  };
+    /** @brief Gets the value of EventList */
+    TArray<FRHAPI_RallyHereEvent>& GetEventList() { return EventList; }
+    /** @brief Gets the value of EventList */
+    const TArray<FRHAPI_RallyHereEvent>& GetEventList() const { return EventList; }
+    /** @brief Sets the value of EventList */
+    void SetEventList(TArray<FRHAPI_RallyHereEvent> NewValue) { EventList = NewValue;  }
 };
 
 /** @} */

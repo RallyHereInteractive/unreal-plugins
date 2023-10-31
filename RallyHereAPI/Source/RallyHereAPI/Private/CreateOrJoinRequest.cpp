@@ -38,6 +38,11 @@ void FRHAPI_CreateOrJoinRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("region_id"));
         RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
     }
+    if (Player_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("player"));
+        RallyHereAPI::WriteJsonValue(Writer, Player_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -66,6 +71,12 @@ bool FRHAPI_CreateOrJoinRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
     {
         RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
         ParseSuccess &= RegionId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonPlayerField = (*Object)->TryGetField(TEXT("player"));
+    if (JsonPlayerField.IsValid() && !JsonPlayerField->IsNull())
+    {
+        Player_IsSet = TryGetJsonValue(JsonPlayerField, Player_Optional);
+        ParseSuccess &= Player_IsSet;
     }
 
     return ParseSuccess;

@@ -76,7 +76,7 @@ private:
  *
  * Create new notification for client.  Requires permission to create for a different client
  * 
- * Requires permissions: Any of `notification:playerid:*`, `notification:playerid:write`
+ * Requires permissions: Any of `notification:playerid:write`, `notification:playerid:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridCreateNotification : public FRequest
 {
@@ -142,7 +142,7 @@ struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`
+ * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationById : public FRequest
 {
@@ -211,7 +211,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
  *
  * Retrieve a single notification by id
  * 
- * Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`
+ * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationByIdSelf : public FRequest
 {
@@ -285,7 +285,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`
+ * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPage : public FRequest
 {
@@ -368,7 +368,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
  * 
  * Client are expected to poll this endpoint regularly.
  * 
- * Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`
+ * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPageSelf : public FRequest
 {
@@ -443,7 +443,7 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`
+ * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequest
 {
@@ -519,7 +519,7 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
  * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
  * the notifications found.
  * 
- * Requires permissions: Any of `notification:playerid:read`,`notification:playerid:*`
+ * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public FRequest
 {

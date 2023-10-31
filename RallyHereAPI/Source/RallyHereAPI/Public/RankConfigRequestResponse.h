@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief Response to successfully requesting all rank config
+ * @brief DEPRECATED Response to successfully requesting all rank config
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponse : public FRHAPI_Model
