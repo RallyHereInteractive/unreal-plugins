@@ -151,6 +151,32 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 				}
 			}));
 	}
+	ImGui::SameLine();
+	if (ImGui::Button("Delete Settings Data"))
+	{
+		FString JsonString = UTF8_TO_TCHAR(ModifySettingsJsonInput.GetData());
+		TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
+		TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(JsonString);
+		FJsonSerializer::Deserialize(JsonReader, JsonObject);
+		FRH_PlayerSettingsDataWrapper DataWrapper;
+		TSharedPtr<FJsonValueObject> JsonValueObject = MakeShared<FJsonValueObject>(JsonObject);
+		FRHAPI_SettingData SettingData;
+
+		SettingData.SetValue(FRHAPI_JsonValue::CreateFromUnrealValue(JsonValueObject));
+		SettingData.SetV(SettingVersionNum);
+
+		DataWrapper.Content.Add(UTF8_TO_TCHAR(ModifySettingsKeyInput.GetData()), SettingData);
+
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, &DataWrapper](URH_PlayerInfo* PlayerInfo)
+			{
+				SetPlayerSettingsActionResult.Empty();
+				if (PlayerInfo)
+				{
+					auto Delegate = FRH_PlayerInfoSetPlayerSettingsDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse, PlayerInfo->GetRHPlayerUuid());
+					PlayerInfo->DeletePlayerSettings(UTF8_TO_TCHAR(ModifySettingsIdInput.GetData()), DataWrapper, MoveTemp(Delegate));
+				}
+			}));
+	}
 }
 
 void FRHDTW_PlayerSettings::DoSettingsTypes()

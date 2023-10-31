@@ -460,6 +460,7 @@ public:
 	typedef RallyHereAPI::Traits_GetPlayerLinks GetPlatforms;
 	typedef RallyHereAPI::Traits_GetAllPlayerUuidSettingsForSettingType GetSettings;
 	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSettings;
+	typedef RallyHereAPI::Traits_DeleteSinglePlayerUuidSetting DeleteSettings;
 	typedef RallyHereAPI::Traits_GetAllPlayerUuidRanks GetRankings;
 	typedef RallyHereAPI::Traits_UpdatePlayerUuidRank UpdateRanking;
 
@@ -617,6 +618,16 @@ public:
 	void BLUEPRINT_SetPlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper SettingsData, const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate& Delegate) { SetPlayerSettings(SettingTypeId, SettingsData, Delegate); }
 
 	/**
+	* @brief Deletes the players settings information for a given type.
+	* @param [in] SettingTypeId The setting type to delete.
+	* @param [in] SettingsData Data to be deleted from the players settings (only uses keys)
+	* @param [in] Delegate Callback when the operation is complete with success information.
+	*/
+	void DeletePlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate = FRH_PlayerInfoSetPlayerSettingsBlock());
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Delete Player Settings", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_DeletePlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate& Delegate) { DeletePlayerSettings(SettingTypeId, SettingsData, Delegate); }
+
+	/**
 	* @brief Gets the players ranking information for a given type.
     * @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
 	* @param [in] bForceRefresh If true, will force a re-request of the players information.
@@ -766,6 +777,15 @@ protected:
 	 * @param [in] SettingsData The data of the setting that was updated.
 	 */
 	virtual void OnSetPlayerSettingsResponse(const SetSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData);
+	/**
+	 * @brief Handles the response to a Delete Player Settings call.
+	 * @param [in] Resp Response given for the call
+	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
+	 * @param [in] SettinyTypeId The type of settings that being updated requested.
+	 * @param [in] SettingKey The key of the setting that was updated.
+	 * @param [in] SettingsData The request data of the setting that was deleted
+	 */
+	virtual void OnDeletePlayerSettingsResponse(const DeleteSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData);
 	/**
 	 * @brief Handles the response to a Get Player Rankings call.
 	 * @param [in] Resp Response given for the call

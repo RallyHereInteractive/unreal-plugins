@@ -585,6 +585,94 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 }
 
 
+void URH_PlayerInfo::DeletePlayerSettings(const FString& SettingTypeId, FRH_PlayerSettingsDataWrapper& SettingsData, const FRH_PlayerInfoSetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/)
+{
+	// Disallow duplicate active requested SettingTypeIds
+	if (PendingSettingRequestsByTypeId.Contains(SettingTypeId))
+	{
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
+		return;
+	}
+
+	if (SettingsData.Content.Num() <= 0)
+	{
+		PendingSettingRequestsByTypeId.Remove(SettingTypeId);
+		SetPlayerSettingResponses.Remove(SettingTypeId);
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
+		return;
+	}
+
+	const FRH_PlayerSettingKeySetWrapper PendingKeys;
+	PendingSettingRequestsByTypeId.Add(SettingTypeId, PendingKeys);
+
+	if (const auto FoundKeySet = PendingSettingRequestsByTypeId.Find(SettingTypeId))
+	{
+		for (const auto& Pair : SettingsData.Content)
+		{
+			FoundKeySet->SettingKeySet.Add(Pair.Key);
+		}
+	}
+
+	for (const auto& Pair : SettingsData.Content)
+	{
+		if (const auto Value = Pair.Value.GetValueOrNull())
+		{
+			auto Request = DeleteSettings::Request();
+			Request.PlayerUuid = RHPlayerUuid;
+			Request.SettingTypeId = SettingTypeId;
+			Request.AuthContext = GetAuthContext();
+			Request.Key = Pair.Key;
+
+			if (!DeleteSettings::DoCall(RH_APIs::GetSettingsAPI(), Request, DeleteSettings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnDeletePlayerSettingsResponse, Delegate, SettingTypeId, Pair.Key, SettingsData), GetDefault<URH_IntegrationSettings>()->SettingsUpdatePriority))
+			{
+				PendingSettingRequestsByTypeId.Remove(SettingTypeId);
+				FRH_PlayerSettingsDataWrapper EmptyWrapper;
+				Delegate.ExecuteIfBound(false, EmptyWrapper);
+			}
+		}
+	}
+}
+
+void URH_PlayerInfo::OnDeletePlayerSettingsResponse(const DeleteSettings::Response& Response, const FRH_PlayerInfoSetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString SettingKey, FRH_PlayerSettingsDataWrapper SettingsData)
+{
+	if (Response.IsSuccessful())
+	{
+		const auto FoundPendingSettings = PendingSettingRequestsByTypeId.Find(SettingTypeId);
+		if (FoundPendingSettings && FoundPendingSettings->SettingKeySet.Contains(SettingKey))
+		{
+			FoundPendingSettings->SettingKeySet.Remove(SettingKey);
+
+			if (!SetPlayerSettingResponses.Contains(SettingKey))
+			{
+				FRH_PlayerSettingsDataWrapper NewSettingsWrapper;
+				SetPlayerSettingResponses.Add(SettingKey, NewSettingsWrapper);
+			}
+
+			if (auto FoundResponses = SetPlayerSettingResponses.Find(SettingKey))
+			{
+				if (FoundPendingSettings->SettingKeySet.Num() <= 0)
+				{
+					// All Setting update requests have responded to successfully
+					PlayerSettingsByTypeId.Add(SettingTypeId, SettingsData);
+					LastRequestSettingsByTypeId.Add(SettingTypeId, FDateTime::UtcNow());
+					PendingSettingRequestsByTypeId.Remove(SettingTypeId);
+					Delegate.ExecuteIfBound(true, (*FoundResponses));
+				}
+			}
+		}
+	}
+	else
+	{
+		PendingSettingRequestsByTypeId.Remove(SettingTypeId);
+		SetPlayerSettingResponses.Remove(SettingTypeId);
+		FRH_PlayerSettingsDataWrapper EmptyWrapper;
+		Delegate.ExecuteIfBound(false, EmptyWrapper);
+	}
+}
+
+
 void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
 {
 	FDateTime Now = FDateTime::UtcNow();
