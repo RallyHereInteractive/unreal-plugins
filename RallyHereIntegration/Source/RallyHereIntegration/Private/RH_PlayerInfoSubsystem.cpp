@@ -590,7 +590,7 @@ void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTim
 	FDateTime Now = FDateTime::UtcNow();
 	if (LastRequestRankings.GetTicks() != 0 && (LastRequestRankings + StaleThreshold) < Now && !bForceRefresh)
 	{
-		TArray<FRHAPI_PlayerRankResponse> Values;
+		TArray<FRHAPI_PlayerRankResponseV2> Values;
 		PlayerRankingsByRankingId.GenerateValueArray(Values);
 		Delegate.ExecuteIfBound(false, Values);
 		return;
@@ -601,7 +601,7 @@ void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTim
 	Request.AuthContext = GetAuthContext();
 	if (!GetRankings::DoCall(RH_APIs::GetRankAPI(), Request, GetRankings::Delegate::CreateUObject(this, &URH_PlayerInfo::OnGetPlayerRankingsResponse, Delegate), GetDefault<URH_IntegrationSettings>()->RankingGetPriority))
 	{
-		TArray<FRHAPI_PlayerRankResponse> Values;
+		TArray<FRHAPI_PlayerRankResponseV2> Values;
 		PlayerRankingsByRankingId.GenerateValueArray(Values);
 		Delegate.ExecuteIfBound(false, Values);
 	}
@@ -621,12 +621,12 @@ void URH_PlayerInfo::OnGetPlayerRankingsResponse(const GetRankings::Response& Re
 
 	LastRequestRankings = FDateTime::UtcNow();
 
-	TArray<FRHAPI_PlayerRankResponse> Values;
+	TArray<FRHAPI_PlayerRankResponseV2> Values;
 	PlayerRankingsByRankingId.GenerateValueArray(Values);
 	Delegate.ExecuteIfBound(true, Values);
 }
 
-void URH_PlayerInfo::UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
+void URH_PlayerInfo::UpdatePlayerRanking(const FString& RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
 {
 	auto Request = UpdateRanking::Request();
 	Request.PlayerUuid = GetRHPlayerUuid();
@@ -636,7 +636,7 @@ void URH_PlayerInfo::UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUp
 
 	if (!UpdateRanking::DoCall(RH_APIs::GetRankAPI(), Request, UpdateRanking::Delegate::CreateUObject(this, &URH_PlayerInfo::OnUpdatePlayerRankingResponse, Delegate), GetDefault<URH_IntegrationSettings>()->RankingUpdatePriority))
 	{
-		TArray<FRHAPI_PlayerRankResponse> Values;
+		TArray<FRHAPI_PlayerRankResponseV2> Values;
 		PlayerRankingsByRankingId.GenerateValueArray(Values);
 		Delegate.ExecuteIfBound(false, Values);
 	}
@@ -653,13 +653,13 @@ void URH_PlayerInfo::OnUpdatePlayerRankingResponse(const UpdateRanking::Response
 				PlayerRankingsByRankingId.FindOrAdd(Player.GetRankId(), Player);
 			}
 		}
-		TArray<FRHAPI_PlayerRankResponse> Values;
+		TArray<FRHAPI_PlayerRankResponseV2> Values;
 		PlayerRankingsByRankingId.GenerateValueArray(Values);
 		Delegate.ExecuteIfBound(true, Values);
 	}
 	else
 	{
-		TArray<FRHAPI_PlayerRankResponse> Values;
+		TArray<FRHAPI_PlayerRankResponseV2> Values;
 		PlayerRankingsByRankingId.GenerateValueArray(Values);
 		Delegate.ExecuteIfBound(false, Values);
 	}

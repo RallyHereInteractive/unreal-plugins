@@ -10,7 +10,7 @@ FRHDTW_PlayerSessions::FRHDTW_PlayerSessions()
 {
 	DefaultPos = FVector2D(610, 20);
 
-	ModifyRankIdInput = 0;
+	ModifyRankIdInput.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	ModifyRankMuInput = 0.f;
 	ModifyRankSigmaInput = 0.f;
 
@@ -76,7 +76,7 @@ void FRHDTW_PlayerSessions::DoViewRankings()
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
 			auto& Ranking = Pair.Value;
-			ImGui::Text("%d", Pair.Key);
+			ImGui::Text("%s", TCHAR_TO_UTF8(*Pair.Key));
 			ImGui::TableNextColumn();
 			ImGui::Text("%f", Ranking.Rank.GetMu());
 			ImGui::TableNextColumn();
@@ -103,7 +103,7 @@ void FRHDTW_PlayerSessions::DoModifyRankings()
 	}
 	ImGui::Text("For [%d] selected players with UUIDs.", NumSelectedPlayers);
 
-	ImGui::InputInt("RankId", &ModifyRankIdInput);
+	ImGui::InputText("RankId", ModifyRankIdInput.GetData(), ModifyRankIdInput.Num());
 	ImGui::InputFloat("Sigma", &ModifyRankMuInput);
 	ImGui::InputFloat("Mu", &ModifyRankSigmaInput);
 
@@ -128,13 +128,13 @@ void FRHDTW_PlayerSessions::DoModifyRankings()
 				if (PlayerInfo)
 				{
 					auto Delegate = FRH_PlayerInfoGetPlayerRankingsDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSessions::HandleUpdateRankingResponse, PlayerInfo->GetRHPlayerUuid());
-					PlayerInfo->UpdatePlayerRanking(ModifyRankIdInput, UpdateRequest, MoveTemp(Delegate));
+					PlayerInfo->UpdatePlayerRanking(ImGuiGetStringFromTextInputBuffer(ModifyRankIdInput), UpdateRequest, MoveTemp(Delegate));
 				}
 			}));
 	}
 }
 
-void FRHDTW_PlayerSessions::HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponse> PlayerRankingInfo, FGuid PlayerUuid)
+void FRHDTW_PlayerSessions::HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2> PlayerRankingInfo, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{

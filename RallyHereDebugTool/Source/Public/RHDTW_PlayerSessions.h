@@ -16,12 +16,12 @@ struct FRHDTW_PlayerSessions : public FRH_DebugToolWindow
 	void DoViewRankings();
 	void DoModifyRankings();
 
-	int32 ModifyRankIdInput;
+	TArray<ANSICHAR> ModifyRankIdInput;
 	float ModifyRankMuInput;
 	float ModifyRankSigmaInput;
 
 private:
-	void HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponse> PlayerRankingInfo, FGuid PlayerUuid);
+	void HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2> PlayerRankingInfo, FGuid PlayerUuid);
 	FString UpdateRankingActionResult;
 };
 
