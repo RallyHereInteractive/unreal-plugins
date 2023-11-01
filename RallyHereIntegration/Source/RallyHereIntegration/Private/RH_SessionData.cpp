@@ -1016,6 +1016,34 @@ void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FSt
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	if (!GetSessionData().GetInstanceOrNull())
+	{
+		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because instance does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		return;
+	}
+
+	FRH_APISessionWithETag UpdateWrapper(SessionData);
+	auto& Update = UpdateWrapper.Data;
+
+	{
+		Update.GetInstance().SetInstanceHealth(HealthStatus);
+	}
+
+	ImportSessionUpdateToAllPlayers(UpdateWrapper);
+
+	Delegate.ExecuteIfBound(true, FRH_ErrorInfo());
+}
+
+void URH_OfflineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Delegate.ExecuteIfBound(false, this);
+}
+
 // this is necessary right now as each player stores session data separately
 void URH_OfflineSession::ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update)
 {
@@ -1307,4 +1335,41 @@ void URH_OnlineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FStr
 		// NOTE - this does not assume that local state is up to date!
 		DoRequestViaHelper<RallyHereAPI::Traits_DeleteBrowserInfo>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionDeleteBrowserInfoPriority);
 	}
+}
+
+void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+
+	typedef RallyHereAPI::Traits_InstanceHealthCheck BaseType;
+
+	BaseType::Request Request = {};
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.InstanceHealthStatusUpdate.SetInstanceHealth(HealthStatus);
+
+	auto* Instance = GetInstanceData();
+	if (Instance != nullptr)
+	{
+		auto* InstanceId = Instance->GetInstanceIdOrNull();
+		if (InstanceId != nullptr)
+		{
+			Request.InstanceHealthStatusUpdate.SetInstanceId(*InstanceId);
+		}
+	}
+
+	// we use the simple query helper since this intentionally does not modify the session, to prevent excess reads on the poll
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate(),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+}
+
+void URH_OnlineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Delegate.ExecuteIfBound(false, this);
 }

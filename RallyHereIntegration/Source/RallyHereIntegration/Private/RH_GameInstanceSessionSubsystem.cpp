@@ -384,37 +384,58 @@ ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthS
 void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollCompleteFunc& Delegate)
 {
 	// make sure the active session is locally hosted
-	if (ActiveSession != nullptr && ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
+	if (	ActiveSession != nullptr
+		&&	ActiveSession->GetInstanceData() != nullptr 
+		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
+		)
 	{
-		auto* Instance = ActiveSession->GetInstanceData();
-
-		typedef RallyHereAPI::Traits_InstanceHealthCheck BaseType;
-
-		BaseType::Request Request = {};
-		Request.AuthContext = GetAuthContext();
-		Request.SessionId = ActiveSession->GetSessionId();
-		Request.InstanceHealthStatusUpdate.SetInstanceHealth(GetInstanceHealthStatusToReport());
-		
-		if (Instance != nullptr)
-		{
-			auto* InstanceId = Instance->GetInstanceIdOrNull();
-			if (InstanceId != nullptr)
-			{
-				Request.InstanceHealthStatusUpdate.SetInstanceId(*InstanceId);
-			}
-		}
-
-		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-			BaseType::Delegate(),
+		ActiveSession->UpdateInstanceHealth(GetInstanceHealthStatusToReport(), 
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
-			{
-				// reset timer if we still have an active session
-				Delegate.ExecuteIfBound(bSuccess, ActiveSession != nullptr);
-			}),
-			GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
-		);
+				{
+					Delegate.ExecuteIfBound(bSuccess, true);
+				}
+			));
+	}
+	else
+	{
+		// stop the timer if no active session and instance
+		Delegate.ExecuteIfBound(false, false);
+	}
+}
 
-		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive() const
+{
+	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
+	{
+		return false;
+	}
+	
+	// check if instance is in a state where we do not want to keep backfill alive
+	auto JoinStatus = ActiveSession->GetInstanceData()->GetJoinStatus();
+	switch (JoinStatus)
+	{
+	case ERHAPI_InstanceJoinableStatus::Closed:
+		return false;
+	}
+
+	return true;
+}
+
+void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& Delegate)
+{
+	// make sure the active session is locally hosted, and that we want to keep backfill alive
+	if (	ActiveSession != nullptr
+		&&	ActiveSession->GetInstanceData() != nullptr 
+		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
+		&&	GetShouldKeepBackfillAlive()
+		)
+	{
+		ActiveSession->UpdateBackfill(true,
+			FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session)
+				{
+					Delegate.ExecuteIfBound(bSuccess, true);
+				}
+		));
 	}
 	else
 	{

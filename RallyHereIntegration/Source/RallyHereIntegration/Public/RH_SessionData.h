@@ -787,6 +787,32 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdateBrowserInfo(bEnable, CustomData, Delegate); };
 	/**
+	* @brief Update the instance health of the session
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateInstanceHealth, ); };
+	/**
+	* @brief Blueprint compatible version of UpdateInstanceHealth
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Instance Health", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { UpdateInstanceHealth(HealthStatus, Delegate); };
+	/**
+	* @brief Updates the backfill info.
+	* @param [in] bEnable If true, keeps backfill enabled
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateBackfill, ); };
+	/**
+	* @brief Blueprint compatible version of UpdateBackfill
+	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
+	void BLUEPRINT_UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdateBackfill(bEnable, Delegate); };
+	/**
 	* @brief Utility function for beacon connections - not exposed to blueprint so that it can have encryption data
 	* @param [in] Player Player the beacon is being created for, used for login credential passing
 	* @param [in] BeaconClass The type of beacon to create
@@ -905,7 +931,25 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
 	*/
 	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Updates the sessions browser info.
+	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	* @param [in] CustomData The new browser data for the update.
+	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	*/
 	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Update the instance health of the session
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) override;
+	/**
+	* @brief Updates the backfill info.
+	* @param [in] bEnable If true, keeps backfill enabled
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 
 protected:
 	void ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update);
@@ -1121,6 +1165,18 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
 	*/
 	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Update the instance health of the session
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) override;
+	/**
+	* @brief Updates the backfill info.
+	* @param [in] bEnable If true, keeps backfill enabled
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 };
 
 /** @ingroup Session

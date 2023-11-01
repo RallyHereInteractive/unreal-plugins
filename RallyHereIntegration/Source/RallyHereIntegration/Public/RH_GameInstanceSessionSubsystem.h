@@ -183,6 +183,11 @@ public:
 	virtual ERHAPI_InstanceHealthStatus GetInstanceHealthStatusToReport() const;
 
 	/**
+	 * @brief Gets whether backfill should be kept alive
+	 */
+	virtual bool GetShouldKeepBackfillAlive() const;
+
+	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
 	 */
 	FRH_OnBeaconCreatedDelegate OnBeaconCreated;
@@ -254,6 +259,11 @@ protected:
 	 * @param [in] Delegate Callback delegate for when the health is updated.
 	 */
 	virtual void PollInstanceHealth(const FRH_PollCompleteFunc& Delegate);
+	/**
+	 * @brief Called when backfill should be updated
+	 * @param [in] Delegate Callback delegate for when the health is updated.
+	 */
+	virtual void PollBackfill(const FRH_PollCompleteFunc& Delegate);
 };
 
 /** @} */
