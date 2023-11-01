@@ -42,6 +42,8 @@ Private/DiscoveryResponse.cpp
 Private/EntitlementErrorCode.cpp
 Private/EntitlementStatus.cpp
 Private/EntitlementsAPI.cpp
+Private/EventList.cpp
+Private/EventsAPI.cpp
 Private/FriendRelationship.cpp
 Private/FriendRelationshipV1.cpp
 Private/Friends.cpp
@@ -175,9 +177,12 @@ Private/PlayerPersonResponse.cpp
 Private/PlayerPresence.cpp
 Private/PlayerPresenceUpdateSelf.cpp
 Private/PlayerRankRequestResponse.cpp
+Private/PlayerRankRequestResponseV2.cpp
 Private/PlayerRankResponse.cpp
+Private/PlayerRankResponseV2.cpp
 Private/PlayerRankUpdateRequest.cpp
 Private/PlayerRankUpdateResponse.cpp
+Private/PlayerRankUpdateResponseV2.cpp
 Private/PlayerResponse.cpp
 Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
@@ -190,6 +195,7 @@ Private/PortalUseRuleset.cpp
 Private/PortalUseRulesets.cpp
 Private/PortalUserInfo.cpp
 Private/PortalUserResponse.cpp
+Private/PostGameEventsResponse.cpp
 Private/PresenceAPI.cpp
 Private/PresenceAdminAPI.cpp
 Private/PriceBreakpoint.cpp
@@ -215,9 +221,12 @@ Private/RallyHereAPIBaseModel.cpp
 Private/RallyHereAPIHelpers.cpp
 Private/RallyHereAPIHttpRequester.cpp
 Private/RallyHereAPIModule.cpp
+Private/RallyHereEvent.cpp
 Private/RankAPI.cpp
 Private/RankConfig.cpp
 Private/RankConfigRequestResponse.cpp
+Private/RankConfigRequestResponseV2.cpp
+Private/RankConfigV2.cpp
 Private/RankData.cpp
 Private/Region.cpp
 Private/RegionsAPI.cpp
@@ -260,6 +269,7 @@ Private/TokenResponse.cpp
 Private/TrueskillRank.cpp
 Private/TrueskillTeam.cpp
 Private/TrueskillUpdateRequest.cpp
+Private/TrueskillUpdateRequestV2.cpp
 Private/UpdateInventoryRequest.cpp
 Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
@@ -315,6 +325,8 @@ Public/DiscoveryResponse.h
 Public/EntitlementErrorCode.h
 Public/EntitlementStatus.h
 Public/EntitlementsAPI.h
+Public/EventList.h
+Public/EventsAPI.h
 Public/FriendRelationship.h
 Public/FriendRelationshipV1.h
 Public/Friends.h
@@ -448,9 +460,12 @@ Public/PlayerPersonResponse.h
 Public/PlayerPresence.h
 Public/PlayerPresenceUpdateSelf.h
 Public/PlayerRankRequestResponse.h
+Public/PlayerRankRequestResponseV2.h
 Public/PlayerRankResponse.h
+Public/PlayerRankResponseV2.h
 Public/PlayerRankUpdateRequest.h
 Public/PlayerRankUpdateResponse.h
+Public/PlayerRankUpdateResponseV2.h
 Public/PlayerResponse.h
 Public/PlayerSession.h
 Public/PlayerSessionInvite.h
@@ -463,6 +478,7 @@ Public/PortalUseRuleset.h
 Public/PortalUseRulesets.h
 Public/PortalUserInfo.h
 Public/PortalUserResponse.h
+Public/PostGameEventsResponse.h
 Public/PresenceAPI.h
 Public/PresenceAdminAPI.h
 Public/PriceBreakpoint.h
@@ -488,9 +504,12 @@ Public/RallyHereAPIBaseModel.h
 Public/RallyHereAPIHelpers.h
 Public/RallyHereAPIHttpRequester.h
 Public/RallyHereAPIModule.h
+Public/RallyHereEvent.h
 Public/RankAPI.h
 Public/RankConfig.h
 Public/RankConfigRequestResponse.h
+Public/RankConfigRequestResponseV2.h
+Public/RankConfigV2.h
 Public/RankData.h
 Public/Region.h
 Public/RegionsAPI.h
@@ -533,6 +552,7 @@ Public/TokenResponse.h
 Public/TrueskillRank.h
 Public/TrueskillTeam.h
 Public/TrueskillUpdateRequest.h
+Public/TrueskillUpdateRequestV2.h
 Public/UpdateInventoryRequest.h
 Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h

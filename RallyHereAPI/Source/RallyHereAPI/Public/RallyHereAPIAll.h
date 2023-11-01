@@ -19,6 +19,7 @@
 #include "CustomAPI.h"
 #include "DiscoveryAPI.h"
 #include "EntitlementsAPI.h"
+#include "EventsAPI.h"
 #include "FriendsV1API.h"
 #include "FriendsV2API.h"
 #include "InstanceNotificationAPI.h"
@@ -78,6 +79,9 @@ public:
 
     FEntitlementsAPI& GetEntitlements();
     const FEntitlementsAPI& GetEntitlements() const;
+
+    FEventsAPI& GetEvents();
+    const FEventsAPI& GetEvents() const;
 
     FFriendsV1API& GetFriendsV1();
     const FFriendsV1API& GetFriendsV1() const;
@@ -148,6 +152,7 @@ private:
     FCustomAPI Custom;
     FDiscoveryAPI Discovery;
     FEntitlementsAPI Entitlements;
+    FEventsAPI Events;
     FFriendsV1API FriendsV1;
     FFriendsV2API FriendsV2;
     FInstanceNotificationAPI InstanceNotification;

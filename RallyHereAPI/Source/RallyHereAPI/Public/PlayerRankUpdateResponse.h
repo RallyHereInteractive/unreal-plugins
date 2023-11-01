@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief Response to successfully updating players&#39; ranks
+ * @brief DEPRECATED Response to successfully updating players&#39; ranks
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateResponse : public FRHAPI_Model

@@ -9,18 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "PlayerRankResponse.h"
-#include "PlayerRankRequestResponse.generated.h"
+#include "PlayerRankResponseV2.h"
+#include "PlayerRankRequestResponseV2.generated.h"
 
-/** @defgroup RHAPI_PlayerRankRequestResponse RallyHere API Model PlayerRankRequestResponse
+/** @defgroup RHAPI_PlayerRankRequestResponseV2 RallyHere API Model PlayerRankRequestResponseV2
  *  @{
  */
 
 /**
- * @brief DEPRECATED Response to successfully requesting all of a player&#39;s ranks
+ * @brief Response to successfully requesting all of a player&#39;s ranks
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponseV2 : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
 
     /** @brief List of player's ranks */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_PlayerRankResponse> PlayerRanks{  };
+    TArray<FRHAPI_PlayerRankResponseV2> PlayerRanks{  };
     /** @brief Gets the value of PlayerRanks */
-    TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() { return PlayerRanks; }
+    TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() { return PlayerRanks; }
     /** @brief Gets the value of PlayerRanks */
-    const TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() const { return PlayerRanks; }
+    const TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() const { return PlayerRanks; }
     /** @brief Sets the value of PlayerRanks */
-    void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse> NewValue) { PlayerRanks = NewValue;  }
+    void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponseV2> NewValue) { PlayerRanks = NewValue;  }
 };
 
 /** @} */

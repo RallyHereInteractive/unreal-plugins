@@ -132,7 +132,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     /** @brief Sets the value of CanBeCreatedByPlayersDirectly_Optional to its default and also sets CanBeCreatedByPlayersDirectly_IsSet to true */
     void SetCanBeCreatedByPlayersDirectlyToDefault() { CanBeCreatedByPlayersDirectly_Optional = false; CanBeCreatedByPlayersDirectly_IsSet = true; }
 
-    /** @brief Should players join existing sessions of this type before creating a new one */
+    /** @brief DEPRECATED. Use 'attempt_auto_join' instead. Should players join existing sessions of this type before creating a new one */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Joinable_Optional{  };
     /** @brief true if Joinable_Optional has been set to a value */
@@ -158,6 +158,60 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
     /** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
     void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
+
+    /** @brief Should players join existing sessions of this type before creating a new one */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool AttemptAutoJoin_Optional{  };
+    /** @brief true if AttemptAutoJoin_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool AttemptAutoJoin_IsSet{ false };
+    /** @brief Gets the value of AttemptAutoJoin_Optional, regardless of it having been set */
+    bool& GetAttemptAutoJoin() { return AttemptAutoJoin_Optional; }
+    /** @brief Gets the value of AttemptAutoJoin_Optional, regardless of it having been set */
+    const bool& GetAttemptAutoJoin() const { return AttemptAutoJoin_Optional; }
+    /** @brief Gets the value of AttemptAutoJoin_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetAttemptAutoJoin(const bool& DefaultValue) const { if (AttemptAutoJoin_IsSet) return AttemptAutoJoin_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of AttemptAutoJoin_Optional and returns true if it has been set, otherwise returns false */
+    bool GetAttemptAutoJoin(bool& OutValue) const { if (AttemptAutoJoin_IsSet) OutValue = AttemptAutoJoin_Optional; return AttemptAutoJoin_IsSet; }
+    /** @brief Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetAttemptAutoJoinOrNull() { if (AttemptAutoJoin_IsSet) return &AttemptAutoJoin_Optional; return nullptr; }
+    /** @brief Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetAttemptAutoJoinOrNull() const { if (AttemptAutoJoin_IsSet) return &AttemptAutoJoin_Optional; return nullptr; }
+    /** @brief Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true */
+    void SetAttemptAutoJoin(bool NewValue) { AttemptAutoJoin_Optional = NewValue; AttemptAutoJoin_IsSet = true; }
+     /** @brief Clears the value of AttemptAutoJoin_Optional and sets AttemptAutoJoin_IsSet to false */
+    void ClearAttemptAutoJoin() { AttemptAutoJoin_Optional = false; AttemptAutoJoin_IsSet = false; }
+    /** @brief Returns true if AttemptAutoJoin_Optional is set and matches the default value */
+    bool IsAttemptAutoJoinDefaultValue() const { return AttemptAutoJoin_IsSet && AttemptAutoJoin_Optional == false; }
+    /** @brief Sets the value of AttemptAutoJoin_Optional to its default and also sets AttemptAutoJoin_IsSet to true */
+    void SetAttemptAutoJoinToDefault() { AttemptAutoJoin_Optional = false; AttemptAutoJoin_IsSet = true; }
+
+    /** @brief Should sessions of this type should be publicly joinable by default */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool DefaultPublic_Optional{  };
+    /** @brief true if DefaultPublic_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool DefaultPublic_IsSet{ false };
+    /** @brief Gets the value of DefaultPublic_Optional, regardless of it having been set */
+    bool& GetDefaultPublic() { return DefaultPublic_Optional; }
+    /** @brief Gets the value of DefaultPublic_Optional, regardless of it having been set */
+    const bool& GetDefaultPublic() const { return DefaultPublic_Optional; }
+    /** @brief Gets the value of DefaultPublic_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetDefaultPublic(const bool& DefaultValue) const { if (DefaultPublic_IsSet) return DefaultPublic_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of DefaultPublic_Optional and returns true if it has been set, otherwise returns false */
+    bool GetDefaultPublic(bool& OutValue) const { if (DefaultPublic_IsSet) OutValue = DefaultPublic_Optional; return DefaultPublic_IsSet; }
+    /** @brief Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetDefaultPublicOrNull() { if (DefaultPublic_IsSet) return &DefaultPublic_Optional; return nullptr; }
+    /** @brief Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetDefaultPublicOrNull() const { if (DefaultPublic_IsSet) return &DefaultPublic_Optional; return nullptr; }
+    /** @brief Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true */
+    void SetDefaultPublic(bool NewValue) { DefaultPublic_Optional = NewValue; DefaultPublic_IsSet = true; }
+     /** @brief Clears the value of DefaultPublic_Optional and sets DefaultPublic_IsSet to false */
+    void ClearDefaultPublic() { DefaultPublic_Optional = false; DefaultPublic_IsSet = false; }
+    /** @brief Returns true if DefaultPublic_Optional is set and matches the default value */
+    bool IsDefaultPublicDefaultValue() const { return DefaultPublic_IsSet && DefaultPublic_Optional == false; }
+    /** @brief Sets the value of DefaultPublic_Optional to its default and also sets DefaultPublic_IsSet to true */
+    void SetDefaultPublicToDefault() { DefaultPublic_Optional = false; DefaultPublic_IsSet = true; }
 
     /** @brief Should session be automatically added to the browser list */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "ClientSettings.h"
 #include "CrossplayPreferences.h"
+#include "SelfSessionPlayerUpdateRequest.h"
 #include "CreateOrJoinRequest.generated.h"
 
 /** @defgroup RHAPI_CreateOrJoinRequest RallyHere API Model CreateOrJoinRequest
@@ -114,6 +115,28 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
      /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
     void ClearRegionId() { RegionId_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FRHAPI_SelfSessionPlayerUpdateRequest Player_Optional{  };
+    /** @brief true if Player_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Player_IsSet{ false };
+    /** @brief Gets the value of Player_Optional, regardless of it having been set */
+    FRHAPI_SelfSessionPlayerUpdateRequest& GetPlayer() { return Player_Optional; }
+    /** @brief Gets the value of Player_Optional, regardless of it having been set */
+    const FRHAPI_SelfSessionPlayerUpdateRequest& GetPlayer() const { return Player_Optional; }
+    /** @brief Gets the value of Player_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_SelfSessionPlayerUpdateRequest& GetPlayer(const FRHAPI_SelfSessionPlayerUpdateRequest& DefaultValue) const { if (Player_IsSet) return Player_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Player_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlayer(FRHAPI_SelfSessionPlayerUpdateRequest& OutValue) const { if (Player_IsSet) OutValue = Player_Optional; return Player_IsSet; }
+    /** @brief Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_SelfSessionPlayerUpdateRequest* GetPlayerOrNull() { if (Player_IsSet) return &Player_Optional; return nullptr; }
+    /** @brief Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_SelfSessionPlayerUpdateRequest* GetPlayerOrNull() const { if (Player_IsSet) return &Player_Optional; return nullptr; }
+    /** @brief Sets the value of Player_Optional and also sets Player_IsSet to true */
+    void SetPlayer(FRHAPI_SelfSessionPlayerUpdateRequest NewValue) { Player_Optional = NewValue; Player_IsSet = true; }
+     /** @brief Clears the value of Player_Optional and sets Player_IsSet to false */
+    void ClearPlayer() { Player_IsSet = false; }
 };
 
 /** @} */

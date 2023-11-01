@@ -9,18 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "PlayerRankResponse.h"
-#include "PlayerRankRequestResponse.generated.h"
+#include "PlayerRankResponseV2.h"
+#include "PlayerRankUpdateResponseV2.generated.h"
 
-/** @defgroup RHAPI_PlayerRankRequestResponse RallyHere API Model PlayerRankRequestResponse
+/** @defgroup RHAPI_PlayerRankUpdateResponseV2 RallyHere API Model PlayerRankUpdateResponseV2
  *  @{
  */
 
 /**
- * @brief DEPRECATED Response to successfully requesting all of a player&#39;s ranks
+ * @brief Response to successfully updating players&#39; ranks
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateResponseV2 : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,15 +40,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of player's ranks */
+    /** @brief List of players and their updated ranks */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_PlayerRankResponse> PlayerRanks{  };
-    /** @brief Gets the value of PlayerRanks */
-    TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() { return PlayerRanks; }
-    /** @brief Gets the value of PlayerRanks */
-    const TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() const { return PlayerRanks; }
-    /** @brief Sets the value of PlayerRanks */
-    void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse> NewValue) { PlayerRanks = NewValue;  }
+    TArray<FRHAPI_PlayerRankResponseV2> UpdatedPlayers{  };
+    /** @brief Gets the value of UpdatedPlayers */
+    TArray<FRHAPI_PlayerRankResponseV2>& GetUpdatedPlayers() { return UpdatedPlayers; }
+    /** @brief Gets the value of UpdatedPlayers */
+    const TArray<FRHAPI_PlayerRankResponseV2>& GetUpdatedPlayers() const { return UpdatedPlayers; }
+    /** @brief Sets the value of UpdatedPlayers */
+    void SetUpdatedPlayers(TArray<FRHAPI_PlayerRankResponseV2> NewValue) { UpdatedPlayers = NewValue;  }
 };
 
 /** @} */

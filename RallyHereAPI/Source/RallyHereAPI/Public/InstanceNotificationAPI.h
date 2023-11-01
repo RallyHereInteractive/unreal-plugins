@@ -61,7 +61,7 @@ private:
  *
  * Create new notification for client.  Requires permission to create for a different client
  * 
- * Requires permissions: Any of `notification:instance:write`, `notification:instance:*`
+ * Requires permissions: Any of `notification:instance:*`, `notification:instance:write`
 */
 struct RALLYHEREAPI_API FRequest_InstanceCreateNotification : public FRequest
 {
