@@ -9,17 +9,17 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "RankConfig.generated.h"
+#include "RankConfigV2.generated.h"
 
-/** @defgroup RHAPI_RankConfig RallyHere API Model RankConfig
+/** @defgroup RHAPI_RankConfigV2 RallyHere API Model RankConfigV2
  *  @{
  */
 
 /**
- * @brief DEPRECATED Configuration about a specific rank type
+ * @brief Configuration about a specific rank type
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_RankConfig : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -41,17 +41,13 @@ struct RALLYHEREAPI_API FRHAPI_RankConfig : public FRHAPI_Model
 
     /** @brief ID for this rank type */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 RankId{ 0 };
+    FString RankId{  };
     /** @brief Gets the value of RankId */
-    int32& GetRankId() { return RankId; }
+    FString& GetRankId() { return RankId; }
     /** @brief Gets the value of RankId */
-    const int32& GetRankId() const { return RankId; }
+    const FString& GetRankId() const { return RankId; }
     /** @brief Sets the value of RankId */
-    void SetRankId(int32 NewValue) { RankId = NewValue;  }
-    /** @brief Returns true if RankId matches the default value */
-    bool IsRankIdDefaultValue() const { return RankId == 0; }
-    /** @brief Sets the value of RankId to its default  */
-    void SetRankIdToDefault() { RankId = 0;  }
+    void SetRankId(FString NewValue) { RankId = NewValue;  }
 
     /** @brief The default rank value for this rank id. Will be used when players do not have any rank history */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

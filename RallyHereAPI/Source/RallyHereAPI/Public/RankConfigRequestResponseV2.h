@@ -9,18 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "PlayerRankResponse.h"
-#include "PlayerRankRequestResponse.generated.h"
+#include "RankConfigV2.h"
+#include "RankConfigRequestResponseV2.generated.h"
 
-/** @defgroup RHAPI_PlayerRankRequestResponse RallyHere API Model PlayerRankRequestResponse
+/** @defgroup RHAPI_RankConfigRequestResponseV2 RallyHere API Model RankConfigRequestResponseV2
  *  @{
  */
 
 /**
- * @brief DEPRECATED Response to successfully requesting all of a player&#39;s ranks
+ * @brief Response to successfully requesting all rank config
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponseV2 : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,15 +40,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of player's ranks */
+    /** @brief List of rank configurations */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_PlayerRankResponse> PlayerRanks{  };
-    /** @brief Gets the value of PlayerRanks */
-    TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() { return PlayerRanks; }
-    /** @brief Gets the value of PlayerRanks */
-    const TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() const { return PlayerRanks; }
-    /** @brief Sets the value of PlayerRanks */
-    void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse> NewValue) { PlayerRanks = NewValue;  }
+    TArray<FRHAPI_RankConfigV2> RankConfigs{  };
+    /** @brief Gets the value of RankConfigs */
+    TArray<FRHAPI_RankConfigV2>& GetRankConfigs() { return RankConfigs; }
+    /** @brief Gets the value of RankConfigs */
+    const TArray<FRHAPI_RankConfigV2>& GetRankConfigs() const { return RankConfigs; }
+    /** @brief Sets the value of RankConfigs */
+    void SetRankConfigs(TArray<FRHAPI_RankConfigV2> NewValue) { RankConfigs = NewValue;  }
 };
 
 /** @} */

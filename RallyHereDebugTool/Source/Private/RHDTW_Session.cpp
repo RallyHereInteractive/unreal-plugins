@@ -1667,7 +1667,7 @@ void FRHDTW_Session::HandleBrowserSearchResult(bool bSuccess, const FRH_SessionB
 	}
 }
 
-void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession* SessionData, FGuid PlayerUuid)
+void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession* SessionData, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{
@@ -1675,7 +1675,7 @@ void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession
 	}
 	else
 	{
-		SessionActionResult += TEXT("[") + GetShortUuid(PlayerUuid) + TEXT("] Session action failed.") LINE_TERMINATOR;
+		SessionActionResult += FString::Printf(TEXT("[%s] Session action failed with code %d."), *GetShortUuid(PlayerUuid), ErrorInfo.ResponseCode) + LINE_TERMINATOR;
 	}
 }
 

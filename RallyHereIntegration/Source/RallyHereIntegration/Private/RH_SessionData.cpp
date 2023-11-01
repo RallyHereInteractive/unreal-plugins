@@ -267,7 +267,7 @@ void URH_SessionView::PollForUpdate(const FRH_PollCompleteFunc& Delegate)
 		return;
 	}
 
-	FRH_OnSessionUpdatedDelegate CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session)
+	FRH_OnSessionUpdatedDelegate CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
 		{
 			// notify poller that execution is done
 			Delegate.ExecuteIfBound(bSuccess, true);
@@ -692,19 +692,19 @@ URH_OfflineSession::URH_OfflineSession(const FObjectInitializer& ObjectInitializ
 void URH_OfflineSession::InvitePlayer(const FGuid& PlayerId, int32 Team, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
-	Delegate.ExecuteIfBound(false, this);
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
-	Delegate.ExecuteIfBound(false, this);
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::SetLeader(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
-	Delegate.ExecuteIfBound(false, this);
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -726,7 +726,7 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 				if (Team == i)
 				{
 					// already on the correct team
-					Delegate.ExecuteIfBound(true, this);
+					Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 					return;
 				}
 				else
@@ -755,7 +755,7 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -772,13 +772,13 @@ void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const T
 			{
 				TeamPlayer.SetCustomData(CustomData);
 				ImportSessionUpdateToAllPlayers(UpdateWrapper);
-				Delegate.ExecuteIfBound(true, this);
+				Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 				return;
 			}
 		}
 	}
 
-	Delegate.ExecuteIfBound(false, this);
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -789,7 +789,7 @@ void URH_OfflineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegate
 	Update.Teams.Empty();
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -798,7 +798,7 @@ void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceR
 	if (GetSessionData().GetInstanceOrNull())
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because instance already exists"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 		return;
 	}
 
@@ -846,13 +846,13 @@ void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceR
 
 		ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-		Delegate.ExecuteIfBound(true, this);
+		Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 	}
 	else
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because owner was not a local player subsystem"), ANSI_TO_TCHAR(__FUNCTION__));
 
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
 }
 void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -861,7 +861,7 @@ void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& De
 	if (!GetSessionData().GetInstanceOrNull())
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because instance does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 		return;
 	}
 
@@ -872,7 +872,7 @@ void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& De
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -881,7 +881,7 @@ void URH_OfflineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Del
 	if (GetSessionData().GetMatchOrNull())
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because match already exists"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 		return;
 	}
 
@@ -903,7 +903,7 @@ void URH_OfflineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Del
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 void URH_OfflineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
@@ -911,7 +911,7 @@ void URH_OfflineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Deleg
 	if (!GetSessionData().GetMatchOrNull())
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because match does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 		return;
 	}
 
@@ -922,7 +922,7 @@ void URH_OfflineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Deleg
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -951,7 +951,7 @@ void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionIn
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 
@@ -961,7 +961,7 @@ void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Ins
 	if (!GetSessionData().GetInstanceOrNull())
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because instance does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 		return;
 	}
 
@@ -989,7 +989,7 @@ void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Ins
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -1013,7 +1013,7 @@ void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FSt
 
 	ImportSessionUpdateToAllPlayers(UpdateWrapper);
 
-	Delegate.ExecuteIfBound(true, this);
+	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
 // this is necessary right now as each player stores session data separately

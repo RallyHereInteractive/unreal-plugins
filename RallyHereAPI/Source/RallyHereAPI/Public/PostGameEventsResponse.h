@@ -9,18 +9,17 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "PlayerRankResponse.h"
-#include "PlayerRankRequestResponse.generated.h"
+#include "PostGameEventsResponse.generated.h"
 
-/** @defgroup RHAPI_PlayerRankRequestResponse RallyHere API Model PlayerRankRequestResponse
+/** @defgroup RHAPI_PostGameEventsResponse RallyHere API Model PostGameEventsResponse
  *  @{
  */
 
 /**
- * @brief DEPRECATED Response to successfully requesting all of a player&#39;s ranks
+ * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,15 +39,19 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of player's ranks */
+    /** @brief Number of events successfully posted to Event Hub */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_PlayerRankResponse> PlayerRanks{  };
-    /** @brief Gets the value of PlayerRanks */
-    TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() { return PlayerRanks; }
-    /** @brief Gets the value of PlayerRanks */
-    const TArray<FRHAPI_PlayerRankResponse>& GetPlayerRanks() const { return PlayerRanks; }
-    /** @brief Sets the value of PlayerRanks */
-    void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponse> NewValue) { PlayerRanks = NewValue;  }
+    int32 PostedEvents{ 0 };
+    /** @brief Gets the value of PostedEvents */
+    int32& GetPostedEvents() { return PostedEvents; }
+    /** @brief Gets the value of PostedEvents */
+    const int32& GetPostedEvents() const { return PostedEvents; }
+    /** @brief Sets the value of PostedEvents */
+    void SetPostedEvents(int32 NewValue) { PostedEvents = NewValue;  }
+    /** @brief Returns true if PostedEvents matches the default value */
+    bool IsPostedEventsDefaultValue() const { return PostedEvents == 0; }
+    /** @brief Sets the value of PostedEvents to its default  */
+    void SetPostedEventsToDefault() { PostedEvents = 0;  }
 };
 
 /** @} */

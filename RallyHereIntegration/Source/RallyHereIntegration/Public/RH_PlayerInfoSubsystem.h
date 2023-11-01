@@ -60,9 +60,9 @@ DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoLookupPlayerDelegate, bool, const TArra
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoLookupPlayerBlock, FRH_PlayerInfoLookupPlayerDelegate, FRH_PlayerInfoLookupPlayerDynamicDelegate, bool, const TArray<URH_PlayerInfo*>&)
 
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_PlayerRankResponse>, PlayerRankingInfo);
-DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDelegate, bool, const TArray<FRHAPI_PlayerRankResponse>);
-DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerRankingsBlock, FRH_PlayerInfoGetPlayerRankingsDelegate, FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, const TArray<FRHAPI_PlayerRankResponse>)
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>, PlayerRankingInfo);
+DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerRankingsBlock, FRH_PlayerInfoGetPlayerRankingsDelegate, FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>)
 
 // multicast delegates to notify listeners of presence events
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPresenceUpdatedMulticastDynamicDelegate, URH_PlayerPresence*, PresenceData);
@@ -461,8 +461,8 @@ public:
 	typedef RallyHereAPI::Traits_GetAllPlayerUuidSettingsForSettingType GetSettings;
 	typedef RallyHereAPI::Traits_SetSinglePlayerUuidSetting SetSettings;
 	typedef RallyHereAPI::Traits_DeleteSinglePlayerUuidSetting DeleteSettings;
-	typedef RallyHereAPI::Traits_GetAllPlayerUuidRanks GetRankings;
-	typedef RallyHereAPI::Traits_UpdatePlayerUuidRank UpdateRanking;
+	typedef RallyHereAPI::Traits_GetAllPlayerUuidRanksV2 GetRankings;
+	typedef RallyHereAPI::Traits_UpdatePlayerUuidRankV2 UpdateRanking;
 
 	/**
 	* @brief Gets the players Unique player Id.
@@ -549,7 +549,7 @@ public:
 	* @return The players stored settings data.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
-	const TMap<int32, FRHAPI_PlayerRankResponse>& GetAllStoredPlayerRankings() const { return PlayerRankingsByRankingId; }
+	const TMap<FString, FRHAPI_PlayerRankResponseV2>& GetAllStoredPlayerRankings() const { return PlayerRankingsByRankingId; }
 
 	/**
 	* @brief Gets the players Info Subsystem that the Player Info is on.
@@ -643,9 +643,9 @@ public:
 	* @param [in] SettingsData Data to be stored into the players settings.
 	* @param [in] Delegate Callback when the operation is complete with success information.
 	*/
-	void UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
+	void UpdatePlayerRanking(const FString& RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate = FRH_PlayerInfoGetPlayerRankingsBlock());
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Update Player Ranking", AutoCreateRefTerm = "RankData,Delegate"))
-	void BLUEPRINT_UpdatePlayerRanking(int32 RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate& Delegate) { UpdatePlayerRanking(RankId, RankData, Delegate); }
+	void BLUEPRINT_UpdatePlayerRanking(const FString& RankId, const FRHAPI_PlayerRankUpdateRequest& RankData, const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate& Delegate) { UpdatePlayerRanking(RankId, RankData, Delegate); }
 	/**
 	 * @brief Gets the local Auth Context for making API calls.
 	 * @return Local auth context for the given player or instance
@@ -725,7 +725,7 @@ protected:
 	 * @brief List of the player's rankings
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Ranking")
-	TMap<int32, FRHAPI_PlayerRankResponse> PlayerRankingsByRankingId;
+	TMap<FString, FRHAPI_PlayerRankResponseV2> PlayerRankingsByRankingId;
 	/**
 	 * @brief Tracks the last time the players linked platforms were requested for checking if the data is stale.
 	 */	
