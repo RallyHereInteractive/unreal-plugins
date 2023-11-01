@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "BackfillInfo.h"
 #include "BrowserInfo.h"
 #include "InstanceInfo.h"
 #include "MatchInfo.h"
@@ -130,6 +131,28 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetMatchmaking(FRHAPI_MatchmakingInfo NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true; }
      /** @brief Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false */
     void ClearMatchmaking() { Matchmaking_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FRHAPI_BackfillInfo Backfill_Optional{  };
+    /** @brief true if Backfill_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Backfill_IsSet{ false };
+    /** @brief Gets the value of Backfill_Optional, regardless of it having been set */
+    FRHAPI_BackfillInfo& GetBackfill() { return Backfill_Optional; }
+    /** @brief Gets the value of Backfill_Optional, regardless of it having been set */
+    const FRHAPI_BackfillInfo& GetBackfill() const { return Backfill_Optional; }
+    /** @brief Gets the value of Backfill_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_BackfillInfo& GetBackfill(const FRHAPI_BackfillInfo& DefaultValue) const { if (Backfill_IsSet) return Backfill_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Backfill_Optional and returns true if it has been set, otherwise returns false */
+    bool GetBackfill(FRHAPI_BackfillInfo& OutValue) const { if (Backfill_IsSet) OutValue = Backfill_Optional; return Backfill_IsSet; }
+    /** @brief Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_BackfillInfo* GetBackfillOrNull() { if (Backfill_IsSet) return &Backfill_Optional; return nullptr; }
+    /** @brief Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_BackfillInfo* GetBackfillOrNull() const { if (Backfill_IsSet) return &Backfill_Optional; return nullptr; }
+    /** @brief Sets the value of Backfill_Optional and also sets Backfill_IsSet to true */
+    void SetBackfill(FRHAPI_BackfillInfo NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true; }
+     /** @brief Clears the value of Backfill_Optional and sets Backfill_IsSet to false */
+    void ClearBackfill() { Backfill_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_BrowserInfo Browser_Optional{  };
