@@ -1370,6 +1370,24 @@ void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthS
 
 void URH_OnlineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
-	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	Delegate.ExecuteIfBound(false, this);
+	if (bEnable)
+	{
+		typedef RallyHereAPI::Traits_AcknowledgeBackfillRequest BaseType;
+		BaseType::Request Request;
+		Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+		Request.SessionId = GetSessionId();
+
+		const auto* Instance = GetSessionData().GetInstanceOrNull();
+		if (Instance != nullptr)
+		{
+			Request.AcknowledgeBackfillRequest.SetInstanceId(Instance->GetInstanceId());
+		}
+
+		const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
+		Helper->Start(Request);
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(false, this);
+	}
 }

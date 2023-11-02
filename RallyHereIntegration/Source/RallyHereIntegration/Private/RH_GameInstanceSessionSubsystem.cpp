@@ -389,7 +389,6 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				}
 
 				// kick off a check to determine if we need to override our health interval
-				/*
 				auto* PollControl = FRH_PollControl::Get();
 				if (PollControl)
 				{
@@ -397,7 +396,6 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 
 					BaseType::Request Request = {};
 					Request.AuthContext = GetAuthContext();
-					Request.SessionId = ActiveSession->GetSessionId();
 
 					auto PollTimerNameCopy = BackfillPollTimerName;
 					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -406,11 +404,12 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 								auto* PollControl = FRH_PollControl::Get();
 								if (PollControl && Resp.IsSuccessful())
 								{
-									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), Resp.Content.CadenceSeconds);
+									const auto CadenceSeconds = Resp.Content.Timeout;
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), CadenceSeconds);
 
 									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
 									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
-									NewSetting.Interval = Resp.Content.CadenceSeconds;
+									NewSetting.Interval = CadenceSeconds;
 									PollControl->SetPollingIntervalOverride(NewSetting);
 								}
 							}),
@@ -420,7 +419,6 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 
 					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 				}
-				*/
 			}
 		}
 	}
@@ -466,6 +464,12 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive() const
 {
 	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
+	{
+		return false;
+	}
+
+	// for now, only support backfill for matchmade sessions
+	if (!ActiveSession->IsCreatedByMatchmaking())
 	{
 		return false;
 	}
