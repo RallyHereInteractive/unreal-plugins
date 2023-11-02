@@ -324,7 +324,7 @@ void ImGuiDisplayModelData(const FRHAPI_Model& Model, const UStruct& Struct)
 
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
-			ImGui::Text(TCHAR_TO_UTF8(*PropName));
+			ImGui::Text("%s", TCHAR_TO_UTF8(*PropName));
 			ImGui::TableNextColumn();
 			ImGuiDisplayProperty(PropName, Prop, IsSetProp, Prop->ContainerPtrToValuePtr<uint8>(&Model), IsSetProp != nullptr ? IsSetProp->ContainerPtrToValuePtr<uint8>(&Model) : nullptr);
 		}
