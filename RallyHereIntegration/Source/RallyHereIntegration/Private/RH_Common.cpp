@@ -86,6 +86,26 @@ TOptional<ERHAPI_GrantType> RH_GetGrantTypeFromOSSName(FName OSSName)
 	return OutGrantType;
 }
 
+bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
+{
+	FString OSSNameString = OSSName.ToString();
+
+	// detect PS4 crossgen support
+	if (OSSName == PS4_SUBSYSTEM)
+	{
+		if (GConfig->GetBoolOrDefault(TEXT("CrossgenSupport"), TEXT("bEnableCrossgenSupport"), false, GEngineIni))
+		{
+			OSSNameString += TEXT("_CrossGen");
+		}
+	}
+
+	bool bUseFallback = false;
+	GConfig->GetBool(TEXT("UseAuthTokenFallbackFromOSSNameMap"), *OSSNameString, bUseFallback, GRallyHereIntegrationIni);
+
+	return bUseFallback;
+}
+
+
 ERHAPI_InventoryBucket RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform)
 {
 	switch (InventoryPlatform)
