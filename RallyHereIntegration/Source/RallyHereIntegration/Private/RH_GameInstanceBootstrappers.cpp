@@ -497,7 +497,16 @@ void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, 
 		return;
 	}
 
-	Identity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
+	if (RH_UseGetAuthTokenFallbackFromOSSName(OSS->GetSubsystemName()))
+	{
+		FExternalAuthToken AuthToken;
+		AuthToken.TokenString = Identity->GetAuthToken(ControllerId);;
+		RetrieveOSSAuthTokenComplete(ControllerId, !AuthToken.IsValid(), AuthToken);
+	}
+	else
+	{
+		Identity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
+	}
 }
 
 void URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthTokenWrapper)

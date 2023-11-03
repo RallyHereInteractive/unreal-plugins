@@ -707,7 +707,16 @@ void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthToken(FRH_PendingLoginRequest
 
 	int32 ControllerId = GetLocalPlayerSubsystem()->GetLocalPlayer()->GetControllerId();
 
-	LoginIdentity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
+	if (RH_UseGetAuthTokenFallbackFromOSSName(LoginOSS->GetSubsystemName()))
+	{
+		FExternalAuthToken AuthToken;
+		AuthToken.TokenString = LoginIdentity->GetAuthToken(ControllerId);
+		RetrieveOSSAuthTokenComplete(ControllerId, AuthToken.IsValid(), AuthToken, Req);
+	}
+	else
+	{
+		LoginIdentity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
+	}
 }
 
 void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthToken, FRH_PendingLoginRequest Req)
