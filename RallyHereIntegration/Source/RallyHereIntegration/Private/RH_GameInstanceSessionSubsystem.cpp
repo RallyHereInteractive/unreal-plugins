@@ -495,7 +495,7 @@ void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& 
 		)
 	{
 		ActiveSession->UpdateBackfill(true,
-			FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session)
+			FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
 				{
 					Delegate.ExecuteIfBound(bSuccess, GetShouldKeepBackfillAlive());
 				}

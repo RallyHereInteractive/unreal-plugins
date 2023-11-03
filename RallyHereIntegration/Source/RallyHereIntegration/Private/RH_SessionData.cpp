@@ -1041,7 +1041,7 @@ void URH_OfflineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus Health
 void URH_OfflineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	Delegate.ExecuteIfBound(false, this);
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
 // this is necessary right now as each player stores session data separately
@@ -1388,6 +1388,6 @@ void URH_OnlineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedD
 	}
 	else
 	{
-		Delegate.ExecuteIfBound(false, this);
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
 }
