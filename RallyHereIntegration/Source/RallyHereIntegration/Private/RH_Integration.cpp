@@ -75,8 +75,12 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetEnvironmentId
 			NewValue.TrimQuotesInline();
 			FRallyHereIntegrationModule::Get().LockEnvironmentId(bHasValue);
 			FRallyHereIntegrationModule::Get().SetEnvironmentId(MoveTemp(NewValue), TEXT("Console Command"));
-			FRallyHereIntegrationModule::Get().LockBaseURL(false);
+
+			// re-resolve anything not locked
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
+			FRallyHereIntegrationModule::Get().ResolveClientId();
+			FRallyHereIntegrationModule::Get().ResolveClientSecret();
+
 			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
