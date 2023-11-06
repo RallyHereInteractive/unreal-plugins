@@ -139,7 +139,7 @@ protected:
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
 		const auto* NotificationList = NotificationsResult.GetNotificationsOrNull();
-		FString NewCursor;
+		FString NewCursor = Cursor; // default to the old cursor, in the case this notification was empty
 		if (NotificationList != nullptr && NotificationList->Num() > 0)
 		{
 			NewCursor = NotificationList->Last().GetNotificationId();
