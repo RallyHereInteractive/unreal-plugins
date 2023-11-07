@@ -76,9 +76,14 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetEnvironmentId
 			FRallyHereIntegrationModule::Get().LockEnvironmentId(bHasValue);
 			FRallyHereIntegrationModule::Get().SetEnvironmentId(MoveTemp(NewValue), TEXT("Console Command"));
 
-			// re-resolve anything not locked
+			// unlock and reresolve all environment specified IDs
+			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
+
+			FRallyHereIntegrationModule::Get().LockClientId(false);
 			FRallyHereIntegrationModule::Get().ResolveClientId();
+
+			FRallyHereIntegrationModule::Get().LockClientSecret(false);
 			FRallyHereIntegrationModule::Get().ResolveClientSecret();
 
 			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
@@ -97,8 +102,17 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHResolveEnvironmentId(
 
 			FRallyHereIntegrationModule::Get().LockEnvironmentId(false);
 			FRallyHereIntegrationModule::Get().ResolveEnvironmentId();
+
+			// unlock and reresolve all environment specified IDs
 			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
+
+			FRallyHereIntegrationModule::Get().LockClientId(false);
+			FRallyHereIntegrationModule::Get().ResolveClientId();
+
+			FRallyHereIntegrationModule::Get().LockClientSecret(false);
+			FRallyHereIntegrationModule::Get().ResolveClientSecret();
+
 			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
