@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
@@ -486,7 +487,7 @@ void FRHDTW_Players::Do()
 				ImGui::Text("%d", Player.LocalPlayer->GetControllerId());
 			}
 
-			
+
 			if (pOwner->IsUsingLocalPlayerSandboxing())
 			{
 				ImGui::TableNextColumn();
@@ -505,7 +506,7 @@ void FRHDTW_Players::Do()
 					}
 				}
 			}
-			
+
 			ImGui::TableNextColumn();
 			if (Player.PlayerInfo)
 			{

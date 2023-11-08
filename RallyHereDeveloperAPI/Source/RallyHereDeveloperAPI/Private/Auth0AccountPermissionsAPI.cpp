@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "Auth0AccountPermissionsAPI.h"
@@ -232,7 +232,7 @@ FName FRequest_GetAccountPermissionsForAuth0::GetSimplifiedPath() const
 
 FString FRequest_GetAccountPermissionsForAuth0::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("auth0_user_id"), ToStringFormatArg(Auth0UserId) }
     };
 

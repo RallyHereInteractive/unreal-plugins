@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -52,7 +52,7 @@ FString EnumToString(const ERHAPI_PlayerOrderEntryType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryType& Value)
 {
-    static TMap<FString, ERHAPI_PlayerOrderEntryType> StringToEnum = { 
+    static TMap<FString, ERHAPI_PlayerOrderEntryType> StringToEnum = {
         { TEXT("fill_loot"), ERHAPI_PlayerOrderEntryType::FillLoot },
         { TEXT("purchase_loot"), ERHAPI_PlayerOrderEntryType::PurchaseLoot },
         { TEXT("purchase_dynamic_bundle"), ERHAPI_PlayerOrderEntryType::PurchaseDynamicBundle },

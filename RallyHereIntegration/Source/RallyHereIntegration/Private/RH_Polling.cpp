@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_Polling.h"
 #include "RH_Common.h"
@@ -210,7 +212,7 @@ void FRH_AutoPoller::StartPoll(const FRH_PollFunc& InDelegate, FName InTimerName
 	// if requested, execute immediately
 	if (bImmediate)
 	{
-		ExecutePoll(); 
+		ExecutePoll();
 	}
 	else
 	{

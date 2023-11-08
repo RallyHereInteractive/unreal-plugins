@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -128,7 +128,7 @@ FString EnumToString(const ERHAPI_PlayerOrderEntryResult& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryResult& Value)
 {
-    static TMap<FString, ERHAPI_PlayerOrderEntryResult> StringToEnum = { 
+    static TMap<FString, ERHAPI_PlayerOrderEntryResult> StringToEnum = {
         { TEXT("success"), ERHAPI_PlayerOrderEntryResult::Success },
         { TEXT("internal_error"), ERHAPI_PlayerOrderEntryResult::InternalError },
         { TEXT("invalid_entry_type"), ERHAPI_PlayerOrderEntryResult::InvalidEntryType },

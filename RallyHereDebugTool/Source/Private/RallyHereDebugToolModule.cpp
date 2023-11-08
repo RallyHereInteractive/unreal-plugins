@@ -1,4 +1,5 @@
-// Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugToolSettings.h"
 #include "RallyHereDebugTool.h"

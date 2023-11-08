@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_MatchmakingBrowser.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_OnlineSubsystemNames.h"
@@ -113,7 +115,7 @@ void URH_MatchmakingBrowserCache::ImportAPITemplateGroup(const FRHAPI_MatchMakin
 		TemplateWrapper = NewObject<URH_MatchmakingTemplateGroupInfo>(this);
 		TemplateGroupCache.Add(APITemplate.GetMatchMakingTemplateGroupId(), TemplateWrapper);
 	}
-	
+
 	TemplateWrapper->ImportAPITemplateGroup(APITemplate, ETag);
 }
 

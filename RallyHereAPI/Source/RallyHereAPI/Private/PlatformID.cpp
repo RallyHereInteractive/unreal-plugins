@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -54,7 +54,7 @@ FString EnumToString(const ERHAPI_PlatformID& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformID& Value)
 {
-    static TMap<FString, ERHAPI_PlatformID> StringToEnum = { 
+    static TMap<FString, ERHAPI_PlatformID> StringToEnum = {
         { TEXT("2"), ERHAPI_PlatformID::Anon },
         { TEXT("4"), ERHAPI_PlatformID::Amazon },
         { TEXT("5"), ERHAPI_PlatformID::Steam },

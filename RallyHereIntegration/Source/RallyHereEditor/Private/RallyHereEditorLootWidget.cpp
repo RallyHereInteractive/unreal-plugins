@@ -1,4 +1,5 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereEditorLootWidget.h"
 #include "RallyHereDeveloperAPIAuthContext.h"
@@ -50,7 +51,7 @@ void SRallyHereEditorLootWidget::Construct(const FArguments& InArgs, const TShar
 		.ScrollbarVisibility(EVisibility::Visible)
 		.AllowOverscroll(EAllowOverscroll::No)
 		.ConsumeMouseWheel(EConsumeMouseWheel::WhenScrollingPossible);
-		
+
 	TSharedRef<SEditableTextBox> EditableTextBox = SNew(SEditableTextBox)
 		.OnTextChanged(this, &SRallyHereEditorLootWidget::OnVendorFilterTextChanged);
 
@@ -1099,7 +1100,7 @@ FString SRallyHereEditorLootRow::GetLootRowName()
 	{
 		RowName += "Item: (" + Id.ToString(EGuidFormats::DigitsWithHyphens) + ") ";
 	}
-	
+
 	if (LootUpdateRequest.GetSubVendorId(Id))
 	{
 		RowName += "SubVendor: (" + Id.ToString(EGuidFormats::DigitsWithHyphens) + ")";
@@ -1127,7 +1128,7 @@ void SRallyHereEditorLootRow::OnBrowseToItemId(const FGuid& ItemId)
 		}
 
 		auto* Settings = GetDefault<URH_DevIntegrationSettings>();
-		
+
 		FAssetData AssetData;
 		for (const FSoftObjectPath& Path : AssetArray)
 		{

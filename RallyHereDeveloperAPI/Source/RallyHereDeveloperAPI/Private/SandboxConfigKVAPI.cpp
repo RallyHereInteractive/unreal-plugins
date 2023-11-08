@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "SandboxConfigKVAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_SandboxCreateKv::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateKv::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -251,7 +251,7 @@ FName FRequest_SandboxDeleteKv::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteKv::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("kv_key"), ToStringFormatArg(KvKey) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -396,7 +396,7 @@ FName FRequest_SandboxFullCreateKv::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullCreateKv::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -553,7 +553,7 @@ FName FRequest_SandboxFullDeleteKv::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullDeleteKv::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("kv_key"), ToStringFormatArg(KvKey) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -700,7 +700,7 @@ FName FRequest_SandboxFullGetKvForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullGetKvForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("kv_key"), ToStringFormatArg(KvKey) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -847,7 +847,7 @@ FName FRequest_SandboxFullGetKvsForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullGetKvsForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -993,7 +993,7 @@ FName FRequest_SandboxFullUpdateKv::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullUpdateKv::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("kv_key"), ToStringFormatArg(KvKey) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1151,7 +1151,7 @@ FName FRequest_SandboxGetKvForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetKvForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("kv_key"), ToStringFormatArg(KvKey) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1296,7 +1296,7 @@ FName FRequest_SandboxGetKvsForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetKvsForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1440,7 +1440,7 @@ FName FRequest_SandboxUpdateKv::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateKv::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("kv_key"), ToStringFormatArg(KvKey) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

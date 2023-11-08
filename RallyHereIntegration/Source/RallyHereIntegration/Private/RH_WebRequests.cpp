@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_WebRequests.h"
 #include "RallyHereIntegrationModule.h"
@@ -78,7 +80,7 @@ namespace
 				else
 				{
 					OutHeaders.Add(Header);
-				}				
+				}
 			}
 			else
 			{
@@ -502,11 +504,11 @@ void URH_WebRequests::DetectRecentBursts(TMap<FName, TTuple<int32, int32>>* OutB
 	}
 
 	FTimespan burstTimeThreshold = FTimespan(0, 0, BurstTimeThresholdInSeconds);
-	auto DetectBurstsAndPopulateMap = [this, burstTimeThreshold](TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>& RequestsIterator, 
-																FRH_WebRequest* StartingRequest, 
-																auto& IsMatch, 
+	auto DetectBurstsAndPopulateMap = [this, burstTimeThreshold](TDoubleLinkedListIterator<TDoubleLinkedList<TSharedPtr<FRH_WebRequest>>::TDoubleLinkedListNode, TSharedPtr<FRH_WebRequest>>& RequestsIterator,
+																FRH_WebRequest* StartingRequest,
+																auto& IsMatch,
 																auto& GetKeyFromRequest,
-																TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>>& CurrentBurstRequestsMap, 
+																TMap<FName, TSet<TSharedPtr<FRH_WebRequest>>>& CurrentBurstRequestsMap,
 																TMap<FName, TTuple<int32, int32>>* OutBurstMap)
 	{
 		int currentIntervalCallCount = 1;

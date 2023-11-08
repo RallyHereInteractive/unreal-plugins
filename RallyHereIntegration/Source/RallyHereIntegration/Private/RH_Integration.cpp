@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_Integration.h"
 #include "OnlineSubsystem.h"
 #include "RallyHereAPIHttpRequester.h"
@@ -75,8 +77,17 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetEnvironmentId
 			NewValue.TrimQuotesInline();
 			FRallyHereIntegrationModule::Get().LockEnvironmentId(bHasValue);
 			FRallyHereIntegrationModule::Get().SetEnvironmentId(MoveTemp(NewValue), TEXT("Console Command"));
+
+			// unlock and reresolve all environment specified IDs
 			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
+
+			FRallyHereIntegrationModule::Get().LockClientId(false);
+			FRallyHereIntegrationModule::Get().ResolveClientId();
+
+			FRallyHereIntegrationModule::Get().LockClientSecret(false);
+			FRallyHereIntegrationModule::Get().ResolveClientSecret();
+
 			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
@@ -93,8 +104,17 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHResolveEnvironmentId(
 
 			FRallyHereIntegrationModule::Get().LockEnvironmentId(false);
 			FRallyHereIntegrationModule::Get().ResolveEnvironmentId();
+
+			// unlock and reresolve all environment specified IDs
 			FRallyHereIntegrationModule::Get().LockBaseURL(false);
 			FRallyHereIntegrationModule::Get().ResolveBaseURL();
+
+			FRallyHereIntegrationModule::Get().LockClientId(false);
+			FRallyHereIntegrationModule::Get().ResolveClientId();
+
+			FRallyHereIntegrationModule::Get().LockClientSecret(false);
+			FRallyHereIntegrationModule::Get().ResolveClientSecret();
+
 			Ar.Logf(TEXT("Updated Environment ID to %s"), *FRallyHereIntegrationModule::Get().GetEnvironmentId());
 		}));
 
@@ -117,7 +137,7 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
 	TEXT("rh.setclientid"),
 	TEXT("Set the client ID used to log into the RallyHere API, not specifying any id will clear the override and use the default id, and an empty id will override to not use an id"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{	
+		{
 			if (!FRallyHereIntegrationModule::IsAvailable())
 			{
 				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
@@ -521,7 +541,7 @@ void URH_Integration::ResolveClientSecret()
 			return;
 		}
 	}
-	
+
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 

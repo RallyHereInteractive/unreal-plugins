@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "PortalPermissionsAPI.h"
@@ -396,7 +396,7 @@ FName FRequest_CreatePortalPermissions::GetSimplifiedPath() const
 
 FString FRequest_CreatePortalPermissions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
     };
 
@@ -540,7 +540,7 @@ FName FRequest_CreatePortalPermissionsOrgGroupAccount::GetSimplifiedPath() const
 
 FString FRequest_CreatePortalPermissionsOrgGroupAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -695,7 +695,7 @@ FName FRequest_CreatePortalPermissionsOrgGroupPermission::GetSimplifiedPath() co
 
 FString FRequest_CreatePortalPermissionsOrgGroupPermission::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -850,7 +850,7 @@ FName FRequest_DeleteAccountPermissions::GetSimplifiedPath() const
 
 FString FRequest_DeleteAccountPermissions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("assigned_org_id"), ToStringFormatArg(AssignedOrgId) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) },
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
@@ -999,7 +999,7 @@ FName FRequest_DeleteOrgGroup::GetSimplifiedPath() const
 
 FString FRequest_DeleteOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) }
     };
@@ -1147,7 +1147,7 @@ FName FRequest_DeletePortalPermission::GetSimplifiedPath() const
 
 FString FRequest_DeletePortalPermission::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
     };
 
@@ -1294,7 +1294,7 @@ FName FRequest_DeletePortalPermissionsOrgGroupAccount::GetSimplifiedPath() const
 
 FString FRequest_DeletePortalPermissionsOrgGroupAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
@@ -1443,7 +1443,7 @@ FName FRequest_DeletePortalPermissionsOrgGroupPermission::GetSimplifiedPath() co
 
 FString FRequest_DeletePortalPermissionsOrgGroupPermission::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("group_permission_id"), ToStringFormatArg(GroupPermissionId) }
@@ -1592,7 +1592,7 @@ FName FRequest_GetAllAccountPermissionsForAccount::GetSimplifiedPath() const
 
 FString FRequest_GetAllAccountPermissionsForAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
 
@@ -1736,7 +1736,7 @@ FName FRequest_GetAllAccountPermissionsForAssignedOrg::GetSimplifiedPath() const
 
 FString FRequest_GetAllAccountPermissionsForAssignedOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
@@ -1881,7 +1881,7 @@ FName FRequest_GetAllPermissionsForPermissionsOrgGroup::GetSimplifiedPath() cons
 
 FString FRequest_GetAllPermissionsForPermissionsOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) }
     };
@@ -2162,7 +2162,7 @@ FName FRequest_GetOrgGroupsForOrg::GetSimplifiedPath() const
 
 FString FRequest_GetOrgGroupsForOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -2306,7 +2306,7 @@ FName FRequest_GetPermissionsForPermissionsOrgGroup::GetSimplifiedPath() const
 
 FString FRequest_GetPermissionsForPermissionsOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("group_permission_id"), ToStringFormatArg(GroupPermissionId) }
@@ -2452,7 +2452,7 @@ FName FRequest_GetPortalPermissionById::GetSimplifiedPath() const
 
 FString FRequest_GetPortalPermissionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
     };
 
@@ -2596,7 +2596,7 @@ FName FRequest_GetPortalPermissionsOrgGroupAccounts::GetSimplifiedPath() const
 
 FString FRequest_GetPortalPermissionsOrgGroupAccounts::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) }
     };
@@ -2741,7 +2741,7 @@ FName FRequest_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::GetSimplifi
 
 FString FRequest_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
@@ -2886,7 +2886,7 @@ FName FRequest_UpdateOrgGroup::GetSimplifiedPath() const
 
 FString FRequest_UpdateOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 

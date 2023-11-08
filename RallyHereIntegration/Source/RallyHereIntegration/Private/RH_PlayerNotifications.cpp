@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_PlayerNotifications.h"
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "NotificationCreate.h"

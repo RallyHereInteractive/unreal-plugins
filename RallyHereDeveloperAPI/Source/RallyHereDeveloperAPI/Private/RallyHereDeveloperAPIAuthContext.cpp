@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDeveloperAPIAuthContext.h"
@@ -80,7 +80,7 @@ bool FAuthContext::AddClientCredentials(const FHttpRequestRef& HttpRequest) cons
     {
         HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
     }
-    
+
     return true;
 }
 
@@ -90,7 +90,7 @@ bool FAuthContext::AddClientCredentials(const FHttpRequestPtr& HttpRequest) cons
     {
         HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
     }
-    
+
     return true;
 }
 

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "SandboxConfigRoleAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_SandboxCreateRole::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateRole::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -251,7 +251,7 @@ FName FRequest_SandboxDeleteRole::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteRole::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("role_id"), ToStringFormatArg(RoleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -396,7 +396,7 @@ FName FRequest_SandboxFullCreateRole::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullCreateRole::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -553,7 +553,7 @@ FName FRequest_SandboxFullDeleteRole::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullDeleteRole::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("role_id"), ToStringFormatArg(RoleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -700,7 +700,7 @@ FName FRequest_SandboxFullGetAllRolesForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullGetAllRolesForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -858,7 +858,7 @@ FName FRequest_SandboxFullGetRoleForSandboxAndRoleId::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullGetRoleForSandboxAndRoleId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("role_id"), ToStringFormatArg(RoleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1005,7 +1005,7 @@ FName FRequest_SandboxFullUpdateRole::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullUpdateRole::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("role_id"), ToStringFormatArg(RoleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1163,7 +1163,7 @@ FName FRequest_SandboxGetAllRolesForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllRolesForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1319,7 +1319,7 @@ FName FRequest_SandboxGetRoleForSandboxAndRoleId::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRoleForSandboxAndRoleId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("role_id"), ToStringFormatArg(RoleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1464,7 +1464,7 @@ FName FRequest_SandboxUpdateRole::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateRole::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("role_id"), ToStringFormatArg(RoleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

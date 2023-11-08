@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -41,11 +41,11 @@ private:
 /* Get All Regions
  *
  * Get all of the enabled regions and their configuration
- * 
- * Required Permissions: 
+ *
+ * Required Permissions:
  * 	For any player (including themselves)any of: `session:*`, `session:read:config`
- * 
- * 
+ *
+ *
  * Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllRegions : public FRequest

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include <optional>
@@ -18,7 +20,7 @@
 
 class URH_LocalPlayerSubsystem;
 
-DECLARE_DELEGATE_TwoParams(FRH_ProcessEntitlementCompletedDelegate, bool /*Success*/, FRHAPI_PlatformEntitlementProcessResult) 
+DECLARE_DELEGATE_TwoParams(FRH_ProcessEntitlementCompletedDelegate, bool /*Success*/, FRHAPI_PlatformEntitlementProcessResult)
 DECLARE_DELEGATE_RetVal(ERHAPI_PlatformRegion, FRH_GetPlatformRegionDelegate)
 
 /** @defgroup Entitlement RallyHere Entitlement
@@ -113,7 +115,7 @@ protected:
 	IOnlineSubsystem* GetOSS() const;
 	/** @brief Helper to the online purchase subsystem. */
 	IOnlinePurchasePtr GetPurchaseSubsystem() const;
-	
+
 	/** @brief Online Subsystem to use for entitlements.  If not provided, will use the default OSS */
 	UPROPERTY(Config)
 	FName EntitlementOSSName;
@@ -210,7 +212,7 @@ protected:
 			Failed("Failed to query entitlements.");
 			return;
 		}
-		
+
 		PurchaseSubsystem->GetReceipts(*PlatformUserId, Receipts);
 
 		ValidateEntitlementReceipts();
@@ -271,7 +273,7 @@ protected:
 			Failed("Failed validate receipts.");
 			return;
 		}
-		
+
 		ReceiptsToValidateCount--;
 
 		if(ReceiptsToValidateCount == 0)
@@ -289,7 +291,7 @@ protected:
 		for (FPurchaseReceipt receipt: Receipts)
 		{
 			ProcessEntitlementResult.TransactionId = receipt.TransactionId;
-			
+
 			for (FPurchaseReceipt::FReceiptOfferEntry offerEntry: receipt.ReceiptOffers)
 			{
 				if (offerEntry.Quantity > 0)
@@ -302,7 +304,7 @@ protected:
 						Entitlement.SetPlatformSku(lineItem.ItemName);
 
 						UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Ading Client Entitlement to Request - SKU: %s - Entitlement ID: %s - Quantity: %i"), *GetName(), *Entitlement.PlatformSku, *Entitlement.PlatformEntitlementId, Entitlement.GetQuantity(0));
-				
+
 						ProcessEntitlementResult.GetClientEntitlements().Emplace(Entitlement);
 					}
 				}
@@ -334,7 +336,7 @@ protected:
 
 		entitlementRequest.PlatformRegion = GetRegionFromTitleSettings();
 		entitlementRequest.TransactionId = ProcessEntitlementResult.TransactionId;
-		
+
 		FGuid PlayerUuid;
 		if (AuthContext->GetLoginResult().IsSet())
 		{
@@ -353,7 +355,7 @@ protected:
 
 		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().ProcessPlatformEntitlementsByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_ProcessPlatformEntitlementsByPlayerUuid::CreateSP(this, &FRH_EntitlementProcessor::ProcessPlatformInventoryComplete), GetDefault<URH_IntegrationSettings>()->ProcessPlatformEntitlementsPriority);
-		
+
 		if (!HttpPtr)
 		{
 			Failed(TEXT("Failed to create entitlements processing request"));
@@ -372,7 +374,7 @@ protected:
 				return true;
 			}
 		}
-	
+
 		for (FRHAPI_PlatformEntitlement server_entitlement : ProcessEntitlementResult.GetServerEntitlements())
 		{
 			ERHAPI_EntitlementStatus status = server_entitlement.GetStatus();
@@ -427,12 +429,12 @@ protected:
 		}
 
 		ProcessEntitlementResult.SetStatus("POLLING");
-		
+
 		auto Request = RallyHereAPI::FRequest_RetrieveEntitlementsByPlayerUuid();
 		Request.AuthContext = AuthContext;
 		Request.PlayerUuid = AuthContext->GetLoginResult()->GetActivePlayerUuid();
 		Request.RequestId = ProcessEntitlementResult.RequestId;
-		 	
+
 		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().RetrieveEntitlementsByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_RetrieveEntitlementsByPlayerUuid::CreateSP(this,
 				&FRH_EntitlementProcessor::PollEntitlementComplete, Delegate), GetDefault<URH_IntegrationSettings>()->RetrievePlatformEntitlementsPriority);
@@ -482,7 +484,7 @@ protected:
 		static FName PollTimerName(TEXT("Entitlements"));
 
 		EntitlementsPoller = FRH_PollControl::CreateAutoPoller();
-		
+
 		if (EntitlementsPoller.IsValid())
 		{
 			// poll immediately, as we have have entitlements pending
@@ -523,7 +525,7 @@ protected:
 		{
 			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Failed to Process Entitlements"), ANSI_TO_TCHAR(__FUNCTION__));
 		}
-		
+
 		EntitlementProcessorCompleteDelegate.ExecuteIfBound(bSuccess, ProcessEntitlementResult);
 	}
 	/**
@@ -536,7 +538,7 @@ protected:
 		{
 			PlatformRegion = GetPlatformRegionDelegate.Execute();
 		}
-	
+
 		return PlatformRegion;
 	}
 	/** @brief Auth Context used by the entitlement subsystem. */

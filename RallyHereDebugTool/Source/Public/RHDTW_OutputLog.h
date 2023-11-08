@@ -1,4 +1,5 @@
-// Copyright 2022 Hi-Rez Studios, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "RH_DebugToolWindow.h"
@@ -9,7 +10,7 @@
 struct FRHDTW_OutputLog;
 
 /*******************************************************************************
-A large portion of this code is taken from 
+A large portion of this code is taken from
 Engine/Source/Developer/OutputLog/Private/SOutputLog.h which provides a solid
 implementation of an output log, but is not publicly accessible.
 *******************************************************************************/
@@ -304,7 +305,7 @@ public:
 
 	/** Search Log Buffer */
 	TArray<ANSICHAR, TInlineAllocator<100>> SearchLogBuffer;
-	
+
 	FDelegateHandle OnCrashHandle;
 	FDelegateHandle SettingsLoadedHandle;
 	FDelegateHandle DebugToolActiveHandle;

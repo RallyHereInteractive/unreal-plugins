@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_Catalog.h"
 
@@ -63,7 +65,7 @@ void FRHDTW_Catalog::Do()
 	{
 		pRH_CatalogSubsystem->GetCatalogInventoryBucketUseRuleSetsAll();
 	}
-	
+
 	ImGui::SameLine();
 	if (ImGui::Button("Request Time Frames"))
 	{
@@ -109,7 +111,7 @@ void FRHDTW_Catalog::Do()
 			DoShowClaim(pRH_CatalogSubsystem);
 			ImGui::EndTabItem();
 		}
-		
+
 		ImGui::EndTabBar();
 	}
 }
@@ -616,10 +618,10 @@ void FRHDTW_Catalog::DoShowItemInventoryBucketUseRuleSets(URH_CatalogSubsystem* 
 		InventoryBucketUseRuleSetIdStrings.Emplace(TCHAR_TO_UTF8(*RuleSetPair.Key));
 		InventoryBucketRuleSetIDs.Emplace(InventoryBucketUseRuleSetIdStrings.Last().c_str());
 	}
-	
+
 	ImGui::Combo("Inventory Bucket Use Rule Set Id", &SelectedInventoryBucketRuleSet, InventoryBucketRuleSetIDs.GetData(), InventoryBucketRuleSetIDs.Num());
 	const auto& RuleSet = RuleSets.Find(InventoryBucketRuleSetIDs[SelectedInventoryBucketRuleSet]);
-	
+
 	if (const auto& rules = RuleSet->GetRulesOrNull())
 	{
 		int32 IdIndex = 0;

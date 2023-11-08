@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_SessionBrowser.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_OnlineSubsystemNames.h"
@@ -229,7 +231,7 @@ protected:
 		{
 			SessionOwner->ImportAPISession(Session);
 		}
-		
+
 		Completed(true);
 	}
 
@@ -313,7 +315,7 @@ void URH_SessionBrowserCache::ImportAPISession(const FRH_APISessionWithETag& Ses
 	{
 		RHSession = NewObject<URH_SessionView>(this);
 	}
-	
+
 	if (RHSession != nullptr)
 	{
 		RHSession->ImportAPISession(SessionWrapper, Template);

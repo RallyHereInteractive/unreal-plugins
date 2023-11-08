@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_CrossplayPlatform& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayPlatform& Value)
 {
-    static TMap<FString, ERHAPI_CrossplayPlatform> StringToEnum = { 
+    static TMap<FString, ERHAPI_CrossplayPlatform> StringToEnum = {
         { TEXT("desired_platforms_any"), ERHAPI_CrossplayPlatform::Any },
         { TEXT("desired_platforms_xboxlike"), ERHAPI_CrossplayPlatform::Xbox },
         { TEXT("desired_platforms_playstationlike"), ERHAPI_CrossplayPlatform::Playstation },    };

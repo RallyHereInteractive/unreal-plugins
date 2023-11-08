@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_Beacons.h"
 #include "RH_Common.h"
@@ -155,7 +157,7 @@ void ARH_OnlineBeaconClient::NotifyControlMessage(UNetConnection* Connection, ui
 			{
 				URL.AddOption(*FString::Printf(TEXT("AuthTicket=%s"), *AuthTicket));
 			}
-			
+
 #endif
 
 			// Add stored login options

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -42,7 +42,7 @@ FString EnumToString(const ERHAPI_DevPricePointSortOptions& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevPricePointSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevPricePointSortOptions> StringToEnum = { 
+    static TMap<FString, ERHAPI_DevPricePointSortOptions> StringToEnum = {
         { TEXT("price_point_id"), ERHAPI_DevPricePointSortOptions::PricePointId },
         { TEXT("strict_flag"), ERHAPI_DevPricePointSortOptions::StrictFlag },
         { TEXT("cap_flag"), ERHAPI_DevPricePointSortOptions::CapFlag },

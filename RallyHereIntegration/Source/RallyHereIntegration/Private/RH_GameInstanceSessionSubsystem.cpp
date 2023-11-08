@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -50,7 +52,7 @@ bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* 
 
 	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
 	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
-	
+
 	if (!IsRunningDedicatedServer())	// dedicated servers always listen
 	{
 		if (!Session->IsOffline())		// temporary check until we have a template setting for joinability type
@@ -112,7 +114,7 @@ bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* 
 		outURL = TravelURL;
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -266,7 +268,7 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 				UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %d could not find a valid connection string on the host"));
 				StartLeaveInstanceFlow();
 			}
-			
+
 		}
 	}
 }
@@ -559,7 +561,7 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 		StartJoinInstanceFlow(Delegate);
 	}
 	// we are already in the correct instance
-	else 
+	else
 	{
 		check(ActiveSession == DesiredSession);
 		Delegate.ExecuteIfBound(true);
@@ -758,7 +760,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 			return false;
 		}
 	}
-	
+
 	FURL JoinURL;
 	if (GenerateJoinURL(DesiredSession, pWorldContext->LastURL, JoinURL))
 	{
@@ -772,7 +774,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 			// since we allow hostnames, which parse incorrectly in the engine when using the default port, temporarily change the default port so taht we can generate the URL properly but contain the default port
 			TGuardValue<int32> PortGuard(FURL::UrlConfig.DefaultPort, -1); // DefaultPort is a signed in, this should never match, causing it to always be emitted into the string
 			JoinURLString = JoinURL.ToString(true);
-		} 
+		}
 
 		GEngine->SetClientTravel(pWorldContext->World(), *JoinURLString, TRAVEL_Absolute);
 
@@ -783,7 +785,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 	{
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Could not join session because URL could not be generated correctly"));
 	}
-	
+
 	Delegate.ExecuteIfBound(false);
 	return false;
 }

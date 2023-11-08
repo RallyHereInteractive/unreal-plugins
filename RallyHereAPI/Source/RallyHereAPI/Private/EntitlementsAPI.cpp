@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "EntitlementsAPI.h"
@@ -264,7 +264,7 @@ FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() cons
 
 FString FRequest_ProcessPlatformEntitlementsByPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -437,7 +437,7 @@ FName FRequest_RetrieveEntitlementsByPlayerUuid::GetSimplifiedPath() const
 
 FString FRequest_RetrieveEntitlementsByPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("request_id"), ToStringFormatArg(RequestId) }
     };
@@ -600,7 +600,7 @@ FName FRequest_RetrieveEntitlementsForMe::GetSimplifiedPath() const
 
 FString FRequest_RetrieveEntitlementsForMe::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("request_id"), ToStringFormatArg(RequestId) }
     };
 

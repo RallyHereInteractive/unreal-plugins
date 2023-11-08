@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_EntitlementStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementStatus& Value)
 {
-    static TMap<FString, ERHAPI_EntitlementStatus> StringToEnum = { 
+    static TMap<FString, ERHAPI_EntitlementStatus> StringToEnum = {
         { TEXT("UNKNOWN"), ERHAPI_EntitlementStatus::Unknown },
         { TEXT("SUBMITTED"), ERHAPI_EntitlementStatus::Submitted },
         { TEXT("FULFILLED"), ERHAPI_EntitlementStatus::Fulfilled },

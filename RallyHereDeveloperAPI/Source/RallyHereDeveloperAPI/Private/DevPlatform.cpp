@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -58,7 +58,7 @@ FString EnumToString(const ERHAPI_DevPlatform& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevPlatform& Value)
 {
-    static TMap<FString, ERHAPI_DevPlatform> StringToEnum = { 
+    static TMap<FString, ERHAPI_DevPlatform> StringToEnum = {
         { TEXT("Anon"), ERHAPI_DevPlatform::Anon },
         { TEXT("Basic"), ERHAPI_DevPlatform::Basic },
         { TEXT("XboxLive"), ERHAPI_DevPlatform::XboxLive },

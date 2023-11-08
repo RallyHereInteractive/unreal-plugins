@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "OnlinePurchaseInterfaceSteamV2.h"
 #include "OnlineStoreInterfaceSteamV2.h"
 #include "OnlineSubsystemSteamV2.h"
@@ -29,7 +31,7 @@ namespace
 
 		TArray<FPurchaseReceipt> ReceiptData;
 		FOnlineError ErrorResponse;
-		
+
 		const FOnQueryReceiptsComplete QueryReceiptsDelegate;
 		const FOnPurchaseCheckoutComplete PurchaseCheckoutDelegate;
 
@@ -161,7 +163,7 @@ namespace
 				const int32 ItemCount = steamEnt.m_unQuantity;
 
 				const FString ItemId = FromSteamItemInstanceId(steamEnt.m_itemId);
-				
+
 				FPurchaseReceipt::FReceiptOfferEntry OfferEntry(FString(), ItemId, ItemCount);
 				for (int32 quantity = 1; quantity <= ItemCount; ++quantity)
 				{
@@ -174,10 +176,10 @@ namespace
 				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem SKU: %s"), *FromSteamItemDefId(steamEnt.m_iDefinition));
 				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem Count: %s"), ItemCount);
 				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem SteamItemFlags: %s"), steamEnt.m_unFlags);
-				
+
 				PurchaseReceipt.ReceiptOffers.Emplace(MoveTemp(OfferEntry));
 			}
-			
+
 			ReceiptData.Add(MoveTemp(PurchaseReceipt));
 			bWasSuccessful = ErrorResponse.bSucceeded;
 			return true;
@@ -198,7 +200,7 @@ namespace
 				}
 			}
 		}
-		
+
 		/**
 		 *	Async task is given a chance to trigger its delegates
 		 */
@@ -487,7 +489,7 @@ void FOnlinePurchaseSteam::QueryReceipts(const FUniqueNetId& UserId, bool bResto
 	{
 		Delegate.ExecuteIfBound(FOnlineError(EOnlineErrorResult::InvalidUser));
 	}
-	
+
 	auto sharedUserId = UserId.AsShared();
 	ClearCachedReceipts(sharedUserId);
 	Subsystem->QueueAsyncTask(new FOnlinePurchaseAsyncTaskSteamGetAllUserInventory(Subsystem, sharedUserId, Delegate));

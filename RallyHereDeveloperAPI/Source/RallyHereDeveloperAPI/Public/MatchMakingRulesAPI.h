@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -137,7 +137,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateRule
     typedef FDelegate_OrgProductSandboxCreateRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateRule(InRequest, InDelegate, Priority); }
 };
 
@@ -171,7 +171,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteRule : public 
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -182,7 +182,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteRule
     typedef FDelegate_OrgProductSandboxDeleteRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteRule(InRequest, InDelegate, Priority); }
 };
 
@@ -230,7 +230,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllRules
     typedef FDelegate_OrgProductSandboxGetAllRules Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllRules(InRequest, InDelegate, Priority); }
 };
 
@@ -275,7 +275,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetRule
     typedef FDelegate_OrgProductSandboxGetRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetRule(InRequest, InDelegate, Priority); }
 };
 
@@ -321,7 +321,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchRule
     typedef FDelegate_OrgProductSandboxPatchRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchRule(InRequest, InDelegate, Priority); }
 };
 
@@ -367,7 +367,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutRule
     typedef FDelegate_OrgProductSandboxPutRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutRule(InRequest, InDelegate, Priority); }
 };
 
@@ -408,7 +408,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateRule
     typedef FDelegate_SandboxCreateRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateRule(InRequest, InDelegate, Priority); }
 };
 
@@ -438,7 +438,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteRule : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -449,7 +449,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteRule
     typedef FDelegate_SandboxDeleteRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteRule(InRequest, InDelegate, Priority); }
 };
 
@@ -493,7 +493,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllRules
     typedef FDelegate_SandboxGetAllRules Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllRules(InRequest, InDelegate, Priority); }
 };
 
@@ -534,7 +534,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRule
     typedef FDelegate_SandboxGetRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetRule(InRequest, InDelegate, Priority); }
 };
 
@@ -576,7 +576,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchRule
     typedef FDelegate_SandboxPatchRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchRule(InRequest, InDelegate, Priority); }
 };
 
@@ -618,7 +618,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutRule
     typedef FDelegate_SandboxPutRule Delegate;
     typedef FMatchMakingRulesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutRule(InRequest, InDelegate, Priority); }
 };
 

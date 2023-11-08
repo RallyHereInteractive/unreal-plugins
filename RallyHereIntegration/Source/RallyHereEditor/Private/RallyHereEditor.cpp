@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereEditor.h"
 #include "RallyHereDeveloperAPIModule.h"
 #include "RallyHereEditorLoginWidget.h"
@@ -29,7 +31,7 @@ void FRallyHereEditorModule::StartupModule()
 	UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: Log Started"));
 
 	FModuleManager::LoadModuleChecked<FRallyHereDeveloperAPIModule>(FName(TEXT("RallyHereDeveloperAPI")));
-	
+
 	RallyHereEditorCategory = WorkspaceMenu::GetMenuStructure().GetToolsCategory()->AddGroup(
 		LOCTEXT("RallyHereEditorCategory", "Rally Here"),
 		LOCTEXT("RallyHereEditorCategory_ToolTip", "Rally Here Editor Tools"),

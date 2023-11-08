@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "KeyEntitlementsAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_ProcessKeyEntitlements::GetSimplifiedPath() const
 
 FString FRequest_ProcessKeyEntitlements::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("portal_id"), ToStringFormatArg(PortalId) }
     };
@@ -267,7 +267,7 @@ FName FRequest_ProcessKeyEntitlementsPlayerUuid::GetSimplifiedPath() const
 
 FString FRequest_ProcessKeyEntitlementsPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("portal_id"), ToStringFormatArg(PortalId) }
     };
@@ -438,7 +438,7 @@ FName FRequest_ProcessKeyEntitlementsSelf::GetSimplifiedPath() const
 
 FString FRequest_ProcessKeyEntitlementsSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("portal_id"), ToStringFormatArg(PortalId) }
     };
 
@@ -608,7 +608,7 @@ FName FRequest_ProcessPlayerUuidEntitlementsSelf::GetSimplifiedPath() const
 
 FString FRequest_ProcessPlayerUuidEntitlementsSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("portal_id"), ToStringFormatArg(PortalId) }
     };
 

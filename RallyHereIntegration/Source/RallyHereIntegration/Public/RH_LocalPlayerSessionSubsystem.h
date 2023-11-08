@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -302,7 +304,7 @@ public:
 	void BLUEPRINT_SearchForSessions(const FRH_SessionBrowserSearchParams& Params, const FRH_OnSessionSearchCompleteDynamicDelegate& Delegate)
 	{
 		SearchForSessions(Params, Delegate);
-	}	
+	}
 
 	/**
 	* @brief Start polling for session template and membership updates

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "CatalogAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_SandboxCreateInventoryBucketUseRuleSets::GetSimplifiedPath() cons
 
 FString FRequest_SandboxCreateInventoryBucketUseRuleSets::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -251,7 +251,7 @@ FName FRequest_SandboxCreateItems::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateItems::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -406,7 +406,7 @@ FName FRequest_SandboxCreateLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -561,7 +561,7 @@ FName FRequest_SandboxCreateManyXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateManyXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -716,7 +716,7 @@ FName FRequest_SandboxCreatePricePoints::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreatePricePoints::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -871,7 +871,7 @@ FName FRequest_SandboxCreateVendors::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateVendors::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1026,7 +1026,7 @@ FName FRequest_SandboxCreateXpThreshold::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateXpThreshold::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1182,7 +1182,7 @@ FName FRequest_SandboxDeleteManyItems::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyItems::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1331,7 +1331,7 @@ FName FRequest_SandboxDeleteManyLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1480,7 +1480,7 @@ FName FRequest_SandboxDeleteManyPricePoints::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyPricePoints::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1629,7 +1629,7 @@ FName FRequest_SandboxDeleteManyRuleSets::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyRuleSets::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1778,7 +1778,7 @@ FName FRequest_SandboxDeleteManyXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1927,7 +1927,7 @@ FName FRequest_SandboxDeleteSingleItem::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleItem::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("item_id"), ToStringFormatArg(ItemId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2072,7 +2072,7 @@ FName FRequest_SandboxDeleteSingleLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("loot_id"), ToStringFormatArg(LootId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2217,7 +2217,7 @@ FName FRequest_SandboxDeleteSinglePricePoint::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSinglePricePoint::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2362,7 +2362,7 @@ FName FRequest_SandboxDeleteSingleRuleSet::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleRuleSet::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("inventory_bucket_use_rule_set_id"), ToStringFormatArg(InventoryBucketUseRuleSetId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2507,7 +2507,7 @@ FName FRequest_SandboxDeleteSingleXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2652,7 +2652,7 @@ FName FRequest_SandboxDeleteSingleXpThreshold::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleXpThreshold::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("xp_threshold_id"), ToStringFormatArg(XpThresholdId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -2798,7 +2798,7 @@ FName FRequest_SandboxDeleteVendor::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteVendor::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2943,7 +2943,7 @@ FName FRequest_SandboxDeleteVendors::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteVendors::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3092,7 +3092,7 @@ FName FRequest_SandboxGetItemById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetItemById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("item_id"), ToStringFormatArg(ItemId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3245,7 +3245,7 @@ FName FRequest_SandboxGetItems::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetItems::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3449,7 +3449,7 @@ FName FRequest_SandboxGetLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3665,7 +3665,7 @@ FName FRequest_SandboxGetLootById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetLootById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("loot_id"), ToStringFormatArg(LootId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3818,7 +3818,7 @@ FName FRequest_SandboxGetManyXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetManyXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3998,7 +3998,7 @@ FName FRequest_SandboxGetPricePointById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetPricePointById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4143,7 +4143,7 @@ FName FRequest_SandboxGetPricePoints::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetPricePoints::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4327,7 +4327,7 @@ FName FRequest_SandboxGetRuleSetById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRuleSetById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("inventory_bucket_use_rule_set_id"), ToStringFormatArg(InventoryBucketUseRuleSetId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4472,7 +4472,7 @@ FName FRequest_SandboxGetRuleSets::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRuleSets::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4652,7 +4652,7 @@ FName FRequest_SandboxGetVendorById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetVendorById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4797,7 +4797,7 @@ FName FRequest_SandboxGetVendors::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetVendors::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4981,7 +4981,7 @@ FName FRequest_SandboxGetXpById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetXpById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5126,7 +5126,7 @@ FName FRequest_SandboxUpdateItem::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateItem::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("item_id"), ToStringFormatArg(ItemId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5282,7 +5282,7 @@ FName FRequest_SandboxUpdateLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("loot_id"), ToStringFormatArg(LootId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5438,7 +5438,7 @@ FName FRequest_SandboxUpdatePricePoint::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdatePricePoint::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5594,7 +5594,7 @@ FName FRequest_SandboxUpdateRuleSet::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateRuleSet::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("inventory_bucket_use_rule_set_id"), ToStringFormatArg(InventoryBucketUseRuleSetId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5750,7 +5750,7 @@ FName FRequest_SandboxUpdateVendor::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateVendor::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5906,7 +5906,7 @@ FName FRequest_SandboxUpdateXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -6062,7 +6062,7 @@ FName FRequest_SandboxUpdateXpThreshold::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateXpThreshold::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("xp_threshold_id"), ToStringFormatArg(XpThresholdId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }

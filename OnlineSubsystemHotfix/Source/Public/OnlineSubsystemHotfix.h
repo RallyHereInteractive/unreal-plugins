@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -19,7 +20,7 @@ class ONLINESUBSYSTEMHOTFIX_API FOnlineSubsystemHotfix
 	: public FOnlineSubsystemImpl
 	, public TSharedFromThis<FOnlineSubsystemHotfix, ESPMode::ThreadSafe>
 {
-	
+
 PACKAGE_SCOPE:
 
 	/** Only the factory makes instances */
@@ -34,7 +35,7 @@ public:
 	virtual ~FOnlineSubsystemHotfix()
 	{
 	}
-	
+
 	// These are not stubbed properly in FOnlineSubsystemImpl
 	virtual IOnlineSessionPtr GetSessionInterface() const { return nullptr; }
 	virtual IOnlineFriendsPtr GetFriendsInterface() const { return nullptr; }
@@ -45,11 +46,11 @@ public:
 	virtual FString GetAppId() const override;
 	virtual FText GetOnlineServiceName() const override;
 	virtual EOnlineEnvironment::Type GetOnlineEnvironment() const override;
-	
+
 	virtual bool Init() override;
 	virtual bool Shutdown() override;
 	virtual bool Exec(class UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar) override;
-	
+
 private:
 	bool bInitialized;
 

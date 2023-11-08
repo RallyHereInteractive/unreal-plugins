@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -39,7 +39,7 @@ private:
 
 /* Get Site Settings
  *
- * Returns a list of all the enabled Sites/Regions. 
+ * Returns a list of all the enabled Sites/Regions.
  *             Deprecated as this endpoint has moved to the session api.
 */
 struct RALLYHEREAPI_API FRequest_GetSiteSettings : public FRequest

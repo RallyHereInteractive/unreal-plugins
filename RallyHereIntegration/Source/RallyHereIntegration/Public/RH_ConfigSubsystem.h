@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -168,7 +170,7 @@ public:
 	* @brief Stops the polling for App Settings.
 	*/
 	void StopAppSettingsRefreshTimer();
-	
+
 	/**
 	* @brief Requests the server time cache to be updated
 	*/
@@ -205,7 +207,7 @@ public:
 	* @return Gets if enabled.
 	*/
 	bool GetHotfixTestValue() const { return bHotfixTestValue; }
-	
+
 protected:
 	/** @brief Map of app settings by name. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetAppSettings, Category = "Config")

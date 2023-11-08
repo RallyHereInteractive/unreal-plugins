@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "OnlineSubsystemSteamV2.h"
 #include "Misc/App.h"
 #include "HAL/RunnableThread.h"
@@ -10,7 +12,7 @@
 
 IOnlineSessionPtr FOnlineSubsystemSteamV2::GetSessionInterface() const
 {
-	if (SteamSubsystem) 
+	if (SteamSubsystem)
 	{
 		return SteamSubsystem->GetSessionInterface();
 	}

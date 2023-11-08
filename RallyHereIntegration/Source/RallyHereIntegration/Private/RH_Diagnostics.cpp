@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_Diagnostics.h"
 #include "RallyHereIntegrationModule.h"
@@ -76,7 +78,7 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 	Metadata->SetStringField(TEXT("Mode"), Mode);
 
 	auto& IntegrationObject = FRallyHereIntegrationModule::Get();
-	
+
 	Metadata->SetStringField(TEXT("RH-Environment"), IntegrationObject.GetEnvironmentId());
 	Metadata->SetStringField(TEXT("RH-BaseURL"), IntegrationObject.GetBaseURL());
 	Metadata->SetStringField(TEXT("RH-ClientId"), IntegrationObject.GetClientId());

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -137,7 +137,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateSessionTemplateFo
     typedef FDelegate_OrgProductSandboxCreateSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -171,7 +171,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteSessionTemplat
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -182,7 +182,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteSessionTemplateFo
     typedef FDelegate_OrgProductSandboxDeleteSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -230,7 +230,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllSessionTemplatesF
     typedef FDelegate_OrgProductSandboxGetAllSessionTemplatesForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllSessionTemplatesForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -275,7 +275,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetSessionTemplateForSa
     typedef FDelegate_OrgProductSandboxGetSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -321,7 +321,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchSessionTemplateFor
     typedef FDelegate_OrgProductSandboxPatchSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -367,7 +367,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutSessionTemplateForSa
     typedef FDelegate_OrgProductSandboxPutSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -408,7 +408,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateSessionTemplateForSandbox
     typedef FDelegate_SandboxCreateSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -438,7 +438,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSessionTemplateForSandbo
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -449,7 +449,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteSessionTemplateForSandbox
     typedef FDelegate_SandboxDeleteSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -493,7 +493,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllSessionTemplatesForSandbox
     typedef FDelegate_SandboxGetAllSessionTemplatesForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllSessionTemplatesForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -534,7 +534,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetSessionTemplateForSandbox
     typedef FDelegate_SandboxGetSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -576,7 +576,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchSessionTemplateForSandbox
     typedef FDelegate_SandboxPatchSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -618,7 +618,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutSessionTemplateForSandbox
     typedef FDelegate_SandboxPutSessionTemplateForSandbox Delegate;
     typedef FSessionTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutSessionTemplateForSandbox(InRequest, InDelegate, Priority); }
 };
 

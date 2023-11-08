@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -24,7 +25,7 @@ public:
 
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	
+
 	virtual bool SupportsDynamicReloading() override
 	{
 		return false;

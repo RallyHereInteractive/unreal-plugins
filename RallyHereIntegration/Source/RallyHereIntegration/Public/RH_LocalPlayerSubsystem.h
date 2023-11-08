@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -99,8 +101,8 @@ public:
 	* @brief Gets the player's auth context.
 	*/
 	FAuthContextPtr GetAuthContext() const { return AuthContext; }
-	/** 
-	* @brief Get a specific OSS by name for this local player's world.  In editor, this allows each world/game instance to have a different OSS 
+	/**
+	* @brief Get a specific OSS by name for this local player's world.  In editor, this allows each world/game instance to have a different OSS
 	*/
 	IOnlineSubsystem* GetOSS(const FName& SubsystemName = NAME_None) const;
 	/**
@@ -150,7 +152,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "RallyHere|LocalPlayerSubsystem")
 	URH_PlayerInfoSubsystem* GetPlayerInfoSubsystem() const;
-	
+
 
 	/**
 	* @brief Custom Endpoint wrapper (for custom endpoints that require authentication)
@@ -195,7 +197,7 @@ protected:
 		{
 			SubsystemClass = UClassToUse::StaticClass();
 		}
-		
+
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
 		SubsystemPlugins.Add(Subsystem);
 		return Subsystem;
@@ -219,7 +221,7 @@ protected:
 		{
 			SubsystemClass = UClassToUse::StaticClass();
 		}
-		
+
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
 		SandboxedSubsystemPlugins.Add(Subsystem);
 		return Subsystem;

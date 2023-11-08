@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
 #include "RHDTW_PlayerInventory.h"
@@ -162,7 +164,7 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 						InventorySessionResult += TEXT("[") + GetShortUuid(PlayerInfo->GetRHPlayerUuid()) + TEXT("] RH_PlayerInventory unavailable.") LINE_TERMINATOR;
 					}
 				}
-				
+
 			}));
 	}
 	ImGui::SameLine();
@@ -488,7 +490,7 @@ void FRHDTW_PlayerInventory::DoModifyInventory()
 						}
 					}
 				}));
-			
+
 		}
 		else
 		{

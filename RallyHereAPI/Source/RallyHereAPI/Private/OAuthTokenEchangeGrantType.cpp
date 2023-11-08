@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -32,7 +32,7 @@ FString EnumToString(const ERHAPI_OAuthTokenEchangeGrantType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthTokenEchangeGrantType& Value)
 {
-    static TMap<FString, ERHAPI_OAuthTokenEchangeGrantType> StringToEnum = { 
+    static TMap<FString, ERHAPI_OAuthTokenEchangeGrantType> StringToEnum = {
         { TEXT("authorization_code"), ERHAPI_OAuthTokenEchangeGrantType::AuthorizationCode },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);

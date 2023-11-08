@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -20,21 +21,21 @@
  * The job of transporting these payloads to an external collector (generally expected to be via HTTP) is left to
  * higher level classes to implement.
  *
- * All public APIs in this class are threadsafe. Implemented via crappy critical sections for now, but they are safe. 
+ * All public APIs in this class are threadsafe. Implemented via crappy critical sections for now, but they are safe.
  */
 class ANALYTICSRALLYHERE_API FRH_AnalyticsProviderEventCache
 {
 public:
 	/** Default ctor.
-	 * @param InPreallocatedPayloadSize - size to preallocate the payload buffer to during init and after flushing. 
-	 *        If negative, will match the INI-configured MaximumPayloadSize. 
-	 * @param MaximumPayloadSize - size before a payload will be queued for flush. 
-	 *        This ensures that no payload ever gets too large. See AddToCache() and HasFlushesQueued() for details. 
+	 * @param InPreallocatedPayloadSize - size to preallocate the payload buffer to during init and after flushing.
+	 *        If negative, will match the INI-configured MaximumPayloadSize.
+	 * @param MaximumPayloadSize - size before a payload will be queued for flush.
+	 *        This ensures that no payload ever gets too large. See AddToCache() and HasFlushesQueued() for details.
 	 *        If negative, will use INI-configured value: Engine:[AnalyticsProviderRallyHereEventCache]MaximumPayloadSize, or 100KB if not configured.
 	 */
 	FRH_AnalyticsProviderEventCache(int32 MaximumPayloadSize = -1, int32 InPreallocatedPayloadSize = -1);
 
-	/** 
+	/**
 	 * Adds a new event to the cache.
 	 * If the estimated payload size will increase beyond MaximumPayloadSize then a flush will be queued here. This will make HasFlushesQueued() == true.
 	 */
@@ -86,13 +87,13 @@ public:
 
 	/**
 	 * Lets external code know that there are payloads queued for flush.
-	 * This happens when AddCache() calls cause the payload size to exceed MaxPayloadSize. 
+	 * This happens when AddCache() calls cause the payload size to exceed MaxPayloadSize.
 	 * Calling code needs to notice this and flush the queue.
 	 */
 	bool HasFlushesQueued() const;
 
 	/**
-	 * Gets the number of cached events (doesn't include any flushes that are already queued for flush). 
+	 * Gets the number of cached events (doesn't include any flushes that are already queued for flush).
 	 */
 	int GetNumCachedEvents() const;
 

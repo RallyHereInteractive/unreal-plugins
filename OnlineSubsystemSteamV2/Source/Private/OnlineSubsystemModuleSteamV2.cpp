@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
@@ -29,7 +30,7 @@ class FOnlineFactorySteamV2 : public IOnlineFactory
 			SteamV2SingletonShared->Shutdown();
 			SteamV2SingletonShared = nullptr;
 		}
-		
+
 	}
 
 public:

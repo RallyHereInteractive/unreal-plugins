@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -565,7 +567,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate); }
 	/**
-	* @brief Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo. 
+	* @brief Gets the RH Player UUID for the player, will request from API as needed. As a side effect, it will update the RH Player Uuid on PlayerAndPlatformInfo.
 	* @param Delegate The delegate to call when the request is complete.
 	*/
 	void GetRHPlayerUuidAsync(const FRH_GetRHPlayerUuidBlock& Delegate = FRH_GetRHPlayerUuidBlock());
@@ -703,7 +705,7 @@ public:
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Blocked Player Update Error"))
 	FRH_BlockedPlayerUpdateErrorDynamicDelegate BLUEPRINT_BlockedPlayerUpdateErrorDelegate;
-	
+
 	/**
 	* @brief Initialize the subsystem.
 	*/
@@ -807,7 +809,7 @@ public:
 	bool UnblockPlayer(const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidBlock& Delegate = FRH_GenericFriendWithUuidBlock());
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem", meta = (DisplayName = "Unblock Player", AutoCreateRefTerm = "Delegate"))
 	bool BLUEPRINT_UnblockPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_GenericFriendWithUuidDynamicDelegate& Delegate) { return UnblockPlayer(PlayerUuid, Delegate); }
-	
+
 #pragma endregion // API Requests
 
 	/**
@@ -826,7 +828,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Friend Subsystem")
 	void UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FGuid& PlayerUuid);
-	
+
 	/**
 	 * @brief Triggers the OSS call to get platform friends.
 	 */
@@ -864,7 +866,7 @@ public:
 	 */
 	UFUNCTION(BlueprintPure, Category = "Friend Subsystem")
 	URH_RHFriendAndPlatformFriend* GetFriendByUuidOrPlatformId(const FGuid& PlayerUuid, const FRH_PlayerPlatformId& PlatformPlayerId) const;
-	
+
 	/**
 	 * @brief Gets if the specified player is blocked via platform or Rally Here.
 	 * @param [in] PlayerUuid The unique player id of the player to check.
@@ -933,7 +935,7 @@ public:
 	{
 		return Friends;
 	}
-	
+
 	/**
 	 * @brief Gets an array of blocked player ids.
 	 */

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -14,7 +16,7 @@
 struct FRH_AutoPoller;
 struct FRH_PollControl;
 
-/** 
+/**
  * @brief delegate to notify that a poll is complete
  * @param [in] bSuccess If the poll was successful.
  * @param [in] bResetTimer If the timer should be reset.

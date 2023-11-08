@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -57,7 +59,7 @@ void URH_PlayerInfoSubsystem::InitPropertiesWithDefaultValues()
 }
 
 URH_PlayerInfo* URH_PlayerInfoSubsystem::GetOrCreatePlayerInfo(const FGuid& PlayerUuid)
-{	
+{
 	// Make sure we don't already have this player info, if we do just return it
 	if (const auto Result = GetPlayerInfo(PlayerUuid))
 	{
@@ -75,7 +77,7 @@ URH_PlayerInfo* URH_PlayerInfoSubsystem::GetOrCreatePlayerInfo(const FGuid& Play
 	{
 		PlayerInfoClass = URH_PlayerInfo::StaticClass();
 	}
-	
+
 	const auto NewInfo = NewObject<URH_PlayerInfo>(this, PlayerInfoClass);
 	NewInfo->InitializeForPlayer(PlayerUuid);
 	PlayerInfos.Add(PlayerUuid, NewInfo);
@@ -100,7 +102,7 @@ URH_PlayerPlatformInfo* URH_PlayerInfoSubsystem::GetOrCreatePlayerPlatformInfo(c
 	const auto NewLinkedPlatform = NewObject<URH_PlayerPlatformInfo>();
 	NewLinkedPlatform->PlayerPlatformId = PlayerPlatformId;
 	PlayerPlatformInfos.Add(PlayerPlatformId, NewLinkedPlatform);
-	
+
 	return NewLinkedPlatform;
 }
 
@@ -119,7 +121,7 @@ URH_PlayerInfo* URH_PlayerInfoSubsystem::FindPlayerInfoByPlatformId(const FRH_Pl
 			return *PlayerInfo;
 		}
 	}
-	
+
 	return nullptr;
 }
 
@@ -169,7 +171,7 @@ void URH_PlayerInfoSubsystem::OnLookupPlayerResponse(const TLookupPlayer::Respon
 					}
 				}
 			}
-		}	
+		}
 	}
 
 	Delegate.ExecuteIfBound(OutInfos.Num() > 0, OutInfos);
@@ -285,7 +287,7 @@ TArray<URH_PlayerPlatformInfo*> URH_PlayerInfo::GetPlayerPlatforms() const
 			Infos.Add(PSS->GetOrCreatePlayerPlatformInfo(PlatformId));
 		}
 	}
-	
+
 	return Infos;
 }
 
@@ -373,7 +375,7 @@ void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& Saniti
 		{
 			PlatformInfo->DisplayName = SanitizedMessage;
 		}
-		
+
 		Delegate.ExecuteIfBound(true, SanitizedMessage);
 		return;
 	}
@@ -420,9 +422,9 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsResponse(const GetPlatforms::Resp
 				{
 					auto PlayerPlatformId = FRH_PlayerPlatformId(PortalUserId, LinkedPlatform.Platform);
 					LinkedPlayerPlatforms.Add(PlayerPlatformId);
-					
+
 					auto* PlayerPlatformInfo = GetPlayerPlatformInfo(PlayerPlatformId);
-					
+
 					// update display name
 					if (PlayerPlatformInfo != nullptr)
 					{
@@ -715,7 +717,7 @@ FAuthContextPtr URH_PlayerInfo::GetAuthContext() const
 
 ///
 
-URH_PlayerPresence::URH_PlayerPresence(const FObjectInitializer& ObjectInitializer) 
+URH_PlayerPresence::URH_PlayerPresence(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 	, bInitialized(false)
 	, Status(ERHAPI_OnlineStatus::Offline)
@@ -748,7 +750,7 @@ void URH_PlayerPresence::CheckPollStatus(const bool bForceUpdate)
 	{
 		PresencePoller = FRH_PollControl::CreateAutoPoller();
 	}
-	
+
 	// only start if poller was not already started
 	if (PresencePoller->IsInactive())
 	{
@@ -785,7 +787,7 @@ void URH_PlayerPresence::ExecuteDelegates(bool bSuccess)
 	if (bSuccess)
 	{
 		LastUpdated = FDateTime::UtcNow();
-	
+
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
 		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(this);
 		OnPresenceUpdatedDelegate.Broadcast(this);
@@ -843,7 +845,7 @@ void URH_PlayerSessions::CheckPollStatus(const bool bForceUpdate)
 	{
 		SessionsPoller = FRH_PollControl::CreateAutoPoller();
 	}
-	
+
 	// only start if poller was not already started
 	if (SessionsPoller->IsInactive())
 	{
@@ -880,7 +882,7 @@ void URH_PlayerSessions::ExecuteDelegates(bool bSuccess)
 	if (bSuccess)
 	{
 		LastUpdated = FDateTime::UtcNow();
-	
+
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
 		BLUEPRINT_OnSessionsUpdatedDelegate.Broadcast(this);
 		OnSessionsUpdatedDelegate.Broadcast(this);

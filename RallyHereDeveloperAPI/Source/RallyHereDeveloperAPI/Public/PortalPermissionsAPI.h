@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -174,7 +174,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateAccountPermissions
     typedef FDelegate_CreateAccountPermissions Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateAccountPermissions(InRequest, InDelegate, Priority); }
 };
 
@@ -213,7 +213,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateOrgGroup
     typedef FDelegate_CreateOrgGroup Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateOrgGroup(InRequest, InDelegate, Priority); }
 };
 
@@ -253,7 +253,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreatePortalPermissions
     typedef FDelegate_CreatePortalPermissions Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreatePortalPermissions(InRequest, InDelegate, Priority); }
 };
 
@@ -294,7 +294,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreatePortalPermissionsOrgGroupAccount
     typedef FDelegate_CreatePortalPermissionsOrgGroupAccount Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreatePortalPermissionsOrgGroupAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -335,7 +335,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreatePortalPermissionsOrgGroupPermissio
     typedef FDelegate_CreatePortalPermissionsOrgGroupPermission Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreatePortalPermissionsOrgGroupPermission(InRequest, InDelegate, Priority); }
 };
 
@@ -379,7 +379,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteAccountPermissions
     typedef FDelegate_DeleteAccountPermissions Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteAccountPermissions(InRequest, InDelegate, Priority); }
 };
 
@@ -421,7 +421,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteOrgGroup
     typedef FDelegate_DeleteOrgGroup Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteOrgGroup(InRequest, InDelegate, Priority); }
 };
 
@@ -461,7 +461,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeletePortalPermission
     typedef FDelegate_DeletePortalPermission Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeletePortalPermission(InRequest, InDelegate, Priority); }
 };
 
@@ -505,7 +505,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeletePortalPermissionsOrgGroupAccount
     typedef FDelegate_DeletePortalPermissionsOrgGroupAccount Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeletePortalPermissionsOrgGroupAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -549,7 +549,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeletePortalPermissionsOrgGroupPermissio
     typedef FDelegate_DeletePortalPermissionsOrgGroupPermission Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeletePortalPermissionsOrgGroupPermission(InRequest, InDelegate, Priority); }
 };
 
@@ -589,7 +589,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllAccountPermissionsForAccount
     typedef FDelegate_GetAllAccountPermissionsForAccount Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllAccountPermissionsForAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -631,7 +631,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllAccountPermissionsForAssignedOrg
     typedef FDelegate_GetAllAccountPermissionsForAssignedOrg Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllAccountPermissionsForAssignedOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -673,7 +673,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllPermissionsForPermissionsOrgGroup
     typedef FDelegate_GetAllPermissionsForPermissionsOrgGroup Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllPermissionsForPermissionsOrgGroup(InRequest, InDelegate, Priority); }
 };
 
@@ -711,7 +711,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllPortalPermissions
     typedef FDelegate_GetAllPortalPermissions Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllPortalPermissions(InRequest, InDelegate, Priority); }
 };
 
@@ -751,7 +751,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgGroupsForOrg
     typedef FDelegate_GetOrgGroupsForOrg Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgGroupsForOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -795,7 +795,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetPermissionsForPermissionsOrgGroup
     typedef FDelegate_GetPermissionsForPermissionsOrgGroup Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetPermissionsForPermissionsOrgGroup(InRequest, InDelegate, Priority); }
 };
 
@@ -835,7 +835,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetPortalPermissionById
     typedef FDelegate_GetPortalPermissionById Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetPortalPermissionById(InRequest, InDelegate, Priority); }
 };
 
@@ -877,7 +877,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetPortalPermissionsOrgGroupAccounts
     typedef FDelegate_GetPortalPermissionsOrgGroupAccounts Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetPortalPermissionsOrgGroupAccounts(InRequest, InDelegate, Priority); }
 };
 
@@ -919,7 +919,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetPortalPermissionsOrgGroupsAssignedToA
     typedef FDelegate_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetPortalPermissionsOrgGroupsAssignedToAccountForOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -960,7 +960,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_UpdateOrgGroup
     typedef FDelegate_UpdateOrgGroup Delegate;
     typedef FPortalPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.UpdateOrgGroup(InRequest, InDelegate, Priority); }
 };
 

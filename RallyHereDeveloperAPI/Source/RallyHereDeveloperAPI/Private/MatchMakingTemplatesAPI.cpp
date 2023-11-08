@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "MatchMakingTemplatesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxDeleteMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -400,7 +400,7 @@ FName FRequest_OrgProductSandboxGetAllMmTemplates::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllMmTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -558,7 +558,7 @@ FName FRequest_OrgProductSandboxGetAllMmTemplatesInGroup::GetSimplifiedPath() co
 
 FString FRequest_OrgProductSandboxGetAllMmTemplatesInGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -717,7 +717,7 @@ FName FRequest_OrgProductSandboxGetMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -864,7 +864,7 @@ FName FRequest_OrgProductSandboxPatchMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1022,7 +1022,7 @@ FName FRequest_OrgProductSandboxPutMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1180,7 +1180,7 @@ FName FRequest_SandboxCreateMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1335,7 +1335,7 @@ FName FRequest_SandboxDeleteMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1480,7 +1480,7 @@ FName FRequest_SandboxGetAllMmTemplates::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllMmTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1636,7 +1636,7 @@ FName FRequest_SandboxGetAllMmTemplatesInGroup::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllMmTemplatesInGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1793,7 +1793,7 @@ FName FRequest_SandboxGetMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1938,7 +1938,7 @@ FName FRequest_SandboxPatchMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2094,7 +2094,7 @@ FName FRequest_SandboxPutMmTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutMmTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_template_id"), ToStringFormatArg(MatchMakingTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_Config.h"
 
@@ -28,14 +30,14 @@ void FRHDTW_Config::Do()
 		ImGui::Text("%s", "Could not find owning game instance.");
 		return;
 	}
-	
+
 	auto* pGISS = GI->GetSubsystem<URH_GameInstanceSubsystem>();
 	if (pGISS == nullptr)
 	{
 		ImGui::Text("%s", "URH_GameInstanceSubsystem not available.");
 		return;
 	}
-	
+
 	URH_ConfigSubsystem* pRH_ConfigSubsystem = pGISS->GetConfigSubsystem();
 	if (pRH_ConfigSubsystem == nullptr)
 	{
@@ -80,9 +82,9 @@ void FRHDTW_Config::DoRhConfigTab(URH_ConfigSubsystem* pRH_ConfigSubsystem)
 	ImGui::Text("Hotfix test value: %s", pRH_ConfigSubsystem->GetHotfixTestValue() ? "true" : "false");
 
 	ImGui::Text("%s", TCHAR_TO_UTF8(*AppSettingsActionResult));
-	
+
 	ImGui::Separator();
-	
+
 	if (ImGui::BeginTable("AppSettingsMapTable", 2, RH_TableFlagsPropSizing))
 	{
 		// Header

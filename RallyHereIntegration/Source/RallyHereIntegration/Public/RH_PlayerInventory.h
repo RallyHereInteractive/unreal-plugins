@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -514,7 +516,7 @@ struct RALLYHEREINTEGRATION_API FRH_ItemInventory
 	{
 		return CustomData.FindRef(Key);
 	}
-	
+
 	/**
 	* @brief Initializes an inventory record from an Inventory Record API response.
 	* @param [in] ItemIdOfInventory The Item Id for the record.
@@ -536,7 +538,7 @@ struct RALLYHEREINTEGRATION_API FRH_ItemInventory
 		{
 			CustomData = *InvCustomData;
 		}
-		
+
 		if (const auto InvBucket = Inventory.GetBucketOrNull())
 		{
 			Bucket = *InvBucket;
@@ -649,7 +651,7 @@ struct RALLYHEREINTEGRATION_API FRH_CreateInventory: public FRH_BaseInventoryOpe
 		{
 			return false;
 		}
-		
+
 		Super::InitFromItemInventory(ItemInventory);
 		InventoryType = static_cast<ERHAPI_CreateInventoryType>(ItemInventory.InventoryType);
 		return true;
@@ -662,7 +664,7 @@ struct RALLYHEREINTEGRATION_API FRH_CreateInventory: public FRH_BaseInventoryOpe
 USTRUCT(BlueprintType)
 struct RALLYHEREINTEGRATION_API FRH_UpdateInventory: public FRH_BaseInventoryOperation
 {
-	GENERATED_BODY()	
+	GENERATED_BODY()
 	/**
 	* @brief Unique Id of the inventory record being operated on.
 	*/
@@ -761,7 +763,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	const TArray<FRH_ItemInventory> GetAllCachedInventory() const;
-	
+
 	/**
 	* @brief Gets the cached inventory records for an item id for the player.
 	* @param [in] ItemId The id of the item requesting inventory records for.
@@ -769,7 +771,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	const TArray<FRH_ItemInventory> GetCachedInventoryForItem(const int32& ItemId) const;
-	
+
 	/**
 	* @brief Gets the cached inventory records for multiple item ids for the player.
 	* @param [in] ItemIds The ids of the item requesting inventory records for.
@@ -777,7 +779,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	const TArray<FRH_ItemInventory> GetCachedInventoryForItems(const TArray<int32>& ItemIds) const;
-	
+
 	/**
 	* @brief Gets the cached inventory records for an inventory type for the player.
 	* @param [in] Type The type of inventory records being requested.
@@ -785,7 +787,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	const TArray<FRH_ItemInventory> GetCachedInventoryForType(const ERHAPI_InventoryType& Type) const;
-	
+
 	/**
 	* @brief Gets the cached inventory records for multiple item ids that have the given inventory type for the player.
 	* @param [in] ItemIds The ids of the item requesting inventory records for.
@@ -794,7 +796,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Inventory Subsystem")
 	const TArray<FRH_ItemInventory> GetCachedInventoryForItemsAndTypes(const TArray<int32>& ItemIds, const TArray<ERHAPI_InventoryType>& Types) const;
-	
+
 	/**
 	* @brief Gets an exact cached inventory record for the player.
 	* @param [in] InventoryId the Unique Id of the inventory record being requested.
@@ -828,7 +830,7 @@ public:
 	void GetInventorySession(const FRH_OnInventorySessionUpdateDelegateBlock& Delegate = FRH_OnInventorySessionUpdateDelegate());
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory Session", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetInventorySession(const FRH_OnInventorySessionUpdateDynamicDelegate& Delegate) { return GetInventorySession(Delegate); };
-	
+
 	/**
 	* @brief Calls the Inventory API to get the create an Inventory Session for the player.
 	* @param [in] Delegate Callback delegate for creating the players session.
@@ -941,7 +943,7 @@ public:
 	void AddPendingOrdersFromEntitlementResult(const FRHAPI_PlatformEntitlementProcessResult& EntitlementResult, const FRH_OrderDetailsBlock& Delegate);
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Add Pending Orders From Entitlement Result", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_AddPendingOrdersFromEntitlementResult(const FRHAPI_PlatformEntitlementProcessResult& EntitlementResult, const FRH_OrderDetailsDynamicDelegate& Delegate) { AddPendingOrdersFromEntitlementResult(EntitlementResult, Delegate); }
-	
+
 	/**
 	* @brief Used to pulse polling of watches and pending purchases.
 	*/
@@ -1000,7 +1002,7 @@ public:
 	{
 		return UpdateInventory({}, UpdateInventories, Source, Delegate);
 	};
-	
+
 	/**
 	* @brief Used by the PendingOrder to clear itself from the pending order list when it completes.
 	* @param [in] OrderResult The pending order result to clear.
@@ -1081,7 +1083,7 @@ protected:
 	 * @brief Helper function to broadcast inventory changes.
 	 * @param ItemIds The item ids that have been updated.
 	 */
-	void BroadcastOnInventoryCacheUpdated(const TArray<int32>& ItemIds) 
+	void BroadcastOnInventoryCacheUpdated(const TArray<int32>& ItemIds)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastInventoryCacheUpdated, FColor::Purple);
 		OnInventoryCacheUpdated.ExecuteIfBound(ItemIds, PlayerInfo);
@@ -1187,7 +1189,7 @@ UCLASS(Config = RallyHereIntegration, DefaultConfig)
 class RALLYHEREINTEGRATION_API URH_InventoryBlueprintLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-	
+
 	/**
 	* @brief Checks if the inventory item has an expiration.
 	* @param [in] ItemInventory The item inventory to check.

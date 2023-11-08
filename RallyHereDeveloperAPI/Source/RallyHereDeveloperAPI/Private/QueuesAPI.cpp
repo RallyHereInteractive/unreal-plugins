@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "QueuesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateQueue::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxDeleteQueue::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -400,7 +400,7 @@ FName FRequest_OrgProductSandboxGetAllQueues::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllQueues::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -558,7 +558,7 @@ FName FRequest_OrgProductSandboxGetQueue::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -705,7 +705,7 @@ FName FRequest_OrgProductSandboxPatchQueue::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -863,7 +863,7 @@ FName FRequest_OrgProductSandboxPutQueue::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1021,7 +1021,7 @@ FName FRequest_SandboxCreateQueue::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1176,7 +1176,7 @@ FName FRequest_SandboxDeleteQueue::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1321,7 +1321,7 @@ FName FRequest_SandboxGetAllQueues::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllQueues::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1477,7 +1477,7 @@ FName FRequest_SandboxGetQueue::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1622,7 +1622,7 @@ FName FRequest_SandboxPatchQueue::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1778,7 +1778,7 @@ FName FRequest_SandboxPutQueue::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("queue_id"), ToStringFormatArg(QueueId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

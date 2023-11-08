@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_SessionData.h"
 #include "Engine/Engine.h"
@@ -569,13 +571,13 @@ FRHAPI_InstanceInfoUpdate URH_JoinedSession::GetInstanceUpdateInfoDefaults() con
 		{
 			Update.AllocationId_IsSet = true;
 		}
-		
+
 		Update.SetJoinStatus(InstanceData->JoinStatus);
 		if (InstanceData->GetJoinParams(Update.GetJoinParams()))
 		{
 			Update.JoinParams_IsSet = true;
 		}
-		
+
 		if (InstanceData->GetCustomData(Update.GetCustomData()))
 		{
 			Update.CustomData_IsSet = true;
@@ -711,7 +713,7 @@ void URH_OfflineSession::ChangePlayerTeam(const FGuid& PlayerUuid, int32 Team, c
 {
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
 	auto& Update = UpdateWrapper.Data;
-	
+
 	bool bFoundPlayer = false;
 	FRHAPI_SessionPlayer Player;
 
@@ -928,7 +930,7 @@ void URH_OfflineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Deleg
 void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	
+
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
 	auto& Update = UpdateWrapper.Data;
 
@@ -942,7 +944,7 @@ void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionIn
 		{
 			Update.ClearRegionId();
 		}
-		
+
 		if (SessionInfoUpdate.GetCustomData(Update.GetCustomData()))
 		{
 			Update.CustomData_IsSet = true;
@@ -995,7 +997,7 @@ void URH_OfflineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Ins
 void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	
+
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
 	auto& Update = UpdateWrapper.Data;
 
@@ -1090,7 +1092,7 @@ void URH_OnlineSession::Expire(const FRH_OnSessionExpiredDelegate& Delegate)
 void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s@%s"), ANSI_TO_TCHAR(__FUNCTION__), *CreateParams.GetSessionType(), *CreateParams.GetRegionId(TEXT("<UNSET>")));
-	
+
 	const auto OSS = SessionOwner->GetOSS();
 
 	auto CreateParamsCopy = CreateParams;
@@ -1279,7 +1281,7 @@ void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, co
 	BaseType::Request Request;
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
-	Request.SessionUpdate = Update;	
+	Request.SessionUpdate = Update;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateSessionInfoPriority);
 	Helper->Start(Request);

@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "OnlineTitleFileHotfix.h"
 #include "HotfixJsonToUnrealTranslator.h"
@@ -125,7 +126,7 @@ bool FOnlineTitleFileHotfix::EnumerateFiles(const FPagedQuery& Page /*= FPagedQu
 	static FString HotfixPrefix(TEXT("Hotfix."));
 
     auto ProcessHotfixSetting = [&](const FString& SettingValue, FText& ErrorReason) -> bool
-    {      
+    {
         TSharedRef<TJsonReader<TCHAR>> JsonReaderRef = FJsonStringReader::Create(SettingValue);
 
         TSharedPtr<FJsonObject> JSONRoot(nullptr);

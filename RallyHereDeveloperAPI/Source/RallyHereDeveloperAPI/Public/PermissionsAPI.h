@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -77,7 +77,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllPermissions
     typedef FDelegate_GetAllPermissions Delegate;
     typedef FPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllPermissions(InRequest, InDelegate, Priority); }
 };
 
@@ -117,7 +117,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetPermissionById
     typedef FDelegate_GetPermissionById Delegate;
     typedef FPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetPermissionById(InRequest, InDelegate, Priority); }
 };
 

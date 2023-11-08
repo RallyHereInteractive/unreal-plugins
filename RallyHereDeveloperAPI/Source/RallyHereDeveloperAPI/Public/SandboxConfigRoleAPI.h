@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -123,7 +123,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateRole
     typedef FDelegate_SandboxCreateRole Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateRole(InRequest, InDelegate, Priority); }
 };
 
@@ -164,7 +164,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteRole
     typedef FDelegate_SandboxDeleteRole Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteRole(InRequest, InDelegate, Priority); }
 };
 
@@ -209,7 +209,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullCreateRole
     typedef FDelegate_SandboxFullCreateRole Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullCreateRole(InRequest, InDelegate, Priority); }
 };
 
@@ -254,7 +254,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullDeleteRole
     typedef FDelegate_SandboxFullDeleteRole Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullDeleteRole(InRequest, InDelegate, Priority); }
 };
 
@@ -302,7 +302,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetAllRolesForSandbox
     typedef FDelegate_SandboxFullGetAllRolesForSandbox Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetAllRolesForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -347,7 +347,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetRoleForSandboxAndRoleId
     typedef FDelegate_SandboxFullGetRoleForSandboxAndRoleId Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetRoleForSandboxAndRoleId(InRequest, InDelegate, Priority); }
 };
 
@@ -393,7 +393,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullUpdateRole
     typedef FDelegate_SandboxFullUpdateRole Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullUpdateRole(InRequest, InDelegate, Priority); }
 };
 
@@ -437,7 +437,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllRolesForSandbox
     typedef FDelegate_SandboxGetAllRolesForSandbox Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllRolesForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -478,7 +478,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRoleForSandboxAndRoleId
     typedef FDelegate_SandboxGetRoleForSandboxAndRoleId Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetRoleForSandboxAndRoleId(InRequest, InDelegate, Priority); }
 };
 
@@ -520,7 +520,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxUpdateRole
     typedef FDelegate_SandboxUpdateRole Delegate;
     typedef FSandboxConfigRoleAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxUpdateRole(InRequest, InDelegate, Priority); }
 };
 

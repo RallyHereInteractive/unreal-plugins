@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -102,7 +104,7 @@ public:
 	inline URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; };
 	/**
 	 * @brief Handles verification and validation of a player attempting to connect to the instance.
-	 * 
+	 *
 	 * @param [in] GameMode The game mode the instance is running.
 	 * @param [in] NewPlayer The player that is attempting to connect.
 	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
@@ -113,7 +115,7 @@ public:
 	/**
 	* @brief Gets if server boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
 	*/
-	FORCEINLINE static bool DEFAULT_IsServerBootstrappingEnabled() 
+	FORCEINLINE static bool DEFAULT_IsServerBootstrappingEnabled()
 	{
 		auto* Default = GetDefault<URH_GameInstanceSubsystem>();
 		return Default->ShouldCreateSubsystem(nullptr) && Default->bEnableGameSessions && Default->bEnableServerBootstrapper && IsRunningDedicatedServer();
@@ -171,7 +173,7 @@ protected:
 		{
 			SubsystemClass = UClassToUse::StaticClass();
 		}
-		
+
 		auto* Subsystem = NewObject<UClassToUse>(this, SubsystemClass);
 		SubsystemPlugins.Add(Subsystem);
 		return Subsystem;

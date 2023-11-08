@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -129,9 +129,9 @@ private:
 /* Delete All Player Id Settings For Setting Type
  *
  * Delete all player setting for a specific type
- * 
+ *
  * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- * 
+ *
  * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
@@ -165,7 +165,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -175,7 +175,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerIdSettingsForSettingType : publ
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -200,7 +200,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
 /* Delete All Player Uuid Settings For Setting Type
  *
  * Delete all player setting for a specific type
- * 
+ *
  * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
@@ -236,7 +236,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -246,7 +246,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingType : pu
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -271,7 +271,7 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
 /* Delete All Player Uuid Settings For Setting Type Self
  *
  * Delete all player setting for a specific type
- * 
+ *
  * Required Permissions: `setting:write` or `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
@@ -305,7 +305,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -315,7 +315,7 @@ struct RALLYHEREAPI_API FResponse_DeleteAllPlayerUuidSettingsForSettingTypeSelf 
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -340,9 +340,9 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
 /* Delete Single Player Id Setting
  *
  * Delete a single player setting
- *     
+ *
  * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- *     
+ *
  * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
@@ -380,7 +380,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -390,7 +390,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -415,7 +415,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
 /* Delete Single Player Uuid Setting
  *
  * Delete a single player setting
- * 
+ *
  * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
@@ -453,7 +453,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -463,7 +463,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSetting : public FRespon
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -488,7 +488,7 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
 /* Delete Single Player Uuid Setting Self
  *
  * Delete a single player setting
- * 
+ *
  * Required Permissions: `setting:write` or `setting:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
@@ -524,7 +524,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
     bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -534,7 +534,7 @@ struct RALLYHEREAPI_API FResponse_DeleteSinglePlayerUuidSettingSelf : public FRe
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -559,9 +559,9 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
 /* Get All Player Id Settings For Setting Type
  *
  * Get a list of all player settings for a specific Setting Type.
- * 
+ *
  * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
- * 
+ *
  * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
@@ -599,7 +599,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
     bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -609,7 +609,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerIdSettingsForSettingType : public 
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -634,7 +634,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
 /* Get All Player Uuid Settings For Setting Type
  *
  * Get a list of all player settings for a specific Setting Type
- * 
+ *
  * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
@@ -672,7 +672,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
     bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -682,7 +682,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingType : publi
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -707,7 +707,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
 /* Get All Player Uuid Settings For Setting Type Self
  *
  * Get a list of all player settings for a specific Setting Type
- * 
+ *
  * Required Permissions: `setting:read` or `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
@@ -743,7 +743,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
     bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -753,7 +753,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPlayerUuidSettingsForSettingTypeSelf : p
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -778,7 +778,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingTypeSelf
 /* Get Config For All Setting Types
  *
  * Get all setting types and their configuration.
- *     
+ *
  * Required Permissions: `setting-config:read`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForAllSettingTypes : public FRequest
@@ -825,7 +825,7 @@ struct RALLYHEREAPI_API Traits_GetConfigForAllSettingTypes
 /* Get Config For Single Setting Type All Versions
  *
  * Get a configuration and all versions for a given setting type ID.
- *     
+ *
  * Required Permissions: `setting-config:read`
 */
 struct RALLYHEREAPI_API FRequest_GetConfigForSingleSettingTypeAllVersions : public FRequest
@@ -863,7 +863,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAllVersions : pub
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -925,7 +925,7 @@ struct RALLYHEREAPI_API FResponse_GetConfigForSingleSettingTypeAndVersion : publ
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `setting_version_id_not_found` - The setting Version was not found for that type
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -950,9 +950,9 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
 /* Get Single Player Id Setting
  *
  * Get a single player setting
- * 
+ *
  * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
- * 
+ *
  * **DEPRECATED** - Use v2 instead
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
@@ -990,7 +990,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1000,7 +1000,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1025,7 +1025,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
 /* Get Single Player Uuid Setting
  *
  * Get a single player setting
- * 
+ *
  * Required Permissions: `setting:read` for any player.  `setting:read:self` for the player of the access token.
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
@@ -1063,7 +1063,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
     bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1073,7 +1073,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSetting : public FResponse
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1098,7 +1098,7 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
 /* Get Single Player Uuid Setting Self
  *
  * Get a single player setting
- * 
+ *
  * Required Permissions: `setting:read` or `setting:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
@@ -1134,7 +1134,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
     bool TryGetContentFor200(FRHAPI_SettingData& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1144,7 +1144,7 @@ struct RALLYHEREAPI_API FResponse_GetSinglePlayerUuidSettingSelf : public FRespo
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `not_found` - The setting key was not found
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1169,15 +1169,15 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
 /* Set Single Player Id Setting
  *
  * Update the value of a single player setting.
- * 
+ *
  * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- * 
+ *
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
- * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
- * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key. 
- * 
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response.
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code.
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key
+ * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
+ *
  * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerIdSetting : public FRequest
@@ -1216,7 +1216,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1226,7 +1226,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1236,7 +1236,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerIdSetting : public FResponse
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
     /* Response 500
-     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.
     */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1256,13 +1256,13 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
 /* Set Single Player Uuid Setting
  *
  * Update the value of a single player setting.
- *     
+ *
  * Required Permissions: `setting:write` for any player.  `setting:write:self` for the player of the access token.
- * 
+ *
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
- * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response.
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code.
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key
  * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSetting : public FRequest
@@ -1301,7 +1301,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
     bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1311,7 +1311,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1321,7 +1321,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSetting : public FResponse
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
     /* Response 500
-     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.
     */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1341,13 +1341,13 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 /* Set Single Player Uuid Setting Self
  *
  * Update the value of a single player setting.
- *     
+ *
  * Required Permissions: `setting:write` or `setting:write:self`
- * 
+ *
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
- * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response. 
- * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. 
- * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key 
+ * * Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and data in the response.
+ * * Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code.
+ * * Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and data in the response.  All items keys will be given a new key
  * * Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.
 */
 struct RALLYHEREAPI_API FRequest_SetSinglePlayerUuidSettingSelf : public FRequest
@@ -1384,7 +1384,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
     bool TryGetContentFor200(TMap<FString, FRHAPI_SettingData>& OutContent) const;
 
     /* Response 400
-     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details 
+     Error Codes: - `setting_type_not_supported` - The setting type is not supported at this time.  Contact an administrator - `setting_version_invalid` - Setting Version is not valid for the provided type - `update_not_enabled` - Setting Type Version has updates disabled - `setting_key_invalid` - Setting Key does not meet requirements for that type/version - `setting_value_invalid` - Setting value failed validation against the jsonschema defined for the type/version.  See response description for more details
     */
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1394,7 +1394,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 404
-     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.         
+     Error Codes: - `setting_type_id_not_found` - The setting type ID was not found - `does_not_exist` - Setting Key(s) do not exist - This will only occur for legacy setting types.
     */
     bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -1404,7 +1404,7 @@ struct RALLYHEREAPI_API FResponse_SetSinglePlayerUuidSettingSelf : public FRespo
     bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
     /* Response 500
-     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.         
+     Error Codes: - `setting_type_version_schema_invalid` - Setting type/version jsonschema is invalid and could not be used to validate the setting value.  See response description for more details.
     */
     bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
 
