@@ -72,8 +72,17 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetSandboxId(
 			NewSandboxId.TrimQuotesInline();
 			FRallyHereEditorModule::Get().LockSandboxId(!NewSandboxId.IsEmpty());
 			FRallyHereEditorModule::Get().SetSandboxId(MoveTemp(NewSandboxId), TEXT("Console Command"));
+			
+			// unlock and reresolve all sandbox specified IDs
 			FRallyHereEditorModule::Get().LockBaseURL(false);
 			FRallyHereEditorModule::Get().ResolveBaseURL();
+
+			FRallyHereEditorModule::Get().LockClientId(false);
+			FRallyHereEditorModule::Get().ResolveClientId();
+
+			FRallyHereEditorModule::Get().LockClientSecret(false);
+			FRallyHereEditorModule::Get().ResolveClientSecret();
+
 			Ar.Logf(TEXT("Updated Sandbox ID to %s"), *FRallyHereEditorModule::Get().GetSandboxId());
 		}));
 
@@ -90,8 +99,17 @@ static FAutoConsoleCommandWithOutputDevice ConsoleRHResolveSandboxId(
 
 			FRallyHereEditorModule::Get().LockSandboxId(false);
 			FRallyHereEditorModule::Get().ResolveSandboxId();
+
+			// unlock and reresolve all sandbox specified IDs
 			FRallyHereEditorModule::Get().LockBaseURL(false);
 			FRallyHereEditorModule::Get().ResolveBaseURL();
+
+			FRallyHereEditorModule::Get().LockClientId(false);
+			FRallyHereEditorModule::Get().ResolveClientId();
+
+			FRallyHereEditorModule::Get().LockClientSecret(false);
+			FRallyHereEditorModule::Get().ResolveClientSecret();
+
 			Ar.Logf(TEXT("Updated Sandbox ID to %s"), *FRallyHereEditorModule::Get().GetSandboxId());
 		}));
 
