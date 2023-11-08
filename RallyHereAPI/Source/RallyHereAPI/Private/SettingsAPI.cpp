@@ -96,7 +96,7 @@ FName FRequest_DeleteAllPlayerIdSettingsForSettingType::GetSimplifiedPath() cons
 
 FString FRequest_DeleteAllPlayerIdSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
@@ -275,7 +275,7 @@ FName FRequest_DeleteAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() co
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
@@ -454,7 +454,7 @@ FName FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath(
 
 FString FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
 
@@ -632,7 +632,7 @@ FName FRequest_DeleteSinglePlayerIdSetting::GetSimplifiedPath() const
 
 FString FRequest_DeleteSinglePlayerIdSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
@@ -812,7 +812,7 @@ FName FRequest_DeleteSinglePlayerUuidSetting::GetSimplifiedPath() const
 
 FString FRequest_DeleteSinglePlayerUuidSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
@@ -992,7 +992,7 @@ FName FRequest_DeleteSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 
 FString FRequest_DeleteSinglePlayerUuidSettingSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
     };
@@ -1171,7 +1171,7 @@ FName FRequest_GetAllPlayerIdSettingsForSettingType::GetSimplifiedPath() const
 
 FString FRequest_GetAllPlayerIdSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
@@ -1358,7 +1358,7 @@ FName FRequest_GetAllPlayerUuidSettingsForSettingType::GetSimplifiedPath() const
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
@@ -1545,7 +1545,7 @@ FName FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::GetSimplifiedPath() c
 
 FString FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
 
@@ -1872,7 +1872,7 @@ FName FRequest_GetConfigForSingleSettingTypeAllVersions::GetSimplifiedPath() con
 
 FString FRequest_GetConfigForSingleSettingTypeAllVersions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) }
     };
 
@@ -2042,7 +2042,7 @@ FName FRequest_GetConfigForSingleSettingTypeAndVersion::GetSimplifiedPath() cons
 
 FString FRequest_GetConfigForSingleSettingTypeAndVersion::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("setting_version_id"), ToStringFormatArg(SettingVersionId) }
     };
@@ -2213,7 +2213,7 @@ FName FRequest_GetSinglePlayerIdSetting::GetSimplifiedPath() const
 
 FString FRequest_GetSinglePlayerIdSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
@@ -2393,7 +2393,7 @@ FName FRequest_GetSinglePlayerUuidSetting::GetSimplifiedPath() const
 
 FString FRequest_GetSinglePlayerUuidSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
@@ -2573,7 +2573,7 @@ FName FRequest_GetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 
 FString FRequest_GetSinglePlayerUuidSettingSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
     };
@@ -2752,7 +2752,7 @@ FName FRequest_SetSinglePlayerIdSetting::GetSimplifiedPath() const
 
 FString FRequest_SetSinglePlayerIdSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
@@ -2951,7 +2951,7 @@ FName FRequest_SetSinglePlayerUuidSetting::GetSimplifiedPath() const
 
 FString FRequest_SetSinglePlayerUuidSetting::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
@@ -3150,7 +3150,7 @@ FName FRequest_SetSinglePlayerUuidSettingSelf::GetSimplifiedPath() const
 
 FString FRequest_SetSinglePlayerUuidSettingSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("key"), ToStringFormatArg(Key) }
     };

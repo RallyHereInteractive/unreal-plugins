@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_EntitlementStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementStatus& Value)
 {
-    static TMap<FString, ERHAPI_EntitlementStatus> StringToEnum = {
+    static TMap<FString, ERHAPI_EntitlementStatus> StringToEnum = { 
         { TEXT("UNKNOWN"), ERHAPI_EntitlementStatus::Unknown },
         { TEXT("SUBMITTED"), ERHAPI_EntitlementStatus::Submitted },
         { TEXT("FULFILLED"), ERHAPI_EntitlementStatus::Fulfilled },

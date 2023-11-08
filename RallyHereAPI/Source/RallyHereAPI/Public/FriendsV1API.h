@@ -74,11 +74,11 @@ private:
 /* Add Friend
  *
  * Modify the friend's relationship status with the other Player. There is a max number of friends that can be added for a Player.
- *                 The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update
- *                 the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not
- *                 include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value
- *                 provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly
- *                 recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates.
+ *                 The limit can determined using [this API](/#/Configuration%20V1/get_friends_and_block_limits). This API allows you optionally update 
+ *                 the player's notes for the other player. If you do not want to update or set the notes when adding the other player, then do not 
+ *                 include a body.<br /><br /> <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
+ *                 provided when [fetching Friend Relationship between these two players](/#/Friends%20V1/get_friend_relationship). <b>It is highly 
+ *                 recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. 
  *                 <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_AddFriend : public FRequest
@@ -158,7 +158,7 @@ struct RALLYHEREAPI_API Traits_AddFriend
 
 /* Add Notes
  *
- * Update Player's notes on the other player. Players can only add notes for players they have relationship's with.
+ * Update Player's notes on the other player. Players can only add notes for players they have relationship's with. 
  *     The notes will be removed when the relationship is ended.
  *     <br/><br />Permissions Required: friend:friend_list:write
 */
@@ -235,11 +235,11 @@ struct RALLYHEREAPI_API Traits_AddNotes
 
 /* Delete Friend
  *
- * Remove the friend's relationship status with the other Player.
+ * Remove the friend's relationship status with the other Player. 
  *                 This should be used for declining Friend requests, deleting sent Friends Requests, and deleting Friends <br /><br />
- *                 <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value
- *                 provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly
- *                 recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates.
+ *                 <b>Note:</b> This API supports etags and will return the etag header when with the response and will match the etag value 
+ *                 provided when [fetching Friend Relationship between these two players](#/Friends V1/get_friend_relationship). <b>It is highly 
+ *                 recommended to provide the etag value with the <i> if-match </i> header to avoid lost updates. 
  *                 <br/><br />Permissions Required: friend:friend_list:write
 */
 struct RALLYHEREAPI_API FRequest_DeleteFriend : public FRequest
@@ -266,7 +266,7 @@ struct RALLYHEREAPI_API FResponse_DeleteFriend : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
@@ -340,7 +340,7 @@ struct RALLYHEREAPI_API FResponse_DeleteFriends : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
 
 
     // Manual Response Helpers
@@ -383,7 +383,7 @@ struct RALLYHEREAPI_API Traits_DeleteFriends
 
 /* Delete Notes
  *
- * Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with.
+ * Remove the Player's notes on the other player. Players can only add notes for players they have relationship's with. 
  *     The notes will be removed when the relationship is ended.
  *     <br/><br />Permissions Required: friend:friend_list:write
 */
@@ -410,7 +410,7 @@ struct RALLYHEREAPI_API FResponse_DeleteNotes : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
 
 
     // Manual Response Helpers
@@ -454,9 +454,9 @@ struct RALLYHEREAPI_API Traits_DeleteNotes
 /* Get Friend Relationship
  *
  * Get the relationship status with the other Player. <br /> <br />
- *                 <b>Note:</b> This API supports etags and will return the etag header when with the response.
- *                 Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if
- *                 it has not changed or to use it to modify the relationship without loosing updates.
+ *                 <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                 Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if 
+ *                 it has not changed or to use it to modify the relationship without loosing updates. 
  *                 <br/><br />Permissions Required: friend:friend_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetFriendRelationship : public FRequest
@@ -536,8 +536,8 @@ struct RALLYHEREAPI_API Traits_GetFriendRelationship
 /* Get Friends List For Player
  *
  * Fetch the friend's list for the Player and their relationship status with those friends. <br /><br />
- *                 <b>Note:</b> This API supports etags and will return the etag header when with the response.
- *                 Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.
+ *                 <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                 Clients and then utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. 
  *                 <br/><br />Permissions Required: friend:friend_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetFriendsListForPlayer : public FRequest

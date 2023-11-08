@@ -58,7 +58,7 @@ FString EnumToString(const ERHAPI_EntitlementErrorCode& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_EntitlementErrorCode& Value)
 {
-    static TMap<FString, ERHAPI_EntitlementErrorCode> StringToEnum = {
+    static TMap<FString, ERHAPI_EntitlementErrorCode> StringToEnum = { 
         { TEXT("none"), ERHAPI_EntitlementErrorCode::None },
         { TEXT("auth_token_failure"), ERHAPI_EntitlementErrorCode::AuthTokenFailure },
         { TEXT("missing_information"), ERHAPI_EntitlementErrorCode::MissingInformation },

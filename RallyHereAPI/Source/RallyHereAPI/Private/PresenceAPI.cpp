@@ -96,7 +96,7 @@ FName FRequest_GetPlayerPresencePublicById::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerPresencePublicById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -314,7 +314,7 @@ FName FRequest_GetPlayerPresencePublicByUuid::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerPresencePublicByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 

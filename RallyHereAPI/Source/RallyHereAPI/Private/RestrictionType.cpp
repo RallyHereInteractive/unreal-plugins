@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_RestrictionType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_RestrictionType& Value)
 {
-    static TMap<FString, ERHAPI_RestrictionType> StringToEnum = {
+    static TMap<FString, ERHAPI_RestrictionType> StringToEnum = { 
         { TEXT("account_ban"), ERHAPI_RestrictionType::AccountBan },
         { TEXT("account_lockout"), ERHAPI_RestrictionType::AccountLockout },
         { TEXT("account_pending_deletion"), ERHAPI_RestrictionType::AccountPendingDeletion },

@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_RuleType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_RuleType& Value)
 {
-    static TMap<FString, ERHAPI_RuleType> StringToEnum = {
+    static TMap<FString, ERHAPI_RuleType> StringToEnum = { 
         { TEXT("Inventory"), ERHAPI_RuleType::Inventory },
         { TEXT("LinkingSize"), ERHAPI_RuleType::LinkingSize },    };
 

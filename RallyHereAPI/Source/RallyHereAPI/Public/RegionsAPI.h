@@ -41,11 +41,11 @@ private:
 /* Get All Regions
  *
  * Get all of the enabled regions and their configuration
- *
- * Required Permissions:
+ * 
+ * Required Permissions: 
  * 	For any player (including themselves)any of: `session:*`, `session:read:config`
- *
- *
+ * 
+ * 
  * Required Session Permissions: None
 */
 struct RALLYHEREAPI_API FRequest_GetAllRegions : public FRequest

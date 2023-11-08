@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_PlatformRegion& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformRegion& Value)
 {
-    static TMap<FString, ERHAPI_PlatformRegion> StringToEnum = {
+    static TMap<FString, ERHAPI_PlatformRegion> StringToEnum = { 
         { TEXT("Unknown"), ERHAPI_PlatformRegion::Unknown },
         { TEXT("NA"), ERHAPI_PlatformRegion::Na },
         { TEXT("EU"), ERHAPI_PlatformRegion::Eu },    };

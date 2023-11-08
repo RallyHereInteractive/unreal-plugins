@@ -32,7 +32,7 @@ FString EnumToString(const ERHAPI_OAuthGrantType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthGrantType& Value)
 {
-    static TMap<FString, ERHAPI_OAuthGrantType> StringToEnum = {
+    static TMap<FString, ERHAPI_OAuthGrantType> StringToEnum = { 
         { TEXT("client_credentials"), ERHAPI_OAuthGrantType::ClientCredentials },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);

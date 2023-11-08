@@ -42,7 +42,7 @@ FString EnumToString(const ERHAPI_Operation& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_Operation& Value)
 {
-    static TMap<FString, ERHAPI_Operation> StringToEnum = {
+    static TMap<FString, ERHAPI_Operation> StringToEnum = { 
         { TEXT("eq"), ERHAPI_Operation::Equal },
         { TEXT("ne"), ERHAPI_Operation::NotEqual },
         { TEXT("lt"), ERHAPI_Operation::LessThan },

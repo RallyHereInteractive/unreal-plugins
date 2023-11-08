@@ -264,7 +264,7 @@ FName FRequest_ProcessPlatformEntitlementsByPlayerUuid::GetSimplifiedPath() cons
 
 FString FRequest_ProcessPlatformEntitlementsByPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -437,7 +437,7 @@ FName FRequest_RetrieveEntitlementsByPlayerUuid::GetSimplifiedPath() const
 
 FString FRequest_RetrieveEntitlementsByPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("request_id"), ToStringFormatArg(RequestId) }
     };
@@ -600,7 +600,7 @@ FName FRequest_RetrieveEntitlementsForMe::GetSimplifiedPath() const
 
 FString FRequest_RetrieveEntitlementsForMe::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("request_id"), ToStringFormatArg(RequestId) }
     };
 

@@ -96,7 +96,7 @@ FName FRequest_PlayerCreateNotification::GetSimplifiedPath() const
 
 FString FRequest_PlayerCreateNotification::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -277,7 +277,7 @@ FName FRequest_PlayerGetNotificationById::GetSimplifiedPath() const
 
 FString FRequest_PlayerGetNotificationById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("notification_id"), ToStringFormatArg(NotificationId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -456,7 +456,7 @@ FName FRequest_PlayerGetNotificationByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_PlayerGetNotificationByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("notification_id"), ToStringFormatArg(NotificationId) }
     };
 
@@ -626,7 +626,7 @@ FName FRequest_PlayerGetNotificationsPage::GetSimplifiedPath() const
 
 FString FRequest_PlayerGetNotificationsPage::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -1003,7 +1003,7 @@ FName FRequest_PlayerLongPollForNotifications::GetSimplifiedPath() const
 
 FString FRequest_PlayerLongPollForNotifications::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 

@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_InstanceHealthStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceHealthStatus& Value)
 {
-    static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = {
+    static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = { 
         { TEXT("healthy"), ERHAPI_InstanceHealthStatus::Healthy },
         { TEXT("unhealthy"), ERHAPI_InstanceHealthStatus::Unhealthy },
         { TEXT("degraded"), ERHAPI_InstanceHealthStatus::Degraded },

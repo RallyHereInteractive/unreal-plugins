@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_CrossplayPlatform& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayPlatform& Value)
 {
-    static TMap<FString, ERHAPI_CrossplayPlatform> StringToEnum = {
+    static TMap<FString, ERHAPI_CrossplayPlatform> StringToEnum = { 
         { TEXT("desired_platforms_any"), ERHAPI_CrossplayPlatform::Any },
         { TEXT("desired_platforms_xboxlike"), ERHAPI_CrossplayPlatform::Xbox },
         { TEXT("desired_platforms_playstationlike"), ERHAPI_CrossplayPlatform::Playstation },    };

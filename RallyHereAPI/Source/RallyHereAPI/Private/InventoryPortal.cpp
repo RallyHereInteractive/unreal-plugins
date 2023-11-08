@@ -102,7 +102,7 @@ FString EnumToString(const ERHAPI_InventoryPortal& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InventoryPortal& Value)
 {
-    static TMap<FString, ERHAPI_InventoryPortal> StringToEnum = {
+    static TMap<FString, ERHAPI_InventoryPortal> StringToEnum = { 
         { TEXT("-2"), ERHAPI_InventoryPortal::Free },
         { TEXT("-1"), ERHAPI_InventoryPortal::Sweat },
         { TEXT("0"), ERHAPI_InventoryPortal::Unknown },
