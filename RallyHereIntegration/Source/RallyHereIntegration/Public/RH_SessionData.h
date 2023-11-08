@@ -95,6 +95,9 @@ struct RALLYHEREINTEGRATION_API FRH_SessionMemberStatusState
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FRH_OnSessionMemberStateChangedDynamicDelegate, URH_SessionView*, UpdatedSession, const FRH_SessionMemberStatusState&, OldStatus, const FRH_SessionMemberStatusState&, NewStatus);
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FRH_OnSessionMemberStateChangedDelegate, URH_SessionView*, const FRH_SessionMemberStatusState&, const FRH_SessionMemberStatusState&);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_OnSessionMemberPresenceChangedDynamicDelegate, URH_SessionView*, UpdatedSession, class URH_PlayerPresence*, Presence);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnSessionMemberPresenceChangedDelegate, URH_SessionView*, class URH_PlayerPresence*);
+
 DECLARE_DELEGATE_TwoParams(FRH_OnPollAllSessionsDelegate, bool, const TArray<FString>& SessionIds);
 
 DECLARE_DELEGATE_OneParam(FRH_OnSessionExpiredDelegate, URH_SessionView*);
@@ -815,6 +818,16 @@ public:
 	 */
 	AOnlineBeaconClient* GetLastBeacon() const { return LastBeacon.Get(); }
 
+	/**
+	 * @brief Delegate fired when presence information for a member of session is updated (requires SetWatchingPlayers(true))
+	 */
+	FRH_OnSessionMemberPresenceChangedDelegate OnSessionMemberPresenceChangedDelegate;
+	/**
+	 * @brief Blueprint compatible delegate fired when presence information for a member of session is updated (requires SetWatchingPlayers(true))
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Session Member Presence Changed"))
+	FRH_OnSessionMemberPresenceChangedDynamicDelegate BLUEPRINT_OnSessionMemberPresenceChangedDelegate;
+
 protected:
 	/**
 	 * @brief Tracks if the session is currently active session on the Game Instance Session Subsystem.
@@ -830,11 +843,6 @@ protected:
 	 * @brief For debug tool usage, to track the last beacon.
 	 */
 	TWeakObjectPtr<AOnlineBeaconClient> LastBeacon;
-	/**
-	 * @brief  dummy for now, should it bubble up the callback?
-	 * note - this existing is important to mark the players in the session as watched
-	 */
-	virtual void OnWatchedPlayerPresenceUpdated(class URH_PlayerPresence* PresenceInfo) {}
 };
 
 /** @ingroup Session
