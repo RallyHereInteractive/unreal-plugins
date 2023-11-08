@@ -1,4 +1,5 @@
-// Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugToolSettings.h"
@@ -17,7 +18,7 @@ URallyHereDebugToolSettings::URallyHereDebugToolSettings(const FObjectInitialize
 {
 	CategoryName = TEXT("Plugins");
 	SectionName = TEXT("Rally Here Debug Tool");
-	
+
 	Enabled = true;
 	RallyHereDebugToolClass = URallyHereDebugTool::StaticClass();
 	ToggleUIKeyBind.Key = EKeys::F7;

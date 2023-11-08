@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_PurgeSubsystem.h"
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "RallyHereIntegrationModule.h"
@@ -42,7 +44,7 @@ bool URH_PurgeSubsystem::DequeueMeForPurge(const FRH_OnPurgeStatusUpdatedDelegat
 {
 	auto Request = RallyHereAPI::FRequest_DequeueMeForPurge();
 	Request.AuthContext = GetAuthContext();
-	
+
 	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().DequeueMeForPurge(Request,
     		RallyHereAPI::FDelegate_DequeueMeForPurge::CreateUObject(
     			this, &URH_PurgeSubsystem::OnDequeueMe,
@@ -60,13 +62,13 @@ bool URH_PurgeSubsystem::QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDelega
 {
 	auto Request = RallyHereAPI::FRequest_GetQueuePurgeStatusForMe();
 	Request.AuthContext = GetAuthContext();
-	
+
 	const auto HttpPtr = RH_APIs::GetAPIs().GetUsers().GetQueuePurgeStatusForMe(Request,
     		RallyHereAPI::FDelegate_GetQueuePurgeStatusForMe::CreateUObject(
     			this, &URH_PurgeSubsystem::OnGetMyPurgeStatus,
     			Delegate),
 				GetDefault<URH_IntegrationSettings>()->PurgeGetStatusPriority);
-	
+
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false, PurgeStatus, FRH_ErrorInfo());
@@ -75,7 +77,7 @@ bool URH_PurgeSubsystem::QueryMyPurgeStatus(const FRH_OnPurgeStatusUpdatedDelega
 }
 
 void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge& Resp,
-                           const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate) 
+                           const FRH_OnPurgeStatusUpdatedDelegateBlock Delegate)
 {
 	if (Resp.IsSuccessful())
 	{
@@ -83,7 +85,7 @@ void URH_PurgeSubsystem::OnPurgeMe(const RallyHereAPI::FResponse_QueueMeForPurge
 		auto AuthContext = GetAuthContext();
 		if (AuthContext.IsValid())
 		{
-			AuthContext->Refresh(); 
+			AuthContext->Refresh();
 		}
 		PurgeStatus = Resp.Content;
 		Delegate.ExecuteIfBound(true, PurgeStatus, FRH_ErrorInfo());

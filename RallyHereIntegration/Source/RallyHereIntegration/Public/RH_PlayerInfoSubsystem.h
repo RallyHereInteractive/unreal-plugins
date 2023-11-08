@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -194,7 +196,7 @@ public:
 	{
 		LastUpdated = FDateTime::UtcNow();
 	}
-	
+
 	/**
 	 * @brief Clears the last updated time to force an update.
 	 */
@@ -220,7 +222,7 @@ public:
 	/**
 	* @brief Gets the PlayerInfo that owns this Player Presence.
 	* @return The PlayerInfo that owns the Presence.
-	*/	
+	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Presence")
 	class URH_PlayerInfo* GetPlayerInfo() const;
 
@@ -324,7 +326,7 @@ public:
 	{
 		LastUpdated = FDateTime::UtcNow();
 	}
-	
+
 	/**
 	 * @brief Clears the last updated time to force an update.
 	 */
@@ -349,7 +351,7 @@ public:
 	/**
 	* @brief Gets the PlayerInfo that owns this Player Presence.
 	* @return The PlayerInfo that owns the Presence.
-	*/	
+	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Presence")
 	class URH_PlayerInfo* GetPlayerInfo() const;
 
@@ -398,7 +400,7 @@ public:
 	TSet<FString> SettingKeySet;
 	/** @brief Default constructor. */
 	FRH_PlayerSettingKeySetWrapper()
-	{ 
+	{
 		SettingKeySet.Empty();
 	}
 };
@@ -574,7 +576,7 @@ public:
 	void GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold = FTimespan(), bool bForceRefresh = false, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon, const FRH_PlayerInfoGetDisplayNameBlock& Delegate = FRH_PlayerInfoGetDisplayNameBlock(), const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem = nullptr);
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name Async", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLastKnownDisplayNameAsync(const class URH_LocalPlayerSubsystem* LocalPlayerSubsystem, const FTimespan& StaleThreshold, bool bForceRefresh, ERHAPI_Platform PreferredPlatformType, const FRH_PlayerInfoGetDisplayNameDynamicDelegate& Delegate) { GetLastKnownDisplayNameAsync(StaleThreshold, bForceRefresh, PreferredPlatformType, Delegate, LocalPlayerSubsystem); }
-	
+
 	/**
 	* @brief Gets the last known display name for the player.
 	* @param [in] PreferredPlatformType If set, then that specific platforms display name will be returned if possible, otherwise will use your local platforms, otherwise the first platform found for the player.
@@ -584,7 +586,7 @@ public:
 	bool GetLastKnownDisplayName(FString& OutDisplayName, ERHAPI_Platform PreferredPlatformType = ERHAPI_Platform::Anon) const;
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name"))
 	bool BLUEPRINT_GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType, FString& OutDisplayName) const { return GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType); }
-	
+
 	/**
 	* @brief Gets the players linked platforms via API call.
 	* @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
@@ -717,7 +719,7 @@ protected:
 	TMap<FString, FRHAPI_PlayerRankResponseV2> PlayerRankingsByRankingId;
 	/**
 	 * @brief Tracks the last time the players linked platforms were requested for checking if the data is stale.
-	 */	
+	 */
 	FDateTime LastRequestPlatforms;
 	/**
 	 * @brief Tracks the last time each settings type was request for checking if the data is stale.
@@ -725,7 +727,7 @@ protected:
 	TMap<FString, FDateTime> LastRequestSettingsByTypeId;
 	/**
 	 * @brief Tracks the last time the player rankings were requested for checking if the data is stale.
-	 */	
+	 */
 	FDateTime LastRequestRankings;
 	/**
 	 * @brief Handles the response to a Get Linked Platforms For Last Known Display Name call.
@@ -827,7 +829,7 @@ struct FRH_PlayerAndPlatformInfo
 	/** @brief Default Constructor. */
 	FRH_PlayerAndPlatformInfo() : PlayerUuid(FGuid()), PlayerPlatformId(FRH_PlayerPlatformId()) {}
 };
-	
+
 /**
  * @brief Subsystem used to track and request information about players.
  */
@@ -838,12 +840,12 @@ class RALLYHEREINTEGRATION_API URH_PlayerInfoSubsystem : public URH_SandboxedSub
 
 public:
 	typedef RallyHereAPI::Traits_LookupPlayerByPortal TLookupPlayer;
-	
+
 	/**
 	 * @brief Initialize the subsystem.
 	 */
     virtual void Initialize() override;
-	
+
 	/**
 	 * @brief Safely tears down the subsystem.
 	 */
@@ -879,7 +881,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem")
 	URH_PlayerInfo* FindPlayerInfoByPlatformId(const FRH_PlayerPlatformId& PlayerPlatformId) const;
-	
+
 	/**
 	* @brief Gets a Player Info object for a given Unique Player Id
 	* @param [in] PlayerUuid Unique Player Id for the given player
@@ -897,7 +899,7 @@ public:
 	URH_PlayerPlatformInfo* GetPlayerPlatformInfo(const FRH_PlayerPlatformId& PlayerPlatformId) const { auto* Info = PlayerPlatformInfos.Find(PlayerPlatformId); return Info != nullptr ? *Info : nullptr; }
 
 	/**
-	* @brief Adds a platform mapping for a given player 
+	* @brief Adds a platform mapping for a given player
 	* @param [in] PlayerUuid Unique Player Id for the given player
 	* @param [in] PlayerPlatformId Player Platform Id for the given player
 	*/

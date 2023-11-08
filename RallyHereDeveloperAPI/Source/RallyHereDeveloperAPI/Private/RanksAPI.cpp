@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RanksAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateRank::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxDeleteRank::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -400,7 +400,7 @@ FName FRequest_OrgProductSandboxGetAllRanks::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllRanks::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -558,7 +558,7 @@ FName FRequest_OrgProductSandboxGetRank::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -705,7 +705,7 @@ FName FRequest_OrgProductSandboxPatchRank::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -863,7 +863,7 @@ FName FRequest_OrgProductSandboxPutRank::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1021,7 +1021,7 @@ FName FRequest_SandboxCreateRank::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1176,7 +1176,7 @@ FName FRequest_SandboxDeleteRank::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1321,7 +1321,7 @@ FName FRequest_SandboxGetAllRanks::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllRanks::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1477,7 +1477,7 @@ FName FRequest_SandboxGetRank::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1622,7 +1622,7 @@ FName FRequest_SandboxPatchRank::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1778,7 +1778,7 @@ FName FRequest_SandboxPutRank::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

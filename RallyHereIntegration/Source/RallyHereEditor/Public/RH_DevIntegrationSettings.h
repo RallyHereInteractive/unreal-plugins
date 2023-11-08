@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -111,7 +113,7 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Editor Tools Config
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/** @brief The Name for the primary FR_ItemId property on assets to scan for */
 	UPROPERTY(EditAnywhere, Config, Category = "Editor Tool COngi")
 	FName ItemIdPropertyName;

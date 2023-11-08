@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "PlatformSessionTemplatesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreatePlatformSessionTemplate::GetSimplifiedPath
 
 FString FRequest_OrgProductSandboxCreatePlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -255,7 +255,7 @@ FName FRequest_OrgProductSandboxDeletePlatformSessionTemplate::GetSimplifiedPath
 
 FString FRequest_OrgProductSandboxDeletePlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -403,7 +403,7 @@ FName FRequest_OrgProductSandboxGetAllPlatformSessionTemplates::GetSimplifiedPat
 
 FString FRequest_OrgProductSandboxGetAllPlatformSessionTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -562,7 +562,7 @@ FName FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate::GetSimplifie
 
 FString FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -710,7 +710,7 @@ FName FRequest_OrgProductSandboxPatchPlatformSessionTemplate::GetSimplifiedPath(
 
 FString FRequest_OrgProductSandboxPatchPlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -869,7 +869,7 @@ FName FRequest_OrgProductSandboxPutPlatformSessionTemplate::GetSimplifiedPath() 
 
 FString FRequest_OrgProductSandboxPutPlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1028,7 +1028,7 @@ FName FRequest_SandboxCreatePlatformSessionTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreatePlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -1185,7 +1185,7 @@ FName FRequest_SandboxDeletePlatformSessionTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeletePlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -1331,7 +1331,7 @@ FName FRequest_SandboxGetAllPlatformSessionTemplates::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllPlatformSessionTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1488,7 +1488,7 @@ FName FRequest_SandboxGetSpecificPlatformSessionTemplate::GetSimplifiedPath() co
 
 FString FRequest_SandboxGetSpecificPlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -1634,7 +1634,7 @@ FName FRequest_SandboxPatchPlatformSessionTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchPlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -1791,7 +1791,7 @@ FName FRequest_SandboxPutPlatformSessionTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutPlatformSessionTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("session_template_id"), ToStringFormatArg(SessionTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }

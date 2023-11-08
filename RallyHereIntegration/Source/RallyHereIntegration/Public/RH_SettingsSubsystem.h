@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "SettingsAPI.h"
@@ -33,7 +35,7 @@ public:
 	/** @brief Gets Cached Settings Types */
 	UFUNCTION(BlueprintGetter)
 	const TMap<FString, FRHAPI_SettingType>& GetCachedSettingTypes() { return CachedSettingsTypes; }
-	
+
 protected:
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetCachedSettingTypes, Category = "Settings")
 	/** @brief Map of settings types by name. */

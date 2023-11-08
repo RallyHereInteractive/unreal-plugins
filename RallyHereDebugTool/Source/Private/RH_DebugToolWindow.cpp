@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_DebugToolWindow.h"
 #include "RallyHereDebugTool.h"
@@ -34,7 +35,7 @@ TArray<class ULocalPlayer*> FRH_DebugToolWindow::GetAllSelectedLocalPlayers() co
 	return Result;
 }
 
-TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllSelectedPlayerInfos() const 
+TArray<class URH_PlayerInfo*> FRH_DebugToolWindow::GetAllSelectedPlayerInfos() const
 {
 	TArray<class URH_PlayerInfo*> Result;
 	if (Owner.IsValid())
@@ -144,7 +145,7 @@ void FRH_DebugToolWindow::RenderWindow()
 	}
 	ImGui::SetNextWindowPos(ImVec2(DefaultPos.X, DefaultPos.Y), WindowCond);
 	ImGui::SetNextWindowSize(ImVec2(DefaultSize.X, DefaultSize.Y), WindowCond);
-	
+
 	ImGuiWindowFlags windowFlags = bShowMenuBar ? ImGuiWindowFlags_MenuBar : ImGuiWindowFlags_None;
 	windowFlags |= AdditionalWindowFlags;
 	ImGui::Begin(TCHAR_TO_ANSI(*Name) , nullptr, windowFlags);

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "OrganizationAPI.h"
@@ -246,7 +246,7 @@ FName FRequest_DeleteOrg::GetSimplifiedPath() const
 
 FString FRequest_DeleteOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -529,7 +529,7 @@ FName FRequest_GetOrg::GetSimplifiedPath() const
 
 FString FRequest_GetOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -673,7 +673,7 @@ FName FRequest_UpdateOrg::GetSimplifiedPath() const
 
 FString FRequest_UpdateOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 

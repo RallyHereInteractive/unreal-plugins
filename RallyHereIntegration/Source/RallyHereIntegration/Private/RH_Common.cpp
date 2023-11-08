@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_Common.h"
 #include "RH_OnlineSubsystemNames.h"
@@ -13,7 +15,7 @@ bool FRH_AsyncTaskHelper::bInitialized = false;
 bool RH_GetPlayerIdFromLocalPlayer(const ULocalPlayer* pLocalPlayer, FGuid* outPlayerId)
 {
 	if (outPlayerId != nullptr) *outPlayerId = FGuid();
-	
+
 	if (pLocalPlayer != nullptr)
 	{
 		auto pLPSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();

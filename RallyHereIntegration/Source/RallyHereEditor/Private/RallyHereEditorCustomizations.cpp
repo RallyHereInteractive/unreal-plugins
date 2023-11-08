@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereEditor.h"
 #include "RallyHereEditorCustomizations.h"
@@ -251,11 +253,11 @@ void FRH_RHItemIdCustomization::OnFriendlyNameSubmitted(const FString& FriendlyN
 		Request.AuthContext->Refresh();
 		return;
 	}
-	
+
 	auto* Settings = GetDefault<URH_DevIntegrationSettings>();
 	const FRH_DevSandboxConfiguration* SandboxConfig = Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId());
 	FGuid::Parse(SandboxConfig->SandboxGuid, Request.SandboxId);
-	
+
 	FRHAPI_DevCreateItemCollection ItemCollection;
 	TArray<FRHAPI_DevCreateItemRequest> NewItems;
 	FRHAPI_DevCreateItemRequest NewItem;

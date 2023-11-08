@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -370,8 +372,8 @@ public:
 	}
 
 	/**
-	 * @brief Begins the task of asynchronously querying the API 
-	 * @param [in] API API target for the query (i.e. User, Session, Inventory, etc.) 
+	 * @brief Begins the task of asynchronously querying the API
+	 * @param [in] API API target for the query (i.e. User, Session, Inventory, etc.)
 	 * @param [in] Request Templated request data for the query
 	 * @param [in] Priority The Priority of the call, lower is higher priority
 	 */
@@ -417,7 +419,7 @@ public:
 		static FString Name(FString::Printf(TEXT("FRH_SimpleQueryHelper<%s>"), *BaseType::Name));
 		return Name;
 	}
-	
+
 	/** @brief Executes the generic delegate associated with this asynchronous task forwarding bSuccess */
 	virtual void ExecuteCallback(bool bSuccess) const override
 	{
@@ -471,7 +473,7 @@ USTRUCT(BlueprintType)
 struct FRH_CustomEndpointResponseWrapper
 {
 	GENERATED_BODY()
-	
+
 	/** Http Response Code */
 	UPROPERTY(VisibleInstanceOnly, Category = "RallyHereAPI|CustomEndpoint")
 	int32 HttpResponseCode;
@@ -631,7 +633,7 @@ public:
 	{}
 };
 
-/** 
+/**
  * @brief Helper function to convert an FRH_PlayerPlatformId into a hash value
  * @param [in] PlatformId The platform id to generate a hash for
  * @return Semi-unique hash value for the given platform id
@@ -641,7 +643,7 @@ FORCEINLINE uint32 GetTypeHash(const FRH_PlayerPlatformId& PlatformId)
 	return HashCombine(GetTypeHash(PlatformId.UserId), (uint32)PlatformId.PlatformType);
 }
 
-/** 
+/**
  * @brief Helper function to break a fully qualified URL into a base URL, API name, and an array of API parameters
  * @param [in] URL The fully qualified URL that we want to break apart
  * @param [in] BaseURL The base URL of the specified fully qualified URL

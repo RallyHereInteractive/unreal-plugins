@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "MatchMakingProfilesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -254,7 +254,7 @@ FName FRequest_OrgProductSandboxCreateProfile::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -411,7 +411,7 @@ FName FRequest_OrgProductSandboxCreateProfileList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -568,7 +568,7 @@ FName FRequest_OrgProductSandboxDeleteEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -716,7 +716,7 @@ FName FRequest_OrgProductSandboxDeleteProfile::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -863,7 +863,7 @@ FName FRequest_OrgProductSandboxDeleteProfileList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1010,7 +1010,7 @@ FName FRequest_OrgProductSandboxGetAllEntries::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllEntries::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1169,7 +1169,7 @@ FName FRequest_OrgProductSandboxGetAllProfileLists::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllProfileLists::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -1327,7 +1327,7 @@ FName FRequest_OrgProductSandboxGetAllProfiles::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllProfiles::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -1485,7 +1485,7 @@ FName FRequest_OrgProductSandboxGetEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1633,7 +1633,7 @@ FName FRequest_OrgProductSandboxGetProfile::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1780,7 +1780,7 @@ FName FRequest_OrgProductSandboxGetProfileList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1927,7 +1927,7 @@ FName FRequest_OrgProductSandboxPatchEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -2086,7 +2086,7 @@ FName FRequest_OrgProductSandboxPatchProfile::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2244,7 +2244,7 @@ FName FRequest_OrgProductSandboxPatchProfileList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2402,7 +2402,7 @@ FName FRequest_OrgProductSandboxPutEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -2561,7 +2561,7 @@ FName FRequest_OrgProductSandboxPutProfile::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2719,7 +2719,7 @@ FName FRequest_OrgProductSandboxPutProfileList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2877,7 +2877,7 @@ FName FRequest_SandboxCreateEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3033,7 +3033,7 @@ FName FRequest_SandboxCreateProfile::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3188,7 +3188,7 @@ FName FRequest_SandboxCreateProfileList::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3343,7 +3343,7 @@ FName FRequest_SandboxDeleteEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -3489,7 +3489,7 @@ FName FRequest_SandboxDeleteProfile::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3634,7 +3634,7 @@ FName FRequest_SandboxDeleteProfileList::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3779,7 +3779,7 @@ FName FRequest_SandboxGetAllEntries::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllEntries::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3936,7 +3936,7 @@ FName FRequest_SandboxGetAllProfileLists::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllProfileLists::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4092,7 +4092,7 @@ FName FRequest_SandboxGetAllProfiles::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllProfiles::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4248,7 +4248,7 @@ FName FRequest_SandboxGetEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -4394,7 +4394,7 @@ FName FRequest_SandboxGetProfile::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4539,7 +4539,7 @@ FName FRequest_SandboxGetProfileList::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4684,7 +4684,7 @@ FName FRequest_SandboxPatchEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -4841,7 +4841,7 @@ FName FRequest_SandboxPatchProfile::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4997,7 +4997,7 @@ FName FRequest_SandboxPatchProfileList::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5153,7 +5153,7 @@ FName FRequest_SandboxPutEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("profile_list_entry_id"), ToStringFormatArg(ProfileListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -5310,7 +5310,7 @@ FName FRequest_SandboxPutProfile::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutProfile::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_id"), ToStringFormatArg(ProfileId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5466,7 +5466,7 @@ FName FRequest_SandboxPutProfileList::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutProfileList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("profile_list_id"), ToStringFormatArg(ProfileListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

@@ -1,4 +1,5 @@
-// Copyright 2016-2023 Hi-Rez Studios, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
@@ -231,7 +232,7 @@ void FRHDTW_Presence::DoSelfTab()
 
 		// TODO - do not use a direct call as above, use subsystem calls
 	}
-	
+
 	ImGui::Text("");
 	ImGui::Separator();
 
@@ -284,7 +285,7 @@ void FRHDTW_Presence::DoSelfTab()
 			pRH_LocalPlayerPresenceSubsystem->StartRefreshTimer();
 		}
 	}
-	
+
 	ImGui::SameLine();
 	if (ImGui::Button("Refresh Status"))
 	{

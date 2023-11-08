@@ -1,4 +1,5 @@
-// Copyright 1998-2015 Epic Games, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 using UnrealBuildTool;
 using System;

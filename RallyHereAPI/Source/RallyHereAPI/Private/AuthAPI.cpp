@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "AuthAPI.h"
@@ -522,7 +522,7 @@ FName FRequest_GetPublicKeyById::GetSimplifiedPath() const
 
 FString FRequest_GetPublicKeyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("key_id"), ToStringFormatArg(KeyId) }
     };
 
@@ -1004,7 +1004,7 @@ FName FRequest_OauthLogin::GetSimplifiedPath() const
 
 FString FRequest_OauthLogin::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -1198,7 +1198,7 @@ FName FRequest_OauthResponse::GetSimplifiedPath() const
 
 FString FRequest_OauthResponse::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 

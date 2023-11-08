@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_PlatformSessionSyncer.h"
 #include "RH_SessionData.h"
@@ -229,7 +231,7 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 				return;
 			}
 		}
-	}	
+	}
 
 	Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
 }
@@ -602,7 +604,7 @@ void URH_PlatformSessionSyncer::UpdateRHSessionWithPlatformSession()
 		SyncActionComplete(false);
 		return;
 	}
-	
+
 	FString PlatformSessionIdStr;
 	if (ConvertPlatformSessionIdToJson(OSSSessionId, PlatformSessionIdStr))
 	{
@@ -761,10 +763,10 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 		}
 
 		bool bSearched = OSSSessionInterface->FindSessionById(
-			*GetOSSUniqueId(), 
+			*GetOSSUniqueId(),
 			*RHPlatformSessionId,
 #if RH_FROM_ENGINE_VERSION(5,1)
-			*FUniqueNetIdString::EmptyId(), 
+			*FUniqueNetIdString::EmptyId(),
 #endif
 			FOnSingleSessionResultCompleteDelegate::CreateWeakLambda(this,
 			[this](int32 LocalUserNum, bool bWasSuccessful, const FOnlineSessionSearchResult& FoundSession)
@@ -785,7 +787,7 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 						if (!OSSPlatformSessionId.IsValid())
 						{
 							UE_LOG(LogRHSession, Warning, TEXT("[%s] - Found session does not have a valid session id"), ANSI_TO_TCHAR(__FUNCTION__));
-							
+
 							if (IsLocalPlayerScout())
 							{
 								// we are the scout and failed to join, attempt to rectify the issue
@@ -1009,7 +1011,7 @@ void URH_PlatformSessionSyncer::CleanupInternal()
 	// leave the platform session - note - may not be able to destroy it if other users are still in it!
 	auto OSSSessionInterface = GetOSSSessionInterface();
 	auto PlatformSession = GetPlatformSession();
-	
+
 	// unbind callbacks
 	auto RHSession = GetRHSession();
 

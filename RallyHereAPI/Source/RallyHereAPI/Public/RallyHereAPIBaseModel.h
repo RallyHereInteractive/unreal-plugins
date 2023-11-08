@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -139,7 +139,7 @@ public:
     const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
 
     const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
-    
+
     void SetJsonResponse(const TSharedPtr<FJsonValue>& InJsonValue) { ResponseJson = InJsonValue; }
     const TSharedPtr<FJsonValue>& GetJsonResponse() const { return ResponseJson; }
 

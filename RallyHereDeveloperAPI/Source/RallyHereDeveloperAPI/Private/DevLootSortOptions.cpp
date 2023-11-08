@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -76,7 +76,7 @@ FString EnumToString(const ERHAPI_DevLootSortOptions& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevLootSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevLootSortOptions> StringToEnum = { 
+    static TMap<FString, ERHAPI_DevLootSortOptions> StringToEnum = {
         { TEXT("loot_id"), ERHAPI_DevLootSortOptions::LootId },
         { TEXT("legacy_loot_id"), ERHAPI_DevLootSortOptions::LegacyLootId },
         { TEXT("vendor_id"), ERHAPI_DevLootSortOptions::VendorId },

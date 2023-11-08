@@ -1,4 +1,5 @@
-// Copyright 2016-2023 Hi-Rez Studios, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "PresenceAPI.h"
@@ -30,8 +31,8 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 #pragma region UPDATE SELF TAB
 	/** Modify presence information for the local player */
 	void DoSelfTab();
-	
-	/** 
+
+	/**
 	* \defgroup Updating your presence
 	* @{
 	*/
@@ -39,7 +40,7 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 	std::string MessageInput{""};
 	bool DoNotDisturbInput{false};
 	FString LastUpdateResult;
-	
+
 	void HandleUpdatePresenceSelf(const RallyHereAPI::FResponse_UpdatePlayerPresenceSelf& Resp, FGuid PlayerUuid);
 	/** @} */
 

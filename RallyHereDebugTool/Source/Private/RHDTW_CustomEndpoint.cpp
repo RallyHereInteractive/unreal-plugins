@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_CustomEndpoint.h"
 
@@ -16,10 +18,10 @@ FRHDTW_CustomEndpoint::FRHDTW_CustomEndpoint()
 	EndpointId.AddZeroed(256);
 
 	ImGuiCopyStringToTextInputBuffer(TEXT("application/json"), ContentType);
-	
+
 	Body.Empty();
 	Body.AddZeroed(4096);
-	
+
 	Priority = DefaultRallyHereAPIPriority;
 }
 

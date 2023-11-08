@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -97,7 +97,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateProduct
     typedef FDelegate_CreateProduct Delegate;
     typedef FProductAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateProduct(InRequest, InDelegate, Priority); }
 };
 
@@ -139,7 +139,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteProduct
     typedef FDelegate_DeleteProduct Delegate;
     typedef FProductAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteProduct(InRequest, InDelegate, Priority); }
 };
 
@@ -181,7 +181,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgProduct
     typedef FDelegate_GetOrgProduct Delegate;
     typedef FProductAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgProduct(InRequest, InDelegate, Priority); }
 };
 
@@ -221,7 +221,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgProducts
     typedef FDelegate_GetOrgProducts Delegate;
     typedef FProductAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgProducts(InRequest, InDelegate, Priority); }
 };
 
@@ -264,7 +264,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_UpdateProduct
     typedef FDelegate_UpdateProduct Delegate;
     typedef FProductAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.UpdateProduct(InRequest, InDelegate, Priority); }
 };
 

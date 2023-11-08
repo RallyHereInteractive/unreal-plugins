@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_ConfigSubsystem.h"
 
 #include "RallyHereIntegrationModule.h"
@@ -26,7 +28,7 @@ void URH_ConfigSubsystem::Initialize()
 	InitPropertiesWithDefaultValues();
 
 	AppSettingsPoller = FRH_PollControl::CreateAutoPoller();
-	
+
 	if (bAutomaticallyPollConfigurationData)
 	{
 		// start timer to check for updates
@@ -60,7 +62,7 @@ void URH_ConfigSubsystem::Deinitialize()
 void URH_ConfigSubsystem::InitPropertiesWithDefaultValues()
 {
 	AppSettings.Empty();
-	
+
 	// Load Default Feature Flags
 	FKeyValueSink Visitor;
 	Visitor.BindLambda([&](const FString& Key, const FString& Value) { AppSettings.Add(Key, Value); });
@@ -94,7 +96,7 @@ void URH_ConfigSubsystem::PollAppSettings(const FRH_PollCompleteFunc& Delegate)
 void URH_ConfigSubsystem::OnFetchAppSettings(const RallyHereAPI::FResponse_GetAppSettingsClient& Resp)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	
+
 	// todo - check for differences / use ETag
 	if (Resp.IsSuccessful())
 	{

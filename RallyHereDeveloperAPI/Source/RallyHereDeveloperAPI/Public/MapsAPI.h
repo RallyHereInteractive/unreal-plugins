@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -265,7 +265,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateMap
     typedef FDelegate_OrgProductSandboxCreateMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateMap(InRequest, InDelegate, Priority); }
 };
 
@@ -311,7 +311,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateMapSelectionListE
     typedef FDelegate_OrgProductSandboxCreateMapSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateMapSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -356,7 +356,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateSelectionList
     typedef FDelegate_OrgProductSandboxCreateSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -390,7 +390,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMap : public F
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -401,7 +401,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMap
     typedef FDelegate_OrgProductSandboxDeleteMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMap(InRequest, InDelegate, Priority); }
 };
 
@@ -435,7 +435,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMapSelectionLi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -446,7 +446,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMapSelectionList
     typedef FDelegate_OrgProductSandboxDeleteMapSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMapSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -481,7 +481,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMapSelectionLi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -492,7 +492,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMapSelectionListE
     typedef FDelegate_OrgProductSandboxDeleteMapSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMapSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -541,7 +541,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMapSelectionListE
     typedef FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -589,7 +589,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMapSelectionLists
     typedef FDelegate_OrgProductSandboxGetAllMapSelectionLists Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMapSelectionLists(InRequest, InDelegate, Priority); }
 };
 
@@ -637,7 +637,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMaps
     typedef FDelegate_OrgProductSandboxGetAllMaps Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMaps(InRequest, InDelegate, Priority); }
 };
 
@@ -682,7 +682,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMap
     typedef FDelegate_OrgProductSandboxGetMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMap(InRequest, InDelegate, Priority); }
 };
 
@@ -727,7 +727,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMapSelectionList
     typedef FDelegate_OrgProductSandboxGetMapSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMapSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -773,7 +773,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMapSelectionListEntr
     typedef FDelegate_OrgProductSandboxGetMapSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMapSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -819,7 +819,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchMap
     typedef FDelegate_OrgProductSandboxPatchMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchMap(InRequest, InDelegate, Priority); }
 };
 
@@ -865,7 +865,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchSelectionList
     typedef FDelegate_OrgProductSandboxPatchSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -912,7 +912,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchSelectionListEntry
     typedef FDelegate_OrgProductSandboxPatchSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -958,7 +958,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutMap
     typedef FDelegate_OrgProductSandboxPutMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutMap(InRequest, InDelegate, Priority); }
 };
 
@@ -1004,7 +1004,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutSelectionList
     typedef FDelegate_OrgProductSandboxPutSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1051,7 +1051,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutSelectionListEntry
     typedef FDelegate_OrgProductSandboxPutSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1092,7 +1092,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMap
     typedef FDelegate_SandboxCreateMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateMap(InRequest, InDelegate, Priority); }
 };
 
@@ -1134,7 +1134,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMapSelectionListEntry
     typedef FDelegate_SandboxCreateMapSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateMapSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1175,7 +1175,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateSelectionList
     typedef FDelegate_SandboxCreateSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1205,7 +1205,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMap : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -1216,7 +1216,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMap
     typedef FDelegate_SandboxDeleteMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteMap(InRequest, InDelegate, Priority); }
 };
 
@@ -1246,7 +1246,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMapSelectionList : publi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -1257,7 +1257,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMapSelectionList
     typedef FDelegate_SandboxDeleteMapSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteMapSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1288,7 +1288,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMapSelectionListEntry : 
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -1299,7 +1299,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMapSelectionListEntry
     typedef FDelegate_SandboxDeleteMapSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteMapSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1344,7 +1344,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMapSelectionListEntriesForM
     typedef FDelegate_SandboxGetAllMapSelectionListEntriesForMapSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllMapSelectionListEntriesForMapSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1388,7 +1388,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMapSelectionLists
     typedef FDelegate_SandboxGetAllMapSelectionLists Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllMapSelectionLists(InRequest, InDelegate, Priority); }
 };
 
@@ -1432,7 +1432,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMaps
     typedef FDelegate_SandboxGetAllMaps Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllMaps(InRequest, InDelegate, Priority); }
 };
 
@@ -1473,7 +1473,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMap
     typedef FDelegate_SandboxGetMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetMap(InRequest, InDelegate, Priority); }
 };
 
@@ -1514,7 +1514,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMapSelectionList
     typedef FDelegate_SandboxGetMapSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetMapSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1556,7 +1556,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMapSelectionListEntry
     typedef FDelegate_SandboxGetMapSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetMapSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1598,7 +1598,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchMap
     typedef FDelegate_SandboxPatchMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchMap(InRequest, InDelegate, Priority); }
 };
 
@@ -1640,7 +1640,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchSelectionList
     typedef FDelegate_SandboxPatchSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1683,7 +1683,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchSelectionListEntry
     typedef FDelegate_SandboxPatchSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1725,7 +1725,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutMap
     typedef FDelegate_SandboxPutMap Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutMap(InRequest, InDelegate, Priority); }
 };
 
@@ -1767,7 +1767,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutSelectionList
     typedef FDelegate_SandboxPutSelectionList Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutSelectionList(InRequest, InDelegate, Priority); }
 };
 
@@ -1810,7 +1810,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutSelectionListEntry
     typedef FDelegate_SandboxPutSelectionListEntry Delegate;
     typedef FMapsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutSelectionListEntry(InRequest, InDelegate, Priority); }
 };
 

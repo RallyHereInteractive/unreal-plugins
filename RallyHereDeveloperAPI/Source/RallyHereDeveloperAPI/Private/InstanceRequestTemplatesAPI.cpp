@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "InstanceRequestTemplatesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateInstanceRequestTemplate::GetSimplifiedPath
 
 FString FRequest_OrgProductSandboxCreateInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxDeleteInstanceRequestTemplate::GetSimplifiedPath
 
 FString FRequest_OrgProductSandboxDeleteInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -400,7 +400,7 @@ FName FRequest_OrgProductSandboxGetAllInstanceRequestTemplates::GetSimplifiedPat
 
 FString FRequest_OrgProductSandboxGetAllInstanceRequestTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -558,7 +558,7 @@ FName FRequest_OrgProductSandboxGetInstanceRequestTemplate::GetSimplifiedPath() 
 
 FString FRequest_OrgProductSandboxGetInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -705,7 +705,7 @@ FName FRequest_OrgProductSandboxPatchInstanceRequestTemplate::GetSimplifiedPath(
 
 FString FRequest_OrgProductSandboxPatchInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -863,7 +863,7 @@ FName FRequest_OrgProductSandboxPutInstanceRequestTemplate::GetSimplifiedPath() 
 
 FString FRequest_OrgProductSandboxPutInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1021,7 +1021,7 @@ FName FRequest_SandboxCreateInstanceRequestTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1176,7 +1176,7 @@ FName FRequest_SandboxDeleteInstanceRequestTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1321,7 +1321,7 @@ FName FRequest_SandboxGetAllInstanceRequestTemplates::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllInstanceRequestTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1477,7 +1477,7 @@ FName FRequest_SandboxGetInstanceRequestTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1622,7 +1622,7 @@ FName FRequest_SandboxPatchInstanceRequestTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1778,7 +1778,7 @@ FName FRequest_SandboxPutInstanceRequestTemplate::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

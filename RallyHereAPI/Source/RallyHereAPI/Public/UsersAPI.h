@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -227,7 +227,7 @@ struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 
     // Manual Response Helpers
@@ -282,7 +282,7 @@ struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 
     // Manual Response Helpers

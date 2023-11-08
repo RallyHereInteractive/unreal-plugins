@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "SandboxConfigPlayerSettingTypesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_SandboxCreateSettingType::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -251,7 +251,7 @@ FName FRequest_SandboxDeleteSettingType::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -396,7 +396,7 @@ FName FRequest_SandboxFullCreateSettingType::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullCreateSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -553,7 +553,7 @@ FName FRequest_SandboxFullDeleteSettingType::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullDeleteSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -700,7 +700,7 @@ FName FRequest_SandboxFullGetSettingTypeForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullGetSettingTypeForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -847,7 +847,7 @@ FName FRequest_SandboxFullGetSettingTypesForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullGetSettingTypesForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -1005,7 +1005,7 @@ FName FRequest_SandboxFullUpdateSettingType::GetSimplifiedPath() const
 
 FString FRequest_SandboxFullUpdateSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1163,7 +1163,7 @@ FName FRequest_SandboxGetSettingTypeForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetSettingTypeForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1308,7 +1308,7 @@ FName FRequest_SandboxGetSettingTypesForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetSettingTypesForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1464,7 +1464,7 @@ FName FRequest_SandboxUpdateSettingType::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateSettingType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("setting_type_id"), ToStringFormatArg(SettingTypeId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

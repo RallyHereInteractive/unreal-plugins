@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -23,7 +25,7 @@ UCLASS(Config = RallyHereIntegration, DefaultConfig)
 class RALLYHEREINTEGRATION_API URH_LocalPlayerPresenceSubsystem : public URH_LocalPlayerSubsystemPlugin
 {
 	GENERATED_BODY()
-public:	
+public:
 	/**
 	* @brief Initialize the subsystem.
 	*/
@@ -31,7 +33,7 @@ public:
 	/**
 	* @brief Safely tears down the subsystem.
 	*/
-	virtual void Deinitialize() override;	
+	virtual void Deinitialize() override;
 	/**
 	 * @brief Calls the Presence API to update a players personal presence information.
 	 * @param [in] Request Request object containing the information to update.

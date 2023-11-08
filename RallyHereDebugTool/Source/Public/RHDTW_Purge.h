@@ -1,4 +1,5 @@
-// Copyright 2016-2022 Hi-Rez Studios, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "RH_DebugToolWindow.h"
@@ -19,7 +20,7 @@ private:
 	void HandleEnqueueMeForPurge(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid);
 	void HandleDequeueMeForPurge(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid);
 	void HandleGetMyPurgeStatus(bool success, FRHAPI_PurgeResponse PurgeStatus, FRH_ErrorInfo Error, FGuid PlayerUuid);
-	
+
 	std::string SuggestedPurgeTimeInput;
 	FString PurgeActionResult;
 };

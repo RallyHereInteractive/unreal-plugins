@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_InstanceHealthStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceHealthStatus& Value)
 {
-    static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = { 
+    static TMap<FString, ERHAPI_InstanceHealthStatus> StringToEnum = {
         { TEXT("healthy"), ERHAPI_InstanceHealthStatus::Healthy },
         { TEXT("unhealthy"), ERHAPI_InstanceHealthStatus::Unhealthy },
         { TEXT("degraded"), ERHAPI_InstanceHealthStatus::Degraded },

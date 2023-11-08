@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "PlayerIdNotificationAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_PlayeridCreateNotification::GetSimplifiedPath() const
 
 FString FRequest_PlayeridCreateNotification::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -277,7 +277,7 @@ FName FRequest_PlayeridGetNotificationById::GetSimplifiedPath() const
 
 FString FRequest_PlayeridGetNotificationById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("notification_id"), ToStringFormatArg(NotificationId) },
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
@@ -456,7 +456,7 @@ FName FRequest_PlayeridGetNotificationByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_PlayeridGetNotificationByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("notification_id"), ToStringFormatArg(NotificationId) }
     };
 
@@ -626,7 +626,7 @@ FName FRequest_PlayeridGetNotificationsPage::GetSimplifiedPath() const
 
 FString FRequest_PlayeridGetNotificationsPage::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -1003,7 +1003,7 @@ FName FRequest_PlayeridLongPollForNotifications::GetSimplifiedPath() const
 
 FString FRequest_PlayeridLongPollForNotifications::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 

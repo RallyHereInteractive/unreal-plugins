@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -81,7 +81,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissions
     typedef FDelegate_GetAccountPermissions Delegate;
     typedef FAuth0AccountPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAccountPermissions(InRequest, InDelegate, Priority); }
 };
 
@@ -119,7 +119,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissionsForAuth0
     typedef FDelegate_GetAccountPermissionsForAuth0 Delegate;
     typedef FAuth0AccountPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAccountPermissionsForAuth0(InRequest, InDelegate, Priority); }
 };
 
@@ -156,7 +156,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetPortalPermissions
     typedef FDelegate_GetPortalPermissions Delegate;
     typedef FAuth0AccountPermissionsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetPortalPermissions(InRequest, InDelegate, Priority); }
 };
 

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -125,7 +127,7 @@ protected:
 		if (Resp.IsSuccessful())
 		{
 			SessionCache = FRH_APISessionWithETag(Resp.Content, Resp.ETag);
-			
+
 			CheckTemplateForSessionCache();
 		}
 		else if (Resp.GetHttpResponseCode() == (EHttpResponseCodes::NotModified))
@@ -450,7 +452,7 @@ protected:
 	void OnQueryAllSessions(const RallyHereAPI::Traits_GetPlayerSessionsSelf::Response& Resp)
 	{
 		HttpRequest = nullptr;
-		
+
 		if (!SessionOwner.IsValid())
 		{
 			Failed(TEXT("Session owner is invalid"));

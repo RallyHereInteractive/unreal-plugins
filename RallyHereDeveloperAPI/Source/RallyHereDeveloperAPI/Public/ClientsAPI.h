@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -124,7 +124,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductCreateClient
     typedef FDelegate_OrgProductCreateClient Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductCreateClient(InRequest, InDelegate, Priority); }
 };
 
@@ -168,7 +168,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductDeleteClientById
     typedef FDelegate_OrgProductDeleteClientById Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductDeleteClientById(InRequest, InDelegate, Priority); }
 };
 
@@ -210,7 +210,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductGetAllClients
     typedef FDelegate_OrgProductGetAllClients Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductGetAllClients(InRequest, InDelegate, Priority); }
 };
 
@@ -254,7 +254,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductGetClientById
     typedef FDelegate_OrgProductGetClientById Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductGetClientById(InRequest, InDelegate, Priority); }
 };
 
@@ -299,7 +299,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductUpdateClientById
     typedef FDelegate_OrgProductUpdateClientById Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductUpdateClientById(InRequest, InDelegate, Priority); }
 };
 
@@ -340,7 +340,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductCreateClient
     typedef FDelegate_ProductCreateClient Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductCreateClient(InRequest, InDelegate, Priority); }
 };
 
@@ -382,7 +382,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductDeleteClientById
     typedef FDelegate_ProductDeleteClientById Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductDeleteClientById(InRequest, InDelegate, Priority); }
 };
 
@@ -422,7 +422,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductGetAllClients
     typedef FDelegate_ProductGetAllClients Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductGetAllClients(InRequest, InDelegate, Priority); }
 };
 
@@ -464,7 +464,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductGetClientById
     typedef FDelegate_ProductGetClientById Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductGetClientById(InRequest, InDelegate, Priority); }
 };
 
@@ -507,7 +507,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductUpdateClientById
     typedef FDelegate_ProductUpdateClientById Delegate;
     typedef FClientsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductUpdateClientById(InRequest, InDelegate, Priority); }
 };
 

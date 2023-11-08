@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "OrganizationAccountsAPI.h"
@@ -246,7 +246,7 @@ FName FRequest_CreateAccountOrgAssignment::GetSimplifiedPath() const
 
 FString FRequest_CreateAccountOrgAssignment::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -407,7 +407,7 @@ FName FRequest_DeleteAccount::GetSimplifiedPath() const
 
 FString FRequest_DeleteAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("account_identifier"), ToStringFormatArg(AccountIdentifier) }
     };
 
@@ -554,7 +554,7 @@ FName FRequest_DeleteAccountFromOrgApi::GetSimplifiedPath() const
 
 FString FRequest_DeleteAccountFromOrgApi::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("account_identifier"), ToStringFormatArg(AccountIdentifier) }
     };
@@ -705,7 +705,7 @@ FName FRequest_GetAccount::GetSimplifiedPath() const
 
 FString FRequest_GetAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("account_identifier"), ToStringFormatArg(AccountIdentifier) }
     };
 
@@ -849,7 +849,7 @@ FName FRequest_GetAccountsInOrg::GetSimplifiedPath() const
 
 FString FRequest_GetAccountsInOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -1144,7 +1144,7 @@ FName FRequest_GetOrgsForAccounts::GetSimplifiedPath() const
 
 FString FRequest_GetOrgsForAccounts::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("account_identifier"), ToStringFormatArg(AccountIdentifier) }
     };
 
@@ -1427,7 +1427,7 @@ FName FRequest_UpdateAccount::GetSimplifiedPath() const
 
 FString FRequest_UpdateAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("account_identifier"), ToStringFormatArg(AccountIdentifier) }
     };
 

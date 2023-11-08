@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "PresenceAdminAPI.h"
@@ -261,7 +261,7 @@ FName FRequest_AdminGetPlayerPresence::GetSimplifiedPath() const
 
 FString FRequest_AdminGetPlayerPresence::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -439,7 +439,7 @@ FName FRequest_AdminGetPlayerPresenceId::GetSimplifiedPath() const
 
 FString FRequest_AdminGetPlayerPresenceId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -1285,7 +1285,7 @@ FName FRequest_AdminGetRequestingCcuPlatformCombined::GetSimplifiedPath() const
 
 FString FRequest_AdminGetRequestingCcuPlatformCombined::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -1457,7 +1457,7 @@ FName FRequest_AdminGetRequestingCcuPlatformIndividual::GetSimplifiedPath() cons
 
 FString FRequest_AdminGetRequestingCcuPlatformIndividual::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -2297,7 +2297,7 @@ FName FRequest_AdminGetTotalCcuPlatformCombined::GetSimplifiedPath() const
 
 FString FRequest_AdminGetTotalCcuPlatformCombined::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -2469,7 +2469,7 @@ FName FRequest_AdminGetTotalCcuPlatformIndividual::GetSimplifiedPath() const
 
 FString FRequest_AdminGetTotalCcuPlatformIndividual::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -3309,7 +3309,7 @@ FName FRequest_AdminGetUpdatingCcuPlatformCombined::GetSimplifiedPath() const
 
 FString FRequest_AdminGetUpdatingCcuPlatformCombined::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -3481,7 +3481,7 @@ FName FRequest_AdminGetUpdatingCcuPlatformIndividual::GetSimplifiedPath() const
 
 FString FRequest_AdminGetUpdatingCcuPlatformIndividual::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
 
@@ -3653,7 +3653,7 @@ FName FRequest_AdminUpdatePlayerLastSeen::GetSimplifiedPath() const
 
 FString FRequest_AdminUpdatePlayerLastSeen::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -3871,7 +3871,7 @@ FName FRequest_AdminUpdatePlayerLastSeenId::GetSimplifiedPath() const
 
 FString FRequest_AdminUpdatePlayerLastSeenId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 

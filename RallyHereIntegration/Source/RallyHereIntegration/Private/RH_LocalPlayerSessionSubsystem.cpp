@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -97,7 +99,7 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, 
 	{
 		RemoveSession(Session);
 	}
-	
+
 	// ensure sessions array has been cleared out by the above
 	check(Sessions.Num() == 0);
 
@@ -498,7 +500,7 @@ void URH_LocalPlayerSessionSubsystem::RemoveSessionById(const FString& SessionId
 			BLUEPRINT_OnSessionRemovedDelegate.Broadcast(RHSession);
 			OnSessionRemovedDelegate.Broadcast(RHSession);
 		}
-		
+
 		ExpiringSessions.Add(SessionId, RHSession);
 		RHSession->Expire(FRH_OnSessionExpiredDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnExpirationComplete));
 	}
@@ -734,7 +736,7 @@ bool URH_LocalPlayerSessionSubsystem::FilterOSSCallbackUser(const int32 Controll
 {
 	auto* LPSS = GetLocalPlayerSubsystem();
 	if (ControllerId != INVALID_CONTROLLERID && LPSS->GetLocalPlayer()->GetControllerId() != ControllerId)
-	{		
+	{
 		return true;
 	}
 
@@ -769,7 +771,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 	FString SessionIdStr = SessionInfo->GetSessionIdStr();
 
 	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
-	
+
 	// we need to join the session
 	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
 }

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -52,7 +52,7 @@ FString EnumToString(const ERHAPI_ClientType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_ClientType& Value)
 {
-    static TMap<FString, ERHAPI_ClientType> StringToEnum = { 
+    static TMap<FString, ERHAPI_ClientType> StringToEnum = {
         { TEXT("UNKNOWN"), ERHAPI_ClientType::Unknown },
         { TEXT("WIN"), ERHAPI_ClientType::Win },
         { TEXT("MAC"), ERHAPI_ClientType::Mac },

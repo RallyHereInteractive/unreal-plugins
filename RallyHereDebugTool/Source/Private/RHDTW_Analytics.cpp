@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
 #include "RallyHereIntegrationModule.h"
@@ -102,7 +104,7 @@ void FRHDTW_Analytics::Do()
 				ImGui::EndTable();
 			}
 			DoTable(URLCountAllTime, URLCountRecent, URLBursts, FString(TEXT("SimplifiedPath-CallCountsTable")), FString(TEXT("Simplified Path")), FilterString);
-			
+
 			ImGui::EndTabItem();
 		}
 

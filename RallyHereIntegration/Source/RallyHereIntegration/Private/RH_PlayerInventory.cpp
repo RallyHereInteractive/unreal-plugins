@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_PlayerInventory.h"
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "RH_PlayerInfoSubsystem.h"
@@ -30,7 +32,7 @@ void URH_PlayerInventory::InitPropertiesWithDefaultValues()
 
 	InventorySession = {};
 	InventoryCache.Empty();
-	
+
 	if (PlayerInfo != nullptr)
 	{
 		BroadcastOnInventoryCacheUpdated(UpdatedItemIds);
@@ -61,8 +63,8 @@ void URH_PlayerInventory::OnUserChanged()
 }
 
 const FGuid URH_PlayerInventory::GetRHPlayerUuid() const
-{ 
-	return PlayerInfo ? PlayerInfo->GetRHPlayerUuid() : FGuid(); 
+{
+	return PlayerInfo ? PlayerInfo->GetRHPlayerUuid() : FGuid();
 }
 
 void URH_PlayerInventory::GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountBlock& Delegate) const
@@ -273,7 +275,7 @@ void URH_PlayerInventory::CreateInventorySession(const TOptional<ERHAPI_Platform
 			RallyHereAPI::FDelegate_CreateNewInventorySessionByPlayerUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleCreateInventorySession,
 				Delegate), GetDefault<URH_IntegrationSettings>()->InventoryCreateSessionPriority);
-	
+
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
@@ -289,12 +291,12 @@ void URH_PlayerInventory::HandleCreateInventorySession(const RallyHereAPI::FResp
 		{
 			InventorySession.OrderId =  *OrderId;
 		}
-		
+
 		if (const auto SessionPlatform = Response.Content.GetSessionPlatformOrNull())
 		{
 			InventorySession.SessionPlatform = *SessionPlatform;
 		}
-		
+
 		Delegate.ExecuteIfBound(true);
 		return;
 	}
@@ -313,12 +315,12 @@ void URH_PlayerInventory::GetInventorySession(const FRH_OnInventorySessionUpdate
 
 	Request.PlayerUuid = GetRHPlayerUuid();
 	Request.AuthContext = GetAuthContext();
-	
+
 	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().GetInventorySessionInfoByPlayerUuid(Request,
 			RallyHereAPI::FDelegate_GetInventorySessionInfoByPlayerUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleGetInventorySession,
 				Delegate), GetDefault<URH_IntegrationSettings>()->InventoryGetSessionPriority);
-	
+
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
@@ -336,7 +338,7 @@ void URH_PlayerInventory::HandleGetInventorySession(const RallyHereAPI::FRespons
 		}
 
 		InventorySession.AppliedDurableLoot = Response.Content.GetAppliedDurableLoot(TArray<int32>());
-		
+
 		Delegate.ExecuteIfBound(true);
 		return;
 	}
@@ -390,7 +392,7 @@ const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItemsA
 					if (Types.Contains(Inv.InventoryType))
 					{
 						Results.Emplace(Inv);
-					}	
+					}
 				}
 			}
 		}
@@ -412,7 +414,7 @@ const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItemsA
 			}
 		}
 	}
-	
+
 	return Results;
 }
 
@@ -449,12 +451,12 @@ void URH_PlayerInventory::GetInventory(TArray<int32> ItemIds, const FRH_OnInvent
 	{
 		Request.ItemIds = ItemIds;
 	}
-	
+
 	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().GetPlayerInventoryUuid(Request,
 			RallyHereAPI::FDelegate_GetPlayerInventoryUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleGetInventory,
 				ItemIds, Delegate), GetDefault<URH_IntegrationSettings>()->InventoryGetPriority);
-	
+
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
@@ -469,7 +471,7 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 		Delegate.ExecuteIfBound(false);
 		return;
 	}
-	
+
 	const auto Inventory = Response.Content.GetInventoryOrNull();
 	const auto Items = Inventory ? Inventory->GetItemsOrNull() : nullptr;
 
@@ -491,7 +493,7 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 			Delegate.ExecuteIfBound(true);
 			return;
 		}
-		
+
 		for(const auto ItemId : ItemIds)
 		{
 			FString ItemIdAsString = FString::FromInt(ItemId);
@@ -553,7 +555,7 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 	Delegate.ExecuteIfBound(true);
 }
 
-void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const ERHAPI_Source Source, 
+void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_CreateInventory>& CreateInventories, const ERHAPI_Source Source,
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
 	if (CreateInventories.Num() <= 0)
@@ -561,7 +563,7 @@ void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderRef
 		Delegate.ExecuteIfBound(false);
 		return;
 	}
-	
+
 	auto Request = RallyHereAPI::FRequest_CreatePlayerInventoryUuid();
 
 	Request.PlayerUuid = GetRHPlayerUuid();
@@ -581,19 +583,19 @@ void URH_PlayerInventory::CreateInventory(const TOptional<FGuid>& ClientOrderRef
 			Create.SetExpires(CreateInventory.Expires.GetValue());
 		}
 
-		
+
 		Create.SetType(CreateInventory.InventoryType);
 		Create.SetItemId(CreateInventory.ItemId);
 		Create.SetBucket(CreateInventory.Bucket);
 		Create.SetCustomData(CreateInventory.CustomData);
 		Request.CreateInventoryRequests.Inventory.Emplace(Create);
 	}
-	
+
 	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().CreatePlayerInventoryUuid(Request,
 			RallyHereAPI::FDelegate_CreatePlayerInventoryUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleCreateInventory, Delegate),
 			GetDefault<URH_IntegrationSettings>()->InventoryCreatePriority);
-	
+
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
@@ -627,7 +629,7 @@ void URH_PlayerInventory::HandleCreateInventory(const RallyHereAPI::FResponse_Cr
 	Delegate.ExecuteIfBound(true);
 }
 
-void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source, 
+void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderReferenceId, const TArray<FRH_UpdateInventory>& UpdateInventories, const ERHAPI_Source Source,
 		const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
 	if (UpdateInventories.Num() <= 0)
@@ -635,7 +637,7 @@ void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderRef
 		Delegate.ExecuteIfBound(false);
 		return;
 	}
-	
+
 	auto Request = RallyHereAPI::FRequest_ModifyManyPlayerInventoryUuid();
 
 	Request.PlayerUuid = GetRHPlayerUuid();
@@ -643,7 +645,7 @@ void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderRef
 	Request.UpdateInventoryRequests.SetSource(Source);
 	if (ClientOrderReferenceId.IsSet())
 	{
-		Request.UpdateInventoryRequests.SetClientOrderRefId(ClientOrderReferenceId.GetValue()); 
+		Request.UpdateInventoryRequests.SetClientOrderRefId(ClientOrderReferenceId.GetValue());
 	}
 
 	for (const auto& ModifyInventory : UpdateInventories)
@@ -660,12 +662,12 @@ void URH_PlayerInventory::UpdateInventory(const TOptional<FGuid>& ClientOrderRef
 		Update.SetCustomData(ModifyInventory.CustomData);
 		Request.UpdateInventoryRequests.Inventory.Emplace(Update);
 	}
-	
+
 	const auto HttpPtr = RH_APIs::GetAPIs().GetInventory().ModifyManyPlayerInventoryUuid(Request,
 			RallyHereAPI::FDelegate_ModifyManyPlayerInventoryUuid::CreateUObject(
 				this, &URH_PlayerInventory::HandleUpdateInventory, Delegate),
 			GetDefault<URH_IntegrationSettings>()->InventoryUpdatePriority);
-	
+
 	if (HttpPtr == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
@@ -764,7 +766,7 @@ void URH_PlayerInventory::CheckPollStatus()
 			// kick immediately, as someone just became interested in this result
 			PendingInventoryPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_PlayerInventory::PollPendingInventory), PollTimerName, true);
 			bReceivedPendingInventoryNotification = false;
-		}		
+		}
 		// if we received a notification
 		else if (bReceivedPendingInventoryNotification)
 		{
@@ -921,7 +923,7 @@ void URH_PlayerInventory::ParseOrderResult(const FRHAPI_PlayerOrder& Content)
 			UpdateInventoryFromOrderDetails(*Details);
 		}
 	}
-	
+
 	CachedOrderResults.Add(Content);
 }
 
@@ -1041,7 +1043,7 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 	}
 
 	if (InventoryCacheUpdates.Num())
-	{ 
+	{
 		BroadcastOnInventoryCacheUpdated(InventoryCacheUpdates);
 	}
 }
@@ -1300,7 +1302,7 @@ bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock&
 	Request.PlayerUuid = PlayerInventory->GetRHPlayerUuid();
 	// #RHTODO: Do we want to make the first request without a cursor timed to the players initial login?
 	Request.Cursor = Cursor;
-	Request.Limit = 10; // #RHTODO: Expose this as a parameter? 
+	Request.Limit = 10; // #RHTODO: Expose this as a parameter?
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<TGetOrders>>(
 		TGetOrders::Delegate::CreateUObject(this, &URH_PlayerOrderWatch::RequestOrdersResponse),

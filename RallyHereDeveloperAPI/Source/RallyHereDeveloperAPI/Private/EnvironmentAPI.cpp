@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "EnvironmentAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive::GetSimplifiedPa
 
 FString FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -258,7 +258,7 @@ FName FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu::GetSimplifiedPath(
 
 FString FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -420,7 +420,7 @@ FName FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew::GetSimplifiedPath(
 
 FString FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -582,7 +582,7 @@ FName FRequest_EnvironmentFullGetEnvironmentMetricPurchases::GetSimplifiedPath()
 
 FString FRequest_EnvironmentFullGetEnvironmentMetricPurchases::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -744,7 +744,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPlayersActive::GetSimplifiedPath()
 
 FString FRequest_EnvironmentGetEnvironmentMetricPlayersActive::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -904,7 +904,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPlayersCcu::GetSimplifiedPath() co
 
 FString FRequest_EnvironmentGetEnvironmentMetricPlayersCcu::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1064,7 +1064,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPlayersNew::GetSimplifiedPath() co
 
 FString FRequest_EnvironmentGetEnvironmentMetricPlayersNew::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1224,7 +1224,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPurchases::GetSimplifiedPath() con
 
 FString FRequest_EnvironmentGetEnvironmentMetricPurchases::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 

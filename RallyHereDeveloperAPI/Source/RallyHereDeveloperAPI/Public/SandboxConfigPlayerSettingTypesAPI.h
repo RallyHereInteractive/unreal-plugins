@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -123,7 +123,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateSettingType
     typedef FDelegate_SandboxCreateSettingType Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -165,7 +165,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteSettingType
     typedef FDelegate_SandboxDeleteSettingType Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -210,7 +210,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullCreateSettingType
     typedef FDelegate_SandboxFullCreateSettingType Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullCreateSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -256,7 +256,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullDeleteSettingType
     typedef FDelegate_SandboxFullDeleteSettingType Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullDeleteSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -302,7 +302,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetSettingTypeForSandbox
     typedef FDelegate_SandboxFullGetSettingTypeForSandbox Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetSettingTypeForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -350,7 +350,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetSettingTypesForSandbox
     typedef FDelegate_SandboxFullGetSettingTypesForSandbox Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetSettingTypesForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -397,7 +397,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullUpdateSettingType
     typedef FDelegate_SandboxFullUpdateSettingType Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullUpdateSettingType(InRequest, InDelegate, Priority); }
 };
 
@@ -439,7 +439,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetSettingTypeForSandbox
     typedef FDelegate_SandboxGetSettingTypeForSandbox Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetSettingTypeForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -483,7 +483,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetSettingTypesForSandbox
     typedef FDelegate_SandboxGetSettingTypesForSandbox Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetSettingTypesForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -526,7 +526,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxUpdateSettingType
     typedef FDelegate_SandboxUpdateSettingType Delegate;
     typedef FSandboxConfigPlayerSettingTypesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxUpdateSettingType(InRequest, InDelegate, Priority); }
 };
 

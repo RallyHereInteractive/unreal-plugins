@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_Integration.h"
 #include "OnlineSubsystem.h"
 #include "RallyHereAPIHttpRequester.h"
@@ -117,7 +119,7 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
 	TEXT("rh.setclientid"),
 	TEXT("Set the client ID used to log into the RallyHere API, not specifying any id will clear the override and use the default id, and an empty id will override to not use an id"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{	
+		{
 			if (!FRallyHereIntegrationModule::IsAvailable())
 			{
 				Ar.Logf(TEXT("%s is not available"), *FRallyHereIntegrationModule::GetModuleName().ToString());
@@ -521,7 +523,7 @@ void URH_Integration::ResolveClientSecret()
 			return;
 		}
 	}
-	
+
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 

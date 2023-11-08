@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
@@ -37,7 +38,7 @@ void FRHDTW_Purge::Do()
 		return;
 	}
 	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
-	
+
 	ImGui::SetNextItemWidth(IMGUI_PURGE_TIME_INPUT_WIDTH);
 	ImGui::InputText("Suggested Purge Time (ISO8601 Format)", const_cast<char*>(SuggestedPurgeTimeInput.data()), SuggestedPurgeTimeInput.size());
 	ImGui::SameLine();
@@ -65,7 +66,7 @@ void FRHDTW_Purge::Do()
 						{
 							pRH_PurgeSubsystem->EnqueueMeForPurge(FRH_OnPurgeStatusUpdatedDelegate::CreateSP(SharedThis(this), &FRHDTW_Purge::HandleEnqueueMeForPurge, pLocalPlayerSubsystem->GetPlayerUuid()));
 						}
-						
+
 					}
 					else
 					{
@@ -94,7 +95,7 @@ void FRHDTW_Purge::Do()
 				}
 			}));
 	}
-	
+
 	ImGui::SameLine();
 	if (ImGui::Button("Dequeue Purge"))
 	{
@@ -114,9 +115,9 @@ void FRHDTW_Purge::Do()
 					}
 				}
 			}));
-		
+
 	}
-	
+
 	if (ImGui::Button("Refresh Purge Status"))
 	{
 		PurgeActionResult.Empty();

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -217,7 +219,7 @@ protected:
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr InstanceHealthPoller;
 
-	/** 
+	/**
 	 * @brief Sets the current active session
 	 * @param [in] Session to set as active session
 	 */

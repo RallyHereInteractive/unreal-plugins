@@ -1,4 +1,5 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "RallyHereEditor.h"
@@ -94,7 +95,7 @@ protected:
 	void OnCatalogUpdateLootResponse(const TSandboxUpdateLoot::Response& Resp);
 	void OnCatalogCreateLootResponse(const TSandboxCreateLoot::Response& Resp);
 	void OnCatalogDeleteLootResponse(const TSandboxDeleteLoot::Response& Resp);
-	
+
 	bool IsNewLoot;
 	bool IsDirty;
 	TSharedPtr<FRHAPI_DevLoot> Loot;

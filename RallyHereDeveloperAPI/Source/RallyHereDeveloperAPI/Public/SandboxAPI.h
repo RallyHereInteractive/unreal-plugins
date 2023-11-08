@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -99,7 +99,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateSandbox
     typedef FDelegate_CreateSandbox Delegate;
     typedef FSandboxAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -143,7 +143,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteSandbox
     typedef FDelegate_DeleteSandbox Delegate;
     typedef FSandboxAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -187,7 +187,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgProductSandbox
     typedef FDelegate_GetOrgProductSandbox Delegate;
     typedef FSandboxAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgProductSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -229,7 +229,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgProductSandboxes
     typedef FDelegate_GetOrgProductSandboxes Delegate;
     typedef FSandboxAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgProductSandboxes(InRequest, InDelegate, Priority); }
 };
 
@@ -274,7 +274,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_UpdateSandbox
     typedef FDelegate_UpdateSandbox Delegate;
     typedef FSandboxAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.UpdateSandbox(InRequest, InDelegate, Priority); }
 };
 
