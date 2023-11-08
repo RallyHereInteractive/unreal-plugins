@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_GameHostAdapter.h"
 
@@ -146,7 +148,7 @@ GameHostAdapterImporter::GameHostAdapterImporter()
 	*(void**)(&rallyhere_tick) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_tick"));
 	*(void**)(&rallyhere_on_allocated_callback) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_on_allocated_callback"));
 	*(void**)(&rallyhere_test_fake_allocation_response) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_test_fake_allocation_response"));
-	
+
 	*(void**)(&rallyhere_string_map_create) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_string_map_create"));
 	*(void**)(&rallyhere_string_map_destroy) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_string_map_destroy"));
 	*(void**)(&rallyhere_string_map_copy) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_string_map_copy"));
@@ -164,9 +166,9 @@ GameHostAdapterImporter::GameHostAdapterImporter()
 	*(void**)(&rallyhere_is_error) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_is_error"));
 	*(void**)(&rallyhere_is_cancelled) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_is_cancelled"));
 	*(void**)(&rallyhere_status_text) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_status_text"));
-	
+
 	*(void**)(&rallyhere_set_additional_info) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_set_additional_info"));
-	
+
 	*(void**)(&rallyhere_stats_gauge) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_stats_gauge"));
 	*(void**)(&rallyhere_stats_gauge_with_labels) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_stats_gauge_with_labels"));
 	*(void**)(&rallyhere_stats_base) = FPlatformProcess::GetDllExport(Handle, TEXT("rallyhere_stats_base"));
@@ -198,7 +200,7 @@ GameHostAdapterImporter::~GameHostAdapterImporter()
 	*(void**)(&rallyhere_string_map_get) = nullptr;
 	*(void**)(&rallyhere_string_map_set) = nullptr;
 	*(void**)(&rallyhere_string_map_setn) = nullptr;
-	
+
 	*(void**)(&rallyhere_ready) = nullptr;
 	*(void**)(&rallyhere_allocate) = nullptr;
 	*(void**)(&rallyhere_reserve) = nullptr;
@@ -208,13 +210,13 @@ GameHostAdapterImporter::~GameHostAdapterImporter()
 	*(void**)(&rallyhere_is_error) = nullptr;
 	*(void**)(&rallyhere_is_cancelled) = nullptr;
 	*(void**)(&rallyhere_status_text) = nullptr;
-	
+
 	*(void**)(&rallyhere_set_additional_info) = nullptr;
 
 	*(void**)(&rallyhere_stats_gauge) = nullptr;
 	*(void**)(&rallyhere_stats_gauge_with_labels) = nullptr;
 	*(void**)(&rallyhere_stats_base) = nullptr;
-	
+
 	FPlatformProcess::FreeDllHandle(Handle);
 	FSslModule& SslModule = FModuleManager::LoadModuleChecked<FSslModule>("SSL");
 	SslModule.GetSslManager().ShutdownSsl();

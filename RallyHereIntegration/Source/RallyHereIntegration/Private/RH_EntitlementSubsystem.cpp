@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_EntitlementSubsystem.h"
 
 #include "Engine/LocalPlayer.h"
@@ -97,8 +99,8 @@ void URH_EntitlementSubsystem::QueryStoreOffersById(const TArray<FString>& Offer
 {
 	if (IOnlineStoreV2Ptr Store = GetStoreSubsystem())
 	{
-		Store->QueryOffersById(*GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId().Get(), 
-			OfferIds, 
+		Store->QueryOffersById(*GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId().Get(),
+			OfferIds,
 			FOnQueryOnlineStoreOffersComplete::CreateUObject(this, &URH_EntitlementSubsystem::OnQueryStoreOffersById, Delegate)
 		);
 	}
@@ -139,7 +141,7 @@ IOnlineSubsystem* URH_EntitlementSubsystem::GetOSS() const
 		{
 			return nullptr;
 		}
-		
+
 		IOnlineSubsystem* oss = LPSS->GetOSS(EntitlementOSSName);
 		if (oss == nullptr)
 		{
@@ -204,4 +206,3 @@ FName URH_EntitlementSubsystem::GetEntitlementOSSName()
 	return EntitlementOSSName;
 }
 
-    	

@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RHDTW_Entitlements.h"
 #include "RH_LocalPlayerSubsystem.h"
@@ -72,7 +73,7 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 	}
 
 	ImGui::SameLine();
-	
+
 	if (ImGui::Button("Clear Saved Entitlement Results"))
 	{
 		ActionResult.Empty();
@@ -119,7 +120,7 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 		FString label;
 		if (result.GetStatus() == "FAILED")
 		{
-			label += FString::Printf(TEXT("Failed"));	
+			label += FString::Printf(TEXT("Failed"));
 		}
 		else if (result.GetRequestId().IsEmpty())
 		{

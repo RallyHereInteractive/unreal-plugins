@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_LocalPlayerPresenceSubsystem.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "OnlineSubsystem.h"
@@ -14,7 +16,7 @@ void URH_LocalPlayerPresenceSubsystem::Initialize()
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	Super::Initialize();
 	InitPropertiesWithDefaultValues();
-	
+
 	Poller = FRH_PollControl::CreateAutoPoller();
 }
 
@@ -45,7 +47,7 @@ void URH_LocalPlayerPresenceSubsystem::UpdatePlayerPresenceSelf(RallyHereAPI::FR
 			{
 				Poller->DeferPollTimer();
 			}
-		}), 
+		}),
 		FRH_GenericSuccessWithErrorDelegate(),
 		GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
 	);

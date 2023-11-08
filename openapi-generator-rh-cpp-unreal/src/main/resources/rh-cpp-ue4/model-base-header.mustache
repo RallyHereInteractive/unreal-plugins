@@ -1,6 +1,6 @@
 {{!
 Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-Copyright 2022 HiRez Studios
+Copyright 2022-2023 RallyHere Interactive
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -151,7 +151,7 @@ public:
     const FHttpResponsePtr& GetHttpResponse() const { return HttpResponse; }
 
     const FRequestMetadata GetRequestMetadata() const { return RequestMetadata; }
-    
+
     void SetJsonResponse(const TSharedPtr<FJsonValue>& InJsonValue) { ResponseJson = InJsonValue; }
     const TSharedPtr<FJsonValue>& GetJsonResponse() const { return ResponseJson; }
 

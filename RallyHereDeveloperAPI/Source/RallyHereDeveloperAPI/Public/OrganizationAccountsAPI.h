@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -127,7 +127,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateAccount
     typedef FDelegate_CreateAccount Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -168,7 +168,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateAccountOrgAssignment
     typedef FDelegate_CreateAccountOrgAssignment Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateAccountOrgAssignment(InRequest, InDelegate, Priority); }
 };
 
@@ -208,7 +208,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteAccount
     typedef FDelegate_DeleteAccount Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -250,7 +250,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteAccountFromOrgApi
     typedef FDelegate_DeleteAccountFromOrgApi Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteAccountFromOrgApi(InRequest, InDelegate, Priority); }
 };
 
@@ -290,7 +290,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAccount
     typedef FDelegate_GetAccount Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -330,7 +330,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountsInOrg
     typedef FDelegate_GetAccountsInOrg Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAccountsInOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -370,7 +370,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllAccounts
     typedef FDelegate_GetAllAccounts Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllAccounts(InRequest, InDelegate, Priority); }
 };
 
@@ -410,7 +410,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgsForAccounts
     typedef FDelegate_GetOrgsForAccounts Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgsForAccounts(InRequest, InDelegate, Priority); }
 };
 
@@ -448,7 +448,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ResendVerificationEmail
     typedef FDelegate_ResendVerificationEmail Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ResendVerificationEmail(InRequest, InDelegate, Priority); }
 };
 
@@ -489,7 +489,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_UpdateAccount
     typedef FDelegate_UpdateAccount Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.UpdateAccount(InRequest, InDelegate, Priority); }
 };
 
@@ -528,7 +528,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_UpdateAccountByUser
     typedef FDelegate_UpdateAccountByUser Delegate;
     typedef FOrganizationAccountsAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.UpdateAccountByUser(InRequest, InDelegate, Priority); }
 };
 

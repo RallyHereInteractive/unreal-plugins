@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_GameHostProviderGHA.h"
 #include "Async/TaskGraphInterfaces.h"
@@ -145,7 +147,7 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 		if (GameStats.Map.IsSet())
 		{
 			MapName = GameStats.Map.GetValue();
-			
+
 		}
 
 		FTCHARToUTF8 MapNameUTF8(*MapName);

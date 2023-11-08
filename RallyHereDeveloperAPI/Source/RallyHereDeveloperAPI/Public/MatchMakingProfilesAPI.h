@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -266,7 +266,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateEntry
     typedef FDelegate_OrgProductSandboxCreateEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -311,7 +311,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateProfile
     typedef FDelegate_OrgProductSandboxCreateProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -356,7 +356,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateProfileList
     typedef FDelegate_OrgProductSandboxCreateProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -391,7 +391,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteEntry : public
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -402,7 +402,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteEntry
     typedef FDelegate_OrgProductSandboxDeleteEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -436,7 +436,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteProfile : publ
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -447,7 +447,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteProfile
     typedef FDelegate_OrgProductSandboxDeleteProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -481,7 +481,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteProfileList : 
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -492,7 +492,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteProfileList
     typedef FDelegate_OrgProductSandboxDeleteProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -541,7 +541,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllEntries
     typedef FDelegate_OrgProductSandboxGetAllEntries Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllEntries(InRequest, InDelegate, Priority); }
 };
 
@@ -589,7 +589,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllProfileLists
     typedef FDelegate_OrgProductSandboxGetAllProfileLists Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllProfileLists(InRequest, InDelegate, Priority); }
 };
 
@@ -637,7 +637,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllProfiles
     typedef FDelegate_OrgProductSandboxGetAllProfiles Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllProfiles(InRequest, InDelegate, Priority); }
 };
 
@@ -683,7 +683,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetEntry
     typedef FDelegate_OrgProductSandboxGetEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -728,7 +728,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetProfile
     typedef FDelegate_OrgProductSandboxGetProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -773,7 +773,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetProfileList
     typedef FDelegate_OrgProductSandboxGetProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -820,7 +820,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchEntry
     typedef FDelegate_OrgProductSandboxPatchEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -866,7 +866,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchProfile
     typedef FDelegate_OrgProductSandboxPatchProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -912,7 +912,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchProfileList
     typedef FDelegate_OrgProductSandboxPatchProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -959,7 +959,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutEntry
     typedef FDelegate_OrgProductSandboxPutEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1005,7 +1005,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutProfile
     typedef FDelegate_OrgProductSandboxPutProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -1051,7 +1051,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutProfileList
     typedef FDelegate_OrgProductSandboxPutProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -1093,7 +1093,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateEntry
     typedef FDelegate_SandboxCreateEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1134,7 +1134,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateProfile
     typedef FDelegate_SandboxCreateProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -1175,7 +1175,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateProfileList
     typedef FDelegate_SandboxCreateProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -1206,7 +1206,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteEntry : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -1217,7 +1217,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteEntry
     typedef FDelegate_SandboxDeleteEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1247,7 +1247,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteProfile : public FRespon
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -1258,7 +1258,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteProfile
     typedef FDelegate_SandboxDeleteProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -1288,7 +1288,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteProfileList : public FRe
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -1299,7 +1299,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteProfileList
     typedef FDelegate_SandboxDeleteProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -1344,7 +1344,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllEntries
     typedef FDelegate_SandboxGetAllEntries Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllEntries(InRequest, InDelegate, Priority); }
 };
 
@@ -1388,7 +1388,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllProfileLists
     typedef FDelegate_SandboxGetAllProfileLists Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllProfileLists(InRequest, InDelegate, Priority); }
 };
 
@@ -1432,7 +1432,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllProfiles
     typedef FDelegate_SandboxGetAllProfiles Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllProfiles(InRequest, InDelegate, Priority); }
 };
 
@@ -1474,7 +1474,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetEntry
     typedef FDelegate_SandboxGetEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1515,7 +1515,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetProfile
     typedef FDelegate_SandboxGetProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -1556,7 +1556,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetProfileList
     typedef FDelegate_SandboxGetProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -1599,7 +1599,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchEntry
     typedef FDelegate_SandboxPatchEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1641,7 +1641,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchProfile
     typedef FDelegate_SandboxPatchProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -1683,7 +1683,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchProfileList
     typedef FDelegate_SandboxPatchProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchProfileList(InRequest, InDelegate, Priority); }
 };
 
@@ -1726,7 +1726,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutEntry
     typedef FDelegate_SandboxPutEntry Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutEntry(InRequest, InDelegate, Priority); }
 };
 
@@ -1768,7 +1768,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutProfile
     typedef FDelegate_SandboxPutProfile Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutProfile(InRequest, InDelegate, Priority); }
 };
 
@@ -1810,7 +1810,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutProfileList
     typedef FDelegate_SandboxPutProfileList Delegate;
     typedef FMatchMakingProfilesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutProfileList(InRequest, InDelegate, Priority); }
 };
 

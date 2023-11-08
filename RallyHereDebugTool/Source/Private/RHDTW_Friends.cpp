@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
@@ -180,7 +181,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 				}
 			}));
 	}
-	
+
 	if (!FriendActionResult.IsEmpty())
 	{
 		if (ImGui::CollapsingHeader("Friend Action Result", RH_DefaultTreeFlagsDefaultOpen))
@@ -188,7 +189,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 			ImGui::Text("%s", TCHAR_TO_UTF8(*FriendActionResult));
 		}
 	}
-	
+
 	ImGui::Separator();
 	FGuid LocalPlayerUuid = FGuid();
 	if (ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer())
@@ -201,7 +202,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 			LocalPlayerUuid = pLocalPlayerSubsystem->GetPlayerUuid();
 		}
 	}
-	
+
 	if (ImGui::BeginTable("RHFriendsTable", 5, RH_TableFlagsPropSizing))
 	{
 		// Header
@@ -220,7 +221,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 				continue;
 			}
 			ImGui::PushID(TCHAR_TO_UTF8(*fr->GetRHPlayerUuid().ToString()));
-			
+
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
 			FString DisplayName = fr->GetLastKnownDisplayName();
@@ -235,10 +236,10 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 					fr->GetLastKnownDisplayNameAsync();
 				}
 			}
-			
+
 			ImGui::TableNextColumn();
 			ImGuiDisplayShortenedCopyableUuid(fr->GetRHPlayerUuid());
-			
+
 			ImGui::TableNextColumn();
 			FString enumValue = RH_GETENUMSTRING("/Script/RallyHereIntegration", "FriendshipStatus", fr->GetStatus());
 			ImGui::Text("%s", TCHAR_TO_UTF8(*enumValue));
@@ -298,7 +299,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 		NumSelectedPlayers = pOwner->GetAllSelectedLocalPlayers().Num();
 		NumTargetedPlayers = pOwner->GetAllTargetedPlayerInfos().Num();
 	}
-	
+
 	ImGui::Text("For [%d] selected Local Players (with Controller Ids).", NumSelectedPlayers);
 	ImGui::Text("Actions towards [%d] targeted players:", NumTargetedPlayers);
 	if (ImGui::Button("Block Players"))
@@ -321,7 +322,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 			}
 		}));
 	}
-	
+
 	ImGui::SameLine();
 	if (ImGui::Button("Unblock Players"))
 	{
@@ -343,7 +344,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 			}
 		}));
 	}
-	
+
 	ImGui::SameLine();
 	if (ImGui::Button("Refresh Players"))
 	{
@@ -394,7 +395,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 				}
 			}));
 	}
-	
+
 	if (!BlockActionResult.IsEmpty())
 	{
 		if (ImGui::CollapsingHeader("Block Action Result", RH_DefaultTreeFlagsDefaultOpen))
@@ -402,7 +403,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 			ImGui::Text("%s", TCHAR_TO_UTF8(*BlockActionResult));
 		}
 	}
-	
+
 	ImGui::Separator();
 	FGuid LocalPlayerUuid = FGuid();
 	if (ULocalPlayer* pLocalPlayer = GetFirstSelectedLocalPlayer())
@@ -427,7 +428,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 		for (auto entry : pRH_FriendSubsystem->GetBlocked())
 		{
 			auto blockedUUID = entry;
-			
+
 			ImGui::PushID(TCHAR_TO_UTF8(*(blockedUUID.ToString())));
 
 			ImGui::TableNextRow();
@@ -468,7 +469,7 @@ void FRHDTW_Friends::DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsyste
 	auto* LPSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
 
 	URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = LPSubsystem ? LPSubsystem->GetPlayerInfoSubsystem() : nullptr;
-	
+
 
 	ImGui::SetNextItemWidth(300.f);
 	ImGui::InputText("Platform User ID look up", PlatformUserIdString.GetData(), PlatformUserIdString.Num());
@@ -494,7 +495,7 @@ void FRHDTW_Friends::DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsyste
 					break;
 				}
 			}
-			
+
 			if (!matchSearchTerm)
 			{
 				continue;
@@ -592,14 +593,14 @@ void FRHDTW_Friends::Do()
 		ImGui::Text("%s", "Please select a local player (has Controller Id) in Player Repository.");
 		return;
 	}
-	
+
 	const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
 	if (pRH_LocalPlayerSubsystem == nullptr)
 	{
 		ImGui::Text("%s", "RH_LocalPlayerSubsystem not available.");
 		return;
 	}
-	
+
 	URH_FriendSubsystem* pRH_FriendSubsystem = pRH_LocalPlayerSubsystem->GetFriendSubsystem();
 	if (pRH_FriendSubsystem == nullptr)
 	{

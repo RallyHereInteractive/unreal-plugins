@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_CatalogSubsystem.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -473,7 +475,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponse(const TGetCatalogVendor::R
 			VendorRequests[i].Delegate.ExecuteIfBound(true);
 			VendorRequests.RemoveAt(i);
 		}
-	}	
+	}
 
 	for (int32 SubVendorId : SubVendorsToRequest)
 	{
@@ -514,7 +516,7 @@ URH_CatalogItem* URH_CatalogSubsystem::ParseCatalogItem(const FRHAPI_Item& Catal
 	}
 
 	Item->InitializeFromCatalogItem(CatalogItem, ItemId);
-	
+
 	if (ItemAdded)
 	{
 		OnCatalogItemAdded.ExecuteIfBound(Item);
@@ -680,7 +682,7 @@ bool URH_CatalogBlueprintLibrary::GetUnitPrice(const TArray<FRHAPI_PriceBreakpoi
 }
 
 bool URH_CatalogBlueprintLibrary::IsCouponApplicableForItem(URH_CatalogItem* CouponItem, const FRHAPI_Loot& CatalogVendorItem)
-{ 
+{
 	return IsCouponApplicableForLootId(CouponItem, CatalogVendorItem.GetLootId());
 }
 
@@ -695,7 +697,7 @@ bool URH_CatalogBlueprintLibrary::IsCouponApplicableForLootId(URH_CatalogItem* C
 }
 
 int32 URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(URH_CatalogItem* CouponItem, int32 Price)
-{ 
+{
 	if (CouponItem != nullptr)
 	{
 		return FMath::CeilToInt(Price * (1.f - CouponItem->GetCouponDiscountPercentage()));
@@ -704,7 +706,7 @@ int32 URH_CatalogBlueprintLibrary::GetCouponDiscountedPrice(URH_CatalogItem* Cou
 	return Price;
 }
 
-int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(const FRHAPI_XpTable& XpTable, int32 XpLevel) 
+int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(const FRHAPI_XpTable& XpTable, int32 XpLevel)
 {
 	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
 	{
@@ -727,7 +729,7 @@ int64 URH_CatalogBlueprintLibrary::GetXpAtLevel(const FRHAPI_XpTable& XpTable, i
 	return INDEX_NONE;
 }
 
-int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(const FRHAPI_XpTable& XpTable, int64 XpPoints) 
+int32 URH_CatalogBlueprintLibrary::GetLevelAtXp(const FRHAPI_XpTable& XpTable, int64 XpPoints)
 {
 	if (const auto& Entries = XpTable.GetXpEntriesOrNull())
 	{
@@ -759,6 +761,6 @@ bool URH_CatalogBlueprintLibrary::GetVendorItemById(const FRHAPI_Vendor& Vendor,
 			}
 		}
 	}
-	
+
 	return false;
 }

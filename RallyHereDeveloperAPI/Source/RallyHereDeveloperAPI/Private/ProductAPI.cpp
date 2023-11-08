@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "ProductAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_CreateProduct::GetSimplifiedPath() const
 
 FString FRequest_CreateProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -254,7 +254,7 @@ FName FRequest_DeleteProduct::GetSimplifiedPath() const
 
 FString FRequest_DeleteProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -402,7 +402,7 @@ FName FRequest_GetOrgProduct::GetSimplifiedPath() const
 
 FString FRequest_GetOrgProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -547,7 +547,7 @@ FName FRequest_GetOrgProducts::GetSimplifiedPath() const
 
 FString FRequest_GetOrgProducts::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -691,7 +691,7 @@ FName FRequest_UpdateProduct::GetSimplifiedPath() const
 
 FString FRequest_UpdateProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };

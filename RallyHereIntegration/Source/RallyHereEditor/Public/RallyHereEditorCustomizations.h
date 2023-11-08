@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "CoreMinimal.h"
 #include "RallyHereEditor.h"
 #include "RallyHereDeveloperAPIAll.h"
@@ -16,7 +18,7 @@ protected:
 	FReply	OnEditManuallyClicked();
 
 	void WriteGuidToProperty(TSharedPtr<IPropertyHandle> GuidPropertyHandle, const FGuid& Guid);
-	
+
 	virtual void OnFriendlyNameSubmitted(const FString& FriendlyName) { }
 
 	TSharedPtr<class IPropertyHandle> IdPropertyHandle;

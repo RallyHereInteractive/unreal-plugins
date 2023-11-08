@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -68,14 +70,14 @@ class RALLYHEREINTEGRATION_API URH_PlatformSessionSyncer : public UObject
 	GENERATED_UCLASS_BODY()
 public:
 
-	/** 
-	* @brief Initialize the sycnrhonization object with a RallyHere session id and a session owner - requires that the owner contain that session 
+	/**
+	* @brief Initialize the sycnrhonization object with a RallyHere session id and a session owner - requires that the owner contain that session
 	* @param [in] InSessionId The Rally Here session id for which we are synchronizing state
 	* @param [in] InOwner Session owner interface for use in looking up the session and other information
 	* @return Whether initialization was successful.  If initialization was successful, Cleanup() must be called to properly clean up state
 	*/
 	bool Initialize(const FString& InSessionId, FRH_SessionOwnerPtr InOwner);
-	
+
 	/**
 	* @brief Clean up the synchronization object, typically used when the RallyHere session is expired
 	* @param [in] CompletionDelegate Delegate to call when cleanup is complete
@@ -87,13 +89,13 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
 	FORCEINLINE FString GetRHSessionId() const { return RHSessionId; }
-	
+
 	/**
 	* @brief Helper function to get the RallyHere session objcet from the session owner (based on the result of GetRHSessionId())
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
 	virtual URH_JoinedSession* GetRHSession() const;
-	
+
 	/**
 	* @brief Helper function to get the Platform Session Id from the RallyHere session object (based on the result of GetRHSession())
 	* @param [out] PlatformSessionId The platform session id to fill in
@@ -146,7 +148,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
 	virtual bool IsSynchronized() const { return CurrentSyncActionState == ESyncActionState::Synchronized; }
-	
+
 	/**
 	* @brief Whether this object is in the process of, or has completed, cleanup
 	*/
@@ -158,8 +160,8 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
 	virtual bool IsCleanupComplete() const { return CurrentSyncActionState == ESyncActionState::CleanupComplete; }
-	
-	/** 
+
+	/**
 	* @brief Static helper function to join a rally here session based off a platform session search result (received/accepted invites from the OSS typically come in the form of search results)
 	* @param [in] SessionOwner The session owner object to use when joining the session
 	* @param [in] Session The Platform Session Search Result to join
@@ -183,7 +185,7 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session")
 	virtual bool StartPlatformSession();
-	
+
 	/**
 	* @brief Marks the session as ended (note - asynchronous)
 	*/

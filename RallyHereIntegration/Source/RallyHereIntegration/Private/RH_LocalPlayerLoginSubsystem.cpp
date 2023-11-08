@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_LocalPlayerLoginSubsystem.h"
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "Misc/ConfigCacheIni.h"
@@ -149,7 +151,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 	if (LPSubsystem != nullptr && LPSubsystem->GetAnalyticsProvider().IsValid())
 	{
 		auto* AnalyticsProvider = LPSubsystem->GetAnalyticsProvider().Get();
-		
+
 		// use local player subsystem accessor for ease of use, rather than cracking auth context ourselves
 		FGuid PlayerUuid = LPSubsystem->GetPlayerUuid();
 		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));

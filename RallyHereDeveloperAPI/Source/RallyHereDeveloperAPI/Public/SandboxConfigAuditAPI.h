@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -81,7 +81,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAuditComparisonsForSandbox
     typedef FDelegate_SandboxGetAuditComparisonsForSandbox Delegate;
     typedef FSandboxConfigAuditAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAuditComparisonsForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -123,7 +123,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAuditForSandbox
     typedef FDelegate_SandboxGetAuditForSandbox Delegate;
     typedef FSandboxConfigAuditAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAuditForSandbox(InRequest, InDelegate, Priority); }
 };
 

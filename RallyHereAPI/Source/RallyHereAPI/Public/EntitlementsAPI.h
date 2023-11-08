@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -56,11 +56,11 @@ private:
 
 /* Process Platform Entitlement For Me
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
- * 
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.
+ *
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
- * 
- * Required Permissions: 
+ *
+ * Required Permissions:
  * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
@@ -118,11 +118,11 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
 
 /* Process Platform Entitlements By Player Uuid
  *
- * Process platform entitlements, consuming from the platform inventory where possible and generating orders.  
- * 
+ * Process platform entitlements, consuming from the platform inventory where possible and generating orders.
+ *
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
- * 
- * Required Permissions: 
+ *
+ * Required Permissions:
  * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
@@ -182,8 +182,8 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
 /* Retrieve Entitlements By Player Uuid
  *
  * Get the status of a platform entitlement request by request id.
- *     
- *     Required Permissions: 
+ *
+ *     Required Permissions:
  * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
@@ -243,8 +243,8 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
 /* Retrieve Entitlements For Me
  *
  * Get the status of a platform entitlement request by request id.
- *     
- *     Required Permissions: 
+ *
+ *     Required Permissions:
  * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */

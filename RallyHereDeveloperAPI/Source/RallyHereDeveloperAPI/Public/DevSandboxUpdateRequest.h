@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevSandboxUpdateRequest : public FRHAPI_DevModel

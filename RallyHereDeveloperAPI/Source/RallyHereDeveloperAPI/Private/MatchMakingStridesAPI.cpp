@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "MatchMakingStridesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateStride::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxCreateStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -411,7 +411,7 @@ FName FRequest_OrgProductSandboxDeleteStride::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -558,7 +558,7 @@ FName FRequest_OrgProductSandboxDeleteStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -706,7 +706,7 @@ FName FRequest_OrgProductSandboxGetAllStrideEntries::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllStrideEntries::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -865,7 +865,7 @@ FName FRequest_OrgProductSandboxGetAllStrides::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllStrides::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -1023,7 +1023,7 @@ FName FRequest_OrgProductSandboxGetStride::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1170,7 +1170,7 @@ FName FRequest_OrgProductSandboxGetStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1318,7 +1318,7 @@ FName FRequest_OrgProductSandboxPatchStride::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1476,7 +1476,7 @@ FName FRequest_OrgProductSandboxPatchStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1635,7 +1635,7 @@ FName FRequest_OrgProductSandboxPutStride::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1793,7 +1793,7 @@ FName FRequest_OrgProductSandboxPutStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1952,7 +1952,7 @@ FName FRequest_SandboxCreateStride::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -2107,7 +2107,7 @@ FName FRequest_SandboxCreateStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2263,7 +2263,7 @@ FName FRequest_SandboxDeleteStride::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2408,7 +2408,7 @@ FName FRequest_SandboxDeleteStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -2554,7 +2554,7 @@ FName FRequest_SandboxGetAllStrideEntries::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllStrideEntries::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2711,7 +2711,7 @@ FName FRequest_SandboxGetAllStrides::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllStrides::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -2867,7 +2867,7 @@ FName FRequest_SandboxGetStride::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3012,7 +3012,7 @@ FName FRequest_SandboxGetStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -3158,7 +3158,7 @@ FName FRequest_SandboxPatchStride::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3314,7 +3314,7 @@ FName FRequest_SandboxPatchStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -3471,7 +3471,7 @@ FName FRequest_SandboxPutStride::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3627,7 +3627,7 @@ FName FRequest_SandboxPutStrideEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("stride_id"), ToStringFormatArg(StrideId) },
         { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }

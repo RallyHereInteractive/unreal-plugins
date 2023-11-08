@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -137,7 +137,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateQueue
     typedef FDelegate_OrgProductSandboxCreateQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -171,7 +171,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteQueue : public
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -182,7 +182,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteQueue
     typedef FDelegate_OrgProductSandboxDeleteQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -230,7 +230,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllQueues
     typedef FDelegate_OrgProductSandboxGetAllQueues Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllQueues(InRequest, InDelegate, Priority); }
 };
 
@@ -275,7 +275,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetQueue
     typedef FDelegate_OrgProductSandboxGetQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -321,7 +321,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchQueue
     typedef FDelegate_OrgProductSandboxPatchQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -367,7 +367,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutQueue
     typedef FDelegate_OrgProductSandboxPutQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -408,7 +408,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateQueue
     typedef FDelegate_SandboxCreateQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -438,7 +438,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteQueue : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -449,7 +449,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteQueue
     typedef FDelegate_SandboxDeleteQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -493,7 +493,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllQueues
     typedef FDelegate_SandboxGetAllQueues Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllQueues(InRequest, InDelegate, Priority); }
 };
 
@@ -534,7 +534,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetQueue
     typedef FDelegate_SandboxGetQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -576,7 +576,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchQueue
     typedef FDelegate_SandboxPatchQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchQueue(InRequest, InDelegate, Priority); }
 };
 
@@ -618,7 +618,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutQueue
     typedef FDelegate_SandboxPutQueue Delegate;
     typedef FQueuesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutQueue(InRequest, InDelegate, Priority); }
 };
 

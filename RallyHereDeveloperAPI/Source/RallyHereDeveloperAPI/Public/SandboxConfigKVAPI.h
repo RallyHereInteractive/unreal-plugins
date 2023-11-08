@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -122,7 +122,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateKv
     typedef FDelegate_SandboxCreateKv Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateKv(InRequest, InDelegate, Priority); }
 };
 
@@ -164,7 +164,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteKv
     typedef FDelegate_SandboxDeleteKv Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteKv(InRequest, InDelegate, Priority); }
 };
 
@@ -209,7 +209,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullCreateKv
     typedef FDelegate_SandboxFullCreateKv Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullCreateKv(InRequest, InDelegate, Priority); }
 };
 
@@ -255,7 +255,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullDeleteKv
     typedef FDelegate_SandboxFullDeleteKv Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullDeleteKv(InRequest, InDelegate, Priority); }
 };
 
@@ -301,7 +301,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetKvForSandbox
     typedef FDelegate_SandboxFullGetKvForSandbox Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetKvForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -345,7 +345,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetKvsForSandbox
     typedef FDelegate_SandboxFullGetKvsForSandbox Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetKvsForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -392,7 +392,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullUpdateKv
     typedef FDelegate_SandboxFullUpdateKv Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullUpdateKv(InRequest, InDelegate, Priority); }
 };
 
@@ -434,7 +434,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetKvForSandbox
     typedef FDelegate_SandboxGetKvForSandbox Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetKvForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -474,7 +474,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetKvsForSandbox
     typedef FDelegate_SandboxGetKvsForSandbox Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetKvsForSandbox(InRequest, InDelegate, Priority); }
 };
 
@@ -517,7 +517,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxUpdateKv
     typedef FDelegate_SandboxUpdateKv Delegate;
     typedef FSandboxConfigKVAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxUpdateKv(InRequest, InDelegate, Priority); }
 };
 

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_PortalTokenDetailsGrantType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_PortalTokenDetailsGrantType& Value)
 {
-    static TMap<FString, ERHAPI_PortalTokenDetailsGrantType> StringToEnum = { 
+    static TMap<FString, ERHAPI_PortalTokenDetailsGrantType> StringToEnum = {
         { TEXT("ps4_v1"), ERHAPI_PortalTokenDetailsGrantType::PS4V1 },
         { TEXT("ps4_v3"), ERHAPI_PortalTokenDetailsGrantType::PS4V3 },
         { TEXT("ps5_v3"), ERHAPI_PortalTokenDetailsGrantType::PS5V3 },    };

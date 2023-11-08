@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 // Can't be #pragma once because other modules may define PACKAGE_SCOPE
 
 // Intended to be the last include in an exported class definition

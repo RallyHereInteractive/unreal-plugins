@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "BlockedV1API.h"
@@ -96,7 +96,7 @@ FName FRequest_Block::GetSimplifiedPath() const
 
 FString FRequest_Block::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -275,7 +275,7 @@ FName FRequest_GetBlocked::GetSimplifiedPath() const
 
 FString FRequest_GetBlocked::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -454,7 +454,7 @@ FName FRequest_GetBlockedListForPlayer::GetSimplifiedPath() const
 
 FString FRequest_GetBlockedListForPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -687,7 +687,7 @@ FName FRequest_Unblock::GetSimplifiedPath() const
 
 FString FRequest_Unblock::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };

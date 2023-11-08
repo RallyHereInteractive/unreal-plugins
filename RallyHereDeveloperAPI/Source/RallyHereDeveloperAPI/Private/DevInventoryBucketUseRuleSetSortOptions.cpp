@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_DevInventoryBucketUseRuleSetSortOptions& Value
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevInventoryBucketUseRuleSetSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevInventoryBucketUseRuleSetSortOptions> StringToEnum = { 
+    static TMap<FString, ERHAPI_DevInventoryBucketUseRuleSetSortOptions> StringToEnum = {
         { TEXT("rule_set_id"), ERHAPI_DevInventoryBucketUseRuleSetSortOptions::InventoryBucketUseRuleSetId },
         { TEXT("legacy_inventory_bucket_use_rule_set_id"), ERHAPI_DevInventoryBucketUseRuleSetSortOptions::LegacyInventoryBucketUseRuleSetId },
         { TEXT("name"), ERHAPI_DevInventoryBucketUseRuleSetSortOptions::Name },

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_DevIntegration.h"
 #include "RallyHereDeveloperAPIHttpRequester.h"
 #include "RallyHereEditor.h"
@@ -112,7 +114,7 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetClientId(
 	TEXT("rh.dev.setclientid"),
 	TEXT("Set the client ID used to log into the RallyHere API"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
-		{	
+		{
 			if (!FRallyHereEditorModule::IsAvailable())
 			{
 				Ar.Logf(TEXT("%s is not available"), *FRallyHereEditorModule::GetModuleName().ToString());
@@ -180,7 +182,7 @@ void URH_DevIntegration::Initialize()
 	// Go ahead and load a base URL in case one was passed through at startup
 	ResolveBaseURL();
 
-	
+
 	WebRequestTracker = NewObject<URH_DevWebRequests>(this);
 	WebRequestTracker->Initialize(&APIs);
 }
@@ -188,7 +190,7 @@ void URH_DevIntegration::Initialize()
 void URH_DevIntegration::Uninitialize()
 {
 	UE_LOG(LogRallyHereEditor, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	
+
 	WebRequestTracker->Uninitialize();
 	WebRequestTracker = nullptr;
 
@@ -375,7 +377,7 @@ void URH_DevIntegration::ResolveClientId()
 		SetClientId(Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId())->ClientId, TEXT("INI: RH_DevIntegrationSettings - ClientId"));
 		return;
 	}
-	
+
 	UE_LOG(LogRallyHereEditor, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
@@ -438,6 +440,6 @@ void URH_DevIntegration::ResolveClientSecret()
 		SetClientSecret(Settings->GetSandboxConfiguration(FRallyHereEditorModule::Get().GetSandboxId())->ClientSecret, TEXT("INI: RH_DevIntegrationSettings - ClientSecret"));
 		return;
 	}
-	
+
 	UE_LOG(LogRallyHereEditor, Warning, TEXT("[%s] Could not find a client secret"), ANSI_TO_TCHAR(__FUNCTION__));
 }

@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -104,7 +104,7 @@ FString EnumToString(const ERHAPI_DevLegacyGameBit& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevLegacyGameBit& Value)
 {
-    static TMap<FString, ERHAPI_DevLegacyGameBit> StringToEnum = { 
+    static TMap<FString, ERHAPI_DevLegacyGameBit> StringToEnum = {
         { TEXT("DISABLE_FTP"), ERHAPI_DevLegacyGameBit::DisableFtp },
         { TEXT("SERVICE_MODE"), ERHAPI_DevLegacyGameBit::ServiceMode },
         { TEXT("DISABLE_PRIVATE_PROFILE"), ERHAPI_DevLegacyGameBit::DisablePrivateProfile },

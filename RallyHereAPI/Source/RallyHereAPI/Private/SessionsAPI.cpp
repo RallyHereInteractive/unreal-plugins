@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "SessionsAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
 
 FString FRequest_AddPlatformSessionToRallyHereSession::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
@@ -332,7 +332,7 @@ FName FRequest_CreateInstanceRequest::GetSimplifiedPath() const
 
 FString FRequest_CreateInstanceRequest::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -673,7 +673,7 @@ FName FRequest_CreateSessionEvent::GetSimplifiedPath() const
 
 FString FRequest_CreateSessionEvent::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -854,7 +854,7 @@ FName FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
 
 FString FRequest_DeleteBrowserInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -1011,7 +1011,7 @@ FName FRequest_DeletePlatformSessionFromRallyHereSession::GetSimplifiedPath() co
 
 FString FRequest_DeletePlatformSessionFromRallyHereSession::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
@@ -1208,7 +1208,7 @@ FName FRequest_EndInstance::GetSimplifiedPath() const
 
 FString FRequest_EndInstance::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -1399,7 +1399,7 @@ FName FRequest_EndMatch::GetSimplifiedPath() const
 
 FString FRequest_EndMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -2129,7 +2129,7 @@ FName FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
 
 FString FRequest_GetPlatformSessionInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) }
     };
@@ -2340,7 +2340,7 @@ FName FRequest_GetPlayerSessions::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerSessions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -2502,7 +2502,7 @@ FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerSessionsByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -2704,7 +2704,7 @@ FName FRequest_GetPlayerSessionsByUuidV2::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerSessionsByUuidV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -3103,7 +3103,7 @@ FName FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
 
 FString FRequest_GetSessionByAllocationId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("allocation_id"), ToStringFormatArg(AllocationId) }
     };
 
@@ -3305,7 +3305,7 @@ FName FRequest_GetSessionById::GetSimplifiedPath() const
 
 FString FRequest_GetSessionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -3515,7 +3515,7 @@ FName FRequest_GetSessionEvents::GetSimplifiedPath() const
 
 FString FRequest_GetSessionEvents::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -3689,7 +3689,7 @@ FName FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
 
 FString FRequest_GetSessionTemplateByType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_type"), ToStringFormatArg(SessionType) }
     };
 
@@ -3891,7 +3891,7 @@ FName FRequest_InstanceHealthCheck::GetSimplifiedPath() const
 
 FString FRequest_InstanceHealthCheck::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -4213,7 +4213,7 @@ FName FRequest_JoinQueue::GetSimplifiedPath() const
 
 FString FRequest_JoinQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -4386,7 +4386,7 @@ FName FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_JoinSessionByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -4601,7 +4601,7 @@ FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 
 FString FRequest_JoinSessionByPlatformSessionByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("platform"), ToStringFormatArg(Platform) }
@@ -4848,7 +4848,7 @@ FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
 
 FString FRequest_JoinSessionByPlatformSessionIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
@@ -5086,7 +5086,7 @@ FName FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
 
 FString FRequest_KickPlayerFromSessionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
@@ -5252,7 +5252,7 @@ FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
 
 FString FRequest_KickPlayerFromSessionByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -5452,7 +5452,7 @@ FName FRequest_KickPlayerFromSessionByUuidV2::GetSimplifiedPath() const
 
 FString FRequest_KickPlayerFromSessionByUuidV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -5652,7 +5652,7 @@ FName FRequest_LeaveQueue::GetSimplifiedPath() const
 
 FString FRequest_LeaveQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -5817,7 +5817,7 @@ FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_LeaveSessionByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -5982,7 +5982,7 @@ FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 
 FString FRequest_LeaveSessionByPlatformSessionByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
@@ -6171,7 +6171,7 @@ FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
 
 FString FRequest_LeaveSessionByPlatformSessionSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
@@ -6359,7 +6359,7 @@ FName FRequest_PostBrowserInfo::GetSimplifiedPath() const
 
 FString FRequest_PostBrowserInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -6540,7 +6540,7 @@ FName FRequest_ReportFubar::GetSimplifiedPath() const
 
 FString FRequest_ReportFubar::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -6713,7 +6713,7 @@ FName FRequest_StartMatch::GetSimplifiedPath() const
 
 FString FRequest_StartMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -6886,7 +6886,7 @@ FName FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
 
 FString FRequest_UpdateBrowserInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7059,7 +7059,7 @@ FName FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
 
 FString FRequest_UpdateInstanceInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7232,7 +7232,7 @@ FName FRequest_UpdateMatchInfo::GetSimplifiedPath() const
 
 FString FRequest_UpdateMatchInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7405,7 +7405,7 @@ FName FRequest_UpdateSessionById::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7612,7 +7612,7 @@ FName FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionPlayerById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
@@ -7794,7 +7794,7 @@ FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionPlayerByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -8010,7 +8010,7 @@ FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionPlayerByUuidV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };

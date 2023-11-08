@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -80,17 +80,17 @@ USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_AuthContext
 {
 	GENERATED_BODY()
-	
+
 	UPROPERTY()
 	int32 Dummy;
-	
+
 	FAuthContextPtr AuthContext;
-	
+
 	FRHAPI_AuthContext()
 		: Dummy(0)
 		, AuthContext(nullptr)
 	{}
-	
+
 	FRHAPI_AuthContext(const FAuthContextPtr& InAuthContext)
 		: Dummy(0)
 		, AuthContext(InAuthContext)

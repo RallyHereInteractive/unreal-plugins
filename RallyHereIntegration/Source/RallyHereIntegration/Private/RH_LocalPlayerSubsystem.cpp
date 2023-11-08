@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_IntegrationSettings.h"
@@ -295,7 +297,7 @@ URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
 
 FRH_PlayerPlatformId URH_LocalPlayerSubsystem::GetPlayerPlatformId() const
 {
-	// #RHTODO: Consider making this use the PlayerInfo for the local player instead, 
+	// #RHTODO: Consider making this use the PlayerInfo for the local player instead,
 	//          though we will need to make sure the platform id is setup upon login.
 	if (IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
 	{
@@ -334,7 +336,7 @@ IOnlineSubsystem* URH_LocalPlayerSubsystem::GetOSS(const FName& SubsystemName) c
                 return FoundOSS;
             }
         }
-    	
+
         return DefaultOSS;
     }
 

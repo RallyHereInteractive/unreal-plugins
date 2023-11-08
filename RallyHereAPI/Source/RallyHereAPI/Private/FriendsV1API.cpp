@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "FriendsV1API.h"
@@ -96,7 +96,7 @@ FName FRequest_AddFriend::GetSimplifiedPath() const
 
 FString FRequest_AddFriend::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -332,7 +332,7 @@ FName FRequest_AddNotes::GetSimplifiedPath() const
 
 FString FRequest_AddNotes::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -562,7 +562,7 @@ FName FRequest_DeleteFriend::GetSimplifiedPath() const
 
 FString FRequest_DeleteFriend::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -779,7 +779,7 @@ FName FRequest_DeleteFriends::GetSimplifiedPath() const
 
 FString FRequest_DeleteFriends::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -963,7 +963,7 @@ FName FRequest_DeleteNotes::GetSimplifiedPath() const
 
 FString FRequest_DeleteNotes::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -1143,7 +1143,7 @@ FName FRequest_GetFriendRelationship::GetSimplifiedPath() const
 
 FString FRequest_GetFriendRelationship::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("other_player_id"), ToStringFormatArg(OtherPlayerId) }
     };
@@ -1365,7 +1365,7 @@ FName FRequest_GetFriendsListForPlayer::GetSimplifiedPath() const
 
 FString FRequest_GetFriendsListForPlayer::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 

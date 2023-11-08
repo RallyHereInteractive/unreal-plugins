@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "PermissionsAPI.h"
@@ -232,7 +232,7 @@ FName FRequest_GetPermissionById::GetSimplifiedPath() const
 
 FString FRequest_GetPermissionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
     };
 

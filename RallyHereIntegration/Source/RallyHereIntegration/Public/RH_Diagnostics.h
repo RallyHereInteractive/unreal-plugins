@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -259,14 +261,14 @@ public:
 	* @brief Safely tears down the system.
 	*/
 	void Uninitialize();
-	
+
 	/**
 	* @brief Clears the diagnostics cache
 	*/
 	void ClearCache()
 	{
 	}
-	
+
 	/**
 	 * @brief Delegate to bind to to add extra custom data to the diagnostic report.
 	 */

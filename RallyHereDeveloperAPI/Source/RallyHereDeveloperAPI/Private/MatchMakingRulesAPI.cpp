@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "MatchMakingRulesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateRule::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxDeleteRule::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -400,7 +400,7 @@ FName FRequest_OrgProductSandboxGetAllRules::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllRules::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -558,7 +558,7 @@ FName FRequest_OrgProductSandboxGetRule::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -705,7 +705,7 @@ FName FRequest_OrgProductSandboxPatchRule::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -863,7 +863,7 @@ FName FRequest_OrgProductSandboxPutRule::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1021,7 +1021,7 @@ FName FRequest_SandboxCreateRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1176,7 +1176,7 @@ FName FRequest_SandboxDeleteRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1321,7 +1321,7 @@ FName FRequest_SandboxGetAllRules::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllRules::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1477,7 +1477,7 @@ FName FRequest_SandboxGetRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1622,7 +1622,7 @@ FName FRequest_SandboxPatchRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1778,7 +1778,7 @@ FName FRequest_SandboxPutRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };

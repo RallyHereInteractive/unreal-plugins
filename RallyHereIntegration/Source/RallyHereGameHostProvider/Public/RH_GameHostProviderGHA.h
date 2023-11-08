@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -19,8 +21,8 @@ class RALLYHEREGAMEHOSTPROVIDER_API FRH_GameHostProviderGHA : public IRH_GameHos
 public:
 	FRH_GameHostProviderGHA(const FString& Commandline);
 
-	/** 
-	* @brief Static accessor to check if GameHostAdapter library is loaded and availabile - note will attempt to load the library 
+	/**
+	* @brief Static accessor to check if GameHostAdapter library is loaded and availabile - note will attempt to load the library
 	* @return whether or not the library is loaded and available for Create() calls
 	*/
 	static bool IsAvailable();

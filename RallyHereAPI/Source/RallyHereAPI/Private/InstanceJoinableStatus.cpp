@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_InstanceJoinableStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceJoinableStatus& Value)
 {
-    static TMap<FString, ERHAPI_InstanceJoinableStatus> StringToEnum = { 
+    static TMap<FString, ERHAPI_InstanceJoinableStatus> StringToEnum = {
         { TEXT("requested"), ERHAPI_InstanceJoinableStatus::Requested },
         { TEXT("allocated"), ERHAPI_InstanceJoinableStatus::Allocated },
         { TEXT("pending"), ERHAPI_InstanceJoinableStatus::Pending },

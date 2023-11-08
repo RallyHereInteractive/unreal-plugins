@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "RH_DebugToolWindow.h"
@@ -24,4 +26,3 @@ private:
 	void HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2> PlayerRankingInfo, FGuid PlayerUuid);
 	FString UpdateRankingActionResult;
 };
-

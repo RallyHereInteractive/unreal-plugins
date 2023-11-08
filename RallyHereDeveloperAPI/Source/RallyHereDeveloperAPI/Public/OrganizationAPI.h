@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -95,7 +95,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateOrg
     typedef FDelegate_CreateOrg Delegate;
     typedef FOrganizationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -135,7 +135,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteOrg
     typedef FDelegate_DeleteOrg Delegate;
     typedef FOrganizationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -173,7 +173,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllOrgs
     typedef FDelegate_GetAllOrgs Delegate;
     typedef FOrganizationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAllOrgs(InRequest, InDelegate, Priority); }
 };
 
@@ -213,7 +213,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrg
     typedef FDelegate_GetOrg Delegate;
     typedef FOrganizationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrg(InRequest, InDelegate, Priority); }
 };
 
@@ -254,7 +254,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_UpdateOrg
     typedef FDelegate_UpdateOrg Delegate;
     typedef FOrganizationAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.UpdateOrg(InRequest, InDelegate, Priority); }
 };
 

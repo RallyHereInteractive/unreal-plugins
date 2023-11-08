@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "Async/TaskGraphInterfaces.h"
@@ -574,7 +576,7 @@ protected:
 	URH_CatalogItem* ParseCatalogItem(const FRHAPI_Item& CatalogItem, int32 ItemId);
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	virtual void InitPropertiesWithDefaultValues();
-	
+
 	// FTickableGameObject interface
 	/** @brief Kick off pending requests to the API layer. */
 	virtual void Tick(float DeltaTime);

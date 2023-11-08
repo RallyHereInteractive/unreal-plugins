@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "PoliciesAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductCreatePolicy::GetSimplifiedPath() const
 
 FString FRequest_OrgProductCreatePolicy::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -258,7 +258,7 @@ FName FRequest_OrgProductDeletePolicyById::GetSimplifiedPath() const
 
 FString FRequest_OrgProductDeletePolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
@@ -410,7 +410,7 @@ FName FRequest_OrgProductGetAllPolicies::GetSimplifiedPath() const
 
 FString FRequest_OrgProductGetAllPolicies::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -558,7 +558,7 @@ FName FRequest_OrgProductGetPolicyById::GetSimplifiedPath() const
 
 FString FRequest_OrgProductGetPolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
@@ -710,7 +710,7 @@ FName FRequest_OrgProductUpdatePolicyById::GetSimplifiedPath() const
 
 FString FRequest_OrgProductUpdatePolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
@@ -873,7 +873,7 @@ FName FRequest_ProductCreatePolicy::GetSimplifiedPath() const
 
 FString FRequest_ProductCreatePolicy::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
 
@@ -1034,7 +1034,7 @@ FName FRequest_ProductDeletePolicyById::GetSimplifiedPath() const
 
 FString FRequest_ProductDeletePolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1185,7 +1185,7 @@ FName FRequest_ProductGetAllPolicies::GetSimplifiedPath() const
 
 FString FRequest_ProductGetAllPolicies::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
 
@@ -1332,7 +1332,7 @@ FName FRequest_ProductGetPolicyById::GetSimplifiedPath() const
 
 FString FRequest_ProductGetPolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1483,7 +1483,7 @@ FName FRequest_ProductUpdatePolicyById::GetSimplifiedPath() const
 
 FString FRequest_ProductUpdatePolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };

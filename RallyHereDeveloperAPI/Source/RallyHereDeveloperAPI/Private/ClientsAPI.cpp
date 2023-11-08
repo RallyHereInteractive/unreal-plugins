@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "ClientsAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductCreateClient::GetSimplifiedPath() const
 
 FString FRequest_OrgProductCreateClient::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -255,7 +255,7 @@ FName FRequest_OrgProductDeleteClientById::GetSimplifiedPath() const
 
 FString FRequest_OrgProductDeleteClientById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("client_id"), ToStringFormatArg(ClientId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
@@ -407,7 +407,7 @@ FName FRequest_OrgProductGetAllClients::GetSimplifiedPath() const
 
 FString FRequest_OrgProductGetAllClients::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -555,7 +555,7 @@ FName FRequest_OrgProductGetClientById::GetSimplifiedPath() const
 
 FString FRequest_OrgProductGetClientById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("client_id"), ToStringFormatArg(ClientId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
@@ -704,7 +704,7 @@ FName FRequest_OrgProductUpdateClientById::GetSimplifiedPath() const
 
 FString FRequest_OrgProductUpdateClientById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("client_id"), ToStringFormatArg(ClientId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
@@ -867,7 +867,7 @@ FName FRequest_ProductCreateClient::GetSimplifiedPath() const
 
 FString FRequest_ProductCreateClient::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
 
@@ -1025,7 +1025,7 @@ FName FRequest_ProductDeleteClientById::GetSimplifiedPath() const
 
 FString FRequest_ProductDeleteClientById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("client_id"), ToStringFormatArg(ClientId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1176,7 +1176,7 @@ FName FRequest_ProductGetAllClients::GetSimplifiedPath() const
 
 FString FRequest_ProductGetAllClients::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
 
@@ -1323,7 +1323,7 @@ FName FRequest_ProductGetClientById::GetSimplifiedPath() const
 
 FString FRequest_ProductGetClientById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("client_id"), ToStringFormatArg(ClientId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1471,7 +1471,7 @@ FName FRequest_ProductUpdateClientById::GetSimplifiedPath() const
 
 FString FRequest_ProductUpdateClientById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("client_id"), ToStringFormatArg(ClientId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };

@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -177,7 +179,7 @@ public:
 	 */
 	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString>& ETag = TOptional<FString>()) {}
 
-	
+
 	/**
 	 * @brief Gets the PlayerInfo Subsystem.
 	 */

@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RHDTW_Session.h"
@@ -161,7 +162,7 @@ void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_S
 void FRHDTW_Session::ImGuiDisplayMatch(const FRHAPI_MatchInfo& Info)
 {
 	const FString HeaderString = FString::Printf(TEXT("Match ID: %s"), *Info.MatchId);
-	
+
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlagsDefaultOpen))
 	{
 		ImGuiDisplayCopyableValue(TEXT("Id"), Info.MatchId);
@@ -205,14 +206,14 @@ void FRHDTW_Session::ImGuiDisplaySessionPlayer(URH_SessionView* RHSession, const
 			{
 				NewTeamId = FMath::Max(NewTeamId, 0);
 				RHJoinedSession->ChangePlayerTeam(Player.PlayerUuid, NewTeamId);
-			}			
+			}
 		}
 		ImGuiDisplayCopyableValue(TEXT("PlayerUuid"), Player.PlayerUuid);
 
 		ImGui::Text("Status: %s", TCHAR_TO_UTF8(*EnumToString(Player.Status)));
 
 		ImGuiDisplayCopyableValue(TEXT("Inviting Player Uuid"), Player.GetInvitingPlayerUuidOrNull());
-		
+
 		ImGuiDisplayCopyableValue(TEXT("Version"), Player.GetVersion());
 		ImGuiDisplayCopyableValue(TEXT("Invited"), Player.GetInvitedOrNull());
 		ImGuiDisplayCopyableValue(TEXT("Joined"), Player.GetJoinedOrNull());
@@ -369,7 +370,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					auto JoinDetails = URH_OnlineSession::GetJoinDetailDefaults(pLPSessionSubsystem);
 					JoinDetails.SetTeamId(JoinByIdTeam);
 
-					
+
 
 					if (ImGui::Button("Join"))
 					{
@@ -537,7 +538,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		{
 			RHJoinedSession->StartMatch(FRH_OnSessionUpdatedDelegate());
 		}
-		
+
 		if (ImGui::TreeNodeEx("MatchMaking", RH_DefaultTreeFlags))
 		{
 			if (const auto MatchMaking = Session.GetMatchmakingOrNull())
@@ -728,7 +729,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					}
 				}
 			}
-			
+
 
 			ImGui::TreePop();
 		}
@@ -747,7 +748,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				FRHAPI_SessionUpdate SessionUpdate;
 
 				TMap<FString, FString> CustomData;
-				SessionCustomDataStager.GetCustomDataMap(CustomData);				
+				SessionCustomDataStager.GetCustomDataMap(CustomData);
 				SessionUpdate.SetCustomData(CustomData);
 
 				RHJoinedSession->UpdateSessionInfo(SessionUpdate);
@@ -828,7 +829,7 @@ void FRHDTW_Session::ImGuiDisplayLocalPlayerSessions(URH_GameInstanceSubsystem* 
 		{
 			Templates = firstLPSessionSS->GetTemplates();
 		}
-		
+
 		for (auto& Template : Templates)
 		{
 			bool bIsSelected = SelectedTemplateName == Template.SessionType;
@@ -1211,7 +1212,7 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 							}
 						}
 
-						
+
 						ImGuiDisplayCopyableValue(TEXT("Player Count"), SessionInfo.GetPlayerCountOrNull());
 						ImGuiDisplayCopyableValue(TEXT("Max Player Count"), SessionInfo.GetMaxPlayerCountOrNull());
 
@@ -1395,8 +1396,8 @@ void FRHDTW_Session::ImGuiDisplayQueue(const URH_MatchmakingQueueInfo* Queue, UR
 
 		ImGuiDisplayCustomData(QueueInfo.GetLegacyConfigOrNull(), TEXT(""), TEXT("LegacyConfig"));
 
-		ImGuiDisplayCopyableValue(TEXT("MatchMakingTemplateGroupId"), QueueInfo.GetMatchMakingTemplateGroupId());		
-		
+		ImGuiDisplayCopyableValue(TEXT("MatchMakingTemplateGroupId"), QueueInfo.GetMatchMakingTemplateGroupId());
+
 		if (pBrowerCache != nullptr)
 		{
 			auto* TemplateGroup = pBrowerCache->GetMatchmakingTemplateGroup(QueueInfo.GetMatchMakingTemplateGroupId());

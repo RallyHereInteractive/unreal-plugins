@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "MapsAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_OrgProductSandboxCreateMap::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -253,7 +253,7 @@ FName FRequest_OrgProductSandboxCreateMapSelectionListEntry::GetSimplifiedPath()
 
 FString FRequest_OrgProductSandboxCreateMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -411,7 +411,7 @@ FName FRequest_OrgProductSandboxCreateSelectionList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxCreateSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -568,7 +568,7 @@ FName FRequest_OrgProductSandboxDeleteMap::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxDeleteMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -715,7 +715,7 @@ FName FRequest_OrgProductSandboxDeleteMapSelectionList::GetSimplifiedPath() cons
 
 FString FRequest_OrgProductSandboxDeleteMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -862,7 +862,7 @@ FName FRequest_OrgProductSandboxDeleteMapSelectionListEntry::GetSimplifiedPath()
 
 FString FRequest_OrgProductSandboxDeleteMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1010,7 +1010,7 @@ FName FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList
 
 FString FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1169,7 +1169,7 @@ FName FRequest_OrgProductSandboxGetAllMapSelectionLists::GetSimplifiedPath() con
 
 FString FRequest_OrgProductSandboxGetAllMapSelectionLists::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -1327,7 +1327,7 @@ FName FRequest_OrgProductSandboxGetAllMaps::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetAllMaps::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -1485,7 +1485,7 @@ FName FRequest_OrgProductSandboxGetMap::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1632,7 +1632,7 @@ FName FRequest_OrgProductSandboxGetMapSelectionList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxGetMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -1779,7 +1779,7 @@ FName FRequest_OrgProductSandboxGetMapSelectionListEntry::GetSimplifiedPath() co
 
 FString FRequest_OrgProductSandboxGetMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -1927,7 +1927,7 @@ FName FRequest_OrgProductSandboxPatchMap::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2085,7 +2085,7 @@ FName FRequest_OrgProductSandboxPatchSelectionList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPatchSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2243,7 +2243,7 @@ FName FRequest_OrgProductSandboxPatchSelectionListEntry::GetSimplifiedPath() con
 
 FString FRequest_OrgProductSandboxPatchSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -2402,7 +2402,7 @@ FName FRequest_OrgProductSandboxPutMap::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2560,7 +2560,7 @@ FName FRequest_OrgProductSandboxPutSelectionList::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
@@ -2718,7 +2718,7 @@ FName FRequest_OrgProductSandboxPutSelectionListEntry::GetSimplifiedPath() const
 
 FString FRequest_OrgProductSandboxPutSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
@@ -2877,7 +2877,7 @@ FName FRequest_SandboxCreateMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3032,7 +3032,7 @@ FName FRequest_SandboxCreateMapSelectionListEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3188,7 +3188,7 @@ FName FRequest_SandboxCreateSelectionList::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3343,7 +3343,7 @@ FName FRequest_SandboxDeleteMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3488,7 +3488,7 @@ FName FRequest_SandboxDeleteMapSelectionList::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3633,7 +3633,7 @@ FName FRequest_SandboxDeleteMapSelectionListEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -3779,7 +3779,7 @@ FName FRequest_SandboxGetAllMapSelectionListEntriesForMapSelectionList::GetSimpl
 
 FString FRequest_SandboxGetAllMapSelectionListEntriesForMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3936,7 +3936,7 @@ FName FRequest_SandboxGetAllMapSelectionLists::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllMapSelectionLists::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4092,7 +4092,7 @@ FName FRequest_SandboxGetAllMaps::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllMaps::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4248,7 +4248,7 @@ FName FRequest_SandboxGetMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4393,7 +4393,7 @@ FName FRequest_SandboxGetMapSelectionList::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4538,7 +4538,7 @@ FName FRequest_SandboxGetMapSelectionListEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -4684,7 +4684,7 @@ FName FRequest_SandboxPatchMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4840,7 +4840,7 @@ FName FRequest_SandboxPatchSelectionList::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4996,7 +4996,7 @@ FName FRequest_SandboxPatchSelectionListEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -5153,7 +5153,7 @@ FName FRequest_SandboxPutMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5309,7 +5309,7 @@ FName FRequest_SandboxPutSelectionList::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5465,7 +5465,7 @@ FName FRequest_SandboxPutSelectionListEntry::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }

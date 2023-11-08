@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -77,7 +79,7 @@ public:
 	/** @brief How often to log progress on the finalizer poll (number of polls between logs) */
 	UPROPERTY(EditAnywhere, Config, Category = "Session|Bootstrapping Finalizer")
 	int32 PollLogIntervalFinalizer;
-	
+
 	/** @brief Maximum number of polls on the finalizer before it is determined to be a failure */
 	UPROPERTY(EditAnywhere, Config, Category = "Session|Bootstrapping Finalizer")
 	int32 MaxPollCountFinalizer;
@@ -395,13 +397,13 @@ public:
 	* @brief What stat id to use to report for the tick
 	*/
 	virtual TStatId GetStatId() const override;
-	
+
 public:
 	/**
 	* @brief Provides the auth context this bootstrapper owns
 	*/
 	virtual FAuthContextPtr GetAuthContext() const { return AuthContext; };
-	
+
 	/** @brief Get the current bootstrapping mode */
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	virtual URH_OnlineSession* GetSession() const { return RHSession; }
@@ -507,18 +509,18 @@ protected:
 
 	/** The current bootstrapping result */
 	FRH_BootstrappingResult BootstrappingResult;
-	
+
 	/** Session templates to use to iniailize the session */
 	UPROPERTY(VisibleInstanceOnly, Category = "Session")
 	TMap<FString, FRHAPI_SessionTemplate> Templates;	// server may have the full list of templates
-	
+
 	/** ETag for the template list */
 	TOptional<FString> AllTemplatesETag;
-	
+
 	/** The current session we are using */
 	UPROPERTY(VisibleInstanceOnly, Category = "Session", BlueprintGetter=GetSession)
 	URH_OnlineSession* RHSession;	// simplying assumption - single session for dedicated server
-	
+
 	/** The default type of session to create when using AutoCreate bootstrapping mode */
 	UPROPERTY(VisibleInstanceOnly, Config, Category = "Session")
 	FString DefaultAutoCreateSessionType;

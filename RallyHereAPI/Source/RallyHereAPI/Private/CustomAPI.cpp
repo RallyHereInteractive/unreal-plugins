@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "CustomAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_CustomEndpointSend::GetSimplifiedPath() const
 
 FString FRequest_CustomEndpointSend::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("endpoint_id"), ToStringFormatArg(EndpointId) }
     };
 

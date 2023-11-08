@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -104,7 +106,7 @@ DECLARE_DELEGATE_OneParam(FRH_OnSessionExpiredDelegate, URH_SessionView*);
 /**
  * @brief Utility struct to wrapper the tuple of a data typeand etag.
  */
-template<typename T> 
+template<typename T>
 struct RALLYHEREINTEGRATION_API TRH_DataWithETagWrapper
 {
 	/**
@@ -143,7 +145,7 @@ struct RALLYHEREINTEGRATION_API TRH_DataWithETagWrapper
 typedef TRH_DataWithETagWrapper<FRHAPI_Session> FRH_APISessionWithETag;
 
 /** @ingroup Session
- *  @brief Poll for deferred sessions 
+ *  @brief Poll for deferred sessions
  */
 struct FRH_DeferredSessionPoll
 {
@@ -162,7 +164,7 @@ struct FRH_DeferredSessionPoll
 		: PollType(InPollType)
 		, Delegate(InDelegate)
 		, ETag(InETag)
-		
+
 	{}
 };
 
@@ -180,7 +182,7 @@ namespace RH_SessionCustomDataKeys
 }
 
 /** @ingroup Session
- * @brief Base class providing functionality for viewing session data and interacting with it from blueprint. 
+ * @brief Base class providing functionality for viewing session data and interacting with it from blueprint.
  * Specifically does not have an "owner" meaning it cannot do "work" - it is read only. The subclasses have owners.
  */
 UCLASS(Config = RallyHereIntegration, DefaultConfig)
@@ -457,7 +459,7 @@ public:
 	void CheckDeferredPolls();
 
 	/**
-	 * @brief Polls a specific session for an update.  Can poll for sessions you are not a member of. 
+	 * @brief Polls a specific session for an update.  Can poll for sessions you are not a member of.
 	 * Will properly create a relevant session object as needed via the Session Owner interface.
 	 * @param [in] SessionId Id of the session to poll.
 	 * @param [in] SessionOwner Owner of the session being polled.
@@ -837,7 +839,7 @@ protected:
 
 /** @ingroup Session
  * @brief Offline Sessions are sessions the session owner is actively a member of that are unsynchronized with the API.
- * This is primarily intended as a utility class to allow for the session flow to be used globally, 
+ * This is primarily intended as a utility class to allow for the session flow to be used globally,
  * even when not running API based sessions (ex: tutorial / practice area before login).
  */
 UCLASS(Config = RallyHereIntegration, DefaultConfig)

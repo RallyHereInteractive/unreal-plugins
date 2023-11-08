@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -452,7 +452,7 @@ struct RALLYHEREAPI_API Traits_CreateNewInventorySessionSelf
 /* Create New Player Order
  *
  * Create a new Order for a specific player.
- * 
+ *
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrder : public FRequest
@@ -516,7 +516,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrder
 /* Create New Player Order Self
  *
  * Create a new Order for the current logged in player.
- * 
+ *
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerOrderSelf : public FRequest
@@ -579,7 +579,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerOrderSelf
 /* Create New Player Uuid Order
  *
  * Create a new Order for a specific player.
- * 
+ *
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrder : public FRequest
@@ -643,7 +643,7 @@ struct RALLYHEREAPI_API Traits_CreateNewPlayerUuidOrder
 /* Create New Player Uuid Order Self
  *
  * Create a new Order for the current logged in player.
- * 
+ *
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results.
 */
 struct RALLYHEREAPI_API FRequest_CreateNewPlayerUuidOrderSelf : public FRequest

@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_AnalyticsProviderEventCache.h"
 #include "Analytics.h"
@@ -33,8 +34,8 @@ namespace RHEventCacheStatic
 
 	inline int ComputeAttributeSize(const FAnalyticsEventAttribute& Attribute)
 	{
-		return 
-		// "              Name             "   :             Value              ,   (maybequoted)                                          
+		return
+		// "              Name             "   :             Value              ,   (maybequoted)
 		   1 + Attribute.GetName().Len() + 1 + 1 + Attribute.GetValue().Len() + 1 + (Attribute.IsJsonFragment() ? 0 : 2);
 	}
 
@@ -84,10 +85,10 @@ namespace RHEventCacheStatic
 		UTF8Stream.Append(reinterpret_cast<const uint8*>(UTF8Chars), CharCount);
 	}
 
-	/** 
+	/**
 	 * Appends a TCHAR* string (need not be null-terminated) to a UTF8 stream.
-	 * Converts the string directly into the UTF8Stream. Does NOT add a NULL terminator. 
-	 * 
+	 * Converts the string directly into the UTF8Stream. Does NOT add a NULL terminator.
+	 *
 	 * This function is highly optimized for efficiency. writes directly into the output stream without precomputing the string length.
 	 * Optimistically adds a bit of space to handle ocassional multibyte chars, but keeps growing until it fits.
 	 * In practice, this makes this function 30-40% faster than precomputing the string length in advance,
@@ -226,7 +227,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 {
 	FScopeLock ScopedLock(&CachedEventsCS);
 
-	// If we estimate that 110% of the size estimate (in case there are a lot of Json escaping or multi-byte UTF8 chars) will exceed our max payload, queue up a flush. 
+	// If we estimate that 110% of the size estimate (in case there are a lot of Json escaping or multi-byte UTF8 chars) will exceed our max payload, queue up a flush.
 	const int32 EventSizeEstimate = RHEventCacheStatic::ComputeEventSize(EventName, Attributes, CachedDefaultAttributeUTF8Stream.Num());
 	if (CachedEventUTF8Stream.Num() + (EventSizeEstimate * 11 / 10) > MaximumPayloadSize)
 	{
@@ -430,7 +431,7 @@ TArray<uint8> FRH_AnalyticsProviderEventCache::FlushCache()
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!! This method tries extremely hard to avoid any dynamic allocations
-// !!!! to optimize the flush time. Please don't add new allocations to this function 
+// !!!! to optimize the flush time. Please don't add new allocations to this function
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void FRH_AnalyticsProviderEventCache::QueueFlush()
 {

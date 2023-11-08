@@ -1,4 +1,5 @@
-// Copyright 2022-2023 Rally Here Interactive, Inc. All Rights Reserved.
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugToolSettings.h"
@@ -363,7 +364,7 @@ TArray<URH_PlayerInfo*> URallyHereDebugTool::GetAllPlayerInfos() const
 		if (URH_LocalPlayerSubsystem* pRHLocalPlayerSubsystem = SandboxPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
 		{
 			pPI = pRHLocalPlayerSubsystem->GetPlayerInfoSubsystem();
-		}		
+		}
 	}
 	else
 	{
@@ -377,7 +378,7 @@ TArray<URH_PlayerInfo*> URallyHereDebugTool::GetAllPlayerInfos() const
 	}
 
 	TArray<URH_PlayerInfo*> PlayerInfos;
-	
+
 	if (pPI != nullptr)
 	{
 		for (auto Pair : pPI->GetPlayerInfos())
@@ -503,7 +504,7 @@ void URallyHereDebugTool::DoImGui()
 {
 #ifndef WITH_IMGUI_DOCK_SUPPORT
 	bool bAllowWindowViewSelection = true;
-#else 
+#else
 	bool bAllowWindowViewSelection = false;
 #endif
 
@@ -544,7 +545,7 @@ void URallyHereDebugTool::DoImGui()
 		}
 
 		bool bIsToggleKeybindActive = ImGui::IsKeyPressed(ToggleUIKeyBindAsImGuiKey);
-		
+
 		FString ButtonLabel = TEXT("Close (");
 		const FRallyHereDebugToolKeyInfo& ToggleKeybind = URallyHereDebugToolSettings::Get()->ToggleUIKeyBind;
 		if (ToggleKeybind.Shift == ECheckBoxState::Checked)
@@ -583,7 +584,7 @@ void URallyHereDebugTool::DoImGui()
 			ImGui::SameLine(ImGui::GetWindowWidth() - ImGui::CalcTextSize(TCHAR_TO_UTF8(*environmentText)).x - 20);
 			ImGui::Text("%s", TCHAR_TO_UTF8(*environmentText));
 		}
-		
+
 		ImGui::EndMainMenuBar();
 	}
 

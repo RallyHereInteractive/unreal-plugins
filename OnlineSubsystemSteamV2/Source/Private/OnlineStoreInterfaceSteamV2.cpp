@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "OnlineStoreInterfaceSteamV2.h"
 #include "OnlineSubsystemSteamV2.h"
 #include "OnlineError.h"

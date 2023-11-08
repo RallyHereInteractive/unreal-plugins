@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_ImGuiUtilities.h"
 #include "Dom/JsonValue.h"
@@ -73,7 +75,7 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMo
 		}
 		CopyButton();
 	}
-	
+
 	// advance column again
 	if (CopyMode == ECopyMode::TwoColumn)
 	{
@@ -469,7 +471,7 @@ void FImGuiCustomDataStager::DisplayCustomDataStager(bool bDefaultOpen /*= true*
 				ImGui::SetNextItemWidth(250.f);
 				const FString KeyEditLabel = TEXT("##KeyEdit") + Name;
 				ImGui::InputText(TCHAR_TO_UTF8(*KeyEditLabel), Fields[i].KeyInput.GetData(), Fields[i].KeyInput.Num());
-				
+
 				ImGui::TableNextColumn();
 				// Check for potential JSON?
 				ConvertToJsonStringIfValid(Fields[i].ValueInput);
@@ -499,12 +501,12 @@ void FImGuiCustomDataStager::DisplayCustomDataStager(bool bDefaultOpen /*= true*
 			ImGui::SetNextItemWidth(250.f);
 			const FString KeyAddLabel = TEXT("##KeyAdd") + Name;
 			ImGui::InputText(TCHAR_TO_UTF8(*KeyAddLabel), AddKeyInput.GetData(), AddKeyInput.Num());
-			
+
 			ImGui::TableNextColumn();
 			ImGui::SetNextItemWidth(250.f);
 			const FString ValueAddLabel = TEXT("##ValueAdd") + Name;
 			ImGui::InputTextMultiline(TCHAR_TO_UTF8(*ValueAddLabel), AddValueInput.GetData(), AddValueInput.Num(), ImVec2(0, ImGui::CalcTextSize(AddValueInput.GetData()).y + TextInputPadding), ImGuiInputTextFlags_AllowTabInput);
-			
+
 			ImGui::TableNextColumn();
 			const FString AddFieldLabel = TEXT("Add Field##") + Name;
 			if (ImGui::SmallButton(TCHAR_TO_UTF8(*AddFieldLabel)))

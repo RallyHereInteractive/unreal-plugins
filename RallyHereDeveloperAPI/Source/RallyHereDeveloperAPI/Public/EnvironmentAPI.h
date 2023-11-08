@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -116,7 +116,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPlaye
     typedef FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPlayersActive(InRequest, InDelegate, Priority); }
 };
 
@@ -163,7 +163,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPlaye
     typedef FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPlayersCcu(InRequest, InDelegate, Priority); }
 };
 
@@ -210,7 +210,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPlaye
     typedef FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPlayersNew(InRequest, InDelegate, Priority); }
 };
 
@@ -257,7 +257,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPurch
     typedef FDelegate_EnvironmentFullGetEnvironmentMetricPurchases Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPurchases(InRequest, InDelegate, Priority); }
 };
 
@@ -300,7 +300,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersAc
     typedef FDelegate_EnvironmentGetEnvironmentMetricPlayersActive Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentGetEnvironmentMetricPlayersActive(InRequest, InDelegate, Priority); }
 };
 
@@ -343,7 +343,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersCc
     typedef FDelegate_EnvironmentGetEnvironmentMetricPlayersCcu Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentGetEnvironmentMetricPlayersCcu(InRequest, InDelegate, Priority); }
 };
 
@@ -386,7 +386,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersNe
     typedef FDelegate_EnvironmentGetEnvironmentMetricPlayersNew Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentGetEnvironmentMetricPlayersNew(InRequest, InDelegate, Priority); }
 };
 
@@ -429,7 +429,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPurchases
     typedef FDelegate_EnvironmentGetEnvironmentMetricPurchases Delegate;
     typedef FEnvironmentAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentGetEnvironmentMetricPurchases(InRequest, InDelegate, Priority); }
 };
 

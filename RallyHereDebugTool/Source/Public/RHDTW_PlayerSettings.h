@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "RH_DebugToolWindow.h"
@@ -26,4 +28,3 @@ private:
 	FString SetPlayerSettingsActionResult;
 	void HandleSetPlayerSettingsResponse(bool bSuccess, FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid);
 };
-

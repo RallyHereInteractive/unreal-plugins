@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include "CoreMinimal.h"
@@ -70,14 +72,14 @@ public:
 	}
 
 	/**
-     * @brief Set the base URL for all RallyHereAPI calls 
+     * @brief Set the base URL for all RallyHereAPI calls
      * @param [in] InBaseURL The base URL to use.
      * @param [in] Source The source of the base URL change, for logging.
 	 */
     void SetBaseURL(FString InBaseUrl, const FString& Source = TEXT("Direct"));
 
 	/**
-	 * @brief Get the current base URL (will run ResolveBaseURL if there isn't one) 
+	 * @brief Get the current base URL (will run ResolveBaseURL if there isn't one)
 	 */
     FString GetBaseURL();
 
@@ -132,7 +134,7 @@ public:
 	{
 		bIsClientIdLocked = bLocked;
 	}
-    
+
 	/**
 	 * @brief Set the client secret for the AuthContext.
 	 * @param InClientSecret The client secret to use.

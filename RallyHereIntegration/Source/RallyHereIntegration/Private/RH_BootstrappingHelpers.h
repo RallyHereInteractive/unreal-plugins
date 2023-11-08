@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -98,7 +100,7 @@ protected:
 			}
 			else if (AllocationID)
 			{
-				const FString ErrorMsg = FString::Printf(TEXT("Bootstrapping finalier expected allocation id %s but returned session has allocation id %s"), 
+				const FString ErrorMsg = FString::Printf(TEXT("Bootstrapping finalier expected allocation id %s but returned session has allocation id %s"),
 					*BootstrappingResult.AllocationInfo.AllocationId.GetValue(), **AllocationID);
 				Failed(*ErrorMsg);
 			}

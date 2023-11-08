@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -147,7 +147,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateMmTemplate
     typedef FDelegate_OrgProductSandboxCreateMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -181,7 +181,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMmTemplate : p
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -192,7 +192,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMmTemplate
     typedef FDelegate_OrgProductSandboxDeleteMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -240,7 +240,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMmTemplates
     typedef FDelegate_OrgProductSandboxGetAllMmTemplates Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMmTemplates(InRequest, InDelegate, Priority); }
 };
 
@@ -289,7 +289,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMmTemplatesInGrou
     typedef FDelegate_OrgProductSandboxGetAllMmTemplatesInGroup Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMmTemplatesInGroup(InRequest, InDelegate, Priority); }
 };
 
@@ -334,7 +334,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMmTemplate
     typedef FDelegate_OrgProductSandboxGetMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -380,7 +380,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchMmTemplate
     typedef FDelegate_OrgProductSandboxPatchMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -426,7 +426,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutMmTemplate
     typedef FDelegate_OrgProductSandboxPutMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -467,7 +467,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMmTemplate
     typedef FDelegate_SandboxCreateMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -497,7 +497,7 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMmTemplate : public FRes
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    
+
 
 };
 
@@ -508,7 +508,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMmTemplate
     typedef FDelegate_SandboxDeleteMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -552,7 +552,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMmTemplates
     typedef FDelegate_SandboxGetAllMmTemplates Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllMmTemplates(InRequest, InDelegate, Priority); }
 };
 
@@ -597,7 +597,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMmTemplatesInGroup
     typedef FDelegate_SandboxGetAllMmTemplatesInGroup Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllMmTemplatesInGroup(InRequest, InDelegate, Priority); }
 };
 
@@ -638,7 +638,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMmTemplate
     typedef FDelegate_SandboxGetMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -680,7 +680,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchMmTemplate
     typedef FDelegate_SandboxPatchMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchMmTemplate(InRequest, InDelegate, Priority); }
 };
 
@@ -722,7 +722,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutMmTemplate
     typedef FDelegate_SandboxPutMmTemplate Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutMmTemplate(InRequest, InDelegate, Priority); }
 };
 

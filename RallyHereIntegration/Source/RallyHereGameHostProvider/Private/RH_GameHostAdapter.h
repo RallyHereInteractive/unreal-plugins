@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #pragma once
 
@@ -93,7 +95,7 @@ protected:
 	~GameHostAdapterImporter();
 
 	void* Handle{nullptr};
-	
+
 	static GameHostAdapterImporter* Importer;
 	static size_t Count;
 };

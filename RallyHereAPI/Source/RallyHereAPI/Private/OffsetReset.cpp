@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 
@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_OffsetReset& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OffsetReset& Value)
 {
-    static TMap<FString, ERHAPI_OffsetReset> StringToEnum = { 
+    static TMap<FString, ERHAPI_OffsetReset> StringToEnum = {
         { TEXT("latest"), ERHAPI_OffsetReset::Latest },
         { TEXT("earliest"), ERHAPI_OffsetReset::Earliest },    };
 

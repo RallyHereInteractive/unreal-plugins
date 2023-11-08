@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RallyHereAPIAuthContext.h"
@@ -87,12 +87,12 @@ void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
 
     // clear out any token response
     TokenResponse.Reset();
-        
+
     {
         SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-        LoginComplete.Broadcast(true); 
+        LoginComplete.Broadcast(true);
     }
-        
+
     if (!IsSameUser(PreviousLoginResult, LoginResult))
     {
         SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginUserChanged, FColor::Purple);
@@ -115,7 +115,7 @@ void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
 
     // clear out any login result
     LoginResult.Reset();
-        
+
     {
         SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
         LoginComplete.Broadcast(true);
@@ -194,7 +194,7 @@ bool FAuthContext::AddClientCredentials(const FHttpRequestRef& HttpRequest) cons
     {
         HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
     }
-    
+
     return true;
 }
 
@@ -204,7 +204,7 @@ bool FAuthContext::AddClientCredentials(const FHttpRequestPtr& HttpRequest) cons
     {
         HttpRequest->SetHeader(TEXT("Authorization"), *BasicAuthValue);
     }
-    
+
     return true;
 }
 

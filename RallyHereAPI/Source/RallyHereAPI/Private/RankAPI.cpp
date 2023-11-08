@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #include "RankAPI.h"
@@ -96,7 +96,7 @@ FName FRequest_GetAllPlayerUuidRanks::GetSimplifiedPath() const
 
 FString FRequest_GetAllPlayerUuidRanks::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -556,7 +556,7 @@ FName FRequest_GetAllPlayerUuidRanksV2::GetSimplifiedPath() const
 
 FString FRequest_GetAllPlayerUuidRanksV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -1016,7 +1016,7 @@ FName FRequest_GetPlayerUuidRank::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
@@ -1179,7 +1179,7 @@ FName FRequest_GetPlayerUuidRankSelf::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidRankSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
 
@@ -1341,7 +1341,7 @@ FName FRequest_GetPlayerUuidRankSelfV2::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidRankSelfV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
 
@@ -1503,7 +1503,7 @@ FName FRequest_GetPlayerUuidRankV2::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidRankV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
@@ -1666,7 +1666,7 @@ FName FRequest_GetRankConfig::GetSimplifiedPath() const
 
 FString FRequest_GetRankConfig::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
 
@@ -1828,7 +1828,7 @@ FName FRequest_GetRankConfigV2::GetSimplifiedPath() const
 
 FString FRequest_GetRankConfigV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
 
@@ -1990,7 +1990,7 @@ FName FRequest_UpdatePlayerUuidRank::GetSimplifiedPath() const
 
 FString FRequest_UpdatePlayerUuidRank::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
@@ -2164,7 +2164,7 @@ FName FRequest_UpdatePlayerUuidRankSelf::GetSimplifiedPath() const
 
 FString FRequest_UpdatePlayerUuidRankSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
 
@@ -2337,7 +2337,7 @@ FName FRequest_UpdatePlayerUuidRankSelfV2::GetSimplifiedPath() const
 
 FString FRequest_UpdatePlayerUuidRankSelfV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };
 
@@ -2510,7 +2510,7 @@ FName FRequest_UpdatePlayerUuidRankV2::GetSimplifiedPath() const
 
 FString FRequest_UpdatePlayerUuidRankV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = { 
+    TMap<FString, FStringFormatArg> PathParams = {
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("rank_id"), ToStringFormatArg(RankId) }
     };

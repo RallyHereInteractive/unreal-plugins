@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 #include "RH_FriendSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
@@ -158,7 +160,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 				{
 					UpdatedFriends.Emplace(*ExistingFriend);
 				}
-				
+
 				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
 				{
 					PlayerInfo->OnPresenceUpdatedDelegate.AddUObject((*ExistingFriend), &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
@@ -184,7 +186,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 				{
 					NewEntry->PreviousRHFriendshipStatus = static_cast<FriendshipStatus>(NewFriend.Status);
 				}
-				
+
 				if (URH_PlayerInfo* PlayerInfo = PSS->GetOrCreatePlayerInfo(NewFriend.FriendsPlayerUuid))
 				{
 					PlayerInfo->OnPresenceUpdatedDelegate.AddUObject(NewEntry, &URH_RHFriendAndPlatformFriend::OnPresenceUpdated);
@@ -632,7 +634,7 @@ bool URH_FriendSubsystem::AddNotes(const FGuid& PlayerUuid, const FString& Notes
 		Delegate.ExecuteIfBound(false, FGuid(), FString());
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -682,7 +684,7 @@ void URH_FriendSubsystem::OnAddNotesResponse(const AddNotesType::Response& Resp,
 		FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 		BLUEPRINT_FriendUpdateErrorDelegate.Broadcast(Request.OtherPlayerUuid, ErrorCode);
 	}
-	
+
 	Delegate.ExecuteIfBound(Resp.IsSuccessful(), Resp.Content.FriendsPlayerUuid, Resp.Content.GetNotes(TEXT("")));
 }
 
@@ -829,7 +831,7 @@ void URH_FriendSubsystem::OnOSSPresenceReceived(const FUniqueNetId& UserId, cons
 		TOptional<ERHAPI_Platform> PlatformType = RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NULL_SUBSYSTEM);
 		PlayerPlatformId.PlatformType = PlatformType.IsSet() ? PlatformType.GetValue() : ERHAPI_Platform::Anon;
 		PlayerPlatformId.UserId = UserId.ToString();
-		
+
 		if (const auto ExistingFriend = GetFriendByPlatformId(PlayerPlatformId))
 		{
 			auto PlatformFriend = ExistingFriend->PlatformFriends.FindByPredicate(
@@ -1050,7 +1052,7 @@ URH_RHFriendAndPlatformFriend* URH_FriendSubsystem::GetFriendByPlatformId(const 
 			}
 		}
 	}
-	
+
 	for (const auto RHFriend : Friends)
 	{
 		const auto Friend = RHFriend->PlatformFriends.FindByPredicate(
@@ -1107,7 +1109,7 @@ void URH_FriendSubsystem::ClearRHFriendCache()
 		FriendListUpdatedDelegate.Broadcast(Out);
 		BLUEPRINT_FriendListUpdatedDelegate.Broadcast(Out);
 	}
-	
+
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
 		for (const auto UpdatedFriend : Out)
@@ -1116,7 +1118,7 @@ void URH_FriendSubsystem::ClearRHFriendCache()
 			BLUEPRINT_FriendUpdatedDelegate.Broadcast(UpdatedFriend);
 		}
 	}
-	
+
 	FriendsETag.Empty();
 	FriendsCached = false;
 }
@@ -1211,7 +1213,7 @@ void URH_FriendSubsystem::RemoveAllFriendsWithNoRelationships(TArray<URH_RHFrien
 	}
 
 	const bool bLocalPlayerUuidIsValid = LocalPlayerUuid.IsValid();
-	
+
 	for (auto i = Friends.Num() - 1; i >= 0; --i)
 	{
 		auto Friend = Friends[i];
@@ -1224,7 +1226,7 @@ void URH_FriendSubsystem::RemoveAllFriendsWithNoRelationships(TArray<URH_RHFrien
 		if (FriendUuid.IsValid())
 		{
 			bool bFoundFriendInSession = false;
-			
+
 			for (const URH_SessionView* Session : Sessions)
 			{
 				if (Session->GetSessionPlayer(FriendUuid))
@@ -1581,7 +1583,7 @@ FName URH_FriendSubsystem::ExtractErrorCodeFromResponse(const FHttpResponsePtr& 
 	{
 		return UnexpectedErrorCode;
 	}
-	
+
 	FString ContentType = Response->GetContentType();
 	ContentType.TrimStartAndEndInline();
 	if (!ContentType.StartsWith(TEXT("application/json")) && !ContentType.StartsWith(TEXT("text/json")))

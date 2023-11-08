@@ -1,3 +1,5 @@
+// Copyright 2022-2023 RallyHere Interactive
+// SPDX-License-Identifier: Apache-2.0
 
 #include "RH_GameInstanceBootstrappers.h"
 #include "RH_GameInstanceSubsystem.h"
@@ -84,7 +86,7 @@ bool URH_GameInstanceServerBootstrapper::DetermineJoinParameters(FString& Public
 		{
 			PublicConnStr = BootstrappingResult.AllocationInfo.PublicHost.GetValue();
 		}
-		
+
 		// temp - parse as IPv4 to determine if it should be public or private
 		FIPv4Address tempIPv4;
 		if (FIPv4Address::Parse(BootstrappingResult.AllocationInfo.PublicHost.GetValue(), tempIPv4) && tempIPv4.IsSiteLocalAddress())
@@ -109,7 +111,7 @@ bool URH_GameInstanceServerBootstrapper::DetermineJoinParameters(FString& Public
 
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -119,7 +121,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 	Super::Initialize();
 
 	BootstrapMode = DefaultBootstrapMode;
-	
+
 	FString BootstrapCommandlineModeString;
 	ERH_ServerBootstrapMode BootstrapCommandlineMode = ERH_ServerBootstrapMode::GameHostProvider;
 	if (GetCommandlineBootstrapModeOverride(BootstrapCommandlineMode))
@@ -135,7 +137,7 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 	}
 
 	SetTerminationSignalHandler();
-	
+
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Unstarted);
 
 	// start login to API as a server
@@ -190,7 +192,7 @@ void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession()
 	{
 		RHSession->StopPolling();
 		//RHSession->Leave(false);
-		// rather than leaving via the helper, invoke the API directly.  
+		// rather than leaving via the helper, invoke the API directly.
 		// This is to fix an assert on shutdown where the helper has its callback bindings removed, so it does not complete and release the reference to the http request object
 		{
 			RallyHereAPI::Traits_LeaveSessionByIdSelf::Request Request;
@@ -315,7 +317,7 @@ void URH_GameInstanceServerBootstrapper::ApplicationTerminationNotify()
 void URH_GameInstanceServerBootstrapper::HandleAppTerminatedGameThread()
 {
 	// make sure this was invoked if it was not previously
-	RallyHere::TermSignalHandler::TerminationSignalHandler(); 
+	RallyHere::TermSignalHandler::TerminationSignalHandler();
 
 	// attempt to leave current session if still in one
 	BestEffortLeaveSession();
@@ -345,7 +347,7 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 	{
 		if (RHSession->GetInstanceData() != nullptr)
 		{
-			// mark instance as closed 
+			// mark instance as closed
 			FRHAPI_InstanceInfoUpdate InstanceInfo = RHSession->GetInstanceUpdateInfoDefaults();
 			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Closed);
 			RHSession->UpdateInstanceInfo(InstanceInfo);
@@ -853,7 +855,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 					{
 						BootstrappingResult.AllocationInfo.SessionId = Resp.Content.GetSessionId();
 					}
-				}), 
+				}),
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& Error)
 				{
 					if (bSuccess && BootstrappingResult.IsValid())
@@ -879,7 +881,7 @@ void URH_GameInstanceServerBootstrapper::OnReservationComplete(bool bSuccess)
 		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 		bStartedHelper = true;
 	}
-	
+
 	if (!bStartedHelper)
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not start auto create bootstrapping finalizer helper"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -987,12 +989,12 @@ void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	if (bSuccess 
-		&& CreatedRHSession != nullptr 
-		&& CreatedRHSession->IsOnline() 
+	if (bSuccess
+		&& CreatedRHSession != nullptr
+		&& CreatedRHSession->IsOnline()
 		&& CreatedRHSession == RHSession	// session should have automatically been imported!
 		&& CreatedRHSession->GetInstanceData() != nullptr
-		)	
+		)
 	{
 		SyncToSession();
 		if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
@@ -1300,7 +1302,7 @@ void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWi
 
 void URH_GameInstanceServerBootstrapper::ReconcileAPISessions(const TArray<FString>& SessionIds, const TOptional<FString>& ETag)
 {
-	
+
 }
 
 
@@ -1429,7 +1431,7 @@ void URH_GameInstanceClientBootstrapper::CreateOfflineSession()
 
 		SessionInfo.SetCustomData(CustomData);
 	}
-	
+
 
 	/* Time the Session was created, in UTC */
 	SessionInfo.Created = CreationTime;

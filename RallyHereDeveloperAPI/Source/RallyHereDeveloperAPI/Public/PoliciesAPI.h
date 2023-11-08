@@ -2,7 +2,7 @@
 // Do not edit the file manually.
 //
 // Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
-// Copyright 2023 RallyHere Interactive
+// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
@@ -124,7 +124,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductCreatePolicy
     typedef FDelegate_OrgProductCreatePolicy Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductCreatePolicy(InRequest, InDelegate, Priority); }
 };
 
@@ -168,7 +168,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductDeletePolicyById
     typedef FDelegate_OrgProductDeletePolicyById Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductDeletePolicyById(InRequest, InDelegate, Priority); }
 };
 
@@ -210,7 +210,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductGetAllPolicies
     typedef FDelegate_OrgProductGetAllPolicies Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductGetAllPolicies(InRequest, InDelegate, Priority); }
 };
 
@@ -254,7 +254,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductGetPolicyById
     typedef FDelegate_OrgProductGetPolicyById Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductGetPolicyById(InRequest, InDelegate, Priority); }
 };
 
@@ -299,7 +299,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductUpdatePolicyById
     typedef FDelegate_OrgProductUpdatePolicyById Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductUpdatePolicyById(InRequest, InDelegate, Priority); }
 };
 
@@ -340,7 +340,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductCreatePolicy
     typedef FDelegate_ProductCreatePolicy Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductCreatePolicy(InRequest, InDelegate, Priority); }
 };
 
@@ -382,7 +382,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductDeletePolicyById
     typedef FDelegate_ProductDeletePolicyById Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductDeletePolicyById(InRequest, InDelegate, Priority); }
 };
 
@@ -422,7 +422,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductGetAllPolicies
     typedef FDelegate_ProductGetAllPolicies Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductGetAllPolicies(InRequest, InDelegate, Priority); }
 };
 
@@ -464,7 +464,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductGetPolicyById
     typedef FDelegate_ProductGetPolicyById Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductGetPolicyById(InRequest, InDelegate, Priority); }
 };
 
@@ -507,7 +507,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_ProductUpdatePolicyById
     typedef FDelegate_ProductUpdatePolicyById Delegate;
     typedef FPoliciesAPI API;
     static FString Name;
-	
+
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.ProductUpdatePolicyById(InRequest, InDelegate, Priority); }
 };
 
