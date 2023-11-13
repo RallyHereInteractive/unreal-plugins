@@ -105,6 +105,13 @@ public:
 	virtual bool GetPlatformSessionIdFromRHSession(FUniqueNetIdRepl& PlatformSessionId) const;
 
 	/**
+	* @brief Get the platform session name that this object is synchronizing to from the OnlineSubsystem (useful for OSS calls)
+	* Note that this is set before OSS session is valid.  If you want to make sure the name is for a valid session, use GetPlatformSession()->SessionName instead (GetPlatformSession() may return nullptr)
+	*/
+	UFUNCTION(BlueprintPure, Category = "Session")
+	FName GetPlatformSessionName() const { return OSSSessionName; }
+
+	/**
 	* @brief Get the platform session object that this object is synchronizing to from the OnlineSubsystem
 	*/
 	FNamedOnlineSession* GetPlatformSession() const;
