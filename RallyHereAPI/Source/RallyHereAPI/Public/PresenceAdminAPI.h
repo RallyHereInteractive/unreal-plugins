@@ -337,7 +337,7 @@ struct RALLYHEREAPI_API Traits_AdminGetPlayerPresenceId
  *
  * Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across
  * the given time period. This stands in contrast to the individual request endpoint.
- *
+ * 
  * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
  * counted once.
 */
@@ -685,7 +685,7 @@ struct RALLYHEREAPI_API Traits_AdminGetRequestingCcuPlatformIndividual
  *
  * Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time
  * period. This stands in contrast to the individual request endpoint.
- *
+ * 
  * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
  * counted once.
 */
@@ -1033,7 +1033,7 @@ struct RALLYHEREAPI_API Traits_AdminGetTotalCcuPlatformIndividual
  *
  * Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across
  * the given time period. This stands in contrast to the individual request endpoint.
- *
+ * 
  * For example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be
  * counted once.
 */
@@ -1406,7 +1406,7 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeen : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;

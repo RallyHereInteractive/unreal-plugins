@@ -42,50 +42,6 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_Platform Platform{  };
-    /** @brief Gets the value of Platform */
-    ERHAPI_Platform& GetPlatform() { return Platform; }
-    /** @brief Gets the value of Platform */
-    const ERHAPI_Platform& GetPlatform() const { return Platform; }
-    /** @brief Sets the value of Platform */
-    void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
-
-    /** @brief Portal ID *DEPRECATED* use `platform` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 PortalId{ 0 };
-    /** @brief Gets the value of PortalId */
-    int32& GetPortalId() { return PortalId; }
-    /** @brief Gets the value of PortalId */
-    const int32& GetPortalId() const { return PortalId; }
-    /** @brief Sets the value of PortalId */
-    void SetPortalId(int32 NewValue) { PortalId = NewValue;  }
-    /** @brief Returns true if PortalId matches the default value */
-    bool IsPortalIdDefaultValue() const { return PortalId == 0; }
-    /** @brief Sets the value of PortalId to its default  */
-    void SetPortalIdToDefault() { PortalId = 0;  }
-
-    /** @brief Portal user ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PortalUserId{  };
-    /** @brief Gets the value of PortalUserId */
-    FString& GetPortalUserId() { return PortalUserId; }
-    /** @brief Gets the value of PortalUserId */
-    const FString& GetPortalUserId() const { return PortalUserId; }
-    /** @brief Sets the value of PortalUserId */
-    void SetPortalUserId(FString NewValue) { PortalUserId = NewValue;  }
-
-    /** @brief Display name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString DisplayName{  };
-    /** @brief Gets the value of DisplayName */
-    FString& GetDisplayName() { return DisplayName; }
-    /** @brief Gets the value of DisplayName */
-    const FString& GetDisplayName() const { return DisplayName; }
-    /** @brief Sets the value of DisplayName */
-    void SetDisplayName(FString NewValue) { DisplayName = NewValue;  }
-
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PortalUserInfo PortalParentAuthResult_Optional{  };
     /** @brief true if PortalParentAuthResult_Optional has been set to a value */
@@ -156,17 +112,30 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
     /** @brief Active player ID. *DEPRECATED* use `active_player_uuid` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    int32 ActivePlayerId{ 0 };
-    /** @brief Gets the value of ActivePlayerId */
-    int32& GetActivePlayerId() { return ActivePlayerId; }
-    /** @brief Gets the value of ActivePlayerId */
-    const int32& GetActivePlayerId() const { return ActivePlayerId; }
-    /** @brief Sets the value of ActivePlayerId */
-    void SetActivePlayerId(int32 NewValue) { ActivePlayerId = NewValue;  }
-    /** @brief Returns true if ActivePlayerId matches the default value */
-    bool IsActivePlayerIdDefaultValue() const { return ActivePlayerId == 0; }
-    /** @brief Sets the value of ActivePlayerId to its default  */
-    void SetActivePlayerIdToDefault() { ActivePlayerId = 0;  }
+    int32 ActivePlayerId_Optional{  };
+    /** @brief true if ActivePlayerId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool ActivePlayerId_IsSet{ false };
+    /** @brief Gets the value of ActivePlayerId_Optional, regardless of it having been set */
+    int32& GetActivePlayerId() { return ActivePlayerId_Optional; }
+    /** @brief Gets the value of ActivePlayerId_Optional, regardless of it having been set */
+    const int32& GetActivePlayerId() const { return ActivePlayerId_Optional; }
+    /** @brief Gets the value of ActivePlayerId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetActivePlayerId(const int32& DefaultValue) const { if (ActivePlayerId_IsSet) return ActivePlayerId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of ActivePlayerId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetActivePlayerId(int32& OutValue) const { if (ActivePlayerId_IsSet) OutValue = ActivePlayerId_Optional; return ActivePlayerId_IsSet; }
+    /** @brief Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetActivePlayerIdOrNull() { if (ActivePlayerId_IsSet) return &ActivePlayerId_Optional; return nullptr; }
+    /** @brief Returns a pointer to ActivePlayerId_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetActivePlayerIdOrNull() const { if (ActivePlayerId_IsSet) return &ActivePlayerId_Optional; return nullptr; }
+    /** @brief Sets the value of ActivePlayerId_Optional and also sets ActivePlayerId_IsSet to true */
+    void SetActivePlayerId(int32 NewValue) { ActivePlayerId_Optional = NewValue; ActivePlayerId_IsSet = true; }
+     /** @brief Clears the value of ActivePlayerId_Optional and sets ActivePlayerId_IsSet to false */
+    void ClearActivePlayerId() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = false; }
+    /** @brief Returns true if ActivePlayerId_Optional is set and matches the default value */
+    bool IsActivePlayerIdDefaultValue() const { return ActivePlayerId_IsSet && ActivePlayerId_Optional == 0; }
+    /** @brief Sets the value of ActivePlayerId_Optional to its default and also sets ActivePlayerId_IsSet to true */
+    void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
     /** @brief Active player UUID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -190,6 +159,102 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetActivePlayerUuid(FGuid NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true; }
      /** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
     void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false; }
+
+    /** @brief Platform */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_Platform Platform_Optional{  };
+    /** @brief true if Platform_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Platform_IsSet{ false };
+    /** @brief Gets the value of Platform_Optional, regardless of it having been set */
+    ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
+    /** @brief Gets the value of Platform_Optional, regardless of it having been set */
+    const ERHAPI_Platform& GetPlatform() const { return Platform_Optional; }
+    /** @brief Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_Platform& GetPlatform(const ERHAPI_Platform& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
+    /** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+    /** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return &Platform_Optional; return nullptr; }
+    /** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
+    void SetPlatform(ERHAPI_Platform NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; }
+     /** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
+    void ClearPlatform() { Platform_IsSet = false; }
+
+    /** @brief Portal ID *DEPRECATED* use `platform` instead */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 PortalId_Optional{  };
+    /** @brief true if PortalId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PortalId_IsSet{ false };
+    /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
+    int32& GetPortalId() { return PortalId_Optional; }
+    /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
+    const int32& GetPortalId() const { return PortalId_Optional; }
+    /** @brief Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetPortalId(const int32& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPortalId(int32& OutValue) const { if (PortalId_IsSet) OutValue = PortalId_Optional; return PortalId_IsSet; }
+    /** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetPortalIdOrNull() { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
+    /** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
+    /** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
+    void SetPortalId(int32 NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+     /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
+    void ClearPortalId() { PortalId_Optional = 0; PortalId_IsSet = false; }
+    /** @brief Returns true if PortalId_Optional is set and matches the default value */
+    bool IsPortalIdDefaultValue() const { return PortalId_IsSet && PortalId_Optional == 0; }
+    /** @brief Sets the value of PortalId_Optional to its default and also sets PortalId_IsSet to true */
+    void SetPortalIdToDefault() { PortalId_Optional = 0; PortalId_IsSet = true; }
+
+    /** @brief Portal user ID */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString PortalUserId_Optional{  };
+    /** @brief true if PortalUserId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PortalUserId_IsSet{ false };
+    /** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
+    FString& GetPortalUserId() { return PortalUserId_Optional; }
+    /** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
+    const FString& GetPortalUserId() const { return PortalUserId_Optional; }
+    /** @brief Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
+    /** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return &PortalUserId_Optional; return nullptr; }
+    /** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return &PortalUserId_Optional; return nullptr; }
+    /** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
+    void SetPortalUserId(FString NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; }
+     /** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
+    void ClearPortalUserId() { PortalUserId_IsSet = false; }
+
+    /** @brief Display name */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString DisplayName_Optional{  };
+    /** @brief true if DisplayName_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool DisplayName_IsSet{ false };
+    /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
+    FString& GetDisplayName() { return DisplayName_Optional; }
+    /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
+    const FString& GetDisplayName() const { return DisplayName_Optional; }
+    /** @brief Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
+    bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
+    /** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+    /** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+    /** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
+    void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+     /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+    void ClearDisplayName() { DisplayName_IsSet = false; }
 
     /** @brief Role ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -220,13 +285,26 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 
     /** @brief Person ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FGuid PersonId{  };
-    /** @brief Gets the value of PersonId */
-    FGuid& GetPersonId() { return PersonId; }
-    /** @brief Gets the value of PersonId */
-    const FGuid& GetPersonId() const { return PersonId; }
-    /** @brief Sets the value of PersonId */
-    void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
+    FGuid PersonId_Optional{  };
+    /** @brief true if PersonId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PersonId_IsSet{ false };
+    /** @brief Gets the value of PersonId_Optional, regardless of it having been set */
+    FGuid& GetPersonId() { return PersonId_Optional; }
+    /** @brief Gets the value of PersonId_Optional, regardless of it having been set */
+    const FGuid& GetPersonId() const { return PersonId_Optional; }
+    /** @brief Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetPersonId(const FGuid& DefaultValue) const { if (PersonId_IsSet) return PersonId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPersonId(FGuid& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
+    /** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+    /** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return &PersonId_Optional; return nullptr; }
+    /** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true */
+    void SetPersonId(FGuid NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true; }
+     /** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
+    void ClearPersonId() { PersonId_IsSet = false; }
 
     /** @brief Access token that can be used for future requests */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -317,6 +395,43 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     const FGuid& GetClientUuid() const { return ClientUuid; }
     /** @brief Sets the value of ClientUuid */
     void SetClientUuid(FGuid NewValue) { ClientUuid = NewValue;  }
+
+    /** @brief Token type */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString TokenType{  };
+    /** @brief Gets the value of TokenType */
+    FString& GetTokenType() { return TokenType; }
+    /** @brief Gets the value of TokenType */
+    const FString& GetTokenType() const { return TokenType; }
+    /** @brief Sets the value of TokenType */
+    void SetTokenType(FString NewValue) { TokenType = NewValue;  }
+
+    /** @brief Result access token expiration time in seconds */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 ExpiresIn_Optional{  };
+    /** @brief true if ExpiresIn_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool ExpiresIn_IsSet{ false };
+    /** @brief Gets the value of ExpiresIn_Optional, regardless of it having been set */
+    int32& GetExpiresIn() { return ExpiresIn_Optional; }
+    /** @brief Gets the value of ExpiresIn_Optional, regardless of it having been set */
+    const int32& GetExpiresIn() const { return ExpiresIn_Optional; }
+    /** @brief Gets the value of ExpiresIn_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetExpiresIn(const int32& DefaultValue) const { if (ExpiresIn_IsSet) return ExpiresIn_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of ExpiresIn_Optional and returns true if it has been set, otherwise returns false */
+    bool GetExpiresIn(int32& OutValue) const { if (ExpiresIn_IsSet) OutValue = ExpiresIn_Optional; return ExpiresIn_IsSet; }
+    /** @brief Returns a pointer to ExpiresIn_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetExpiresInOrNull() { if (ExpiresIn_IsSet) return &ExpiresIn_Optional; return nullptr; }
+    /** @brief Returns a pointer to ExpiresIn_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetExpiresInOrNull() const { if (ExpiresIn_IsSet) return &ExpiresIn_Optional; return nullptr; }
+    /** @brief Sets the value of ExpiresIn_Optional and also sets ExpiresIn_IsSet to true */
+    void SetExpiresIn(int32 NewValue) { ExpiresIn_Optional = NewValue; ExpiresIn_IsSet = true; }
+     /** @brief Clears the value of ExpiresIn_Optional and sets ExpiresIn_IsSet to false */
+    void ClearExpiresIn() { ExpiresIn_Optional = 0; ExpiresIn_IsSet = false; }
+    /** @brief Returns true if ExpiresIn_Optional is set and matches the default value */
+    bool IsExpiresInDefaultValue() const { return ExpiresIn_IsSet && ExpiresIn_Optional == 0; }
+    /** @brief Sets the value of ExpiresIn_Optional to its default and also sets ExpiresIn_IsSet to true */
+    void SetExpiresInToDefault() { ExpiresIn_Optional = 0; ExpiresIn_IsSet = true; }
 };
 
 /** @} */

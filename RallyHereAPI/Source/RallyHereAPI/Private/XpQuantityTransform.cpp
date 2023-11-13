@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_XpQuantityTransform& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_XpQuantityTransform& Value)
 {
-    static TMap<FString, ERHAPI_XpQuantityTransform> StringToEnum = {
+    static TMap<FString, ERHAPI_XpQuantityTransform> StringToEnum = { 
         { TEXT("none"), ERHAPI_XpQuantityTransform::None },
         { TEXT("from_current_xp_to_target_additional_level_min_xp"), ERHAPI_XpQuantityTransform::FromCurrentXpToTargetAdditionalLevelMinXp },
         { TEXT("from_current_level_min_xp_to_target_additional_level_min_xp"), ERHAPI_XpQuantityTransform::FromCurrentLevelMinXpToTargetAdditionalLevelMinXp },

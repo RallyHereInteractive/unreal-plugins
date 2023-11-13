@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_HostType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_HostType& Value)
 {
-    static TMap<FString, ERHAPI_HostType> StringToEnum = {
+    static TMap<FString, ERHAPI_HostType> StringToEnum = { 
         { TEXT("dedicated"), ERHAPI_HostType::Dedicated },
         { TEXT("player"), ERHAPI_HostType::Player },    };
 

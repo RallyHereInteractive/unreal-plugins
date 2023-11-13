@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_OnlineStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OnlineStatus& Value)
 {
-    static TMap<FString, ERHAPI_OnlineStatus> StringToEnum = {
+    static TMap<FString, ERHAPI_OnlineStatus> StringToEnum = { 
         { TEXT("online"), ERHAPI_OnlineStatus::Online },
         { TEXT("away"), ERHAPI_OnlineStatus::Away },
         { TEXT("invisible"), ERHAPI_OnlineStatus::Invisible },

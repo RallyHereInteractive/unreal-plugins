@@ -96,7 +96,7 @@ FName FRequest_AddFriendV2::GetSimplifiedPath() const
 
 FString FRequest_AddFriendV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -332,7 +332,7 @@ FName FRequest_AddNotesV2::GetSimplifiedPath() const
 
 FString FRequest_AddNotesV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -562,7 +562,7 @@ FName FRequest_DeleteFriendV2::GetSimplifiedPath() const
 
 FString FRequest_DeleteFriendV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -779,7 +779,7 @@ FName FRequest_DeleteFriendsV2::GetSimplifiedPath() const
 
 FString FRequest_DeleteFriendsV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -963,7 +963,7 @@ FName FRequest_DeleteNotesV2::GetSimplifiedPath() const
 
 FString FRequest_DeleteNotesV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -1143,7 +1143,7 @@ FName FRequest_GetFriendRelationshipV2::GetSimplifiedPath() const
 
 FString FRequest_GetFriendRelationshipV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -1365,7 +1365,7 @@ FName FRequest_GetFriendsListForPlayerV2::GetSimplifiedPath() const
 
 FString FRequest_GetFriendsListForPlayerV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 

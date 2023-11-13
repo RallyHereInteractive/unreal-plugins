@@ -96,7 +96,7 @@ FName FRequest_InstanceCreateNotification::GetSimplifiedPath() const
 
 FString FRequest_InstanceCreateNotification::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("instance_id"), ToStringFormatArg(InstanceId) }
     };
 
@@ -277,7 +277,7 @@ FName FRequest_InstanceGetNotificationById::GetSimplifiedPath() const
 
 FString FRequest_InstanceGetNotificationById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("notification_id"), ToStringFormatArg(NotificationId) },
         { TEXT("instance_id"), ToStringFormatArg(InstanceId) }
     };
@@ -456,7 +456,7 @@ FName FRequest_InstanceGetNotificationsPage::GetSimplifiedPath() const
 
 FString FRequest_InstanceGetNotificationsPage::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("instance_id"), ToStringFormatArg(InstanceId) }
     };
 
@@ -651,7 +651,7 @@ FName FRequest_InstanceLongPollForNotifications::GetSimplifiedPath() const
 
 FString FRequest_InstanceLongPollForNotifications::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("instance_id"), ToStringFormatArg(InstanceId) }
     };
 

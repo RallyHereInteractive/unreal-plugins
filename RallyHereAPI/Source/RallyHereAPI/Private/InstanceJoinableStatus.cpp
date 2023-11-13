@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_InstanceJoinableStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InstanceJoinableStatus& Value)
 {
-    static TMap<FString, ERHAPI_InstanceJoinableStatus> StringToEnum = {
+    static TMap<FString, ERHAPI_InstanceJoinableStatus> StringToEnum = { 
         { TEXT("requested"), ERHAPI_InstanceJoinableStatus::Requested },
         { TEXT("allocated"), ERHAPI_InstanceJoinableStatus::Allocated },
         { TEXT("pending"), ERHAPI_InstanceJoinableStatus::Pending },

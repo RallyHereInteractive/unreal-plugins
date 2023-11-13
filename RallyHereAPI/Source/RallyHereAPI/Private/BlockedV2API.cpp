@@ -96,7 +96,7 @@ FName FRequest_BlockV2::GetSimplifiedPath() const
 
 FString FRequest_BlockV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -275,7 +275,7 @@ FName FRequest_GetBlockedListForPlayerV2::GetSimplifiedPath() const
 
 FString FRequest_GetBlockedListForPlayerV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -508,7 +508,7 @@ FName FRequest_GetBlockedV2::GetSimplifiedPath() const
 
 FString FRequest_GetBlockedV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };
@@ -687,7 +687,7 @@ FName FRequest_UnblockV2::GetSimplifiedPath() const
 
 FString FRequest_UnblockV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("other_player_uuid"), ToStringFormatArg(OtherPlayerUuid) }
     };

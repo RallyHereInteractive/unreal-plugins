@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_SessionPlayerStatus& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_SessionPlayerStatus& Value)
 {
-    static TMap<FString, ERHAPI_SessionPlayerStatus> StringToEnum = {
+    static TMap<FString, ERHAPI_SessionPlayerStatus> StringToEnum = { 
         { TEXT("leader"), ERHAPI_SessionPlayerStatus::Leader },
         { TEXT("member"), ERHAPI_SessionPlayerStatus::Member },
         { TEXT("invited"), ERHAPI_SessionPlayerStatus::Invited },

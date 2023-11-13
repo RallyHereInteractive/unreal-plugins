@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_VendorType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_VendorType& Value)
 {
-    static TMap<FString, ERHAPI_VendorType> StringToEnum = {
+    static TMap<FString, ERHAPI_VendorType> StringToEnum = { 
         { TEXT("recipe"), ERHAPI_VendorType::Recipe },
         { TEXT("randomly_sampled"), ERHAPI_VendorType::RandomlySampled },    };
 

@@ -39,7 +39,7 @@ private:
 
 /* Get Site Settings
  *
- * Returns a list of all the enabled Sites/Regions.
+ * Returns a list of all the enabled Sites/Regions. 
  *             Deprecated as this endpoint has moved to the session api.
 */
 struct RALLYHEREAPI_API FRequest_GetSiteSettings : public FRequest

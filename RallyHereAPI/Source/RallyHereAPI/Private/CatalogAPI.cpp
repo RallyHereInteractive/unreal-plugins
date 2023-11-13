@@ -304,7 +304,7 @@ FName FRequest_GetCatalogInventoryBucketUseRuleSet::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogInventoryBucketUseRuleSet::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("inventory_bucket_use_ruleset_id"), ToStringFormatArg(InventoryBucketUseRulesetId) }
     };
 
@@ -725,7 +725,7 @@ FName FRequest_GetCatalogItem::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogItem::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("item_id"), ToStringFormatArg(ItemId) }
     };
 
@@ -1146,7 +1146,7 @@ FName FRequest_GetCatalogLoot::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("loot_id"), ToStringFormatArg(LootId) }
     };
 
@@ -1567,7 +1567,7 @@ FName FRequest_GetCatalogPortalUseRuleset::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogPortalUseRuleset::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("portal_use_ruleset_id"), ToStringFormatArg(PortalUseRulesetId) }
     };
 
@@ -1988,7 +1988,7 @@ FName FRequest_GetCatalogPricePoint::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogPricePoint::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) }
     };
 
@@ -2409,7 +2409,7 @@ FName FRequest_GetCatalogTimeFrame::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogTimeFrame::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("time_frame_id"), ToStringFormatArg(TimeFrameId) }
     };
 
@@ -2830,7 +2830,7 @@ FName FRequest_GetCatalogVendor::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogVendor::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) }
     };
 
@@ -3459,7 +3459,7 @@ FName FRequest_GetCatalogXpTable::GetSimplifiedPath() const
 
 FString FRequest_GetCatalogXpTable::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_table_id"), ToStringFormatArg(XpTableId) }
     };
 

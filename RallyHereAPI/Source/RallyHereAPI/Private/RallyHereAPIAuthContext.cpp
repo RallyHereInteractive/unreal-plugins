@@ -134,7 +134,7 @@ bool FAuthContext::IsSameUser(const TOptional<FRHAPI_LoginResult>& A, const TOpt
         return true;
     }
 
-    return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->PersonId == B->PersonId;
+    return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->GetPersonId() == B->GetPersonId();
 }
 
 bool FAuthContext::Refresh()
@@ -157,8 +157,8 @@ bool FAuthContext::Refresh()
     FRequest_Login Request;
     Request.AuthContext = SharedThis(this);
     Request.LoginRequestV1.SetIncludeRefresh(true);
-    Request.LoginRequestV1.GrantType = ERHAPI_GrantType::Refresh;
-    Request.LoginRequestV1.PortalAccessToken = std::move(refreshToken);
+    Request.LoginRequestV1.SetGrantType(ERHAPI_GrantType::Refresh);
+    Request.LoginRequestV1.SetPortalAccessToken(std::move(refreshToken));
     auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
     bIsRefreshing = submittedRequest != nullptr;
     UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));

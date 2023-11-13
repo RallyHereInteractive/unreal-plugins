@@ -24,8 +24,11 @@ void FRHAPI_LoginRequestV1::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("grant_type"));
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(GrantType));
-    Writer->WriteIdentifierPrefix(TEXT("portal_access_token"));
-    RallyHereAPI::WriteJsonValue(Writer, PortalAccessToken);
+    if (PortalAccessToken_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("portal_access_token"));
+        RallyHereAPI::WriteJsonValue(Writer, PortalAccessToken_Optional);
+    }
     if (PortalDisplayName_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("portal_display_name"));
@@ -75,7 +78,11 @@ bool FRHAPI_LoginRequestV1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     const TSharedPtr<FJsonValue> JsonGrantTypeField = (*Object)->TryGetField(TEXT("grant_type"));
     ParseSuccess &= JsonGrantTypeField.IsValid() && !JsonGrantTypeField->IsNull() && TryGetJsonValue(JsonGrantTypeField, GrantType);
     const TSharedPtr<FJsonValue> JsonPortalAccessTokenField = (*Object)->TryGetField(TEXT("portal_access_token"));
-    ParseSuccess &= JsonPortalAccessTokenField.IsValid() && !JsonPortalAccessTokenField->IsNull() && TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken);
+    if (JsonPortalAccessTokenField.IsValid() && !JsonPortalAccessTokenField->IsNull())
+    {
+        PortalAccessToken_IsSet = TryGetJsonValue(JsonPortalAccessTokenField, PortalAccessToken_Optional);
+        ParseSuccess &= PortalAccessToken_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonPortalDisplayNameField = (*Object)->TryGetField(TEXT("portal_display_name"));
     if (JsonPortalDisplayNameField.IsValid() && !JsonPortalDisplayNameField->IsNull())
     {

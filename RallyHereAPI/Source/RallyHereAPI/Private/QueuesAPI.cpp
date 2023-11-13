@@ -96,7 +96,7 @@ FName FRequest_GetAllMapGameInfo::GetSimplifiedPath() const
 
 FString FRequest_GetAllMapGameInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("instance_launch_template_id"), ToStringFormatArg(InstanceLaunchTemplateId) }
     };
 
@@ -716,7 +716,7 @@ FName FRequest_GetInstanceRequestTemplate::GetSimplifiedPath() const
 
 FString FRequest_GetInstanceRequestTemplate::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("instance_request_template_id"), ToStringFormatArg(InstanceRequestTemplateId) }
     };
 
@@ -918,7 +918,7 @@ FName FRequest_GetMatchMakingTemplates::GetSimplifiedPath() const
 
 FString FRequest_GetMatchMakingTemplates::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("template_group_id"), ToStringFormatArg(TemplateGroupId) }
     };
 
@@ -1120,7 +1120,7 @@ FName FRequest_GetMatchMakingTemplatesV2::GetSimplifiedPath() const
 
 FString FRequest_GetMatchMakingTemplatesV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("template_group_id"), ToStringFormatArg(TemplateGroupId) }
     };
 

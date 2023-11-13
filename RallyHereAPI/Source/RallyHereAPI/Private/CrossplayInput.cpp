@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_CrossplayInput& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CrossplayInput& Value)
 {
-    static TMap<FString, ERHAPI_CrossplayInput> StringToEnum = {
+    static TMap<FString, ERHAPI_CrossplayInput> StringToEnum = { 
         { TEXT("desired_inputs_any"), ERHAPI_CrossplayInput::Any },
         { TEXT("desired_inputs_keyboardandmouse"), ERHAPI_CrossplayInput::Kbm },
         { TEXT("desired_inputs_gamepad"), ERHAPI_CrossplayInput::Gamepad },

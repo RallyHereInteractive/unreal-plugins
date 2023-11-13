@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_OffsetReset& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OffsetReset& Value)
 {
-    static TMap<FString, ERHAPI_OffsetReset> StringToEnum = {
+    static TMap<FString, ERHAPI_OffsetReset> StringToEnum = { 
         { TEXT("latest"), ERHAPI_OffsetReset::Latest },
         { TEXT("earliest"), ERHAPI_OffsetReset::Earliest },    };
 

@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_ProfileJoinMode& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_ProfileJoinMode& Value)
 {
-    static TMap<FString, ERHAPI_ProfileJoinMode> StringToEnum = {
+    static TMap<FString, ERHAPI_ProfileJoinMode> StringToEnum = { 
         { TEXT("normal"), ERHAPI_ProfileJoinMode::Normal },
         { TEXT("backfill"), ERHAPI_ProfileJoinMode::Backfill },
         { TEXT("created_before"), ERHAPI_ProfileJoinMode::CreatedBefore },    };

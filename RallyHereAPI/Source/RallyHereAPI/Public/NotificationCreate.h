@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_NotificationCreate : public FRHAPI_Model

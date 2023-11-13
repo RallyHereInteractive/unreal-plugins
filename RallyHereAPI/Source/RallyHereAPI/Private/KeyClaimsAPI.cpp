@@ -96,7 +96,7 @@ FName FRequest_ClaimPlayerUuidUnclaimedKeyClaim::GetSimplifiedPath() const
 
 FString FRequest_ClaimPlayerUuidUnclaimedKeyClaim::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
@@ -286,7 +286,7 @@ FName FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::GetSimplifiedPath() const
 
 FString FRequest_ClaimPlayerUuidUnclaimedKeyClaimForMe::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
 
@@ -475,7 +475,7 @@ FName FRequest_ClaimUnclaimedKeyClaim::GetSimplifiedPath() const
 
 FString FRequest_ClaimUnclaimedKeyClaim::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
@@ -665,7 +665,7 @@ FName FRequest_ClaimUnclaimedKeyClaimForMe::GetSimplifiedPath() const
 
 FString FRequest_ClaimUnclaimedKeyClaimForMe::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
 
@@ -854,7 +854,7 @@ FName FRequest_GetKeyClaim::GetSimplifiedPath() const
 
 FString FRequest_GetKeyClaim::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
@@ -1033,7 +1033,7 @@ FName FRequest_GetKeyClaimForMe::GetSimplifiedPath() const
 
 FString FRequest_GetKeyClaimForMe::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
 
@@ -1211,7 +1211,7 @@ FName FRequest_GetKeyClaims::GetSimplifiedPath() const
 
 FString FRequest_GetKeyClaims::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -1719,7 +1719,7 @@ FName FRequest_GetPlayerUuidKeyClaim::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidKeyClaim::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
@@ -1898,7 +1898,7 @@ FName FRequest_GetPlayerUuidKeyClaimSelf::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidKeyClaimSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("key_claim_uuid"), ToStringFormatArg(KeyClaimUuid) }
     };
 
@@ -2076,7 +2076,7 @@ FName FRequest_GetPlayerUuidKeyClaims::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidKeyClaims::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 

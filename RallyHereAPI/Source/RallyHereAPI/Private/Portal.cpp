@@ -56,7 +56,7 @@ FString EnumToString(const ERHAPI_Portal& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_Portal& Value)
 {
-    static TMap<FString, ERHAPI_Portal> StringToEnum = {
+    static TMap<FString, ERHAPI_Portal> StringToEnum = { 
         { TEXT("2"), ERHAPI_Portal::Anon },
         { TEXT("4"), ERHAPI_Portal::Amazon },
         { TEXT("5"), ERHAPI_Portal::Steam },

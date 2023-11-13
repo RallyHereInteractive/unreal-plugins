@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "RoleAuthBypass.h"
 #include "Role.generated.h"
 
 /** @defgroup RHAPI_Role RallyHere API Model Role
@@ -71,6 +72,29 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     void SetCustomData(FRHAPI_JsonObject NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief Level of auth bypass for limited/locked modes */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_RoleAuthBypass AuthBypass_Optional{  };
+    /** @brief true if AuthBypass_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool AuthBypass_IsSet{ false };
+    /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
+    ERHAPI_RoleAuthBypass& GetAuthBypass() { return AuthBypass_Optional; }
+    /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
+    const ERHAPI_RoleAuthBypass& GetAuthBypass() const { return AuthBypass_Optional; }
+    /** @brief Gets the value of AuthBypass_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_RoleAuthBypass& GetAuthBypass(const ERHAPI_RoleAuthBypass& DefaultValue) const { if (AuthBypass_IsSet) return AuthBypass_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false */
+    bool GetAuthBypass(ERHAPI_RoleAuthBypass& OutValue) const { if (AuthBypass_IsSet) OutValue = AuthBypass_Optional; return AuthBypass_IsSet; }
+    /** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+    /** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_RoleAuthBypass* GetAuthBypassOrNull() const { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+    /** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true */
+    void SetAuthBypass(ERHAPI_RoleAuthBypass NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+     /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
+    void ClearAuthBypass() { AuthBypass_IsSet = false; }
 
     /** @brief List of loot table item ids that are fulfilled for the player when they begin a new inventory session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

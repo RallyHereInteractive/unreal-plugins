@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_Determiner& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_Determiner& Value)
 {
-    static TMap<FString, ERHAPI_Determiner> StringToEnum = {
+    static TMap<FString, ERHAPI_Determiner> StringToEnum = { 
         { TEXT("allOf"), ERHAPI_Determiner::All },
         { TEXT("anyOf"), ERHAPI_Determiner::Any },
         { TEXT("oneOf"), ERHAPI_Determiner::One },

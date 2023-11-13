@@ -96,7 +96,7 @@ FName FRequest_CustomEndpointSend::GetSimplifiedPath() const
 
 FString FRequest_CustomEndpointSend::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("endpoint_id"), ToStringFormatArg(EndpointId) }
     };
 

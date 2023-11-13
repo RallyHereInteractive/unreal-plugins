@@ -227,7 +227,7 @@ struct RALLYHEREAPI_API FResponse_DequeueMeForPurge : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
 
 
     // Manual Response Helpers
@@ -282,7 +282,7 @@ struct RALLYHEREAPI_API FResponse_DequeuePersonForPurge : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
 
 
     // Manual Response Helpers
