@@ -120,11 +120,8 @@ FHttpRetrySystem::FManager& FAPI::GetHttpRetryManager()
 
 FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
 {
-    if (!Request.GetRetryParams().IsSet())
-    {
-        return FHttpModule::Get().CreateRequest();
-    }
-    else
+	auto HttpRequest = FHttpModule::Get().CreateRequest();
+    if (Request.GetRetryParams().IsSet())
     {
         if (!RetryManager)
         {
@@ -134,8 +131,20 @@ FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
         }
 
         const FHttpRetryParams& Params = Request.GetRetryParams().GetValue();
-        return RetryManager->CreateRequest(Params.RetryLimitCountOverride, Params.RetryTimeoutRelativeSecondsOverride, Params.RetryResponseCodes, Params.RetryVerbs, Params.RetryDomains);
+
+		// make a new request wrapper that will handle retries
+		HttpRequest = MakeShareable(new FHttpRetryRequest(
+			*RetryManager,
+			HttpRequest,
+			Params.RetryLimitCountOverride,
+			Params.RetryTimeoutRelativeSecondsOverride,
+			Params.RetryResponseCodes,
+			Params.RetryVerbs,
+			Params.RetryDomains
+		));
     }
+
+	return HttpRequest;
 }
 
 bool FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, TSharedPtr<FAuthContext> AuthContext, FResponse &InOutResponse, const FHttpRequestCompleteDelegate& ResponseDelegate, const FRequestMetadata& RequestMetadata, int32 Priority)
