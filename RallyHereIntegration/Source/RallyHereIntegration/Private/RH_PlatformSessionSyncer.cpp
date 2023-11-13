@@ -670,16 +670,15 @@ void URH_PlatformSessionSyncer::CreatePlatformSession()
 
 	const auto* PlatformTemplate = PlatformTemplatesMap->Find(EnumToString(RHPlatform));
 
-	FString SessionType;
 	if (PlatformTemplate == nullptr)
 	{
-		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform session template for %s using platform "), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId(), *EnumToString(RHPlatform));
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform session template for %s using platform %s"), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId(), *EnumToString(RHPlatform));
 		SyncActionComplete(false);
 		return;
 	}
 	check(PlatformTemplate->GetPlatform() == RHPlatform);
 
-	UE_LOG(LogRHSession, Log, TEXT("[%s] - Creating platform session for RH Session %s of type %s"), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId(), *SessionType);
+	UE_LOG(LogRHSession, Log, TEXT("[%s] - Creating platform session for RH Session %s of platform template type %s"), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId(), *PlatformTemplate->GetPlatformSessionType());
 
 	FOnlineSessionSettings SessionSettings;
 	SessionSettings.Settings.Add(SETTING_SESSION_TEMPLATE_NAME, PlatformTemplate->GetPlatformSessionType());

@@ -20,15 +20,15 @@ namespace
 
 		if (ImGui::TreeNodeEx("Player", RH_DefaultTreeFlagsLeaf))
 		{
-			ImGuiDisplayCopyableValue(TEXT("Player ID"), LoginResult.ActivePlayerId);
+			ImGuiDisplayCopyableValue(TEXT("Player ID"), LoginResult.GetActivePlayerIdOrNull());
 			if (const auto ActivePlayerUuid = LoginResult.GetActivePlayerUuidOrNull())
 			{
 				ImGuiDisplayCopyableValue(TEXT("Player UUID"), *ActivePlayerUuid);
 			}
-			ImGuiDisplayCopyableValue(TEXT("Portal ID"), LoginResult.PortalId);
-			ImGuiDisplayCopyableValue(TEXT("Portal User ID"), LoginResult.PortalUserId);
-			ImGuiDisplayCopyableValue(TEXT("Display Name"), LoginResult.DisplayName);
-			ImGuiDisplayCopyableValue(TEXT("Person ID"), LoginResult.PersonId);
+			ImGuiDisplayCopyableValue(TEXT("Portal ID"), LoginResult.GetPortalIdOrNull());
+			ImGuiDisplayCopyableValue(TEXT("Portal User ID"), LoginResult.GetPortalUserIdOrNull());
+			ImGuiDisplayCopyableValue(TEXT("Display Name"), LoginResult.GetDisplayNameOrNull());
+			ImGuiDisplayCopyableValue(TEXT("Person ID"), LoginResult.GetPersonIdOrNull());
 			ImGuiDisplayCopyableValue(TEXT("Role ID"), LoginResult.GetRoleId());
 			ImGuiDisplayCopyableValue(TEXT("Publisher UUID"), LoginResult.PublisherUuid);
 			ImGuiDisplayCopyableValue(TEXT("Tenant UUID"), LoginResult.TenantUuid);
