@@ -303,7 +303,7 @@ FRH_PlayerPlatformId URH_LocalPlayerSubsystem::GetPlayerPlatformId() const
 	{
 		FRH_PlayerPlatformId PlayerPlatformId;
 
-		PlayerPlatformId.UserId = AuthContext->GetLoginResult()->PortalUserId;
+		PlayerPlatformId.UserId = AuthContext->GetLoginResult()->GetPortalUserId();
 		PlayerPlatformId.PlatformType = AuthContext->GetLoginResult()->GetPlatform();
 		return PlayerPlatformId;
 	}

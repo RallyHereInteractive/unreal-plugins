@@ -803,8 +803,8 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
             return;
         }
 
-        Request.LoginRequestV1.GrantType = *GrantType;
-        Request.LoginRequestV1.PortalAccessToken = AuthToken.TokenString;
+        Request.LoginRequestV1.SetGrantType(*GrantType);
+        Request.LoginRequestV1.SetPortalAccessToken(AuthToken.TokenString);
         Request.LoginRequestV1.SetPortalDisplayName(NicknameIdentity->GetPlayerNickname(ControllerId));
 
         UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s] Login Attempt (Login OSS '%s'/'%s': status '%s', id '%s', nick '%s')"),
@@ -824,8 +824,8 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
     }
     else
     {
-        Request.LoginRequestV1.GrantType = ERHAPI_GrantType::Refresh;
-        Request.LoginRequestV1.PortalAccessToken = Req.CredentialRefreshToken;
+        Request.LoginRequestV1.SetGrantType(ERHAPI_GrantType::Refresh);
+        Request.LoginRequestV1.SetPortalAccessToken(Req.CredentialRefreshToken);
     }
 
 	if (auto UserAccount = LoginIdentity->GetUserAccount(*Req.OSSUniqueId))
@@ -839,7 +839,7 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLogin(FRH_PendingLoginRequest& Re
 			}
 			else if (bLoginOSSUseIDTokenAsPortalAccessToken)
 			{
-				Request.LoginRequestV1.PortalAccessToken = IDToken;
+				Request.LoginRequestV1.SetPortalAccessToken(IDToken);
 			}
 		}
 	}
