@@ -564,8 +564,8 @@ void URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete(int32 Loca
 	Request.LoginRequestV1.SetAcceptEula(true);
 	Request.LoginRequestV1.SetAcceptTos(true);
 	Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);
-	Request.LoginRequestV1.GrantType = GrantType.GetValue();
-	Request.LoginRequestV1.PortalAccessToken = AuthTokenWrapper.TokenString;
+	Request.LoginRequestV1.SetGrantType(GrantType.GetValue());
+	Request.LoginRequestV1.SetPortalAccessToken(AuthTokenWrapper.TokenString);
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
 		LoginType::Delegate::CreateSP(AuthContext.Get(), &RallyHereAPI::FAuthContext::ProcessLogin),
