@@ -41,6 +41,11 @@ void FRHAPI_Session::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("matchmaking"));
         RallyHereAPI::WriteJsonValue(Writer, Matchmaking_Optional);
     }
+    if (Backfill_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("backfill"));
+        RallyHereAPI::WriteJsonValue(Writer, Backfill_Optional);
+    }
     if (Browser_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("browser"));
@@ -104,6 +109,12 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         Matchmaking_IsSet = TryGetJsonValue(JsonMatchmakingField, Matchmaking_Optional);
         ParseSuccess &= Matchmaking_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonBackfillField = (*Object)->TryGetField(TEXT("backfill"));
+    if (JsonBackfillField.IsValid() && !JsonBackfillField->IsNull())
+    {
+        Backfill_IsSet = TryGetJsonValue(JsonBackfillField, Backfill_Optional);
+        ParseSuccess &= Backfill_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonBrowserField = (*Object)->TryGetField(TEXT("browser"));
     if (JsonBrowserField.IsValid() && !JsonBrowserField->IsNull())

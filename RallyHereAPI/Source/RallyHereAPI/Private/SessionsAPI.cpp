@@ -23,6 +23,195 @@ FSessionsAPI::FSessionsAPI() : FAPI()
 
 FSessionsAPI::~FSessionsAPI() {}
 
+FHttpRequestPtr FSessionsAPI::AcknowledgeBackfillRequest(const FRequest_AcknowledgeBackfillRequest& Request, const FDelegate_AcknowledgeBackfillRequest& Delegate /*= FDelegate_AcknowledgeBackfillRequest()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FSessionsAPI::OnAcknowledgeBackfillRequestResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnAcknowledgeBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_AcknowledgeBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FSessionsAPI::OnAcknowledgeBackfillRequestResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_AcknowledgeBackfillRequest Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_AcknowledgeBackfillRequest::FRequest_AcknowledgeBackfillRequest()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}/"));
+    return Path;
+}
+
+FString FRequest_AcknowledgeBackfillRequest::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("session_id"), ToStringFormatArg(SessionId) }
+    };
+
+    FString Path = FString::Format(TEXT("/session/v1/backfill/session/{session_id}/"), PathParams);
+
+    TArray<FString> QueryParams;
+    if(RefreshTtl.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+    }
+    Path += TCHAR('?');
+    Path += FString::Join(QueryParams, TEXT("&"));
+
+    return Path;
+}
+
+bool FRequest_AcknowledgeBackfillRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("POST"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AcknowledgeBackfillRequest - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AcknowledgeBackfillRequest - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, AcknowledgeBackfillRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AcknowledgeBackfillRequest - Body parameter (FRHAPI_AcknowledgeBackfillRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AcknowledgeBackfillRequest - Body parameter (FRHAPI_AcknowledgeBackfillRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_AcknowledgeBackfillRequest - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_AcknowledgeBackfillRequest::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Backfill resource could not be found on the session, or in the open-match system"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor200(FRHAPI_AcknowledgeBackfillResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AcknowledgeBackfillRequest::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_AcknowledgeBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_AcknowledgeBackfillRequest::FResponse_AcknowledgeBackfillRequest(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_AcknowledgeBackfillRequest::Name = TEXT("AcknowledgeBackfillRequest");
+
 FHttpRequestPtr FSessionsAPI::AddPlatformSessionToRallyHereSession(const FRequest_AddPlatformSessionToRallyHereSession& Request, const FDelegate_AddPlatformSessionToRallyHereSession& Delegate /*= FDelegate_AddPlatformSessionToRallyHereSession()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
@@ -96,7 +285,7 @@ FName FRequest_AddPlatformSessionToRallyHereSession::GetSimplifiedPath() const
 
 FString FRequest_AddPlatformSessionToRallyHereSession::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
@@ -259,6 +448,155 @@ FResponse_AddPlatformSessionToRallyHereSession::FResponse_AddPlatformSessionToRa
 
 FString Traits_AddPlatformSessionToRallyHereSession::Name = TEXT("AddPlatformSessionToRallyHereSession");
 
+FHttpRequestPtr FSessionsAPI::BackfillConfig(const FRequest_BackfillConfig& Request, const FDelegate_BackfillConfig& Delegate /*= FDelegate_BackfillConfig()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FSessionsAPI::OnBackfillConfigResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnBackfillConfigResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_BackfillConfig Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FSessionsAPI::OnBackfillConfigResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_BackfillConfig Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_BackfillConfig::FRequest_BackfillConfig()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_BackfillConfig::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/session/v1/backfill/config"));
+    return Path;
+}
+
+FString FRequest_BackfillConfig::ComputePath() const
+{
+    FString Path = GetSimplifiedPath().ToString();
+    return Path;
+}
+
+bool FRequest_BackfillConfig::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BackfillConfig - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BackfillConfig - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_BackfillConfig - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_BackfillConfig::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    }
+}
+
+bool FResponse_BackfillConfig::TryGetContentFor200(FRHAPI_BackfillSettingsResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_BackfillConfig::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_BackfillConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_BackfillConfig::FResponse_BackfillConfig(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_BackfillConfig::Name = TEXT("BackfillConfig");
+
 FHttpRequestPtr FSessionsAPI::CreateInstanceRequest(const FRequest_CreateInstanceRequest& Request, const FDelegate_CreateInstanceRequest& Delegate /*= FDelegate_CreateInstanceRequest()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
@@ -332,7 +670,7 @@ FName FRequest_CreateInstanceRequest::GetSimplifiedPath() const
 
 FString FRequest_CreateInstanceRequest::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -673,7 +1011,7 @@ FName FRequest_CreateSessionEvent::GetSimplifiedPath() const
 
 FString FRequest_CreateSessionEvent::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -854,7 +1192,7 @@ FName FRequest_DeleteBrowserInfo::GetSimplifiedPath() const
 
 FString FRequest_DeleteBrowserInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -1011,7 +1349,7 @@ FName FRequest_DeletePlatformSessionFromRallyHereSession::GetSimplifiedPath() co
 
 FString FRequest_DeletePlatformSessionFromRallyHereSession::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
@@ -1208,7 +1546,7 @@ FName FRequest_EndInstance::GetSimplifiedPath() const
 
 FString FRequest_EndInstance::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -1399,7 +1737,7 @@ FName FRequest_EndMatch::GetSimplifiedPath() const
 
 FString FRequest_EndMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -2129,7 +2467,7 @@ FName FRequest_GetPlatformSessionInfo::GetSimplifiedPath() const
 
 FString FRequest_GetPlatformSessionInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) }
     };
@@ -2340,7 +2678,7 @@ FName FRequest_GetPlayerSessions::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerSessions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -2502,7 +2840,7 @@ FName FRequest_GetPlayerSessionsByUuid::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerSessionsByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -2704,7 +3042,7 @@ FName FRequest_GetPlayerSessionsByUuidV2::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerSessionsByUuidV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -3103,7 +3441,7 @@ FName FRequest_GetSessionByAllocationId::GetSimplifiedPath() const
 
 FString FRequest_GetSessionByAllocationId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("allocation_id"), ToStringFormatArg(AllocationId) }
     };
 
@@ -3305,7 +3643,7 @@ FName FRequest_GetSessionById::GetSimplifiedPath() const
 
 FString FRequest_GetSessionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -3515,7 +3853,7 @@ FName FRequest_GetSessionEvents::GetSimplifiedPath() const
 
 FString FRequest_GetSessionEvents::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -3689,7 +4027,7 @@ FName FRequest_GetSessionTemplateByType::GetSimplifiedPath() const
 
 FString FRequest_GetSessionTemplateByType::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_type"), ToStringFormatArg(SessionType) }
     };
 
@@ -3891,7 +4229,7 @@ FName FRequest_InstanceHealthCheck::GetSimplifiedPath() const
 
 FString FRequest_InstanceHealthCheck::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -4213,7 +4551,7 @@ FName FRequest_JoinQueue::GetSimplifiedPath() const
 
 FString FRequest_JoinQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -4386,7 +4724,7 @@ FName FRequest_JoinSessionByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_JoinSessionByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -4601,7 +4939,7 @@ FName FRequest_JoinSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 
 FString FRequest_JoinSessionByPlatformSessionByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("platform"), ToStringFormatArg(Platform) }
@@ -4848,7 +5186,7 @@ FName FRequest_JoinSessionByPlatformSessionIdSelf::GetSimplifiedPath() const
 
 FString FRequest_JoinSessionByPlatformSessionIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
@@ -5086,7 +5424,7 @@ FName FRequest_KickPlayerFromSessionById::GetSimplifiedPath() const
 
 FString FRequest_KickPlayerFromSessionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
@@ -5252,7 +5590,7 @@ FName FRequest_KickPlayerFromSessionByUuid::GetSimplifiedPath() const
 
 FString FRequest_KickPlayerFromSessionByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -5452,7 +5790,7 @@ FName FRequest_KickPlayerFromSessionByUuidV2::GetSimplifiedPath() const
 
 FString FRequest_KickPlayerFromSessionByUuidV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -5652,7 +5990,7 @@ FName FRequest_LeaveQueue::GetSimplifiedPath() const
 
 FString FRequest_LeaveQueue::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -5817,7 +6155,7 @@ FName FRequest_LeaveSessionByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_LeaveSessionByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -5982,7 +6320,7 @@ FName FRequest_LeaveSessionByPlatformSessionByUuid::GetSimplifiedPath() const
 
 FString FRequest_LeaveSessionByPlatformSessionByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("platform"), ToStringFormatArg(Platform) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
@@ -6171,7 +6509,7 @@ FName FRequest_LeaveSessionByPlatformSessionSelf::GetSimplifiedPath() const
 
 FString FRequest_LeaveSessionByPlatformSessionSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("platform_session_id_base64"), ToStringFormatArg(PlatformSessionIdBase64) },
         { TEXT("platform"), ToStringFormatArg(Platform) }
     };
@@ -6359,7 +6697,7 @@ FName FRequest_PostBrowserInfo::GetSimplifiedPath() const
 
 FString FRequest_PostBrowserInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -6540,7 +6878,7 @@ FName FRequest_ReportFubar::GetSimplifiedPath() const
 
 FString FRequest_ReportFubar::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -6713,7 +7051,7 @@ FName FRequest_StartMatch::GetSimplifiedPath() const
 
 FString FRequest_StartMatch::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -6813,6 +7151,190 @@ FResponse_StartMatch::FResponse_StartMatch(FRequestMetadata InRequestMetadata) :
 
 FString Traits_StartMatch::Name = TEXT("StartMatch");
 
+FHttpRequestPtr FSessionsAPI::UpdateBackfillRequest(const FRequest_UpdateBackfillRequest& Request, const FDelegate_UpdateBackfillRequest& Delegate /*= FDelegate_UpdateBackfillRequest()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FSessionsAPI::OnUpdateBackfillRequestResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnUpdateBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FSessionsAPI::OnUpdateBackfillRequestResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_UpdateBackfillRequest Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_UpdateBackfillRequest::FRequest_UpdateBackfillRequest()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_UpdateBackfillRequest::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}"));
+    return Path;
+}
+
+FString FRequest_UpdateBackfillRequest::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("session_id"), ToStringFormatArg(SessionId) }
+    };
+
+    FString Path = FString::Format(TEXT("/session/v1/backfill/session/{session_id}"), PathParams);
+
+    TArray<FString> QueryParams;
+    if(RefreshTtl.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+    }
+    Path += TCHAR('?');
+    Path += FString::Join(QueryParams, TEXT("&"));
+
+    return Path;
+}
+
+bool FRequest_UpdateBackfillRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("PATCH"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateBackfillRequest - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateBackfillRequest - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, UpdateBackfillRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateBackfillRequest - Body parameter (FRHAPI_UpdateBackfillRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateBackfillRequest - Body parameter (FRHAPI_UpdateBackfillRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateBackfillRequest - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_UpdateBackfillRequest::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 204:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Backfill resource could not be found on the session, or in the open-match system"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_UpdateBackfillRequest::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateBackfillRequest::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateBackfillRequest::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return true;
+}
+
+FResponse_UpdateBackfillRequest::FResponse_UpdateBackfillRequest(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_UpdateBackfillRequest::Name = TEXT("UpdateBackfillRequest");
+
 FHttpRequestPtr FSessionsAPI::UpdateBrowserInfo(const FRequest_UpdateBrowserInfo& Request, const FDelegate_UpdateBrowserInfo& Delegate /*= FDelegate_UpdateBrowserInfo()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
@@ -6886,7 +7408,7 @@ FName FRequest_UpdateBrowserInfo::GetSimplifiedPath() const
 
 FString FRequest_UpdateBrowserInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7059,7 +7581,7 @@ FName FRequest_UpdateInstanceInfo::GetSimplifiedPath() const
 
 FString FRequest_UpdateInstanceInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7232,7 +7754,7 @@ FName FRequest_UpdateMatchInfo::GetSimplifiedPath() const
 
 FString FRequest_UpdateMatchInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7405,7 +7927,7 @@ FName FRequest_UpdateSessionById::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
@@ -7612,7 +8134,7 @@ FName FRequest_UpdateSessionPlayerById::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionPlayerById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
@@ -7794,7 +8316,7 @@ FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionPlayerByUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
@@ -8010,7 +8532,7 @@ FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPath() const
 
 FString FRequest_UpdateSessionPlayerByUuidV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };

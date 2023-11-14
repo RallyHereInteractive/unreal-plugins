@@ -96,7 +96,7 @@ FName FRequest_CreateNewInventorySession::GetSimplifiedPath() const
 
 FString FRequest_CreateNewInventorySession::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -269,7 +269,7 @@ FName FRequest_CreateNewInventorySessionByPlayerUuid::GetSimplifiedPath() const
 
 FString FRequest_CreateNewInventorySessionByPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -778,7 +778,7 @@ FName FRequest_CreateNewPlayerOrder::GetSimplifiedPath() const
 
 FString FRequest_CreateNewPlayerOrder::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -1135,7 +1135,7 @@ FName FRequest_CreateNewPlayerUuidOrder::GetSimplifiedPath() const
 
 FString FRequest_CreateNewPlayerUuidOrder::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -1492,7 +1492,7 @@ FName FRequest_CreatePlayerInventory::GetSimplifiedPath() const
 
 FString FRequest_CreatePlayerInventory::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -1849,7 +1849,7 @@ FName FRequest_CreatePlayerInventoryUuid::GetSimplifiedPath() const
 
 FString FRequest_CreatePlayerInventoryUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -2206,7 +2206,7 @@ FName FRequest_GetInventorySessionInfo::GetSimplifiedPath() const
 
 FString FRequest_GetInventorySessionInfo::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -2368,7 +2368,7 @@ FName FRequest_GetInventorySessionInfoByPlayerUuid::GetSimplifiedPath() const
 
 FString FRequest_GetInventorySessionInfoByPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -2828,7 +2828,7 @@ FName FRequest_GetPlayerInventory::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerInventory::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -3207,7 +3207,7 @@ FName FRequest_GetPlayerInventoryUuid::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerInventoryUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -3586,7 +3586,7 @@ FName FRequest_GetPlayerOrderById::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerOrderById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("order_id"), ToStringFormatArg(OrderId) }
     };
@@ -3757,7 +3757,7 @@ FName FRequest_GetPlayerOrderByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerOrderByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("order_id"), ToStringFormatArg(OrderId) }
     };
 
@@ -3927,7 +3927,7 @@ FName FRequest_GetPlayerOrders::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerOrders::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -4286,7 +4286,7 @@ FName FRequest_GetPlayerUuidOrderById::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidOrderById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("order_id"), ToStringFormatArg(OrderId) }
     };
@@ -4457,7 +4457,7 @@ FName FRequest_GetPlayerUuidOrderByIdSelf::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidOrderByIdSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("order_id"), ToStringFormatArg(OrderId) }
     };
 
@@ -4627,7 +4627,7 @@ FName FRequest_GetPlayerUuidOrders::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidOrders::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -4986,7 +4986,7 @@ FName FRequest_ModifyManyPlayerInventory::GetSimplifiedPath() const
 
 FString FRequest_ModifyManyPlayerInventory::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -5343,7 +5343,7 @@ FName FRequest_ModifyManyPlayerInventoryUuid::GetSimplifiedPath() const
 
 FString FRequest_ModifyManyPlayerInventoryUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -5700,7 +5700,7 @@ FName FRequest_ModifyPlayerInventory::GetSimplifiedPath() const
 
 FString FRequest_ModifyPlayerInventory::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) },
         { TEXT("inventory_id"), ToStringFormatArg(InventoryId) }
     };
@@ -5882,7 +5882,7 @@ FName FRequest_ModifyPlayerInventorySelf::GetSimplifiedPath() const
 
 FString FRequest_ModifyPlayerInventorySelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("inventory_id"), ToStringFormatArg(InventoryId) }
     };
 
@@ -6063,7 +6063,7 @@ FName FRequest_ModifyPlayerInventoryUuid::GetSimplifiedPath() const
 
 FString FRequest_ModifyPlayerInventoryUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
         { TEXT("inventory_id"), ToStringFormatArg(InventoryId) }
     };
@@ -6245,7 +6245,7 @@ FName FRequest_ModifyPlayerInventoryUuidSelf::GetSimplifiedPath() const
 
 FString FRequest_ModifyPlayerInventoryUuidSelf::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("inventory_id"), ToStringFormatArg(InventoryId) }
     };
 

@@ -48,7 +48,7 @@ FString EnumToString(const ERHAPI_OAuthPortal& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OAuthPortal& Value)
 {
-    static TMap<FString, ERHAPI_OAuthPortal> StringToEnum = {
+    static TMap<FString, ERHAPI_OAuthPortal> StringToEnum = { 
         { TEXT("google"), ERHAPI_OAuthPortal::Google },
         { TEXT("apple"), ERHAPI_OAuthPortal::Apple },
         { TEXT("epic"), ERHAPI_OAuthPortal::Epic },

@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model

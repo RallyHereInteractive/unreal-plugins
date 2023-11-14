@@ -154,7 +154,7 @@ FString EnumToString(const ERHAPI_Source& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_Source& Value)
 {
-    static TMap<FString, ERHAPI_Source> StringToEnum = {
+    static TMap<FString, ERHAPI_Source> StringToEnum = { 
         { TEXT("UNKNOWN"), ERHAPI_Source::Unknown },
         { TEXT("WEB_ORDER_REPAIR"), ERHAPI_Source::WebOrderRepair },
         { TEXT("IN_GAME"), ERHAPI_Source::InGame },

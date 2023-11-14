@@ -193,8 +193,8 @@ struct RALLYHEREAPI_API Traits_GetBlocked
 /* Get Blocked List For Player
  *
  * Fetch the blocked list for the Player. <br /><br />
- *                         <b>Note:</b> This API supports etags and will return the etag header when with the response.
- *                         Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed.
+ *                         <b>Note:</b> This API supports etags and will return the etag header when with the response. 
+ *                         Clients can utilize the <i>if-none-match</i> header to avoid having to reload the response if it has not changed. 
  *                         <br/><br />Permissions Required: friend:block_list:read
 */
 struct RALLYHEREAPI_API FRequest_GetBlockedListForPlayer : public FRequest
@@ -297,7 +297,7 @@ struct RALLYHEREAPI_API FResponse_Unblock : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-
+    
 
 
     // Manual Response Helpers

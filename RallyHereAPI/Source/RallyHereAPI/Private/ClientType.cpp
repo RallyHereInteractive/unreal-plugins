@@ -52,7 +52,7 @@ FString EnumToString(const ERHAPI_ClientType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_ClientType& Value)
 {
-    static TMap<FString, ERHAPI_ClientType> StringToEnum = {
+    static TMap<FString, ERHAPI_ClientType> StringToEnum = { 
         { TEXT("UNKNOWN"), ERHAPI_ClientType::Unknown },
         { TEXT("WIN"), ERHAPI_ClientType::Win },
         { TEXT("MAC"), ERHAPI_ClientType::Mac },

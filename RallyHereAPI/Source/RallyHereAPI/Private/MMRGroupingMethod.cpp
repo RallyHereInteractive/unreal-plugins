@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_MMRGroupingMethod& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_MMRGroupingMethod& Value)
 {
-    static TMap<FString, ERHAPI_MMRGroupingMethod> StringToEnum = {
+    static TMap<FString, ERHAPI_MMRGroupingMethod> StringToEnum = { 
         { TEXT("worst"), ERHAPI_MMRGroupingMethod::Worst },
         { TEXT("best"), ERHAPI_MMRGroupingMethod::Best },
         { TEXT("avg_weighted_by_sigma"), ERHAPI_MMRGroupingMethod::AverageByVariance },

@@ -248,7 +248,7 @@ FName FRequest_DequeuePersonForPurge::GetSimplifiedPath() const
 
 FString FRequest_DequeuePersonForPurge::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 
@@ -858,7 +858,7 @@ FName FRequest_GetPerson::GetSimplifiedPath() const
 
 FString FRequest_GetPerson::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 
@@ -1028,7 +1028,7 @@ FName FRequest_GetPersonEmailList::GetSimplifiedPath() const
 
 FString FRequest_GetPersonEmailList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 
@@ -1512,7 +1512,7 @@ FName FRequest_GetPlayerIdFromPlayerUuid::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerIdFromPlayerUuid::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -1871,7 +1871,7 @@ FName FRequest_GetPlayerLinkedPortals::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerLinkedPortals::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -2049,7 +2049,7 @@ FName FRequest_GetPlayerLinks::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerLinks::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
     };
 
@@ -2392,7 +2392,7 @@ FName FRequest_GetPlayerUuidFromPlayerId::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidFromPlayerId::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -2900,7 +2900,7 @@ FName FRequest_GetPlayerUuidFromPlayerIdV2::GetSimplifiedPath() const
 
 FString FRequest_GetPlayerUuidFromPlayerIdV2::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("player_id"), ToStringFormatArg(PlayerId) }
     };
 
@@ -3428,7 +3428,7 @@ FName FRequest_GetQueuePurgeStatusForPerson::GetSimplifiedPath() const
 
 FString FRequest_GetQueuePurgeStatusForPerson::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 
@@ -4138,7 +4138,7 @@ FName FRequest_QueuePersonForPurge::GetSimplifiedPath() const
 
 FString FRequest_QueuePersonForPurge::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 
@@ -4463,7 +4463,7 @@ FName FRequest_UpdatePerson::GetSimplifiedPath() const
 
 FString FRequest_UpdatePerson::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 
@@ -4644,7 +4644,7 @@ FName FRequest_UpdatePersonEmailList::GetSimplifiedPath() const
 
 FString FRequest_UpdatePersonEmailList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("person_id"), ToStringFormatArg(PersonId) }
     };
 

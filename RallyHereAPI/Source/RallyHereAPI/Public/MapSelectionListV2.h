@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MapSelectionListV2 : public FRHAPI_Model

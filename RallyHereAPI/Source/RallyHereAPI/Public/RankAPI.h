@@ -134,7 +134,7 @@ private:
 /* Get All Player Uuid Ranks
  *
  * Get all of a specific player's ranks
- *
+ * 
  * Required Permissions: `rank:read:self` for players acting on themselves,
  * otherwise `rank:read:any`
  * **DEPRECATED** Use the V2 endpoint
@@ -194,7 +194,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanks
 /* Get All Player Uuid Ranks Self
  *
  * Get all of current player's ranks
- *
+ * 
  * Required Permissions: `rank:read:self`
  * **DEPRECATED** Use the V2 endpoints
 */
@@ -247,7 +247,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelf
 /* Get All Player Uuid Ranks Self V2
  *
  * Get all of current player's ranks
- *
+ * 
  * Required Permissions: `rank:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidRanksSelfV2 : public FRequest
@@ -299,7 +299,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksSelfV2
 /* Get All Player Uuid Ranks V2
  *
  * Get all of a specific player's ranks
- *
+ * 
  * Required Permissions: `rank:read:self` for players acting on themselves,
  * otherwise `rank:read:any`
 */
@@ -358,7 +358,7 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidRanksV2
 /* Get All Rank Config
  *
  * Get all rank configuration
- *
+ * 
  * Required Permissions: `rank:read:config`
  * **DEPRECATED** Use the v2 endpoint
 */
@@ -411,7 +411,7 @@ struct RALLYHEREAPI_API Traits_GetAllRankConfig
 /* Get All Rank Config V2
  *
  * Get all rank configuration
- *
+ * 
  * Required Permissions: `rank:read:config`
 */
 struct RALLYHEREAPI_API FRequest_GetAllRankConfigV2 : public FRequest
@@ -463,8 +463,8 @@ struct RALLYHEREAPI_API Traits_GetAllRankConfigV2
 /* Get Player Uuid Rank
  *
  * Get a specific player's rank for a specific rank id
- *
- * Required Permissions: `rank:read:self` for players acting on themselves,
+ *             
+ * Required Permissions: `rank:read:self` for players acting on themselves, 
  * otherwise `rank:read:any`
  * **DEPRECATED** Use the V2 endpoint
 */
@@ -524,7 +524,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRank
 /* Get Player Uuid Rank Self
  *
  * Get current player's rank for a specific rank id
- *
+ *             
  * Required Permissions: `rank:read:self`
  * **DEPRECATED** Use the V2 endpoint
 */
@@ -583,7 +583,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelf
 /* Get Player Uuid Rank Self V2
  *
  * Get current player's rank for a specific rank id
- *
+ * 
  * Required Permissions: `rank:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankSelfV2 : public FRequest
@@ -641,8 +641,8 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankSelfV2
 /* Get Player Uuid Rank V2
  *
  * Get a specific player's rank for a specific rank id
- *
- * Required Permissions: `rank:read:self` for players acting on themselves,
+ * 
+ * Required Permissions: `rank:read:self` for players acting on themselves, 
  * otherwise `rank:read:any`
 */
 struct RALLYHEREAPI_API FRequest_GetPlayerUuidRankV2 : public FRequest
@@ -701,7 +701,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerUuidRankV2
 /* Get Rank Config
  *
  * Get rank configuration for specific rank id
- *
+ * 
  * Required Permissions: `rank:read:config`
  * **DEPRECATED** Use V2 endpoint instead
 */
@@ -760,7 +760,7 @@ struct RALLYHEREAPI_API Traits_GetRankConfig
 /* Get Rank Config V2
  *
  * Get rank configuration for specific rank id
- *
+ * 
  * Required Permissions: `rank:read:config`
 */
 struct RALLYHEREAPI_API FRequest_GetRankConfigV2 : public FRequest
@@ -818,8 +818,8 @@ struct RALLYHEREAPI_API Traits_GetRankConfigV2
 /* Update Player Uuid Rank
  *
  * Update a specific player's ranks to those that are provided. Ranks are taken as is
- *
- * Required Permissions: `rank:update:self` for players acting on themselves,
+ * 
+ * Required Permissions: `rank:update:self` for players acting on themselves, 
  * otherwise `rank:update:any`
  * **DEPRECATED** Use V2 endpoints
 */
@@ -879,8 +879,8 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRank
 
 /* Update Player Uuid Rank Self
  *
- * Update current player's ranks to those that are provided. Ranks are taken as is
- *
+ * Update current player's ranks to those that are provided. Ranks are taken as is 
+ * 
  * Required Permissions: `rank:update:self`
  * **DEPRECATED** Use the V2 endpoint
 */
@@ -939,8 +939,8 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelf
 
 /* Update Player Uuid Rank Self V2
  *
- * Update current player's ranks to those that are provided. Ranks are taken as is
- *
+ * Update current player's ranks to those that are provided. Ranks are taken as is 
+ * 
  * Required Permissions: `rank:update:self`
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankSelfV2 : public FRequest
@@ -999,8 +999,8 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankSelfV2
 /* Update Player Uuid Rank V2
  *
  * Update a specific player's ranks to those that are provided. Ranks are taken as is
- *
- * Required Permissions: `rank:update:self` for players acting on themselves,
+ * 
+ * Required Permissions: `rank:update:self` for players acting on themselves, 
  * otherwise `rank:update:any`
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerUuidRankV2 : public FRequest
@@ -1061,7 +1061,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerUuidRankV2
  *
  * Run Trueskill V1 rank update on players and persist their new ranks
  * Requires at least two teams, and the player's trueskill values before the last match was played
- *
+ * 
  * Required Permissions: `rank:update:any`
  * **DEPRECATED** Use the v2 endpoint instead
 */
@@ -1121,7 +1121,7 @@ struct RALLYHEREAPI_API Traits_UpdateRankingsTrueskillV1
  *
  * Run Trueskill V1 rank update on players and persist their new ranks
  * Requires at least two teams, and the player's trueskill values before the last match was played
- *
+ * 
  * Required Permissions: `rank:update:any`
 */
 struct RALLYHEREAPI_API FRequest_UpdateV2RankingsTrueskill : public FRequest

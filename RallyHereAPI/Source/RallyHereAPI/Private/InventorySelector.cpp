@@ -42,7 +42,7 @@ FString EnumToString(const ERHAPI_InventorySelector& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_InventorySelector& Value)
 {
-    static TMap<FString, ERHAPI_InventorySelector> StringToEnum = {
+    static TMap<FString, ERHAPI_InventorySelector> StringToEnum = { 
         { TEXT("invalid"), ERHAPI_InventorySelector::Invalid },
         { TEXT("own"), ERHAPI_InventorySelector::Own },
         { TEXT("rent"), ERHAPI_InventorySelector::Rent },

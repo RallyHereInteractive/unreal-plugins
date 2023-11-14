@@ -839,7 +839,7 @@ FName FRequest_UpdateOpportunityById::GetSimplifiedPath() const
 
 FString FRequest_UpdateOpportunityById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("opportunity_id"), ToStringFormatArg(OpportunityId) }
     };
 

@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_OpportunityAbortReason& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OpportunityAbortReason& Value)
 {
-    static TMap<FString, ERHAPI_OpportunityAbortReason> StringToEnum = {
+    static TMap<FString, ERHAPI_OpportunityAbortReason> StringToEnum = { 
         { TEXT("cancel"), ERHAPI_OpportunityAbortReason::Cancel },
         { TEXT("other"), ERHAPI_OpportunityAbortReason::Other },    };
 

@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_OpportunityState& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_OpportunityState& Value)
 {
-    static TMap<FString, ERHAPI_OpportunityState> StringToEnum = {
+    static TMap<FString, ERHAPI_OpportunityState> StringToEnum = { 
         { TEXT("start"), ERHAPI_OpportunityState::Start },
         { TEXT("complete"), ERHAPI_OpportunityState::Complete },
         { TEXT("abort"), ERHAPI_OpportunityState::Abort },    };

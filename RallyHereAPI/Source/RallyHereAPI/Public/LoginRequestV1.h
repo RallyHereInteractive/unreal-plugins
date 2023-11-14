@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
@@ -52,13 +52,30 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 
     /** @brief Token or secret used to authenticate the provided grant type */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString PortalAccessToken{  };
-    /** @brief Gets the value of PortalAccessToken */
-    FString& GetPortalAccessToken() { return PortalAccessToken; }
-    /** @brief Gets the value of PortalAccessToken */
-    const FString& GetPortalAccessToken() const { return PortalAccessToken; }
-    /** @brief Sets the value of PortalAccessToken */
-    void SetPortalAccessToken(FString NewValue) { PortalAccessToken = NewValue;  }
+    FString PortalAccessToken_Optional{  };
+    /** @brief true if PortalAccessToken_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PortalAccessToken_IsSet{ false };
+    /** @brief Gets the value of PortalAccessToken_Optional, regardless of it having been set */
+    FString& GetPortalAccessToken() { return PortalAccessToken_Optional; }
+    /** @brief Gets the value of PortalAccessToken_Optional, regardless of it having been set */
+    const FString& GetPortalAccessToken() const { return PortalAccessToken_Optional; }
+    /** @brief Gets the value of PortalAccessToken_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetPortalAccessToken(const FString& DefaultValue) const { if (PortalAccessToken_IsSet) return PortalAccessToken_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PortalAccessToken_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPortalAccessToken(FString& OutValue) const { if (PortalAccessToken_IsSet) OutValue = PortalAccessToken_Optional; return PortalAccessToken_IsSet; }
+    /** @brief Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetPortalAccessTokenOrNull() { if (PortalAccessToken_IsSet) return &PortalAccessToken_Optional; return nullptr; }
+    /** @brief Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetPortalAccessTokenOrNull() const { if (PortalAccessToken_IsSet) return &PortalAccessToken_Optional; return nullptr; }
+    /** @brief Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true */
+    void SetPortalAccessToken(FString NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true; }
+     /** @brief Clears the value of PortalAccessToken_Optional and sets PortalAccessToken_IsSet to false */
+    void ClearPortalAccessToken() { PortalAccessToken_Optional = TEXT(""); PortalAccessToken_IsSet = false; }
+    /** @brief Returns true if PortalAccessToken_Optional is set and matches the default value */
+    bool IsPortalAccessTokenDefaultValue() const { return PortalAccessToken_IsSet && PortalAccessToken_Optional == TEXT(""); }
+    /** @brief Sets the value of PortalAccessToken_Optional to its default and also sets PortalAccessToken_IsSet to true */
+    void SetPortalAccessTokenToDefault() { PortalAccessToken_Optional = TEXT(""); PortalAccessToken_IsSet = true; }
 
     /** @brief Some grant types support client-provided names */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

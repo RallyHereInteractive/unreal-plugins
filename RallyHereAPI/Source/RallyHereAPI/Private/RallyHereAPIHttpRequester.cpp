@@ -1,4 +1,3 @@
-
 #include "CoreMinimal.h"
 #include "RallyHereAPIHttpRequester.h"
 
@@ -97,9 +96,9 @@ void FRallyHereAPIHttpRequester::QueueNextRequestCall()
         FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([](float dts)
         {
             auto* Requester = FRallyHereAPIHttpRequester::Get();
-            if (Requester != nullptr) 
+            if (Requester != nullptr)
             {
-                Requester->TryExecuteNextRequest(); 
+                Requester->TryExecuteNextRequest();
             }
             return false;
         }), 0.0f);

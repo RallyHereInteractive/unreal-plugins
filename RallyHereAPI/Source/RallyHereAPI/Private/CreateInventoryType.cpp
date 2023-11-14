@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_CreateInventoryType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_CreateInventoryType& Value)
 {
-    static TMap<FString, ERHAPI_CreateInventoryType> StringToEnum = {
+    static TMap<FString, ERHAPI_CreateInventoryType> StringToEnum = { 
         { TEXT("persistent"), ERHAPI_CreateInventoryType::Persistent },
         { TEXT("transient"), ERHAPI_CreateInventoryType::Transient },    };
 

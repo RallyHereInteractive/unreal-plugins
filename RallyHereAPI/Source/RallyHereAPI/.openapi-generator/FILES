@@ -1,4 +1,6 @@
 .openapi-generator-ignore
+Private/AcknowledgeBackfillRequest.cpp
+Private/AcknowledgeBackfillResponse.cpp
 Private/AdAPI.cpp
 Private/AdOpportunities.cpp
 Private/AdOpportunity.cpp
@@ -6,6 +8,8 @@ Private/AdditionalJoinParams.cpp
 Private/AgreementMessage.cpp
 Private/AppSetting.cpp
 Private/AuthAPI.cpp
+Private/BackfillInfo.cpp
+Private/BackfillSettingsResponse.cpp
 Private/BlockedList.cpp
 Private/BlockedListV1.cpp
 Private/BlockedPlayer.cpp
@@ -234,6 +238,7 @@ Private/RegionsResponse.cpp
 Private/Restriction.cpp
 Private/RestrictionType.cpp
 Private/Role.cpp
+Private/RoleAuthBypass.cpp
 Private/Rule.cpp
 Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
@@ -270,6 +275,7 @@ Private/TrueskillRank.cpp
 Private/TrueskillTeam.cpp
 Private/TrueskillUpdateRequest.cpp
 Private/TrueskillUpdateRequestV2.cpp
+Private/UpdateBackfillRequest.cpp
 Private/UpdateInventoryRequest.cpp
 Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
@@ -282,6 +288,8 @@ Private/Vendors.cpp
 Private/XpQuantityTransform.cpp
 Private/XpTable.cpp
 Private/XpTables.cpp
+Public/AcknowledgeBackfillRequest.h
+Public/AcknowledgeBackfillResponse.h
 Public/AdAPI.h
 Public/AdOpportunities.h
 Public/AdOpportunity.h
@@ -289,6 +297,8 @@ Public/AdditionalJoinParams.h
 Public/AgreementMessage.h
 Public/AppSetting.h
 Public/AuthAPI.h
+Public/BackfillInfo.h
+Public/BackfillSettingsResponse.h
 Public/BlockedList.h
 Public/BlockedListV1.h
 Public/BlockedPlayer.h
@@ -517,6 +527,7 @@ Public/RegionsResponse.h
 Public/Restriction.h
 Public/RestrictionType.h
 Public/Role.h
+Public/RoleAuthBypass.h
 Public/Rule.h
 Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h
@@ -553,6 +564,7 @@ Public/TrueskillRank.h
 Public/TrueskillTeam.h
 Public/TrueskillUpdateRequest.h
 Public/TrueskillUpdateRequestV2.h
+Public/UpdateBackfillRequest.h
 Public/UpdateInventoryRequest.h
 Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h
