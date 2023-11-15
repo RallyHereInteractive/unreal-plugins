@@ -22,6 +22,8 @@ FString EnumToString(const ERHAPI_GrantType& Value)
 {
     switch (Value)
     {
+    case ERHAPI_GrantType::Anon:
+        return TEXT("anon");
     case ERHAPI_GrantType::Google:
         return TEXT("google");
     case ERHAPI_GrantType::Apple:
@@ -46,8 +48,8 @@ FString EnumToString(const ERHAPI_GrantType& Value)
         return TEXT("steam");
     case ERHAPI_GrantType::Basic:
         return TEXT("basic");
-    case ERHAPI_GrantType::Anon:
-        return TEXT("anon");
+    case ERHAPI_GrantType::ClientCredentials:
+        return TEXT("client_credentials");
     }
 
     UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_GrantType::Values Value (%d)"), (int)Value);
@@ -57,6 +59,7 @@ FString EnumToString(const ERHAPI_GrantType& Value)
 bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& Value)
 {
     static TMap<FString, ERHAPI_GrantType> StringToEnum = { 
+        { TEXT("anon"), ERHAPI_GrantType::Anon },
         { TEXT("google"), ERHAPI_GrantType::Google },
         { TEXT("apple"), ERHAPI_GrantType::Apple },
         { TEXT("refresh"), ERHAPI_GrantType::Refresh },
@@ -69,7 +72,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& Value)
         { TEXT("nintendo_switch"), ERHAPI_GrantType::NintendoSwitch },
         { TEXT("steam"), ERHAPI_GrantType::Steam },
         { TEXT("basic"), ERHAPI_GrantType::Basic },
-        { TEXT("anon"), ERHAPI_GrantType::Anon },    };
+        { TEXT("client_credentials"), ERHAPI_GrantType::ClientCredentials },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);
     if(Found)

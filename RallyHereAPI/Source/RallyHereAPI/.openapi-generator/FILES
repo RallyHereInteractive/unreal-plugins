@@ -238,6 +238,7 @@ Private/RegionsResponse.cpp
 Private/Restriction.cpp
 Private/RestrictionType.cpp
 Private/Role.cpp
+Private/RoleAuthBypass.cpp
 Private/Rule.cpp
 Private/RuleType.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
@@ -526,6 +527,7 @@ Public/RegionsResponse.h
 Public/Restriction.h
 Public/RestrictionType.h
 Public/Role.h
+Public/RoleAuthBypass.h
 Public/Rule.h
 Public/RuleType.h
 Public/SelfSessionPlayerUpdateRequest.h

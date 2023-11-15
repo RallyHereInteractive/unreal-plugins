@@ -83,6 +83,28 @@ struct RALLYHEREAPI_API FHttpRetryParams
     FRetryDomainsPtr RetryDomains;
 };
 
+class FHttpRetryRequest : public FHttpRetrySystem::FRequest
+{
+public:
+	FHttpRetryRequest(
+		class FManager& InManager,
+		const TSharedRef<IHttpRequest, ESPMode::ThreadSafe>& HttpRequest,
+		const FRetryLimitCountSetting& InRetryLimitCountOverride = FRetryLimitCountSetting(),
+		const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride = FRetryTimeoutRelativeSecondsSetting(),
+		const FRetryResponseCodes& InRetryResponseCodes = FRetryResponseCodes(),
+		const FRetryVerbs& InRetryVerbs = FRetryVerbs(),
+		const FRetryDomainsPtr& InRetryDomains = FRetryDomainsPtr()
+	) : FHttpRetrySystem::FRequest (InManager, HttpRequest, InRetryLimitCountOverride, InRetryTimeoutRelativeSecondsOverride, InRetryResponseCodes, InRetryVerbs, InRetryDomains)
+	{ }
+
+	// Reset state of the request to not started, in case we are retrying after an auth failure
+	virtual bool RALLYHEREAPI_API ProcessRequest() override
+	{
+		Status = EStatus::NotStarted;
+		return FHttpRetrySystem::FRequest::ProcessRequest();
+	}
+};
+
 /*
  * Metadata used to track a request through the Unreal systems
  */

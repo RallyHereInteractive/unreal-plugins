@@ -493,7 +493,12 @@ void URH_JoinedSession::SetWatchingPlayers(bool bWatch)
 								if (Presence != nullptr)
 								{
 									// bind to listen callback
-									Presence->OnPresenceUpdatedDelegate.AddUObject(this, &URH_JoinedSession::OnWatchedPlayerPresenceUpdated);
+									Presence->OnPresenceUpdatedDelegate.AddWeakLambda(this, [this](URH_PlayerPresence* Presence)
+										{
+											// notify listeners
+											OnSessionMemberPresenceChangedDelegate.Broadcast(this, Presence);
+											BLUEPRINT_OnSessionMemberPresenceChangedDelegate.Broadcast(this, Presence);
+										});
 
 									// kick a request for an update
 									Presence->RequestUpdate();

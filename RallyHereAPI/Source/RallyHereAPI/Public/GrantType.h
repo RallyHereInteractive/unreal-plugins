@@ -18,6 +18,7 @@
 UENUM(BlueprintType)
 enum class ERHAPI_GrantType : uint8
 {
+    Anon UMETA(ToolTip="Anonymous authentication"),
     Google UMETA(ToolTip="Google authentication"),
     Apple UMETA(ToolTip="Apple authentication"),
     Refresh UMETA(ToolTip="Refresh Token authentication"),
@@ -30,7 +31,7 @@ enum class ERHAPI_GrantType : uint8
     NintendoSwitch UMETA(ToolTip="Nintendo Service Account (for Nintendo Switch) authentication"),
     Steam UMETA(ToolTip="Steam authentication"),
     Basic UMETA(ToolTip="Basic Username/Password authentication"),
-    Anon UMETA(ToolTip="Anonymous authentication"),
+    ClientCredentials UMETA(ToolTip="Authentication that doesn&#39;t require user credentials, only a Client ID/Secret in the Authorization header."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_GrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& EnumValue);
