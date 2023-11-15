@@ -45,6 +45,8 @@ FRHDTW_Session::FRHDTW_Session()
 		ImGuiCopyStringToTextInputBuffer(URallyHereDebugToolSettings::Get()->DefaultSessionGameModeName, GameModeName);
 	}
 
+	UpdateSessionRegionIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
+
 	SearchByTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 
 	QueueSessionSelector.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
@@ -741,11 +743,19 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 
 		if (ImGui::TreeNodeEx("Update Session State", RH_DefaultTreeFlags))
 		{
+			ImGui::InputText("Region Id", UpdateSessionRegionIdString.GetData(), UpdateSessionRegionIdString.Num());
+
 			SessionCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
 
 			if (RHJoinedSession != nullptr && ImGui::Button("Update Session Info"))
 			{
 				FRHAPI_SessionUpdate SessionUpdate;
+
+				auto RegionId = ImGuiGetStringFromTextInputBuffer(UpdateSessionRegionIdString);
+				if (RegionId.Len() > 0)
+				{
+					SessionUpdate.SetRegionId(RegionId);
+				}
 
 				TMap<FString, FString> CustomData;
 				SessionCustomDataStager.GetCustomDataMap(CustomData);

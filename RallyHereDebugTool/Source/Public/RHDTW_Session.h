@@ -40,6 +40,8 @@ public:
 	TArray<ANSICHAR> GameModeName;
 	bool bMakeBeaconInstance;
 
+	TArray<ANSICHAR> UpdateSessionRegionIdString;
+
 	TArray<ANSICHAR> SearchByTypeString;
 	bool SearchCacheSessions;
 	int32 SearchCursor;
