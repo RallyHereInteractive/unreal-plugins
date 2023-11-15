@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief Response to a reques tto update a player in a session
+ * @brief Response to a request to update a player in a session
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
@@ -39,6 +39,29 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
     * @param [in] Writer JSON Writer stream to push .
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+
+    /** @brief Player UUID of the player updated */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FGuid PlayerUuid_Optional{  };
+    /** @brief true if PlayerUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PlayerUuid_IsSet{ false };
+    /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+    FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
+    /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+    const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
+    /** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
+    /** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
+    /** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
+    void SetPlayerUuid(FGuid NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+     /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+    void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
 
     /** @brief Status of the player after the request is completed */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

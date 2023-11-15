@@ -89,7 +89,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     /** @brief Sets the value of Status */
     void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status = NewValue;  }
 
-    /** @brief If the player is only a pending invite, this is the player that requested the invite */
+    /** @brief UUID of the player who sent this players invite, if any */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid InvitingPlayerUuid_Optional{  };
     /** @brief true if InvitingPlayerUuid_Optional has been set to a value */
@@ -111,6 +111,29 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void SetInvitingPlayerUuid(FGuid NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true; }
      /** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
     void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false; }
+
+    /** @brief The UUID of the session that this player was invited from */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString SourceSessionId_Optional{  };
+    /** @brief true if SourceSessionId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool SourceSessionId_IsSet{ false };
+    /** @brief Gets the value of SourceSessionId_Optional, regardless of it having been set */
+    FString& GetSourceSessionId() { return SourceSessionId_Optional; }
+    /** @brief Gets the value of SourceSessionId_Optional, regardless of it having been set */
+    const FString& GetSourceSessionId() const { return SourceSessionId_Optional; }
+    /** @brief Gets the value of SourceSessionId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetSourceSessionId(const FString& DefaultValue) const { if (SourceSessionId_IsSet) return SourceSessionId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of SourceSessionId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetSourceSessionId(FString& OutValue) const { if (SourceSessionId_IsSet) OutValue = SourceSessionId_Optional; return SourceSessionId_IsSet; }
+    /** @brief Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetSourceSessionIdOrNull() { if (SourceSessionId_IsSet) return &SourceSessionId_Optional; return nullptr; }
+    /** @brief Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetSourceSessionIdOrNull() const { if (SourceSessionId_IsSet) return &SourceSessionId_Optional; return nullptr; }
+    /** @brief Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true */
+    void SetSourceSessionId(FString NewValue) { SourceSessionId_Optional = NewValue; SourceSessionId_IsSet = true; }
+     /** @brief Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false */
+    void ClearSourceSessionId() { SourceSessionId_IsSet = false; }
 
     /** @brief player-defined custom data */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
