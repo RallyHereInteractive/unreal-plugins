@@ -708,6 +708,19 @@ void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::InviteOtherSession(const FString& TargetSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// currently not supported for offline sessions
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
+void URH_OfflineSession::KickOtherSession(const FString& OtherSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// currently not supported for offline sessions
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
+
 void URH_OfflineSession::SetLeader(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
@@ -1188,6 +1201,40 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionU
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.PlayerUuid = PlayerUuid;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionKickPriority);
+	Helper->Start(Request);
+}
+
+
+void URH_OnlineSession::InviteOtherSession(const FString& TargetSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_InviteCohortToSession BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.TargetSessionId = TargetSessionId;
+	Request.CohortInviteRequest = CohortInviteRequest;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::KickOtherSession(const FString& TargetSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// TODO - check that players is already in this session?
+
+	typedef RallyHereAPI::Traits_KickCohortFromSession BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.TargetSessionId = TargetSessionId;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionKickPriority);
 	Helper->Start(Request);

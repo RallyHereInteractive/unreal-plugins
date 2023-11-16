@@ -34,6 +34,7 @@ public:
 	FString SessionActionResult;
 
 	int32 InvitePlayerTeam;
+	TArray<ANSICHAR> InviteSessionString;
 	TArray<ANSICHAR> JoinQueueByIdString;
 
 	TArray<ANSICHAR> MapName;
