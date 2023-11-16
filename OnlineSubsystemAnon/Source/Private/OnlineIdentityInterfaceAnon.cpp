@@ -262,7 +262,11 @@ void FOnlineIdentityAnon::Tick(float DeltaTime)
 
 }
 
+#if ((ENGINE_MAJOR_VERSION > 5) || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 2))
+void FOnlineIdentityAnon::GetLinkedAccountAuthToken(int32 LocalUserNum, const FString& TokenType, const FOnGetLinkedAccountAuthTokenCompleteDelegate& Delegate) const
+#else
 void FOnlineIdentityAnon::GetLinkedAccountAuthToken(int32 LocalUserNum, const FOnGetLinkedAccountAuthTokenCompleteDelegate& Delegate) const
+#endif
 {
 	FExternalAuthToken AuthToken;
 	AuthToken.TokenString = GetAuthToken(LocalUserNum);
