@@ -30,6 +30,7 @@ public class RallyHereEditor : ModuleRules
 				"RallyHereDeveloperAPI",
 				"WebBrowserWidget",
 				"Json",
+				"Http"
 			}
 		);
 

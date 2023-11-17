@@ -66,21 +66,32 @@ void SRallyHereEditorWebRequestWidget::UpdateWebCallBox()
 		Label += " ";
 		Label += request->URL;
 
-		FString RequestText = "";
-		FString ResponseText = "";
-		TSharedPtr<FJsonValue> JsonValue;
+		FString RequestText;
+		FString ResponseText;
 
 		if (request->Content.Len() > 0)
 		{
-			if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(request->Content), JsonValue) && FJsonSerializer::Serialize(JsonValue, TEXT(""), TJsonWriterFactory<>::Create(&RequestText)) || RequestText == "")
+			// attempt to pretty print JSON values if we can deserialize them
+			TSharedPtr<FJsonValue> JsonValue;
+			if (FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(request->Content), JsonValue))
+			{
+				FJsonSerializer::Serialize(JsonValue, TEXT(""), TJsonWriterFactory<>::Create(&RequestText));
+			}
+			else
 			{
 				RequestText = request->Content;
 			}
 		}
 
-		if (request->Responses.Num() && request->Responses.Last().Content.Len() > 0)
+		if (request->Responses.Num() > 0 && request->Responses.Last().Content.Len() > 0)
 		{
-			if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(request->Responses.Last().Content), JsonValue) && FJsonSerializer::Serialize(JsonValue, TEXT(""), TJsonWriterFactory<>::Create(&ResponseText)) || ResponseText == "")
+			// attempt to pretty print JSON values if we can deserialize them
+			TSharedPtr<FJsonValue> JsonValue;
+			if (FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(request->Responses.Last().Content), JsonValue))
+			{
+				FJsonSerializer::Serialize(JsonValue, TEXT(""), TJsonWriterFactory<>::Create(&ResponseText));
+			}
+			else
 			{
 				ResponseText = request->Responses.Last().Content;
 			}
