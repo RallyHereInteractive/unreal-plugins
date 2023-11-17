@@ -860,8 +860,20 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 			{
 				UE_LOG(LogRHSession, Log, TEXT("[%s] - Successfully joined platform session %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr());
 
-				auto PlayerUniqueIdPtr = GetOSSUniqueId().GetUniqueNetId();
-				OSSSessionInterface->RegisterPlayer(OSSSessionName, *PlayerUniqueIdPtr.Get(), false);
+				auto PlayerIdWrapper = GetOSSUniqueId();;
+
+				if (PlayerIdWrapper.IsValid())
+				{
+					auto PlayerUniqueId = PlayerIdWrapper.GetUniqueNetId();
+					if (PlayerUniqueId.IsValid())
+					{
+						auto PlayerUniqueIdPtr = PlayerUniqueId.Get();
+						if (PlayerUniqueIdPtr != nullptr && PlayerUniqueIdPtr->IsValid())
+						{
+							OSSSessionInterface->RegisterPlayer(OSSSessionName, *PlayerUniqueIdPtr, false);
+						}
+					}
+				}
 
 				auto* Settings = GetDefault<URH_IntegrationSettings>();
 				if (Settings->bAutoStartSessionsAfterJoin)
@@ -956,10 +968,19 @@ void URH_PlatformSessionSyncer::LeavePlatformSession()
 
 	if (OSSSessionInterface != nullptr && PlatformSession != nullptr)
 	{
-		auto PlayerUniqueIdPtr = GetOSSUniqueId().GetUniqueNetId().Get();
-		if (PlayerUniqueIdPtr != nullptr)
+		auto PlayerIdWrapper = GetOSSUniqueId();;
+
+		if (PlayerIdWrapper.IsValid())
 		{
-			OSSSessionInterface->UnregisterPlayer(OSSSessionName, *PlayerUniqueIdPtr);
+			auto PlayerUniqueId = PlayerIdWrapper.GetUniqueNetId();
+			if (PlayerUniqueId.IsValid())
+			{
+				auto PlayerUniqueIdPtr = PlayerUniqueId.Get();
+				if (PlayerUniqueIdPtr != nullptr && PlayerUniqueIdPtr->IsValid())
+				{
+					OSSSessionInterface->UnregisterPlayer(OSSSessionName, *PlayerUniqueIdPtr);
+				}
+			}
 		}
 
 		// TODO - figure out how to more properly do this for split screen
@@ -1029,10 +1050,19 @@ void URH_PlatformSessionSyncer::CleanupInternal()
 
 	if (OSSSessionInterface != nullptr && PlatformSession != nullptr)
 	{
-		auto PlayerUniqueIdPtr = GetOSSUniqueId().GetUniqueNetId();
-		if (PlayerUniqueIdPtr.IsValid())
+		auto PlayerIdWrapper = GetOSSUniqueId();;
+
+		if (PlayerIdWrapper.IsValid())
 		{
-			OSSSessionInterface->UnregisterPlayer(OSSSessionName, *PlayerUniqueIdPtr.Get());
+			auto PlayerUniqueId = PlayerIdWrapper.GetUniqueNetId();
+			if (PlayerUniqueId.IsValid())
+			{
+				auto PlayerUniqueIdPtr = PlayerUniqueId.Get();
+				if (PlayerUniqueIdPtr != nullptr && PlayerUniqueIdPtr->IsValid())
+				{
+					OSSSessionInterface->UnregisterPlayer(OSSSessionName, *PlayerUniqueIdPtr);
+				}
+			}
 		}
 
 		// TODO - figure out how to more properly do this for split screen
