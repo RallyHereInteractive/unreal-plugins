@@ -102,7 +102,7 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoStartSessionsAfterJoin;
 
-	/** @brief Whether to automatically start platform sessions after joining them */
+	/** @brief Whether to automatically join platform sessions after a user change when invites were received while logged out */
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoJoinPlatformSessionsAfterUserChange;
 
