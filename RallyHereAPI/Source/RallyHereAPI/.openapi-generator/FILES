@@ -10,6 +10,7 @@ Private/AppSetting.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
 Private/BackfillSettingsResponse.cpp
+Private/BackfillTeam.cpp
 Private/BlockedList.cpp
 Private/BlockedListV1.cpp
 Private/BlockedPlayer.cpp
@@ -302,6 +303,7 @@ Public/AppSetting.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
 Public/BackfillSettingsResponse.h
+Public/BackfillTeam.h
 Public/BlockedList.h
 Public/BlockedListV1.h
 Public/BlockedPlayer.h

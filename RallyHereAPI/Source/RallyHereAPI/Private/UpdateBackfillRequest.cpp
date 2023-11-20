@@ -29,6 +29,11 @@ void FRHAPI_UpdateBackfillRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) 
     }
     Writer->WriteIdentifierPrefix(TEXT("instance_id"));
     RallyHereAPI::WriteJsonValue(Writer, InstanceId);
+    if (Teams_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("teams"));
+        RallyHereAPI::WriteJsonValue(Writer, Teams_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -48,6 +53,12 @@ bool FRHAPI_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
     }
     const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
     ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+    const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
+    if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
+    {
+        Teams_IsSet = TryGetJsonValue(JsonTeamsField, Teams_Optional);
+        ParseSuccess &= Teams_IsSet;
+    }
 
     return ParseSuccess;
 }

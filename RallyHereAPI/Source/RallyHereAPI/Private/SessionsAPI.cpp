@@ -90,7 +90,7 @@ FRequest_AcknowledgeBackfillRequest::FRequest_AcknowledgeBackfillRequest()
 
 FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}/"));
+    static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}"));
     return Path;
 }
 
@@ -100,7 +100,7 @@ FString FRequest_AcknowledgeBackfillRequest::ComputePath() const
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
-    FString Path = FString::Format(TEXT("/session/v1/backfill/session/{session_id}/"), PathParams);
+    FString Path = FString::Format(TEXT("/session/v1/backfill/session/{session_id}"), PathParams);
 
     TArray<FString> QueryParams;
     if(RefreshTtl.IsSet())
@@ -4545,7 +4545,7 @@ FRequest_InviteCohortToSession::FRequest_InviteCohortToSession()
 
 FName FRequest_InviteCohortToSession::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/session/v1/session/{session_id}/target-session/{target_session_id}:invite"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/invited-session/{invited_session_id}:invite"));
     return Path;
 }
 
@@ -4553,10 +4553,10 @@ FString FRequest_InviteCohortToSession::ComputePath() const
 {
     TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
-        { TEXT("target_session_id"), ToStringFormatArg(TargetSessionId) }
+        { TEXT("invited_session_id"), ToStringFormatArg(InvitedSessionId) }
     };
 
-    FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/target-session/{target_session_id}:invite"), PathParams);
+    FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/invited-session/{invited_session_id}:invite"), PathParams);
 
     return Path;
 }
@@ -5634,7 +5634,7 @@ FRequest_KickCohortFromSession::FRequest_KickCohortFromSession()
 
 FName FRequest_KickCohortFromSession::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/session/v1/session/{session_id}/target-session/{target_session_id}"));
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/kicked-session/{kicked_session_id}"));
     return Path;
 }
 
@@ -5642,10 +5642,10 @@ FString FRequest_KickCohortFromSession::ComputePath() const
 {
     TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("session_id"), ToStringFormatArg(SessionId) },
-        { TEXT("target_session_id"), ToStringFormatArg(TargetSessionId) }
+        { TEXT("kicked_session_id"), ToStringFormatArg(KickedSessionId) }
     };
 
-    FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/target-session/{target_session_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/kicked-session/{kicked_session_id}"), PathParams);
 
     return Path;
 }

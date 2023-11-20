@@ -22,8 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_AcknowledgeBackfillResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("backfilled_players"));
-    RallyHereAPI::WriteJsonValue(Writer, BackfilledPlayers);
+    if (BackfilledPlayers_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("backfilled_players"));
+        RallyHereAPI::WriteJsonValue(Writer, BackfilledPlayers_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -36,7 +39,11 @@ bool FRHAPI_AcknowledgeBackfillResponse::FromJson(const TSharedPtr<FJsonValue>& 
     bool ParseSuccess = true;
 
     const TSharedPtr<FJsonValue> JsonBackfilledPlayersField = (*Object)->TryGetField(TEXT("backfilled_players"));
-    ParseSuccess &= JsonBackfilledPlayersField.IsValid() && !JsonBackfilledPlayersField->IsNull() && TryGetJsonValue(JsonBackfilledPlayersField, BackfilledPlayers);
+    if (JsonBackfilledPlayersField.IsValid() && !JsonBackfilledPlayersField->IsNull())
+    {
+        BackfilledPlayers_IsSet = TryGetJsonValue(JsonBackfilledPlayersField, BackfilledPlayers_Optional);
+        ParseSuccess &= BackfilledPlayers_IsSet;
+    }
 
     return ParseSuccess;
 }

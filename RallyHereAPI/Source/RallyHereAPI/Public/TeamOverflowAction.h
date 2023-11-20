@@ -22,6 +22,7 @@ enum class ERHAPI_TeamOverflowAction : uint8
     AllowOverflow UMETA(ToolTip="Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players"),
     PartialWithOverflow UMETA(ToolTip="Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited"),
     PartialWithoutOverflow UMETA(ToolTip="Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited"),
+    Overfill UMETA(ToolTip="Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_TeamOverflowAction& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_TeamOverflowAction& EnumValue);

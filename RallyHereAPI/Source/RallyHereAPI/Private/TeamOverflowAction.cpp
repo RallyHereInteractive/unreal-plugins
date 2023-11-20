@@ -30,6 +30,8 @@ FString EnumToString(const ERHAPI_TeamOverflowAction& Value)
         return TEXT("partial_with_overflow");
     case ERHAPI_TeamOverflowAction::PartialWithoutOverflow:
         return TEXT("partial_without_overflow");
+    case ERHAPI_TeamOverflowAction::Overfill:
+        return TEXT("overfill");
     }
 
     UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_TeamOverflowAction::Values Value (%d)"), (int)Value);
@@ -42,7 +44,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_TeamOverflowAction& Valu
         { TEXT("fail"), ERHAPI_TeamOverflowAction::Fail },
         { TEXT("allow_overflow"), ERHAPI_TeamOverflowAction::AllowOverflow },
         { TEXT("partial_with_overflow"), ERHAPI_TeamOverflowAction::PartialWithOverflow },
-        { TEXT("partial_without_overflow"), ERHAPI_TeamOverflowAction::PartialWithoutOverflow },    };
+        { TEXT("partial_without_overflow"), ERHAPI_TeamOverflowAction::PartialWithoutOverflow },
+        { TEXT("overfill"), ERHAPI_TeamOverflowAction::Overfill },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);
     if(Found)
