@@ -641,32 +641,32 @@ public:
 
 	/**
 	 * @brief Invites a different session to this session.
-	 * @param [in] TargetSessionId The session id to send the invite to
+	 * @param [in] InvitedSessionId The session id to send the invite to
 	 * @param [in] CohortInviteRequest Information about the invite being sent, including team information
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
-	virtual void InviteOtherSession(const FString& TargetSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InviteOtherSession, ); }
+	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InviteOtherSession, ); }
 	/**
 	 * @brief Blueprint compatible version of InviteOtherSession
-	 * @param [in] TargetSessionId The session id to send the invite to
+	 * @param [in] InvitedSessionId The session id to send the invite to
 	 * @param [in] CohortInviteRequest Information about the invite being sent, including team information
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Invite Other Session", AutoCreateRefTerm = "CohortInviteRequest,Delegate"))
-	void BLUEPRINT_InviteOtherSession(UPARAM(ref) const FString& TargetSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InviteOtherSession(TargetSessionId, CohortInviteRequest, Delegate); }
+	void BLUEPRINT_InviteOtherSession(UPARAM(ref) const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InviteOtherSession(InvitedSessionId, CohortInviteRequest, Delegate); }
 	/**
 	 * @brief Kicks all players in a target tsession from this session.
-	 * @param [in] TargetSessionId The session Id to kick from this session.
+	 * @param [in] KickedSessionId The session Id to kick from this session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
-	virtual void KickOtherSession(const FString& TargetSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickOtherSession, ); }
+	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickOtherSession, ); }
 	/**
 	 * @brief Blueprint compatible version of KickOtherSession
-	 * @param [in] TargetSessionId The session Id to kick from this session.
+	 * @param [in] KickedSessionId The session Id to kick from this session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Kick Other Session", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_KickOtherSession(UPARAM(ref) const FString& TargetSessionId, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickOtherSession(TargetSessionId, Delegate); }
+	void BLUEPRINT_KickOtherSession(UPARAM(ref) const FString& KickedSessionId, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickOtherSession(KickedSessionId, Delegate); }
 
 	/**
 	 * @brief Sets a new leader for the session.
@@ -920,9 +920,9 @@ public:
 	/** @brief Currently not supported for offline sessions */
 	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void InviteOtherSession(const FString& TargetSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void KickOtherSession(const FString& TargetSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
 	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
@@ -1143,17 +1143,17 @@ public:
 	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Invites a different session to this session.
-	 * @param [in] TargetSessionId The session id to send the invite to
+	 * @param [in] InvitedSessionId The session id to send the invite to
 	 * @param [in] CohortInviteRequest Information about the invite being sent, including team information
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
-	virtual void InviteOtherSession(const FString& TargetSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Kicks all players in a target tsession from this session.
-	 * @param [in] TargetSessionId The session Id to kick from this session.
+	 * @param [in] KickedSessionId The session Id to kick from this session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
-	virtual void KickOtherSession(const FString& TargetSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Sets a new leader for the session.
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.

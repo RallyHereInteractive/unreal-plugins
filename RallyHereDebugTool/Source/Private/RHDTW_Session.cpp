@@ -700,7 +700,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					TMap<FString, FString> CustomData;
 					InvitePlayerCustomDataStager.GetCustomDataMap(CustomData);
 
-					FString TargetSessionId = ImGuiGetStringFromTextInputBuffer(InviteSessionString);
+					FString InvitedSessionId = ImGuiGetStringFromTextInputBuffer(InviteSessionString);
 
 					FRHAPI_CohortInviteRequest InviteRequest;
 					InviteRequest.SetTeamId(InvitePlayerTeam);
@@ -708,7 +708,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 
 					// for now, do not specify an overflow action type
 
-					RHJoinedSession->InviteOtherSession(TargetSessionId, InviteRequest);
+					RHJoinedSession->InviteOtherSession(InvitedSessionId, InviteRequest);
 				}
 			}
 
