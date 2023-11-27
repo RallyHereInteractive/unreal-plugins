@@ -1058,7 +1058,7 @@ void URH_OfflineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus Health
 	Delegate.ExecuteIfBound(true, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OfflineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
@@ -1422,7 +1422,7 @@ void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthS
 	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
-void URH_OnlineSession::UpdateBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	if (bEnable)
 	{

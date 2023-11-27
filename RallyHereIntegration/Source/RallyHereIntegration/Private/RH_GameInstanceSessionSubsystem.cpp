@@ -128,6 +128,11 @@ void URH_GameInstanceSessionSubsystem::Initialize()
 		InstanceHealthPoller = FRH_PollControl::CreateAutoPoller();
 	}
 
+	if (!BackfillPoller.IsValid())
+	{
+		BackfillPoller = FRH_PollControl::CreateAutoPoller();
+	}
+
 	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &URH_GameInstanceSessionSubsystem::OnMapLoadComplete);
 	if (GEngine != nullptr)
 	{
@@ -365,11 +370,12 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 								auto* PollControl = FRH_PollControl::Get();
 								if (PollControl && Resp.IsSuccessful())
 								{
-									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), Resp.Content.CadenceSeconds);
+									float NewInterval = Resp.Content.CadenceSeconds;
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), NewInterval);
 
 									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
 									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
-									NewSetting.Interval = Resp.Content.CadenceSeconds;
+									NewSetting.Interval = NewInterval;
 									PollControl->SetPollingIntervalOverride(NewSetting);
 								}
 							}),
@@ -387,7 +393,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 				// initiate polling
 				if (BackfillPoller.IsValid())
 				{
-					BackfillPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollBackfill), BackfillPollTimerName, true);
+					BackfillPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollBackfill), BackfillPollTimerName, false);
 				}
 
 				// kick off a check to determine if we need to override our health interval
@@ -496,12 +502,20 @@ void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& 
 		&&	GetShouldKeepBackfillAlive()
 		)
 	{
-		ActiveSession->UpdateBackfill(true,
-			FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
-				{
-					Delegate.ExecuteIfBound(bSuccess, GetShouldKeepBackfillAlive());
-				}
-		));
+		// send acknowledge if instance is joinable, else just cycle polling
+		if (ActiveSession->GetInstanceData()->GetJoinStatus() == ERHAPI_InstanceJoinableStatus::Joinable)
+		{
+			ActiveSession->AcknowledgeBackfill(true,
+				FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
+					{
+						Delegate.ExecuteIfBound(bSuccess, GetShouldKeepBackfillAlive());
+					}
+			));
+		}
+		else
+		{
+			Delegate.ExecuteIfBound(false, GetShouldKeepBackfillAlive());
+		}
 	}
 	else
 	{
