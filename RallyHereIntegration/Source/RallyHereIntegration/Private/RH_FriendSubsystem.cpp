@@ -800,6 +800,10 @@ void URH_FriendSubsystem::OSSReadFriendsList(const FString& ListName /* = "Defau
 			// Request load platform friends list
 			OSSFriendsInterface->ReadFriendsList(LPSS->GetPlatformUserId(), ListName, FOnReadFriendsListComplete::CreateUObject(this, &URH_FriendSubsystem::OnReadOSSFriendsComplete));
 
+			// Request a list of blocked platform players
+			OSSFriendsInterface->OnBlockListChangeDelegates[LPSS->GetPlatformUserId()].AddUObject(this, &URH_FriendSubsystem::OnOSSBlockListChanged);
+			OSSFriendsInterface->QueryBlockedPlayers(*LPSS->GetOSSUniqueId().GetUniqueNetId());
+
 			// Listen to presence change to update friends' metadata
 			if (OSSPresenceInterface.IsValid())
 			{
@@ -820,6 +824,113 @@ void URH_FriendSubsystem::OnReadOSSFriendsComplete(int32 LocalUserNum, bool bWas
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSSFriendsInterface failed to ReadFriendsList with error: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorStr);
 	}
+}
+
+
+void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FString& ListName)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] OnOSSBlockListChanged called %i"), ANSI_TO_TCHAR(__FUNCTION__), LocalUserNum);
+	auto OSS = IOnlineSubsystem::Get();
+	if (!OSS)
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get OSS"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	// get friends interface from the OSS
+	const auto OSSFriendsInterface = OSS->GetFriendsInterface();
+	if (!OSSFriendsInterface.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get OSS friends interface"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	// get identity interface from the OSS
+	const auto OSSIdentityInterface = OSS->GetIdentityInterface();
+	if (!OSSIdentityInterface.IsValid())
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get OSS identity interface"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	TArray<TSharedRef<FOnlineBlockedPlayer>> BlockedPlayers;
+	if (!OSSFriendsInterface->GetBlockedPlayers(*OSSIdentityInterface->GetUniquePlayerId(LocalUserNum), BlockedPlayers))
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] failed to get list of blocked players"), ANSI_TO_TCHAR(__FUNCTION__));
+		return;
+	}
+
+	TOptional<ERHAPI_Platform> PlatformType = RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NULL_SUBSYSTEM);
+	const ERHAPI_Platform RHPlatformType = PlatformType.IsSet() ? PlatformType.GetValue() : ERHAPI_Platform::Anon;
+
+	// since this is a full read of the OSS, clear all stored data, and rebuild the cached list
+	PlatformBlockedPlayers.Empty();
+	for (const auto& BlockedPlayer : BlockedPlayers)
+	{
+		const FString PlatformId = BlockedPlayer->GetUserId()->ToString();
+
+		// store the blocked player in a set for quick lookup later in case th is player is currently unknown
+		PlatformBlockedPlayers.Add(PlatformId);
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] adding blocked player %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformId);
+	}
+
+	TArray<URH_RHFriendAndPlatformFriend*> UpdatedFriends;
+
+	// set value for any existing friends
+	for (auto Friend : Friends)
+	{
+		auto PlatformFriend = Friend->GetPlatformFriend(RHPlatformType);
+		if (PlatformFriend)
+		{
+			bool bWasBlocked = PlatformFriend->IsBlocked();
+			bool bShouldBeBlocked = PlatformBlockedPlayers.Contains(PlatformFriend->GetPlayerPlatformId().UserId);
+			PlatformFriend->SetBlocked(bShouldBeBlocked);
+
+			// keep track of friends who have changed blocked status
+			if (bWasBlocked != bShouldBeBlocked)
+			{
+				UpdatedFriends.Add(Friend);
+			}
+		}			
+	}
+
+	for (const auto& BlockedPlayerPlatformId : PlatformBlockedPlayers )
+	{
+		const auto PlayerPlatformId = FRH_PlayerPlatformId(BlockedPlayerPlatformId, RHPlatformType);
+		if (const URH_RHFriendAndPlatformFriend* Friend = GetFriendByPlatformId(PlayerPlatformId))
+		{
+			// should have been updated above in the whole-friends-list update
+		}
+		else
+		{
+			auto PlatformFriend = NewObject<URH_PlatformFriend>(this);
+			PlatformFriend->InitBlocked(PlayerPlatformId);
+
+			auto NewFriend = NewObject<URH_RHFriendAndPlatformFriend>(this);
+			NewFriend->PlatformFriends.Add(PlatformFriend);
+			NewFriend->PlayerAndPlatformInfo.PlayerPlatformId = PlayerPlatformId;
+			Friends.Add(NewFriend);
+
+			if (const auto pRH_PlayerInfoSubsystem = GetRH_PlayerInfoSubsystem())
+			{
+				TWeakObjectPtr<URH_RHFriendAndPlatformFriend> WeakFriend = NewFriend;
+				pRH_PlayerInfoSubsystem->LookupPlayerByPlatformUserId(PlayerPlatformId, FRH_PlayerInfoLookupPlayerDelegate::CreateLambda([WeakFriend](bool bSuccess, const TArray<URH_PlayerInfo*>& PlayerInfos)
+					{
+						if (bSuccess && WeakFriend.IsValid() && PlayerInfos.IsValidIndex(0) && PlayerInfos[0] != nullptr)
+						{
+							WeakFriend->PlayerAndPlatformInfo.PlayerUuid = PlayerInfos[0]->GetRHPlayerUuid();
+						}
+					}));
+			}
+
+			UpdatedFriends.Add(NewFriend);
+		}
+	}
+
+	// for now, use the full update delegate, as we did not track individual updates above and we may have added to the list
+	SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendListUpdated, FColor::Purple);
+	FriendListUpdatedDelegate.Broadcast(UpdatedFriends);
+	BLUEPRINT_FriendListUpdatedDelegate.Broadcast(UpdatedFriends);
 }
 
 void URH_FriendSubsystem::OnOSSPresenceReceived(const FUniqueNetId& UserId, const TSharedRef<FOnlineUserPresence>& NewPresence)
@@ -897,7 +1008,7 @@ void URH_FriendSubsystem::UpdateWithOSSFriends(const FString& ListName /* = "Def
 		const FOnlineUserPresence& Presence = bSuccessful ? *PresencePtr : OnlineFriend.GetPresence();
 
 		URH_PlatformFriend* RHPlatformFriend = NewObject<URH_PlatformFriend>(this);
-		RHPlatformFriend->Init(OnlineFriend, Presence, OSS);
+		RHPlatformFriend->Init(OnlineFriend, Presence, OSS, PlatformBlockedPlayers.Contains(OnlineFriend.GetUserId()->ToString()));
 		RHPlatformFriends.Add(RHPlatformFriend);
 
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]: Friend %s [%s]: %s %i %i %i %i %s"),
