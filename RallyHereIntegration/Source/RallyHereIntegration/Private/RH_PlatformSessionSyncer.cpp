@@ -860,8 +860,9 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 			{
 				UE_LOG(LogRHSession, Log, TEXT("[%s] - Successfully joined platform session %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr());
 
-				auto PlayerIdWrapper = GetOSSUniqueId();;
+				auto PlayerIdWrapper = GetOSSUniqueId();
 
+				// register the player with the session
 				if (PlayerIdWrapper.IsValid())
 				{
 					auto PlayerUniqueId = PlayerIdWrapper.GetUniqueNetId();
@@ -875,6 +876,7 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 					}
 				}
 
+				// start the session if configured for auto start
 				auto* Settings = GetDefault<URH_IntegrationSettings>();
 				if (Settings->bAutoStartSessionsAfterJoin)
 				{
@@ -968,8 +970,9 @@ void URH_PlatformSessionSyncer::LeavePlatformSession()
 
 	if (OSSSessionInterface != nullptr && PlatformSession != nullptr)
 	{
-		auto PlayerIdWrapper = GetOSSUniqueId();;
+		auto PlayerIdWrapper = GetOSSUniqueId();
 
+		// unregister the player with the session
 		if (PlayerIdWrapper.IsValid())
 		{
 			auto PlayerUniqueId = PlayerIdWrapper.GetUniqueNetId();
@@ -1050,7 +1053,7 @@ void URH_PlatformSessionSyncer::CleanupInternal()
 
 	if (OSSSessionInterface != nullptr && PlatformSession != nullptr)
 	{
-		auto PlayerIdWrapper = GetOSSUniqueId();;
+		auto PlayerIdWrapper = GetOSSUniqueId();
 
 		if (PlayerIdWrapper.IsValid())
 		{
