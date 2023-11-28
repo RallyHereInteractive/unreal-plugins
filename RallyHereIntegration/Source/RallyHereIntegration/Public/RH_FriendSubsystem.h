@@ -156,6 +156,11 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
 	bool IsBlocked() const { return Blocked; }
 	/**
+	 * @brief Sets this player as blocked by you on their platform.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Platform Friend")
+	void SetBlocked(bool bNewBlocked = true) { Blocked = bNewBlocked; }
+	/**
 	 * @brief Gets if the user has sent a friend request to you on their platform.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
@@ -169,7 +174,7 @@ public:
 	 * @brief Gets if the user is a friend or has been sent or has sent a friend request on their platform with you.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Platform Friend")
-    bool HasAnyRelationship() const { return IsFriend() || HasPendingFriendRequestFromYou() || HasPendingFriendRequestToYou(); }
+    bool HasAnyRelationship() const { return IsFriend() || IsBlocked() || HasPendingFriendRequestFromYou() || HasPendingFriendRequestToYou(); }
 	/**
 	 * @brief Clears all the info.
 	 */
@@ -219,7 +224,7 @@ public:
 	/**
 	 * @brief Initializes a Platform Friend from online information from their platform.
 	 */
-	void Init(const FOnlineFriend& OnlineFriend, const FOnlineUserPresence& Presence, IOnlineSubsystem* OSS)
+	void Init(const FOnlineFriend& OnlineFriend, const FOnlineUserPresence& Presence, IOnlineSubsystem* OSS, bool bBlocked)
 	{
 		TOptional<ERHAPI_Platform> PlatformType = RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NULL_SUBSYSTEM);
 		PlayerPlatformId.PlatformType = PlatformType.IsSet() ? PlatformType.GetValue() : ERHAPI_Platform::Anon;
@@ -227,10 +232,19 @@ public:
 		DisplayName = OnlineFriend.GetDisplayName();
 		PendingFriendRequestFromYou = OnlineFriend.GetInviteStatus() == EInviteStatus::PendingOutbound;
 		PendingFriendRequestToYou = OnlineFriend.GetInviteStatus() == EInviteStatus::PendingInbound;
-		Blocked = OnlineFriend.GetInviteStatus() == EInviteStatus::Blocked;
+		Blocked = OnlineFriend.GetInviteStatus() == EInviteStatus::Blocked || bBlocked;
 		Friend = OnlineFriend.GetInviteStatus() == EInviteStatus::Accepted;
 
 		UpdatePresence(Presence);
+	}
+	/**
+	 * @brief Initializes a Blocked Platform Player with minimal information
+	 */
+	void InitBlocked(FRH_PlayerPlatformId InPlatformId)
+	{
+		ClearFriendAndStatusInfo();
+		PlayerPlatformId = InPlatformId;
+		Blocked = true;
 	}
 
 	void UpdatePresence(const FOnlineUserPresence& Presence)
@@ -960,6 +974,8 @@ protected:
 	TArray<URH_RHFriendAndPlatformFriend*> Friends;
 	/** @brief Array of blocked player ids. */
 	TArray<FGuid> BlockedPlayersUUIDs;
+	/** @brief Array of blocked platform player ids. */
+	TArray<FString> PlatformBlockedPlayers;
 	/** @brief ETag of last Get Friends List call response. */
 	FString FriendsETag;
 	/** @brief ETag of last Get Blocked Players call response. */
@@ -1145,6 +1161,12 @@ protected:
 	 * @param [in] ErrorStr Error string if the call failed.
 	 */
 	virtual void OnReadOSSFriendsComplete(int32 LocalUserNum, bool bWasSuccessful, const FString& ListName, const FString& ErrorStr);
+	/**
+	 * @brief Handles the response from the online subsystem call to get list of blocked players.
+	 * @param [in] LocalUserNum Controller id of the local player.
+	 * @param [in] ListName The name of the list that was returned.
+	 */
+	virtual void OnOSSBlockListChanged(int32 LocalUserNum, const FString& ListName);
 	/**
 	 * @brief Updates the system with the friends from the online subsystem.
 	 * @param [in] ListName The list name where the friends are stored.
