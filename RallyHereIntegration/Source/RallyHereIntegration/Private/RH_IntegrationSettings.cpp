@@ -11,6 +11,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SectionName = TEXT("Rally Here Integration Settings");
 
 	bAutoStartSessionsAfterJoin = true;
+	bAutoJoinPlatformSessionsAfterUserChange = true;
 
 	bLocalPlayerSubsystemSandboxing = false;
 

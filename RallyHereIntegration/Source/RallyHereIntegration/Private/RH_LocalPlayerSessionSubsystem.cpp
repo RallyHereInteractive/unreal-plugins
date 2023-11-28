@@ -117,6 +117,20 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, 
 		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).AddUObject(this, &URH_LocalPlayerSessionSubsystem::HandleNotification);
 	}
 
+	if (GetDefault<URH_IntegrationSettings>()->bAutoJoinPlatformSessionsAfterUserChange)
+	{
+		if (PlatformSessionToJoinOnUserChange.IsSet() && PlatformSessionToJoinOnUserChange->IsValid())
+		{
+			const auto AuthContext = GetAuthContext();
+			if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
+			{
+				// we need to join the session
+				URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, PlatformSessionToJoinOnUserChange.GetValue(), URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+			}
+		}
+	}
+	ClearPlatformSessionToJoinOnUserChange();
+
 	URH_SessionView::PollAllSessions(this, true, true, FRH_OnPollAllSessionsDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete));	// immediate update
 	StartPolling();		// start poll timer
 }
@@ -772,8 +786,17 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 
 	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
 
-	// we need to join the session
-	URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+	const auto AuthContext = GetAuthContext();
+	if (!AuthContext.IsValid() || !AuthContext->IsLoggedIn())
+	{
+		// we need to wait for the player to log in before joining the session
+		SetPlatformSessionToJoinOnUserChange(*SessionInfo);
+	}
+	else
+	{
+		// we need to join the session
+		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+	}
 }
 
 void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool bSuccesful, const int32 ControllerId, FUniqueNetIdPtr InvitingUserId, const FOnlineSessionSearchResult& Session)
@@ -792,8 +815,17 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool
 
 	if (bSuccesful)
 	{
-		// we need to join the session
-		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+		const auto AuthContext = GetAuthContext();
+		if (!AuthContext.IsValid() || !AuthContext->IsLoggedIn())
+		{
+			// we need to wait for the player to log in before joining the session
+			SetPlatformSessionToJoinOnUserChange(Session);
+		}
+		else
+		{
+			// we need to join the session
+			URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+		}
 	}
 }
 

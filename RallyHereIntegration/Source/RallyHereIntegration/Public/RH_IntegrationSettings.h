@@ -98,9 +98,13 @@ public:
 	// Sessions
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	/** @brief RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API */
+	/** @brief Whether to automatically start platform sessions after joining them */
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoStartSessionsAfterJoin;
+
+	/** @brief Whether to automatically join platform sessions after a user change when invites were received while logged out */
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
+	bool bAutoJoinPlatformSessionsAfterUserChange;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests

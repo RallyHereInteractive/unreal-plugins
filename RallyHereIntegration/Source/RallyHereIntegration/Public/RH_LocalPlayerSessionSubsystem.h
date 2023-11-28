@@ -6,6 +6,7 @@
 #include "UObject/Object.h"
 #include "OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
+#include "OnlineSessionSettings.h"
 #include "Engine/EngineBaseTypes.h"
 #include "Misc/Guid.h"
 #include "Templates/SharedPointer.h"
@@ -178,6 +179,17 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
 	virtual URH_PlatformSessionSyncer* GetPlatformSyncerByPlatformSessionId(const FUniqueNetIdRepl& PlatformSessionId) const override;
+
+	/** @brief Set a platform session to join upon the next user change */
+	virtual void SetPlatformSessionToJoinOnUserChange(const FOnlineSessionSearchResult& Session)
+	{
+		PlatformSessionToJoinOnUserChange = Session;
+	}
+	/** @brief Clear a platform session to join upon the next user change */
+	virtual void ClearPlatformSessionToJoinOnUserChange()
+	{
+		PlatformSessionToJoinOnUserChange.Reset();
+	}
 
 	/**
 	* @brief Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
@@ -523,6 +535,8 @@ protected:
 	TOptional<FString> AllSessionsETag;
 	/** @brief ETag of last QueryAllSessionTemplates call response. */
 	TOptional<FString> AllTemplatesETag;
+	/** @brief OSS Session that we need to join upon user change (ex: login). */
+	TOptional<FOnlineSessionSearchResult> PlatformSessionToJoinOnUserChange;
 	/** @brief Map of Session Ids to Sessions we are in. */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session")
 	TMap<FString, URH_SessionView*> Sessions;
