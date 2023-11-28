@@ -26,6 +26,11 @@ struct FRH_WebResponse
 	int32 ResponseCode;
 	/** @brief Was the response successful from a client perspective. */
 	bool ResponseSuccess;
+	/** @brief The tiem the response was received. */
+	FDateTime ReceivedTime;
+
+	FRH_WebResponse() : ResponseCode(0), ResponseSuccess(false)
+	{}
 };
 
 /**
@@ -49,6 +54,9 @@ struct FRH_WebRequest
 	FString Content;
 	/** @brief Response for the Web Request. Can contain multiple if the request had to be retried. */
 	TArray<FRH_WebResponse> Responses;
+
+	FRH_WebRequest()
+	{}
 };
 
 /**

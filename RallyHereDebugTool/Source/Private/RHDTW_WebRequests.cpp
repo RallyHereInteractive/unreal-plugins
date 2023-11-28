@@ -290,6 +290,7 @@ void FRHDTW_WebRequests::DoViewRequest(const FRH_WebRequest* WebRequest)
 
 	ImGui::Text("Verb : %s", TCHAR_TO_UTF8(*WebRequest->Verb));
 	ImGuiDisplayCopyableValue(TEXT("URL"), WebRequest->URL, ECopyMode::KeyValue, true);
+	ImGuiDisplayCopyableValue(TEXT("Timestamp"), WebRequest->Timestamp);
 
 	ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowContentRegionMax().x);
 
@@ -337,6 +338,7 @@ void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse)
 
 	ImGui::Text("Http Success : %d", WebResponse->ResponseSuccess);
 	ImGui::Text("Code : %d", WebResponse->ResponseCode);
+	ImGuiDisplayCopyableValue(TEXT("Timestamp"), WebResponse->ReceivedTime);
 
 	ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowContentRegionMax().x);
 
