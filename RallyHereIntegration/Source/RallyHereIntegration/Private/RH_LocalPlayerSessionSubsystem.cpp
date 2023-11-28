@@ -121,7 +121,7 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, 
 	{
 		if (PlatformSessionToJoinOnUserChange.IsSet() && PlatformSessionToJoinOnUserChange->IsValid())
 		{
-			auto AuthContext = GetAuthContext();
+			const auto AuthContext = GetAuthContext();
 			if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
 			{
 				// we need to join the session
@@ -786,7 +786,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 
 	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
 
-	auto AuthContext = GetAuthContext();
+	const auto AuthContext = GetAuthContext();
 	if (!AuthContext.IsValid() || !AuthContext->IsLoggedIn())
 	{
 		// we need to wait for the player to log in before joining the session
@@ -815,7 +815,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool
 
 	if (bSuccesful)
 	{
-		auto AuthContext = GetAuthContext();
+		const auto AuthContext = GetAuthContext();
 		if (!AuthContext.IsValid() || !AuthContext->IsLoggedIn())
 		{
 			// we need to wait for the player to log in before joining the session
