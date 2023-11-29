@@ -256,7 +256,7 @@ void URH_WebRequests::OnWebRequestStarted_Track(const RallyHereAPI::FRequestMeta
 		if (headerStr.FindChar(TEXT(':'), index))
 		{
 			const FString name = headerStr.Mid(0, index);
-			const FString value = headerStr.Mid(index + 1);
+			const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
 			Request->Headers.Emplace(name, value);
 		}
 	}
@@ -329,6 +329,7 @@ void URH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 	auto& TrackedResponse = (*TrackedRequest)->Responses.Emplace_GetRef();
 	TrackedResponse.ResponseSuccess = bSuccess;
 	TrackedResponse.ResponseCode = Response.GetHttpResponseCode();
+	TrackedResponse.ReceivedTime = FDateTime::Now();
 	if (HttpResponse)
 	{
 		TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForRequest(Response.GetRequestMetadata()));
@@ -339,7 +340,7 @@ void URH_WebRequests::OnWebRequestCompleted_Track(const RallyHereAPI::FResponse&
 			if (headerStr.FindChar(TEXT(':'), index))
 			{
 				const FString name = headerStr.Mid(0, index);
-				const FString value = headerStr.Mid(index + 1);
+				const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
 				TrackedResponse.Headers.Emplace(name, value);
 			}
 		}
@@ -398,6 +399,7 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 	Request->SetStringField(TEXT("Verb"), request.Verb);
 	Request->SetStringField(TEXT("URL"), request.URL);
 	Request->SetNumberField(TEXT("RetryCount"), request.Metadata.RetryCount);
+	Request->SetStringField(TEXT("Send-Time"), request.Timestamp.ToIso8601());
 
 	auto Reader = TJsonReaderFactory<>::Create(request.Content);
 	TSharedPtr<FJsonValue> JsonValue;
@@ -430,6 +432,7 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 		Response->SetNumberField(TEXT("Response-Index"), x);
 		Response->SetBoolField(TEXT("Http-Success"), request.Responses[x].ResponseSuccess);
 		Response->SetNumberField(TEXT("Response-Code"), request.Responses[x].ResponseCode);
+		Response->SetStringField(TEXT("Received-Time"), request.Responses[x].ReceivedTime.ToIso8601());
 
 		Reader = TJsonReaderFactory<>::Create(request.Responses[x].Content);
 		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
