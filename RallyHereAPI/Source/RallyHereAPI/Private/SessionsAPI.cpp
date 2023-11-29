@@ -90,7 +90,7 @@ FRequest_AcknowledgeBackfillRequest::FRequest_AcknowledgeBackfillRequest()
 
 FName FRequest_AcknowledgeBackfillRequest::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}/"));
+    static FName Path = FName(TEXT("/session/v1/backfill/session/{session_id}"));
     return Path;
 }
 
@@ -100,7 +100,7 @@ FString FRequest_AcknowledgeBackfillRequest::ComputePath() const
         { TEXT("session_id"), ToStringFormatArg(SessionId) }
     };
 
-    FString Path = FString::Format(TEXT("/session/v1/backfill/session/{session_id}/"), PathParams);
+    FString Path = FString::Format(TEXT("/session/v1/backfill/session/{session_id}"), PathParams);
 
     TArray<FString> QueryParams;
     if(RefreshTtl.IsSet())
@@ -4478,6 +4478,222 @@ FResponse_InstanceHealthConfig::FResponse_InstanceHealthConfig(FRequestMetadata 
 
 FString Traits_InstanceHealthConfig::Name = TEXT("InstanceHealthConfig");
 
+FHttpRequestPtr FSessionsAPI::InviteCohortToSession(const FRequest_InviteCohortToSession& Request, const FDelegate_InviteCohortToSession& Delegate /*= FDelegate_InviteCohortToSession()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FSessionsAPI::OnInviteCohortToSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnInviteCohortToSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_InviteCohortToSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FSessionsAPI::OnInviteCohortToSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_InviteCohortToSession Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_InviteCohortToSession::FRequest_InviteCohortToSession()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_InviteCohortToSession::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/invited-session/{invited_session_id}:invite"));
+    return Path;
+}
+
+FString FRequest_InviteCohortToSession::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("session_id"), ToStringFormatArg(SessionId) },
+        { TEXT("invited_session_id"), ToStringFormatArg(InvitedSessionId) }
+    };
+
+    FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/invited-session/{invited_session_id}:invite"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_InviteCohortToSession::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("POST"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_InviteCohortToSession - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_InviteCohortToSession - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, CohortInviteRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_InviteCohortToSession - Body parameter (FRHAPI_CohortInviteRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_InviteCohortToSession - Body parameter (FRHAPI_CohortInviteRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_InviteCohortToSession - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_InviteCohortToSession::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Session doesn&#39;t exist or Player is not a member of the session.  See error code for more info"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_InviteCohortToSession::ParseHeaders()
+{
+    // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+    TMap<FString, FString> HeadersMap;
+    for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+    {
+        int32 index;
+        if (HeaderStr.FindChar(TEXT(':'), index))
+        {
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+        }
+    }
+    bool bParsedAllRequiredHeaders = true;
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = *Val;
+    }
+    return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_InviteCohortToSession::TryGetContentFor200(FRHAPI_CohortInviteResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_InviteCohortToSession::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return FromHeaderString<FString>(HeaderVal);
+        }
+    }
+    return TOptional<FString>{};
+}
+
+bool FResponse_InviteCohortToSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_InviteCohortToSession::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_InviteCohortToSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_InviteCohortToSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_InviteCohortToSession::FResponse_InviteCohortToSession(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_InviteCohortToSession::Name = TEXT("InviteCohortToSession");
+
 FHttpRequestPtr FSessionsAPI::JoinQueue(const FRequest_JoinQueue& Request, const FDelegate_JoinQueue& Delegate /*= FDelegate_JoinQueue()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
@@ -5350,6 +5566,172 @@ FResponse_JoinSessionByPlatformSessionIdSelf::FResponse_JoinSessionByPlatformSes
 }
 
 FString Traits_JoinSessionByPlatformSessionIdSelf::Name = TEXT("JoinSessionByPlatformSessionIdSelf");
+
+FHttpRequestPtr FSessionsAPI::KickCohortFromSession(const FRequest_KickCohortFromSession& Request, const FDelegate_KickCohortFromSession& Delegate /*= FDelegate_KickCohortFromSession()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FSessionsAPI::OnKickCohortFromSessionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnKickCohortFromSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_KickCohortFromSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FSessionsAPI::OnKickCohortFromSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_KickCohortFromSession Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_KickCohortFromSession::FRequest_KickCohortFromSession()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_KickCohortFromSession::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/session/v1/session/{session_id}/kicked-session/{kicked_session_id}"));
+    return Path;
+}
+
+FString FRequest_KickCohortFromSession::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("session_id"), ToStringFormatArg(SessionId) },
+        { TEXT("kicked_session_id"), ToStringFormatArg(KickedSessionId) }
+    };
+
+    FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/kicked-session/{kicked_session_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_KickCohortFromSession::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("DELETE"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_KickCohortFromSession - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_KickCohortFromSession - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_KickCohortFromSession - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_KickCohortFromSession::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 204:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Session doesn&#39;t exist or Player is not a member of the session.  See error code for more info"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_KickCohortFromSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_KickCohortFromSession::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_KickCohortFromSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_KickCohortFromSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return true;
+}
+
+FResponse_KickCohortFromSession::FResponse_KickCohortFromSession(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_KickCohortFromSession::Name = TEXT("KickCohortFromSession");
 
 FHttpRequestPtr FSessionsAPI::KickPlayerFromSessionById(const FRequest_KickPlayerFromSessionById& Request, const FDelegate_KickPlayerFromSessionById& Delegate /*= FDelegate_KickPlayerFromSessionById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {

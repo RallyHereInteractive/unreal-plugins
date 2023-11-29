@@ -34,11 +34,14 @@ public:
 	FString SessionActionResult;
 
 	int32 InvitePlayerTeam;
+	TArray<ANSICHAR> InviteSessionString;
 	TArray<ANSICHAR> JoinQueueByIdString;
 
 	TArray<ANSICHAR> MapName;
 	TArray<ANSICHAR> GameModeName;
 	bool bMakeBeaconInstance;
+
+	TArray<ANSICHAR> UpdateSessionRegionIdString;
 
 	TArray<ANSICHAR> SearchByTypeString;
 	bool SearchCacheSessions;

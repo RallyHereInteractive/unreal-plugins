@@ -36,6 +36,11 @@ void FRHAPI_SessionPlayer::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("inviting_player_uuid"));
         RallyHereAPI::WriteJsonValue(Writer, InvitingPlayerUuid_Optional);
     }
+    if (SourceSessionId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("source_session_id"));
+        RallyHereAPI::WriteJsonValue(Writer, SourceSessionId_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -92,6 +97,12 @@ bool FRHAPI_SessionPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         InvitingPlayerUuid_IsSet = TryGetJsonValue(JsonInvitingPlayerUuidField, InvitingPlayerUuid_Optional);
         ParseSuccess &= InvitingPlayerUuid_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonSourceSessionIdField = (*Object)->TryGetField(TEXT("source_session_id"));
+    if (JsonSourceSessionIdField.IsValid() && !JsonSourceSessionIdField->IsNull())
+    {
+        SourceSessionId_IsSet = TryGetJsonValue(JsonSourceSessionIdField, SourceSessionId_Optional);
+        ParseSuccess &= SourceSessionId_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())

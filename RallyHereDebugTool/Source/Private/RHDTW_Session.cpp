@@ -33,6 +33,7 @@ FRHDTW_Session::FRHDTW_Session()
 	SessionActionResult.Empty();
 
 	InvitePlayerTeam = 0;
+	InviteSessionString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	JoinQueueByIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 
 	MapName.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
@@ -44,6 +45,8 @@ FRHDTW_Session::FRHDTW_Session()
 		ImGuiCopyStringToTextInputBuffer(URallyHereDebugToolSettings::Get()->DefaultSessionMapName, MapName);
 		ImGuiCopyStringToTextInputBuffer(URallyHereDebugToolSettings::Get()->DefaultSessionGameModeName, GameModeName);
 	}
+
+	UpdateSessionRegionIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 
 	SearchByTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 
@@ -674,6 +677,8 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				ImGui::SetNextItemWidth(150.f);
 				ImGui::InputInt("Team", &InvitePlayerTeam, 1, 0);
 				InvitePlayerCustomDataStager.DisplayCustomDataStager(false);
+
+				// player invites
 				if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("Invite [%d] Targeted Players"), NumTargetedPlayers))))
 				{
 					TMap<FString, FString> CustomData;
@@ -685,6 +690,25 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 								RHJoinedSession->InvitePlayer(PlayerInfo->GetRHPlayerUuid(), InvitePlayerTeam, CustomData);
 							}
 						}));
+				}
+
+				// session to session invites
+				ImGui::InputText("Target Session Id", InviteSessionString.GetData(), InviteSessionString.Num());
+				ImGui::SameLine();
+				if (ImGui::Button(TCHAR_TO_UTF8(*FString::Printf(TEXT("Invite Whole Session"), NumTargetedPlayers))))
+				{
+					TMap<FString, FString> CustomData;
+					InvitePlayerCustomDataStager.GetCustomDataMap(CustomData);
+
+					FString InvitedSessionId = ImGuiGetStringFromTextInputBuffer(InviteSessionString);
+
+					FRHAPI_CohortInviteRequest InviteRequest;
+					InviteRequest.SetTeamId(InvitePlayerTeam);
+					InviteRequest.SetCustomData(CustomData);
+
+					// for now, do not specify an overflow action type
+
+					RHJoinedSession->InviteOtherSession(InvitedSessionId, InviteRequest);
 				}
 			}
 
@@ -741,11 +765,19 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 
 		if (ImGui::TreeNodeEx("Update Session State", RH_DefaultTreeFlags))
 		{
+			ImGui::InputText("Region Id", UpdateSessionRegionIdString.GetData(), UpdateSessionRegionIdString.Num());
+
 			SessionCustomDataStager.DisplayCustomDataStager(false, Session.GetCustomDataOrNull());
 
 			if (RHJoinedSession != nullptr && ImGui::Button("Update Session Info"))
 			{
 				FRHAPI_SessionUpdate SessionUpdate;
+
+				auto RegionId = ImGuiGetStringFromTextInputBuffer(UpdateSessionRegionIdString);
+				if (RegionId.Len() > 0)
+				{
+					SessionUpdate.SetRegionId(RegionId);
+				}
 
 				TMap<FString, FString> CustomData;
 				SessionCustomDataStager.GetCustomDataMap(CustomData);

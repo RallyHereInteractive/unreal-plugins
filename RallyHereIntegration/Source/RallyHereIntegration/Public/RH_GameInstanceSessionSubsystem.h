@@ -180,9 +180,19 @@ public:
 	virtual bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 
 	/**
+	 * @brief Gets whether backfill should be kept alive
+	 */
+	virtual bool GetShouldKeepInstanceHealthAlive() const;
+
+	/**
 	 * @brief Gets the health status of the instance to report to the API
 	 */
 	virtual ERHAPI_InstanceHealthStatus GetInstanceHealthStatusToReport() const;
+
+	/**
+	 * @brief Gets whether backfill should be kept alive
+	 */
+	virtual bool GetShouldKeepBackfillAlive() const;
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
@@ -216,8 +226,12 @@ protected:
 	/** @brief If set, the session instance is failed and unrecoverable. */
 	UPROPERTY(BlueprintGetter = IsMarkedFubar, Transient, Category = "Session|Instance")
 	bool bHasBeenMarkedFubar;
+	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr InstanceHealthPoller;
+	
+	/** @brief Poller for the host's health check. */
+	FRH_AutoPollerPtr BackfillPoller;
 
 	/**
 	 * @brief Sets the current active session
@@ -256,6 +270,11 @@ protected:
 	 * @param [in] Delegate Callback delegate for when the health is updated.
 	 */
 	virtual void PollInstanceHealth(const FRH_PollCompleteFunc& Delegate);
+	/**
+	 * @brief Called when backfill should be updated
+	 * @param [in] Delegate Callback delegate for when the health is updated.
+	 */
+	virtual void PollBackfill(const FRH_PollCompleteFunc& Delegate);
 };
 
 /** @} */

@@ -128,6 +128,11 @@ void URH_GameInstanceSessionSubsystem::Initialize()
 		InstanceHealthPoller = FRH_PollControl::CreateAutoPoller();
 	}
 
+	if (!BackfillPoller.IsValid())
+	{
+		BackfillPoller = FRH_PollControl::CreateAutoPoller();
+	}
+
 	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &URH_GameInstanceSessionSubsystem::OnMapLoadComplete);
 	if (GEngine != nullptr)
 	{
@@ -300,7 +305,8 @@ void URH_GameInstanceSessionSubsystem::OnTravelFailure(UWorld* World, ETravelFai
 
 void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* JoinedSession)
 {
-	static FName HealthPollTimerName(TEXT("InstanceHealth"));
+	static FName HealthPollTimerName(TEXT("SessionInstanceHealth"));
+	static FName BackfillPollTimerName(TEXT("SessionBackfill"));
 
 	auto OldSession = ActiveSession;
 	if (ActiveSession != nullptr)
@@ -313,6 +319,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		if (InstanceHealthPoller.IsValid())
 		{
 			InstanceHealthPoller->StopPoll();
+		}
+		if (BackfillPoller.IsValid())
+		{
+			BackfillPoller->StopPoll();
 		}
 
 		// reset any polling override as needed for instance health
@@ -335,40 +345,88 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		// if this instance is locally hosted, set up health polling
 		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
 		{
-			if (InstanceHealthPoller.IsValid())
+			// instance health polling kickoff and config check
+			if (GetShouldKeepInstanceHealthAlive())
 			{
-				InstanceHealthPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollInstanceHealth), HealthPollTimerName, true);
+				// initiate polling
+				if (InstanceHealthPoller.IsValid())
+				{
+					InstanceHealthPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollInstanceHealth), HealthPollTimerName, true);
+				}
+
+				// kick off a check to determine if we need to override our health interval
+				auto* PollControl = FRH_PollControl::Get();
+				if (PollControl)
+				{
+					typedef RallyHereAPI::Traits_InstanceHealthConfig BaseType;
+
+					BaseType::Request Request = {};
+					Request.AuthContext = GetAuthContext();
+
+					auto PollTimerNameCopy = HealthPollTimerName;
+					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
+							{
+								auto* PollControl = FRH_PollControl::Get();
+								if (PollControl && Resp.IsSuccessful())
+								{
+									float NewInterval = Resp.Content.CadenceSeconds;
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), NewInterval);
+
+									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
+									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
+									NewSetting.Interval = NewInterval;
+									PollControl->SetPollingIntervalOverride(NewSetting);
+								}
+							}),
+						FRH_GenericSuccessWithErrorDelegate(),
+						GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+					);
+
+					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+				}
 			}
 
-			// kick off a check to determine if we need to override our health interval
-			auto* PollControl = FRH_PollControl::Get();
-			if (PollControl)
+			// backfill polling kickoff and config check
+			if (GetShouldKeepBackfillAlive())
 			{
-				typedef RallyHereAPI::Traits_InstanceHealthConfig BaseType;
+				// initiate polling
+				if (BackfillPoller.IsValid())
+				{
+					BackfillPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollBackfill), BackfillPollTimerName, false);
+				}
 
-				BaseType::Request Request = {};
-				Request.AuthContext = GetAuthContext();
+				// kick off a check to determine if we need to override our health interval
+				auto* PollControl = FRH_PollControl::Get();
+				if (PollControl)
+				{
+					typedef RallyHereAPI::Traits_BackfillConfig BaseType;
 
-				auto PollTimerNameCopy = HealthPollTimerName;
-				auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-					BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
-						{
-							auto* PollControl = FRH_PollControl::Get();
-							if (PollControl && Resp.IsSuccessful())
+					BaseType::Request Request = {};
+					Request.AuthContext = GetAuthContext();
+
+					auto PollTimerNameCopy = BackfillPollTimerName;
+					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
 							{
-								UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), Resp.Content.CadenceSeconds)
+								auto* PollControl = FRH_PollControl::Get();
+								if (PollControl && Resp.IsSuccessful())
+								{
+									const auto CadenceSeconds = Resp.Content.Timeout;
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), CadenceSeconds);
 
-								FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
-								NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
-								NewSetting.Interval = Resp.Content.CadenceSeconds;
-								PollControl->SetPollingIntervalOverride(NewSetting);
-							}
-						}),
-					FRH_GenericSuccessWithErrorDelegate(),
-					GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
-				);
+									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
+									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
+									NewSetting.Interval = CadenceSeconds;
+									PollControl->SetPollingIntervalOverride(NewSetting);
+								}
+							}),
+						FRH_GenericSuccessWithErrorDelegate(),
+						GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+					);
 
-				Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+				}
 			}
 		}
 	}
@@ -376,6 +434,11 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	// fire delegates to allow registration of handler objects
 	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
+}
+
+bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive() const
+{
+	return true;
 }
 
 ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthStatusToReport() const
@@ -386,37 +449,73 @@ ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthS
 void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollCompleteFunc& Delegate)
 {
 	// make sure the active session is locally hosted
-	if (ActiveSession != nullptr && ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
+	if (	ActiveSession != nullptr
+		&&	ActiveSession->GetInstanceData() != nullptr 
+		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
+		&&	GetShouldKeepInstanceHealthAlive()
+		)
 	{
-		auto* Instance = ActiveSession->GetInstanceData();
-
-		typedef RallyHereAPI::Traits_InstanceHealthCheck BaseType;
-
-		BaseType::Request Request = {};
-		Request.AuthContext = GetAuthContext();
-		Request.SessionId = ActiveSession->GetSessionId();
-		Request.InstanceHealthStatusUpdate.SetInstanceHealth(GetInstanceHealthStatusToReport());
-
-		if (Instance != nullptr)
-		{
-			auto* InstanceId = Instance->GetInstanceIdOrNull();
-			if (InstanceId != nullptr)
-			{
-				Request.InstanceHealthStatusUpdate.SetInstanceId(*InstanceId);
-			}
-		}
-
-		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-			BaseType::Delegate(),
+		ActiveSession->UpdateInstanceHealth(GetInstanceHealthStatusToReport(), 
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
-			{
-				// reset timer if we still have an active session
-				Delegate.ExecuteIfBound(bSuccess, ActiveSession != nullptr);
-			}),
-			GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
-		);
+				{
+					Delegate.ExecuteIfBound(bSuccess, GetShouldKeepInstanceHealthAlive());
+				}
+			));
+	}
+	else
+	{
+		// stop the timer if no active session and instance
+		Delegate.ExecuteIfBound(false, false);
+	}
+}
 
-		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive() const
+{
+	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
+	{
+		return false;
+	}
+
+	// for now, only support backfill for matchmade sessions
+	if (!ActiveSession->IsCreatedByMatchmaking())
+	{
+		return false;
+	}
+	
+	// check if instance is in a state where we do not want to keep backfill alive
+	auto JoinStatus = ActiveSession->GetInstanceData()->GetJoinStatus();
+	switch (JoinStatus)
+	{
+	case ERHAPI_InstanceJoinableStatus::Closed:
+		return false;
+	}
+
+	return true;
+}
+
+void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& Delegate)
+{
+	// make sure the active session is locally hosted, and that we want to keep backfill alive
+	if (	ActiveSession != nullptr
+		&&	ActiveSession->GetInstanceData() != nullptr 
+		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
+		&&	GetShouldKeepBackfillAlive()
+		)
+	{
+		// send acknowledge if instance is joinable, else just cycle polling
+		if (ActiveSession->GetInstanceData()->GetJoinStatus() == ERHAPI_InstanceJoinableStatus::Joinable)
+		{
+			ActiveSession->AcknowledgeBackfill(true,
+				FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
+					{
+						Delegate.ExecuteIfBound(bSuccess, GetShouldKeepBackfillAlive());
+					}
+			));
+		}
+		else
+		{
+			Delegate.ExecuteIfBound(false, GetShouldKeepBackfillAlive());
+		}
 	}
 	else
 	{

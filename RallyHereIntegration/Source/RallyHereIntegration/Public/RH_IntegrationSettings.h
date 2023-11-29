@@ -371,6 +371,9 @@ public:
 	/** @brief Sets the request priority of Instance Health update calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionInstanceHealthUpdatePriority;
+	/** @brief Sets the request priority of Backfill update calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionBackfillUpdatePriority;
 	/** @brief Sets the request priority of Session Update With Platform Session calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionUpdateWithPlatformSessionPriority;

@@ -619,8 +619,8 @@ public:
 	/**
 	 * @brief Blueprint compatible version of InvitePlayer
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
-	 * @param [in] CustomData The custom data for the invite
 	 * @param [in] Team The target team that the player will be associated with in the session.
+	 * @param [in] CustomData The custom data for the invite
 	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Invite Player", AutoCreateRefTerm = "Delegate"))
@@ -638,6 +638,36 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Kick Player", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_KickPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickPlayer(PlayerUuid, Delegate); }
+
+	/**
+	 * @brief Invites a different session to this session.
+	 * @param [in] InvitedSessionId The session id to send the invite to
+	 * @param [in] CohortInviteRequest Information about the invite being sent, including team information
+	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
+	 */
+	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::InviteOtherSession, ); }
+	/**
+	 * @brief Blueprint compatible version of InviteOtherSession
+	 * @param [in] InvitedSessionId The session id to send the invite to
+	 * @param [in] CohortInviteRequest Information about the invite being sent, including team information
+	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Invite Other Session", AutoCreateRefTerm = "CohortInviteRequest,Delegate"))
+	void BLUEPRINT_InviteOtherSession(UPARAM(ref) const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { InviteOtherSession(InvitedSessionId, CohortInviteRequest, Delegate); }
+	/**
+	 * @brief Kicks all players in a target tsession from this session.
+	 * @param [in] KickedSessionId The session Id to kick from this session.
+	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
+	 */
+	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickOtherSession, ); }
+	/**
+	 * @brief Blueprint compatible version of KickOtherSession
+	 * @param [in] KickedSessionId The session Id to kick from this session.
+	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Kick Other Session", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_KickOtherSession(UPARAM(ref) const FString& KickedSessionId, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickOtherSession(KickedSessionId, Delegate); }
+
 	/**
 	 * @brief Sets a new leader for the session.
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
@@ -792,6 +822,32 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { UpdateBrowserInfo(bEnable, CustomData, Delegate); };
 	/**
+	* @brief Update the instance health of the session
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateInstanceHealth, ); };
+	/**
+	* @brief Blueprint compatible version of UpdateInstanceHealth
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Instance Health", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { UpdateInstanceHealth(HealthStatus, Delegate); };
+	/**
+	* @brief Acknowledge backfill for the session, keeping it alive and processing updates
+	* @param [in] bEnable If true, keeps backfill enabled
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::AcknowledgeBackfill, ); };
+	/**
+	* @brief Blueprint compatible version of AcknowledgeBackfill
+	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
+	void BLUEPRINT_AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { AcknowledgeBackfill(bEnable, Delegate); };
+	/**
 	* @brief Utility function for beacon connections - not exposed to blueprint so that it can have encryption data
 	* @param [in] Player Player the beacon is being created for, used for login credential passing
 	* @param [in] BeaconClass The type of beacon to create
@@ -864,6 +920,10 @@ public:
 	/** @brief Currently not supported for offline sessions */
 	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
+	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/** @brief Currently not supported for offline sessions */
+	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/** @brief Currently not supported for offline sessions */
 	virtual void SetLeader(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Changes the team a given player is associated with in the session.
@@ -915,7 +975,25 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with new instance data.
 	*/
 	virtual void UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Updates the sessions browser info.
+	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	* @param [in] CustomData The new browser data for the update.
+	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	*/
 	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Update the instance health of the session
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) override;
+	/**
+	* @brief Acknowledge backfill for the session, keeping it alive and processing updates
+	* @param [in] bEnable If true, keeps backfill enabled
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 
 protected:
 	void ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update);
@@ -1064,6 +1142,19 @@ public:
 	 */
 	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
+	 * @brief Invites a different session to this session.
+	 * @param [in] InvitedSessionId The session id to send the invite to
+	 * @param [in] CohortInviteRequest Information about the invite being sent, including team information
+	 * @param [in] Delegate Callback delegate for the session being updated by the invite.
+	 */
+	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @brief Kicks all players in a target tsession from this session.
+	 * @param [in] KickedSessionId The session Id to kick from this session.
+	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
+	 */
+	virtual void KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
 	 * @brief Sets a new leader for the session.
 	 * @param [in] PlayerUuid The unique player Id to become the session leader.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leader change.
@@ -1131,6 +1222,18 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
 	*/
 	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	* @brief Update the instance health of the session
+	* @param [in] HealthStatus The new health status of the instance
+	* @param [in] Delegate Callback delegate for completion (note - local session is not modified on health update for efficiency reasons!)
+	*/
+	virtual void UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) override;
+	/**
+	* @brief Acknowledge backfill for the session, keeping it alive and processing updates
+	* @param [in] bEnable If true, keeps backfill enabled
+	* @param [in] Delegate Callback delegate for the session being updated with backfill data
+	*/
+	virtual void AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 };
 
 /** @ingroup Session

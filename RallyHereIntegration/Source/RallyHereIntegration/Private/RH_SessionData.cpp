@@ -708,6 +708,19 @@ void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// currently not supported for offline sessions
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
+void URH_OfflineSession::KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// currently not supported for offline sessions
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
+
 void URH_OfflineSession::SetLeader(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
@@ -1023,6 +1036,34 @@ void URH_OfflineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FSt
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	if (!GetSessionData().GetInstanceOrNull())
+	{
+		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because instance does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		return;
+	}
+
+	FRH_APISessionWithETag UpdateWrapper(SessionData);
+	auto& Update = UpdateWrapper.Data;
+
+	{
+		Update.GetInstance().SetInstanceHealth(HealthStatus);
+	}
+
+	ImportSessionUpdateToAllPlayers(UpdateWrapper);
+
+	Delegate.ExecuteIfBound(true, FRH_ErrorInfo());
+}
+
+void URH_OfflineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
+}
+
 // this is necessary right now as each player stores session data separately
 void URH_OfflineSession::ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update)
 {
@@ -1160,6 +1201,40 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionU
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.PlayerUuid = PlayerUuid;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionKickPriority);
+	Helper->Start(Request);
+}
+
+
+void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_InviteCohortToSession BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.InvitedSessionId = InvitedSessionId;
+	Request.CohortInviteRequest = CohortInviteRequest;
+
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::KickOtherSession(const FString& KickedSessionId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	// TODO - check that players is already in this session?
+
+	typedef RallyHereAPI::Traits_KickCohortFromSession BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+	BaseType::Request Request;
+	Request.AuthContext = SessionOwner->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.KickedSessionId = KickedSessionId;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionKickPriority);
 	Helper->Start(Request);
@@ -1313,5 +1388,60 @@ void URH_OnlineSession::UpdateBrowserInfo(bool bEnable, const TMap<FString, FStr
 	{
 		// NOTE - this does not assume that local state is up to date!
 		DoRequestViaHelper<RallyHereAPI::Traits_DeleteBrowserInfo>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionDeleteBrowserInfoPriority);
+	}
+}
+
+void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthStatus, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+
+	typedef RallyHereAPI::Traits_InstanceHealthCheck BaseType;
+
+	BaseType::Request Request = {};
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.InstanceHealthStatusUpdate.SetInstanceHealth(HealthStatus);
+
+	auto* Instance = GetInstanceData();
+	if (Instance != nullptr)
+	{
+		auto* InstanceId = Instance->GetInstanceIdOrNull();
+		if (InstanceId != nullptr)
+		{
+			Request.InstanceHealthStatusUpdate.SetInstanceId(*InstanceId);
+		}
+	}
+
+	// we use the simple query helper since this intentionally does not modify the session, to prevent excess reads on the poll
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate(),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+}
+
+void URH_OnlineSession::AcknowledgeBackfill(bool bEnable, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	if (bEnable)
+	{
+		typedef RallyHereAPI::Traits_AcknowledgeBackfillRequest BaseType;
+		BaseType::Request Request;
+		Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+		Request.SessionId = GetSessionId();
+
+		const auto* Instance = GetSessionData().GetInstanceOrNull();
+		if (Instance != nullptr)
+		{
+			Request.AcknowledgeBackfillRequest.SetInstanceId(Instance->GetInstanceId());
+		}
+
+		const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
+		Helper->Start(Request);
+	}
+	else
+	{
+		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 	}
 }

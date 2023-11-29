@@ -10,6 +10,7 @@ Private/AppSetting.cpp
 Private/AuthAPI.cpp
 Private/BackfillInfo.cpp
 Private/BackfillSettingsResponse.cpp
+Private/BackfillTeam.cpp
 Private/BlockedList.cpp
 Private/BlockedListV1.cpp
 Private/BlockedPlayer.cpp
@@ -29,6 +30,8 @@ Private/ClaimKeyRequest.cpp
 Private/ClientSettings.cpp
 Private/ClientType.cpp
 Private/ClientVisibleSettings.cpp
+Private/CohortInviteRequest.cpp
+Private/CohortInviteResponse.cpp
 Private/ConfigAPI.cpp
 Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
@@ -266,6 +269,7 @@ Private/SiteAPI.cpp
 Private/SiteSettings.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
+Private/TeamOverflowAction.cpp
 Private/TimeAPI.cpp
 Private/TimeFrame.cpp
 Private/TimeFrames.cpp
@@ -299,6 +303,7 @@ Public/AppSetting.h
 Public/AuthAPI.h
 Public/BackfillInfo.h
 Public/BackfillSettingsResponse.h
+Public/BackfillTeam.h
 Public/BlockedList.h
 Public/BlockedListV1.h
 Public/BlockedPlayer.h
@@ -318,6 +323,8 @@ Public/ClaimKeyRequest.h
 Public/ClientSettings.h
 Public/ClientType.h
 Public/ClientVisibleSettings.h
+Public/CohortInviteRequest.h
+Public/CohortInviteResponse.h
 Public/ConfigAPI.h
 Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
@@ -555,6 +562,7 @@ Public/SiteAPI.h
 Public/SiteSettings.h
 Public/SortOrder.h
 Public/Source.h
+Public/TeamOverflowAction.h
 Public/TimeAPI.h
 Public/TimeFrame.h
 Public/TimeFrames.h
