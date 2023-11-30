@@ -144,6 +144,12 @@ void FResponse_ReceiveEventsV1::SetHttpResponseCode(EHttpResponseCodes::Type InH
     case 200:
         SetResponseString(TEXT("Successful Response"));
         break;
+    case 207:
+        SetResponseString(TEXT("         Error Codes:         - &#x60;events_multi_results&#x60; - Some of the events from the request failed to process, and uploaded to deadletter blob storage         "));
+        break;
+    case 400:
+        SetResponseString(TEXT("             Error Codes:             - &#x60;events_all_failed&#x60; - All of events from the request failed to process, and uploaded to deadletter blob storage             "));
+        break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
         break;
@@ -151,6 +157,16 @@ void FResponse_ReceiveEventsV1::SetHttpResponseCode(EHttpResponseCodes::Type InH
 }
 
 bool FResponse_ReceiveEventsV1::TryGetContentFor200(FRHAPI_PostGameEventsResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ReceiveEventsV1::TryGetContentFor207(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ReceiveEventsV1::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }

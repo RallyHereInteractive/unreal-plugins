@@ -862,11 +862,7 @@ void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, 
 		auto* Instance = ActiveSession->GetInstanceData();
 		if (Instance != nullptr)
 		{
-			auto* InstanceId = Instance->GetInstanceIdOrNull();
-			if (InstanceId != nullptr)
-			{
-				Request.InstanceFubar.SetInstanceId(*InstanceId);
-			}
+			Request.InstanceFubar.SetInstanceId(Instance->GetInstanceId());
 
 			if (Instance->HostType == ERHAPI_HostType::Player)
 			{

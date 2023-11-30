@@ -24,6 +24,11 @@ void FRHAPI_PostGameEventsResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer)
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("posted_events"));
     RallyHereAPI::WriteJsonValue(Writer, PostedEvents);
+    if (Errors_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("errors"));
+        RallyHereAPI::WriteJsonValue(Writer, Errors_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -37,6 +42,12 @@ bool FRHAPI_PostGameEventsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
     const TSharedPtr<FJsonValue> JsonPostedEventsField = (*Object)->TryGetField(TEXT("posted_events"));
     ParseSuccess &= JsonPostedEventsField.IsValid() && !JsonPostedEventsField->IsNull() && TryGetJsonValue(JsonPostedEventsField, PostedEvents);
+    const TSharedPtr<FJsonValue> JsonErrorsField = (*Object)->TryGetField(TEXT("errors"));
+    if (JsonErrorsField.IsValid() && !JsonErrorsField->IsNull())
+    {
+        Errors_IsSet = TryGetJsonValue(JsonErrorsField, Errors_Optional);
+        ParseSuccess &= Errors_IsSet;
+    }
 
     return ParseSuccess;
 }

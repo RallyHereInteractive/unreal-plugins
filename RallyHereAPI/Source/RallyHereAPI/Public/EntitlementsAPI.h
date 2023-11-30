@@ -61,7 +61,7 @@ private:
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementForMe : public FRequest
@@ -123,7 +123,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementForMe
  * Note that some orders may not be fulfilled at the completion of this request and need to be polled separately for results
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_ProcessPlatformEntitlementsByPlayerUuid : public FRequest
@@ -184,7 +184,7 @@ struct RALLYHEREAPI_API Traits_ProcessPlatformEntitlementsByPlayerUuid
  * Get the status of a platform entitlement request by request id.
  *     
  *     Required Permissions: 
- * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsByPlayerUuid : public FRequest
@@ -245,7 +245,7 @@ struct RALLYHEREAPI_API Traits_RetrieveEntitlementsByPlayerUuid
  * Get the status of a platform entitlement request by request id.
  *     
  *     Required Permissions: 
- * 	For any player (including themselves)any of: `inv:*`, `inv:platform_entitlements:any`
+ * 	For any player (including themselves)any of: `inv:platform_entitlements:any`, `inv:*`
  * 	For the player themselves: `inv:platform_entitlements:self`
 */
 struct RALLYHEREAPI_API FRequest_RetrieveEntitlementsForMe : public FRequest

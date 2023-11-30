@@ -10,9 +10,9 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "TeamOverflowAction.h"
-#include "CohortInviteRequest.generated.h"
+#include "SessionInviteRequest.generated.h"
 
-/** @defgroup RHAPI_CohortInviteRequest RallyHere API Model CohortInviteRequest
+/** @defgroup RHAPI_SessionInviteRequest RallyHere API Model SessionInviteRequest
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_CohortInviteRequest : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
 {
     GENERATED_BODY()
 

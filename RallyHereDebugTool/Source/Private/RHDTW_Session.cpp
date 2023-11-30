@@ -83,13 +83,13 @@ FRHDTW_Session::~FRHDTW_Session()
 
 void FRHDTW_Session::ImGuiDisplayInstance(const FRHAPI_InstanceInfo& Info, URH_SessionView* RHSession, URH_GameInstanceSessionSubsystem* pGISessionSubsystem)
 {
-	const FString HeaderString = FString::Printf(TEXT("Instance ID: %s"), *Info.GetInstanceId(TEXT("<UNSET>")));
+	const FString HeaderString = FString::Printf(TEXT("Instance ID: %s"), *Info.GetInstanceId());
 
 	auto RHJoinedSession = Cast<URH_JoinedSession>(RHSession);
 
 	if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*HeaderString), RH_DefaultTreeFlags))
 	{
-		ImGuiDisplayCopyableValue(TEXT("InstanceId"), Info.GetInstanceIdOrNull());
+		ImGuiDisplayCopyableValue(TEXT("InstanceId"), Info.GetInstanceId());
 		if (Info.HostType == ERHAPI_HostType::Dedicated)
 		{
 			ImGui::Text("Type: Dedicated");
@@ -702,7 +702,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 
 					FString InvitedSessionId = ImGuiGetStringFromTextInputBuffer(InviteSessionString);
 
-					FRHAPI_CohortInviteRequest InviteRequest;
+					FRHAPI_SessionInviteRequest InviteRequest;
 					InviteRequest.SetTeamId(InvitePlayerTeam);
 					InviteRequest.SetCustomData(CustomData);
 

@@ -708,7 +708,7 @@ void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUp
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OfflineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_SessionInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
@@ -1207,9 +1207,9 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionU
 }
 
 
-void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_CohortInviteRequest& CohortInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_SessionInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
-	typedef RallyHereAPI::Traits_InviteCohortToSession BaseType;
+	typedef RallyHereAPI::Traits_InviteSessionToSession BaseType;
 	auto SessionId = GetSessionId();
 	auto SessionOwner = GetSessionOwner();
 	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
@@ -1217,7 +1217,7 @@ void URH_OnlineSession::InviteOtherSession(const FString& InvitedSessionId, cons
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.InvitedSessionId = InvitedSessionId;
-	Request.CohortInviteRequest = CohortInviteRequest;
+	Request.SessionInviteRequest = SessionInviteRequest;
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionInvitePriority);
 	Helper->Start(Request);
@@ -1227,7 +1227,7 @@ void URH_OnlineSession::KickOtherSession(const FString& KickedSessionId, const F
 {
 	// TODO - check that players is already in this session?
 
-	typedef RallyHereAPI::Traits_KickCohortFromSession BaseType;
+	typedef RallyHereAPI::Traits_KickSessionFromSession BaseType;
 	auto SessionId = GetSessionId();
 	auto SessionOwner = GetSessionOwner();
 	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
@@ -1405,11 +1405,7 @@ void URH_OnlineSession::UpdateInstanceHealth(ERHAPI_InstanceHealthStatus HealthS
 	auto* Instance = GetInstanceData();
 	if (Instance != nullptr)
 	{
-		auto* InstanceId = Instance->GetInstanceIdOrNull();
-		if (InstanceId != nullptr)
-		{
-			Request.InstanceHealthStatusUpdate.SetInstanceId(*InstanceId);
-		}
+		Request.InstanceHealthStatusUpdate.SetInstanceId(Instance->GetInstanceId());
 	}
 
 	// we use the simple query helper since this intentionally does not modify the session, to prevent excess reads on the poll

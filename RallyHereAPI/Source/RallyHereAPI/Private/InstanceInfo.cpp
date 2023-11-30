@@ -27,11 +27,8 @@ void FRHAPI_InstanceInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("allocation_id"));
         RallyHereAPI::WriteJsonValue(Writer, AllocationId_Optional);
     }
-    if (InstanceId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-        RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
-    }
+    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
     Writer->WriteIdentifierPrefix(TEXT("host_type"));
     RallyHereAPI::WriteJsonValue(Writer, EnumToString(HostType));
     if (HostPlayerId_IsSet)
@@ -101,11 +98,7 @@ bool FRHAPI_InstanceInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         ParseSuccess &= AllocationId_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
-    {
-        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
-        ParseSuccess &= InstanceId_IsSet;
-    }
+    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
     const TSharedPtr<FJsonValue> JsonHostTypeField = (*Object)->TryGetField(TEXT("host_type"));
     ParseSuccess &= JsonHostTypeField.IsValid() && !JsonHostTypeField->IsNull() && TryGetJsonValue(JsonHostTypeField, HostType);
     const TSharedPtr<FJsonValue> JsonHostPlayerIdField = (*Object)->TryGetField(TEXT("host_player_id"));

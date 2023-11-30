@@ -142,7 +142,7 @@ struct RALLYHEREAPI_API Traits_PlayerCreateNotification
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:player:*`,`notification:player:read`
+ * Requires permissions: Any of `notification:player:read`,`notification:player:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayerGetNotificationById : public FRequest
 {
@@ -211,7 +211,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationById
  *
  * Retrieve a single notification by id
  * 
- * Requires permissions: Any of `notification:player:*`,`notification:player:read`
+ * Requires permissions: Any of `notification:player:read`,`notification:player:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayerGetNotificationByIdSelf : public FRequest
 {
@@ -285,7 +285,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationByIdSelf
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:player:*`,`notification:player:read`
+ * Requires permissions: Any of `notification:player:read`,`notification:player:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayerGetNotificationsPage : public FRequest
 {
@@ -368,7 +368,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationsPage
  * 
  * Client are expected to poll this endpoint regularly.
  * 
- * Requires permissions: Any of `notification:player:*`,`notification:player:read`
+ * Requires permissions: Any of `notification:player:read`,`notification:player:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayerGetNotificationsPageSelf : public FRequest
 {
@@ -443,7 +443,7 @@ struct RALLYHEREAPI_API Traits_PlayerGetNotificationsPageSelf
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:player:*`,`notification:player:read`
+ * Requires permissions: Any of `notification:player:read`,`notification:player:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayerLongPollForNotifications : public FRequest
 {
@@ -519,7 +519,7 @@ struct RALLYHEREAPI_API Traits_PlayerLongPollForNotifications
  * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
  * the notifications found.
  * 
- * Requires permissions: Any of `notification:player:*`,`notification:player:read`
+ * Requires permissions: Any of `notification:player:read`,`notification:player:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayerLongPollForNotificationsSelf : public FRequest
 {

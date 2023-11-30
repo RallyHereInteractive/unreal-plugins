@@ -22,13 +22,13 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_UpdateBackfillRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
     if (AdditionalJoinParams_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("additional_join_params"));
         RallyHereAPI::WriteJsonValue(Writer, AdditionalJoinParams_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
     if (Teams_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("teams"));
@@ -45,14 +45,14 @@ bool FRHAPI_UpdateBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
     const TSharedPtr<FJsonValue> JsonAdditionalJoinParamsField = (*Object)->TryGetField(TEXT("additional_join_params"));
     if (JsonAdditionalJoinParamsField.IsValid() && !JsonAdditionalJoinParamsField->IsNull())
     {
         AdditionalJoinParams_IsSet = TryGetJsonValue(JsonAdditionalJoinParamsField, AdditionalJoinParams_Optional);
         ParseSuccess &= AdditionalJoinParams_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
     const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
     if (JsonTeamsField.IsValid() && !JsonTeamsField->IsNull())
     {
