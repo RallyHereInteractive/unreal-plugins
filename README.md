@@ -5,6 +5,7 @@
 ## 0.11.0
 
 ### High Level Changes
+* The integration SDK is now being released under the Apache v2 license.
 * Throughout the integration layer, the term Sandbox has been changed to Environment.  This is to properly match the terminology used elsewhere.
 	* Note: Some commandline and console commands were also changed to match:
 		* The default commandline arguments `-RallyHereSandbox=`, `-RallyHereSandboxX=`, and `-RallyHereSandboxInternal=` were changed to `-RallyHereEnv=`, `-RallyHereEnvX=`, and `-RallyHereEnvInternal=`
@@ -21,13 +22,13 @@
 	* Note: Currently only supported for matchmade sessions.  Backfilling must be kept alive if desired.  Once the backfill ticket expires, it cannot be recreated without re-entering basic matchmaking.
 	* Note: This behavior can be changed by overriding `GetShouldKeepBackfillAlive()`.
 * Sessions can now invite other sessions as a whole (which invites all players in the target session not currently in the source session).
-* The integration SDK is now being released under the Apache v2 license.
+
 
 ### Notable Changes
 * Converted Queue usage to the Queue v2 API.
 * Changed Rank usage to the Rank v2 API.
 * Prototype support for DeveloperAPI integration with the editor.
-* Added additional information and tabs to debug window to display read-only configuration values stored in the integration layer that were retrieved from the API.* Improved support for session join calls to allow the integration layer to specify the full player join details.
+* Session Types and Settings Types can now be viewed in the debug tool.* Improved support for session join calls to allow the integration layer to specify the full player join details.
 * Updated embedded Game Host Adapter (GHA) library version to `0.0.10`.
 * Fixed issue with session browser data update not correctly distinguishing between POST and PATCH calls.
 * Fixed race condition where security token was not echoed back to host before players attempted to join the host, causing joins to fail.
