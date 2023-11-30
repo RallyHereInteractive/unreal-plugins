@@ -1056,10 +1056,7 @@ void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreate& PlayerO
 		{
 			if (const FRHAPI_InstanceInfo* InstanceInfo = RHGISS->GetInstance())
 			{
-				if (const auto* InstanceId = InstanceInfo->GetInstanceIdOrNull())
-				{
-					PlayerOrderCreate.SetInstanceId(*InstanceId);
-				}
+				PlayerOrderCreate.SetInstanceId(*InstanceInfo->GetInstanceId());
 			}
 
 			if (const URH_JoinedSession* ActiveSession = RHGISS->GetActiveSession())
