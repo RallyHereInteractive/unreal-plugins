@@ -2,6 +2,65 @@
 
 ## Change History
 
+## 0.11.0
+
+### High Level Changes
+* Throughout the integration layer, the term Sandbox has been changed to Environment.  This is to properly match the terminology used elsewhere.
+	* Note: Some commandline and console commands were also changed to match:
+		* The default commandline arguments `-RallyHereSandbox=`, `-RallyHereSandboxX=`, and `-RallyHereSandboxInternal=` were changed to `-RallyHereEnv=`, `-RallyHereEnvX=`, and `-RallyHereEnvInternal=`
+		* The `rh.setsandboxid`, `rh.resolvesandboxid` and `rh.getsandboxid` console commands were changed to `rh.setenvid`, `rh.resolveenvid`, and `rh.getenvid`
+		* The `DefaultSandboxConfiguration`, `SandboxConfigurations`, `SandboxCommandLineKeys`, and `SandboxOSSName` config values were changed to `DefaultEnvironmentConfiguration`, `EnvironmentConfigurations`, `EnvironmentCommandLineKeys`, and `EnvironmentOSSName` (this requires updating your RallyHereIntegration.ini file)
+* By default, all API calls now will automatically retry using the engine's HTTP retry system.
+* AnalyticsRallyHere has been converted to implement the IAnalyticsProviderET interface.
+* WriteOrderEntries() has been rewritten to allow for fewer failure cases, instead it will include as much data as possible, so that API can decide if enough data was provided.
+* Helper functions on FResponse objects have been added to handle non-success cases more appropriately.
+* Instance Health is now automatically polled and tracked, and can be checked against on the Session's instance object.
+	* Note: An instance not being in a health state does not prevent join attempts by default.
+	* Note: This behavior can be changed by overriding `GetShouldKeepInstanceHealthAlive()`.
+* Backfill status is now automatically polled for active sessions, allowing them to be backfilled automatically.
+	* Note: Currently only supported for matchmade sessions.  Backfilling must be kept alive if desired.  Once the backfill ticket expires, it cannot be recreated without re-entering basic matchmaking.
+	* Note: This behavior can be changed by overriding `GetShouldKeepBackfillAlive()`.
+* Sessions can now invite other sessions as a whole (which invites all players in the target session not currently in the source session).
+* The integration SDK is now being released under the Apache v2 license.
+
+### Notable Changes
+* Converted Queue usage to the Queue v2 API.
+* Changed Rank usage to the Rank v2 API.
+* Prototype support for DeveloperAPI integration with the editor.
+* Added additional information and tabs to debug window to display read-only configuration values stored in the integration layer that were retrieved from the API.* Improved support for session join calls to allow the integration layer to specify the full player join details.
+* Updated embedded Game Host Adapter (GHA) library version to `0.0.10`.
+* Fixed issue with session browser data update not correctly distinguishing between POST and PATCH calls.
+* Fixed race condition where security token was not echoed back to host before players attempted to join the host, causing joins to fail.
+* Fixed session browser cursor tracking.
+* Fixed notification cursor tracking.
+* Converted OSS auth token retrieval to use GetLinkedAccountAuthToken for some platforms (which allows for asynchronous auth token retrieval).
+* Improvements to custom data staging and data entry in debug tool.
+* Optimizations to OSS friends presence lookup to reduce number of callback broadcasts.
+* Session update delegates now pass back FRH_ErrorInfo structures.
+* Multiple fixes for the Platform Session syncing routines.
+* Added support for checking OSS player blocked list for friends subsystem.
+* Added support for auto-joining pending platform session invites on login/user change (ex: platforms with launch-game-and-join-session support).  This defaults to enabled, but can be disabled via settings.
+
+**Full Changelog**: https://github.com/RallyHereInteractive/unreal-plugins/compare/v0.10.1...v0.11.0
+
+## v0.10.1
+
+### High Level Changes
+
+* This is an update mostly focusing on bug fixing and optimizations
+* Includes a new first-pass implementation of the AnalyticsRallyHere plugin, which can be used to route calls to our GETS (Generic Event Tracking System) endpoint.
+
+### Notable Changes
+
+* Adding stubs for App suspension and resuming to the GameInstanceSubsystem
+* Integration layer function parameter cleanup (more passing by const ref, etc)
+* Fixes for GHA includes not playing nicely with UnrealHeaderTool
+* Added support for viewing OSS store items to the Entitlement Subsystem and Debug Tool
+* Initial pass at RH Analytics Provider (batched http analytics)
+* Allow fallback to old window selection when docking support is not present in the debug tool
+* Numerous fixes for non-PCH / non-unity builds
+* Numerous bug fixes and compile fixes
+
 ### 0.10.0
 
 - High Level Changes
