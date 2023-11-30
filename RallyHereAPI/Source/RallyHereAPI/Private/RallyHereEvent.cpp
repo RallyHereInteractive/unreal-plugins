@@ -28,12 +28,23 @@ void FRHAPI_RallyHereEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     RallyHereAPI::WriteJsonValue(Writer, EventName);
     Writer->WriteIdentifierPrefix(TEXT("eventTimestamp"));
     RallyHereAPI::WriteJsonValue(Writer, EventTimestamp);
-    Writer->WriteIdentifierPrefix(TEXT("userID"));
-    RallyHereAPI::WriteJsonValue(Writer, UserID);
-    Writer->WriteIdentifierPrefix(TEXT("sessionID"));
-    RallyHereAPI::WriteJsonValue(Writer, SessionID);
     Writer->WriteIdentifierPrefix(TEXT("eventParams"));
     RallyHereAPI::WriteJsonValue(Writer, EventParams);
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("customData"));
+        RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
+    if (UserID_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("userID"));
+        RallyHereAPI::WriteJsonValue(Writer, UserID_Optional);
+    }
+    if (SessionID_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("sessionID"));
+        RallyHereAPI::WriteJsonValue(Writer, SessionID_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -51,12 +62,26 @@ bool FRHAPI_RallyHereEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     ParseSuccess &= JsonEventNameField.IsValid() && !JsonEventNameField->IsNull() && TryGetJsonValue(JsonEventNameField, EventName);
     const TSharedPtr<FJsonValue> JsonEventTimestampField = (*Object)->TryGetField(TEXT("eventTimestamp"));
     ParseSuccess &= JsonEventTimestampField.IsValid() && !JsonEventTimestampField->IsNull() && TryGetJsonValue(JsonEventTimestampField, EventTimestamp);
-    const TSharedPtr<FJsonValue> JsonUserIDField = (*Object)->TryGetField(TEXT("userID"));
-    ParseSuccess &= JsonUserIDField.IsValid() && !JsonUserIDField->IsNull() && TryGetJsonValue(JsonUserIDField, UserID);
-    const TSharedPtr<FJsonValue> JsonSessionIDField = (*Object)->TryGetField(TEXT("sessionID"));
-    ParseSuccess &= JsonSessionIDField.IsValid() && !JsonSessionIDField->IsNull() && TryGetJsonValue(JsonSessionIDField, SessionID);
     const TSharedPtr<FJsonValue> JsonEventParamsField = (*Object)->TryGetField(TEXT("eventParams"));
     ParseSuccess &= JsonEventParamsField.IsValid() && !JsonEventParamsField->IsNull() && TryGetJsonValue(JsonEventParamsField, EventParams);
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("customData"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonUserIDField = (*Object)->TryGetField(TEXT("userID"));
+    if (JsonUserIDField.IsValid() && !JsonUserIDField->IsNull())
+    {
+        UserID_IsSet = TryGetJsonValue(JsonUserIDField, UserID_Optional);
+        ParseSuccess &= UserID_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonSessionIDField = (*Object)->TryGetField(TEXT("sessionID"));
+    if (JsonSessionIDField.IsValid() && !JsonSessionIDField->IsNull())
+    {
+        SessionID_IsSet = TryGetJsonValue(JsonSessionIDField, SessionID_Optional);
+        ParseSuccess &= SessionID_IsSet;
+    }
 
     return ParseSuccess;
 }

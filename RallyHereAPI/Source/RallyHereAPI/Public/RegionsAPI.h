@@ -43,7 +43,7 @@ private:
  * Get all of the enabled regions and their configuration
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None

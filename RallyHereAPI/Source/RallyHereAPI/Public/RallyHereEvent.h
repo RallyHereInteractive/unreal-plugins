@@ -69,35 +69,84 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     /** @brief Sets the value of EventTimestamp */
     void SetEventTimestamp(FDateTime NewValue) { EventTimestamp = NewValue;  }
 
+    /** @brief Event specific parameters */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    TMap<FString, FString> EventParams{  };
+    /** @brief Gets the value of EventParams */
+    TMap<FString, FString>& GetEventParams() { return EventParams; }
+    /** @brief Gets the value of EventParams */
+    const TMap<FString, FString>& GetEventParams() const { return EventParams; }
+    /** @brief Sets the value of EventParams */
+    void SetEventParams(TMap<FString, FString> NewValue) { EventParams = NewValue;  }
+
+    /** @brief Event custom data */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FRHAPI_JsonObject CustomData_Optional{  };
+    /** @brief true if CustomData_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool CustomData_IsSet{ false };
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    FRHAPI_JsonObject& GetCustomData() { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    const FRHAPI_JsonObject& GetCustomData() const { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_JsonObject& GetCustomData(const FRHAPI_JsonObject& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCustomData(FRHAPI_JsonObject& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_JsonObject* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_JsonObject* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+    void SetCustomData(FRHAPI_JsonObject NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+    void ClearCustomData() { CustomData_IsSet = false; }
+
     /** @brief User who submitted the event */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString UserID{  };
-    /** @brief Gets the value of UserID */
-    FString& GetUserID() { return UserID; }
-    /** @brief Gets the value of UserID */
-    const FString& GetUserID() const { return UserID; }
-    /** @brief Sets the value of UserID */
-    void SetUserID(FString NewValue) { UserID = NewValue;  }
+    FString UserID_Optional{  };
+    /** @brief true if UserID_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool UserID_IsSet{ false };
+    /** @brief Gets the value of UserID_Optional, regardless of it having been set */
+    FString& GetUserID() { return UserID_Optional; }
+    /** @brief Gets the value of UserID_Optional, regardless of it having been set */
+    const FString& GetUserID() const { return UserID_Optional; }
+    /** @brief Gets the value of UserID_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetUserID(const FString& DefaultValue) const { if (UserID_IsSet) return UserID_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of UserID_Optional and returns true if it has been set, otherwise returns false */
+    bool GetUserID(FString& OutValue) const { if (UserID_IsSet) OutValue = UserID_Optional; return UserID_IsSet; }
+    /** @brief Returns a pointer to UserID_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetUserIDOrNull() { if (UserID_IsSet) return &UserID_Optional; return nullptr; }
+    /** @brief Returns a pointer to UserID_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetUserIDOrNull() const { if (UserID_IsSet) return &UserID_Optional; return nullptr; }
+    /** @brief Sets the value of UserID_Optional and also sets UserID_IsSet to true */
+    void SetUserID(FString NewValue) { UserID_Optional = NewValue; UserID_IsSet = true; }
+     /** @brief Clears the value of UserID_Optional and sets UserID_IsSet to false */
+    void ClearUserID() { UserID_IsSet = false; }
 
     /** @brief Session ID to associate the event with */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString SessionID{  };
-    /** @brief Gets the value of SessionID */
-    FString& GetSessionID() { return SessionID; }
-    /** @brief Gets the value of SessionID */
-    const FString& GetSessionID() const { return SessionID; }
-    /** @brief Sets the value of SessionID */
-    void SetSessionID(FString NewValue) { SessionID = NewValue;  }
-
-    /** @brief Event specific parameters */
+    FString SessionID_Optional{  };
+    /** @brief true if SessionID_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_JsonObject EventParams{  };
-    /** @brief Gets the value of EventParams */
-    FRHAPI_JsonObject& GetEventParams() { return EventParams; }
-    /** @brief Gets the value of EventParams */
-    const FRHAPI_JsonObject& GetEventParams() const { return EventParams; }
-    /** @brief Sets the value of EventParams */
-    void SetEventParams(FRHAPI_JsonObject NewValue) { EventParams = NewValue;  }
+    bool SessionID_IsSet{ false };
+    /** @brief Gets the value of SessionID_Optional, regardless of it having been set */
+    FString& GetSessionID() { return SessionID_Optional; }
+    /** @brief Gets the value of SessionID_Optional, regardless of it having been set */
+    const FString& GetSessionID() const { return SessionID_Optional; }
+    /** @brief Gets the value of SessionID_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetSessionID(const FString& DefaultValue) const { if (SessionID_IsSet) return SessionID_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of SessionID_Optional and returns true if it has been set, otherwise returns false */
+    bool GetSessionID(FString& OutValue) const { if (SessionID_IsSet) OutValue = SessionID_Optional; return SessionID_IsSet; }
+    /** @brief Returns a pointer to SessionID_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetSessionIDOrNull() { if (SessionID_IsSet) return &SessionID_Optional; return nullptr; }
+    /** @brief Returns a pointer to SessionID_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetSessionIDOrNull() const { if (SessionID_IsSet) return &SessionID_Optional; return nullptr; }
+    /** @brief Sets the value of SessionID_Optional and also sets SessionID_IsSet to true */
+    void SetSessionID(FString NewValue) { SessionID_Optional = NewValue; SessionID_IsSet = true; }
+     /** @brief Clears the value of SessionID_Optional and sets SessionID_IsSet to false */
+    void ClearSessionID() { SessionID_IsSet = false; }
 };
 
 /** @} */

@@ -41,6 +41,16 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The instance ID for this backfill request */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString InstanceId{  };
+    /** @brief Gets the value of InstanceId */
+    FString& GetInstanceId() { return InstanceId; }
+    /** @brief Gets the value of InstanceId */
+    const FString& GetInstanceId() const { return InstanceId; }
+    /** @brief Sets the value of InstanceId */
+    void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
+
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_AdditionalJoinParams AdditionalJoinParams_Optional{  };
     /** @brief true if AdditionalJoinParams_Optional has been set to a value */
@@ -62,16 +72,6 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
     void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true; }
      /** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
     void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false; }
-
-    /** @brief The instance ID for the instance acknowledging backfill. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString InstanceId{  };
-    /** @brief Gets the value of InstanceId */
-    FString& GetInstanceId() { return InstanceId; }
-    /** @brief Gets the value of InstanceId */
-    const FString& GetInstanceId() const { return InstanceId; }
-    /** @brief Sets the value of InstanceId */
-    void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
     /** @brief The teams and number of players that need to be backfilled. Leaving this out (or supplying an empty list) is treated as no players are currently required */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

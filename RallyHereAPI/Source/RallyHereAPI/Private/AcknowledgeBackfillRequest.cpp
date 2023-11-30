@@ -22,17 +22,12 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_AcknowledgeBackfillRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
     if (Extensions_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("extensions"));
         RallyHereAPI::WriteJsonValue(Writer, Extensions_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
-    if (OverflowAction_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("overflow_action"));
-        RallyHereAPI::WriteJsonValue(Writer, EnumToString(OverflowAction_Optional));
     }
     Writer->WriteObjectEnd();
 }
@@ -45,19 +40,13 @@ bool FRHAPI_AcknowledgeBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& J
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
+    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
     const TSharedPtr<FJsonValue> JsonExtensionsField = (*Object)->TryGetField(TEXT("extensions"));
     if (JsonExtensionsField.IsValid() && !JsonExtensionsField->IsNull())
     {
         Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
         ParseSuccess &= Extensions_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
-    const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
-    if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
-    {
-        OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
-        ParseSuccess &= OverflowAction_IsSet;
     }
 
     return ParseSuccess;

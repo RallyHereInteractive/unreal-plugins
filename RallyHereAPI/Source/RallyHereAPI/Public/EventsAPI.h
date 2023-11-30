@@ -12,6 +12,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "EventList.h"
 #include "HTTPValidationError.h"
+#include "HzApiErrorModel.h"
 #include "PostGameEventsResponse.h"
 
 namespace RallyHereAPI
@@ -68,6 +69,16 @@ struct RALLYHEREAPI_API FResponse_ReceiveEventsV1 : public FResponse
     Successful Response
     */
     bool TryGetContentFor200(FRHAPI_PostGameEventsResponse& OutContent) const;
+
+    /* Response 207
+             Error Codes:         - `events_multi_results` - Some of the events from the request failed to process, and uploaded to deadletter blob storage         
+    */
+    bool TryGetContentFor207(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 400
+                 Error Codes:             - `events_all_failed` - All of events from the request failed to process, and uploaded to deadletter blob storage             
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 422
     Validation Error

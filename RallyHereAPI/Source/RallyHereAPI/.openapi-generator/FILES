@@ -30,8 +30,6 @@ Private/ClaimKeyRequest.cpp
 Private/ClientSettings.cpp
 Private/ClientType.cpp
 Private/ClientVisibleSettings.cpp
-Private/CohortInviteRequest.cpp
-Private/CohortInviteResponse.cpp
 Private/ConfigAPI.cpp
 Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
@@ -250,6 +248,8 @@ Private/Session.cpp
 Private/SessionEvent.cpp
 Private/SessionEventCreateRequest.cpp
 Private/SessionEvents.cpp
+Private/SessionInviteRequest.cpp
+Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
 Private/SessionPlayer.cpp
 Private/SessionPlayerStatus.cpp
@@ -323,8 +323,6 @@ Public/ClaimKeyRequest.h
 Public/ClientSettings.h
 Public/ClientType.h
 Public/ClientVisibleSettings.h
-Public/CohortInviteRequest.h
-Public/CohortInviteResponse.h
 Public/ConfigAPI.h
 Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
@@ -543,6 +541,8 @@ Public/Session.h
 Public/SessionEvent.h
 Public/SessionEventCreateRequest.h
 Public/SessionEvents.h
+Public/SessionInviteRequest.h
+Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
 Public/SessionPlayer.h
 Public/SessionPlayerStatus.h

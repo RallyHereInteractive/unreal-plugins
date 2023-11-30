@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "CohortInviteRequest.h"
+#include "SessionInviteRequest.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_CohortInviteRequest
+// Implementation for FRHAPI_SessionInviteRequest
 
-void FRHAPI_CohortInviteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_SessionInviteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
     if (TeamId_IsSet)
@@ -40,7 +40,7 @@ void FRHAPI_CohortInviteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_CohortInviteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_SessionInviteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))

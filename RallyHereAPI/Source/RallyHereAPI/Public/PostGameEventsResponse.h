@@ -52,6 +52,29 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
     bool IsPostedEventsDefaultValue() const { return PostedEvents == 0; }
     /** @brief Sets the value of PostedEvents to its default  */
     void SetPostedEventsToDefault() { PostedEvents = 0;  }
+
+    /** @brief list of validation failure for each event. */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    TArray<FRHAPI_JsonValue> Errors_Optional{  };
+    /** @brief true if Errors_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Errors_IsSet{ false };
+    /** @brief Gets the value of Errors_Optional, regardless of it having been set */
+    TArray<FRHAPI_JsonValue>& GetErrors() { return Errors_Optional; }
+    /** @brief Gets the value of Errors_Optional, regardless of it having been set */
+    const TArray<FRHAPI_JsonValue>& GetErrors() const { return Errors_Optional; }
+    /** @brief Gets the value of Errors_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TArray<FRHAPI_JsonValue>& GetErrors(const TArray<FRHAPI_JsonValue>& DefaultValue) const { if (Errors_IsSet) return Errors_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Errors_Optional and returns true if it has been set, otherwise returns false */
+    bool GetErrors(TArray<FRHAPI_JsonValue>& OutValue) const { if (Errors_IsSet) OutValue = Errors_Optional; return Errors_IsSet; }
+    /** @brief Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr */
+    TArray<FRHAPI_JsonValue>* GetErrorsOrNull() { if (Errors_IsSet) return &Errors_Optional; return nullptr; }
+    /** @brief Returns a pointer to Errors_Optional, if it has been set, otherwise returns nullptr */
+    const TArray<FRHAPI_JsonValue>* GetErrorsOrNull() const { if (Errors_IsSet) return &Errors_Optional; return nullptr; }
+    /** @brief Sets the value of Errors_Optional and also sets Errors_IsSet to true */
+    void SetErrors(TArray<FRHAPI_JsonValue> NewValue) { Errors_Optional = NewValue; Errors_IsSet = true; }
+     /** @brief Clears the value of Errors_Optional and sets Errors_IsSet to false */
+    void ClearErrors() { Errors_IsSet = false; }
 };
 
 /** @} */
