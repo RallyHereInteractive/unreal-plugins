@@ -252,7 +252,7 @@ void URH_DevWebRequests::OnWebRequestStarted_Track(const RallyHereDeveloperAPI::
 		if (headerStr.FindChar(TEXT(':'), index))
 		{
 			const FString name = headerStr.Mid(0, index);
-			const FString value = headerStr.Mid(index + 1);
+			const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
 			Request->Headers.Emplace(name, value);
 		}
 	}
@@ -298,6 +298,7 @@ void URH_DevWebRequests::OnWebRequestCompleted_Track(const RallyHereDeveloperAPI
 	auto& TrackedResponse = (*TrackedRequest)->Responses.Emplace_GetRef();
 	TrackedResponse.ResponseSuccess = bSuccess;
 	TrackedResponse.ResponseCode = Response.GetHttpResponseCode();
+	TrackedResponse.ReceivedTime = FDateTime::Now();
 	if (HttpResponse)
 	{
 		TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForRequest(Response.GetRequestMetadata()));
@@ -308,7 +309,7 @@ void URH_DevWebRequests::OnWebRequestCompleted_Track(const RallyHereDeveloperAPI
 			if (headerStr.FindChar(TEXT(':'), index))
 			{
 				const FString name = headerStr.Mid(0, index);
-				const FString value = headerStr.Mid(index + 1);
+				const FString value = headerStr.Mid(index + 2); // skip the space after the colon as well
 				TrackedResponse.Headers.Emplace(name, value);
 			}
 		}
@@ -364,15 +365,16 @@ TSharedPtr<FJsonObject> URH_DevWebRequests::CreateJsonObjectFromWebRequest(const
 
 	// Request
 	TSharedPtr<FJsonObject> Request = MakeShareable(new FJsonObject);
-	Request->SetStringField("Verb", request.Verb);
-	Request->SetStringField("URL", request.URL);
-	Request->SetNumberField("RetryCount", request.Metadata.RetryCount);
+	Request->SetStringField(TEXT("Verb"), request.Verb);
+	Request->SetStringField(TEXT("URL"), request.URL);
+	Request->SetNumberField(TEXT("RetryCount"), request.Metadata.RetryCount);
+	Request->SetStringField(TEXT("Send-Time"), request.Timestamp.ToIso8601());
 
 	auto Reader = TJsonReaderFactory<>::Create(request.Content);
 	TSharedPtr<FJsonValue> JsonValue;
 	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 	{
-		Request->SetField("Content", JsonValue);
+		Request->SetField(TEXT("Content"), JsonValue);
 	}
 
 	TSharedPtr<FJsonObject> RequestHeader = MakeShareable(new FJsonObject);
@@ -380,30 +382,32 @@ TSharedPtr<FJsonObject> URH_DevWebRequests::CreateJsonObjectFromWebRequest(const
 	{
 		RequestHeader->SetStringField(pair.Key, pair.Value);
 	}
-	Request->SetObjectField("Header", RequestHeader);
+	Request->SetObjectField(TEXT("Headers"), RequestHeader);
 
-	WebRequestJson->SetObjectField("Request", Request);
+	WebRequestJson->SetObjectField(TEXT("Request"), Request);
 
 	// Metadata
 	TSharedPtr<FJsonObject> Metadata = MakeShareable(new FJsonObject);
-	Metadata->SetStringField("Identifier", request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens));
-	Metadata->SetStringField("Simplified Path", request.Metadata.SimplifiedPath.ToString());
-	Metadata->SetNumberField("Retry Count", request.Metadata.RetryCount);
-	WebRequestJson->SetObjectField("Metadata", Metadata);
+	Metadata->SetStringField(TEXT("Identifier"), request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens));
+	Metadata->SetStringField(TEXT("Simplified Path"), request.Metadata.SimplifiedPath.ToString());
+	Metadata->SetNumberField(TEXT("Retry Count"), request.Metadata.RetryCount);
+	WebRequestJson->SetObjectField(TEXT("Metadata"), Metadata);
 
 	// Responses
 	TArray<TSharedPtr<FJsonValue>> ResponsesArray;
 	for (int32 x = 0; x < request.Responses.Num(); ++x)
 	{
 		TSharedPtr<FJsonObject> Response = MakeShareable(new FJsonObject);
-		Response->SetNumberField("Response-Index", x);
-		Response->SetBoolField("Http-Success", request.Responses[x].ResponseSuccess);
-		Response->SetNumberField("Response-Code", request.Responses[x].ResponseCode);
+		Response->SetNumberField(TEXT("Response-Index"), x);
+		Response->SetBoolField(TEXT("Http-Success"), request.Responses[x].ResponseSuccess);
+		Response->SetNumberField(TEXT("Response-Code"), request.Responses[x].ResponseCode);
+		Response->SetStringField(TEXT("Received-Time"), request.Responses[x].ReceivedTime.ToIso8601());
+		Response->SetNumberField(TEXT("Duration-Time"), (request.Responses[x].ReceivedTime - request.Timestamp).GetTotalSeconds());
 
 		Reader = TJsonReaderFactory<>::Create(request.Responses[x].Content);
 		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 		{
-			Response->SetField("Content", JsonValue);
+			Response->SetField(TEXT("Content"), JsonValue);
 		}
 
 		TSharedPtr<FJsonObject> ResponseHeader = MakeShareable(new FJsonObject);
@@ -411,12 +415,12 @@ TSharedPtr<FJsonObject> URH_DevWebRequests::CreateJsonObjectFromWebRequest(const
 		{
 			ResponseHeader->SetStringField(pair.Key, pair.Value);
 		}
-		Response->SetObjectField("Header", ResponseHeader);
+		Response->SetObjectField(TEXT("Headers"), ResponseHeader);
 
 		TSharedRef<FJsonValueObject> ResponseJsonValue = MakeShareable(new FJsonValueObject(Response));
 		ResponsesArray.Add(ResponseJsonValue);
 	}
-	WebRequestJson->SetArrayField("Responses", ResponsesArray);
+	WebRequestJson->SetArrayField(TEXT("Responses"), ResponsesArray);
 
 	return WebRequestJson;
 }

@@ -263,7 +263,7 @@ void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
 					}
 					if (ImGui::BeginTabItem(responseLabel.c_str(), nullptr, ImGuiTabItemFlags_None))
 					{
-						DoViewResponse(&request->Responses[y]);
+						DoViewResponse(&request->Responses[y], request);
 						ImGui::EndTabItem();
 					}
 				}
@@ -331,7 +331,7 @@ void FRHDTW_WebRequests::DoViewRequest(const FRH_WebRequest* WebRequest)
 	}
 }
 
-void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse)
+void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse, const FRH_WebRequest* WebRequest)
 {
 	if (!WebResponse)
 		return;
@@ -339,6 +339,11 @@ void FRHDTW_WebRequests::DoViewResponse(const FRH_WebResponse* WebResponse)
 	ImGui::Text("Http Success : %d", WebResponse->ResponseSuccess);
 	ImGui::Text("Code : %d", WebResponse->ResponseCode);
 	ImGuiDisplayCopyableValue(TEXT("Timestamp"), WebResponse->ReceivedTime);
+	if (WebRequest != nullptr)
+	{
+		ImGuiDisplayCopyableValue(TEXT("Duration"), (WebResponse->ReceivedTime - WebRequest->Timestamp).GetTotalSeconds());
+	}
+	
 
 	ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + ImGui::GetWindowContentRegionMax().x);
 
