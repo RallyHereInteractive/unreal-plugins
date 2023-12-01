@@ -9,9 +9,6 @@
 
 #include "CoreMinimal.h"
 #include "RallyHereDeveloperAPIBaseModel.h"
-//#include "LoginResult.h"
-//#include "TokenResponse.h"
-#include "RallyHereDeveloperAPIAuthContext.generated.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -23,27 +20,22 @@ struct FRequest_Token;
 struct FResponse_Token;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FAuthContextLoginComplete, bool /* bAuthSuccess */);
-DECLARE_MULTICAST_DELEGATE(FAuthContextLogout);
-DECLARE_MULTICAST_DELEGATE(FAuthContextLoginUserChanged);
+DECLARE_MULTICAST_DELEGATE(FAuthContextLoginRequested);
 
 struct RALLYHEREDEVELOPERAPI_API FAuthContext : TSharedFromThis<FAuthContext>
 {
 public:
-    FAuthContext(FAuthAPI& LoginAPI_, FString ClientId, FString ClientSecret);
+    FAuthContext(FString ClientId, FString ClientSecret);
 
-    FAuthContext(FAuthAPI& LoginAPI_);
+    FAuthContext();
 
-    //void ProcessLogin(const FResponse_Login &LoginResponse_);
-    //void ProcessLoginToken(const FResponse_Token &LoginResponse_);
-    bool Refresh();
     FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
-    FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
-    FAuthContextLogout& OnLogout() { return Logout; }
-    //const TOptional<FRHAPI_DevLoginResult>& GetLoginResult() const;
-    //const TOptional<FRHAPI_DevTokenResponse>& GetTokenResponse() const;
+    FAuthContextLoginRequested& OnLoginRequested() { return LoginRequested; }
     bool IsLoggedIn() const;
     FString GetAccessToken() const;
-    FString GetRefreshToken() const;
+
+    void AuthFromWebURL(const FString& URL);
+    bool Refresh();
 
     void ClearAuthContext();
 
@@ -56,43 +48,16 @@ public:
     bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
     bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
 
-    //static bool IsSameUser(const TOptional<FRHAPI_DevLoginResult>& A, const TOptional<FRHAPI_DevLoginResult>& B);
-
 private:
-    FAuthAPI* LoginAPI;
     TOptional<FString> ClientId;
     TOptional<FString> ClientSecret;
     TOptional<FString> BasicAuthValue;
-    bool bIsRefreshing;
     FAuthContextLoginComplete LoginComplete;
-    FAuthContextLoginUserChanged LoginUserChanged;
-    FAuthContextLogout Logout;
-    //TOptional<FRHAPI_DevLoginResult> LoginResult;
-    //TOptional<FRHAPI_DevTokenResponse> TokenResponse;
+    FAuthContextLoginRequested LoginRequested;
+    FString AccessToken;
 
     inline void UpdateBasicAuthValue();
 };
 }
 
-typedef TSharedPtr<RallyHereDeveloperAPI::FAuthContext> FAuthContextPtr;
-
-USTRUCT(BlueprintType)
-struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAuthContext
-{
-	GENERATED_BODY()
-
-	UPROPERTY()
-	int32 Dummy;
-
-	FAuthContextPtr AuthContext;
-
-	FRHAPI_DevAuthContext()
-		: Dummy(0)
-		, AuthContext(nullptr)
-	{}
-
-	FRHAPI_DevAuthContext(const FAuthContextPtr& InAuthContext)
-		: Dummy(0)
-		, AuthContext(InAuthContext)
-	{}
-};
+typedef TSharedPtr<RallyHereDeveloperAPI::FAuthContext> FDevAuthContextPtr;

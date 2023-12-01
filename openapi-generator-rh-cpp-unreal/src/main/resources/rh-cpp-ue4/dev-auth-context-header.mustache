@@ -19,9 +19,6 @@ limitations under the License.
 
 #include "CoreMinimal.h"
 #include "{{unrealModuleName}}BaseModel.h"
-//#include "LoginResult.h"
-//#include "TokenResponse.h"
-#include "{{unrealModuleName}}AuthContext.generated.h"
 
 {{#cppNamespaceDeclarations}}
 namespace {{this}}
@@ -35,27 +32,22 @@ struct FRequest_Token;
 struct FResponse_Token;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FAuthContextLoginComplete, bool /* bAuthSuccess */);
-DECLARE_MULTICAST_DELEGATE(FAuthContextLogout);
-DECLARE_MULTICAST_DELEGATE(FAuthContextLoginUserChanged);
+DECLARE_MULTICAST_DELEGATE(FAuthContextLoginRequested);
 
 struct {{dllapi}} FAuthContext : TSharedFromThis<FAuthContext>
 {
 public:
-    FAuthContext(FAuthAPI& LoginAPI_, FString ClientId, FString ClientSecret);
+    FAuthContext(FString ClientId, FString ClientSecret);
 
-    FAuthContext(FAuthAPI& LoginAPI_);
+    FAuthContext();
 
-    //void ProcessLogin(const FResponse_Login &LoginResponse_);
-    //void ProcessLoginToken(const FResponse_Token &LoginResponse_);
-    bool Refresh();
     FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
-    FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
-    FAuthContextLogout& OnLogout() { return Logout; }
-    //const TOptional<{{unrealModelPrefix}}LoginResult>& GetLoginResult() const;
-    //const TOptional<{{unrealModelPrefix}}TokenResponse>& GetTokenResponse() const;
+    FAuthContextLoginRequested& OnLoginRequested() { return LoginRequested; }
     bool IsLoggedIn() const;
     FString GetAccessToken() const;
-    FString GetRefreshToken() const;
+
+    void AuthFromWebURL(const FString& URL);
+    bool Refresh();
 
     void ClearAuthContext();
 
@@ -68,19 +60,13 @@ public:
     bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
     bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
 
-    //static bool IsSameUser(const TOptional<{{unrealModelPrefix}}LoginResult>& A, const TOptional<{{unrealModelPrefix}}LoginResult>& B);
-
 private:
-    FAuthAPI* LoginAPI;
     TOptional<FString> ClientId;
     TOptional<FString> ClientSecret;
     TOptional<FString> BasicAuthValue;
-    bool bIsRefreshing;
     FAuthContextLoginComplete LoginComplete;
-    FAuthContextLoginUserChanged LoginUserChanged;
-    FAuthContextLogout Logout;
-    //TOptional<{{unrealModelPrefix}}LoginResult> LoginResult;
-    //TOptional<{{unrealModelPrefix}}TokenResponse> TokenResponse;
+    FAuthContextLoginRequested LoginRequested;
+    FString AccessToken;
 
     inline void UpdateBasicAuthValue();
 };
@@ -88,25 +74,4 @@ private:
 }
 {{/cppNamespaceDeclarations}}
 
-typedef TSharedPtr<{{unrealModuleName}}::FAuthContext> FAuthContextPtr;
-
-USTRUCT(BlueprintType)
-struct {{dllapi}} {{unrealModelPrefix}}AuthContext
-{
-	GENERATED_BODY()
-
-	UPROPERTY()
-	int32 Dummy;
-
-	FAuthContextPtr AuthContext;
-
-	{{unrealModelPrefix}}AuthContext()
-		: Dummy(0)
-		, AuthContext(nullptr)
-	{}
-
-	{{unrealModelPrefix}}AuthContext(const FAuthContextPtr& InAuthContext)
-		: Dummy(0)
-		, AuthContext(InAuthContext)
-	{}
-};
+typedef TSharedPtr<{{unrealModuleName}}::FAuthContext> FDevAuthContextPtr;

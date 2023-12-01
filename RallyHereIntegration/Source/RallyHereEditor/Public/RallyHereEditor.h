@@ -50,7 +50,7 @@ public:
 		return *Integration;
 	}
 
-	FDevAuthContextPtr GetAuthContext() { return AuthContext; }
+	FDevAuthContextPtr GetAuthContext() const { return AuthContext; }
 
 protected:
 	void RegisterMenus();
