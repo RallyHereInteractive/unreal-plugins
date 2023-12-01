@@ -276,6 +276,25 @@ public:
 		return false;
 	}
 	/**
+	 * @brief Gets the team id of a player if they are part of the session.
+	 * @param [in] PlayerUuid The unique Id of the player to get.
+	 * @return The player's team id if they exist in the session, otherwise INDEX_NONE.
+	 */
+	FORCEINLINE int32 GetSessionPlayerTeamId(const FGuid& PlayerUuid) const
+	{
+		for (const auto& Team : GetSessionData().Teams)
+		{
+			for (const auto& Player : Team.Players)
+			{
+				if (Player.PlayerUuid == PlayerUuid)
+				{
+					return Team.GetTeamId();
+				}
+			}
+		}
+		return INDEX_NONE;
+	}
+	/**
 	 * @brief Gets if the session was created through matchmaking.
 	 */
 	UFUNCTION(BlueprintPure, Category = "Session")
