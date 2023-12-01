@@ -55,7 +55,7 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchParams
 	 * @brief Default constructor.
 	 */
 	FRH_SessionBrowserSearchParams()
-		:	Cursor(INDEX_NONE)
+		:	Cursor(0)
 		,	PageSize(-1)
 		,	bCacheSessionDetails(false)
 	{}
@@ -103,6 +103,10 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchResult
 	{
 		return FString::Printf(TEXT("Session Count: %d, Search: {%s}"), Sessions.Num(), *SearchParams.GetDescription());
 	}
+
+	FRH_SessionBrowserSearchResult()
+		:	NextPageCursor(0)
+	{}
 };
 
 /** @} */
