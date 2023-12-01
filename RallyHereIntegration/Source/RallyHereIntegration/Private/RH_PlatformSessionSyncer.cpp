@@ -698,7 +698,7 @@ void URH_PlatformSessionSyncer::CreatePlatformSession()
 	auto PlatformPlayerId = GetOSSUniqueId();
 	if (!PlatformPlayerId.IsValid() || !OSSSessionInterface->CreateSession(*PlatformPlayerId, OSSSessionName, SessionSettings))
 	{
-		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not create platform session for %s"), *RHSession->GetSessionId());
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not create platform session for %s"), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId());
 		SyncActionComplete(false);
 	}
 }

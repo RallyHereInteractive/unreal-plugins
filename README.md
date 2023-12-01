@@ -41,6 +41,7 @@
 * Multiple fixes for the Platform Session syncing routines.
 * Added support for checking OSS player blocked list for friends subsystem.
 * Added support for auto-joining pending platform session invites on login/user change (ex: platforms with launch-game-and-join-session support).  This defaults to enabled, but can be disabled via settings.
+* Fixed a crash if platform session creation failed.
 
 **Full Changelog**: https://github.com/RallyHereInteractive/unreal-plugins/compare/v0.10.1...v0.11.0
 
