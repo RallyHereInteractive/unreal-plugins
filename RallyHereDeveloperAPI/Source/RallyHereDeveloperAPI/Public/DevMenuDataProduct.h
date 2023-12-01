@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevMenuDataEnvironment.h"
 #include "DevMenuDataSandbox.h"
 #include "DevMenuDataProduct.generated.h"
 
@@ -17,7 +18,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMenuDataProduct : public FRHAPI_DevModel
@@ -71,6 +72,26 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMenuDataProduct : public FRHAPI_DevMo
     const TArray<FRHAPI_DevMenuDataSandbox>& GetSandboxes() const { return Sandboxes; }
     /** @brief Sets the value of Sandboxes */
     void SetSandboxes(TArray<FRHAPI_DevMenuDataSandbox> NewValue) { Sandboxes = NewValue;  }
+
+    TArray<FRHAPI_DevMenuDataEnvironment> Environments{  };
+    /** @brief Gets the value of Environments */
+    TArray<FRHAPI_DevMenuDataEnvironment>& GetEnvironments() { return Environments; }
+    /** @brief Gets the value of Environments */
+    const TArray<FRHAPI_DevMenuDataEnvironment>& GetEnvironments() const { return Environments; }
+    /** @brief Sets the value of Environments */
+    void SetEnvironments(TArray<FRHAPI_DevMenuDataEnvironment> NewValue) { Environments = NewValue;  }
+
+    bool Archive{ false };
+    /** @brief Gets the value of Archive */
+    bool& GetArchive() { return Archive; }
+    /** @brief Gets the value of Archive */
+    const bool& GetArchive() const { return Archive; }
+    /** @brief Sets the value of Archive */
+    void SetArchive(bool NewValue) { Archive = NewValue;  }
+    /** @brief Returns true if Archive matches the default value */
+    bool IsArchiveDefaultValue() const { return Archive == false; }
+    /** @brief Sets the value of Archive to its default  */
+    void SetArchiveToDefault() { Archive = false;  }
 };
 
 /** @} */

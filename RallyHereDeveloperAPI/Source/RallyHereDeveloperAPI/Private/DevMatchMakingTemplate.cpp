@@ -22,16 +22,19 @@ using RallyHereDeveloperAPI::TryGetJsonValue;
 void FRHAPI_DevMatchMakingTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("group_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, GroupId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_template_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingTemplateId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_template_group_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingTemplateGroupId);
     Writer->WriteIdentifierPrefix(TEXT("mmr_grouping_method"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MmrGroupingMethod);
-    Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId);
-    Writer->WriteIdentifierPrefix(TEXT("profile_list_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ProfileListId);
-    Writer->WriteIdentifierPrefix(TEXT("ruleset_determiner"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, RulesetDeterminer);
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(MmrGroupingMethod));
+    if (MatchMakingRulesetId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_list_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingProfileListId);
     if (LegacyConfig_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
@@ -42,8 +45,6 @@ void FRHAPI_DevMatchMakingTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer)
         Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, SandboxId_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("match_making_template_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingTemplateId);
     if (LastModifiedAccountId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
@@ -54,10 +55,10 @@ void FRHAPI_DevMatchMakingTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer)
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
     }
-    if (Ruleset_IsSet)
+    if (CreatedTimestamp_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("ruleset"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, Ruleset_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -70,16 +71,20 @@ bool FRHAPI_DevMatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonGroupIdField = (*Object)->TryGetField(TEXT("group_id"));
-    ParseSuccess &= JsonGroupIdField.IsValid() && !JsonGroupIdField->IsNull() && TryGetJsonValue(JsonGroupIdField, GroupId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateIdField = (*Object)->TryGetField(TEXT("match_making_template_id"));
+    ParseSuccess &= JsonMatchMakingTemplateIdField.IsValid() && !JsonMatchMakingTemplateIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateIdField, MatchMakingTemplateId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
+    ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && !JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId);
     const TSharedPtr<FJsonValue> JsonMmrGroupingMethodField = (*Object)->TryGetField(TEXT("mmr_grouping_method"));
     ParseSuccess &= JsonMmrGroupingMethodField.IsValid() && !JsonMmrGroupingMethodField->IsNull() && TryGetJsonValue(JsonMmrGroupingMethodField, MmrGroupingMethod);
     const TSharedPtr<FJsonValue> JsonMatchMakingRulesetIdField = (*Object)->TryGetField(TEXT("match_making_ruleset_id"));
-    ParseSuccess &= JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull() && TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId);
-    const TSharedPtr<FJsonValue> JsonProfileListIdField = (*Object)->TryGetField(TEXT("profile_list_id"));
-    ParseSuccess &= JsonProfileListIdField.IsValid() && !JsonProfileListIdField->IsNull() && TryGetJsonValue(JsonProfileListIdField, ProfileListId);
-    const TSharedPtr<FJsonValue> JsonRulesetDeterminerField = (*Object)->TryGetField(TEXT("ruleset_determiner"));
-    ParseSuccess &= JsonRulesetDeterminerField.IsValid() && !JsonRulesetDeterminerField->IsNull() && TryGetJsonValue(JsonRulesetDeterminerField, RulesetDeterminer);
+    if (JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull())
+    {
+        MatchMakingRulesetId_IsSet = TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId_Optional);
+        ParseSuccess &= MatchMakingRulesetId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileListIdField = (*Object)->TryGetField(TEXT("match_making_profile_list_id"));
+    ParseSuccess &= JsonMatchMakingProfileListIdField.IsValid() && !JsonMatchMakingProfileListIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileListIdField, MatchMakingProfileListId);
     const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
     if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
     {
@@ -92,8 +97,6 @@ bool FRHAPI_DevMatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonV
         SandboxId_IsSet = TryGetJsonValue(JsonSandboxIdField, SandboxId_Optional);
         ParseSuccess &= SandboxId_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateIdField = (*Object)->TryGetField(TEXT("match_making_template_id"));
-    ParseSuccess &= JsonMatchMakingTemplateIdField.IsValid() && !JsonMatchMakingTemplateIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateIdField, MatchMakingTemplateId);
     const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
     if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
     {
@@ -106,11 +109,11 @@ bool FRHAPI_DevMatchMakingTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonV
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonRulesetField = (*Object)->TryGetField(TEXT("ruleset"));
-    if (JsonRulesetField.IsValid() && !JsonRulesetField->IsNull())
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
     {
-        Ruleset_IsSet = TryGetJsonValue(JsonRulesetField, Ruleset_Optional);
-        ParseSuccess &= Ruleset_IsSet;
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
     }
 
     return ParseSuccess;

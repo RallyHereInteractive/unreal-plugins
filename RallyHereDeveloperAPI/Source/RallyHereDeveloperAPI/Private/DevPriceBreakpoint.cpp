@@ -33,6 +33,11 @@ void FRHAPI_DevPriceBreakpoint::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Quantity);
     Writer->WriteIdentifierPrefix(TEXT("price"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Price);
+    if (PriceItemName_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("price_item_name"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, PriceItemName_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -56,6 +61,12 @@ bool FRHAPI_DevPriceBreakpoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue
     ParseSuccess &= JsonQuantityField.IsValid() && !JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity);
     const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
     ParseSuccess &= JsonPriceField.IsValid() && !JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price);
+    const TSharedPtr<FJsonValue> JsonPriceItemNameField = (*Object)->TryGetField(TEXT("price_item_name"));
+    if (JsonPriceItemNameField.IsValid() && !JsonPriceItemNameField->IsNull())
+    {
+        PriceItemName_IsSet = TryGetJsonValue(JsonPriceItemNameField, PriceItemName_Optional);
+        ParseSuccess &= PriceItemName_IsSet;
+    }
 
     return ParseSuccess;
 }

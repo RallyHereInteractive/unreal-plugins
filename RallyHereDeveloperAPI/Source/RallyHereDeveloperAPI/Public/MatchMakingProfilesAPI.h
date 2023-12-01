@@ -19,11 +19,11 @@
 #include "DevMatchMakingProfileListEntry.h"
 #include "DevMatchMakingProfileListEntryRequest.h"
 #include "DevMatchMakingProfileListEntryUpdateRequest.h"
+#include "DevMatchMakingProfileListFlattened.h"
 #include "DevMatchMakingProfileListRequest.h"
 #include "DevMatchMakingProfileListUpdateRequest.h"
 #include "DevMatchMakingProfileRequest.h"
 #include "DevMatchMakingProfileUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -31,42 +31,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateEntry;
-struct FResponse_OrgProductSandboxCreateEntry;
-struct FRequest_OrgProductSandboxCreateProfile;
-struct FResponse_OrgProductSandboxCreateProfile;
-struct FRequest_OrgProductSandboxCreateProfileList;
-struct FResponse_OrgProductSandboxCreateProfileList;
-struct FRequest_OrgProductSandboxDeleteEntry;
-struct FResponse_OrgProductSandboxDeleteEntry;
-struct FRequest_OrgProductSandboxDeleteProfile;
-struct FResponse_OrgProductSandboxDeleteProfile;
-struct FRequest_OrgProductSandboxDeleteProfileList;
-struct FResponse_OrgProductSandboxDeleteProfileList;
-struct FRequest_OrgProductSandboxGetAllEntries;
-struct FResponse_OrgProductSandboxGetAllEntries;
-struct FRequest_OrgProductSandboxGetAllProfileLists;
-struct FResponse_OrgProductSandboxGetAllProfileLists;
-struct FRequest_OrgProductSandboxGetAllProfiles;
-struct FResponse_OrgProductSandboxGetAllProfiles;
-struct FRequest_OrgProductSandboxGetEntry;
-struct FResponse_OrgProductSandboxGetEntry;
-struct FRequest_OrgProductSandboxGetProfile;
-struct FResponse_OrgProductSandboxGetProfile;
-struct FRequest_OrgProductSandboxGetProfileList;
-struct FResponse_OrgProductSandboxGetProfileList;
-struct FRequest_OrgProductSandboxPatchEntry;
-struct FResponse_OrgProductSandboxPatchEntry;
-struct FRequest_OrgProductSandboxPatchProfile;
-struct FResponse_OrgProductSandboxPatchProfile;
-struct FRequest_OrgProductSandboxPatchProfileList;
-struct FResponse_OrgProductSandboxPatchProfileList;
-struct FRequest_OrgProductSandboxPutEntry;
-struct FResponse_OrgProductSandboxPutEntry;
-struct FRequest_OrgProductSandboxPutProfile;
-struct FResponse_OrgProductSandboxPutProfile;
-struct FRequest_OrgProductSandboxPutProfileList;
-struct FResponse_OrgProductSandboxPutProfileList;
 struct FRequest_SandboxCreateEntry;
 struct FResponse_SandboxCreateEntry;
 struct FRequest_SandboxCreateProfile;
@@ -104,24 +68,6 @@ struct FResponse_SandboxPutProfile;
 struct FRequest_SandboxPutProfileList;
 struct FResponse_SandboxPutProfileList;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateEntry, const FResponse_OrgProductSandboxCreateEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateProfile, const FResponse_OrgProductSandboxCreateProfile&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateProfileList, const FResponse_OrgProductSandboxCreateProfileList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteEntry, const FResponse_OrgProductSandboxDeleteEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteProfile, const FResponse_OrgProductSandboxDeleteProfile&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteProfileList, const FResponse_OrgProductSandboxDeleteProfileList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllEntries, const FResponse_OrgProductSandboxGetAllEntries&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllProfileLists, const FResponse_OrgProductSandboxGetAllProfileLists&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllProfiles, const FResponse_OrgProductSandboxGetAllProfiles&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetEntry, const FResponse_OrgProductSandboxGetEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetProfile, const FResponse_OrgProductSandboxGetProfile&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetProfileList, const FResponse_OrgProductSandboxGetProfileList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchEntry, const FResponse_OrgProductSandboxPatchEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchProfile, const FResponse_OrgProductSandboxPatchProfile&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchProfileList, const FResponse_OrgProductSandboxPatchProfileList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutEntry, const FResponse_OrgProductSandboxPutEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutProfile, const FResponse_OrgProductSandboxPutProfile&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutProfileList, const FResponse_OrgProductSandboxPutProfileList&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateEntry, const FResponse_SandboxCreateEntry&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateProfile, const FResponse_SandboxCreateProfile&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateProfileList, const FResponse_SandboxCreateProfileList&);
@@ -147,24 +93,6 @@ public:
     FMatchMakingProfilesAPI();
     virtual ~FMatchMakingProfilesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateEntry(const FRequest_OrgProductSandboxCreateEntry& Request, const FDelegate_OrgProductSandboxCreateEntry& Delegate = FDelegate_OrgProductSandboxCreateEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxCreateProfile(const FRequest_OrgProductSandboxCreateProfile& Request, const FDelegate_OrgProductSandboxCreateProfile& Delegate = FDelegate_OrgProductSandboxCreateProfile(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxCreateProfileList(const FRequest_OrgProductSandboxCreateProfileList& Request, const FDelegate_OrgProductSandboxCreateProfileList& Delegate = FDelegate_OrgProductSandboxCreateProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteEntry(const FRequest_OrgProductSandboxDeleteEntry& Request, const FDelegate_OrgProductSandboxDeleteEntry& Delegate = FDelegate_OrgProductSandboxDeleteEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteProfile(const FRequest_OrgProductSandboxDeleteProfile& Request, const FDelegate_OrgProductSandboxDeleteProfile& Delegate = FDelegate_OrgProductSandboxDeleteProfile(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteProfileList(const FRequest_OrgProductSandboxDeleteProfileList& Request, const FDelegate_OrgProductSandboxDeleteProfileList& Delegate = FDelegate_OrgProductSandboxDeleteProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllEntries(const FRequest_OrgProductSandboxGetAllEntries& Request, const FDelegate_OrgProductSandboxGetAllEntries& Delegate = FDelegate_OrgProductSandboxGetAllEntries(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllProfileLists(const FRequest_OrgProductSandboxGetAllProfileLists& Request, const FDelegate_OrgProductSandboxGetAllProfileLists& Delegate = FDelegate_OrgProductSandboxGetAllProfileLists(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllProfiles(const FRequest_OrgProductSandboxGetAllProfiles& Request, const FDelegate_OrgProductSandboxGetAllProfiles& Delegate = FDelegate_OrgProductSandboxGetAllProfiles(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetEntry(const FRequest_OrgProductSandboxGetEntry& Request, const FDelegate_OrgProductSandboxGetEntry& Delegate = FDelegate_OrgProductSandboxGetEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetProfile(const FRequest_OrgProductSandboxGetProfile& Request, const FDelegate_OrgProductSandboxGetProfile& Delegate = FDelegate_OrgProductSandboxGetProfile(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetProfileList(const FRequest_OrgProductSandboxGetProfileList& Request, const FDelegate_OrgProductSandboxGetProfileList& Delegate = FDelegate_OrgProductSandboxGetProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchEntry(const FRequest_OrgProductSandboxPatchEntry& Request, const FDelegate_OrgProductSandboxPatchEntry& Delegate = FDelegate_OrgProductSandboxPatchEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchProfile(const FRequest_OrgProductSandboxPatchProfile& Request, const FDelegate_OrgProductSandboxPatchProfile& Delegate = FDelegate_OrgProductSandboxPatchProfile(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchProfileList(const FRequest_OrgProductSandboxPatchProfileList& Request, const FDelegate_OrgProductSandboxPatchProfileList& Delegate = FDelegate_OrgProductSandboxPatchProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutEntry(const FRequest_OrgProductSandboxPutEntry& Request, const FDelegate_OrgProductSandboxPutEntry& Delegate = FDelegate_OrgProductSandboxPutEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutProfile(const FRequest_OrgProductSandboxPutProfile& Request, const FDelegate_OrgProductSandboxPutProfile& Delegate = FDelegate_OrgProductSandboxPutProfile(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutProfileList(const FRequest_OrgProductSandboxPutProfileList& Request, const FDelegate_OrgProductSandboxPutProfileList& Delegate = FDelegate_OrgProductSandboxPutProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateEntry(const FRequest_SandboxCreateEntry& Request, const FDelegate_SandboxCreateEntry& Delegate = FDelegate_SandboxCreateEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateProfile(const FRequest_SandboxCreateProfile& Request, const FDelegate_SandboxCreateProfile& Delegate = FDelegate_SandboxCreateProfile(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateProfileList(const FRequest_SandboxCreateProfileList& Request, const FDelegate_SandboxCreateProfileList& Delegate = FDelegate_SandboxCreateProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -185,24 +113,6 @@ public:
     FHttpRequestPtr SandboxPutProfileList(const FRequest_SandboxPutProfileList& Request, const FDelegate_SandboxPutProfileList& Delegate = FDelegate_SandboxPutProfileList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxCreateProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxCreateProfileListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateProfileList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteProfileListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteProfileList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllEntriesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllEntries Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllProfileListsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllProfileLists Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllProfilesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllProfiles Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetProfileListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetProfileList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchProfileListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchProfileList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutProfileListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutProfileList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateProfileListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateProfileList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -226,838 +136,9 @@ private:
 
 /* Create Entry
  *
- * Create a new MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateEntry : public FRequest
-{
-    FRequest_OrgProductSandboxCreateEntry();
-    virtual ~FRequest_OrgProductSandboxCreateEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileListEntryRequest MatchMakingProfileListEntryRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateEntry : public FResponse
-{
-    FResponse_OrgProductSandboxCreateEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateEntry
-{
-    typedef FRequest_OrgProductSandboxCreateEntry Request;
-    typedef FResponse_OrgProductSandboxCreateEntry Response;
-    typedef FDelegate_OrgProductSandboxCreateEntry Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Create Profile
- *
- * Create a new MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateProfile : public FRequest
-{
-    FRequest_OrgProductSandboxCreateProfile();
-    virtual ~FRequest_OrgProductSandboxCreateProfile() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileRequest MatchMakingProfileRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateProfile : public FResponse
-{
-    FResponse_OrgProductSandboxCreateProfile(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateProfile() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfile Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateProfile
-{
-    typedef FRequest_OrgProductSandboxCreateProfile Request;
-    typedef FResponse_OrgProductSandboxCreateProfile Response;
-    typedef FDelegate_OrgProductSandboxCreateProfile Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateProfile(InRequest, InDelegate, Priority); }
-};
-
-/* Create Profile List
- *
- * Create a new MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateProfileList : public FRequest
-{
-    FRequest_OrgProductSandboxCreateProfileList();
-    virtual ~FRequest_OrgProductSandboxCreateProfileList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileListRequest MatchMakingProfileListRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateProfileList : public FResponse
-{
-    FResponse_OrgProductSandboxCreateProfileList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateProfileList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateProfileList
-{
-    typedef FRequest_OrgProductSandboxCreateProfileList Request;
-    typedef FResponse_OrgProductSandboxCreateProfileList Response;
-    typedef FDelegate_OrgProductSandboxCreateProfileList Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateProfileList(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Entry
- *
- * Delete an existing MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteEntry : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteEntry();
-    virtual ~FRequest_OrgProductSandboxDeleteEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteEntry : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteEntry
-{
-    typedef FRequest_OrgProductSandboxDeleteEntry Request;
-    typedef FResponse_OrgProductSandboxDeleteEntry Response;
-    typedef FDelegate_OrgProductSandboxDeleteEntry Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Profile
- *
- * Delete a MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteProfile : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteProfile();
-    virtual ~FRequest_OrgProductSandboxDeleteProfile() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteProfile : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteProfile(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteProfile() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteProfile
-{
-    typedef FRequest_OrgProductSandboxDeleteProfile Request;
-    typedef FResponse_OrgProductSandboxDeleteProfile Response;
-    typedef FDelegate_OrgProductSandboxDeleteProfile Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteProfile(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Profile List
- *
- * Delete a MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteProfileList : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteProfileList();
-    virtual ~FRequest_OrgProductSandboxDeleteProfileList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteProfileList : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteProfileList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteProfileList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteProfileList
-{
-    typedef FRequest_OrgProductSandboxDeleteProfileList Request;
-    typedef FResponse_OrgProductSandboxDeleteProfileList Response;
-    typedef FDelegate_OrgProductSandboxDeleteProfileList Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteProfileList(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Entries
- *
- * Get all MatchMakingProfileListEntries in a MatchMakingProfileList  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllEntries : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllEntries();
-    virtual ~FRequest_OrgProductSandboxGetAllEntries() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllEntries : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllEntries(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllEntries() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingProfileListEntriesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllEntries
-{
-    typedef FRequest_OrgProductSandboxGetAllEntries Request;
-    typedef FResponse_OrgProductSandboxGetAllEntries Response;
-    typedef FDelegate_OrgProductSandboxGetAllEntries Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllEntries(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Profile Lists
- *
- * Get all MatchMakingProfileLists in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllProfileLists : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllProfileLists();
-    virtual ~FRequest_OrgProductSandboxGetAllProfileLists() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllProfileLists : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllProfileLists(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllProfileLists() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingProfileListsResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllProfileLists
-{
-    typedef FRequest_OrgProductSandboxGetAllProfileLists Request;
-    typedef FResponse_OrgProductSandboxGetAllProfileLists Response;
-    typedef FDelegate_OrgProductSandboxGetAllProfileLists Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllProfileLists(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Profiles
- *
- * Get all MatchMakingProfiles in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllProfiles : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllProfiles();
-    virtual ~FRequest_OrgProductSandboxGetAllProfiles() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllProfiles : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllProfiles(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllProfiles() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingProfilesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllProfiles
-{
-    typedef FRequest_OrgProductSandboxGetAllProfiles Request;
-    typedef FResponse_OrgProductSandboxGetAllProfiles Response;
-    typedef FDelegate_OrgProductSandboxGetAllProfiles Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllProfiles(InRequest, InDelegate, Priority); }
-};
-
-/* Get Entry
- *
- * Get a specific MatchMakingProfileListEntry in a MatchMakingProfileList  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetEntry : public FRequest
-{
-    FRequest_OrgProductSandboxGetEntry();
-    virtual ~FRequest_OrgProductSandboxGetEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetEntry : public FResponse
-{
-    FResponse_OrgProductSandboxGetEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetEntry
-{
-    typedef FRequest_OrgProductSandboxGetEntry Request;
-    typedef FResponse_OrgProductSandboxGetEntry Response;
-    typedef FDelegate_OrgProductSandboxGetEntry Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Get Profile
- *
- * Get a specific MatchMakingProfile in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetProfile : public FRequest
-{
-    FRequest_OrgProductSandboxGetProfile();
-    virtual ~FRequest_OrgProductSandboxGetProfile() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetProfile : public FResponse
-{
-    FResponse_OrgProductSandboxGetProfile(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetProfile() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfile Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetProfile
-{
-    typedef FRequest_OrgProductSandboxGetProfile Request;
-    typedef FResponse_OrgProductSandboxGetProfile Response;
-    typedef FDelegate_OrgProductSandboxGetProfile Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetProfile(InRequest, InDelegate, Priority); }
-};
-
-/* Get Profile List
- *
- * Get a specific MatchMakingProfileList in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetProfileList : public FRequest
-{
-    FRequest_OrgProductSandboxGetProfileList();
-    virtual ~FRequest_OrgProductSandboxGetProfileList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetProfileList : public FResponse
-{
-    FResponse_OrgProductSandboxGetProfileList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetProfileList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetProfileList
-{
-    typedef FRequest_OrgProductSandboxGetProfileList Request;
-    typedef FResponse_OrgProductSandboxGetProfileList Response;
-    typedef FDelegate_OrgProductSandboxGetProfileList Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetProfileList(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Entry
- *
- * Update an existing MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchEntry : public FRequest
-{
-    FRequest_OrgProductSandboxPatchEntry();
-    virtual ~FRequest_OrgProductSandboxPatchEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileListEntryUpdateRequest MatchMakingProfileListEntryUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchEntry : public FResponse
-{
-    FResponse_OrgProductSandboxPatchEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchEntry
-{
-    typedef FRequest_OrgProductSandboxPatchEntry Request;
-    typedef FResponse_OrgProductSandboxPatchEntry Response;
-    typedef FDelegate_OrgProductSandboxPatchEntry Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Profile
- *
- * Update an existing MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchProfile : public FRequest
-{
-    FRequest_OrgProductSandboxPatchProfile();
-    virtual ~FRequest_OrgProductSandboxPatchProfile() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileUpdateRequest MatchMakingProfileUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchProfile : public FResponse
-{
-    FResponse_OrgProductSandboxPatchProfile(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchProfile() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfile Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchProfile
-{
-    typedef FRequest_OrgProductSandboxPatchProfile Request;
-    typedef FResponse_OrgProductSandboxPatchProfile Response;
-    typedef FDelegate_OrgProductSandboxPatchProfile Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchProfile(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Profile List
- *
- * Update an existing MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchProfileList : public FRequest
-{
-    FRequest_OrgProductSandboxPatchProfileList();
-    virtual ~FRequest_OrgProductSandboxPatchProfileList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileListUpdateRequest MatchMakingProfileListUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchProfileList : public FResponse
-{
-    FResponse_OrgProductSandboxPatchProfileList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchProfileList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchProfileList
-{
-    typedef FRequest_OrgProductSandboxPatchProfileList Request;
-    typedef FResponse_OrgProductSandboxPatchProfileList Response;
-    typedef FDelegate_OrgProductSandboxPatchProfileList Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchProfileList(InRequest, InDelegate, Priority); }
-};
-
-/* Put Entry
- *
- * Update an existing MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutEntry : public FRequest
-{
-    FRequest_OrgProductSandboxPutEntry();
-    virtual ~FRequest_OrgProductSandboxPutEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileListEntryUpdateRequest MatchMakingProfileListEntryUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutEntry : public FResponse
-{
-    FResponse_OrgProductSandboxPutEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutEntry
-{
-    typedef FRequest_OrgProductSandboxPutEntry Request;
-    typedef FResponse_OrgProductSandboxPutEntry Response;
-    typedef FDelegate_OrgProductSandboxPutEntry Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Put Profile
- *
- * Update an existing MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutProfile : public FRequest
-{
-    FRequest_OrgProductSandboxPutProfile();
-    virtual ~FRequest_OrgProductSandboxPutProfile() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileRequest MatchMakingProfileRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutProfile : public FResponse
-{
-    FResponse_OrgProductSandboxPutProfile(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutProfile() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfile Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutProfile
-{
-    typedef FRequest_OrgProductSandboxPutProfile Request;
-    typedef FResponse_OrgProductSandboxPutProfile Response;
-    typedef FDelegate_OrgProductSandboxPutProfile Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutProfile(InRequest, InDelegate, Priority); }
-};
-
-/* Put Profile List
- *
- * Update an existing MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutProfileList : public FRequest
-{
-    FRequest_OrgProductSandboxPutProfileList();
-    virtual ~FRequest_OrgProductSandboxPutProfileList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingProfileListRequest MatchMakingProfileListRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutProfileList : public FResponse
-{
-    FResponse_OrgProductSandboxPutProfileList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutProfileList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingProfileList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutProfileList
-{
-    typedef FRequest_OrgProductSandboxPutProfileList Request;
-    typedef FResponse_OrgProductSandboxPutProfileList Response;
-    typedef FDelegate_OrgProductSandboxPutProfileList Delegate;
-    typedef FMatchMakingProfilesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutProfileList(InRequest, InDelegate, Priority); }
-};
-
-/* Create Entry
- *
- * Create a new MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingProfileListEntry in a MatchMakingProfileList
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateEntry : public FRequest
 {
@@ -1069,7 +150,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateEntry : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
+    FGuid MatchMakingProfileListId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingProfileListEntryRequest MatchMakingProfileListEntryRequest;
@@ -1083,6 +164,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateEntry : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfileListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1099,7 +192,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateEntry
 
 /* Create Profile
  *
- * Create a new MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingProfile in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateProfile : public FRequest
 {
@@ -1125,6 +220,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateProfile : public FRespon
 
     FRHAPI_DevMatchMakingProfile Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfile& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateProfile
@@ -1140,7 +247,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateProfile
 
 /* Create Profile List
  *
- * Create a new MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingProfileList in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateProfileList : public FRequest
 {
@@ -1166,6 +275,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateProfileList : public FRe
 
     FRHAPI_DevMatchMakingProfileList Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileList& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateProfileList
@@ -1181,7 +302,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateProfileList
 
 /* Delete Entry
  *
- * Delete an existing MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
+ * Delete an existing MatchMakingProfileListEntry in a MatchMakingProfileList
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteEntry : public FRequest
 {
@@ -1193,8 +316,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteEntry : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
+    FGuid MatchMakingProfileListId;
+    FGuid MatchMakingProfileListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1206,7 +329,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteEntry : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1223,7 +357,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteEntry
 
 /* Delete Profile
  *
- * Delete a MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
+ * Delete a MatchMakingProfile in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteProfile : public FRequest
 {
@@ -1235,7 +371,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteProfile : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
+    FGuid MatchMakingProfileId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1247,7 +383,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteProfile : public FRespon
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1264,7 +411,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteProfile
 
 /* Delete Profile List
  *
- * Delete a MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
+ * Delete a MatchMakingProfileList in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteProfileList : public FRequest
 {
@@ -1276,7 +425,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteProfileList : public FReq
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
+    FGuid MatchMakingProfileListId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1288,7 +437,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteProfileList : public FRe
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1305,7 +465,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteProfileList
 
 /* Get All Entries
  *
- * Get all MatchMakingProfileListEntries in a MatchMakingProfileList  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingProfileListEntries in a MatchMakingProfileList
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllEntries : public FRequest
 {
@@ -1317,7 +480,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllEntries : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
+    FGuid MatchMakingProfileListId;
     /* Sandbox ID */
     FGuid SandboxId;
     /* The maximum number of elements to be returned per call */
@@ -1335,6 +498,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllEntries : public FRespon
 
     FRHAPI_DevAllMatchMakingProfileListEntriesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingProfileListEntriesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllEntries
@@ -1350,7 +525,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllEntries
 
 /* Get All Profile Lists
  *
- * Get all MatchMakingProfileLists in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingProfileLists in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllProfileLists : public FRequest
 {
@@ -1379,6 +557,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllProfileLists : public FR
 
     FRHAPI_DevAllMatchMakingProfileListsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingProfileListsResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllProfileLists
@@ -1394,7 +584,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllProfileLists
 
 /* Get All Profiles
  *
- * Get all MatchMakingProfiles in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingProfiles in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllProfiles : public FRequest
 {
@@ -1423,6 +616,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllProfiles : public FRespo
 
     FRHAPI_DevAllMatchMakingProfilesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingProfilesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllProfiles
@@ -1438,7 +643,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllProfiles
 
 /* Get Entry
  *
- * Get a specific MatchMakingProfileListEntry in a MatchMakingProfileList  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific MatchMakingProfileListEntry in a MatchMakingProfileList
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetEntry : public FRequest
 {
@@ -1450,8 +658,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetEntry : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
+    FGuid MatchMakingProfileListId;
+    FGuid MatchMakingProfileListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1464,6 +672,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetEntry : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfileListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1480,7 +700,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetEntry
 
 /* Get Profile
  *
- * Get a specific MatchMakingProfile in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific MatchMakingProfile in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetProfile : public FRequest
 {
@@ -1492,7 +715,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetProfile : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
+    FGuid MatchMakingProfileId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1505,6 +728,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetProfile : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfile Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfile& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1521,7 +756,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetProfile
 
 /* Get Profile List
  *
- * Get a specific MatchMakingProfileList in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific MatchMakingProfileList in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetProfileList : public FRequest
 {
@@ -1533,7 +771,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetProfileList : public FReques
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
+    FGuid MatchMakingProfileListId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1545,7 +783,19 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetProfileList : public FRespo
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_DevMatchMakingProfileList Content;
+    FRHAPI_DevMatchMakingProfileListFlattened Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileListFlattened& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1562,7 +812,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetProfileList
 
 /* Patch Entry
  *
- * Update an existing MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingProfileListEntry in a MatchMakingProfileList
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchEntry : public FRequest
 {
@@ -1574,8 +826,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchEntry : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
+    FGuid MatchMakingProfileListId;
+    FGuid MatchMakingProfileListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingProfileListEntryUpdateRequest MatchMakingProfileListEntryUpdateRequest;
@@ -1589,6 +841,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchEntry : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfileListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1605,7 +869,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchEntry
 
 /* Patch Profile
  *
- * Update an existing MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingProfile in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchProfile : public FRequest
 {
@@ -1617,7 +883,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchProfile : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
+    FGuid MatchMakingProfileId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingProfileUpdateRequest MatchMakingProfileUpdateRequest;
@@ -1631,6 +897,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchProfile : public FRespons
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfile Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfile& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1647,7 +925,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchProfile
 
 /* Patch Profile List
  *
- * Update an existing MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingProfileList in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchProfileList : public FRequest
 {
@@ -1659,7 +939,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchProfileList : public FRequ
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
+    FGuid MatchMakingProfileListId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingProfileListUpdateRequest MatchMakingProfileListUpdateRequest;
@@ -1673,6 +953,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchProfileList : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfileList Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileList& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1689,7 +981,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchProfileList
 
 /* Put Entry
  *
- * Update an existing MatchMakingProfileListEntry in a MatchMakingProfileList  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingProfileListEntry in a MatchMakingProfileList
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutEntry : public FRequest
 {
@@ -1701,11 +995,11 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutEntry : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
-    FGuid ProfileListEntryId;
+    FGuid MatchMakingProfileListId;
+    FGuid MatchMakingProfileListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
-    FRHAPI_DevMatchMakingProfileListEntryUpdateRequest MatchMakingProfileListEntryUpdateRequest;
+    FRHAPI_DevMatchMakingProfileListEntryRequest MatchMakingProfileListEntryRequest;
 };
 
 struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutEntry : public FResponse
@@ -1716,6 +1010,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutEntry : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfileListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1732,7 +1038,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutEntry
 
 /* Put Profile
  *
- * Update an existing MatchMakingProfile in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingProfile in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutProfile : public FRequest
 {
@@ -1744,7 +1052,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutProfile : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileId;
+    FGuid MatchMakingProfileId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingProfileRequest MatchMakingProfileRequest;
@@ -1758,6 +1066,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutProfile : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfile Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfile& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1774,7 +1094,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutProfile
 
 /* Put Profile List
  *
- * Update an existing MatchMakingProfileList in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingProfileList in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutProfileList : public FRequest
 {
@@ -1786,7 +1108,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutProfileList : public FReques
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid ProfileListId;
+    FGuid MatchMakingProfileListId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingProfileListRequest MatchMakingProfileListRequest;
@@ -1800,6 +1122,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutProfileList : public FRespo
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingProfileList Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingProfileList& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

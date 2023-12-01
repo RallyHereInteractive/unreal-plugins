@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_DevInventorySelector& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevInventorySelector& Value)
 {
-    static TMap<FString, ERHAPI_DevInventorySelector> StringToEnum = {
+    static TMap<FString, ERHAPI_DevInventorySelector> StringToEnum = { 
         { TEXT("own"), ERHAPI_DevInventorySelector::Own },
         { TEXT("rent"), ERHAPI_DevInventorySelector::Rent },
         { TEXT("rent_timeframe_locked"), ERHAPI_DevInventorySelector::RentTimeframeLocked },

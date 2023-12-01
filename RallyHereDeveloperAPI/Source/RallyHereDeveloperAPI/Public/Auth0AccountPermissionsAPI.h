@@ -49,7 +49,6 @@ private:
 };
 
 /* Get Account Permissions
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_GetAccountPermissions : public FRequest
 {
@@ -72,6 +71,13 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAccountPermissions : public FRespo
 
     FRHAPI_DevPortalPermissions Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissions& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissions
@@ -86,7 +92,6 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissions
 };
 
 /* Get Account Permissions For Auth0
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_GetAccountPermissionsForAuth0 : public FRequest
 {
@@ -110,6 +115,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAccountPermissionsForAuth0 : publi
 
     FRHAPI_DevPortalPermissions Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissions& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissionsForAuth0
@@ -124,7 +141,6 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissionsForAuth0
 };
 
 /* Get Portal Permissions
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_GetPortalPermissions : public FRequest
 {
@@ -146,6 +162,13 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetPortalPermissions : public FRespon
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevUserPermissionsAndEntities Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevUserPermissionsAndEntities& OutContent) const;
 
 };
 

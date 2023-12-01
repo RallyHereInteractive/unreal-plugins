@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevMMRGroupingMethod.h"
 #include "DevMatchMakingTemplateUpdateRequest.generated.h"
 
 /** @defgroup RHAPI_DevMatchMakingTemplateUpdateRequest RallyHere API Model DevMatchMakingTemplateUpdateRequest
@@ -16,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingTemplateUpdateRequest : public FRHAPI_DevModel
@@ -39,45 +40,66 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingTemplateUpdateRequest : pu
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief ID to uniquely identify this MatchMakingTemplate */
+    FGuid MatchMakingTemplateId_Optional{  };
+    /** @brief true if MatchMakingTemplateId_Optional has been set to a value */
+    bool MatchMakingTemplateId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set */
+    FGuid& GetMatchMakingTemplateId() { return MatchMakingTemplateId_Optional; }
+    /** @brief Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set */
+    const FGuid& GetMatchMakingTemplateId() const { return MatchMakingTemplateId_Optional; }
+    /** @brief Gets the value of MatchMakingTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetMatchMakingTemplateId(const FGuid& DefaultValue) const { if (MatchMakingTemplateId_IsSet) return MatchMakingTemplateId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingTemplateId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingTemplateId(FGuid& OutValue) const { if (MatchMakingTemplateId_IsSet) OutValue = MatchMakingTemplateId_Optional; return MatchMakingTemplateId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetMatchMakingTemplateIdOrNull() { if (MatchMakingTemplateId_IsSet) return &MatchMakingTemplateId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetMatchMakingTemplateIdOrNull() const { if (MatchMakingTemplateId_IsSet) return &MatchMakingTemplateId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingTemplateId_Optional and also sets MatchMakingTemplateId_IsSet to true */
+    void SetMatchMakingTemplateId(FGuid NewValue) { MatchMakingTemplateId_Optional = NewValue; MatchMakingTemplateId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingTemplateId_Optional and sets MatchMakingTemplateId_IsSet to false */
+    void ClearMatchMakingTemplateId() { MatchMakingTemplateId_IsSet = false; }
+
     /** @brief Which group of MatchMakingTemplates this template belongs to */
-    FGuid GroupId_Optional{  };
-    /** @brief true if GroupId_Optional has been set to a value */
-    bool GroupId_IsSet{ false };
-    /** @brief Gets the value of GroupId_Optional, regardless of it having been set */
-    FGuid& GetGroupId() { return GroupId_Optional; }
-    /** @brief Gets the value of GroupId_Optional, regardless of it having been set */
-    const FGuid& GetGroupId() const { return GroupId_Optional; }
-    /** @brief Gets the value of GroupId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetGroupId(const FGuid& DefaultValue) const { if (GroupId_IsSet) return GroupId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of GroupId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetGroupId(FGuid& OutValue) const { if (GroupId_IsSet) OutValue = GroupId_Optional; return GroupId_IsSet; }
-    /** @brief Returns a pointer to GroupId_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetGroupIdOrNull() { if (GroupId_IsSet) return &GroupId_Optional; return nullptr; }
-    /** @brief Returns a pointer to GroupId_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetGroupIdOrNull() const { if (GroupId_IsSet) return &GroupId_Optional; return nullptr; }
-    /** @brief Sets the value of GroupId_Optional and also sets GroupId_IsSet to true */
-    void SetGroupId(FGuid NewValue) { GroupId_Optional = NewValue; GroupId_IsSet = true; }
-     /** @brief Clears the value of GroupId_Optional and sets GroupId_IsSet to false */
-    void ClearGroupId() { GroupId_IsSet = false; }
+    FGuid MatchMakingTemplateGroupId_Optional{  };
+    /** @brief true if MatchMakingTemplateGroupId_Optional has been set to a value */
+    bool MatchMakingTemplateGroupId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingTemplateGroupId_Optional, regardless of it having been set */
+    FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId_Optional; }
+    /** @brief Gets the value of MatchMakingTemplateGroupId_Optional, regardless of it having been set */
+    const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId_Optional; }
+    /** @brief Gets the value of MatchMakingTemplateGroupId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetMatchMakingTemplateGroupId(const FGuid& DefaultValue) const { if (MatchMakingTemplateGroupId_IsSet) return MatchMakingTemplateGroupId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingTemplateGroupId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingTemplateGroupId(FGuid& OutValue) const { if (MatchMakingTemplateGroupId_IsSet) OutValue = MatchMakingTemplateGroupId_Optional; return MatchMakingTemplateGroupId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingTemplateGroupId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetMatchMakingTemplateGroupIdOrNull() { if (MatchMakingTemplateGroupId_IsSet) return &MatchMakingTemplateGroupId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingTemplateGroupId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetMatchMakingTemplateGroupIdOrNull() const { if (MatchMakingTemplateGroupId_IsSet) return &MatchMakingTemplateGroupId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingTemplateGroupId_Optional and also sets MatchMakingTemplateGroupId_IsSet to true */
+    void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId_Optional = NewValue; MatchMakingTemplateGroupId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingTemplateGroupId_Optional and sets MatchMakingTemplateGroupId_IsSet to false */
+    void ClearMatchMakingTemplateGroupId() { MatchMakingTemplateGroupId_IsSet = false; }
 
     /** @brief What method should be used to calculate a group's MMR based on the individual player's ranks */
-    FString MmrGroupingMethod_Optional{  };
+    ERHAPI_DevMMRGroupingMethod MmrGroupingMethod_Optional{  };
     /** @brief true if MmrGroupingMethod_Optional has been set to a value */
     bool MmrGroupingMethod_IsSet{ false };
     /** @brief Gets the value of MmrGroupingMethod_Optional, regardless of it having been set */
-    FString& GetMmrGroupingMethod() { return MmrGroupingMethod_Optional; }
+    ERHAPI_DevMMRGroupingMethod& GetMmrGroupingMethod() { return MmrGroupingMethod_Optional; }
     /** @brief Gets the value of MmrGroupingMethod_Optional, regardless of it having been set */
-    const FString& GetMmrGroupingMethod() const { return MmrGroupingMethod_Optional; }
+    const ERHAPI_DevMMRGroupingMethod& GetMmrGroupingMethod() const { return MmrGroupingMethod_Optional; }
     /** @brief Gets the value of MmrGroupingMethod_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetMmrGroupingMethod(const FString& DefaultValue) const { if (MmrGroupingMethod_IsSet) return MmrGroupingMethod_Optional; return DefaultValue; }
+    const ERHAPI_DevMMRGroupingMethod& GetMmrGroupingMethod(const ERHAPI_DevMMRGroupingMethod& DefaultValue) const { if (MmrGroupingMethod_IsSet) return MmrGroupingMethod_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of MmrGroupingMethod_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMmrGroupingMethod(FString& OutValue) const { if (MmrGroupingMethod_IsSet) OutValue = MmrGroupingMethod_Optional; return MmrGroupingMethod_IsSet; }
+    bool GetMmrGroupingMethod(ERHAPI_DevMMRGroupingMethod& OutValue) const { if (MmrGroupingMethod_IsSet) OutValue = MmrGroupingMethod_Optional; return MmrGroupingMethod_IsSet; }
     /** @brief Returns a pointer to MmrGroupingMethod_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetMmrGroupingMethodOrNull() { if (MmrGroupingMethod_IsSet) return &MmrGroupingMethod_Optional; return nullptr; }
+    ERHAPI_DevMMRGroupingMethod* GetMmrGroupingMethodOrNull() { if (MmrGroupingMethod_IsSet) return &MmrGroupingMethod_Optional; return nullptr; }
     /** @brief Returns a pointer to MmrGroupingMethod_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetMmrGroupingMethodOrNull() const { if (MmrGroupingMethod_IsSet) return &MmrGroupingMethod_Optional; return nullptr; }
+    const ERHAPI_DevMMRGroupingMethod* GetMmrGroupingMethodOrNull() const { if (MmrGroupingMethod_IsSet) return &MmrGroupingMethod_Optional; return nullptr; }
     /** @brief Sets the value of MmrGroupingMethod_Optional and also sets MmrGroupingMethod_IsSet to true */
-    void SetMmrGroupingMethod(FString NewValue) { MmrGroupingMethod_Optional = NewValue; MmrGroupingMethod_IsSet = true; }
+    void SetMmrGroupingMethod(ERHAPI_DevMMRGroupingMethod NewValue) { MmrGroupingMethod_Optional = NewValue; MmrGroupingMethod_IsSet = true; }
      /** @brief Clears the value of MmrGroupingMethod_Optional and sets MmrGroupingMethod_IsSet to false */
     void ClearMmrGroupingMethod() { MmrGroupingMethod_IsSet = false; }
 
@@ -103,65 +125,44 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingTemplateUpdateRequest : pu
     void ClearMatchMakingRulesetId() { MatchMakingRulesetId_IsSet = false; }
 
     /** @brief Which list of MatchMakingProfiles should be used with this template */
-    FGuid ProfileListId_Optional{  };
-    /** @brief true if ProfileListId_Optional has been set to a value */
-    bool ProfileListId_IsSet{ false };
-    /** @brief Gets the value of ProfileListId_Optional, regardless of it having been set */
-    FGuid& GetProfileListId() { return ProfileListId_Optional; }
-    /** @brief Gets the value of ProfileListId_Optional, regardless of it having been set */
-    const FGuid& GetProfileListId() const { return ProfileListId_Optional; }
-    /** @brief Gets the value of ProfileListId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetProfileListId(const FGuid& DefaultValue) const { if (ProfileListId_IsSet) return ProfileListId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of ProfileListId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetProfileListId(FGuid& OutValue) const { if (ProfileListId_IsSet) OutValue = ProfileListId_Optional; return ProfileListId_IsSet; }
-    /** @brief Returns a pointer to ProfileListId_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetProfileListIdOrNull() { if (ProfileListId_IsSet) return &ProfileListId_Optional; return nullptr; }
-    /** @brief Returns a pointer to ProfileListId_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetProfileListIdOrNull() const { if (ProfileListId_IsSet) return &ProfileListId_Optional; return nullptr; }
-    /** @brief Sets the value of ProfileListId_Optional and also sets ProfileListId_IsSet to true */
-    void SetProfileListId(FGuid NewValue) { ProfileListId_Optional = NewValue; ProfileListId_IsSet = true; }
-     /** @brief Clears the value of ProfileListId_Optional and sets ProfileListId_IsSet to false */
-    void ClearProfileListId() { ProfileListId_IsSet = false; }
+    FGuid MatchMakingProfileListId_Optional{  };
+    /** @brief true if MatchMakingProfileListId_Optional has been set to a value */
+    bool MatchMakingProfileListId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingProfileListId_Optional, regardless of it having been set */
+    FGuid& GetMatchMakingProfileListId() { return MatchMakingProfileListId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileListId_Optional, regardless of it having been set */
+    const FGuid& GetMatchMakingProfileListId() const { return MatchMakingProfileListId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileListId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetMatchMakingProfileListId(const FGuid& DefaultValue) const { if (MatchMakingProfileListId_IsSet) return MatchMakingProfileListId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingProfileListId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingProfileListId(FGuid& OutValue) const { if (MatchMakingProfileListId_IsSet) OutValue = MatchMakingProfileListId_Optional; return MatchMakingProfileListId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingProfileListId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetMatchMakingProfileListIdOrNull() { if (MatchMakingProfileListId_IsSet) return &MatchMakingProfileListId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingProfileListId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetMatchMakingProfileListIdOrNull() const { if (MatchMakingProfileListId_IsSet) return &MatchMakingProfileListId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingProfileListId_Optional and also sets MatchMakingProfileListId_IsSet to true */
+    void SetMatchMakingProfileListId(FGuid NewValue) { MatchMakingProfileListId_Optional = NewValue; MatchMakingProfileListId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingProfileListId_Optional and sets MatchMakingProfileListId_IsSet to false */
+    void ClearMatchMakingProfileListId() { MatchMakingProfileListId_IsSet = false; }
 
-    /** @brief How many of the rules in the ruleset must be satisfied (any, all, one of etc. */
-    FString RulesetDeterminer_Optional{  };
-    /** @brief true if RulesetDeterminer_Optional has been set to a value */
-    bool RulesetDeterminer_IsSet{ false };
-    /** @brief Gets the value of RulesetDeterminer_Optional, regardless of it having been set */
-    FString& GetRulesetDeterminer() { return RulesetDeterminer_Optional; }
-    /** @brief Gets the value of RulesetDeterminer_Optional, regardless of it having been set */
-    const FString& GetRulesetDeterminer() const { return RulesetDeterminer_Optional; }
-    /** @brief Gets the value of RulesetDeterminer_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetRulesetDeterminer(const FString& DefaultValue) const { if (RulesetDeterminer_IsSet) return RulesetDeterminer_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of RulesetDeterminer_Optional and returns true if it has been set, otherwise returns false */
-    bool GetRulesetDeterminer(FString& OutValue) const { if (RulesetDeterminer_IsSet) OutValue = RulesetDeterminer_Optional; return RulesetDeterminer_IsSet; }
-    /** @brief Returns a pointer to RulesetDeterminer_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetRulesetDeterminerOrNull() { if (RulesetDeterminer_IsSet) return &RulesetDeterminer_Optional; return nullptr; }
-    /** @brief Returns a pointer to RulesetDeterminer_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetRulesetDeterminerOrNull() const { if (RulesetDeterminer_IsSet) return &RulesetDeterminer_Optional; return nullptr; }
-    /** @brief Sets the value of RulesetDeterminer_Optional and also sets RulesetDeterminer_IsSet to true */
-    void SetRulesetDeterminer(FString NewValue) { RulesetDeterminer_Optional = NewValue; RulesetDeterminer_IsSet = true; }
-     /** @brief Clears the value of RulesetDeterminer_Optional and sets RulesetDeterminer_IsSet to false */
-    void ClearRulesetDeterminer() { RulesetDeterminer_IsSet = false; }
-
-    /** @brief Dictionary of config required for legacy games */
-    TMap<FString, FString> LegacyConfig_Optional{  };
+    /** @brief Old config used by Legacy systems. These values are ignored by the current APIs */
+    FRHAPI_DevJsonObject LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
+    FRHAPI_DevJsonObject& GetLegacyConfig() { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
+    const FRHAPI_DevJsonObject& GetLegacyConfig() const { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+    const FRHAPI_DevJsonObject& GetLegacyConfig(const FRHAPI_DevJsonObject& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+    bool GetLegacyConfig(FRHAPI_DevJsonObject& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    FRHAPI_DevJsonObject* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    const FRHAPI_DevJsonObject* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+    void SetLegacyConfig(FRHAPI_DevJsonObject NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
      /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
     void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 };

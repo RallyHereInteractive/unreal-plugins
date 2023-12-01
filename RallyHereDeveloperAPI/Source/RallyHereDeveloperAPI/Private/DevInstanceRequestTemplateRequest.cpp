@@ -24,6 +24,11 @@ void FRHAPI_DevInstanceRequestTemplateRequest::WriteJson(TSharedRef<TJsonWriter<
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("map_selection_list_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MapSelectionListId);
+    if (InstanceRequestTemplateId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, InstanceRequestTemplateId_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("default_host_type"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(DefaultHostType));
     if (LegacyConfig_IsSet)
@@ -44,6 +49,12 @@ bool FRHAPI_DevInstanceRequestTemplateRequest::FromJson(const TSharedPtr<FJsonVa
 
     const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
     ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
+    const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
+    if (JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull())
+    {
+        InstanceRequestTemplateId_IsSet = TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId_Optional);
+        ParseSuccess &= InstanceRequestTemplateId_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonDefaultHostTypeField = (*Object)->TryGetField(TEXT("default_host_type"));
     ParseSuccess &= JsonDefaultHostTypeField.IsValid() && !JsonDefaultHostTypeField->IsNull() && TryGetJsonValue(JsonDefaultHostTypeField, DefaultHostType);
     const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));

@@ -12,6 +12,7 @@
 #include "RallyHereDeveloperAPIHelpers.h"
 #include "DevHTTPValidationError.h"
 #include "DevSandbox.h"
+#include "DevSandboxCopyRequest.h"
 #include "DevSandboxRequest.h"
 #include "DevSandboxUpdateRequest.h"
 #include "Misc/TVariant.h"
@@ -22,6 +23,8 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
+struct FRequest_CopyFromExistingSandboxToExistingSandbox;
+struct FResponse_CopyFromExistingSandboxToExistingSandbox;
 struct FRequest_CreateSandbox;
 struct FResponse_CreateSandbox;
 struct FRequest_DeleteSandbox;
@@ -33,6 +36,7 @@ struct FResponse_GetOrgProductSandboxes;
 struct FRequest_UpdateSandbox;
 struct FResponse_UpdateSandbox;
 
+DECLARE_DELEGATE_OneParam(FDelegate_CopyFromExistingSandboxToExistingSandbox, const FResponse_CopyFromExistingSandboxToExistingSandbox&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreateSandbox, const FResponse_CreateSandbox&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteSandbox, const FResponse_DeleteSandbox&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetOrgProductSandbox, const FResponse_GetOrgProductSandbox&);
@@ -45,6 +49,7 @@ public:
     FSandboxAPI();
     virtual ~FSandboxAPI();
 
+    FHttpRequestPtr CopyFromExistingSandboxToExistingSandbox(const FRequest_CopyFromExistingSandboxToExistingSandbox& Request, const FDelegate_CopyFromExistingSandboxToExistingSandbox& Delegate = FDelegate_CopyFromExistingSandboxToExistingSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr CreateSandbox(const FRequest_CreateSandbox& Request, const FDelegate_CreateSandbox& Delegate = FDelegate_CreateSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr DeleteSandbox(const FRequest_DeleteSandbox& Request, const FDelegate_DeleteSandbox& Delegate = FDelegate_DeleteSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr GetOrgProductSandbox(const FRequest_GetOrgProductSandbox& Request, const FDelegate_GetOrgProductSandbox& Delegate = FDelegate_GetOrgProductSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -52,12 +57,74 @@ public:
     FHttpRequestPtr UpdateSandbox(const FRequest_UpdateSandbox& Request, const FDelegate_UpdateSandbox& Delegate = FDelegate_UpdateSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
+    void OnCopyFromExistingSandboxToExistingSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CopyFromExistingSandboxToExistingSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreateSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeleteSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetOrgProductSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetOrgProductSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetOrgProductSandboxesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetOrgProductSandboxes Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnUpdateSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
+};
+
+/* Copy From Existing Sandbox To Existing Sandbox
+ *
+ * Create a copy of sandbox, requires product:config:edit permission
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_CopyFromExistingSandboxToExistingSandbox : public FRequest
+{
+    FRequest_CopyFromExistingSandboxToExistingSandbox();
+    virtual ~FRequest_CopyFromExistingSandboxToExistingSandbox() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* Organization ID or short name */
+    TVariant<FGuid, FString> OrgIdentifier;
+    /* Product ID or short name */
+    TVariant<FGuid, FString> ProductIdentifier;
+    /* Sandbox ID or short name */
+    TVariant<FGuid, FString> SandboxIdentifier;
+    FRHAPI_DevSandboxCopyRequest SandboxCopyRequest;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_CopyFromExistingSandboxToExistingSandbox : public FResponse
+{
+    FResponse_CopyFromExistingSandboxToExistingSandbox(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_CopyFromExistingSandboxToExistingSandbox() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevJsonValue Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_CopyFromExistingSandboxToExistingSandbox
+{
+    typedef FRequest_CopyFromExistingSandboxToExistingSandbox Request;
+    typedef FResponse_CopyFromExistingSandboxToExistingSandbox Response;
+    typedef FDelegate_CopyFromExistingSandboxToExistingSandbox Delegate;
+    typedef FSandboxAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CopyFromExistingSandboxToExistingSandbox(InRequest, InDelegate, Priority); }
 };
 
 /* Create Sandbox
@@ -89,6 +156,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreateSandbox : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevSandbox Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevSandbox& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -134,6 +217,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeleteSandbox : public FResponse
 
     FRHAPI_DevJsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_DeleteSandbox
@@ -178,6 +277,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrgProductSandbox : public FRespon
 
     FRHAPI_DevSandbox Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevSandbox& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgProductSandbox
@@ -219,6 +330,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrgProductSandboxes : public FResp
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevSandbox> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevSandbox>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -264,6 +387,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_UpdateSandbox : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevSandbox Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevSandbox& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

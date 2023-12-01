@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleLoginLootBase : public FRHAPI_DevModel
@@ -40,29 +40,13 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleLoginLootBase : public FRHAPI_Dev
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Loot ID for this login loot reward tied to this role */
-    FString LootId_Optional{  };
-    /** @brief true if LootId_Optional has been set to a value */
-    bool LootId_IsSet{ false };
-    /** @brief Gets the value of LootId_Optional, regardless of it having been set */
-    FString& GetLootId() { return LootId_Optional; }
-    /** @brief Gets the value of LootId_Optional, regardless of it having been set */
-    const FString& GetLootId() const { return LootId_Optional; }
-    /** @brief Gets the value of LootId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetLootId(const FString& DefaultValue) const { if (LootId_IsSet) return LootId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLootId(FString& OutValue) const { if (LootId_IsSet) OutValue = LootId_Optional; return LootId_IsSet; }
-    /** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetLootIdOrNull() { if (LootId_IsSet) return &LootId_Optional; return nullptr; }
-    /** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetLootIdOrNull() const { if (LootId_IsSet) return &LootId_Optional; return nullptr; }
-    /** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true */
-    void SetLootId(FString NewValue) { LootId_Optional = NewValue; LootId_IsSet = true; }
-     /** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
-    void ClearLootId() { LootId_Optional = TEXT("cfa6d229-1166-4497-b2fc-4253264f2772"); LootId_IsSet = false; }
-    /** @brief Returns true if LootId_Optional is set and matches the default value */
-    bool IsLootIdDefaultValue() const { return LootId_IsSet && LootId_Optional == TEXT("cfa6d229-1166-4497-b2fc-4253264f2772"); }
-    /** @brief Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true */
-    void SetLootIdToDefault() { LootId_Optional = TEXT("cfa6d229-1166-4497-b2fc-4253264f2772"); LootId_IsSet = true; }
+    FGuid LootId{  };
+    /** @brief Gets the value of LootId */
+    FGuid& GetLootId() { return LootId; }
+    /** @brief Gets the value of LootId */
+    const FGuid& GetLootId() const { return LootId; }
+    /** @brief Sets the value of LootId */
+    void SetLootId(FGuid NewValue) { LootId = NewValue;  }
 };
 
 /** @} */

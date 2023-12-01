@@ -70,13 +70,25 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevInstanceStartupParams : public FRHAPI
     void ClearMode() { Mode_IsSet = false; }
 
     /** @brief Additional commandline parameters for the instance */
-    FString MiscParams{  };
-    /** @brief Gets the value of MiscParams */
-    FString& GetMiscParams() { return MiscParams; }
-    /** @brief Gets the value of MiscParams */
-    const FString& GetMiscParams() const { return MiscParams; }
-    /** @brief Sets the value of MiscParams */
-    void SetMiscParams(FString NewValue) { MiscParams = NewValue;  }
+    FString MiscParams_Optional{  };
+    /** @brief true if MiscParams_Optional has been set to a value */
+    bool MiscParams_IsSet{ false };
+    /** @brief Gets the value of MiscParams_Optional, regardless of it having been set */
+    FString& GetMiscParams() { return MiscParams_Optional; }
+    /** @brief Gets the value of MiscParams_Optional, regardless of it having been set */
+    const FString& GetMiscParams() const { return MiscParams_Optional; }
+    /** @brief Gets the value of MiscParams_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMiscParams(const FString& DefaultValue) const { if (MiscParams_IsSet) return MiscParams_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MiscParams_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMiscParams(FString& OutValue) const { if (MiscParams_IsSet) OutValue = MiscParams_Optional; return MiscParams_IsSet; }
+    /** @brief Returns a pointer to MiscParams_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMiscParamsOrNull() { if (MiscParams_IsSet) return &MiscParams_Optional; return nullptr; }
+    /** @brief Returns a pointer to MiscParams_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMiscParamsOrNull() const { if (MiscParams_IsSet) return &MiscParams_Optional; return nullptr; }
+    /** @brief Sets the value of MiscParams_Optional and also sets MiscParams_IsSet to true */
+    void SetMiscParams(FString NewValue) { MiscParams_Optional = NewValue; MiscParams_IsSet = true; }
+     /** @brief Clears the value of MiscParams_Optional and sets MiscParams_IsSet to false */
+    void ClearMiscParams() { MiscParams_IsSet = false; }
 
     /** @brief Custom data to pass through to the instance */
     TMap<FString, FString> CustomData_Optional{  };

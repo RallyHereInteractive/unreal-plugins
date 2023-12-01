@@ -9,10 +9,21 @@
 
 #include "CoreMinimal.h"
 #include "RallyHereDeveloperAPIBaseModel.h"
+#include "AccountsAPI.h"
+#include "ArmadaContractAPI.h"
+#include "ArmadaDatacenterLocationAPI.h"
+#include "ArmadaDatacenterProviderAPI.h"
+#include "ArmadaGeographicLocationAPI.h"
+#include "ArmadaHostAPI.h"
+#include "ArmadaMachineClassAPI.h"
+#include "ArmadaMachineImageAPI.h"
+#include "ArmadaSimpleProductAssignmentAPI.h"
 #include "Auth0AccountPermissionsAPI.h"
 #include "CatalogAPI.h"
 #include "ClientsAPI.h"
+#include "CrossplayAPI.h"
 #include "EnvironmentAPI.h"
+#include "EnvironmentsAPI.h"
 #include "InstanceRequestTemplatesAPI.h"
 #include "MapsAPI.h"
 #include "MatchMakingProfilesAPI.h"
@@ -20,7 +31,7 @@
 #include "MatchMakingStridesAPI.h"
 #include "MatchMakingTemplatesAPI.h"
 #include "OrganizationAPI.h"
-#include "OrganizationAccountsAPI.h"
+#include "OrganizationAccountAPI.h"
 #include "PermissionsAPI.h"
 #include "PlatformSessionTemplatesAPI.h"
 #include "PoliciesAPI.h"
@@ -31,11 +42,18 @@
 #include "RanksAPI.h"
 #include "SandboxAPI.h"
 #include "SandboxConfigAuditAPI.h"
+#include "SandboxConfigCustomEndpointsAPI.h"
+#include "SandboxConfigCustomEventSchemaAPI.h"
+#include "SandboxConfigEntitlementSKUAPI.h"
+#include "SandboxConfigExternalKeyCampaignAPI.h"
 #include "SandboxConfigGameConfigAPI.h"
 #include "SandboxConfigKVAPI.h"
-#include "SandboxConfigPlayerSettingTypesAPI.h"
 #include "SandboxConfigRoleAPI.h"
+#include "SandboxConfigSettingTypesAPI.h"
+#include "SecretsAPI.h"
 #include "SessionTemplatesAPI.h"
+#include "StandardEventSchemaAPI.h"
+#include "UserAccountUserRequestNoM2mAPI.h"
 #include "VerifyAPI.h"
 
 namespace RallyHereDeveloperAPI
@@ -48,6 +66,33 @@ public:
 
     TArray<FAPI*> GetAllAPIs() const;
 
+    FAccountsAPI& GetAccounts();
+    const FAccountsAPI& GetAccounts() const;
+
+    FArmadaContractAPI& GetArmadaContract();
+    const FArmadaContractAPI& GetArmadaContract() const;
+
+    FArmadaDatacenterLocationAPI& GetArmadaDatacenterLocation();
+    const FArmadaDatacenterLocationAPI& GetArmadaDatacenterLocation() const;
+
+    FArmadaDatacenterProviderAPI& GetArmadaDatacenterProvider();
+    const FArmadaDatacenterProviderAPI& GetArmadaDatacenterProvider() const;
+
+    FArmadaGeographicLocationAPI& GetArmadaGeographicLocation();
+    const FArmadaGeographicLocationAPI& GetArmadaGeographicLocation() const;
+
+    FArmadaHostAPI& GetArmadaHost();
+    const FArmadaHostAPI& GetArmadaHost() const;
+
+    FArmadaMachineClassAPI& GetArmadaMachineClass();
+    const FArmadaMachineClassAPI& GetArmadaMachineClass() const;
+
+    FArmadaMachineImageAPI& GetArmadaMachineImage();
+    const FArmadaMachineImageAPI& GetArmadaMachineImage() const;
+
+    FArmadaSimpleProductAssignmentAPI& GetArmadaSimpleProductAssignment();
+    const FArmadaSimpleProductAssignmentAPI& GetArmadaSimpleProductAssignment() const;
+
     FAuth0AccountPermissionsAPI& GetAuth0AccountPermissions();
     const FAuth0AccountPermissionsAPI& GetAuth0AccountPermissions() const;
 
@@ -57,8 +102,14 @@ public:
     FClientsAPI& GetClients();
     const FClientsAPI& GetClients() const;
 
+    FCrossplayAPI& GetCrossplay();
+    const FCrossplayAPI& GetCrossplay() const;
+
     FEnvironmentAPI& GetEnvironment();
     const FEnvironmentAPI& GetEnvironment() const;
+
+    FEnvironmentsAPI& GetEnvironments();
+    const FEnvironmentsAPI& GetEnvironments() const;
 
     FInstanceRequestTemplatesAPI& GetInstanceRequestTemplates();
     const FInstanceRequestTemplatesAPI& GetInstanceRequestTemplates() const;
@@ -81,8 +132,8 @@ public:
     FOrganizationAPI& GetOrganization();
     const FOrganizationAPI& GetOrganization() const;
 
-    FOrganizationAccountsAPI& GetOrganizationAccounts();
-    const FOrganizationAccountsAPI& GetOrganizationAccounts() const;
+    FOrganizationAccountAPI& GetOrganizationAccount();
+    const FOrganizationAccountAPI& GetOrganizationAccount() const;
 
     FPermissionsAPI& GetPermissions();
     const FPermissionsAPI& GetPermissions() const;
@@ -114,30 +165,62 @@ public:
     FSandboxConfigAuditAPI& GetSandboxConfigAudit();
     const FSandboxConfigAuditAPI& GetSandboxConfigAudit() const;
 
+    FSandboxConfigCustomEndpointsAPI& GetSandboxConfigCustomEndpoints();
+    const FSandboxConfigCustomEndpointsAPI& GetSandboxConfigCustomEndpoints() const;
+
+    FSandboxConfigCustomEventSchemaAPI& GetSandboxConfigCustomEventSchema();
+    const FSandboxConfigCustomEventSchemaAPI& GetSandboxConfigCustomEventSchema() const;
+
+    FSandboxConfigEntitlementSKUAPI& GetSandboxConfigEntitlementSKU();
+    const FSandboxConfigEntitlementSKUAPI& GetSandboxConfigEntitlementSKU() const;
+
+    FSandboxConfigExternalKeyCampaignAPI& GetSandboxConfigExternalKeyCampaign();
+    const FSandboxConfigExternalKeyCampaignAPI& GetSandboxConfigExternalKeyCampaign() const;
+
     FSandboxConfigGameConfigAPI& GetSandboxConfigGameConfig();
     const FSandboxConfigGameConfigAPI& GetSandboxConfigGameConfig() const;
 
     FSandboxConfigKVAPI& GetSandboxConfigKV();
     const FSandboxConfigKVAPI& GetSandboxConfigKV() const;
 
-    FSandboxConfigPlayerSettingTypesAPI& GetSandboxConfigPlayerSettingTypes();
-    const FSandboxConfigPlayerSettingTypesAPI& GetSandboxConfigPlayerSettingTypes() const;
-
     FSandboxConfigRoleAPI& GetSandboxConfigRole();
     const FSandboxConfigRoleAPI& GetSandboxConfigRole() const;
 
+    FSandboxConfigSettingTypesAPI& GetSandboxConfigSettingTypes();
+    const FSandboxConfigSettingTypesAPI& GetSandboxConfigSettingTypes() const;
+
+    FSecretsAPI& GetSecrets();
+    const FSecretsAPI& GetSecrets() const;
+
     FSessionTemplatesAPI& GetSessionTemplates();
     const FSessionTemplatesAPI& GetSessionTemplates() const;
+
+    FStandardEventSchemaAPI& GetStandardEventSchema();
+    const FStandardEventSchemaAPI& GetStandardEventSchema() const;
+
+    FUserAccountUserRequestNoM2mAPI& GetUserAccountUserRequestNoM2m();
+    const FUserAccountUserRequestNoM2mAPI& GetUserAccountUserRequestNoM2m() const;
 
     FVerifyAPI& GetVerify();
     const FVerifyAPI& GetVerify() const;
 
 private:
     TArray<FAPI*> AllAPIs;
+    FAccountsAPI Accounts;
+    FArmadaContractAPI ArmadaContract;
+    FArmadaDatacenterLocationAPI ArmadaDatacenterLocation;
+    FArmadaDatacenterProviderAPI ArmadaDatacenterProvider;
+    FArmadaGeographicLocationAPI ArmadaGeographicLocation;
+    FArmadaHostAPI ArmadaHost;
+    FArmadaMachineClassAPI ArmadaMachineClass;
+    FArmadaMachineImageAPI ArmadaMachineImage;
+    FArmadaSimpleProductAssignmentAPI ArmadaSimpleProductAssignment;
     FAuth0AccountPermissionsAPI Auth0AccountPermissions;
     FCatalogAPI Catalog;
     FClientsAPI Clients;
+    FCrossplayAPI Crossplay;
     FEnvironmentAPI Environment;
+    FEnvironmentsAPI Environments;
     FInstanceRequestTemplatesAPI InstanceRequestTemplates;
     FMapsAPI Maps;
     FMatchMakingProfilesAPI MatchMakingProfiles;
@@ -145,7 +228,7 @@ private:
     FMatchMakingStridesAPI MatchMakingStrides;
     FMatchMakingTemplatesAPI MatchMakingTemplates;
     FOrganizationAPI Organization;
-    FOrganizationAccountsAPI OrganizationAccounts;
+    FOrganizationAccountAPI OrganizationAccount;
     FPermissionsAPI Permissions;
     FPlatformSessionTemplatesAPI PlatformSessionTemplates;
     FPoliciesAPI Policies;
@@ -156,11 +239,18 @@ private:
     FRanksAPI Ranks;
     FSandboxAPI Sandbox;
     FSandboxConfigAuditAPI SandboxConfigAudit;
+    FSandboxConfigCustomEndpointsAPI SandboxConfigCustomEndpoints;
+    FSandboxConfigCustomEventSchemaAPI SandboxConfigCustomEventSchema;
+    FSandboxConfigEntitlementSKUAPI SandboxConfigEntitlementSKU;
+    FSandboxConfigExternalKeyCampaignAPI SandboxConfigExternalKeyCampaign;
     FSandboxConfigGameConfigAPI SandboxConfigGameConfig;
     FSandboxConfigKVAPI SandboxConfigKV;
-    FSandboxConfigPlayerSettingTypesAPI SandboxConfigPlayerSettingTypes;
     FSandboxConfigRoleAPI SandboxConfigRole;
+    FSandboxConfigSettingTypesAPI SandboxConfigSettingTypes;
+    FSecretsAPI Secrets;
     FSessionTemplatesAPI SessionTemplates;
+    FStandardEventSchemaAPI StandardEventSchema;
+    FUserAccountUserRequestNoM2mAPI UserAccountUserRequestNoM2m;
     FVerifyAPI Verify;
 };
 }

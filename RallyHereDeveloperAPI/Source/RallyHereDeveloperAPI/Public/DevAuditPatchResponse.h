@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAuditPatchResponse : public FRHAPI_DevModel
@@ -71,13 +71,25 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAuditPatchResponse : public FRHAPI_De
     /** @brief Sets the value of AuditPath */
     void SetAuditPath(FString NewValue) { AuditPath = NewValue;  }
 
-    FString Patch{  };
-    /** @brief Gets the value of Patch */
-    FString& GetPatch() { return Patch; }
-    /** @brief Gets the value of Patch */
-    const FString& GetPatch() const { return Patch; }
-    /** @brief Sets the value of Patch */
-    void SetPatch(FString NewValue) { Patch = NewValue;  }
+    FString Patch_Optional{  };
+    /** @brief true if Patch_Optional has been set to a value */
+    bool Patch_IsSet{ false };
+    /** @brief Gets the value of Patch_Optional, regardless of it having been set */
+    FString& GetPatch() { return Patch_Optional; }
+    /** @brief Gets the value of Patch_Optional, regardless of it having been set */
+    const FString& GetPatch() const { return Patch_Optional; }
+    /** @brief Gets the value of Patch_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetPatch(const FString& DefaultValue) const { if (Patch_IsSet) return Patch_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Patch_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPatch(FString& OutValue) const { if (Patch_IsSet) OutValue = Patch_Optional; return Patch_IsSet; }
+    /** @brief Returns a pointer to Patch_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetPatchOrNull() { if (Patch_IsSet) return &Patch_Optional; return nullptr; }
+    /** @brief Returns a pointer to Patch_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetPatchOrNull() const { if (Patch_IsSet) return &Patch_Optional; return nullptr; }
+    /** @brief Sets the value of Patch_Optional and also sets Patch_IsSet to true */
+    void SetPatch(FString NewValue) { Patch_Optional = NewValue; Patch_IsSet = true; }
+     /** @brief Clears the value of Patch_Optional and sets Patch_IsSet to false */
+    void ClearPatch() { Patch_IsSet = false; }
 
     FGuid AccountId{  };
     /** @brief Gets the value of AccountId */

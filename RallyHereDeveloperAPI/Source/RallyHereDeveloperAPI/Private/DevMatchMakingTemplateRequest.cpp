@@ -22,16 +22,22 @@ using RallyHereDeveloperAPI::TryGetJsonValue;
 void FRHAPI_DevMatchMakingTemplateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("group_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, GroupId);
+    if (MatchMakingTemplateId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("match_making_template_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingTemplateId_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("match_making_template_group_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingTemplateGroupId);
     Writer->WriteIdentifierPrefix(TEXT("mmr_grouping_method"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MmrGroupingMethod);
-    Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId);
-    Writer->WriteIdentifierPrefix(TEXT("profile_list_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ProfileListId);
-    Writer->WriteIdentifierPrefix(TEXT("ruleset_determiner"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, RulesetDeterminer);
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(MmrGroupingMethod));
+    if (MatchMakingRulesetId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_list_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingProfileListId);
     if (LegacyConfig_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
@@ -48,16 +54,24 @@ bool FRHAPI_DevMatchMakingTemplateRequest::FromJson(const TSharedPtr<FJsonValue>
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonGroupIdField = (*Object)->TryGetField(TEXT("group_id"));
-    ParseSuccess &= JsonGroupIdField.IsValid() && !JsonGroupIdField->IsNull() && TryGetJsonValue(JsonGroupIdField, GroupId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateIdField = (*Object)->TryGetField(TEXT("match_making_template_id"));
+    if (JsonMatchMakingTemplateIdField.IsValid() && !JsonMatchMakingTemplateIdField->IsNull())
+    {
+        MatchMakingTemplateId_IsSet = TryGetJsonValue(JsonMatchMakingTemplateIdField, MatchMakingTemplateId_Optional);
+        ParseSuccess &= MatchMakingTemplateId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchMakingTemplateGroupIdField = (*Object)->TryGetField(TEXT("match_making_template_group_id"));
+    ParseSuccess &= JsonMatchMakingTemplateGroupIdField.IsValid() && !JsonMatchMakingTemplateGroupIdField->IsNull() && TryGetJsonValue(JsonMatchMakingTemplateGroupIdField, MatchMakingTemplateGroupId);
     const TSharedPtr<FJsonValue> JsonMmrGroupingMethodField = (*Object)->TryGetField(TEXT("mmr_grouping_method"));
     ParseSuccess &= JsonMmrGroupingMethodField.IsValid() && !JsonMmrGroupingMethodField->IsNull() && TryGetJsonValue(JsonMmrGroupingMethodField, MmrGroupingMethod);
     const TSharedPtr<FJsonValue> JsonMatchMakingRulesetIdField = (*Object)->TryGetField(TEXT("match_making_ruleset_id"));
-    ParseSuccess &= JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull() && TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId);
-    const TSharedPtr<FJsonValue> JsonProfileListIdField = (*Object)->TryGetField(TEXT("profile_list_id"));
-    ParseSuccess &= JsonProfileListIdField.IsValid() && !JsonProfileListIdField->IsNull() && TryGetJsonValue(JsonProfileListIdField, ProfileListId);
-    const TSharedPtr<FJsonValue> JsonRulesetDeterminerField = (*Object)->TryGetField(TEXT("ruleset_determiner"));
-    ParseSuccess &= JsonRulesetDeterminerField.IsValid() && !JsonRulesetDeterminerField->IsNull() && TryGetJsonValue(JsonRulesetDeterminerField, RulesetDeterminer);
+    if (JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull())
+    {
+        MatchMakingRulesetId_IsSet = TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId_Optional);
+        ParseSuccess &= MatchMakingRulesetId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileListIdField = (*Object)->TryGetField(TEXT("match_making_profile_list_id"));
+    ParseSuccess &= JsonMatchMakingProfileListIdField.IsValid() && !JsonMatchMakingProfileListIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileListIdField, MatchMakingProfileListId);
     const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
     if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
     {

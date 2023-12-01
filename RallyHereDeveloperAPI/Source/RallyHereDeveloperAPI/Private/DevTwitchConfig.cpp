@@ -29,6 +29,8 @@ void FRHAPI_DevTwitchConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     }
     Writer->WriteIdentifierPrefix(TEXT("client_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, ClientId);
+    Writer->WriteIdentifierPrefix(TEXT("game_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, GameId);
     Writer->WriteObjectEnd();
 }
 
@@ -48,6 +50,8 @@ bool FRHAPI_DevTwitchConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     }
     const TSharedPtr<FJsonValue> JsonClientIdField = (*Object)->TryGetField(TEXT("client_id"));
     ParseSuccess &= JsonClientIdField.IsValid() && !JsonClientIdField->IsNull() && TryGetJsonValue(JsonClientIdField, ClientId);
+    const TSharedPtr<FJsonValue> JsonGameIdField = (*Object)->TryGetField(TEXT("game_id"));
+    ParseSuccess &= JsonGameIdField.IsValid() && !JsonGameIdField->IsNull() && TryGetJsonValue(JsonGameIdField, GameId);
 
     return ParseSuccess;
 }

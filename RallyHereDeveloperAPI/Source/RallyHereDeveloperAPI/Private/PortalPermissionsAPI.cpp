@@ -90,13 +90,18 @@ FRequest_CreateAccountPermissions::FRequest_CreateAccountPermissions()
 
 FName FRequest_CreateAccountPermissions::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/account-permissions"));
+    static FName Path = FName(TEXT("/v1/account-permissions/{assigned_org_id}"));
     return Path;
 }
 
 FString FRequest_CreateAccountPermissions::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("assigned_org_id"), ToStringFormatArg(AssignedOrgId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/account-permissions/{assigned_org_id}"), PathParams);
+
     return Path;
 }
 
@@ -159,6 +164,16 @@ void FResponse_CreateAccountPermissions::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_CreateAccountPermissions::TryGetContentFor200(FRHAPI_DevPortalAccountPermission& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreateAccountPermissions::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateAccountPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -240,13 +255,18 @@ FRequest_CreateOrgGroup::FRequest_CreateOrgGroup()
 
 FName FRequest_CreateOrgGroup::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/permissions-org-group"));
+    static FName Path = FName(TEXT("/v1/permissions-org-group/{org_identifier}"));
     return Path;
 }
 
 FString FRequest_CreateOrgGroup::ComputePath() const
 {
-    FString Path = GetSimplifiedPath().ToString();
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/permissions-org-group/{org_identifier}"), PathParams);
+
     return Path;
 }
 
@@ -311,6 +331,16 @@ void FResponse_CreateOrgGroup::SetHttpResponseCode(EHttpResponseCodes::Type InHt
     }
 }
 
+bool FResponse_CreateOrgGroup::TryGetContentFor200(FRHAPI_DevPortalPermissionOrgGroup& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreateOrgGroup::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_CreateOrgGroup::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -322,150 +352,6 @@ FResponse_CreateOrgGroup::FResponse_CreateOrgGroup(FRequestMetadata InRequestMet
 }
 
 FString Traits_CreateOrgGroup::Name = TEXT("CreateOrgGroup");
-
-FHttpRequestPtr FPortalPermissionsAPI::CreatePortalPermissions(const FRequest_CreatePortalPermissions& Request, const FDelegate_CreatePortalPermissions& Delegate /*= FDelegate_CreatePortalPermissions()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPortalPermissionsAPI::OnCreatePortalPermissionsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPortalPermissionsAPI::OnCreatePortalPermissionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePortalPermissions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPortalPermissionsAPI::OnCreatePortalPermissionsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_CreatePortalPermissions Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_CreatePortalPermissions::FRequest_CreatePortalPermissions()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_CreatePortalPermissions::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/portal-permissions/{permission_id}"));
-    return Path;
-}
-
-FString FRequest_CreatePortalPermissions::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/portal-permissions/{permission_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_CreatePortalPermissions::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CreatePortalPermissions - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CreatePortalPermissions - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CreatePortalPermissions - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_CreatePortalPermissions::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_CreatePortalPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_CreatePortalPermissions::FResponse_CreatePortalPermissions(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_CreatePortalPermissions::Name = TEXT("CreatePortalPermissions");
 
 FHttpRequestPtr FPortalPermissionsAPI::CreatePortalPermissionsOrgGroupAccount(const FRequest_CreatePortalPermissionsOrgGroupAccount& Request, const FDelegate_CreatePortalPermissionsOrgGroupAccount& Delegate /*= FDelegate_CreatePortalPermissionsOrgGroupAccount()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -540,7 +426,7 @@ FName FRequest_CreatePortalPermissionsOrgGroupAccount::GetSimplifiedPath() const
 
 FString FRequest_CreatePortalPermissionsOrgGroupAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -608,6 +494,16 @@ void FResponse_CreatePortalPermissionsOrgGroupAccount::SetHttpResponseCode(EHttp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_CreatePortalPermissionsOrgGroupAccount::TryGetContentFor200(FRHAPI_DevPortalPermissionsOrgGroupAccount& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreatePortalPermissionsOrgGroupAccount::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreatePortalPermissionsOrgGroupAccount::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -695,7 +591,7 @@ FName FRequest_CreatePortalPermissionsOrgGroupPermission::GetSimplifiedPath() co
 
 FString FRequest_CreatePortalPermissionsOrgGroupPermission::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -763,6 +659,16 @@ void FResponse_CreatePortalPermissionsOrgGroupPermission::SetHttpResponseCode(EH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_CreatePortalPermissionsOrgGroupPermission::TryGetContentFor200(FRHAPI_DevPortalPermissionsOrgGroupPermission& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreatePortalPermissionsOrgGroupPermission::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreatePortalPermissionsOrgGroupPermission::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -850,7 +756,7 @@ FName FRequest_DeleteAccountPermissions::GetSimplifiedPath() const
 
 FString FRequest_DeleteAccountPermissions::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("assigned_org_id"), ToStringFormatArg(AssignedOrgId) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) },
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
@@ -912,6 +818,16 @@ void FResponse_DeleteAccountPermissions::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeleteAccountPermissions::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeleteAccountPermissions::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteAccountPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -999,7 +915,7 @@ FName FRequest_DeleteOrgGroup::GetSimplifiedPath() const
 
 FString FRequest_DeleteOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) }
     };
@@ -1062,6 +978,16 @@ void FResponse_DeleteOrgGroup::SetHttpResponseCode(EHttpResponseCodes::Type InHt
     }
 }
 
+bool FResponse_DeleteOrgGroup::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeleteOrgGroup::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DeleteOrgGroup::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1073,153 +999,6 @@ FResponse_DeleteOrgGroup::FResponse_DeleteOrgGroup(FRequestMetadata InRequestMet
 }
 
 FString Traits_DeleteOrgGroup::Name = TEXT("DeleteOrgGroup");
-
-FHttpRequestPtr FPortalPermissionsAPI::DeletePortalPermission(const FRequest_DeletePortalPermission& Request, const FDelegate_DeletePortalPermission& Delegate /*= FDelegate_DeletePortalPermission()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPortalPermissionsAPI::OnDeletePortalPermissionResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPortalPermissionsAPI::OnDeletePortalPermissionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePortalPermission Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPortalPermissionsAPI::OnDeletePortalPermissionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_DeletePortalPermission Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_DeletePortalPermission::FRequest_DeletePortalPermission()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_DeletePortalPermission::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/portal-permissions/{permission_id}"));
-    return Path;
-}
-
-FString FRequest_DeletePortalPermission::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/portal-permissions/{permission_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_DeletePortalPermission::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_DeletePortalPermission - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_DeletePortalPermission - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_DeletePortalPermission - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_DeletePortalPermission::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Not Found"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_DeletePortalPermission::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_DeletePortalPermission::FResponse_DeletePortalPermission(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_DeletePortalPermission::Name = TEXT("DeletePortalPermission");
 
 FHttpRequestPtr FPortalPermissionsAPI::DeletePortalPermissionsOrgGroupAccount(const FRequest_DeletePortalPermissionsOrgGroupAccount& Request, const FDelegate_DeletePortalPermissionsOrgGroupAccount& Delegate /*= FDelegate_DeletePortalPermissionsOrgGroupAccount()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1294,7 +1073,7 @@ FName FRequest_DeletePortalPermissionsOrgGroupAccount::GetSimplifiedPath() const
 
 FString FRequest_DeletePortalPermissionsOrgGroupAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
@@ -1356,6 +1135,16 @@ void FResponse_DeletePortalPermissionsOrgGroupAccount::SetHttpResponseCode(EHttp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeletePortalPermissionsOrgGroupAccount::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeletePortalPermissionsOrgGroupAccount::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeletePortalPermissionsOrgGroupAccount::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1443,7 +1232,7 @@ FName FRequest_DeletePortalPermissionsOrgGroupPermission::GetSimplifiedPath() co
 
 FString FRequest_DeletePortalPermissionsOrgGroupPermission::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("group_permission_id"), ToStringFormatArg(GroupPermissionId) }
@@ -1507,6 +1296,16 @@ void FResponse_DeletePortalPermissionsOrgGroupPermission::SetHttpResponseCode(EH
     }
 }
 
+bool FResponse_DeletePortalPermissionsOrgGroupPermission::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeletePortalPermissionsOrgGroupPermission::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_DeletePortalPermissionsOrgGroupPermission::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1518,6 +1317,160 @@ FResponse_DeletePortalPermissionsOrgGroupPermission::FResponse_DeletePortalPermi
 }
 
 FString Traits_DeletePortalPermissionsOrgGroupPermission::Name = TEXT("DeletePortalPermissionsOrgGroupPermission");
+
+FHttpRequestPtr FPortalPermissionsAPI::GetAccountPermissionForOrg(const FRequest_GetAccountPermissionForOrg& Request, const FDelegate_GetAccountPermissionForOrg& Delegate /*= FDelegate_GetAccountPermissionForOrg()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FPortalPermissionsAPI::OnGetAccountPermissionForOrgResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FPortalPermissionsAPI::OnGetAccountPermissionForOrgResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAccountPermissionForOrg Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FPortalPermissionsAPI::OnGetAccountPermissionForOrgResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_GetAccountPermissionForOrg Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_GetAccountPermissionForOrg::FRequest_GetAccountPermissionForOrg()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_GetAccountPermissionForOrg::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/org-account-permissions/{assigned_org_id}"));
+    return Path;
+}
+
+FString FRequest_GetAccountPermissionForOrg::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("assigned_org_id"), ToStringFormatArg(AssignedOrgId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/org-account-permissions/{assigned_org_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_GetAccountPermissionForOrg::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetAccountPermissionForOrg - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetAccountPermissionForOrg - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetAccountPermissionForOrg - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_GetAccountPermissionForOrg::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_GetAccountPermissionForOrg::TryGetContentFor200(TArray<FRHAPI_DevOrgPortalAccountsPermissions>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAccountPermissionForOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAccountPermissionForOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetAccountPermissionForOrg::FResponse_GetAccountPermissionForOrg(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetAccountPermissionForOrg::Name = TEXT("GetAccountPermissionForOrg");
 
 FHttpRequestPtr FPortalPermissionsAPI::GetAllAccountPermissionsForAccount(const FRequest_GetAllAccountPermissionsForAccount& Request, const FDelegate_GetAllAccountPermissionsForAccount& Delegate /*= FDelegate_GetAllAccountPermissionsForAccount()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1592,7 +1545,7 @@ FName FRequest_GetAllAccountPermissionsForAccount::GetSimplifiedPath() const
 
 FString FRequest_GetAllAccountPermissionsForAccount::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
 
@@ -1649,6 +1602,16 @@ void FResponse_GetAllAccountPermissionsForAccount::SetHttpResponseCode(EHttpResp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetAllAccountPermissionsForAccount::TryGetContentFor200(TArray<FRHAPI_DevPortalAccountPermission>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllAccountPermissionsForAccount::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllAccountPermissionsForAccount::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1730,18 +1693,18 @@ FRequest_GetAllAccountPermissionsForAssignedOrg::FRequest_GetAllAccountPermissio
 
 FName FRequest_GetAllAccountPermissionsForAssignedOrg::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/account-permissions/{account_id}/{org_identifier}"));
+    static FName Path = FName(TEXT("/v1/account-permissions/{account_id}/{assigned_org_id}"));
     return Path;
 }
 
 FString FRequest_GetAllAccountPermissionsForAssignedOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("assigned_org_id"), ToStringFormatArg(AssignedOrgId) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/account-permissions/{account_id}/{org_identifier}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/account-permissions/{account_id}/{assigned_org_id}"), PathParams);
 
     return Path;
 }
@@ -1794,6 +1757,16 @@ void FResponse_GetAllAccountPermissionsForAssignedOrg::SetHttpResponseCode(EHttp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetAllAccountPermissionsForAssignedOrg::TryGetContentFor200(TArray<FRHAPI_DevPortalAccountPermission>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllAccountPermissionsForAssignedOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllAccountPermissionsForAssignedOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1881,7 +1854,7 @@ FName FRequest_GetAllPermissionsForPermissionsOrgGroup::GetSimplifiedPath() cons
 
 FString FRequest_GetAllPermissionsForPermissionsOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) }
     };
@@ -1939,6 +1912,16 @@ void FResponse_GetAllPermissionsForPermissionsOrgGroup::SetHttpResponseCode(EHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetAllPermissionsForPermissionsOrgGroup::TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionsOrgGroupPermission>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAllPermissionsForPermissionsOrgGroup::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPermissionsForPermissionsOrgGroup::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2077,6 +2060,11 @@ void FResponse_GetAllPortalPermissions::SetHttpResponseCode(EHttpResponseCodes::
     }
 }
 
+bool FResponse_GetAllPortalPermissions::TryGetContentFor200(TArray<FRHAPI_DevPortalPermission>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetAllPortalPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -2162,7 +2150,7 @@ FName FRequest_GetOrgGroupsForOrg::GetSimplifiedPath() const
 
 FString FRequest_GetOrgGroupsForOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -2219,6 +2207,16 @@ void FResponse_GetOrgGroupsForOrg::SetHttpResponseCode(EHttpResponseCodes::Type 
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetOrgGroupsForOrg::TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionOrgGroup>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgGroupsForOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetOrgGroupsForOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2306,7 +2304,7 @@ FName FRequest_GetPermissionsForPermissionsOrgGroup::GetSimplifiedPath() const
 
 FString FRequest_GetPermissionsForPermissionsOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) },
         { TEXT("group_permission_id"), ToStringFormatArg(GroupPermissionId) }
@@ -2365,6 +2363,16 @@ void FResponse_GetPermissionsForPermissionsOrgGroup::SetHttpResponseCode(EHttpRe
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetPermissionsForPermissionsOrgGroup::TryGetContentFor200(FRHAPI_DevPortalPermissionsOrgGroupPermission& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPermissionsForPermissionsOrgGroup::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPermissionsForPermissionsOrgGroup::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2452,7 +2460,7 @@ FName FRequest_GetPortalPermissionById::GetSimplifiedPath() const
 
 FString FRequest_GetPortalPermissionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
     };
 
@@ -2509,6 +2517,16 @@ void FResponse_GetPortalPermissionById::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetPortalPermissionById::TryGetContentFor200(FRHAPI_DevPortalPermission& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPortalPermissionById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPortalPermissionById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2596,7 +2614,7 @@ FName FRequest_GetPortalPermissionsOrgGroupAccounts::GetSimplifiedPath() const
 
 FString FRequest_GetPortalPermissionsOrgGroupAccounts::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("group_id"), ToStringFormatArg(GroupId) }
     };
@@ -2654,6 +2672,16 @@ void FResponse_GetPortalPermissionsOrgGroupAccounts::SetHttpResponseCode(EHttpRe
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetPortalPermissionsOrgGroupAccounts::TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionsOrgGroupAccount>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPortalPermissionsOrgGroupAccounts::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPortalPermissionsOrgGroupAccounts::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2741,7 +2769,7 @@ FName FRequest_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::GetSimplifi
 
 FString FRequest_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
@@ -2799,6 +2827,16 @@ void FResponse_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::SetHttpResp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionOrgGroup>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPortalPermissionsOrgGroupsAssignedToAccountForOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2886,7 +2924,7 @@ FName FRequest_UpdateOrgGroup::GetSimplifiedPath() const
 
 FString FRequest_UpdateOrgGroup::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -2954,6 +2992,16 @@ void FResponse_UpdateOrgGroup::SetHttpResponseCode(EHttpResponseCodes::Type InHt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateOrgGroup::TryGetContentFor200(FRHAPI_DevPortalPermissionOrgGroup& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateOrgGroup::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateOrgGroup::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

@@ -71,6 +71,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetSandboxGameConfig : public FRespon
 
     FRHAPI_DevGeneralConfig Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevGeneralConfig& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetSandboxGameConfig
@@ -111,6 +123,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_UpdateSandboxGameConfig : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevGeneralConfig Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevGeneralConfig& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

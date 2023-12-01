@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_DevStrideFactory& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevStrideFactory& Value)
 {
-    static TMap<FString, ERHAPI_DevStrideFactory> StringToEnum = {
+    static TMap<FString, ERHAPI_DevStrideFactory> StringToEnum = { 
         { TEXT("Fixed"), ERHAPI_DevStrideFactory::Fixed },
         { TEXT("Probabilistic"), ERHAPI_DevStrideFactory::Probabilistic },    };
 

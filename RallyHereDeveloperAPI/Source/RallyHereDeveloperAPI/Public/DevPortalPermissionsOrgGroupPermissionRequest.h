@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevPortalPermissionLevel.h"
 #include "DevPortalPermissionsOrgGroupPermissionRequest.generated.h"
 
 /** @defgroup RHAPI_DevPortalPermissionsOrgGroupPermissionRequest RallyHere API Model DevPortalPermissionsOrgGroupPermissionRequest
@@ -16,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPortalPermissionsOrgGroupPermissionRequest : public FRHAPI_DevModel
@@ -55,23 +56,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPortalPermissionsOrgGroupPermissionRe
     /** @brief Sets the value of GroupId */
     void SetGroupId(FGuid NewValue) { GroupId = NewValue;  }
 
-    FString Level_Optional{  };
+    ERHAPI_DevPortalPermissionLevel Level_Optional{  };
     /** @brief true if Level_Optional has been set to a value */
     bool Level_IsSet{ false };
     /** @brief Gets the value of Level_Optional, regardless of it having been set */
-    FString& GetLevel() { return Level_Optional; }
+    ERHAPI_DevPortalPermissionLevel& GetLevel() { return Level_Optional; }
     /** @brief Gets the value of Level_Optional, regardless of it having been set */
-    const FString& GetLevel() const { return Level_Optional; }
+    const ERHAPI_DevPortalPermissionLevel& GetLevel() const { return Level_Optional; }
     /** @brief Gets the value of Level_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetLevel(const FString& DefaultValue) const { if (Level_IsSet) return Level_Optional; return DefaultValue; }
+    const ERHAPI_DevPortalPermissionLevel& GetLevel(const ERHAPI_DevPortalPermissionLevel& DefaultValue) const { if (Level_IsSet) return Level_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Level_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLevel(FString& OutValue) const { if (Level_IsSet) OutValue = Level_Optional; return Level_IsSet; }
+    bool GetLevel(ERHAPI_DevPortalPermissionLevel& OutValue) const { if (Level_IsSet) OutValue = Level_Optional; return Level_IsSet; }
     /** @brief Returns a pointer to Level_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetLevelOrNull() { if (Level_IsSet) return &Level_Optional; return nullptr; }
+    ERHAPI_DevPortalPermissionLevel* GetLevelOrNull() { if (Level_IsSet) return &Level_Optional; return nullptr; }
     /** @brief Returns a pointer to Level_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetLevelOrNull() const { if (Level_IsSet) return &Level_Optional; return nullptr; }
+    const ERHAPI_DevPortalPermissionLevel* GetLevelOrNull() const { if (Level_IsSet) return &Level_Optional; return nullptr; }
     /** @brief Sets the value of Level_Optional and also sets Level_IsSet to true */
-    void SetLevel(FString NewValue) { Level_Optional = NewValue; Level_IsSet = true; }
+    void SetLevel(ERHAPI_DevPortalPermissionLevel NewValue) { Level_Optional = NewValue; Level_IsSet = true; }
      /** @brief Clears the value of Level_Optional and sets Level_IsSet to false */
     void ClearLevel() { Level_IsSet = false; }
 

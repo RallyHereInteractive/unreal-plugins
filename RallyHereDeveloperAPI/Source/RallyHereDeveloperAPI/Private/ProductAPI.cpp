@@ -96,7 +96,7 @@ FName FRequest_CreateProduct::GetSimplifiedPath() const
 
 FString FRequest_CreateProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -167,6 +167,16 @@ void FResponse_CreateProduct::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_CreateProduct::TryGetContentFor200(FRHAPI_DevProduct& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreateProduct::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateProduct::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -254,7 +264,7 @@ FName FRequest_DeleteProduct::GetSimplifiedPath() const
 
 FString FRequest_DeleteProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -315,6 +325,16 @@ void FResponse_DeleteProduct::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeleteProduct::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeleteProduct::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteProduct::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -402,7 +422,7 @@ FName FRequest_GetOrgProduct::GetSimplifiedPath() const
 
 FString FRequest_GetOrgProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -460,6 +480,16 @@ void FResponse_GetOrgProduct::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetOrgProduct::TryGetContentFor200(FRHAPI_DevProduct& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgProduct::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetOrgProduct::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -547,7 +577,7 @@ FName FRequest_GetOrgProducts::GetSimplifiedPath() const
 
 FString FRequest_GetOrgProducts::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -604,6 +634,16 @@ void FResponse_GetOrgProducts::SetHttpResponseCode(EHttpResponseCodes::Type InHt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetOrgProducts::TryGetContentFor200(TArray<FRHAPI_DevProduct>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgProducts::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetOrgProducts::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -691,7 +731,7 @@ FName FRequest_UpdateProduct::GetSimplifiedPath() const
 
 FString FRequest_UpdateProduct::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -763,6 +803,16 @@ void FResponse_UpdateProduct::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateProduct::TryGetContentFor200(FRHAPI_DevProduct& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateProduct::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateProduct::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

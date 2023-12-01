@@ -67,6 +67,16 @@ void FRHAPI_DevRole::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("role_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, RoleId_Optional);
     }
+    if (LegacyRoleId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("legacy_role_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, LegacyRoleId_Optional);
+    }
+    if (AuthBypass_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("auth_bypass"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(AuthBypass_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -131,6 +141,18 @@ bool FRHAPI_DevRole::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         RoleId_IsSet = TryGetJsonValue(JsonRoleIdField, RoleId_Optional);
         ParseSuccess &= RoleId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLegacyRoleIdField = (*Object)->TryGetField(TEXT("legacy_role_id"));
+    if (JsonLegacyRoleIdField.IsValid() && !JsonLegacyRoleIdField->IsNull())
+    {
+        LegacyRoleId_IsSet = TryGetJsonValue(JsonLegacyRoleIdField, LegacyRoleId_Optional);
+        ParseSuccess &= LegacyRoleId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonAuthBypassField = (*Object)->TryGetField(TEXT("auth_bypass"));
+    if (JsonAuthBypassField.IsValid() && !JsonAuthBypassField->IsNull())
+    {
+        AuthBypass_IsSet = TryGetJsonValue(JsonAuthBypassField, AuthBypass_Optional);
+        ParseSuccess &= AuthBypass_IsSet;
     }
 
     return ParseSuccess;

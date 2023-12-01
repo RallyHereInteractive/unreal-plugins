@@ -8,58 +8,181 @@
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "RallyHereDeveloperAPIModule.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+//#include "AuthAPI.h"
 
 namespace RallyHereDeveloperAPI
 {
 
-FAuthContext::FAuthContext(FString ClientId, FString ClientSecret) : ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, LoginComplete{}
+FAuthContext::FAuthContext(FAuthAPI &LoginAPI_, FString ClientId, FString ClientSecret) : LoginAPI{ &LoginAPI_ },
+    ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, bIsRefreshing{}, LoginComplete{}//, LoginResult{}, TokenResponse{}
 {
     UpdateBasicAuthValue();
 }
 
-FAuthContext::FAuthContext() : LoginComplete{}
+FAuthContext::FAuthContext(FAuthAPI& LoginAPI_) : LoginAPI{ &LoginAPI_ }, bIsRefreshing{}, LoginComplete{}//, LoginResult{}, TokenResponse{}
 {
 }
-
-void FAuthContext::AuthFromWebURL(const FString& URL)
+/*
+const TOptional<FRHAPI_DevLoginResult>& FAuthContext::GetLoginResult() const
 {
-    int32 AccessTokenIndex = URL.Find("#access_token=");
-
-    if (AccessTokenIndex > 0)
-    {
-        AccessToken = URL.RightChop(AccessTokenIndex + 14);
-		int32 AccessTokenEndIndex = AccessToken.Find("&");
-		if (AccessTokenEndIndex > 0)
-		{
-			AccessToken = AccessToken.Left(AccessTokenEndIndex);
-		}
-
-        {
-            SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-            LoginComplete.Broadcast(true);
-        }
-    }
+    return LoginResult;
 }
 
-bool FAuthContext::Refresh()
+const TOptional<FRHAPI_DevTokenResponse>& FAuthContext::GetTokenResponse() const
 {
-    LoginRequested.Broadcast();
-    return true;
+    return TokenResponse;
 }
-
+*/
 bool FAuthContext::IsLoggedIn() const
 {
-    return !AccessToken.IsEmpty();
+/*
+    if (LoginResult.IsSet())
+    {
+        return LoginResult->AccessToken_IsSet;
+    }
+    else if (TokenResponse.IsSet())
+    {
+        return true;
+    }
+*/
+    return false;
 }
 
 FString FAuthContext::GetAccessToken() const
 {
-    return AccessToken;
+/*
+    if (LoginResult.IsSet())
+    {
+        return LoginResult->GetAccessToken(FString());
+    }
+    else if (TokenResponse.IsSet())
+    {
+        return TokenResponse->GetAccessToken();
+    }
+*/
+    return FString();
+}
+
+FString FAuthContext::GetRefreshToken() const
+{
+/*
+    if (LoginResult.IsSet())
+    {
+        return LoginResult->GetRefreshToken(FString());
+    }
+    else if (TokenResponse.IsSet())
+    {
+        return TokenResponse->GetRefreshToken();
+    }
+*/
+    return FString();
+}
+/*
+void FAuthContext::ProcessLogin(const FResponse_Login& LoginResponse_)
+{
+    bIsRefreshing = false;
+    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+    if (!bSuccess)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
+        LoginComplete.Broadcast(false);
+        return;
+    }
+
+    const auto PreviousLoginResult = LoginResult;
+    LoginResult = LoginResponse_.Content;
+
+    // clear out any token response
+    TokenResponse.Reset();
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+        LoginComplete.Broadcast(true);
+    }
+
+    if (!IsSameUser(PreviousLoginResult, LoginResult))
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginUserChanged, FColor::Purple);
+        LoginUserChanged.Broadcast();
+    }
+}
+
+void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
+{
+    bIsRefreshing = false;
+    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+    if (!bSuccess)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginFailed, FColor::Purple);
+        LoginComplete.Broadcast(false);
+        return;
+    }
+
+    TokenResponse = LoginResponse_.Content;
+
+    // clear out any login result
+    LoginResult.Reset();
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+        LoginComplete.Broadcast(true);
+    }
+}
+
+bool FAuthContext::IsSameUser(const TOptional<FRHAPI_DevLoginResult>& A, const TOptional<FRHAPI_DevLoginResult>& B)
+{
+    if (A.IsSet() != B.IsSet())
+    {
+        return false;
+    }
+
+    if (!A.IsSet())
+    {
+        return true;
+    }
+
+    return A->ActivePlayerUuid_Optional == B->ActivePlayerUuid_Optional && A->PersonId == B->PersonId;
+}
+*/
+bool FAuthContext::Refresh()
+{
+/*
+    if (bIsRefreshing)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Verbose, TEXT("FAuthContext::Refresh skipping refresh while already in progress"));
+        return true; // We will handle their refresh request with the already pending one
+    }
+
+    auto refreshToken = GetRefreshToken();
+    if (refreshToken.IsEmpty())
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
+        return false;
+    }
+
+    FDelegate_Login Delegate;
+    Delegate.BindSP(AsShared(), &FAuthContext::ProcessLogin);
+    FRequest_Login Request;
+    Request.AuthContext = SharedThis(this);
+    Request.LoginRequestV1.SetIncludeRefresh(true);
+    Request.LoginRequestV1.GrantType = ERHAPI_DevGrantType::Refresh;
+    Request.LoginRequestV1.PortalAccessToken = std::move(refreshToken);
+    auto submittedRequest = LoginAPI->Login(Request, std::move(Delegate));
+    bIsRefreshing = submittedRequest != nullptr;
+    UE_LOG(LogRallyHereDeveloperAPI, Verbose, TEXT("FAuthContext::Refresh Submitted: %s"), bIsRefreshing ? TEXT("Yes") : TEXT("No"));
+*/
+    return bIsRefreshing;
 }
 
 void FAuthContext::ClearAuthContext()
 {
-    AccessToken = "";
+    //LoginResult.Reset();
+    //TokenResponse.Reset();
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastLogout, FColor::Purple);
+        Logout.Broadcast();
+    }
 }
 
 void FAuthContext::SetClientId(const FString& InClientId)

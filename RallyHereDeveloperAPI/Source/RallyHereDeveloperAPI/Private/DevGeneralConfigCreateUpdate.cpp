@@ -122,6 +122,16 @@ void FRHAPI_DevGeneralConfigCreateUpdate::WriteJson(TSharedRef<TJsonWriter<>>& W
         Writer->WriteIdentifierPrefix(TEXT("coupon_vendor_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, CouponVendorId_Optional);
     }
+    if (LegacyIdGeneration_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("legacy_id_generation"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, LegacyIdGeneration_Optional);
+    }
+    if (EnableLegacySettingTypes_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("enable_legacy_setting_types"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnableLegacySettingTypes_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -252,6 +262,18 @@ bool FRHAPI_DevGeneralConfigCreateUpdate::FromJson(const TSharedPtr<FJsonValue>&
     {
         CouponVendorId_IsSet = TryGetJsonValue(JsonCouponVendorIdField, CouponVendorId_Optional);
         ParseSuccess &= CouponVendorId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLegacyIdGenerationField = (*Object)->TryGetField(TEXT("legacy_id_generation"));
+    if (JsonLegacyIdGenerationField.IsValid() && !JsonLegacyIdGenerationField->IsNull())
+    {
+        LegacyIdGeneration_IsSet = TryGetJsonValue(JsonLegacyIdGenerationField, LegacyIdGeneration_Optional);
+        ParseSuccess &= LegacyIdGeneration_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonEnableLegacySettingTypesField = (*Object)->TryGetField(TEXT("enable_legacy_setting_types"));
+    if (JsonEnableLegacySettingTypesField.IsValid() && !JsonEnableLegacySettingTypesField->IsNull())
+    {
+        EnableLegacySettingTypes_IsSet = TryGetJsonValue(JsonEnableLegacySettingTypesField, EnableLegacySettingTypes_Optional);
+        ParseSuccess &= EnableLegacySettingTypes_IsSet;
     }
 
     return ParseSuccess;

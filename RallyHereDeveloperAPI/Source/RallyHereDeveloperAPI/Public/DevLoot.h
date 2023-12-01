@@ -168,11 +168,11 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevLoot : public FRHAPI_DevModel
     /** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
     void SetQuantity(int32 NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true; }
      /** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
-    void ClearQuantity() { Quantity_Optional = 0; Quantity_IsSet = false; }
+    void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false; }
     /** @brief Returns true if Quantity_Optional is set and matches the default value */
-    bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 0; }
+    bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
     /** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
-    void SetQuantityToDefault() { Quantity_Optional = 0; Quantity_IsSet = true; }
+    void SetQuantityToDefault() { Quantity_Optional = 1; Quantity_IsSet = true; }
 
     /** @brief The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. */
     ERHAPI_DevInventorySelector InventorySelectorType{  };

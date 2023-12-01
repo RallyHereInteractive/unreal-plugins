@@ -12,7 +12,6 @@
 #include "RallyHereDeveloperAPIHelpers.h"
 #include "DevHTTPValidationError.h"
 #include "DevPlatformData.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -20,14 +19,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive;
-struct FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive;
-struct FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu;
-struct FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu;
-struct FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew;
-struct FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew;
-struct FRequest_EnvironmentFullGetEnvironmentMetricPurchases;
-struct FResponse_EnvironmentFullGetEnvironmentMetricPurchases;
 struct FRequest_EnvironmentGetEnvironmentMetricPlayersActive;
 struct FResponse_EnvironmentGetEnvironmentMetricPlayersActive;
 struct FRequest_EnvironmentGetEnvironmentMetricPlayersCcu;
@@ -37,10 +28,6 @@ struct FResponse_EnvironmentGetEnvironmentMetricPlayersNew;
 struct FRequest_EnvironmentGetEnvironmentMetricPurchases;
 struct FResponse_EnvironmentGetEnvironmentMetricPurchases;
 
-DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive, const FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive&);
-DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu, const FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu&);
-DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew, const FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew&);
-DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentFullGetEnvironmentMetricPurchases, const FResponse_EnvironmentFullGetEnvironmentMetricPurchases&);
 DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentGetEnvironmentMetricPlayersActive, const FResponse_EnvironmentGetEnvironmentMetricPlayersActive&);
 DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentGetEnvironmentMetricPlayersCcu, const FResponse_EnvironmentGetEnvironmentMetricPlayersCcu&);
 DECLARE_DELEGATE_OneParam(FDelegate_EnvironmentGetEnvironmentMetricPlayersNew, const FResponse_EnvironmentGetEnvironmentMetricPlayersNew&);
@@ -52,20 +39,12 @@ public:
     FEnvironmentAPI();
     virtual ~FEnvironmentAPI();
 
-    FHttpRequestPtr EnvironmentFullGetEnvironmentMetricPlayersActive(const FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive& Delegate = FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr EnvironmentFullGetEnvironmentMetricPlayersCcu(const FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu& Delegate = FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr EnvironmentFullGetEnvironmentMetricPlayersNew(const FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew& Delegate = FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr EnvironmentFullGetEnvironmentMetricPurchases(const FRequest_EnvironmentFullGetEnvironmentMetricPurchases& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPurchases& Delegate = FDelegate_EnvironmentFullGetEnvironmentMetricPurchases(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr EnvironmentGetEnvironmentMetricPlayersActive(const FRequest_EnvironmentGetEnvironmentMetricPlayersActive& Request, const FDelegate_EnvironmentGetEnvironmentMetricPlayersActive& Delegate = FDelegate_EnvironmentGetEnvironmentMetricPlayersActive(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr EnvironmentGetEnvironmentMetricPlayersCcu(const FRequest_EnvironmentGetEnvironmentMetricPlayersCcu& Request, const FDelegate_EnvironmentGetEnvironmentMetricPlayersCcu& Delegate = FDelegate_EnvironmentGetEnvironmentMetricPlayersCcu(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr EnvironmentGetEnvironmentMetricPlayersNew(const FRequest_EnvironmentGetEnvironmentMetricPlayersNew& Request, const FDelegate_EnvironmentGetEnvironmentMetricPlayersNew& Delegate = FDelegate_EnvironmentGetEnvironmentMetricPlayersNew(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr EnvironmentGetEnvironmentMetricPurchases(const FRequest_EnvironmentGetEnvironmentMetricPurchases& Request, const FDelegate_EnvironmentGetEnvironmentMetricPurchases& Delegate = FDelegate_EnvironmentGetEnvironmentMetricPurchases(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnEnvironmentFullGetEnvironmentMetricPlayersActiveResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnEnvironmentFullGetEnvironmentMetricPlayersCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnEnvironmentFullGetEnvironmentMetricPlayersNewResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnEnvironmentFullGetEnvironmentMetricPurchasesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPurchases Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnEnvironmentGetEnvironmentMetricPlayersActiveResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentGetEnvironmentMetricPlayersActive Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnEnvironmentGetEnvironmentMetricPlayersCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentGetEnvironmentMetricPlayersCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnEnvironmentGetEnvironmentMetricPlayersNewResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentGetEnvironmentMetricPlayersNew Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -75,195 +54,7 @@ private:
 
 /* Get Environment Metric Players Active
  *
- * Get active player count during time window, requires &#x60;sandbox:analytics:view&#x60; permission
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive : public FRequest
-{
-    FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive();
-    virtual ~FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    TOptional<FDateTime> FromDate;
-    TOptional<FDateTime> ToDate;
-    TOptional<int32> PreviousSeconds;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive : public FResponse
-{
-    FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformData Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPlayersActive
-{
-    typedef FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive Request;
-    typedef FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive Response;
-    typedef FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive Delegate;
-    typedef FEnvironmentAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPlayersActive(InRequest, InDelegate, Priority); }
-};
-
-/* Get Environment Metric Players Ccu
- *
- * Get latest CCU from time window, requires &#x60;sandbox:analytics:view&#x60; permission
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu : public FRequest
-{
-    FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu();
-    virtual ~FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    TOptional<FDateTime> FromDate;
-    TOptional<FDateTime> ToDate;
-    TOptional<int32> PreviousSeconds;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu : public FResponse
-{
-    FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformData Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPlayersCcu
-{
-    typedef FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu Request;
-    typedef FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu Response;
-    typedef FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu Delegate;
-    typedef FEnvironmentAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPlayersCcu(InRequest, InDelegate, Priority); }
-};
-
-/* Get Environment Metric Players New
- *
- * Get new player count during time window, requires &#x60;sandbox:analytics:view&#x60; permission
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew : public FRequest
-{
-    FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew();
-    virtual ~FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    TOptional<FDateTime> FromDate;
-    TOptional<FDateTime> ToDate;
-    TOptional<int32> PreviousSeconds;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew : public FResponse
-{
-    FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformData Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPlayersNew
-{
-    typedef FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew Request;
-    typedef FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew Response;
-    typedef FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew Delegate;
-    typedef FEnvironmentAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPlayersNew(InRequest, InDelegate, Priority); }
-};
-
-/* Get Environment Metric Purchases
- *
- * Get purchase count during time window, requires &#x60;sandbox:analytics:view&#x60; permission
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentFullGetEnvironmentMetricPurchases : public FRequest
-{
-    FRequest_EnvironmentFullGetEnvironmentMetricPurchases();
-    virtual ~FRequest_EnvironmentFullGetEnvironmentMetricPurchases() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    TOptional<FDateTime> FromDate;
-    TOptional<FDateTime> ToDate;
-    TOptional<int32> PreviousSeconds;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentFullGetEnvironmentMetricPurchases : public FResponse
-{
-    FResponse_EnvironmentFullGetEnvironmentMetricPurchases(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_EnvironmentFullGetEnvironmentMetricPurchases() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformData Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentFullGetEnvironmentMetricPurchases
-{
-    typedef FRequest_EnvironmentFullGetEnvironmentMetricPurchases Request;
-    typedef FResponse_EnvironmentFullGetEnvironmentMetricPurchases Response;
-    typedef FDelegate_EnvironmentFullGetEnvironmentMetricPurchases Delegate;
-    typedef FEnvironmentAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.EnvironmentFullGetEnvironmentMetricPurchases(InRequest, InDelegate, Priority); }
-};
-
-/* Get Environment Metric Players Active
- *
- * Get active player count during time window, requires &#x60;sandbox:analytics:view&#x60; permission
+ * Get active player count during time window, requires `<routers.common.permissions.PortalPermission object at 0x7f23fd71a790>` permission
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentGetEnvironmentMetricPlayersActive : public FRequest
 {
@@ -291,6 +82,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentGetEnvironmentMetricPlayer
 
     FRHAPI_DevPlatformData Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersActive
@@ -306,7 +109,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersAc
 
 /* Get Environment Metric Players Ccu
  *
- * Get latest CCU from time window, requires &#x60;sandbox:analytics:view&#x60; permission
+ * Get latest CCU from time window, requires `<routers.common.permissions.PortalPermission object at 0x7f23fd71a790>` permission
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentGetEnvironmentMetricPlayersCcu : public FRequest
 {
@@ -334,6 +137,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentGetEnvironmentMetricPlayer
 
     FRHAPI_DevPlatformData Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersCcu
@@ -349,7 +164,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersCc
 
 /* Get Environment Metric Players New
  *
- * Get new player count during time window, requires &#x60;sandbox:analytics:view&#x60; permission
+ * Get new player count during time window, requires `<routers.common.permissions.PortalPermission object at 0x7f23fd71a790>` permission
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentGetEnvironmentMetricPlayersNew : public FRequest
 {
@@ -377,6 +192,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentGetEnvironmentMetricPlayer
 
     FRHAPI_DevPlatformData Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersNew
@@ -392,7 +219,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_EnvironmentGetEnvironmentMetricPlayersNe
 
 /* Get Environment Metric Purchases
  *
- * Get purchase count during time window, requires &#x60;sandbox:analytics:view&#x60; permission
+ * Get purchase count during time window, requires `<routers.common.permissions.PortalPermission object at 0x7f23fd71a790>` permission
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_EnvironmentGetEnvironmentMetricPurchases : public FRequest
 {
@@ -419,6 +246,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_EnvironmentGetEnvironmentMetricPurcha
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPlatformData Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

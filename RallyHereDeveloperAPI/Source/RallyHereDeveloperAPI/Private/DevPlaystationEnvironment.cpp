@@ -36,7 +36,7 @@ FString EnumToString(const ERHAPI_DevPlaystationEnvironment& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevPlaystationEnvironment& Value)
 {
-    static TMap<FString, ERHAPI_DevPlaystationEnvironment> StringToEnum = {
+    static TMap<FString, ERHAPI_DevPlaystationEnvironment> StringToEnum = { 
         { TEXT("sp-int"), ERHAPI_DevPlaystationEnvironment::SpInt },
         { TEXT("prod-qa"), ERHAPI_DevPlaystationEnvironment::ProdQa },
         { TEXT("np"), ERHAPI_DevPlaystationEnvironment::Np },    };

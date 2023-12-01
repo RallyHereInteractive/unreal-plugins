@@ -41,6 +41,16 @@ void FRHAPI_DevSessionTemplateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writ
         Writer->WriteIdentifierPrefix(TEXT("publicly_joinable"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, PubliclyJoinable_Optional);
     }
+    if (AttemptAutoJoin_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("attempt_auto_join"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, AttemptAutoJoin_Optional);
+    }
+    if (DefaultPublic_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("default_public"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, DefaultPublic_Optional);
+    }
     if (AutoAddToBrowser_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("auto_add_to_browser"));
@@ -123,6 +133,18 @@ bool FRHAPI_DevSessionTemplateRequest::FromJson(const TSharedPtr<FJsonValue>& Js
     {
         PubliclyJoinable_IsSet = TryGetJsonValue(JsonPubliclyJoinableField, PubliclyJoinable_Optional);
         ParseSuccess &= PubliclyJoinable_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonAttemptAutoJoinField = (*Object)->TryGetField(TEXT("attempt_auto_join"));
+    if (JsonAttemptAutoJoinField.IsValid() && !JsonAttemptAutoJoinField->IsNull())
+    {
+        AttemptAutoJoin_IsSet = TryGetJsonValue(JsonAttemptAutoJoinField, AttemptAutoJoin_Optional);
+        ParseSuccess &= AttemptAutoJoin_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonDefaultPublicField = (*Object)->TryGetField(TEXT("default_public"));
+    if (JsonDefaultPublicField.IsValid() && !JsonDefaultPublicField->IsNull())
+    {
+        DefaultPublic_IsSet = TryGetJsonValue(JsonDefaultPublicField, DefaultPublic_Optional);
+        ParseSuccess &= DefaultPublic_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonAutoAddToBrowserField = (*Object)->TryGetField(TEXT("auto_add_to_browser"));
     if (JsonAutoAddToBrowserField.IsValid() && !JsonAutoAddToBrowserField->IsNull())

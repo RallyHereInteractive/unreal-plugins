@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig.h"
 #include "DevRankRequest.generated.h"
 
 /** @defgroup RHAPI_DevRankRequest RallyHere API Model DevRankRequest
@@ -16,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRankRequest : public FRHAPI_DevModel
@@ -191,6 +192,26 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRankRequest : public FRHAPI_DevModel
     void SetTrueskillTau(float NewValue) { TrueskillTau_Optional = NewValue; TrueskillTau_IsSet = true; }
      /** @brief Clears the value of TrueskillTau_Optional and sets TrueskillTau_IsSet to false */
     void ClearTrueskillTau() { TrueskillTau_IsSet = false; }
+
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig LegacyConfig_Optional{  };
+    /** @brief true if LegacyConfig_Optional has been set to a value */
+    bool LegacyConfig_IsSet{ false };
+    /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig& GetLegacyConfig() { return LegacyConfig_Optional; }
+    /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig& GetLegacyConfig() const { return LegacyConfig_Optional; }
+    /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig& GetLegacyConfig(const FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+    /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
+    void SetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingRanksSchemasLegacyConfig NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+     /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
+    void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 };
 
 /** @} */

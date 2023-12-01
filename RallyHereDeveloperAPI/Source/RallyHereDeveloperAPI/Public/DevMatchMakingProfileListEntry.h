@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntry : public FRHAPI_DevModel
@@ -40,13 +40,13 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntry : public 
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Which MatchMakingProfile this entry refers to */
-    FGuid ProfileId{  };
-    /** @brief Gets the value of ProfileId */
-    FGuid& GetProfileId() { return ProfileId; }
-    /** @brief Gets the value of ProfileId */
-    const FGuid& GetProfileId() const { return ProfileId; }
-    /** @brief Sets the value of ProfileId */
-    void SetProfileId(FGuid NewValue) { ProfileId = NewValue;  }
+    FGuid MatchMakingProfileId{  };
+    /** @brief Gets the value of MatchMakingProfileId */
+    FGuid& GetMatchMakingProfileId() { return MatchMakingProfileId; }
+    /** @brief Gets the value of MatchMakingProfileId */
+    const FGuid& GetMatchMakingProfileId() const { return MatchMakingProfileId; }
+    /** @brief Sets the value of MatchMakingProfileId */
+    void SetMatchMakingProfileId(FGuid NewValue) { MatchMakingProfileId = NewValue;  }
 
     /** @brief ID of the Sandbox */
     FGuid SandboxId_Optional{  };
@@ -111,23 +111,44 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntry : public 
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
+    /** @brief Timestamp of when this resource was created */
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
+
     /** @brief Which MatchMakingProfileList this entry belongs to */
-    FGuid ProfileListId{  };
-    /** @brief Gets the value of ProfileListId */
-    FGuid& GetProfileListId() { return ProfileListId; }
-    /** @brief Gets the value of ProfileListId */
-    const FGuid& GetProfileListId() const { return ProfileListId; }
-    /** @brief Sets the value of ProfileListId */
-    void SetProfileListId(FGuid NewValue) { ProfileListId = NewValue;  }
+    FGuid MatchMakingProfileListId{  };
+    /** @brief Gets the value of MatchMakingProfileListId */
+    FGuid& GetMatchMakingProfileListId() { return MatchMakingProfileListId; }
+    /** @brief Gets the value of MatchMakingProfileListId */
+    const FGuid& GetMatchMakingProfileListId() const { return MatchMakingProfileListId; }
+    /** @brief Sets the value of MatchMakingProfileListId */
+    void SetMatchMakingProfileListId(FGuid NewValue) { MatchMakingProfileListId = NewValue;  }
 
     /** @brief ID to uniquely identify this MatchMakingProfileListEntry */
-    FGuid ProfileListEntryId{  };
-    /** @brief Gets the value of ProfileListEntryId */
-    FGuid& GetProfileListEntryId() { return ProfileListEntryId; }
-    /** @brief Gets the value of ProfileListEntryId */
-    const FGuid& GetProfileListEntryId() const { return ProfileListEntryId; }
-    /** @brief Sets the value of ProfileListEntryId */
-    void SetProfileListEntryId(FGuid NewValue) { ProfileListEntryId = NewValue;  }
+    FGuid MatchMakingProfileListEntryId{  };
+    /** @brief Gets the value of MatchMakingProfileListEntryId */
+    FGuid& GetMatchMakingProfileListEntryId() { return MatchMakingProfileListEntryId; }
+    /** @brief Gets the value of MatchMakingProfileListEntryId */
+    const FGuid& GetMatchMakingProfileListEntryId() const { return MatchMakingProfileListEntryId; }
+    /** @brief Sets the value of MatchMakingProfileListEntryId */
+    void SetMatchMakingProfileListEntryId(FGuid NewValue) { MatchMakingProfileListEntryId = NewValue;  }
 };
 
 /** @} */

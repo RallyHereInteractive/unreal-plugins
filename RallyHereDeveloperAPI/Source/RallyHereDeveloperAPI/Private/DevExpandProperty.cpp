@@ -24,6 +24,8 @@ FString EnumToString(const ERHAPI_DevExpandProperty& Value)
     {
     case ERHAPI_DevExpandProperty::All:
         return TEXT("*");
+    case ERHAPI_DevExpandProperty::LegacyId:
+        return TEXT("legacy_id");
     }
 
     UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("Invalid ERHAPI_DevExpandProperty::Values Value (%d)"), (int)Value);
@@ -32,8 +34,9 @@ FString EnumToString(const ERHAPI_DevExpandProperty& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevExpandProperty& Value)
 {
-    static TMap<FString, ERHAPI_DevExpandProperty> StringToEnum = {
-        { TEXT("*"), ERHAPI_DevExpandProperty::All },    };
+    static TMap<FString, ERHAPI_DevExpandProperty> StringToEnum = { 
+        { TEXT("*"), ERHAPI_DevExpandProperty::All },
+        { TEXT("legacy_id"), ERHAPI_DevExpandProperty::LegacyId },    };
 
     const auto Found = StringToEnum.Find(EnumAsString);
     if(Found)

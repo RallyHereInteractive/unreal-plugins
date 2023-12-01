@@ -10,12 +10,16 @@
 #include "CoreMinimal.h"
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevAllMatchMakingTemplateGroupsResponse.h"
 #include "DevAllMatchMakingTemplatesResponse.h"
 #include "DevHTTPValidationError.h"
 #include "DevMatchMakingTemplate.h"
+#include "DevMatchMakingTemplateGroup.h"
+#include "DevMatchMakingTemplateGroupRequest.h"
+#include "DevMatchMakingTemplateGroupUpdateRequest.h"
 #include "DevMatchMakingTemplateRequest.h"
+#include "DevMatchMakingTemplateResponse.h"
 #include "DevMatchMakingTemplateUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -23,48 +27,45 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateMmTemplate;
-struct FResponse_OrgProductSandboxCreateMmTemplate;
-struct FRequest_OrgProductSandboxDeleteMmTemplate;
-struct FResponse_OrgProductSandboxDeleteMmTemplate;
-struct FRequest_OrgProductSandboxGetAllMmTemplates;
-struct FResponse_OrgProductSandboxGetAllMmTemplates;
-struct FRequest_OrgProductSandboxGetAllMmTemplatesInGroup;
-struct FResponse_OrgProductSandboxGetAllMmTemplatesInGroup;
-struct FRequest_OrgProductSandboxGetMmTemplate;
-struct FResponse_OrgProductSandboxGetMmTemplate;
-struct FRequest_OrgProductSandboxPatchMmTemplate;
-struct FResponse_OrgProductSandboxPatchMmTemplate;
-struct FRequest_OrgProductSandboxPutMmTemplate;
-struct FResponse_OrgProductSandboxPutMmTemplate;
+struct FRequest_SandboxCreateGroup;
+struct FResponse_SandboxCreateGroup;
 struct FRequest_SandboxCreateMmTemplate;
 struct FResponse_SandboxCreateMmTemplate;
+struct FRequest_SandboxDeleteGroup;
+struct FResponse_SandboxDeleteGroup;
 struct FRequest_SandboxDeleteMmTemplate;
 struct FResponse_SandboxDeleteMmTemplate;
+struct FRequest_SandboxGetAllGroups;
+struct FResponse_SandboxGetAllGroups;
 struct FRequest_SandboxGetAllMmTemplates;
 struct FResponse_SandboxGetAllMmTemplates;
 struct FRequest_SandboxGetAllMmTemplatesInGroup;
 struct FResponse_SandboxGetAllMmTemplatesInGroup;
+struct FRequest_SandboxGetGroup;
+struct FResponse_SandboxGetGroup;
 struct FRequest_SandboxGetMmTemplate;
 struct FResponse_SandboxGetMmTemplate;
+struct FRequest_SandboxPatchGroup;
+struct FResponse_SandboxPatchGroup;
 struct FRequest_SandboxPatchMmTemplate;
 struct FResponse_SandboxPatchMmTemplate;
+struct FRequest_SandboxPutGroup;
+struct FResponse_SandboxPutGroup;
 struct FRequest_SandboxPutMmTemplate;
 struct FResponse_SandboxPutMmTemplate;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateMmTemplate, const FResponse_OrgProductSandboxCreateMmTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteMmTemplate, const FResponse_OrgProductSandboxDeleteMmTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllMmTemplates, const FResponse_OrgProductSandboxGetAllMmTemplates&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllMmTemplatesInGroup, const FResponse_OrgProductSandboxGetAllMmTemplatesInGroup&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetMmTemplate, const FResponse_OrgProductSandboxGetMmTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchMmTemplate, const FResponse_OrgProductSandboxPatchMmTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutMmTemplate, const FResponse_OrgProductSandboxPutMmTemplate&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateGroup, const FResponse_SandboxCreateGroup&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateMmTemplate, const FResponse_SandboxCreateMmTemplate&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteGroup, const FResponse_SandboxDeleteGroup&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteMmTemplate, const FResponse_SandboxDeleteMmTemplate&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllGroups, const FResponse_SandboxGetAllGroups&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllMmTemplates, const FResponse_SandboxGetAllMmTemplates&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllMmTemplatesInGroup, const FResponse_SandboxGetAllMmTemplatesInGroup&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetGroup, const FResponse_SandboxGetGroup&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetMmTemplate, const FResponse_SandboxGetMmTemplate&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxPatchGroup, const FResponse_SandboxPatchGroup&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxPatchMmTemplate, const FResponse_SandboxPatchMmTemplate&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxPutGroup, const FResponse_SandboxPutGroup&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxPutMmTemplate, const FResponse_SandboxPutMmTemplate&);
 
 class RALLYHEREDEVELOPERAPI_API FMatchMakingTemplatesAPI : public FAPI
@@ -73,366 +74,97 @@ public:
     FMatchMakingTemplatesAPI();
     virtual ~FMatchMakingTemplatesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateMmTemplate(const FRequest_OrgProductSandboxCreateMmTemplate& Request, const FDelegate_OrgProductSandboxCreateMmTemplate& Delegate = FDelegate_OrgProductSandboxCreateMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteMmTemplate(const FRequest_OrgProductSandboxDeleteMmTemplate& Request, const FDelegate_OrgProductSandboxDeleteMmTemplate& Delegate = FDelegate_OrgProductSandboxDeleteMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllMmTemplates(const FRequest_OrgProductSandboxGetAllMmTemplates& Request, const FDelegate_OrgProductSandboxGetAllMmTemplates& Delegate = FDelegate_OrgProductSandboxGetAllMmTemplates(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllMmTemplatesInGroup(const FRequest_OrgProductSandboxGetAllMmTemplatesInGroup& Request, const FDelegate_OrgProductSandboxGetAllMmTemplatesInGroup& Delegate = FDelegate_OrgProductSandboxGetAllMmTemplatesInGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetMmTemplate(const FRequest_OrgProductSandboxGetMmTemplate& Request, const FDelegate_OrgProductSandboxGetMmTemplate& Delegate = FDelegate_OrgProductSandboxGetMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchMmTemplate(const FRequest_OrgProductSandboxPatchMmTemplate& Request, const FDelegate_OrgProductSandboxPatchMmTemplate& Delegate = FDelegate_OrgProductSandboxPatchMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutMmTemplate(const FRequest_OrgProductSandboxPutMmTemplate& Request, const FDelegate_OrgProductSandboxPutMmTemplate& Delegate = FDelegate_OrgProductSandboxPutMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxCreateGroup(const FRequest_SandboxCreateGroup& Request, const FDelegate_SandboxCreateGroup& Delegate = FDelegate_SandboxCreateGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateMmTemplate(const FRequest_SandboxCreateMmTemplate& Request, const FDelegate_SandboxCreateMmTemplate& Delegate = FDelegate_SandboxCreateMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxDeleteGroup(const FRequest_SandboxDeleteGroup& Request, const FDelegate_SandboxDeleteGroup& Delegate = FDelegate_SandboxDeleteGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeleteMmTemplate(const FRequest_SandboxDeleteMmTemplate& Request, const FDelegate_SandboxDeleteMmTemplate& Delegate = FDelegate_SandboxDeleteMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetAllGroups(const FRequest_SandboxGetAllGroups& Request, const FDelegate_SandboxGetAllGroups& Delegate = FDelegate_SandboxGetAllGroups(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetAllMmTemplates(const FRequest_SandboxGetAllMmTemplates& Request, const FDelegate_SandboxGetAllMmTemplates& Delegate = FDelegate_SandboxGetAllMmTemplates(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetAllMmTemplatesInGroup(const FRequest_SandboxGetAllMmTemplatesInGroup& Request, const FDelegate_SandboxGetAllMmTemplatesInGroup& Delegate = FDelegate_SandboxGetAllMmTemplatesInGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetGroup(const FRequest_SandboxGetGroup& Request, const FDelegate_SandboxGetGroup& Delegate = FDelegate_SandboxGetGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetMmTemplate(const FRequest_SandboxGetMmTemplate& Request, const FDelegate_SandboxGetMmTemplate& Delegate = FDelegate_SandboxGetMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxPatchGroup(const FRequest_SandboxPatchGroup& Request, const FDelegate_SandboxPatchGroup& Delegate = FDelegate_SandboxPatchGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxPatchMmTemplate(const FRequest_SandboxPatchMmTemplate& Request, const FDelegate_SandboxPatchMmTemplate& Delegate = FDelegate_SandboxPatchMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxPutGroup(const FRequest_SandboxPutGroup& Request, const FDelegate_SandboxPutGroup& Delegate = FDelegate_SandboxPutGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxPutMmTemplate(const FRequest_SandboxPutMmTemplate& Request, const FDelegate_SandboxPutMmTemplate& Delegate = FDelegate_SandboxPutMmTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllMmTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMmTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllMmTemplatesInGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMmTemplatesInGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxCreateGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxDeleteGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeleteMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetAllGroupsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllGroups Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetAllMmTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllMmTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetAllMmTemplatesInGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllMmTemplatesInGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxPatchGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPatchGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxPatchMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPatchMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxPutGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPutGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxPutMmTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPutMmTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
-/* Create Mm Template
+/* Create Group
  *
- * Create a new MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingTemplateGroup in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateMmTemplate : public FRequest
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateGroup : public FRequest
 {
-    FRequest_OrgProductSandboxCreateMmTemplate();
-    virtual ~FRequest_OrgProductSandboxCreateMmTemplate() = default;
+    FRequest_SandboxCreateGroup();
+    virtual ~FRequest_SandboxCreateGroup() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingTemplateRequest MatchMakingTemplateRequest;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    FRHAPI_DevMatchMakingTemplateGroupRequest MatchMakingTemplateGroupRequest;
 };
 
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateMmTemplate : public FResponse
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateGroup : public FResponse
 {
-    FResponse_OrgProductSandboxCreateMmTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateMmTemplate() = default;
+    FResponse_SandboxCreateGroup(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxCreateGroup() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_DevMatchMakingTemplate Content;
+    FRHAPI_DevMatchMakingTemplateGroup Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplateGroup& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateMmTemplate
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateGroup
 {
-    typedef FRequest_OrgProductSandboxCreateMmTemplate Request;
-    typedef FResponse_OrgProductSandboxCreateMmTemplate Response;
-    typedef FDelegate_OrgProductSandboxCreateMmTemplate Delegate;
+    typedef FRequest_SandboxCreateGroup Request;
+    typedef FResponse_SandboxCreateGroup Response;
+    typedef FDelegate_SandboxCreateGroup Delegate;
     typedef FMatchMakingTemplatesAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateMmTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Mm Template
- *
- * Delete an existing MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteMmTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteMmTemplate();
-    virtual ~FRequest_OrgProductSandboxDeleteMmTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMmTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteMmTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteMmTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMmTemplate
-{
-    typedef FRequest_OrgProductSandboxDeleteMmTemplate Request;
-    typedef FResponse_OrgProductSandboxDeleteMmTemplate Response;
-    typedef FDelegate_OrgProductSandboxDeleteMmTemplate Delegate;
-    typedef FMatchMakingTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMmTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Mm Templates
- *
- * Get all MatchMakingTemplates in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllMmTemplates : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllMmTemplates();
-    virtual ~FRequest_OrgProductSandboxGetAllMmTemplates() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllMmTemplates : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllMmTemplates(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllMmTemplates() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingTemplatesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMmTemplates
-{
-    typedef FRequest_OrgProductSandboxGetAllMmTemplates Request;
-    typedef FResponse_OrgProductSandboxGetAllMmTemplates Response;
-    typedef FDelegate_OrgProductSandboxGetAllMmTemplates Delegate;
-    typedef FMatchMakingTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMmTemplates(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Mm Templates In Group
- *
- * Get all MatchMakingTemplates in a MatchMakingTemplateGroup  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllMmTemplatesInGroup : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllMmTemplatesInGroup();
-    virtual ~FRequest_OrgProductSandboxGetAllMmTemplatesInGroup() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid GroupId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllMmTemplatesInGroup : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllMmTemplatesInGroup(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllMmTemplatesInGroup() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingTemplatesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMmTemplatesInGroup
-{
-    typedef FRequest_OrgProductSandboxGetAllMmTemplatesInGroup Request;
-    typedef FResponse_OrgProductSandboxGetAllMmTemplatesInGroup Response;
-    typedef FDelegate_OrgProductSandboxGetAllMmTemplatesInGroup Delegate;
-    typedef FMatchMakingTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMmTemplatesInGroup(InRequest, InDelegate, Priority); }
-};
-
-/* Get Mm Template
- *
- * Get a specific MatchMakingTemplates in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetMmTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxGetMmTemplate();
-    virtual ~FRequest_OrgProductSandboxGetMmTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetMmTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxGetMmTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetMmTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMmTemplate
-{
-    typedef FRequest_OrgProductSandboxGetMmTemplate Request;
-    typedef FResponse_OrgProductSandboxGetMmTemplate Response;
-    typedef FDelegate_OrgProductSandboxGetMmTemplate Delegate;
-    typedef FMatchMakingTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMmTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Mm Template
- *
- * Update an existing MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchMmTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxPatchMmTemplate();
-    virtual ~FRequest_OrgProductSandboxPatchMmTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingTemplateUpdateRequest MatchMakingTemplateUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchMmTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxPatchMmTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchMmTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchMmTemplate
-{
-    typedef FRequest_OrgProductSandboxPatchMmTemplate Request;
-    typedef FResponse_OrgProductSandboxPatchMmTemplate Response;
-    typedef FDelegate_OrgProductSandboxPatchMmTemplate Delegate;
-    typedef FMatchMakingTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchMmTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Put Mm Template
- *
- * Update an existing MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutMmTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxPutMmTemplate();
-    virtual ~FRequest_OrgProductSandboxPutMmTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingTemplateUpdateRequest MatchMakingTemplateUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutMmTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxPutMmTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutMmTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutMmTemplate
-{
-    typedef FRequest_OrgProductSandboxPutMmTemplate Request;
-    typedef FResponse_OrgProductSandboxPutMmTemplate Response;
-    typedef FDelegate_OrgProductSandboxPutMmTemplate Delegate;
-    typedef FMatchMakingTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutMmTemplate(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateGroup(InRequest, InDelegate, Priority); }
 };
 
 /* Create Mm Template
  *
- * Create a new MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingTemplates in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateMmTemplate : public FRequest
 {
@@ -458,6 +190,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateMmTemplate : public FRes
 
     FRHAPI_DevMatchMakingTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMmTemplate
@@ -471,9 +215,65 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMmTemplate
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateMmTemplate(InRequest, InDelegate, Priority); }
 };
 
+/* Delete Group
+ *
+ * Update an existing MatchMakingTemplateGroup in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteGroup : public FRequest
+{
+    FRequest_SandboxDeleteGroup();
+    virtual ~FRequest_SandboxDeleteGroup() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingTemplateGroupId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteGroup : public FResponse
+{
+    FResponse_SandboxDeleteGroup(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxDeleteGroup() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    
+
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteGroup
+{
+    typedef FRequest_SandboxDeleteGroup Request;
+    typedef FResponse_SandboxDeleteGroup Response;
+    typedef FDelegate_SandboxDeleteGroup Delegate;
+    typedef FMatchMakingTemplatesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteGroup(InRequest, InDelegate, Priority); }
+};
+
 /* Delete Mm Template
  *
- * Delete an existing MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
+ * Delete an existing MatchMakingTemplates in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteMmTemplate : public FRequest
 {
@@ -497,7 +297,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMmTemplate : public FRes
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -512,9 +323,71 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMmTemplate
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteMmTemplate(InRequest, InDelegate, Priority); }
 };
 
+/* Get All Groups
+ *
+ * Get all MatchMakingTemplateGroups in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllGroups : public FRequest
+{
+    FRequest_SandboxGetAllGroups();
+    virtual ~FRequest_SandboxGetAllGroups() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    /* The maximum number of elements to be returned per call */
+    TOptional<int32> PageSize;
+    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
+    TOptional<FString> Cursor;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllGroups : public FResponse
+{
+    FResponse_SandboxGetAllGroups(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetAllGroups() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevAllMatchMakingTemplateGroupsResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingTemplateGroupsResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllGroups
+{
+    typedef FRequest_SandboxGetAllGroups Request;
+    typedef FResponse_SandboxGetAllGroups Response;
+    typedef FDelegate_SandboxGetAllGroups Delegate;
+    typedef FMatchMakingTemplatesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllGroups(InRequest, InDelegate, Priority); }
+};
+
 /* Get All Mm Templates
  *
- * Get all MatchMakingTemplates in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingTemplates in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMmTemplates : public FRequest
 {
@@ -543,6 +416,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllMmTemplates : public FRe
 
     FRHAPI_DevAllMatchMakingTemplatesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingTemplatesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMmTemplates
@@ -558,7 +443,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMmTemplates
 
 /* Get All Mm Templates In Group
  *
- * Get all MatchMakingTemplates in a MatchMakingTemplateGroup  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingTemplates in a MatchMakingTemplateGroup
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMmTemplatesInGroup : public FRequest
 {
@@ -570,7 +458,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMmTemplatesInGroup : publ
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid GroupId;
+    FGuid MatchMakingTemplateGroupId;
     /* Sandbox ID */
     FGuid SandboxId;
     /* The maximum number of elements to be returned per call */
@@ -588,6 +476,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllMmTemplatesInGroup : pub
 
     FRHAPI_DevAllMatchMakingTemplatesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingTemplatesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMmTemplatesInGroup
@@ -601,9 +501,68 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMmTemplatesInGroup
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllMmTemplatesInGroup(InRequest, InDelegate, Priority); }
 };
 
+/* Get Group
+ *
+ * Get specific MatchMakingTemplateGroup in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetGroup : public FRequest
+{
+    FRequest_SandboxGetGroup();
+    virtual ~FRequest_SandboxGetGroup() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingTemplateGroupId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetGroup : public FResponse
+{
+    FResponse_SandboxGetGroup(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetGroup() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingTemplateGroup Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplateGroup& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetGroup
+{
+    typedef FRequest_SandboxGetGroup Request;
+    typedef FResponse_SandboxGetGroup Response;
+    typedef FDelegate_SandboxGetGroup Delegate;
+    typedef FMatchMakingTemplatesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetGroup(InRequest, InDelegate, Priority); }
+};
+
 /* Get Mm Template
  *
- * Get a specific MatchMakingTemplates in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific MatchMakingTemplates in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetMmTemplate : public FRequest
 {
@@ -627,7 +586,19 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetMmTemplate : public FRespon
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_DevMatchMakingTemplate Content;
+    FRHAPI_DevMatchMakingTemplateResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplateResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -642,9 +613,67 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMmTemplate
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetMmTemplate(InRequest, InDelegate, Priority); }
 };
 
+/* Patch Group
+ *
+ * Update an existing MatchMakingTemplateGroup in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchGroup : public FRequest
+{
+    FRequest_SandboxPatchGroup();
+    virtual ~FRequest_SandboxPatchGroup() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingTemplateGroupId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    FRHAPI_DevMatchMakingTemplateGroupUpdateRequest MatchMakingTemplateGroupUpdateRequest;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchGroup : public FResponse
+{
+    FResponse_SandboxPatchGroup(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxPatchGroup() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingTemplateGroup Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplateGroup& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchGroup
+{
+    typedef FRequest_SandboxPatchGroup Request;
+    typedef FResponse_SandboxPatchGroup Response;
+    typedef FDelegate_SandboxPatchGroup Delegate;
+    typedef FMatchMakingTemplatesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchGroup(InRequest, InDelegate, Priority); }
+};
+
 /* Patch Mm Template
  *
- * Update an existing MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingTemplates in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchMmTemplate : public FRequest
 {
@@ -671,6 +700,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchMmTemplate : public FResp
 
     FRHAPI_DevMatchMakingTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchMmTemplate
@@ -684,9 +725,67 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchMmTemplate
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchMmTemplate(InRequest, InDelegate, Priority); }
 };
 
+/* Put Group
+ *
+ * Update an existing MatchMakingTemplateGroup in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutGroup : public FRequest
+{
+    FRequest_SandboxPutGroup();
+    virtual ~FRequest_SandboxPutGroup() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingTemplateGroupId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    FRHAPI_DevMatchMakingTemplateGroupRequest MatchMakingTemplateGroupRequest;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutGroup : public FResponse
+{
+    FResponse_SandboxPutGroup(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxPutGroup() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingTemplateGroup Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplateGroup& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutGroup
+{
+    typedef FRequest_SandboxPutGroup Request;
+    typedef FResponse_SandboxPutGroup Response;
+    typedef FDelegate_SandboxPutGroup Delegate;
+    typedef FMatchMakingTemplatesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutGroup(InRequest, InDelegate, Priority); }
+};
+
 /* Put Mm Template
  *
- * Update an existing MatchMakingTemplates in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingTemplates in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutMmTemplate : public FRequest
 {
@@ -701,7 +800,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutMmTemplate : public FRequest
     FGuid MatchMakingTemplateId;
     /* Sandbox ID */
     FGuid SandboxId;
-    FRHAPI_DevMatchMakingTemplateUpdateRequest MatchMakingTemplateUpdateRequest;
+    FRHAPI_DevMatchMakingTemplateRequest MatchMakingTemplateRequest;
 };
 
 struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutMmTemplate : public FResponse
@@ -712,6 +811,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutMmTemplate : public FRespon
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingTemplate Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

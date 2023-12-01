@@ -39,6 +39,21 @@ void FRHAPI_DevPortalPermission::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("access"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, Access_Optional);
     }
+    if (Description_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("description"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, Description_Optional);
+    }
+    if (DisplayName_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("display_name"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, DisplayName_Optional);
+    }
+    if (Level_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("level"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(Level_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -69,6 +84,24 @@ bool FRHAPI_DevPortalPermission::FromJson(const TSharedPtr<FJsonValue>& JsonValu
     {
         Access_IsSet = TryGetJsonValue(JsonAccessField, Access_Optional);
         ParseSuccess &= Access_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
+    if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
+    {
+        Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
+        ParseSuccess &= Description_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
+    if (JsonDisplayNameField.IsValid() && !JsonDisplayNameField->IsNull())
+    {
+        DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
+        ParseSuccess &= DisplayName_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLevelField = (*Object)->TryGetField(TEXT("level"));
+    if (JsonLevelField.IsValid() && !JsonLevelField->IsNull())
+    {
+        Level_IsSet = TryGetJsonValue(JsonLevelField, Level_Optional);
+        ParseSuccess &= Level_IsSet;
     }
 
     return ParseSuccess;

@@ -31,10 +31,6 @@ void FRHAPI_DevMapSelectionListEntry::WriteJson(TSharedRef<TJsonWriter<>>& Write
         Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, SandboxId_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("selection_list_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, SelectionListId);
-    Writer->WriteIdentifierPrefix(TEXT("map_selection_list_entry_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MapSelectionListEntryId);
     if (LastModifiedAccountId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
@@ -45,21 +41,15 @@ void FRHAPI_DevMapSelectionListEntry::WriteJson(TSharedRef<TJsonWriter<>>& Write
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
     }
-    if (MapName_IsSet)
+    if (CreatedTimestamp_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("map_name"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, MapName_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
-    if (Mode_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("mode"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, Mode_Optional);
-    }
-    if (LegacyConfig_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
-    }
+    Writer->WriteIdentifierPrefix(TEXT("map_selection_list_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MapSelectionListId);
+    Writer->WriteIdentifierPrefix(TEXT("map_selection_list_entry_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MapSelectionListEntryId);
     Writer->WriteObjectEnd();
 }
 
@@ -81,10 +71,6 @@ bool FRHAPI_DevMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& Jso
         SandboxId_IsSet = TryGetJsonValue(JsonSandboxIdField, SandboxId_Optional);
         ParseSuccess &= SandboxId_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonSelectionListIdField = (*Object)->TryGetField(TEXT("selection_list_id"));
-    ParseSuccess &= JsonSelectionListIdField.IsValid() && !JsonSelectionListIdField->IsNull() && TryGetJsonValue(JsonSelectionListIdField, SelectionListId);
-    const TSharedPtr<FJsonValue> JsonMapSelectionListEntryIdField = (*Object)->TryGetField(TEXT("map_selection_list_entry_id"));
-    ParseSuccess &= JsonMapSelectionListEntryIdField.IsValid() && !JsonMapSelectionListEntryIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListEntryIdField, MapSelectionListEntryId);
     const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
     if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
     {
@@ -97,24 +83,16 @@ bool FRHAPI_DevMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& Jso
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonMapNameField = (*Object)->TryGetField(TEXT("map_name"));
-    if (JsonMapNameField.IsValid() && !JsonMapNameField->IsNull())
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
     {
-        MapName_IsSet = TryGetJsonValue(JsonMapNameField, MapName_Optional);
-        ParseSuccess &= MapName_IsSet;
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonModeField = (*Object)->TryGetField(TEXT("mode"));
-    if (JsonModeField.IsValid() && !JsonModeField->IsNull())
-    {
-        Mode_IsSet = TryGetJsonValue(JsonModeField, Mode_Optional);
-        ParseSuccess &= Mode_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
-    if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
-    {
-        LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
-        ParseSuccess &= LegacyConfig_IsSet;
-    }
+    const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
+    ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
+    const TSharedPtr<FJsonValue> JsonMapSelectionListEntryIdField = (*Object)->TryGetField(TEXT("map_selection_list_entry_id"));
+    ParseSuccess &= JsonMapSelectionListEntryIdField.IsValid() && !JsonMapSelectionListEntryIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListEntryIdField, MapSelectionListEntryId);
 
     return ParseSuccess;
 }

@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevTwitchConfig : public FRHAPI_DevModel
@@ -72,6 +72,15 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevTwitchConfig : public FRHAPI_DevModel
     const FString& GetClientId() const { return ClientId; }
     /** @brief Sets the value of ClientId */
     void SetClientId(FString NewValue) { ClientId = NewValue;  }
+
+    /** @brief Twitch game ID. */
+    FString GameId{  };
+    /** @brief Gets the value of GameId */
+    FString& GetGameId() { return GameId; }
+    /** @brief Gets the value of GameId */
+    const FString& GetGameId() const { return GameId; }
+    /** @brief Sets the value of GameId */
+    void SetGameId(FString NewValue) { GameId = NewValue;  }
 };
 
 /** @} */

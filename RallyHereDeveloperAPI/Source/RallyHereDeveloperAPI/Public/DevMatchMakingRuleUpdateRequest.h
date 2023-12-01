@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevComparisonOperation.h"
 #include "DevRuleType.h"
 #include "DevMatchMakingRuleUpdateRequest.generated.h"
 
@@ -17,7 +18,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingRuleUpdateRequest : public FRHAPI_DevModel
@@ -62,46 +63,25 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingRuleUpdateRequest : public
     void ClearMatchMakingRulesetId() { MatchMakingRulesetId_IsSet = false; }
 
     /** @brief Which comparison operator is used when evaluating the rule */
-    FString ComparisonOperation_Optional{  };
+    ERHAPI_DevComparisonOperation ComparisonOperation_Optional{  };
     /** @brief true if ComparisonOperation_Optional has been set to a value */
     bool ComparisonOperation_IsSet{ false };
     /** @brief Gets the value of ComparisonOperation_Optional, regardless of it having been set */
-    FString& GetComparisonOperation() { return ComparisonOperation_Optional; }
+    ERHAPI_DevComparisonOperation& GetComparisonOperation() { return ComparisonOperation_Optional; }
     /** @brief Gets the value of ComparisonOperation_Optional, regardless of it having been set */
-    const FString& GetComparisonOperation() const { return ComparisonOperation_Optional; }
+    const ERHAPI_DevComparisonOperation& GetComparisonOperation() const { return ComparisonOperation_Optional; }
     /** @brief Gets the value of ComparisonOperation_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetComparisonOperation(const FString& DefaultValue) const { if (ComparisonOperation_IsSet) return ComparisonOperation_Optional; return DefaultValue; }
+    const ERHAPI_DevComparisonOperation& GetComparisonOperation(const ERHAPI_DevComparisonOperation& DefaultValue) const { if (ComparisonOperation_IsSet) return ComparisonOperation_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of ComparisonOperation_Optional and returns true if it has been set, otherwise returns false */
-    bool GetComparisonOperation(FString& OutValue) const { if (ComparisonOperation_IsSet) OutValue = ComparisonOperation_Optional; return ComparisonOperation_IsSet; }
+    bool GetComparisonOperation(ERHAPI_DevComparisonOperation& OutValue) const { if (ComparisonOperation_IsSet) OutValue = ComparisonOperation_Optional; return ComparisonOperation_IsSet; }
     /** @brief Returns a pointer to ComparisonOperation_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetComparisonOperationOrNull() { if (ComparisonOperation_IsSet) return &ComparisonOperation_Optional; return nullptr; }
+    ERHAPI_DevComparisonOperation* GetComparisonOperationOrNull() { if (ComparisonOperation_IsSet) return &ComparisonOperation_Optional; return nullptr; }
     /** @brief Returns a pointer to ComparisonOperation_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetComparisonOperationOrNull() const { if (ComparisonOperation_IsSet) return &ComparisonOperation_Optional; return nullptr; }
+    const ERHAPI_DevComparisonOperation* GetComparisonOperationOrNull() const { if (ComparisonOperation_IsSet) return &ComparisonOperation_Optional; return nullptr; }
     /** @brief Sets the value of ComparisonOperation_Optional and also sets ComparisonOperation_IsSet to true */
-    void SetComparisonOperation(FString NewValue) { ComparisonOperation_Optional = NewValue; ComparisonOperation_IsSet = true; }
+    void SetComparisonOperation(ERHAPI_DevComparisonOperation NewValue) { ComparisonOperation_Optional = NewValue; ComparisonOperation_IsSet = true; }
      /** @brief Clears the value of ComparisonOperation_Optional and sets ComparisonOperation_IsSet to false */
     void ClearComparisonOperation() { ComparisonOperation_IsSet = false; }
-
-    /** @brief What type of rule this is (determines what types of values are being compared */
-    ERHAPI_DevRuleType RuleType_Optional{  };
-    /** @brief true if RuleType_Optional has been set to a value */
-    bool RuleType_IsSet{ false };
-    /** @brief Gets the value of RuleType_Optional, regardless of it having been set */
-    ERHAPI_DevRuleType& GetRuleType() { return RuleType_Optional; }
-    /** @brief Gets the value of RuleType_Optional, regardless of it having been set */
-    const ERHAPI_DevRuleType& GetRuleType() const { return RuleType_Optional; }
-    /** @brief Gets the value of RuleType_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_DevRuleType& GetRuleType(const ERHAPI_DevRuleType& DefaultValue) const { if (RuleType_IsSet) return RuleType_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of RuleType_Optional and returns true if it has been set, otherwise returns false */
-    bool GetRuleType(ERHAPI_DevRuleType& OutValue) const { if (RuleType_IsSet) OutValue = RuleType_Optional; return RuleType_IsSet; }
-    /** @brief Returns a pointer to RuleType_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_DevRuleType* GetRuleTypeOrNull() { if (RuleType_IsSet) return &RuleType_Optional; return nullptr; }
-    /** @brief Returns a pointer to RuleType_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_DevRuleType* GetRuleTypeOrNull() const { if (RuleType_IsSet) return &RuleType_Optional; return nullptr; }
-    /** @brief Sets the value of RuleType_Optional and also sets RuleType_IsSet to true */
-    void SetRuleType(ERHAPI_DevRuleType NewValue) { RuleType_Optional = NewValue; RuleType_IsSet = true; }
-     /** @brief Clears the value of RuleType_Optional and sets RuleType_IsSet to false */
-    void ClearRuleType() { RuleType_IsSet = false; }
 
     /** @brief What item is being compared if this is an Inventory rule */
     FGuid ItemId_Optional{  };
@@ -123,6 +103,27 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingRuleUpdateRequest : public
     void SetItemId(FGuid NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
      /** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
     void ClearItemId() { ItemId_IsSet = false; }
+
+    /** @brief What type of rule this is (determines what types of values are being compared */
+    ERHAPI_DevRuleType RuleType_Optional{  };
+    /** @brief true if RuleType_Optional has been set to a value */
+    bool RuleType_IsSet{ false };
+    /** @brief Gets the value of RuleType_Optional, regardless of it having been set */
+    ERHAPI_DevRuleType& GetRuleType() { return RuleType_Optional; }
+    /** @brief Gets the value of RuleType_Optional, regardless of it having been set */
+    const ERHAPI_DevRuleType& GetRuleType() const { return RuleType_Optional; }
+    /** @brief Gets the value of RuleType_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_DevRuleType& GetRuleType(const ERHAPI_DevRuleType& DefaultValue) const { if (RuleType_IsSet) return RuleType_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of RuleType_Optional and returns true if it has been set, otherwise returns false */
+    bool GetRuleType(ERHAPI_DevRuleType& OutValue) const { if (RuleType_IsSet) OutValue = RuleType_Optional; return RuleType_IsSet; }
+    /** @brief Returns a pointer to RuleType_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_DevRuleType* GetRuleTypeOrNull() { if (RuleType_IsSet) return &RuleType_Optional; return nullptr; }
+    /** @brief Returns a pointer to RuleType_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_DevRuleType* GetRuleTypeOrNull() const { if (RuleType_IsSet) return &RuleType_Optional; return nullptr; }
+    /** @brief Sets the value of RuleType_Optional and also sets RuleType_IsSet to true */
+    void SetRuleType(ERHAPI_DevRuleType NewValue) { RuleType_Optional = NewValue; RuleType_IsSet = true; }
+     /** @brief Clears the value of RuleType_Optional and sets RuleType_IsSet to false */
+    void ClearRuleType() { RuleType_IsSet = false; }
 
     /** @brief What value is to be compared to */
     int32 ComparisonValue_Optional{  };

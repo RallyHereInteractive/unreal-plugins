@@ -22,8 +22,8 @@ using RallyHereDeveloperAPI::TryGetJsonValue;
 void FRHAPI_DevMatchMakingProfileListEntryRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("profile_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ProfileId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingProfileId);
     Writer->WriteObjectEnd();
 }
 
@@ -35,8 +35,8 @@ bool FRHAPI_DevMatchMakingProfileListEntryRequest::FromJson(const TSharedPtr<FJs
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonProfileIdField = (*Object)->TryGetField(TEXT("profile_id"));
-    ParseSuccess &= JsonProfileIdField.IsValid() && !JsonProfileIdField->IsNull() && TryGetJsonValue(JsonProfileIdField, ProfileId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
+    ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && !JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId);
 
     return ParseSuccess;
 }

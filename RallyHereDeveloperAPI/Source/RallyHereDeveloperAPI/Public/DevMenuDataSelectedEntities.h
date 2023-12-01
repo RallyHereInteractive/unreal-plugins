@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMenuDataSelectedEntities : public FRHAPI_DevModel
@@ -54,6 +54,14 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMenuDataSelectedEntities : public FRH
     const TMap<FString, FString>& GetOrg() const { return Org; }
     /** @brief Sets the value of Org */
     void SetOrg(TMap<FString, FString> NewValue) { Org = NewValue;  }
+
+    TMap<FString, FString> Environment{  };
+    /** @brief Gets the value of Environment */
+    TMap<FString, FString>& GetEnvironment() { return Environment; }
+    /** @brief Gets the value of Environment */
+    const TMap<FString, FString>& GetEnvironment() const { return Environment; }
+    /** @brief Sets the value of Environment */
+    void SetEnvironment(TMap<FString, FString> NewValue) { Environment = NewValue;  }
 
     TMap<FString, FString> Sandbox{  };
     /** @brief Gets the value of Sandbox */

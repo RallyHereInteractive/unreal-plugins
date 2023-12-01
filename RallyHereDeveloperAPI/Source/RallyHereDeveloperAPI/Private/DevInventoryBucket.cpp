@@ -62,7 +62,7 @@ FString EnumToString(const ERHAPI_DevInventoryBucket& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevInventoryBucket& Value)
 {
-    static TMap<FString, ERHAPI_DevInventoryBucket> StringToEnum = {
+    static TMap<FString, ERHAPI_DevInventoryBucket> StringToEnum = { 
         { TEXT("free"), ERHAPI_DevInventoryBucket::Free },
         { TEXT("sweat"), ERHAPI_DevInventoryBucket::Sweat },
         { TEXT("none"), ERHAPI_DevInventoryBucket::None },

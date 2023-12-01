@@ -13,9 +13,10 @@
 #include "DevAnonConfig.h"
 #include "DevAppleConfig.h"
 #include "DevBasicConfig.h"
+#include "DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig.h"
 #include "DevEpicOnlineServicesConfig.h"
 #include "DevGoogleConfig.h"
-#include "DevLegacyConfig.h"
+#include "DevLegacyIdGenerationConfig.h"
 #include "DevNintendoConfig.h"
 #include "DevPlaystationConfig.h"
 #include "DevSocialConfig.h"
@@ -313,23 +314,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevGeneralConfigCreateUpdate : public FR
      /** @brief Clears the value of Vivox_Optional and sets Vivox_IsSet to false */
     void ClearVivox() { Vivox_IsSet = false; }
 
-    FRHAPI_DevLegacyConfig Legacy_Optional{  };
+    FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig Legacy_Optional{  };
     /** @brief true if Legacy_Optional has been set to a value */
     bool Legacy_IsSet{ false };
     /** @brief Gets the value of Legacy_Optional, regardless of it having been set */
-    FRHAPI_DevLegacyConfig& GetLegacy() { return Legacy_Optional; }
+    FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig& GetLegacy() { return Legacy_Optional; }
     /** @brief Gets the value of Legacy_Optional, regardless of it having been set */
-    const FRHAPI_DevLegacyConfig& GetLegacy() const { return Legacy_Optional; }
+    const FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig& GetLegacy() const { return Legacy_Optional; }
     /** @brief Gets the value of Legacy_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_DevLegacyConfig& GetLegacy(const FRHAPI_DevLegacyConfig& DefaultValue) const { if (Legacy_IsSet) return Legacy_Optional; return DefaultValue; }
+    const FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig& GetLegacy(const FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig& DefaultValue) const { if (Legacy_IsSet) return Legacy_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Legacy_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacy(FRHAPI_DevLegacyConfig& OutValue) const { if (Legacy_IsSet) OutValue = Legacy_Optional; return Legacy_IsSet; }
+    bool GetLegacy(FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig& OutValue) const { if (Legacy_IsSet) OutValue = Legacy_Optional; return Legacy_IsSet; }
     /** @brief Returns a pointer to Legacy_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_DevLegacyConfig* GetLegacyOrNull() { if (Legacy_IsSet) return &Legacy_Optional; return nullptr; }
+    FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig* GetLegacyOrNull() { if (Legacy_IsSet) return &Legacy_Optional; return nullptr; }
     /** @brief Returns a pointer to Legacy_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_DevLegacyConfig* GetLegacyOrNull() const { if (Legacy_IsSet) return &Legacy_Optional; return nullptr; }
+    const FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig* GetLegacyOrNull() const { if (Legacy_IsSet) return &Legacy_Optional; return nullptr; }
     /** @brief Sets the value of Legacy_Optional and also sets Legacy_IsSet to true */
-    void SetLegacy(FRHAPI_DevLegacyConfig NewValue) { Legacy_Optional = NewValue; Legacy_IsSet = true; }
+    void SetLegacy(FRHAPI_DevDependenciesSandboxConfigGameConfigSchemasLegacyConfig NewValue) { Legacy_Optional = NewValue; Legacy_IsSet = true; }
      /** @brief Clears the value of Legacy_Optional and sets Legacy_IsSet to false */
     void ClearLegacy() { Legacy_IsSet = false; }
 
@@ -466,6 +467,51 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevGeneralConfigCreateUpdate : public FR
     void SetCouponVendorId(FString NewValue) { CouponVendorId_Optional = NewValue; CouponVendorId_IsSet = true; }
      /** @brief Clears the value of CouponVendorId_Optional and sets CouponVendorId_IsSet to false */
     void ClearCouponVendorId() { CouponVendorId_IsSet = false; }
+
+    FRHAPI_DevLegacyIdGenerationConfig LegacyIdGeneration_Optional{  };
+    /** @brief true if LegacyIdGeneration_Optional has been set to a value */
+    bool LegacyIdGeneration_IsSet{ false };
+    /** @brief Gets the value of LegacyIdGeneration_Optional, regardless of it having been set */
+    FRHAPI_DevLegacyIdGenerationConfig& GetLegacyIdGeneration() { return LegacyIdGeneration_Optional; }
+    /** @brief Gets the value of LegacyIdGeneration_Optional, regardless of it having been set */
+    const FRHAPI_DevLegacyIdGenerationConfig& GetLegacyIdGeneration() const { return LegacyIdGeneration_Optional; }
+    /** @brief Gets the value of LegacyIdGeneration_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_DevLegacyIdGenerationConfig& GetLegacyIdGeneration(const FRHAPI_DevLegacyIdGenerationConfig& DefaultValue) const { if (LegacyIdGeneration_IsSet) return LegacyIdGeneration_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LegacyIdGeneration_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLegacyIdGeneration(FRHAPI_DevLegacyIdGenerationConfig& OutValue) const { if (LegacyIdGeneration_IsSet) OutValue = LegacyIdGeneration_Optional; return LegacyIdGeneration_IsSet; }
+    /** @brief Returns a pointer to LegacyIdGeneration_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_DevLegacyIdGenerationConfig* GetLegacyIdGenerationOrNull() { if (LegacyIdGeneration_IsSet) return &LegacyIdGeneration_Optional; return nullptr; }
+    /** @brief Returns a pointer to LegacyIdGeneration_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_DevLegacyIdGenerationConfig* GetLegacyIdGenerationOrNull() const { if (LegacyIdGeneration_IsSet) return &LegacyIdGeneration_Optional; return nullptr; }
+    /** @brief Sets the value of LegacyIdGeneration_Optional and also sets LegacyIdGeneration_IsSet to true */
+    void SetLegacyIdGeneration(FRHAPI_DevLegacyIdGenerationConfig NewValue) { LegacyIdGeneration_Optional = NewValue; LegacyIdGeneration_IsSet = true; }
+     /** @brief Clears the value of LegacyIdGeneration_Optional and sets LegacyIdGeneration_IsSet to false */
+    void ClearLegacyIdGeneration() { LegacyIdGeneration_IsSet = false; }
+
+    /** @brief Whether or not to enable legacy setting types */
+    bool EnableLegacySettingTypes_Optional{  };
+    /** @brief true if EnableLegacySettingTypes_Optional has been set to a value */
+    bool EnableLegacySettingTypes_IsSet{ false };
+    /** @brief Gets the value of EnableLegacySettingTypes_Optional, regardless of it having been set */
+    bool& GetEnableLegacySettingTypes() { return EnableLegacySettingTypes_Optional; }
+    /** @brief Gets the value of EnableLegacySettingTypes_Optional, regardless of it having been set */
+    const bool& GetEnableLegacySettingTypes() const { return EnableLegacySettingTypes_Optional; }
+    /** @brief Gets the value of EnableLegacySettingTypes_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetEnableLegacySettingTypes(const bool& DefaultValue) const { if (EnableLegacySettingTypes_IsSet) return EnableLegacySettingTypes_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of EnableLegacySettingTypes_Optional and returns true if it has been set, otherwise returns false */
+    bool GetEnableLegacySettingTypes(bool& OutValue) const { if (EnableLegacySettingTypes_IsSet) OutValue = EnableLegacySettingTypes_Optional; return EnableLegacySettingTypes_IsSet; }
+    /** @brief Returns a pointer to EnableLegacySettingTypes_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetEnableLegacySettingTypesOrNull() { if (EnableLegacySettingTypes_IsSet) return &EnableLegacySettingTypes_Optional; return nullptr; }
+    /** @brief Returns a pointer to EnableLegacySettingTypes_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetEnableLegacySettingTypesOrNull() const { if (EnableLegacySettingTypes_IsSet) return &EnableLegacySettingTypes_Optional; return nullptr; }
+    /** @brief Sets the value of EnableLegacySettingTypes_Optional and also sets EnableLegacySettingTypes_IsSet to true */
+    void SetEnableLegacySettingTypes(bool NewValue) { EnableLegacySettingTypes_Optional = NewValue; EnableLegacySettingTypes_IsSet = true; }
+     /** @brief Clears the value of EnableLegacySettingTypes_Optional and sets EnableLegacySettingTypes_IsSet to false */
+    void ClearEnableLegacySettingTypes() { EnableLegacySettingTypes_Optional = false; EnableLegacySettingTypes_IsSet = false; }
+    /** @brief Returns true if EnableLegacySettingTypes_Optional is set and matches the default value */
+    bool IsEnableLegacySettingTypesDefaultValue() const { return EnableLegacySettingTypes_IsSet && EnableLegacySettingTypes_Optional == false; }
+    /** @brief Sets the value of EnableLegacySettingTypes_Optional to its default and also sets EnableLegacySettingTypes_IsSet to true */
+    void SetEnableLegacySettingTypesToDefault() { EnableLegacySettingTypes_Optional = false; EnableLegacySettingTypes_IsSet = true; }
 };
 
 /** @} */

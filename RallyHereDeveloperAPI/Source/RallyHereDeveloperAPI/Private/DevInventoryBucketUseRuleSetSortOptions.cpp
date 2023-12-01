@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_DevInventoryBucketUseRuleSetSortOptions& Value
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevInventoryBucketUseRuleSetSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevInventoryBucketUseRuleSetSortOptions> StringToEnum = {
+    static TMap<FString, ERHAPI_DevInventoryBucketUseRuleSetSortOptions> StringToEnum = { 
         { TEXT("rule_set_id"), ERHAPI_DevInventoryBucketUseRuleSetSortOptions::InventoryBucketUseRuleSetId },
         { TEXT("legacy_inventory_bucket_use_rule_set_id"), ERHAPI_DevInventoryBucketUseRuleSetSortOptions::LegacyInventoryBucketUseRuleSetId },
         { TEXT("name"), ERHAPI_DevInventoryBucketUseRuleSetSortOptions::Name },

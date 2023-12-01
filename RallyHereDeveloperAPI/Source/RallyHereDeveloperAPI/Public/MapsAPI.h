@@ -17,13 +17,15 @@
 #include "DevMap.h"
 #include "DevMapRequest.h"
 #include "DevMapSelectionList.h"
+#include "DevMapSelectionListBase.h"
 #include "DevMapSelectionListEntry.h"
+#include "DevMapSelectionListEntryFlattened.h"
 #include "DevMapSelectionListEntryRequest.h"
 #include "DevMapSelectionListEntryUpdateRequest.h"
+#include "DevMapSelectionListFlattened.h"
 #include "DevMapSelectionListRequest.h"
 #include "DevMapSelectionListUpdateRequest.h"
 #include "DevMapUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -31,42 +33,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateMap;
-struct FResponse_OrgProductSandboxCreateMap;
-struct FRequest_OrgProductSandboxCreateMapSelectionListEntry;
-struct FResponse_OrgProductSandboxCreateMapSelectionListEntry;
-struct FRequest_OrgProductSandboxCreateSelectionList;
-struct FResponse_OrgProductSandboxCreateSelectionList;
-struct FRequest_OrgProductSandboxDeleteMap;
-struct FResponse_OrgProductSandboxDeleteMap;
-struct FRequest_OrgProductSandboxDeleteMapSelectionList;
-struct FResponse_OrgProductSandboxDeleteMapSelectionList;
-struct FRequest_OrgProductSandboxDeleteMapSelectionListEntry;
-struct FResponse_OrgProductSandboxDeleteMapSelectionListEntry;
-struct FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList;
-struct FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList;
-struct FRequest_OrgProductSandboxGetAllMapSelectionLists;
-struct FResponse_OrgProductSandboxGetAllMapSelectionLists;
-struct FRequest_OrgProductSandboxGetAllMaps;
-struct FResponse_OrgProductSandboxGetAllMaps;
-struct FRequest_OrgProductSandboxGetMap;
-struct FResponse_OrgProductSandboxGetMap;
-struct FRequest_OrgProductSandboxGetMapSelectionList;
-struct FResponse_OrgProductSandboxGetMapSelectionList;
-struct FRequest_OrgProductSandboxGetMapSelectionListEntry;
-struct FResponse_OrgProductSandboxGetMapSelectionListEntry;
-struct FRequest_OrgProductSandboxPatchMap;
-struct FResponse_OrgProductSandboxPatchMap;
-struct FRequest_OrgProductSandboxPatchSelectionList;
-struct FResponse_OrgProductSandboxPatchSelectionList;
-struct FRequest_OrgProductSandboxPatchSelectionListEntry;
-struct FResponse_OrgProductSandboxPatchSelectionListEntry;
-struct FRequest_OrgProductSandboxPutMap;
-struct FResponse_OrgProductSandboxPutMap;
-struct FRequest_OrgProductSandboxPutSelectionList;
-struct FResponse_OrgProductSandboxPutSelectionList;
-struct FRequest_OrgProductSandboxPutSelectionListEntry;
-struct FResponse_OrgProductSandboxPutSelectionListEntry;
 struct FRequest_SandboxCreateMap;
 struct FResponse_SandboxCreateMap;
 struct FRequest_SandboxCreateMapSelectionListEntry;
@@ -104,24 +70,6 @@ struct FResponse_SandboxPutSelectionList;
 struct FRequest_SandboxPutSelectionListEntry;
 struct FResponse_SandboxPutSelectionListEntry;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateMap, const FResponse_OrgProductSandboxCreateMap&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateMapSelectionListEntry, const FResponse_OrgProductSandboxCreateMapSelectionListEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateSelectionList, const FResponse_OrgProductSandboxCreateSelectionList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteMap, const FResponse_OrgProductSandboxDeleteMap&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteMapSelectionList, const FResponse_OrgProductSandboxDeleteMapSelectionList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteMapSelectionListEntry, const FResponse_OrgProductSandboxDeleteMapSelectionListEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList, const FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllMapSelectionLists, const FResponse_OrgProductSandboxGetAllMapSelectionLists&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllMaps, const FResponse_OrgProductSandboxGetAllMaps&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetMap, const FResponse_OrgProductSandboxGetMap&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetMapSelectionList, const FResponse_OrgProductSandboxGetMapSelectionList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetMapSelectionListEntry, const FResponse_OrgProductSandboxGetMapSelectionListEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchMap, const FResponse_OrgProductSandboxPatchMap&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchSelectionList, const FResponse_OrgProductSandboxPatchSelectionList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchSelectionListEntry, const FResponse_OrgProductSandboxPatchSelectionListEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutMap, const FResponse_OrgProductSandboxPutMap&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutSelectionList, const FResponse_OrgProductSandboxPutSelectionList&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutSelectionListEntry, const FResponse_OrgProductSandboxPutSelectionListEntry&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateMap, const FResponse_SandboxCreateMap&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateMapSelectionListEntry, const FResponse_SandboxCreateMapSelectionListEntry&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateSelectionList, const FResponse_SandboxCreateSelectionList&);
@@ -147,24 +95,6 @@ public:
     FMapsAPI();
     virtual ~FMapsAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateMap(const FRequest_OrgProductSandboxCreateMap& Request, const FDelegate_OrgProductSandboxCreateMap& Delegate = FDelegate_OrgProductSandboxCreateMap(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxCreateMapSelectionListEntry(const FRequest_OrgProductSandboxCreateMapSelectionListEntry& Request, const FDelegate_OrgProductSandboxCreateMapSelectionListEntry& Delegate = FDelegate_OrgProductSandboxCreateMapSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxCreateSelectionList(const FRequest_OrgProductSandboxCreateSelectionList& Request, const FDelegate_OrgProductSandboxCreateSelectionList& Delegate = FDelegate_OrgProductSandboxCreateSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteMap(const FRequest_OrgProductSandboxDeleteMap& Request, const FDelegate_OrgProductSandboxDeleteMap& Delegate = FDelegate_OrgProductSandboxDeleteMap(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteMapSelectionList(const FRequest_OrgProductSandboxDeleteMapSelectionList& Request, const FDelegate_OrgProductSandboxDeleteMapSelectionList& Delegate = FDelegate_OrgProductSandboxDeleteMapSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteMapSelectionListEntry(const FRequest_OrgProductSandboxDeleteMapSelectionListEntry& Request, const FDelegate_OrgProductSandboxDeleteMapSelectionListEntry& Delegate = FDelegate_OrgProductSandboxDeleteMapSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(const FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList& Request, const FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList& Delegate = FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllMapSelectionLists(const FRequest_OrgProductSandboxGetAllMapSelectionLists& Request, const FDelegate_OrgProductSandboxGetAllMapSelectionLists& Delegate = FDelegate_OrgProductSandboxGetAllMapSelectionLists(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllMaps(const FRequest_OrgProductSandboxGetAllMaps& Request, const FDelegate_OrgProductSandboxGetAllMaps& Delegate = FDelegate_OrgProductSandboxGetAllMaps(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetMap(const FRequest_OrgProductSandboxGetMap& Request, const FDelegate_OrgProductSandboxGetMap& Delegate = FDelegate_OrgProductSandboxGetMap(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetMapSelectionList(const FRequest_OrgProductSandboxGetMapSelectionList& Request, const FDelegate_OrgProductSandboxGetMapSelectionList& Delegate = FDelegate_OrgProductSandboxGetMapSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetMapSelectionListEntry(const FRequest_OrgProductSandboxGetMapSelectionListEntry& Request, const FDelegate_OrgProductSandboxGetMapSelectionListEntry& Delegate = FDelegate_OrgProductSandboxGetMapSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchMap(const FRequest_OrgProductSandboxPatchMap& Request, const FDelegate_OrgProductSandboxPatchMap& Delegate = FDelegate_OrgProductSandboxPatchMap(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchSelectionList(const FRequest_OrgProductSandboxPatchSelectionList& Request, const FDelegate_OrgProductSandboxPatchSelectionList& Delegate = FDelegate_OrgProductSandboxPatchSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchSelectionListEntry(const FRequest_OrgProductSandboxPatchSelectionListEntry& Request, const FDelegate_OrgProductSandboxPatchSelectionListEntry& Delegate = FDelegate_OrgProductSandboxPatchSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutMap(const FRequest_OrgProductSandboxPutMap& Request, const FDelegate_OrgProductSandboxPutMap& Delegate = FDelegate_OrgProductSandboxPutMap(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutSelectionList(const FRequest_OrgProductSandboxPutSelectionList& Request, const FDelegate_OrgProductSandboxPutSelectionList& Delegate = FDelegate_OrgProductSandboxPutSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutSelectionListEntry(const FRequest_OrgProductSandboxPutSelectionListEntry& Request, const FDelegate_OrgProductSandboxPutSelectionListEntry& Delegate = FDelegate_OrgProductSandboxPutSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateMap(const FRequest_SandboxCreateMap& Request, const FDelegate_SandboxCreateMap& Delegate = FDelegate_SandboxCreateMap(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateMapSelectionListEntry(const FRequest_SandboxCreateMapSelectionListEntry& Request, const FDelegate_SandboxCreateMapSelectionListEntry& Delegate = FDelegate_SandboxCreateMapSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateSelectionList(const FRequest_SandboxCreateSelectionList& Request, const FDelegate_SandboxCreateSelectionList& Delegate = FDelegate_SandboxCreateSelectionList(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -185,24 +115,6 @@ public:
     FHttpRequestPtr SandboxPutSelectionListEntry(const FRequest_SandboxPutSelectionListEntry& Request, const FDelegate_SandboxPutSelectionListEntry& Delegate = FDelegate_SandboxPutSelectionListEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxCreateMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxCreateSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteMapSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMapSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllMapSelectionListsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMapSelectionLists Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllMapsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMaps Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetMapSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMapSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -226,838 +138,9 @@ private:
 
 /* Create Map
  *
- * Add a new Map for a sandbox                   Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateMap : public FRequest
-{
-    FRequest_OrgProductSandboxCreateMap();
-    virtual ~FRequest_OrgProductSandboxCreateMap() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapRequest MapRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateMap : public FResponse
-{
-    FResponse_OrgProductSandboxCreateMap(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateMap() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMap Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateMap
-{
-    typedef FRequest_OrgProductSandboxCreateMap Request;
-    typedef FResponse_OrgProductSandboxCreateMap Response;
-    typedef FDelegate_OrgProductSandboxCreateMap Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateMap(InRequest, InDelegate, Priority); }
-};
-
-/* Create Map Selection List Entry
- *
- * Add a new Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateMapSelectionListEntry : public FRequest
-{
-    FRequest_OrgProductSandboxCreateMapSelectionListEntry();
-    virtual ~FRequest_OrgProductSandboxCreateMapSelectionListEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapSelectionListEntryRequest MapSelectionListEntryRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateMapSelectionListEntry : public FResponse
-{
-    FResponse_OrgProductSandboxCreateMapSelectionListEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateMapSelectionListEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateMapSelectionListEntry
-{
-    typedef FRequest_OrgProductSandboxCreateMapSelectionListEntry Request;
-    typedef FResponse_OrgProductSandboxCreateMapSelectionListEntry Response;
-    typedef FDelegate_OrgProductSandboxCreateMapSelectionListEntry Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateMapSelectionListEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Create Selection List
- *
- * Add a new Map Selection List for a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateSelectionList : public FRequest
-{
-    FRequest_OrgProductSandboxCreateSelectionList();
-    virtual ~FRequest_OrgProductSandboxCreateSelectionList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapSelectionListRequest MapSelectionListRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateSelectionList : public FResponse
-{
-    FResponse_OrgProductSandboxCreateSelectionList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateSelectionList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateSelectionList
-{
-    typedef FRequest_OrgProductSandboxCreateSelectionList Request;
-    typedef FResponse_OrgProductSandboxCreateSelectionList Response;
-    typedef FDelegate_OrgProductSandboxCreateSelectionList Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateSelectionList(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Map
- *
- * Delete a specific Map in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteMap : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteMap();
-    virtual ~FRequest_OrgProductSandboxDeleteMap() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MapId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMap : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteMap(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteMap() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMap
-{
-    typedef FRequest_OrgProductSandboxDeleteMap Request;
-    typedef FResponse_OrgProductSandboxDeleteMap Response;
-    typedef FDelegate_OrgProductSandboxDeleteMap Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMap(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Map Selection List
- *
- * Delete a specific Map Selection List in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteMapSelectionList : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteMapSelectionList();
-    virtual ~FRequest_OrgProductSandboxDeleteMapSelectionList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMapSelectionList : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteMapSelectionList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteMapSelectionList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMapSelectionList
-{
-    typedef FRequest_OrgProductSandboxDeleteMapSelectionList Request;
-    typedef FResponse_OrgProductSandboxDeleteMapSelectionList Response;
-    typedef FDelegate_OrgProductSandboxDeleteMapSelectionList Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMapSelectionList(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Map Selection List Entry
- *
- * Delete a specific Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteMapSelectionListEntry : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteMapSelectionListEntry();
-    virtual ~FRequest_OrgProductSandboxDeleteMapSelectionListEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    FGuid MapSelectionListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteMapSelectionListEntry : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteMapSelectionListEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteMapSelectionListEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteMapSelectionListEntry
-{
-    typedef FRequest_OrgProductSandboxDeleteMapSelectionListEntry Request;
-    typedef FResponse_OrgProductSandboxDeleteMapSelectionListEntry Response;
-    typedef FDelegate_OrgProductSandboxDeleteMapSelectionListEntry Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteMapSelectionListEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Map Selection List Entries For Map Selection List
- *
- * Get all Map Selection List entries for a specific Map Selection List  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList();
-    virtual ~FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMapSelectionListEntriesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList
-{
-    typedef FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Request;
-    typedef FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Response;
-    typedef FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Map Selection Lists
- *
- * Get all MapSelectionLists for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllMapSelectionLists : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllMapSelectionLists();
-    virtual ~FRequest_OrgProductSandboxGetAllMapSelectionLists() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllMapSelectionLists : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllMapSelectionLists(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllMapSelectionLists() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMapSelectionListsResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMapSelectionLists
-{
-    typedef FRequest_OrgProductSandboxGetAllMapSelectionLists Request;
-    typedef FResponse_OrgProductSandboxGetAllMapSelectionLists Response;
-    typedef FDelegate_OrgProductSandboxGetAllMapSelectionLists Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMapSelectionLists(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Maps
- *
- * Get all Maps for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllMaps : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllMaps();
-    virtual ~FRequest_OrgProductSandboxGetAllMaps() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllMaps : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllMaps(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllMaps() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMapsResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllMaps
-{
-    typedef FRequest_OrgProductSandboxGetAllMaps Request;
-    typedef FResponse_OrgProductSandboxGetAllMaps Response;
-    typedef FDelegate_OrgProductSandboxGetAllMaps Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllMaps(InRequest, InDelegate, Priority); }
-};
-
-/* Get Map
- *
- * Get a specific Map for a sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetMap : public FRequest
-{
-    FRequest_OrgProductSandboxGetMap();
-    virtual ~FRequest_OrgProductSandboxGetMap() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MapId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetMap : public FResponse
-{
-    FResponse_OrgProductSandboxGetMap(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetMap() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMap Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMap
-{
-    typedef FRequest_OrgProductSandboxGetMap Request;
-    typedef FResponse_OrgProductSandboxGetMap Response;
-    typedef FDelegate_OrgProductSandboxGetMap Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMap(InRequest, InDelegate, Priority); }
-};
-
-/* Get Map Selection List
- *
- * Get a specific Map Selection List for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetMapSelectionList : public FRequest
-{
-    FRequest_OrgProductSandboxGetMapSelectionList();
-    virtual ~FRequest_OrgProductSandboxGetMapSelectionList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetMapSelectionList : public FResponse
-{
-    FResponse_OrgProductSandboxGetMapSelectionList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetMapSelectionList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMapSelectionList
-{
-    typedef FRequest_OrgProductSandboxGetMapSelectionList Request;
-    typedef FResponse_OrgProductSandboxGetMapSelectionList Response;
-    typedef FDelegate_OrgProductSandboxGetMapSelectionList Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMapSelectionList(InRequest, InDelegate, Priority); }
-};
-
-/* Get Map Selection List Entry
- *
- * Get a specific Map Selection List Entry for a Map Selection List  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetMapSelectionListEntry : public FRequest
-{
-    FRequest_OrgProductSandboxGetMapSelectionListEntry();
-    virtual ~FRequest_OrgProductSandboxGetMapSelectionListEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    FGuid MapSelectionListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetMapSelectionListEntry : public FResponse
-{
-    FResponse_OrgProductSandboxGetMapSelectionListEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetMapSelectionListEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetMapSelectionListEntry
-{
-    typedef FRequest_OrgProductSandboxGetMapSelectionListEntry Request;
-    typedef FResponse_OrgProductSandboxGetMapSelectionListEntry Response;
-    typedef FDelegate_OrgProductSandboxGetMapSelectionListEntry Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetMapSelectionListEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Map
- *
- * Update a specific Map in a sandbox                    Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchMap : public FRequest
-{
-    FRequest_OrgProductSandboxPatchMap();
-    virtual ~FRequest_OrgProductSandboxPatchMap() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MapId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapUpdateRequest MapUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchMap : public FResponse
-{
-    FResponse_OrgProductSandboxPatchMap(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchMap() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMap Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchMap
-{
-    typedef FRequest_OrgProductSandboxPatchMap Request;
-    typedef FResponse_OrgProductSandboxPatchMap Response;
-    typedef FDelegate_OrgProductSandboxPatchMap Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchMap(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Selection List
- *
- * Update an existing Map Selection List for a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchSelectionList : public FRequest
-{
-    FRequest_OrgProductSandboxPatchSelectionList();
-    virtual ~FRequest_OrgProductSandboxPatchSelectionList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapSelectionListUpdateRequest MapSelectionListUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchSelectionList : public FResponse
-{
-    FResponse_OrgProductSandboxPatchSelectionList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchSelectionList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchSelectionList
-{
-    typedef FRequest_OrgProductSandboxPatchSelectionList Request;
-    typedef FResponse_OrgProductSandboxPatchSelectionList Response;
-    typedef FDelegate_OrgProductSandboxPatchSelectionList Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchSelectionList(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Selection List Entry
- *
- * Update an existing Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchSelectionListEntry : public FRequest
-{
-    FRequest_OrgProductSandboxPatchSelectionListEntry();
-    virtual ~FRequest_OrgProductSandboxPatchSelectionListEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    FGuid MapSelectionListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapSelectionListEntryUpdateRequest MapSelectionListEntryUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchSelectionListEntry : public FResponse
-{
-    FResponse_OrgProductSandboxPatchSelectionListEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchSelectionListEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchSelectionListEntry
-{
-    typedef FRequest_OrgProductSandboxPatchSelectionListEntry Request;
-    typedef FResponse_OrgProductSandboxPatchSelectionListEntry Response;
-    typedef FDelegate_OrgProductSandboxPatchSelectionListEntry Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchSelectionListEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Put Map
- *
- * Update a specific Map in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutMap : public FRequest
-{
-    FRequest_OrgProductSandboxPutMap();
-    virtual ~FRequest_OrgProductSandboxPutMap() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MapId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapRequest MapRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutMap : public FResponse
-{
-    FResponse_OrgProductSandboxPutMap(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutMap() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMap Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutMap
-{
-    typedef FRequest_OrgProductSandboxPutMap Request;
-    typedef FResponse_OrgProductSandboxPutMap Response;
-    typedef FDelegate_OrgProductSandboxPutMap Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutMap(InRequest, InDelegate, Priority); }
-};
-
-/* Put Selection List
- *
- * Update an existing Map Selection List for a sandbox                  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutSelectionList : public FRequest
-{
-    FRequest_OrgProductSandboxPutSelectionList();
-    virtual ~FRequest_OrgProductSandboxPutSelectionList() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapSelectionListRequest MapSelectionListRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutSelectionList : public FResponse
-{
-    FResponse_OrgProductSandboxPutSelectionList(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutSelectionList() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionList Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutSelectionList
-{
-    typedef FRequest_OrgProductSandboxPutSelectionList Request;
-    typedef FResponse_OrgProductSandboxPutSelectionList Response;
-    typedef FDelegate_OrgProductSandboxPutSelectionList Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutSelectionList(InRequest, InDelegate, Priority); }
-};
-
-/* Put Selection List Entry
- *
- * Update an existing Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutSelectionListEntry : public FRequest
-{
-    FRequest_OrgProductSandboxPutSelectionListEntry();
-    virtual ~FRequest_OrgProductSandboxPutSelectionListEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
-    FGuid MapSelectionListEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMapSelectionListEntryRequest MapSelectionListEntryRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutSelectionListEntry : public FResponse
-{
-    FResponse_OrgProductSandboxPutSelectionListEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutSelectionListEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMapSelectionListEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutSelectionListEntry
-{
-    typedef FRequest_OrgProductSandboxPutSelectionListEntry Request;
-    typedef FResponse_OrgProductSandboxPutSelectionListEntry Response;
-    typedef FDelegate_OrgProductSandboxPutSelectionListEntry Delegate;
-    typedef FMapsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutSelectionListEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Create Map
- *
- * Add a new Map for a sandbox                   Requires permission sandbox:config:edit.
+ * Add a new Map for a sandbox
+ *                  
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateMap : public FRequest
 {
@@ -1083,6 +166,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateMap : public FResponse
 
     FRHAPI_DevMap Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMap& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMap
@@ -1098,7 +193,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMap
 
 /* Create Map Selection List Entry
  *
- * Add a new Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
+ * Add a new Map Selection List Entry for a Map Selection List
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateMapSelectionListEntry : public FRequest
 {
@@ -1110,7 +207,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateMapSelectionListEntry : p
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMapSelectionListEntryRequest MapSelectionListEntryRequest;
@@ -1124,6 +221,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateMapSelectionListEntry : 
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMapSelectionListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1140,7 +249,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateMapSelectionListEntry
 
 /* Create Selection List
  *
- * Add a new Map Selection List for a sandbox  Requires permission sandbox:config:edit.
+ * Add a new Map Selection List for a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateSelectionList : public FRequest
 {
@@ -1166,6 +277,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateSelectionList : public F
 
     FRHAPI_DevMapSelectionList Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionList& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateSelectionList
@@ -1181,7 +304,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateSelectionList
 
 /* Delete Map
  *
- * Delete a specific Map in a sandbox  Requires permission sandbox:config:edit.
+ * Delete a specific Map in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteMap : public FRequest
 {
@@ -1205,7 +330,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMap : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1222,7 +358,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMap
 
 /* Delete Map Selection List
  *
- * Delete a specific Map Selection List in a sandbox  Requires permission sandbox:config:edit.
+ * Delete a specific Map Selection List in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteMapSelectionList : public FRequest
 {
@@ -1234,7 +372,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteMapSelectionList : public
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1246,7 +384,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMapSelectionList : publi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1263,7 +412,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMapSelectionList
 
 /* Delete Map Selection List Entry
  *
- * Delete a specific Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
+ * Delete a specific Map Selection List Entry for a Map Selection List
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteMapSelectionListEntry : public FRequest
 {
@@ -1275,7 +426,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteMapSelectionListEntry : p
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     FGuid MapSelectionListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
@@ -1288,7 +439,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteMapSelectionListEntry : 
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1305,7 +467,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteMapSelectionListEntry
 
 /* Get All Map Selection List Entries For Map Selection List
  *
- * Get all Map Selection List entries for a specific Map Selection List  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all Map Selection List entries for a specific Map Selection List
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMapSelectionListEntriesForMapSelectionList : public FRequest
 {
@@ -1317,7 +482,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMapSelectionListEntriesFo
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     /* Sandbox ID */
     FGuid SandboxId;
     /* The maximum number of elements to be returned per call */
@@ -1335,6 +500,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllMapSelectionListEntriesF
 
     FRHAPI_DevAllMapSelectionListEntriesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMapSelectionListEntriesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMapSelectionListEntriesForMapSelectionList
@@ -1350,7 +527,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMapSelectionListEntriesForM
 
 /* Get All Map Selection Lists
  *
- * Get all MapSelectionLists for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MapSelectionLists for a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMapSelectionLists : public FRequest
 {
@@ -1379,6 +559,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllMapSelectionLists : publ
 
     FRHAPI_DevAllMapSelectionListsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMapSelectionListsResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMapSelectionLists
@@ -1394,7 +586,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMapSelectionLists
 
 /* Get All Maps
  *
- * Get all Maps for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all Maps for a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllMaps : public FRequest
 {
@@ -1423,6 +618,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllMaps : public FResponse
 
     FRHAPI_DevAllMapsResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMapsResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMaps
@@ -1438,7 +645,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllMaps
 
 /* Get Map
  *
- * Get a specific Map for a sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific Map for a sandbox
+ *         
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetMap : public FRequest
 {
@@ -1464,6 +674,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetMap : public FResponse
 
     FRHAPI_DevMap Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMap& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMap
@@ -1479,7 +701,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMap
 
 /* Get Map Selection List
  *
- * Get a specific Map Selection List for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific Map Selection List for a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetMapSelectionList : public FRequest
 {
@@ -1491,7 +716,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetMapSelectionList : public FR
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1503,7 +728,19 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetMapSelectionList : public F
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_DevMapSelectionList Content;
+    FRHAPI_DevMapSelectionListFlattened Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionListFlattened& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1520,7 +757,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMapSelectionList
 
 /* Get Map Selection List Entry
  *
- * Get a specific Map Selection List Entry for a Map Selection List  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific Map Selection List Entry for a Map Selection List
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetMapSelectionListEntry : public FRequest
 {
@@ -1532,7 +772,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetMapSelectionListEntry : publ
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     FGuid MapSelectionListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
@@ -1545,7 +785,19 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetMapSelectionListEntry : pub
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_DevMapSelectionListEntry Content;
+    FRHAPI_DevMapSelectionListEntryFlattened Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionListEntryFlattened& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1562,7 +814,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetMapSelectionListEntry
 
 /* Patch Map
  *
- * Update a specific Map in a sandbox                    Requires permission sandbox:config:edit.
+ * Update a specific Map in a sandbox
+ *                   
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchMap : public FRequest
 {
@@ -1589,6 +843,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchMap : public FResponse
 
     FRHAPI_DevMap Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMap& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchMap
@@ -1604,7 +870,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchMap
 
 /* Patch Selection List
  *
- * Update an existing Map Selection List for a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing Map Selection List for a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchSelectionList : public FRequest
 {
@@ -1616,7 +884,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchSelectionList : public FRe
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMapSelectionListUpdateRequest MapSelectionListUpdateRequest;
@@ -1630,6 +898,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchSelectionList : public FR
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMapSelectionList Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionList& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1646,7 +926,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchSelectionList
 
 /* Patch Selection List Entry
  *
- * Update an existing Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
+ * Update an existing Map Selection List Entry for a Map Selection List
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchSelectionListEntry : public FRequest
 {
@@ -1658,7 +940,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchSelectionListEntry : publi
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     FGuid MapSelectionListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
@@ -1673,6 +955,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchSelectionListEntry : publ
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMapSelectionListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1689,7 +983,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchSelectionListEntry
 
 /* Put Map
  *
- * Update a specific Map in a sandbox  Requires permission sandbox:config:edit.
+ * Update a specific Map in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutMap : public FRequest
 {
@@ -1716,6 +1012,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutMap : public FResponse
 
     FRHAPI_DevMap Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMap& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutMap
@@ -1731,7 +1039,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutMap
 
 /* Put Selection List
  *
- * Update an existing Map Selection List for a sandbox                  Requires permission sandbox:config:edit.
+ * Update an existing Map Selection List for a sandbox
+ *                 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutSelectionList : public FRequest
 {
@@ -1743,10 +1053,10 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutSelectionList : public FRequ
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     /* Sandbox ID */
     FGuid SandboxId;
-    FRHAPI_DevMapSelectionListRequest MapSelectionListRequest;
+    FRHAPI_DevMapSelectionListBase MapSelectionListBase;
 };
 
 struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutSelectionList : public FResponse
@@ -1757,6 +1067,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutSelectionList : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMapSelectionList Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionList& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1773,7 +1095,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutSelectionList
 
 /* Put Selection List Entry
  *
- * Update an existing Map Selection List Entry for a Map Selection List  Requires permission sandbox:config:edit.
+ * Update an existing Map Selection List Entry for a Map Selection List
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutSelectionListEntry : public FRequest
 {
@@ -1785,7 +1109,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutSelectionListEntry : public 
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid SelectionListId;
+    FGuid MapSelectionListId;
     FGuid MapSelectionListEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
@@ -1800,6 +1124,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutSelectionListEntry : public
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMapSelectionListEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMapSelectionListEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

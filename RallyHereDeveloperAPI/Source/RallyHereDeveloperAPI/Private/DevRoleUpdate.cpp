@@ -42,6 +42,11 @@ void FRHAPI_DevRoleUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("login_loot_rewards"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LoginLootRewards_Optional);
     }
+    if (AuthBypass_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("auth_bypass"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(AuthBypass_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -76,6 +81,12 @@ bool FRHAPI_DevRoleUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         LoginLootRewards_IsSet = TryGetJsonValue(JsonLoginLootRewardsField, LoginLootRewards_Optional);
         ParseSuccess &= LoginLootRewards_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonAuthBypassField = (*Object)->TryGetField(TEXT("auth_bypass"));
+    if (JsonAuthBypassField.IsValid() && !JsonAuthBypassField->IsNull())
+    {
+        AuthBypass_IsSet = TryGetJsonValue(JsonAuthBypassField, AuthBypass_Optional);
+        ParseSuccess &= AuthBypass_IsSet;
     }
 
     return ParseSuccess;

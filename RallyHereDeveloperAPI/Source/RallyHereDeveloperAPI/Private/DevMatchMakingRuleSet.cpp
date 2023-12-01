@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "DevMatchMakingRuleSet.h"
+#include "DevMatchMakingRuleset.h"
 #include "RallyHereDeveloperAPIModule.h"
 #include "RallyHereDeveloperAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,19 +17,39 @@ using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_DevMatchMakingRuleSet
+// Implementation for FRHAPI_DevMatchMakingRuleset
 
-void FRHAPI_DevMatchMakingRuleSet::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_DevMatchMakingRuleset::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("rules"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, Rules);
-    Writer->WriteIdentifierPrefix(TEXT("determiner"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, Determiner);
+    Writer->WriteIdentifierPrefix(TEXT("name"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, Name);
+    if (SandboxId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, SandboxId_Optional);
+    }
+    if (LastModifiedAccountId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedAccountId_Optional);
+    }
+    if (LastModifiedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
+    }
+    if (CreatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId);
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_DevMatchMakingRuleSet::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_DevMatchMakingRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -37,10 +57,34 @@ bool FRHAPI_DevMatchMakingRuleSet::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonRulesField = (*Object)->TryGetField(TEXT("rules"));
-    ParseSuccess &= JsonRulesField.IsValid() && !JsonRulesField->IsNull() && TryGetJsonValue(JsonRulesField, Rules);
-    const TSharedPtr<FJsonValue> JsonDeterminerField = (*Object)->TryGetField(TEXT("determiner"));
-    ParseSuccess &= JsonDeterminerField.IsValid() && !JsonDeterminerField->IsNull() && TryGetJsonValue(JsonDeterminerField, Determiner);
+    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+    ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
+    const TSharedPtr<FJsonValue> JsonSandboxIdField = (*Object)->TryGetField(TEXT("sandbox_id"));
+    if (JsonSandboxIdField.IsValid() && !JsonSandboxIdField->IsNull())
+    {
+        SandboxId_IsSet = TryGetJsonValue(JsonSandboxIdField, SandboxId_Optional);
+        ParseSuccess &= SandboxId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
+    if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
+    {
+        LastModifiedAccountId_IsSet = TryGetJsonValue(JsonLastModifiedAccountIdField, LastModifiedAccountId_Optional);
+        ParseSuccess &= LastModifiedAccountId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLastModifiedTimestampField = (*Object)->TryGetField(TEXT("last_modified_timestamp"));
+    if (JsonLastModifiedTimestampField.IsValid() && !JsonLastModifiedTimestampField->IsNull())
+    {
+        LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
+        ParseSuccess &= LastModifiedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+    {
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchMakingRulesetIdField = (*Object)->TryGetField(TEXT("match_making_ruleset_id"));
+    ParseSuccess &= JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull() && TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId);
 
     return ParseSuccess;
 }

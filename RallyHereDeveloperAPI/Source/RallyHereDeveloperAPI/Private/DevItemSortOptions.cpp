@@ -54,7 +54,7 @@ FString EnumToString(const ERHAPI_DevItemSortOptions& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevItemSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevItemSortOptions> StringToEnum = {
+    static TMap<FString, ERHAPI_DevItemSortOptions> StringToEnum = { 
         { TEXT("item_id"), ERHAPI_DevItemSortOptions::ItemId },
         { TEXT("legacy_item_id"), ERHAPI_DevItemSortOptions::LegacyItemId },
         { TEXT("type"), ERHAPI_DevItemSortOptions::Type },

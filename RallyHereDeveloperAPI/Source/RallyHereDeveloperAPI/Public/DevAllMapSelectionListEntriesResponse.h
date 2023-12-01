@@ -9,7 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevMapSelectionListEntry.h"
+#include "DevMapSelectionListEntryFlattened.h"
 #include "DevAllMapSelectionListEntriesResponse.generated.h"
 
 /** @defgroup RHAPI_DevAllMapSelectionListEntriesResponse RallyHere API Model DevAllMapSelectionListEntriesResponse
@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMapSelectionListEntriesResponse : public FRHAPI_DevModel
@@ -50,23 +50,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMapSelectionListEntriesResponse : 
     void SetCursor(FString NewValue) { Cursor = NewValue;  }
 
     /** @brief A list of MapSelectionListEntries */
-    TArray<FRHAPI_DevMapSelectionListEntry> MapSelectionListEntries_Optional{  };
+    TArray<FRHAPI_DevMapSelectionListEntryFlattened> MapSelectionListEntries_Optional{  };
     /** @brief true if MapSelectionListEntries_Optional has been set to a value */
     bool MapSelectionListEntries_IsSet{ false };
     /** @brief Gets the value of MapSelectionListEntries_Optional, regardless of it having been set */
-    TArray<FRHAPI_DevMapSelectionListEntry>& GetMapSelectionListEntries() { return MapSelectionListEntries_Optional; }
+    TArray<FRHAPI_DevMapSelectionListEntryFlattened>& GetMapSelectionListEntries() { return MapSelectionListEntries_Optional; }
     /** @brief Gets the value of MapSelectionListEntries_Optional, regardless of it having been set */
-    const TArray<FRHAPI_DevMapSelectionListEntry>& GetMapSelectionListEntries() const { return MapSelectionListEntries_Optional; }
+    const TArray<FRHAPI_DevMapSelectionListEntryFlattened>& GetMapSelectionListEntries() const { return MapSelectionListEntries_Optional; }
     /** @brief Gets the value of MapSelectionListEntries_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_DevMapSelectionListEntry>& GetMapSelectionListEntries(const TArray<FRHAPI_DevMapSelectionListEntry>& DefaultValue) const { if (MapSelectionListEntries_IsSet) return MapSelectionListEntries_Optional; return DefaultValue; }
+    const TArray<FRHAPI_DevMapSelectionListEntryFlattened>& GetMapSelectionListEntries(const TArray<FRHAPI_DevMapSelectionListEntryFlattened>& DefaultValue) const { if (MapSelectionListEntries_IsSet) return MapSelectionListEntries_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of MapSelectionListEntries_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMapSelectionListEntries(TArray<FRHAPI_DevMapSelectionListEntry>& OutValue) const { if (MapSelectionListEntries_IsSet) OutValue = MapSelectionListEntries_Optional; return MapSelectionListEntries_IsSet; }
+    bool GetMapSelectionListEntries(TArray<FRHAPI_DevMapSelectionListEntryFlattened>& OutValue) const { if (MapSelectionListEntries_IsSet) OutValue = MapSelectionListEntries_Optional; return MapSelectionListEntries_IsSet; }
     /** @brief Returns a pointer to MapSelectionListEntries_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_DevMapSelectionListEntry>* GetMapSelectionListEntriesOrNull() { if (MapSelectionListEntries_IsSet) return &MapSelectionListEntries_Optional; return nullptr; }
+    TArray<FRHAPI_DevMapSelectionListEntryFlattened>* GetMapSelectionListEntriesOrNull() { if (MapSelectionListEntries_IsSet) return &MapSelectionListEntries_Optional; return nullptr; }
     /** @brief Returns a pointer to MapSelectionListEntries_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_DevMapSelectionListEntry>* GetMapSelectionListEntriesOrNull() const { if (MapSelectionListEntries_IsSet) return &MapSelectionListEntries_Optional; return nullptr; }
+    const TArray<FRHAPI_DevMapSelectionListEntryFlattened>* GetMapSelectionListEntriesOrNull() const { if (MapSelectionListEntries_IsSet) return &MapSelectionListEntries_Optional; return nullptr; }
     /** @brief Sets the value of MapSelectionListEntries_Optional and also sets MapSelectionListEntries_IsSet to true */
-    void SetMapSelectionListEntries(TArray<FRHAPI_DevMapSelectionListEntry> NewValue) { MapSelectionListEntries_Optional = NewValue; MapSelectionListEntries_IsSet = true; }
+    void SetMapSelectionListEntries(TArray<FRHAPI_DevMapSelectionListEntryFlattened> NewValue) { MapSelectionListEntries_Optional = NewValue; MapSelectionListEntries_IsSet = true; }
      /** @brief Clears the value of MapSelectionListEntries_Optional and sets MapSelectionListEntries_IsSet to false */
     void ClearMapSelectionListEntries() { MapSelectionListEntries_IsSet = false; }
 };

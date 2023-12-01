@@ -18,8 +18,8 @@
 #include "DevMatchMakingStrideEntryRequest.h"
 #include "DevMatchMakingStrideEntryUpdateRequest.h"
 #include "DevMatchMakingStrideRequest.h"
+#include "DevMatchMakingStrideResponse.h"
 #include "DevMatchMakingStrideUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -27,30 +27,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateStride;
-struct FResponse_OrgProductSandboxCreateStride;
-struct FRequest_OrgProductSandboxCreateStrideEntry;
-struct FResponse_OrgProductSandboxCreateStrideEntry;
-struct FRequest_OrgProductSandboxDeleteStride;
-struct FResponse_OrgProductSandboxDeleteStride;
-struct FRequest_OrgProductSandboxDeleteStrideEntry;
-struct FResponse_OrgProductSandboxDeleteStrideEntry;
-struct FRequest_OrgProductSandboxGetAllStrideEntries;
-struct FResponse_OrgProductSandboxGetAllStrideEntries;
-struct FRequest_OrgProductSandboxGetAllStrides;
-struct FResponse_OrgProductSandboxGetAllStrides;
-struct FRequest_OrgProductSandboxGetStride;
-struct FResponse_OrgProductSandboxGetStride;
-struct FRequest_OrgProductSandboxGetStrideEntry;
-struct FResponse_OrgProductSandboxGetStrideEntry;
-struct FRequest_OrgProductSandboxPatchStride;
-struct FResponse_OrgProductSandboxPatchStride;
-struct FRequest_OrgProductSandboxPatchStrideEntry;
-struct FResponse_OrgProductSandboxPatchStrideEntry;
-struct FRequest_OrgProductSandboxPutStride;
-struct FResponse_OrgProductSandboxPutStride;
-struct FRequest_OrgProductSandboxPutStrideEntry;
-struct FResponse_OrgProductSandboxPutStrideEntry;
 struct FRequest_SandboxCreateStride;
 struct FResponse_SandboxCreateStride;
 struct FRequest_SandboxCreateStrideEntry;
@@ -76,18 +52,6 @@ struct FResponse_SandboxPutStride;
 struct FRequest_SandboxPutStrideEntry;
 struct FResponse_SandboxPutStrideEntry;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateStride, const FResponse_OrgProductSandboxCreateStride&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateStrideEntry, const FResponse_OrgProductSandboxCreateStrideEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteStride, const FResponse_OrgProductSandboxDeleteStride&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteStrideEntry, const FResponse_OrgProductSandboxDeleteStrideEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllStrideEntries, const FResponse_OrgProductSandboxGetAllStrideEntries&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllStrides, const FResponse_OrgProductSandboxGetAllStrides&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetStride, const FResponse_OrgProductSandboxGetStride&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetStrideEntry, const FResponse_OrgProductSandboxGetStrideEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchStride, const FResponse_OrgProductSandboxPatchStride&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchStrideEntry, const FResponse_OrgProductSandboxPatchStrideEntry&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutStride, const FResponse_OrgProductSandboxPutStride&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutStrideEntry, const FResponse_OrgProductSandboxPutStrideEntry&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateStride, const FResponse_SandboxCreateStride&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateStrideEntry, const FResponse_SandboxCreateStrideEntry&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteStride, const FResponse_SandboxDeleteStride&);
@@ -107,18 +71,6 @@ public:
     FMatchMakingStridesAPI();
     virtual ~FMatchMakingStridesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateStride(const FRequest_OrgProductSandboxCreateStride& Request, const FDelegate_OrgProductSandboxCreateStride& Delegate = FDelegate_OrgProductSandboxCreateStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxCreateStrideEntry(const FRequest_OrgProductSandboxCreateStrideEntry& Request, const FDelegate_OrgProductSandboxCreateStrideEntry& Delegate = FDelegate_OrgProductSandboxCreateStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteStride(const FRequest_OrgProductSandboxDeleteStride& Request, const FDelegate_OrgProductSandboxDeleteStride& Delegate = FDelegate_OrgProductSandboxDeleteStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteStrideEntry(const FRequest_OrgProductSandboxDeleteStrideEntry& Request, const FDelegate_OrgProductSandboxDeleteStrideEntry& Delegate = FDelegate_OrgProductSandboxDeleteStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllStrideEntries(const FRequest_OrgProductSandboxGetAllStrideEntries& Request, const FDelegate_OrgProductSandboxGetAllStrideEntries& Delegate = FDelegate_OrgProductSandboxGetAllStrideEntries(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllStrides(const FRequest_OrgProductSandboxGetAllStrides& Request, const FDelegate_OrgProductSandboxGetAllStrides& Delegate = FDelegate_OrgProductSandboxGetAllStrides(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetStride(const FRequest_OrgProductSandboxGetStride& Request, const FDelegate_OrgProductSandboxGetStride& Delegate = FDelegate_OrgProductSandboxGetStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetStrideEntry(const FRequest_OrgProductSandboxGetStrideEntry& Request, const FDelegate_OrgProductSandboxGetStrideEntry& Delegate = FDelegate_OrgProductSandboxGetStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchStride(const FRequest_OrgProductSandboxPatchStride& Request, const FDelegate_OrgProductSandboxPatchStride& Delegate = FDelegate_OrgProductSandboxPatchStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchStrideEntry(const FRequest_OrgProductSandboxPatchStrideEntry& Request, const FDelegate_OrgProductSandboxPatchStrideEntry& Delegate = FDelegate_OrgProductSandboxPatchStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutStride(const FRequest_OrgProductSandboxPutStride& Request, const FDelegate_OrgProductSandboxPutStride& Delegate = FDelegate_OrgProductSandboxPutStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutStrideEntry(const FRequest_OrgProductSandboxPutStrideEntry& Request, const FDelegate_OrgProductSandboxPutStrideEntry& Delegate = FDelegate_OrgProductSandboxPutStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateStride(const FRequest_SandboxCreateStride& Request, const FDelegate_SandboxCreateStride& Delegate = FDelegate_SandboxCreateStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateStrideEntry(const FRequest_SandboxCreateStrideEntry& Request, const FDelegate_SandboxCreateStrideEntry& Delegate = FDelegate_SandboxCreateStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeleteStride(const FRequest_SandboxDeleteStride& Request, const FDelegate_SandboxDeleteStride& Delegate = FDelegate_SandboxDeleteStride(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -133,18 +85,6 @@ public:
     FHttpRequestPtr SandboxPutStrideEntry(const FRequest_SandboxPutStrideEntry& Request, const FDelegate_SandboxPutStrideEntry& Delegate = FDelegate_SandboxPutStrideEntry(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxCreateStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllStrideEntriesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllStrideEntries Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllStridesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllStrides Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeleteStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -162,563 +102,9 @@ private:
 
 /* Create Stride
  *
- * Create a new MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateStride : public FRequest
-{
-    FRequest_OrgProductSandboxCreateStride();
-    virtual ~FRequest_OrgProductSandboxCreateStride() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingStrideRequest MatchMakingStrideRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateStride : public FResponse
-{
-    FResponse_OrgProductSandboxCreateStride(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateStride() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStride Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateStride
-{
-    typedef FRequest_OrgProductSandboxCreateStride Request;
-    typedef FResponse_OrgProductSandboxCreateStride Response;
-    typedef FDelegate_OrgProductSandboxCreateStride Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateStride(InRequest, InDelegate, Priority); }
-};
-
-/* Create Stride Entry
- *
- * Create a new MatchMakingStrideEntries in a MatchMakingStride  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateStrideEntry : public FRequest
-{
-    FRequest_OrgProductSandboxCreateStrideEntry();
-    virtual ~FRequest_OrgProductSandboxCreateStrideEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingStrideEntryRequest MatchMakingStrideEntryRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateStrideEntry : public FResponse
-{
-    FResponse_OrgProductSandboxCreateStrideEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateStrideEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStrideEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateStrideEntry
-{
-    typedef FRequest_OrgProductSandboxCreateStrideEntry Request;
-    typedef FResponse_OrgProductSandboxCreateStrideEntry Response;
-    typedef FDelegate_OrgProductSandboxCreateStrideEntry Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateStrideEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Stride
- *
- * Delete an existing MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteStride : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteStride();
-    virtual ~FRequest_OrgProductSandboxDeleteStride() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteStride : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteStride(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteStride() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteStride
-{
-    typedef FRequest_OrgProductSandboxDeleteStride Request;
-    typedef FResponse_OrgProductSandboxDeleteStride Response;
-    typedef FDelegate_OrgProductSandboxDeleteStride Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteStride(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Stride Entry
- *
- * Delete an existing MatchMakingStrideEntry in a MatchMakingStride  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteStrideEntry : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteStrideEntry();
-    virtual ~FRequest_OrgProductSandboxDeleteStrideEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteStrideEntry : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteStrideEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteStrideEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteStrideEntry
-{
-    typedef FRequest_OrgProductSandboxDeleteStrideEntry Request;
-    typedef FResponse_OrgProductSandboxDeleteStrideEntry Response;
-    typedef FDelegate_OrgProductSandboxDeleteStrideEntry Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteStrideEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Stride Entries
- *
- * Get all MatchMakingStrideEntries in a MatchMakingStride  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllStrideEntries : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllStrideEntries();
-    virtual ~FRequest_OrgProductSandboxGetAllStrideEntries() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllStrideEntries : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllStrideEntries(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllStrideEntries() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingStrideEntriesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllStrideEntries
-{
-    typedef FRequest_OrgProductSandboxGetAllStrideEntries Request;
-    typedef FResponse_OrgProductSandboxGetAllStrideEntries Response;
-    typedef FDelegate_OrgProductSandboxGetAllStrideEntries Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllStrideEntries(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Strides
- *
- * Get all MatchMakingStrides in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllStrides : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllStrides();
-    virtual ~FRequest_OrgProductSandboxGetAllStrides() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllStrides : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllStrides(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllStrides() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingStridesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllStrides
-{
-    typedef FRequest_OrgProductSandboxGetAllStrides Request;
-    typedef FResponse_OrgProductSandboxGetAllStrides Response;
-    typedef FDelegate_OrgProductSandboxGetAllStrides Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllStrides(InRequest, InDelegate, Priority); }
-};
-
-/* Get Stride
- *
- * Get specific MatchMakingStride in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetStride : public FRequest
-{
-    FRequest_OrgProductSandboxGetStride();
-    virtual ~FRequest_OrgProductSandboxGetStride() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetStride : public FResponse
-{
-    FResponse_OrgProductSandboxGetStride(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetStride() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStride Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetStride
-{
-    typedef FRequest_OrgProductSandboxGetStride Request;
-    typedef FResponse_OrgProductSandboxGetStride Response;
-    typedef FDelegate_OrgProductSandboxGetStride Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetStride(InRequest, InDelegate, Priority); }
-};
-
-/* Get Stride Entry
- *
- * Get a specific MatchMakingStrideEntries in a MatchMakingStride  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetStrideEntry : public FRequest
-{
-    FRequest_OrgProductSandboxGetStrideEntry();
-    virtual ~FRequest_OrgProductSandboxGetStrideEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetStrideEntry : public FResponse
-{
-    FResponse_OrgProductSandboxGetStrideEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetStrideEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStrideEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetStrideEntry
-{
-    typedef FRequest_OrgProductSandboxGetStrideEntry Request;
-    typedef FResponse_OrgProductSandboxGetStrideEntry Response;
-    typedef FDelegate_OrgProductSandboxGetStrideEntry Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetStrideEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Stride
- *
- * Update an existing MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchStride : public FRequest
-{
-    FRequest_OrgProductSandboxPatchStride();
-    virtual ~FRequest_OrgProductSandboxPatchStride() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingStrideUpdateRequest MatchMakingStrideUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchStride : public FResponse
-{
-    FResponse_OrgProductSandboxPatchStride(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchStride() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStride Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchStride
-{
-    typedef FRequest_OrgProductSandboxPatchStride Request;
-    typedef FResponse_OrgProductSandboxPatchStride Response;
-    typedef FDelegate_OrgProductSandboxPatchStride Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchStride(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Stride Entry
- *
- * Update an existing MatchMakingStrideEntries in a MatchMakingStride  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchStrideEntry : public FRequest
-{
-    FRequest_OrgProductSandboxPatchStrideEntry();
-    virtual ~FRequest_OrgProductSandboxPatchStrideEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingStrideEntryUpdateRequest MatchMakingStrideEntryUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchStrideEntry : public FResponse
-{
-    FResponse_OrgProductSandboxPatchStrideEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchStrideEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStrideEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchStrideEntry
-{
-    typedef FRequest_OrgProductSandboxPatchStrideEntry Request;
-    typedef FResponse_OrgProductSandboxPatchStrideEntry Response;
-    typedef FDelegate_OrgProductSandboxPatchStrideEntry Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchStrideEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Put Stride
- *
- * Update an existing MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutStride : public FRequest
-{
-    FRequest_OrgProductSandboxPutStride();
-    virtual ~FRequest_OrgProductSandboxPutStride() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingStrideRequest MatchMakingStrideRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutStride : public FResponse
-{
-    FResponse_OrgProductSandboxPutStride(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutStride() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStride Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutStride
-{
-    typedef FRequest_OrgProductSandboxPutStride Request;
-    typedef FResponse_OrgProductSandboxPutStride Response;
-    typedef FDelegate_OrgProductSandboxPutStride Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutStride(InRequest, InDelegate, Priority); }
-};
-
-/* Put Stride Entry
- *
- * Update an existing MatchMakingStrideEntries in a MatchMakingStride  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutStrideEntry : public FRequest
-{
-    FRequest_OrgProductSandboxPutStrideEntry();
-    virtual ~FRequest_OrgProductSandboxPutStrideEntry() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingStrideEntryRequest MatchMakingStrideEntryRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutStrideEntry : public FResponse
-{
-    FResponse_OrgProductSandboxPutStrideEntry(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutStrideEntry() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingStrideEntry Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutStrideEntry
-{
-    typedef FRequest_OrgProductSandboxPutStrideEntry Request;
-    typedef FResponse_OrgProductSandboxPutStrideEntry Response;
-    typedef FDelegate_OrgProductSandboxPutStrideEntry Delegate;
-    typedef FMatchMakingStridesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutStrideEntry(InRequest, InDelegate, Priority); }
-};
-
-/* Create Stride
- *
- * Create a new MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingStrides in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateStride : public FRequest
 {
@@ -744,6 +130,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateStride : public FRespons
 
     FRHAPI_DevMatchMakingStride Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStride& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateStride
@@ -759,7 +157,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateStride
 
 /* Create Stride Entry
  *
- * Create a new MatchMakingStrideEntries in a MatchMakingStride  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingStrideEntries in a MatchMakingStride
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateStrideEntry : public FRequest
 {
@@ -771,7 +171,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateStrideEntry : public FReq
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
+    FGuid MatchMakingStrideId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingStrideEntryRequest MatchMakingStrideEntryRequest;
@@ -785,6 +185,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateStrideEntry : public FRe
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingStrideEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -801,7 +213,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateStrideEntry
 
 /* Delete Stride
  *
- * Delete an existing MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
+ * Delete an existing MatchMakingStrides in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteStride : public FRequest
 {
@@ -813,7 +227,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteStride : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
+    FGuid MatchMakingStrideId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -825,7 +239,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteStride : public FRespons
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -842,7 +267,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteStride
 
 /* Delete Stride Entry
  *
- * Delete an existing MatchMakingStrideEntry in a MatchMakingStride  Requires permission sandbox:config:edit.
+ * Delete an existing MatchMakingStrideEntry in a MatchMakingStride
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteStrideEntry : public FRequest
 {
@@ -854,8 +281,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteStrideEntry : public FReq
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
+    FGuid MatchMakingStrideId;
+    FGuid MatchMakingStrideEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -867,7 +294,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteStrideEntry : public FRe
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -884,7 +322,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteStrideEntry
 
 /* Get All Stride Entries
  *
- * Get all MatchMakingStrideEntries in a MatchMakingStride  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingStrideEntries in a MatchMakingStride
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllStrideEntries : public FRequest
 {
@@ -896,7 +337,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllStrideEntries : public FR
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
+    FGuid MatchMakingStrideId;
     /* Sandbox ID */
     FGuid SandboxId;
     /* The maximum number of elements to be returned per call */
@@ -914,6 +355,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllStrideEntries : public F
 
     FRHAPI_DevAllMatchMakingStrideEntriesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingStrideEntriesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllStrideEntries
@@ -929,7 +382,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllStrideEntries
 
 /* Get All Strides
  *
- * Get all MatchMakingStrides in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingStrides in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllStrides : public FRequest
 {
@@ -958,6 +414,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllStrides : public FRespon
 
     FRHAPI_DevAllMatchMakingStridesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingStridesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllStrides
@@ -973,7 +441,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllStrides
 
 /* Get Stride
  *
- * Get specific MatchMakingStride in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get specific MatchMakingStride in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetStride : public FRequest
 {
@@ -985,7 +456,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetStride : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
+    FGuid MatchMakingStrideId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -997,7 +468,19 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetStride : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_DevMatchMakingStride Content;
+    FRHAPI_DevMatchMakingStrideResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStrideResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1014,7 +497,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetStride
 
 /* Get Stride Entry
  *
- * Get a specific MatchMakingStrideEntries in a MatchMakingStride  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific MatchMakingStrideEntries in a MatchMakingStride
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetStrideEntry : public FRequest
 {
@@ -1026,8 +512,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetStrideEntry : public FReques
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
+    FGuid MatchMakingStrideId;
+    FGuid MatchMakingStrideEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
 };
@@ -1040,6 +526,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetStrideEntry : public FRespo
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingStrideEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1056,7 +554,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetStrideEntry
 
 /* Patch Stride
  *
- * Update an existing MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingStrides in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchStride : public FRequest
 {
@@ -1068,7 +568,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchStride : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
+    FGuid MatchMakingStrideId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingStrideUpdateRequest MatchMakingStrideUpdateRequest;
@@ -1082,6 +582,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchStride : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingStride Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStride& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1098,7 +610,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchStride
 
 /* Patch Stride Entry
  *
- * Update an existing MatchMakingStrideEntries in a MatchMakingStride  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingStrideEntries in a MatchMakingStride
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchStrideEntry : public FRequest
 {
@@ -1110,8 +624,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchStrideEntry : public FRequ
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
+    FGuid MatchMakingStrideId;
+    FGuid MatchMakingStrideEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingStrideEntryUpdateRequest MatchMakingStrideEntryUpdateRequest;
@@ -1125,6 +639,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchStrideEntry : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingStrideEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1141,7 +667,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchStrideEntry
 
 /* Put Stride
  *
- * Update an existing MatchMakingStrides in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingStrides in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutStride : public FRequest
 {
@@ -1153,7 +681,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutStride : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
+    FGuid MatchMakingStrideId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingStrideRequest MatchMakingStrideRequest;
@@ -1167,6 +695,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutStride : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingStride Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStride& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1183,7 +723,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutStride
 
 /* Put Stride Entry
  *
- * Update an existing MatchMakingStrideEntries in a MatchMakingStride  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingStrideEntries in a MatchMakingStride
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutStrideEntry : public FRequest
 {
@@ -1195,8 +737,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutStrideEntry : public FReques
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    FGuid StrideId;
-    FGuid StrideEntryId;
+    FGuid MatchMakingStrideId;
+    FGuid MatchMakingStrideEntryId;
     /* Sandbox ID */
     FGuid SandboxId;
     FRHAPI_DevMatchMakingStrideEntryRequest MatchMakingStrideEntryRequest;
@@ -1210,6 +752,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutStrideEntry : public FRespo
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMatchMakingStrideEntry Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

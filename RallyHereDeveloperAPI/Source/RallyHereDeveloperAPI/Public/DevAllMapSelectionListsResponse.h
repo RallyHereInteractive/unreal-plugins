@@ -9,7 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevMapSelectionList.h"
+#include "DevMapSelectionListFlattened.h"
 #include "DevAllMapSelectionListsResponse.generated.h"
 
 /** @defgroup RHAPI_DevAllMapSelectionListsResponse RallyHere API Model DevAllMapSelectionListsResponse
@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMapSelectionListsResponse : public FRHAPI_DevModel
@@ -50,13 +50,13 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMapSelectionListsResponse : public
     void SetCursor(FString NewValue) { Cursor = NewValue;  }
 
     /** @brief List of MapSelectionLists */
-    TArray<FRHAPI_DevMapSelectionList> MapSelectionLists{  };
+    TArray<FRHAPI_DevMapSelectionListFlattened> MapSelectionLists{  };
     /** @brief Gets the value of MapSelectionLists */
-    TArray<FRHAPI_DevMapSelectionList>& GetMapSelectionLists() { return MapSelectionLists; }
+    TArray<FRHAPI_DevMapSelectionListFlattened>& GetMapSelectionLists() { return MapSelectionLists; }
     /** @brief Gets the value of MapSelectionLists */
-    const TArray<FRHAPI_DevMapSelectionList>& GetMapSelectionLists() const { return MapSelectionLists; }
+    const TArray<FRHAPI_DevMapSelectionListFlattened>& GetMapSelectionLists() const { return MapSelectionLists; }
     /** @brief Sets the value of MapSelectionLists */
-    void SetMapSelectionLists(TArray<FRHAPI_DevMapSelectionList> NewValue) { MapSelectionLists = NewValue;  }
+    void SetMapSelectionLists(TArray<FRHAPI_DevMapSelectionListFlattened> NewValue) { MapSelectionLists = NewValue;  }
 };
 
 /** @} */

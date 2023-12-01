@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevClientResponse : public FRHAPI_DevModel
@@ -47,6 +47,27 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevClientResponse : public FRHAPI_DevMod
     const FGuid& GetClientId() const { return ClientId; }
     /** @brief Sets the value of ClientId */
     void SetClientId(FGuid NewValue) { ClientId = NewValue;  }
+
+    /** @brief Client secret. Note the value of the secret is returned only when the secret is first generated or the secret is rotated.  */
+    FString ClientSecret_Optional{  };
+    /** @brief true if ClientSecret_Optional has been set to a value */
+    bool ClientSecret_IsSet{ false };
+    /** @brief Gets the value of ClientSecret_Optional, regardless of it having been set */
+    FString& GetClientSecret() { return ClientSecret_Optional; }
+    /** @brief Gets the value of ClientSecret_Optional, regardless of it having been set */
+    const FString& GetClientSecret() const { return ClientSecret_Optional; }
+    /** @brief Gets the value of ClientSecret_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetClientSecret(const FString& DefaultValue) const { if (ClientSecret_IsSet) return ClientSecret_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of ClientSecret_Optional and returns true if it has been set, otherwise returns false */
+    bool GetClientSecret(FString& OutValue) const { if (ClientSecret_IsSet) OutValue = ClientSecret_Optional; return ClientSecret_IsSet; }
+    /** @brief Returns a pointer to ClientSecret_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetClientSecretOrNull() { if (ClientSecret_IsSet) return &ClientSecret_Optional; return nullptr; }
+    /** @brief Returns a pointer to ClientSecret_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetClientSecretOrNull() const { if (ClientSecret_IsSet) return &ClientSecret_Optional; return nullptr; }
+    /** @brief Sets the value of ClientSecret_Optional and also sets ClientSecret_IsSet to true */
+    void SetClientSecret(FString NewValue) { ClientSecret_Optional = NewValue; ClientSecret_IsSet = true; }
+     /** @brief Clears the value of ClientSecret_Optional and sets ClientSecret_IsSet to false */
+    void ClearClientSecret() { ClientSecret_IsSet = false; }
 
     FString Name{  };
     /** @brief Gets the value of Name */

@@ -9,7 +9,6 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevMatchMakingStrideEntry.h"
 #include "DevStrideFactory.h"
 #include "DevMatchMakingStride.generated.h"
 
@@ -18,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingStride : public FRHAPI_DevModel
@@ -146,35 +145,35 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingStride : public FRHAPI_Dev
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
-    /** @brief ID to uniquely identify this MatchMakingStride */
-    FGuid StrideId{  };
-    /** @brief Gets the value of StrideId */
-    FGuid& GetStrideId() { return StrideId; }
-    /** @brief Gets the value of StrideId */
-    const FGuid& GetStrideId() const { return StrideId; }
-    /** @brief Sets the value of StrideId */
-    void SetStrideId(FGuid NewValue) { StrideId = NewValue;  }
+    /** @brief Timestamp of when this resource was created */
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
-    /** @brief List of MatchMakingStrideEntries in this stride */
-    TArray<FRHAPI_DevMatchMakingStrideEntry> Steps_Optional{  };
-    /** @brief true if Steps_Optional has been set to a value */
-    bool Steps_IsSet{ false };
-    /** @brief Gets the value of Steps_Optional, regardless of it having been set */
-    TArray<FRHAPI_DevMatchMakingStrideEntry>& GetSteps() { return Steps_Optional; }
-    /** @brief Gets the value of Steps_Optional, regardless of it having been set */
-    const TArray<FRHAPI_DevMatchMakingStrideEntry>& GetSteps() const { return Steps_Optional; }
-    /** @brief Gets the value of Steps_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_DevMatchMakingStrideEntry>& GetSteps(const TArray<FRHAPI_DevMatchMakingStrideEntry>& DefaultValue) const { if (Steps_IsSet) return Steps_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Steps_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSteps(TArray<FRHAPI_DevMatchMakingStrideEntry>& OutValue) const { if (Steps_IsSet) OutValue = Steps_Optional; return Steps_IsSet; }
-    /** @brief Returns a pointer to Steps_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_DevMatchMakingStrideEntry>* GetStepsOrNull() { if (Steps_IsSet) return &Steps_Optional; return nullptr; }
-    /** @brief Returns a pointer to Steps_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_DevMatchMakingStrideEntry>* GetStepsOrNull() const { if (Steps_IsSet) return &Steps_Optional; return nullptr; }
-    /** @brief Sets the value of Steps_Optional and also sets Steps_IsSet to true */
-    void SetSteps(TArray<FRHAPI_DevMatchMakingStrideEntry> NewValue) { Steps_Optional = NewValue; Steps_IsSet = true; }
-     /** @brief Clears the value of Steps_Optional and sets Steps_IsSet to false */
-    void ClearSteps() { Steps_IsSet = false; }
+    /** @brief ID to uniquely identify this MatchMakingStride */
+    FGuid MatchMakingStrideId{  };
+    /** @brief Gets the value of MatchMakingStrideId */
+    FGuid& GetMatchMakingStrideId() { return MatchMakingStrideId; }
+    /** @brief Gets the value of MatchMakingStrideId */
+    const FGuid& GetMatchMakingStrideId() const { return MatchMakingStrideId; }
+    /** @brief Sets the value of MatchMakingStrideId */
+    void SetMatchMakingStrideId(FGuid NewValue) { MatchMakingStrideId = NewValue;  }
 };
 
 /** @} */

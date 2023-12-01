@@ -23,6 +23,176 @@ FSandboxAPI::FSandboxAPI() : FAPI()
 
 FSandboxAPI::~FSandboxAPI() {}
 
+FHttpRequestPtr FSandboxAPI::CopyFromExistingSandboxToExistingSandbox(const FRequest_CopyFromExistingSandboxToExistingSandbox& Request, const FDelegate_CopyFromExistingSandboxToExistingSandbox& Delegate /*= FDelegate_CopyFromExistingSandboxToExistingSandbox()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FSandboxAPI::OnCopyFromExistingSandboxToExistingSandboxResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FSandboxAPI::OnCopyFromExistingSandboxToExistingSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CopyFromExistingSandboxToExistingSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FSandboxAPI::OnCopyFromExistingSandboxToExistingSandboxResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_CopyFromExistingSandboxToExistingSandbox Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_CopyFromExistingSandboxToExistingSandbox::FRequest_CopyFromExistingSandboxToExistingSandbox()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_CopyFromExistingSandboxToExistingSandbox::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/copy"));
+    return Path;
+}
+
+FString FRequest_CopyFromExistingSandboxToExistingSandbox::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
+        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
+        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/copy"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_CopyFromExistingSandboxToExistingSandbox::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("POST"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CopyFromExistingSandboxToExistingSandbox - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CopyFromExistingSandboxToExistingSandbox - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, SandboxCopyRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CopyFromExistingSandboxToExistingSandbox - Body parameter (FRHAPI_DevSandboxCopyRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CopyFromExistingSandboxToExistingSandbox - Body parameter (FRHAPI_DevSandboxCopyRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_CopyFromExistingSandboxToExistingSandbox - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_CopyFromExistingSandboxToExistingSandbox::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Not Found"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_CopyFromExistingSandboxToExistingSandbox::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CopyFromExistingSandboxToExistingSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CopyFromExistingSandboxToExistingSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_CopyFromExistingSandboxToExistingSandbox::FResponse_CopyFromExistingSandboxToExistingSandbox(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_CopyFromExistingSandboxToExistingSandbox::Name = TEXT("CopyFromExistingSandboxToExistingSandbox");
+
 FHttpRequestPtr FSandboxAPI::CreateSandbox(const FRequest_CreateSandbox& Request, const FDelegate_CreateSandbox& Delegate /*= FDelegate_CreateSandbox()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
     if (!IsValid())
@@ -96,7 +266,7 @@ FName FRequest_CreateSandbox::GetSimplifiedPath() const
 
 FString FRequest_CreateSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -168,6 +338,16 @@ void FResponse_CreateSandbox::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_CreateSandbox::TryGetContentFor200(FRHAPI_DevSandbox& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreateSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_CreateSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -255,7 +435,7 @@ FName FRequest_DeleteSandbox::GetSimplifiedPath() const
 
 FString FRequest_DeleteSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -317,6 +497,16 @@ void FResponse_DeleteSandbox::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeleteSandbox::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeleteSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -404,7 +594,7 @@ FName FRequest_GetOrgProductSandbox::GetSimplifiedPath() const
 
 FString FRequest_GetOrgProductSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -463,6 +653,16 @@ void FResponse_GetOrgProductSandbox::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetOrgProductSandbox::TryGetContentFor200(FRHAPI_DevSandbox& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgProductSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetOrgProductSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -550,7 +750,7 @@ FName FRequest_GetOrgProductSandboxes::GetSimplifiedPath() const
 
 FString FRequest_GetOrgProductSandboxes::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -608,6 +808,16 @@ void FResponse_GetOrgProductSandboxes::SetHttpResponseCode(EHttpResponseCodes::T
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetOrgProductSandboxes::TryGetContentFor200(TArray<FRHAPI_DevSandbox>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgProductSandboxes::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetOrgProductSandboxes::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -695,7 +905,7 @@ FName FRequest_UpdateSandbox::GetSimplifiedPath() const
 
 FString FRequest_UpdateSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
@@ -768,6 +978,16 @@ void FResponse_UpdateSandbox::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateSandbox::TryGetContentFor200(FRHAPI_DevSandbox& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

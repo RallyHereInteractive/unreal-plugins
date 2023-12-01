@@ -25,14 +25,14 @@ void FRHAPI_DevMatchMakingRule::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId);
     Writer->WriteIdentifierPrefix(TEXT("comparison_operation"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ComparisonOperation);
-    Writer->WriteIdentifierPrefix(TEXT("rule_type"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(RuleType));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(ComparisonOperation));
     if (ItemId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("item_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, ItemId_Optional);
     }
+    Writer->WriteIdentifierPrefix(TEXT("rule_type"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(RuleType));
     Writer->WriteIdentifierPrefix(TEXT("comparison_value"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, ComparisonValue);
     if (SandboxId_IsSet)
@@ -49,6 +49,11 @@ void FRHAPI_DevMatchMakingRule::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
+    }
+    if (CreatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
     Writer->WriteIdentifierPrefix(TEXT("match_making_rule_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRuleId);
@@ -67,14 +72,14 @@ bool FRHAPI_DevMatchMakingRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue
     ParseSuccess &= JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull() && TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId);
     const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
     ParseSuccess &= JsonComparisonOperationField.IsValid() && !JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation);
-    const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
-    ParseSuccess &= JsonRuleTypeField.IsValid() && !JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType);
     const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
     if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
     {
         ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
         ParseSuccess &= ItemId_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
+    ParseSuccess &= JsonRuleTypeField.IsValid() && !JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType);
     const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
     ParseSuccess &= JsonComparisonValueField.IsValid() && !JsonComparisonValueField->IsNull() && TryGetJsonValue(JsonComparisonValueField, ComparisonValue);
     const TSharedPtr<FJsonValue> JsonSandboxIdField = (*Object)->TryGetField(TEXT("sandbox_id"));
@@ -94,6 +99,12 @@ bool FRHAPI_DevMatchMakingRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue
     {
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+    {
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonMatchMakingRuleIdField = (*Object)->TryGetField(TEXT("match_making_rule_id"));
     ParseSuccess &= JsonMatchMakingRuleIdField.IsValid() && !JsonMatchMakingRuleIdField->IsNull() && TryGetJsonValue(JsonMatchMakingRuleIdField, MatchMakingRuleId);

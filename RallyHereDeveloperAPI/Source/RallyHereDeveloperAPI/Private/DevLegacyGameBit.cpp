@@ -104,7 +104,7 @@ FString EnumToString(const ERHAPI_DevLegacyGameBit& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevLegacyGameBit& Value)
 {
-    static TMap<FString, ERHAPI_DevLegacyGameBit> StringToEnum = {
+    static TMap<FString, ERHAPI_DevLegacyGameBit> StringToEnum = { 
         { TEXT("DISABLE_FTP"), ERHAPI_DevLegacyGameBit::DisableFtp },
         { TEXT("SERVICE_MODE"), ERHAPI_DevLegacyGameBit::ServiceMode },
         { TEXT("DISABLE_PRIVATE_PROFILE"), ERHAPI_DevLegacyGameBit::DisablePrivateProfile },

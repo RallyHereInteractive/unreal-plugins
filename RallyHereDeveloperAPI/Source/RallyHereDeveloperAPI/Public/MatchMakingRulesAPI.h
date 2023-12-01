@@ -11,11 +11,14 @@
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "RallyHereDeveloperAPIHelpers.h"
 #include "DevAllMatchMakingRulesResponse.h"
+#include "DevAllMatchMakingRulesetsResponse.h"
 #include "DevHTTPValidationError.h"
 #include "DevMatchMakingRule.h"
 #include "DevMatchMakingRuleRequest.h"
 #include "DevMatchMakingRuleUpdateRequest.h"
-#include "Misc/TVariant.h"
+#include "DevMatchMakingRuleset.h"
+#include "DevMatchMakingRulesetRequest.h"
+#include "DevMatchMakingRulesetUpdateRequest.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -23,43 +26,46 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateRule;
-struct FResponse_OrgProductSandboxCreateRule;
-struct FRequest_OrgProductSandboxDeleteRule;
-struct FResponse_OrgProductSandboxDeleteRule;
-struct FRequest_OrgProductSandboxGetAllRules;
-struct FResponse_OrgProductSandboxGetAllRules;
-struct FRequest_OrgProductSandboxGetRule;
-struct FResponse_OrgProductSandboxGetRule;
-struct FRequest_OrgProductSandboxPatchRule;
-struct FResponse_OrgProductSandboxPatchRule;
-struct FRequest_OrgProductSandboxPutRule;
-struct FResponse_OrgProductSandboxPutRule;
 struct FRequest_SandboxCreateRule;
 struct FResponse_SandboxCreateRule;
+struct FRequest_SandboxCreateRuleset;
+struct FResponse_SandboxCreateRuleset;
 struct FRequest_SandboxDeleteRule;
 struct FResponse_SandboxDeleteRule;
+struct FRequest_SandboxDeleteRuleset;
+struct FResponse_SandboxDeleteRuleset;
 struct FRequest_SandboxGetAllRules;
 struct FResponse_SandboxGetAllRules;
+struct FRequest_SandboxGetAllRulesets;
+struct FResponse_SandboxGetAllRulesets;
 struct FRequest_SandboxGetRule;
 struct FResponse_SandboxGetRule;
+struct FRequest_SandboxGetRulesInRuleset;
+struct FResponse_SandboxGetRulesInRuleset;
+struct FRequest_SandboxGetRuleset;
+struct FResponse_SandboxGetRuleset;
 struct FRequest_SandboxPatchRule;
 struct FResponse_SandboxPatchRule;
+struct FRequest_SandboxPatchRuleset;
+struct FResponse_SandboxPatchRuleset;
 struct FRequest_SandboxPutRule;
 struct FResponse_SandboxPutRule;
+struct FRequest_SandboxPutRuleset;
+struct FResponse_SandboxPutRuleset;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateRule, const FResponse_OrgProductSandboxCreateRule&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteRule, const FResponse_OrgProductSandboxDeleteRule&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllRules, const FResponse_OrgProductSandboxGetAllRules&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetRule, const FResponse_OrgProductSandboxGetRule&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchRule, const FResponse_OrgProductSandboxPatchRule&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutRule, const FResponse_OrgProductSandboxPutRule&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateRule, const FResponse_SandboxCreateRule&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateRuleset, const FResponse_SandboxCreateRuleset&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteRule, const FResponse_SandboxDeleteRule&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteRuleset, const FResponse_SandboxDeleteRuleset&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllRules, const FResponse_SandboxGetAllRules&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllRulesets, const FResponse_SandboxGetAllRulesets&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetRule, const FResponse_SandboxGetRule&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetRulesInRuleset, const FResponse_SandboxGetRulesInRuleset&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetRuleset, const FResponse_SandboxGetRuleset&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxPatchRule, const FResponse_SandboxPatchRule&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxPatchRuleset, const FResponse_SandboxPatchRuleset&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxPutRule, const FResponse_SandboxPutRule&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxPutRuleset, const FResponse_SandboxPutRuleset&);
 
 class RALLYHEREDEVELOPERAPI_API FMatchMakingRulesAPI : public FAPI
 {
@@ -67,313 +73,42 @@ public:
     FMatchMakingRulesAPI();
     virtual ~FMatchMakingRulesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateRule(const FRequest_OrgProductSandboxCreateRule& Request, const FDelegate_OrgProductSandboxCreateRule& Delegate = FDelegate_OrgProductSandboxCreateRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteRule(const FRequest_OrgProductSandboxDeleteRule& Request, const FDelegate_OrgProductSandboxDeleteRule& Delegate = FDelegate_OrgProductSandboxDeleteRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllRules(const FRequest_OrgProductSandboxGetAllRules& Request, const FDelegate_OrgProductSandboxGetAllRules& Delegate = FDelegate_OrgProductSandboxGetAllRules(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetRule(const FRequest_OrgProductSandboxGetRule& Request, const FDelegate_OrgProductSandboxGetRule& Delegate = FDelegate_OrgProductSandboxGetRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchRule(const FRequest_OrgProductSandboxPatchRule& Request, const FDelegate_OrgProductSandboxPatchRule& Delegate = FDelegate_OrgProductSandboxPatchRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutRule(const FRequest_OrgProductSandboxPutRule& Request, const FDelegate_OrgProductSandboxPutRule& Delegate = FDelegate_OrgProductSandboxPutRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateRule(const FRequest_SandboxCreateRule& Request, const FDelegate_SandboxCreateRule& Delegate = FDelegate_SandboxCreateRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxCreateRuleset(const FRequest_SandboxCreateRuleset& Request, const FDelegate_SandboxCreateRuleset& Delegate = FDelegate_SandboxCreateRuleset(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeleteRule(const FRequest_SandboxDeleteRule& Request, const FDelegate_SandboxDeleteRule& Delegate = FDelegate_SandboxDeleteRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxDeleteRuleset(const FRequest_SandboxDeleteRuleset& Request, const FDelegate_SandboxDeleteRuleset& Delegate = FDelegate_SandboxDeleteRuleset(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetAllRules(const FRequest_SandboxGetAllRules& Request, const FDelegate_SandboxGetAllRules& Delegate = FDelegate_SandboxGetAllRules(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetAllRulesets(const FRequest_SandboxGetAllRulesets& Request, const FDelegate_SandboxGetAllRulesets& Delegate = FDelegate_SandboxGetAllRulesets(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetRule(const FRequest_SandboxGetRule& Request, const FDelegate_SandboxGetRule& Delegate = FDelegate_SandboxGetRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetRulesInRuleset(const FRequest_SandboxGetRulesInRuleset& Request, const FDelegate_SandboxGetRulesInRuleset& Delegate = FDelegate_SandboxGetRulesInRuleset(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetRuleset(const FRequest_SandboxGetRuleset& Request, const FDelegate_SandboxGetRuleset& Delegate = FDelegate_SandboxGetRuleset(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxPatchRule(const FRequest_SandboxPatchRule& Request, const FDelegate_SandboxPatchRule& Delegate = FDelegate_SandboxPatchRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxPatchRuleset(const FRequest_SandboxPatchRuleset& Request, const FDelegate_SandboxPatchRuleset& Delegate = FDelegate_SandboxPatchRuleset(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxPutRule(const FRequest_SandboxPutRule& Request, const FDelegate_SandboxPutRule& Delegate = FDelegate_SandboxPutRule(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxPutRuleset(const FRequest_SandboxPutRuleset& Request, const FDelegate_SandboxPutRuleset& Delegate = FDelegate_SandboxPutRuleset(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllRulesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllRules Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxCreateRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeleteRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxDeleteRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetAllRulesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllRules Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetAllRulesetsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllRulesets Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetRulesInRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetRulesInRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxPatchRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPatchRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxPatchRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPatchRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxPutRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPutRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxPutRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPutRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
 /* Create Rule
  *
- * Create a new MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateRule : public FRequest
-{
-    FRequest_OrgProductSandboxCreateRule();
-    virtual ~FRequest_OrgProductSandboxCreateRule() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingRuleRequest MatchMakingRuleRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateRule : public FResponse
-{
-    FResponse_OrgProductSandboxCreateRule(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateRule() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingRule Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateRule
-{
-    typedef FRequest_OrgProductSandboxCreateRule Request;
-    typedef FResponse_OrgProductSandboxCreateRule Response;
-    typedef FDelegate_OrgProductSandboxCreateRule Delegate;
-    typedef FMatchMakingRulesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateRule(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Rule
- *
- * Update an existing MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteRule : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteRule();
-    virtual ~FRequest_OrgProductSandboxDeleteRule() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingRuleId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteRule : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteRule(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteRule() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteRule
-{
-    typedef FRequest_OrgProductSandboxDeleteRule Request;
-    typedef FResponse_OrgProductSandboxDeleteRule Response;
-    typedef FDelegate_OrgProductSandboxDeleteRule Delegate;
-    typedef FMatchMakingRulesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteRule(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Rules
- *
- * Get all MatchMakingRules in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllRules : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllRules();
-    virtual ~FRequest_OrgProductSandboxGetAllRules() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllRules : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllRules(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllRules() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllMatchMakingRulesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllRules
-{
-    typedef FRequest_OrgProductSandboxGetAllRules Request;
-    typedef FResponse_OrgProductSandboxGetAllRules Response;
-    typedef FDelegate_OrgProductSandboxGetAllRules Delegate;
-    typedef FMatchMakingRulesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllRules(InRequest, InDelegate, Priority); }
-};
-
-/* Get Rule
- *
- * Get specific MatchMakingRule in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetRule : public FRequest
-{
-    FRequest_OrgProductSandboxGetRule();
-    virtual ~FRequest_OrgProductSandboxGetRule() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingRuleId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetRule : public FResponse
-{
-    FResponse_OrgProductSandboxGetRule(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetRule() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingRule Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetRule
-{
-    typedef FRequest_OrgProductSandboxGetRule Request;
-    typedef FResponse_OrgProductSandboxGetRule Response;
-    typedef FDelegate_OrgProductSandboxGetRule Delegate;
-    typedef FMatchMakingRulesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetRule(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Rule
- *
- * Update an existing MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchRule : public FRequest
-{
-    FRequest_OrgProductSandboxPatchRule();
-    virtual ~FRequest_OrgProductSandboxPatchRule() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingRuleId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingRuleUpdateRequest MatchMakingRuleUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchRule : public FResponse
-{
-    FResponse_OrgProductSandboxPatchRule(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchRule() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingRule Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchRule
-{
-    typedef FRequest_OrgProductSandboxPatchRule Request;
-    typedef FResponse_OrgProductSandboxPatchRule Response;
-    typedef FDelegate_OrgProductSandboxPatchRule Delegate;
-    typedef FMatchMakingRulesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchRule(InRequest, InDelegate, Priority); }
-};
-
-/* Put Rule
- *
- * Update an existing MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutRule : public FRequest
-{
-    FRequest_OrgProductSandboxPutRule();
-    virtual ~FRequest_OrgProductSandboxPutRule() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid MatchMakingRuleId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevMatchMakingRuleRequest MatchMakingRuleRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutRule : public FResponse
-{
-    FResponse_OrgProductSandboxPutRule(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutRule() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevMatchMakingRule Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutRule
-{
-    typedef FRequest_OrgProductSandboxPutRule Request;
-    typedef FResponse_OrgProductSandboxPutRule Response;
-    typedef FDelegate_OrgProductSandboxPutRule Delegate;
-    typedef FMatchMakingRulesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutRule(InRequest, InDelegate, Priority); }
-};
-
-/* Create Rule
- *
- * Create a new MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new MatchMakingRule in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateRule : public FRequest
 {
@@ -399,6 +134,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateRule : public FResponse
 
     FRHAPI_DevMatchMakingRule Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateRule
@@ -412,9 +159,66 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateRule
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateRule(InRequest, InDelegate, Priority); }
 };
 
+/* Create Ruleset
+ *
+ * Create a new MatchMakingRuleset in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateRuleset : public FRequest
+{
+    FRequest_SandboxCreateRuleset();
+    virtual ~FRequest_SandboxCreateRuleset() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    FRHAPI_DevMatchMakingRulesetRequest MatchMakingRulesetRequest;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateRuleset : public FResponse
+{
+    FResponse_SandboxCreateRuleset(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxCreateRuleset() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingRuleset Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateRuleset
+{
+    typedef FRequest_SandboxCreateRuleset Request;
+    typedef FResponse_SandboxCreateRuleset Response;
+    typedef FDelegate_SandboxCreateRuleset Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxCreateRuleset(InRequest, InDelegate, Priority); }
+};
+
 /* Delete Rule
  *
- * Update an existing MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingRule in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteRule : public FRequest
 {
@@ -438,7 +242,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteRule : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -453,9 +268,66 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteRule
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteRule(InRequest, InDelegate, Priority); }
 };
 
+/* Delete Ruleset
+ *
+ * Update an existing MatchMakingRuleset in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteRuleset : public FRequest
+{
+    FRequest_SandboxDeleteRuleset();
+    virtual ~FRequest_SandboxDeleteRuleset() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingRulesetId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteRuleset : public FResponse
+{
+    FResponse_SandboxDeleteRuleset(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxDeleteRuleset() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    
+
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteRuleset
+{
+    typedef FRequest_SandboxDeleteRuleset Request;
+    typedef FResponse_SandboxDeleteRuleset Response;
+    typedef FDelegate_SandboxDeleteRuleset Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteRuleset(InRequest, InDelegate, Priority); }
+};
+
 /* Get All Rules
  *
- * Get all MatchMakingRules in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all MatchMakingRules in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllRules : public FRequest
 {
@@ -484,6 +356,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllRules : public FResponse
 
     FRHAPI_DevAllMatchMakingRulesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingRulesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllRules
@@ -497,9 +381,71 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllRules
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllRules(InRequest, InDelegate, Priority); }
 };
 
+/* Get All Rulesets
+ *
+ * Get all MatchMakingRulesets in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllRulesets : public FRequest
+{
+    FRequest_SandboxGetAllRulesets();
+    virtual ~FRequest_SandboxGetAllRulesets() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    /* The maximum number of elements to be returned per call */
+    TOptional<int32> PageSize;
+    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
+    TOptional<FString> Cursor;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllRulesets : public FResponse
+{
+    FResponse_SandboxGetAllRulesets(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetAllRulesets() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevAllMatchMakingRulesetsResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingRulesetsResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllRulesets
+{
+    typedef FRequest_SandboxGetAllRulesets Request;
+    typedef FResponse_SandboxGetAllRulesets Response;
+    typedef FDelegate_SandboxGetAllRulesets Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetAllRulesets(InRequest, InDelegate, Priority); }
+};
+
 /* Get Rule
  *
- * Get specific MatchMakingRule in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get specific MatchMakingRule in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetRule : public FRequest
 {
@@ -525,6 +471,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetRule : public FResponse
 
     FRHAPI_DevMatchMakingRule Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRule
@@ -538,9 +496,127 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRule
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetRule(InRequest, InDelegate, Priority); }
 };
 
+/* Get Rules In Ruleset
+ *
+ * Get specific MatchMakingRuleset rules in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetRulesInRuleset : public FRequest
+{
+    FRequest_SandboxGetRulesInRuleset();
+    virtual ~FRequest_SandboxGetRulesInRuleset() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingRulesetId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    /* The maximum number of elements to be returned per call */
+    TOptional<int32> PageSize;
+    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
+    TOptional<FString> Cursor;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetRulesInRuleset : public FResponse
+{
+    FResponse_SandboxGetRulesInRuleset(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetRulesInRuleset() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevAllMatchMakingRulesResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllMatchMakingRulesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRulesInRuleset
+{
+    typedef FRequest_SandboxGetRulesInRuleset Request;
+    typedef FResponse_SandboxGetRulesInRuleset Response;
+    typedef FDelegate_SandboxGetRulesInRuleset Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetRulesInRuleset(InRequest, InDelegate, Priority); }
+};
+
+/* Get Ruleset
+ *
+ * Get specific MatchMakingRuleset in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetRuleset : public FRequest
+{
+    FRequest_SandboxGetRuleset();
+    virtual ~FRequest_SandboxGetRuleset() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingRulesetId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetRuleset : public FResponse
+{
+    FResponse_SandboxGetRuleset(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetRuleset() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingRuleset Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRuleset
+{
+    typedef FRequest_SandboxGetRuleset Request;
+    typedef FResponse_SandboxGetRuleset Response;
+    typedef FDelegate_SandboxGetRuleset Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetRuleset(InRequest, InDelegate, Priority); }
+};
+
 /* Patch Rule
  *
- * Update an existing MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingRule in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchRule : public FRequest
 {
@@ -567,6 +643,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchRule : public FResponse
 
     FRHAPI_DevMatchMakingRule Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchRule
@@ -580,9 +668,67 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchRule
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchRule(InRequest, InDelegate, Priority); }
 };
 
+/* Patch Ruleset
+ *
+ * Update an existing MatchMakingRuleset in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchRuleset : public FRequest
+{
+    FRequest_SandboxPatchRuleset();
+    virtual ~FRequest_SandboxPatchRuleset() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingRulesetId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    FRHAPI_DevMatchMakingRulesetUpdateRequest MatchMakingRulesetUpdateRequest;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchRuleset : public FResponse
+{
+    FResponse_SandboxPatchRuleset(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxPatchRuleset() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingRuleset Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchRuleset
+{
+    typedef FRequest_SandboxPatchRuleset Request;
+    typedef FResponse_SandboxPatchRuleset Response;
+    typedef FDelegate_SandboxPatchRuleset Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPatchRuleset(InRequest, InDelegate, Priority); }
+};
+
 /* Put Rule
  *
- * Update an existing MatchMakingRule in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing MatchMakingRule in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutRule : public FRequest
 {
@@ -609,6 +755,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutRule : public FResponse
 
     FRHAPI_DevMatchMakingRule Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutRule
@@ -620,6 +778,62 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutRule
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutRule(InRequest, InDelegate, Priority); }
+};
+
+/* Put Ruleset
+ *
+ * Update an existing MatchMakingRuleset in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutRuleset : public FRequest
+{
+    FRequest_SandboxPutRuleset();
+    virtual ~FRequest_SandboxPutRuleset() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid MatchMakingRulesetId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+    FRHAPI_DevMatchMakingRulesetRequest MatchMakingRulesetRequest;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutRuleset : public FResponse
+{
+    FResponse_SandboxPutRuleset(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxPutRuleset() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevMatchMakingRuleset Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPutRuleset
+{
+    typedef FRequest_SandboxPutRuleset Request;
+    typedef FResponse_SandboxPutRuleset Response;
+    typedef FDelegate_SandboxPutRuleset Delegate;
+    typedef FMatchMakingRulesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxPutRuleset(InRequest, InDelegate, Priority); }
 };
 
 

@@ -13,12 +13,13 @@
 
 
 /**
- * @brief List of propery Id&#39;s to expand the corresponding name.
+ * @brief List of properties Id&#39;s to expand the corresponding name.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_DevExpandProperty : uint8
 {
-    All UMETA(ToolTip="List of propery Id&#39;s to expand the corresponding name."),
+    All UMETA(ToolTip="List of properties Id&#39;s to expand the corresponding name."),
+    LegacyId UMETA(ToolTip="List of properties Id&#39;s to expand the corresponding name."),
 };
 RALLYHEREDEVELOPERAPI_API FString EnumToString(const ERHAPI_DevExpandProperty& EnumValue);
 RALLYHEREDEVELOPERAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_DevExpandProperty& EnumValue);

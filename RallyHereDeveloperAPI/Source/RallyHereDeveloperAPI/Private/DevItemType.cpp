@@ -38,7 +38,7 @@ FString EnumToString(const ERHAPI_DevItemType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevItemType& Value)
 {
-    static TMap<FString, ERHAPI_DevItemType> StringToEnum = {
+    static TMap<FString, ERHAPI_DevItemType> StringToEnum = { 
         { TEXT("unit"), ERHAPI_DevItemType::Unit },
         { TEXT("recipe"), ERHAPI_DevItemType::Recipe },
         { TEXT("recipe_with_price_reduction"), ERHAPI_DevItemType::RecipeWithPriceReduction },

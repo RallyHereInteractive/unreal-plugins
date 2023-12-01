@@ -31,10 +31,10 @@ void FRHAPI_DevMatchMakingProfileRequest::WriteJson(TSharedRef<TJsonWriter<>>& W
     RallyHereDeveloperAPI::WriteJsonValue(Writer, RankId);
     Writer->WriteIdentifierPrefix(TEXT("num_sides"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, NumSides);
-    Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MaxPlayersPerSide);
     Writer->WriteIdentifierPrefix(TEXT("min_players_per_side"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MinPlayersPerSide);
+    Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MaxPlayersPerSide);
     Writer->WriteIdentifierPrefix(TEXT("min_players_per_linking"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MinPlayersPerLinking);
     Writer->WriteIdentifierPrefix(TEXT("max_players_per_linking"));
@@ -50,8 +50,10 @@ void FRHAPI_DevMatchMakingProfileRequest::WriteJson(TSharedRef<TJsonWriter<>>& W
     }
     Writer->WriteIdentifierPrefix(TEXT("match_making_function_config"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingFunctionConfig);
-    Writer->WriteIdentifierPrefix(TEXT("stride_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, StrideId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_stride_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingStrideId);
+    Writer->WriteIdentifierPrefix(TEXT("crossplay_partition_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, CrossplayPartitionId);
     if (LegacyConfig_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
@@ -70,10 +72,12 @@ void FRHAPI_DevMatchMakingProfileRequest::WriteJson(TSharedRef<TJsonWriter<>>& W
     if (TrueskillQualityByTimeMethod_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("trueskill_quality_by_time_method"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, TrueskillQualityByTimeMethod_Optional);
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(TrueskillQualityByTimeMethod_Optional));
     }
     Writer->WriteIdentifierPrefix(TEXT("active"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Active);
+    Writer->WriteIdentifierPrefix(TEXT("supports_backfill"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, SupportsBackfill);
     Writer->WriteObjectEnd();
 }
 
@@ -95,10 +99,10 @@ bool FRHAPI_DevMatchMakingProfileRequest::FromJson(const TSharedPtr<FJsonValue>&
     ParseSuccess &= JsonRankIdField.IsValid() && !JsonRankIdField->IsNull() && TryGetJsonValue(JsonRankIdField, RankId);
     const TSharedPtr<FJsonValue> JsonNumSidesField = (*Object)->TryGetField(TEXT("num_sides"));
     ParseSuccess &= JsonNumSidesField.IsValid() && !JsonNumSidesField->IsNull() && TryGetJsonValue(JsonNumSidesField, NumSides);
-    const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
-    ParseSuccess &= JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull() && TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide);
     const TSharedPtr<FJsonValue> JsonMinPlayersPerSideField = (*Object)->TryGetField(TEXT("min_players_per_side"));
     ParseSuccess &= JsonMinPlayersPerSideField.IsValid() && !JsonMinPlayersPerSideField->IsNull() && TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide);
+    const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
+    ParseSuccess &= JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull() && TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide);
     const TSharedPtr<FJsonValue> JsonMinPlayersPerLinkingField = (*Object)->TryGetField(TEXT("min_players_per_linking"));
     ParseSuccess &= JsonMinPlayersPerLinkingField.IsValid() && !JsonMinPlayersPerLinkingField->IsNull() && TryGetJsonValue(JsonMinPlayersPerLinkingField, MinPlayersPerLinking);
     const TSharedPtr<FJsonValue> JsonMaxPlayersPerLinkingField = (*Object)->TryGetField(TEXT("max_players_per_linking"));
@@ -115,8 +119,10 @@ bool FRHAPI_DevMatchMakingProfileRequest::FromJson(const TSharedPtr<FJsonValue>&
     }
     const TSharedPtr<FJsonValue> JsonMatchMakingFunctionConfigField = (*Object)->TryGetField(TEXT("match_making_function_config"));
     ParseSuccess &= JsonMatchMakingFunctionConfigField.IsValid() && !JsonMatchMakingFunctionConfigField->IsNull() && TryGetJsonValue(JsonMatchMakingFunctionConfigField, MatchMakingFunctionConfig);
-    const TSharedPtr<FJsonValue> JsonStrideIdField = (*Object)->TryGetField(TEXT("stride_id"));
-    ParseSuccess &= JsonStrideIdField.IsValid() && !JsonStrideIdField->IsNull() && TryGetJsonValue(JsonStrideIdField, StrideId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingStrideIdField = (*Object)->TryGetField(TEXT("match_making_stride_id"));
+    ParseSuccess &= JsonMatchMakingStrideIdField.IsValid() && !JsonMatchMakingStrideIdField->IsNull() && TryGetJsonValue(JsonMatchMakingStrideIdField, MatchMakingStrideId);
+    const TSharedPtr<FJsonValue> JsonCrossplayPartitionIdField = (*Object)->TryGetField(TEXT("crossplay_partition_id"));
+    ParseSuccess &= JsonCrossplayPartitionIdField.IsValid() && !JsonCrossplayPartitionIdField->IsNull() && TryGetJsonValue(JsonCrossplayPartitionIdField, CrossplayPartitionId);
     const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
     if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
     {
@@ -143,6 +149,8 @@ bool FRHAPI_DevMatchMakingProfileRequest::FromJson(const TSharedPtr<FJsonValue>&
     }
     const TSharedPtr<FJsonValue> JsonActiveField = (*Object)->TryGetField(TEXT("active"));
     ParseSuccess &= JsonActiveField.IsValid() && !JsonActiveField->IsNull() && TryGetJsonValue(JsonActiveField, Active);
+    const TSharedPtr<FJsonValue> JsonSupportsBackfillField = (*Object)->TryGetField(TEXT("supports_backfill"));
+    ParseSuccess &= JsonSupportsBackfillField.IsValid() && !JsonSupportsBackfillField->IsNull() && TryGetJsonValue(JsonSupportsBackfillField, SupportsBackfill);
 
     return ParseSuccess;
 }

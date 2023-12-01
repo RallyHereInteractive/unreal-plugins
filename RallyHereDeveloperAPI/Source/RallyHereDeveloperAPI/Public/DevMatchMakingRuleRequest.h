@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevComparisonOperation.h"
 #include "DevRuleType.h"
 #include "DevMatchMakingRuleRequest.generated.h"
 
@@ -17,7 +18,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingRuleRequest : public FRHAPI_DevModel
@@ -50,22 +51,13 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingRuleRequest : public FRHAP
     void SetMatchMakingRulesetId(FGuid NewValue) { MatchMakingRulesetId = NewValue;  }
 
     /** @brief Which comparison operator is used when evaluating the rule */
-    FString ComparisonOperation{  };
+    ERHAPI_DevComparisonOperation ComparisonOperation{  };
     /** @brief Gets the value of ComparisonOperation */
-    FString& GetComparisonOperation() { return ComparisonOperation; }
+    ERHAPI_DevComparisonOperation& GetComparisonOperation() { return ComparisonOperation; }
     /** @brief Gets the value of ComparisonOperation */
-    const FString& GetComparisonOperation() const { return ComparisonOperation; }
+    const ERHAPI_DevComparisonOperation& GetComparisonOperation() const { return ComparisonOperation; }
     /** @brief Sets the value of ComparisonOperation */
-    void SetComparisonOperation(FString NewValue) { ComparisonOperation = NewValue;  }
-
-    /** @brief What type of rule this is (determines what types of values are being compared */
-    ERHAPI_DevRuleType RuleType{  };
-    /** @brief Gets the value of RuleType */
-    ERHAPI_DevRuleType& GetRuleType() { return RuleType; }
-    /** @brief Gets the value of RuleType */
-    const ERHAPI_DevRuleType& GetRuleType() const { return RuleType; }
-    /** @brief Sets the value of RuleType */
-    void SetRuleType(ERHAPI_DevRuleType NewValue) { RuleType = NewValue;  }
+    void SetComparisonOperation(ERHAPI_DevComparisonOperation NewValue) { ComparisonOperation = NewValue;  }
 
     /** @brief What item is being compared if this is an Inventory rule */
     FGuid ItemId_Optional{  };
@@ -87,6 +79,15 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingRuleRequest : public FRHAP
     void SetItemId(FGuid NewValue) { ItemId_Optional = NewValue; ItemId_IsSet = true; }
      /** @brief Clears the value of ItemId_Optional and sets ItemId_IsSet to false */
     void ClearItemId() { ItemId_IsSet = false; }
+
+    /** @brief What type of rule this is (determines what types of values are being compared */
+    ERHAPI_DevRuleType RuleType{  };
+    /** @brief Gets the value of RuleType */
+    ERHAPI_DevRuleType& GetRuleType() { return RuleType; }
+    /** @brief Gets the value of RuleType */
+    const ERHAPI_DevRuleType& GetRuleType() const { return RuleType; }
+    /** @brief Sets the value of RuleType */
+    void SetRuleType(ERHAPI_DevRuleType NewValue) { RuleType = NewValue;  }
 
     /** @brief What value is to be compared to */
     int32 ComparisonValue{ 0 };

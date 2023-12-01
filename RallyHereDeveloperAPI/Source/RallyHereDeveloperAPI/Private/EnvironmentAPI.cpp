@@ -23,654 +23,6 @@ FEnvironmentAPI::FEnvironmentAPI() : FAPI()
 
 FEnvironmentAPI::~FEnvironmentAPI() {}
 
-FHttpRequestPtr FEnvironmentAPI::EnvironmentFullGetEnvironmentMetricPlayersActive(const FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive& Delegate /*= FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersActiveResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersActiveResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPlayersActive Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersActiveResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive::FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/players/active"));
-    return Path;
-}
-
-FString FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/players/active"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(FromDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("from_date=")) + ToUrlString(FromDate.GetValue()));
-    }
-    if(ToDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("to_date=")) + ToUrlString(ToDate.GetValue()));
-    }
-    if(PreviousSeconds.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("previous_seconds=")) + ToUrlString(PreviousSeconds.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersActive - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive::FResponse_EnvironmentFullGetEnvironmentMetricPlayersActive(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_EnvironmentFullGetEnvironmentMetricPlayersActive::Name = TEXT("EnvironmentFullGetEnvironmentMetricPlayersActive");
-
-FHttpRequestPtr FEnvironmentAPI::EnvironmentFullGetEnvironmentMetricPlayersCcu(const FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu& Delegate /*= FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersCcuResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersCcuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPlayersCcu Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersCcuResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu::FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/players/ccu"));
-    return Path;
-}
-
-FString FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/players/ccu"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(FromDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("from_date=")) + ToUrlString(FromDate.GetValue()));
-    }
-    if(ToDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("to_date=")) + ToUrlString(ToDate.GetValue()));
-    }
-    if(PreviousSeconds.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("previous_seconds=")) + ToUrlString(PreviousSeconds.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersCcu - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu::FResponse_EnvironmentFullGetEnvironmentMetricPlayersCcu(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_EnvironmentFullGetEnvironmentMetricPlayersCcu::Name = TEXT("EnvironmentFullGetEnvironmentMetricPlayersCcu");
-
-FHttpRequestPtr FEnvironmentAPI::EnvironmentFullGetEnvironmentMetricPlayersNew(const FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew& Delegate /*= FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersNewResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersNewResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPlayersNew Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPlayersNewResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew::FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/players/new"));
-    return Path;
-}
-
-FString FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/players/new"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(FromDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("from_date=")) + ToUrlString(FromDate.GetValue()));
-    }
-    if(ToDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("to_date=")) + ToUrlString(ToDate.GetValue()));
-    }
-    if(PreviousSeconds.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("previous_seconds=")) + ToUrlString(PreviousSeconds.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPlayersNew - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew::FResponse_EnvironmentFullGetEnvironmentMetricPlayersNew(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_EnvironmentFullGetEnvironmentMetricPlayersNew::Name = TEXT("EnvironmentFullGetEnvironmentMetricPlayersNew");
-
-FHttpRequestPtr FEnvironmentAPI::EnvironmentFullGetEnvironmentMetricPurchases(const FRequest_EnvironmentFullGetEnvironmentMetricPurchases& Request, const FDelegate_EnvironmentFullGetEnvironmentMetricPurchases& Delegate /*= FDelegate_EnvironmentFullGetEnvironmentMetricPurchases()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPurchasesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPurchasesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_EnvironmentFullGetEnvironmentMetricPurchases Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FEnvironmentAPI::OnEnvironmentFullGetEnvironmentMetricPurchasesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_EnvironmentFullGetEnvironmentMetricPurchases Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_EnvironmentFullGetEnvironmentMetricPurchases::FRequest_EnvironmentFullGetEnvironmentMetricPurchases()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_EnvironmentFullGetEnvironmentMetricPurchases::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/purchases"));
-    return Path;
-}
-
-FString FRequest_EnvironmentFullGetEnvironmentMetricPurchases::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/analytics/purchases"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(FromDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("from_date=")) + ToUrlString(FromDate.GetValue()));
-    }
-    if(ToDate.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("to_date=")) + ToUrlString(ToDate.GetValue()));
-    }
-    if(PreviousSeconds.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("previous_seconds=")) + ToUrlString(PreviousSeconds.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_EnvironmentFullGetEnvironmentMetricPurchases::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPurchases - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPurchases - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_EnvironmentFullGetEnvironmentMetricPurchases - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_EnvironmentFullGetEnvironmentMetricPurchases::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_EnvironmentFullGetEnvironmentMetricPurchases::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_EnvironmentFullGetEnvironmentMetricPurchases::FResponse_EnvironmentFullGetEnvironmentMetricPurchases(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_EnvironmentFullGetEnvironmentMetricPurchases::Name = TEXT("EnvironmentFullGetEnvironmentMetricPurchases");
-
 FHttpRequestPtr FEnvironmentAPI::EnvironmentGetEnvironmentMetricPlayersActive(const FRequest_EnvironmentGetEnvironmentMetricPlayersActive& Request, const FDelegate_EnvironmentGetEnvironmentMetricPlayersActive& Delegate /*= FDelegate_EnvironmentGetEnvironmentMetricPlayersActive()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
     if (!IsValid())
@@ -744,7 +96,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPlayersActive::GetSimplifiedPath()
 
 FString FRequest_EnvironmentGetEnvironmentMetricPlayersActive::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -817,6 +169,16 @@ void FResponse_EnvironmentGetEnvironmentMetricPlayersActive::SetHttpResponseCode
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPlayersActive::TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPlayersActive::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_EnvironmentGetEnvironmentMetricPlayersActive::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -904,7 +266,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPlayersCcu::GetSimplifiedPath() co
 
 FString FRequest_EnvironmentGetEnvironmentMetricPlayersCcu::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -977,6 +339,16 @@ void FResponse_EnvironmentGetEnvironmentMetricPlayersCcu::SetHttpResponseCode(EH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPlayersCcu::TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPlayersCcu::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_EnvironmentGetEnvironmentMetricPlayersCcu::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1064,7 +436,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPlayersNew::GetSimplifiedPath() co
 
 FString FRequest_EnvironmentGetEnvironmentMetricPlayersNew::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1137,6 +509,16 @@ void FResponse_EnvironmentGetEnvironmentMetricPlayersNew::SetHttpResponseCode(EH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPlayersNew::TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPlayersNew::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_EnvironmentGetEnvironmentMetricPlayersNew::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1224,7 +606,7 @@ FName FRequest_EnvironmentGetEnvironmentMetricPurchases::GetSimplifiedPath() con
 
 FString FRequest_EnvironmentGetEnvironmentMetricPurchases::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1297,6 +679,16 @@ void FResponse_EnvironmentGetEnvironmentMetricPurchases::SetHttpResponseCode(EHt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPurchases::TryGetContentFor200(FRHAPI_DevPlatformData& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_EnvironmentGetEnvironmentMetricPurchases::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_EnvironmentGetEnvironmentMetricPurchases::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

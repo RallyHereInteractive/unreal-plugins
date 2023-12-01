@@ -96,7 +96,7 @@ FName FRequest_SandboxCreateInventoryBucketUseRuleSets::GetSimplifiedPath() cons
 
 FString FRequest_SandboxCreateInventoryBucketUseRuleSets::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -164,6 +164,16 @@ void FResponse_SandboxCreateInventoryBucketUseRuleSets::SetHttpResponseCode(EHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateInventoryBucketUseRuleSets::TryGetContentFor201(TArray<FRHAPI_DevInventoryBucketUseRuleSet>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateInventoryBucketUseRuleSets::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateInventoryBucketUseRuleSets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -251,7 +261,7 @@ FName FRequest_SandboxCreateItems::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateItems::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -319,6 +329,16 @@ void FResponse_SandboxCreateItems::SetHttpResponseCode(EHttpResponseCodes::Type 
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateItems::TryGetContentFor201(TArray<FRHAPI_DevItem>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateItems::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateItems::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -406,7 +426,7 @@ FName FRequest_SandboxCreateLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -474,6 +494,16 @@ void FResponse_SandboxCreateLoot::SetHttpResponseCode(EHttpResponseCodes::Type I
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateLoot::TryGetContentFor201(TArray<FRHAPI_DevLoot>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateLoot::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -561,7 +591,7 @@ FName FRequest_SandboxCreateManyXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateManyXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -629,6 +659,16 @@ void FResponse_SandboxCreateManyXp::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateManyXp::TryGetContentFor201(TArray<FRHAPI_DevXp>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateManyXp::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateManyXp::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -716,7 +756,7 @@ FName FRequest_SandboxCreatePricePoints::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreatePricePoints::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -784,6 +824,16 @@ void FResponse_SandboxCreatePricePoints::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreatePricePoints::TryGetContentFor201(TArray<FRHAPI_DevPricePoint>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreatePricePoints::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreatePricePoints::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -871,7 +921,7 @@ FName FRequest_SandboxCreateVendors::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateVendors::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -939,6 +989,16 @@ void FResponse_SandboxCreateVendors::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateVendors::TryGetContentFor201(TArray<FRHAPI_DevVendor>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateVendors::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateVendors::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1026,7 +1086,7 @@ FName FRequest_SandboxCreateXpThreshold::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateXpThreshold::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1095,6 +1155,16 @@ void FResponse_SandboxCreateXpThreshold::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateXpThreshold::TryGetContentFor200(FRHAPI_DevXpLevelThreshold& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateXpThreshold::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateXpThreshold::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1182,7 +1252,7 @@ FName FRequest_SandboxDeleteManyItems::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyItems::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1244,6 +1314,11 @@ void FResponse_SandboxDeleteManyItems::SetHttpResponseCode(EHttpResponseCodes::T
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteManyItems::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteManyItems::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1331,7 +1406,7 @@ FName FRequest_SandboxDeleteManyLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1393,6 +1468,11 @@ void FResponse_SandboxDeleteManyLoot::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteManyLoot::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteManyLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1480,7 +1560,7 @@ FName FRequest_SandboxDeleteManyPricePoints::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyPricePoints::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1542,6 +1622,11 @@ void FResponse_SandboxDeleteManyPricePoints::SetHttpResponseCode(EHttpResponseCo
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteManyPricePoints::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteManyPricePoints::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1629,7 +1714,7 @@ FName FRequest_SandboxDeleteManyRuleSets::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyRuleSets::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1691,6 +1776,11 @@ void FResponse_SandboxDeleteManyRuleSets::SetHttpResponseCode(EHttpResponseCodes
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteManyRuleSets::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteManyRuleSets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1778,7 +1868,7 @@ FName FRequest_SandboxDeleteManyXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteManyXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1840,6 +1930,11 @@ void FResponse_SandboxDeleteManyXp::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteManyXp::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteManyXp::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1927,7 +2022,7 @@ FName FRequest_SandboxDeleteSingleItem::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleItem::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("item_id"), ToStringFormatArg(ItemId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1985,6 +2080,11 @@ void FResponse_SandboxDeleteSingleItem::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteSingleItem::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteSingleItem::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2072,7 +2172,7 @@ FName FRequest_SandboxDeleteSingleLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("loot_id"), ToStringFormatArg(LootId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2130,6 +2230,11 @@ void FResponse_SandboxDeleteSingleLoot::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteSingleLoot::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteSingleLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2217,7 +2322,7 @@ FName FRequest_SandboxDeleteSinglePricePoint::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSinglePricePoint::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2275,6 +2380,11 @@ void FResponse_SandboxDeleteSinglePricePoint::SetHttpResponseCode(EHttpResponseC
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteSinglePricePoint::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteSinglePricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2362,7 +2472,7 @@ FName FRequest_SandboxDeleteSingleRuleSet::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleRuleSet::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("inventory_bucket_use_rule_set_id"), ToStringFormatArg(InventoryBucketUseRuleSetId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2420,6 +2530,11 @@ void FResponse_SandboxDeleteSingleRuleSet::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteSingleRuleSet::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteSingleRuleSet::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2507,7 +2622,7 @@ FName FRequest_SandboxDeleteSingleXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2565,6 +2680,11 @@ void FResponse_SandboxDeleteSingleXp::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteSingleXp::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteSingleXp::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2652,7 +2772,7 @@ FName FRequest_SandboxDeleteSingleXpThreshold::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteSingleXpThreshold::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("xp_threshold_id"), ToStringFormatArg(XpThresholdId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -2711,6 +2831,11 @@ void FResponse_SandboxDeleteSingleXpThreshold::SetHttpResponseCode(EHttpResponse
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteSingleXpThreshold::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteSingleXpThreshold::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2798,7 +2923,7 @@ FName FRequest_SandboxDeleteVendor::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteVendor::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -2856,6 +2981,11 @@ void FResponse_SandboxDeleteVendor::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteVendor::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteVendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2943,7 +3073,7 @@ FName FRequest_SandboxDeleteVendors::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteVendors::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3005,6 +3135,11 @@ void FResponse_SandboxDeleteVendors::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteVendors::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteVendors::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3092,7 +3227,7 @@ FName FRequest_SandboxGetItemById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetItemById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("item_id"), ToStringFormatArg(ItemId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3158,6 +3293,16 @@ void FResponse_SandboxGetItemById::SetHttpResponseCode(EHttpResponseCodes::Type 
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetItemById::TryGetContentFor200(FRHAPI_DevItem& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetItemById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetItemById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3245,7 +3390,7 @@ FName FRequest_SandboxGetItems::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetItems::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3275,10 +3420,6 @@ FString FRequest_SandboxGetItems::ComputePath() const
     if(LevelXpIds.IsSet())
     {
         QueryParams.Add(FString(TEXT("level_xp_ids=")) + CollectionToUrlString_multi(LevelXpIds.GetValue(), TEXT("level_xp_ids")));
-    }
-    if(LevelVendorIds.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("level_vendor_ids=")) + CollectionToUrlString_multi(LevelVendorIds.GetValue(), TEXT("level_vendor_ids")));
     }
     if(Name.IsSet())
     {
@@ -3362,6 +3503,16 @@ void FResponse_SandboxGetItems::SetHttpResponseCode(EHttpResponseCodes::Type InH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetItems::TryGetContentFor200(FRHAPI_DevItemCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetItems::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetItems::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3449,7 +3600,7 @@ FName FRequest_SandboxGetLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3580,6 +3731,16 @@ void FResponse_SandboxGetLoot::SetHttpResponseCode(EHttpResponseCodes::Type InHt
     }
 }
 
+bool FResponse_SandboxGetLoot::TryGetContentFor200(FRHAPI_DevLootCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetLoot::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -3665,7 +3826,7 @@ FName FRequest_SandboxGetLootById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetLootById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("loot_id"), ToStringFormatArg(LootId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3731,6 +3892,16 @@ void FResponse_SandboxGetLootById::SetHttpResponseCode(EHttpResponseCodes::Type 
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetLootById::TryGetContentFor200(FRHAPI_DevLoot& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetLootById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetLootById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3818,7 +3989,7 @@ FName FRequest_SandboxGetManyXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetManyXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3913,6 +4084,16 @@ void FResponse_SandboxGetManyXp::SetHttpResponseCode(EHttpResponseCodes::Type In
     }
 }
 
+bool FResponse_SandboxGetManyXp::TryGetContentFor200(FRHAPI_DevXpCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetManyXp::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetManyXp::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -3924,6 +4105,161 @@ FResponse_SandboxGetManyXp::FResponse_SandboxGetManyXp(FRequestMetadata InReques
 }
 
 FString Traits_SandboxGetManyXp::Name = TEXT("SandboxGetManyXp");
+
+FHttpRequestPtr FCatalogAPI::SandboxGetManyXpThresholds(const FRequest_SandboxGetManyXpThresholds& Request, const FDelegate_SandboxGetManyXpThresholds& Delegate /*= FDelegate_SandboxGetManyXpThresholds()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FCatalogAPI::OnSandboxGetManyXpThresholdsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FCatalogAPI::OnSandboxGetManyXpThresholdsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetManyXpThresholds Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FCatalogAPI::OnSandboxGetManyXpThresholdsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxGetManyXpThresholds Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxGetManyXpThresholds::FRequest_SandboxGetManyXpThresholds()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxGetManyXpThresholds::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/xp/{xp_id}/xp-threshold"));
+    return Path;
+}
+
+FString FRequest_SandboxGetManyXpThresholds::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("xp_id"), ToStringFormatArg(XpId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/xp/{xp_id}/xp-threshold"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxGetManyXpThresholds::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetManyXpThresholds - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetManyXpThresholds - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetManyXpThresholds - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxGetManyXpThresholds::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxGetManyXpThresholds::TryGetContentFor200(FRHAPI_DevXpThresholdCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetManyXpThresholds::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetManyXpThresholds::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxGetManyXpThresholds::FResponse_SandboxGetManyXpThresholds(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxGetManyXpThresholds::Name = TEXT("SandboxGetManyXpThresholds");
 
 FHttpRequestPtr FCatalogAPI::SandboxGetPricePointById(const FRequest_SandboxGetPricePointById& Request, const FDelegate_SandboxGetPricePointById& Delegate /*= FDelegate_SandboxGetPricePointById()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -3998,7 +4334,7 @@ FName FRequest_SandboxGetPricePointById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetPricePointById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4056,6 +4392,16 @@ void FResponse_SandboxGetPricePointById::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetPricePointById::TryGetContentFor200(FRHAPI_DevPricePoint& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetPricePointById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetPricePointById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4143,7 +4489,7 @@ FName FRequest_SandboxGetPricePoints::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetPricePoints::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4165,6 +4511,10 @@ FString FRequest_SandboxGetPricePoints::ComputePath() const
     if(Name.IsSet())
     {
         QueryParams.Add(FString(TEXT("name=")) + ToUrlString(Name.GetValue()));
+    }
+    if(Expand.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("expand=")) + CollectionToUrlString_multi(Expand.GetValue(), TEXT("expand")));
     }
     if(LastModifiedAccountIds.IsSet())
     {
@@ -4240,6 +4590,16 @@ void FResponse_SandboxGetPricePoints::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetPricePoints::TryGetContentFor200(FRHAPI_DevPricePointCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetPricePoints::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetPricePoints::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4327,7 +4687,7 @@ FName FRequest_SandboxGetRuleSetById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRuleSetById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("inventory_bucket_use_rule_set_id"), ToStringFormatArg(InventoryBucketUseRuleSetId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4385,6 +4745,16 @@ void FResponse_SandboxGetRuleSetById::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetRuleSetById::TryGetContentFor200(FRHAPI_DevInventoryBucketUseRuleSet& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRuleSetById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetRuleSetById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4472,7 +4842,7 @@ FName FRequest_SandboxGetRuleSets::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRuleSets::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4567,6 +4937,16 @@ void FResponse_SandboxGetRuleSets::SetHttpResponseCode(EHttpResponseCodes::Type 
     }
 }
 
+bool FResponse_SandboxGetRuleSets::TryGetContentFor200(FRHAPI_DevInventoryBucketUseRuleSetCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRuleSets::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetRuleSets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -4652,7 +5032,7 @@ FName FRequest_SandboxGetVendorById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetVendorById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4710,6 +5090,16 @@ void FResponse_SandboxGetVendorById::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetVendorById::TryGetContentFor200(FRHAPI_DevVendor& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetVendorById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetVendorById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4797,7 +5187,7 @@ FName FRequest_SandboxGetVendors::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetVendors::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4896,6 +5286,16 @@ void FResponse_SandboxGetVendors::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
+bool FResponse_SandboxGetVendors::TryGetContentFor200(FRHAPI_DevVendorCollection& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetVendors::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetVendors::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -4981,7 +5381,7 @@ FName FRequest_SandboxGetXpById::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetXpById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5041,6 +5441,16 @@ void FResponse_SandboxGetXpById::SetHttpResponseCode(EHttpResponseCodes::Type In
     }
 }
 
+bool FResponse_SandboxGetXpById::TryGetContentFor200(FRHAPI_DevXp& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetXpById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetXpById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -5052,6 +5462,162 @@ FResponse_SandboxGetXpById::FResponse_SandboxGetXpById(FRequestMetadata InReques
 }
 
 FString Traits_SandboxGetXpById::Name = TEXT("SandboxGetXpById");
+
+FHttpRequestPtr FCatalogAPI::SandboxGetXpThresholdByIdAndXpId(const FRequest_SandboxGetXpThresholdByIdAndXpId& Request, const FDelegate_SandboxGetXpThresholdByIdAndXpId& Delegate /*= FDelegate_SandboxGetXpThresholdByIdAndXpId()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FCatalogAPI::OnSandboxGetXpThresholdByIdAndXpIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FCatalogAPI::OnSandboxGetXpThresholdByIdAndXpIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetXpThresholdByIdAndXpId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FCatalogAPI::OnSandboxGetXpThresholdByIdAndXpIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxGetXpThresholdByIdAndXpId Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxGetXpThresholdByIdAndXpId::FRequest_SandboxGetXpThresholdByIdAndXpId()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxGetXpThresholdByIdAndXpId::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/xp/{xp_id}/xp-threshold/{xp_threshold_id}"));
+    return Path;
+}
+
+FString FRequest_SandboxGetXpThresholdByIdAndXpId::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("xp_id"), ToStringFormatArg(XpId) },
+        { TEXT("xp_threshold_id"), ToStringFormatArg(XpThresholdId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/xp/{xp_id}/xp-threshold/{xp_threshold_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxGetXpThresholdByIdAndXpId::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetXpThresholdByIdAndXpId - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetXpThresholdByIdAndXpId - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetXpThresholdByIdAndXpId - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxGetXpThresholdByIdAndXpId::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxGetXpThresholdByIdAndXpId::TryGetContentFor200(FRHAPI_DevXpLevelThreshold& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetXpThresholdByIdAndXpId::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetXpThresholdByIdAndXpId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxGetXpThresholdByIdAndXpId::FResponse_SandboxGetXpThresholdByIdAndXpId(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxGetXpThresholdByIdAndXpId::Name = TEXT("SandboxGetXpThresholdByIdAndXpId");
 
 FHttpRequestPtr FCatalogAPI::SandboxUpdateItem(const FRequest_SandboxUpdateItem& Request, const FDelegate_SandboxUpdateItem& Delegate /*= FDelegate_SandboxUpdateItem()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -5126,7 +5692,7 @@ FName FRequest_SandboxUpdateItem::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateItem::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("item_id"), ToStringFormatArg(ItemId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5195,6 +5761,16 @@ void FResponse_SandboxUpdateItem::SetHttpResponseCode(EHttpResponseCodes::Type I
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdateItem::TryGetContentFor200(FRHAPI_DevItem& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdateItem::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdateItem::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5282,7 +5858,7 @@ FName FRequest_SandboxUpdateLoot::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateLoot::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("loot_id"), ToStringFormatArg(LootId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5351,6 +5927,16 @@ void FResponse_SandboxUpdateLoot::SetHttpResponseCode(EHttpResponseCodes::Type I
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdateLoot::TryGetContentFor200(FRHAPI_DevLoot& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdateLoot::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdateLoot::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5438,7 +6024,7 @@ FName FRequest_SandboxUpdatePricePoint::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdatePricePoint::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("price_point_id"), ToStringFormatArg(PricePointId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5507,6 +6093,16 @@ void FResponse_SandboxUpdatePricePoint::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdatePricePoint::TryGetContentFor200(FRHAPI_DevPricePoint& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdatePricePoint::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdatePricePoint::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5594,7 +6190,7 @@ FName FRequest_SandboxUpdateRuleSet::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateRuleSet::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("inventory_bucket_use_rule_set_id"), ToStringFormatArg(InventoryBucketUseRuleSetId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5663,6 +6259,16 @@ void FResponse_SandboxUpdateRuleSet::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdateRuleSet::TryGetContentFor200(FRHAPI_DevInventoryBucketUseRuleSet& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdateRuleSet::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdateRuleSet::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5750,7 +6356,7 @@ FName FRequest_SandboxUpdateVendor::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateVendor::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("vendor_id"), ToStringFormatArg(VendorId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5819,6 +6425,16 @@ void FResponse_SandboxUpdateVendor::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdateVendor::TryGetContentFor200(FRHAPI_DevVendor& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdateVendor::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdateVendor::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5906,7 +6522,7 @@ FName FRequest_SandboxUpdateXp::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateXp::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5975,6 +6591,16 @@ void FResponse_SandboxUpdateXp::SetHttpResponseCode(EHttpResponseCodes::Type InH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdateXp::TryGetContentFor200(FRHAPI_DevXp& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdateXp::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdateXp::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -6062,7 +6688,7 @@ FName FRequest_SandboxUpdateXpThreshold::GetSimplifiedPath() const
 
 FString FRequest_SandboxUpdateXpThreshold::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("xp_id"), ToStringFormatArg(XpId) },
         { TEXT("xp_threshold_id"), ToStringFormatArg(XpThresholdId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
@@ -6132,6 +6758,16 @@ void FResponse_SandboxUpdateXpThreshold::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxUpdateXpThreshold::TryGetContentFor200(FRHAPI_DevXpLevelThreshold& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxUpdateXpThreshold::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxUpdateXpThreshold::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

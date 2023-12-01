@@ -9,7 +9,8 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevRoleLoginLootBase.h"
+#include "DevRoleAuthBypassMethod.h"
+#include "DevRoleLoginLoot.h"
 #include "DevRoleCreate.generated.h"
 
 /** @defgroup RHAPI_DevRoleCreate RallyHere API Model DevRoleCreate
@@ -104,23 +105,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleCreate : public FRHAPI_DevModel
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief List of login loot rewards for this role */
-    TArray<FRHAPI_DevRoleLoginLootBase> LoginLootRewards_Optional{  };
+    TArray<FRHAPI_DevRoleLoginLoot> LoginLootRewards_Optional{  };
     /** @brief true if LoginLootRewards_Optional has been set to a value */
     bool LoginLootRewards_IsSet{ false };
     /** @brief Gets the value of LoginLootRewards_Optional, regardless of it having been set */
-    TArray<FRHAPI_DevRoleLoginLootBase>& GetLoginLootRewards() { return LoginLootRewards_Optional; }
+    TArray<FRHAPI_DevRoleLoginLoot>& GetLoginLootRewards() { return LoginLootRewards_Optional; }
     /** @brief Gets the value of LoginLootRewards_Optional, regardless of it having been set */
-    const TArray<FRHAPI_DevRoleLoginLootBase>& GetLoginLootRewards() const { return LoginLootRewards_Optional; }
+    const TArray<FRHAPI_DevRoleLoginLoot>& GetLoginLootRewards() const { return LoginLootRewards_Optional; }
     /** @brief Gets the value of LoginLootRewards_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_DevRoleLoginLootBase>& GetLoginLootRewards(const TArray<FRHAPI_DevRoleLoginLootBase>& DefaultValue) const { if (LoginLootRewards_IsSet) return LoginLootRewards_Optional; return DefaultValue; }
+    const TArray<FRHAPI_DevRoleLoginLoot>& GetLoginLootRewards(const TArray<FRHAPI_DevRoleLoginLoot>& DefaultValue) const { if (LoginLootRewards_IsSet) return LoginLootRewards_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LoginLootRewards_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLoginLootRewards(TArray<FRHAPI_DevRoleLoginLootBase>& OutValue) const { if (LoginLootRewards_IsSet) OutValue = LoginLootRewards_Optional; return LoginLootRewards_IsSet; }
+    bool GetLoginLootRewards(TArray<FRHAPI_DevRoleLoginLoot>& OutValue) const { if (LoginLootRewards_IsSet) OutValue = LoginLootRewards_Optional; return LoginLootRewards_IsSet; }
     /** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_DevRoleLoginLootBase>* GetLoginLootRewardsOrNull() { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
+    TArray<FRHAPI_DevRoleLoginLoot>* GetLoginLootRewardsOrNull() { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
     /** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_DevRoleLoginLootBase>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
+    const TArray<FRHAPI_DevRoleLoginLoot>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
     /** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true */
-    void SetLoginLootRewards(TArray<FRHAPI_DevRoleLoginLootBase> NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
+    void SetLoginLootRewards(TArray<FRHAPI_DevRoleLoginLoot> NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
      /** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
     void ClearLoginLootRewards() { LoginLootRewards_IsSet = false; }
 
@@ -143,11 +144,57 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleCreate : public FRHAPI_DevModel
     /** @brief Sets the value of RoleId_Optional and also sets RoleId_IsSet to true */
     void SetRoleId(FGuid NewValue) { RoleId_Optional = NewValue; RoleId_IsSet = true; }
      /** @brief Clears the value of RoleId_Optional and sets RoleId_IsSet to false */
-    void ClearRoleId() { RoleId_Optional = FGuid(TEXT("92044d78-7b86-469d-8d60-dec5e7435e75")); RoleId_IsSet = false; }
+    void ClearRoleId() { RoleId_Optional = FGuid(TEXT("e1aaa24c-5755-43b3-a697-69afa1e456e1")); RoleId_IsSet = false; }
     /** @brief Returns true if RoleId_Optional is set and matches the default value */
-    bool IsRoleIdDefaultValue() const { return RoleId_IsSet && RoleId_Optional == FGuid(TEXT("92044d78-7b86-469d-8d60-dec5e7435e75")); }
+    bool IsRoleIdDefaultValue() const { return RoleId_IsSet && RoleId_Optional == FGuid(TEXT("e1aaa24c-5755-43b3-a697-69afa1e456e1")); }
     /** @brief Sets the value of RoleId_Optional to its default and also sets RoleId_IsSet to true */
-    void SetRoleIdToDefault() { RoleId_Optional = FGuid(TEXT("92044d78-7b86-469d-8d60-dec5e7435e75")); RoleId_IsSet = true; }
+    void SetRoleIdToDefault() { RoleId_Optional = FGuid(TEXT("e1aaa24c-5755-43b3-a697-69afa1e456e1")); RoleId_IsSet = true; }
+
+    /** @brief Legacy role ID for this role */
+    int32 LegacyRoleId_Optional{  };
+    /** @brief true if LegacyRoleId_Optional has been set to a value */
+    bool LegacyRoleId_IsSet{ false };
+    /** @brief Gets the value of LegacyRoleId_Optional, regardless of it having been set */
+    int32& GetLegacyRoleId() { return LegacyRoleId_Optional; }
+    /** @brief Gets the value of LegacyRoleId_Optional, regardless of it having been set */
+    const int32& GetLegacyRoleId() const { return LegacyRoleId_Optional; }
+    /** @brief Gets the value of LegacyRoleId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetLegacyRoleId(const int32& DefaultValue) const { if (LegacyRoleId_IsSet) return LegacyRoleId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LegacyRoleId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLegacyRoleId(int32& OutValue) const { if (LegacyRoleId_IsSet) OutValue = LegacyRoleId_Optional; return LegacyRoleId_IsSet; }
+    /** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetLegacyRoleIdOrNull() { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
+    /** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetLegacyRoleIdOrNull() const { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
+    /** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true */
+    void SetLegacyRoleId(int32 NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
+     /** @brief Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false */
+    void ClearLegacyRoleId() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = false; }
+    /** @brief Returns true if LegacyRoleId_Optional is set and matches the default value */
+    bool IsLegacyRoleIdDefaultValue() const { return LegacyRoleId_IsSet && LegacyRoleId_Optional == 0; }
+    /** @brief Sets the value of LegacyRoleId_Optional to its default and also sets LegacyRoleId_IsSet to true */
+    void SetLegacyRoleIdToDefault() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = true; }
+
+    /** @brief Auth bypass method for this role */
+    ERHAPI_DevRoleAuthBypassMethod AuthBypass_Optional{  };
+    /** @brief true if AuthBypass_Optional has been set to a value */
+    bool AuthBypass_IsSet{ false };
+    /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
+    ERHAPI_DevRoleAuthBypassMethod& GetAuthBypass() { return AuthBypass_Optional; }
+    /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
+    const ERHAPI_DevRoleAuthBypassMethod& GetAuthBypass() const { return AuthBypass_Optional; }
+    /** @brief Gets the value of AuthBypass_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_DevRoleAuthBypassMethod& GetAuthBypass(const ERHAPI_DevRoleAuthBypassMethod& DefaultValue) const { if (AuthBypass_IsSet) return AuthBypass_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false */
+    bool GetAuthBypass(ERHAPI_DevRoleAuthBypassMethod& OutValue) const { if (AuthBypass_IsSet) OutValue = AuthBypass_Optional; return AuthBypass_IsSet; }
+    /** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_DevRoleAuthBypassMethod* GetAuthBypassOrNull() { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+    /** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_DevRoleAuthBypassMethod* GetAuthBypassOrNull() const { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+    /** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true */
+    void SetAuthBypass(ERHAPI_DevRoleAuthBypassMethod NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+     /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
+    void ClearAuthBypass() { AuthBypass_IsSet = false; }
 };
 
 /** @} */

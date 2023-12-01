@@ -9,9 +9,11 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig.h"
 #include "DevMatchMakingFunctionConfig.h"
 #include "DevProfileJoinMode.h"
 #include "DevTaskforceSizeByTime.h"
+#include "DevTrueSkillQualityByTimeMethod.h"
 #include "DevMatchMakingProfile.generated.h"
 
 /** @defgroup RHAPI_DevMatchMakingProfile RallyHere API Model DevMatchMakingProfile
@@ -19,7 +21,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_DevModel
@@ -85,19 +87,6 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_De
     /** @brief Sets the value of NumSides to its default  */
     void SetNumSidesToDefault() { NumSides = 0;  }
 
-    /** @brief The maximum number of players that can be on each team */
-    int32 MaxPlayersPerSide{ 0 };
-    /** @brief Gets the value of MaxPlayersPerSide */
-    int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide; }
-    /** @brief Gets the value of MaxPlayersPerSide */
-    const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide; }
-    /** @brief Sets the value of MaxPlayersPerSide */
-    void SetMaxPlayersPerSide(int32 NewValue) { MaxPlayersPerSide = NewValue;  }
-    /** @brief Returns true if MaxPlayersPerSide matches the default value */
-    bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide == 0; }
-    /** @brief Sets the value of MaxPlayersPerSide to its default  */
-    void SetMaxPlayersPerSideToDefault() { MaxPlayersPerSide = 0;  }
-
     /** @brief The minimum number of players that can be on each team */
     int32 MinPlayersPerSide{ 0 };
     /** @brief Gets the value of MinPlayersPerSide */
@@ -110,6 +99,19 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_De
     bool IsMinPlayersPerSideDefaultValue() const { return MinPlayersPerSide == 0; }
     /** @brief Sets the value of MinPlayersPerSide to its default  */
     void SetMinPlayersPerSideToDefault() { MinPlayersPerSide = 0;  }
+
+    /** @brief The maximum number of players that can be on each team */
+    int32 MaxPlayersPerSide{ 0 };
+    /** @brief Gets the value of MaxPlayersPerSide */
+    int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide; }
+    /** @brief Gets the value of MaxPlayersPerSide */
+    const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide; }
+    /** @brief Sets the value of MaxPlayersPerSide */
+    void SetMaxPlayersPerSide(int32 NewValue) { MaxPlayersPerSide = NewValue;  }
+    /** @brief Returns true if MaxPlayersPerSide matches the default value */
+    bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide == 0; }
+    /** @brief Sets the value of MaxPlayersPerSide to its default  */
+    void SetMaxPlayersPerSideToDefault() { MaxPlayersPerSide = 0;  }
 
     /** @brief The minimum number of players that can be on a single linking (a party) */
     int32 MinPlayersPerLinking{ 0 };
@@ -188,32 +190,40 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_De
     void SetMatchMakingFunctionConfig(FRHAPI_DevMatchMakingFunctionConfig NewValue) { MatchMakingFunctionConfig = NewValue;  }
 
     /** @brief Which matchmaking strides should be used to divide the queue population */
-    FGuid StrideId{  };
-    /** @brief Gets the value of StrideId */
-    FGuid& GetStrideId() { return StrideId; }
-    /** @brief Gets the value of StrideId */
-    const FGuid& GetStrideId() const { return StrideId; }
-    /** @brief Sets the value of StrideId */
-    void SetStrideId(FGuid NewValue) { StrideId = NewValue;  }
+    FGuid MatchMakingStrideId{  };
+    /** @brief Gets the value of MatchMakingStrideId */
+    FGuid& GetMatchMakingStrideId() { return MatchMakingStrideId; }
+    /** @brief Gets the value of MatchMakingStrideId */
+    const FGuid& GetMatchMakingStrideId() const { return MatchMakingStrideId; }
+    /** @brief Sets the value of MatchMakingStrideId */
+    void SetMatchMakingStrideId(FGuid NewValue) { MatchMakingStrideId = NewValue;  }
 
-    /** @brief Dictionary of config required for legacy games */
-    TMap<FString, FString> LegacyConfig_Optional{  };
+    /** @brief Which set of CrossplayPartitions rules should be used when generating matches in this profile */
+    FGuid CrossplayPartitionId{  };
+    /** @brief Gets the value of CrossplayPartitionId */
+    FGuid& GetCrossplayPartitionId() { return CrossplayPartitionId; }
+    /** @brief Gets the value of CrossplayPartitionId */
+    const FGuid& GetCrossplayPartitionId() const { return CrossplayPartitionId; }
+    /** @brief Sets the value of CrossplayPartitionId */
+    void SetCrossplayPartitionId(FGuid NewValue) { CrossplayPartitionId = NewValue;  }
+
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& GetLegacyConfig() { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& GetLegacyConfig() const { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& GetLegacyConfig(const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+    bool GetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+    void SetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
      /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
     void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 
@@ -260,23 +270,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_De
     void ClearTrueskillQualityByTimeMaxMinutes() { TrueskillQualityByTimeMaxMinutes_IsSet = false; }
 
     /** @brief Method used to decay the required quality of matches over time. Currently only 'two_term_quadratic' is supported */
-    FString TrueskillQualityByTimeMethod_Optional{  };
+    ERHAPI_DevTrueSkillQualityByTimeMethod TrueskillQualityByTimeMethod_Optional{  };
     /** @brief true if TrueskillQualityByTimeMethod_Optional has been set to a value */
     bool TrueskillQualityByTimeMethod_IsSet{ false };
     /** @brief Gets the value of TrueskillQualityByTimeMethod_Optional, regardless of it having been set */
-    FString& GetTrueskillQualityByTimeMethod() { return TrueskillQualityByTimeMethod_Optional; }
+    ERHAPI_DevTrueSkillQualityByTimeMethod& GetTrueskillQualityByTimeMethod() { return TrueskillQualityByTimeMethod_Optional; }
     /** @brief Gets the value of TrueskillQualityByTimeMethod_Optional, regardless of it having been set */
-    const FString& GetTrueskillQualityByTimeMethod() const { return TrueskillQualityByTimeMethod_Optional; }
+    const ERHAPI_DevTrueSkillQualityByTimeMethod& GetTrueskillQualityByTimeMethod() const { return TrueskillQualityByTimeMethod_Optional; }
     /** @brief Gets the value of TrueskillQualityByTimeMethod_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetTrueskillQualityByTimeMethod(const FString& DefaultValue) const { if (TrueskillQualityByTimeMethod_IsSet) return TrueskillQualityByTimeMethod_Optional; return DefaultValue; }
+    const ERHAPI_DevTrueSkillQualityByTimeMethod& GetTrueskillQualityByTimeMethod(const ERHAPI_DevTrueSkillQualityByTimeMethod& DefaultValue) const { if (TrueskillQualityByTimeMethod_IsSet) return TrueskillQualityByTimeMethod_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of TrueskillQualityByTimeMethod_Optional and returns true if it has been set, otherwise returns false */
-    bool GetTrueskillQualityByTimeMethod(FString& OutValue) const { if (TrueskillQualityByTimeMethod_IsSet) OutValue = TrueskillQualityByTimeMethod_Optional; return TrueskillQualityByTimeMethod_IsSet; }
+    bool GetTrueskillQualityByTimeMethod(ERHAPI_DevTrueSkillQualityByTimeMethod& OutValue) const { if (TrueskillQualityByTimeMethod_IsSet) OutValue = TrueskillQualityByTimeMethod_Optional; return TrueskillQualityByTimeMethod_IsSet; }
     /** @brief Returns a pointer to TrueskillQualityByTimeMethod_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetTrueskillQualityByTimeMethodOrNull() { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
+    ERHAPI_DevTrueSkillQualityByTimeMethod* GetTrueskillQualityByTimeMethodOrNull() { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
     /** @brief Returns a pointer to TrueskillQualityByTimeMethod_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetTrueskillQualityByTimeMethodOrNull() const { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
+    const ERHAPI_DevTrueSkillQualityByTimeMethod* GetTrueskillQualityByTimeMethodOrNull() const { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
     /** @brief Sets the value of TrueskillQualityByTimeMethod_Optional and also sets TrueskillQualityByTimeMethod_IsSet to true */
-    void SetTrueskillQualityByTimeMethod(FString NewValue) { TrueskillQualityByTimeMethod_Optional = NewValue; TrueskillQualityByTimeMethod_IsSet = true; }
+    void SetTrueskillQualityByTimeMethod(ERHAPI_DevTrueSkillQualityByTimeMethod NewValue) { TrueskillQualityByTimeMethod_Optional = NewValue; TrueskillQualityByTimeMethod_IsSet = true; }
      /** @brief Clears the value of TrueskillQualityByTimeMethod_Optional and sets TrueskillQualityByTimeMethod_IsSet to false */
     void ClearTrueskillQualityByTimeMethod() { TrueskillQualityByTimeMethod_IsSet = false; }
 
@@ -292,6 +302,19 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_De
     bool IsActiveDefaultValue() const { return Active == false; }
     /** @brief Sets the value of Active to its default  */
     void SetActiveToDefault() { Active = false;  }
+
+    /** @brief Flag determining whether or not backfill objects should be created when generating matches in this profile */
+    bool SupportsBackfill{ false };
+    /** @brief Gets the value of SupportsBackfill */
+    bool& GetSupportsBackfill() { return SupportsBackfill; }
+    /** @brief Gets the value of SupportsBackfill */
+    const bool& GetSupportsBackfill() const { return SupportsBackfill; }
+    /** @brief Sets the value of SupportsBackfill */
+    void SetSupportsBackfill(bool NewValue) { SupportsBackfill = NewValue;  }
+    /** @brief Returns true if SupportsBackfill matches the default value */
+    bool IsSupportsBackfillDefaultValue() const { return SupportsBackfill == false; }
+    /** @brief Sets the value of SupportsBackfill to its default  */
+    void SetSupportsBackfillToDefault() { SupportsBackfill = false;  }
 
     /** @brief ID of the Sandbox */
     FGuid SandboxId_Optional{  };
@@ -356,14 +379,35 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfile : public FRHAPI_De
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
+    /** @brief Timestamp of when this resource was created */
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
+
     /** @brief ID to uniquely identify this MatchMakingProfile */
-    FGuid ProfileId{  };
-    /** @brief Gets the value of ProfileId */
-    FGuid& GetProfileId() { return ProfileId; }
-    /** @brief Gets the value of ProfileId */
-    const FGuid& GetProfileId() const { return ProfileId; }
-    /** @brief Sets the value of ProfileId */
-    void SetProfileId(FGuid NewValue) { ProfileId = NewValue;  }
+    FGuid MatchMakingProfileId{  };
+    /** @brief Gets the value of MatchMakingProfileId */
+    FGuid& GetMatchMakingProfileId() { return MatchMakingProfileId; }
+    /** @brief Gets the value of MatchMakingProfileId */
+    const FGuid& GetMatchMakingProfileId() const { return MatchMakingProfileId; }
+    /** @brief Sets the value of MatchMakingProfileId */
+    void SetMatchMakingProfileId(FGuid NewValue) { MatchMakingProfileId = NewValue;  }
 };
 
 /** @} */

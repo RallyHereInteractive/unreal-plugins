@@ -1,4 +1,3 @@
-
 #include "CoreMinimal.h"
 #include "RallyHereDeveloperAPIAll.h"
 
@@ -7,10 +6,21 @@ namespace RallyHereDeveloperAPI
 
 FRallyHereDeveloperAPIAll::FRallyHereDeveloperAPIAll()
 {
+    AllAPIs.Add(&Accounts);
+    AllAPIs.Add(&ArmadaContract);
+    AllAPIs.Add(&ArmadaDatacenterLocation);
+    AllAPIs.Add(&ArmadaDatacenterProvider);
+    AllAPIs.Add(&ArmadaGeographicLocation);
+    AllAPIs.Add(&ArmadaHost);
+    AllAPIs.Add(&ArmadaMachineClass);
+    AllAPIs.Add(&ArmadaMachineImage);
+    AllAPIs.Add(&ArmadaSimpleProductAssignment);
     AllAPIs.Add(&Auth0AccountPermissions);
     AllAPIs.Add(&Catalog);
     AllAPIs.Add(&Clients);
+    AllAPIs.Add(&Crossplay);
     AllAPIs.Add(&Environment);
+    AllAPIs.Add(&Environments);
     AllAPIs.Add(&InstanceRequestTemplates);
     AllAPIs.Add(&Maps);
     AllAPIs.Add(&MatchMakingProfiles);
@@ -18,7 +28,7 @@ FRallyHereDeveloperAPIAll::FRallyHereDeveloperAPIAll()
     AllAPIs.Add(&MatchMakingStrides);
     AllAPIs.Add(&MatchMakingTemplates);
     AllAPIs.Add(&Organization);
-    AllAPIs.Add(&OrganizationAccounts);
+    AllAPIs.Add(&OrganizationAccount);
     AllAPIs.Add(&Permissions);
     AllAPIs.Add(&PlatformSessionTemplates);
     AllAPIs.Add(&Policies);
@@ -29,17 +39,114 @@ FRallyHereDeveloperAPIAll::FRallyHereDeveloperAPIAll()
     AllAPIs.Add(&Ranks);
     AllAPIs.Add(&Sandbox);
     AllAPIs.Add(&SandboxConfigAudit);
+    AllAPIs.Add(&SandboxConfigCustomEndpoints);
+    AllAPIs.Add(&SandboxConfigCustomEventSchema);
+    AllAPIs.Add(&SandboxConfigEntitlementSKU);
+    AllAPIs.Add(&SandboxConfigExternalKeyCampaign);
     AllAPIs.Add(&SandboxConfigGameConfig);
     AllAPIs.Add(&SandboxConfigKV);
-    AllAPIs.Add(&SandboxConfigPlayerSettingTypes);
     AllAPIs.Add(&SandboxConfigRole);
+    AllAPIs.Add(&SandboxConfigSettingTypes);
+    AllAPIs.Add(&Secrets);
     AllAPIs.Add(&SessionTemplates);
+    AllAPIs.Add(&StandardEventSchema);
+    AllAPIs.Add(&UserAccountUserRequestNoM2m);
     AllAPIs.Add(&Verify);
 }
 
 TArray<FAPI*> FRallyHereDeveloperAPIAll::GetAllAPIs() const
 {
     return AllAPIs;
+}
+
+FAccountsAPI& FRallyHereDeveloperAPIAll::GetAccounts()
+{
+    return Accounts;
+}
+
+const FAccountsAPI& FRallyHereDeveloperAPIAll::GetAccounts() const
+{
+    return Accounts;
+}
+
+FArmadaContractAPI& FRallyHereDeveloperAPIAll::GetArmadaContract()
+{
+    return ArmadaContract;
+}
+
+const FArmadaContractAPI& FRallyHereDeveloperAPIAll::GetArmadaContract() const
+{
+    return ArmadaContract;
+}
+
+FArmadaDatacenterLocationAPI& FRallyHereDeveloperAPIAll::GetArmadaDatacenterLocation()
+{
+    return ArmadaDatacenterLocation;
+}
+
+const FArmadaDatacenterLocationAPI& FRallyHereDeveloperAPIAll::GetArmadaDatacenterLocation() const
+{
+    return ArmadaDatacenterLocation;
+}
+
+FArmadaDatacenterProviderAPI& FRallyHereDeveloperAPIAll::GetArmadaDatacenterProvider()
+{
+    return ArmadaDatacenterProvider;
+}
+
+const FArmadaDatacenterProviderAPI& FRallyHereDeveloperAPIAll::GetArmadaDatacenterProvider() const
+{
+    return ArmadaDatacenterProvider;
+}
+
+FArmadaGeographicLocationAPI& FRallyHereDeveloperAPIAll::GetArmadaGeographicLocation()
+{
+    return ArmadaGeographicLocation;
+}
+
+const FArmadaGeographicLocationAPI& FRallyHereDeveloperAPIAll::GetArmadaGeographicLocation() const
+{
+    return ArmadaGeographicLocation;
+}
+
+FArmadaHostAPI& FRallyHereDeveloperAPIAll::GetArmadaHost()
+{
+    return ArmadaHost;
+}
+
+const FArmadaHostAPI& FRallyHereDeveloperAPIAll::GetArmadaHost() const
+{
+    return ArmadaHost;
+}
+
+FArmadaMachineClassAPI& FRallyHereDeveloperAPIAll::GetArmadaMachineClass()
+{
+    return ArmadaMachineClass;
+}
+
+const FArmadaMachineClassAPI& FRallyHereDeveloperAPIAll::GetArmadaMachineClass() const
+{
+    return ArmadaMachineClass;
+}
+
+FArmadaMachineImageAPI& FRallyHereDeveloperAPIAll::GetArmadaMachineImage()
+{
+    return ArmadaMachineImage;
+}
+
+const FArmadaMachineImageAPI& FRallyHereDeveloperAPIAll::GetArmadaMachineImage() const
+{
+    return ArmadaMachineImage;
+}
+
+FArmadaSimpleProductAssignmentAPI& FRallyHereDeveloperAPIAll::GetArmadaSimpleProductAssignment()
+{
+    return ArmadaSimpleProductAssignment;
+}
+
+const FArmadaSimpleProductAssignmentAPI& FRallyHereDeveloperAPIAll::GetArmadaSimpleProductAssignment() const
+{
+    return ArmadaSimpleProductAssignment;
 }
 
 FAuth0AccountPermissionsAPI& FRallyHereDeveloperAPIAll::GetAuth0AccountPermissions()
@@ -72,6 +179,16 @@ const FClientsAPI& FRallyHereDeveloperAPIAll::GetClients() const
     return Clients;
 }
 
+FCrossplayAPI& FRallyHereDeveloperAPIAll::GetCrossplay()
+{
+    return Crossplay;
+}
+
+const FCrossplayAPI& FRallyHereDeveloperAPIAll::GetCrossplay() const
+{
+    return Crossplay;
+}
+
 FEnvironmentAPI& FRallyHereDeveloperAPIAll::GetEnvironment()
 {
     return Environment;
@@ -80,6 +197,16 @@ FEnvironmentAPI& FRallyHereDeveloperAPIAll::GetEnvironment()
 const FEnvironmentAPI& FRallyHereDeveloperAPIAll::GetEnvironment() const
 {
     return Environment;
+}
+
+FEnvironmentsAPI& FRallyHereDeveloperAPIAll::GetEnvironments()
+{
+    return Environments;
+}
+
+const FEnvironmentsAPI& FRallyHereDeveloperAPIAll::GetEnvironments() const
+{
+    return Environments;
 }
 
 FInstanceRequestTemplatesAPI& FRallyHereDeveloperAPIAll::GetInstanceRequestTemplates()
@@ -152,14 +279,14 @@ const FOrganizationAPI& FRallyHereDeveloperAPIAll::GetOrganization() const
     return Organization;
 }
 
-FOrganizationAccountsAPI& FRallyHereDeveloperAPIAll::GetOrganizationAccounts()
+FOrganizationAccountAPI& FRallyHereDeveloperAPIAll::GetOrganizationAccount()
 {
-    return OrganizationAccounts;
+    return OrganizationAccount;
 }
 
-const FOrganizationAccountsAPI& FRallyHereDeveloperAPIAll::GetOrganizationAccounts() const
+const FOrganizationAccountAPI& FRallyHereDeveloperAPIAll::GetOrganizationAccount() const
 {
-    return OrganizationAccounts;
+    return OrganizationAccount;
 }
 
 FPermissionsAPI& FRallyHereDeveloperAPIAll::GetPermissions()
@@ -262,6 +389,46 @@ const FSandboxConfigAuditAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigAudit()
     return SandboxConfigAudit;
 }
 
+FSandboxConfigCustomEndpointsAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigCustomEndpoints()
+{
+    return SandboxConfigCustomEndpoints;
+}
+
+const FSandboxConfigCustomEndpointsAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigCustomEndpoints() const
+{
+    return SandboxConfigCustomEndpoints;
+}
+
+FSandboxConfigCustomEventSchemaAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigCustomEventSchema()
+{
+    return SandboxConfigCustomEventSchema;
+}
+
+const FSandboxConfigCustomEventSchemaAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigCustomEventSchema() const
+{
+    return SandboxConfigCustomEventSchema;
+}
+
+FSandboxConfigEntitlementSKUAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigEntitlementSKU()
+{
+    return SandboxConfigEntitlementSKU;
+}
+
+const FSandboxConfigEntitlementSKUAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigEntitlementSKU() const
+{
+    return SandboxConfigEntitlementSKU;
+}
+
+FSandboxConfigExternalKeyCampaignAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigExternalKeyCampaign()
+{
+    return SandboxConfigExternalKeyCampaign;
+}
+
+const FSandboxConfigExternalKeyCampaignAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigExternalKeyCampaign() const
+{
+    return SandboxConfigExternalKeyCampaign;
+}
+
 FSandboxConfigGameConfigAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigGameConfig()
 {
     return SandboxConfigGameConfig;
@@ -282,16 +449,6 @@ const FSandboxConfigKVAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigKV() const
     return SandboxConfigKV;
 }
 
-FSandboxConfigPlayerSettingTypesAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigPlayerSettingTypes()
-{
-    return SandboxConfigPlayerSettingTypes;
-}
-
-const FSandboxConfigPlayerSettingTypesAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigPlayerSettingTypes() const
-{
-    return SandboxConfigPlayerSettingTypes;
-}
-
 FSandboxConfigRoleAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigRole()
 {
     return SandboxConfigRole;
@@ -302,6 +459,26 @@ const FSandboxConfigRoleAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigRole() c
     return SandboxConfigRole;
 }
 
+FSandboxConfigSettingTypesAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigSettingTypes()
+{
+    return SandboxConfigSettingTypes;
+}
+
+const FSandboxConfigSettingTypesAPI& FRallyHereDeveloperAPIAll::GetSandboxConfigSettingTypes() const
+{
+    return SandboxConfigSettingTypes;
+}
+
+FSecretsAPI& FRallyHereDeveloperAPIAll::GetSecrets()
+{
+    return Secrets;
+}
+
+const FSecretsAPI& FRallyHereDeveloperAPIAll::GetSecrets() const
+{
+    return Secrets;
+}
+
 FSessionTemplatesAPI& FRallyHereDeveloperAPIAll::GetSessionTemplates()
 {
     return SessionTemplates;
@@ -310,6 +487,26 @@ FSessionTemplatesAPI& FRallyHereDeveloperAPIAll::GetSessionTemplates()
 const FSessionTemplatesAPI& FRallyHereDeveloperAPIAll::GetSessionTemplates() const
 {
     return SessionTemplates;
+}
+
+FStandardEventSchemaAPI& FRallyHereDeveloperAPIAll::GetStandardEventSchema()
+{
+    return StandardEventSchema;
+}
+
+const FStandardEventSchemaAPI& FRallyHereDeveloperAPIAll::GetStandardEventSchema() const
+{
+    return StandardEventSchema;
+}
+
+FUserAccountUserRequestNoM2mAPI& FRallyHereDeveloperAPIAll::GetUserAccountUserRequestNoM2m()
+{
+    return UserAccountUserRequestNoM2m;
+}
+
+const FUserAccountUserRequestNoM2mAPI& FRallyHereDeveloperAPIAll::GetUserAccountUserRequestNoM2m() const
+{
+    return UserAccountUserRequestNoM2m;
 }
 
 FVerifyAPI& FRallyHereDeveloperAPIAll::GetVerify()
