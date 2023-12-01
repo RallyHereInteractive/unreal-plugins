@@ -21,7 +21,7 @@ public:
 private:
 	void DoViewRequests(URH_WebRequests* WebRequestsTracker);
 	void DoViewRequest(const FRH_WebRequest* WebRequest);
-	void DoViewResponse(const FRH_WebResponse* WebResponse);
+	void DoViewResponse(const FRH_WebResponse* WebResponse, const FRH_WebRequest* WebRequest);
 	void DoViewMetadata(const FRH_WebRequest* WebRequest);
 
 	TMap<FName, bool> APIFilterToggles;

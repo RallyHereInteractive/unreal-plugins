@@ -454,6 +454,7 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 		Response->SetBoolField(TEXT("Http-Success"), request.Responses[x].ResponseSuccess);
 		Response->SetNumberField(TEXT("Response-Code"), request.Responses[x].ResponseCode);
 		Response->SetStringField(TEXT("Received-Time"), request.Responses[x].ReceivedTime.ToIso8601());
+		Response->SetNumberField(TEXT("Duration-Time"), (request.Responses[x].ReceivedTime - request.Timestamp).GetTotalSeconds());
 
 		Reader = TJsonReaderFactory<>::Create(request.Responses[x].Content);
 		if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
