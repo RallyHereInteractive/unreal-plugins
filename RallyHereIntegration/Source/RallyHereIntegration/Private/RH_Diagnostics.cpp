@@ -57,6 +57,7 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 	Metadata->SetStringField(TEXT("Build-Version"), FApp::GetBuildVersion());
 	bool isInEditor = GEngine != nullptr ? GEngine->IsEditor() : false;
 	Metadata->SetBoolField(TEXT("Is-In-Editor"), isInEditor);
+	Metadata->SetStringField(TEXT("CommandLine"), FCommandLine::Get());
 
 	FString Mode;
 	if (IsRunningDedicatedServer())
