@@ -36,28 +36,50 @@ namespace
 		}
 	}
 
-	const TArray<FString>& GetSensitiveHeadersForRequest(const RallyHereDeveloperAPI::FRequestMetadata& RequestMetadata)
+
+	const TArray<FString>& GetSensitiveHeadersForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields = { TEXT("Authorization") };
 		static TArray<FString> LoginFields = StandardFields;
-		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")))
+		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
 		{
 			return LoginFields;
 		}
 		return StandardFields;
 	}
 
-	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereDeveloperAPI::FRequestMetadata& RequestMetadata)
+	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields;
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
-		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")))
+		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
 		{
 			return LoginFields;
 		}
 		return StandardFields;
 	}
 
+	const TArray<FString>& GetSensitiveHeadersForResponse(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	{
+		static TArray<FString> StandardFields;
+		static TArray<FString> LoginFields = { TEXT("set-cookie") };
+		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
+		{
+			return LoginFields;
+		}
+		return StandardFields;
+	}
+
+	const TArray<FString>& GetSensitiveFieldsForReseponse(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	{
+		static TArray<FString> StandardFields;
+		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
+		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
+		{
+			return LoginFields;
+		}
+		return StandardFields;
+	}
 
 	TArray<FString> SanitizeHeaders(const TArray<FString>& Headers, const TArray<FString>& SensitiveHeaders)
 	{
@@ -300,8 +322,8 @@ void URH_DevWebRequests::OnWebRequestCompleted_Track(const RallyHereDeveloperAPI
 	TrackedResponse.ResponseCode = Response.GetHttpResponseCode();
 	if (HttpResponse)
 	{
-		TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForRequest(Response.GetRequestMetadata()));
-		TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForRequest(Response.GetRequestMetadata()));
+		TrackedResponse.Content = SanitizeContent(HttpResponse->GetContentAsString(), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
+		TArray<FString> Headers = SanitizeHeaders(HttpResponse->GetAllHeaders(), GetSensitiveHeadersForResponse(Response.GetRequestMetadata()));
 		for (const auto& headerStr : Headers)
 		{
 			int32 index;
@@ -328,7 +350,7 @@ void URH_DevWebRequests::OnWebRequestCompleted_Log(const RallyHereDeveloperAPI::
 
 	if (HttpResponse)
 	{
-		LogHttpBase(*HttpResponse, Prefix, GetSensitiveHeadersForRequest(Response.GetRequestMetadata()), GetSensitiveFieldsForRequest(Response.GetRequestMetadata()));
+		LogHttpBase(*HttpResponse, Prefix, GetSensitiveHeadersForResponse(Response.GetRequestMetadata()), GetSensitiveFieldsForResponse(Response.GetRequestMetadata()));
 	}
 }
 
