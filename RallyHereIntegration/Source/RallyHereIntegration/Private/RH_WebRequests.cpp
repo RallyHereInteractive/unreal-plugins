@@ -72,7 +72,7 @@ namespace
 		return StandardFields;
 	}
 
-	const TArray<FString>& GetSensitiveFieldsForReseponse(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	const TArray<FString>& GetSensitiveFieldsForResponse(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields;
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };

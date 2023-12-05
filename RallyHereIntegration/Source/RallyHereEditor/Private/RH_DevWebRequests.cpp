@@ -37,7 +37,7 @@ namespace
 	}
 
 
-	const TArray<FString>& GetSensitiveHeadersForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	const TArray<FString>& GetSensitiveHeadersForRequest(const RallyHereDeveloperAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields = { TEXT("Authorization") };
 		static TArray<FString> LoginFields = StandardFields;
@@ -48,7 +48,7 @@ namespace
 		return StandardFields;
 	}
 
-	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereDeveloperAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields;
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
@@ -59,7 +59,7 @@ namespace
 		return StandardFields;
 	}
 
-	const TArray<FString>& GetSensitiveHeadersForResponse(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	const TArray<FString>& GetSensitiveHeadersForResponse(const RallyHereDeveloperAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields;
 		static TArray<FString> LoginFields = { TEXT("set-cookie") };
@@ -70,7 +70,7 @@ namespace
 		return StandardFields;
 	}
 
-	const TArray<FString>& GetSensitiveFieldsForReseponse(const RallyHereAPI::FRequestMetadata& RequestMetadata)
+	const TArray<FString>& GetSensitiveFieldsForResponse(const RallyHereDeveloperAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields;
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
