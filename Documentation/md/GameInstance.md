@@ -111,8 +111,8 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__GameInstanceServerBootstrapper_1a3c8ddb006bbc3dea378d179e51be5b62)`() const` | Gets the auth context to use for API calls for the session owner.
 `public virtual void `[`ImportAPISession`](#classURH__GameInstanceServerBootstrapper_1a374284e48119f0092acb4a0da5634215)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a session object from the API into the owner (ex: from polling).
 `public virtual void `[`ImportAPITemplate`](#classURH__GameInstanceServerBootstrapper_1a9cfc35913bd38f0fd8f090428c6971d4)`(const `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports the template into the owner's template list (ex: from polling).
-`public virtual void `[`ReconcileAPISessions`](#classURH__GameInstanceServerBootstrapper_1abc131e39de2bb055ad0d30f7b48fcc00)`(const TArray< FString > & SessionIds,const TOptional< FString > ETag)` | Updates the list of sessions to only those that are active.
-`public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1aa1d3283036cbf3ce57a9e4309cc75f34)`(const TArray< FString > & InTemplates,const TOptional< FString > ETag)` | Updates the list of session templates to those that are active.
+`public virtual void `[`ReconcileAPISessions`](#classURH__GameInstanceServerBootstrapper_1a30545d8b52b8fdfe6ebbff321514e929)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Updates the list of sessions to only those that are active.
+`public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1a3f046c14798943a59bcb268c75e02e6c)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Updates the list of session templates to those that are active.
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1ac1a7eee0c5d62a932aba1d57520fba59)`() const` | Gets the PlayerInfo Subsystem.
 `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__GameInstanceServerBootstrapper_1afdc3030fd174d1a570231dcad8429265)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__GameInstanceServerBootstrapper_1a935444ab045d0e8647ace5f59b803a72)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
@@ -121,8 +121,8 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
-`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
-`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
 `protected `[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` `[`BootstrapStep`](#classURH__GameInstanceServerBootstrapper_1a0c41579ef8e737384ac8e1c82efb8d11) | Current Bootstrap Step
 `protected int32 `[`CurrentRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a95d71262cc53a06cf14abb0e1c5ebd76) | The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
@@ -146,8 +146,10 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnBootstrappingComplete`](#classURH__GameInstanceServerBootstrapper_1a2882f79445b73579a19dbb92e8b859df)`()` | Bootstrapping Flow [Complete] - trigger bootstrapping complete and handles completion logic. Note that recycling may start a new bootstrapping flow.
 `protected virtual void `[`BeginServerLogin`](#classURH__GameInstanceServerBootstrapper_1a924d64924d1e13251752ae00763ea765)`()` | Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API.
 `protected virtual void `[`BeginOSSLogin`](#classURH__GameInstanceServerBootstrapper_1a596197bb7c3249d78c7f25cb7a45dee3)`()` | Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
+`protected virtual void `[`BeginNullLogin`](#classURH__GameInstanceServerBootstrapper_1abe2daf2fda783a6322a4baafc3f4ce0e)`()` | Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
 `protected virtual void `[`OnOSSLoginComplete`](#classURH__GameInstanceServerBootstrapper_1afa72878c5edec64e1228cb302676a2a0)`(int32 ControllerId,bool bSuccessful,const FUniqueNetId & UniqueId,const FString & ErrorMessage)` | Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use.
-`protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1a8325f8cd9d08625f99a78bb2b48a8108)`(bool bSuccess)` | Bootstrapping Flow [Login] - completion callback for RallyHere API login.
+`protected virtual void `[`RetrieveOSSAuthTokenComplete`](#classURH__GameInstanceServerBootstrapper_1a86498208233cbf6c51ef72ff0043410a)`(int32 LocalUserNum,bool bWasSuccessful,const FExternalAuthToken & AuthTokenWrapper)` | Start the login to Rally Here.
+`protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` | Bootstrapping Flow [Login] - completion callback for RallyHere API login.
 `protected virtual void `[`Recycle`](#classURH__GameInstanceServerBootstrapper_1a4899aaa6b044107233cb45e8695c3029)`()` | Bootstrapping Flow [Recycle] - start a new recycle loop.
 `protected virtual void `[`BeginRegistration`](#classURH__GameInstanceServerBootstrapper_1aa99989cd2184a498b1de613e4eeee199)`()` | Bootstrapping Flow [Registration][Allocation][AutoCreate] - start the process of registering with the game host provider.
 `protected virtual void `[`BeginConnecting`](#classURH__GameInstanceServerBootstrapper_1ade01521ed7529ea5d6675439de5eec36)`()` | Bootstrapping Flow [Registration][Allocation][AutoCreate] - begin connecting to the provider.
@@ -159,8 +161,8 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnReservationComplete`](#classURH__GameInstanceServerBootstrapper_1a490388b65fb63bd0536a4cc264455e53)`(bool bSuccess)` | Bootstrapping Flow [Registration][AutoCreate] - completion callback for reservation creation.
 `protected virtual void `[`BeginSelfAllocate`](#classURH__GameInstanceServerBootstrapper_1a2754313adb76f07d1a0d57d7ff94353b)`()` | Bootstrapping Flow [Registration][AutoCreate] - inform the provider that this server is self-allocated.
 `protected virtual void `[`OnSelfAllocateComplete`](#classURH__GameInstanceServerBootstrapper_1a141d3bcd49aa8079af7852e5a09f9985)`(bool bSuccess)` | Bootstrapping Flow [Registration][AutoCreate] - completion callback for self allocation.
-`protected virtual void `[`OnRegistrationFinalizerComplete`](#classURH__GameInstanceServerBootstrapper_1af5393fb9a958e0dd9d2a9d90e82cde47)`(bool bSuccess,const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & Result)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result. Checks the result and then checks for an instance. Either creates and instance, or forwards on to [OnSessionInstanceCreationCompleted()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1aedfc2a8cdf03b9661eeff845820afcfb)
-`protected virtual void `[`OnSessionInstanceCreationCompleted`](#classURH__GameInstanceServerBootstrapper_1aedfc2a8cdf03b9661eeff845820afcfb)`(bool bSuccess,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * RHSession)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result.
+`protected virtual void `[`OnRegistrationFinalizerComplete`](#classURH__GameInstanceServerBootstrapper_1af5393fb9a958e0dd9d2a9d90e82cde47)`(bool bSuccess,const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & Result)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result. Checks the result and then checks for an instance. Either creates and instance, or forwards on to [OnSessionInstanceCreationCompleted()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8)
+`protected virtual void `[`OnSessionInstanceCreationCompleted`](#classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8)`(bool bSuccess,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * CreatedRHSession,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result.
 `protected virtual void `[`SyncToSession`](#classURH__GameInstanceServerBootstrapper_1a916ef7edd3eae169e87ac544ea2088c6)`()` | Bootstrapping Flow [SyncingToSession] - begin the process of synchronizing the session state into RH_GameInstanceSessionSubsystem.
 `protected virtual void `[`OnSyncToSessionComplete`](#classURH__GameInstanceServerBootstrapper_1a6b3abc6b2d84f6bf628ec71f548895f8)`(bool bSuccess)` | Bootstrapping Flow [SyncingToSession] - completiong callback for session sync.
 `protected virtual void `[`OnSessionUpdated`](#classURH__GameInstanceServerBootstrapper_1a91273ca69e8e885b6b96f4fb594d3318)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Notification callback that the session we have synced to was updated.
@@ -261,7 +263,7 @@ Imports the template into the owner's template list (ex: from polling).
 * `TemplateWrapper` The Template to import.
 
 <br>
-#### `public virtual void `[`ReconcileAPISessions`](#classURH__GameInstanceServerBootstrapper_1abc131e39de2bb055ad0d30f7b48fcc00)`(const TArray< FString > & SessionIds,const TOptional< FString > ETag)` <a id="classURH__GameInstanceServerBootstrapper_1abc131e39de2bb055ad0d30f7b48fcc00"></a>
+#### `public virtual void `[`ReconcileAPISessions`](#classURH__GameInstanceServerBootstrapper_1a30545d8b52b8fdfe6ebbff321514e929)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` <a id="classURH__GameInstanceServerBootstrapper_1a30545d8b52b8fdfe6ebbff321514e929"></a>
 
 Updates the list of sessions to only those that are active.
 
@@ -271,7 +273,7 @@ Updates the list of sessions to only those that are active.
 * `ETag` The ETag to use for the update.
 
 <br>
-#### `public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1aa1d3283036cbf3ce57a9e4309cc75f34)`(const TArray< FString > & InTemplates,const TOptional< FString > ETag)` <a id="classURH__GameInstanceServerBootstrapper_1aa1d3283036cbf3ce57a9e4309cc75f34"></a>
+#### `public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1a3f046c14798943a59bcb268c75e02e6c)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` <a id="classURH__GameInstanceServerBootstrapper_1a3f046c14798943a59bcb268c75e02e6c"></a>
 
 Updates the list of session templates to those that are active.
 
@@ -335,12 +337,12 @@ Gets a session template by type.
 If true, the template was found.
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255"></a>
 
 Gets the platform synchronization object using the rally here session id.
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b"></a>
 
 Gets the platform synchronization object using the platform session id.
 
@@ -463,6 +465,11 @@ Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API.
 Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
 
 <br>
+#### `protected virtual void `[`BeginNullLogin`](#classURH__GameInstanceServerBootstrapper_1abe2daf2fda783a6322a4baafc3f4ce0e)`()` <a id="classURH__GameInstanceServerBootstrapper_1abe2daf2fda783a6322a4baafc3f4ce0e"></a>
+
+Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
+
+<br>
 #### `protected virtual void `[`OnOSSLoginComplete`](#classURH__GameInstanceServerBootstrapper_1afa72878c5edec64e1228cb302676a2a0)`(int32 ControllerId,bool bSuccessful,const FUniqueNetId & UniqueId,const FString & ErrorMessage)` <a id="classURH__GameInstanceServerBootstrapper_1afa72878c5edec64e1228cb302676a2a0"></a>
 
 Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use.
@@ -477,7 +484,19 @@ Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with
 * `ErrorMessage` The error message if the login failed
 
 <br>
-#### `protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1a8325f8cd9d08625f99a78bb2b48a8108)`(bool bSuccess)` <a id="classURH__GameInstanceServerBootstrapper_1a8325f8cd9d08625f99a78bb2b48a8108"></a>
+#### `protected virtual void `[`RetrieveOSSAuthTokenComplete`](#classURH__GameInstanceServerBootstrapper_1a86498208233cbf6c51ef72ff0043410a)`(int32 LocalUserNum,bool bWasSuccessful,const FExternalAuthToken & AuthTokenWrapper)` <a id="classURH__GameInstanceServerBootstrapper_1a86498208233cbf6c51ef72ff0043410a"></a>
+
+Start the login to Rally Here.
+
+#### Parameters
+* `LocalUserNum` Local user number of the player logging in. 
+
+* `bWasSuccessful` Was the retrieval successful. 
+
+* `AuthTokenWrapper` The auth token wrapper.
+
+<br>
+#### `protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` <a id="classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e"></a>
 
 Bootstrapping Flow [Login] - completion callback for RallyHere API login.
 
@@ -559,7 +578,7 @@ Bootstrapping Flow [Registration][AutoCreate] - completion callback for self all
 <br>
 #### `protected virtual void `[`OnRegistrationFinalizerComplete`](#classURH__GameInstanceServerBootstrapper_1af5393fb9a958e0dd9d2a9d90e82cde47)`(bool bSuccess,const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & Result)` <a id="classURH__GameInstanceServerBootstrapper_1af5393fb9a958e0dd9d2a9d90e82cde47"></a>
 
-Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result. Checks the result and then checks for an instance. Either creates and instance, or forwards on to [OnSessionInstanceCreationCompleted()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1aedfc2a8cdf03b9661eeff845820afcfb)
+Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result. Checks the result and then checks for an instance. Either creates and instance, or forwards on to [OnSessionInstanceCreationCompleted()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8)
 
 #### Parameters
 * `bSuccess` Whether or not the registration was successful 
@@ -567,14 +586,16 @@ Bootstrapping Flow [WaitingForSession] - callback for when registration process 
 * `Result` The bootstrapping result that was produced
 
 <br>
-#### `protected virtual void `[`OnSessionInstanceCreationCompleted`](#classURH__GameInstanceServerBootstrapper_1aedfc2a8cdf03b9661eeff845820afcfb)`(bool bSuccess,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * RHSession)` <a id="classURH__GameInstanceServerBootstrapper_1aedfc2a8cdf03b9661eeff845820afcfb"></a>
+#### `protected virtual void `[`OnSessionInstanceCreationCompleted`](#classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8)`(bool bSuccess,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * CreatedRHSession,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` <a id="classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8"></a>
 
 Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result.
 
 #### Parameters
 * `bSuccess` Whether or not the instance was successfully created 
 
-* `RHSession` The session that was created with an instance
+* `CreatedRHSession` The session that was created with an instance 
+
+* `ErrorInfo` Error information about the instance creation
 
 <br>
 #### `protected virtual void `[`SyncToSession`](#classURH__GameInstanceServerBootstrapper_1a916ef7edd3eae169e87ac544ea2088c6)`()` <a id="classURH__GameInstanceServerBootstrapper_1a916ef7edd3eae169e87ac544ea2088c6"></a>
@@ -670,9 +691,11 @@ Subsystem for handling sessions within a game instance.
 --------------------------------|---------------------------------------------
 `public FRH_OnBeaconCreatedDelegate `[`OnBeaconCreated`](#classURH__GameInstanceSessionSubsystem_1abf524b7f51eb3c9b3671543ef3d9b2e7) | Multicast delegate fired when a beacon is created so that host objects can be registered.
 `public FRH_OnBeaconCreatedDynamicDelegate `[`BLUEPRINT_OnBeaconCreated`](#classURH__GameInstanceSessionSubsystem_1a31f3792f396c5fb09ede462eb9f1fdd7) | Multicast delegate fired when a beacon is created so that host objects can be registered.
+`public FRH_OnActiveSessionChangedDelegate `[`OnActiveSessionChanged`](#classURH__GameInstanceSessionSubsystem_1ab0bea9f3a8496dbaafadf36e55a89453) | Multicast delegate fired when the active session is changed.
+`public FRH_OnActiveSessionChangedDynamicDelegate `[`BLUEPRINT_OnActiveSessionChanged`](#classURH__GameInstanceSessionSubsystem_1a9da14e60771b65717f244a3c578df9c7) | Multicast delegate fired when the active session is changed.
 `public virtual void `[`Initialize`](#classURH__GameInstanceSessionSubsystem_1a29fa0211bfa66dfb572e0c39d3f0da4f)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__GameInstanceSessionSubsystem_1ade667dd7b71a4179340964072bc5e7df)`()` | Safely tears down the subsystem.
-`public virtual void `[`SyncToSession`](#classURH__GameInstanceSessionSubsystem_1a3bd5d42719c42c4fbbc3441f8ed2abff)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * SessionInfo,FRH_GameInstanceSessionSyncBlock Delegate)` | Requests the the instance to transition to a new session.
+`public virtual void `[`SyncToSession`](#classURH__GameInstanceSessionSubsystem_1a2d378ff7420a5becf259cd541cb3808a)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * SessionInfo,const FRH_GameInstanceSessionSyncBlock & Delegate)` | Requests the the instance to transition to a new session.
 `public inline void `[`BLUEPRINT_SyncToSession`](#classURH__GameInstanceSessionSubsystem_1a6c0d45b13336efa8a57311965c1a14b2)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * SessionInfo,const FRH_GameInstanceSessionSyncDynamicDelegate & Delegate)` | Blueprint compatible wrapper for SyncToSession.
 `public virtual const `[`FRHAPI_InstanceInfo`](models/RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` * `[`GetInstance`](#classURH__GameInstanceSessionSubsystem_1a624ab57e94286f288fea96923e407419)`() const` | Gets the Session Data for the active session.
 `public virtual bool `[`IsLocallyHostedInstance`](#classURH__GameInstanceSessionSubsystem_1a4023cfa01e9aa8f2e1ef5c057d68a503)`(const `[`FRHAPI_InstanceInfo`](models/RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` & Instance) const` | Checks it the session data is for a locally hosted instance.
@@ -680,24 +703,34 @@ Subsystem for handling sessions within a game instance.
 `public virtual bool `[`IsPlayerLocal`](#classURH__GameInstanceSessionSubsystem_1af5cb5a462041a874229dcedd93fb4b88)`(const `[`FRHAPI_SessionPlayer`](models/RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` & Player) const` | Checks if a given player in a session is local to the client.
 `public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetDesiredSession`](#classURH__GameInstanceSessionSubsystem_1a034556de97f977aff6bbc16531be7977)`() const` | Gets the session that the instance is swapping to.
 `public inline FORCEINLINE `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetActiveSession`](#classURH__GameInstanceSessionSubsystem_1a5057004ee3391e223199399c1e734d9c)`() const` | Gets the session that is currently active.
+`public inline FORCEINLINE const TOptional< FString > & `[`GetFallbackSessionSecurityToken`](#classURH__GameInstanceSessionSubsystem_1a3fc414bf4060c39ef1cac73d4831fbfb)`() const` | Gets the fallback security token.
 `public inline FORCEINLINE bool `[`IsMarkedFubar`](#classURH__GameInstanceSessionSubsystem_1aa4609ee57c7e26d4475e090ea3ba3c26)`() const` | Gets if the instance has been marked failed.
 `public virtual bool `[`IsReadyToJoinInstance`](#classURH__GameInstanceSessionSubsystem_1a591d26ba5df91c4e16193e6e45897e0b)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bLog) const` | Checks if the session has all the players and is good to change maps.
-`public virtual bool `[`StartJoinInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a52467c6018e4781606eafd8e9fcfe90d)`(FRH_GameInstanceSessionSyncBlock Delegate)` | Starts the process of transitioning the instance to a new session.
+`public virtual bool `[`StartJoinInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a983058f85ec89f149f75387cc164fce4)`(const FRH_GameInstanceSessionSyncBlock & Delegate)` | Starts the process of transitioning the instance to a new session.
 `public inline bool `[`BLUEPRINT_StartJoinInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a6eff06df13c7edabd0e1e0dd68d96455)`(const FRH_GameInstanceSessionSyncDynamicDelegate & Delegate)` | Blueprint compatible wrapper for StartJoinInstanceFlow.
-`public virtual void `[`StartLeaveInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1ab4f15434732603fdf747a79c8e839126)`(bool bAlreadyDisconnected,bool bCheckDesired,FRH_GameInstanceSessionSyncBlock Delegate)` | Starts the process of leaving a previous the instance session.
+`public virtual void `[`StartLeaveInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a238216f3800a9fa90e32cee1cca965b7)`(bool bAlreadyDisconnected,bool bCheckDesired,const FRH_GameInstanceSessionSyncBlock & Delegate)` | Starts the process of leaving a previous the instance session.
 `public inline void `[`BLUEPRINT_StartLeaveInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1ada3e5a005c97d92667d0c090ca9ec2b9)`(bool bAlreadyDisconnected,bool bCheckDesired,const FRH_GameInstanceSessionSyncDynamicDelegate & Delegate)` | Blueprint compatible wrapper for StartLeaveInstanceFlow.
-`public virtual void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1a7195c203487540ac981dd591a4555167)`(const FString & Reason,FRH_GenericSuccessWithErrorBlock Delegate)` | Set an instance to a failed state marking it unrecoverable.
-`public inline FORCEINLINE void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1a753a24f239b94e57287a2a209f1e2122)`(const FString & Reason,FRH_GenericSuccessBlock Delegate)` | 
+`public virtual void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1ab6f2bbac803cdf796557afc165958f3d)`(const FString & Reason,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Set an instance to a failed state marking it unrecoverable.
+`public inline FORCEINLINE void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1ae52d628770befb76ab24067c5ff77a28)`(const FString & Reason,const FRH_GenericSuccessBlock & Delegate)` | 
 `public inline void `[`BLUEPRINT_MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1a4a5e8c8737b8e3a2f95ec1985a940ad0)`(const FString & Reason,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | Blueprint compatible wrapper for MarkInstanceFubar.
 `public virtual bool `[`GenerateJoinURL`](#classURH__GameInstanceSessionSubsystem_1a3f52422472c8ecfd2ba93a6d95fd1ff9)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,FURL & lastURL,FURL & outURL) const` | Attempt to generate a join URL from a session.
 `public virtual bool `[`GenerateHostURL`](#classURH__GameInstanceSessionSubsystem_1a1ef34eafcffb6de9efbdfdba3debabd8)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,FURL & lastURL,FURL & outURL) const` | Attempt to generate a host URL from a session.
+`public virtual bool `[`GetShouldKeepInstanceHealthAlive`](#classURH__GameInstanceSessionSubsystem_1a159a038a19dc11e32e6ef2623a130698)`() const` | Gets whether backfill should be kept alive.
+`public virtual ERHAPI_InstanceHealthStatus `[`GetInstanceHealthStatusToReport`](#classURH__GameInstanceSessionSubsystem_1a408b43b3f64b735ca386b32106168597)`() const` | Gets the health status of the instance to report to the API.
+`public virtual bool `[`GetShouldKeepBackfillAlive`](#classURH__GameInstanceSessionSubsystem_1ab22b193b391dd18ddfaa949f02d4498f)`() const` | Gets whether backfill should be kept alive.
 `protected `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`DesiredSession`](#classURH__GameInstanceSessionSubsystem_1a99ecdc3b0198eb5121abcafc3d709d6e) | Session we want to sync to.
 `protected `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`ActiveSession`](#classURH__GameInstanceSessionSubsystem_1a89d9ca9d834e6b2951d188ddeb8397e2) | Session we are synced to.
+`protected TOptional< FString > `[`FallbackSecurityToken`](#classURH__GameInstanceSessionSubsystem_1a6ac0e4430bf9c1028742f2e7bf47dfce) | A fallback security token to be used while the security token set is in flight.
 `protected bool `[`bHasBeenMarkedFubar`](#classURH__GameInstanceSessionSubsystem_1a4de8dea03d048a10d79f0b0ee103a5f4) | If set, the session instance is failed and unrecoverable.
+`protected FRH_AutoPollerPtr `[`InstanceHealthPoller`](#classURH__GameInstanceSessionSubsystem_1a18aa79dfb9fa057762108590a4df2250) | Poller for the host's health check.
+`protected FRH_AutoPollerPtr `[`BackfillPoller`](#classURH__GameInstanceSessionSubsystem_1ab792de51e69f50fce33471345a7ac559) | Poller for the host's health check.
+`protected virtual void `[`SetActiveSession`](#classURH__GameInstanceSessionSubsystem_1a0cb07970ac000b8e724b72159b632f45)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Sets the current active session.
 `protected virtual void `[`OnMapLoadComplete`](#classURH__GameInstanceSessionSubsystem_1a23b8145e9cbad2799ae0abc0521c25d3)`(UWorld * pWorld)` | Called when the map completes loading.
 `protected virtual void `[`OnNetworkFailure`](#classURH__GameInstanceSessionSubsystem_1aa96121d0002be3ca533f6505d69f8e0c)`(UWorld * World,UNetDriver * NetDriver,ENetworkFailure::Type FailureType,const FString & ErrorString)` | Called when there was a network failure trying to connect to the instance.
 `protected virtual void `[`OnTravelFailure`](#classURH__GameInstanceSessionSubsystem_1ac689a6c95a0feb0901487621a262417d)`(UWorld * pWorld,ETravelFailure::Type FailureType,const FString & ErrorString)` | Called when there is a travel failure to the instance map.
 `protected virtual class ARH_OnlineBeaconHost * `[`CreateBeaconHost`](#classURH__GameInstanceSessionSubsystem_1ad480537673a18c2353ce9e422d280bee)`(class UWorld * pWorld,uint32 ListenPort,bool bShutdownWorldNetDriver)` | Creates a beacon host for the instance.
+`protected virtual void `[`PollInstanceHealth`](#classURH__GameInstanceSessionSubsystem_1aa83f9f3fcff828e6b53910c98e55ab95)`(const FRH_PollCompleteFunc & Delegate)` | Called when instance health should be updated.
+`protected virtual void `[`PollBackfill`](#classURH__GameInstanceSessionSubsystem_1ac281b925199729bdb3919a49db185362)`(const FRH_PollCompleteFunc & Delegate)` | Called when backfill should be updated.
 
 #### Members
 
@@ -711,6 +744,16 @@ Multicast delegate fired when a beacon is created so that host objects can be re
 Multicast delegate fired when a beacon is created so that host objects can be registered.
 
 <br>
+#### `public FRH_OnActiveSessionChangedDelegate `[`OnActiveSessionChanged`](#classURH__GameInstanceSessionSubsystem_1ab0bea9f3a8496dbaafadf36e55a89453) <a id="classURH__GameInstanceSessionSubsystem_1ab0bea9f3a8496dbaafadf36e55a89453"></a>
+
+Multicast delegate fired when the active session is changed.
+
+<br>
+#### `public FRH_OnActiveSessionChangedDynamicDelegate `[`BLUEPRINT_OnActiveSessionChanged`](#classURH__GameInstanceSessionSubsystem_1a9da14e60771b65717f244a3c578df9c7) <a id="classURH__GameInstanceSessionSubsystem_1a9da14e60771b65717f244a3c578df9c7"></a>
+
+Multicast delegate fired when the active session is changed.
+
+<br>
 #### `public virtual void `[`Initialize`](#classURH__GameInstanceSessionSubsystem_1a29fa0211bfa66dfb572e0c39d3f0da4f)`()` <a id="classURH__GameInstanceSessionSubsystem_1a29fa0211bfa66dfb572e0c39d3f0da4f"></a>
 
 Initialize the subsystem.
@@ -721,7 +764,7 @@ Initialize the subsystem.
 Safely tears down the subsystem.
 
 <br>
-#### `public virtual void `[`SyncToSession`](#classURH__GameInstanceSessionSubsystem_1a3bd5d42719c42c4fbbc3441f8ed2abff)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * SessionInfo,FRH_GameInstanceSessionSyncBlock Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a3bd5d42719c42c4fbbc3441f8ed2abff"></a>
+#### `public virtual void `[`SyncToSession`](#classURH__GameInstanceSessionSubsystem_1a2d378ff7420a5becf259cd541cb3808a)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * SessionInfo,const FRH_GameInstanceSessionSyncBlock & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a2d378ff7420a5becf259cd541cb3808a"></a>
 
 Requests the the instance to transition to a new session.
 
@@ -784,6 +827,11 @@ Gets the session that the instance is swapping to.
 Gets the session that is currently active.
 
 <br>
+#### `public inline FORCEINLINE const TOptional< FString > & `[`GetFallbackSessionSecurityToken`](#classURH__GameInstanceSessionSubsystem_1a3fc414bf4060c39ef1cac73d4831fbfb)`() const` <a id="classURH__GameInstanceSessionSubsystem_1a3fc414bf4060c39ef1cac73d4831fbfb"></a>
+
+Gets the fallback security token.
+
+<br>
 #### `public inline FORCEINLINE bool `[`IsMarkedFubar`](#classURH__GameInstanceSessionSubsystem_1aa4609ee57c7e26d4475e090ea3ba3c26)`() const` <a id="classURH__GameInstanceSessionSubsystem_1aa4609ee57c7e26d4475e090ea3ba3c26"></a>
 
 Gets if the instance has been marked failed.
@@ -800,7 +848,7 @@ Checks if the session has all the players and is good to change maps.
 If true, the session is ready for a map transition.
 
 <br>
-#### `public virtual bool `[`StartJoinInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a52467c6018e4781606eafd8e9fcfe90d)`(FRH_GameInstanceSessionSyncBlock Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a52467c6018e4781606eafd8e9fcfe90d"></a>
+#### `public virtual bool `[`StartJoinInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a983058f85ec89f149f75387cc164fce4)`(const FRH_GameInstanceSessionSyncBlock & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a983058f85ec89f149f75387cc164fce4"></a>
 
 Starts the process of transitioning the instance to a new session.
 
@@ -813,7 +861,7 @@ Starts the process of transitioning the instance to a new session.
 Blueprint compatible wrapper for StartJoinInstanceFlow.
 
 <br>
-#### `public virtual void `[`StartLeaveInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1ab4f15434732603fdf747a79c8e839126)`(bool bAlreadyDisconnected,bool bCheckDesired,FRH_GameInstanceSessionSyncBlock Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1ab4f15434732603fdf747a79c8e839126"></a>
+#### `public virtual void `[`StartLeaveInstanceFlow`](#classURH__GameInstanceSessionSubsystem_1a238216f3800a9fa90e32cee1cca965b7)`(bool bAlreadyDisconnected,bool bCheckDesired,const FRH_GameInstanceSessionSyncBlock & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a238216f3800a9fa90e32cee1cca965b7"></a>
 
 Starts the process of leaving a previous the instance session.
 
@@ -830,7 +878,7 @@ Starts the process of leaving a previous the instance session.
 Blueprint compatible wrapper for StartLeaveInstanceFlow.
 
 <br>
-#### `public virtual void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1a7195c203487540ac981dd591a4555167)`(const FString & Reason,FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a7195c203487540ac981dd591a4555167"></a>
+#### `public virtual void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1ab6f2bbac803cdf796557afc165958f3d)`(const FString & Reason,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1ab6f2bbac803cdf796557afc165958f3d"></a>
 
 Set an instance to a failed state marking it unrecoverable.
 
@@ -840,7 +888,7 @@ Set an instance to a failed state marking it unrecoverable.
 * `Delegate` Callback delegate for if the instance was marked failed.
 
 <br>
-#### `public inline FORCEINLINE void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1a753a24f239b94e57287a2a209f1e2122)`(const FString & Reason,FRH_GenericSuccessBlock Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a753a24f239b94e57287a2a209f1e2122"></a>
+#### `public inline FORCEINLINE void `[`MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1ae52d628770befb76ab24067c5ff77a28)`(const FString & Reason,const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1ae52d628770befb76ab24067c5ff77a28"></a>
 
 <br>
 #### `public inline void `[`BLUEPRINT_MarkInstanceFubar`](#classURH__GameInstanceSessionSubsystem_1a4a5e8c8737b8e3a2f95ec1985a940ad0)`(const FString & Reason,const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1a4a5e8c8737b8e3a2f95ec1985a940ad0"></a>
@@ -878,6 +926,21 @@ Attempt to generate a host URL from a session.
 If true, a host URL was generated.
 
 <br>
+#### `public virtual bool `[`GetShouldKeepInstanceHealthAlive`](#classURH__GameInstanceSessionSubsystem_1a159a038a19dc11e32e6ef2623a130698)`() const` <a id="classURH__GameInstanceSessionSubsystem_1a159a038a19dc11e32e6ef2623a130698"></a>
+
+Gets whether backfill should be kept alive.
+
+<br>
+#### `public virtual ERHAPI_InstanceHealthStatus `[`GetInstanceHealthStatusToReport`](#classURH__GameInstanceSessionSubsystem_1a408b43b3f64b735ca386b32106168597)`() const` <a id="classURH__GameInstanceSessionSubsystem_1a408b43b3f64b735ca386b32106168597"></a>
+
+Gets the health status of the instance to report to the API.
+
+<br>
+#### `public virtual bool `[`GetShouldKeepBackfillAlive`](#classURH__GameInstanceSessionSubsystem_1ab22b193b391dd18ddfaa949f02d4498f)`() const` <a id="classURH__GameInstanceSessionSubsystem_1ab22b193b391dd18ddfaa949f02d4498f"></a>
+
+Gets whether backfill should be kept alive.
+
+<br>
 #### `protected `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`DesiredSession`](#classURH__GameInstanceSessionSubsystem_1a99ecdc3b0198eb5121abcafc3d709d6e) <a id="classURH__GameInstanceSessionSubsystem_1a99ecdc3b0198eb5121abcafc3d709d6e"></a>
 
 Session we want to sync to.
@@ -888,9 +951,32 @@ Session we want to sync to.
 Session we are synced to.
 
 <br>
+#### `protected TOptional< FString > `[`FallbackSecurityToken`](#classURH__GameInstanceSessionSubsystem_1a6ac0e4430bf9c1028742f2e7bf47dfce) <a id="classURH__GameInstanceSessionSubsystem_1a6ac0e4430bf9c1028742f2e7bf47dfce"></a>
+
+A fallback security token to be used while the security token set is in flight.
+
+<br>
 #### `protected bool `[`bHasBeenMarkedFubar`](#classURH__GameInstanceSessionSubsystem_1a4de8dea03d048a10d79f0b0ee103a5f4) <a id="classURH__GameInstanceSessionSubsystem_1a4de8dea03d048a10d79f0b0ee103a5f4"></a>
 
 If set, the session instance is failed and unrecoverable.
+
+<br>
+#### `protected FRH_AutoPollerPtr `[`InstanceHealthPoller`](#classURH__GameInstanceSessionSubsystem_1a18aa79dfb9fa057762108590a4df2250) <a id="classURH__GameInstanceSessionSubsystem_1a18aa79dfb9fa057762108590a4df2250"></a>
+
+Poller for the host's health check.
+
+<br>
+#### `protected FRH_AutoPollerPtr `[`BackfillPoller`](#classURH__GameInstanceSessionSubsystem_1ab792de51e69f50fce33471345a7ac559) <a id="classURH__GameInstanceSessionSubsystem_1ab792de51e69f50fce33471345a7ac559"></a>
+
+Poller for the host's health check.
+
+<br>
+#### `protected virtual void `[`SetActiveSession`](#classURH__GameInstanceSessionSubsystem_1a0cb07970ac000b8e724b72159b632f45)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` <a id="classURH__GameInstanceSessionSubsystem_1a0cb07970ac000b8e724b72159b632f45"></a>
+
+Sets the current active session.
+
+#### Parameters
+* `Session` to set as active session
 
 <br>
 #### `protected virtual void `[`OnMapLoadComplete`](#classURH__GameInstanceSessionSubsystem_1a23b8145e9cbad2799ae0abc0521c25d3)`(UWorld * pWorld)` <a id="classURH__GameInstanceSessionSubsystem_1a23b8145e9cbad2799ae0abc0521c25d3"></a>
@@ -939,6 +1025,22 @@ Creates a beacon host for the instance.
 * `bShutdownWorldNetDriver` If set, then the beacon shuts down the worlds Net Driver when created.
 
 <br>
+#### `protected virtual void `[`PollInstanceHealth`](#classURH__GameInstanceSessionSubsystem_1aa83f9f3fcff828e6b53910c98e55ab95)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1aa83f9f3fcff828e6b53910c98e55ab95"></a>
+
+Called when instance health should be updated.
+
+#### Parameters
+* `Delegate` Callback delegate for when the health is updated.
+
+<br>
+#### `protected virtual void `[`PollBackfill`](#classURH__GameInstanceSessionSubsystem_1ac281b925199729bdb3919a49db185362)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__GameInstanceSessionSubsystem_1ac281b925199729bdb3919a49db185362"></a>
+
+Called when backfill should be updated.
+
+#### Parameters
+* `Delegate` Callback delegate for when the health is updated.
+
+<br>
 ## class `URH_GameInstanceSubsystem` <a id="classURH__GameInstanceSubsystem"></a>
 
 ```
@@ -965,10 +1067,11 @@ Subsystem for the Game Instance.
 `public inline `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceSubsystem_1ad981a6b49e1b6717d8392edac8a7c49d)`() const` | Gets the player info subsystem on the instance.
 `public inline `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__GameInstanceSubsystem_1a5939c3dddeefe5d5928307522526845a)`() const` | Gets the catalog subsystem on the instance.
 `public inline `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a7d68319809db5ea58fc8cd87eeeca7a7)`() const` | Gets the config subsystem on the instance.
+`public inline `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb)`() const` | Gets the settings subsystem on the instance.
 `public void `[`GameModePreloginEvent`](#classURH__GameInstanceSubsystem_1a50b207a41e2a81673e201387c5ede103)`(class AGameModeBase * GameMode,const FUniqueNetIdRepl & NewPlayer,FString & ErrorMessage)` | Handles verification and validation of a player attempting to connect to the instance.
 `public bool `[`ValidateIncomingConnection`](#classURH__GameInstanceSubsystem_1a5d28941dd50473ed14ccee407715ef0f)`(class UNetConnection * Connection,FString & ErrorMessage) const` | 
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
-`public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9a413b76541228d957afb6e7d3a68162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
+`public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) | Auth context used by the Game Instance Subsystem.
 `protected TArray< `[`URH_GameInstanceSubsystemPlugin`](SubsystemBase.md#classURH__GameInstanceSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__GameInstanceSubsystem_1a6204638edcade74afc54e77e367b6078) | Array of plugins for the Game Instance Subsystem.
@@ -980,6 +1083,7 @@ Subsystem for the Game Instance.
 `protected `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`PlayerInfoSubsystem`](#classURH__GameInstanceSubsystem_1af077fda546ea4dbc9d4142e233d402c0) | The Player Info Subsystem.
 `protected `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`CatalogSubsystem`](#classURH__GameInstanceSubsystem_1a101dc200558351e0e846d90341e89f87) | The Catalog Subsystem.
 `protected `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`ConfigSubsystem`](#classURH__GameInstanceSubsystem_1abe30d81653383a1aaf1a454ee67b27ce) | The Config Subsystem.
+`protected `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`SettingsSubsystem`](#classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1) | The Settings Subsystem.
 `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) | If the Game Instance Subsystem is enabled.
 `protected bool `[`bEnableSessionBrowser`](#classURH__GameInstanceSubsystem_1a05992b3ee9dc7cc018f9f424069c4748) | If the Session Browser is enabled.
 `protected bool `[`bEnableMatchmakingBrowser`](#classURH__GameInstanceSubsystem_1a65744cd5c8afb2596503251f63a7cf0f) | If the Matchmaking Browser is enabled.
@@ -989,7 +1093,11 @@ Subsystem for the Game Instance.
 `protected bool `[`bUseSecurityTokenForJoining`](#classURH__GameInstanceSubsystem_1ae1d6a9deec9d3d89eb3dfc6ed0930f5e) | If set, the connection attempt must have a valid security token to be allowed to connect.
 `protected bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__GameInstanceSubsystem_1acbbf4a90c60528d318fda665064921c6) | If set, the Player Id must have been imported to the instance before being allowed to connect.
 `protected bool `[`bRequireValidPlayerIdsForJoining`](#classURH__GameInstanceSubsystem_1ab49cc70d224fae0acb852ff59106a2c6) | If set, the Player Id must be valid before being allowed to connect.
-`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1abb779d1673c9cc5ad8973f040db0a1f8)`(FSoftClassPath SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
+`protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a3b7e4d48f4487b7a53562eba2cd14e21)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
+`protected virtual void `[`AppSuspendCallbackInGameThread`](#classURH__GameInstanceSubsystem_1a7ed49aacbd0e42e5bc4010dbd0ff2888)`()` | Handle application going into suspension (these involve the application losing focus).
+`protected virtual void `[`AppResumeCallbackInGameThread`](#classURH__GameInstanceSubsystem_1afa9adfbf1b12fd3d37e91ea99d4f81fe)`()` | Handle application resuming from suspension (these involve the application losing focus).
+`protected virtual void `[`AppDeactivatedCallbackInGameThread`](#classURH__GameInstanceSubsystem_1ad3d5d9832895928a55823981b222a746)`()` | Handle application deactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
+`protected virtual void `[`AppReactivatedCallbackInGameThread`](#classURH__GameInstanceSubsystem_1ae3d080074efa0bfdb7633ad71da2c3d7)`()` | Handle application reactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
 
 #### Members
 
@@ -1061,6 +1169,11 @@ Gets the catalog subsystem on the instance.
 Gets the config subsystem on the instance.
 
 <br>
+#### `public inline `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb)`() const` <a id="classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb"></a>
+
+Gets the settings subsystem on the instance.
+
+<br>
 #### `public void `[`GameModePreloginEvent`](#classURH__GameInstanceSubsystem_1a50b207a41e2a81673e201387c5ede103)`(class AGameModeBase * GameMode,const FUniqueNetIdRepl & NewPlayer,FString & ErrorMessage)` <a id="classURH__GameInstanceSubsystem_1a50b207a41e2a81673e201387c5ede103"></a>
 
 Handles verification and validation of a player attempting to connect to the instance.
@@ -1086,7 +1199,7 @@ Custom Endpoint wrapper (for custom endpoints that require authentication)
 * `Delegate` The delegate to call when the call is complete (contains raw response)
 
 <br>
-#### `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a9a413b76541228d957afb6e7d3a68162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock Delegate)` <a id="classURH__GameInstanceSubsystem_1a9a413b76541228d957afb6e7d3a68162"></a>
+#### `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` <a id="classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112"></a>
 
 Custom Endpoint wrapper (for custom endpoints that require authentication)
 
@@ -1156,6 +1269,11 @@ The Catalog Subsystem.
 The Config Subsystem.
 
 <br>
+#### `protected `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`SettingsSubsystem`](#classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1) <a id="classURH__GameInstanceSubsystem_1a0faf95129232d8f19571e9ebdc7b13e1"></a>
+
+The Settings Subsystem.
+
+<br>
 #### `protected bool `[`bEnabled`](#classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12) <a id="classURH__GameInstanceSubsystem_1aec940d2a189827f2ffea8b8248f9be12"></a>
 
 If the Game Instance Subsystem is enabled.
@@ -1201,7 +1319,7 @@ If set, the Player Id must have been imported to the instance before being allow
 If set, the Player Id must be valid before being allowed to connect.
 
 <br>
-#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1abb779d1673c9cc5ad8973f040db0a1f8)`(FSoftClassPath SubsystemClassPath)` <a id="classURH__GameInstanceSubsystem_1abb779d1673c9cc5ad8973f040db0a1f8"></a>
+#### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__GameInstanceSubsystem_1a3b7e4d48f4487b7a53562eba2cd14e21)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__GameInstanceSubsystem_1a3b7e4d48f4487b7a53562eba2cd14e21"></a>
 
 Adds a plugin to the Game Instance Subsystem.
 
@@ -1210,6 +1328,26 @@ Adds a plugin to the Game Instance Subsystem.
 
 #### Returns
 The plugin that was added.
+
+<br>
+#### `protected virtual void `[`AppSuspendCallbackInGameThread`](#classURH__GameInstanceSubsystem_1a7ed49aacbd0e42e5bc4010dbd0ff2888)`()` <a id="classURH__GameInstanceSubsystem_1a7ed49aacbd0e42e5bc4010dbd0ff2888"></a>
+
+Handle application going into suspension (these involve the application losing focus).
+
+<br>
+#### `protected virtual void `[`AppResumeCallbackInGameThread`](#classURH__GameInstanceSubsystem_1afa9adfbf1b12fd3d37e91ea99d4f81fe)`()` <a id="classURH__GameInstanceSubsystem_1afa9adfbf1b12fd3d37e91ea99d4f81fe"></a>
+
+Handle application resuming from suspension (these involve the application losing focus).
+
+<br>
+#### `protected virtual void `[`AppDeactivatedCallbackInGameThread`](#classURH__GameInstanceSubsystem_1ad3d5d9832895928a55823981b222a746)`()` <a id="classURH__GameInstanceSubsystem_1ad3d5d9832895928a55823981b222a746"></a>
+
+Handle application deactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
+
+<br>
+#### `protected virtual void `[`AppReactivatedCallbackInGameThread`](#classURH__GameInstanceSubsystem_1ae3d080074efa0bfdb7633ad71da2c3d7)`()` <a id="classURH__GameInstanceSubsystem_1ae3d080074efa0bfdb7633ad71da2c3d7"></a>
+
+Handle application reactivating (these involve the game shutting down and pausing (such as when a console is put to sleep)).
 
 <br>
 ## struct `FRH_BootstrappingResult` <a id="structFRH__BootstrappingResult"></a>

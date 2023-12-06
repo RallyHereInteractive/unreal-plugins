@@ -5,7 +5,7 @@
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `class `[`URH_IntegrationSettings`](#classURH__IntegrationSettings) | Main settings for the Integration.
-`struct `[`FRH_SandboxConfiguration`](#structFRH__SandboxConfiguration) | Settings for Sandbox Configuration. If set, these override the defaults when the SandboxId matches the specified sandbox id.
+`struct `[`FRH_EnvironmentConfiguration`](#structFRH__EnvironmentConfiguration) | Settings for Environment Configuration. If set, these override the defaults when the EnvironmentId matches the specified environment id.
 
 ## class `URH_IntegrationSettings` <a id="classURH__IntegrationSettings"></a>
 
@@ -20,24 +20,22 @@ Main settings for the Integration.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`BaseUrl`](#classURH__IntegrationSettings_1aa57205106485722ad90ab0320d711d07) | DEPRECATED - RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
-`public FString `[`ClientId`](#classURH__IntegrationSettings_1a9c55437f52ee8d85a75596a52481ecd3) | DEPRECATED - RallyHere Client ID. Determines the available permissions for RallyHere APIs.
-`public FString `[`ClientSecret`](#classURH__IntegrationSettings_1a359d6746b2a532d751334ff4fb4e2a90) | DEPRECATED - RallyHere Client secret. Must be associated with the defined client ID.
-`public `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` `[`DefaultSandboxConfiguration`](#classURH__IntegrationSettings_1a71b7d3b6850836edfd2724a53dadf347) | RallyHere default sandbox configuration.
-`public TArray< `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` > `[`SandboxConfigurations`](#classURH__IntegrationSettings_1a7454bbee1dd2fc15a625f51e30da9fe9) | Per-Sandbox configuration overrides. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys)
-`public TArray< `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` > `[`SandboxURLs`](#classURH__IntegrationSettings_1abd6119f6b530649a9fa6ecdc0e288dec) | Per-Sandbox overrides for BaseUrl. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys)
+`public `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` `[`DefaultEnvironmentConfiguration`](#classURH__IntegrationSettings_1a90c5352a4e6761eb17d6368c839f2b72) | RallyHere default environment configuration.
+`public TArray< `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` > `[`EnvironmentConfigurations`](#classURH__IntegrationSettings_1a546e792d91e626fec5a89af26b48c4d0) | Per-Environment configuration overrides. These environments are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see EnvironmentCommandLineKeys)
 `public TArray< FString > `[`BaseURLCommandLineKeys`](#classURH__IntegrationSettings_1a69a2e01e56d3c5cf9378cadf95bf8eeb) | Keys to check for on the command line for an override to the default BaseURL.
-`public TArray< FString > `[`SandboxCommandLineKeys`](#classURH__IntegrationSettings_1a7e1e9322f4b305961a84b24bf27e9dde) | Keys to check for on the command line for an override to the default Sandbox when using SandboxConfigurations.
+`public TArray< FString > `[`EnvironmentCommandLineKeys`](#classURH__IntegrationSettings_1a6b6526202cee20d58a499042744656da) | Keys to check for on the command line for an override to the default Environment when using EnvironmentConfigurations.
 `public TArray< FString > `[`DefaultOSSCommandLineKeys`](#classURH__IntegrationSettings_1a93e491f7bab4fed912f9281cd1bac0e7) | Keys to check for on the command line for an override to the default OSS.
 `public TArray< FString > `[`ClientIdCommandLineKeys`](#classURH__IntegrationSettings_1afcc89f50b0d312cc200afb153b43a29a) | Keys to check for on the command line for an override to the default ClientId.
 `public TArray< FString > `[`ClientSecretCommandLineKeys`](#classURH__IntegrationSettings_1af66963c6acda2ab28c6cf959a33ca65e) | Keys to check for on the command line for an override to the default ClientSecret.
-`public FName `[`SandboxOSSName`](#classURH__IntegrationSettings_1acbcc5a93cfa141e8b72723f51d2009f6) | Online Subsystem to use for selecting the base URL sandbox. If not provided, will use the default OSS.
-`public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
+`public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
+`public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
+`public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
 `public int32 `[`MaxSimultaneousRequests`](#classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) | Extensible LocalPlayerLoginSubsystem class path.
 `public FSoftClassPath `[`AdSubsystemClass`](#classURH__IntegrationSettings_1a134dbaebd973ab90d1bdb12027285009) | Extensible AdSubsystem class path.
 `public FSoftClassPath `[`FriendSubsystemClass`](#classURH__IntegrationSettings_1af67c19ac851c03c6e667a609182e1ac9) | Extensible FriendSubsystem class path.
 `public FSoftClassPath `[`LocalPlayerSessionSubsystemClass`](#classURH__IntegrationSettings_1a6310101e25a7cff30adda4456bb02b55) | Extensible LocalPlayerSessionSubsystem class path.
+`public FSoftClassPath `[`SessionPlatformSyncerClass`](#classURH__IntegrationSettings_1a5e2e8dd0ec6edb9e9fbfb0d404441795) | Extensible PlayerSessionSyncer class path.
 `public FSoftClassPath `[`LocalPlayerPresenceSubsystemClass`](#classURH__IntegrationSettings_1aed317ed3d7b4e6af1e69e1db42215d01) | Extensible LocalPlayerPresenceSubsystem class path.
 `public FSoftClassPath `[`PurgeSubsystemClass`](#classURH__IntegrationSettings_1a1b99ec094d05b2b2daa8e83c2917e0e4) | Extensible PurgeSubsystem class path.
 `public FSoftClassPath `[`EntitlementSubsystemClass`](#classURH__IntegrationSettings_1a4c054d97c0884323627b2fdad7062da9) | Extensible EntitlementSubsystem class path.
@@ -48,6 +46,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`PlayerInfoClass`](#classURH__IntegrationSettings_1a6d45dfa55caf64da1b6b5beeaf559270) | Extensible PlayerInfo class path.
 `public FSoftClassPath `[`CatalogSubsystemClass`](#classURH__IntegrationSettings_1a0e60706b4b45ea9aed327c74e92df3a5) | Extensible CatalogSubsystem class path.
 `public FSoftClassPath `[`ConfigSubsystemClass`](#classURH__IntegrationSettings_1a22f747a1fe7afba820828fb46d2a8780) | Extensible ConfigSubsystem class path.
+`public FSoftClassPath `[`SettingsSubsystemClass`](#classURH__IntegrationSettings_1a6115ed0ac4a35c8f131dc5a0fd56900f) | Extensible ConfigSubsystem class path.
 `public FSoftClassPath `[`SessionBrowserCacheClass`](#classURH__IntegrationSettings_1af5ecb3103ab065d38eed4634e6916817) | Extensible SessionBrowserCache class path.
 `public FSoftClassPath `[`MatchmakingBrowserCacheClass`](#classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c) | Extensible MatchmakingBrowserCache class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
@@ -114,6 +113,8 @@ Main settings for the Integration.
 `public int32 `[`SessionUpdateBrowserInfoPriority`](#classURH__IntegrationSettings_1aa5e0c76dbae5e34b456bcaaafa68cf94) | Sets the request priority of Update Browser Info calls, lower number is higher priority.
 `public int32 `[`SessionDeleteBrowserInfoPriority`](#classURH__IntegrationSettings_1a005338696286a0b743bfbdb480e12e44) | Sets the request priority of Delete Browser Info calls, lower number is higher priority.
 `public int32 `[`SessionInstanceMarkFubarPriority`](#classURH__IntegrationSettings_1adb06a4293164df68adea68c00521e5fb) | Sets the request priority of Marking an Instane Fubar calls, lower number is higher priority.
+`public int32 `[`SessionInstanceHealthUpdatePriority`](#classURH__IntegrationSettings_1a48b7cedb5478f436eb426108906f2d6a) | Sets the request priority of Instance Health update calls, lower number is higher priority.
+`public int32 `[`SessionBackfillUpdatePriority`](#classURH__IntegrationSettings_1ac2b018d245179295e531c7e170db7663) | Sets the request priority of Backfill update calls, lower number is higher priority.
 `public int32 `[`SessionUpdateWithPlatformSessionPriority`](#classURH__IntegrationSettings_1ae52bf61cfe6e937cc6a563133a209991) | Sets the request priority of Session Update With Platform Session calls, lower number is higher priority.
 `public int32 `[`SessionGetTemplatePriority`](#classURH__IntegrationSettings_1a40090726415cdd4ed601d26c4a2960d9) | Sets the request priority of Session Get Template calls, lower number is higher priority.
 `public int32 `[`SessionGetByAllocationIdPriority`](#classURH__IntegrationSettings_1a0e8868c0d121441924f925de96d66120) | Sets the request priority of Session By Allocation Id calls, lower number is higher priority.
@@ -121,42 +122,23 @@ Main settings for the Integration.
 `public int32 `[`SessionGetByTypePriority`](#classURH__IntegrationSettings_1af20dfabda6e113f75816401bdaca2614) | Sets the request priority of Session By Type calls, lower number is higher priority.
 `public int32 `[`SessionsGetOtherPriority`](#classURH__IntegrationSettings_1a0504cbc9cd9338b377189d62daa790b9) | Sets the request priority of Get Other Sessions calls, lower number is higher priority.
 `public int32 `[`SettingsGetPriority`](#classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048) | Sets the request priority of Get Settings calls, lower number is higher priority.
+`public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) | Sets the request priority of Get Settings Types calls, lower number is higher priority.
 `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) | Sets the request priority of Update Settings calls, lower number is higher priority.
 `public int32 `[`GetSiteSettingsPriority`](#classURH__IntegrationSettings_1a05394419f792bfa361b0e1b2adccf198) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
-`public const `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` * `[`GetSandboxConfiguration`](#classURH__IntegrationSettings_1a22f5886e6ad1edf78dc000f0b0928d5c)`(const FString & SandboxId) const` | Helper to get the configuration for a given sandbox by SandboxId.
+`public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` | Helper to get the configuration for a given environment by EnvironmentId.
 
 #### Members
 
-#### `public FString `[`BaseUrl`](#classURH__IntegrationSettings_1aa57205106485722ad90ab0320d711d07) <a id="classURH__IntegrationSettings_1aa57205106485722ad90ab0320d711d07"></a>
+#### `public `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` `[`DefaultEnvironmentConfiguration`](#classURH__IntegrationSettings_1a90c5352a4e6761eb17d6368c839f2b72) <a id="classURH__IntegrationSettings_1a90c5352a4e6761eb17d6368c839f2b72"></a>
 
-DEPRECATED - RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
-
-<br>
-#### `public FString `[`ClientId`](#classURH__IntegrationSettings_1a9c55437f52ee8d85a75596a52481ecd3) <a id="classURH__IntegrationSettings_1a9c55437f52ee8d85a75596a52481ecd3"></a>
-
-DEPRECATED - RallyHere Client ID. Determines the available permissions for RallyHere APIs.
+RallyHere default environment configuration.
 
 <br>
-#### `public FString `[`ClientSecret`](#classURH__IntegrationSettings_1a359d6746b2a532d751334ff4fb4e2a90) <a id="classURH__IntegrationSettings_1a359d6746b2a532d751334ff4fb4e2a90"></a>
+#### `public TArray< `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` > `[`EnvironmentConfigurations`](#classURH__IntegrationSettings_1a546e792d91e626fec5a89af26b48c4d0) <a id="classURH__IntegrationSettings_1a546e792d91e626fec5a89af26b48c4d0"></a>
 
-DEPRECATED - RallyHere Client secret. Must be associated with the defined client ID.
-
-<br>
-#### `public `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` `[`DefaultSandboxConfiguration`](#classURH__IntegrationSettings_1a71b7d3b6850836edfd2724a53dadf347) <a id="classURH__IntegrationSettings_1a71b7d3b6850836edfd2724a53dadf347"></a>
-
-RallyHere default sandbox configuration.
-
-<br>
-#### `public TArray< `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` > `[`SandboxConfigurations`](#classURH__IntegrationSettings_1a7454bbee1dd2fc15a625f51e30da9fe9) <a id="classURH__IntegrationSettings_1a7454bbee1dd2fc15a625f51e30da9fe9"></a>
-
-Per-Sandbox configuration overrides. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys)
-
-<br>
-#### `public TArray< `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` > `[`SandboxURLs`](#classURH__IntegrationSettings_1abd6119f6b530649a9fa6ecdc0e288dec) <a id="classURH__IntegrationSettings_1abd6119f6b530649a9fa6ecdc0e288dec"></a>
-
-Per-Sandbox overrides for BaseUrl. These sandboxes are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see SandboxCommandLineKeys)
+Per-Environment configuration overrides. These environments are alias names used for a BaseURL, and by default will automatically be looked up based on the OnlineEnvironment from the engine (Development, Certification, etc), but can be overridden via commandline (see EnvironmentCommandLineKeys)
 
 <br>
 #### `public TArray< FString > `[`BaseURLCommandLineKeys`](#classURH__IntegrationSettings_1a69a2e01e56d3c5cf9378cadf95bf8eeb) <a id="classURH__IntegrationSettings_1a69a2e01e56d3c5cf9378cadf95bf8eeb"></a>
@@ -164,9 +146,9 @@ Per-Sandbox overrides for BaseUrl. These sandboxes are alias names used for a Ba
 Keys to check for on the command line for an override to the default BaseURL.
 
 <br>
-#### `public TArray< FString > `[`SandboxCommandLineKeys`](#classURH__IntegrationSettings_1a7e1e9322f4b305961a84b24bf27e9dde) <a id="classURH__IntegrationSettings_1a7e1e9322f4b305961a84b24bf27e9dde"></a>
+#### `public TArray< FString > `[`EnvironmentCommandLineKeys`](#classURH__IntegrationSettings_1a6b6526202cee20d58a499042744656da) <a id="classURH__IntegrationSettings_1a6b6526202cee20d58a499042744656da"></a>
 
-Keys to check for on the command line for an override to the default Sandbox when using SandboxConfigurations.
+Keys to check for on the command line for an override to the default Environment when using EnvironmentConfigurations.
 
 <br>
 #### `public TArray< FString > `[`DefaultOSSCommandLineKeys`](#classURH__IntegrationSettings_1a93e491f7bab4fed912f9281cd1bac0e7) <a id="classURH__IntegrationSettings_1a93e491f7bab4fed912f9281cd1bac0e7"></a>
@@ -184,14 +166,19 @@ Keys to check for on the command line for an override to the default ClientId.
 Keys to check for on the command line for an override to the default ClientSecret.
 
 <br>
-#### `public FName `[`SandboxOSSName`](#classURH__IntegrationSettings_1acbcc5a93cfa141e8b72723f51d2009f6) <a id="classURH__IntegrationSettings_1acbcc5a93cfa141e8b72723f51d2009f6"></a>
+#### `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) <a id="classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab"></a>
 
-Online Subsystem to use for selecting the base URL sandbox. If not provided, will use the default OSS.
+Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
 
 <br>
 #### `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) <a id="classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab"></a>
 
-RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
+Whether to automatically start platform sessions after joining them.
+
+<br>
+#### `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) <a id="classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a"></a>
+
+Whether to automatically join platform sessions after a user change when invites were received while logged out.
 
 <br>
 #### `public int32 `[`MaxSimultaneousRequests`](#classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b) <a id="classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b"></a>
@@ -217,6 +204,11 @@ Extensible FriendSubsystem class path.
 #### `public FSoftClassPath `[`LocalPlayerSessionSubsystemClass`](#classURH__IntegrationSettings_1a6310101e25a7cff30adda4456bb02b55) <a id="classURH__IntegrationSettings_1a6310101e25a7cff30adda4456bb02b55"></a>
 
 Extensible LocalPlayerSessionSubsystem class path.
+
+<br>
+#### `public FSoftClassPath `[`SessionPlatformSyncerClass`](#classURH__IntegrationSettings_1a5e2e8dd0ec6edb9e9fbfb0d404441795) <a id="classURH__IntegrationSettings_1a5e2e8dd0ec6edb9e9fbfb0d404441795"></a>
+
+Extensible PlayerSessionSyncer class path.
 
 <br>
 #### `public FSoftClassPath `[`LocalPlayerPresenceSubsystemClass`](#classURH__IntegrationSettings_1aed317ed3d7b4e6af1e69e1db42215d01) <a id="classURH__IntegrationSettings_1aed317ed3d7b4e6af1e69e1db42215d01"></a>
@@ -265,6 +257,11 @@ Extensible CatalogSubsystem class path.
 
 <br>
 #### `public FSoftClassPath `[`ConfigSubsystemClass`](#classURH__IntegrationSettings_1a22f747a1fe7afba820828fb46d2a8780) <a id="classURH__IntegrationSettings_1a22f747a1fe7afba820828fb46d2a8780"></a>
+
+Extensible ConfigSubsystem class path.
+
+<br>
+#### `public FSoftClassPath `[`SettingsSubsystemClass`](#classURH__IntegrationSettings_1a6115ed0ac4a35c8f131dc5a0fd56900f) <a id="classURH__IntegrationSettings_1a6115ed0ac4a35c8f131dc5a0fd56900f"></a>
 
 Extensible ConfigSubsystem class path.
 
@@ -599,6 +596,16 @@ Sets the request priority of Delete Browser Info calls, lower number is higher p
 Sets the request priority of Marking an Instane Fubar calls, lower number is higher priority.
 
 <br>
+#### `public int32 `[`SessionInstanceHealthUpdatePriority`](#classURH__IntegrationSettings_1a48b7cedb5478f436eb426108906f2d6a) <a id="classURH__IntegrationSettings_1a48b7cedb5478f436eb426108906f2d6a"></a>
+
+Sets the request priority of Instance Health update calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`SessionBackfillUpdatePriority`](#classURH__IntegrationSettings_1ac2b018d245179295e531c7e170db7663) <a id="classURH__IntegrationSettings_1ac2b018d245179295e531c7e170db7663"></a>
+
+Sets the request priority of Backfill update calls, lower number is higher priority.
+
+<br>
 #### `public int32 `[`SessionUpdateWithPlatformSessionPriority`](#classURH__IntegrationSettings_1ae52bf61cfe6e937cc6a563133a209991) <a id="classURH__IntegrationSettings_1ae52bf61cfe6e937cc6a563133a209991"></a>
 
 Sets the request priority of Session Update With Platform Session calls, lower number is higher priority.
@@ -634,6 +641,11 @@ Sets the request priority of Get Other Sessions calls, lower number is higher pr
 Sets the request priority of Get Settings calls, lower number is higher priority.
 
 <br>
+#### `public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) <a id="classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71"></a>
+
+Sets the request priority of Get Settings Types calls, lower number is higher priority.
+
+<br>
 #### `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) <a id="classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35"></a>
 
 Sets the request priority of Update Settings calls, lower number is higher priority.
@@ -654,48 +666,54 @@ Sets the request priority of Lookup Users calls, lower number is higher priority
 Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
 
 <br>
-#### `public const `[`FRH_SandboxConfiguration`](IntegrationSettings.md#structFRH__SandboxConfiguration)` * `[`GetSandboxConfiguration`](#classURH__IntegrationSettings_1a22f5886e6ad1edf78dc000f0b0928d5c)`(const FString & SandboxId) const` <a id="classURH__IntegrationSettings_1a22f5886e6ad1edf78dc000f0b0928d5c"></a>
+#### `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` <a id="classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151"></a>
 
-Helper to get the configuration for a given sandbox by SandboxId.
+Helper to get the configuration for a given environment by EnvironmentId.
 
 <br>
-## struct `FRH_SandboxConfiguration` <a id="structFRH__SandboxConfiguration"></a>
+## struct `FRH_EnvironmentConfiguration` <a id="structFRH__EnvironmentConfiguration"></a>
 
-Settings for Sandbox Configuration. If set, these override the defaults when the SandboxId matches the specified sandbox id.
+Settings for Environment Configuration. If set, these override the defaults when the EnvironmentId matches the specified environment id.
 
 #### Summary
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`SandboxId`](#structFRH__SandboxConfiguration_1a17ce97a49f5278d869a5b9c53be4c1fd) | Sandbox Name, for use with client side sandbox lookups and overrides.
-`public FString `[`BaseUrl`](#structFRH__SandboxConfiguration_1ac431667ae5be14c68111b05aed9200cb) | RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
-`public FString `[`ClientId`](#structFRH__SandboxConfiguration_1a9f3bd890be3d7f7974f7736d5efa69b5) | RallyHere Client ID. Determines the available permissions for RallyHere APIs.
-`public FString `[`ClientSecret`](#structFRH__SandboxConfiguration_1af8e74d45b4c5103fd70a2a7fe736b213) | RallyHere Client secret. Must be associated with the defined client ID.
-`public FString `[`PlayerExperienceReportURL`](#structFRH__SandboxConfiguration_1ad40a61c96bd2528e17c27a984242703d) | RallyHere PlayerExperience reporting URL.
+`public FString `[`EnvironmentId`](#structFRH__EnvironmentConfiguration_1af7a0c896b818f1a844a2e49db24c7993) | Environment Name, for use with client side environment lookups and overrides.
+`public FString `[`BaseUrl`](#structFRH__EnvironmentConfiguration_1a4d83e6b00d9676173cfce51696239f33) | RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
+`public FString `[`ClientId`](#structFRH__EnvironmentConfiguration_1ad89cebe1e08c49b87a7132acb5ad8da4) | RallyHere Client ID. Determines the available permissions for RallyHere APIs.
+`public FString `[`ClientSecret`](#structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666) | RallyHere Client secret. Must be associated with the defined client ID.
+`public FString `[`PlayerExperienceReportURL`](#structFRH__EnvironmentConfiguration_1aec198dc7dc0ea963521331e690f289c9) | RallyHere PlayerExperience reporting URL.
+`public FString `[`AnalyticsURL`](#structFRH__EnvironmentConfiguration_1a0c3b133e57f57fc6cf12753f5f74b157) | RallyHere PlayerExperience reporting URL.
 
 #### Members
 
-#### `public FString `[`SandboxId`](#structFRH__SandboxConfiguration_1a17ce97a49f5278d869a5b9c53be4c1fd) <a id="structFRH__SandboxConfiguration_1a17ce97a49f5278d869a5b9c53be4c1fd"></a>
+#### `public FString `[`EnvironmentId`](#structFRH__EnvironmentConfiguration_1af7a0c896b818f1a844a2e49db24c7993) <a id="structFRH__EnvironmentConfiguration_1af7a0c896b818f1a844a2e49db24c7993"></a>
 
-Sandbox Name, for use with client side sandbox lookups and overrides.
+Environment Name, for use with client side environment lookups and overrides.
 
 <br>
-#### `public FString `[`BaseUrl`](#structFRH__SandboxConfiguration_1ac431667ae5be14c68111b05aed9200cb) <a id="structFRH__SandboxConfiguration_1ac431667ae5be14c68111b05aed9200cb"></a>
+#### `public FString `[`BaseUrl`](#structFRH__EnvironmentConfiguration_1a4d83e6b00d9676173cfce51696239f33) <a id="structFRH__EnvironmentConfiguration_1a4d83e6b00d9676173cfce51696239f33"></a>
 
 RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
 
 <br>
-#### `public FString `[`ClientId`](#structFRH__SandboxConfiguration_1a9f3bd890be3d7f7974f7736d5efa69b5) <a id="structFRH__SandboxConfiguration_1a9f3bd890be3d7f7974f7736d5efa69b5"></a>
+#### `public FString `[`ClientId`](#structFRH__EnvironmentConfiguration_1ad89cebe1e08c49b87a7132acb5ad8da4) <a id="structFRH__EnvironmentConfiguration_1ad89cebe1e08c49b87a7132acb5ad8da4"></a>
 
 RallyHere Client ID. Determines the available permissions for RallyHere APIs.
 
 <br>
-#### `public FString `[`ClientSecret`](#structFRH__SandboxConfiguration_1af8e74d45b4c5103fd70a2a7fe736b213) <a id="structFRH__SandboxConfiguration_1af8e74d45b4c5103fd70a2a7fe736b213"></a>
+#### `public FString `[`ClientSecret`](#structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666) <a id="structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666"></a>
 
 RallyHere Client secret. Must be associated with the defined client ID.
 
 <br>
-#### `public FString `[`PlayerExperienceReportURL`](#structFRH__SandboxConfiguration_1ad40a61c96bd2528e17c27a984242703d) <a id="structFRH__SandboxConfiguration_1ad40a61c96bd2528e17c27a984242703d"></a>
+#### `public FString `[`PlayerExperienceReportURL`](#structFRH__EnvironmentConfiguration_1aec198dc7dc0ea963521331e690f289c9) <a id="structFRH__EnvironmentConfiguration_1aec198dc7dc0ea963521331e690f289c9"></a>
+
+RallyHere PlayerExperience reporting URL.
+
+<br>
+#### `public FString `[`AnalyticsURL`](#structFRH__EnvironmentConfiguration_1a0c3b133e57f57fc6cf12753f5f74b157) <a id="structFRH__EnvironmentConfiguration_1a0c3b133e57f57fc6cf12753f5f74b157"></a>
 
 RallyHere PlayerExperience reporting URL.
 

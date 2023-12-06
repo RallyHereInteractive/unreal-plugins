@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_PlayerRankRequestResponse`](#structFRHAPI__PlayerRankRequestResponse) | Response to successfully requesting all of a player&#39;s ranks.
+`struct `[`FRHAPI_PlayerRankRequestResponse`](#structFRHAPI__PlayerRankRequestResponse) | DEPRECATED Response to successfully requesting all of a player&#39;s ranks.
 
 ## struct `FRHAPI_PlayerRankRequestResponse` <a id="structFRHAPI__PlayerRankRequestResponse"></a>
 
@@ -13,7 +13,7 @@ struct FRHAPI_PlayerRankRequestResponse
   : public FRHAPI_Model
 ```
 
-Response to successfully requesting all of a player&#39;s ranks.
+DEPRECATED Response to successfully requesting all of a player&#39;s ranks.
 
 #### Summary
 

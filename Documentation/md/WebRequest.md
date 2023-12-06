@@ -24,7 +24,7 @@ Class to handle executing and tracking low-level Http Web Requests.
 `public void `[`Initialize`](#classURH__WebRequests_1a886700f37a477d596e3c9045efecaa5e)`(RallyHereAPI::FRallyHereAPIAll * InAPIs)` | Initialize the Web Request system.
 `public void `[`Uninitialize`](#classURH__WebRequests_1a0fe605b98c24740235f2d192f73b83ef)`()` | Safely tears down the Web Request system.
 `public const TDoubleLinkedList< TSharedPtr< `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` > > & `[`GetTrackedRequests`](#classURH__WebRequests_1ae509b51d596a857b604d52ebe268b196)`() const` | Gets all of the requests that have been tracked.
-`public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classURH__WebRequests_1a5cd05003d99c79ae6b551cfa35a26dda)`(FGuid id) const` | Gets a specific request that has been tracked.
+`public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classURH__WebRequests_1a5eaf4f440b4e90f8a96e280cc0bc781f)`(const FGuid & id) const` | Gets a specific request that has been tracked.
 `public inline void `[`ClearTrackedRequests`](#classURH__WebRequests_1a5b244dbdc062a2ccc6215120568081ef)`()` | Clears all tracked requests out.
 `public const TArray< FName > `[`GetAPINames`](#classURH__WebRequests_1ac70288b2112bf750dcf1e10bceb0e58b)`() const` | Gets the list of all APIs able to be tracked.
 `public bool `[`GetLogAllWebRequests`](#classURH__WebRequests_1a0b7bd41f05fbd01363e4246418fcb2c0)`() const` | Gets if we are currently logging web requests from all APIs.
@@ -60,7 +60,7 @@ Safely tears down the Web Request system.
 Gets all of the requests that have been tracked.
 
 <br>
-#### `public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classURH__WebRequests_1a5cd05003d99c79ae6b551cfa35a26dda)`(FGuid id) const` <a id="classURH__WebRequests_1a5cd05003d99c79ae6b551cfa35a26dda"></a>
+#### `public const `[`FRH_WebRequest`](WebRequest.md#structFRH__WebRequest)` * `[`GetTrackedRequestById`](#classURH__WebRequests_1a5eaf4f440b4e90f8a96e280cc0bc781f)`(const FGuid & id) const` <a id="classURH__WebRequests_1a5eaf4f440b4e90f8a96e280cc0bc781f"></a>
 
 Gets a specific request that has been tracked.
 
@@ -186,6 +186,8 @@ Web call response data.
 `public FString `[`Content`](#structFRH__WebResponse_1a0ff460b3df9d25c4fca881a055d73544) | Content of the Web Response.
 `public int32 `[`ResponseCode`](#structFRH__WebResponse_1a9b587fa8f496832745973bcecb4c5733) | Resonse Code of the Web Response.
 `public bool `[`ResponseSuccess`](#structFRH__WebResponse_1af845fefbaee0203c50d552ef8a152f73) | Was the response successful from a client perspective.
+`public FDateTime `[`ReceivedTime`](#structFRH__WebResponse_1ab1e2b9ccc96780f6fc2ab86ad5c631fa) | The tiem the response was received.
+`public inline  `[`FRH_WebResponse`](#structFRH__WebResponse_1a330ebd43596c9c11d0acd83bbe3cc34f)`()` | 
 
 #### Members
 
@@ -209,6 +211,14 @@ Resonse Code of the Web Response.
 Was the response successful from a client perspective.
 
 <br>
+#### `public FDateTime `[`ReceivedTime`](#structFRH__WebResponse_1ab1e2b9ccc96780f6fc2ab86ad5c631fa) <a id="structFRH__WebResponse_1ab1e2b9ccc96780f6fc2ab86ad5c631fa"></a>
+
+The tiem the response was received.
+
+<br>
+#### `public inline  `[`FRH_WebResponse`](#structFRH__WebResponse_1a330ebd43596c9c11d0acd83bbe3cc34f)`()` <a id="structFRH__WebResponse_1a330ebd43596c9c11d0acd83bbe3cc34f"></a>
+
+<br>
 ## struct `FRH_WebRequest` <a id="structFRH__WebRequest"></a>
 
 Web call request data.
@@ -225,6 +235,7 @@ Web call request data.
 `public TMap< FString, FString > `[`Headers`](#structFRH__WebRequest_1ae9ca0888071d0f658686ae6453a01be3) | Headers for the Web Request.
 `public FString `[`Content`](#structFRH__WebRequest_1ae43e1b6f4ef84aebde988062c8701e20) | Content for the Web Request.
 `public TArray< `[`FRH_WebResponse`](WebRequest.md#structFRH__WebResponse)` > `[`Responses`](#structFRH__WebRequest_1aafe02329852f8883685dcd0f4714c3ed) | Response for the Web Request. Can contain multiple if the request had to be retried.
+`public inline  `[`FRH_WebRequest`](#structFRH__WebRequest_1aded51ff8b75b1483c6ee3fa664c0a5ff)`()` | 
 
 #### Members
 
@@ -266,5 +277,8 @@ Content for the Web Request.
 #### `public TArray< `[`FRH_WebResponse`](WebRequest.md#structFRH__WebResponse)` > `[`Responses`](#structFRH__WebRequest_1aafe02329852f8883685dcd0f4714c3ed) <a id="structFRH__WebRequest_1aafe02329852f8883685dcd0f4714c3ed"></a>
 
 Response for the Web Request. Can contain multiple if the request had to be retried.
+
+<br>
+#### `public inline  `[`FRH_WebRequest`](#structFRH__WebRequest_1aded51ff8b75b1483c6ee3fa664c0a5ff)`()` <a id="structFRH__WebRequest_1aded51ff8b75b1483c6ee3fa664c0a5ff"></a>
 
 <br>

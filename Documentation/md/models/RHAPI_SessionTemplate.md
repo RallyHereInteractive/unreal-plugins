@@ -26,8 +26,12 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`CanJoinMatchmaking_IsSet`](#structFRHAPI__SessionTemplate_1a2e4fd1ddce8e54ae5242c6a839b9a446) | true if CanJoinMatchmaking_Optional has been set to a value
 `public bool `[`CanBeCreatedByPlayersDirectly_Optional`](#structFRHAPI__SessionTemplate_1ab6aed074db1776677efeedae942a6dde) | Are players allowed to create sessions of this type?
 `public bool `[`CanBeCreatedByPlayersDirectly_IsSet`](#structFRHAPI__SessionTemplate_1af34cf526890cc59a7c99aeb31fe47f86) | true if CanBeCreatedByPlayersDirectly_Optional has been set to a value
-`public bool `[`Joinable_Optional`](#structFRHAPI__SessionTemplate_1af726850d2f0a47c0d363bc6fe56649d2) | Should players join existing sessions of this type before creating a new one.
+`public bool `[`Joinable_Optional`](#structFRHAPI__SessionTemplate_1af726850d2f0a47c0d363bc6fe56649d2) | DEPRECATED. Use 'attempt_auto_join' instead. Should players join existing sessions of this type before creating a new one.
 `public bool `[`Joinable_IsSet`](#structFRHAPI__SessionTemplate_1a640852541c1622264fb0b45e8bcba358) | true if Joinable_Optional has been set to a value
+`public bool `[`AttemptAutoJoin_Optional`](#structFRHAPI__SessionTemplate_1a7d1c0ca1b78e58fe1b0e1b4bc14c7d1d) | Should players join existing sessions of this type before creating a new one.
+`public bool `[`AttemptAutoJoin_IsSet`](#structFRHAPI__SessionTemplate_1a3ef337d1d127c53479600fd601327932) | true if AttemptAutoJoin_Optional has been set to a value
+`public bool `[`DefaultPublic_Optional`](#structFRHAPI__SessionTemplate_1ad23d2d7b28599c82e031a8ec8e0044bd) | Should sessions of this type should be publicly joinable by default.
+`public bool `[`DefaultPublic_IsSet`](#structFRHAPI__SessionTemplate_1ad56e88aba80b14f4a35817228bc1de98) | true if DefaultPublic_Optional has been set to a value
 `public bool `[`AutoAddToBrowser_Optional`](#structFRHAPI__SessionTemplate_1acd767d33d578663a2ae87266051aee21) | Should session be automatically added to the browser list.
 `public bool `[`AutoAddToBrowser_IsSet`](#structFRHAPI__SessionTemplate_1a3680cbdc548742735a67e6b5aa39f17a) | true if AutoAddToBrowser_Optional has been set to a value
 `public TMap< FString, FString > `[`AutoBrowserParams_Optional`](#structFRHAPI__SessionTemplate_1a82787643aa3e38fe0da7bf1500e0ef62) | Browser parameters that can be used to filter results.
@@ -95,6 +99,26 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`ClearJoinable`](#structFRHAPI__SessionTemplate_1a2656215bcf0eb51c71fed328166e6b68)`()` | Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
 `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__SessionTemplate_1a7005e50d8cbe3b02a9ce17dbb7d4bd4c)`() const` | Returns true if Joinable_Optional is set and matches the default value.
 `public inline void `[`SetJoinableToDefault`](#structFRHAPI__SessionTemplate_1aab55eb4066768dc2f660b6f7148789c6)`()` | Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
+`public inline bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a0784581eddfc3da5b8d0d9053c1870c2)`()` | Gets the value of AttemptAutoJoin_Optional, regardless of it having been set.
+`public inline const bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a90c6ede8f6a6e572ed0f2502e47056ef)`() const` | Gets the value of AttemptAutoJoin_Optional, regardless of it having been set.
+`public inline const bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a004e18b9442ec10e4b100d998553ff38)`(const bool & DefaultValue) const` | Gets the value of AttemptAutoJoin_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a746d02f50e4c48a2255984bcae98d864)`(bool & OutValue) const` | Fills OutValue with the value of AttemptAutoJoin_Optional and returns true if it has been set, otherwise returns false.
+`public inline bool * `[`GetAttemptAutoJoinOrNull`](#structFRHAPI__SessionTemplate_1acc02b9c5cb69200d7aa7eb9cf0b5816d)`()` | Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetAttemptAutoJoinOrNull`](#structFRHAPI__SessionTemplate_1aafad240b056cbf756bd05e0d0a49dbfa)`() const` | Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a8f5a20a38ee91d6199ef73404c116485)`(bool NewValue)` | Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true.
+`public inline void `[`ClearAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1af01c65d9412c08982e1d810d821508e6)`()` | Clears the value of AttemptAutoJoin_Optional and sets AttemptAutoJoin_IsSet to false.
+`public inline bool `[`IsAttemptAutoJoinDefaultValue`](#structFRHAPI__SessionTemplate_1a6272851fd94d2aae9769e3f49251f26e)`() const` | Returns true if AttemptAutoJoin_Optional is set and matches the default value.
+`public inline void `[`SetAttemptAutoJoinToDefault`](#structFRHAPI__SessionTemplate_1a625067a334f5914ab7695522f608984b)`()` | Sets the value of AttemptAutoJoin_Optional to its default and also sets AttemptAutoJoin_IsSet to true.
+`public inline bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1ad7fe254c574fc3e7253c753331a7ae4f)`()` | Gets the value of DefaultPublic_Optional, regardless of it having been set.
+`public inline const bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1ad5653be593ce23f0445f7edc71cd1184)`() const` | Gets the value of DefaultPublic_Optional, regardless of it having been set.
+`public inline const bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1a70a157efbf3c9380527c3c6da81bc515)`(const bool & DefaultValue) const` | Gets the value of DefaultPublic_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1abc8a258803a6af1a06337bfd38790b1d)`(bool & OutValue) const` | Fills OutValue with the value of DefaultPublic_Optional and returns true if it has been set, otherwise returns false.
+`public inline bool * `[`GetDefaultPublicOrNull`](#structFRHAPI__SessionTemplate_1a41c1b2304383e8191962c347c27a9bf9)`()` | Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetDefaultPublicOrNull`](#structFRHAPI__SessionTemplate_1ab9be70682b6378354fe5c18b805a0222)`() const` | Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetDefaultPublic`](#structFRHAPI__SessionTemplate_1a4670fa8d3d2e7f048dbf81bcfa658ed5)`(bool NewValue)` | Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true.
+`public inline void `[`ClearDefaultPublic`](#structFRHAPI__SessionTemplate_1a0b7ec628161b7d1a8317204875d476e5)`()` | Clears the value of DefaultPublic_Optional and sets DefaultPublic_IsSet to false.
+`public inline bool `[`IsDefaultPublicDefaultValue`](#structFRHAPI__SessionTemplate_1aded9e905d1ae97b71569316e9a93249f)`() const` | Returns true if DefaultPublic_Optional is set and matches the default value.
+`public inline void `[`SetDefaultPublicToDefault`](#structFRHAPI__SessionTemplate_1aeff38f0e7c8d477f6175359b09bf33e7)`()` | Sets the value of DefaultPublic_Optional to its default and also sets DefaultPublic_IsSet to true.
 `public inline bool & `[`GetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1adfdd95d3bbe2abb2bec34a1e505d1420)`()` | Gets the value of AutoAddToBrowser_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1a1922eb1b6a75e8e3e704ffc247ce68bc)`() const` | Gets the value of AutoAddToBrowser_Optional, regardless of it having been set.
 `public inline const bool & `[`GetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1ab22d912b63beca54e9eb97754afa2f92)`(const bool & DefaultValue) const` | Gets the value of AutoAddToBrowser_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -237,12 +261,32 @@ true if CanBeCreatedByPlayersDirectly_Optional has been set to a value
 <br>
 #### `public bool `[`Joinable_Optional`](#structFRHAPI__SessionTemplate_1af726850d2f0a47c0d363bc6fe56649d2) <a id="structFRHAPI__SessionTemplate_1af726850d2f0a47c0d363bc6fe56649d2"></a>
 
-Should players join existing sessions of this type before creating a new one.
+DEPRECATED. Use 'attempt_auto_join' instead. Should players join existing sessions of this type before creating a new one.
 
 <br>
 #### `public bool `[`Joinable_IsSet`](#structFRHAPI__SessionTemplate_1a640852541c1622264fb0b45e8bcba358) <a id="structFRHAPI__SessionTemplate_1a640852541c1622264fb0b45e8bcba358"></a>
 
 true if Joinable_Optional has been set to a value
+
+<br>
+#### `public bool `[`AttemptAutoJoin_Optional`](#structFRHAPI__SessionTemplate_1a7d1c0ca1b78e58fe1b0e1b4bc14c7d1d) <a id="structFRHAPI__SessionTemplate_1a7d1c0ca1b78e58fe1b0e1b4bc14c7d1d"></a>
+
+Should players join existing sessions of this type before creating a new one.
+
+<br>
+#### `public bool `[`AttemptAutoJoin_IsSet`](#structFRHAPI__SessionTemplate_1a3ef337d1d127c53479600fd601327932) <a id="structFRHAPI__SessionTemplate_1a3ef337d1d127c53479600fd601327932"></a>
+
+true if AttemptAutoJoin_Optional has been set to a value
+
+<br>
+#### `public bool `[`DefaultPublic_Optional`](#structFRHAPI__SessionTemplate_1ad23d2d7b28599c82e031a8ec8e0044bd) <a id="structFRHAPI__SessionTemplate_1ad23d2d7b28599c82e031a8ec8e0044bd"></a>
+
+Should sessions of this type should be publicly joinable by default.
+
+<br>
+#### `public bool `[`DefaultPublic_IsSet`](#structFRHAPI__SessionTemplate_1ad56e88aba80b14f4a35817228bc1de98) <a id="structFRHAPI__SessionTemplate_1ad56e88aba80b14f4a35817228bc1de98"></a>
+
+true if DefaultPublic_Optional has been set to a value
 
 <br>
 #### `public bool `[`AutoAddToBrowser_Optional`](#structFRHAPI__SessionTemplate_1acd767d33d578663a2ae87266051aee21) <a id="structFRHAPI__SessionTemplate_1acd767d33d578663a2ae87266051aee21"></a>
@@ -585,6 +629,106 @@ Returns true if Joinable_Optional is set and matches the default value.
 #### `public inline void `[`SetJoinableToDefault`](#structFRHAPI__SessionTemplate_1aab55eb4066768dc2f660b6f7148789c6)`()` <a id="structFRHAPI__SessionTemplate_1aab55eb4066768dc2f660b6f7148789c6"></a>
 
 Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
+
+<br>
+#### `public inline bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a0784581eddfc3da5b8d0d9053c1870c2)`()` <a id="structFRHAPI__SessionTemplate_1a0784581eddfc3da5b8d0d9053c1870c2"></a>
+
+Gets the value of AttemptAutoJoin_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a90c6ede8f6a6e572ed0f2502e47056ef)`() const` <a id="structFRHAPI__SessionTemplate_1a90c6ede8f6a6e572ed0f2502e47056ef"></a>
+
+Gets the value of AttemptAutoJoin_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const bool & `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a004e18b9442ec10e4b100d998553ff38)`(const bool & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a004e18b9442ec10e4b100d998553ff38"></a>
+
+Gets the value of AttemptAutoJoin_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a746d02f50e4c48a2255984bcae98d864)`(bool & OutValue) const` <a id="structFRHAPI__SessionTemplate_1a746d02f50e4c48a2255984bcae98d864"></a>
+
+Fills OutValue with the value of AttemptAutoJoin_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline bool * `[`GetAttemptAutoJoinOrNull`](#structFRHAPI__SessionTemplate_1acc02b9c5cb69200d7aa7eb9cf0b5816d)`()` <a id="structFRHAPI__SessionTemplate_1acc02b9c5cb69200d7aa7eb9cf0b5816d"></a>
+
+Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const bool * `[`GetAttemptAutoJoinOrNull`](#structFRHAPI__SessionTemplate_1aafad240b056cbf756bd05e0d0a49dbfa)`() const` <a id="structFRHAPI__SessionTemplate_1aafad240b056cbf756bd05e0d0a49dbfa"></a>
+
+Returns a pointer to AttemptAutoJoin_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1a8f5a20a38ee91d6199ef73404c116485)`(bool NewValue)` <a id="structFRHAPI__SessionTemplate_1a8f5a20a38ee91d6199ef73404c116485"></a>
+
+Sets the value of AttemptAutoJoin_Optional and also sets AttemptAutoJoin_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearAttemptAutoJoin`](#structFRHAPI__SessionTemplate_1af01c65d9412c08982e1d810d821508e6)`()` <a id="structFRHAPI__SessionTemplate_1af01c65d9412c08982e1d810d821508e6"></a>
+
+Clears the value of AttemptAutoJoin_Optional and sets AttemptAutoJoin_IsSet to false.
+
+<br>
+#### `public inline bool `[`IsAttemptAutoJoinDefaultValue`](#structFRHAPI__SessionTemplate_1a6272851fd94d2aae9769e3f49251f26e)`() const` <a id="structFRHAPI__SessionTemplate_1a6272851fd94d2aae9769e3f49251f26e"></a>
+
+Returns true if AttemptAutoJoin_Optional is set and matches the default value.
+
+<br>
+#### `public inline void `[`SetAttemptAutoJoinToDefault`](#structFRHAPI__SessionTemplate_1a625067a334f5914ab7695522f608984b)`()` <a id="structFRHAPI__SessionTemplate_1a625067a334f5914ab7695522f608984b"></a>
+
+Sets the value of AttemptAutoJoin_Optional to its default and also sets AttemptAutoJoin_IsSet to true.
+
+<br>
+#### `public inline bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1ad7fe254c574fc3e7253c753331a7ae4f)`()` <a id="structFRHAPI__SessionTemplate_1ad7fe254c574fc3e7253c753331a7ae4f"></a>
+
+Gets the value of DefaultPublic_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1ad5653be593ce23f0445f7edc71cd1184)`() const` <a id="structFRHAPI__SessionTemplate_1ad5653be593ce23f0445f7edc71cd1184"></a>
+
+Gets the value of DefaultPublic_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const bool & `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1a70a157efbf3c9380527c3c6da81bc515)`(const bool & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a70a157efbf3c9380527c3c6da81bc515"></a>
+
+Gets the value of DefaultPublic_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetDefaultPublic`](#structFRHAPI__SessionTemplate_1abc8a258803a6af1a06337bfd38790b1d)`(bool & OutValue) const` <a id="structFRHAPI__SessionTemplate_1abc8a258803a6af1a06337bfd38790b1d"></a>
+
+Fills OutValue with the value of DefaultPublic_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline bool * `[`GetDefaultPublicOrNull`](#structFRHAPI__SessionTemplate_1a41c1b2304383e8191962c347c27a9bf9)`()` <a id="structFRHAPI__SessionTemplate_1a41c1b2304383e8191962c347c27a9bf9"></a>
+
+Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const bool * `[`GetDefaultPublicOrNull`](#structFRHAPI__SessionTemplate_1ab9be70682b6378354fe5c18b805a0222)`() const` <a id="structFRHAPI__SessionTemplate_1ab9be70682b6378354fe5c18b805a0222"></a>
+
+Returns a pointer to DefaultPublic_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetDefaultPublic`](#structFRHAPI__SessionTemplate_1a4670fa8d3d2e7f048dbf81bcfa658ed5)`(bool NewValue)` <a id="structFRHAPI__SessionTemplate_1a4670fa8d3d2e7f048dbf81bcfa658ed5"></a>
+
+Sets the value of DefaultPublic_Optional and also sets DefaultPublic_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearDefaultPublic`](#structFRHAPI__SessionTemplate_1a0b7ec628161b7d1a8317204875d476e5)`()` <a id="structFRHAPI__SessionTemplate_1a0b7ec628161b7d1a8317204875d476e5"></a>
+
+Clears the value of DefaultPublic_Optional and sets DefaultPublic_IsSet to false.
+
+<br>
+#### `public inline bool `[`IsDefaultPublicDefaultValue`](#structFRHAPI__SessionTemplate_1aded9e905d1ae97b71569316e9a93249f)`() const` <a id="structFRHAPI__SessionTemplate_1aded9e905d1ae97b71569316e9a93249f"></a>
+
+Returns true if DefaultPublic_Optional is set and matches the default value.
+
+<br>
+#### `public inline void `[`SetDefaultPublicToDefault`](#structFRHAPI__SessionTemplate_1aeff38f0e7c8d477f6175359b09bf33e7)`()` <a id="structFRHAPI__SessionTemplate_1aeff38f0e7c8d477f6175359b09bf33e7"></a>
+
+Sets the value of DefaultPublic_Optional to its default and also sets DefaultPublic_IsSet to true.
 
 <br>
 #### `public inline bool & `[`GetAutoAddToBrowser`](#structFRHAPI__SessionTemplate_1adfdd95d3bbe2abb2bec34a1e505d1420)`()` <a id="structFRHAPI__SessionTemplate_1adfdd95d3bbe2abb2bec34a1e505d1420"></a>

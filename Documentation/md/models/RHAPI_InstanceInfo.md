@@ -21,8 +21,7 @@ Information about the instance resource in a session.
 --------------------------------|---------------------------------------------
 `public FString `[`AllocationId_Optional`](#structFRHAPI__InstanceInfo_1a670c84ac627eb0148e3b2a094d2a563f) | Allocation ID for instance that's been spun up.
 `public bool `[`AllocationId_IsSet`](#structFRHAPI__InstanceInfo_1a3a96f0f93d1d98d9d95b51bca0840b62) | true if AllocationId_Optional has been set to a value
-`public FString `[`InstanceId_Optional`](#structFRHAPI__InstanceInfo_1a1844621b728dcc52af3b4a55747357e7) | Unique ID for the host/session relationship.
-`public bool `[`InstanceId_IsSet`](#structFRHAPI__InstanceInfo_1a4d43210610b7a263c55424db540fb4b1) | true if InstanceId_Optional has been set to a value
+`public FString `[`InstanceId`](#structFRHAPI__InstanceInfo_1a69a816d14656c32583f847c0238b9174) | Unique ID for the host/session relationship.
 `public ERHAPI_HostType `[`HostType`](#structFRHAPI__InstanceInfo_1aa4fa57c88e13cde9833ee29b000027a9) | Type of the host.
 `public int32 `[`HostPlayerId_Optional`](#structFRHAPI__InstanceInfo_1a655893d75309d6c5d7d13c130192c60a) | Player ID of the host, if the host type is player.
 `public bool `[`HostPlayerId_IsSet`](#structFRHAPI__InstanceInfo_1adac8c1cdc99823b434cced3a50abf3cf) | true if HostPlayerId_Optional has been set to a value
@@ -42,6 +41,8 @@ Information about the instance resource in a session.
 `public FDateTime `[`Created`](#structFRHAPI__InstanceInfo_1a93af18f5736b9faacdd3fc6301486647) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InstanceInfo_1af4865b361b57b399511fe0932cb6f066) | instance-defined custom data
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InstanceInfo_1a03e270792bf6f6994f6656c65da324b8) | true if CustomData_Optional has been set to a value
+`public ERHAPI_InstanceHealthStatus `[`InstanceHealth_Optional`](#structFRHAPI__InstanceInfo_1a8e5826ce58477abb2788b69571438b48) | The current status of the instance.
+`public bool `[`InstanceHealth_IsSet`](#structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2) | true if InstanceHealth_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceInfo_1ad647ee64ac9cdb174f6780b91bceda2e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfo_1af406c06b9e864153010e790b5104f51b)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
@@ -52,14 +53,9 @@ Information about the instance resource in a session.
 `public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfo_1a6fc3b478077d55757324da2d24fbc8ab)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetAllocationId`](#structFRHAPI__InstanceInfo_1ad7f8218d610756db98f4f037ce44db54)`(FString NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
 `public inline void `[`ClearAllocationId`](#structFRHAPI__InstanceInfo_1a17455873e27cdaeefad64ade9f56b587)`()` | Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
-`public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a18c54761dca0b26947c7d883a1abbaac)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a154eb50a6f8cf9404603c3e375169c15)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1aebba6cbcb04b32a75a15da4333881220)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a63d00d62852cbea2ffd9ef2155203cca)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceInfo_1adaa3dede24dfa6a607928aa122c33d1f)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceInfo_1ac6d4c1df00a3efbadbd912bf1399cb6c)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceInfo_1a712ecfd5920ad5c15907e51f9698ed26)`(FString NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
-`public inline void `[`ClearInstanceId`](#structFRHAPI__InstanceInfo_1aa79c4989dd4aac544bd97b1c4af327ac)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
+`public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a18c54761dca0b26947c7d883a1abbaac)`()` | Gets the value of InstanceId.
+`public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a154eb50a6f8cf9404603c3e375169c15)`() const` | Gets the value of InstanceId.
+`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceInfo_1a712ecfd5920ad5c15907e51f9698ed26)`(FString NewValue)` | Sets the value of InstanceId.
 `public inline ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceInfo_1a8da5134593917a34f267c070738d690e)`()` | Gets the value of HostType.
 `public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceInfo_1a143e42f2667631cfd3eef757d9ebbebf)`() const` | Gets the value of HostType.
 `public inline void `[`SetHostType`](#structFRHAPI__InstanceInfo_1a9c91b1f15cbe4b4e3c3390e1610ca699)`(ERHAPI_HostType NewValue)` | Sets the value of HostType.
@@ -135,6 +131,14 @@ Information about the instance resource in a session.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfo_1a41650e460c8f774984418299bb173551)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__InstanceInfo_1a6b371ffb911a4ff7d5f666de2505253d)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceInfo_1adc5b55f5426979daa0d97885088268ed)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1af222f46ab9fad6a96af788183b09b13e)`()` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
+`public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1aeba44ed749fe71950fd4e689dc2f5924)`() const` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
+`public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1ad01a7c78279ff0f3be3c5ba4fe781efb)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` | Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1a31b0f139b535515679628d25d591042b)`(ERHAPI_InstanceHealthStatus & OutValue) const` | Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__InstanceInfo_1ae0b13879ebffdb546204bd5d46ee46ea)`()` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__InstanceInfo_1af278ac0b3df4a018f7683e0fb52a1cbe)`() const` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceInfo_1a487a71d1326071756c253177e1572c4d)`(ERHAPI_InstanceHealthStatus NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
+`public inline void `[`ClearInstanceHealth`](#structFRHAPI__InstanceInfo_1abd4b04df319d6b3af78cbd8a5c50ca9f)`()` | Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
 
 #### Members
 
@@ -148,14 +152,9 @@ Allocation ID for instance that's been spun up.
 true if AllocationId_Optional has been set to a value
 
 <br>
-#### `public FString `[`InstanceId_Optional`](#structFRHAPI__InstanceInfo_1a1844621b728dcc52af3b4a55747357e7) <a id="structFRHAPI__InstanceInfo_1a1844621b728dcc52af3b4a55747357e7"></a>
+#### `public FString `[`InstanceId`](#structFRHAPI__InstanceInfo_1a69a816d14656c32583f847c0238b9174) <a id="structFRHAPI__InstanceInfo_1a69a816d14656c32583f847c0238b9174"></a>
 
 Unique ID for the host/session relationship.
-
-<br>
-#### `public bool `[`InstanceId_IsSet`](#structFRHAPI__InstanceInfo_1a4d43210610b7a263c55424db540fb4b1) <a id="structFRHAPI__InstanceInfo_1a4d43210610b7a263c55424db540fb4b1"></a>
-
-true if InstanceId_Optional has been set to a value
 
 <br>
 #### `public ERHAPI_HostType `[`HostType`](#structFRHAPI__InstanceInfo_1aa4fa57c88e13cde9833ee29b000027a9) <a id="structFRHAPI__InstanceInfo_1aa4fa57c88e13cde9833ee29b000027a9"></a>
@@ -249,6 +248,16 @@ instance-defined custom data
 true if CustomData_Optional has been set to a value
 
 <br>
+#### `public ERHAPI_InstanceHealthStatus `[`InstanceHealth_Optional`](#structFRHAPI__InstanceInfo_1a8e5826ce58477abb2788b69571438b48) <a id="structFRHAPI__InstanceInfo_1a8e5826ce58477abb2788b69571438b48"></a>
+
+The current status of the instance.
+
+<br>
+#### `public bool `[`InstanceHealth_IsSet`](#structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2) <a id="structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2"></a>
+
+true if InstanceHealth_Optional has been set to a value
+
+<br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524"></a>
 
 Fills this object with data from the passed in JSON.
@@ -310,42 +319,17 @@ Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
 <br>
 #### `public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a18c54761dca0b26947c7d883a1abbaac)`()` <a id="structFRHAPI__InstanceInfo_1a18c54761dca0b26947c7d883a1abbaac"></a>
 
-Gets the value of InstanceId_Optional, regardless of it having been set.
+Gets the value of InstanceId.
 
 <br>
 #### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a154eb50a6f8cf9404603c3e375169c15)`() const` <a id="structFRHAPI__InstanceInfo_1a154eb50a6f8cf9404603c3e375169c15"></a>
 
-Gets the value of InstanceId_Optional, regardless of it having been set.
-
-<br>
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1aebba6cbcb04b32a75a15da4333881220)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfo_1aebba6cbcb04b32a75a15da4333881220"></a>
-
-Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-
-<br>
-#### `public inline bool `[`GetInstanceId`](#structFRHAPI__InstanceInfo_1a63d00d62852cbea2ffd9ef2155203cca)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfo_1a63d00d62852cbea2ffd9ef2155203cca"></a>
-
-Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-
-<br>
-#### `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceInfo_1adaa3dede24dfa6a607928aa122c33d1f)`()` <a id="structFRHAPI__InstanceInfo_1adaa3dede24dfa6a607928aa122c33d1f"></a>
-
-Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-
-<br>
-#### `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceInfo_1ac6d4c1df00a3efbadbd912bf1399cb6c)`() const` <a id="structFRHAPI__InstanceInfo_1ac6d4c1df00a3efbadbd912bf1399cb6c"></a>
-
-Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+Gets the value of InstanceId.
 
 <br>
 #### `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceInfo_1a712ecfd5920ad5c15907e51f9698ed26)`(FString NewValue)` <a id="structFRHAPI__InstanceInfo_1a712ecfd5920ad5c15907e51f9698ed26"></a>
 
-Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
-
-<br>
-#### `public inline void `[`ClearInstanceId`](#structFRHAPI__InstanceInfo_1aa79c4989dd4aac544bd97b1c4af327ac)`()` <a id="structFRHAPI__InstanceInfo_1aa79c4989dd4aac544bd97b1c4af327ac"></a>
-
-Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
+Sets the value of InstanceId.
 
 <br>
 #### `public inline ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceInfo_1a8da5134593917a34f267c070738d690e)`()` <a id="structFRHAPI__InstanceInfo_1a8da5134593917a34f267c070738d690e"></a>
@@ -721,5 +705,45 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceInfo_1adc5b55f5426979daa0d97885088268ed)`()` <a id="structFRHAPI__InstanceInfo_1adc5b55f5426979daa0d97885088268ed"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+<br>
+#### `public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1af222f46ab9fad6a96af788183b09b13e)`()` <a id="structFRHAPI__InstanceInfo_1af222f46ab9fad6a96af788183b09b13e"></a>
+
+Gets the value of InstanceHealth_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1aeba44ed749fe71950fd4e689dc2f5924)`() const` <a id="structFRHAPI__InstanceInfo_1aeba44ed749fe71950fd4e689dc2f5924"></a>
+
+Gets the value of InstanceHealth_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1ad01a7c78279ff0f3be3c5ba4fe781efb)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` <a id="structFRHAPI__InstanceInfo_1ad01a7c78279ff0f3be3c5ba4fe781efb"></a>
+
+Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetInstanceHealth`](#structFRHAPI__InstanceInfo_1a31b0f139b535515679628d25d591042b)`(ERHAPI_InstanceHealthStatus & OutValue) const` <a id="structFRHAPI__InstanceInfo_1a31b0f139b535515679628d25d591042b"></a>
+
+Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__InstanceInfo_1ae0b13879ebffdb546204bd5d46ee46ea)`()` <a id="structFRHAPI__InstanceInfo_1ae0b13879ebffdb546204bd5d46ee46ea"></a>
+
+Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__InstanceInfo_1af278ac0b3df4a018f7683e0fb52a1cbe)`() const` <a id="structFRHAPI__InstanceInfo_1af278ac0b3df4a018f7683e0fb52a1cbe"></a>
+
+Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceInfo_1a487a71d1326071756c253177e1572c4d)`(ERHAPI_InstanceHealthStatus NewValue)` <a id="structFRHAPI__InstanceInfo_1a487a71d1326071756c253177e1572c4d"></a>
+
+Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearInstanceHealth`](#structFRHAPI__InstanceInfo_1abd4b04df319d6b3af78cbd8a5c50ca9f)`()` <a id="structFRHAPI__InstanceInfo_1abd4b04df319d6b3af78cbd8a5c50ca9f"></a>
+
+Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
 
 <br>

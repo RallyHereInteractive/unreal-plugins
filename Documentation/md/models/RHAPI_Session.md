@@ -27,6 +27,8 @@ A session resource.
 `public bool `[`Match_IsSet`](#structFRHAPI__Session_1a97d359ac0758f38f0df5ee49c54c8108) | true if Match_Optional has been set to a value
 `public `[`FRHAPI_MatchmakingInfo`](RHAPI_MatchmakingInfo.md#structFRHAPI__MatchmakingInfo)` `[`Matchmaking_Optional`](#structFRHAPI__Session_1af3225af871f86c2aae3381a62dfdd5db) | 
 `public bool `[`Matchmaking_IsSet`](#structFRHAPI__Session_1a61ea704dec07fefa55e7f47d4c47c744) | true if Matchmaking_Optional has been set to a value
+`public `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` `[`Backfill_Optional`](#structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518) | 
+`public bool `[`Backfill_IsSet`](#structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594) | true if Backfill_Optional has been set to a value
 `public `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` `[`Browser_Optional`](#structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54) | 
 `public bool `[`Browser_IsSet`](#structFRHAPI__Session_1aa1ace01879821c9c9b2b978cf2d3bcb4) | true if Browser_Optional has been set to a value
 `public bool `[`Joinable`](#structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907) | Is this session freely joinable by players without an invite?
@@ -72,6 +74,14 @@ A session resource.
 `public inline const `[`FRHAPI_MatchmakingInfo`](RHAPI_MatchmakingInfo.md#structFRHAPI__MatchmakingInfo)` * `[`GetMatchmakingOrNull`](#structFRHAPI__Session_1aa65a144963e796b6ca2fcfb5f1d77dff)`() const` | Returns a pointer to Matchmaking_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMatchmaking`](#structFRHAPI__Session_1a9273519506c598c2a816c2f8a83ba611)`(`[`FRHAPI_MatchmakingInfo`](RHAPI_MatchmakingInfo.md#structFRHAPI__MatchmakingInfo)` NewValue)` | Sets the value of Matchmaking_Optional and also sets Matchmaking_IsSet to true.
 `public inline void `[`ClearMatchmaking`](#structFRHAPI__Session_1a91953108c08db083b5fce7614b2b2596)`()` | Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false.
+`public inline `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & `[`GetBackfill`](#structFRHAPI__Session_1a15f72525350f452e25fd61d66fd7a756)`()` | Gets the value of Backfill_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & `[`GetBackfill`](#structFRHAPI__Session_1a21b593a805dc945474b4ec9e30e63fdf)`() const` | Gets the value of Backfill_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & `[`GetBackfill`](#structFRHAPI__Session_1ae16601ab6c078bc61d792e27287dde2a)`(const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & DefaultValue) const` | Gets the value of Backfill_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetBackfill`](#structFRHAPI__Session_1ab84409512d3ec81b4d5da14b3795978a)`(`[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & OutValue) const` | Fills OutValue with the value of Backfill_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` * `[`GetBackfillOrNull`](#structFRHAPI__Session_1aa468234b83a765da84939b62d4099e18)`()` | Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` * `[`GetBackfillOrNull`](#structFRHAPI__Session_1adb356a68ec0f1a96a374d60929017b1c)`() const` | Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetBackfill`](#structFRHAPI__Session_1a638a1d301daa4f29030c3f97e37681d3)`(`[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` NewValue)` | Sets the value of Backfill_Optional and also sets Backfill_IsSet to true.
+`public inline void `[`ClearBackfill`](#structFRHAPI__Session_1a2326b644868f5f64e80aab9b67d81a90)`()` | Clears the value of Backfill_Optional and sets Backfill_IsSet to false.
 `public inline `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` & `[`GetBrowser`](#structFRHAPI__Session_1a2cfa5643b7ba91b7efa751adba2c6fd2)`()` | Gets the value of Browser_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` & `[`GetBrowser`](#structFRHAPI__Session_1afddcc33cd67e5b5d41a30e135136c1ed)`() const` | Gets the value of Browser_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` & `[`GetBrowser`](#structFRHAPI__Session_1a1cce194385a9388b08dbd1be9fdf61cf)`(const `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` & DefaultValue) const` | Gets the value of Browser_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -160,6 +170,14 @@ true if Match_Optional has been set to a value
 #### `public bool `[`Matchmaking_IsSet`](#structFRHAPI__Session_1a61ea704dec07fefa55e7f47d4c47c744) <a id="structFRHAPI__Session_1a61ea704dec07fefa55e7f47d4c47c744"></a>
 
 true if Matchmaking_Optional has been set to a value
+
+<br>
+#### `public `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` `[`Backfill_Optional`](#structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518) <a id="structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518"></a>
+
+<br>
+#### `public bool `[`Backfill_IsSet`](#structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594) <a id="structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594"></a>
+
+true if Backfill_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` `[`Browser_Optional`](#structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54) <a id="structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54"></a>
@@ -392,6 +410,46 @@ Sets the value of Matchmaking_Optional and also sets Matchmaking_IsSet to true.
 #### `public inline void `[`ClearMatchmaking`](#structFRHAPI__Session_1a91953108c08db083b5fce7614b2b2596)`()` <a id="structFRHAPI__Session_1a91953108c08db083b5fce7614b2b2596"></a>
 
 Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false.
+
+<br>
+#### `public inline `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & `[`GetBackfill`](#structFRHAPI__Session_1a15f72525350f452e25fd61d66fd7a756)`()` <a id="structFRHAPI__Session_1a15f72525350f452e25fd61d66fd7a756"></a>
+
+Gets the value of Backfill_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & `[`GetBackfill`](#structFRHAPI__Session_1a21b593a805dc945474b4ec9e30e63fdf)`() const` <a id="structFRHAPI__Session_1a21b593a805dc945474b4ec9e30e63fdf"></a>
+
+Gets the value of Backfill_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & `[`GetBackfill`](#structFRHAPI__Session_1ae16601ab6c078bc61d792e27287dde2a)`(const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & DefaultValue) const` <a id="structFRHAPI__Session_1ae16601ab6c078bc61d792e27287dde2a"></a>
+
+Gets the value of Backfill_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetBackfill`](#structFRHAPI__Session_1ab84409512d3ec81b4d5da14b3795978a)`(`[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` & OutValue) const` <a id="structFRHAPI__Session_1ab84409512d3ec81b4d5da14b3795978a"></a>
+
+Fills OutValue with the value of Backfill_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` * `[`GetBackfillOrNull`](#structFRHAPI__Session_1aa468234b83a765da84939b62d4099e18)`()` <a id="structFRHAPI__Session_1aa468234b83a765da84939b62d4099e18"></a>
+
+Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` * `[`GetBackfillOrNull`](#structFRHAPI__Session_1adb356a68ec0f1a96a374d60929017b1c)`() const` <a id="structFRHAPI__Session_1adb356a68ec0f1a96a374d60929017b1c"></a>
+
+Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetBackfill`](#structFRHAPI__Session_1a638a1d301daa4f29030c3f97e37681d3)`(`[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` NewValue)` <a id="structFRHAPI__Session_1a638a1d301daa4f29030c3f97e37681d3"></a>
+
+Sets the value of Backfill_Optional and also sets Backfill_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearBackfill`](#structFRHAPI__Session_1a2326b644868f5f64e80aab9b67d81a90)`()` <a id="structFRHAPI__Session_1a2326b644868f5f64e80aab9b67d81a90"></a>
+
+Clears the value of Backfill_Optional and sets Backfill_IsSet to false.
 
 <br>
 #### `public inline `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` & `[`GetBrowser`](#structFRHAPI__Session_1a2cfa5643b7ba91b7efa751adba2c6fd2)`()` <a id="structFRHAPI__Session_1a2cfa5643b7ba91b7efa751adba2c6fd2"></a>

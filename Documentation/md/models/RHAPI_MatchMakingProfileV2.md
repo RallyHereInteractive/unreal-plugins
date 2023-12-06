@@ -19,7 +19,7 @@ A profile that describes what pools of players a session will be a part of when 
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FString `[`ProfileId`](#structFRHAPI__MatchMakingProfileV2_1a798e35962ae78f1e5c162b3ed2ca7f53) | ID of the matchmaking profile to join.
+`public FString `[`MatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a1fac1d90d7052f77ed54c7ef0158d767) | ID of the matchmaking profile to join.
 `public ERHAPI_ProfileJoinMode `[`JoinMode_Optional`](#structFRHAPI__MatchMakingProfileV2_1a942eea841d6b9ab8a304ecc1e3486967) | What mode to set on the matchmaking profile (normal, backfill etc)
 `public bool `[`JoinMode_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a7d05d638ad7e6bdc38adbee05fc65bb1) | true if JoinMode_Optional has been set to a value
 `public FGuid `[`InstanceRequestTemplateId`](#structFRHAPI__MatchMakingProfileV2_1acc1ae567ca4eae15dd5ba058009eb1bf) | Which instance template to use when launching a match in this profile.
@@ -31,13 +31,13 @@ A profile that describes what pools of players a session will be a part of when 
 `public bool `[`MaxPlayersPerSide_IsSet`](#structFRHAPI__MatchMakingProfileV2_1acc2a1fd5d9019b960edbf25865c0310d) | true if MaxPlayersPerSide_Optional has been set to a value
 `public int32 `[`MinPlayersPerSide_Optional`](#structFRHAPI__MatchMakingProfileV2_1a134fd567423d422235de46bba637faa2) | The minimum number of players that can be on each team.
 `public bool `[`MinPlayersPerSide_IsSet`](#structFRHAPI__MatchMakingProfileV2_1a7b9cc3870d306efd0f9c59e62d96e38e) | true if MinPlayersPerSide_Optional has been set to a value
-`public TMap< FString, FString > `[`LegacyConfig_Optional`](#structFRHAPI__MatchMakingProfileV2_1a1d2a599e78611acacd4280495e13df58) | Legacy config to help migrate clients.
+`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`LegacyConfig_Optional`](#structFRHAPI__MatchMakingProfileV2_1af6d5bc75fe36551e65c7d61585ac2e65) | Legacy config to help migrate clients.
 `public bool `[`LegacyConfig_IsSet`](#structFRHAPI__MatchMakingProfileV2_1af417de3e8a601609b54e0310551c9caa) | true if LegacyConfig_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingProfileV2_1a27b71626be2a2edef0ed660aa42fcaa6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingProfileV2_1aa6ebcdc58854a72f9cb8c75b9f86834c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetProfileId`](#structFRHAPI__MatchMakingProfileV2_1a7a1a4fe078a7f2fcf608c99a5065f985)`()` | Gets the value of ProfileId.
-`public inline const FString & `[`GetProfileId`](#structFRHAPI__MatchMakingProfileV2_1a7eb518682d7483b18983879d6709cc34)`() const` | Gets the value of ProfileId.
-`public inline void `[`SetProfileId`](#structFRHAPI__MatchMakingProfileV2_1a9015edae69e133c5c66943e2e2e0011e)`(FString NewValue)` | Sets the value of ProfileId.
+`public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a4ae3b82d9d3c2bb53a131330dfe71e59)`()` | Gets the value of MatchMakingProfileId.
+`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a2546a8d06702b1dd5a24f4d001f98688)`() const` | Gets the value of MatchMakingProfileId.
+`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1ad06533915af39e0591af3d6a135990ca)`(FString NewValue)` | Sets the value of MatchMakingProfileId.
 `public inline ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1acca3ed8e4eaac20c40fc1cb590bc1a40)`()` | Gets the value of JoinMode_Optional, regardless of it having been set.
 `public inline const ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1af93faf8294555ca09913a242027c0e10)`() const` | Gets the value of JoinMode_Optional, regardless of it having been set.
 `public inline const ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1a470e7b74c7d01ff76ddbe193aae39050)`(const ERHAPI_ProfileJoinMode & DefaultValue) const` | Gets the value of JoinMode_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -87,18 +87,18 @@ A profile that describes what pools of players a session will be a part of when 
 `public inline void `[`ClearMinPlayersPerSide`](#structFRHAPI__MatchMakingProfileV2_1a718d5fad0a7afd7c7d123ecf3f6561a0)`()` | Clears the value of MinPlayersPerSide_Optional and sets MinPlayersPerSide_IsSet to false.
 `public inline bool `[`IsMinPlayersPerSideDefaultValue`](#structFRHAPI__MatchMakingProfileV2_1a815a3c8c494a1d04e3403918d4498f49)`() const` | Returns true if MinPlayersPerSide_Optional is set and matches the default value.
 `public inline void `[`SetMinPlayersPerSideToDefault`](#structFRHAPI__MatchMakingProfileV2_1a620b2a35235eed724c9f14d8df2ab3bc)`()` | Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true.
-`public inline TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a7ecacb51155552c7fe73b183dfb1c60e)`()` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a48cfbd4a6f88d045132a4155258b1a68)`() const` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1ab65df854eb4b2a7a86be4a950437401e)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a49fc5be4c8ab7fa8b82109553d5b7206)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1a2306e6a04c58b8208bff7b1e285f94dd)`()` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1a03d6fe552427c538e63f91ad550018e7)`() const` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a0f83af28aaa96c49ef96e674bfd7c21c)`(TMap< FString, FString > NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
+`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1ad326532ecc62acb511177c0e343587bd)`()` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a180fcdd0c151179672faee4cd8e046a9)`() const` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1adc8741647a8c155ee13dfc8009c3e1b3)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` | Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a94ad71fbad7c8f49329b5bac9dd9be20)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1affd3bac0fc61edb4b9b67feb189eb4ca)`()` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1ad8cabc5ac1976c08c6b8b8a3defd6988)`() const` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
 `public inline void `[`ClearLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1aa51a7cf8d677bd0f57eed39122d5d6af)`()` | Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
 
 #### Members
 
-#### `public FString `[`ProfileId`](#structFRHAPI__MatchMakingProfileV2_1a798e35962ae78f1e5c162b3ed2ca7f53) <a id="structFRHAPI__MatchMakingProfileV2_1a798e35962ae78f1e5c162b3ed2ca7f53"></a>
+#### `public FString `[`MatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a1fac1d90d7052f77ed54c7ef0158d767) <a id="structFRHAPI__MatchMakingProfileV2_1a1fac1d90d7052f77ed54c7ef0158d767"></a>
 
 ID of the matchmaking profile to join.
 
@@ -158,7 +158,7 @@ The minimum number of players that can be on each team.
 true if MinPlayersPerSide_Optional has been set to a value
 
 <br>
-#### `public TMap< FString, FString > `[`LegacyConfig_Optional`](#structFRHAPI__MatchMakingProfileV2_1a1d2a599e78611acacd4280495e13df58) <a id="structFRHAPI__MatchMakingProfileV2_1a1d2a599e78611acacd4280495e13df58"></a>
+#### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`LegacyConfig_Optional`](#structFRHAPI__MatchMakingProfileV2_1af6d5bc75fe36551e65c7d61585ac2e65) <a id="structFRHAPI__MatchMakingProfileV2_1af6d5bc75fe36551e65c7d61585ac2e65"></a>
 
 Legacy config to help migrate clients.
 
@@ -187,19 +187,19 @@ Writes the data from this object into the specified JSON Writer stream.
 * `Writer` JSON Writer stream to push .
 
 <br>
-#### `public inline FString & `[`GetProfileId`](#structFRHAPI__MatchMakingProfileV2_1a7a1a4fe078a7f2fcf608c99a5065f985)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a7a1a4fe078a7f2fcf608c99a5065f985"></a>
+#### `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a4ae3b82d9d3c2bb53a131330dfe71e59)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a4ae3b82d9d3c2bb53a131330dfe71e59"></a>
 
-Gets the value of ProfileId.
-
-<br>
-#### `public inline const FString & `[`GetProfileId`](#structFRHAPI__MatchMakingProfileV2_1a7eb518682d7483b18983879d6709cc34)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a7eb518682d7483b18983879d6709cc34"></a>
-
-Gets the value of ProfileId.
+Gets the value of MatchMakingProfileId.
 
 <br>
-#### `public inline void `[`SetProfileId`](#structFRHAPI__MatchMakingProfileV2_1a9015edae69e133c5c66943e2e2e0011e)`(FString NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a9015edae69e133c5c66943e2e2e0011e"></a>
+#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1a2546a8d06702b1dd5a24f4d001f98688)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a2546a8d06702b1dd5a24f4d001f98688"></a>
 
-Sets the value of ProfileId.
+Gets the value of MatchMakingProfileId.
+
+<br>
+#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingProfileV2_1ad06533915af39e0591af3d6a135990ca)`(FString NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1ad06533915af39e0591af3d6a135990ca"></a>
+
+Sets the value of MatchMakingProfileId.
 
 <br>
 #### `public inline ERHAPI_ProfileJoinMode & `[`GetJoinMode`](#structFRHAPI__MatchMakingProfileV2_1acca3ed8e4eaac20c40fc1cb590bc1a40)`()` <a id="structFRHAPI__MatchMakingProfileV2_1acca3ed8e4eaac20c40fc1cb590bc1a40"></a>
@@ -447,37 +447,37 @@ Returns true if MinPlayersPerSide_Optional is set and matches the default value.
 Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true.
 
 <br>
-#### `public inline TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a7ecacb51155552c7fe73b183dfb1c60e)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a7ecacb51155552c7fe73b183dfb1c60e"></a>
+#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1ad326532ecc62acb511177c0e343587bd)`()` <a id="structFRHAPI__MatchMakingProfileV2_1ad326532ecc62acb511177c0e343587bd"></a>
 
 Gets the value of LegacyConfig_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a48cfbd4a6f88d045132a4155258b1a68)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a48cfbd4a6f88d045132a4155258b1a68"></a>
+#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a180fcdd0c151179672faee4cd8e046a9)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a180fcdd0c151179672faee4cd8e046a9"></a>
 
 Gets the value of LegacyConfig_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1ab65df854eb4b2a7a86be4a950437401e)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1ab65df854eb4b2a7a86be4a950437401e"></a>
+#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1adc8741647a8c155ee13dfc8009c3e1b3)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1adc8741647a8c155ee13dfc8009c3e1b3"></a>
 
 Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
 
 <br>
-#### `public inline bool `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a49fc5be4c8ab7fa8b82109553d5b7206)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1a49fc5be4c8ab7fa8b82109553d5b7206"></a>
+#### `public inline bool `[`GetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a94ad71fbad7c8f49329b5bac9dd9be20)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` <a id="structFRHAPI__MatchMakingProfileV2_1a94ad71fbad7c8f49329b5bac9dd9be20"></a>
 
 Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
 
 <br>
-#### `public inline TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1a2306e6a04c58b8208bff7b1e285f94dd)`()` <a id="structFRHAPI__MatchMakingProfileV2_1a2306e6a04c58b8208bff7b1e285f94dd"></a>
+#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1affd3bac0fc61edb4b9b67feb189eb4ca)`()` <a id="structFRHAPI__MatchMakingProfileV2_1affd3bac0fc61edb4b9b67feb189eb4ca"></a>
 
 Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline const TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1a03d6fe552427c538e63f91ad550018e7)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1a03d6fe552427c538e63f91ad550018e7"></a>
+#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetLegacyConfigOrNull`](#structFRHAPI__MatchMakingProfileV2_1ad8cabc5ac1976c08c6b8b8a3defd6988)`() const` <a id="structFRHAPI__MatchMakingProfileV2_1ad8cabc5ac1976c08c6b8b8a3defd6988"></a>
 
 Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a0f83af28aaa96c49ef96e674bfd7c21c)`(TMap< FString, FString > NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a0f83af28aaa96c49ef96e674bfd7c21c"></a>
+#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` NewValue)` <a id="structFRHAPI__MatchMakingProfileV2_1a629a0a6f1cdfdc1fd1b53c33b01190b2"></a>
 
 Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
 
