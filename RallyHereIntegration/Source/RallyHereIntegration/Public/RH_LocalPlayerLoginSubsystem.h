@@ -160,6 +160,8 @@ DECLARE_DELEGATE_OneParam(FRH_OnLoginComplete, const FRH_LoginResult&);
 DECLARE_DELEGATE_TwoParams(FRH_OnProfileSelectionUIClosed, TSharedPtr<const FUniqueNetId>, const FOnlineError&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnLoginCompleteMulticast, const FRH_LoginResult&);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnLoginCompleteDynamicMulticast, const FRH_LoginResult&, Result);
+DECLARE_MULTICAST_DELEGATE(FRH_GeneralSettingChangedMulticast);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FRH_GeneralSettingChangedDynamicMulticast);
 
 /** @ingroup LocalPlayer
  *  @{
@@ -216,6 +218,17 @@ public:
 	 */
 	UPROPERTY(BlueprintAssignable, Category = "Login")
 	FRH_OnLoginCompleteDynamicMulticast BLUEPRINT_OnLoginComplete;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
+	 */
+	FRH_GeneralSettingChangedMulticast OnCrossplaySettingChanged;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Login")
+	FRH_GeneralSettingChangedDynamicMulticast BLUEPRINT_OnCrossplaySettingChanged;
 
     /**
      * @brief Requests a logout on the server clearing the players auth credentials.
