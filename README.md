@@ -2,7 +2,7 @@
 
 ## Change History
 
-## 0.11.0
+## 0.11.1
 
 ### High Level Changes
 * The integration SDK is now being released under the Apache v2 license.
@@ -42,6 +42,8 @@
 * Added support for checking OSS player blocked list for friends subsystem.
 * Added support for auto-joining pending platform session invites on login/user change (ex: platforms with launch-game-and-join-session support).  This defaults to enabled, but can be disabled via settings.
 * Fixed a crash if platform session creation failed.
+* Added a broadcast for when crossplay settings are changed
+* Added automatic injection of MiscParams on instance startup parameters into the map URL when syncing to a session
 
 **Full Changelog**: https://github.com/RallyHereInteractive/unreal-plugins/compare/v0.10.1...v0.11.0
 
