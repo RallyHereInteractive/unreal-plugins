@@ -39,6 +39,7 @@ public:
 
 	TArray<ANSICHAR> MapName;
 	TArray<ANSICHAR> GameModeName;
+	TArray<ANSICHAR> GameMiscParams;
 	bool bMakeBeaconInstance;
 
 	TArray<ANSICHAR> UpdateSessionRegionIdString;

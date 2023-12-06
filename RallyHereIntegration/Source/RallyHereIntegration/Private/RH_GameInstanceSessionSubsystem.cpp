@@ -48,6 +48,9 @@ bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* 
 		FormattedURLString += FString::Printf(TEXT("?game=%s"), **Mode);
 	}
 
+	// append misc params directly, assume they are formated as desired
+	FormattedURLString += InstanceStartupParams->GetMiscParams();
+
 	FURL TravelURL(&lastURL, *FormattedURLString, TRAVEL_Absolute);
 
 	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)

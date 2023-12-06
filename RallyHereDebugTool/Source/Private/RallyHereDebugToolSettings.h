@@ -105,6 +105,9 @@ public:
 	FString DefaultSessionGameModeName;
 
 	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool")
+	FString DefaultSessionGameMiscParams;
+
+	UPROPERTY(Config, EditAnywhere, Category = "Rally Here Debug Tool")
 	FString DefaultWindowPositions;
 
 	static const FString strToggleDebugTool;
