@@ -997,6 +997,10 @@ void URH_LocalPlayerLoginSubsystem::HandleCheckCrossPlayPrivilegeComplete(const 
 			}
 		}
 	}
+
+	SCOPED_NAMED_EVENT(RallyHere_BroadcastOnCrossplaySettignChanged, FColor::Purple);
+	OnCrossplaySettingChanged.Broadcast();
+	BLUEPRINT_OnCrossplaySettingChanged.Broadcast();
 }
 
 void URH_LocalPlayerLoginSubsystem::CheckCommunicationPrivilege(const FUniqueNetId& UniqueId)
