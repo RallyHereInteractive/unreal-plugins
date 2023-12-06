@@ -38,12 +38,14 @@ FRHDTW_Session::FRHDTW_Session()
 
 	MapName.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	GameModeName.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
+	GameMiscParams.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 	bMakeBeaconInstance = false;
 
 	if (URallyHereDebugToolSettings::Get())
 	{
 		ImGuiCopyStringToTextInputBuffer(URallyHereDebugToolSettings::Get()->DefaultSessionMapName, MapName);
 		ImGuiCopyStringToTextInputBuffer(URallyHereDebugToolSettings::Get()->DefaultSessionGameModeName, GameModeName);
+		ImGuiCopyStringToTextInputBuffer(URallyHereDebugToolSettings::Get()->DefaultSessionGameMiscParams, GameMiscParams);
 	}
 
 	UpdateSessionRegionIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
@@ -480,6 +482,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		{
 			ImGui::InputText("Map", MapName.GetData(), MapName.Num());
 			ImGui::InputText("GameMode", GameModeName.GetData(), GameModeName.Num());
+			ImGui::InputText("MiscParams", GameMiscParams.GetData(), GameMiscParams.Num());
 			ImGui::Checkbox("Beacon", &bMakeBeaconInstance);
 
 			FRHAPI_InstanceRequest InstanceRequest;
@@ -487,8 +490,10 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			FRHAPI_InstanceStartupParams InstanceStartupParams;
 			FString MapNameString = UTF8_TO_TCHAR(MapName.GetData());
 			FString GameModeNameString = UTF8_TO_TCHAR(GameModeName.GetData());
-			InstanceStartupParams.Map = MapNameString;
+			FString GameMiscParamsString = UTF8_TO_TCHAR(GameMiscParams.GetData());
+			InstanceStartupParams.SetMap(MapNameString);
 			InstanceStartupParams.SetMode(GameModeNameString);
+			InstanceStartupParams.SetMiscParams(GameMiscParamsString);
 
 			if (bMakeBeaconInstance)
 			{
