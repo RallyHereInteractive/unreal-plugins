@@ -828,8 +828,8 @@ Subsystem to manage sessions for the local player.
 `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04)`() const` | Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSessionSubsystem_1a242dea7f5ff3092050c7d15ba05dc8a0)`() const` | Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
-`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` | Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
-`public virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` | Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
 `public inline virtual void `[`SetPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1a7b32f021e042bf401d2156764df2babc)`(const FOnlineSessionSearchResult & Session)` | Set a platform session to join upon the next user change.
 `public inline virtual void `[`ClearPlatformSessionToJoinOnUserChange`](#classURH__LocalPlayerSessionSubsystem_1afa5db7d0b7302957dd89c4a7b9f78cb5)`()` | Clear a platform session to join upon the next user change.
 `public inline void `[`CreateOrJoinSessionByType`](#classURH__LocalPlayerSessionSubsystem_1ae987d7bbdbc819106e7e00a06a08d918)`(const `[`FRHAPI_CreateOrJoinRequest`](models/RHAPI_CreateOrJoinRequest.md#structFRHAPI__CreateOrJoinRequest)` & CreateParams,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Utility function to Create or Join a session by a given SessionType (most times will create a session, but Hub join rules may do a Join instead)
@@ -860,7 +860,7 @@ Subsystem to manage sessions for the local player.
 `protected TMap< FString, `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`Sessions`](#classURH__LocalPlayerSessionSubsystem_1a134d1e08da7eae1d03ba4b5a1ee419d6) | Map of Session Ids to Sessions we are in.
 `protected TMap< FString, `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`ExpiringSessions`](#classURH__LocalPlayerSessionSubsystem_1ad1bcc3afd124b033ccfba4b001cebbe2) | Map of Session Ids to Sessions objects that may be in the process of cleaning themselves up.
 `protected TMap< FString, `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` > `[`DeferredSessionUpdates`](#classURH__LocalPlayerSessionSubsystem_1a9f22ebb821fcb358e5e277acbef28010) | Map of Session Ids to Sessions updates we could not process for some reason, such as race conditions.
-`protected TMap< FString, `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) | Map of Session Ids to their Platform Session Syncers.
+`protected TMap< FString, `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) | Map of Session Ids to their Platform Session Syncers.
 `protected virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`CreateOrUpdateRHSession`](#classURH__LocalPlayerSessionSubsystem_1a2efe4a073341684f83e5da781df7a9f0)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session,const ERHAPI_SessionPlayerStatus & LocalPlayerStatus)` | Creates or updates a specific session for the local player.
 `protected virtual bool `[`LocalPlayerStatusFromSession`](#classURH__LocalPlayerSessionSubsystem_1aa0bec72de8c9da10cb97e78730c5cb79)`(const `[`FRHAPI_Session`](models/RHAPI_Session.md#structFRHAPI__Session)` & Session,ERHAPI_SessionPlayerStatus & Status) const` | Gets the local player status in a specific session.
 `protected virtual void `[`RemoveSessionById`](#classURH__LocalPlayerSessionSubsystem_1a7e790f89c514d7210c5b58b947cebec2)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
@@ -870,7 +870,7 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSessionSubsystem_1a26fbf14bcba6e280614f699fb5e3711c)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Base handling when the local user changes, override to provide functionality.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerSessionSubsystem_1a8d62c9d3f5c42d59b77fa894ce226ad4)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual void `[`HandleNotification`](#classURH__LocalPlayerSessionSubsystem_1aaa005ba728065e1b159a4d61906eae89)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the notification API.
-`protected `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Creates a Platform Session Syncer for the local player.
+`protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` | Creates a Platform Session Syncer for the local player.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1ac3f8a2189935d62ddee4f0c523028264)`(const int32 ControllerId)` | Checks if the online subsystem call is for the local user.
 `protected virtual bool `[`FilterOSSCallbackUser`](#classURH__LocalPlayerSessionSubsystem_1a499f53a4e277ea57c023eca530e7edd1)`(const FUniqueNetId & UniqueNetId)` | Checks if the online subsystem call is for the local user.
 `protected virtual void `[`OnPlatformActivityActivation`](#classURH__LocalPlayerSessionSubsystem_1aa06aadafbc3aebee2e79d0114db792a3)`(const FUniqueNetId & LocalUserId,const FString & ActivityId,const FOnlineSessionSearchResult * SessionInfo)` | Handles the response of an online subsystem activity activation.
@@ -1081,7 +1081,7 @@ Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([I
 Gets the Player UUID to use for player related calls (can be invalid)
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe"></a>
 
 Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 
@@ -1092,7 +1092,7 @@ Gets the platform session synchronization object for a given session id ([IRH_Se
 Platform Session synchronization object
 
 <br>
-#### `public virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7"></a>
+#### `public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7"></a>
 
 Gets the platform session synchronization object for a given platform session id.
 
@@ -1313,7 +1313,7 @@ Map of Session Ids to Sessions objects that may be in the process of cleaning th
 Map of Session Ids to Sessions updates we could not process for some reason, such as race conditions.
 
 <br>
-#### `protected TMap< FString, `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) <a id="classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de"></a>
+#### `protected TMap< FString, `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * > `[`PlatformSyncers`](#classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de) <a id="classURH__LocalPlayerSessionSubsystem_1ab601abbf8833c31cb45ccde7d481d3de"></a>
 
 Map of Session Ids to their Platform Session Syncers.
 
@@ -1408,7 +1408,7 @@ Handle a notification from the notification API.
 * `APIParams` The parameters for the API that sent the notification.
 
 <br>
-#### `protected `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` <a id="classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce"></a>
+#### `protected `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`CreatePlatformSyncer`](#classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session)` <a id="classURH__LocalPlayerSessionSubsystem_1a689a1f5d6391c55118c8467e5fe2e9ce"></a>
 
 Creates a Platform Session Syncer for the local player.
 

@@ -121,8 +121,8 @@ Server Bootstrapper for the Game Instance.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1abe0dcf495d31dfbd8876d63feab05ad5)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
-`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
-`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
 `protected `[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` `[`BootstrapStep`](#classURH__GameInstanceServerBootstrapper_1a0c41579ef8e737384ac8e1c82efb8d11) | Current Bootstrap Step
 `protected int32 `[`CurrentRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a95d71262cc53a06cf14abb0e1c5ebd76) | The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
@@ -337,12 +337,12 @@ Gets a session template by type.
 If true, the template was found.
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255)`(const FString & SessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1aec9f89849a3865282935f12646e98255"></a>
 
 Gets the platform synchronization object using the rally here session id.
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__GameInstanceServerBootstrapper_1a2c2d7c9b2b38fca62aba5ba8e642797b"></a>
 
 Gets the platform synchronization object using the platform session id.
 

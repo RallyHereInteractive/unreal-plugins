@@ -4,6 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`class `[`URH_PlatformSessionSyncer`](#classURH__PlatformSessionSyncer) | Synchronization object to sync state between a Rally Here Session and a Platform Session (such as a Steam session)
 `class `[`URH_SessionBrowserCache`](#classURH__SessionBrowserCache) | Simple container class to hold session view data, does not have its own auth context, relies upon getting it from elsewhere during calls, so that it can be used to cache across multiple players.
 `class `[`URH_SessionView`](#classURH__SessionView) | Base class providing functionality for viewing session data and interacting with it from blueprint. Specifically does not have an "owner" meaning it cannot do "work" - it is read only. The subclasses have owners.
 `class `[`URH_InvitedSession`](#classURH__InvitedSession) | Invited Sessions are sessions that the player has been invited to.
@@ -16,6 +17,350 @@
 `struct `[`TRH_DataWithETagWrapper`](#structTRH__DataWithETagWrapper) | Utility struct to wrapper the tuple of a data typeand etag.
 `struct `[`FRH_DeferredSessionPoll`](#structFRH__DeferredSessionPoll) | Poll for deferred sessions.
 
+## class `URH_PlatformSessionSyncer` <a id="classURH__PlatformSessionSyncer"></a>
+
+```
+class URH_PlatformSessionSyncer
+  : public UObject
+```
+
+Synchronization object to sync state between a Rally Here Session and a Platform Session (such as a Steam session)
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public FRH_PlatformSessionSyncerCleanupDelegate `[`OnCleanupComplete`](#classURH__PlatformSessionSyncer_1acca86ac7134db510dd4dcb00658374dd) | Notification delegates for when cleanup of this object has completed.
+`public FRH_PlatformSessionSyncerCleanupDynamicDelegate `[`BLUEPRINT_OnCleanupComplete`](#classURH__PlatformSessionSyncer_1a3be5a8c4afc63c37631b32ab867af2ba) | 
+`public FRH_PlatformSessionSyncerStateChangedDelegate `[`OnStateChanged`](#classURH__PlatformSessionSyncer_1a1a1ded57262ed2320eeb66e852cb8e21) | Notification delegates for when cleanup of this object has completed.
+`public FRH_PlatformSessionSyncerStateChangedDynamicDelegate `[`BLUEPRINT_OnStateChanged`](#classURH__PlatformSessionSyncer_1a22f87dbe7cf96e477c6b91ff686d203a) | 
+`public bool `[`Initialize`](#classURH__PlatformSessionSyncer_1a672a8526678c8c22c968c2eb5d5f1334)`(const FString & InSessionId,FRH_SessionOwnerPtr InOwner)` | Initialize the sycnrhonization object with a RallyHere session id and a session owner - requires that the owner contain that session.
+`public void `[`Cleanup`](#classURH__PlatformSessionSyncer_1ac45a6144ac79b3024c9a5eb0c63ab981)`(const FSimpleDelegate & CompletionDelegate)` | Clean up the synchronization object, typically used when the RallyHere session is expired.
+`public inline FORCEINLINE FString `[`GetRHSessionId`](#classURH__PlatformSessionSyncer_1aa02905d5d2f2951c693d6ff1ac9a9e08)`() const` | Get the RallyHere session id that this object is synchronizing to.
+`public virtual `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetRHSession`](#classURH__PlatformSessionSyncer_1ad9f453ea3f81edb0b87d9f3ba6950c57)`() const` | Helper function to get the RallyHere session objcet from the session owner (based on the result of [GetRHSessionId()](Session.md#classURH__PlatformSessionSyncer_1aa02905d5d2f2951c693d6ff1ac9a9e08))
+`public virtual bool `[`GetPlatformSessionIdFromRHSession`](#classURH__PlatformSessionSyncer_1aea73e377334a657438cc1fdc74839891)`(FUniqueNetIdRepl & PlatformSessionId) const` | Helper function to get the Platform Session Id from the RallyHere session object (based on the result of [GetRHSession()](Session.md#classURH__PlatformSessionSyncer_1ad9f453ea3f81edb0b87d9f3ba6950c57))
+`public inline FName `[`GetPlatformSessionName`](#classURH__PlatformSessionSyncer_1ab8864e7affb0cb4cf22bd81869b60c72)`() const` | Get the platform session name that this object is synchronizing to from the OnlineSubsystem (useful for OSS calls) Note that this is set before OSS session is valid. If you want to make sure the name is for a valid session, use [GetPlatformSession()](Session.md#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c)->SessionName instead ([GetPlatformSession()](Session.md#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c) may return nullptr)
+`public FNamedOnlineSession * `[`GetPlatformSession`](#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c)`() const` | Get the platform session object that this object is synchronizing to from the OnlineSubsystem.
+`public bool `[`GetPlatformSessionIdFromPlatformSession`](#classURH__PlatformSessionSyncer_1a6be06ee04e5ea7001ed014cc1fbbec65)`(FUniqueNetIdRepl & PlatformSessionId) const` | Helper function to get the Platform Session Id from the platform session object (based on the result of [GetPlatformSession()](Session.md#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c))
+`public inline TScriptInterface< `[`IRH_SessionOwnerInterface`](Session.md#classIRH__SessionOwnerInterface)` > `[`GetSessionOwner`](#classURH__PlatformSessionSyncer_1a93019be39c8791d4b38444fb211bd358)`() const` | Get the session owner interface that this object is using to look up session information.
+`public virtual bool `[`IsLocalPlayerScout`](#classURH__PlatformSessionSyncer_1a4c35be7c6e9a7c44101d34615e34a89a)`() const` | Get whether the local player is the "scout" - the player responsible for creation of the platform session if one does not exist.
+`public inline virtual `[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` `[`GetCurrentSyncActionState`](#classURH__PlatformSessionSyncer_1ab09f660e7e04da39fc24fb451935b677)`() const` | Get the current sync action state of this object.
+`public inline virtual bool `[`IsSynchronized`](#classURH__PlatformSessionSyncer_1a89ba08022b1c6406db0d5d763b544ac9)`() const` | Whether this object is in the process of, or has completed, synchronization.
+`public inline virtual bool `[`IsCleaningUp`](#classURH__PlatformSessionSyncer_1aecc90ce5a81b6ff023f107fd353906d6)`() const` | Whether this object is in the process of, or has completed, cleanup.
+`public inline virtual bool `[`IsCleanupComplete`](#classURH__PlatformSessionSyncer_1acbfb387b2d0cea91154faec908def601)`() const` | Whether this object has completed, cleanup.
+`public virtual bool `[`StartPlatformSession`](#classURH__PlatformSessionSyncer_1a422d3660def6c54c7fa45e521149adc7)`()` | Marks the session as started (note - asynchronous)
+`public virtual bool `[`EndPlatformSession`](#classURH__PlatformSessionSyncer_1ac26c84cdcdfa44eac105d878a8f7fce7)`()` | Marks the session as ended (note - asynchronous)
+`public virtual void `[`OnPlatformSessionCreated`](#classURH__PlatformSessionSyncer_1adf45b673cebb3d4f667ca33a2d2a4abd)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been created (from the session owner, as the synchronization object does not bind the callback directly)
+`public virtual void `[`OnPlatformSessionJoined`](#classURH__PlatformSessionSyncer_1a6533c4f9e5b84ab7893ee0f002bee8fa)`(EOnJoinSessionCompleteResult::Type Result)` | Notification helper to let the synchronization object know that a session has been joined (from the session owner, as the synchronization object does not bind the callback directly)
+`public virtual void `[`OnPlatformSessionStarted`](#classURH__PlatformSessionSyncer_1ada7c87ae46e8fe0c99a06de53284695a)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been started (from the session owner, as the synchronization object does not bind the callback directly)
+`public virtual void `[`OnPlatformSessionEnded`](#classURH__PlatformSessionSyncer_1a29afb3b5b1bda91905c85ed56004294f)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been ended (from the session owner, as the synchronization object does not bind the callback directly)
+`public virtual void `[`OnPlatformSessionDestroyed`](#classURH__PlatformSessionSyncer_1a600318f388b1d368077bd7c9090c8bc9)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been destroyed (from the session owner, as the synchronization object does not bind the callback directly)
+`public void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` | Handler for whenever the associated session is updated.
+`public void `[`SetCachedPlatformSessionInvite`](#classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001)`(const FOnlineSessionSearchResult & SessionInvite)` | 
+`protected `[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` `[`CurrentSyncActionState`](#classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea) | The current state of the syncer.
+`protected FRH_SessionOwnerPtr `[`SessionOwner`](#classURH__PlatformSessionSyncer_1abdc13532c721a2d0593b177ae19833e5) | Owner of the session.
+`protected FString `[`RHSessionId`](#classURH__PlatformSessionSyncer_1a2782a9152c7bf68ed0bd908b95c4301f) | Rally Here session Id.
+`protected FName `[`OSSSessionName`](#classURH__PlatformSessionSyncer_1ac4bc77d7e8275889c8050bf1a09f2e97) | Name of the session.
+`protected ERHAPI_Platform `[`RHPlatform`](#classURH__PlatformSessionSyncer_1ae2dda53f9229c02025c41c2203792892) | Internal platoform for the session.
+`protected TOptional< FOnlineSessionSearchResult > `[`CachedSessionInvite`](#classURH__PlatformSessionSyncer_1afd327c8b4ac82aabcdd3063ca15432f2) | The cached platform session invite.
+`protected TWeakObjectPtr< `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` > `[`CleanupRHSession`](#classURH__PlatformSessionSyncer_1a8fefa6f56080ef0462ae6b04178eb42b) | Backup pointer used during cleanup in case session has already been removed from owner when cleanup is triggered (ex: expiration has begun)
+`protected bool `[`bDeferCleanup`](#classURH__PlatformSessionSyncer_1a1339e4f23791197848afeed8d7169651) | whether cleanup is deferred until the end of the current action
+`protected virtual void `[`CheckState`](#classURH__PlatformSessionSyncer_1a83d87592ba8d798950d6f21be450ff8d)`()` | Check our current state against the session, and decide if we need to take any action.
+`protected virtual void `[`KickOffState`](#classURH__PlatformSessionSyncer_1a05410c9acd749de9855906064dec3f1d)`(`[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` NewState)` | Change to a new state.
+`protected virtual void `[`SyncActionComplete`](#classURH__PlatformSessionSyncer_1aac8fc53affd478438fc1fc8f0cc4e14e)`(bool bSuccess,bool bDeferFrame)` | Called when a Sync Action State is complete.
+`protected virtual void `[`UpdateRHSessionWithPlatformSession`](#classURH__PlatformSessionSyncer_1a32ba9f36bebfb6f263b73da0c9520267)`()` | Take in information from the paired platform session into the RH Session.
+`protected virtual void `[`CreatePlatformSession`](#classURH__PlatformSessionSyncer_1a4c610d83e5a229ffc45db3eed437f886)`()` | Create a platform session.
+`protected virtual void `[`JoinPlatformSession`](#classURH__PlatformSessionSyncer_1ab9709b439531ace0d8e4b49501bd8991)`()` | Join the platform session.
+`protected virtual void `[`JoinFoundPlatformSession`](#classURH__PlatformSessionSyncer_1aa2d3557381e75ef893c848667ac53b09)`(const FOnlineSessionSearchResult & SearchResult)` | Used by Join Platform session once found to join it.
+`protected virtual void `[`OnScoutFailedToJoin`](#classURH__PlatformSessionSyncer_1a71c2f843e4f7fe8c3727240fd9051d9d)`()` | Handler for if scout fails to successfully join a specified session. Attempt to rectify by clearing out session (which should trigger a new session creation)
+`protected virtual void `[`LeavePlatformSession`](#classURH__PlatformSessionSyncer_1ad1a4c32ab4b51df8dd639a2c01d2d947)`()` | Leave the platform session.
+`protected virtual void `[`CleanupInternal`](#classURH__PlatformSessionSyncer_1a51bed2712c80a6f92f1c8c5c1e1904f1)`()` | Cleanup internal state of the session syncer.
+`protected virtual bool `[`SetSyncActionState`](#classURH__PlatformSessionSyncer_1a1261e4cc0e9cf808324785ca5e7fdf9f)`(`[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` NewState)` | Sets the new action state for the syncer.
+`protected virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51)`() const` | Get the unique net id of the session owner.
+`protected virtual IOnlineSubsystem * `[`GetOSS`](#classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa)`() const` | Get the online subsystem for the platform session.
+`protected virtual IOnlineSessionPtr `[`GetOSSSessionInterface`](#classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1)`() const` | Get the online subsystem session interface for the platform session.
+
+#### Members
+
+#### `public FRH_PlatformSessionSyncerCleanupDelegate `[`OnCleanupComplete`](#classURH__PlatformSessionSyncer_1acca86ac7134db510dd4dcb00658374dd) <a id="classURH__PlatformSessionSyncer_1acca86ac7134db510dd4dcb00658374dd"></a>
+
+Notification delegates for when cleanup of this object has completed.
+
+<br>
+#### `public FRH_PlatformSessionSyncerCleanupDynamicDelegate `[`BLUEPRINT_OnCleanupComplete`](#classURH__PlatformSessionSyncer_1a3be5a8c4afc63c37631b32ab867af2ba) <a id="classURH__PlatformSessionSyncer_1a3be5a8c4afc63c37631b32ab867af2ba"></a>
+
+<br>
+#### `public FRH_PlatformSessionSyncerStateChangedDelegate `[`OnStateChanged`](#classURH__PlatformSessionSyncer_1a1a1ded57262ed2320eeb66e852cb8e21) <a id="classURH__PlatformSessionSyncer_1a1a1ded57262ed2320eeb66e852cb8e21"></a>
+
+Notification delegates for when cleanup of this object has completed.
+
+<br>
+#### `public FRH_PlatformSessionSyncerStateChangedDynamicDelegate `[`BLUEPRINT_OnStateChanged`](#classURH__PlatformSessionSyncer_1a22f87dbe7cf96e477c6b91ff686d203a) <a id="classURH__PlatformSessionSyncer_1a22f87dbe7cf96e477c6b91ff686d203a"></a>
+
+<br>
+#### `public bool `[`Initialize`](#classURH__PlatformSessionSyncer_1a672a8526678c8c22c968c2eb5d5f1334)`(const FString & InSessionId,FRH_SessionOwnerPtr InOwner)` <a id="classURH__PlatformSessionSyncer_1a672a8526678c8c22c968c2eb5d5f1334"></a>
+
+Initialize the sycnrhonization object with a RallyHere session id and a session owner - requires that the owner contain that session.
+
+#### Parameters
+* `InSessionId` The Rally Here session id for which we are synchronizing state 
+
+* `InOwner` Session owner interface for use in looking up the session and other information 
+
+#### Returns
+Whether initialization was successful. If initialization was successful, [Cleanup()](Session.md#classURH__PlatformSessionSyncer_1ac45a6144ac79b3024c9a5eb0c63ab981) must be called to properly clean up state
+
+<br>
+#### `public void `[`Cleanup`](#classURH__PlatformSessionSyncer_1ac45a6144ac79b3024c9a5eb0c63ab981)`(const FSimpleDelegate & CompletionDelegate)` <a id="classURH__PlatformSessionSyncer_1ac45a6144ac79b3024c9a5eb0c63ab981"></a>
+
+Clean up the synchronization object, typically used when the RallyHere session is expired.
+
+#### Parameters
+* `CompletionDelegate` Delegate to call when cleanup is complete
+
+<br>
+#### `public inline FORCEINLINE FString `[`GetRHSessionId`](#classURH__PlatformSessionSyncer_1aa02905d5d2f2951c693d6ff1ac9a9e08)`() const` <a id="classURH__PlatformSessionSyncer_1aa02905d5d2f2951c693d6ff1ac9a9e08"></a>
+
+Get the RallyHere session id that this object is synchronizing to.
+
+<br>
+#### `public virtual `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * `[`GetRHSession`](#classURH__PlatformSessionSyncer_1ad9f453ea3f81edb0b87d9f3ba6950c57)`() const` <a id="classURH__PlatformSessionSyncer_1ad9f453ea3f81edb0b87d9f3ba6950c57"></a>
+
+Helper function to get the RallyHere session objcet from the session owner (based on the result of [GetRHSessionId()](Session.md#classURH__PlatformSessionSyncer_1aa02905d5d2f2951c693d6ff1ac9a9e08))
+
+<br>
+#### `public virtual bool `[`GetPlatformSessionIdFromRHSession`](#classURH__PlatformSessionSyncer_1aea73e377334a657438cc1fdc74839891)`(FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__PlatformSessionSyncer_1aea73e377334a657438cc1fdc74839891"></a>
+
+Helper function to get the Platform Session Id from the RallyHere session object (based on the result of [GetRHSession()](Session.md#classURH__PlatformSessionSyncer_1ad9f453ea3f81edb0b87d9f3ba6950c57))
+
+#### Parameters
+* `PlatformSessionId` The platform session id to fill in 
+
+#### Returns
+Whether the platform session id was successfully filled in
+
+<br>
+#### `public inline FName `[`GetPlatformSessionName`](#classURH__PlatformSessionSyncer_1ab8864e7affb0cb4cf22bd81869b60c72)`() const` <a id="classURH__PlatformSessionSyncer_1ab8864e7affb0cb4cf22bd81869b60c72"></a>
+
+Get the platform session name that this object is synchronizing to from the OnlineSubsystem (useful for OSS calls) Note that this is set before OSS session is valid. If you want to make sure the name is for a valid session, use [GetPlatformSession()](Session.md#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c)->SessionName instead ([GetPlatformSession()](Session.md#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c) may return nullptr)
+
+<br>
+#### `public FNamedOnlineSession * `[`GetPlatformSession`](#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c)`() const` <a id="classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c"></a>
+
+Get the platform session object that this object is synchronizing to from the OnlineSubsystem.
+
+<br>
+#### `public bool `[`GetPlatformSessionIdFromPlatformSession`](#classURH__PlatformSessionSyncer_1a6be06ee04e5ea7001ed014cc1fbbec65)`(FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__PlatformSessionSyncer_1a6be06ee04e5ea7001ed014cc1fbbec65"></a>
+
+Helper function to get the Platform Session Id from the platform session object (based on the result of [GetPlatformSession()](Session.md#classURH__PlatformSessionSyncer_1ab67a1eed0ca3fe1c09672f3de8fcb44c))
+
+#### Parameters
+* `PlatformSessionId` The platform session id to fill in 
+
+#### Returns
+Whether the platform session id was successfully filled in
+
+<br>
+#### `public inline TScriptInterface< `[`IRH_SessionOwnerInterface`](Session.md#classIRH__SessionOwnerInterface)` > `[`GetSessionOwner`](#classURH__PlatformSessionSyncer_1a93019be39c8791d4b38444fb211bd358)`() const` <a id="classURH__PlatformSessionSyncer_1a93019be39c8791d4b38444fb211bd358"></a>
+
+Get the session owner interface that this object is using to look up session information.
+
+<br>
+#### `public virtual bool `[`IsLocalPlayerScout`](#classURH__PlatformSessionSyncer_1a4c35be7c6e9a7c44101d34615e34a89a)`() const` <a id="classURH__PlatformSessionSyncer_1a4c35be7c6e9a7c44101d34615e34a89a"></a>
+
+Get whether the local player is the "scout" - the player responsible for creation of the platform session if one does not exist.
+
+<br>
+#### `public inline virtual `[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` `[`GetCurrentSyncActionState`](#classURH__PlatformSessionSyncer_1ab09f660e7e04da39fc24fb451935b677)`() const` <a id="classURH__PlatformSessionSyncer_1ab09f660e7e04da39fc24fb451935b677"></a>
+
+Get the current sync action state of this object.
+
+<br>
+#### `public inline virtual bool `[`IsSynchronized`](#classURH__PlatformSessionSyncer_1a89ba08022b1c6406db0d5d763b544ac9)`() const` <a id="classURH__PlatformSessionSyncer_1a89ba08022b1c6406db0d5d763b544ac9"></a>
+
+Whether this object is in the process of, or has completed, synchronization.
+
+<br>
+#### `public inline virtual bool `[`IsCleaningUp`](#classURH__PlatformSessionSyncer_1aecc90ce5a81b6ff023f107fd353906d6)`() const` <a id="classURH__PlatformSessionSyncer_1aecc90ce5a81b6ff023f107fd353906d6"></a>
+
+Whether this object is in the process of, or has completed, cleanup.
+
+<br>
+#### `public inline virtual bool `[`IsCleanupComplete`](#classURH__PlatformSessionSyncer_1acbfb387b2d0cea91154faec908def601)`() const` <a id="classURH__PlatformSessionSyncer_1acbfb387b2d0cea91154faec908def601"></a>
+
+Whether this object has completed, cleanup.
+
+<br>
+#### `public virtual bool `[`StartPlatformSession`](#classURH__PlatformSessionSyncer_1a422d3660def6c54c7fa45e521149adc7)`()` <a id="classURH__PlatformSessionSyncer_1a422d3660def6c54c7fa45e521149adc7"></a>
+
+Marks the session as started (note - asynchronous)
+
+<br>
+#### `public virtual bool `[`EndPlatformSession`](#classURH__PlatformSessionSyncer_1ac26c84cdcdfa44eac105d878a8f7fce7)`()` <a id="classURH__PlatformSessionSyncer_1ac26c84cdcdfa44eac105d878a8f7fce7"></a>
+
+Marks the session as ended (note - asynchronous)
+
+<br>
+#### `public virtual void `[`OnPlatformSessionCreated`](#classURH__PlatformSessionSyncer_1adf45b673cebb3d4f667ca33a2d2a4abd)`(bool bSuccess)` <a id="classURH__PlatformSessionSyncer_1adf45b673cebb3d4f667ca33a2d2a4abd"></a>
+
+Notification helper to let the synchronization object know that a session has been created (from the session owner, as the synchronization object does not bind the callback directly)
+
+<br>
+#### `public virtual void `[`OnPlatformSessionJoined`](#classURH__PlatformSessionSyncer_1a6533c4f9e5b84ab7893ee0f002bee8fa)`(EOnJoinSessionCompleteResult::Type Result)` <a id="classURH__PlatformSessionSyncer_1a6533c4f9e5b84ab7893ee0f002bee8fa"></a>
+
+Notification helper to let the synchronization object know that a session has been joined (from the session owner, as the synchronization object does not bind the callback directly)
+
+<br>
+#### `public virtual void `[`OnPlatformSessionStarted`](#classURH__PlatformSessionSyncer_1ada7c87ae46e8fe0c99a06de53284695a)`(bool bSuccess)` <a id="classURH__PlatformSessionSyncer_1ada7c87ae46e8fe0c99a06de53284695a"></a>
+
+Notification helper to let the synchronization object know that a session has been started (from the session owner, as the synchronization object does not bind the callback directly)
+
+<br>
+#### `public virtual void `[`OnPlatformSessionEnded`](#classURH__PlatformSessionSyncer_1a29afb3b5b1bda91905c85ed56004294f)`(bool bSuccess)` <a id="classURH__PlatformSessionSyncer_1a29afb3b5b1bda91905c85ed56004294f"></a>
+
+Notification helper to let the synchronization object know that a session has been ended (from the session owner, as the synchronization object does not bind the callback directly)
+
+<br>
+#### `public virtual void `[`OnPlatformSessionDestroyed`](#classURH__PlatformSessionSyncer_1a600318f388b1d368077bd7c9090c8bc9)`(bool bSuccess)` <a id="classURH__PlatformSessionSyncer_1a600318f388b1d368077bd7c9090c8bc9"></a>
+
+Notification helper to let the synchronization object know that a session has been destroyed (from the session owner, as the synchronization object does not bind the callback directly)
+
+<br>
+#### `public void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` <a id="classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270"></a>
+
+Handler for whenever the associated session is updated.
+
+#### Parameters
+* `UpdatedSession` The session that was updated.
+
+<br>
+#### `public void `[`SetCachedPlatformSessionInvite`](#classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001)`(const FOnlineSessionSearchResult & SessionInvite)` <a id="classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001"></a>
+
+<br>
+#### `protected `[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` `[`CurrentSyncActionState`](#classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea) <a id="classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea"></a>
+
+The current state of the syncer.
+
+<br>
+#### `protected FRH_SessionOwnerPtr `[`SessionOwner`](#classURH__PlatformSessionSyncer_1abdc13532c721a2d0593b177ae19833e5) <a id="classURH__PlatformSessionSyncer_1abdc13532c721a2d0593b177ae19833e5"></a>
+
+Owner of the session.
+
+<br>
+#### `protected FString `[`RHSessionId`](#classURH__PlatformSessionSyncer_1a2782a9152c7bf68ed0bd908b95c4301f) <a id="classURH__PlatformSessionSyncer_1a2782a9152c7bf68ed0bd908b95c4301f"></a>
+
+Rally Here session Id.
+
+<br>
+#### `protected FName `[`OSSSessionName`](#classURH__PlatformSessionSyncer_1ac4bc77d7e8275889c8050bf1a09f2e97) <a id="classURH__PlatformSessionSyncer_1ac4bc77d7e8275889c8050bf1a09f2e97"></a>
+
+Name of the session.
+
+<br>
+#### `protected ERHAPI_Platform `[`RHPlatform`](#classURH__PlatformSessionSyncer_1ae2dda53f9229c02025c41c2203792892) <a id="classURH__PlatformSessionSyncer_1ae2dda53f9229c02025c41c2203792892"></a>
+
+Internal platoform for the session.
+
+<br>
+#### `protected TOptional< FOnlineSessionSearchResult > `[`CachedSessionInvite`](#classURH__PlatformSessionSyncer_1afd327c8b4ac82aabcdd3063ca15432f2) <a id="classURH__PlatformSessionSyncer_1afd327c8b4ac82aabcdd3063ca15432f2"></a>
+
+The cached platform session invite.
+
+<br>
+#### `protected TWeakObjectPtr< `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` > `[`CleanupRHSession`](#classURH__PlatformSessionSyncer_1a8fefa6f56080ef0462ae6b04178eb42b) <a id="classURH__PlatformSessionSyncer_1a8fefa6f56080ef0462ae6b04178eb42b"></a>
+
+Backup pointer used during cleanup in case session has already been removed from owner when cleanup is triggered (ex: expiration has begun)
+
+<br>
+#### `protected bool `[`bDeferCleanup`](#classURH__PlatformSessionSyncer_1a1339e4f23791197848afeed8d7169651) <a id="classURH__PlatformSessionSyncer_1a1339e4f23791197848afeed8d7169651"></a>
+
+whether cleanup is deferred until the end of the current action
+
+<br>
+#### `protected virtual void `[`CheckState`](#classURH__PlatformSessionSyncer_1a83d87592ba8d798950d6f21be450ff8d)`()` <a id="classURH__PlatformSessionSyncer_1a83d87592ba8d798950d6f21be450ff8d"></a>
+
+Check our current state against the session, and decide if we need to take any action.
+
+<br>
+#### `protected virtual void `[`KickOffState`](#classURH__PlatformSessionSyncer_1a05410c9acd749de9855906064dec3f1d)`(`[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` NewState)` <a id="classURH__PlatformSessionSyncer_1a05410c9acd749de9855906064dec3f1d"></a>
+
+Change to a new state.
+
+#### Parameters
+* `NewState` Target new state.
+
+<br>
+#### `protected virtual void `[`SyncActionComplete`](#classURH__PlatformSessionSyncer_1aac8fc53affd478438fc1fc8f0cc4e14e)`(bool bSuccess,bool bDeferFrame)` <a id="classURH__PlatformSessionSyncer_1aac8fc53affd478438fc1fc8f0cc4e14e"></a>
+
+Called when a Sync Action State is complete.
+
+#### Parameters
+* `bSuccess` Whether the action was successful. 
+
+* `bDeferFrame` Whether to defer the frame before checking the state again.
+
+<br>
+#### `protected virtual void `[`UpdateRHSessionWithPlatformSession`](#classURH__PlatformSessionSyncer_1a32ba9f36bebfb6f263b73da0c9520267)`()` <a id="classURH__PlatformSessionSyncer_1a32ba9f36bebfb6f263b73da0c9520267"></a>
+
+Take in information from the paired platform session into the RH Session.
+
+<br>
+#### `protected virtual void `[`CreatePlatformSession`](#classURH__PlatformSessionSyncer_1a4c610d83e5a229ffc45db3eed437f886)`()` <a id="classURH__PlatformSessionSyncer_1a4c610d83e5a229ffc45db3eed437f886"></a>
+
+Create a platform session.
+
+<br>
+#### `protected virtual void `[`JoinPlatformSession`](#classURH__PlatformSessionSyncer_1ab9709b439531ace0d8e4b49501bd8991)`()` <a id="classURH__PlatformSessionSyncer_1ab9709b439531ace0d8e4b49501bd8991"></a>
+
+Join the platform session.
+
+<br>
+#### `protected virtual void `[`JoinFoundPlatformSession`](#classURH__PlatformSessionSyncer_1aa2d3557381e75ef893c848667ac53b09)`(const FOnlineSessionSearchResult & SearchResult)` <a id="classURH__PlatformSessionSyncer_1aa2d3557381e75ef893c848667ac53b09"></a>
+
+Used by Join Platform session once found to join it.
+
+#### Parameters
+* `SearchResult` The search result to join.
+
+<br>
+#### `protected virtual void `[`OnScoutFailedToJoin`](#classURH__PlatformSessionSyncer_1a71c2f843e4f7fe8c3727240fd9051d9d)`()` <a id="classURH__PlatformSessionSyncer_1a71c2f843e4f7fe8c3727240fd9051d9d"></a>
+
+Handler for if scout fails to successfully join a specified session. Attempt to rectify by clearing out session (which should trigger a new session creation)
+
+<br>
+#### `protected virtual void `[`LeavePlatformSession`](#classURH__PlatformSessionSyncer_1ad1a4c32ab4b51df8dd639a2c01d2d947)`()` <a id="classURH__PlatformSessionSyncer_1ad1a4c32ab4b51df8dd639a2c01d2d947"></a>
+
+Leave the platform session.
+
+<br>
+#### `protected virtual void `[`CleanupInternal`](#classURH__PlatformSessionSyncer_1a51bed2712c80a6f92f1c8c5c1e1904f1)`()` <a id="classURH__PlatformSessionSyncer_1a51bed2712c80a6f92f1c8c5c1e1904f1"></a>
+
+Cleanup internal state of the session syncer.
+
+<br>
+#### `protected virtual bool `[`SetSyncActionState`](#classURH__PlatformSessionSyncer_1a1261e4cc0e9cf808324785ca5e7fdf9f)`(`[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` NewState)` <a id="classURH__PlatformSessionSyncer_1a1261e4cc0e9cf808324785ca5e7fdf9f"></a>
+
+Sets the new action state for the syncer.
+
+#### Parameters
+* `NewState` New State to be in.
+
+<br>
+#### `protected virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51)`() const` <a id="classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51"></a>
+
+Get the unique net id of the session owner.
+
+<br>
+#### `protected virtual IOnlineSubsystem * `[`GetOSS`](#classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa)`() const` <a id="classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa"></a>
+
+Get the online subsystem for the platform session.
+
+<br>
+#### `protected virtual IOnlineSessionPtr `[`GetOSSSessionInterface`](#classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1)`() const` <a id="classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1"></a>
+
+Get the online subsystem session interface for the platform session.
+
+<br>
 ## class `URH_SessionBrowserCache` <a id="classURH__SessionBrowserCache"></a>
 
 ```
@@ -47,8 +392,8 @@ Simple container class to hold session view data, does not have its own auth con
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1aa64b3bc0c50822dfc08403fa30416907)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual bool `[`GetTemplate`](#classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
-`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
-`public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
+`public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform synchronization object using the platform session id.
 
 #### Members
 
@@ -173,12 +518,12 @@ Gets a session template by type.
 If true, the template was found.
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` <a id="classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed)`(const FString & SessionId) const` <a id="classURH__SessionBrowserCache_1a7315ff647e9507c03a8e4b4b22657fed"></a>
 
 Gets the platform synchronization object using the rally here session id.
 
 <br>
-#### `public inline virtual `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b"></a>
+#### `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b)`(const FUniqueNetIdRepl & PlatformSessionId) const` <a id="classURH__SessionBrowserCache_1a363341b102359f9b6d90bfd1f3f73b3b"></a>
 
 Gets the platform synchronization object using the platform session id.
 
@@ -1155,8 +1500,8 @@ Session Owner Interface.
 `public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classIRH__SessionOwnerInterface_1a66e998565bf74dbfc85ea6247341b7a4)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classIRH__SessionOwnerInterface_1a094dc2179856a012677d16d9f6684c82)`(const FString & SessionId) const` | Gets a session by its id.
 `public bool `[`GetTemplate`](#classIRH__SessionOwnerInterface_1ae474fab73509d0a00372966f39ce216b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
-`public `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
-`public `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` | Gets the platform synchronization object using the platform session id.
+`public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
+`public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` | Gets the platform synchronization object using the platform session id.
 
 #### Members
 
@@ -1271,12 +1616,12 @@ Gets a session template by type.
 If true, the template was found.
 
 <br>
-#### `public `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985)`(const FString & SessionId) const` <a id="classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985"></a>
+#### `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985)`(const FString & SessionId) const` <a id="classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985"></a>
 
 Gets the platform synchronization object using the rally here session id.
 
 <br>
-#### `public `[`URH_PlatformSessionSyncer`](undefined.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` <a id="classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c"></a>
+#### `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` <a id="classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c"></a>
 
 Gets the platform synchronization object using the platform session id.
 
