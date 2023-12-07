@@ -901,36 +901,35 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Denied || Resp.GetHttpResponseCode() ==
         EHttpResponseCodes::Forbidden)
     {
-        FString Content = Resp.GetHttpResponse()->GetContentAsString();
-        TSharedPtr<FJsonValue> JsonValue;
-        auto Reader = TJsonReaderFactory<>::Create(Content);
-        if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
-        {
-            FRHAPI_AgreementMessage Msg;
-            Msg.FromJson(JsonValue);
-        	bool NeedsEula = false, NeedsTos = false, NeedsPrivacyPolicy = false;
-            if ((Msg.GetNeedsEula(NeedsEula) && NeedsEula) || (Msg.GetNeedsTos(NeedsTos) && NeedsTos) ||
-            	(Msg.GetNeedsPrivacyPolicy(NeedsPrivacyPolicy) && NeedsPrivacyPolicy))
-            {
-                FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_MustAcceptAgreements);
-                Result.bMustAcceptEULA = NeedsEula;
-                Result.bMustAcceptTOS = NeedsTos;
-                Result.bMustAcceptPP = NeedsPrivacyPolicy;
-                UE_LOG(LogRallyHereIntegration,
-                       Log,
-                       TEXT("[%s] User needs to accept eula=%s tos=%s pp=%s"),
-                       ANSI_TO_TCHAR(__FUNCTION__),
-                       GetBoolStr(Result.bMustAcceptEULA),
-                       GetBoolStr(Result.bMustAcceptTOS),
-                       GetBoolStr(Result.bMustAcceptPP));
-                PostResults(Req, Result);
-                return;
-            }
-        }
+		FRHAPI_AgreementMessage Msg;
+		Resp.TryGetContentFor403(Msg);
+		bool NeedsEula = false, NeedsTos = false, NeedsPrivacyPolicy = false;
+		if ((Msg.GetNeedsEula(NeedsEula) && NeedsEula) || (Msg.GetNeedsTos(NeedsTos) && NeedsTos) ||
+			(Msg.GetNeedsPrivacyPolicy(NeedsPrivacyPolicy) && NeedsPrivacyPolicy))
+		{
+			FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_MustAcceptAgreements);
+			Result.bMustAcceptEULA = NeedsEula;
+			Result.bMustAcceptTOS = NeedsTos;
+			Result.bMustAcceptPP = NeedsPrivacyPolicy;
+			Result.RallyHereErrorCode = Msg.GetErrorCode();
+			UE_LOG(LogRallyHereIntegration,
+				   Log,
+				   TEXT("[%s] User needs to accept eula=%s tos=%s pp=%s (%s: %s)"),
+				   ANSI_TO_TCHAR(__FUNCTION__),
+				   GetBoolStr(Result.bMustAcceptEULA),
+				   GetBoolStr(Result.bMustAcceptTOS),
+				   GetBoolStr(Result.bMustAcceptPP),
+				   *Msg.GetErrorCode(),
+				   *Msg.GetDesc());
+			PostResults(Req, Result);
+			return;
+		}
 
-        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Denied with content: %s"), ANSI_TO_TCHAR(__FUNCTION__),
-               *Content);
-        PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_RHDenied));
+        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Denied for error code %s: %s"), ANSI_TO_TCHAR(__FUNCTION__),
+               *Msg.GetErrorCode(), *Msg.GetDesc());
+		FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_RHDenied);
+		Result.RallyHereErrorCode = Msg.GetErrorCode();
+        PostResults(Req, Result);
     }
     else
     {
