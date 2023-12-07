@@ -128,6 +128,9 @@ public:
     /** @brief Login Error Message. */
     UPROPERTY()
     FString OSSErrorMessage;
+	/** @brief RallyHere API Auth Error Code */
+	UPROPERTY()
+	FString RallyHereErrorCode;
     /** @brief Unique Net Id for the player. */
     TSharedPtr<const FUniqueNetId> OSSUniqueId;
     /** @brief Unique Net ID for the player when using Nickname Login. */
