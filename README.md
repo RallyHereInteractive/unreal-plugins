@@ -2,7 +2,7 @@
 
 ## Change History
 
-## 0.11.1
+## 0.11.0
 
 ### High Level Changes
 * The integration SDK is now being released under the Apache v2 license.
