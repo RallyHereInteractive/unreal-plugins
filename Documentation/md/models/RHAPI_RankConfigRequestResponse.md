@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_RankConfigRequestResponse`](#structFRHAPI__RankConfigRequestResponse) | Response to successfully requesting all rank config.
+`struct `[`FRHAPI_RankConfigRequestResponse`](#structFRHAPI__RankConfigRequestResponse) | DEPRECATED Response to successfully requesting all rank config.
 
 ## struct `FRHAPI_RankConfigRequestResponse` <a id="structFRHAPI__RankConfigRequestResponse"></a>
 
@@ -13,7 +13,7 @@ struct FRHAPI_RankConfigRequestResponse
   : public FRHAPI_Model
 ```
 
-Response to successfully requesting all rank config.
+DEPRECATED Response to successfully requesting all rank config.
 
 #### Summary
 

@@ -23,8 +23,7 @@ Settings for polling.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public TArray< `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` > `[`PollingIntervals`](#classURH__PollingSettings_1afa32af0887367bdda75461ba6ac6ee84) | Array of all polling timers.
-`public float `[`DefaultPollingInterval`](#classURH__PollingSettings_1ad28e9d65966264c2d0f3d8d50415b15c) | Default polling time.
-`public float `[`GetPollingInterval`](#classURH__PollingSettings_1af768f95d49ece0e4404f60e9cacc4a84)`(const FName & TimerName) const` | Gets a polling interval by name, or falls back to default if not found.
+`public `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` `[`DefaultPollingTimer`](#classURH__PollingSettings_1a313312890d1d7c3d52da57de091f55cc) | Default polling time.
 
 #### Members
 
@@ -33,17 +32,9 @@ Settings for polling.
 Array of all polling timers.
 
 <br>
-#### `public float `[`DefaultPollingInterval`](#classURH__PollingSettings_1ad28e9d65966264c2d0f3d8d50415b15c) <a id="classURH__PollingSettings_1ad28e9d65966264c2d0f3d8d50415b15c"></a>
+#### `public `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` `[`DefaultPollingTimer`](#classURH__PollingSettings_1a313312890d1d7c3d52da57de091f55cc) <a id="classURH__PollingSettings_1a313312890d1d7c3d52da57de091f55cc"></a>
 
 Default polling time.
-
-<br>
-#### `public float `[`GetPollingInterval`](#classURH__PollingSettings_1af768f95d49ece0e4404f60e9cacc4a84)`(const FName & TimerName) const` <a id="classURH__PollingSettings_1af768f95d49ece0e4404f60e9cacc4a84"></a>
-
-Gets a polling interval by name, or falls back to default if not found.
-
-#### Parameters
-* `TimerName` Name of Timer to get interval for.
 
 <br>
 ## struct `FRH_PollTimerSetting` <a id="structFRH__PollTimerSetting"></a>
@@ -56,6 +47,8 @@ Settings for polling timers.
 --------------------------------|---------------------------------------------
 `public FName `[`TimerName`](#structFRH__PollTimerSetting_1a657d464298c1a5e7d22e7658203260d6) | Name of the timer.
 `public float `[`Interval`](#structFRH__PollTimerSetting_1a55e6b906507f28b3ef6c77c075944e21) | Poll interval of the timer.
+`public float `[`JitterPct`](#structFRH__PollTimerSetting_1a55b5858c5df6f2db724599e6864dd191) | How much jitter to add to the timer.
+`public float `[`JitterPctInitial`](#structFRH__PollTimerSetting_1af7b21bff8f9266d642ff135dd80b8314) | How much jitter to add to the timer when started.
 `public inline  `[`FRH_PollTimerSetting`](#structFRH__PollTimerSetting_1a121012c1be4a6708d43d5158130b6233)`()` | Default constructor, 60 seconds timer.
 
 #### Members
@@ -68,6 +61,16 @@ Name of the timer.
 #### `public float `[`Interval`](#structFRH__PollTimerSetting_1a55e6b906507f28b3ef6c77c075944e21) <a id="structFRH__PollTimerSetting_1a55e6b906507f28b3ef6c77c075944e21"></a>
 
 Poll interval of the timer.
+
+<br>
+#### `public float `[`JitterPct`](#structFRH__PollTimerSetting_1a55b5858c5df6f2db724599e6864dd191) <a id="structFRH__PollTimerSetting_1a55b5858c5df6f2db724599e6864dd191"></a>
+
+How much jitter to add to the timer.
+
+<br>
+#### `public float `[`JitterPctInitial`](#structFRH__PollTimerSetting_1af7b21bff8f9266d642ff135dd80b8314) <a id="structFRH__PollTimerSetting_1af7b21bff8f9266d642ff135dd80b8314"></a>
+
+How much jitter to add to the timer when started.
 
 <br>
 #### `public inline  `[`FRH_PollTimerSetting`](#structFRH__PollTimerSetting_1a121012c1be4a6708d43d5158130b6233)`()` <a id="structFRH__PollTimerSetting_1a121012c1be4a6708d43d5158130b6233"></a>
@@ -103,9 +106,15 @@ Controller for the polling.
 `public virtual void `[`Tick`](#structFRH__PollControl_1aefcc577ccceea4652127dc303c2cf221)`(float DeltaTime)` | Scan Waiting list to determine if any need to be kicked off.
 `public inline virtual bool `[`IsTickable`](#structFRH__PollControl_1a24ecbe464cec40d46aca8b3635457883)`() const` | Poll controller is always tickable.
 `public inline virtual TStatId `[`GetStatId`](#structFRH__PollControl_1a94251dff895305e3df471335a2e8048b)`() const` | Gets the poll controller stat Id.
+`public void `[`SetPollingIntervalOverride`](#structFRH__PollControl_1aff2bd0c3387cd5f52abc05b6bd29c0d1)`(const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & TimerSetting)` | Sets a polling interval override by name.
+`public void `[`ClearPollingIntervalOverride`](#structFRH__PollControl_1a3795267e9d083d413473dd2115dac496)`(const FName & TimerName)` | Clears a polling interval override by name.
+`public const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & `[`GetPollTimerSetting`](#structFRH__PollControl_1a929c79f134c154715085186a6aac04f3)`(const FName & TimerName) const` | Gets the polling interval setting (including overrides) by timer name.
+`public inline float `[`GetPollingInterval`](#structFRH__PollControl_1a8fcdf87d451f938fb4aa157167cf6123)`(const FName & TimerName) const` | Gets a polling interval by name, or falls back to default if not found.
+`public inline float `[`GetPollingIntervalWithJitter`](#structFRH__PollControl_1a26db354c7e3ad5c6623032ab8a7991f0)`(const FName & TimerName,bool bInitial) const` | Gets a polling interval by name, or falls back to default if not found. Adds configured jitter.
 `protected TArray< FRH_AutoPollerWeakPtr > `[`InactivePolls`](#structFRH__PollControl_1ac825a703abab879befa89f425264f236) | Polls that are registered but not active.
 `protected TArray< FRH_AutoPollerWeakPtr > `[`WaitingPolls`](#structFRH__PollControl_1aeea32be27d6874c285eea09b2ef3968c) | Polls waiting on their timer to complete, checked each tick.
 `protected TArray< FRH_AutoPollerWeakPtr > `[`ExecutingPolls`](#structFRH__PollControl_1a88809408a6d07d676787104f3b011ccb) | Polls with their poll function executing.
+`protected TArray< `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` > `[`PollingIntervalOverrides`](#structFRH__PollControl_1a8d9206a531b9addcea6fc1fb85e6e786) | Array of all polling timers (overrides PollingIntervals).
 `protected void `[`SortWaitingPolls`](#structFRH__PollControl_1adf3e88c4d6c1ce6f7759c4f62eb7e98f)`()` | Sorts the waiting pollers for by their next poll time.
 
 #### Members
@@ -218,6 +227,54 @@ Poll controller is always tickable.
 Gets the poll controller stat Id.
 
 <br>
+#### `public void `[`SetPollingIntervalOverride`](#structFRH__PollControl_1aff2bd0c3387cd5f52abc05b6bd29c0d1)`(const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & TimerSetting)` <a id="structFRH__PollControl_1aff2bd0c3387cd5f52abc05b6bd29c0d1"></a>
+
+Sets a polling interval override by name.
+
+#### Parameters
+* `TimerName` Name of Timer to set interval for. 
+
+* `Interval` Override Duration
+
+<br>
+#### `public void `[`ClearPollingIntervalOverride`](#structFRH__PollControl_1a3795267e9d083d413473dd2115dac496)`(const FName & TimerName)` <a id="structFRH__PollControl_1a3795267e9d083d413473dd2115dac496"></a>
+
+Clears a polling interval override by name.
+
+#### Parameters
+* `TimerName` Name of Timer to set interval for.
+
+<br>
+#### `public const `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` & `[`GetPollTimerSetting`](#structFRH__PollControl_1a929c79f134c154715085186a6aac04f3)`(const FName & TimerName) const` <a id="structFRH__PollControl_1a929c79f134c154715085186a6aac04f3"></a>
+
+Gets the polling interval setting (including overrides) by timer name.
+
+#### Parameters
+* `TimerName` Name of Timer to set interval for. 
+
+#### Returns
+Polling interval setting
+
+<br>
+#### `public inline float `[`GetPollingInterval`](#structFRH__PollControl_1a8fcdf87d451f938fb4aa157167cf6123)`(const FName & TimerName) const` <a id="structFRH__PollControl_1a8fcdf87d451f938fb4aa157167cf6123"></a>
+
+Gets a polling interval by name, or falls back to default if not found.
+
+#### Parameters
+* `TimerName` Name of Timer to get interval for. 
+
+#### Returns
+Value of the polling interval
+
+<br>
+#### `public inline float `[`GetPollingIntervalWithJitter`](#structFRH__PollControl_1a26db354c7e3ad5c6623032ab8a7991f0)`(const FName & TimerName,bool bInitial) const` <a id="structFRH__PollControl_1a26db354c7e3ad5c6623032ab8a7991f0"></a>
+
+Gets a polling interval by name, or falls back to default if not found. Adds configured jitter.
+
+#### Parameters
+* `TimerName` Name of Timer to get interval for.
+
+<br>
 #### `protected TArray< FRH_AutoPollerWeakPtr > `[`InactivePolls`](#structFRH__PollControl_1ac825a703abab879befa89f425264f236) <a id="structFRH__PollControl_1ac825a703abab879befa89f425264f236"></a>
 
 Polls that are registered but not active.
@@ -231,6 +288,11 @@ Polls waiting on their timer to complete, checked each tick.
 #### `protected TArray< FRH_AutoPollerWeakPtr > `[`ExecutingPolls`](#structFRH__PollControl_1a88809408a6d07d676787104f3b011ccb) <a id="structFRH__PollControl_1a88809408a6d07d676787104f3b011ccb"></a>
 
 Polls with their poll function executing.
+
+<br>
+#### `protected TArray< `[`FRH_PollTimerSetting`](Polling.md#structFRH__PollTimerSetting)` > `[`PollingIntervalOverrides`](#structFRH__PollControl_1a8d9206a531b9addcea6fc1fb85e6e786) <a id="structFRH__PollControl_1a8d9206a531b9addcea6fc1fb85e6e786"></a>
+
+Array of all polling timers (overrides PollingIntervals).
 
 <br>
 #### `protected void `[`SortWaitingPolls`](#structFRH__PollControl_1adf3e88c4d6c1ce6f7759c4f62eb7e98f)`()` <a id="structFRH__PollControl_1adf3e88c4d6c1ce6f7759c4f62eb7e98f"></a>

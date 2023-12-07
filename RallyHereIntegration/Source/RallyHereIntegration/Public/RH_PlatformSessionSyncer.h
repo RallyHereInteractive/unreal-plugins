@@ -63,7 +63,9 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FRH_PlatformSessionSyncerStateCha
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FRH_PlatformSessionSyncerStateChangedDelegate, URH_PlatformSessionSyncer*, ESyncActionState, ESyncActionState);
 
 
-/** @brief Synchronization object to sync state between a Rally Here Session and a Platform Session (such as a Steam session) */
+/** @ingroup Session
+ * @brief Synchronization object to sync state between a Rally Here Session and a Platform Session (such as a Steam session)
+ */
 UCLASS(Config = RallyHereIntegration, DefaultConfig)
 class RALLYHEREINTEGRATION_API URH_PlatformSessionSyncer : public UObject
 {

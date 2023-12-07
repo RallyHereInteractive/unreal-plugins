@@ -24,11 +24,15 @@ Subsystem for handling requesting and processing entitlements from the online su
 `public virtual void `[`Deinitialize`](#classURH__EntitlementSubsystem_1af3e449d4538d7e01532ab1b55e5d937c)`()` | Safely tears down the subsystem.
 `public virtual void `[`OnUserChanged`](#classURH__EntitlementSubsystem_1a5fd25cdb4e40bdf432b51bc96802b351)`(const FGuid & OldPlayerUuid,class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * OldLocalPlayerInfo)` | Notification that the user changed for the owning local player subsystem.
 `public void `[`HandleNotification`](#classURH__EntitlementSubsystem_1a79e18971cbc52e3206cc1a3c6e56ab05)`(const `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handle a notification from the inventory API.
-`public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a088f33babad2c1631c61a0f07d998320)`(FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate,FRH_GetPlatformRegionDelegate PlatformRegionDelegate)` | Start Async Task to Process Entitlements for the users connected OSS.
-`public void `[`SubmitEntitlementsForOSS`](#classURH__EntitlementSubsystem_1ae9fb7f95769f90a24c8693bb41029b8b)`(ERHAPI_Platform platform,FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate,FRH_GetPlatformRegionDelegate PlatformRegionDelegate)` | Start Async Task to Process Entitlements for a specific OSS.
+`public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` | Start Async Task to Process Entitlements for the users connected OSS.
+`public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` | Start Async Task to Process Entitlements for a specific platform (non-OSS based)
+`public void `[`QueryStoreOffersById`](#classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be)`(const TArray< FString > & OfferIds,const FRH_GenericSuccessBlock & Delegate)` | Queries the OSS to get the store offers for the given offer ids.
+`public void `[`OnQueryStoreOffersById`](#classURH__EntitlementSubsystem_1aba4dca826031b87f3f932436009622a6)`(bool bSuccess,const TArray< FUniqueOfferId > & Offers,const FString & Error,const FRH_GenericSuccessBlock Delegate)` | Response from OSS for Store Offer By Id Query.
+`public void `[`GetCachedStoreOffers`](#classURH__EntitlementSubsystem_1ac8d1546132a1bc76ef72d7b9f462a947)`(TArray< FOnlineStoreOfferRef > & OutOffers)` | Helper function to get the cached store offers from the OSS.
 `public TMap< FString, `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` > * `[`GetEntitlementResults`](#classURH__EntitlementSubsystem_1ac478a330f287a564dd51e49a430e2809)`()` | Gets the map of all processed entitlement results.
 `public void `[`SetEntitlementOSSName`](#classURH__EntitlementSubsystem_1afb94ef35894b136c1a51c6695e24c06c)`(const FName & InEntitlementOSSName)` | Sets the entitlement OSS Name.
 `public FName `[`GetEntitlementOSSName`](#classURH__EntitlementSubsystem_1a8aa48ac9424aea1058540ca316d1e426)`()` | Gets the set entitlement OSS Name.
+`public IOnlineStoreV2Ptr `[`GetStoreSubsystem`](#classURH__EntitlementSubsystem_1a35d47446e0d8e8ff9c03c66ac8a90002)`() const` | Helper to the store subsystem subsystem.
 `protected TMap< FString, `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` > `[`EntitlementProcessResultMap`](#classURH__EntitlementSubsystem_1ae694a08037debcf46c6c8cbefd33b0b3) | Map of results from Entitlement Process calls.
 `protected FName `[`EntitlementOSSName`](#classURH__EntitlementSubsystem_1a3a1c18058080e0dc894e3f986f9f4230) | Online Subsystem to use for entitlements. If not provided, will use the default OSS.
 `protected FTimerManager & `[`GetTimerManager`](#classURH__EntitlementSubsystem_1a3ac920200686b3ec67e976322e2913db)`()` | Helper to get the engines Timer Manager.
@@ -65,7 +69,7 @@ Handle a notification from the inventory API.
 * `APIParams` The parameters for the API that sent the notification
 
 <br>
-#### `public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a088f33babad2c1631c61a0f07d998320)`(FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate,FRH_GetPlatformRegionDelegate PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a088f33babad2c1631c61a0f07d998320"></a>
+#### `public void `[`SubmitEntitlementsForLoggedInOSS`](#classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef)`(const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a9dc31d9240e19268dbb67f71b3ef81ef"></a>
 
 Start Async Task to Process Entitlements for the users connected OSS.
 
@@ -75,16 +79,48 @@ Start Async Task to Process Entitlements for the users connected OSS.
 * `PlatformRegionDelegate` Delegate callback for getting the platform region.
 
 <br>
-#### `public void `[`SubmitEntitlementsForOSS`](#classURH__EntitlementSubsystem_1ae9fb7f95769f90a24c8693bb41029b8b)`(ERHAPI_Platform platform,FRH_ProcessEntitlementCompletedDelegate EntitlementProcessorCompleteDelegate,FRH_GetPlatformRegionDelegate PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1ae9fb7f95769f90a24c8693bb41029b8b"></a>
+#### `public void `[`SubmitEntitlementsForPlatform`](#classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd)`(ERHAPI_Platform Platform,const FRH_ProcessEntitlementCompletedDelegate & EntitlementProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & PlatformRegionDelegate)` <a id="classURH__EntitlementSubsystem_1a04aadee8f206b0ace23ddb55575d80bd"></a>
 
-Start Async Task to Process Entitlements for a specific OSS.
+Start Async Task to Process Entitlements for a specific platform (non-OSS based)
 
 #### Parameters
-* `platform` The OSS to process entitlements for. 
+* `Platform` The platform to process entitlements for. 
 
 * `EntitlementProcessorCompleteDelegate` Delegate callback for when the entitlement process is complete. 
 
 * `PlatformRegionDelegate` Delegate callback for getting the platform region.
+
+<br>
+#### `public void `[`QueryStoreOffersById`](#classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be)`(const TArray< FString > & OfferIds,const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__EntitlementSubsystem_1a4a419cf977152a129ea1be9158ce07be"></a>
+
+Queries the OSS to get the store offers for the given offer ids.
+
+#### Parameters
+* `OfferIds` List of SKUs to request offers for. 
+
+* `Delegate` callback for getting offers.
+
+<br>
+#### `public void `[`OnQueryStoreOffersById`](#classURH__EntitlementSubsystem_1aba4dca826031b87f3f932436009622a6)`(bool bSuccess,const TArray< FUniqueOfferId > & Offers,const FString & Error,const FRH_GenericSuccessBlock Delegate)` <a id="classURH__EntitlementSubsystem_1aba4dca826031b87f3f932436009622a6"></a>
+
+Response from OSS for Store Offer By Id Query.
+
+#### Parameters
+* `bSuccess` If the call to the OSS was successful. 
+
+* `Offers` Offers returned by the OSS. 
+
+* `Error` The error if the call was not successful. 
+
+* `Delegate` callback for getting offers.
+
+<br>
+#### `public void `[`GetCachedStoreOffers`](#classURH__EntitlementSubsystem_1ac8d1546132a1bc76ef72d7b9f462a947)`(TArray< FOnlineStoreOfferRef > & OutOffers)` <a id="classURH__EntitlementSubsystem_1ac8d1546132a1bc76ef72d7b9f462a947"></a>
+
+Helper function to get the cached store offers from the OSS.
+
+#### Parameters
+* `OutOffers` The offers cached in the store OSS.
 
 <br>
 #### `public TMap< FString, `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` > * `[`GetEntitlementResults`](#classURH__EntitlementSubsystem_1ac478a330f287a564dd51e49a430e2809)`()` <a id="classURH__EntitlementSubsystem_1ac478a330f287a564dd51e49a430e2809"></a>
@@ -103,6 +139,11 @@ Sets the entitlement OSS Name.
 #### `public FName `[`GetEntitlementOSSName`](#classURH__EntitlementSubsystem_1a8aa48ac9424aea1058540ca316d1e426)`()` <a id="classURH__EntitlementSubsystem_1a8aa48ac9424aea1058540ca316d1e426"></a>
 
 Gets the set entitlement OSS Name.
+
+<br>
+#### `public IOnlineStoreV2Ptr `[`GetStoreSubsystem`](#classURH__EntitlementSubsystem_1a35d47446e0d8e8ff9c03c66ac8a90002)`() const` <a id="classURH__EntitlementSubsystem_1a35d47446e0d8e8ff9c03c66ac8a90002"></a>
+
+Helper to the store subsystem subsystem.
 
 <br>
 #### `protected TMap< FString, `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` > `[`EntitlementProcessResultMap`](#classURH__EntitlementSubsystem_1ae694a08037debcf46c6c8cbefd33b0b3) <a id="classURH__EntitlementSubsystem_1ae694a08037debcf46c6c8cbefd33b0b3"></a>
@@ -148,7 +189,7 @@ Processor class used to make entitlment process calls.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline  `[`FRH_EntitlementProcessor`](#classFRH__EntitlementProcessor_1aae2d4efd51a19ff01d8383fa7f2b07fc)`(`[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * InEntitlementSubsystem,IOnlineSubsystem * InOSS,const IOnlinePurchasePtr & InPurchaseSubsystem,int32 InLocalUserNum,FUniqueNetIdWrapper InPlatformUserId,FTimerManager & InTimerManager,FRH_ProcessEntitlementCompletedDelegate InProcessorCompleteDelegate,FRH_GetPlatformRegionDelegate InGetPlatformRegionDelegate,std::optional< ERHAPI_Platform > InOverridePlatform)` | Main Constructor for Entitlement Processor, used internally by the entitlement process calls.
+`public inline  `[`FRH_EntitlementProcessor`](#classFRH__EntitlementProcessor_1a5bdbfca161d2f8db0ec6c8ca53b31b2a)`(`[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * InEntitlementSubsystem,IOnlineSubsystem * InOSS,const IOnlinePurchasePtr & InPurchaseSubsystem,int32 InLocalUserNum,FUniqueNetIdWrapper InPlatformUserId,FTimerManager & InTimerManager,const FRH_ProcessEntitlementCompletedDelegate & InProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & InGetPlatformRegionDelegate,TOptional< ERHAPI_Platform > InOverridePlatform)` | Main Constructor for Entitlement Processor, used internally by the entitlement process calls.
 `public inline virtual void `[`Start`](#classFRH__EntitlementProcessor_1a3424a20d87e8738efe75b97003af7122)`()` | Start the Entitlement processing.
 `protected FAuthContextPtr `[`AuthContext`](#classFRH__EntitlementProcessor_1a8cafa17c7919e113fb52e9ea0d28ff00) | Auth Context used by the entitlement subsystem.
 `protected TWeakObjectPtr< `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` > `[`EntitlementSubsystem`](#classFRH__EntitlementProcessor_1acc7904271cef9ed650b253c449c7b37d) | Pointer back to the entitlement subsystem that owns this processor.
@@ -159,7 +200,7 @@ Processor class used to make entitlment process calls.
 `protected FTimerManager & `[`TimerManager`](#classFRH__EntitlementProcessor_1a6d90d0fbf8a9eb2155c36ecd2cdc0681) | The engines Timer Manager.
 `protected FRH_ProcessEntitlementCompletedDelegate `[`EntitlementProcessorCompleteDelegate`](#classFRH__EntitlementProcessor_1a6e54fc02de56616ff00d71428f9271d1) | Delegate to fire when completed.
 `protected FRH_GetPlatformRegionDelegate `[`GetPlatformRegionDelegate`](#classFRH__EntitlementProcessor_1a5acc7ff1af2e637583073391e4872585) | Delegate that fires when getting the platforms region.
-`protected ERHAPI_Platform `[`Platform`](#classFRH__EntitlementProcessor_1a5bc5a0e1c2832d0f8c9322ac37443e3d) | Platform the entitlements are for.
+`protected TOptional< ERHAPI_Platform > `[`Platform`](#classFRH__EntitlementProcessor_1a713cddd49151bb86cc50a30da4fba764) | Platform the entitlements are for.
 `protected bool `[`IsOverride`](#classFRH__EntitlementProcessor_1a09185186322b5443b471ab8475a2b5cd) | If set, the platform is an override of the main connection platform.
 `protected const FString `[`TaskId`](#classFRH__EntitlementProcessor_1a1476a4cb8a1fff62fa930fb2d479249e) | Unique Id for the process task.
 `protected `[`FRHAPI_PlatformEntitlementProcessResult`](models/RHAPI_PlatformEntitlementProcessResult.md#structFRHAPI__PlatformEntitlementProcessResult)` `[`ProcessEntitlementResult`](#classFRH__EntitlementProcessor_1aa858ecc28f83dcf6fe2d443bc9fc4b97) | Result of the entitlement process.
@@ -187,7 +228,7 @@ Processor class used to make entitlment process calls.
 
 #### Members
 
-#### `public inline  `[`FRH_EntitlementProcessor`](#classFRH__EntitlementProcessor_1aae2d4efd51a19ff01d8383fa7f2b07fc)`(`[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * InEntitlementSubsystem,IOnlineSubsystem * InOSS,const IOnlinePurchasePtr & InPurchaseSubsystem,int32 InLocalUserNum,FUniqueNetIdWrapper InPlatformUserId,FTimerManager & InTimerManager,FRH_ProcessEntitlementCompletedDelegate InProcessorCompleteDelegate,FRH_GetPlatformRegionDelegate InGetPlatformRegionDelegate,std::optional< ERHAPI_Platform > InOverridePlatform)` <a id="classFRH__EntitlementProcessor_1aae2d4efd51a19ff01d8383fa7f2b07fc"></a>
+#### `public inline  `[`FRH_EntitlementProcessor`](#classFRH__EntitlementProcessor_1a5bdbfca161d2f8db0ec6c8ca53b31b2a)`(`[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * InEntitlementSubsystem,IOnlineSubsystem * InOSS,const IOnlinePurchasePtr & InPurchaseSubsystem,int32 InLocalUserNum,FUniqueNetIdWrapper InPlatformUserId,FTimerManager & InTimerManager,const FRH_ProcessEntitlementCompletedDelegate & InProcessorCompleteDelegate,const FRH_GetPlatformRegionDelegate & InGetPlatformRegionDelegate,TOptional< ERHAPI_Platform > InOverridePlatform)` <a id="classFRH__EntitlementProcessor_1a5bdbfca161d2f8db0ec6c8ca53b31b2a"></a>
 
 Main Constructor for Entitlement Processor, used internally by the entitlement process calls.
 
@@ -242,7 +283,7 @@ Delegate to fire when completed.
 Delegate that fires when getting the platforms region.
 
 <br>
-#### `protected ERHAPI_Platform `[`Platform`](#classFRH__EntitlementProcessor_1a5bc5a0e1c2832d0f8c9322ac37443e3d) <a id="classFRH__EntitlementProcessor_1a5bc5a0e1c2832d0f8c9322ac37443e3d"></a>
+#### `protected TOptional< ERHAPI_Platform > `[`Platform`](#classFRH__EntitlementProcessor_1a713cddd49151bb86cc50a30da4fba764) <a id="classFRH__EntitlementProcessor_1a713cddd49151bb86cc50a30da4fba764"></a>
 
 Platform the entitlements are for.
 

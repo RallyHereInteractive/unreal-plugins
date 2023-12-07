@@ -254,8 +254,8 @@ Templated helper class for asynchronously executing basic RallyHere API queries.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a33bd74aa281034cc2b325029d8f8f6ee)`(typename BaseType::Delegate InUpdateDelegate,FRH_GenericSuccessWithErrorBlock InCompleteDelegate,int32 InPriority)` | Constructor allowing for the specification of callback delegates.
-`public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1ad40d84357de03878293d14148bfdf104)`(typename BaseType::Delegate InUpdateDelegate,FRH_GenericSuccessBlock InCompleteDelegate,int32 InPriority)` | Constructor allowing for the specification of callback delegates.
+`public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessWithErrorBlock & InCompleteDelegate,int32 InPriority)` | Constructor allowing for the specification of callback delegates.
+`public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1af6c2dbc3abf92fc2972831a9b8edcd7f)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessBlock & InCompleteDelegate,int32 InPriority)` | Constructor allowing for the specification of callback delegates.
 `public inline virtual void `[`Start`](#classFRH__SimpleQueryHelper_1adf977f6c0dd9bd070de048fedcd12a5c)`(typename BaseType::API & API,const typename BaseType::Request & Request)` | Begins the task of asynchronously querying the API.
 `public inline void `[`OnQueryComplete`](#classFRH__SimpleQueryHelper_1aa31bbdb22654a1396b93497dcd2ae1e8)`(const typename BaseType::Response & Resp)` | Called once the asynchronous query has returned a response.
 `public inline virtual FString `[`GetName`](#classFRH__SimpleQueryHelper_1a6084b0d198a8ebd51d3ca5d8699fb7ec)`() const` | Gets the templated name for this object.
@@ -267,7 +267,7 @@ Templated helper class for asynchronously executing basic RallyHere API queries.
 
 #### Members
 
-#### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a33bd74aa281034cc2b325029d8f8f6ee)`(typename BaseType::Delegate InUpdateDelegate,FRH_GenericSuccessWithErrorBlock InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1a33bd74aa281034cc2b325029d8f8f6ee"></a>
+#### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessWithErrorBlock & InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1a6d5816682112de01ec950d228924d835"></a>
 
 Constructor allowing for the specification of callback delegates.
 
@@ -277,7 +277,7 @@ Constructor allowing for the specification of callback delegates.
 * `InCompleteDelegate` Generic completion delegate called regardless of success or failure
 
 <br>
-#### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1ad40d84357de03878293d14148bfdf104)`(typename BaseType::Delegate InUpdateDelegate,FRH_GenericSuccessBlock InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1ad40d84357de03878293d14148bfdf104"></a>
+#### `public inline  `[`FRH_SimpleQueryHelper`](#classFRH__SimpleQueryHelper_1af6c2dbc3abf92fc2972831a9b8edcd7f)`(const typename BaseType::Delegate & InUpdateDelegate,const FRH_GenericSuccessBlock & InCompleteDelegate,int32 InPriority)` <a id="classFRH__SimpleQueryHelper_1af6c2dbc3abf92fc2972831a9b8edcd7f"></a>
 
 Constructor allowing for the specification of callback delegates.
 
@@ -537,7 +537,7 @@ Common structure for identifying players on any known platform.
 `public inline FORCEINLINE bool `[`IsValid`](#structFRH__PlayerPlatformId_1a093b1a390755ba0891d56117e281d51e)`() const` | Returns whether or not this player platform ID has been filled with sensible data.
 `public inline bool `[`operator==`](#structFRH__PlayerPlatformId_1a1632682be2ed79e28b8b29c185377efa)`(const `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId)` & Other) const` | Returns whether or not this player platform ID exactly matches the given player platform ID.
 `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1a3e5948f39ab1702a82a8804dc458cc41)`()` | Default constructor that leaves the user ID empty and sets the platform type to "unknown".
-`public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1a2425955526aeeec87016817827646b42)`(FString InUserId,ERHAPI_Platform InPlatformType)` | Constructor for specifying user ID and platform type.
+`public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc)`(const FString & InUserId,ERHAPI_Platform InPlatformType)` | Constructor for specifying user ID and platform type.
 
 #### Members
 
@@ -566,7 +566,7 @@ Returns whether or not this player platform ID exactly matches the given player 
 Default constructor that leaves the user ID empty and sets the platform type to "unknown".
 
 <br>
-#### `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1a2425955526aeeec87016817827646b42)`(FString InUserId,ERHAPI_Platform InPlatformType)` <a id="structFRH__PlayerPlatformId_1a2425955526aeeec87016817827646b42"></a>
+#### `public inline  `[`FRH_PlayerPlatformId`](#structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc)`(const FString & InUserId,ERHAPI_Platform InPlatformType)` <a id="structFRH__PlayerPlatformId_1afa9903b50c919271e478b89f7a3c68dc"></a>
 
 Constructor for specifying user ID and platform type.
 

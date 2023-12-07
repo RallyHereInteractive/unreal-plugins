@@ -33,8 +33,8 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public void `[`TriggerHotfixProcessing`](#classURH__ConfigSubsystem_1a524f29aaf89857bd7bbb75ee8a4a47a6)`()` | If hotfix settings are set, this starts the process of applying them to unreal assets.
 `public void `[`StartAppSettingsRefreshTimer`](#classURH__ConfigSubsystem_1ac4025b9a4e7668d077902c15884f1f84)`()` | Starts the polling for App Settings.
 `public void `[`StopAppSettingsRefreshTimer`](#classURH__ConfigSubsystem_1a4d102b2b260b8931994a758fc0ea1854)`()` | Stops the polling for App Settings.
-`public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1ad4d64fbcf9c3bbd0dc8452d4e38f6a12)`(FRH_GenericSuccessWithErrorBlock Delegate)` | Requests the server time cache to be updated.
-`public inline FORCEINLINE void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a337367e2a0b271b9a7629e776fd8cde6)`(FRH_GenericSuccessBlock Delegate)` | 
+`public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server time cache to be updated.
+`public inline FORCEINLINE void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a40ee1a749620c20841273b8ace40d721)`(const FRH_GenericSuccessBlock & Delegate)` | 
 `public inline void `[`BLUEPRINT_RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a5c4610a7f6baf7d8b3d6b385b8318232)`(const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` | 
 `public inline const `[`FRH_ServerTimeCache`](Config.md#structFRH__ServerTimeCache)` & `[`GetServerTimeCache`](#classURH__ConfigSubsystem_1a15bf58f4b62f9d9f638c2ceae633c474)`() const` | Gets the server time cache object.
 `public inline bool `[`GetServerTime`](#classURH__ConfigSubsystem_1a946dd5b6f7306f98540241a22a02bb4a)`(FDateTime & Time) const` | Gets the approximate server time, if we have received one.
@@ -132,12 +132,12 @@ Starts the polling for App Settings.
 Stops the polling for App Settings.
 
 <br>
-#### `public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1ad4d64fbcf9c3bbd0dc8452d4e38f6a12)`(FRH_GenericSuccessWithErrorBlock Delegate)` <a id="classURH__ConfigSubsystem_1ad4d64fbcf9c3bbd0dc8452d4e38f6a12"></a>
+#### `public void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__ConfigSubsystem_1afeee33613fe6dfd83ad7b2a8b8a82397"></a>
 
 Requests the server time cache to be updated.
 
 <br>
-#### `public inline FORCEINLINE void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a337367e2a0b271b9a7629e776fd8cde6)`(FRH_GenericSuccessBlock Delegate)` <a id="classURH__ConfigSubsystem_1a337367e2a0b271b9a7629e776fd8cde6"></a>
+#### `public inline FORCEINLINE void `[`RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a40ee1a749620c20841273b8ace40d721)`(const FRH_GenericSuccessBlock & Delegate)` <a id="classURH__ConfigSubsystem_1a40ee1a749620c20841273b8ace40d721"></a>
 
 <br>
 #### `public inline void `[`BLUEPRINT_RefreshServerTimeCache`](#classURH__ConfigSubsystem_1a5c4610a7f6baf7d8b3d6b385b8318232)`(const FRH_GenericSuccessWithErrorDynamicDelegate & Delegate)` <a id="classURH__ConfigSubsystem_1a5c4610a7f6baf7d8b3d6b385b8318232"></a>

@@ -23,8 +23,10 @@ A player resource in a session.
 `public bool `[`PlayerId_IsSet`](#structFRHAPI__SessionPlayer_1a89bc0f5f785941fba984c07a1da3c628) | true if PlayerId_Optional has been set to a value
 `public FGuid `[`PlayerUuid`](#structFRHAPI__SessionPlayer_1a0c29462af5da0a57e9f9491b94a30cc3) | UUID for this player.
 `public ERHAPI_SessionPlayerStatus `[`Status`](#structFRHAPI__SessionPlayer_1a20c44a0cb2d627f0fb8417edd463b9bd) | Status of the player in the session.
-`public FGuid `[`InvitingPlayerUuid_Optional`](#structFRHAPI__SessionPlayer_1a900736c28c358788992534c2b32a38ea) | If the player is only a pending invite, this is the player that requested the invite.
+`public FGuid `[`InvitingPlayerUuid_Optional`](#structFRHAPI__SessionPlayer_1a900736c28c358788992534c2b32a38ea) | UUID of the player who sent this players invite, if any.
 `public bool `[`InvitingPlayerUuid_IsSet`](#structFRHAPI__SessionPlayer_1a274cd7e1313b2b25d69ca73933e76bcf) | true if InvitingPlayerUuid_Optional has been set to a value
+`public FString `[`SourceSessionId_Optional`](#structFRHAPI__SessionPlayer_1af3736f582d13c659574eeea281356dc6) | The UUID of the session that this player was invited from.
+`public bool `[`SourceSessionId_IsSet`](#structFRHAPI__SessionPlayer_1a8f524eeefe1e57d6bfaf7b10e6e119d1) | true if SourceSessionId_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionPlayer_1af093d0545b4ca98d7e916d8456c6d754) | player-defined custom data
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionPlayer_1a2fb78b14e916ce432c24c730d7895ab7) | true if CustomData_Optional has been set to a value
 `public FString `[`Version_Optional`](#structFRHAPI__SessionPlayer_1a8464dd89d0dbd289132aaa1e0f1edb22) | Product Client Version number. Used for compatibility checking with other players and instances.
@@ -63,6 +65,14 @@ A player resource in a session.
 `public inline const FGuid * `[`GetInvitingPlayerUuidOrNull`](#structFRHAPI__SessionPlayer_1a79e1d75785329cc7b9787fe811c77b1a)`() const` | Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1acc906044eca07ceb43ed52a1a5964642)`(FGuid NewValue)` | Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true.
 `public inline void `[`ClearInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a108279eb6926eafff034a612ab51fc69)`()` | Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false.
+`public inline FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1a58827da36bffbc5e3cb93591bce2cb0c)`()` | Gets the value of SourceSessionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1a1b024df8ab7ead95079f03326e85510f)`() const` | Gets the value of SourceSessionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1ad13a3ed971d11fac19977a613a105931)`(const FString & DefaultValue) const` | Gets the value of SourceSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1abcba87f13817fe0a6cacda017f742601)`(FString & OutValue) const` | Fills OutValue with the value of SourceSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetSourceSessionIdOrNull`](#structFRHAPI__SessionPlayer_1a6fbb24ae58218124424cf207a0bf47af)`()` | Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetSourceSessionIdOrNull`](#structFRHAPI__SessionPlayer_1a258603cdb48ada4a5688a0c788d677b3)`() const` | Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a5642e6719ed0719b0842b60eda7d0e09)`(FString NewValue)` | Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true.
+`public inline void `[`ClearSourceSessionId`](#structFRHAPI__SessionPlayer_1a94530a246d8f063c45837aef156267d5)`()` | Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayer_1a5eff9bc325194bc90dd734562a8c8b89)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayer_1ae6385310f74507afa449e27aeb309964)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayer_1acb1a7662127097cd97db6ee66bce6a45)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -136,12 +146,22 @@ Status of the player in the session.
 <br>
 #### `public FGuid `[`InvitingPlayerUuid_Optional`](#structFRHAPI__SessionPlayer_1a900736c28c358788992534c2b32a38ea) <a id="structFRHAPI__SessionPlayer_1a900736c28c358788992534c2b32a38ea"></a>
 
-If the player is only a pending invite, this is the player that requested the invite.
+UUID of the player who sent this players invite, if any.
 
 <br>
 #### `public bool `[`InvitingPlayerUuid_IsSet`](#structFRHAPI__SessionPlayer_1a274cd7e1313b2b25d69ca73933e76bcf) <a id="structFRHAPI__SessionPlayer_1a274cd7e1313b2b25d69ca73933e76bcf"></a>
 
 true if InvitingPlayerUuid_Optional has been set to a value
+
+<br>
+#### `public FString `[`SourceSessionId_Optional`](#structFRHAPI__SessionPlayer_1af3736f582d13c659574eeea281356dc6) <a id="structFRHAPI__SessionPlayer_1af3736f582d13c659574eeea281356dc6"></a>
+
+The UUID of the session that this player was invited from.
+
+<br>
+#### `public bool `[`SourceSessionId_IsSet`](#structFRHAPI__SessionPlayer_1a8f524eeefe1e57d6bfaf7b10e6e119d1) <a id="structFRHAPI__SessionPlayer_1a8f524eeefe1e57d6bfaf7b10e6e119d1"></a>
+
+true if SourceSessionId_Optional has been set to a value
 
 <br>
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionPlayer_1af093d0545b4ca98d7e916d8456c6d754) <a id="structFRHAPI__SessionPlayer_1af093d0545b4ca98d7e916d8456c6d754"></a>
@@ -337,6 +357,46 @@ Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_I
 #### `public inline void `[`ClearInvitingPlayerUuid`](#structFRHAPI__SessionPlayer_1a108279eb6926eafff034a612ab51fc69)`()` <a id="structFRHAPI__SessionPlayer_1a108279eb6926eafff034a612ab51fc69"></a>
 
 Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false.
+
+<br>
+#### `public inline FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1a58827da36bffbc5e3cb93591bce2cb0c)`()` <a id="structFRHAPI__SessionPlayer_1a58827da36bffbc5e3cb93591bce2cb0c"></a>
+
+Gets the value of SourceSessionId_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1a1b024df8ab7ead95079f03326e85510f)`() const` <a id="structFRHAPI__SessionPlayer_1a1b024df8ab7ead95079f03326e85510f"></a>
+
+Gets the value of SourceSessionId_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1ad13a3ed971d11fac19977a613a105931)`(const FString & DefaultValue) const` <a id="structFRHAPI__SessionPlayer_1ad13a3ed971d11fac19977a613a105931"></a>
+
+Gets the value of SourceSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetSourceSessionId`](#structFRHAPI__SessionPlayer_1abcba87f13817fe0a6cacda017f742601)`(FString & OutValue) const` <a id="structFRHAPI__SessionPlayer_1abcba87f13817fe0a6cacda017f742601"></a>
+
+Fills OutValue with the value of SourceSessionId_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline FString * `[`GetSourceSessionIdOrNull`](#structFRHAPI__SessionPlayer_1a6fbb24ae58218124424cf207a0bf47af)`()` <a id="structFRHAPI__SessionPlayer_1a6fbb24ae58218124424cf207a0bf47af"></a>
+
+Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const FString * `[`GetSourceSessionIdOrNull`](#structFRHAPI__SessionPlayer_1a258603cdb48ada4a5688a0c788d677b3)`() const` <a id="structFRHAPI__SessionPlayer_1a258603cdb48ada4a5688a0c788d677b3"></a>
+
+Returns a pointer to SourceSessionId_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetSourceSessionId`](#structFRHAPI__SessionPlayer_1a5642e6719ed0719b0842b60eda7d0e09)`(FString NewValue)` <a id="structFRHAPI__SessionPlayer_1a5642e6719ed0719b0842b60eda7d0e09"></a>
+
+Sets the value of SourceSessionId_Optional and also sets SourceSessionId_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearSourceSessionId`](#structFRHAPI__SessionPlayer_1a94530a246d8f063c45837aef156267d5)`()` <a id="structFRHAPI__SessionPlayer_1a94530a246d8f063c45837aef156267d5"></a>
+
+Clears the value of SourceSessionId_Optional and sets SourceSessionId_IsSet to false.
 
 <br>
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__SessionPlayer_1a5eff9bc325194bc90dd734562a8c8b89)`()` <a id="structFRHAPI__SessionPlayer_1a5eff9bc325194bc90dd734562a8c8b89"></a>

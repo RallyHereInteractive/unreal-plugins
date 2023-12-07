@@ -29,9 +29,9 @@ Ad Subsystem used for serving and responging to ad operrtunities for players.
 `protected TArray< `[`FRHAPI_AdOpportunity`](models/RHAPI_AdOpportunity.md#structFRHAPI__AdOpportunity)` > `[`Opportunities`](#classURH__AdSubsystem_1ab5b3a448252fa2e2f75eecc2aa365579) | Cached Ad Oppertunities.
 `protected FString `[`XHzAdApiToken`](#classURH__AdSubsystem_1a103b700c07d6184030fcbf664e551c30) | Ad API token used by the subsystem to make ad calls.
 `protected virtual void `[`OnUserChanged`](#classURH__AdSubsystem_1a0f08945f65d5a03be1a52f6660f49d86)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
-`protected virtual void `[`OnBeginNewSession`](#classURH__AdSubsystem_1a6ef3b034a69c31fb12797e1a741d3cb2)`(const RallyHereAPI::FResponse_BeginNewSession & Resp,RallyHereAPI::FDelegate_BeginNewSession Delegate)` | Handles the response to a Begin New Ad Session call.
-`protected virtual void `[`OnFindOpportunities`](#classURH__AdSubsystem_1ac5ec6fa0f2803fe0c2cb67eb0d30b280)`(const RallyHereAPI::FResponse_FindOpportunities & Resp,RallyHereAPI::FDelegate_FindOpportunities Delegate)` | Handles the response to a Find Ad Oppertunities call.
-`protected virtual void `[`OnUpdateOpportunityById`](#classURH__AdSubsystem_1a1bb77aefd2ceeff74643b19a0b78c2b4)`(const RallyHereAPI::FResponse_UpdateOpportunityById & Resp,RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)` | Handles the response to a Update Ad Oppertunities call.
+`protected virtual void `[`OnBeginNewSession`](#classURH__AdSubsystem_1aacd12640d1fa381ace8263a8ccd2d680)`(const RallyHereAPI::FResponse_BeginNewSession & Resp,const RallyHereAPI::FDelegate_BeginNewSession Delegate)` | Handles the response to a Begin New Ad Session call.
+`protected virtual void `[`OnFindOpportunities`](#classURH__AdSubsystem_1a7316e20d30a52695a728f73103f0d7f9)`(const RallyHereAPI::FResponse_FindOpportunities & Resp,const RallyHereAPI::FDelegate_FindOpportunities Delegate)` | Handles the response to a Find Ad Oppertunities call.
+`protected virtual void `[`OnUpdateOpportunityById`](#classURH__AdSubsystem_1a46dbf8e114f6f7a5f166811fbd05a064)`(const RallyHereAPI::FResponse_UpdateOpportunityById & Resp,const RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)` | Handles the response to a Update Ad Oppertunities call.
 
 #### Members
 
@@ -115,7 +115,7 @@ Ad API token used by the subsystem to make ad calls.
 Callback that occurs whenever the local player this subsystem is associated with changes.
 
 <br>
-#### `protected virtual void `[`OnBeginNewSession`](#classURH__AdSubsystem_1a6ef3b034a69c31fb12797e1a741d3cb2)`(const RallyHereAPI::FResponse_BeginNewSession & Resp,RallyHereAPI::FDelegate_BeginNewSession Delegate)` <a id="classURH__AdSubsystem_1a6ef3b034a69c31fb12797e1a741d3cb2"></a>
+#### `protected virtual void `[`OnBeginNewSession`](#classURH__AdSubsystem_1aacd12640d1fa381ace8263a8ccd2d680)`(const RallyHereAPI::FResponse_BeginNewSession & Resp,const RallyHereAPI::FDelegate_BeginNewSession Delegate)` <a id="classURH__AdSubsystem_1aacd12640d1fa381ace8263a8ccd2d680"></a>
 
 Handles the response to a Begin New Ad Session call.
 
@@ -125,7 +125,7 @@ Handles the response to a Begin New Ad Session call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected virtual void `[`OnFindOpportunities`](#classURH__AdSubsystem_1ac5ec6fa0f2803fe0c2cb67eb0d30b280)`(const RallyHereAPI::FResponse_FindOpportunities & Resp,RallyHereAPI::FDelegate_FindOpportunities Delegate)` <a id="classURH__AdSubsystem_1ac5ec6fa0f2803fe0c2cb67eb0d30b280"></a>
+#### `protected virtual void `[`OnFindOpportunities`](#classURH__AdSubsystem_1a7316e20d30a52695a728f73103f0d7f9)`(const RallyHereAPI::FResponse_FindOpportunities & Resp,const RallyHereAPI::FDelegate_FindOpportunities Delegate)` <a id="classURH__AdSubsystem_1a7316e20d30a52695a728f73103f0d7f9"></a>
 
 Handles the response to a Find Ad Oppertunities call.
 
@@ -135,7 +135,7 @@ Handles the response to a Find Ad Oppertunities call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected virtual void `[`OnUpdateOpportunityById`](#classURH__AdSubsystem_1a1bb77aefd2ceeff74643b19a0b78c2b4)`(const RallyHereAPI::FResponse_UpdateOpportunityById & Resp,RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)` <a id="classURH__AdSubsystem_1a1bb77aefd2ceeff74643b19a0b78c2b4"></a>
+#### `protected virtual void `[`OnUpdateOpportunityById`](#classURH__AdSubsystem_1a46dbf8e114f6f7a5f166811fbd05a064)`(const RallyHereAPI::FResponse_UpdateOpportunityById & Resp,const RallyHereAPI::FDelegate_UpdateOpportunityById Delegate)` <a id="classURH__AdSubsystem_1a46dbf8e114f6f7a5f166811fbd05a064"></a>
 
 Handles the response to a Update Ad Oppertunities call.
 

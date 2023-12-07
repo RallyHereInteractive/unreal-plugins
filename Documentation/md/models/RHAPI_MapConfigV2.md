@@ -20,7 +20,7 @@ Configuration about a specific map for an instance to load into.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`MapId`](#structFRHAPI__MapConfigV2_1a5963a073f9b82dfcf58467aa017771d2) | ID to uniquely identify this map game.
-`public FString `[`MapName`](#structFRHAPI__MapConfigV2_1a9f721ff64d45f27297e71c13228a80ea) | Name of the map the instance should load into.
+`public FString `[`Name`](#structFRHAPI__MapConfigV2_1adfbd8f910405962d9b39d4c4217fa768) | Name of the map the instance should load into.
 `public FString `[`Mode_Optional`](#structFRHAPI__MapConfigV2_1a36dd21033a37c427edc75373fee08257) | Game mode for the instance to spawn in.
 `public bool `[`Mode_IsSet`](#structFRHAPI__MapConfigV2_1a098823546046b9001739b205592f4036) | true if Mode_Optional has been set to a value
 `public float `[`MapWeight`](#structFRHAPI__MapConfigV2_1a0ffa276f20f6156cd2269302bf150719) | Chance that this map will get selected in a rotation list.
@@ -31,9 +31,9 @@ Configuration about a specific map for an instance to load into.
 `public inline FString & `[`GetMapId`](#structFRHAPI__MapConfigV2_1aa60296fd483bfcaca29d9cf95445ada3)`()` | Gets the value of MapId.
 `public inline const FString & `[`GetMapId`](#structFRHAPI__MapConfigV2_1a9ad900caf5482b0580fb1efafd693a3d)`() const` | Gets the value of MapId.
 `public inline void `[`SetMapId`](#structFRHAPI__MapConfigV2_1a8ea16d1956764643215324f48db75683)`(FString NewValue)` | Sets the value of MapId.
-`public inline FString & `[`GetMapName`](#structFRHAPI__MapConfigV2_1acf13a30e8dfbcee91e9d727a1362cb1d)`()` | Gets the value of MapName.
-`public inline const FString & `[`GetMapName`](#structFRHAPI__MapConfigV2_1a4cea272276f210af5239c7f793f4567e)`() const` | Gets the value of MapName.
-`public inline void `[`SetMapName`](#structFRHAPI__MapConfigV2_1a05a7d1ac074562fa0d6b2dc1531c97aa)`(FString NewValue)` | Sets the value of MapName.
+`public inline FString & `[`GetName`](#structFRHAPI__MapConfigV2_1a3f1f5be978ca95d415ad05c86d64ec9b)`()` | Gets the value of Name.
+`public inline const FString & `[`GetName`](#structFRHAPI__MapConfigV2_1a411edd637c8a3428e426f1843061b69a)`() const` | Gets the value of Name.
+`public inline void `[`SetName`](#structFRHAPI__MapConfigV2_1abb1ce838f3f9b44f4e99fc91a23fef07)`(FString NewValue)` | Sets the value of Name.
 `public inline FString & `[`GetMode`](#structFRHAPI__MapConfigV2_1ae67b15a2989c17859855ddaaae913b78)`()` | Gets the value of Mode_Optional, regardless of it having been set.
 `public inline const FString & `[`GetMode`](#structFRHAPI__MapConfigV2_1af7e2f8eb21b1ce60ab151e31ade56176)`() const` | Gets the value of Mode_Optional, regardless of it having been set.
 `public inline const FString & `[`GetMode`](#structFRHAPI__MapConfigV2_1a3180fd0cc52d054f73a6947d7096105a)`(const FString & DefaultValue) const` | Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -61,7 +61,7 @@ Configuration about a specific map for an instance to load into.
 ID to uniquely identify this map game.
 
 <br>
-#### `public FString `[`MapName`](#structFRHAPI__MapConfigV2_1a9f721ff64d45f27297e71c13228a80ea) <a id="structFRHAPI__MapConfigV2_1a9f721ff64d45f27297e71c13228a80ea"></a>
+#### `public FString `[`Name`](#structFRHAPI__MapConfigV2_1adfbd8f910405962d9b39d4c4217fa768) <a id="structFRHAPI__MapConfigV2_1adfbd8f910405962d9b39d4c4217fa768"></a>
 
 Name of the map the instance should load into.
 
@@ -125,19 +125,19 @@ Gets the value of MapId.
 Sets the value of MapId.
 
 <br>
-#### `public inline FString & `[`GetMapName`](#structFRHAPI__MapConfigV2_1acf13a30e8dfbcee91e9d727a1362cb1d)`()` <a id="structFRHAPI__MapConfigV2_1acf13a30e8dfbcee91e9d727a1362cb1d"></a>
+#### `public inline FString & `[`GetName`](#structFRHAPI__MapConfigV2_1a3f1f5be978ca95d415ad05c86d64ec9b)`()` <a id="structFRHAPI__MapConfigV2_1a3f1f5be978ca95d415ad05c86d64ec9b"></a>
 
-Gets the value of MapName.
-
-<br>
-#### `public inline const FString & `[`GetMapName`](#structFRHAPI__MapConfigV2_1a4cea272276f210af5239c7f793f4567e)`() const` <a id="structFRHAPI__MapConfigV2_1a4cea272276f210af5239c7f793f4567e"></a>
-
-Gets the value of MapName.
+Gets the value of Name.
 
 <br>
-#### `public inline void `[`SetMapName`](#structFRHAPI__MapConfigV2_1a05a7d1ac074562fa0d6b2dc1531c97aa)`(FString NewValue)` <a id="structFRHAPI__MapConfigV2_1a05a7d1ac074562fa0d6b2dc1531c97aa"></a>
+#### `public inline const FString & `[`GetName`](#structFRHAPI__MapConfigV2_1a411edd637c8a3428e426f1843061b69a)`() const` <a id="structFRHAPI__MapConfigV2_1a411edd637c8a3428e426f1843061b69a"></a>
 
-Sets the value of MapName.
+Gets the value of Name.
+
+<br>
+#### `public inline void `[`SetName`](#structFRHAPI__MapConfigV2_1abb1ce838f3f9b44f4e99fc91a23fef07)`(FString NewValue)` <a id="structFRHAPI__MapConfigV2_1abb1ce838f3f9b44f4e99fc91a23fef07"></a>
+
+Sets the value of Name.
 
 <br>
 #### `public inline FString & `[`GetMode`](#structFRHAPI__MapConfigV2_1ae67b15a2989c17859855ddaaae913b78)`()` <a id="structFRHAPI__MapConfigV2_1ae67b15a2989c17859855ddaaae913b78"></a>

@@ -18,7 +18,8 @@ struct FRHAPI_LoginRequestV1
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public ERHAPI_GrantType `[`GrantType`](#structFRHAPI__LoginRequestV1_1a5652f06d62aeb59dbb1b27481aef0f75) | The grant type to use for authentication.
-`public FString `[`PortalAccessToken`](#structFRHAPI__LoginRequestV1_1a5b413cf925dbf95cdff9494e2d80931a) | Token or secret used to authenticate the provided grant type.
+`public FString `[`PortalAccessToken_Optional`](#structFRHAPI__LoginRequestV1_1a4a5fc4127eb3b9d333dd8ee017a6cac2) | Token or secret used to authenticate the provided grant type.
+`public bool `[`PortalAccessToken_IsSet`](#structFRHAPI__LoginRequestV1_1aad18b9609d6bd7138a7c5c69fd15f2f7) | true if PortalAccessToken_Optional has been set to a value
 `public FString `[`PortalDisplayName_Optional`](#structFRHAPI__LoginRequestV1_1a1c037515a08c315751b058d6ddf86072) | Some grant types support client-provided names.
 `public bool `[`PortalDisplayName_IsSet`](#structFRHAPI__LoginRequestV1_1ac8e03fda49feff561c4881f61445dd2a) | true if PortalDisplayName_Optional has been set to a value
 `public FString `[`PortalParentAccessToken_Optional`](#structFRHAPI__LoginRequestV1_1a32ed174ff27dd780d9d043c8568dc23d) | Some grant types have 2 tier authentication and require a second token/secret.
@@ -38,9 +39,16 @@ struct FRHAPI_LoginRequestV1
 `public inline ERHAPI_GrantType & `[`GetGrantType`](#structFRHAPI__LoginRequestV1_1aba328ef0495c5e7f8de2dad1725c4e67)`()` | Gets the value of GrantType.
 `public inline const ERHAPI_GrantType & `[`GetGrantType`](#structFRHAPI__LoginRequestV1_1a154a10b14c2931d90684345db5225116)`() const` | Gets the value of GrantType.
 `public inline void `[`SetGrantType`](#structFRHAPI__LoginRequestV1_1affd35ca62a54def818ef0f2f7f919ead)`(ERHAPI_GrantType NewValue)` | Sets the value of GrantType.
-`public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6)`()` | Gets the value of PortalAccessToken.
-`public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1aa4121210b97dbe16c7eb87056eabfff7)`() const` | Gets the value of PortalAccessToken.
-`public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae)`(FString NewValue)` | Sets the value of PortalAccessToken.
+`public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6)`()` | Gets the value of PortalAccessToken_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1aa4121210b97dbe16c7eb87056eabfff7)`() const` | Gets the value of PortalAccessToken_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1abfbf4f8290626aa6741fcb1ebd9cde0f)`(const FString & DefaultValue) const` | Gets the value of PortalAccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a279c5f65ccb418628f06bf6c99e215ce)`(FString & OutValue) const` | Fills OutValue with the value of PortalAccessToken_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPortalAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1ab198a6684bcdcbb6fb0988dcef3e0c79)`()` | Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPortalAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1aa0c2dcb877fa366ab1b304e564c5fd24)`() const` | Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae)`(FString NewValue)` | Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true.
+`public inline void `[`ClearPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a6f5f63b9a84c1480633c04d024b1f359)`()` | Clears the value of PortalAccessToken_Optional and sets PortalAccessToken_IsSet to false.
+`public inline bool `[`IsPortalAccessTokenDefaultValue`](#structFRHAPI__LoginRequestV1_1abc9e48df88f10f0beb57b98cade49f29)`() const` | Returns true if PortalAccessToken_Optional is set and matches the default value.
+`public inline void `[`SetPortalAccessTokenToDefault`](#structFRHAPI__LoginRequestV1_1af668f553eb393e4124e0f3ebe0a261c0)`()` | Sets the value of PortalAccessToken_Optional to its default and also sets PortalAccessToken_IsSet to true.
 `public inline FString & `[`GetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1aa7c7b24f58418ffe09990898041ce416)`()` | Gets the value of PortalDisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1a8f45c6004925b665f43dafbb13072809)`() const` | Gets the value of PortalDisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1a37e7a6121e17557a4a9a377ec30c48dd)`(const FString & DefaultValue) const` | Gets the value of PortalDisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -119,9 +127,14 @@ struct FRHAPI_LoginRequestV1
 The grant type to use for authentication.
 
 <br>
-#### `public FString `[`PortalAccessToken`](#structFRHAPI__LoginRequestV1_1a5b413cf925dbf95cdff9494e2d80931a) <a id="structFRHAPI__LoginRequestV1_1a5b413cf925dbf95cdff9494e2d80931a"></a>
+#### `public FString `[`PortalAccessToken_Optional`](#structFRHAPI__LoginRequestV1_1a4a5fc4127eb3b9d333dd8ee017a6cac2) <a id="structFRHAPI__LoginRequestV1_1a4a5fc4127eb3b9d333dd8ee017a6cac2"></a>
 
 Token or secret used to authenticate the provided grant type.
+
+<br>
+#### `public bool `[`PortalAccessToken_IsSet`](#structFRHAPI__LoginRequestV1_1aad18b9609d6bd7138a7c5c69fd15f2f7) <a id="structFRHAPI__LoginRequestV1_1aad18b9609d6bd7138a7c5c69fd15f2f7"></a>
+
+true if PortalAccessToken_Optional has been set to a value
 
 <br>
 #### `public FString `[`PortalDisplayName_Optional`](#structFRHAPI__LoginRequestV1_1a1c037515a08c315751b058d6ddf86072) <a id="structFRHAPI__LoginRequestV1_1a1c037515a08c315751b058d6ddf86072"></a>
@@ -230,17 +243,52 @@ Sets the value of GrantType.
 <br>
 #### `public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6)`()` <a id="structFRHAPI__LoginRequestV1_1a500cfdd5b03970a615295709ef4f71c6"></a>
 
-Gets the value of PortalAccessToken.
+Gets the value of PortalAccessToken_Optional, regardless of it having been set.
 
 <br>
 #### `public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1aa4121210b97dbe16c7eb87056eabfff7)`() const` <a id="structFRHAPI__LoginRequestV1_1aa4121210b97dbe16c7eb87056eabfff7"></a>
 
-Gets the value of PortalAccessToken.
+Gets the value of PortalAccessToken_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1abfbf4f8290626aa6741fcb1ebd9cde0f)`(const FString & DefaultValue) const` <a id="structFRHAPI__LoginRequestV1_1abfbf4f8290626aa6741fcb1ebd9cde0f"></a>
+
+Gets the value of PortalAccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a279c5f65ccb418628f06bf6c99e215ce)`(FString & OutValue) const` <a id="structFRHAPI__LoginRequestV1_1a279c5f65ccb418628f06bf6c99e215ce"></a>
+
+Fills OutValue with the value of PortalAccessToken_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline FString * `[`GetPortalAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1ab198a6684bcdcbb6fb0988dcef3e0c79)`()` <a id="structFRHAPI__LoginRequestV1_1ab198a6684bcdcbb6fb0988dcef3e0c79"></a>
+
+Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const FString * `[`GetPortalAccessTokenOrNull`](#structFRHAPI__LoginRequestV1_1aa0c2dcb877fa366ab1b304e564c5fd24)`() const` <a id="structFRHAPI__LoginRequestV1_1aa0c2dcb877fa366ab1b304e564c5fd24"></a>
+
+Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
 #### `public inline void `[`SetPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae)`(FString NewValue)` <a id="structFRHAPI__LoginRequestV1_1a4fcbb03230869519b4dc4d6769d6d2ae"></a>
 
-Sets the value of PortalAccessToken.
+Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearPortalAccessToken`](#structFRHAPI__LoginRequestV1_1a6f5f63b9a84c1480633c04d024b1f359)`()` <a id="structFRHAPI__LoginRequestV1_1a6f5f63b9a84c1480633c04d024b1f359"></a>
+
+Clears the value of PortalAccessToken_Optional and sets PortalAccessToken_IsSet to false.
+
+<br>
+#### `public inline bool `[`IsPortalAccessTokenDefaultValue`](#structFRHAPI__LoginRequestV1_1abc9e48df88f10f0beb57b98cade49f29)`() const` <a id="structFRHAPI__LoginRequestV1_1abc9e48df88f10f0beb57b98cade49f29"></a>
+
+Returns true if PortalAccessToken_Optional is set and matches the default value.
+
+<br>
+#### `public inline void `[`SetPortalAccessTokenToDefault`](#structFRHAPI__LoginRequestV1_1af668f553eb393e4124e0f3ebe0a261c0)`()` <a id="structFRHAPI__LoginRequestV1_1af668f553eb393e4124e0f3ebe0a261c0"></a>
+
+Sets the value of PortalAccessToken_Optional to its default and also sets PortalAccessToken_IsSet to true.
 
 <br>
 #### `public inline FString & `[`GetPortalDisplayName`](#structFRHAPI__LoginRequestV1_1aa7c7b24f58418ffe09990898041ce416)`()` <a id="structFRHAPI__LoginRequestV1_1aa7c7b24f58418ffe09990898041ce416"></a>

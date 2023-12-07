@@ -19,15 +19,15 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FGuid `[`TemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a83b0b9b6370236f8a16d72a44acad88e) | ID for this set of potential matchmaking templates.
+`public FGuid `[`MatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab6ac4a6cc076fa58e61f71f0b74c6da2) | ID for this set of potential matchmaking templates.
 `public TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > `[`TemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a5f061f6b1728e5e91acbc50c8d0db1cb) | List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template.
 `public TSet< int32 > `[`RequiredItemIds_Optional`](#structFRHAPI__MatchMakingTemplateGroupV2_1a679dffab35167122874604eb826703bd) | Set of all the item ids that are required to validate every rule contained in this template group.
 `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1acf8e308da6fcec42032dd998a15284c3) | true if RequiredItemIds_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa82d7762c65e34e906c1fa2af0a15b80)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae72915da0979e90493d2d2f47c565c9d)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1af78a90a1f59c8c2b72b13dbc9f048017)`()` | Gets the value of TemplateGroupId.
-`public inline const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9dd07f13c3c393e77444ce11e2f59ee9)`() const` | Gets the value of TemplateGroupId.
-`public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac3bad49ee46745d1555f7e2cbc62d375)`(FGuid NewValue)` | Sets the value of TemplateGroupId.
+`public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a01e8f3d3b4d2a717e193aed171c0d40c)`()` | Gets the value of MatchMakingTemplateGroupId.
+`public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa0748064b7da8fe6a9be9e0d7c02c438)`() const` | Gets the value of MatchMakingTemplateGroupId.
+`public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c38f3b83697063e3fe3a93307e26543)`(FGuid NewValue)` | Sets the value of MatchMakingTemplateGroupId.
 `public inline TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae7ac396d71d72df8dfd497619e5b5e16)`()` | Gets the value of TemplateOptions.
 `public inline const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78820cdf045398fec485c4ac12d50316)`() const` | Gets the value of TemplateOptions.
 `public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1acdfe22412b41577fa5e2761d489693fd)`(TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > NewValue)` | Sets the value of TemplateOptions.
@@ -42,7 +42,7 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 
 #### Members
 
-#### `public FGuid `[`TemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a83b0b9b6370236f8a16d72a44acad88e) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a83b0b9b6370236f8a16d72a44acad88e"></a>
+#### `public FGuid `[`MatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab6ac4a6cc076fa58e61f71f0b74c6da2) <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ab6ac4a6cc076fa58e61f71f0b74c6da2"></a>
 
 ID for this set of potential matchmaking templates.
 
@@ -81,19 +81,19 @@ Writes the data from this object into the specified JSON Writer stream.
 * `Writer` JSON Writer stream to push .
 
 <br>
-#### `public inline FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1af78a90a1f59c8c2b72b13dbc9f048017)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1af78a90a1f59c8c2b72b13dbc9f048017"></a>
+#### `public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a01e8f3d3b4d2a717e193aed171c0d40c)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a01e8f3d3b4d2a717e193aed171c0d40c"></a>
 
-Gets the value of TemplateGroupId.
-
-<br>
-#### `public inline const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9dd07f13c3c393e77444ce11e2f59ee9)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a9dd07f13c3c393e77444ce11e2f59ee9"></a>
-
-Gets the value of TemplateGroupId.
+Gets the value of MatchMakingTemplateGroupId.
 
 <br>
-#### `public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac3bad49ee46745d1555f7e2cbc62d375)`(FGuid NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ac3bad49ee46745d1555f7e2cbc62d375"></a>
+#### `public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa0748064b7da8fe6a9be9e0d7c02c438)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa0748064b7da8fe6a9be9e0d7c02c438"></a>
 
-Sets the value of TemplateGroupId.
+Gets the value of MatchMakingTemplateGroupId.
+
+<br>
+#### `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c38f3b83697063e3fe3a93307e26543)`(FGuid NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1c38f3b83697063e3fe3a93307e26543"></a>
+
+Sets the value of MatchMakingTemplateGroupId.
 
 <br>
 #### `public inline TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae7ac396d71d72df8dfd497619e5b5e16)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ae7ac396d71d72df8dfd497619e5b5e16"></a>

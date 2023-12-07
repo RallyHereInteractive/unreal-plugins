@@ -41,7 +41,7 @@ Player Presence class used to store player presence data.
 `public template<>`  <br/>`inline void `[`Update`](#classURH__PlayerPresence_1ada7244129a60c38caea63a604c65d21c)`(const T & Other)` | Stores the response data from an API presence request.
 `public inline void `[`MarkUpdated`](#classURH__PlayerPresence_1ada0aeb79948e6a326c4e0730722012c8)`()` | Sets the last updated time to now.
 `public inline void `[`MarkDirty`](#classURH__PlayerPresence_1a0c5758952db9d0daa9840032fb010b22)`()` | Clears the last updated time to force an update.
-`public inline void `[`RequestUpdate`](#classURH__PlayerPresence_1a58338d4ee2ff98d66ca38ffda34b5674)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceBlock Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
+`public inline void `[`RequestUpdate`](#classURH__PlayerPresence_1a7c2429b932c790fc766b1dd081a3d1eb)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceBlock & Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
 `public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerPresence_1a2c3c8c9dfa0005d87b61fb75f57ec7f9)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceDynamicDelegate & Delegate)` | 
 `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerPresence_1aa423b5dc5ad1bb56fbba410f634a955b)`() const` | Gets the PlayerInfo that owns this Player Presence.
 `public void `[`CheckPollStatus`](#classURH__PlayerPresence_1af4e990217a6d2e06b4ad6ee7f4188229)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
@@ -139,7 +139,7 @@ Sets the last updated time to now.
 Clears the last updated time to force an update.
 
 <br>
-#### `public inline void `[`RequestUpdate`](#classURH__PlayerPresence_1a58338d4ee2ff98d66ca38ffda34b5674)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceBlock Delegate)` <a id="classURH__PlayerPresence_1a58338d4ee2ff98d66ca38ffda34b5674"></a>
+#### `public inline void `[`RequestUpdate`](#classURH__PlayerPresence_1a7c2429b932c790fc766b1dd081a3d1eb)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceBlock & Delegate)` <a id="classURH__PlayerPresence_1a7c2429b932c790fc766b1dd081a3d1eb"></a>
 
 Enqueues an update request for the players presence information from the RallyHere API.
 
@@ -221,7 +221,7 @@ Player Sessions class used to store player session membership information.
 `public inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` | Stores the response data from an API presence request.
 `public inline void `[`MarkUpdated`](#classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da)`()` | Sets the last updated time to now.
 `public inline void `[`MarkDirty`](#classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b)`()` | Clears the last updated time to force an update.
-`public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1afd99cdd505a5f2135568374b0c70306d)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
+`public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1a1e6bb38840955f354f932da78ef351cb)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock & Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
 `public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsDynamicDelegate & Delegate)` | 
 `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9)`() const` | Gets the PlayerInfo that owns this Player Presence.
 `public void `[`CheckPollStatus`](#classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
@@ -289,7 +289,7 @@ Sets the last updated time to now.
 Clears the last updated time to force an update.
 
 <br>
-#### `public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1afd99cdd505a5f2135568374b0c70306d)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock Delegate)` <a id="classURH__PlayerSessions_1afd99cdd505a5f2135568374b0c70306d"></a>
+#### `public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1a1e6bb38840955f354f932da78ef351cb)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock & Delegate)` <a id="classURH__PlayerSessions_1a1e6bb38840955f354f932da78ef351cb"></a>
 
 Enqueues an update request for the players presence information from the RallyHere API.
 
@@ -439,24 +439,24 @@ Stores and fetchs all the information about a given player.
 `public inline `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`GetPlayerNotifications`](#classURH__PlayerInfo_1a6f1e1f6ef4d38ed87c2c2b920a5cd891)`() const` | Gets the players Notification Subsystem.
 `public void `[`StartStreamingNotifications`](#classURH__PlayerInfo_1a15c2a3c44c22cfb7461609fa5e5d45cc)`()` | Request to start streaming notifications for this player.
 `public void `[`StopStreamingNotifications`](#classURH__PlayerInfo_1a17cff21d266da2c72a4f200e316d45b6)`(bool bClearCache)` | Requests to stop streaming notifications.
-`public inline const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a73f3c2b87f3013f46d0d1a8239d18f3e)`() const` | Gets all the players store settings data.
-`public inline const TMap< int32, `[`FRHAPI_PlayerRankResponse`](models/RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1aa3655d28ce3855833da96e1b3a7d5491)`() const` | Gets all the players stored ranking data.
+`public inline const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a3eb1adffb0e0f4f503241ae5848818ce)`() const` | Gets all the players store settings data.
+`public inline const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1aa79ba1c1bcb06d02478ec145999b06a3)`() const` | Gets all the players stored ranking data.
 `public `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__PlayerInfo_1a0f038ae188d71729b19771f401bee34a)`() const` | Gets the players Info Subsystem that the Player Info is on.
 `public void `[`InitializeForPlayer`](#classURH__PlayerInfo_1a38608b8b57751e9db1c1dcfb818d0506)`(const FGuid & PlayerUuid)` | Initialized the player info from a given Player Unique Id.
-`public void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a0f65a3d2b00d1372995c0c44b1a85f1b)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Gets the last known display name for the player, will make required API calls to retrieve the information if needed.
+`public void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a748ec2c5cc1c2aa3f3a91d906c8ba04b)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Gets the last known display name for the player, will make required API calls to retrieve the information if needed.
 `public inline void `[`BLUEPRINT_GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a2a5f9d31fb4c1096e06d68569d617257)`(const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem,const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameDynamicDelegate & Delegate)` | 
 `public bool `[`GetLastKnownDisplayName`](#classURH__PlayerInfo_1a1013650527f7be680adc07896e49d555)`(FString & OutDisplayName,ERHAPI_Platform PreferredPlatformType) const` | Gets the last known display name for the player.
 `public inline bool `[`BLUEPRINT_GetLastKnownDisplayName`](#classURH__PlayerInfo_1a4b096747849fe22e2c7934fb3212bb85)`(ERHAPI_Platform PreferredPlatformType,FString & OutDisplayName) const` | 
-`public void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1ad28653f3570b4d39ced6c98a307b615e)`(const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlatformsBlock Delegate)` | Gets the players linked platforms via API call.
+`public void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1ac5a0056e3adcab2d8a5c65ea7d5e43ca)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsBlock & Delegate)` | Gets the players linked platforms via API call.
 `public inline void `[`BLUEPRINT_GetLinkedPlatformInfo`](#classURH__PlayerInfo_1a17dd835ef46a8418e6cf760eb076d01d)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsDynamicDelegate & Delegate)` | 
-`public void `[`GetPlayerSettings`](#classURH__PlayerInfo_1ab85a2c934ed797040400e40f43f5f7e4)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlayerSettingsBlock Delegate)` | Gets the players settings information for a given type.
+`public void `[`GetPlayerSettings`](#classURH__PlayerInfo_1aa9d33400032ef41067fbc52f72f092c2)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` | Gets the players settings information for a given type.
 `public inline void `[`BLUEPRINT_GetPlayerSettings`](#classURH__PlayerInfo_1a76e2f0a5ded932bc524553a9a2d43976)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate & Delegate)` | 
-`public void `[`SetPlayerSettings`](#classURH__PlayerInfo_1abb513c9fc4d64feff8070d30793157a9)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` & SettingsData,FRH_PlayerInfoSetPlayerSettingsBlock Delegate)` | Sets the players settings information for a given type.
+`public void `[`SetPlayerSettings`](#classURH__PlayerInfo_1a74ee0e82383414759503cc731086ab54)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` & SettingsData,const FRH_PlayerInfoSetPlayerSettingsBlock & Delegate)` | Sets the players settings information for a given type.
 `public inline void `[`BLUEPRINT_SetPlayerSettings`](#classURH__PlayerInfo_1aebf4859d56d3fc772711fd1c8714d4f0)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData,const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate & Delegate)` | 
-`public void `[`GetPlayerRankings`](#classURH__PlayerInfo_1a3fa7cb129666bafe27a2181bd2a516ba)`(const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Gets the players ranking information for a given type.
+`public void `[`GetPlayerRankings`](#classURH__PlayerInfo_1a7ff2423c28633ab7f4f62039aba32c8d)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Gets the players ranking information for a given type.
 `public inline void `[`BLUEPRINT_GetPlayerRankings`](#classURH__PlayerInfo_1adbfa47a9d0df7dec931ce18fa7b4f8b4)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` | 
-`public void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1a491ffa1dfb6f946de2603f5bc35bfbc5)`(int32 RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Sets the players settings information for a given type.
-`public inline void `[`BLUEPRINT_UpdatePlayerRanking`](#classURH__PlayerInfo_1abb8b8d604a9e5ad5b32f1dee62dd2dad)`(int32 RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` | 
+`public void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1a504494976ef115b48b620bcbfc914d17)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` | Sets the players settings information for a given type.
+`public inline void `[`BLUEPRINT_UpdatePlayerRanking`](#classURH__PlayerInfo_1a60648275bd880b33cfb78b403e0832ac)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` | 
 `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInfo_1a38aa7a072a97be36bc623a9cda702cdf)`() const` | Gets the local Auth Context for making API calls.
 `public ERHAPI_Platform `[`GetLoggedInPlatform`](#classURH__PlayerInfo_1ad8fc7aea229a59d52a1c9e3491b8d168)`() const` | Gets the local users logged in platform type.
 `protected FGuid `[`RHPlayerUuid`](#classURH__PlayerInfo_1abd6b1bad2e1044b59af44d04f822cef1) | The Unique Player Id for the player.
@@ -468,24 +468,24 @@ Stores and fetchs all the information about a given player.
 `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) | The players Sessions Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
 `protected `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`PlayerNotifications`](#classURH__PlayerInfo_1ac1eb1a25b4d89a7f7c75cbb6d4c9e4a8) | The Players Inventory Subsystem.
-`protected TMap< int32, `[`FRHAPI_PlayerRankResponse`](models/RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a9bafd2e8ef5a501cb7ac975b8b80481e) | List of the player's rankings.
+`protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) | List of the player's rankings.
 `protected FDateTime `[`LastRequestPlatforms`](#classURH__PlayerInfo_1aa5e1b18e6f2841b2f1e32914d8552756) | Tracks the last time the players linked platforms were requested for checking if the data is stale.
 `protected TMap< FString, FDateTime > `[`LastRequestSettingsByTypeId`](#classURH__PlayerInfo_1aaa55e58e83b940311b96f7869bea9bba) | Tracks the last time each settings type was request for checking if the data is stale.
 `protected FDateTime `[`LastRequestRankings`](#classURH__PlayerInfo_1a5e9c3bbbc44273cfa7286f52c457d435) | Tracks the last time the player rankings were requested for checking if the data is stale.
 `protected virtual void `[`OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse`](#classURH__PlayerInfo_1a49e19ae4082f15e22b2062c1cb78deb0)`(bool bSuccess,const TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > & Platforms,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` | Handles the response to a Get Linked Platforms For Last Known Display Name call.
 `protected virtual void `[`OnDisplayNameSanitized`](#classURH__PlayerInfo_1afe5a34e86382c3f78767f2d72e3819fd)`(bool bSuccess,const FString & SanitizedMessage,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate)` | Handles the response to sanitizing the players display name.
-`protected virtual void `[`OnGetPlayerLinkedPlatformsResponse`](#classURH__PlayerInfo_1a1a35d5ae7a49eaa78faa474c72acbb2c)`(const GetPlatforms::Response & Response,FRH_PlayerInfoGetPlatformsBlock Delegate)` | Handles the response to a Get Linked Platforms call.
-`protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1abed153276891686fb879acfcb91cf0e0)`(const GetSettings::Response & Response,FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId)` | Handles the response to a Get Player Settings call.
-`protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a3334ad5988e4ff00343a33b696de048d)`(const SetSettings::Response & Response,FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
-`protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1ac72546c26880ce2caa1d5a24e7a098d2)`(const GetRankings::Response & Response,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
-`protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1ac885a100d7db3dfab8bcb7e3a6ab05c9)`(const UpdateRanking::Response & Response,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Update Player Ranking call.
+`protected virtual void `[`OnGetPlayerLinkedPlatformsResponse`](#classURH__PlayerInfo_1ada74501b2e422f1fcf8f76825d74cc58)`(const GetPlatforms::Response & Response,const FRH_PlayerInfoGetPlatformsBlock Delegate)` | Handles the response to a Get Linked Platforms call.
+`protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1a115f584e7b7b210193fd9e302abbd3ed)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId)` | Handles the response to a Get Player Settings call.
+`protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
+`protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
+`protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1a214672d0d5001ec24098b5414b0fc35d)`(const UpdateRanking::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Update Player Ranking call.
 `protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01)`()` | Helper to broadcast results from player presences being updated.
 `protected inline virtual void `[`OnSessionsUpdated`](#classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550)`()` | Helper to broadcast results from player sessions list being updated.
 `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) | 
 `typedef `[`GetSettings`](#classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9) | 
 `typedef `[`SetSettings`](#classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11) | 
-`typedef `[`GetRankings`](#classURH__PlayerInfo_1a17128b37cd844e9eb65f181bf2baa65d) | 
-`typedef `[`UpdateRanking`](#classURH__PlayerInfo_1ab693e92976d644b08479b6428f9e6d00) | 
+`typedef `[`GetRankings`](#classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46) | 
+`typedef `[`UpdateRanking`](#classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de) | 
 
 #### Members
 
@@ -597,7 +597,7 @@ Requests to stop streaming notifications.
 * `[in[` bClearCache If true, the cache of notifications will be cleared.
 
 <br>
-#### `public inline const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a73f3c2b87f3013f46d0d1a8239d18f3e)`() const` <a id="classURH__PlayerInfo_1a73f3c2b87f3013f46d0d1a8239d18f3e"></a>
+#### `public inline const TMap< FString, `[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` > & `[`GetAllStoredPlayerSettings`](#classURH__PlayerInfo_1a3eb1adffb0e0f4f503241ae5848818ce)`() const` <a id="classURH__PlayerInfo_1a3eb1adffb0e0f4f503241ae5848818ce"></a>
 
 Gets all the players store settings data.
 
@@ -605,7 +605,7 @@ Gets all the players store settings data.
 The players stored settings data.
 
 <br>
-#### `public inline const TMap< int32, `[`FRHAPI_PlayerRankResponse`](models/RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1aa3655d28ce3855833da96e1b3a7d5491)`() const` <a id="classURH__PlayerInfo_1aa3655d28ce3855833da96e1b3a7d5491"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > & `[`GetAllStoredPlayerRankings`](#classURH__PlayerInfo_1aa79ba1c1bcb06d02478ec145999b06a3)`() const` <a id="classURH__PlayerInfo_1aa79ba1c1bcb06d02478ec145999b06a3"></a>
 
 Gets all the players stored ranking data.
 
@@ -629,7 +629,7 @@ Initialized the player info from a given Player Unique Id.
 * `PlayerUuid` The Unique Id of the player.
 
 <br>
-#### `public void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a0f65a3d2b00d1372995c0c44b1a85f1b)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` <a id="classURH__PlayerInfo_1a0f65a3d2b00d1372995c0c44b1a85f1b"></a>
+#### `public void `[`GetLastKnownDisplayNameAsync`](#classURH__PlayerInfo_1a748ec2c5cc1c2aa3f3a91d906c8ba04b)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate,const class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * LocalPlayerSubsystem)` <a id="classURH__PlayerInfo_1a748ec2c5cc1c2aa3f3a91d906c8ba04b"></a>
 
 Gets the last known display name for the player, will make required API calls to retrieve the information if needed.
 
@@ -664,7 +664,7 @@ If the call successfully found a display name for the player already stored on t
 #### `public inline bool `[`BLUEPRINT_GetLastKnownDisplayName`](#classURH__PlayerInfo_1a4b096747849fe22e2c7934fb3212bb85)`(ERHAPI_Platform PreferredPlatformType,FString & OutDisplayName) const` <a id="classURH__PlayerInfo_1a4b096747849fe22e2c7934fb3212bb85"></a>
 
 <br>
-#### `public void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1ad28653f3570b4d39ced6c98a307b615e)`(const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlatformsBlock Delegate)` <a id="classURH__PlayerInfo_1ad28653f3570b4d39ced6c98a307b615e"></a>
+#### `public void `[`GetLinkedPlatformInfo`](#classURH__PlayerInfo_1ac5a0056e3adcab2d8a5c65ea7d5e43ca)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsBlock & Delegate)` <a id="classURH__PlayerInfo_1ac5a0056e3adcab2d8a5c65ea7d5e43ca"></a>
 
 Gets the players linked platforms via API call.
 
@@ -679,7 +679,7 @@ Gets the players linked platforms via API call.
 #### `public inline void `[`BLUEPRINT_GetLinkedPlatformInfo`](#classURH__PlayerInfo_1a17dd835ef46a8418e6cf760eb076d01d)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlatformsDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1a17dd835ef46a8418e6cf760eb076d01d"></a>
 
 <br>
-#### `public void `[`GetPlayerSettings`](#classURH__PlayerInfo_1ab85a2c934ed797040400e40f43f5f7e4)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlayerSettingsBlock Delegate)` <a id="classURH__PlayerInfo_1ab85a2c934ed797040400e40f43f5f7e4"></a>
+#### `public void `[`GetPlayerSettings`](#classURH__PlayerInfo_1aa9d33400032ef41067fbc52f72f092c2)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsBlock & Delegate)` <a id="classURH__PlayerInfo_1aa9d33400032ef41067fbc52f72f092c2"></a>
 
 Gets the players settings information for a given type.
 
@@ -696,7 +696,7 @@ Gets the players settings information for a given type.
 #### `public inline void `[`BLUEPRINT_GetPlayerSettings`](#classURH__PlayerInfo_1a76e2f0a5ded932bc524553a9a2d43976)`(const FString & SettingTypeId,const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1a76e2f0a5ded932bc524553a9a2d43976"></a>
 
 <br>
-#### `public void `[`SetPlayerSettings`](#classURH__PlayerInfo_1abb513c9fc4d64feff8070d30793157a9)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` & SettingsData,FRH_PlayerInfoSetPlayerSettingsBlock Delegate)` <a id="classURH__PlayerInfo_1abb513c9fc4d64feff8070d30793157a9"></a>
+#### `public void `[`SetPlayerSettings`](#classURH__PlayerInfo_1a74ee0e82383414759503cc731086ab54)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` & SettingsData,const FRH_PlayerInfoSetPlayerSettingsBlock & Delegate)` <a id="classURH__PlayerInfo_1a74ee0e82383414759503cc731086ab54"></a>
 
 Sets the players settings information for a given type.
 
@@ -711,7 +711,7 @@ Sets the players settings information for a given type.
 #### `public inline void `[`BLUEPRINT_SetPlayerSettings`](#classURH__PlayerInfo_1aebf4859d56d3fc772711fd1c8714d4f0)`(const FString & SettingTypeId,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData,const FRH_PlayerInfoSetPlayerSettingsDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1aebf4859d56d3fc772711fd1c8714d4f0"></a>
 
 <br>
-#### `public void `[`GetPlayerRankings`](#classURH__PlayerInfo_1a3fa7cb129666bafe27a2181bd2a516ba)`(const FTimespan & StaleThreshold,bool bForceRefresh,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1a3fa7cb129666bafe27a2181bd2a516ba"></a>
+#### `public void `[`GetPlayerRankings`](#classURH__PlayerInfo_1a7ff2423c28633ab7f4f62039aba32c8d)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` <a id="classURH__PlayerInfo_1a7ff2423c28633ab7f4f62039aba32c8d"></a>
 
 Gets the players ranking information for a given type.
 
@@ -726,7 +726,7 @@ Gets the players ranking information for a given type.
 #### `public inline void `[`BLUEPRINT_GetPlayerRankings`](#classURH__PlayerInfo_1adbfa47a9d0df7dec931ce18fa7b4f8b4)`(const FTimespan & StaleThreshold,bool bForceRefresh,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1adbfa47a9d0df7dec931ce18fa7b4f8b4"></a>
 
 <br>
-#### `public void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1a491ffa1dfb6f946de2603f5bc35bfbc5)`(int32 RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1a491ffa1dfb6f946de2603f5bc35bfbc5"></a>
+#### `public void `[`UpdatePlayerRanking`](#classURH__PlayerInfo_1a504494976ef115b48b620bcbfc914d17)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsBlock & Delegate)` <a id="classURH__PlayerInfo_1a504494976ef115b48b620bcbfc914d17"></a>
 
 Sets the players settings information for a given type.
 
@@ -738,7 +738,7 @@ Sets the players settings information for a given type.
 * `Delegate` Callback when the operation is complete with success information.
 
 <br>
-#### `public inline void `[`BLUEPRINT_UpdatePlayerRanking`](#classURH__PlayerInfo_1abb8b8d604a9e5ad5b32f1dee62dd2dad)`(int32 RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1abb8b8d604a9e5ad5b32f1dee62dd2dad"></a>
+#### `public inline void `[`BLUEPRINT_UpdatePlayerRanking`](#classURH__PlayerInfo_1a60648275bd880b33cfb78b403e0832ac)`(const FString & RankId,const `[`FRHAPI_PlayerRankUpdateRequest`](models/RHAPI_PlayerRankUpdateRequest.md#structFRHAPI__PlayerRankUpdateRequest)` & RankData,const FRH_PlayerInfoGetPlayerRankingsDynamicDelegate & Delegate)` <a id="classURH__PlayerInfo_1a60648275bd880b33cfb78b403e0832ac"></a>
 
 <br>
 #### `public FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInfo_1a38aa7a072a97be36bc623a9cda702cdf)`() const` <a id="classURH__PlayerInfo_1a38aa7a072a97be36bc623a9cda702cdf"></a>
@@ -802,7 +802,7 @@ The Players Inventory Subsystem.
 The Players Inventory Subsystem.
 
 <br>
-#### `protected TMap< int32, `[`FRHAPI_PlayerRankResponse`](models/RHAPI_PlayerRankResponse.md#structFRHAPI__PlayerRankResponse)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a9bafd2e8ef5a501cb7ac975b8b80481e) <a id="classURH__PlayerInfo_1a9bafd2e8ef5a501cb7ac975b8b80481e"></a>
+#### `protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) <a id="classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071"></a>
 
 List of the player's rankings.
 
@@ -852,7 +852,7 @@ Handles the response to sanitizing the players display name.
 * `Delegate` Callback Delegate to return the name.
 
 <br>
-#### `protected virtual void `[`OnGetPlayerLinkedPlatformsResponse`](#classURH__PlayerInfo_1a1a35d5ae7a49eaa78faa474c72acbb2c)`(const GetPlatforms::Response & Response,FRH_PlayerInfoGetPlatformsBlock Delegate)` <a id="classURH__PlayerInfo_1a1a35d5ae7a49eaa78faa474c72acbb2c"></a>
+#### `protected virtual void `[`OnGetPlayerLinkedPlatformsResponse`](#classURH__PlayerInfo_1ada74501b2e422f1fcf8f76825d74cc58)`(const GetPlatforms::Response & Response,const FRH_PlayerInfoGetPlatformsBlock Delegate)` <a id="classURH__PlayerInfo_1ada74501b2e422f1fcf8f76825d74cc58"></a>
 
 Handles the response to a Get Linked Platforms call.
 
@@ -862,7 +862,7 @@ Handles the response to a Get Linked Platforms call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1abed153276891686fb879acfcb91cf0e0)`(const GetSettings::Response & Response,FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId)` <a id="classURH__PlayerInfo_1abed153276891686fb879acfcb91cf0e0"></a>
+#### `protected virtual void `[`OnGetPlayerSettingsResponse`](#classURH__PlayerInfo_1a115f584e7b7b210193fd9e302abbd3ed)`(const GetSettings::Response & Response,const FRH_PlayerInfoGetPlayerSettingsBlock Delegate,const FString SettingTypeId)` <a id="classURH__PlayerInfo_1a115f584e7b7b210193fd9e302abbd3ed"></a>
 
 Handles the response to a Get Player Settings call.
 
@@ -874,7 +874,7 @@ Handles the response to a Get Player Settings call.
 * `SettinyTypeId` The type of settings that were requested.
 
 <br>
-#### `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a3334ad5988e4ff00343a33b696de048d)`(const SetSettings::Response & Response,FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` <a id="classURH__PlayerInfo_1a3334ad5988e4ff00343a33b696de048d"></a>
+#### `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` <a id="classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091"></a>
 
 Handles the response to a Set Player Settings call.
 
@@ -890,7 +890,7 @@ Handles the response to a Set Player Settings call.
 * `SettingsData` The data of the setting that was updated.
 
 <br>
-#### `protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1ac72546c26880ce2caa1d5a24e7a098d2)`(const GetRankings::Response & Response,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1ac72546c26880ce2caa1d5a24e7a098d2"></a>
+#### `protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c"></a>
 
 Handles the response to a Get Player Rankings call.
 
@@ -900,7 +900,7 @@ Handles the response to a Get Player Rankings call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1ac885a100d7db3dfab8bcb7e3a6ab05c9)`(const UpdateRanking::Response & Response,FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1ac885a100d7db3dfab8bcb7e3a6ab05c9"></a>
+#### `protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1a214672d0d5001ec24098b5414b0fc35d)`(const UpdateRanking::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` <a id="classURH__PlayerInfo_1a214672d0d5001ec24098b5414b0fc35d"></a>
 
 Handles the response to a Update Player Ranking call.
 
@@ -929,10 +929,10 @@ Helper to broadcast results from player sessions list being updated.
 #### `typedef `[`SetSettings`](#classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11) <a id="classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11"></a>
 
 <br>
-#### `typedef `[`GetRankings`](#classURH__PlayerInfo_1a17128b37cd844e9eb65f181bf2baa65d) <a id="classURH__PlayerInfo_1a17128b37cd844e9eb65f181bf2baa65d"></a>
+#### `typedef `[`GetRankings`](#classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46) <a id="classURH__PlayerInfo_1ae1180995c5f25cb946b6f47e44886c46"></a>
 
 <br>
-#### `typedef `[`UpdateRanking`](#classURH__PlayerInfo_1ab693e92976d644b08479b6428f9e6d00) <a id="classURH__PlayerInfo_1ab693e92976d644b08479b6428f9e6d00"></a>
+#### `typedef `[`UpdateRanking`](#classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de) <a id="classURH__PlayerInfo_1a0dde72a36a43d91264f8dc89aafcd5de"></a>
 
 <br>
 ## class `URH_PlayerInfoSubsystem` <a id="classURH__PlayerInfoSubsystem"></a>
@@ -958,9 +958,9 @@ Subsystem used to track and request information about players.
 `public inline `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubsystem_1a7b424cc74c8113e946640262a255be78)`(const FGuid & PlayerUuid) const` | Gets a Player Info object for a given Unique Player Id.
 `public inline `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * `[`GetPlayerPlatformInfo`](#classURH__PlayerInfoSubsystem_1a14b5f2d5b7d3813fb765667f14395681)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId) const` | Gets the platform info object for a player by the Platform Id.
 `public inline void `[`AddPlayerLink`](#classURH__PlayerInfoSubsystem_1a7dff591ef7779e9b7fc24f778c819ad4)`(const `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` & PlayerPlatformId,const FGuid & PlayerUuid)` | Adds a platform mapping for a given player.
-`public void `[`LookupPlayer`](#classURH__PlayerInfoSubsystem_1ab4fce576a416140f17e7595d4796caee)`(FString PlayerName,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Searchs for all players who use the given display name via API Call.
+`public void `[`LookupPlayer`](#classURH__PlayerInfoSubsystem_1a2985421b191b211a64e28bc0a6f60d73)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerBlock & Delegate)` | Searchs for all players who use the given display name via API Call.
 `public inline void `[`BLUEPRINT_LookupPlayer`](#classURH__PlayerInfoSubsystem_1af49782e7e30900e743e026d08a5f991b)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` | 
-`public void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a2a5701f96ce81aa12d70067ff15d8fb5)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Searchs for players associated with the given platform and platform user id via API Call.
+`public void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a919f9dce2894aa34b79e2a95387adc2e)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,const FRH_PlayerInfoLookupPlayerBlock & Delegate)` | Searchs for players associated with the given platform and platform user id via API Call.
 `public inline void `[`BLUEPRINT_LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1acf620014114fa3f12ec521960f84d779)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` | 
 `public `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`RemovePlayerInfoFromCache`](#classURH__PlayerInfoSubsystem_1a4ccb69f748014aa9baddae76250b7e31)`(const FGuid & PlayerUuid)` | Remove a specific Player Info from PlayerInfoSubsystem's cache.
 `public virtual void `[`Tick`](#classURH__PlayerInfoSubsystem_1abf83de825c346653c1bc3cba1df75815)`(float DeltaTime)` | Unreals basic Tick function.
@@ -972,8 +972,8 @@ Subsystem used to track and request information about players.
 `protected TMap< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)`, FGuid > `[`PlayerPlatformIdToUuidMap`](#classURH__PlayerInfoSubsystem_1a25ed5e4057d3929418e973228f9851a1) | Map of Player Uuid to their Platform Ids.
 `protected virtual void `[`ClearPlayerInfoCache`](#classURH__PlayerInfoSubsystem_1a2ddbe40cfed50b7e76437aec24e4c054)`()` | Clears the cached player infos.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__PlayerInfoSubsystem_1a5e14a7f60c320b9a2186e33726f7e5ee)`()` | Initializes the subsystem with defaults for its cached data.
-`protected virtual void `[`OnLookupPlayerResponse`](#classURH__PlayerInfoSubsystem_1a4f0fc4fcd0d0cf7e5e61526884a0f3a9)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player call.
-`protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a574ec17989951c62b243b7b5d54f2ede)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player By Platform User Id call.
+`protected virtual void `[`OnLookupPlayerResponse`](#classURH__PlayerInfoSubsystem_1a5d178f65256eafbf0fccfc17e87bae62)`(const TLookupPlayer::Response & Response,const FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player call.
+`protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a0cd6b58da263387aead9c9d17729cb27)`(const TLookupPlayer::Response & Response,const FRH_PlayerInfoLookupPlayerBlock Delegate)` | Handles the response to a Lookup Player By Platform User Id call.
 `typedef `[`TLookupPlayer`](#classURH__PlayerInfoSubsystem_1a221cacf49cc61a7df9b7e791befbb312) | 
 
 #### Members
@@ -1061,7 +1061,7 @@ Adds a platform mapping for a given player.
 * `PlayerPlatformId` Player Platform Id for the given player
 
 <br>
-#### `public void `[`LookupPlayer`](#classURH__PlayerInfoSubsystem_1ab4fce576a416140f17e7595d4796caee)`(FString PlayerName,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1ab4fce576a416140f17e7595d4796caee"></a>
+#### `public void `[`LookupPlayer`](#classURH__PlayerInfoSubsystem_1a2985421b191b211a64e28bc0a6f60d73)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerBlock & Delegate)` <a id="classURH__PlayerInfoSubsystem_1a2985421b191b211a64e28bc0a6f60d73"></a>
 
 Searchs for all players who use the given display name via API Call.
 
@@ -1074,7 +1074,7 @@ Searchs for all players who use the given display name via API Call.
 #### `public inline void `[`BLUEPRINT_LookupPlayer`](#classURH__PlayerInfoSubsystem_1af49782e7e30900e743e026d08a5f991b)`(FString PlayerName,const FRH_PlayerInfoLookupPlayerDynamicDelegate & Delegate)` <a id="classURH__PlayerInfoSubsystem_1af49782e7e30900e743e026d08a5f991b"></a>
 
 <br>
-#### `public void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a2a5701f96ce81aa12d70067ff15d8fb5)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a2a5701f96ce81aa12d70067ff15d8fb5"></a>
+#### `public void `[`LookupPlayerByPlatformUserId`](#classURH__PlayerInfoSubsystem_1a919f9dce2894aa34b79e2a95387adc2e)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` PlayerPlatformId,const FRH_PlayerInfoLookupPlayerBlock & Delegate)` <a id="classURH__PlayerInfoSubsystem_1a919f9dce2894aa34b79e2a95387adc2e"></a>
 
 Searchs for players associated with the given platform and platform user id via API Call.
 
@@ -1145,7 +1145,7 @@ Clears the cached player infos.
 Initializes the subsystem with defaults for its cached data.
 
 <br>
-#### `protected virtual void `[`OnLookupPlayerResponse`](#classURH__PlayerInfoSubsystem_1a4f0fc4fcd0d0cf7e5e61526884a0f3a9)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a4f0fc4fcd0d0cf7e5e61526884a0f3a9"></a>
+#### `protected virtual void `[`OnLookupPlayerResponse`](#classURH__PlayerInfoSubsystem_1a5d178f65256eafbf0fccfc17e87bae62)`(const TLookupPlayer::Response & Response,const FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a5d178f65256eafbf0fccfc17e87bae62"></a>
 
 Handles the response to a Lookup Player call.
 
@@ -1155,7 +1155,7 @@ Handles the response to a Lookup Player call.
 * `Delegate` Delegate passed in for original call to respond to when call completes.
 
 <br>
-#### `protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a574ec17989951c62b243b7b5d54f2ede)`(const TLookupPlayer::Response & Response,FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a574ec17989951c62b243b7b5d54f2ede"></a>
+#### `protected virtual void `[`OnLookupPlayerByPlatformUserIdResponse`](#classURH__PlayerInfoSubsystem_1a0cd6b58da263387aead9c9d17729cb27)`(const TLookupPlayer::Response & Response,const FRH_PlayerInfoLookupPlayerBlock Delegate)` <a id="classURH__PlayerInfoSubsystem_1a0cd6b58da263387aead9c9d17729cb27"></a>
 
 Handles the response to a Lookup Player By Platform User Id call.
 

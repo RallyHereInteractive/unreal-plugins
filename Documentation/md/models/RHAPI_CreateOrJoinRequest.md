@@ -26,6 +26,8 @@ A request body for a player to join a session.
 `public FString `[`SessionType`](#structFRHAPI__CreateOrJoinRequest_1ac2339ba0c03efd01c707b078da845cda) | Type of session client is creating or joining.
 `public FString `[`RegionId_Optional`](#structFRHAPI__CreateOrJoinRequest_1a15cd29f37ee871cba1be3deb9e16f26f) | Preferred region for the instance and match to take place in.
 `public bool `[`RegionId_IsSet`](#structFRHAPI__CreateOrJoinRequest_1a20aa30896105392bd7a1757c27ef4fb6) | true if RegionId_Optional has been set to a value
+`public `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` `[`Player_Optional`](#structFRHAPI__CreateOrJoinRequest_1a608e52772ec0d3e177990ac2f34b47bd) | 
+`public bool `[`Player_IsSet`](#structFRHAPI__CreateOrJoinRequest_1a9ad67a1403586151831ec6d857acfc5d) | true if Player_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__CreateOrJoinRequest_1a71fde8d392c4f0af6bacef801552c09a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__CreateOrJoinRequest_1aca697c6ab0cf51cd69a5fb4b99dd0a93)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetClientVersion`](#structFRHAPI__CreateOrJoinRequest_1a2a0bfde7e47b8be26a9cc2ae4efd4e12)`()` | Gets the value of ClientVersion.
@@ -53,6 +55,14 @@ A request body for a player to join a session.
 `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__CreateOrJoinRequest_1a938b82f90787dc74a4c9edaaea80ac86)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetRegionId`](#structFRHAPI__CreateOrJoinRequest_1a2d94aadec0efdf5a0085839c34a22790)`(FString NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
 `public inline void `[`ClearRegionId`](#structFRHAPI__CreateOrJoinRequest_1a24ad2ef9681bc5fd6c0deef62ba7f281)`()` | Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
+`public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a2bd467f40eb269bf40ce4c49cc902879)`()` | Gets the value of Player_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1af5e533dafd22d712d8ee3cd5e8954768)`() const` | Gets the value of Player_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a62699c1b92d15d0a9bfbc8b803aad99b)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & DefaultValue) const` | Gets the value of Player_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a4db162a6eefff961e430395c9fbbee21)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & OutValue) const` | Fills OutValue with the value of Player_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1ad905c068915da3cf833297f131c23485)`()` | Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1af1329c668db4e4ad390a92f49b854b8f)`() const` | Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlayer`](#structFRHAPI__CreateOrJoinRequest_1aea6bf2b7e381cc0e2d0df3e4ab3ecca5)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` NewValue)` | Sets the value of Player_Optional and also sets Player_IsSet to true.
+`public inline void `[`ClearPlayer`](#structFRHAPI__CreateOrJoinRequest_1a3714ab0adfecec9485860c63165f7977)`()` | Clears the value of Player_Optional and sets Player_IsSet to false.
 
 #### Members
 
@@ -85,6 +95,14 @@ Preferred region for the instance and match to take place in.
 #### `public bool `[`RegionId_IsSet`](#structFRHAPI__CreateOrJoinRequest_1a20aa30896105392bd7a1757c27ef4fb6) <a id="structFRHAPI__CreateOrJoinRequest_1a20aa30896105392bd7a1757c27ef4fb6"></a>
 
 true if RegionId_Optional has been set to a value
+
+<br>
+#### `public `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` `[`Player_Optional`](#structFRHAPI__CreateOrJoinRequest_1a608e52772ec0d3e177990ac2f34b47bd) <a id="structFRHAPI__CreateOrJoinRequest_1a608e52772ec0d3e177990ac2f34b47bd"></a>
+
+<br>
+#### `public bool `[`Player_IsSet`](#structFRHAPI__CreateOrJoinRequest_1a9ad67a1403586151831ec6d857acfc5d) <a id="structFRHAPI__CreateOrJoinRequest_1a9ad67a1403586151831ec6d857acfc5d"></a>
+
+true if Player_Optional has been set to a value
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__CreateOrJoinRequest_1a71fde8d392c4f0af6bacef801552c09a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__CreateOrJoinRequest_1a71fde8d392c4f0af6bacef801552c09a"></a>
@@ -229,5 +247,45 @@ Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
 #### `public inline void `[`ClearRegionId`](#structFRHAPI__CreateOrJoinRequest_1a24ad2ef9681bc5fd6c0deef62ba7f281)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a24ad2ef9681bc5fd6c0deef62ba7f281"></a>
 
 Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
+
+<br>
+#### `public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a2bd467f40eb269bf40ce4c49cc902879)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a2bd467f40eb269bf40ce4c49cc902879"></a>
+
+Gets the value of Player_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1af5e533dafd22d712d8ee3cd5e8954768)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1af5e533dafd22d712d8ee3cd5e8954768"></a>
+
+Gets the value of Player_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a62699c1b92d15d0a9bfbc8b803aad99b)`(const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & DefaultValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a62699c1b92d15d0a9bfbc8b803aad99b"></a>
+
+Gets the value of Player_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetPlayer`](#structFRHAPI__CreateOrJoinRequest_1a4db162a6eefff961e430395c9fbbee21)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` & OutValue) const` <a id="structFRHAPI__CreateOrJoinRequest_1a4db162a6eefff961e430395c9fbbee21"></a>
+
+Fills OutValue with the value of Player_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1ad905c068915da3cf833297f131c23485)`()` <a id="structFRHAPI__CreateOrJoinRequest_1ad905c068915da3cf833297f131c23485"></a>
+
+Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const `[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` * `[`GetPlayerOrNull`](#structFRHAPI__CreateOrJoinRequest_1af1329c668db4e4ad390a92f49b854b8f)`() const` <a id="structFRHAPI__CreateOrJoinRequest_1af1329c668db4e4ad390a92f49b854b8f"></a>
+
+Returns a pointer to Player_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetPlayer`](#structFRHAPI__CreateOrJoinRequest_1aea6bf2b7e381cc0e2d0df3e4ab3ecca5)`(`[`FRHAPI_SelfSessionPlayerUpdateRequest`](RHAPI_SelfSessionPlayerUpdateRequest.md#structFRHAPI__SelfSessionPlayerUpdateRequest)` NewValue)` <a id="structFRHAPI__CreateOrJoinRequest_1aea6bf2b7e381cc0e2d0df3e4ab3ecca5"></a>
+
+Sets the value of Player_Optional and also sets Player_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearPlayer`](#structFRHAPI__CreateOrJoinRequest_1a3714ab0adfecec9485860c63165f7977)`()` <a id="structFRHAPI__CreateOrJoinRequest_1a3714ab0adfecec9485860c63165f7977"></a>
+
+Clears the value of Player_Optional and sets Player_IsSet to false.
 
 <br>
