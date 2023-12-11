@@ -113,7 +113,7 @@ namespace
 	FString SanitizeContent(const FString& Content, const TArray<FString>& SensitiveFields)
 	{
 		// if there are no sensitive fields to check, just return input
-		if (SensitiveFields.Num() <= 0)
+		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0)
 		{
 			return Content;
 		}

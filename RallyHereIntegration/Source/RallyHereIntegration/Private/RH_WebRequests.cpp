@@ -115,7 +115,7 @@ namespace
 	FString SanitizeContent(const FString& Content, const TArray<FString>& SensitiveFields)
 	{
 		// if there are no sensitive fields to check, just return input
-		if (SensitiveFields.Num() <= 0)
+		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0)
 		{
 			return Content;
 		}
@@ -427,6 +427,10 @@ TSharedPtr<FJsonObject> URH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 	{
 		Request->SetField(TEXT("Content"), JsonValue);
+	}
+	else
+	{
+		Request->SetStringField(TEXT("Content"), request.Content);
 	}
 
 	TSharedPtr<FJsonObject> RequestHeader = MakeShareable(new FJsonObject);
