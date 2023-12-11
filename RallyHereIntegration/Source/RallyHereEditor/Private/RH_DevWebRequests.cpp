@@ -398,6 +398,10 @@ TSharedPtr<FJsonObject> URH_DevWebRequests::CreateJsonObjectFromWebRequest(const
 	{
 		Request->SetField(TEXT("Content"), JsonValue);
 	}
+	else
+	{
+		Request->SetStringField(TEXT("Content"), request.Content);
+	}
 
 	TSharedPtr<FJsonObject> RequestHeader = MakeShareable(new FJsonObject);
 	for (const auto& pair : request.Headers)
