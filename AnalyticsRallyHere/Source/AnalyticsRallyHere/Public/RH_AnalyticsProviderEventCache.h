@@ -35,6 +35,18 @@ public:
 	 */
 	FRH_AnalyticsProviderEventCache(int32 MaximumPayloadSize = -1, int32 InPreallocatedPayloadSize = -1);
 
+	/** Set the user id to be emitted in future events */
+	void SetUserId(TOptional<FString> InUserId);
+
+	/** Get the user id being emitted */
+	TOptional<FString> GetUserId() const;
+
+	/** Set the correlation id being emitted in future events */
+	void SetCorrelationId(TOptional<FString> InCorrelationId);
+
+	/** Get the correlation id being emitted */
+	TOptional<FString> GetCorrelationId() const;
+
 	/**
 	 * Adds a new event to the cache.
 	 * If the estimated payload size will increase beyond MaximumPayloadSize then a flush will be queued here. This will make HasFlushesQueued() == true.
@@ -153,9 +165,13 @@ private:
 	TArray<FAnalyticsEventEntry> CachedEventEntries;
 	TArray<uint8> CachedEventUTF8Stream;
 	TArray<FAnalyticsEventAttribute> CachedDefaultAttributes;
-	TArray<uint8> CachedDefaultAttributeUTF8Stream;
 	TArray<TArray<uint8>> FlushQueue;
 
 	/** Critical section for updating the CachedEvents. Mutable to allow const methods to access the list. */
 	mutable FCriticalSection CachedEventsCS;
+
+	/** UserId for events being emitted */
+	TOptional<FString> UserId;
+	/** CorrleationId for events being emitted */
+	TOptional<FString> CorrelationId;
 };

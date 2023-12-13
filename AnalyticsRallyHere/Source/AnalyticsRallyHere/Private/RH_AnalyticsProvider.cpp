@@ -128,14 +128,8 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
 	SessionID = SessionGUID.ToString(EGuidFormats::DigitsWithHyphens);
 
 	// add session ID to attributes
-	static FString SessionIdKey(TEXT("sessionID"));
-	AppendSetDefaultEventAttribute(SessionIdKey, SessionID);
+	EventCache.SetCorrelationId(SessionID);
 
-	// always ensure we send a few specific attributes on session start.
-	TArray<FAnalyticsEventAttribute> AttributesWithPlatform = Attributes;
-	AttributesWithPlatform.Emplace(TEXT("Platform"), FString(FPlatformProperties::IniPlatformName()));
-
-	RecordEvent(TEXT("SessionStart"), AttributesWithPlatform);
 	bSessionInProgress = true;
 	return bSessionInProgress;
 }
@@ -145,15 +139,10 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
  */
 void FRH_AnalyticsProvider::EndSession()
 {
-	if (bSessionInProgress)
-	{
-		RecordEvent(TEXT("SessionEnd"), TArray<FAnalyticsEventAttribute>());
-	}
 	FlushEvents();
 	SessionID.Empty();
 
-	static FString SessionIdKey(TEXT("sessionID"));
-	ClearDefaultEventAttribute(SessionIdKey);
+	EventCache.SetCorrelationId(TOptional<FString>());
 
 	bSessionInProgress = false;
 }
@@ -242,14 +231,13 @@ void FRH_AnalyticsProvider::SetUserID(const FString& InUserID)
 	FlushEvents();
 	UserID = InUserID;
 
-	static FString UserIDKey = TEXT("userID");
-	if (InUserID.Len() > 0)
+	if (UserID.Len() > 0)
 	{
-		AppendSetDefaultEventAttribute(UserIDKey, UserID);
+		EventCache.SetUserId(UserID);
 	}
 	else
 	{
-		ClearDefaultEventAttribute(UserIDKey);
+		EventCache.SetUserId(TOptional<FString>());
 	}
 }
 
