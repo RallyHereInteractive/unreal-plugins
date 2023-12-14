@@ -28,7 +28,7 @@ TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const FAna
 	// If we didn't have a proper APIServer, return NULL
 	if (ConfigValues.APIServerET.IsEmpty())
 	{
-		UE_LOG(LogAnalytics, Warning, TEXT("CreateAnalyticsProvider config not contain required parameter %s"), *FAnalyticsET::Config::GetKeyNameForAPIServer());
+		UE_LOG(LogAnalytics, Warning, TEXT("[RHAnalytics] CreateAnalyticsProvider config not contain required parameter %s"), *FAnalyticsET::Config::GetKeyNameForAPIServer());
 		return NULL;
 	}
 	return MakeShared<FRH_AnalyticsProvider>(ConfigValues);
@@ -294,7 +294,7 @@ void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnaly
 	}
 	else
 	{
-		UE_LOG(LogAnalytics, Verbose, TEXT("Ignoring event named '%s' due to ShouldRecordEvent check"), *EventName);
+		UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Ignoring event named '%s' due to ShouldRecordEvent check"), *EventName);
 	}
 }
 
