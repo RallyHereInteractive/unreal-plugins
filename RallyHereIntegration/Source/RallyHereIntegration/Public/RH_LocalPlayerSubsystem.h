@@ -272,6 +272,9 @@ protected:
 
 	/** The Analytics Provider for the player. */
 	TSharedPtr<class IAnalyticsProvider> AnalyticsProvider;
+
+	/** The start time of the AnalyticsProvider */
+	TOptional<FDateTime> AnalyticsStartTime;
 };
 
 /** @} */

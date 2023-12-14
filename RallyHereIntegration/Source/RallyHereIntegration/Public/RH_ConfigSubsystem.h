@@ -47,7 +47,7 @@ struct RALLYHEREINTEGRATION_API FRH_ServerTimeCache
 	/**
 	 * @brief Gets the current local time.
 	 */
-	FDateTime GetLocalTime() const { return FDateTime::UtcNow(); }
+	static FDateTime GetLocalTime() { return FDateTime::UtcNow(); }
 	/**
 	 * @brief Gets the approximate server time, if we have received one.
 	 * @param [out] Time The approximate server time.

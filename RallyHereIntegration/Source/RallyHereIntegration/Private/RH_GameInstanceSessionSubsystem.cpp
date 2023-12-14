@@ -15,11 +15,13 @@
 #include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
+#include "RH_Events.h"
 
 // used to look up local IP as a temporary method for determining join IP
 #include <SocketSubsystem.h>
 #include <IPAddress.h>
 #include "Interfaces/IPv4/IPv4Address.h"
+
 
 //==================================================================
 
@@ -557,12 +559,25 @@ ARH_OnlineBeaconHost* URH_GameInstanceSessionSubsystem::CreateBeaconHost(UWorld*
 	return pBeaconHost;
 }
 
-void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionInfo, const FRH_GameInstanceSessionSyncBlock& Delegate)
+void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionInfo, const FRH_GameInstanceSessionSyncBlock& InDelegate)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	// swap our session data for the update
 	DesiredSession = SessionInfo;
+
+	// notify analytics that we are starting to join a session
+	EmitJoinInstanceStartedEvent(DesiredSession);
+
+	// wrapper the delegate to fire the completed analytics event to match the started event
+	FRH_GameInstanceSessionSyncDelegate Delegate = FRH_GameInstanceSessionSyncDelegate::CreateLambda([this, InDelegate](bool bSuccess, URH_JoinedSession* Session, const FString& Error)
+		{
+			// notify analytics that we are done joining a session
+			EmitJoinInstanceCompletedEvent(DesiredSession, bSuccess, Error);
+
+			// fire delegate
+			InDelegate.ExecuteIfBound(Session, bSuccess, Error);
+		});
 
 	const FRHAPI_InstanceInfo* newInstanceData = DesiredSession != nullptr ? DesiredSession->GetInstanceData() : nullptr;
 
@@ -581,7 +596,7 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	else
 	{
 		check(ActiveSession == DesiredSession);
-		Delegate.ExecuteIfBound(true);
+		Delegate.ExecuteIfBound(DesiredSession, true, TEXT("Already in session"));
 	}
 }
 
@@ -605,20 +620,18 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 	// todo - ensure all local players are in the session
 	// see if host player id is in the list of local players
 	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
-	if (pGameInstance != nullptr)
+
+	const auto LocalPlayers = pGameInstance->GetLocalPlayers();
+	for (auto LP : LocalPlayers)
 	{
-		const auto LocalPlayers = pGameInstance->GetLocalPlayers();
-		for (auto LP : LocalPlayers)
+		auto pLPSubsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+		if (pLPSubsystem != nullptr && !pLPSubsystem->GetSessionSubsystem()->IsInSession(Session->GetSessionId()))
 		{
-			auto pLPSubsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
-			if (pLPSubsystem != nullptr && !pLPSubsystem->GetSessionSubsystem()->IsInSession(Session->GetSessionId()))
-			{
-				// someone is not in the session
-				FGuid playerId = FGuid();
-				RH_GetPlayerIdFromLocalPlayer(LP, &playerId);
-				UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - player %s not in session"), ANSI_TO_TCHAR(__FUNCTION__), *playerId.ToString());
-				return false;
-			}
+			// someone is not in the session
+			FGuid playerId = FGuid();
+			RH_GetPlayerIdFromLocalPlayer(LP, &playerId);
+			UE_CLOG(bLog, LogRallyHereIntegration, Verbose, TEXT("[%s] - player %s not in session"), ANSI_TO_TCHAR(__FUNCTION__), *playerId.ToString());
+			return false;
 		}
 	}
 
@@ -722,14 +735,19 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	if (DesiredSession == nullptr || !DesiredSession->GetSessionData().GetInstanceOrNull())
+	if (DesiredSession == nullptr)
 	{
-		Delegate.ExecuteIfBound(false);
+		Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Session does not exist"));
+		return false;
+	}
+	if (DesiredSession->GetSessionData().GetInstanceOrNull() == nullptr)
+	{
+		Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Instance does not exist"));
 		return false;
 	}
 	else if (!IsReadyToJoinInstance(DesiredSession, true))
 	{
-		Delegate.ExecuteIfBound(false);
+		Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Client not ready to join instance"));
 		return false;
 	}
 
@@ -766,7 +784,14 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 
 			bool bTravelStarted = pWorldContext->World()->ServerTravel(hostURL.ToString(false), true, false);
 
-			Delegate.ExecuteIfBound(bTravelStarted);
+			if (bTravelStarted)
+			{
+				Delegate.ExecuteIfBound(ActiveSession, true, TEXT("Travel Started"));
+			}
+			else
+			{
+				Delegate.ExecuteIfBound(ActiveSession, false, TEXT("Failed to start travel"));
+			}
 			return true;
 		}
 		else
@@ -795,7 +820,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 
 		GEngine->SetClientTravel(pWorldContext->World(), *JoinURLString, TRAVEL_Absolute);
 
-		Delegate.ExecuteIfBound(true);
+		Delegate.ExecuteIfBound(ActiveSession, true, TEXT("Travel started"));
 		return true;
 	}
 	else
@@ -803,7 +828,8 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 		UE_LOG(LogRallyHereIntegration, Warning, TEXT("Could not join session because URL could not be generated correctly"));
 	}
 
-	Delegate.ExecuteIfBound(false);
+	Delegate.ExecuteIfBound(DesiredSession, false, TEXT("Could not generate URL to join"));
+
 	return false;
 }
 
@@ -832,6 +858,8 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 		GEngine->HandleDisconnect(pGameInstance->GetWorld(), pGameInstance->GetWorld()->GetNetDriver());
 	}
 
+	EmitLeaveInstanceEvent(ActiveSession);
+
 	// clear out active session.
 	if (ActiveSession != nullptr)
 	{
@@ -844,7 +872,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	}
 	else
 	{
-		Delegate.ExecuteIfBound(true);
+		Delegate.ExecuteIfBound(DesiredSession, true, TEXT("Travelled to null or did not want to travel after leaving a session"));
 	}
 }
 
@@ -885,4 +913,107 @@ void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, 
 
 		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 	}
+}
+
+// quick analytics hooks
+template<typename EventType>
+void EmitEventToAllLocalPlayers(UGameInstance* pGameInstance, const EventType& Event)
+{
+	// emit analytics update to all local players before we start the join
+	if (pGameInstance != nullptr)
+	{
+		const auto LocalPlayers = pGameInstance->GetLocalPlayers();
+		for (auto LP : LocalPlayers)
+		{
+			auto pLPSubsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+			if (pLPSubsystem != nullptr && pLPSubsystem->GetAnalyticsProvider())
+			{
+				Event.EmitTo(pLPSubsystem->GetAnalyticsProvider().Get());
+			}
+		}
+	}
+}
+
+
+void URH_GameInstanceSessionSubsystem::EmitJoinInstanceStartedEvent(const URH_JoinedSession* Session) const
+{
+	RHStandardEvents::FInstanceJoinStartEvent Event;
+
+	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+
+	if (Session != nullptr)
+	{
+		Event.SessionId = Session->GetSessionId();
+		const auto* Instance = Session->GetInstanceData();
+		if (Instance != nullptr)
+		{
+			Event.InstanceId = Instance->GetInstanceId();
+
+			// borrowed from IsReadyToJoinInstance() to minimally generate URLs
+			auto pWorldContext = pGameInstance->GetWorldContext();
+
+			if (IsLocallyHostedInstance(*Instance))
+			{
+				FURL hostURL;
+				if (GenerateHostURL(Session, pWorldContext->LastURL, hostURL) && hostURL.Valid && hostURL.Map.Len() > 0)
+				{
+					Event.ConnectionString = hostURL.ToString(false);
+				}
+			}
+			else
+			{
+				FURL JoinURL;
+				if (GenerateJoinURL(Session, pWorldContext->LastURL, JoinURL))
+				{
+					Event.ConnectionString = JoinURL.ToString(false);
+				}
+			}
+
+		}
+	}
+
+	EmitEventToAllLocalPlayers(pGameInstance, Event);
+}
+
+void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_JoinedSession* Session, bool bSuccess, const FString& Error) const
+{
+	RHStandardEvents::FInstanceJoinCompleteEvent Event;
+
+	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+
+	if (Session != nullptr)
+	{
+		Event.SessionId = Session->GetSessionId();
+		const auto* Instance = Session->GetInstanceData();
+		if (Instance != nullptr)
+		{
+			Event.InstanceId = Instance->GetInstanceId();
+		}
+	}
+
+	Event.IsSuccess = bSuccess;
+	Event.Reason = Error;
+
+	EmitEventToAllLocalPlayers(pGameInstance, Event);
+}
+
+void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSession* Session, const FString& Reason) const
+{
+	RHStandardEvents::FInstanceJoinCompleteEvent Event;
+
+	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+
+	if (Session != nullptr)
+	{
+		Event.SessionId = Session->GetSessionId();
+		const auto* Instance = Session->GetInstanceData();
+		if (Instance != nullptr)
+		{
+			Event.InstanceId = Instance->GetInstanceId();
+		}
+	}
+
+	Event.Reason = Reason;
+
+	EmitEventToAllLocalPlayers(pGameInstance, Event);
 }

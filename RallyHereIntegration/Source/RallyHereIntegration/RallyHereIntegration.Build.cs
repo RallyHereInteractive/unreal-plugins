@@ -31,7 +31,8 @@ public class RallyHereIntegration : ModuleRules
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[] {
-				"Hotfix"
+				"Hotfix",
+				"Projects",
 			}
 		);
     }

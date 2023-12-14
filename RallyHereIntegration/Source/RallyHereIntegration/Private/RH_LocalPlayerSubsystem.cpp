@@ -5,13 +5,16 @@
 #include "RH_IntegrationSettings.h"
 #include "RallyHereIntegrationModule.h"
 #include "OnlineSubsystemUtils.h"
-#include "RH_ConfigSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/GameInstance.h"
+#include "Misc/EngineVersion.h"
 #include "Net/OnlineEngineInterface.h"
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
+#include "Interfaces/IPluginManager.h"
+#include "Engine/GameViewportClient.h"
+#include "HAL/PlatformMemoryHelpers.h"
 
 #include "RH_LocalPlayerLoginSubsystem.h"
 #include "RH_LocalPlayerPresenceSubsystem.h"
@@ -22,6 +25,7 @@
 #include "RH_EntitlementSubsystem.h"
 #include "RH_PurgeSubsystem.h"
 #include "RH_PlayerNotifications.h"
+#include "RH_Events.h"
 
 
 void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -65,7 +69,80 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 	if (AnalyticsProvider.IsValid())
 	{
+		AnalyticsStartTime = FDateTime::UtcNow();
 		AnalyticsProvider->StartSession();
+
+		// emit the correlation start event
+		{
+			RHStandardEvents::FCorrelationStartEvent CorrelationStartEvent;
+
+			CorrelationStartEvent.PlatformName = FPlatformProperties::IniPlatformName();
+			CorrelationStartEvent.ClientBuildVersion = FApp::GetBuildVersion();
+			CorrelationStartEvent.EngineVersion = FEngineVersion::Current().ToString(EVersionComponent::Patch);
+
+			auto RHIntegrationPlugin = IPluginManager::Get().FindPlugin(TEXT("RallyHereIntegration"));
+			if (RHIntegrationPlugin != nullptr)
+			{
+				const auto& Descriptor = RHIntegrationPlugin->GetDescriptor();
+				CorrelationStartEvent.IntegrationPluginVersion = Descriptor.VersionName;
+			}
+
+			auto pGameInstance = GetLocalPlayer()->GetGameInstance();
+			if (pGameInstance != nullptr)
+			{
+				auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+				if (pGISubsystem != nullptr)
+				{
+					const auto& TimeCache = pGISubsystem->GetConfigSubsystem()->GetServerTimeCache();
+					FDateTime ServerTime;
+					if (TimeCache.GetServerTime(ServerTime))
+					{
+						CorrelationStartEvent.ServerTimestamp = ServerTime.ToIso8601();;
+					}
+				}
+			}
+			CorrelationStartEvent.ClientTimestamp = FRH_ServerTimeCache::GetLocalTime().ToIso8601();
+			CorrelationStartEvent.CommandLineArg = FCommandLine::Get();
+			CorrelationStartEvent.IsEditor = GEngine != nullptr ? GEngine->IsEditor() : GIsEditor;
+			CorrelationStartEvent.Mode = FGenericPlatformMisc::GetEngineMode();
+
+
+			CorrelationStartEvent.EmitTo(AnalyticsProvider.Get());
+		}
+
+		// emit a client device event
+		{
+			RHStandardEvents::FClientDeviceEvent ClientDeviceEvent;
+
+			ClientDeviceEvent.CpuType = FPlatformMisc::GetCPUBrand();
+			ClientDeviceEvent.CpuCores = FPlatformMisc::NumberOfCores();
+			ClientDeviceEvent.GpuType = FPlatformMisc::GetPrimaryGPUBrand();
+
+			auto pGameInstance = GetLocalPlayer()->GetGameInstance();
+			if (pGameInstance != nullptr)
+			{
+				const auto GameViewportClient = pGameInstance->GetGameViewportClient();
+				if (GameViewportClient != nullptr)
+				{
+					FVector2D ViewportSize;
+					GameViewportClient->GetViewportSize(ViewportSize);
+					ClientDeviceEvent.ScreenHeight = ViewportSize.Y;
+					ClientDeviceEvent.ScreenWidth = ViewportSize.X;
+				}
+			}
+
+			{
+				FPlatformMemoryStats MemoryStats = PlatformMemoryHelpers::GetFrameMemoryStats();
+				ClientDeviceEvent.RamTotal = MemoryStats.TotalPhysicalGB;
+				ClientDeviceEvent.RamAvailable = MemoryStats.AvailablePhysical;
+			}
+
+			//ClientDeviceEvent.Ip;
+			ClientDeviceEvent.DeviceType = FPlatformProperties::PlatformName();
+
+			ClientDeviceEvent.EmitTo(AnalyticsProvider.Get());
+
+		}
 	}
 }
 
@@ -75,6 +152,21 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 
 	if (AnalyticsProvider.IsValid())
 	{
+		// emit a correlation end event
+		{
+			RHStandardEvents::FCorrelationEndEvent CorrelationEndEvent;
+
+			CorrelationEndEvent.Reason = TEXT("Shutdown");
+
+			if (AnalyticsStartTime.IsSet())
+			{
+				CorrelationEndEvent.DurationSeconds = (FDateTime::UtcNow() - AnalyticsStartTime.GetValue()).GetTotalSeconds();
+			}
+			AnalyticsStartTime.Reset();
+
+			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+		}
+
 		AnalyticsProvider->EndSession();
 	}
 
