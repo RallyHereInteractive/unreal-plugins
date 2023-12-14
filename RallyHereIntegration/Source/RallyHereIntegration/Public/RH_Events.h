@@ -9,6 +9,7 @@
 
 #include "Interfaces/IAnalyticsProvider.h"
 #include "RH_Common.h"
+#include "EventsAPI.h"
 
 //#include "RH_Events.generated.h"
 
@@ -18,6 +19,20 @@
 
 namespace RHStandardEvents
 {
+	// prefix used to pass custom data, will be stripped out by the default rally here event provider
+	static FString CustomDataPrefix = TEXT("__CUSTOM_DATA__.");
+
+	FORCEINLINE void CreateCustomDataAttributes(const TOptional<TMap<FString, FString>>& InCustomData, TArray<FAnalyticsEventAttribute>& Attributes)
+	{
+		if (InCustomData.IsSet())
+		{
+			for (const auto& Pair : InCustomData.GetValue())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(CustomDataPrefix + Pair.Key, Pair.Value));
+			}
+		}
+	}
+
 	// Event definitions
 
 	/**
@@ -57,6 +72,9 @@ namespace RHStandardEvents
 		/** @brief The mode the client is running in */
 		TOptional<FString> Mode;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FCorrelationStartEvent()
 			: PlatformName()
 			, ClientBuildVersion()
@@ -67,12 +85,13 @@ namespace RHStandardEvents
 			, CommandLineArg()
 			, IsEditor()
 			, Mode()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, PlatformName, ClientBuildVersion, EngineVersion, IntegrationPluginVersion, ClientTimestamp, ServerTimestamp, CommandLineArg, IsEditor, Mode);
+			Emit(Provider, PlatformName, ClientBuildVersion, EngineVersion, IntegrationPluginVersion, ClientTimestamp, ServerTimestamp, CommandLineArg, IsEditor, Mode, CustomData);
 		}
 
 		static void Emit(
@@ -85,7 +104,8 @@ namespace RHStandardEvents
 			const TOptional<FString>& InServerTimestamp,
 			const TOptional<FString>& InCommandLineArg,
 			TOptional<bool> InIsEditor,
-			const TOptional<FString>& InMode
+			const TOptional<FString>& InMode,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -114,6 +134,8 @@ namespace RHStandardEvents
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("mode"), InMode.GetValue()));
 			}
 
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
 	};
@@ -134,21 +156,26 @@ namespace RHStandardEvents
 		/** @brief The duration of the correlation */
 		TOptional<int32> DurationSeconds;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FCorrelationEndEvent()
 			: Reason()
 			, DurationSeconds()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, Reason, DurationSeconds);
+			Emit(Provider, Reason, DurationSeconds, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
 			const TOptional<FString>& InReason,
-			const TOptional<int32>& InDurationSeconds
+			const TOptional<int32>& InDurationSeconds,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -162,6 +189,8 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("duration_seconds"), InDurationSeconds.GetValue()));
 			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
 
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}		
@@ -204,6 +233,9 @@ namespace RHStandardEvents
 		/** @brief This will be then platform the game client is running on */
 		TOptional<FString> DeviceType;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FClientDeviceEvent()
 			: CpuType()
 			, CpuCores()
@@ -214,12 +246,13 @@ namespace RHStandardEvents
 			, RamAvailable()
 			, Ip()
 			, DeviceType()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, CpuType, CpuCores, GpuType, ScreenHeight, ScreenWidth, RamTotal, RamAvailable, Ip, DeviceType);
+			Emit(Provider, CpuType, CpuCores, GpuType, ScreenHeight, ScreenWidth, RamTotal, RamAvailable, Ip, DeviceType, CustomData);
 		}
 
 		static void Emit(
@@ -232,7 +265,8 @@ namespace RHStandardEvents
 			const TOptional<int32>& InRamTotal,
 			const TOptional<int32>& InRamAvailable,
 			const TOptional<FString>& InIp,
-			const TOptional<FString>& InDeviceType
+			const TOptional<FString>& InDeviceType,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -275,6 +309,8 @@ namespace RHStandardEvents
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("device_type"), InDeviceType.GetValue()));
 			}
 
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
 	};
@@ -298,23 +334,28 @@ namespace RHStandardEvents
 		/** @brief The connection string of the instance the player is attempting to join */
 		TOptional<FString> ConnectionString;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FInstanceJoinStartEvent()
 			: SessionId()
 			, InstanceId()
 			, ConnectionString()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, SessionId, InstanceId, ConnectionString);
+			Emit(Provider, SessionId, InstanceId, ConnectionString, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
-			const TOptional<FString>& InConnectionString
+			const TOptional<FString>& InConnectionString,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -332,6 +373,8 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("connection_string"), InConnectionString.GetValue()));
 			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
 
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
@@ -360,17 +403,21 @@ namespace RHStandardEvents
 		/** @brief The reason for the failure to join the instance. */
 		TOptional<FString> Reason;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FInstanceJoinCompleteEvent()
 			: SessionId()
 			, InstanceId()
 			, IsSuccess()
 			, Reason()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, SessionId, InstanceId, IsSuccess, Reason);
+			Emit(Provider, SessionId, InstanceId, IsSuccess, Reason, CustomData);
 		}
 
 		static void Emit(
@@ -378,7 +425,8 @@ namespace RHStandardEvents
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
 			const TOptional<bool>& InIsSuccess,
-			const TOptional<FString>& InReason
+			const TOptional<FString>& InReason,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -400,6 +448,8 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("reason"), InReason.GetValue()));
 			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
 
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}	
@@ -424,23 +474,28 @@ namespace RHStandardEvents
 		/** @brief The reason for the player leaving the instance */
 		TOptional<FString> Reason;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FInstanceLeftEvent()
 			: SessionId()
 			, InstanceId()
 			, Reason()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, SessionId, InstanceId, Reason);
+			Emit(Provider, SessionId, InstanceId, Reason, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
-			const TOptional<FString>& InReason
+			const TOptional<FString>& InReason,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -459,6 +514,8 @@ namespace RHStandardEvents
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("reason"), InReason.GetValue()));
 			}
 
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
 	};
@@ -476,19 +533,24 @@ namespace RHStandardEvents
 		/** @brief Platform username / gamertag of the player. */
 		TOptional<FString> PlatformDisplayName;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FLoginStartEvent()
 			: PlatformDisplayName()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, PlatformDisplayName);
+			Emit(Provider, PlatformDisplayName, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
-			const TOptional<FString>& InPlatformDisplayName
+			const TOptional<FString>& InPlatformDisplayName,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -498,6 +560,8 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("platform_display_name"), InPlatformDisplayName.GetValue()));
 			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
 
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
@@ -540,6 +604,9 @@ namespace RHStandardEvents
 		/** @brief The timestamp when the login process was completed */
 		TOptional<FString> PlatformLoginCompleteTimestamp;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FLoginCompleteEvent()
 			: PlatformUserId()
 			, PlatformId()
@@ -550,12 +617,13 @@ namespace RHStandardEvents
 			, DurationSeconds()
 			, SubmitTimestamp()
 			, PlatformLoginCompleteTimestamp()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, PlatformUserId, PlatformId, Status, PlatformDisplayName, PersonId, Reason, DurationSeconds, SubmitTimestamp, PlatformLoginCompleteTimestamp);
+			Emit(Provider, PlatformUserId, PlatformId, Status, PlatformDisplayName, PersonId, Reason, DurationSeconds, SubmitTimestamp, PlatformLoginCompleteTimestamp, CustomData);
 		}
 
 		static void Emit(
@@ -568,7 +636,8 @@ namespace RHStandardEvents
 			const TOptional<FString>& InReason,
 			const TOptional<int32>& InDurationSeconds,
 			const TOptional<FString>& InSubmitTimestamp,
-			const TOptional<FString>& InPlatformLoginCompleteTimestamp
+			const TOptional<FString>& InPlatformLoginCompleteTimestamp,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -602,6 +671,8 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("platform_login_complete_timestamp"), InPlatformLoginCompleteTimestamp.GetValue()));
 			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
 
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
@@ -657,6 +728,9 @@ namespace RHStandardEvents
 		/** @brief Generic description string */
 		TOptional<FString> Description;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FObjectiveProgressEvent()
 			: Category()
 			, Status()
@@ -671,12 +745,13 @@ namespace RHStandardEvents
 			, OrderId()
 			, OrderEntryId()
 			, Description()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, Category, Status, Context, VendorId, LootTableItemId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description);
+			Emit(Provider, Category, Status, Context, VendorId, LootTableItemId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description, CustomData);
 		}
 
 		static void Emit(
@@ -693,7 +768,8 @@ namespace RHStandardEvents
 			const TOptional<FString>& InOrderRefId,
 			const TOptional<FString>& InOrderId,
 			const TOptional<FString>& InOrderEntryId,
-			const TOptional<FString>& InDescription
+			const TOptional<FString>& InDescription,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -747,6 +823,8 @@ namespace RHStandardEvents
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("description"), InDescription.GetValue()));
 			}
 
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
 	};
@@ -791,6 +869,9 @@ namespace RHStandardEvents
 		/** The primary input type of the player */
 		TOptional<FString> PrimaryInputType;
 
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
 		FPlayerGameResultEvent()
 			: Placement()
 			, GameSessionId()
@@ -802,12 +883,13 @@ namespace RHStandardEvents
 			, IsAfkKicked()
 			, WasBackfilled()
 			, PrimaryInputType()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, Placement, GameSessionId, InstanceId, DurationSeconds, TeamId, Round, PartySessionId, IsAfkKicked, WasBackfilled, PrimaryInputType);
+			Emit(Provider, Placement, GameSessionId, InstanceId, DurationSeconds, TeamId, Round, PartySessionId, IsAfkKicked, WasBackfilled, PrimaryInputType, CustomData);
 		}
 
 		static void Emit(
@@ -821,7 +903,8 @@ namespace RHStandardEvents
 			const TOptional<FString>& InPartySessionId,
 			const TOptional<bool>& InIsAfkKicked,
 			const TOptional<bool>& InWasBackfilled,
-			const TOptional<FString>& InPrimaryInputType
+			const TOptional<FString>& InPrimaryInputType,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -867,6 +950,10 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("primary_input_type"), InPrimaryInputType.GetValue()));
 			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
+			Provider->RecordEvent(GetEventName(), Attributes);
 		}
 		
 	};
@@ -1042,28 +1129,35 @@ namespace RHStandardEvents
 
 		/** The checkout data for the purchase */
 		FCheckoutData CheckoutData;
+
 		/** The receipt data for the purchase */
 		FReceiptData ReceiptData;
+
 		/** The state of the purchase */
 		FString State;
+
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
 
 		FPlatformPurchaseEvent()
 			: CheckoutData()
 			, ReceiptData()
 			, State()
+			, CustomData()
 		{
 		}
 
-		void EmitTo(IAnalyticsProvider* Provider)
+		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, CheckoutData, ReceiptData, State);
+			Emit(Provider, CheckoutData, ReceiptData, State, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
 			const FCheckoutData& InCheckoutData,
 			const FReceiptData& InReceiptData,
-			const FString& InState
+			const FString& InState,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
@@ -1073,7 +1167,55 @@ namespace RHStandardEvents
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt_data"), InReceiptData.ToJson()));
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("state"), InState));
 
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
 			Provider->RecordEvent(GetEventName(), Attributes);
+		}
+	};
+
+
+
+	/**
+	* @brief This is a wrapper for providing custom event data
+	*/
+	struct FCustomEvent
+	{
+		// Attributes
+
+		/** @brief Name of the event */
+		FString EventName;
+
+		/** @brief Attribute list */
+		TArray<FAnalyticsEventAttribute> Attributes;
+
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
+		FCustomEvent()
+			: EventName()
+			, Attributes()
+			, CustomData()
+		{
+		}
+
+		void EmitTo(IAnalyticsProvider* Provider) const
+		{
+			Emit(Provider, EventName, Attributes, CustomData);
+		}
+
+		static void Emit(
+			IAnalyticsProvider* Provider,
+			const FString& InEventName,
+			const TArray<FAnalyticsEventAttribute>& InAttributes,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
+		)
+		{
+			check(Provider != nullptr);
+			TArray<FAnalyticsEventAttribute> Attributes = InAttributes;
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
+			Provider->RecordEvent(InEventName, Attributes);
 		}
 	};
 }
