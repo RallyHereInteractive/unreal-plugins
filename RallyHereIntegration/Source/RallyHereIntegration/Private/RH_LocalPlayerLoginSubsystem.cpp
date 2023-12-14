@@ -163,7 +163,7 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 		Event.PlatformId = EnumToString(LPSubsystem->GetPlayerPlatformId().PlatformType);
 		Event.PlatformUserId = LPSubsystem->GetPlayerPlatformId().UserId;
 		Event.Status = RH_GETENUMSTRING("/Script/RallyhereIntegration", "ERHAPI_LoginResult", Res.Result);
-		Event.Reason = Res.OSSErrorMessage.Num() > 0 ? Res.OSSErrorMessage : Res.RallyHereErrorCode;
+		Event.Reason = Res.OSSErrorMessage.Len() > 0 ? Res.OSSErrorMessage : Res.RallyHereErrorCode;
 
 		// TODO: add timing
 

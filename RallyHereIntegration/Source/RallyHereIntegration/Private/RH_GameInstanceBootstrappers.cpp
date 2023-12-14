@@ -1038,11 +1038,16 @@ void URH_GameInstanceServerBootstrapper::SyncToSession()
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(bool bSuccess)
+void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] %s (%s - %s)"), 
+		ANSI_TO_TCHAR(__FUNCTION__), 
+		Session ? *Session->GetSessionId() : TEXT("<UNKNOWN>"), 
+		bSuccess ? TEXT("Success") : TEXT("Failure"),
+		*Error
+	);
 
-	if (bSuccess && RHSession->IsActive())
+	if (bSuccess && Session == RHSession && RHSession->IsActive())
 	{
 		OnBootstrappingComplete();
 	}
@@ -1124,8 +1129,15 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(bool bSuccess)
+void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error)
 {
+	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] %s (%s - %s)"),
+		ANSI_TO_TCHAR(__FUNCTION__),
+		Session ? *Session->GetSessionId() : TEXT("<UNKNOWN>"),
+		bSuccess ? TEXT("Success") : TEXT("Failure"),
+		*Error
+	);
+
 	if (ShouldRecycleAfterCleanup())
 	{
 		Recycle();
@@ -1164,7 +1176,7 @@ void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
 		check(ShouldRecycleAfterCleanup() == false); // this is used by the next function, and must return false to properly spin down
 
 		// trigger instance removal cleanup (even if not quite true) to unsync us
-		OnCleanupSessionSyncComplete(false);
+		OnCleanupSessionSyncComplete(RHSession, false, TEXT("Soft Stop Requested"));
 		return;
 	}
 }

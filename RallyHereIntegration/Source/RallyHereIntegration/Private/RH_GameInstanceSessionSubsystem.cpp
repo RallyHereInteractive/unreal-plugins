@@ -570,7 +570,7 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	EmitJoinInstanceStartedEvent(DesiredSession);
 
 	// wrapper the delegate to fire the completed analytics event to match the started event
-	FRH_GameInstanceSessionSyncDelegate Delegate = FRH_GameInstanceSessionSyncDelegate::CreateLambda([this, InDelegate](bool bSuccess, URH_JoinedSession* Session, const FString& Error)
+	FRH_GameInstanceSessionSyncDelegate Delegate = FRH_GameInstanceSessionSyncDelegate::CreateWeakLambda(this, [this, InDelegate](URH_JoinedSession* Session, bool bSuccess, const FString& Error)
 		{
 			// notify analytics that we are done joining a session
 			EmitJoinInstanceCompletedEvent(DesiredSession, bSuccess, Error);

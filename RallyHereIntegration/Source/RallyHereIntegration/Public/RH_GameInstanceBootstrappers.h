@@ -352,7 +352,7 @@ protected:
 	* @brief Bootstrapping Flow [SyncingToSession] - completiong callback for session sync
 	* @param [in] bSuccess Whether or not the session sync was successful
 	*/
-	virtual void OnSyncToSessionComplete(bool bSuccess);
+	virtual void OnSyncToSessionComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error);
 
 	/**
 	* @brief Notification callback that the session we have synced to was updated
@@ -372,7 +372,7 @@ protected:
 	/**
 	* @brief Completion callback for session and instance cleanup
 	*/
-	virtual void OnCleanupSessionSyncComplete(bool bSuccess);
+	virtual void OnCleanupSessionSyncComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error);
 	/**
 	* @brief Gets whether we should recycle the state after cleanup
 	*/
