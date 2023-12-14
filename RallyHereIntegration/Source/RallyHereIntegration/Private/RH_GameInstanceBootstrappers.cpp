@@ -507,7 +507,11 @@ void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, 
 	}
 	else
 	{
+#if RH_FROM_ENGINE_VERSION(5,2)
+		Identity->GetLinkedAccountAuthToken(ControllerId, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
+#else
 		Identity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
+#endif
 	}
 }
 

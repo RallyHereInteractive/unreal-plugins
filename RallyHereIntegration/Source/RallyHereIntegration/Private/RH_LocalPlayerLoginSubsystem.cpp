@@ -717,7 +717,11 @@ void URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthToken(FRH_PendingLoginRequest
 	}
 	else
 	{
-		LoginIdentity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
+#if RH_FROM_ENGINE_VERSION(5,2)
+	LoginIdentity->GetLinkedAccountAuthToken(ControllerId, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
+#else
+	LoginIdentity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::RetrieveOSSAuthTokenComplete, Req));
+#endif
 	}
 }
 
