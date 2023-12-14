@@ -33,6 +33,7 @@ public class RallyHereIntegration : ModuleRules
 			new string[] {
 				"Hotfix",
 				"Projects",
+				"Analytics",
 			}
 		);
     }

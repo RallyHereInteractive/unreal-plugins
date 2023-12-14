@@ -54,9 +54,6 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		SandboxedPlayerInfoSubsystem = AddSandboxedSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
 	}
 
-	// get the default configured provider
-	CreateAnalyticsProvider();
-
 	// Initialize Subsystems
 	for (auto Plugin : SubsystemPlugins)
 	{
@@ -66,6 +63,9 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	{
 		Plugin->Initialize();
 	}
+
+	// get the default configured provider
+	CreateAnalyticsProvider();
 
 	if (AnalyticsProvider.IsValid())
 	{
@@ -348,7 +348,25 @@ TSharedPtr<class IAnalyticsProvider> URH_LocalPlayerSubsystem::CreateAnalyticsPr
 	// todo - use environment configuration to change URL
 	if (!AnalyticsProvider.IsValid())
 	{
-		AnalyticsProvider = FAnalytics::Get().GetDefaultConfiguredProvider();
+		// override analytics config processor to pass in the configured per-sandbox endpoint
+		FAnalytics::ConfigFromIni AnalyticsConfig;                     // configure using the default INI sections.
+		FAnalyticsProviderConfigurationDelegate AnalyticsConfigDelegate = FAnalyticsProviderConfigurationDelegate::CreateLambda([&](const FString& ConfigName, bool bIsRequired)
+			{
+				if (ConfigName == TEXT("APIServerET"))
+				{
+					// grab event API, then compute the endpoint from a test event
+					auto& EventAPI = RH_APIs::GetEventsAPI();
+					RallyHereAPI::FRequest_ReceiveEventsV1 Request;
+
+					FString EndPoint = EventAPI.GetURL() + Request.ComputePath();
+					return EndPoint;
+				}
+				return AnalyticsConfig.GetValue(ConfigName, bIsRequired);
+			});
+
+		AnalyticsProvider = FAnalytics::Get().CreateAnalyticsProvider(              // call the factory function
+			FAnalytics::ConfigFromIni::GetDefaultProviderModuleName(), // use the default config to find the provider name
+			AnalyticsConfigDelegate);
 	}
 
 	return AnalyticsProvider;
