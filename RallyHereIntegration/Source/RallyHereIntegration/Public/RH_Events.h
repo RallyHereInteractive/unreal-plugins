@@ -698,11 +698,11 @@ namespace RHStandardEvents
 		/** @brief Generic context, possibly escaped JSON */
 		TOptional<FString> Context;
 
-		/** @brief Vendor loot table ID for vendors */
+		/** @brief Vendor ID for the order */
 		TOptional<FString> VendorId;
 		
-		/** @brief Identifier of the entry in the loot table */
-		TOptional<FString> LootTableItemId;
+		/** @brief Loot ID for the order */
+		TOptional<FString> LootId;
 
 		/** @brief Specific Item ID */
 		TOptional<FString> ItemId;
@@ -736,7 +736,7 @@ namespace RHStandardEvents
 			, Status()
 			, Context()
 			, VendorId()
-			, LootTableItemId()
+			, LootId()
 			, ItemId()
 			, StartProgress()
 			, EndProgress()
@@ -751,7 +751,7 @@ namespace RHStandardEvents
 
 		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, Category, Status, Context, VendorId, LootTableItemId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description, CustomData);
+			Emit(Provider, Category, Status, Context, VendorId, LootId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description, CustomData);
 		}
 
 		static void Emit(
@@ -760,7 +760,7 @@ namespace RHStandardEvents
 			const FString& InStatus,
 			const TOptional<FString>& InContext,
 			const TOptional<FString>& InVendorId,
-			const TOptional<FString>& InLootTableItemId,
+			const TOptional<FString>& InLootId,
 			const TOptional<FString>& InItemId,
 			const TOptional<int32>& InStartProgress,
 			const TOptional<int32>& InEndProgress,
@@ -786,9 +786,9 @@ namespace RHStandardEvents
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("vendor_id"), InVendorId.GetValue()));
 			}
-			if (InLootTableItemId.IsSet())
+			if (InLootId.IsSet())
 			{
-				Attributes.Add(FAnalyticsEventAttribute(TEXT("loot_table_item_id"), InLootTableItemId.GetValue()));
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("loot_id"), InLootId.GetValue()));
 			}
 			if (InItemId.IsSet())
 			{
