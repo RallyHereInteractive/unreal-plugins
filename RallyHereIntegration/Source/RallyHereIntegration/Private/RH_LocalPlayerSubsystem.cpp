@@ -134,7 +134,7 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 			{
 				FPlatformMemoryStats MemoryStats = PlatformMemoryHelpers::GetFrameMemoryStats();
 				ClientDeviceEvent.RamTotal = MemoryStats.TotalPhysicalGB;
-				ClientDeviceEvent.RamAvailable = MemoryStats.AvailablePhysical;
+				ClientDeviceEvent.RamAvailable = ((float)MemoryStats.AvailablePhysical) / (1024.f * 1024.f * 1024.f);
 			}
 
 			//ClientDeviceEvent.Ip;

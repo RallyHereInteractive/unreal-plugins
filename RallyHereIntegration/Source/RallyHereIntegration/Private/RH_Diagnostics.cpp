@@ -222,7 +222,7 @@ void FRH_DiagnosticReportGenerator::GenerateDeviceData()
 	{
 		FPlatformMemoryStats MemoryStats = PlatformMemoryHelpers::GetFrameMemoryStats();
 		DeviceData->SetNumberField(TEXT("RamTotal"), MemoryStats.TotalPhysicalGB);
-		DeviceData->SetNumberField(TEXT("RamAvailable"), MemoryStats.AvailablePhysical);
+		DeviceData->SetNumberField(TEXT("RamAvailable"), ((float)MemoryStats.AvailablePhysical) / (1024.f * 1024.f * 1024.f));	// convert to GB
 	}
 
 	DeviceData->SetStringField(TEXT("DeviceType"), FPlatformProperties::PlatformName());
