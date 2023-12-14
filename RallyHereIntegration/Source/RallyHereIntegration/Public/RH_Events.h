@@ -22,16 +22,9 @@ namespace RHStandardEvents
 	// prefix used to pass custom data, will be stripped out by the default rally here event provider
 	static FString CustomDataPrefix = TEXT("__CUSTOM_DATA__.");
 
-	FORCEINLINE void CreateCustomDataAttributes(const TOptional<TMap<FString, FString>>& InCustomData, TArray<FAnalyticsEventAttribute>& Attributes)
-	{
-		if (InCustomData.IsSet())
-		{
-			for (const auto& Pair : InCustomData.GetValue())
-			{
-				Attributes.Add(FAnalyticsEventAttribute(CustomDataPrefix + Pair.Key, Pair.Value));
-			}
-		}
-	}
+	void RALLYHEREINTEGRATION_API CreateCustomDataAttributes(const TOptional<TMap<FString, FString>>& InCustomData, TArray<FAnalyticsEventAttribute>& Attributes);
+
+	TSharedPtr<class IAnalyticsProvider> RALLYHEREINTEGRATION_API AutoCreateAnalyticsProvider();
 
 	// Event definitions
 
@@ -93,6 +86,9 @@ namespace RHStandardEvents
 		{
 			Emit(Provider, PlatformName, ClientBuildVersion, EngineVersion, IntegrationPluginVersion, ClientTimestamp, ServerTimestamp, CommandLineArg, IsEditor, Mode, CustomData);
 		}
+
+		/** @brief automaticly harvest data and emit the event */
+		static void RALLYHEREINTEGRATION_API AutoEmit(IAnalyticsProvider* Provider, class UGameInstance* pGameInstance);
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
@@ -254,6 +250,9 @@ namespace RHStandardEvents
 		{
 			Emit(Provider, CpuType, CpuCores, GpuType, ScreenHeight, ScreenWidth, RamTotal, RamAvailable, Ip, DeviceType, CustomData);
 		}
+
+		/** @brief automaticly harvest data and emit the event */
+		static void RALLYHEREINTEGRATION_API AutoEmit(IAnalyticsProvider* Provider, class UGameInstance* pGameInstance);
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
@@ -728,6 +727,12 @@ namespace RHStandardEvents
 		/** @brief Generic description string */
 		TOptional<FString> Description;
 
+		/** @brief A SessionID to be associated with this event (ex: for gameplay rewards) */
+		TOptional<FString> SessionId;
+
+		/** @brief A InstanceId to be associated with this event (ex: for gameplay rewards) */
+		TOptional<FString> InstanceId;
+
 		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
 		TOptional<TMap<FString, FString>> CustomData;
 
@@ -745,13 +750,15 @@ namespace RHStandardEvents
 			, OrderId()
 			, OrderEntryId()
 			, Description()
+			, SessionId()
+			, InstanceId()
 			, CustomData()
 		{
 		}
 
 		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, Category, Status, Context, VendorId, LootId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description, CustomData);
+			Emit(Provider, Category, Status, Context, VendorId, LootId, ItemId, StartProgress, EndProgress, ProviderId, OrderRefId, OrderId, OrderEntryId, Description, SessionId, InstanceId, CustomData);
 		}
 
 		static void Emit(
@@ -769,6 +776,8 @@ namespace RHStandardEvents
 			const TOptional<FString>& InOrderId,
 			const TOptional<FString>& InOrderEntryId,
 			const TOptional<FString>& InDescription,
+			const TOptional<FString>& InSessionId,
+			const TOptional<FString>& InInstanceId,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
@@ -821,6 +830,14 @@ namespace RHStandardEvents
 			if (InDescription.IsSet())
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("description"), InDescription.GetValue()));
+			}
+			if (InSessionId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("session_id"), InSessionId.GetValue()));
+			}
+			if (InInstanceId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("instance_id"), InInstanceId.GetValue()));
 			}
 
 			CreateCustomDataAttributes(InCustomData, Attributes);

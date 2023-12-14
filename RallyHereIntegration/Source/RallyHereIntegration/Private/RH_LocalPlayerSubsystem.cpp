@@ -12,9 +12,6 @@
 #include "Net/OnlineEngineInterface.h"
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
-#include "Interfaces/IPluginManager.h"
-#include "Engine/GameViewportClient.h"
-#include "HAL/PlatformMemoryHelpers.h"
 
 #include "RH_LocalPlayerLoginSubsystem.h"
 #include "RH_LocalPlayerPresenceSubsystem.h"
@@ -72,77 +69,11 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		AnalyticsStartTime = FDateTime::UtcNow();
 		AnalyticsProvider->StartSession();
 
-		// emit the correlation start event
-		{
-			RHStandardEvents::FCorrelationStartEvent CorrelationStartEvent;
+		// emit the auto correlation start event
+		RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
 
-			CorrelationStartEvent.PlatformName = FPlatformProperties::IniPlatformName();
-			CorrelationStartEvent.ClientBuildVersion = FApp::GetBuildVersion();
-			CorrelationStartEvent.EngineVersion = FEngineVersion::Current().ToString(EVersionComponent::Patch);
-
-			auto RHIntegrationPlugin = IPluginManager::Get().FindPlugin(TEXT("RallyHereIntegration"));
-			if (RHIntegrationPlugin != nullptr)
-			{
-				const auto& Descriptor = RHIntegrationPlugin->GetDescriptor();
-				CorrelationStartEvent.IntegrationPluginVersion = Descriptor.VersionName;
-			}
-
-			auto pGameInstance = GetLocalPlayer()->GetGameInstance();
-			if (pGameInstance != nullptr)
-			{
-				auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
-				if (pGISubsystem != nullptr)
-				{
-					const auto& TimeCache = pGISubsystem->GetConfigSubsystem()->GetServerTimeCache();
-					FDateTime ServerTime;
-					if (TimeCache.GetServerTime(ServerTime))
-					{
-						CorrelationStartEvent.ServerTimestamp = ServerTime.ToIso8601();;
-					}
-				}
-			}
-			CorrelationStartEvent.ClientTimestamp = FRH_ServerTimeCache::GetLocalTime().ToIso8601();
-			CorrelationStartEvent.CommandLineArg = FCommandLine::Get();
-			CorrelationStartEvent.IsEditor = GEngine != nullptr ? GEngine->IsEditor() : GIsEditor;
-			CorrelationStartEvent.Mode = FGenericPlatformMisc::GetEngineMode();
-
-
-			CorrelationStartEvent.EmitTo(AnalyticsProvider.Get());
-		}
-
-		// emit a client device event
-		{
-			RHStandardEvents::FClientDeviceEvent ClientDeviceEvent;
-
-			ClientDeviceEvent.CpuType = FPlatformMisc::GetCPUBrand();
-			ClientDeviceEvent.CpuCores = FPlatformMisc::NumberOfCores();
-			ClientDeviceEvent.GpuType = FPlatformMisc::GetPrimaryGPUBrand();
-
-			auto pGameInstance = GetLocalPlayer()->GetGameInstance();
-			if (pGameInstance != nullptr)
-			{
-				const auto GameViewportClient = pGameInstance->GetGameViewportClient();
-				if (GameViewportClient != nullptr)
-				{
-					FVector2D ViewportSize;
-					GameViewportClient->GetViewportSize(ViewportSize);
-					ClientDeviceEvent.ScreenHeight = ViewportSize.Y;
-					ClientDeviceEvent.ScreenWidth = ViewportSize.X;
-				}
-			}
-
-			{
-				FPlatformMemoryStats MemoryStats = PlatformMemoryHelpers::GetFrameMemoryStats();
-				ClientDeviceEvent.RamTotal = MemoryStats.TotalPhysicalGB;
-				ClientDeviceEvent.RamAvailable = ((float)MemoryStats.AvailablePhysical) / (1024.f * 1024.f * 1024.f);
-			}
-
-			//ClientDeviceEvent.Ip;
-			ClientDeviceEvent.DeviceType = FPlatformProperties::PlatformName();
-
-			ClientDeviceEvent.EmitTo(AnalyticsProvider.Get());
-
-		}
+		// emit the auto client device event
+		RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
 	}
 }
 
@@ -348,25 +279,7 @@ TSharedPtr<class IAnalyticsProvider> URH_LocalPlayerSubsystem::CreateAnalyticsPr
 	// todo - use environment configuration to change URL
 	if (!AnalyticsProvider.IsValid())
 	{
-		// override analytics config processor to pass in the configured per-sandbox endpoint
-		FAnalytics::ConfigFromIni AnalyticsConfig;                     // configure using the default INI sections.
-		FAnalyticsProviderConfigurationDelegate AnalyticsConfigDelegate = FAnalyticsProviderConfigurationDelegate::CreateLambda([&](const FString& ConfigName, bool bIsRequired)
-			{
-				if (ConfigName == TEXT("APIServerET"))
-				{
-					// grab event API, then compute the endpoint from a test event
-					auto& EventAPI = RH_APIs::GetEventsAPI();
-					RallyHereAPI::FRequest_ReceiveEventsV1 Request;
-
-					FString EndPoint = EventAPI.GetURL() + Request.ComputePath();
-					return EndPoint;
-				}
-				return AnalyticsConfig.GetValue(ConfigName, bIsRequired);
-			});
-
-		AnalyticsProvider = FAnalytics::Get().CreateAnalyticsProvider(              // call the factory function
-			FAnalytics::ConfigFromIni::GetDefaultProviderModuleName(), // use the default config to find the provider name
-			AnalyticsConfigDelegate);
+		AnalyticsProvider = RHStandardEvents::AutoCreateAnalyticsProvider();
 	}
 
 	return AnalyticsProvider;
