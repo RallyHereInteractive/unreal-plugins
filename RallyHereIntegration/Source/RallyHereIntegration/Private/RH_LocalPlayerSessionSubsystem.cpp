@@ -320,6 +320,8 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 
 		if (ExistingRHSession != nullptr)
 		{
+			UE_LOG(LogRHSession, Verbose, TEXT("[%s] : Imported update for %s of type %s"), ANSI_TO_TCHAR(__FUNCTION__), *Session.GetSessionId(). * Session.GetType());
+
 			// fire updated callbacks
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
@@ -329,6 +331,8 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 		}
 		else
 		{
+			UE_LOG(LogRHSession, Log, TEXT("[%s] : Added new session %s of type %s"), ANSI_TO_TCHAR(__FUNCTION__), *Session.GetSessionId(), *Session.GetType());
+
 			// fire added callbacks first
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionAdded, FColor::Purple);
