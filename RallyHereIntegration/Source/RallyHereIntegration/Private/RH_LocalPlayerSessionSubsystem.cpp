@@ -320,16 +320,27 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 
 		if (ExistingRHSession != nullptr)
 		{
-			SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
-			BLUEPRINT_OnSessionUpdatedDelegate.Broadcast(RHSession);
-			OnSessionUpdatedDelegate.Broadcast(RHSession);
+			// fire updated callbacks
+			{
+				SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
+				BLUEPRINT_OnSessionUpdatedDelegate.Broadcast(RHSession);
+				OnSessionUpdatedDelegate.Broadcast(RHSession);
+			}
 		}
 		else
 		{
+			// fire added callbacks first
 			{
 				SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionAdded, FColor::Purple);
 				BLUEPRINT_OnSessionAddedDelegate.Broadcast(RHSession);
 				OnSessionAddedDelegate.Broadcast(RHSession);
+			}
+
+			// fire updated callbacks in case someone is only listening for updates
+			{
+				SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
+				BLUEPRINT_OnSessionUpdatedDelegate.Broadcast(RHSession);
+				OnSessionUpdatedDelegate.Broadcast(RHSession);
 			}
 
 			// if this is an online session, start listening for updates now that it is in the tracking list
@@ -783,6 +794,9 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 	}
 
 	FString SessionIdStr = SessionInfo->GetSessionIdStr();
+
+	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
+	UE_LOG(LogRHSession, Log, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *SessionIdStr);
 
 	// we have received a notification that the user accepted an invitation from the system.  We need to attempt to join that session (at which point we will resynchronize with it via the RHSession)
 
