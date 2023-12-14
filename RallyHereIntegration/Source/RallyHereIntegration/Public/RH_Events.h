@@ -154,7 +154,7 @@ namespace RHStandardEvents
 		TOptional<FString> Reason;
 
 		/** @brief The duration of the correlation */
-		TOptional<int32> DurationSeconds;
+		TOptional<float> DurationSeconds;
 
 		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
 		TOptional<TMap<FString, FString>> CustomData;
@@ -174,7 +174,7 @@ namespace RHStandardEvents
 		static void Emit(
 			IAnalyticsProvider* Provider,
 			const TOptional<FString>& InReason,
-			const TOptional<int32>& InDurationSeconds,
+			const TOptional<float>& InDurationSeconds,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
@@ -596,7 +596,7 @@ namespace RHStandardEvents
 		TOptional<FString> Reason;
 
 		/** @brief The duration of the login process */
-		TOptional<int32> DurationSeconds;
+		TOptional<float> DurationSeconds;
 
 		/** @brief The timestamp when the login process was submitted to the RH API */
 		TOptional<FString> SubmitTimestamp;
@@ -634,7 +634,7 @@ namespace RHStandardEvents
 			const TOptional<FString>& InPlatformDisplayName,
 			const TOptional<FString>& InPersonId,
 			const TOptional<FString>& InReason,
-			const TOptional<int32>& InDurationSeconds,
+			const TOptional<float>& InDurationSeconds,
 			const TOptional<FString>& InSubmitTimestamp,
 			const TOptional<FString>& InPlatformLoginCompleteTimestamp,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
@@ -699,13 +699,13 @@ namespace RHStandardEvents
 		TOptional<FString> Context;
 
 		/** @brief Vendor loot table ID for vendors */
-		TOptional<int32> VendorId;
+		TOptional<FString> VendorId;
 		
 		/** @brief Identifier of the entry in the loot table */
-		TOptional<int32> LootTableItemId;
+		TOptional<FString> LootTableItemId;
 
 		/** @brief Specific Item ID */
-		TOptional<int32> ItemId;
+		TOptional<FString> ItemId;
 
 		/** @brief The quantity value before the progression event */
 		TOptional<int32> StartProgress;
@@ -714,7 +714,7 @@ namespace RHStandardEvents
 		TOptional<int32> EndProgress;
 
 		/** @brief Identifier for the authentication provider */
-		TOptional<int32> ProviderId;
+		TOptional<FString> ProviderId;
 
 		/** @brief Order reference ID */
 		TOptional<FString> OrderRefId;
@@ -759,12 +759,12 @@ namespace RHStandardEvents
 			const FString& InCategory,
 			const FString& InStatus,
 			const TOptional<FString>& InContext,
-			const TOptional<int32>& InVendorId,
-			const TOptional<int32>& InLootTableItemId,
-			const TOptional<int32>& InItemId,
+			const TOptional<FString>& InVendorId,
+			const TOptional<FString>& InLootTableItemId,
+			const TOptional<FString>& InItemId,
 			const TOptional<int32>& InStartProgress,
 			const TOptional<int32>& InEndProgress,
-			const TOptional<int32>& InProviderId,
+			const TOptional<FString>& InProviderId,
 			const TOptional<FString>& InOrderRefId,
 			const TOptional<FString>& InOrderId,
 			const TOptional<FString>& InOrderEntryId,
@@ -849,7 +849,7 @@ namespace RHStandardEvents
 		TOptional<FString> InstanceId;
 
 		/** The duration of the game in seconds */
-		TOptional<int32> DurationSeconds;
+		TOptional<float> DurationSeconds;
 
 		/** The team_id of the player */
 		TOptional<FString> TeamId;
@@ -897,7 +897,7 @@ namespace RHStandardEvents
 			const TOptional<int32>& InPlacement,
 			const TOptional<FString>& InGameSessionId,
 			const TOptional<FString>& InInstanceId,
-			const TOptional<int32>& InDurationSeconds,
+			const TOptional<float>& InDurationSeconds,
 			const TOptional<FString>& InTeamId,
 			const TOptional<FString>& InRound,
 			const TOptional<FString>& InPartySessionId,
