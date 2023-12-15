@@ -390,14 +390,14 @@ namespace RHStandardEvents
 
 		// Attributes
 
+		/** @brief Whether or not the join was an overall success. */
+		bool IsSuccess;
+
 		/** @brief The session_id of the instance the player is attempting to join */
 		TOptional<FString> SessionId;
 
 		/** @brief The instance_id of the instance the player is attempting to join */
 		TOptional<FString> InstanceId;
-
-		/** @brief Whether or not the join was an overall success. */
-		TOptional<bool> IsSuccess;
 
 		/** @brief The reason for the failure to join the instance. */
 		TOptional<FString> Reason;
@@ -406,9 +406,9 @@ namespace RHStandardEvents
 		TOptional<TMap<FString, FString>> CustomData;
 
 		FInstanceJoinCompleteEvent()
-			: SessionId()
+			: IsSuccess(false)
+			, SessionId()
 			, InstanceId()
-			, IsSuccess()
 			, Reason()
 			, CustomData()
 		{
@@ -416,20 +416,22 @@ namespace RHStandardEvents
 
 		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, SessionId, InstanceId, IsSuccess, Reason, CustomData);
+			Emit(Provider, IsSuccess, SessionId, InstanceId, Reason, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
+			bool InIsSuccess,
 			const TOptional<FString>& InSessionId,
 			const TOptional<FString>& InInstanceId,
-			const TOptional<bool>& InIsSuccess,
 			const TOptional<FString>& InReason,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
 		{
 			check(Provider != nullptr);
 			TArray<FAnalyticsEventAttribute> Attributes;
+
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess));
 
 			if (InSessionId.IsSet())
 			{
@@ -438,10 +440,6 @@ namespace RHStandardEvents
 			if (InInstanceId.IsSet())
 			{
 				Attributes.Add(FAnalyticsEventAttribute(TEXT("instance_id"), InInstanceId.GetValue()));
-			}
-			if (InIsSuccess.IsSet())
-			{
-				Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess.GetValue()));
 			}
 			if (InReason.IsSet())
 			{
