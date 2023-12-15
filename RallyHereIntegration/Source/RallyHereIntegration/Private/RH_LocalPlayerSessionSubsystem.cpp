@@ -320,7 +320,7 @@ URH_SessionView* URH_LocalPlayerSessionSubsystem::CreateOrUpdateRHSession(const 
 
 		if (ExistingRHSession != nullptr)
 		{
-			UE_LOG(LogRHSession, Verbose, TEXT("[%s] : Imported update for %s of type %s"), ANSI_TO_TCHAR(__FUNCTION__), *Session.GetSessionId(). * Session.GetType());
+			UE_LOG(LogRHSession, Verbose, TEXT("[%s] : Imported update for %s of type %s"), ANSI_TO_TCHAR(__FUNCTION__), *Session.GetSessionId(), *Session.GetType());
 
 			// fire updated callbacks
 			{
