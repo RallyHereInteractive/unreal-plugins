@@ -250,6 +250,10 @@ void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 	{
 		FinalReport->SetObjectField(TEXT("Device-Data"), DeviceData);
 	}
+	
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&FinalReportString);
+	FJsonSerializer::Serialize(FinalReport.ToSharedRef(), Writer);
 
 	StageComplete();
 }
@@ -272,12 +276,6 @@ void FRH_DiagnosticReportGenerator::WriteToFile()
 		Filename = Options.OutputFilename;
 	}
 
-	const auto ReportJson = FinalReport;
-
-	FString FileOutput;
-	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&FileOutput);
-	FJsonSerializer::Serialize(ReportJson.ToSharedRef(), Writer);
-
 	// Make dir
 	FString ProjectLogDir = FPaths::ProjectLogDir();
 	if (FPaths::IsRelative(ProjectLogDir))
@@ -292,7 +290,7 @@ void FRH_DiagnosticReportGenerator::WriteToFile()
 		FullFilename = FPaths::Combine(ProjectLogDir, FullFilename);
 	}
 
-	if (FFileHelper::SaveStringToFile(FileOutput, *FullFilename, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
+	if (FFileHelper::SaveStringToFile(FinalReportString, *FullFilename, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("Saved diagnostic report to %s"), *FullFilename);
 		ReportFilename = FullFilename;

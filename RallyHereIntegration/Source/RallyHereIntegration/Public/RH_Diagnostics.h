@@ -255,6 +255,8 @@ public:
 
 	/** Final combined report */
 	TSharedPtr<FJsonObject> FinalReport;
+	/** Final combined report (serialized as string) */
+	FString FinalReportString;
 	/** Filename the report was written to (if requested) */
 	FString ReportFilename;
 	/** Whether the cloud write was successful (if requested) */
