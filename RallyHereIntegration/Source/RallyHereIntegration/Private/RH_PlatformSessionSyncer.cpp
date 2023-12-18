@@ -620,10 +620,8 @@ void URH_PlatformSessionSyncer::UpdateRHSessionWithPlatformSession()
 	}
 
 	FString PlatformSessionIdStr;
-	if (ConvertPlatformSessionIdToJson(OSSSessionId, PlatformSessionIdStr))
+	if (ConvertPlatformSessionIdToJson(GetOSS(), OSSSessionId, PlatformSessionIdStr))
 	{
-		MakeSessionIdJsonCaseConsistent(PlatformSessionIdStr);
-
 		FString Base64Str = RallyHereAPI::Base64UrlEncode(PlatformSessionIdStr);
 
 		typedef RallyHereAPI::Traits_AddPlatformSessionToRallyHereSession BaseType;
