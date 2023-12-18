@@ -514,6 +514,28 @@ protected:
 	*/
 	virtual void OnPlatformSessionDestroyed(FName SessionName, bool bSuccess);
 	/**
+	* @brief Called from other Platform Session Participant functions to reconcile the state of the platform syncer.
+	* @param [in] SessionName The name of the associated session.
+	* @param [in] UniqueNetId Unique Net Id of the participant that joined, changed, left, or was removed.
+	*/
+	virtual void OnPlatformSessionParticipantsChanged(FName SessionName, const FUniqueNetId& UniqueNetId, bool bJoined);
+
+#if RH_FROM_ENGINE_VERSION(5,2)
+	/**
+	* @brief Handles the response of an online subsystem session participant joining.
+	* @param [in] SessionName The name of the associated session.
+	* @param [in] UniqueNetId Unique Net Id of the participant that joined.
+	*/
+	virtual void OnPlatformSessionParticipantJoined(FName SessionName, const FUniqueNetId& UniqueNetId);
+	/**
+	* @brief Handles the response of an online subsystem session participant leaving.
+	* @param [in] SessionName The name of the associated session.
+	* @param [in] UniqueNetId Unique Net Id of the participant that left.
+	* @param [in] LeaveReason The reason that the participant was left the session.
+	*/
+	virtual void OnPlatformSessionParticipantLeft(FName SessionName, const FUniqueNetId& UniqueNetId, EOnSessionParticipantLeftReason LeaveReason);
+#else
+	/**
 	* @brief Handles the response of an online subsystem session participant change.
 	* @param [in] SessionName The name of the associated session.
 	* @param [in] UniqueNetId Unique Net Id of the participant that changed.
@@ -526,6 +548,8 @@ protected:
 	* @param [in] UniqueNetId Unique Net Id of the participant that was removed.
 	*/
 	virtual void OnPlatformSessionParticipantRemoved(FName SessionName, const FUniqueNetId& UniqueNetId);
+#endif
+
 	/** @brief Poller for sessions. */
 	FRH_AutoPollerPtr Poller;
 	/** @brief Map of Template Ids to Session Templates. */
