@@ -744,7 +744,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					Syncer->GetPlatformSessionIdFromPlatformSession(PlatformSessionId);
 
 					FString SessionIdStr;
-					if (PlatformSessionId.IsValid() && Syncer->ConvertPlatformSessionIdToJson(PlatformSessionId, SessionIdStr))
+					if (PlatformSessionId.IsValid() && Syncer->ConvertPlatformSessionIdToJson(Syncer->GetOSS(), PlatformSessionId, SessionIdStr))
 					{
 						ImGui::Text("Local Platform Session Id: %s", TCHAR_TO_UTF8(*SessionIdStr));
 					}

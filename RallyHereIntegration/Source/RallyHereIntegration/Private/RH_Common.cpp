@@ -88,7 +88,7 @@ TOptional<ERHAPI_GrantType> RH_GetGrantTypeFromOSSName(FName OSSName)
 	return OutGrantType;
 }
 
-bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
+bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName)
 {
 	FString OSSNameString = OSSName.ToString();
 
@@ -101,10 +101,20 @@ bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
 		}
 	}
 
-	bool bUseFallback = false;
-	GConfig->GetBool(TEXT("UseAuthTokenFallbackFromOSSNameMap"), *OSSNameString, bUseFallback, GRallyHereIntegrationIni);
+	bool bValue = false;
+	GConfig->GetBool(*OverrideMapName, *OSSNameString, bValue, GRallyHereIntegrationIni);
 
-	return bUseFallback;
+	return bValue;
+}
+
+bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseAuthTokenFallbackFromOSSNameMap"));
+}
+
+bool RH_PlatformSessionsAreCaseInsensitive(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("SessionNamesAreCaseInsensitiveOSSNameMap"));
 }
 
 
