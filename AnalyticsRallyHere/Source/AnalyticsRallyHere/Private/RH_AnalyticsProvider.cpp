@@ -13,6 +13,9 @@
 #include "Misc/EngineVersion.h"
 #include "HAL/IConsoleManager.h"
 
+#include "RallyHereIntegrationModule.h"
+#include "RH_IntegrationSettings.h"
+
 namespace RH_AnalyticsProviderCvars
 {
 	static bool PreventMultipleFlushesInOneFrame = true;
@@ -25,12 +28,6 @@ namespace RH_AnalyticsProviderCvars
 
 TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const FAnalyticsET::Config& ConfigValues) const
 {
-	// If we didn't have a proper APIServer, return NULL
-	if (ConfigValues.APIServerET.IsEmpty())
-	{
-		UE_LOG(LogAnalytics, Warning, TEXT("[RHAnalytics] CreateAnalyticsProvider config not contain required parameter %s"), *FAnalyticsET::Config::GetKeyNameForAPIServer());
-		return NULL;
-	}
 	return MakeShared<FRH_AnalyticsProvider>(ConfigValues);
 }
 
@@ -47,19 +44,12 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigV
 	// avoid preallocating space if we are using the legacy protocol.
 	, EventCache(ConfigValues.MaximumPayloadSize, ConfigValues.PreallocatedPayloadSize)
 {
-	if (Config.APIServerET.IsEmpty())
-	{
-		UE_LOG(LogAnalytics, Fatal, TEXT("AnalyticsRallyHere: APIServer (%s) cannot be empty!"), *Config.APIServerET);
-	}
-
 	HttpRetryManager = MakeShared<FHttpRetrySystem::FManager>(
 		FHttpRetrySystem::FRetryLimitCountSetting(Config.RetryLimitCount),
 		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting()
 		);
 
 	UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Initializing RallyHere Analytics provider"));
-
-	UE_LOG(LogAnalytics, Display, TEXT("APIServer = %s"), *Config.APIServerET);
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
@@ -123,12 +113,19 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
 	{
 		EndSession();
 	}
-	FGuid SessionGUID;
-	FPlatformMisc::CreateGuid(SessionGUID);
-	SessionID = SessionGUID.ToString(EGuidFormats::DigitsWithHyphens);
 
-	// add session ID to attributes
-	EventCache.SetCorrelationId(SessionID);
+	// enforce guid formatting for session ids
+	if (InSessionID.IsEmpty())
+	{
+		InSessionID = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession - SessionID is empty, creating as %s"), *InSessionID);
+	}
+	else
+	{
+		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession - SessionID %s is not empty"), *InSessionID);
+	}
+
+	SetSessionID(InSessionID);
 
 	bSessionInProgress = true;
 	return bSessionInProgress;
@@ -140,9 +137,9 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
 void FRH_AnalyticsProvider::EndSession()
 {
 	FlushEvents();
-	SessionID.Empty();
 
-	EventCache.SetCorrelationId(TOptional<FString>());
+	// clear out the old session id
+	SetSessionID(FString());
 
 	bSessionInProgress = false;
 }
@@ -172,6 +169,28 @@ void FRH_AnalyticsProvider::FlushEvents()
 	}
 }
 
+typedef RallyHereAPI::Traits_ReceiveEventsV1 BaseReceiveEventsType;
+struct FReceiveEventWrapperType : public BaseReceiveEventsType::Request
+{
+	FReceiveEventWrapperType(TArray<uint8> InPayload)
+		: Payload(MoveTemp(InPayload))
+	{
+	}
+
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override
+	{
+		bool bSuccess = BaseReceiveEventsType::Request::SetupHttpRequest(HttpRequest);
+		if (bSuccess)
+		{
+			// substitute the payload with the one we want to send.
+			HttpRequest->SetContent(MoveTemp(Payload));
+		}
+		return bSuccess;
+	}
+
+	mutable TArray<uint8> Payload;
+};
+
 void FRH_AnalyticsProvider::FlushEventsOnce()
 {
 	// Make sure we don't try to flush too many times. When we are not caching events it's possible this can be called when there are no events in the array.
@@ -180,40 +199,20 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 		return;
 	}
 
-	if(ensure(FModuleManager::Get().IsModuleLoaded("HTTP")))
+	if(ensure(FModuleManager::Get().IsModuleLoaded("RallyHereIntegration")))
 	{
-		TArray<uint8> Payload = EventCache.FlushCache();
+		// grab event API, then compute the endpoint from a test event
+		auto& EventsAPI = RH_APIs::GetEventsAPI();
+		FReceiveEventWrapperType Request(EventCache.FlushCache());
 
-		// This should never be done in production. MUCH slower!
-		if (UE_LOG_ACTIVE(LogAnalytics, VeryVerbose))
-		{
-			// need to null terminate to load the payload.
-			Payload.Add(TEXT('\0'));
-			// Recreate the URLPath for logging because we do not want to escape the parameters when logging.
-			// We cannot simply UrlEncode the entire Path after logging it because UrlEncode(Params) != UrlEncode(Param1) & UrlEncode(Param2) ...
-			FString LogString = FString::Printf(TEXT("[RHAnalytics] GETS request for [%s]. Payload:%s"),
-				*Config.APIServerET,
-				UTF8_TO_TCHAR(Payload.GetData()));
-			UE_LOG(LogAnalytics, VeryVerbose, TEXT("%s"), *LogString);
-			Payload.SetNum(Payload.Num()-1);
-		}
-
+		// this manually emits the event for efficiency using a binary send, rather than using the API version which does extra copies
 		{
 			QUICK_SCOPE_CYCLE_COUNTER(STAT_FlushEventsHttpRequest);
+
 			// Create/send Http request for an event
-			TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = CreateRequest();
-			HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-			HttpRequest->SetURL(Config.APIServerET);
-			HttpRequest->SetVerb(TEXT("POST"));
-			HttpRequest->SetContent(MoveTemp(Payload));
-
-			// Don't set a response callback if we are in our destructor, as the instance will no longer be there to call.
-			if (!bInDestructor)
-			{
-				HttpRequest->OnProcessRequestComplete().BindSP(this, &FRH_AnalyticsProvider::EventRequestComplete);
-			}
-
-			HttpRequest->ProcessRequest();
+			EventsAPI.ReceiveEventsV1(Request, 
+				!bInDestructor ? BaseReceiveEventsType::Delegate::CreateSP(this, &FRH_AnalyticsProvider::EventRequestComplete) : BaseReceiveEventsType::Delegate(),
+				GetDefault<URH_IntegrationSettings>()->EventsReceiveEventPriority);
 		}
 	}
 }
@@ -227,8 +226,7 @@ void FRH_AnalyticsProvider::SetUserID(const FString& InUserID)
 	}
 
 	UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] SetUserId %s"), *InUserID);
-	// Flush any cached events that would be using the old UserID.
-	FlushEvents();
+	
 	UserID = InUserID;
 
 	if (UserID.Len() > 0)
@@ -255,10 +253,20 @@ bool FRH_AnalyticsProvider::SetSessionID(const FString& InSessionID)
 {
 	if (SessionID != InSessionID)
 	{
-		// Flush any cached events that would be using the old SessionID.
-		FlushEvents();
+		// set session id locally
 		SessionID = InSessionID;
-		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] Forcing SessionID to %s."), *SessionID);
+
+		// add session ID to event cache as correlation id (or clear it if it's empty)
+		if (SessionID.Len() > 0)
+		{
+			EventCache.SetCorrelationId(SessionID);
+		}
+		else
+		{
+			EventCache.SetCorrelationId(TOptional<FString>());
+		}
+		
+		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] Setting SessionID to %s."), *SessionID);
 	}
 	return true;
 }
@@ -331,7 +339,7 @@ bool FRH_AnalyticsProvider::ClearDefaultEventAttribute(const FString& AttributeN
 
 void FRH_AnalyticsProvider::SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains)
 {
-	Config.APIServerET = UrlEndpoint;
+	// note - this endpoint is ignored, because we are using the RallyHereIntegration module to get the endpoint.
 }
 
 void FRH_AnalyticsProvider::SetEventCallback(const OnEventRecorded& Callback)
@@ -339,22 +347,10 @@ void FRH_AnalyticsProvider::SetEventCallback(const OnEventRecorded& Callback)
 	EventRecordedCallbacks.Add(Callback);
 }
 
-void FRH_AnalyticsProvider::EventRequestComplete(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool)
+void FRH_AnalyticsProvider::EventRequestComplete(const RallyHereAPI::FResponse_ReceiveEventsV1& Response)
 {
 	// process responses
-	bool bEventsDelivered = false;
-	if (HttpResponse.IsValid())
-	{
-		UE_LOG(LogAnalytics, VeryVerbose, TEXT("[RHAnalytics] GETS response for [%s]. Code: %d. Payload: %s"), *HttpRequest->GetURL(), HttpResponse->GetResponseCode(), *HttpResponse->GetContentAsString());
-		if (EHttpResponseCodes::IsOk(HttpResponse->GetResponseCode()))
-		{
-			bEventsDelivered = true;
-		}
-	}
-	else
-	{
-		UE_LOG(LogAnalytics, VeryVerbose, TEXT("[RHAnalytics] GETS response for [%s]. No response"), *HttpRequest->GetURL());
-	}
+	UE_LOG(LogAnalytics, VeryVerbose, TEXT("[RHAnalytics] GETS response: Code: %d. Payload: %s"), Response.GetHttpResponseCode(), *Response.GetResponseString());
 }
 
 void FRH_AnalyticsProvider::BlockUntilFlushed(float InTimeoutSec)

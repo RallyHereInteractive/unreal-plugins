@@ -410,6 +410,9 @@ public:
 	/** @brief Sets the request priority of Get Linked Platforms calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 UsersGetLinkedPlatformsPriority;
+	/** @brief Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
+	int32 EventsReceiveEventPriority;
 };
 
 /** @} */

@@ -9,6 +9,7 @@
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
 
+#include "RallyHereIntegrationModule.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_ConfigSubsystem.h"
 
@@ -27,25 +28,7 @@ namespace RHStandardEvents
 
 	TSharedPtr<class IAnalyticsProvider> AutoCreateAnalyticsProvider()
 	{
-		// override analytics config processor to pass in the configured per-sandbox endpoint
-		FAnalytics::ConfigFromIni AnalyticsConfig;                     // configure using the default INI sections.
-		FAnalyticsProviderConfigurationDelegate AnalyticsConfigDelegate = FAnalyticsProviderConfigurationDelegate::CreateLambda([&](const FString& ConfigName, bool bIsRequired)
-			{
-				if (ConfigName == TEXT("APIServerET"))
-				{
-					// grab event API, then compute the endpoint from a test event
-					auto& EventAPI = RH_APIs::GetEventsAPI();
-					RallyHereAPI::FRequest_ReceiveEventsV1 Request;
-
-					FString EndPoint = EventAPI.GetURL() + Request.ComputePath();
-					return EndPoint;
-				}
-				return AnalyticsConfig.GetValue(ConfigName, bIsRequired);
-			});
-
-		return FAnalytics::Get().CreateAnalyticsProvider(              // call the factory function
-			FAnalytics::ConfigFromIni::GetDefaultProviderModuleName(), // use the default config to find the provider name
-			AnalyticsConfigDelegate);
+		return FAnalytics::Get().GetDefaultConfiguredProvider();
 	}
 
 	void FCorrelationStartEvent::AutoEmit(IAnalyticsProvider* Provider, UGameInstance* pGameInstance)

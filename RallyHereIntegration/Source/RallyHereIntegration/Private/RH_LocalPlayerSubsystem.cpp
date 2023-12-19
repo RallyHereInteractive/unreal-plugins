@@ -24,6 +24,31 @@
 #include "RH_PlayerNotifications.h"
 #include "RH_Events.h"
 
+static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleFlushEvents(
+	TEXT("rh.events.pflush"),
+	TEXT("Flushes all player analytics providers in the current world"),
+	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
+		{
+			if (World != nullptr)
+			{
+				auto* GameInstance = World->GetGameInstance();
+				if (GameInstance != nullptr)
+				{
+					for (auto LP : GameInstance->GetLocalPlayers())
+					{
+						auto* Subsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+						if (Subsystem != nullptr)
+						{
+							auto AnalyticsProvider = Subsystem->GetAnalyticsProvider();
+							if (AnalyticsProvider.IsValid())
+							{
+								AnalyticsProvider->FlushEvents();
+							}
+						}
+					}
+				}
+			}
+		}));
 
 void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -276,7 +301,6 @@ int32 URH_LocalPlayerSubsystem::GetPlatformUserId() const
 
 TSharedPtr<class IAnalyticsProvider> URH_LocalPlayerSubsystem::CreateAnalyticsProvider()
 {
-	// todo - use environment configuration to change URL
 	if (!AnalyticsProvider.IsValid())
 	{
 		AnalyticsProvider = RHStandardEvents::AutoCreateAnalyticsProvider();

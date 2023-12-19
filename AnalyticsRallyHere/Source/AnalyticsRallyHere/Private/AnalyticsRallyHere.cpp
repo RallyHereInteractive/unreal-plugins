@@ -12,6 +12,9 @@ void FRH_Analytics::StartupModule()
 {
 	// Make sure http is loaded so that we can flush events during module shutdown
 	FModuleManager::LoadModuleChecked<FHttpModule>("HTTP");
+
+	// Make sure rally here integration is loaded so we can get the endpoint to emit to
+	FModuleManager::LoadModuleChecked<FHttpModule>("RallyHereIntegration");
 }
 
 void FRH_Analytics::ShutdownModule()
