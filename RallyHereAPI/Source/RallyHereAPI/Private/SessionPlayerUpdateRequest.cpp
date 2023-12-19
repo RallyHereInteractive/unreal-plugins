@@ -34,6 +34,11 @@ void FRHAPI_SessionPlayerUpdateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Wri
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
     }
+    if (OverflowAction_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("overflow_action"));
+        RallyHereAPI::WriteJsonValue(Writer, EnumToString(OverflowAction_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -58,6 +63,12 @@ bool FRHAPI_SessionPlayerUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& J
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
+    if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
+    {
+        OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
+        ParseSuccess &= OverflowAction_IsSet;
     }
 
     return ParseSuccess;

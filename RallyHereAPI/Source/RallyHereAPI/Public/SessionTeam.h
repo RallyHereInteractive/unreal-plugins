@@ -90,6 +90,29 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
     bool IsTeamIdDefaultValue() const { return TeamId_IsSet && TeamId_Optional == 0; }
     /** @brief Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true */
     void SetTeamIdToDefault() { TeamId_Optional = 0; TeamId_IsSet = true; }
+
+    /** @brief Matchmaking tickets that were assigned to this team */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    TArray<FString> TicketIds_Optional{  };
+    /** @brief true if TicketIds_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool TicketIds_IsSet{ false };
+    /** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
+    TArray<FString>& GetTicketIds() { return TicketIds_Optional; }
+    /** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
+    const TArray<FString>& GetTicketIds() const { return TicketIds_Optional; }
+    /** @brief Gets the value of TicketIds_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TArray<FString>& GetTicketIds(const TArray<FString>& DefaultValue) const { if (TicketIds_IsSet) return TicketIds_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of TicketIds_Optional and returns true if it has been set, otherwise returns false */
+    bool GetTicketIds(TArray<FString>& OutValue) const { if (TicketIds_IsSet) OutValue = TicketIds_Optional; return TicketIds_IsSet; }
+    /** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
+    TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
+    /** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
+    const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return &TicketIds_Optional; return nullptr; }
+    /** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
+    void SetTicketIds(TArray<FString> NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
+     /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
+    void ClearTicketIds() { TicketIds_IsSet = false; }
 };
 
 /** @} */

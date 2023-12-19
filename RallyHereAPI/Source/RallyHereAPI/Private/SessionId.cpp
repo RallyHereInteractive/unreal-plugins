@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "EventList.h"
+#include "SessionId.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,17 +17,15 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_EventList
+// Implementation for FRHAPI_SessionId
 
-void FRHAPI_EventList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_SessionId::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("event_list"));
-    RallyHereAPI::WriteJsonValue(Writer, EventList);
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_EventList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_SessionId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -35,8 +33,6 @@ bool FRHAPI_EventList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEventListField = (*Object)->TryGetField(TEXT("event_list"));
-    ParseSuccess &= JsonEventListField.IsValid() && !JsonEventListField->IsNull() && TryGetJsonValue(JsonEventListField, EventList);
 
     return ParseSuccess;
 }

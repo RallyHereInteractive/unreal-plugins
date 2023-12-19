@@ -29,6 +29,11 @@ void FRHAPI_AcknowledgeBackfillRequest::WriteJson(TSharedRef<TJsonWriter<>>& Wri
         Writer->WriteIdentifierPrefix(TEXT("extensions"));
         RallyHereAPI::WriteJsonValue(Writer, Extensions_Optional);
     }
+    if (OverflowAction_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("overflow_action"));
+        RallyHereAPI::WriteJsonValue(Writer, EnumToString(OverflowAction_Optional));
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -47,6 +52,12 @@ bool FRHAPI_AcknowledgeBackfillRequest::FromJson(const TSharedPtr<FJsonValue>& J
     {
         Extensions_IsSet = TryGetJsonValue(JsonExtensionsField, Extensions_Optional);
         ParseSuccess &= Extensions_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonOverflowActionField = (*Object)->TryGetField(TEXT("overflow_action"));
+    if (JsonOverflowActionField.IsValid() && !JsonOverflowActionField->IsNull())
+    {
+        OverflowAction_IsSet = TryGetJsonValue(JsonOverflowActionField, OverflowAction_Optional);
+        ParseSuccess &= OverflowAction_IsSet;
     }
 
     return ParseSuccess;

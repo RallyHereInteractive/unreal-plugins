@@ -31,6 +31,11 @@ void FRHAPI_SessionTeam::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("team_id"));
         RallyHereAPI::WriteJsonValue(Writer, TeamId_Optional);
     }
+    if (TicketIds_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("ticket_ids"));
+        RallyHereAPI::WriteJsonValue(Writer, TicketIds_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -51,6 +56,12 @@ bool FRHAPI_SessionTeam::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         TeamId_IsSet = TryGetJsonValue(JsonTeamIdField, TeamId_Optional);
         ParseSuccess &= TeamId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonTicketIdsField = (*Object)->TryGetField(TEXT("ticket_ids"));
+    if (JsonTicketIdsField.IsValid() && !JsonTicketIdsField->IsNull())
+    {
+        TicketIds_IsSet = TryGetJsonValue(JsonTicketIdsField, TicketIds_Optional);
+        ParseSuccess &= TicketIds_IsSet;
     }
 
     return ParseSuccess;

@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "TeamOverflowAction.h"
 #include "AcknowledgeBackfillRequest.generated.h"
 
 /** @defgroup RHAPI_AcknowledgeBackfillRequest RallyHere API Model AcknowledgeBackfillRequest
@@ -71,6 +72,29 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
     void SetExtensions(TMap<FString, FString> NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true; }
      /** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
     void ClearExtensions() { Extensions_IsSet = false; }
+
+    /** @brief How to handle backfills that return too many players for a team */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_TeamOverflowAction OverflowAction_Optional{  };
+    /** @brief true if OverflowAction_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool OverflowAction_IsSet{ false };
+    /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
+    ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }
+    /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
+    const ERHAPI_TeamOverflowAction& GetOverflowAction() const { return OverflowAction_Optional; }
+    /** @brief Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_TeamOverflowAction& GetOverflowAction(const ERHAPI_TeamOverflowAction& DefaultValue) const { if (OverflowAction_IsSet) return OverflowAction_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false */
+    bool GetOverflowAction(ERHAPI_TeamOverflowAction& OutValue) const { if (OverflowAction_IsSet) OutValue = OverflowAction_Optional; return OverflowAction_IsSet; }
+    /** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
+    /** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return &OverflowAction_Optional; return nullptr; }
+    /** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
+    void SetOverflowAction(ERHAPI_TeamOverflowAction NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true; }
+     /** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
+    void ClearOverflowAction() { OverflowAction_IsSet = false; }
 };
 
 /** @} */

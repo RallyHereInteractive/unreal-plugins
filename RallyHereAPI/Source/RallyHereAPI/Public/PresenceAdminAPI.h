@@ -14,6 +14,7 @@
 #include "HzApiErrorModel.h"
 #include "PlayerLastSeenUpdate.h"
 #include "PlayerPresence.h"
+#include "ResponseAdminGetUpdatingCcuAllPlatformCombinedV1AdminCcuUpdatingAllplatformsCombinedGet.h"
 
 namespace RallyHereAPI
 {
@@ -1115,14 +1116,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : publi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_ResponseAdminGetUpdatingCcuAllPlatformCombinedV1AdminCcuUpdatingAllplatformsCombinedGet Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_ResponseAdminGetUpdatingCcuAllPlatformCombinedV1AdminCcuUpdatingAllplatformsCombinedGet& OutContent) const;
 
     /* Response 403
     Forbidden
