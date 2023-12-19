@@ -115,10 +115,11 @@ public:
 	FString FormatWebRequestToJsonBlob(const FRH_WebRequest& request) const;
 	/**
 	 * @brief Logs all tracked request to a specified file.
-	 * @param World The context world object.
+	 * @param [in[ World The context world object.
+	 * @param [in[ MaxCount The maximum number of requests to log. If 0, logs all requests.
 	 * @return the full path of the file that was written
 	 */
-	TSharedPtr<FJsonObject> LogTrackedWebRequestsToJSON() const;
+	TSharedPtr<FJsonObject> LogTrackedWebRequestsToJSON(int32 MaxCount=0) const;
 	/**
 	 * @brief Gets if a specific API is being logged currently.
 	 * @param APIName API name to check.

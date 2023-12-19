@@ -7,6 +7,9 @@
 #include "Engine/World.h"
 #include "RH_ImGuiUtilities.h"
 #include "RH_Diagnostics.h"
+#include "Engine/LocalPlayer.h"
+#include "RH_LocalPlayerSubsystem.h"
+#include "Interfaces/IAnalyticsProvider.h"
 
 #include "RHDTW_About.h"
 
@@ -46,8 +49,23 @@ void FRHDTW_About::Do()
 	{
 		FRH_DiagnosticReportOptions Options;
 		Options.World = GetWorld();
-		GetGameInstance();
-		Options.bWriteToFile = true;
+
+		auto LP = GetFirstSelectedLocalPlayer();
+		// harvest analytics session data if we can
+		if (LP != nullptr)
+		{
+			auto LPSS = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+			if (LPSS != nullptr)
+			{
+				auto AnalyticsProvider = LPSS->GetAnalyticsProvider();
+				if (AnalyticsProvider.IsValid())
+				{
+					Options.CloudCorrelationId = AnalyticsProvider->GetSessionID();
+					Options.CloudUserId = AnalyticsProvider->GetUserID();
+				}
+			}
+		}
+
 		Options.OnReportComplete.BindLambda([](const TSharedRef<const FRH_DiagnosticReportGenerator>& Report)
 			{
 #if PLATFORM_ALLOWS_COPY

@@ -15,6 +15,13 @@
 
 namespace
 {
+	static bool bRecordEventParamsInFull = false;
+	FAutoConsoleVariableRef CvarPreventMultipleFlushesInOneFrame(
+		TEXT("rh.events.debug"),
+		bRecordEventParamsInFull,
+		TEXT("When true, causes event_params parts of events to be recorded in full for debugging purposes, normally they are squelched to prevent excessive logging")
+	);
+
 	void LogContent(const FString& Content, const FString& Prefix)
 	{
 		TArray<FString> Arr;
@@ -53,10 +60,15 @@ namespace
 	const TArray<FString>& GetSensitiveFieldsForRequest(const RallyHereAPI::FRequestMetadata& RequestMetadata)
 	{
 		static TArray<FString> StandardFields = { TEXT("platform_token") };
+		static TArray<FString> EventAndStandardFields = { TEXT("platform_token"), TEXT("event_list")};
 		static TArray<FString> LoginFields = { TEXT("portal_access_token"), TEXT("portal_parent_access_token"), TEXT("access_token"), TEXT("refresh_token") };
 		if (RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/login")) || RequestMetadata.SimplifiedPath.ToString().Contains(TEXT("/token")))
 		{
 			return LoginFields;
+		}
+		else if (!bRecordEventParamsInFull)
+		{
+			return EventAndStandardFields;
 		}
 		return StandardFields;
 	}
@@ -385,15 +397,27 @@ void URH_WebRequests::OnWebRequestCompleted_Log(const RallyHereAPI::FResponse& R
 	}
 }
 
-TSharedPtr<FJsonObject> URH_WebRequests::LogTrackedWebRequestsToJSON() const
+TSharedPtr<FJsonObject> URH_WebRequests::LogTrackedWebRequestsToJSON(int32 MaxCount) const
 {
 	TArray<TSharedPtr<FJsonValue>> RequestsArray;
+
+	// calculate number to trim if max count was specified
+	int32 NumToTrimFromStart = FMath::Max(0, RequestsArray.Num() - MaxCount);
+
+	// record events into json
 	for (const auto& Request : TrackedRequests)
 	{
+		// ignore up to trim count so we generate a list of size MaxCount
+		if (NumToTrimFromStart > 0)
+		{
+			--NumToTrimFromStart;
+			continue;
+		}
 		TSharedPtr<FJsonObject> RequestJson = CreateJsonObjectFromWebRequest(*Request);
 		TSharedRef<FJsonValueObject> RequestJsonValue = MakeShareable(new FJsonValueObject(RequestJson));
 		RequestsArray.Add(RequestJsonValue);
 	}
+
 	TSharedPtr<FJsonObject> WebRequestsObject = MakeShareable(new FJsonObject);
 	WebRequestsObject->SetArrayField(TEXT("Web-Requests"), RequestsArray);
 

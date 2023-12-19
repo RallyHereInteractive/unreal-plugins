@@ -93,6 +93,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	UsersLookupPlayerPriority = 1000000;
 	UsersGetLinkedPlatformsPriority = 900000;
 	EventsReceiveEventPriority = 1000000;
+	DiagnosticReportPriority = 10000; // very high priority for diagnostics
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const

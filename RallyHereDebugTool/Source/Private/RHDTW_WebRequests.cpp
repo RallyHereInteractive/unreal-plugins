@@ -130,6 +130,7 @@ void FRHDTW_WebRequests::Do()
 				Options.bIncludeWebRequests = true;
 				Options.World = GetWorld();
 				Options.bWriteToFile = true;
+				Options.bWriteToCloud = false; // do not write simple log to file requests to cloud
 
 				Options.OnReportComplete.BindLambda([](const TSharedRef<const FRH_DiagnosticReportGenerator>& Report)
 					{

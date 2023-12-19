@@ -7,6 +7,7 @@
 #include "RH_ConfigSubsystem.h"
 
 #include "RH_WebRequests.h"
+#include "RH_Events.h"
 
 #include "Misc/App.h"
 #include "Misc/FileHelper.h"
@@ -18,9 +19,13 @@
 #include "HAL/FileManager.h"
 #include "HAL/PlatformMemoryHelpers.h"
 
+#include "Engine/LocalPlayer.h"
+#include "RH_LocalPlayerSubsystem.h"
+#include "Interfaces/IAnalyticsProvider.h"
+
 static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHCreateDiagnosticReport(
 	TEXT("rh.RunDiagnostic"),
-	TEXT("Logs diagnostics to a file"),
+	TEXT("Logs diagnostics to a file and cloud"),
 	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
 		{
 			if (!FRallyHereIntegrationModule::IsAvailable())
@@ -39,7 +44,25 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHCreateDiagnostic
 
 			FRH_DiagnosticReportOptions Options;
 			Options.World = World;
-			Options.bWriteToFile = true;
+
+			// harvest analytics session data if we can
+			if (Options.World != nullptr && Options.World->GetGameInstance() != nullptr)
+			{
+				auto LP = Options.World->GetGameInstance()->GetFirstGamePlayer();
+				if (LP != nullptr)
+				{
+					auto LPSS = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+					if (LPSS != nullptr)
+					{
+						auto AnalyticsProvider = LPSS->GetAnalyticsProvider();
+						if (AnalyticsProvider.IsValid())
+						{
+							Options.CloudCorrelationId = AnalyticsProvider->GetSessionID();
+							Options.CloudUserId = AnalyticsProvider->GetUserID();
+						}
+					}
+				}
+			}
 
 			FRallyHereIntegrationModule::Get().GetDiagnostics()->GenerateReport(Options);
 		}));
@@ -106,87 +129,6 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 	StageComplete();
 }
 
-void FRH_DiagnosticReportGenerator::GenerateWebRequests()
-{
-	if (!Options.bIncludeWebRequests)
-	{
-		StageComplete();
-		return;
-	}
-
-	auto Tracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
-	if (Tracker != nullptr)
-	{
-		WebRequests = MakeShareable(new FJsonObject);
-		WebRequests->SetObjectField(TEXT("Web-Requests-Data"), Tracker->LogTrackedWebRequestsToJSON());
-
-		// call count all time
-		const TMap<FName, int32> APINameCountAllTimeMap = Tracker->GetAPINameToCallCountMap();
-		const TMap<FName, int32> URLCountAllTimeMap = Tracker->GetSimplifiedPathToCallCountMap();
-
-		// call count for last 60s
-		TMap<FName, int32> APINameCountRecentMap;
-		TMap<FName, int32> URLCountRecentMap;
-		Tracker->GetRecentCallCountMaps(&APINameCountRecentMap, &URLCountRecentMap);
-
-		// Bursts in last 60s
-		TMap<FName, TTuple<int32, int32>> APINameBurstsMap; // API name -> <num bursts, largest burst>
-		TMap<FName, TTuple<int32, int32>> URLBurstsMap; // Simplified Path -> <num bursts, largest burst>
-		Tracker->DetectRecentBursts(&APINameBurstsMap, &URLBurstsMap);
-
-		auto PopulateJsonWithMap = [](TSharedPtr<FJsonObject> JsonObject, const TMap<FName, int32> Map)
-		{
-			for (auto Pair : Map)
-			{
-				JsonObject->SetNumberField(Pair.Key.ToString(), Pair.Value);
-			}
-		};
-
-		TSharedPtr<FJsonObject> APINameCountAllTime = MakeShareable(new FJsonObject);
-		PopulateJsonWithMap(APINameCountAllTime, APINameCountAllTimeMap);
-		TSharedPtr<FJsonObject> URLCountAllTime = MakeShareable(new FJsonObject);
-		PopulateJsonWithMap(URLCountAllTime, URLCountAllTimeMap);
-		TSharedPtr<FJsonObject> APINameCountRecent = MakeShareable(new FJsonObject);
-		PopulateJsonWithMap(APINameCountRecent, APINameCountRecentMap);
-		TSharedPtr<FJsonObject> URLCountRecent = MakeShareable(new FJsonObject);
-		PopulateJsonWithMap(URLCountRecent, URLCountRecentMap);
-
-		auto PopulateJsonWithTupleMap = [](TSharedPtr<FJsonObject> JsonObject, const TMap<FName, TTuple<int32, int32>> Map)
-		{
-			for (auto Pair : Map)
-			{
-				TSharedPtr<FJsonObject> Inner = MakeShareable(new FJsonObject);
-				Inner->SetNumberField(TEXT("Burst-Count"), Pair.Value.Key);
-				Inner->SetNumberField(TEXT("Largest-Burst"), Pair.Value.Value);
-				JsonObject->SetObjectField(Pair.Key.ToString(), Inner);
-			}
-		};
-
-		TSharedPtr<FJsonObject> APINameBurst = MakeShareable(new FJsonObject);
-		PopulateJsonWithTupleMap(APINameBurst, APINameBurstsMap);
-		TSharedPtr<FJsonObject> URLBurst = MakeShareable(new FJsonObject);
-		PopulateJsonWithTupleMap(URLBurst, URLBurstsMap);
-
-		TSharedPtr<FJsonObject> ByAPIName = MakeShareable(new FJsonObject);
-		ByAPIName->SetObjectField(TEXT("Call-Count-All-Time"), APINameCountAllTime);
-		ByAPIName->SetObjectField(TEXT("Call-Count-Last-60s"), APINameCountRecent);
-		ByAPIName->SetObjectField(TEXT("Bursts"), APINameBurst);
-
-		TSharedPtr<FJsonObject> ByURL = MakeShareable(new FJsonObject);
-		ByURL->SetObjectField(TEXT("Call-Count-All-Time"), URLCountAllTime);
-		ByURL->SetObjectField(TEXT("Call-Count-Last-60s"), URLCountRecent);
-		ByURL->SetObjectField(TEXT("Bursts"), URLBurst);
-
-		TSharedPtr<FJsonObject> Analytics = MakeShareable(new FJsonObject);
-		Analytics->SetObjectField(TEXT("By-API-Name"), ByAPIName);
-		Analytics->SetObjectField(TEXT("By-Simplified-Path"), ByURL);
-
-		WebRequests->SetObjectField(TEXT("Analytics"), Analytics);
-	}
-
-	StageComplete();
-}
-
 void FRH_DiagnosticReportGenerator::GenerateDeviceData()
 {
 	if (!Options.bIncludeDeviceData)
@@ -232,6 +174,87 @@ void FRH_DiagnosticReportGenerator::GenerateDeviceData()
 }
 
 
+void FRH_DiagnosticReportGenerator::GenerateWebRequests()
+{
+	if (!Options.bIncludeWebRequests)
+	{
+		StageComplete();
+		return;
+	}
+
+	auto Tracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
+	if (Tracker != nullptr)
+	{
+		WebRequests = MakeShareable(new FJsonObject);
+		WebRequests->SetObjectField(TEXT("Web-Requests-Data"), Tracker->LogTrackedWebRequestsToJSON(Options.MaxWebRequests));
+
+		// call count all time
+		const TMap<FName, int32> APINameCountAllTimeMap = Tracker->GetAPINameToCallCountMap();
+		const TMap<FName, int32> URLCountAllTimeMap = Tracker->GetSimplifiedPathToCallCountMap();
+
+		// call count for last 60s
+		TMap<FName, int32> APINameCountRecentMap;
+		TMap<FName, int32> URLCountRecentMap;
+		Tracker->GetRecentCallCountMaps(&APINameCountRecentMap, &URLCountRecentMap);
+
+		// Bursts in last 60s
+		TMap<FName, TTuple<int32, int32>> APINameBurstsMap; // API name -> <num bursts, largest burst>
+		TMap<FName, TTuple<int32, int32>> URLBurstsMap; // Simplified Path -> <num bursts, largest burst>
+		Tracker->DetectRecentBursts(&APINameBurstsMap, &URLBurstsMap);
+
+		auto PopulateJsonWithMap = [](TSharedPtr<FJsonObject> JsonObject, const TMap<FName, int32> Map)
+			{
+				for (auto Pair : Map)
+				{
+					JsonObject->SetNumberField(Pair.Key.ToString(), Pair.Value);
+				}
+			};
+
+		TSharedPtr<FJsonObject> APINameCountAllTime = MakeShareable(new FJsonObject);
+		PopulateJsonWithMap(APINameCountAllTime, APINameCountAllTimeMap);
+		TSharedPtr<FJsonObject> URLCountAllTime = MakeShareable(new FJsonObject);
+		PopulateJsonWithMap(URLCountAllTime, URLCountAllTimeMap);
+		TSharedPtr<FJsonObject> APINameCountRecent = MakeShareable(new FJsonObject);
+		PopulateJsonWithMap(APINameCountRecent, APINameCountRecentMap);
+		TSharedPtr<FJsonObject> URLCountRecent = MakeShareable(new FJsonObject);
+		PopulateJsonWithMap(URLCountRecent, URLCountRecentMap);
+
+		auto PopulateJsonWithTupleMap = [](TSharedPtr<FJsonObject> JsonObject, const TMap<FName, TTuple<int32, int32>> Map)
+			{
+				for (auto Pair : Map)
+				{
+					TSharedPtr<FJsonObject> Inner = MakeShareable(new FJsonObject);
+					Inner->SetNumberField(TEXT("Burst-Count"), Pair.Value.Key);
+					Inner->SetNumberField(TEXT("Largest-Burst"), Pair.Value.Value);
+					JsonObject->SetObjectField(Pair.Key.ToString(), Inner);
+				}
+			};
+
+		TSharedPtr<FJsonObject> APINameBurst = MakeShareable(new FJsonObject);
+		PopulateJsonWithTupleMap(APINameBurst, APINameBurstsMap);
+		TSharedPtr<FJsonObject> URLBurst = MakeShareable(new FJsonObject);
+		PopulateJsonWithTupleMap(URLBurst, URLBurstsMap);
+
+		TSharedPtr<FJsonObject> ByAPIName = MakeShareable(new FJsonObject);
+		ByAPIName->SetObjectField(TEXT("Call-Count-All-Time"), APINameCountAllTime);
+		ByAPIName->SetObjectField(TEXT("Call-Count-Last-60s"), APINameCountRecent);
+		ByAPIName->SetObjectField(TEXT("Bursts"), APINameBurst);
+
+		TSharedPtr<FJsonObject> ByURL = MakeShareable(new FJsonObject);
+		ByURL->SetObjectField(TEXT("Call-Count-All-Time"), URLCountAllTime);
+		ByURL->SetObjectField(TEXT("Call-Count-Last-60s"), URLCountRecent);
+		ByURL->SetObjectField(TEXT("Bursts"), URLBurst);
+
+		TSharedPtr<FJsonObject> Analytics = MakeShareable(new FJsonObject);
+		Analytics->SetObjectField(TEXT("By-API-Name"), ByAPIName);
+		Analytics->SetObjectField(TEXT("By-Simplified-Path"), ByURL);
+
+		WebRequests->SetObjectField(TEXT("Analytics"), Analytics);
+	}
+
+	StageComplete();
+}
+
 void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 {
 	FinalReport = MakeShareable(new FJsonObject);
@@ -242,14 +265,15 @@ void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 		FinalReport->SetObjectField(TEXT("Metadata"), Metadata);
 	}
 
-	if (WebRequests.IsValid())
-	{
-		FinalReport->SetObjectField(TEXT("Web-Requests"), WebRequests);
-	}
-
 	if (DeviceData.IsValid())
 	{
 		FinalReport->SetObjectField(TEXT("Device-Data"), DeviceData);
+	}
+
+	// put web request data last for convenience as it can be very large
+	if (WebRequests.IsValid())
+	{
+		FinalReport->SetObjectField(TEXT("Web-Requests"), WebRequests);
 	}
 	
 	// serialize to string
@@ -308,10 +332,50 @@ void FRH_DiagnosticReportGenerator::WriteToCloud()
 		return;
 	}
 
-	// TODO - cloud write of report
-	//auto& IntegrationObject = FRallyHereIntegrationModule::Get();
 
-	//auto BaseURL = IntegrationObject.GetBaseUrl();
+	typedef RallyHereAPI::Traits_ReceiveEventsV1 BaseType;
+
+	BaseType::Request Request;
+
+	TArray<FRHAPI_RallyHereEvent> Events;
+	{
+		FRHAPI_RallyHereEvent Event;
+		Event.SetEventUuid(FGuid::NewGuid());
+		Event.SetEventName(TEXT("rh.diagnostics"));
+		Event.SetEventTimestamp(FDateTime::UtcNow());
+		if (Options.CloudCorrelationId.Len() > 0)
+		{
+			//Event.SetCorrelationId(Options.CloudCorrelationId);
+		}
+		if (Options.CloudUserId.Len() > 0)
+		{
+			//Event.SetUserId(Options.CloudUserId);
+		}
+
+		Event.SetEventParams(FRHAPI_JsonObject::CreateFromUnrealObject(FinalReport));
+		Events.Add(Event);
+	}
+
+	Request.EventList.SetEventList(Events);
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate(),
+		FRH_GenericSuccessWithErrorDelegate::CreateSP(this, &FRH_DiagnosticReportGenerator::OnWriteToCloudComplete),
+		GetDefault<URH_IntegrationSettings>()->DiagnosticReportPriority);
+
+	Helper->Start(RH_APIs::GetEventsAPI(), Request);
+}
+
+void FRH_DiagnosticReportGenerator::OnWriteToCloudComplete(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+{
+	if (bSuccess)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("Successfully wrote diagnostic report to cloud"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("Failed to write diagnostic report to cloud: [%d] %s"), ErrorInfo.ResponseCode, *ErrorInfo.ResponseContent);
+	}
 
 	StageComplete();
 }

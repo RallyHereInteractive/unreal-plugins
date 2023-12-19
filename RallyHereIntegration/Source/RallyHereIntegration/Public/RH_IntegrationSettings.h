@@ -413,6 +413,9 @@ public:
 	/** @brief Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 EventsReceiveEventPriority;
+	/** @brief Sets the request priority of Diagnostic Reports, which is the GETS endpoint, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
+	int32 DiagnosticReportPriority;
 };
 
 /** @} */
