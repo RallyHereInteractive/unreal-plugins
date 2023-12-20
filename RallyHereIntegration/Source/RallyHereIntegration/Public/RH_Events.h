@@ -11,6 +11,8 @@
 #include "RH_Common.h"
 #include "EventsAPI.h"
 
+class UGameInstance;
+
 //#include "RH_Events.generated.h"
 
 /** @defgroup Events RallyHere Events
@@ -88,7 +90,7 @@ namespace RHStandardEvents
 		}
 
 		/** @brief automaticly harvest data and emit the event */
-		static void RALLYHEREINTEGRATION_API AutoEmit(IAnalyticsProvider* Provider, class UGameInstance* pGameInstance);
+		static void RALLYHEREINTEGRATION_API AutoEmit(IAnalyticsProvider* Provider, UGameInstance* pGameInstance);
 
 		static void Emit(
 			IAnalyticsProvider* Provider,

@@ -5,9 +5,12 @@
 
 #include "Interfaces/IPluginManager.h"
 #include "Engine/GameViewportClient.h"
+#include "Engine/GameInstance.h"
+#include "Engine/Engine.h"
 #include "HAL/PlatformMemoryHelpers.h"
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
+#include "Misc/EngineVersion.h"
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_GameInstanceSubsystem.h"

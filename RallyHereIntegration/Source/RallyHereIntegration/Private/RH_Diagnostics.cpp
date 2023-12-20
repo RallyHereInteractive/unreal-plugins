@@ -13,6 +13,7 @@
 #include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "Engine/GameInstance.h"
+#include "Engine/GameViewportClient.h"
 #include "Misc/DateTime.h"
 #include "HAL/FileManager.h"
 #include "HAL/PlatformMemoryHelpers.h"
