@@ -6,6 +6,8 @@
 #include "HttpModule.h"
 #include "Analytics.h"
 
+DEFINE_LOG_CATEGORY(LogAnalyticsRallyHere);
+
 IMPLEMENT_MODULE( FRH_Analytics, AnalyticsRallyHere );
 
 void FRH_Analytics::StartupModule()

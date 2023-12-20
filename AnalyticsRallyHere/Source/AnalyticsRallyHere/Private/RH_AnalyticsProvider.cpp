@@ -49,7 +49,7 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigV
 		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting()
 		);
 
-	UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Initializing RallyHere Analytics provider"));
+	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Initializing RallyHere Analytics provider"));
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
@@ -78,7 +78,7 @@ bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 	{
 		if (GFrameCounter == LastFrameCounterFlushed && RH_AnalyticsProviderCvars::PreventMultipleFlushesInOneFrame)
 		{
-			UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Tried to flush, but another analytics provider has already flushed this frame. Deferring until next frame."));
+			UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Tried to flush, but another analytics provider has already flushed this frame. Deferring until next frame."));
 		}
 		else
 		{
@@ -99,14 +99,14 @@ bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 
 FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
 {
-	UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Destroying RallyHere Analytics provider"));
+	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Destroying RallyHere Analytics provider"));
 	bInDestructor = true;
 	EndSession();
 }
 
 bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnalyticsEventAttribute>& Attributes)
 {
-	UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession"));
+	UE_LOG(LogAnalyticsRallyHere, Log, TEXT("AnalyticsRallyHere::StartSession"));
 
 	// end/flush previous session before staring new one
 	if (bSessionInProgress)
@@ -118,11 +118,11 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
 	if (InSessionID.IsEmpty())
 	{
 		InSessionID = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
-		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession - SessionID is empty, creating as %s"), *InSessionID);
+		UE_LOG(LogAnalyticsRallyHere, Log, TEXT("AnalyticsRallyHere::StartSession - SessionID is empty, creating as %s"), *InSessionID);
 	}
 	else
 	{
-		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] AnalyticsRallyHere::StartSession - SessionID %s is not empty"), *InSessionID);
+		UE_LOG(LogAnalyticsRallyHere, Log, TEXT("AnalyticsRallyHere::StartSession - SessionID %s is not empty"), *InSessionID);
 	}
 
 	SetSessionID(InSessionID);
@@ -221,11 +221,11 @@ void FRH_AnalyticsProvider::SetUserID(const FString& InUserID)
 {
 	if (UserID == InUserID)
 	{
-		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] SetUserId %s already has that user id"), *InUserID);
+		UE_LOG(LogAnalyticsRallyHere, Log, TEXT("SetUserId %s already has that user id"), *InUserID);
 		return;
 	}
 
-	UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] SetUserId %s"), *InUserID);
+	UE_LOG(LogAnalyticsRallyHere, Log, TEXT("SetUserId %s"), *InUserID);
 	
 	UserID = InUserID;
 
@@ -266,7 +266,7 @@ bool FRH_AnalyticsProvider::SetSessionID(const FString& InSessionID)
 			EventCache.SetCorrelationId(TOptional<FString>());
 		}
 		
-		UE_LOG(LogAnalytics, Log, TEXT("[RHAnalytics] Setting SessionID to %s."), *SessionID);
+		UE_LOG(LogAnalyticsRallyHere, Log, TEXT("Setting SessionID to %s."), *SessionID);
 	}
 	return true;
 }
@@ -302,7 +302,7 @@ void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnaly
 	}
 	else
 	{
-		UE_LOG(LogAnalytics, Verbose, TEXT("[RHAnalytics] Ignoring event named '%s' due to ShouldRecordEvent check"), *EventName);
+		UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Ignoring event named '%s' due to ShouldRecordEvent check"), *EventName);
 	}
 }
 
@@ -350,7 +350,7 @@ void FRH_AnalyticsProvider::SetEventCallback(const OnEventRecorded& Callback)
 void FRH_AnalyticsProvider::EventRequestComplete(const RallyHereAPI::FResponse_ReceiveEventsV1& Response)
 {
 	// process responses
-	UE_LOG(LogAnalytics, VeryVerbose, TEXT("[RHAnalytics] GETS response: Code: %d. Payload: %s"), Response.GetHttpResponseCode(), *Response.GetResponseString());
+	UE_LOG(LogAnalyticsRallyHere, VeryVerbose, TEXT("GETS response: Code: %d. Payload: %s"), Response.GetHttpResponseCode(), *Response.GetResponseString());
 }
 
 void FRH_AnalyticsProvider::BlockUntilFlushed(float InTimeoutSec)

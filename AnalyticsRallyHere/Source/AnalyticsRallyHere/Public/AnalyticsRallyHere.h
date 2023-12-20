@@ -17,6 +17,8 @@
 
 class IAnalyticsProvider;
 
+ANALYTICSRALLYHERE_API DECLARE_LOG_CATEGORY_EXTERN(LogAnalyticsRallyHere, Log, All);
+
 /**
  * @brief Analytics provider module for RallyHere GETS system
  */
