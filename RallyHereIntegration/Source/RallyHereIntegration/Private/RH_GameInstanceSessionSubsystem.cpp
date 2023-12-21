@@ -479,12 +479,13 @@ bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive() const
 		return false;
 	}
 
-	// for now, only support backfill for matchmade sessions
-	if (!ActiveSession->IsCreatedByMatchmaking())
+	// if session has no backfill info, then we cannot backfill it
+	const auto BackfillInfo = ActiveSession->GetSessionData().GetBackfillOrNull();
+	if (!BackfillInfo || BackfillInfo->GetBackfillId().IsEmpty())
 	{
 		return false;
 	}
-	
+
 	// check if instance is in a state where we do not want to keep backfill alive
 	auto JoinStatus = ActiveSession->GetInstanceData()->GetJoinStatus();
 	switch (JoinStatus)
