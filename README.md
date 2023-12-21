@@ -44,6 +44,7 @@
 * Fixed a crash if platform session creation failed.
 * Added a broadcast for when crossplay settings are changed
 * Added automatic injection of MiscParams on instance startup parameters into the map URL when syncing to a session
+* RH_LocalPlayerSubsystem's OnSessionUpdatedDelegate is now triggered immediately after the OnSessionAddedDelegate, so that the updated delegate is triggered in all cases where new session data is received.
 
 **Full Changelog**: https://github.com/RallyHereInteractive/unreal-plugins/compare/v0.10.1...v0.11.0
 
