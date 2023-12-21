@@ -204,7 +204,7 @@ void FRHDTW_PlayerSettings::DoSettingsTypes()
 	}
 }
 
-void FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse(bool bSuccess, FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid)
+void FRHDTW_PlayerSettings::HandleSetPlayerSettingsResponse(bool bSuccess, const FRH_PlayerSettingsDataWrapper& Response, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{
