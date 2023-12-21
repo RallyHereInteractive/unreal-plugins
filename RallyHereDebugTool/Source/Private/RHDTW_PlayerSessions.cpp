@@ -136,7 +136,7 @@ void FRHDTW_PlayerSessions::DoModifyRankings()
 	}
 }
 
-void FRHDTW_PlayerSessions::HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2> PlayerRankingInfo, FGuid PlayerUuid)
+void FRHDTW_PlayerSessions::HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>& PlayerRankingInfo, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{
