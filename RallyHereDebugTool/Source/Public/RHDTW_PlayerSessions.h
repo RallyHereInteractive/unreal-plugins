@@ -23,6 +23,6 @@ struct FRHDTW_PlayerSessions : public FRH_DebugToolWindow
 	float ModifyRankSigmaInput;
 
 private:
-	void HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2> PlayerRankingInfo, FGuid PlayerUuid);
+	void HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>& PlayerRankingInfo, FGuid PlayerUuid);
 	FString UpdateRankingActionResult;
 };
