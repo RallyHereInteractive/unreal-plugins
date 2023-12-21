@@ -1870,6 +1870,7 @@ Struct for the login results.
 `public `[`ERHAPI_LoginResult`](undefined.md#group__LocalPlayer_1ga5586f9656a43fac1030c013575a0f0c0)` `[`Result`](#structFRH__LoginResult_1a9080e046d94049f24ff36862a570ad08) | Login Result.
 `public `[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` `[`OSSType`](#structFRH__LoginResult_1a8639eb11fe9d1f489df4247f94480ad6) | Login OSS Type.
 `public FString `[`OSSErrorMessage`](#structFRH__LoginResult_1a415022baa86bf765be7ae7c8ce50fa8f) | Login Error Message.
+`public FString `[`RallyHereErrorCode`](#structFRH__LoginResult_1ac43de6491cea17e487ef4fa572f42dfa) | RallyHere API Auth Error Code.
 `public TSharedPtr< const FUniqueNetId > `[`OSSUniqueId`](#structFRH__LoginResult_1a4961ad93a8bf87858fcf3a0b7d41ba26) | Unique Net Id for the player.
 `public TSharedPtr< const FUniqueNetId > `[`NicknameOSSUniqueId`](#structFRH__LoginResult_1a0badf8d64f580c391a152642ed9b2ff8) | Unique Net ID for the player when using Nickname Login.
 `public uint32 `[`PrivilegeResults`](#structFRH__LoginResult_1a0348a5f8c7982ea7a648276df7096998) | Privilege Result for the login.
@@ -1893,6 +1894,11 @@ Login OSS Type.
 #### `public FString `[`OSSErrorMessage`](#structFRH__LoginResult_1a415022baa86bf765be7ae7c8ce50fa8f) <a id="structFRH__LoginResult_1a415022baa86bf765be7ae7c8ce50fa8f"></a>
 
 Login Error Message.
+
+<br>
+#### `public FString `[`RallyHereErrorCode`](#structFRH__LoginResult_1ac43de6491cea17e487ef4fa572f42dfa) <a id="structFRH__LoginResult_1ac43de6491cea17e487ef4fa572f42dfa"></a>
+
+RallyHere API Auth Error Code.
 
 <br>
 #### `public TSharedPtr< const FUniqueNetId > `[`OSSUniqueId`](#structFRH__LoginResult_1a4961ad93a8bf87858fcf3a0b7d41ba26) <a id="structFRH__LoginResult_1a4961ad93a8bf87858fcf3a0b7d41ba26"></a>
