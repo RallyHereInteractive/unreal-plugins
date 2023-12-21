@@ -558,6 +558,17 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	const FRH_PlayerAndPlatformInfo& GetPlayerAndPlatformInfo() const { return PlayerAndPlatformInfo; }
 	/**
+	* @brief Determines if the local player can view this player's platform profile (i.e. Gamercard on Xbox)
+	*/
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	bool CanViewPlatformProfile() const;
+	/**
+	 * @brief Attempts to show this player's platform profile
+	 * @return true if successfully requested the OSS to show the player's platform profile
+	 */
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	bool ViewPlatformProfile() const;
+	/**
 	* @brief Attempts to get the player info
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
