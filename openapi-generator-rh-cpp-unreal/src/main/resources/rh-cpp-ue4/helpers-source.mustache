@@ -60,17 +60,12 @@ void {{unrealModelPrefix}}JsonObject::RemoveField(const FString& FieldName) cons
     }
 }
 
-float {{unrealModelPrefix}}JsonObject::GetFloatField(const FString& FieldName) const
+float {{unrealModelPrefix}}JsonObject::GetNumberField(const FString& FieldName) const
 {
     return Obj ? Obj->GetNumberField(FieldName) : float{};
 }
 
-int32 {{unrealModelPrefix}}JsonObject::GetIntegerField(const FString& FieldName) const
-{
-    return Obj ? Obj->GetIntegerField(FieldName) : int32{};
-}
-
-bool {{unrealModelPrefix}}JsonObject::TryGetFloatField(const FString& FieldName, float& OutNumber) const
+bool {{unrealModelPrefix}}JsonObject::TryGetNumberField(const FString& FieldName, float& OutNumber) const
 {
     if (Obj)
     {
@@ -84,7 +79,15 @@ bool {{unrealModelPrefix}}JsonObject::TryGetFloatField(const FString& FieldName,
     return false;
 }
 
-bool {{unrealModelPrefix}}JsonObject::TryGetNumberField(const FString& FieldName, int32& OutNumber) const
+void {{unrealModelPrefix}}JsonObject::SetNumberField(const FString& FieldName, float Number) const
+{
+    if (Obj)
+    {
+        Obj->SetNumberField(FieldName, static_cast<double>(Number));
+    }
+}
+
+bool {{unrealModelPrefix}}JsonObject::TryGetIntegerField(const FString& FieldName, int32& OutNumber) const
 {
     return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
 }
@@ -92,14 +95,6 @@ bool {{unrealModelPrefix}}JsonObject::TryGetNumberField(const FString& FieldName
 bool {{unrealModelPrefix}}JsonObject::TryGetInteger64Field(const FString& FieldName, int64& OutNumber) const
 {
     return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
-}
-
-void {{unrealModelPrefix}}JsonObject::SetNumberField(const FString& FieldName, float Number) const
-{
-    if (Obj)
-    {
-        Obj->SetNumberField(FieldName, static_cast<double>(Number));
-    }
 }
 
 FString {{unrealModelPrefix}}JsonObject::GetStringField(const FString& FieldName) const
@@ -324,19 +319,19 @@ TArray<{{unrealModelPrefix}}JsonValue> {{unrealModelPrefix}}JsonValue::AsArray()
     return {{unrealEnumPrefix}}JsonValueType::None;
 }
 
-bool {{unrealModelPrefix}}JsonValue::TryGetFloat(float& OutNumber) const
+bool {{unrealModelPrefix}}JsonValue::TryGetNumber(float& OutNumber) const
 {
     return Value && Value->TryGetNumber(OutNumber);
 }
 
-bool {{unrealModelPrefix}}JsonValue::TryGetNumber(int32& OutNumber) const
+bool {{unrealModelPrefix}}JsonValue::TryGetInteger(int32& OutInteger) const
 {
-    return Value && Value->TryGetNumber(OutNumber);
+    return Value && Value->TryGetNumber(OutInteger);
 }
 
-bool {{unrealModelPrefix}}JsonValue::TryGetInteger64(int64& OutNumber) const
+bool {{unrealModelPrefix}}JsonValue::TryGetInteger64(int64& OutInteger64) const
 {
-    return Value && Value->TryGetNumber(OutNumber);
+    return Value && Value->TryGetNumber(OutInteger64);
 }
 
 bool {{unrealModelPrefix}}JsonValue::TryGetString(FString& OutString) const
@@ -390,6 +385,61 @@ bool {{unrealModelPrefix}}JsonValue::CompareEqual(const {{unrealModelPrefix}}Jso
     if (!Value || !Other.Value)
         return false;
     return FJsonValue::CompareEqual(*Value, *Other.Value);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+bool {{unrealClassPrefix}}JsonObjectBlueprintLibrary::{{unrealModelPrefix}}JsonObjectToString(const {{unrealModelPrefix}}JsonObject& InObject, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InObject.GetObject().ToSharedRef(), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool {{unrealClassPrefix}}JsonObjectBlueprintLibrary::StringTo{{unrealModelPrefix}}JsonObject(const FString& InString, {{unrealModelPrefix}}JsonObject& OutObject)
+{
+	// serialize to object
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonObject> JsonObject;
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+		OutObject = {{unrealModelPrefix}}JsonObject::CreateFromUnrealObject(JsonObject);
+		return true;
+	}
+	
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+bool {{unrealClassPrefix}}JsonValueBlueprintLibrary::{{unrealModelPrefix}}JsonValueToString(const {{unrealModelPrefix}}JsonValue& InValue, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InValue.GetValue().ToSharedRef(), TEXT(""), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+bool {{unrealClassPrefix}}JsonValueBlueprintLibrary::StringTo{{unrealModelPrefix}}JsonValue(const FString& InString, {{unrealModelPrefix}}JsonValue& OutValue)
+{
+	// serialize to value
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonValue> JsonValue;
+	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
+	{
+		OutValue = {{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(JsonValue);
+		return true;
+	}
+	
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////
