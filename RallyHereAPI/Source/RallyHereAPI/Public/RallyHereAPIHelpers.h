@@ -35,8 +35,8 @@ enum class ERHAPI_JsonValueType : uint8
 };
 
 // forward declare both json types since they can reference each other
-FRHAPI_JsonObject;
-FRHAPI_JsonValue;
+struct FRHAPI_JsonObject;
+struct FRHAPI_JsonValue;
 
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JsonObject
@@ -141,7 +141,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
 	static float GetNumberField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.GetNumberField(FieldName); }
 	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
-	static bool TryGetFloatField(const FRHAPI_JsonObject& Object, const FString& FieldName, float& OutNumber) { return Object.TryGetNumberField(FieldName, OutNumber); }
+	static bool TryGeNumberField(const FRHAPI_JsonObject& Object, const FString& FieldName, float& OutNumber) { return Object.TryGetNumberField(FieldName, OutNumber); }
 	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
 	static void SetNumberField(const FRHAPI_JsonObject& Object, const FString& FieldName, float Number) { Object.SetNumberField(FieldName, Number); }
 

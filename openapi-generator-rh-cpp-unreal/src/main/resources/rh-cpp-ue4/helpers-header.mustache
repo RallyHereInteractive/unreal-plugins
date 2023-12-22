@@ -45,8 +45,8 @@ enum class {{unrealEnumPrefix}}JsonValueType : uint8
 };
 
 // forward declare both json types since they can reference each other
-{{unrealModelPrefix}}JsonObject;
-{{unrealModelPrefix}}JsonValue;
+struct {{unrealModelPrefix}}JsonObject;
+struct {{unrealModelPrefix}}JsonValue;
 
 USTRUCT(BlueprintType)
 struct {{dllapi}} {{unrealModelPrefix}}JsonObject
@@ -151,7 +151,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
 	static float GetNumberField(const {{unrealModelPrefix}}JsonObject& Object, const FString& FieldName) { return Object.GetNumberField(FieldName); }
 	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
-	static bool TryGetFloatField(const {{unrealModelPrefix}}JsonObject& Object, const FString& FieldName, float& OutNumber) { return Object.TryGetNumberField(FieldName, OutNumber); }
+	static bool TryGeNumberField(const {{unrealModelPrefix}}JsonObject& Object, const FString& FieldName, float& OutNumber) { return Object.TryGetNumberField(FieldName, OutNumber); }
 	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
 	static void SetNumberField(const {{unrealModelPrefix}}JsonObject& Object, const FString& FieldName, float Number) { Object.SetNumberField(FieldName, Number); }
 
