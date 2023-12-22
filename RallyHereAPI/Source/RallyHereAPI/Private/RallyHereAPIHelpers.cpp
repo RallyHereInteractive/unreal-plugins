@@ -26,7 +26,7 @@ FRHAPI_JsonValue FRHAPI_JsonObject::TryGetValue(const FString& FieldName) const
         return FRHAPI_JsonValue();
     }
 
-    return FRHAPI_JsonValue::CreateFromUnrealValue(Field);
+    return FRHAPI_JsonValue(Field);
 }
 
 bool FRHAPI_JsonObject::HasField(const FString& FieldName) const
@@ -150,7 +150,7 @@ bool FRHAPI_JsonObject::TryGetArrayField(const FString& FieldName, TArray<FRHAPI
 
     for (const TSharedPtr<FJsonValue>& Val : *Arr)
     {
-        OutArray.Add(FRHAPI_JsonValue::CreateFromUnrealValue(Val));
+        OutArray.Add(FRHAPI_JsonValue(Val));
     }
     return true;
 }
@@ -205,13 +205,6 @@ void FRHAPI_JsonObject::SetObjectField(const FString& FieldName, const FRHAPI_Js
     }
 }
 
-FRHAPI_JsonObject FRHAPI_JsonObject::CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj)
-{
-    FRHAPI_JsonObject OutObject;
-    OutObject.SetObject(NewObj);
-    return OutObject;
-}
-
 //////////////////////////////////////////////////////////////////////////
 
 float FRHAPI_JsonValue::AsNumber() const
@@ -256,7 +249,7 @@ TArray<FRHAPI_JsonValue> FRHAPI_JsonValue::AsArray() const
     {
         for (TSharedPtr<FJsonValue> Val : Value->AsArray())
         {
-            Result.Add(FRHAPI_JsonValue::CreateFromUnrealValue(Val));
+            Result.Add(FRHAPI_JsonValue(Val));
         }
     }
     else
@@ -344,7 +337,7 @@ bool FRHAPI_JsonValue::TryGetArray(TArray<FRHAPI_JsonValue>& OutArray) const
 
     for (const TSharedPtr<FJsonValue>& Val : *JsonArr)
     {
-        OutArray.Add(CreateFromUnrealValue(Val));
+        OutArray.Add(FRHAPI_JsonValue(Val));
     }
     return true;
 }
@@ -359,13 +352,6 @@ bool FRHAPI_JsonValue::TryGetObject(FRHAPI_JsonObject& OutObject) const
 
     OutObject.SetObject(*JsonObj);
     return true;
-}
-
-FRHAPI_JsonValue FRHAPI_JsonValue::CreateFromUnrealValue(const TSharedPtr<FJsonValue> NewValue)
-{
-    FRHAPI_JsonValue Val;
-    Val.SetValue(NewValue);
-    return Val;
 }
 
 bool FRHAPI_JsonValue::CompareEqual(const FRHAPI_JsonValue& Other) const
@@ -398,7 +384,7 @@ bool URHAPI_JsonObjectBlueprintLibrary::StringToFRHAPI_JsonObject(const FString&
 	TSharedPtr<FJsonObject> JsonObject;
 	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
 	{
-		OutObject = FRHAPI_JsonObject::CreateFromUnrealObject(JsonObject);
+		OutObject = FRHAPI_JsonObject(JsonObject);
 		return true;
 	}
 	
@@ -425,7 +411,7 @@ bool URHAPI_JsonValueBlueprintLibrary::StringToFRHAPI_JsonValue(const FString& I
 	TSharedPtr<FJsonValue> JsonValue;
 	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 	{
-		OutValue = FRHAPI_JsonValue::CreateFromUnrealValue(JsonValue);
+		OutValue = FRHAPI_JsonValue(JsonValue);
 		return true;
 	}
 	

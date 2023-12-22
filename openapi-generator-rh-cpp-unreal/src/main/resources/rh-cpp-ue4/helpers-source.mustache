@@ -36,7 +36,7 @@ limitations under the License.
         return {{unrealModelPrefix}}JsonValue();
     }
 
-    return {{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(Field);
+    return {{unrealModelPrefix}}JsonValue(Field);
 }
 
 bool {{unrealModelPrefix}}JsonObject::HasField(const FString& FieldName) const
@@ -160,7 +160,7 @@ bool {{unrealModelPrefix}}JsonObject::TryGetArrayField(const FString& FieldName,
 
     for (const TSharedPtr<FJsonValue>& Val : *Arr)
     {
-        OutArray.Add({{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(Val));
+        OutArray.Add({{unrealModelPrefix}}JsonValue(Val));
     }
     return true;
 }
@@ -215,13 +215,6 @@ void {{unrealModelPrefix}}JsonObject::SetObjectField(const FString& FieldName, c
     }
 }
 
-{{unrealModelPrefix}}JsonObject {{unrealModelPrefix}}JsonObject::CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj)
-{
-    {{unrealModelPrefix}}JsonObject OutObject;
-    OutObject.SetObject(NewObj);
-    return OutObject;
-}
-
 //////////////////////////////////////////////////////////////////////////
 
 float {{unrealModelPrefix}}JsonValue::AsNumber() const
@@ -266,7 +259,7 @@ TArray<{{unrealModelPrefix}}JsonValue> {{unrealModelPrefix}}JsonValue::AsArray()
     {
         for (TSharedPtr<FJsonValue> Val : Value->AsArray())
         {
-            Result.Add({{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(Val));
+            Result.Add({{unrealModelPrefix}}JsonValue(Val));
         }
     }
     else
@@ -354,7 +347,7 @@ bool {{unrealModelPrefix}}JsonValue::TryGetArray(TArray<{{unrealModelPrefix}}Jso
 
     for (const TSharedPtr<FJsonValue>& Val : *JsonArr)
     {
-        OutArray.Add(CreateFromUnrealValue(Val));
+        OutArray.Add({{unrealModelPrefix}}JsonValue(Val));
     }
     return true;
 }
@@ -369,13 +362,6 @@ bool {{unrealModelPrefix}}JsonValue::TryGetObject({{unrealModelPrefix}}JsonObjec
 
     OutObject.SetObject(*JsonObj);
     return true;
-}
-
-{{unrealModelPrefix}}JsonValue {{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(const TSharedPtr<FJsonValue> NewValue)
-{
-    {{unrealModelPrefix}}JsonValue Val;
-    Val.SetValue(NewValue);
-    return Val;
 }
 
 bool {{unrealModelPrefix}}JsonValue::CompareEqual(const {{unrealModelPrefix}}JsonValue& Other) const
@@ -408,7 +394,7 @@ bool {{unrealClassPrefix}}JsonObjectBlueprintLibrary::StringTo{{unrealModelPrefi
 	TSharedPtr<FJsonObject> JsonObject;
 	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
 	{
-		OutObject = {{unrealModelPrefix}}JsonObject::CreateFromUnrealObject(JsonObject);
+		OutObject = {{unrealModelPrefix}}JsonObject(JsonObject);
 		return true;
 	}
 	
@@ -435,7 +421,7 @@ bool {{unrealClassPrefix}}JsonValueBlueprintLibrary::StringTo{{unrealModelPrefix
 	TSharedPtr<FJsonValue> JsonValue;
 	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
 	{
-		OutValue = {{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(JsonValue);
+		OutValue = {{unrealModelPrefix}}JsonValue(JsonValue);
 		return true;
 	}
 	

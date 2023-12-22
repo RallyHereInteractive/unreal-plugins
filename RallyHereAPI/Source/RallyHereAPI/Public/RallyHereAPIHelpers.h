@@ -43,6 +43,9 @@ struct RALLYHEREAPI_API FRHAPI_JsonObject
 {
     GENERATED_BODY()
 public:
+	FRHAPI_JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
+	FRHAPI_JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
+
     FRHAPI_JsonValue TryGetValue(const FString& FieldName) const;
 
     bool HasField(const FString& FieldName) const;
@@ -76,8 +79,6 @@ public:
     void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
     TSharedPtr<FJsonObject> GetObject() const { return Obj; }
 
-    static FRHAPI_JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj);
-
 private:
     TSharedPtr<FJsonObject> Obj;
 };
@@ -87,6 +88,9 @@ struct RALLYHEREAPI_API FRHAPI_JsonValue
 {
     GENERATED_BODY()
 public:
+	FRHAPI_JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
+	FRHAPI_JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
+
     float AsNumber() const;
     FString AsString() const;
     bool AsBool() const;
@@ -107,8 +111,6 @@ public:
     void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
     TSharedPtr<FJsonValue> GetValue() const { return Value; }
 
-    static FRHAPI_JsonValue CreateFromUnrealValue(const TSharedPtr<FJsonValue> NewValue);
-
     bool CompareEqual(const FRHAPI_JsonValue& Other) const;
 
 private:
@@ -121,7 +123,6 @@ class RALLYHEREAPI_API URHAPI_JsonObjectBlueprintLibrary : public UBlueprintFunc
 {
     GENERATED_BODY()
 public:
-
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
 	static bool FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString);
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
@@ -192,6 +193,29 @@ public:
 	static bool FRHAPI_JsonValueToString(const FRHAPI_JsonValue& InValue, FString& OutString);
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
 	static bool StringToFRHAPI_JsonValue(const FString& InString, FRHAPI_JsonValue& OutValue);
+	
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeNumberJsonValue(float InNumber) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueNumber(InNumber))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeStringJsonValue(const FString& InString) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueString(InString))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeBoolJsonValue(const FString& InString, bool InBool) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueBoolean(InBool))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeNullJsonValue(const FString& InString) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueNull())); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeArrayJsonValue(const FString& InString, const TArray<FRHAPI_JsonValue>& InArray)
+	{
+		// make an array of the inner types
+		TArray<TSharedPtr<FJsonValue>> Values;
+		Values.Reset(InArray.Num());
+		for (const auto& InValue : InArray)
+		{
+			Values.Add(InValue.GetValue());
+		}
+		return FRHAPI_JsonValue(MakeShareable(new FJsonValueArray(Values)));
+	}
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeObjectJsonValue(const FString& InString, const FRHAPI_JsonObject& InObject) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueObject(InObject.GetObject()))); } 
 	
 	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
 	static float AsNumber(const FRHAPI_JsonValue& Value) { return Value.AsNumber(); }

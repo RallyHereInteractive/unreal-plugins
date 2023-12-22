@@ -53,6 +53,9 @@ struct {{dllapi}} {{unrealModelPrefix}}JsonObject
 {
     GENERATED_BODY()
 public:
+	{{unrealModelPrefix}}JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
+	{{unrealModelPrefix}}JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
+
     {{unrealModelPrefix}}JsonValue TryGetValue(const FString& FieldName) const;
 
     bool HasField(const FString& FieldName) const;
@@ -86,8 +89,6 @@ public:
     void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
     TSharedPtr<FJsonObject> GetObject() const { return Obj; }
 
-    static {{unrealModelPrefix}}JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj);
-
 private:
     TSharedPtr<FJsonObject> Obj;
 };
@@ -97,6 +98,9 @@ struct {{dllapi}} {{unrealModelPrefix}}JsonValue
 {
     GENERATED_BODY()
 public:
+	{{unrealModelPrefix}}JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
+	{{unrealModelPrefix}}JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
+
     float AsNumber() const;
     FString AsString() const;
     bool AsBool() const;
@@ -117,8 +121,6 @@ public:
     void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
     TSharedPtr<FJsonValue> GetValue() const { return Value; }
 
-    static {{unrealModelPrefix}}JsonValue CreateFromUnrealValue(const TSharedPtr<FJsonValue> NewValue);
-
     bool CompareEqual(const {{unrealModelPrefix}}JsonValue& Other) const;
 
 private:
@@ -131,7 +133,6 @@ class {{dllapi}} {{unrealClassPrefix}}JsonObjectBlueprintLibrary : public UBluep
 {
     GENERATED_BODY()
 public:
-
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
 	static bool {{unrealModelPrefix}}JsonObjectToString(const {{unrealModelPrefix}}JsonObject& InObject, FString& OutString);
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
@@ -202,6 +203,29 @@ public:
 	static bool {{unrealModelPrefix}}JsonValueToString(const {{unrealModelPrefix}}JsonValue& InValue, FString& OutString);
 	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
 	static bool StringTo{{unrealModelPrefix}}JsonValue(const FString& InString, {{unrealModelPrefix}}JsonValue& OutValue);
+	
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static {{unrealModelPrefix}}JsonValue MakeNumberJsonValue(float InNumber) { return {{unrealModelPrefix}}JsonValue(MakeShareable(new FJsonValueNumber(InNumber))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static {{unrealModelPrefix}}JsonValue MakeStringJsonValue(const FString& InString) { return {{unrealModelPrefix}}JsonValue(MakeShareable(new FJsonValueString(InString))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static {{unrealModelPrefix}}JsonValue MakeBoolJsonValue(const FString& InString, bool InBool) { return {{unrealModelPrefix}}JsonValue(MakeShareable(new FJsonValueBoolean(InBool))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static {{unrealModelPrefix}}JsonValue MakeNullJsonValue(const FString& InString) { return {{unrealModelPrefix}}JsonValue(MakeShareable(new FJsonValueNull())); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static {{unrealModelPrefix}}JsonValue MakeArrayJsonValue(const FString& InString, const TArray<{{unrealModelPrefix}}JsonValue>& InArray)
+	{
+		// make an array of the inner types
+		TArray<TSharedPtr<FJsonValue>> Values;
+		Values.Reset(InArray.Num());
+		for (const auto& InValue : InArray)
+		{
+			Values.Add(InValue.GetValue());
+		}
+		return {{unrealModelPrefix}}JsonValue(MakeShareable(new FJsonValueArray(Values)));
+	}
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static {{unrealModelPrefix}}JsonValue MakeObjectJsonValue(const FString& InString, const {{unrealModelPrefix}}JsonObject& InObject) { return {{unrealModelPrefix}}JsonValue(MakeShareable(new FJsonValueObject(InObject.GetObject()))); } 
 	
 	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
 	static float AsNumber(const {{unrealModelPrefix}}JsonValue& Value) { return Value.AsNumber(); }
