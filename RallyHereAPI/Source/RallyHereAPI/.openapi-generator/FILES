@@ -33,6 +33,7 @@ Private/ClientVisibleSettings.cpp
 Private/ConfigAPI.cpp
 Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
+Private/CorrelationId.cpp
 Private/CreateInventoryRequest.cpp
 Private/CreateInventoryRequests.cpp
 Private/CreateInventoryType.cpp
@@ -41,12 +42,15 @@ Private/CrossplayInput.cpp
 Private/CrossplayPlatform.cpp
 Private/CrossplayPreferences.cpp
 Private/CustomAPI.cpp
+Private/DeleteTicketReason.cpp
 Private/Determiner.cpp
 Private/DiscoveryAPI.cpp
 Private/DiscoveryResponse.cpp
 Private/EntitlementErrorCode.cpp
 Private/EntitlementStatus.cpp
 Private/EntitlementsAPI.cpp
+Private/EnvironmentAPI.cpp
+Private/EnvironmentConfig.cpp
 Private/EventList.cpp
 Private/EventsAPI.cpp
 Private/FriendRelationship.cpp
@@ -106,6 +110,7 @@ Private/KeyClaimsAPI.cpp
 Private/KeyEntitlementsAPI.cpp
 Private/KeyType.cpp
 Private/LocationInner.cpp
+Private/LoginLootReward.cpp
 Private/LoginRequestV1.cpp
 Private/LoginResult.cpp
 Private/LogoutRequest.cpp
@@ -162,6 +167,8 @@ Private/PlatformRegion.cpp
 Private/PlatformSession.cpp
 Private/PlatformSessionPlayer.cpp
 Private/PlatformSessionTemplate.cpp
+Private/PlatformUnionCCUs.cpp
+Private/PlatformUnionCCUsAnyPlatform.cpp
 Private/PlayerIdNotificationAPI.cpp
 Private/PlayerIdWrapper.cpp
 Private/PlayerInventoryChange.cpp
@@ -236,6 +243,7 @@ Private/RankData.cpp
 Private/Region.cpp
 Private/RegionsAPI.cpp
 Private/RegionsResponse.cpp
+Private/ResponseAdminGetUpdatingCcuAllPlatformCombinedV1AdminCcuUpdatingAllplatformsCombinedGet.cpp
 Private/Restriction.cpp
 Private/RestrictionType.cpp
 Private/Role.cpp
@@ -248,6 +256,7 @@ Private/Session.cpp
 Private/SessionEvent.cpp
 Private/SessionEventCreateRequest.cpp
 Private/SessionEvents.cpp
+Private/SessionId.cpp
 Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
@@ -279,11 +288,13 @@ Private/TrueskillRank.cpp
 Private/TrueskillTeam.cpp
 Private/TrueskillUpdateRequest.cpp
 Private/TrueskillUpdateRequestV2.cpp
+Private/UnionCCU.cpp
 Private/UpdateBackfillRequest.cpp
 Private/UpdateInventoryRequest.cpp
 Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
 Private/UpdatePersonInfoRequest.cpp
+Private/UserId.cpp
 Private/UsersAPI.cpp
 Private/ValidationError.cpp
 Private/Vendor.cpp
@@ -326,6 +337,7 @@ Public/ClientVisibleSettings.h
 Public/ConfigAPI.h
 Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
+Public/CorrelationId.h
 Public/CreateInventoryRequest.h
 Public/CreateInventoryRequests.h
 Public/CreateInventoryType.h
@@ -334,12 +346,15 @@ Public/CrossplayInput.h
 Public/CrossplayPlatform.h
 Public/CrossplayPreferences.h
 Public/CustomAPI.h
+Public/DeleteTicketReason.h
 Public/Determiner.h
 Public/DiscoveryAPI.h
 Public/DiscoveryResponse.h
 Public/EntitlementErrorCode.h
 Public/EntitlementStatus.h
 Public/EntitlementsAPI.h
+Public/EnvironmentAPI.h
+Public/EnvironmentConfig.h
 Public/EventList.h
 Public/EventsAPI.h
 Public/FriendRelationship.h
@@ -399,6 +414,7 @@ Public/KeyClaimsAPI.h
 Public/KeyEntitlementsAPI.h
 Public/KeyType.h
 Public/LocationInner.h
+Public/LoginLootReward.h
 Public/LoginRequestV1.h
 Public/LoginResult.h
 Public/LogoutRequest.h
@@ -455,6 +471,8 @@ Public/PlatformRegion.h
 Public/PlatformSession.h
 Public/PlatformSessionPlayer.h
 Public/PlatformSessionTemplate.h
+Public/PlatformUnionCCUs.h
+Public/PlatformUnionCCUsAnyPlatform.h
 Public/PlayerIdNotificationAPI.h
 Public/PlayerIdWrapper.h
 Public/PlayerInventoryChange.h
@@ -529,6 +547,7 @@ Public/RankData.h
 Public/Region.h
 Public/RegionsAPI.h
 Public/RegionsResponse.h
+Public/ResponseAdminGetUpdatingCcuAllPlatformCombinedV1AdminCcuUpdatingAllplatformsCombinedGet.h
 Public/Restriction.h
 Public/RestrictionType.h
 Public/Role.h
@@ -541,6 +560,7 @@ Public/Session.h
 Public/SessionEvent.h
 Public/SessionEventCreateRequest.h
 Public/SessionEvents.h
+Public/SessionId.h
 Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
@@ -572,11 +592,13 @@ Public/TrueskillRank.h
 Public/TrueskillTeam.h
 Public/TrueskillUpdateRequest.h
 Public/TrueskillUpdateRequestV2.h
+Public/UnionCCU.h
 Public/UpdateBackfillRequest.h
 Public/UpdateInventoryRequest.h
 Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h
 Public/UpdatePersonInfoRequest.h
+Public/UserId.h
 Public/UsersAPI.h
 Public/ValidationError.h
 Public/Vendor.h

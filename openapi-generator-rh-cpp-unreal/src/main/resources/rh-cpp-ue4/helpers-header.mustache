@@ -24,6 +24,7 @@ limitations under the License.
 #include "Misc/TVariant.h"
 #include "PlatformHttp.h"
 #include "Containers/Set.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "{{unrealModuleName}}Helpers.generated.h"
 
 struct {{unrealModelPrefix}}JsonValue;
@@ -87,6 +88,18 @@ private:
     TSharedPtr<FJsonObject> Obj;
 };
 
+UCLASS()
+class {{dllapi}} {{unrealClassPrefix}}JsonObjectBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool {{unrealModelPrefix}}JsonObjectToString(const {{unrealModelPrefix}}JsonObject& InObject, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool StringTo{{unrealModelPrefix}}JsonObject(const FString& InString, {{unrealModelPrefix}}JsonObject& OutObject);
+};
+
 
 USTRUCT(BlueprintType)
 struct {{dllapi}} {{unrealModelPrefix}}JsonValue
@@ -119,6 +132,18 @@ public:
 
 private:
     TSharedPtr<FJsonValue> Value;
+};
+
+UCLASS()
+class {{dllapi}} {{unrealClassPrefix}}JsonValueBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+	
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool {{unrealModelPrefix}}JsonValueToString(const {{unrealModelPrefix}}JsonValue& InValue, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool StringTo{{unrealModelPrefix}}JsonValue(const FString& InString, {{unrealModelPrefix}}JsonValue& OutValue);
 };
 
 {{#cppNamespaceDeclarations}}

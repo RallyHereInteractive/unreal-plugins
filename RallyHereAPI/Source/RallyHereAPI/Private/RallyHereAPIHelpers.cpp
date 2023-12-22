@@ -219,6 +219,34 @@ FRHAPI_JsonObject FRHAPI_JsonObject::CreateFromUnrealObject(TSharedPtr<FJsonObje
 
 //////////////////////////////////////////////////////////////////////////
 
+bool URHAPI_JsonObjectBlueprintLibrary::FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InObject.GetObject().ToSharedRef(), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool URHAPI_JsonObjectBlueprintLibrary::StringToFRHAPI_JsonObject(const FString& InString, FRHAPI_JsonObject& OutObject)
+{
+	// serialize to object
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonObject> JsonObject;
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+		OutObject = FRHAPI_JsonObject::CreateFromUnrealObject(JsonObject);
+		return true;
+	}
+	
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 float FRHAPI_JsonValue::AsNumber() const
 {
     if (!Value)
@@ -380,6 +408,33 @@ bool FRHAPI_JsonValue::CompareEqual(const FRHAPI_JsonValue& Other) const
     if (!Value || !Other.Value)
         return false;
     return FJsonValue::CompareEqual(*Value, *Other.Value);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+bool URHAPI_JsonValueBlueprintLibrary::FRHAPI_JsonValueToString(const FRHAPI_JsonValue& InValue, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InValue.GetValue().ToSharedRef(), TEXT(""), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+bool URHAPI_JsonValueBlueprintLibrary::StringToFRHAPI_JsonValue(const FString& InString, FRHAPI_JsonValue& OutValue)
+{
+	// serialize to value
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonValue> JsonValue;
+	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
+	{
+		OutValue = FRHAPI_JsonValue::CreateFromUnrealValue(JsonValue);
+		return true;
+	}
+	
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////

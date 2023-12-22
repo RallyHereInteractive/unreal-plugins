@@ -2875,7 +2875,7 @@ void FResponse_AdminGetUpdatingCcuAllPlatformCombined::SetHttpResponseCode(EHttp
     }
 }
 
-bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_ResponseAdminGetUpdatingCcuAllPlatformCombinedV1AdminCcuUpdatingAllplatformsCombinedGet& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }

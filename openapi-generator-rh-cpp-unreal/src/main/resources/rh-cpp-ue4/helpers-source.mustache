@@ -229,6 +229,34 @@ void {{unrealModelPrefix}}JsonObject::SetObjectField(const FString& FieldName, c
 
 //////////////////////////////////////////////////////////////////////////
 
+bool {{unrealClassPrefix}}JsonObjectBlueprintLibrary::{{unrealModelPrefix}}JsonObjectToString(const {{unrealModelPrefix}}JsonObject& InObject, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InObject.GetObject().ToSharedRef(), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool {{unrealClassPrefix}}JsonObjectBlueprintLibrary::StringTo{{unrealModelPrefix}}JsonObject(const FString& InString, {{unrealModelPrefix}}JsonObject& OutObject)
+{
+	// serialize to object
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonObject> JsonObject;
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+		OutObject = {{unrealModelPrefix}}JsonObject::CreateFromUnrealObject(JsonObject);
+		return true;
+	}
+	
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+
 float {{unrealModelPrefix}}JsonValue::AsNumber() const
 {
     if (!Value)
@@ -390,6 +418,33 @@ bool {{unrealModelPrefix}}JsonValue::CompareEqual(const {{unrealModelPrefix}}Jso
     if (!Value || !Other.Value)
         return false;
     return FJsonValue::CompareEqual(*Value, *Other.Value);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+bool {{unrealClassPrefix}}JsonValueBlueprintLibrary::{{unrealModelPrefix}}JsonValueToString(const {{unrealModelPrefix}}JsonValue& InValue, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InValue.GetValue().ToSharedRef(), TEXT(""), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+bool {{unrealClassPrefix}}JsonValueBlueprintLibrary::StringTo{{unrealModelPrefix}}JsonValue(const FString& InString, {{unrealModelPrefix}}JsonValue& OutValue)
+{
+	// serialize to value
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonValue> JsonValue;
+	if (FJsonSerializer::Deserialize(Reader, JsonValue) && JsonValue.IsValid())
+	{
+		OutValue = {{unrealModelPrefix}}JsonValue::CreateFromUnrealValue(JsonValue);
+		return true;
+	}
+	
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////

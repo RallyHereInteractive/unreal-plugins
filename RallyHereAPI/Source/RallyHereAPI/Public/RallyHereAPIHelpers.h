@@ -14,6 +14,7 @@
 #include "Misc/TVariant.h"
 #include "PlatformHttp.h"
 #include "Containers/Set.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "RallyHereAPIHelpers.generated.h"
 
 struct FRHAPI_JsonValue;
@@ -77,6 +78,18 @@ private:
     TSharedPtr<FJsonObject> Obj;
 };
 
+UCLASS()
+class RALLYHEREAPI_API URHAPI_JsonObjectBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool StringToFRHAPI_JsonObject(const FString& InString, FRHAPI_JsonObject& OutObject);
+};
+
 
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JsonValue
@@ -109,6 +122,18 @@ public:
 
 private:
     TSharedPtr<FJsonValue> Value;
+};
+
+UCLASS()
+class RALLYHEREAPI_API URHAPI_JsonValueBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+	
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool FRHAPI_JsonValueToString(const FRHAPI_JsonValue& InValue, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Utilities")
+	static bool StringToFRHAPI_JsonValue(const FString& InString, FRHAPI_JsonValue& OutValue);
 };
 
 namespace RallyHereAPI

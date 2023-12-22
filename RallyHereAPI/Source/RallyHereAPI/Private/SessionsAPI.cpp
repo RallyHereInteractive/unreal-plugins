@@ -6378,6 +6378,14 @@ FString FRequest_LeaveQueue::ComputePath() const
 
     FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/queue"), PathParams);
 
+    TArray<FString> QueryParams;
+    if(Reason.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("reason=")) + ToUrlString(Reason.GetValue()));
+    }
+    Path += TCHAR('?');
+    Path += FString::Join(QueryParams, TEXT("&"));
+
     return Path;
 }
 

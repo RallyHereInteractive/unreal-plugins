@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "EventList.h"
+#include "PlatformUnionCCUsAnyPlatform.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,17 +17,17 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_EventList
+// Implementation for FRHAPI_PlatformUnionCCUsAnyPlatform
 
-void FRHAPI_EventList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_PlatformUnionCCUsAnyPlatform::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("event_list"));
-    RallyHereAPI::WriteJsonValue(Writer, EventList);
+    Writer->WriteIdentifierPrefix(TEXT("platform_counts"));
+    RallyHereAPI::WriteJsonValue(Writer, PlatformCounts);
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_EventList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_PlatformUnionCCUsAnyPlatform::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -35,8 +35,8 @@ bool FRHAPI_EventList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonEventListField = (*Object)->TryGetField(TEXT("event_list"));
-    ParseSuccess &= JsonEventListField.IsValid() && !JsonEventListField->IsNull() && TryGetJsonValue(JsonEventListField, EventList);
+    const TSharedPtr<FJsonValue> JsonPlatformCountsField = (*Object)->TryGetField(TEXT("platform_counts"));
+    ParseSuccess &= JsonPlatformCountsField.IsValid() && !JsonPlatformCountsField->IsNull() && TryGetJsonValue(JsonPlatformCountsField, PlatformCounts);
 
     return ParseSuccess;
 }

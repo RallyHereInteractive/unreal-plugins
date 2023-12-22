@@ -24,6 +24,11 @@ void FRHAPI_Role::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("role_id"));
     RallyHereAPI::WriteJsonValue(Writer, RoleId);
+    if (LegacyRoleId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("legacy_role_id"));
+        RallyHereAPI::WriteJsonValue(Writer, LegacyRoleId_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -52,6 +57,12 @@ bool FRHAPI_Role::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     const TSharedPtr<FJsonValue> JsonRoleIdField = (*Object)->TryGetField(TEXT("role_id"));
     ParseSuccess &= JsonRoleIdField.IsValid() && !JsonRoleIdField->IsNull() && TryGetJsonValue(JsonRoleIdField, RoleId);
+    const TSharedPtr<FJsonValue> JsonLegacyRoleIdField = (*Object)->TryGetField(TEXT("legacy_role_id"));
+    if (JsonLegacyRoleIdField.IsValid() && !JsonLegacyRoleIdField->IsNull())
+    {
+        LegacyRoleId_IsSet = TryGetJsonValue(JsonLegacyRoleIdField, LegacyRoleId_Optional);
+        ParseSuccess &= LegacyRoleId_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {
