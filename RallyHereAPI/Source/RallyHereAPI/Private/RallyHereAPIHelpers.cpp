@@ -50,17 +50,12 @@ void FRHAPI_JsonObject::RemoveField(const FString& FieldName) const
     }
 }
 
-float FRHAPI_JsonObject::GetFloatField(const FString& FieldName) const
+float FRHAPI_JsonObject::GetNumberField(const FString& FieldName) const
 {
     return Obj ? Obj->GetNumberField(FieldName) : float{};
 }
 
-int32 FRHAPI_JsonObject::GetIntegerField(const FString& FieldName) const
-{
-    return Obj ? Obj->GetIntegerField(FieldName) : int32{};
-}
-
-bool FRHAPI_JsonObject::TryGetFloatField(const FString& FieldName, float& OutNumber) const
+bool FRHAPI_JsonObject::TryGetNumberField(const FString& FieldName, float& OutNumber) const
 {
     if (Obj)
     {
@@ -74,7 +69,15 @@ bool FRHAPI_JsonObject::TryGetFloatField(const FString& FieldName, float& OutNum
     return false;
 }
 
-bool FRHAPI_JsonObject::TryGetNumberField(const FString& FieldName, int32& OutNumber) const
+void FRHAPI_JsonObject::SetNumberField(const FString& FieldName, float Number) const
+{
+    if (Obj)
+    {
+        Obj->SetNumberField(FieldName, static_cast<double>(Number));
+    }
+}
+
+bool FRHAPI_JsonObject::TryGetIntegerField(const FString& FieldName, int32& OutNumber) const
 {
     return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
 }
@@ -82,14 +85,6 @@ bool FRHAPI_JsonObject::TryGetNumberField(const FString& FieldName, int32& OutNu
 bool FRHAPI_JsonObject::TryGetInteger64Field(const FString& FieldName, int64& OutNumber) const
 {
     return Obj && Obj->TryGetNumberField(FieldName, OutNumber);
-}
-
-void FRHAPI_JsonObject::SetNumberField(const FString& FieldName, float Number) const
-{
-    if (Obj)
-    {
-        Obj->SetNumberField(FieldName, static_cast<double>(Number));
-    }
 }
 
 FString FRHAPI_JsonObject::GetStringField(const FString& FieldName) const
@@ -219,34 +214,6 @@ FRHAPI_JsonObject FRHAPI_JsonObject::CreateFromUnrealObject(TSharedPtr<FJsonObje
 
 //////////////////////////////////////////////////////////////////////////
 
-bool URHAPI_JsonObjectBlueprintLibrary::FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString)
-{
-	// serialize to string
-	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
-	if (FJsonSerializer::Serialize(InObject.GetObject().ToSharedRef(), Writer))
-	{
-		return true;
-	}
-	
-	return false;
-}
-
-bool URHAPI_JsonObjectBlueprintLibrary::StringToFRHAPI_JsonObject(const FString& InString, FRHAPI_JsonObject& OutObject)
-{
-	// serialize to object
-	auto Reader = TJsonReaderFactory<>::Create(InString);
-	TSharedPtr<FJsonObject> JsonObject;
-	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
-	{
-		OutObject = FRHAPI_JsonObject::CreateFromUnrealObject(JsonObject);
-		return true;
-	}
-	
-	return false;
-}
-
-//////////////////////////////////////////////////////////////////////////
-
 float FRHAPI_JsonValue::AsNumber() const
 {
     if (!Value)
@@ -342,19 +309,19 @@ ERHAPI_JsonValueType FRHAPI_JsonValue::GetType() const
     return ERHAPI_JsonValueType::None;
 }
 
-bool FRHAPI_JsonValue::TryGetFloat(float& OutNumber) const
+bool FRHAPI_JsonValue::TryGetNumber(float& OutNumber) const
 {
     return Value && Value->TryGetNumber(OutNumber);
 }
 
-bool FRHAPI_JsonValue::TryGetNumber(int32& OutNumber) const
+bool FRHAPI_JsonValue::TryGetInteger(int32& OutInteger) const
 {
-    return Value && Value->TryGetNumber(OutNumber);
+    return Value && Value->TryGetNumber(OutInteger);
 }
 
-bool FRHAPI_JsonValue::TryGetInteger64(int64& OutNumber) const
+bool FRHAPI_JsonValue::TryGetInteger64(int64& OutInteger64) const
 {
-    return Value && Value->TryGetNumber(OutNumber);
+    return Value && Value->TryGetNumber(OutInteger64);
 }
 
 bool FRHAPI_JsonValue::TryGetString(FString& OutString) const
@@ -408,6 +375,34 @@ bool FRHAPI_JsonValue::CompareEqual(const FRHAPI_JsonValue& Other) const
     if (!Value || !Other.Value)
         return false;
     return FJsonValue::CompareEqual(*Value, *Other.Value);
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+bool URHAPI_JsonObjectBlueprintLibrary::FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString)
+{
+	// serialize to string
+	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutString);
+	if (FJsonSerializer::Serialize(InObject.GetObject().ToSharedRef(), Writer))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool URHAPI_JsonObjectBlueprintLibrary::StringToFRHAPI_JsonObject(const FString& InString, FRHAPI_JsonObject& OutObject)
+{
+	// serialize to object
+	auto Reader = TJsonReaderFactory<>::Create(InString);
+	TSharedPtr<FJsonObject> JsonObject;
+	if (FJsonSerializer::Deserialize(Reader, JsonObject) && JsonObject.IsValid())
+	{
+		OutObject = FRHAPI_JsonObject::CreateFromUnrealObject(JsonObject);
+		return true;
+	}
+	
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////
