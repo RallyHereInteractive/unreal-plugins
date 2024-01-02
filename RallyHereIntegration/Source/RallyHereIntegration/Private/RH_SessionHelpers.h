@@ -842,7 +842,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		static FString Name(TEXT("FRH_SessionJoinByPlatformIdHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
