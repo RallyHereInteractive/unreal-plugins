@@ -100,6 +100,9 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, 
 		RemoveSession(Session);
 	}
 
+	// clear out our etag storage for sessions, so we will do a full poll next time
+	AllSessionsETag.Reset();
+
 	// ensure sessions array has been cleared out by the above
 	check(Sessions.Num() == 0);
 
