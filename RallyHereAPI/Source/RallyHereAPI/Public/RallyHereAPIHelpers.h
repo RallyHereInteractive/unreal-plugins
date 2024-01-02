@@ -61,6 +61,14 @@ public:
 	bool TryGetIntegerField(const FString& FieldName, int32& OutNumber) const;
 	bool TryGetInteger64Field(const FString& FieldName, int64& OutNumber) const;
 
+	// deprecated functions that used improper naming
+	UE_DEPRECATED(5.0, "Please use the GetNumberField() instead")
+	float GetFloatField(const FString& FieldName) const { return GetNumberField(FieldName); }
+	UE_DEPRECATED(5.0, "Please use the TryGetNumberField() instead")
+	float TryGetFloatField(const FString& FieldName, float& OutNumber) const { return TryGetNumberField(FieldName, OutNumber); }
+	UE_DEPRECATED(5.0, "Please use the TryGetIntegerField() instead")
+	int32 GetIntegerField(const FString& FieldName) const { int32 Val = 0; TryGetIntegerField(FieldName, Val); return Val; }
+
 	FString GetStringField(const FString& FieldName) const;
 	bool TryGetStringField(const FString& FieldName, FString& OutString) const;
 	bool TryGetStringArrayField(const FString& FieldName, TArray<FString>& OutArray) const;
@@ -107,6 +115,13 @@ public:
 	bool TryGetNumber(float& OutNumber) const;
 	bool TryGetInteger(int32& OutNumber) const;
 	bool TryGetInteger64(int64& OutNumber) const;
+	
+	// deprecated functions that used improper naming
+	UE_DEPRECATED(5.0, "Please use the TryGetNumber() instead")
+	bool TryGetFloat(float& OutNumber) const { return TryGetNumber(OutNumber); }
+	UE_DEPRECATED(5.0, "Please use the TryGetInteger() instead")
+	bool TryGetNumber(int32& OutNumber) const { return TryGetInteger(OutNumber); }
+	
 	bool TryGetString(FString& OutString) const;
 	bool TryGetBool(bool& OutBool) const;
 	bool TryGetArray(TArray<FRHAPI_JsonValue>& OutArray) const;
