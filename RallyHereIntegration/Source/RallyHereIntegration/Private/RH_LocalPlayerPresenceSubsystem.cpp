@@ -113,7 +113,11 @@ void URH_LocalPlayerPresenceSubsystem::RefreshStatus()
 		typedef RallyHereAPI::Traits_UpdatePlayerPresenceSelf BaseType;
 		BaseType::Request Request;
 		Request.AuthContext = AuthContext;
+
 		Request.PlayerPresenceUpdateSelf.SetStatus(DesiredStatus);
+		Request.PlayerPresenceUpdateSelf.SetMessage(DesiredMessage);
+		Request.PlayerPresenceUpdateSelf.SetDoNotDisturb(DesiredDoNotDisturb);
+
 		BaseType::DoCall(RH_APIs::GetPresenceAPI(), Request,
 			RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 				{
@@ -139,13 +143,17 @@ void URH_LocalPlayerPresenceSubsystem::PollRefreshStatus(const FRH_PollCompleteF
 	typedef RallyHereAPI::Traits_UpdatePlayerPresenceSelf BaseType;
 	BaseType::Request Request;
 	Request.AuthContext = AuthContext;
+
 	Request.PlayerPresenceUpdateSelf.SetStatus(DesiredStatus);
+	Request.PlayerPresenceUpdateSelf.SetMessage(DesiredMessage);
+	Request.PlayerPresenceUpdateSelf.SetDoNotDisturb(DesiredDoNotDisturb);
+
 	auto RequestPtr = BaseType::DoCall(RH_APIs::GetPresenceAPI(), Request,
 		RallyHereAPI::FDelegate_UpdatePlayerPresenceSelf::CreateWeakLambda(this, [this, Delegate](const BaseType::Response& Resp)
 		{
 			Delegate.ExecuteIfBound(Resp.IsSuccessful(), true);
 		}),
-		GetDefault<URH_IntegrationSettings>()->PresenceGetSelfPriority
+		GetDefault<URH_IntegrationSettings>()->PresenceUpdatePriority
 	);
 
 	// if we did not successfully make the request, but were otherwise valid, just restart timer
