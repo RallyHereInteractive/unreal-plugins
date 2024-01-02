@@ -45,6 +45,8 @@ struct RALLYHEREAPI_API FRHAPI_JsonObject
 public:
 	FRHAPI_JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
 	FRHAPI_JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
+	
+	static FRHAPI_JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj) { return FRHAPI_JsonObject(NewObj); }
 
     FRHAPI_JsonValue TryGetValue(const FString& FieldName) const;
 
@@ -90,6 +92,8 @@ struct RALLYHEREAPI_API FRHAPI_JsonValue
 public:
 	FRHAPI_JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
 	FRHAPI_JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
+
+    static FRHAPI_JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return FRHAPI_JsonValue(NewVal); }
 
     float AsNumber() const;
     FString AsString() const;

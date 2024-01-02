@@ -55,6 +55,8 @@ struct {{dllapi}} {{unrealModelPrefix}}JsonObject
 public:
 	{{unrealModelPrefix}}JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
 	{{unrealModelPrefix}}JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
+	
+	static {{unrealModelPrefix}}JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj) { return {{unrealModelPrefix}}JsonObject(NewObj); }
 
     {{unrealModelPrefix}}JsonValue TryGetValue(const FString& FieldName) const;
 
@@ -100,6 +102,8 @@ struct {{dllapi}} {{unrealModelPrefix}}JsonValue
 public:
 	{{unrealModelPrefix}}JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
 	{{unrealModelPrefix}}JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
+
+    static {{unrealModelPrefix}}JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return {{unrealModelPrefix}}JsonValue(NewVal); }
 
     float AsNumber() const;
     FString AsString() const;
