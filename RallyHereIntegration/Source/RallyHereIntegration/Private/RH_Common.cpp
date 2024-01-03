@@ -107,6 +107,26 @@ bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
 	return bUseFallback;
 }
 
+bool RH_UseRecentPlayersFromOSSName(FName OSSName)
+{
+	FString OSSNameString = OSSName.ToString();
+
+	// detect PS4 crossgen support
+	if (OSSName == PS4_SUBSYSTEM)
+	{
+		if (GConfig->GetBoolOrDefault(TEXT("CrossgenSupport"), TEXT("bEnableCrossgenSupport"), false, GEngineIni))
+		{
+			OSSNameString += TEXT("_CrossGen");
+		}
+	}
+
+	bool bUseFallback = false;
+	GConfig->GetBool(TEXT("UseRecentPlayersFromOSSName"), *OSSNameString, bUseFallback, GRallyHereIntegrationIni);
+
+	return bUseFallback;
+}
+
+
 
 ERHAPI_InventoryBucket RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform)
 {
