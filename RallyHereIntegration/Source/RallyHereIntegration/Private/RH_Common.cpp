@@ -112,9 +112,9 @@ bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
 	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseAuthTokenFallbackFromOSSNameMap"));
 }
 
-bool RH_PlatformSessionsAreCaseInsensitive(FName OSSName)
+bool RH_PlatformSessionsTypeIsCaseInsensitive(FName SessionType)
 {
-	return RH_LookupBoolOSSOverride(OSSName, TEXT("SessionNamesAreCaseInsensitiveOSSNameMap"));
+	return RH_LookupBoolOSSOverride(SessionType, TEXT("SessionNamesAreCaseInsensitiveOSSNameMap"));
 }
 
 

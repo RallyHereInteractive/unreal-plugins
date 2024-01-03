@@ -128,12 +128,11 @@ public:
 
 	/**
 	* @brief Static helper function to convert a platform id to a json string
-	* @param [in] OSS The currently logged in OnlineSubsystem
 	* @param [in] PlatformId The platform id to convert
 	* @param [out] OutJson The json string to fill in
 	* @return Whether the json string was successfully filled in
 	*/
-	static bool ConvertPlatformSessionIdToJson(IOnlineSubsystem* OSS, const FUniqueNetIdRepl& PlatformId, FString& OutJson);
+	static bool ConvertPlatformSessionIdToJson(const FUniqueNetIdRepl& PlatformId, FString& OutJson);
 
 	/**
 	* @brief Get the session owner interface that this object is using to look up session information
