@@ -1065,7 +1065,17 @@ void URH_LocalPlayerLoginSubsystem::HandleAppReactivatedGameThread()
 {
 	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
 	{
-		CheckCrossplayPrivilege(*LPSS->GetOSSUniqueId());
-		CheckCommunicationPrivilege(*LPSS->GetOSSUniqueId());
+		if (auto* World = LPSS->GetWorld())
+		{
+			FTimerHandle TimerHandle;
+			World->GetTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateWeakLambda(this, [this]()
+				{
+					if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+					{
+						CheckCrossplayPrivilege(*LPSS->GetOSSUniqueId());
+						CheckCommunicationPrivilege(*LPSS->GetOSSUniqueId());
+					}
+				}), 1.0f, false);
+		}
 	}
 }

@@ -88,7 +88,7 @@ TOptional<ERHAPI_GrantType> RH_GetGrantTypeFromOSSName(FName OSSName)
 	return OutGrantType;
 }
 
-bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
+bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName)
 {
 	FString OSSNameString = OSSName.ToString();
 
@@ -101,29 +101,25 @@ bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
 		}
 	}
 
-	bool bUseFallback = false;
-	GConfig->GetBool(TEXT("UseAuthTokenFallbackFromOSSNameMap"), *OSSNameString, bUseFallback, GRallyHereIntegrationIni);
+	bool bValue = false;
+	GConfig->GetBool(*OverrideMapName, *OSSNameString, bValue, GRallyHereIntegrationIni);
 
-	return bUseFallback;
+	return bValue;
+}
+
+bool RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseAuthTokenFallbackFromOSSNameMap"));
+}
+
+bool RH_PlatformSessionsTypeIsCaseInsensitive(FName SessionType)
+{
+	return RH_LookupBoolOSSOverride(SessionType, TEXT("SessionNamesAreCaseInsensitiveOSSNameMap"));
 }
 
 bool RH_UseRecentPlayersFromOSSName(FName OSSName)
 {
-	FString OSSNameString = OSSName.ToString();
-
-	// detect PS4 crossgen support
-	if (OSSName == PS4_SUBSYSTEM)
-	{
-		if (GConfig->GetBoolOrDefault(TEXT("CrossgenSupport"), TEXT("bEnableCrossgenSupport"), false, GEngineIni))
-		{
-			OSSNameString += TEXT("_CrossGen");
-		}
-	}
-
-	bool bUseFallback = false;
-	GConfig->GetBool(TEXT("UseRecentPlayersFromOSSName"), *OSSNameString, bUseFallback, GRallyHereIntegrationIni);
-
-	return bUseFallback;
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseRecentPlayersFromOSSName"));
 }
 
 

@@ -16,6 +16,7 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 #include "Online.h"
+#include "Net/OnlineEngineInterface.h"
 
 namespace
 {
@@ -1055,6 +1056,11 @@ void URH_FriendSubsystem::UpdatePlatformFriends(const TArray<URH_PlatformFriend*
 			{
 				ExistingFriend->PlatformFriends.Add(NewFriend);
 			}
+
+			if (!ExistingFriend->PlayerAndPlatformInfo.PlayerPlatformId.IsValid())
+			{
+				ExistingFriend->PlayerAndPlatformInfo.PlayerPlatformId = NewFriend->GetPlayerPlatformId();
+			}
 		}
 		else
 		{
@@ -1844,6 +1850,72 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 URH_FriendSubsystem* URH_RHFriendAndPlatformFriend::GetFriendSubsystem() const
 {
 	return CastChecked<URH_FriendSubsystem>(GetOuter());
+}
+
+
+bool URH_RHFriendAndPlatformFriend::CanViewPlatformProfile() const
+{
+	if (!GetPlayerAndPlatformInfo().PlayerPlatformId.IsValid())
+	{
+		return false;
+	}
+
+	const auto* OSS = IOnlineSubsystem::Get();
+	if (OSS == nullptr)
+	{
+		return false;
+	}
+
+	TOptional<ERHAPI_Platform> LocalPlayerPlatform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	if (!LocalPlayerPlatform.IsSet())
+	{
+		return false;
+	}
+
+	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		if (const URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId))
+		{
+			return PlayerPlatformInfo->GetPlatform() == LocalPlayerPlatform.GetValue();
+		}
+	}
+
+	return false;
+}
+
+bool URH_RHFriendAndPlatformFriend::ViewPlatformProfile() const
+{
+	const auto* OSS = IOnlineSubsystem::Get();
+	if (OSS == nullptr)
+	{
+		return false;
+	}
+
+	const auto ExternalUI = OSS->GetExternalUIInterface();
+	if (ExternalUI == nullptr)
+	{
+		return false;
+	}
+	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
+	if (PlayerInfoSubsystem == nullptr)
+	{
+		return false;
+	}
+
+	const auto* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId);
+	if (PlayerPlatformInfo != nullptr)
+	{
+		const auto* LPSS = GetFriendSubsystem()->GetLocalPlayerSubsystem();
+		if (LPSS != nullptr)
+		{
+			const auto Requestor = UOnlineEngineInterface::Get()->CreateUniquePlayerIdWrapper(LPSS->GetPlayerPlatformId().UserId);
+			const auto Requestee = UOnlineEngineInterface::Get()->CreateUniquePlayerIdWrapper(PlayerPlatformInfo->PlayerPlatformId.UserId);
+			return ExternalUI->ShowProfileUI(*Requestor, *Requestee);
+		}
+	}
+
+	return false;
 }
 
 URH_PlayerInfo* URH_RHFriendAndPlatformFriend::GetPlayerInfo() const

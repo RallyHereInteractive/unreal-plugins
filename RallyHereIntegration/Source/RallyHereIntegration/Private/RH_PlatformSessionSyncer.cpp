@@ -11,14 +11,36 @@
 
 void MakeSessionIdJsonCaseConsistent(FString& SessionIdStr)
 {
-	// force uppercase for the subsystem FName for consistency when storing the IDs
 	TArray<FString> Tokens;
 
 	int32 NumTokens = SessionIdStr.ParseIntoArray(Tokens, TEXT(":"));
 	if (NumTokens == 2)
 	{
-		SessionIdStr = FString::Printf(TEXT("%s:%s"), *Tokens[0].ToUpper(), *Tokens[1]);
+		// force type as uppercase for the subsystem FName for consistency when storing the IDs
+		FString Type = Tokens[0].ToUpper();
+
+		// conditionally force id as uppercase based on type
+		FString Id = Tokens[1];
+		if (RH_PlatformSessionsTypeIsCaseInsensitive(FName(*Type)))
+		{
+			Id = Id.ToUpper();
+		}
+		SessionIdStr = FString::Printf(TEXT("%s:%s"), *Type, *Id);
 	}
+}
+
+bool CompareSessionIds(const FUniqueNetIdRepl& A, const FUniqueNetIdRepl& B)
+{
+	if (A.GetType() != B.GetType())
+	{
+		return false;
+	}
+	FString AString, BString;
+	URH_PlatformSessionSyncer::ConvertPlatformSessionIdToJson(A, AString);
+	URH_PlatformSessionSyncer::ConvertPlatformSessionIdToJson(B, BString);
+
+	return AString == BString;
+
 }
 
 URH_PlatformSessionSyncer::URH_PlatformSessionSyncer(const FObjectInitializer& ObjectInitializer)
@@ -193,13 +215,13 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 		FUniqueNetIdRepl PlatformSessionId = SessionInvite.Session.SessionInfo->GetSessionId();
 		FString PlatformSessionIdJson;
 
+		auto OSS = SessionOwner->GetOSS();
+
 		FString PlatformSessionIdStr;
 		if (ConvertPlatformSessionIdToJson(PlatformSessionId, PlatformSessionIdStr))
 		{
-			MakeSessionIdJsonCaseConsistent(PlatformSessionIdStr);
 			UE_LOG(LogRHSession, Log, TEXT("[%s] - Attempting to join RH Session for Platform Session %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSessionIdStr);
 
-			auto OSS = SessionOwner->GetOSS();
 			auto PlatformOptional = RH_GetPlatformFromOSSName(OSS != nullptr ? OSS->GetSubsystemName() : NAME_None);
 
 			if (PlatformOptional.IsSet())
@@ -525,17 +547,20 @@ void URH_PlatformSessionSyncer::CheckState()
 					UE_LOG(LogRHSession, Verbose, TEXT("[%s] - RHSession has no valid session id, but we have a OSS Session, so update RH Session"), ANSI_TO_TCHAR(__FUNCTION__));
 					SetSyncActionState(ESyncActionState::UpdateRHSession);
 				}
-				else if (OSSSessionId == RHPlatformSessionId)
-				{
-					// already in the right session, potentially need to update it but no create/join
-					UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Synchronized"), ANSI_TO_TCHAR(__FUNCTION__));
-					SetSyncActionState(ESyncActionState::Synchronized);
-				}
 				else
 				{
-					// in a session that does not match, leave and join the proper session.  Potentially caused by scouting conflict or error
-					UE_LOG(LogRHSession, Verbose, TEXT("[%s] - OSS Session ID %s does not match RHSession Platform Session ID %s.  Leave OSS Session and resync"), ANSI_TO_TCHAR(__FUNCTION__), *OSSSessionId.ToString(), *RHPlatformSessionId.ToString());
-					SetSyncActionState(ESyncActionState::LeavePlatformSession);
+					if (CompareSessionIds(OSSSessionId, RHPlatformSessionId))
+					{
+						// already in the right session, potentially need to update it but no create/join
+						UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Synchronized"), ANSI_TO_TCHAR(__FUNCTION__));
+						SetSyncActionState(ESyncActionState::Synchronized);
+					}
+					else
+					{
+						// in a session that does not match, leave and join the proper session.  Potentially caused by scouting conflict or error
+						UE_LOG(LogRHSession, Verbose, TEXT("[%s] - OSS Session ID %s does not match RHSession Platform Session ID %s.  Leave OSS Session and resync"), ANSI_TO_TCHAR(__FUNCTION__), *OSSSessionId.ToString(), *RHPlatformSessionId.ToString());
+						SetSyncActionState(ESyncActionState::LeavePlatformSession);
+					}
 				}
 			}
 			else
@@ -608,8 +633,6 @@ void URH_PlatformSessionSyncer::UpdateRHSessionWithPlatformSession()
 	FString PlatformSessionIdStr;
 	if (ConvertPlatformSessionIdToJson(OSSSessionId, PlatformSessionIdStr))
 	{
-		MakeSessionIdJsonCaseConsistent(PlatformSessionIdStr);
-
 		FString Base64Str = RallyHereAPI::Base64UrlEncode(PlatformSessionIdStr);
 
 		typedef RallyHereAPI::Traits_AddPlatformSessionToRallyHereSession BaseType;
@@ -750,7 +773,7 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 			CachedSessionInvite.Reset();
 
 			FUniqueNetIdRepl CachedInvitePlatformSessionId = CachedSessionInviteCopy.Session.SessionInfo->GetSessionId();
-			if (CachedInvitePlatformSessionId == RHPlatformSessionId)
+			if (CompareSessionIds(CachedInvitePlatformSessionId, RHPlatformSessionId))
 			{
 				UE_LOG(LogRHSession, Log, TEXT("[%s] - Joining via cached session invite %s"), ANSI_TO_TCHAR(__FUNCTION__), *CachedInvitePlatformSessionId->ToString());
 				JoinFoundPlatformSession(CachedSessionInviteCopy);
@@ -798,7 +821,7 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 								SyncActionComplete(false);
 							}
 						}
-						else if (GetPlatformSessionIdFromRHSession(RHPlatformSessionId) && RHPlatformSessionId == OSSPlatformSessionId)
+						else if (GetPlatformSessionIdFromRHSession(RHPlatformSessionId) && CompareSessionIds(RHPlatformSessionId, OSSPlatformSessionId))
 						{
 							JoinFoundPlatformSession(FoundSession);
 						}
