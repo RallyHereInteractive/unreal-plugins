@@ -244,6 +244,11 @@ public:
 
 	void SetCachedPlatformSessionInvite(const FOnlineSessionSearchResult& SessionInvite);
 
+	/**
+	* @brief Get the online subsystem for the platform session.
+	*/
+	virtual IOnlineSubsystem* GetOSS() const;
+
 protected:
 
 
@@ -308,10 +313,6 @@ protected:
 	 * @brief Get the unique net id of the session owner.
 	 */
 	virtual FUniqueNetIdWrapper GetOSSUniqueId() const;
-	/**
-	 * @brief Get the online subsystem for the platform session.
-	 */
-	virtual IOnlineSubsystem* GetOSS() const;
 	/**
 	 * @brief Get the online subsystem session interface for the platform session.
 	 */

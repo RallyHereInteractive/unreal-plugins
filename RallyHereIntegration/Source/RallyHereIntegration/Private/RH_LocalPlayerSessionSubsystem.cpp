@@ -39,8 +39,13 @@ void URH_LocalPlayerSessionSubsystem::Initialize()
 		OSS->GetSessionInterface()->AddOnEndSessionCompleteDelegate_Handle(FOnEndSessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionEnded));
 		OSS->GetSessionInterface()->AddOnDestroySessionCompleteDelegate_Handle(FOnDestroySessionCompleteDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionDestroyed));
 
+#if RH_FROM_ENGINE_VERSION(5,2)
+		OSS->GetSessionInterface()->AddOnSessionParticipantJoinedDelegate_Handle(FOnSessionParticipantJoinedDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantJoined));
+		OSS->GetSessionInterface()->AddOnSessionParticipantLeftDelegate_Handle(FOnSessionParticipantLeftDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantLeft));
+#else
 		OSS->GetSessionInterface()->AddOnSessionParticipantsChangeDelegate_Handle(FOnSessionParticipantsChangeDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantChange));
 		OSS->GetSessionInterface()->AddOnSessionParticipantRemovedDelegate_Handle(FOnSessionParticipantRemovedDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantRemoved));
+#endif
 	}
 	if (OSS != nullptr && OSS->GetGameActivityInterface() != nullptr)
 	{
@@ -73,8 +78,13 @@ void URH_LocalPlayerSessionSubsystem::Deinitialize()
 		OSS->GetSessionInterface()->ClearOnCreateSessionCompleteDelegates(this);
 		OSS->GetSessionInterface()->ClearOnJoinSessionCompleteDelegates(this);
 
+#if RH_FROM_ENGINE_VERSION(5,2)
+		OSS->GetSessionInterface()->ClearOnSessionParticipantJoinedDelegates(this);
+		OSS->GetSessionInterface()->ClearOnSessionParticipantLeftDelegates(this);
+#else
 		OSS->GetSessionInterface()->ClearOnSessionParticipantsChangeDelegates(this);
 		OSS->GetSessionInterface()->ClearOnSessionParticipantRemovedDelegates(this);
+#endif
 	}
 	if (OSS != nullptr && OSS->GetGameActivityInterface() != nullptr)
 	{
@@ -895,25 +905,45 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionDestroyed(FName SessionNa
 	}
 }
 
-void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantChange(FName SessionName, const FUniqueNetId& UniqueNetId, bool bJoined)
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantsChanged(FName SessionName, const FUniqueNetId& UniqueNetId, bool bJoined)
 {
-	auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
-	if (Syncer != nullptr)
+	if (!bJoined)
 	{
-		if (FilterOSSCallbackUser(UniqueNetId))
+		const auto* Syncer = GetPlatformSyncerByRHSessionId(SessionName.ToString());
+		if (Syncer != nullptr)
 		{
-			// the local user left a OSS session, update the RH Session
-			auto RHSession = Syncer->GetRHSession();
-			if (RHSession != nullptr)
+			if (FilterOSSCallbackUser(UniqueNetId))
 			{
-				RHSession->Leave(true);
+				// the local user left a OSS session, update the RH Session
+				const auto RHSession = Syncer->GetRHSession();
+				if (RHSession != nullptr)
+				{
+					RHSession->Leave(true);
+				}
 			}
 		}
 	}
 }
 
+#if RH_FROM_ENGINE_VERSION(5,2)
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantJoined(FName SessionName, const FUniqueNetId& UniqueNetId)
+{
+	OnPlatformSessionParticipantsChanged(SessionName, UniqueNetId, true);
+}
+
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantLeft(FName SessionName, const FUniqueNetId& UniqueNetId, EOnSessionParticipantLeftReason LeaveReason)
+{
+	OnPlatformSessionParticipantsChanged(SessionName, UniqueNetId, false);
+}
+#else
+void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantChange(FName SessionName, const FUniqueNetId& UniqueNetId, bool bJoined)
+{
+	OnPlatformSessionParticipantsChanged(SessionName, UniqueNetId, bJoined);
+}
+
 void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantRemoved(FName SessionName, const FUniqueNetId& UniqueNetId)
 {
 	// this function is specifically for players kicked, but just treat it as a participant being removed
-	OnPlatformSessionParticipantChange(SessionName, UniqueNetId, false);
+	OnPlatformSessionParticipantsChanged(SessionName, UniqueNetId, false);
 }
+#endif
