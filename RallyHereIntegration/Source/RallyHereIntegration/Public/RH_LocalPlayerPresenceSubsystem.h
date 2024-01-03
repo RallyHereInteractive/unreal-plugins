@@ -64,6 +64,28 @@ public:
 	UFUNCTION(BlueprintGetter, Category = "Presence")
 	ERHAPI_OnlineStatus GetDesiredStatus() const { return DesiredStatus; }
 	/**
+	 * @brief Requests an update of your presence message to be set to the desired message.
+	 * @param [in] NewMessage The new message to set.
+	 */
+	UFUNCTION(BlueprintSetter, Category = "Presence")
+	void SetDesiredMessage(FString NewMessage) { DesiredMessage = NewMessage; RefreshStatus(); }
+	/**
+	 * @brief Gets the desired message that the player wants to be set to.
+	 */
+	UFUNCTION(BlueprintGetter, Category = "Presence")
+	FString GetDesiredMessage() const { return DesiredMessage; }
+	/**
+	 * @brief Requests an update of your presence do not disturb setting to be set to the desired setting.
+	 * @param [in] NewDoNotDisturb The new do not disturb setting desired.
+	 */
+	UFUNCTION(BlueprintSetter, Category = "Presence")
+	void SetDesiredDoNotDisturb(bool NewDoNotDisturb) { DesiredDoNotDisturb = NewDoNotDisturb; RefreshStatus(); }
+	/**
+	 * @brief Gets the desired do not disturb setting that the player wants to be set to.
+	 */
+	UFUNCTION(BlueprintGetter, Category = "Presence")
+	bool GetDesiredDoNotDisturb() const { return DesiredDoNotDisturb; }
+	/**
 	 * @brief Starts polling to refresh the player's presence status.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Presence")
@@ -100,6 +122,12 @@ protected:
 	/** @brief The Status that the local player is being changed to. */
 	UPROPERTY(BlueprintGetter = GetDesiredStatus, BlueprintSetter = SetDesiredStatus, Category = "Presence")
 	ERHAPI_OnlineStatus DesiredStatus;
+	/** @brief The presence message that the local player is being changed to. */
+	UPROPERTY(BlueprintGetter = GetDesiredMessage, BlueprintSetter = SetDesiredMessage, Category = "Presence")
+	FString DesiredMessage;
+	/** @brief The do not disturb setting that the local player is being changed to. */
+	UPROPERTY(BlueprintGetter = GetDesiredDoNotDisturb, BlueprintSetter = SetDesiredDoNotDisturb, Category = "Presence")
+	bool DesiredDoNotDisturb;
 };
 
 /** @} */
