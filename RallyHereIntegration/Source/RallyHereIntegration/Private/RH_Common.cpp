@@ -117,6 +117,12 @@ bool RH_PlatformSessionsTypeIsCaseInsensitive(FName SessionType)
 	return RH_LookupBoolOSSOverride(SessionType, TEXT("SessionNamesAreCaseInsensitiveOSSNameMap"));
 }
 
+bool RH_UseRecentPlayersFromOSSName(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseRecentPlayersFromOSSName"));
+}
+
+
 
 ERHAPI_InventoryBucket RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform)
 {

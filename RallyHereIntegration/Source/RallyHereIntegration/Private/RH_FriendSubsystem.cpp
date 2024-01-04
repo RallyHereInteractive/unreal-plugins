@@ -1835,7 +1835,7 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 
 	IOnlineSubsystem* OSS = IOnlineSubsystem::Get();
 	IOnlineFriendsPtr Friends = OSS ? OSS->GetFriendsInterface() : nullptr;
-	if (!Friends.IsValid())
+	if (!Friends.IsValid() || !RH_UseRecentPlayersFromOSSName(OSS->GetSubsystemName()))
 	{
 		return;
 	}
