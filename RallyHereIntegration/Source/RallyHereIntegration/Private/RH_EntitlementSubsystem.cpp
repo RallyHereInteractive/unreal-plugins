@@ -1,6 +1,7 @@
 // Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 #include "RH_EntitlementSubsystem.h"
+#include "RH_EntitlementHelpers.h"
 
 #include "Engine/LocalPlayer.h"
 #include "Engine/GameInstance.h"
