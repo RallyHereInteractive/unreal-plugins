@@ -65,7 +65,7 @@ void FRHDTW_CustomEndpoint::Do()
 		FRH_CustomEndpointRequestWrapper Request;
 		Request.EndpointId = ImGuiGetStringFromTextInputBuffer(EndpointId);
 		Request.ContentType = ImGuiGetStringFromTextInputBuffer(ContentType);
-		Request.Body = FRHAPI_JsonValue::CreateFromUnrealValue(JsonValue);
+		Request.Body = FRHAPI_JsonValue(JsonValue);
 		Request.Priority = Priority;
 		auto Delegate = FRH_CustomEndpointDelegate::CreateSP(SharedThis(this), &FRHDTW_CustomEndpoint::HandleCustomEndpointResult);
 
@@ -82,7 +82,7 @@ void FRHDTW_CustomEndpoint::Do()
 		FRH_CustomEndpointRequestWrapper Request;
 		Request.EndpointId = ImGuiGetStringFromTextInputBuffer(EndpointId);
 		Request.ContentType = ImGuiGetStringFromTextInputBuffer(ContentType);
-		Request.Body = FRHAPI_JsonValue::CreateFromUnrealValue(JsonValue);
+		Request.Body = FRHAPI_JsonValue(JsonValue);
 		Request.Priority = Priority;
 		auto Delegate = FRH_CustomEndpointDelegate::CreateSP(SharedThis(this), &FRHDTW_CustomEndpoint::HandleCustomEndpointResult);
 

@@ -138,7 +138,7 @@ void FRHDTW_PlayerSettings::DoModifySettings()
 		TSharedPtr<FJsonValueObject> JsonValueObject = MakeShared<FJsonValueObject>(JsonObject);
 		FRHAPI_SettingData SettingData;
 
-		SettingData.SetValue(FRHAPI_JsonValue::CreateFromUnrealValue(JsonValueObject));
+		SettingData.SetValue(FRHAPI_JsonValue(JsonValueObject));
 		SettingData.SetV(SettingVersionNum);
 
 		DataWrapper.Content.Add(UTF8_TO_TCHAR(ModifySettingsKeyInput.GetData()), SettingData);

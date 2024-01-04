@@ -8,7 +8,7 @@ pushd $DIR
 OPENAPI_SPEC_LOCATION="$(pwd)/rally-here-developer-api.json"
 GENERATOR_DIR="$(pwd)/../openapi-generator-rh-cpp-unreal"
 OUTPUT_DIR="$(pwd)/Source/RallyHereDeveloperAPI"
-ADDITIONAL_PROPERTIES="unrealModuleName=RallyHereDeveloperAPI,specCppNamespace=RallyHereDeveloperAPI,unrealCategory=RallyHereDeveloper,modelNamePrefix=Dev,unrealEnumPrefix=ERHAPI_Dev,unrealModelPrefix=FRHAPI_Dev,apiGenerationMode=DEV,stripBlueprintCompatibility=true"
+ADDITIONAL_PROPERTIES="unrealModuleName=RallyHereDeveloperAPI,specCppNamespace=RallyHereDeveloperAPI,unrealCategory=RallyHereDeveloper,modelNamePrefix=Dev,unrealEnumPrefix=ERHAPI_Dev,unrealModelPrefix=FRHAPI_Dev,unrealClassPrefix=URHAPI_Dev,apiGenerationMode=DEV,stripBlueprintCompatibility=true"
 
 ########################################
 # Check params
