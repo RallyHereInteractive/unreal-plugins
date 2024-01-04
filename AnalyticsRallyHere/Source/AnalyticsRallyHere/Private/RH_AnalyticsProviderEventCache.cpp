@@ -328,8 +328,8 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 			if (UserId.IsSet())
 			{
 				const int32 UserSize = 0
-					// ,"correlation_id":"<string>"
-					+ 18 + (1 + UserId.GetValue().Len() + 1)
+					// ,"user_id":"<string>"
+					+ 11 + (1 + UserId.GetValue().Len() + 1)
 					;
 
 					FinalSize += UserSize;
