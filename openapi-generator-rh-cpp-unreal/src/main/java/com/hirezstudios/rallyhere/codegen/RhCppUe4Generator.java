@@ -454,19 +454,36 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             if (cs.getAllOf() != null && ModelUtils.getInterfaces(cs).size() == 1) {
                 return super.getSchemaType(p);
             }
-            else if (cs.getAnyOf() != null && apiGenerationMode.equals("DEV"))
+			if (cs.getAnyOf() != null && ModelUtils.getInterfaces(cs).size() == 1) {
+                return super.getSchemaType(p);
+            }
+            else if (cs.getAnyOf() != null)
             {
-                List<Schema> list = cs.getAnyOf();
-                String Types = "";
-                for (int i = 0; i < list.size(); i++)
-                {
-                    Types += getTypeDeclaration(list.get(i));
-                    if (i + 1 < list.size())
-                    {
-                        Types += ", ";
-                    }
-                }
-                return openAPIType + "<" + Types + ">";
+				if (apiGenerationMode.equals("DEV"))
+				{
+					List<Schema> list = cs.getAnyOf();
+					String Types = "";
+					for (int i = 0; i < list.size(); i++)
+					{
+						Types += getTypeDeclaration(list.get(i));
+						if (i + 1 < list.size())
+						{
+							Types += ", ";
+						}
+					}
+					return openAPIType + "<" + Types + ">";
+				}
+				else if (ModelUtils.getInterfaces(cs).size() == 2)
+				{
+					if (ModelUtils.isNullType(cs.getAnyOf().get(0)) && !ModelUtils.isNullType(cs.getAnyOf().get(1)))
+					{
+						return getSchemaType(cs.getAnyOf().get(1));
+					}
+					if (!ModelUtils.isNullType(cs.getAnyOf().get(0)) && ModelUtils.isNullType(cs.getAnyOf().get(1)))
+					{
+						return getSchemaType(cs.getAnyOf().get(0));
+					}
+				}
             }
         }
 
@@ -580,7 +597,17 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
                     openAPIType = "object";
                 }
             } else if (cs.getAnyOf() != null) { // anyOf
-                openAPIType = "object";
+                if (ModelUtils.getInterfaces(cs).size() > 2) {
+                    openAPIType = "object";
+                }
+				else if (ModelUtils.getInterfaces(cs).size() == 2)
+				{
+					// if both types are not null types, then it must be an object
+					if (!ModelUtils.isNullType(cs.getAnyOf().get(0)) && !ModelUtils.isNullType(cs.getAnyOf().get(1)))
+					{
+						openAPIType = "object";	
+					}
+				}
             } else if (cs.getOneOf() != null) { // oneOf
                 if (ModelUtils.getInterfaces(cs).size() != 1) {
                     openAPIType = "object";
@@ -638,31 +665,55 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
                 if (cs.getAllOf() != null && ModelUtils.getInterfaces(cs).size() == 1) {
                     finalType = super.getSchemaType(schema);
                 }
-                else if (cs.getAnyOf() != null && apiGenerationMode.equals("DEV")) {
-                    resultName = "TVariant";
-                    List<Schema> list = cs.getAnyOf();
-                    String Types = "";
-                    for (int i = 0; i < list.size(); i++)
-                    {
-                        Types += getTypeDeclaration(list.get(i));
-                        if (i + 1 < list.size())
-                        {
-                            Types += ", ";
-                        }
-                    }
-                    resultName += "<" + Types + ">";
-                    return resultName;
+                else if (cs.getAnyOf() != null) {
+					if (ModelUtils.getInterfaces(cs).size() == 1) {
+						finalType = super.getSchemaType(schema);	
+					}
+					else if (apiGenerationMode.equals("DEV")) {
+						resultName = "TVariant";
+						List<Schema> list = cs.getAnyOf();
+						String Types = "";
+						for (int i = 0; i < list.size(); i++)
+						{
+							Types += getTypeDeclaration(list.get(i));
+							if (i + 1 < list.size())
+							{
+								Types += ", ";
+							}
+						}
+						resultName += "<" + Types + ">";
+						return resultName;
+					}
+					else if (ModelUtils.getInterfaces(cs).size() == 2) {
+						if (ModelUtils.isNullType(cs.getAnyOf().get(0)) && !ModelUtils.isNullType(cs.getAnyOf().get(1)))
+						{
+							finalType = getSchemaType(cs.getAnyOf().get(1));
+						}
+						if (!ModelUtils.isNullType(cs.getAnyOf().get(0)) && ModelUtils.isNullType(cs.getAnyOf().get(1)))
+						{
+							finalType = getSchemaType(cs.getAnyOf().get(0));
+						}
+					}
                 }
             }
 
-            String partialName = sanitizeName(camelize(finalType));
-            if (schema != null && schema.getEnum() != null && !schema.getEnum().isEmpty()) {
-                resultName = unrealEnumPrefix + partialName;
-            } else {
-                resultName = unrealModelPrefix + partialName;
-            }
+			// recheck type mapping, in case we managed to convert to a known type
+			if (typeMapping.keySet().contains(finalType) ||
+					typeMapping.values().contains(finalType) ||
+					importMapping.values().contains(finalType) ||
+					defaultIncludes.contains(finalType) ||
+					languageSpecificPrimitives.contains(finalType)) {
+				resultName = finalType;
+			} else {
+				String partialName = sanitizeName(camelize(finalType));
+				if (schema != null && schema.getEnum() != null && !schema.getEnum().isEmpty()) {
+					resultName = unrealEnumPrefix + partialName;
+				} else {
+					resultName = unrealModelPrefix + partialName;
+				}
 
-            prefixedModels.add(resultName);
+				prefixedModels.add(resultName);
+			}
         }
 
         schemaKeyToModelNameCache.put(camelizedType, resultName);
@@ -797,14 +848,36 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     public CodegenProperty fromProperty(String name, Schema p, boolean required) {
         CodegenProperty property = super.fromProperty(name, p, required);
 
-        // When property is 'allOf' with only 1 sub schema, default fromProperty uses the sub schema for all the properties. This causes us to lose the descriptions
-        // As far as I can tell, it only effects enumRef properties, so could just check for property.isEnumRef, but matching their conditional for consistency
+        // When property is 'allOf' or 'anyOf' with only 1 sub schema, default fromProperty uses the sub schema for all the properties. This causes us to lose the descriptions
         // For default handling, see https://github.com/OpenAPITools/openapi-generator/blob/ff9b38404eb516d46adf104d8e68e4559d9d90ae/modules/openapi-generator/src/main/java/org/openapitools/codegen/DefaultCodegen.java#LL3799C10-L3799C10
-        if (ModelUtils.isAllOf(p) && p.getAllOf().size() == 1)
-        {
-            property.description = escapeText(p.getDescription());
-            property.unescapedDescription = p.getDescription();
-        }
+		if (p instanceof ComposedSchema)
+		{
+			Schema innerSchema = null;
+			ComposedSchema cs = (ComposedSchema)p;
+			if ((cs.getAllOf() != null || cs.getAnyOf() != null)) {
+				if (ModelUtils.getInterfaces(cs).size() == 1) {
+					innerSchema = ModelUtils.getInterfaces(cs).get(0);
+				}
+				else if (cs.getAnyOf() != null && ModelUtils.getInterfaces(cs).size() == 2) {
+					if (ModelUtils.isNullType(cs.getAnyOf().get(0)) && !ModelUtils.isNullType(cs.getAnyOf().get(1)))
+					{
+						innerSchema = ModelUtils.getInterfaces(cs).get(1);
+					}
+					if (!ModelUtils.isNullType(cs.getAnyOf().get(0)) && ModelUtils.isNullType(cs.getAnyOf().get(1)))
+					{
+						innerSchema = ModelUtils.getInterfaces(cs).get(2);
+					}
+				}
+			}
+			
+			if (innerSchema != null) {
+				property = super.fromProperty(name, innerSchema, required);
+				
+				property.description = escapeText(p.getDescription());
+				property.unescapedDescription = p.getDescription();
+			}
+		}
+		
         return property;
     }
 
