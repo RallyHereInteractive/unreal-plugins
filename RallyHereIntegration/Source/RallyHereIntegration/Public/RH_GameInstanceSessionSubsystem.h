@@ -28,9 +28,9 @@ class ARH_OnlineBeaconHost;
 
 
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_GameInstanceSessionSyncDynamicDelegate, bool, bSuccess);
-DECLARE_DELEGATE_OneParam(FRH_GameInstanceSessionSyncDelegate, bool);
-DECLARE_RH_DELEGATE_BLOCK(FRH_GameInstanceSessionSyncBlock, FRH_GameInstanceSessionSyncDelegate, FRH_GameInstanceSessionSyncDynamicDelegate, bool)
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_GameInstanceSessionSyncDynamicDelegate, URH_JoinedSession*, Session, bool, bSuccess, const FString&, Error);
+DECLARE_DELEGATE_ThreeParams(FRH_GameInstanceSessionSyncDelegate, URH_JoinedSession*, bool, const FString&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_GameInstanceSessionSyncBlock, FRH_GameInstanceSessionSyncDelegate, FRH_GameInstanceSessionSyncDynamicDelegate, URH_JoinedSession*, bool, const FString&)
 
 UDELEGATE()
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnBeaconCreatedDynamicDelegate, ARH_OnlineBeaconHost*, Host);
@@ -275,6 +275,11 @@ protected:
 	 * @param [in] Delegate Callback delegate for when the health is updated.
 	 */
 	virtual void PollBackfill(const FRH_PollCompleteFunc& Delegate);
+
+	// analytics hooks
+	void EmitJoinInstanceStartedEvent(const URH_JoinedSession* Session) const;
+	void EmitJoinInstanceCompletedEvent(const URH_JoinedSession* Session, bool bSuccess, const FString& ErrorReason = TEXT("")) const;
+	void EmitLeaveInstanceEvent(const URH_JoinedSession* Session, const FString& Reason = TEXT("")) const;
 };
 
 /** @} */

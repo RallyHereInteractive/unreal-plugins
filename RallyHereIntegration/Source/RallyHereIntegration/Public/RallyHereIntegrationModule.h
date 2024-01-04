@@ -67,6 +67,7 @@ namespace RH_APIs
 	FORCEINLINE static RallyHereAPI::FSettingsAPI& GetSettingsAPI() { return GetAPIs().GetSettings(); }
 	FORCEINLINE static RallyHereAPI::FInventoryAPI& GetInventoryAPI() { return GetAPIs().GetInventory(); }
 	FORCEINLINE static RallyHereAPI::FCatalogAPI& GetCatalogAPI() { return GetAPIs().GetCatalog(); }
+	FORCEINLINE static RallyHereAPI::FEventsAPI& GetEventsAPI() { return GetAPIs().GetEvents(); }
 }
 
 /** @} */

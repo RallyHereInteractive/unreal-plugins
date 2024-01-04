@@ -5,10 +5,10 @@
 #include "RH_IntegrationSettings.h"
 #include "RallyHereIntegrationModule.h"
 #include "OnlineSubsystemUtils.h"
-#include "RH_ConfigSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/GameInstance.h"
+#include "Misc/EngineVersion.h"
 #include "Net/OnlineEngineInterface.h"
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
@@ -22,7 +22,33 @@
 #include "RH_EntitlementSubsystem.h"
 #include "RH_PurgeSubsystem.h"
 #include "RH_PlayerNotifications.h"
+#include "RH_Events.h"
 
+static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleFlushEvents(
+	TEXT("rh.events.pflush"),
+	TEXT("Flushes all player analytics providers in the current world"),
+	FConsoleCommandWithWorldArgsAndOutputDeviceDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World, FOutputDevice& Ar)
+		{
+			if (World != nullptr)
+			{
+				auto* GameInstance = World->GetGameInstance();
+				if (GameInstance != nullptr)
+				{
+					for (auto LP : GameInstance->GetLocalPlayers())
+					{
+						auto* Subsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
+						if (Subsystem != nullptr)
+						{
+							auto AnalyticsProvider = Subsystem->GetAnalyticsProvider();
+							if (AnalyticsProvider.IsValid())
+							{
+								AnalyticsProvider->FlushEvents();
+							}
+						}
+					}
+				}
+			}
+		}));
 
 void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -50,9 +76,6 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		SandboxedPlayerInfoSubsystem = AddSandboxedSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
 	}
 
-	// get the default configured provider
-	CreateAnalyticsProvider();
-
 	// Initialize Subsystems
 	for (auto Plugin : SubsystemPlugins)
 	{
@@ -63,9 +86,19 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		Plugin->Initialize();
 	}
 
+	// get the default configured provider
+	CreateAnalyticsProvider();
+
 	if (AnalyticsProvider.IsValid())
 	{
+		AnalyticsStartTime = FDateTime::UtcNow();
 		AnalyticsProvider->StartSession();
+
+		// emit the auto correlation start event
+		RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
+
+		// emit the auto client device event
+		RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
 	}
 }
 
@@ -75,6 +108,21 @@ void URH_LocalPlayerSubsystem::Deinitialize()
 
 	if (AnalyticsProvider.IsValid())
 	{
+		// emit a correlation end event
+		{
+			RHStandardEvents::FCorrelationEndEvent CorrelationEndEvent;
+
+			CorrelationEndEvent.Reason = TEXT("Shutdown");
+
+			if (AnalyticsStartTime.IsSet())
+			{
+				CorrelationEndEvent.DurationSeconds = (FDateTime::UtcNow() - AnalyticsStartTime.GetValue()).GetTotalSeconds();
+			}
+			AnalyticsStartTime.Reset();
+
+			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+		}
+
 		AnalyticsProvider->EndSession();
 	}
 
@@ -253,10 +301,9 @@ int32 URH_LocalPlayerSubsystem::GetPlatformUserId() const
 
 TSharedPtr<class IAnalyticsProvider> URH_LocalPlayerSubsystem::CreateAnalyticsProvider()
 {
-	// todo - use environment configuration to change URL
 	if (!AnalyticsProvider.IsValid())
 	{
-		AnalyticsProvider = FAnalytics::Get().GetDefaultConfiguredProvider();
+		AnalyticsProvider = RHStandardEvents::AutoCreateAnalyticsProvider();
 	}
 
 	return AnalyticsProvider;

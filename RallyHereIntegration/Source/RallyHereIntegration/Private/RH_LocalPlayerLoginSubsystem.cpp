@@ -16,6 +16,7 @@
 #include "Async/TaskGraphInterfaces.h"
 #include "UObject/Package.h"
 #include "Interfaces/IAnalyticsProvider.h"
+#include "RH_Events.h"
 
 FString ToString(ERHAPI_LoginResult Val)
 {
@@ -156,19 +157,36 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 		FGuid PlayerUuid = LPSubsystem->GetPlayerUuid();
 		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));
 
-		if (Res.Result == ERHAPI_LoginResult::Success)
-		{
-			AnalyticsProvider->RecordEvent(TEXT("login"));
-		}
-		else
-		{
-			TArray<FAnalyticsEventAttribute> Attributes;
+		RHStandardEvents::FLoginCompleteEvent Event;
 
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("errorType"), ToString(Res.Result)));
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("ossError"), Res.OSSErrorMessage));
+		// pull platform user id and platform id from local player subsystem
+		Event.PlatformId = EnumToString(LPSubsystem->GetPlayerPlatformId().PlatformType);
+		Event.PlatformUserId = LPSubsystem->GetPlayerPlatformId().UserId;
+		Event.Status = RH_GETENUMSTRING("/Script/RallyhereIntegration", "ERHAPI_LoginResult", Res.Result);
+		Event.Reason = Res.OSSErrorMessage.Len() > 0 ? Res.OSSErrorMessage : Res.RallyHereErrorCode;
 
-			AnalyticsProvider->RecordEvent(TEXT("loginFailed"), Attributes);
+		// TODO: add timing
+
+		const auto AuthContext = LPSubsystem->GetAuthContext();
+		const auto RHLoginResult = AuthContext->GetLoginResult();
+		if (RHLoginResult.IsSet())
+		{
+			if (RHLoginResult->GetDisplayNameOrNull() != nullptr)
+			{
+				Event.PlatformDisplayName = *RHLoginResult->GetDisplayNameOrNull();
+			}
+			if (RHLoginResult->GetPersonIdOrNull() != nullptr)
+			{
+				Event.PlatformDisplayName = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphens);
+			}
+			if (RHLoginResult->GetPersonIdOrNull() != nullptr)
+			{
+				Event.PlatformDisplayName = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphens);
+			}
+
 		}
+
+		Event.EmitTo(AnalyticsProvider);
 	}
 
     Req.OnLoginComplete.ExecuteIfBound(Res);
@@ -214,6 +232,16 @@ void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials&
                                                 bool bAcceptPP, FRH_OnLoginComplete OnLoginCompleteDelegate)
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// inform analytics we are about to start a login attempt
+	auto* LPSubsystem = GetLocalPlayerSubsystem();
+	if (LPSubsystem != nullptr && LPSubsystem->GetAnalyticsProvider().IsValid())
+	{
+		auto* AnalyticsProvider = LPSubsystem->GetAnalyticsProvider().Get();
+
+		// todo - see if we can look up display name here
+		RHStandardEvents::FLoginStartEvent::Emit(AnalyticsProvider, TOptional<FString>());
+	}
 
     FRH_PendingLoginRequest Req;
     Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::Login;

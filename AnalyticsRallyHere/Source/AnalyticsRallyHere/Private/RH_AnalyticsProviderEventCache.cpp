@@ -6,6 +6,7 @@
 #include "Misc/ScopeLock.h"
 #include "PlatformHttp.h"
 #include "Algo/Accumulate.h"
+#include "Algo/Find.h"
 #include "Serialization/JsonWriter.h"
 #include "Containers/StringConv.h"
 #include "Misc/StringBuilder.h"
@@ -32,40 +33,6 @@ namespace RHEventCacheStatic
 	/** Used for testing below to ensure stable output */
 	bool bUseZeroDateOffset = false;
 
-	inline int ComputeAttributeSize(const FAnalyticsEventAttribute& Attribute)
-	{
-		return
-		// "              Name             "   :             Value              ,   (maybequoted)
-		   1 + Attribute.GetName().Len() + 1 + 1 + Attribute.GetValue().Len() + 1 + (Attribute.IsJsonFragment() ? 0 : 2);
-	}
-
-	inline int ComputeAttributeSize(const TArray<FAnalyticsEventAttribute>& Attributes)
-	{
-		return Algo::Accumulate(Attributes, 0, [](int Accum, const FAnalyticsEventAttribute& Attr) { return Accum + RHEventCacheStatic::ComputeAttributeSize(Attr); });
-	}
-
-	inline int ComputeEventSize(const FString& EventName, const TArray<FAnalyticsEventAttribute>& Attributes, int CurrentDefaultAttributeSizeEstimate)
-	{
-		return
-			// "{eventName":"   EVENT_NAME     ",
-			14 + EventName.Len() + 2
-			// "eventTimestamp":"YYYY-MM-DDTHH:MM:SS.MMMZ",
-			+ 44
-			// "eventUUID":"00000000-0000-0000-0000-000000000000",
-			+ 51
-			// ATTRIBUTES_SIZE
-			+ CurrentDefaultAttributeSizeEstimate
-			// "eventParams":{
-			+ 15
-			// ATTRIBUTES_SIZE
-			+ ComputeAttributeSize(Attributes)
-			// Last attribute will not have a comma, but will have a closing bracket
-			- 1 + 1
-			// "},"
-			+ 2
-			;
-
-	}
 
 	// We need to allocate some stack space (inline storage) for UTF8 conversion strings. This is the longest attribute value we can support without imposing a dynamic allocation
 	constexpr int32 ConversionBufferSize = 512;
@@ -74,10 +41,51 @@ namespace RHEventCacheStatic
 	// but let it spill over to a dynamic allocation for long strings.
 	typedef TStringBuilder<ConversionBufferSize> FJsonStringBuilder;
 
-	const ANSICHAR* PayloadTemplate = "{\"eventList\":[]}";
-	const int32 PayloadTemplateLength = 16;
+	// the template for an empty payload
+	const ANSICHAR* PayloadTemplate = "{\"event_list\":[]}";
+	const int32 PayloadTemplateLength = 17;
+
+	// the trailing part of a payload that is added to the end of the payload after all events are added.
 	const ANSICHAR* PayloadTrailer = "]}";
 	const int32 PayloadTrailerLength = 2;
+
+	// a prefix for an attribute to mark it as belonging in the "custom_data" section
+	const ANSICHAR* CustomTextPrefix = "__CUSTOM__.";
+	const int32 CustomPrefixLength = 11;
+
+	/** Determine whether an attribute is a custom attribute and should go in the "custom_data" section */
+	bool IsCustomAttribute(const FAnalyticsEventAttribute& InAttribute)
+	{
+		if (InAttribute.GetName().StartsWith(RHEventCacheStatic::CustomTextPrefix))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	/** Determine the number of custom attributes in an attribute list */
+	int32 GetNumCustomAttributes(const TArray<FAnalyticsEventAttribute>& Attributes)
+	{
+		return Algo::Accumulate(Attributes, 0, [](int Accum, const FAnalyticsEventAttribute& Attr) { return Accum + (RHEventCacheStatic::IsCustomAttribute(Attr) ? 1 : 0); });
+	}
+
+	/** Calculate the text size of a single attributes */
+	inline int ComputeAttributeSize(const FAnalyticsEventAttribute& Attribute)
+	{
+		return
+			// ,   "              Name             "   :             Value              (maybequoted)
+			1 + 1 + Attribute.GetName().Len() + 1 + 1 + Attribute.GetValue().Len() + (Attribute.IsJsonFragment() ? 0 : 2)
+
+			// if it is a custom event attribute, we need to subtract the custom prefix length to the name
+			+ (IsCustomAttribute(Attribute) ? -CustomPrefixLength : 0)
+			;
+	}
+
+	/** Calculate the text size of a list of attributes */
+	inline int ComputeAttributeSize(const TArray<FAnalyticsEventAttribute>& Attributes)
+	{
+		return Algo::Accumulate(Attributes, 0, [](int Accum, const FAnalyticsEventAttribute& Attr) { return Accum + RHEventCacheStatic::ComputeAttributeSize(Attr); });
+	}
 
 	/** Appends UTF8 chars directly to a UTF8 stream. Must already be properly UTF8 encoded. Does NOT add a NULL terminator. */
 	inline void AppendString(TArray<uint8>& UTF8Stream, const ANSICHAR* UTF8Chars, int32 CharCount)
@@ -177,7 +185,14 @@ namespace RHEventCacheStatic
 	{
 		// Add ,
 		UTF8Stream.Add(static_cast<uint8>(','));
-		AppendJsonString(UTF8Stream, JsonStringBuilder, Attr.GetName(), false);
+		if (IsCustomAttribute(Attr))
+		{
+			AppendJsonString(UTF8Stream, JsonStringBuilder, Attr.GetName().RightChop(CustomPrefixLength), false);
+		}
+		else
+		{
+			AppendJsonString(UTF8Stream, JsonStringBuilder, Attr.GetName(), false);
+		}
 		// Add :
 		UTF8Stream.Add(static_cast<uint8>(':'));
 		AppendJsonString(UTF8Stream, JsonStringBuilder, Attr.GetValue(), Attr.IsJsonFragment());
@@ -221,14 +236,139 @@ FRH_AnalyticsProviderEventCache::FRH_AnalyticsProviderEventCache(int32 InMaximum
 	RHEventCacheStatic::InitializePayloadBuffer(CachedEventUTF8Stream, PreallocatedPayloadSize);
 }
 
-// We start with {"eventList":[]}
-// We End with {"eventList":[{"eventName":"<NAME>","eventTimestamp":"<timestamp>","eventUUID":"<guid>",<DefaultAttrs>,"eventParams": {<Attrs>}}]}
+void FRH_AnalyticsProviderEventCache::SetUserId(TOptional<FString> InUserId)
+{
+	FScopeLock ScopedLock(&CachedEventsCS);
+	UserId = MoveTemp(InUserId);
+}
+
+TOptional<FString> FRH_AnalyticsProviderEventCache::GetUserId() const
+{
+	FScopeLock ScopedLock(&CachedEventsCS);
+	return UserId;
+}
+
+void FRH_AnalyticsProviderEventCache::SetCorrelationId(TOptional<FString> InCorrelationId)
+{
+	FScopeLock ScopedLock(&CachedEventsCS);
+	CorrelationId = MoveTemp(InCorrelationId);
+}
+
+TOptional<FString> FRH_AnalyticsProviderEventCache::GetCorrelationId() const
+{
+	FScopeLock ScopedLock(&CachedEventsCS);
+	return CorrelationId;
+}
+
+/*
+We start with 
+{
+	"event_list":
+	[
+	]
+}
+
+We End with 
+{
+	"event_list":
+	[
+		{
+			"event_name":"<NAME>"
+			,"event_uuid":"<guid>"
+			,"event_timestamp":"<timestamp>"
+			,"correlation_id":"<str>"
+			,"user_id":"<str>"
+			"eventParams":
+			{
+				 <DefaultAttrs>
+				,<Attrs>
+			}
+			"custom_data":
+			{
+				<CustomDefaultAttrs>
+				,<CustomAttrs>
+			}
+	]
+}
+*/
 void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray<FAnalyticsEventAttribute>& Attributes)
 {
 	FScopeLock ScopedLock(&CachedEventsCS);
 
+	int32 CustomAttributeCount = RHEventCacheStatic::GetNumCustomAttributes(Attributes);
+
+	auto ComputeEventSize = [&]() -> int32
+		{
+			int32 FinalSize = 0;
+
+			{
+				const int32 BaseSize = 0
+					// {"event_name":"EVENT_NAME"
+					+ 14 + (1 + EventName.Len() + 1)
+					// ,"event_uuid":"00000000-0000-0000-0000-000000000000"
+					+ 14 + (1 + 36 + 1)
+					// ,"event_timestamp":"YYYY-MM-DDTHH:MM:SS.MMMZ"
+					+ 19 + (1 + 24 + 1)
+					// "},"    NOTE - closes out entire event after all other elements
+					+ 2
+					;
+				FinalSize += BaseSize;
+			}
+
+			if (CorrelationId.IsSet())
+			{
+				const int32 CorrelationSize = 0
+					// ,"correlation_id":"<string>"
+					+ 18 + (1 + CorrelationId.GetValue().Len() + 1)
+					;
+
+				FinalSize += CorrelationSize;
+			}
+
+			if (UserId.IsSet())
+			{
+				const int32 UserSize = 0
+					// ,"user_id":"<string>"
+					+ 11 + (1 + UserId.GetValue().Len() + 1)
+					;
+
+					FinalSize += UserSize;
+			}
+
+			{
+				const int32 ParamsSize = 0
+					// ,"event_params":{
+					+ 17
+					// ATTRIBUTES_SIZE - includes leading comma
+					+ RHEventCacheStatic::ComputeAttributeSize(CachedDefaultAttributes)
+					// ATTRIBUTES_SIZE - includes leading comma
+					+ RHEventCacheStatic::ComputeAttributeSize(Attributes)
+					// "}"
+					+ 1
+					;
+
+				FinalSize += ParamsSize;
+			}
+
+			if (CustomAttributeCount > 0)
+			{
+				const int32 CustomDataSize = 0
+					// ,"custom_data":{
+					+ 16
+					// NOTE - attribute size calculation for event list above will include custom data attributes, so we don't need to add them here.
+					+ 0
+					// "}"
+					+ 1
+					;
+				
+				FinalSize += CustomDataSize;
+			}
+
+			return FinalSize;
+		};
+
 	// If we estimate that 110% of the size estimate (in case there are a lot of Json escaping or multi-byte UTF8 chars) will exceed our max payload, queue up a flush.
-	const int32 EventSizeEstimate = RHEventCacheStatic::ComputeEventSize(EventName, Attributes, CachedDefaultAttributeUTF8Stream.Num());
+	const int32 EventSizeEstimate = ComputeEventSize();
 	if (CachedEventUTF8Stream.Num() + (EventSizeEstimate * 11 / 10) > MaximumPayloadSize)
 	{
 		UE_LOG(LogAnalytics, VeryVerbose, TEXT("AddToCache for event (%s) may overflow MaximumPayloadSize (%d). Payload is currently (%d) bytes, and event will use an estimated (%d) bytes. Queuing up existing payload for flush before adding this event."), *EventName, MaximumPayloadSize, CachedEventUTF8Stream.Num(), EventSizeEstimate);
@@ -249,36 +389,64 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 		// If we already have an event in there, start with a comma.
 		CachedEventUTF8Stream.Add(static_cast<uint8>(','));
 	}
-	// Add {"eventName":
-	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, "{\"eventName\":", 13);
+	// Add {"event_name":
+	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, "{\"event_name\":", 14);
 	// Add "<EVENTNAME>"
 	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, EventName, false);
-	// Add ,"eventTimestamp:
-	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventTimestamp\":", 18);
-	// Add "<date>"
-	FDateTime Now = FDateTime::UtcNow();;
-	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, Now.ToIso8601(), false);
-	// Add ,"eventUUID":"
-	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventUUID\":", 13);
+
+	// Add ,"event_uuid":"
+	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"event_uuid\":", 14);
 	// Add "<GUID>"
 	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens), false);
 
-	// append default attributes
-	CachedEventUTF8Stream.Append(CachedDefaultAttributeUTF8Stream);
+	// Add ,"event_timestamp:
+	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"event_timestamp\":", 19);
+	// Add "<date>"
+	FDateTime Now = FDateTime::UtcNow();;
+	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, Now.ToIso8601(), false);
 
-	// make eventParams block
-	if (Attributes.Num() > 0)
+	// emit correlation id if set
+	if (CorrelationId.IsSet())
 	{
-		// Add ,"eventParams":{
-		RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"eventParams\":{", 16);
+		// Add ,"correlation_id":
+		RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"correlation_id\":", 18);
+		// Add "<correlation_id>"
+		RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, CorrelationId.GetValue(), false);
+	}
+
+	// emit user id if set
+	if (UserId.IsSet())
+	{
+		// Add ,"user_id":
+		RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"user_id\":", 11);
+		// Add "<user_id>"
+		RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, UserId.GetValue(), false);
+	}
+
+	// make event_params block
+	{
+		// Add ,"event_params":{
+		RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"event_params\":{", 17);
 
 		// the append event attribute logic will add a leading comma, so we need to remember where the first element is so we can replace it with whitespace
 		const int32 FirstElementLeadingOffset = CachedEventUTF8Stream.Num();
 
+		// for each default attribute, add ,"<NAME>":<VALUE>
+		for (const FAnalyticsEventAttribute& Attr : CachedDefaultAttributes)
+		{
+			if (!RHEventCacheStatic::IsCustomAttribute(Attr))
+			{
+				RHEventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
+			}
+		}
+
 		// for each attribute, add ,"<NAME>":<VALUE>
 		for (const FAnalyticsEventAttribute& Attr : Attributes)
 		{
-			RHEventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
+			if (!RHEventCacheStatic::IsCustomAttribute(Attr))
+			{
+				RHEventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
+			}
 		}
 
 		if (CachedEventUTF8Stream.IsValidIndex(FirstElementLeadingOffset))
@@ -291,6 +459,42 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 		CachedEventUTF8Stream.Add(static_cast<uint8>('}'));
 	}
 
+	// make custom data block if required
+	if (CustomAttributeCount > 0)
+	{
+		// Add ,"custom_data":{
+		RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"custom_data\":{", 16);
+
+		// the append event attribute logic will add a leading comma, so we need to remember where the first element is so we can replace it with whitespace
+		const int32 FirstElementLeadingOffset = CachedEventUTF8Stream.Num();
+
+		// for each default attribute, add ,"<NAME>":<VALUE>
+		for (const FAnalyticsEventAttribute& Attr : CachedDefaultAttributes)
+		{
+			if (RHEventCacheStatic::IsCustomAttribute(Attr))
+			{
+				RHEventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
+			}
+		}
+
+		// for each attribute, add ,"<NAME>":<VALUE>
+		for (const FAnalyticsEventAttribute& Attr : Attributes)
+		{
+			if (RHEventCacheStatic::IsCustomAttribute(Attr))
+			{
+				RHEventCacheStatic::AppendEventAttribute(CachedEventUTF8Stream, EscapedJsonBuffer, Attr);
+			}
+		}
+
+		if (CachedEventUTF8Stream.IsValidIndex(FirstElementLeadingOffset))
+		{
+			// remove the leading comma, replace with whitespace so we do not have to reallocate
+			CachedEventUTF8Stream[FirstElementLeadingOffset] = static_cast<uint8>(' ');
+		}
+
+		// Add } to clouse out the custom data list
+		CachedEventUTF8Stream.Add(static_cast<uint8>('}'));
+	}
 
 	// Add } to clouse out the event
 	CachedEventUTF8Stream.Add(static_cast<uint8>('}'));
@@ -313,18 +517,6 @@ void FRH_AnalyticsProviderEventCache::SetDefaultAttributes(TArray<FAnalyticsEven
 
 	// store the array so we can return if if the user asks again.
 	CachedDefaultAttributes = MoveTemp(DefaultAttributes);
-
-	// presize the UTF8 stream that will store the pre-serialized default attribute buffer
-	const int32 EstimatedAttributesSize = RHEventCacheStatic::ComputeAttributeSize(CachedDefaultAttributes) + 10;
-	CachedDefaultAttributeUTF8Stream.Reset(EstimatedAttributesSize);
-	if (CachedDefaultAttributes.Num() > 0)
-	{
-		RHEventCacheStatic::FJsonStringBuilder EscapedJsonBuffer;
-		for (const FAnalyticsEventAttribute& Attr : CachedDefaultAttributes)
-		{
-			RHEventCacheStatic::AppendEventAttribute(CachedDefaultAttributeUTF8Stream, EscapedJsonBuffer, Attr);
-		}
-	}
 }
 
 TArray<FAnalyticsEventAttribute> FRH_AnalyticsProviderEventCache::GetDefaultAttributes() const

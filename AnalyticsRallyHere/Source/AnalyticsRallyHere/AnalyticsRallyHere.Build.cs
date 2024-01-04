@@ -11,6 +11,7 @@ namespace UnrealBuildTool.Rules
 				new string[]
 				{
 					"Core",
+					"CoreUObject",
 					"Analytics",
 					"AnalyticsET",
 				}
@@ -21,7 +22,8 @@ namespace UnrealBuildTool.Rules
 				{
 					"HTTP",
 					"Json",
-                    // ... add private dependencies that you statically link with here ...
+					"RallyHereAPI",
+					"RallyHereIntegration",
 				}
 				);
 

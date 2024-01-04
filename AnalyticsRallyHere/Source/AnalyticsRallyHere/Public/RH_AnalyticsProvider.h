@@ -20,6 +20,8 @@
 
 #include "Misc/EngineVersionComparison.h"
 
+#include "EventsAPI.h"
+
 /**
  * @brief Implementation of analytics for RallyHere GETS.
  */
@@ -120,7 +122,7 @@ protected:
 	/**
 	* Delegate called when an event Http request completes
 	*/
-	void EventRequestComplete(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded);
+	void EventRequestComplete(const RallyHereAPI::FResponse_ReceiveEventsV1& Response);
 
 	TSharedPtr<class FHttpRetrySystem::FManager> HttpRetryManager;
 	FHttpRetrySystem::FRetryDomainsPtr RetryServers;

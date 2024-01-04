@@ -13,8 +13,10 @@
 #include "Engine/Engine.h"
 #include "Engine/World.h"
 #include "Engine/GameInstance.h"
+#include "Engine/GameViewportClient.h"
 #include "Misc/DateTime.h"
 #include "HAL/FileManager.h"
+#include "HAL/PlatformMemoryHelpers.h"
 
 static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHCreateDiagnosticReport(
 	TEXT("rh.RunDiagnostic"),
@@ -59,23 +61,7 @@ void FRH_DiagnosticReportGenerator::GenerateMetadata()
 	Metadata->SetBoolField(TEXT("Is-In-Editor"), isInEditor);
 	Metadata->SetStringField(TEXT("CommandLine"), FCommandLine::Get());
 
-	FString Mode;
-	if (IsRunningDedicatedServer())
-	{
-		Mode = TEXT("Dedicated-Server");
-	}
-	else if (IsRunningClientOnly())
-	{
-		Mode = TEXT("Client-Only");
-	}
-	else if (IsRunningGame())
-	{
-		Mode = TEXT("Game");
-	}
-	else
-	{
-		Mode = TEXT("Unknown");
-	}
+	FString Mode = FGenericPlatformMisc::GetEngineMode();
 	Metadata->SetStringField(TEXT("Mode"), Mode);
 
 	auto& IntegrationObject = FRallyHereIntegrationModule::Get();
@@ -201,6 +187,50 @@ void FRH_DiagnosticReportGenerator::GenerateWebRequests()
 	StageComplete();
 }
 
+void FRH_DiagnosticReportGenerator::GenerateDeviceData()
+{
+	if (!Options.bIncludeDeviceData)
+	{
+		StageComplete();
+		return;
+	}
+
+	DeviceData = MakeShareable(new FJsonObject);
+
+	// for now, match standard client event data
+	DeviceData->SetStringField(TEXT("CpuType"), FPlatformMisc::GetCPUBrand());
+	DeviceData->SetNumberField(TEXT("CpuCores"), FPlatformMisc::NumberOfCores());
+	DeviceData->SetStringField(TEXT("GpuType"), FPlatformMisc::GetPrimaryGPUBrand());
+
+	if (Options.World.IsValid())
+	{
+		auto pGameInstance = Options.World->GetGameInstance();
+		if (pGameInstance != nullptr)
+		{
+			const auto GameViewportClient = pGameInstance->GetGameViewportClient();
+			if (GameViewportClient != nullptr)
+			{
+				FVector2D ViewportSize;
+				GameViewportClient->GetViewportSize(ViewportSize);
+
+				DeviceData->SetNumberField(TEXT("ScreenHeight"), ViewportSize.Y);
+				DeviceData->SetNumberField(TEXT("ScreenWidth"), ViewportSize.X);
+			}
+		}
+	}
+	
+
+	{
+		FPlatformMemoryStats MemoryStats = PlatformMemoryHelpers::GetFrameMemoryStats();
+		DeviceData->SetNumberField(TEXT("RamTotal"), MemoryStats.TotalPhysicalGB);
+		DeviceData->SetNumberField(TEXT("RamAvailable"), ((float)MemoryStats.AvailablePhysical) / (1024.f * 1024.f * 1024.f));	// convert to GB
+	}
+
+	DeviceData->SetStringField(TEXT("DeviceType"), FPlatformProperties::PlatformName());
+
+	StageComplete();
+}
+
 
 void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 {
@@ -217,6 +247,11 @@ void FRH_DiagnosticReportGenerator::GenerateFinalReport()
 		FinalReport->SetObjectField(TEXT("Web-Requests"), WebRequests);
 	}
 
+	if (DeviceData.IsValid())
+	{
+		FinalReport->SetObjectField(TEXT("Device-Data"), DeviceData);
+	}
+	
 	// serialize to string
 	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&FinalReportString);
 	FJsonSerializer::Serialize(FinalReport.ToSharedRef(), Writer);

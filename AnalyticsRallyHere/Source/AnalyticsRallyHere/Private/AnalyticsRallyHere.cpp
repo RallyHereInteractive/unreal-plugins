@@ -4,7 +4,10 @@
 #include "AnalyticsRallyHere.h"
 
 #include "HttpModule.h"
+#include "RallyHereIntegrationModule.h"
 #include "Analytics.h"
+
+DEFINE_LOG_CATEGORY(LogAnalyticsRallyHere);
 
 IMPLEMENT_MODULE( FRH_Analytics, AnalyticsRallyHere );
 
@@ -12,6 +15,9 @@ void FRH_Analytics::StartupModule()
 {
 	// Make sure http is loaded so that we can flush events during module shutdown
 	FModuleManager::LoadModuleChecked<FHttpModule>("HTTP");
+
+	// Make sure rally here integration is loaded so we can get the endpoint to emit to
+	FModuleManager::LoadModuleChecked<FRallyHereIntegrationModule>("RallyHereIntegration");
 }
 
 void FRH_Analytics::ShutdownModule()

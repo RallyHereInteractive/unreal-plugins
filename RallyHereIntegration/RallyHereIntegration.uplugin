@@ -1,8 +1,8 @@
 {
     "FileVersion": 3,
     "FriendlyName": "RallyHere Integration",
-    "Version": 1,
-    "VersionName": "1.0",
+    "Version": 2,
+    "VersionName": "0.11.0",
     "CreatedBy": "Rally Here Interactive, Inc.",
     "CreatedByURL": "rallyhere.gg",
     "Description": "RallyHere Integration of the API with recommended usage",
