@@ -55,6 +55,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     protected String unrealCategory = "OpenAPI";
     protected String unrealEnumPrefix = "EUBP_";
     protected String unrealModelPrefix = "FUBP_";
+	protected String unrealClassPrefix = "UUBP_";
     protected String outputDir = "";
     protected String apiGenerationMode = "";
     protected String stripBlueprintCompatibility = "";
@@ -115,6 +116,8 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
                 this.unrealEnumPrefix);
         addOption("unrealModelPrefix", "Prefix to each Unreal blueprint exposed version of models (optional, defaults to FUBP_)",
                 this.unrealModelPrefix);
+		addOption("unrealClassPrefix", "Prefix to each Unreal blueprint exposed version of unreal classes, mostly used for helpers (optional, defaults to UUBP_)",
+                this.unrealClassPrefix);
         addOption("outputDir", "Output directory for files within the unreal Public/Private folders", this.outputDir);
         addOption("apiGenerationMode", "Mode switch for handling some generation different (optional, defaults to empty string)", this.apiGenerationMode);
         addOption("stripBlueprintCompatibility", "Mode switch for disabling Bleuprint tags in code gen (optional, defaults to empty string)", this.stripBlueprintCompatibility);
@@ -254,6 +257,11 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 
         if (additionalProperties.containsKey("unrealModelPrefix")) {
             unrealModelPrefix = (String) additionalProperties.get("unrealModelPrefix");
+            updateSupportingFiles = true;
+        }
+		
+		if (additionalProperties.containsKey("unrealClassPrefix")) {
+            unrealClassPrefix = (String) additionalProperties.get("unrealClassPrefix");
             updateSupportingFiles = true;
         }
 

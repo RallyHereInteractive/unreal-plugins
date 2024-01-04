@@ -14,6 +14,7 @@
 #include "Misc/TVariant.h"
 #include "PlatformHttp.h"
 #include "Containers/Set.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "RallyHereAPIHelpers.generated.h"
 
 struct FRHAPI_JsonValue;
@@ -33,23 +34,40 @@ enum class ERHAPI_JsonValueType : uint8
     Object
 };
 
+// forward declare both json types since they can reference each other
+struct FRHAPI_JsonObject;
+struct FRHAPI_JsonValue;
+
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JsonObject
 {
     GENERATED_BODY()
 public:
+	FRHAPI_JsonObject() { SetObject(MakeShareable(new FJsonObject())); }
+	FRHAPI_JsonObject(TSharedPtr<FJsonObject> InObj){ SetObject(InObj); }
+	
+	static FRHAPI_JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj) { return FRHAPI_JsonObject(NewObj); }
+
     FRHAPI_JsonValue TryGetValue(const FString& FieldName) const;
 
     bool HasField(const FString& FieldName) const;
 	void SetField(const FString& FieldName, const FRHAPI_JsonValue& Value) const;
 	void RemoveField(const FString& FieldName) const;
 
-	float GetFloatField(const FString& FieldName) const;
-	int32 GetIntegerField(const FString& FieldName) const;
-	bool TryGetFloatField(const FString& FieldName, float& OutNumber) const;
-	bool TryGetNumberField(const FString& FieldName, int32& OutNumber) const;
-	bool TryGetInteger64Field(const FString& FieldName, int64& OutNumber) const;
+	float GetNumberField(const FString& FieldName) const;
+	bool TryGetNumberField(const FString& FieldName, float& OutNumber) const;
 	void SetNumberField(const FString& FieldName, float Number) const;
+	
+	bool TryGetIntegerField(const FString& FieldName, int32& OutNumber) const;
+	bool TryGetInteger64Field(const FString& FieldName, int64& OutNumber) const;
+
+	// deprecated functions that used improper naming
+	UE_DEPRECATED(5.0, "Please use the GetNumberField() instead")
+	float GetFloatField(const FString& FieldName) const { return GetNumberField(FieldName); }
+	UE_DEPRECATED(5.0, "Please use the TryGetNumberField() instead")
+	float TryGetFloatField(const FString& FieldName, float& OutNumber) const { return TryGetNumberField(FieldName, OutNumber); }
+	UE_DEPRECATED(5.0, "Please use the TryGetIntegerField() instead")
+	int32 GetIntegerField(const FString& FieldName) const { int32 Val = 0; TryGetIntegerField(FieldName, Val); return Val; }
 
 	FString GetStringField(const FString& FieldName) const;
 	bool TryGetStringField(const FString& FieldName, FString& OutString) const;
@@ -71,18 +89,20 @@ public:
     void SetObject(const TSharedPtr<FJsonObject> NewObj) { Obj = NewObj; }
     TSharedPtr<FJsonObject> GetObject() const { return Obj; }
 
-    static FRHAPI_JsonObject CreateFromUnrealObject(TSharedPtr<FJsonObject> NewObj);
-
 private:
     TSharedPtr<FJsonObject> Obj;
 };
-
 
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_JsonValue
 {
     GENERATED_BODY()
 public:
+	FRHAPI_JsonValue() { SetValue(MakeShareable(new FJsonValueNull())); }
+	FRHAPI_JsonValue(TSharedPtr<FJsonValue> InValue) { SetValue(InValue); }
+
+    static FRHAPI_JsonValue CreateFromUnrealValue(TSharedPtr<FJsonValue> NewVal) { return FRHAPI_JsonValue(NewVal); }
+
     float AsNumber() const;
     FString AsString() const;
     bool AsBool() const;
@@ -92,9 +112,16 @@ public:
 
     ERHAPI_JsonValueType GetType() const;
 
-	bool TryGetFloat(float& OutNumber) const;
-	bool TryGetNumber(int32& OutNumber) const;
+	bool TryGetNumber(float& OutNumber) const;
+	bool TryGetInteger(int32& OutNumber) const;
 	bool TryGetInteger64(int64& OutNumber) const;
+	
+	// deprecated functions that used improper naming
+	UE_DEPRECATED(5.0, "Please use the TryGetNumber() instead")
+	bool TryGetFloat(float& OutNumber) const { return TryGetNumber(OutNumber); }
+	UE_DEPRECATED(5.0, "Please use the TryGetInteger() instead")
+	bool TryGetNumber(int32& OutNumber) const { return TryGetInteger(OutNumber); }
+	
 	bool TryGetString(FString& OutString) const;
 	bool TryGetBool(bool& OutBool) const;
 	bool TryGetArray(TArray<FRHAPI_JsonValue>& OutArray) const;
@@ -103,12 +130,145 @@ public:
     void SetValue(const TSharedPtr<FJsonValue> NewValue) { Value = NewValue; }
     TSharedPtr<FJsonValue> GetValue() const { return Value; }
 
-    static FRHAPI_JsonValue CreateFromUnrealValue(const TSharedPtr<FJsonValue> NewValue);
-
     bool CompareEqual(const FRHAPI_JsonValue& Other) const;
 
 private:
     TSharedPtr<FJsonValue> Value;
+};
+
+
+UCLASS()
+class RALLYHEREAPI_API URHAPI_JsonObjectBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
+	static bool FRHAPI_JsonObjectToString(const FRHAPI_JsonObject& InObject, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
+	static bool StringToFRHAPI_JsonObject(const FString& InString, FRHAPI_JsonObject& OutObject);
+	
+	
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	FRHAPI_JsonValue TryGetValue(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.TryGetValue(FieldName); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool HasField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.HasField(FieldName); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void SetField(const FRHAPI_JsonObject& Object, const FString& FieldName, const FRHAPI_JsonValue& Value) { Object.SetField(FieldName, Value); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void RemoveField(const FRHAPI_JsonObject& Object, const FString& FieldName) { Object.RemoveField(FieldName); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static float GetNumberField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.GetNumberField(FieldName); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGeNumberField(const FRHAPI_JsonObject& Object, const FString& FieldName, float& OutNumber) { return Object.TryGetNumberField(FieldName, OutNumber); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void SetNumberField(const FRHAPI_JsonObject& Object, const FString& FieldName, float Number) { Object.SetNumberField(FieldName, Number); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetIntegerField(const FRHAPI_JsonObject& Object, const FString& FieldName, int32& OutInteger) { return Object.TryGetIntegerField(FieldName, OutInteger); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetInteger64Field(const FRHAPI_JsonObject& Object, const FString& FieldName, int64& OutInteger64) { return Object.TryGetInteger64Field(FieldName, OutInteger64); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static FString GetStringField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.GetStringField(FieldName); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetStringField(const FRHAPI_JsonObject& Object, const FString& FieldName, FString& OutString) { return Object.TryGetStringField(FieldName, OutString); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetStringArrayField(const FRHAPI_JsonObject& Object, const FString& FieldName, TArray<FString>& OutArray) { return Object.TryGetStringArrayField(FieldName, OutArray); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void SetStringField(const FRHAPI_JsonObject& Object, const FString& FieldName, const FString& StringValue) { Object.SetStringField(FieldName, StringValue); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool GetBoolField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.GetBoolField(FieldName); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetBoolField(const FRHAPI_JsonObject& Object, const FString& FieldName, bool& OutBool) { return Object.TryGetBoolField(FieldName, OutBool); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void SetBoolField(const FRHAPI_JsonObject& Object, const FString& FieldName, bool InValue) { Object.SetBoolField(FieldName, InValue); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static TArray<FRHAPI_JsonValue> GetArrayField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.GetArrayField(FieldName); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetArrayField(const FRHAPI_JsonObject& Object, const FString& FieldName, TArray<FRHAPI_JsonValue>& OutArray) { return Object.TryGetArrayField(FieldName, OutArray); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void SetArrayField(const FRHAPI_JsonObject& Object, const FString& FieldName, const TArray<FRHAPI_JsonValue>& Array) { Object.SetArrayField(FieldName, Array); }
+
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static FRHAPI_JsonObject GetObjectField(const FRHAPI_JsonObject& Object, const FString& FieldName) { return Object.GetObjectField(FieldName); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static bool TryGetObjectField(const FRHAPI_JsonObject& Object, const FString& FieldName, FRHAPI_JsonObject& OutObject) { return Object.TryGetObjectField(FieldName, OutObject); }
+	UFUNCTION(BlueprintCallable, Category = "RallyHere|Json")
+	static void SetObjectField(const FRHAPI_JsonObject& Object, const FString& FieldName, const FRHAPI_JsonObject& JsonObject) { Object.SetObjectField(FieldName, JsonObject); }
+
+};
+
+UCLASS()
+class RALLYHEREAPI_API URHAPI_JsonValueBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+	
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
+	static bool FRHAPI_JsonValueToString(const FRHAPI_JsonValue& InValue, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json")
+	static bool StringToFRHAPI_JsonValue(const FString& InString, FRHAPI_JsonValue& OutValue);
+	
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeNumberJsonValue(float InNumber) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueNumber(InNumber))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeStringJsonValue(const FString& InString) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueString(InString))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeBoolJsonValue(const FString& InString, bool InBool) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueBoolean(InBool))); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeNullJsonValue(const FString& InString) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueNull())); }
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeArrayJsonValue(const FString& InString, const TArray<FRHAPI_JsonValue>& InArray)
+	{
+		// make an array of the inner types
+		TArray<TSharedPtr<FJsonValue>> Values;
+		Values.Reset(InArray.Num());
+		for (const auto& InValue : InArray)
+		{
+			Values.Add(InValue.GetValue());
+		}
+		return FRHAPI_JsonValue(MakeShareable(new FJsonValueArray(Values)));
+	}
+	UFUNCTION(BlueprintCallable, Category="RallyHere|Json", meta=(NativeMakeFunc))
+	static FRHAPI_JsonValue MakeObjectJsonValue(const FString& InString, const FRHAPI_JsonObject& InObject) { return FRHAPI_JsonValue(MakeShareable(new FJsonValueObject(InObject.GetObject()))); } 
+	
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static float AsNumber(const FRHAPI_JsonValue& Value) { return Value.AsNumber(); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static FString AsString(const FRHAPI_JsonValue& Value) { return Value.AsString(); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool AsBool(const FRHAPI_JsonValue& Value) { return Value.AsBool(); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool IsNull(const FRHAPI_JsonValue& Value) { return Value.IsNull(); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static TArray<FRHAPI_JsonValue> AsArray(const FRHAPI_JsonValue& Value) { return Value.AsArray(); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json") 
+	static FRHAPI_JsonObject AsObject(const FRHAPI_JsonValue& Value) { return Value.AsObject(); }
+
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	ERHAPI_JsonValueType GetType(const FRHAPI_JsonValue& Value) { return Value.GetType(); }
+
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetNumber(const FRHAPI_JsonValue& Value, float& OutNumber) { return Value.TryGetNumber(OutNumber); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetInteger(const FRHAPI_JsonValue& Value, int32& OutInteger) { return Value.TryGetInteger(OutInteger); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetInteger64(const FRHAPI_JsonValue& Value, int64& OutInteger64) { return Value.TryGetInteger64(OutInteger64); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetString(const FRHAPI_JsonValue& Value, FString& OutString) { return Value.TryGetString(OutString); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetBool(const FRHAPI_JsonValue& Value, bool& OutBool) { return Value.TryGetBool(OutBool); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetArray(const FRHAPI_JsonValue& Value, TArray<FRHAPI_JsonValue>& OutArray) { return Value.TryGetArray(OutArray); }
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool TryGetObject(const FRHAPI_JsonValue& Value, FRHAPI_JsonObject& OutObject) { return Value.TryGetObject(OutObject); }
+
+	UFUNCTION(BlueprintPure, Category = "RallyHere|Json")
+	static bool CompareEqual(const FRHAPI_JsonValue& A, const FRHAPI_JsonValue& B) { return A.CompareEqual(B); }
 };
 
 namespace RallyHereAPI
