@@ -307,7 +307,6 @@ protected:
 			else
 			{
 				FinalizePurchase();
-				Completed(true);
 			}
 		}
 		else
@@ -359,7 +358,6 @@ protected:
 			Delegate.ExecuteIfBound(true, false);
 			StopPoll();
 			FinalizePurchase();
-			Completed(true);
 		}
 		else
 		{
@@ -375,6 +373,8 @@ protected:
 	{
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
 		PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
+
+		Completed(true);
 	}
 	/**
 	 * @brief Starts polling of entitlements.
