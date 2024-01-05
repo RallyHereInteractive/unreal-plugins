@@ -15,6 +15,7 @@
 #include "Interfaces/OnlinePurchaseInterface.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "RH_EntitlementSubsystem.h"
+#include "RH_Events.h"
 
 class URH_LocalPlayerSubsystem;
 
@@ -34,20 +35,24 @@ public:
 	FRH_EntitlementProcessor(URH_EntitlementSubsystem* InEntitlementSubsystem,
 		IOnlineSubsystem* InOSS,
 		const IOnlinePurchasePtr& InPurchaseSubsystem,
+		const IOnlineStoreV2Ptr& InStoreSubsystem,
 		int32 InLocalUserNum,
 		FUniqueNetIdWrapper InPlatformUserId,
 		FTimerManager& InTimerManager,
 		const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate,
 		const FRH_GetPlatformRegionDelegate& InGetPlatformRegionDelegate,
-		TOptional<ERHAPI_Platform> InOverridePlatform)
+		TOptional<ERHAPI_Platform> InOverridePlatform,
+		TSharedPtr<IAnalyticsProvider> InAnalyticsProvider)
 		: EntitlementSubsystem(InEntitlementSubsystem)
 		, OSS(InOSS)
 		, PurchaseSubsystem(InPurchaseSubsystem)
+		, StoreSubsystem(InStoreSubsystem)
 		, LocalUserNum(InLocalUserNum)
 		, PlatformUserId(InPlatformUserId)
 		, TimerManager(InTimerManager)
 		, EntitlementProcessorCompleteDelegate(InProcessorCompleteDelegate)
 		, GetPlatformRegionDelegate(InGetPlatformRegionDelegate)
+		, AnalyticsProvider(InAnalyticsProvider)
 	{
 		if (InOverridePlatform.IsSet())
 		{
@@ -366,16 +371,7 @@ protected:
 		}
 		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
 	}
-	/**
-	 * @brief Finalizes a purchase from an online subsystem.
-	 */
-	void FinalizePurchase()
-	{
-		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
-		PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
 
-		Completed(true);
-	}
 	/**
 	 * @brief Starts polling of entitlements.
 	 */
@@ -404,6 +400,148 @@ protected:
 			EntitlementsPoller.Reset();
 		}
 	}
+
+	/**
+	 * @brief Finalizes a purchase from an online subsystem.
+	 */
+	void FinalizePurchase()
+	{
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
+		PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
+
+		PrepareAnalytics();
+	}
+
+	/**
+	 * @brief Prepares data for analytics for the entitlements.
+	 */
+	void PrepareAnalytics()
+	{
+		if (!AnalyticsProvider.IsValid())
+		{
+			UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Analytics Provider is not valid"), ANSI_TO_TCHAR(__FUNCTION__));
+			OnAnalyticsComplete();
+			return;
+		}
+
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Writing Analytics for Process Platform Entitlements"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		// we need to attempt to look up store information if we can
+		TArray<FString> OfferIdsToQuery;
+		if (EntitlementSubsystem.IsValid())
+		{
+			TArray<FOnlineStoreOfferRef> CachedOffers;
+			EntitlementSubsystem->GetCachedStoreOffers(CachedOffers);
+
+			for (FPurchaseReceipt receipt : Receipts)
+			{
+				for (FPurchaseReceipt::FReceiptOfferEntry offerEntry : receipt.ReceiptOffers)
+				{
+					if (offerEntry.Quantity > 0)
+					{
+						for (FPurchaseReceipt::FLineItemInfo lineItem : offerEntry.LineItems)
+						{
+							OfferIdsToQuery.Add(lineItem.UniqueId);
+						}
+					}
+				}
+			}
+
+			// remove any offer ids that are already cached
+			for (const auto& CachedOffer : CachedOffers)
+			{
+				OfferIdsToQuery.Remove(CachedOffer->OfferId);
+			}
+
+			if (OfferIdsToQuery.Num() > 0)
+			{
+				EntitlementSubsystem->QueryStoreOffersById(OfferIdsToQuery, FRH_GenericSuccessDelegate::CreateSP(this, &FRH_EntitlementProcessor::WriteAnalytics));
+			}
+			else
+			{
+				WriteAnalytics(true);
+			}
+		}
+		else
+		{
+			WriteAnalytics(false);
+		}
+	}
+
+	/**
+	 * @brief Writes analytics for the entitlements.
+	 */
+	void WriteAnalytics(bool bSuccess)
+	{
+		// pull the current store cache, so we can use it for all records (all records that can be looked up should be looked up by this point)
+		TArray<FOnlineStoreOfferRef> CachedOffers;
+		if (EntitlementSubsystem.IsValid())
+		{
+			EntitlementSubsystem->GetCachedStoreOffers(CachedOffers);
+		}
+
+		for (FPurchaseReceipt receipt : Receipts)
+		{
+			RHStandardEvents::FPlatformPurchaseReceiptEvent Event;
+
+			Event.ReceiptData.TransactionId = receipt.TransactionId;
+			//Event.State = receipt.TransactionState;
+
+			for (FPurchaseReceipt::FReceiptOfferEntry offerEntry : receipt.ReceiptOffers)
+			{
+				if (offerEntry.Quantity > 0)
+				{
+					for (FPurchaseReceipt::FLineItemInfo lineItem : offerEntry.LineItems)
+					{
+						RHStandardEvents::FPlatformPurchaseReceiptEvent::FReceiptOfferData OfferData;
+
+						OfferData.EntitlementIds = TArray<FString>();
+						OfferData.EntitlementIds->Add(lineItem.UniqueId);
+						OfferData.Quantity = offerEntry.Quantity;
+						OfferData.Sku = lineItem.ItemName;
+
+						Event.ReceiptData.ReceiptOffers.Add(OfferData);
+
+						// attempt to look up store data from the queue (should have been cached before this function is called)
+						if (OfferData.Sku.IsSet() && !OfferData.Sku->IsEmpty())
+						{
+							for (const auto& CachedOffer : CachedOffers)
+							{
+								const auto& CachedOfferRef = CachedOffer.Get();
+								if (CachedOfferRef.OfferId == OfferData.Sku)
+								{
+									RHStandardEvents::FPlatformPurchaseReceiptEvent::FStoreData StoreData;
+
+									StoreData.DisplayedPrice = CachedOfferRef.GetDisplayPrice().ToString();
+									StoreData.NumericPrice = CachedOfferRef.NumericPrice;
+									StoreData.DisplayedPresalePrice = CachedOfferRef.GetDisplayRegularPrice().ToString();
+									StoreData.NumericPresalePrice = CachedOfferRef.RegularPrice;
+									StoreData.CurrencyCode = CachedOfferRef.CurrencyCode;
+									StoreData.Sku = CachedOfferRef.OfferId;
+									StoreData.Platform = EnumToString(Platform.GetValue());
+
+									OfferData.StoreData = StoreData;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if (AnalyticsProvider.IsValid())
+			{
+				Event.EmitTo(AnalyticsProvider.Get());
+			}
+		}
+
+		OnAnalyticsComplete();
+	}
+
+	void OnAnalyticsComplete()
+	{
+		Completed(true);
+	}
+
 	/**
 	 * @brief Gets the name of the entitlement processor.
 	 */
@@ -450,6 +588,8 @@ protected:
 	IOnlineSubsystem* OSS;
 	/** @brief Online Purchase Subsystem this processor is for. */
 	IOnlinePurchasePtr PurchaseSubsystem;
+	/** @brief Online Store Subsystem this processor is for. */
+	IOnlineStoreV2Ptr StoreSubsystem;
 	/** @brief Contorller Id of the user. */
 	int32 LocalUserNum;
 	/** @brief Platform User Id of the user. */
@@ -480,6 +620,8 @@ protected:
 	TArray<FPurchaseReceipt> Receipts = TArray<FPurchaseReceipt>();
 	/** @brief Http Request for processing entitlements with the core. */
 	FHttpRequestPtr HttpRequest;
+	/** @brief Analytics provider to use for logging. */
+	TSharedPtr<IAnalyticsProvider> AnalyticsProvider;
 };
 
 /** @} */

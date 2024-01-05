@@ -15,6 +15,13 @@
 
 namespace
 {
+	static bool bSantizeWebRequests = true;
+	FAutoConsoleVariableRef CvarSanitizeWebRequests(
+		TEXT("rh.SanitizeWebRequests"),
+		bSantizeWebRequests,
+		TEXT("When true, causes web requests to sanitize data before recording")
+	);
+
 	void LogContent(const FString& Content, const FString& Prefix)
 	{
 		TArray<FString> Arr;
@@ -85,6 +92,11 @@ namespace
 
 	TArray<FString> SanitizeHeaders(const TArray<FString>& Headers, const TArray<FString>& SensitiveHeaders)
 	{
+		if (!bSantizeWebRequests)
+		{
+			return Headers;
+		}
+
 		TArray<FString> OutHeaders;
 		OutHeaders.Reserve(Headers.Num());
 		for (const FString& Header : Headers)
@@ -115,7 +127,7 @@ namespace
 	FString SanitizeContent(const FString& Content, const TArray<FString>& SensitiveFields)
 	{
 		// if there are no sensitive fields to check, just return input
-		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0)
+		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0 || !bSantizeWebRequests)
 		{
 			return Content;
 		}

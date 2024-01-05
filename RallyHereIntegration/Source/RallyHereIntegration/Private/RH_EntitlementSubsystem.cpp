@@ -71,12 +71,14 @@ void URH_EntitlementSubsystem::SubmitEntitlementsForLoggedInOSS(const FRH_Proces
 	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
 			GetOSS(),
 			GetPurchaseSubsystem(),
+			GetStoreSubsystem(),
 			GetRH_LocalPlayerSubsystem()->GetPlatformUserId(),
 			GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId(),
 			GetTimerManager(),
 			EntitlementProcessorCompleteDelegate,
 			PlatformRegionDelegate,
-			TOptional<ERHAPI_Platform>()
+			TOptional<ERHAPI_Platform>(),
+			GetRH_LocalPlayerSubsystem()->GetAnalyticsProvider()
 		);
 	Helper->Start();
 }
@@ -86,12 +88,14 @@ void URH_EntitlementSubsystem::SubmitEntitlementsForPlatform(ERHAPI_Platform Pla
 	auto Helper = MakeShared<FRH_EntitlementProcessor>(this,
 			nullptr,
 			GetPurchaseSubsystem(),
+			GetStoreSubsystem(),
 			GetRH_LocalPlayerSubsystem()->GetPlatformUserId(),
 			GetRH_LocalPlayerSubsystem()->GetOSSUniqueId().GetUniqueNetId(),
 			GetTimerManager(),
 			EntitlementProcessorCompleteDelegate,
 			PlatformRegionDelegate,
-			Platform
+			Platform,
+			GetRH_LocalPlayerSubsystem()->GetAnalyticsProvider()
 		);
 	Helper->Start();
 }
@@ -116,9 +120,8 @@ void URH_EntitlementSubsystem::OnQueryStoreOffersById(bool bSuccess, const TArra
 	if (!bSuccess)
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("URH_EntitlementSubsystem::OnQueryStoreOffersById returned error %s"), *Error);
-		Delegate.ExecuteIfBound(false);
-		return;
 	}
+	Delegate.ExecuteIfBound(bSuccess);
 }
 
 void URH_EntitlementSubsystem::GetCachedStoreOffers(TArray<FOnlineStoreOfferRef>& OutOffers)
