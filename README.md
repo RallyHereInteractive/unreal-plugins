@@ -7,9 +7,31 @@
 ### High Level Changes
 * The SDK version number is changing so that versions now use the major version number.
 * This release is intended as primarily a bugfix release to 0.11.0
-* This release contains updates to the RallyHereAnalytics plugin, as well as implementation of many GETS standard events into the RallyHereIntegration layer
+* This release contains updates to the AnalyticsRallyHere plugin, as well as implementation of many GETS standard events into the RallyHereIntegration layer
+* FHAPI_JsonValue and FRHAPI_JsonObject and related types have been reworked, and blueprint support for using them has been added
 
 ### Notable Changes
+* GETS and Analytics update
+	* AnalyticsRallyHere was updated to use the newer specification for GETS events
+	* AnalyticsRallyHere now depends on RallyHereIntegration and gets the submission endpoint from it
+	* GETS standard event support was added to RallyHereIntegration.  It works with any analytics provider, but is intended for use with the AnalyticsRallyHere plugin
+	* AnalyticsRallyHere now has its own log channel
+	* AnalyticsRallyHere now routes its web calls through the integration layer, so that they show up and are processed like any other RallyHere WebAPI call
+* Platform Sessions
+	* Added support for UE 5.2 platform session callback changes
+	* Fix support for OSSes where session id is case insensitive (such as GDK)
+	* Various fixes for GDK support
+	* Recent player list updates now has a platform check, since engine base implementation is an assert if not implemented
+* Fixed some delegate groups that had improper signatures, causing delegate bindings to fail in some cases.  Note that any functions bound to these delegates will need to be adjusted
+	* FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, FRH_PlayerInfoGetPlayerRankingsDelegate, and FRH_PlayerInfoGetPlayerRankingsBlock had the rank response array changed from a const param to a const reference param
+	* FRH_PlayerInfoGetPlayerSettingsDynamicDelegate, FRH_PlayerInfoGetPlayerSettingsDelegate, and FRH_PlayerInfoGetPlayerSettingsBlock had the response wrapper changed from a reference param to a const reference param
+	* FRH_PlayerInfoSetPlayerSettingsDynamicDelegate, FRH_PlayerInfoSetPlayerSettingsDelegate, and FRH_PlayerInfoSetPlayerSettingsBlock had the response wrapper changed from a reference param to a const reference param
+* A helper function has been added to the friends subsystem to display the platform player profile
+* Support for setting Do Not Disturb (DND) has been added to the local player presence subsystem
+* Fix case where a player who has logged out and logged back in to the same user would fail to retrieve their session list until it had been modified once after new login
+
+
+
 
 ## 0.11.0
 
