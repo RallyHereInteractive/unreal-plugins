@@ -42,7 +42,7 @@ protected:
 	}
 
 
-	void DoSessionLookup()
+	virtual void DoSessionLookup()
 	{
 		if (SessionOwner.IsValid())
 		{
@@ -63,7 +63,7 @@ protected:
 		}
 	}
 
-	void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
+	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
 	{
 		if (bSuccess && SessionOwner.IsValid())
 		{
@@ -882,17 +882,11 @@ public:
 	{
 	}
 
-	virtual void ExecuteCallback(bool bSuccess) const override
+	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
 	{
-		// intercept the callback, since it will fail to find a valid session if we were successful on the delete.  Instead, make sure session is no longer valid
-		if (bRequestWasSuccessful)
-		{
-			Delegate.ExecuteIfBound(!RHSession.IsValid(), RHSession.Get(), ErrorInfo);
-		}
-		else
-		{
-			Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
-		}		
+		// ignore success flag on the poll (it can succeed or fail depending on the session state, we just want to verify that it removed the session from the owner)
+		RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+		Completed(!RHSession.IsValid());	// since this is a delete helper, we want the session to be INVALID at this point
 	}
 
 	virtual FString GetName() const override
