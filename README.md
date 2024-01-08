@@ -2,6 +2,15 @@
 
 ## Change History
 
+## 12.0.0
+
+### High Level Changes
+* The SDK version number is changing so that versions now use the major version number.
+* This release is intended as primarily a bugfix release to 0.11.0
+* This release contains updates to the RallyHereAnalytics plugin, as well as implementation of many GETS standard events into the RallyHereIntegration layer
+
+### Notable Changes
+
 ## 0.11.0
 
 ### High Level Changes
