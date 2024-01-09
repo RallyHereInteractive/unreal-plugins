@@ -15,12 +15,16 @@
 
 namespace
 {
+	// for debugging purposes, in non-shipping builds allow web requests to be logged in unsanitized format
+#define ALLOW_UNSANITIZED_WEB_REQUESTS !UE_BUILD_SHIPPING
+#if ALLOW_UNSANITIZED_WEB_REQUESTS
 	static bool bSantizeWebRequests = true;
 	FAutoConsoleVariableRef CvarSanitizeWebRequests(
 		TEXT("rh.SanitizeWebRequests"),
 		bSantizeWebRequests,
 		TEXT("When true, causes web requests to sanitize data before recording")
 	);
+#endif
 
 	void LogContent(const FString& Content, const FString& Prefix)
 	{
@@ -92,10 +96,12 @@ namespace
 
 	TArray<FString> SanitizeHeaders(const TArray<FString>& Headers, const TArray<FString>& SensitiveHeaders)
 	{
+#if ALLOW_UNSANITIZED_WEB_REQUESTS
 		if (!bSantizeWebRequests)
 		{
 			return Headers;
 		}
+#endif
 
 		TArray<FString> OutHeaders;
 		OutHeaders.Reserve(Headers.Num());
@@ -126,8 +132,15 @@ namespace
 
 	FString SanitizeContent(const FString& Content, const TArray<FString>& SensitiveFields)
 	{
+#if ALLOW_UNSANITIZED_WEB_REQUESTS
+		if (!bSantizeWebRequests)
+		{
+			return Content;
+		}
+#endif
+
 		// if there are no sensitive fields to check, just return input
-		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0 || !bSantizeWebRequests)
+		if (SensitiveFields.Num() <= 0 || Content.Len() <= 0)
 		{
 			return Content;
 		}
