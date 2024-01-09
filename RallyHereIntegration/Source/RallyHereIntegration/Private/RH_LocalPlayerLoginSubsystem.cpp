@@ -11,6 +11,8 @@
 #include "RH_OnlineSubsystemNames.h"
 #include "WebAuthModule.h"
 #include "Engine/LocalPlayer.h"
+#include "Engine/World.h"
+#include "TimerManager.h"
 #include "Misc/CommandLine.h"
 #include "Misc/CoreDelegates.h"
 #include "Async/TaskGraphInterfaces.h"
