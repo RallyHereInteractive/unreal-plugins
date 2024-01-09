@@ -885,8 +885,20 @@ public:
 	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer) override
 	{
 		// ignore success flag on the poll (it can succeed or fail depending on the session state, we just want to verify that it removed the session from the owner)
-		RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
-		Completed(!RHSession.IsValid());	// since this is a delete helper, we want the session to be INVALID at this point
+		auto* Session = SessionOwner->GetSessionById(SessionId);
+		auto* InvitedSession = Cast<URH_InvitedSession>(Session);
+
+		if (Session || InvitedSession)
+		{
+			Failed(TEXT("Session still exists after leave"));
+			return;
+		}
+
+		// make sure RHSession is cleared, as it is no longer valid
+		RHSession.Reset();
+
+		// mark leave as complete
+		Completed(true);
 	}
 
 	virtual FString GetName() const override
