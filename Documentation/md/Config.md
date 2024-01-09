@@ -239,7 +239,6 @@ An object that caches information about server time and differences.
 `public FDateTime `[`LastReceivedServerDateTime`](#structFRH__ServerTimeCache_1a63f0350b41f3722399766db10f11366e) | The timestamp received during the most recent update from the server.
 `public FDateTime `[`LastReceivedServerAtTime`](#structFRH__ServerTimeCache_1af3fc128d16c059cb4420ca5841a91d20) | The time we received the most recent update from the server.
 `public inline  `[`FRH_ServerTimeCache`](#structFRH__ServerTimeCache_1a4b895cff8968b4e82df5e794376b8168)`()` | Constructor.
-`public inline FDateTime `[`GetLocalTime`](#structFRH__ServerTimeCache_1a9c40461ffd5001e460d8e897bb45f68a)`() const` | Gets the current local time.
 `public inline bool `[`GetServerTime`](#structFRH__ServerTimeCache_1aaa54f6ae4bddd94bc4665ae40f69dae6)`(FDateTime & Time) const` | Gets the approximate server time, if we have received one.
 `public inline bool `[`GetServerTimeDrift`](#structFRH__ServerTimeCache_1a777a359d346cb75f394b622844fa6f68)`(FTimespan & Timespan) const` | Gets the approximate server time, if we have received one.
 `public inline void `[`ImportAPITime`](#structFRH__ServerTimeCache_1a5b805808b827d56da61fe16ecd38cf20)`(const RallyHereAPI::FResponse_GetUtcTime & Time)` | Imports data from the server response.
@@ -259,11 +258,6 @@ The time we received the most recent update from the server.
 #### `public inline  `[`FRH_ServerTimeCache`](#structFRH__ServerTimeCache_1a4b895cff8968b4e82df5e794376b8168)`()` <a id="structFRH__ServerTimeCache_1a4b895cff8968b4e82df5e794376b8168"></a>
 
 Constructor.
-
-<br>
-#### `public inline FDateTime `[`GetLocalTime`](#structFRH__ServerTimeCache_1a9c40461ffd5001e460d8e897bb45f68a)`() const` <a id="structFRH__ServerTimeCache_1a9c40461ffd5001e460d8e897bb45f68a"></a>
-
-Gets the current local time.
 
 <br>
 #### `public inline bool `[`GetServerTime`](#structFRH__ServerTimeCache_1aaa54f6ae4bddd94bc4665ae40f69dae6)`(FDateTime & Time) const` <a id="structFRH__ServerTimeCache_1aaa54f6ae4bddd94bc4665ae40f69dae6"></a>

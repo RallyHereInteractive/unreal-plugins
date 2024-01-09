@@ -290,6 +290,8 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `public inline `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * `[`GetPlatformFriendBase`](#classURH__RHFriendAndPlatformFriend_1a0ba8a124c68354881afeb15a4344d71a)`(ERHAPI_Platform Platform) const` | Gets a platform friend object for the specified platform if it exists.
 `public inline const TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > & `[`GetPlatformFriends`](#classURH__RHFriendAndPlatformFriend_1a7a4011046e26ffd080a5946c972a33e7)`() const` | Gets all of the players platform friend entries.
 `public inline const `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` & `[`GetPlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a8e94f074e512e3c62569ba135c2a68db)`() const` | Gets the wrapper of the players RH and platform info.
+`public bool `[`CanViewPlatformProfile`](#classURH__RHFriendAndPlatformFriend_1ac88f7e3d20355a574680d93412219864)`() const` | Determines if the local player can view this player's platform profile (i.e. Gamercard on Xbox)
+`public bool `[`ViewPlatformProfile`](#classURH__RHFriendAndPlatformFriend_1ac806bbe4d0f6e71ca8c97d7fadc34caa)`() const` | Attempts to show this player's platform profile.
 `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__RHFriendAndPlatformFriend_1a18ff72f08c02d890a3c82c61689ec93d)`() const` | Attempts to get the player info.
 `public FString `[`GetLastKnownDisplayName`](#classURH__RHFriendAndPlatformFriend_1acd73b58468f7e35971e820244372ae84)`(ERHAPI_Platform PreferredPlatformType) const` | Gets the last known cached display name for the player.
 `public void `[`GetLastKnownDisplayNameAsync`](#classURH__RHFriendAndPlatformFriend_1a3b8bf590fdccb5b793ed98b52918656d)`(const FTimespan & StaleThreshold,bool bForceRefresh,ERHAPI_Platform PreferredPlatformType,const FRH_PlayerInfoGetDisplayNameBlock & Delegate) const` | Gets the last known display name for the player, will request from API as needed.
@@ -455,6 +457,19 @@ Gets all of the players platform friend entries.
 #### `public inline const `[`FRH_PlayerAndPlatformInfo`](PlayerInfo.md#structFRH__PlayerAndPlatformInfo)` & `[`GetPlayerAndPlatformInfo`](#classURH__RHFriendAndPlatformFriend_1a8e94f074e512e3c62569ba135c2a68db)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a8e94f074e512e3c62569ba135c2a68db"></a>
 
 Gets the wrapper of the players RH and platform info.
+
+<br>
+#### `public bool `[`CanViewPlatformProfile`](#classURH__RHFriendAndPlatformFriend_1ac88f7e3d20355a574680d93412219864)`() const` <a id="classURH__RHFriendAndPlatformFriend_1ac88f7e3d20355a574680d93412219864"></a>
+
+Determines if the local player can view this player's platform profile (i.e. Gamercard on Xbox)
+
+<br>
+#### `public bool `[`ViewPlatformProfile`](#classURH__RHFriendAndPlatformFriend_1ac806bbe4d0f6e71ca8c97d7fadc34caa)`() const` <a id="classURH__RHFriendAndPlatformFriend_1ac806bbe4d0f6e71ca8c97d7fadc34caa"></a>
+
+Attempts to show this player's platform profile.
+
+#### Returns
+true if successfully requested the OSS to show the player's platform profile
 
 <br>
 #### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__RHFriendAndPlatformFriend_1a18ff72f08c02d890a3c82c61689ec93d)`() const` <a id="classURH__RHFriendAndPlatformFriend_1a18ff72f08c02d890a3c82c61689ec93d"></a>

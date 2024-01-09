@@ -673,12 +673,18 @@ Subsystem to manage the local players presence.
 `public void `[`GetSettings`](#classURH__LocalPlayerPresenceSubsystem_1ad4ea4f754634f475f0dc22b2cff65ef0)`(RallyHereAPI::FRequest_GetPresenceSettings & Request,const RallyHereAPI::FDelegate_GetPresenceSettings & Delegate)` | Calls the Presence API to get the presence settings data.
 `public inline void `[`SetDesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1ab6e29c7025a2ba472476ed0ce806f746)`(ERHAPI_OnlineStatus NewStatus)` | Requests an update of your presence status to be set to the desired status.
 `public inline ERHAPI_OnlineStatus `[`GetDesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1a9a1748ca16136289f3764459ee8cae4e)`() const` | Gets the desired status that the player wants to be set to.
+`public inline void `[`SetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1a4317fe9af04ece94f342908b2eb84d08)`(FString NewMessage)` | Requests an update of your presence message to be set to the desired message.
+`public inline FString `[`GetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1af295bb46e499c2c8aa1f208a30f722d5)`() const` | Gets the desired message that the player wants to be set to.
+`public inline void `[`SetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a7f8a9a266c0ab29d1da24f836a3a58ba)`(bool NewDoNotDisturb)` | Requests an update of your presence do not disturb setting to be set to the desired setting.
+`public inline bool `[`GetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1aec49acc65c1627bcfb9b95eb29b1c2dc)`() const` | Gets the desired do not disturb setting that the player wants to be set to.
 `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` | Starts polling to refresh the player's presence status.
 `public void `[`StopRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a95919d768be0b60ad1134052aff7ef2c)`()` | Stops polling to refresh the player's presence status.
 `public void `[`RefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a409192cc26f0fb395231023cf4449fa7)`()` | Forces an update of the players presence with a status change.
 `public bool `[`IsRefreshTimerActive`](#classURH__LocalPlayerPresenceSubsystem_1ac786e4bb032fc9711ec196868c6c6b30)`(float & TimeRemaining) const` | Returns whether the refresh timer is active. param [in].
 `protected FRH_AutoPollerPtr `[`Poller`](#classURH__LocalPlayerPresenceSubsystem_1ab76093aeb1b7ae4313b979bfb5981f04) | Poller for the local presence.
 `protected ERHAPI_OnlineStatus `[`DesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101) | The Status that the local player is being changed to.
+`protected FString `[`DesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1afbd63003cbfa2accf1475d7af1146bae) | The presence message that the local player is being changed to.
+`protected bool `[`DesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a02b64db5884e0d75087d69e11d7ae4a2) | The do not disturb setting that the local player is being changed to.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__LocalPlayerPresenceSubsystem_1a41e97dcb80554d54d25008f03d407e1f)`()` | Initializes the subsystem with defaults for its cached data.
 `protected void `[`PollRefreshStatus`](#classURH__LocalPlayerPresenceSubsystem_1a12037a7eca5aa1bd88eb909748cf1a8e)`(const FRH_PollCompleteFunc & Delegate)` | Polls the status of the players presence.
@@ -738,6 +744,32 @@ Requests an update of your presence status to be set to the desired status.
 Gets the desired status that the player wants to be set to.
 
 <br>
+#### `public inline void `[`SetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1a4317fe9af04ece94f342908b2eb84d08)`(FString NewMessage)` <a id="classURH__LocalPlayerPresenceSubsystem_1a4317fe9af04ece94f342908b2eb84d08"></a>
+
+Requests an update of your presence message to be set to the desired message.
+
+#### Parameters
+* `NewMessage` The new message to set.
+
+<br>
+#### `public inline FString `[`GetDesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1af295bb46e499c2c8aa1f208a30f722d5)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1af295bb46e499c2c8aa1f208a30f722d5"></a>
+
+Gets the desired message that the player wants to be set to.
+
+<br>
+#### `public inline void `[`SetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a7f8a9a266c0ab29d1da24f836a3a58ba)`(bool NewDoNotDisturb)` <a id="classURH__LocalPlayerPresenceSubsystem_1a7f8a9a266c0ab29d1da24f836a3a58ba"></a>
+
+Requests an update of your presence do not disturb setting to be set to the desired setting.
+
+#### Parameters
+* `NewDoNotDisturb` The new do not disturb setting desired.
+
+<br>
+#### `public inline bool `[`GetDesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1aec49acc65c1627bcfb9b95eb29b1c2dc)`() const` <a id="classURH__LocalPlayerPresenceSubsystem_1aec49acc65c1627bcfb9b95eb29b1c2dc"></a>
+
+Gets the desired do not disturb setting that the player wants to be set to.
+
+<br>
 #### `public void `[`StartRefreshTimer`](#classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b)`()` <a id="classURH__LocalPlayerPresenceSubsystem_1a32af15e5eafaf94bdea501e1dc02d90b"></a>
 
 Starts polling to refresh the player's presence status.
@@ -766,6 +798,16 @@ Poller for the local presence.
 #### `protected ERHAPI_OnlineStatus `[`DesiredStatus`](#classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101) <a id="classURH__LocalPlayerPresenceSubsystem_1acf40e5a58f306238baf322baa860c101"></a>
 
 The Status that the local player is being changed to.
+
+<br>
+#### `protected FString `[`DesiredMessage`](#classURH__LocalPlayerPresenceSubsystem_1afbd63003cbfa2accf1475d7af1146bae) <a id="classURH__LocalPlayerPresenceSubsystem_1afbd63003cbfa2accf1475d7af1146bae"></a>
+
+The presence message that the local player is being changed to.
+
+<br>
+#### `protected bool `[`DesiredDoNotDisturb`](#classURH__LocalPlayerPresenceSubsystem_1a02b64db5884e0d75087d69e11d7ae4a2) <a id="classURH__LocalPlayerPresenceSubsystem_1a02b64db5884e0d75087d69e11d7ae4a2"></a>
+
+The do not disturb setting that the local player is being changed to.
 
 <br>
 #### `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16)`()` <a id="classURH__LocalPlayerPresenceSubsystem_1a39281ccf81d020bce677a4687ac61d16"></a>
@@ -880,6 +922,7 @@ Subsystem to manage sessions for the local player.
 `protected virtual void `[`OnPlatformSessionStarted`](#classURH__LocalPlayerSessionSubsystem_1a0c299fea961f369123ca438e318ba266)`(FName SessionName,bool bSuccess)` | Handles the response of an online subsystem session started.
 `protected virtual void `[`OnPlatformSessionEnded`](#classURH__LocalPlayerSessionSubsystem_1af0572f80f29da197fabf336175c8fcb2)`(FName SessionName,bool bSuccess)` | Handles the response of an online subsystem session ended.
 `protected virtual void `[`OnPlatformSessionDestroyed`](#classURH__LocalPlayerSessionSubsystem_1a635b650a45ccde86c301b7f88aa0484d)`(FName SessionName,bool bSuccess)` | Handles the response of an online subsystem session destroy.
+`protected virtual void `[`OnPlatformSessionParticipantsChanged`](#classURH__LocalPlayerSessionSubsystem_1a7d2554778e7116195c8c783eab1b1488)`(FName SessionName,const FUniqueNetId & UniqueNetId,bool bJoined)` | Called from other Platform Session Participant functions to reconcile the state of the platform syncer.
 `protected virtual void `[`OnPlatformSessionParticipantChange`](#classURH__LocalPlayerSessionSubsystem_1a18ac6fdc4538f89361f5e23d27b0fcd3)`(FName SessionName,const FUniqueNetId & UniqueNetId,bool bJoined)` | Handles the response of an online subsystem session participant change.
 `protected virtual void `[`OnPlatformSessionParticipantRemoved`](#classURH__LocalPlayerSessionSubsystem_1a19fcc5c2c30710932f1757dbe0ce3666)`(FName SessionName,const FUniqueNetId & UniqueNetId)` | Handles the response of an online subsystem session participant remove.
 `protected virtual void `[`HandlePollAllSessionsComplete`](#classURH__LocalPlayerSessionSubsystem_1a723518fadb2e8fb85f0a624debb53b91)`(bool bSuccess,const TArray< FString > & SessionIds)` | Handles the response of polling all sessions.
@@ -1517,6 +1560,16 @@ Handles the response of an online subsystem session destroy.
 * `bSuccess` True if the creation was successful.
 
 <br>
+#### `protected virtual void `[`OnPlatformSessionParticipantsChanged`](#classURH__LocalPlayerSessionSubsystem_1a7d2554778e7116195c8c783eab1b1488)`(FName SessionName,const FUniqueNetId & UniqueNetId,bool bJoined)` <a id="classURH__LocalPlayerSessionSubsystem_1a7d2554778e7116195c8c783eab1b1488"></a>
+
+Called from other Platform Session Participant functions to reconcile the state of the platform syncer.
+
+#### Parameters
+* `SessionName` The name of the associated session. 
+
+* `UniqueNetId` Unique Net Id of the participant that joined, changed, left, or was removed.
+
+<br>
 #### `protected virtual void `[`OnPlatformSessionParticipantChange`](#classURH__LocalPlayerSessionSubsystem_1a18ac6fdc4538f89361f5e23d27b0fcd3)`(FName SessionName,const FUniqueNetId & UniqueNetId,bool bJoined)` <a id="classURH__LocalPlayerSessionSubsystem_1a18ac6fdc4538f89361f5e23d27b0fcd3"></a>
 
 Handles the response of an online subsystem session participant change.
@@ -1601,6 +1654,7 @@ Subsystem to manage the local player.
 `protected TWeakObjectPtr< `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` > `[`PlayerInfoCache`](#classURH__LocalPlayerSubsystem_1a48fa6f3ba219852b90b6eaa9bf0ec5e4) | The Player Info associated with the local player.
 `protected FAuthContextPtr `[`AuthContext`](#classURH__LocalPlayerSubsystem_1a7db0fee21f61da0729bba78d7a892430) | The Local Players auth context.
 `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514) | The Analytics Provider for the player.
+`protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__LocalPlayerSubsystem_1a4035dec7f2a4568acd091f0058fbf0b3) | The start time of the AnalyticsProvider
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
@@ -1817,6 +1871,11 @@ The Local Players auth context.
 #### `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514) <a id="classURH__LocalPlayerSubsystem_1a9ece424deff5492e8d400a01c3295514"></a>
 
 The Analytics Provider for the player.
+
+<br>
+#### `protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__LocalPlayerSubsystem_1a4035dec7f2a4568acd091f0058fbf0b3) <a id="classURH__LocalPlayerSubsystem_1a4035dec7f2a4568acd091f0058fbf0b3"></a>
+
+The start time of the AnalyticsProvider
 
 <br>
 #### `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` <a id="classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf"></a>
