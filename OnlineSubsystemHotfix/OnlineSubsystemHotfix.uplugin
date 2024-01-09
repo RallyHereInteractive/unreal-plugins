@@ -2,8 +2,8 @@
 	"FileVersion" : 3,
 
 	"FriendlyName" : "Online Subsystem Hotfix",
-	"Version" : 1,
-	"VersionName" : "1.0",
+	"Version" : 3,
+	"VersionName" : "12.0.0",
     "CreatedBy": "Rally Here Interactive, Inc.",
     "CreatedByURL": "rallyhere.gg",
 	"Description": "Provides Hotfix Data as a Online Title Files through Hi Rez services for the OnlineHotfixManager",
