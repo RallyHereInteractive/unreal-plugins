@@ -51,6 +51,7 @@ FRHDTW_Session::FRHDTW_Session()
 	UpdateSessionRegionIdString.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 
 	SearchByTypeString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
+	SearchByRegionIdString.SetNumZeroed(IMGUI_SESSION_TYPE_PREALLOCATION_SIZE);
 
 	QueueSessionSelector.SetNumZeroed(IMGUI_SESSION_TEXTENTRY_PREALLOCATION_SIZE);
 
@@ -1178,6 +1179,8 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 		ImGui::EndCombo();
 	}
 
+	ImGui::InputText("Region Id", SearchByRegionIdString.GetData(), SearchByRegionIdString.Num());
+	
 	ImGui::SetNextItemWidth(150.f);
 	ImGui::InputInt("Page Num", &SearchCursor);
 	ImGui::SameLine();
@@ -1194,6 +1197,7 @@ void FRHDTW_Session::ImGuiDisplaySessionBrowser(URH_GameInstanceSubsystem* pGISu
 		params.Cursor = SearchCursor;
 		params.PageSize = SearchPageSize;
 		params.bCacheSessionDetails = SearchCacheSessions;
+		params.RegionId = ImGuiGetStringFromTextInputBuffer(SearchByRegionIdString);
 		pLPSessionSubsystem->SearchForSessions(params, FRH_OnSessionSearchCompleteDelegate::CreateSP(this, &FRHDTW_Session::HandleBrowserSearchResult));
 	}
 

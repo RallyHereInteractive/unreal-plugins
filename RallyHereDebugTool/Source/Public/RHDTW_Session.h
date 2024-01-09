@@ -45,6 +45,7 @@ public:
 	TArray<ANSICHAR> UpdateSessionRegionIdString;
 
 	TArray<ANSICHAR> SearchByTypeString;
+	TArray<ANSICHAR> SearchByRegionIdString;
 	bool SearchCacheSessions;
 	int32 SearchCursor;
 	int32 SearchPageSize;
