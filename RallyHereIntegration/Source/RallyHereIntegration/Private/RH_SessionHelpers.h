@@ -882,7 +882,7 @@ public:
 	{
 	}
 
-	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
+	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer) override
 	{
 		// ignore success flag on the poll (it can succeed or fail depending on the session state, we just want to verify that it removed the session from the owner)
 		RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
