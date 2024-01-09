@@ -227,7 +227,7 @@ protected:
 	*/
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_DiagnosticReportGenerator"));
+		static const FString Name(TEXT("FRH_DiagnosticReportGenerator"));
 		return Name;
 	}
 	/**

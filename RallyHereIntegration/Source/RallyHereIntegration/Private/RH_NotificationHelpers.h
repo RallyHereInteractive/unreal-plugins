@@ -134,7 +134,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_NotificationStreamingLongPollHelper"));
+		static const FString Name(TEXT("FRH_NotificationStreamingLongPollHelper"));
 		return Name;
 	}
 

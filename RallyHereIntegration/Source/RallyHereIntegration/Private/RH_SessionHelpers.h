@@ -78,7 +78,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionPollHelper"));
+		static const FString Name(TEXT("FRH_SessionPollHelper"));
 		return Name;
 	}
 
@@ -237,7 +237,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionLookupHelper"));
+		static const FString Name(TEXT("FRH_SessionLookupHelper"));
 		return Name;
 	}
 
@@ -345,7 +345,7 @@ public:
 protected:
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionPollOnlyHelper"));
+		static const FString Name(TEXT("FRH_SessionPollOnlyHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -640,7 +640,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionPollAllHelper"));
+		static const FString Name(TEXT("FRH_SessionPollAllHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -708,7 +708,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		static const FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -784,7 +784,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		static const FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -859,7 +859,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionJoinByPlatformIdHelper"));
+		static const FString Name(TEXT("FRH_SessionJoinByPlatformIdHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override

@@ -237,7 +237,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionBrowserSearchHelper"));
+		static const FString Name(TEXT("FRH_SessionBrowserSearchHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override

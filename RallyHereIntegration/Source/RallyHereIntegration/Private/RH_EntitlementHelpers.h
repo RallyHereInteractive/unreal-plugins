@@ -409,7 +409,7 @@ protected:
 	 */
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_EntitlementProcessor"));
+		static const FString Name(TEXT("FRH_EntitlementProcessor"));
 		return Name;
 	}
 	/**
