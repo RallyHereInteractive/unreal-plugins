@@ -228,7 +228,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionBootstrappingFinalizer"));
+		static const FString Name(TEXT("FRH_SessionBootstrappingFinalizer"));
 		return Name;
 	}
 

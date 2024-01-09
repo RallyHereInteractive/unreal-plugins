@@ -42,7 +42,7 @@ protected:
 	}
 
 
-	void DoSessionLookup()
+	virtual void DoSessionLookup()
 	{
 		if (SessionOwner.IsValid())
 		{
@@ -63,7 +63,7 @@ protected:
 		}
 	}
 
-	void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
+	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer)
 	{
 		if (bSuccess && SessionOwner.IsValid())
 		{
@@ -74,6 +74,12 @@ protected:
 		{
 			Failed("Session Poll Failed");
 		}
+	}
+
+	virtual FString GetName() const override
+	{
+		static const FString Name(TEXT("FRH_SessionPollHelper"));
+		return Name;
 	}
 
 	FString SessionId;
@@ -92,7 +98,7 @@ public:
 
 protected:
 
-	void DoSessionLookup()
+	virtual void DoSessionLookup()
 	{
 		if (!SessionOwner.IsValid())
 		{
@@ -114,7 +120,7 @@ protected:
 		}
 	}
 
-	void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
+	virtual void OnSessionLookup(const RallyHereAPI::Traits_GetSessionById::Response& Resp)
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
 
@@ -229,6 +235,13 @@ protected:
 		Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 	}
 
+	virtual FString GetName() const override
+	{
+		static const FString Name(TEXT("FRH_SessionLookupHelper"));
+		return Name;
+	}
+
+
 	FString SessionId;
 	TWeakObjectPtr<URH_JoinedSession> RHSession;
 	FRH_APISessionWithETag SessionCache;
@@ -245,6 +258,7 @@ public:
 		: FRH_SessionPollHelper(InSessionOwner, InSessionId, InPriority)
 		, Delegate(InDelegate)
 	{
+		bRequestWasSuccessful = false;
 	}
 
 	virtual void Start(const typename BaseType::Request& InRequest)
@@ -252,6 +266,7 @@ public:
 		Started();
 		if (SessionOwner.IsValid() && GetAuthContext().IsValid())
 		{
+			bRequestWasSuccessful = false;
 			auto HttpRequest = BaseType::DoCall(RH_APIs::GetSessionsAPI(), InRequest, BaseType::Delegate::CreateSP(this, &FRH_SessionRequestAndModifyHelper::OnRequestById), TaskPriority);
 			if (!HttpRequest)
 			{
@@ -265,12 +280,13 @@ public:
 	}
 protected:
 
-	void OnRequestById(const typename BaseType::Response& Resp)
+	virtual void OnRequestById(const typename BaseType::Response& Resp)
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
 
 		if (Resp.IsSuccessful())
 		{
+			bRequestWasSuccessful = true;
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
@@ -291,6 +307,7 @@ protected:
 	}
 
 	FRH_OnSessionUpdatedDelegateBlock Delegate;
+	bool bRequestWasSuccessful;
 };
 
 
@@ -328,7 +345,7 @@ public:
 protected:
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionPollHelper"));
+		static const FString Name(TEXT("FRH_SessionPollOnlyHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -623,7 +640,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionPollAllHelper"));
+		static const FString Name(TEXT("FRH_SessionPollAllHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -691,7 +708,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		static const FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -767,7 +784,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
+		static const FString Name(TEXT("FRH_SessionCreateOrJoinByTypeHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -842,7 +859,7 @@ protected:
 
 	virtual FString GetName() const override
 	{
-		static FString Name(TEXT("FRH_SessionJoinByPlatformIdHelper"));
+		static const FString Name(TEXT("FRH_SessionJoinByPlatformIdHelper"));
 		return Name;
 	}
 	virtual void ExecuteCallback(bool bSuccess) const override
@@ -851,4 +868,42 @@ protected:
 	}
 
 	FRH_OnSessionUpdatedDelegateBlock Delegate;
+};
+
+
+// Wrapper around a delete that will remove the session locally once the delete is completed, without requiring a poll on the session
+class FRH_SessionLeaveHelper : public FRH_SessionRequestAndModifyHelper<RallyHereAPI::Traits_LeaveSessionByIdSelf>
+{
+public:
+	typedef RallyHereAPI::Traits_LeaveSessionByIdSelf BaseType;
+
+	FRH_SessionLeaveHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId, FRH_OnSessionUpdatedDelegateBlock InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionRequestAndModifyHelper(InSessionOwner, InSessionId, InDelegate, InPriority)
+	{
+	}
+
+	virtual void OnSessionPollComplete(bool bSuccess, bool bResetTimer) override
+	{
+		// ignore success flag on the poll (it can succeed or fail depending on the session state, we just want to verify that it removed the session from the owner)
+		auto* Session = SessionOwner->GetSessionById(SessionId);
+		auto* InvitedSession = Cast<URH_InvitedSession>(Session);
+
+		if (Session || InvitedSession)
+		{
+			Failed(TEXT("Session still exists after leave"));
+			return;
+		}
+
+		// make sure RHSession is cleared, as it is no longer valid
+		RHSession.Reset();
+
+		// mark leave as complete
+		Completed(true);
+	}
+
+	virtual FString GetName() const override
+	{
+		static FString Name = FString::Printf(TEXT("FRH_SessionLeaveHelper"));
+		return Name;
+	}
 };

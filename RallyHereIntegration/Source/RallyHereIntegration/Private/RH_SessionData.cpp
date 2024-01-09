@@ -414,7 +414,14 @@ void URH_InvitedSession::Join(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 
 void URH_InvitedSession::Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
-	DoRequestViaHelper<RallyHereAPI::Traits_LeaveSessionByIdSelf>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
+	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+
+	FRH_SessionLeaveHelper::BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+
+	auto Helper = MakeShared<FRH_SessionLeaveHelper>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
+	Helper->Start(Request);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -1296,7 +1303,14 @@ void URH_OnlineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TM
 
 void URH_OnlineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
-	DoRequestViaHelper<RallyHereAPI::Traits_LeaveSessionByIdSelf>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
+	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+
+	FRH_SessionLeaveHelper::BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+
+	auto Helper = MakeShared<FRH_SessionLeaveHelper>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
+	Helper->Start(Request);
 }
 
 void URH_OnlineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate)

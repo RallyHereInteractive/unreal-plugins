@@ -419,7 +419,7 @@ public:
 	/** @brief Gets the templated name for this object */
 	virtual FString GetName() const override
 	{
-		static FString Name(FString::Printf(TEXT("FRH_SimpleQueryHelper<%s>"), *BaseType::Name));
+		static const FString Name(FString::Printf(TEXT("FRH_SimpleQueryHelper<%s>"), *BaseType::Name));
 		return Name;
 	}
 
