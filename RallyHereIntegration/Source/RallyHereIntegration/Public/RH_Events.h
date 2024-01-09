@@ -15,12 +15,14 @@ class UGameInstance;
 
 //#include "RH_Events.generated.h"
 
+
+/** @brief Namespace containing RallyHere GETS Standard Events wrappers*/
+namespace RHStandardEvents
+{
 /** @defgroup Events RallyHere Events
  *  @{
  */
 
-namespace RHStandardEvents
-{
 	// prefix used to pass custom data, will be stripped out by the default rally here event provider
 	static FString CustomDataPrefix = TEXT("__CUSTOM_DATA__.");
 
@@ -1139,8 +1141,8 @@ namespace RHStandardEvents
 			Provider->RecordEvent(InEventName, Attributes);
 		}
 	};
-}
 
-/**
- *	@}
- */
+	/**
+	 *	@}
+	 */
+}

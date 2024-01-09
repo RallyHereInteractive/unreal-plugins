@@ -164,11 +164,11 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnRegistrationFinalizerComplete`](#classURH__GameInstanceServerBootstrapper_1af5393fb9a958e0dd9d2a9d90e82cde47)`(bool bSuccess,const `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` & Result)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result. Checks the result and then checks for an instance. Either creates and instance, or forwards on to [OnSessionInstanceCreationCompleted()](GameInstance.md#classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8)
 `protected virtual void `[`OnSessionInstanceCreationCompleted`](#classURH__GameInstanceServerBootstrapper_1aee598fbff63a2954bd2455a7a347f5f8)`(bool bSuccess,`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * CreatedRHSession,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` | Bootstrapping Flow [WaitingForSession] - callback for when registration process has completed and produced a bootstrapping result.
 `protected virtual void `[`SyncToSession`](#classURH__GameInstanceServerBootstrapper_1a916ef7edd3eae169e87ac544ea2088c6)`()` | Bootstrapping Flow [SyncingToSession] - begin the process of synchronizing the session state into RH_GameInstanceSessionSubsystem.
-`protected virtual void `[`OnSyncToSessionComplete`](#classURH__GameInstanceServerBootstrapper_1a6b3abc6b2d84f6bf628ec71f548895f8)`(bool bSuccess)` | Bootstrapping Flow [SyncingToSession] - completiong callback for session sync.
+`protected virtual void `[`OnSyncToSessionComplete`](#classURH__GameInstanceServerBootstrapper_1a70667eca088ae8b5873b4f02281c7a94)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Bootstrapping Flow [SyncingToSession] - completiong callback for session sync.
 `protected virtual void `[`OnSessionUpdated`](#classURH__GameInstanceServerBootstrapper_1a91273ca69e8e885b6b96f4fb594d3318)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Notification callback that the session we have synced to was updated.
 `protected virtual void `[`OnSessionNotFound`](#classURH__GameInstanceServerBootstrapper_1a98ef077ce4a34510a6ee988549acd753)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * Session)` | Notification callback that the session we have synced to was not found.
 `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal and attempt to recycle.
-`protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1af4523358219d2a4bdb3a89949ee68018)`(bool bSuccess)` | Completion callback for session and instance cleanup.
+`protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
 
 #### Members
@@ -603,7 +603,7 @@ Bootstrapping Flow [WaitingForSession] - callback for when registration process 
 Bootstrapping Flow [SyncingToSession] - begin the process of synchronizing the session state into RH_GameInstanceSessionSubsystem.
 
 <br>
-#### `protected virtual void `[`OnSyncToSessionComplete`](#classURH__GameInstanceServerBootstrapper_1a6b3abc6b2d84f6bf628ec71f548895f8)`(bool bSuccess)` <a id="classURH__GameInstanceServerBootstrapper_1a6b3abc6b2d84f6bf628ec71f548895f8"></a>
+#### `protected virtual void `[`OnSyncToSessionComplete`](#classURH__GameInstanceServerBootstrapper_1a70667eca088ae8b5873b4f02281c7a94)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` <a id="classURH__GameInstanceServerBootstrapper_1a70667eca088ae8b5873b4f02281c7a94"></a>
 
 Bootstrapping Flow [SyncingToSession] - completiong callback for session sync.
 
@@ -632,7 +632,7 @@ Notification callback that the session we have synced to was not found.
 Utility function to clean up state after an instance removal and attempt to recycle.
 
 <br>
-#### `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1af4523358219d2a4bdb3a89949ee68018)`(bool bSuccess)` <a id="classURH__GameInstanceServerBootstrapper_1af4523358219d2a4bdb3a89949ee68018"></a>
+#### `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` <a id="classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6"></a>
 
 Completion callback for session and instance cleanup.
 
@@ -731,6 +731,9 @@ Subsystem for handling sessions within a game instance.
 `protected virtual class ARH_OnlineBeaconHost * `[`CreateBeaconHost`](#classURH__GameInstanceSessionSubsystem_1ad480537673a18c2353ce9e422d280bee)`(class UWorld * pWorld,uint32 ListenPort,bool bShutdownWorldNetDriver)` | Creates a beacon host for the instance.
 `protected virtual void `[`PollInstanceHealth`](#classURH__GameInstanceSessionSubsystem_1aa83f9f3fcff828e6b53910c98e55ab95)`(const FRH_PollCompleteFunc & Delegate)` | Called when instance health should be updated.
 `protected virtual void `[`PollBackfill`](#classURH__GameInstanceSessionSubsystem_1ac281b925199729bdb3919a49db185362)`(const FRH_PollCompleteFunc & Delegate)` | Called when backfill should be updated.
+`protected void `[`EmitJoinInstanceStartedEvent`](#classURH__GameInstanceSessionSubsystem_1a8c251f3fb54bb09f56c2964ad40b61db)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session) const` | 
+`protected void `[`EmitJoinInstanceCompletedEvent`](#classURH__GameInstanceSessionSubsystem_1abbde067b96e7e0121ccc7c261e9b6f1d)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & ErrorReason) const` | 
+`protected void `[`EmitLeaveInstanceEvent`](#classURH__GameInstanceSessionSubsystem_1a386264ec297a998caefaea9cdae39a90)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,const FString & Reason) const` | 
 
 #### Members
 
@@ -1039,6 +1042,15 @@ Called when backfill should be updated.
 
 #### Parameters
 * `Delegate` Callback delegate for when the health is updated.
+
+<br>
+#### `protected void `[`EmitJoinInstanceStartedEvent`](#classURH__GameInstanceSessionSubsystem_1a8c251f3fb54bb09f56c2964ad40b61db)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session) const` <a id="classURH__GameInstanceSessionSubsystem_1a8c251f3fb54bb09f56c2964ad40b61db"></a>
+
+<br>
+#### `protected void `[`EmitJoinInstanceCompletedEvent`](#classURH__GameInstanceSessionSubsystem_1abbde067b96e7e0121ccc7c261e9b6f1d)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & ErrorReason) const` <a id="classURH__GameInstanceSessionSubsystem_1abbde067b96e7e0121ccc7c261e9b6f1d"></a>
+
+<br>
+#### `protected void `[`EmitLeaveInstanceEvent`](#classURH__GameInstanceSessionSubsystem_1a386264ec297a998caefaea9cdae39a90)`(const `[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,const FString & Reason) const` <a id="classURH__GameInstanceSessionSubsystem_1a386264ec297a998caefaea9cdae39a90"></a>
 
 <br>
 ## class `URH_GameInstanceSubsystem` <a id="classURH__GameInstanceSubsystem"></a>

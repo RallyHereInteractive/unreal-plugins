@@ -57,6 +57,7 @@ Synchronization object to sync state between a Rally Here Session and a Platform
 `public virtual void `[`OnPlatformSessionDestroyed`](#classURH__PlatformSessionSyncer_1a600318f388b1d368077bd7c9090c8bc9)`(bool bSuccess)` | Notification helper to let the synchronization object know that a session has been destroyed (from the session owner, as the synchronization object does not bind the callback directly)
 `public void `[`OnRHSessionUpdated`](#classURH__PlatformSessionSyncer_1a6359fb4330ea231ed32cb6b66e5ff270)`(`[`URH_SessionView`](Session.md#classURH__SessionView)` * UpdatedSession)` | Handler for whenever the associated session is updated.
 `public void `[`SetCachedPlatformSessionInvite`](#classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001)`(const FOnlineSessionSearchResult & SessionInvite)` | 
+`public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa)`() const` | Get the online subsystem for the platform session.
 `protected `[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` `[`CurrentSyncActionState`](#classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea) | The current state of the syncer.
 `protected FRH_SessionOwnerPtr `[`SessionOwner`](#classURH__PlatformSessionSyncer_1abdc13532c721a2d0593b177ae19833e5) | Owner of the session.
 `protected FString `[`RHSessionId`](#classURH__PlatformSessionSyncer_1a2782a9152c7bf68ed0bd908b95c4301f) | Rally Here session Id.
@@ -77,7 +78,6 @@ Synchronization object to sync state between a Rally Here Session and a Platform
 `protected virtual void `[`CleanupInternal`](#classURH__PlatformSessionSyncer_1a51bed2712c80a6f92f1c8c5c1e1904f1)`()` | Cleanup internal state of the session syncer.
 `protected virtual bool `[`SetSyncActionState`](#classURH__PlatformSessionSyncer_1a1261e4cc0e9cf808324785ca5e7fdf9f)`(`[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` NewState)` | Sets the new action state for the syncer.
 `protected virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51)`() const` | Get the unique net id of the session owner.
-`protected virtual IOnlineSubsystem * `[`GetOSS`](#classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa)`() const` | Get the online subsystem for the platform session.
 `protected virtual IOnlineSessionPtr `[`GetOSSSessionInterface`](#classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1)`() const` | Get the online subsystem session interface for the platform session.
 
 #### Members
@@ -237,6 +237,11 @@ Handler for whenever the associated session is updated.
 #### `public void `[`SetCachedPlatformSessionInvite`](#classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001)`(const FOnlineSessionSearchResult & SessionInvite)` <a id="classURH__PlatformSessionSyncer_1ad88b73abe387bfd9433def9d3416f001"></a>
 
 <br>
+#### `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa)`() const` <a id="classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa"></a>
+
+Get the online subsystem for the platform session.
+
+<br>
 #### `protected `[`ESyncActionState`](undefined.md#group__Session_1gaa60e236caf03784c17c443c4a520d642)` `[`CurrentSyncActionState`](#classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea) <a id="classURH__PlatformSessionSyncer_1a0a8fd13fe93d1aac1b94e7dc0e3715ea"></a>
 
 The current state of the syncer.
@@ -349,11 +354,6 @@ Sets the new action state for the syncer.
 #### `protected virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51)`() const` <a id="classURH__PlatformSessionSyncer_1aebf1a29ac22a2919aed0b76d15f4bd51"></a>
 
 Get the unique net id of the session owner.
-
-<br>
-#### `protected virtual IOnlineSubsystem * `[`GetOSS`](#classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa)`() const` <a id="classURH__PlatformSessionSyncer_1aba1b0f5be0fbcafbc48c0ad0c7ec3baa"></a>
-
-Get the online subsystem for the platform session.
 
 <br>
 #### `protected virtual IOnlineSessionPtr `[`GetOSSSessionInterface`](#classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1)`() const` <a id="classURH__PlatformSessionSyncer_1addd7c5606ca5ca5d95d9d78cd89c7bd1"></a>
@@ -1635,6 +1635,7 @@ Struct containing the search paramaters for Session Browsers.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`SessionType`](#structFRH__SessionBrowserSearchParams_1a25ef289d60be155f1caeaddd19c5cc0a) | The Type of Session to search for.
+`public FString `[`RegionId`](#structFRH__SessionBrowserSearchParams_1ae4ca9ef983382c2eb381ed4f0ad521c8) | The Region ID of Session to search for.
 `public TArray< FString > `[`SessionIds`](#structFRH__SessionBrowserSearchParams_1a323e62b2ff94b8be30c0fb7b92914568) | If specified, skip search lookup and instead query these specific session ids.
 `public int32 `[`Cursor`](#structFRH__SessionBrowserSearchParams_1a987cdfb2a54b641a8724c578d4900bfc) | The indicator of what page to request of results.
 `public int32 `[`PageSize`](#structFRH__SessionBrowserSearchParams_1a8de9c480f8dedf19d415e564fe201e96) | The size of each page of results.
@@ -1647,6 +1648,11 @@ Struct containing the search paramaters for Session Browsers.
 #### `public FString `[`SessionType`](#structFRH__SessionBrowserSearchParams_1a25ef289d60be155f1caeaddd19c5cc0a) <a id="structFRH__SessionBrowserSearchParams_1a25ef289d60be155f1caeaddd19c5cc0a"></a>
 
 The Type of Session to search for.
+
+<br>
+#### `public FString `[`RegionId`](#structFRH__SessionBrowserSearchParams_1ae4ca9ef983382c2eb381ed4f0ad521c8) <a id="structFRH__SessionBrowserSearchParams_1ae4ca9ef983382c2eb381ed4f0ad521c8"></a>
+
+The Region ID of Session to search for.
 
 <br>
 #### `public TArray< FString > `[`SessionIds`](#structFRH__SessionBrowserSearchParams_1a323e62b2ff94b8be30c0fb7b92914568) <a id="structFRH__SessionBrowserSearchParams_1a323e62b2ff94b8be30c0fb7b92914568"></a>

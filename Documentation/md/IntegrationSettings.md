@@ -127,6 +127,7 @@ Main settings for the Integration.
 `public int32 `[`GetSiteSettingsPriority`](#classURH__IntegrationSettings_1a05394419f792bfa361b0e1b2adccf198) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
+`public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) | Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
 `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` | Helper to get the configuration for a given environment by EnvironmentId.
 
 #### Members
@@ -664,6 +665,11 @@ Sets the request priority of Lookup Users calls, lower number is higher priority
 #### `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) <a id="classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1"></a>
 
 Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) <a id="classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08"></a>
+
+Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
 
 <br>
 #### `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` <a id="classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151"></a>
