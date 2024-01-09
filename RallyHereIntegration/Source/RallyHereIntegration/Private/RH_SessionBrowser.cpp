@@ -54,6 +54,7 @@ protected:
 		Request.SessionType = SearchParams.SessionType;
 		if (SearchParams.Cursor >= 0) Request.Cursor = SearchParams.Cursor;
 		if (SearchParams.PageSize > 0) Request.PageSize = SearchParams.PageSize;
+		if (SearchParams.RegionId.Len() > 0) Request.RegionId = SearchParams.RegionId;
 
 		HttpRequest = QuerySessionByType::DoCall(RH_APIs::GetSessionsAPI(), Request, QuerySessionByType::Delegate::CreateSP(this, &FRH_SessionBrowserSearchHelper::OnQueryAllSessions), GetDefault<URH_IntegrationSettings>()->SessionGetByTypePriority);
 		if (!HttpRequest)

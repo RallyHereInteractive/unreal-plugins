@@ -31,6 +31,11 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchParams
 	UPROPERTY()
 	FString SessionType;
 	/**
+	 * @brief The Region ID of Session to search for.
+	 */
+	UPROPERTY()
+	FString RegionId;
+	/**
 	 * @brief If specified, skip search lookup and instead query these specific session ids
 	 */
 	UPROPERTY()
@@ -65,7 +70,7 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchParams
 	 */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("%s: #%d @%d"), *SessionType, Cursor, PageSize);
+		return FString::Printf(TEXT("%s: %s #%d @%d"), *SessionType, *RegionId, Cursor, PageSize);
 	}
 };
 
