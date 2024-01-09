@@ -29,7 +29,7 @@
 * A helper function has been added to the friends subsystem to display the platform player profile
 * Support for setting Do Not Disturb (DND) has been added to the local player presence subsystem
 * Fix case where a player who has logged out and logged back in to the same user would fail to retrieve their session list until it had been modified once after new login
-
+* Session Leave calls should now trigger success on their callback delegate
 
 
 
