@@ -32,7 +32,7 @@
 * Session Leave calls should now trigger success on their callback delegate
 * Add RegionId to SessionBrowser search parameters
 
-
+**Full Changelog**: https://github.com/RallyHereInteractive/unreal-plugins/compare/v0.11.0...v12.0.0
 
 ## 0.11.0
 
