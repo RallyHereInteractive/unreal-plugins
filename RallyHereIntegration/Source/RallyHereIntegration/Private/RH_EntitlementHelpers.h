@@ -15,6 +15,7 @@
 #include "Interfaces/OnlinePurchaseInterface.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "RH_EntitlementSubsystem.h"
+#include "RH_Events.h"
 
 class URH_LocalPlayerSubsystem;
 
@@ -34,20 +35,24 @@ public:
 	FRH_EntitlementProcessor(URH_EntitlementSubsystem* InEntitlementSubsystem,
 		IOnlineSubsystem* InOSS,
 		const IOnlinePurchasePtr& InPurchaseSubsystem,
+		const IOnlineStoreV2Ptr& InStoreSubsystem,
 		int32 InLocalUserNum,
 		FUniqueNetIdWrapper InPlatformUserId,
 		FTimerManager& InTimerManager,
 		const FRH_ProcessEntitlementCompletedDelegate& InProcessorCompleteDelegate,
 		const FRH_GetPlatformRegionDelegate& InGetPlatformRegionDelegate,
-		TOptional<ERHAPI_Platform> InOverridePlatform)
+		TOptional<ERHAPI_Platform> InOverridePlatform,
+		TSharedPtr<IAnalyticsProvider> InAnalyticsProvider)
 		: EntitlementSubsystem(InEntitlementSubsystem)
 		, OSS(InOSS)
 		, PurchaseSubsystem(InPurchaseSubsystem)
+		, StoreSubsystem(InStoreSubsystem)
 		, LocalUserNum(InLocalUserNum)
 		, PlatformUserId(InPlatformUserId)
 		, TimerManager(InTimerManager)
 		, EntitlementProcessorCompleteDelegate(InProcessorCompleteDelegate)
 		, GetPlatformRegionDelegate(InGetPlatformRegionDelegate)
+		, AnalyticsProvider(InAnalyticsProvider)
 	{
 		if (InOverridePlatform.IsSet())
 		{
@@ -307,7 +312,6 @@ protected:
 			else
 			{
 				FinalizePurchase();
-				Completed(true);
 			}
 		}
 		else
@@ -359,7 +363,6 @@ protected:
 			Delegate.ExecuteIfBound(true, false);
 			StopPoll();
 			FinalizePurchase();
-			Completed(true);
 		}
 		else
 		{
@@ -368,14 +371,7 @@ protected:
 		}
 		EntitlementSubsystem->GetEntitlementResults()->Emplace(TaskId, ProcessEntitlementResult);
 	}
-	/**
-	 * @brief Finalizes a purchase from an online subsystem.
-	 */
-	void FinalizePurchase()
-	{
-		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
-		PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
-	}
+
 	/**
 	 * @brief Starts polling of entitlements.
 	 */
@@ -404,6 +400,18 @@ protected:
 			EntitlementsPoller.Reset();
 		}
 	}
+
+	/**
+	 * @brief Finalizes a purchase from an online subsystem.
+	 */
+	void FinalizePurchase()
+	{
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Process Platform Entitlements was success, calling finalize purchase on Transaction Id: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ProcessEntitlementResult.TransactionId);
+		PurchaseSubsystem->FinalizePurchase(*OSS->GetIdentityInterface()->GetUniquePlayerId(LocalUserNum), *ProcessEntitlementResult.GetTransactionId());
+
+		Completed(true);
+	}
+
 	/**
 	 * @brief Gets the name of the entitlement processor.
 	 */
@@ -450,6 +458,8 @@ protected:
 	IOnlineSubsystem* OSS;
 	/** @brief Online Purchase Subsystem this processor is for. */
 	IOnlinePurchasePtr PurchaseSubsystem;
+	/** @brief Online Store Subsystem this processor is for. */
+	IOnlineStoreV2Ptr StoreSubsystem;
 	/** @brief Contorller Id of the user. */
 	int32 LocalUserNum;
 	/** @brief Platform User Id of the user. */
@@ -480,6 +490,8 @@ protected:
 	TArray<FPurchaseReceipt> Receipts = TArray<FPurchaseReceipt>();
 	/** @brief Http Request for processing entitlements with the core. */
 	FHttpRequestPtr HttpRequest;
+	/** @brief Analytics provider to use for logging. */
+	TSharedPtr<IAnalyticsProvider> AnalyticsProvider;
 };
 
 /** @} */

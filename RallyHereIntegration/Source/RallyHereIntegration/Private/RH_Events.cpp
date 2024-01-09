@@ -103,4 +103,93 @@ namespace RHStandardEvents
 		ClientDeviceEvent.EmitTo(Provider);
 
 	}
+
+	TSharedRef<FJsonValue> FPlatformPurchaseEvent::FCheckoutData::ToJsonValue() const
+	{
+		auto JsonData = MakeShared<FJsonObject>();
+				
+		if (DisplayedPrice.IsSet())
+		{
+			JsonData->SetStringField(TEXT("displayed_price"), DisplayedPrice.GetValue());
+		}
+		if (NumericPrice.IsSet())
+		{
+			JsonData->SetNumberField(TEXT("numeric_price"), NumericPrice.GetValue());
+		}
+		if (DisplayedPresalePrice.IsSet())
+		{
+			JsonData->SetStringField(TEXT("displayed_presale_price"), DisplayedPresalePrice.GetValue());
+		}
+		if (NumericPresalePrice.IsSet())
+		{
+			JsonData->SetNumberField(TEXT("numeric_presale_price"), NumericPresalePrice.GetValue());
+		}
+		if (CurrencyCode.IsSet())
+		{
+			JsonData->SetStringField(TEXT("currency_code"), CurrencyCode.GetValue());
+		}
+		if (Sku.IsSet())
+		{
+			JsonData->SetStringField(TEXT("sku"), Sku.GetValue());
+		}
+		if (Platform.IsSet())
+		{
+			JsonData->SetStringField(TEXT("platform"), Platform.GetValue());
+		}
+
+		return MakeShared<FJsonValueObject>(JsonData);
+	}
+
+	TSharedRef<FJsonValue> FPlatformPurchaseEvent::FReceiptOfferData::ToJsonValue() const
+	{
+		auto JsonData = MakeShared<FJsonObject>();
+
+		if (Namespace.IsSet())
+		{
+			JsonData->SetStringField(TEXT("namespace"), Namespace.GetValue());
+		}
+		if (Sku.IsSet())
+		{
+			JsonData->SetStringField(TEXT("sku"), Sku.GetValue());
+		}
+		if (Quantity.IsSet())
+		{
+			JsonData->SetNumberField(TEXT("quantity"), Quantity.GetValue());
+		}
+		if (EntitlementIds.IsSet())
+		{
+			TArray<TSharedPtr<FJsonValue>> EntitlementIdJsonValues;
+			const auto& EntitlementIdRef = EntitlementIds.GetValue();
+			for (int32 i = 0; i < EntitlementIdRef.Num(); ++i)
+			{
+				EntitlementIdJsonValues.Add(MakeShareable(new FJsonValueString(EntitlementIdRef[i])));
+			}
+
+			JsonData->SetArrayField(TEXT("entitlement_ids"), EntitlementIdJsonValues);
+		}
+
+		return MakeShared<FJsonValueObject>(JsonData);
+	}
+
+	TSharedRef<FJsonValue> FPlatformPurchaseEvent::FReceiptData::ToJsonValue() const
+	{
+		auto JsonData = MakeShared<FJsonObject>();
+
+		if (TransactionId.IsSet())
+		{
+			JsonData->SetStringField(TEXT("transaction_id"), TransactionId.GetValue());
+		}
+		if (ReceiptOffers.Num() > 0)
+		{
+			TArray<TSharedPtr<FJsonValue>> ReceiptOfferJsonValues;
+			for (int32 i = 0; i < ReceiptOffers.Num(); ++i)
+			{
+				ReceiptOfferJsonValues.Add(ReceiptOffers[i].ToJsonValue());
+			}
+
+			JsonData->SetArrayField(TEXT("receipt_offers"), ReceiptOfferJsonValues);
+		}
+
+		return MakeShared<FJsonValueObject>(JsonData);
+	}
 }

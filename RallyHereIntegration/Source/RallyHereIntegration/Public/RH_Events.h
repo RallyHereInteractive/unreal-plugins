@@ -28,6 +28,13 @@ namespace RHStandardEvents
 
 	TSharedPtr<class IAnalyticsProvider> RALLYHEREINTEGRATION_API AutoCreateAnalyticsProvider();
 
+	FORCEINLINE FJsonFragment JsonValueToFragment(const TSharedPtr<FJsonValue>& InJsonValue)
+	{
+		FString ValueString;
+		URHAPI_JsonObjectBlueprintLibrary::FRHAPI_JsonObjectToString(InJsonValue->AsObject(), ValueString);
+		return FJsonFragment(MoveTemp(ValueString));
+	}
+
 	// Event definitions
 
 	/**
@@ -1007,47 +1014,8 @@ namespace RHStandardEvents
 			/** The platform for the purchase */
 			TOptional<FString> Platform;
 
-			/** @brief Converts the checkout data to a JSON string */
-			FString ToJson() const
-			{
-				FString JsonData;
-
-				JsonData += TEXT("{");
-
-				if (DisplayedPrice.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"displayed_price\": \"%s\", "), *DisplayedPrice.GetValue());
-				}
-				if (NumericPrice.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"numeric_price\": %f, "), NumericPrice.GetValue());
-				}
-				if (DisplayedPresalePrice.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"displayed_presale_price\": \"%s\", "), *DisplayedPresalePrice.GetValue());
-				}
-				if (NumericPresalePrice.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"numeric_presale_price\": %f, "), NumericPresalePrice.GetValue());
-				}
-				if (CurrencyCode.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"currency_code\": \"%s\", "), *CurrencyCode.GetValue());
-				}
-				if (Sku.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"sku\": \"%s\", "), *Sku.GetValue());
-				}
-				if (Platform.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"platform\": \"%s\""), *Platform.GetValue());
-				}
-
-				JsonData += TEXT("}");
-
-				return JsonData;
-			}
-
+			/** @brief Converts the receipt data to a JSON value */
+			TSharedRef<FJsonValue> ToJsonValue() const;
 		};
 
 		/** @brief A structure containing individual receipt offer data for a platform purchase */
@@ -1065,43 +1033,8 @@ namespace RHStandardEvents
 			/** The list of entitlements from the receipt */
 			TOptional<TArray<FString>> EntitlementIds;
 
-			/** @brief Converts the receipt offer data to a JSON string */
-			FString ToJson() const
-			{
-				FString JsonData;
-
-				JsonData += TEXT("{");
-
-				if (Namespace.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"namespace\": \"%s\", "), *Namespace.GetValue());
-				}
-				if (Sku.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"sku\": \"%s\", "), *Sku.GetValue());
-				}
-				if (Quantity.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"quantity\": %d, "), Quantity.GetValue());
-				}
-				if (EntitlementIds.IsSet())
-				{
-					JsonData += TEXT("\"entitlement_ids\": [");
-					for (int32 i = 0; i < EntitlementIds.GetValue().Num(); ++i)
-					{
-						JsonData += FString::Printf(TEXT("\"%s\""), *EntitlementIds.GetValue()[i]);
-						if (i < EntitlementIds.GetValue().Num() - 1)
-						{
-							JsonData += TEXT(", ");
-						}
-					}
-					JsonData += TEXT("], ");
-				}
-
-				JsonData += TEXT("}");
-
-				return JsonData;
-			}
+			/** @brief Converts the receipt data to a JSON value */
+			TSharedRef<FJsonValue> ToJsonValue() const;
 		};
 
 		/** @brief A structure containing receipt data for a platform purchase */
@@ -1113,35 +1046,8 @@ namespace RHStandardEvents
 			/** List of the receipt offers */
 			TArray<FReceiptOfferData> ReceiptOffers;
 
-			/** @brief Converts the receipt data to a JSON string */
-			FString ToJson() const
-			{
-				FString JsonData;
-
-				JsonData += TEXT("{");
-
-				if (TransactionId.IsSet())
-				{
-					JsonData += FString::Printf(TEXT("\"transaction_id\": \"%s\", "), *TransactionId.GetValue());
-				}
-				if (ReceiptOffers.Num() > 0)
-				{
-					JsonData += TEXT("\"receipt_offers\": [");
-					for (int32 i = 0; i < ReceiptOffers.Num(); ++i)
-					{
-						JsonData += ReceiptOffers[i].ToJson();
-						if (i < ReceiptOffers.Num() - 1)
-						{
-							JsonData += TEXT(", ");
-						}
-					}
-					JsonData += TEXT("], ");
-				}
-
-				JsonData += TEXT("}");
-
-				return JsonData;
-			}
+			/** @brief Converts the receipt data to a JSON value */
+			TSharedRef<FJsonValue> ToJsonValue() const;
 		};
 
 		/** The checkout data for the purchase */
@@ -1180,8 +1086,8 @@ namespace RHStandardEvents
 			check(Provider != nullptr);
 			TArray<FAnalyticsEventAttribute> Attributes;
 
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout_data"), InCheckoutData.ToJson()));
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt_data"), InReceiptData.ToJson()));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout_data"), JsonValueToFragment(InCheckoutData.ToJsonValue())));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt_data"), JsonValueToFragment(InReceiptData.ToJsonValue())));
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("state"), InState));
 
 			CreateCustomDataAttributes(InCustomData, Attributes);
@@ -1189,8 +1095,6 @@ namespace RHStandardEvents
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
 	};
-
-
 
 	/**
 	* @brief This is a wrapper for providing custom event data
