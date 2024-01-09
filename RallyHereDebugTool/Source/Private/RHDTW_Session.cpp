@@ -607,6 +607,8 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 							RHJoinedSession->UpdateBrowserInfo(false, TMap<FString, FString>());
 						}
 					}
+
+					ImGui::TreePop();
 				}
 			}
 			else
