@@ -4,6 +4,13 @@
 
 ## 12.0.0
 
+### Breaking Changes
+* We have converted for most OSS types to calling GetLinkedAccountAuthToken(), as it provides asynchronous functionality for getting the auth token.  A few platforms still route to the old call.  This is a breaking change for Steam platforms in UE 5.2 and above, and requires adding the following to your DefaultEngine.ini (or equivalent):
+```
+[OnlineSubsystemSteam]
+DefaultLinkedAccountAuthTokenType=Session
+```
+
 ### High Level Changes
 * The SDK version number is changing so that versions now use the major version number.
 * This release is intended as primarily a bugfix release to 0.11.0
