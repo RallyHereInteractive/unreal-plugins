@@ -190,6 +190,7 @@ protected:
 	{
 		bInitialized = true;
 	}
+
 	static void Uninitialize()
 	{
 		// set uninitialize flag immediately, so we can detect if any callbacks are fired after this point

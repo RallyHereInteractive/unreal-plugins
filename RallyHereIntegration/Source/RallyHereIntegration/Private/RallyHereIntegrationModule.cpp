@@ -32,6 +32,9 @@ void FRallyHereIntegrationModule::ShutdownModule()
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
+	// uninitialize async helper first, as it will attempt to cancel requests, which may require the integration layer to still be valid
+	FRH_AsyncTaskHelper::Uninitialize();
+
     if (Integration.IsValid())
     {
         Integration->Uninitialize();
@@ -40,5 +43,4 @@ void FRallyHereIntegrationModule::ShutdownModule()
     }
 
 	FRH_PollControl::Uninitialize();
-	FRH_AsyncTaskHelper::Uninitialize();
 }
