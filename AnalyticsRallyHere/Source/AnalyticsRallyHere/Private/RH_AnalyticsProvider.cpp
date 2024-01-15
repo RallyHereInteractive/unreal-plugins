@@ -30,7 +30,16 @@ namespace RH_AnalyticsProviderCvars
 
 TSharedPtr<IAnalyticsProvider> FRH_Analytics::CreateAnalyticsProvider(const FAnalyticsET::Config& ConfigValues) const
 {
-	return MakeShared<FRH_AnalyticsProvider>(ConfigValues);
+	// custom deleter that runs shutdown to remove callback bindings, then deletes the provider.
+	auto Deleter = [](FRH_AnalyticsProvider* ProviderToDelete)
+		{
+			ProviderToDelete->Shutdown();
+			delete ProviderToDelete;
+		};
+
+	TSharedRef<FRH_AnalyticsProvider> Provider = MakeShareable(new FRH_AnalyticsProvider(ConfigValues), MoveTemp(Deleter));
+	Provider->Init();
+	return Provider;
 }
 
 /**
@@ -42,18 +51,37 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigV
 	, FlushIntervalSec(ConfigValues.FlushIntervalSec < 0 ? DefaultFlushIntervalSec : ConfigValues.FlushIntervalSec)
 	, bShouldCacheEvents(true)
 	, NextEventFlushTime(FPlatformTime::Seconds() + FlushIntervalSec)
-	, bInDestructor(false)
+	, bShuttingDown(false)
 	// avoid preallocating space if we are using the legacy protocol.
 	, EventCache(ConfigValues.MaximumPayloadSize, ConfigValues.PreallocatedPayloadSize)
 {
+}
+
+void FRH_AnalyticsProvider::Init()
+{
+	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Initializing RallyHere Analytics provider"));
+
 	HttpRetryManager = MakeShared<FHttpRetrySystem::FManager>(
 		FHttpRetrySystem::FRetryLimitCountSetting(Config.RetryLimitCount),
 		FHttpRetrySystem::FRetryTimeoutRelativeSecondsSetting()
-		);
-
-	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Initializing RallyHere Analytics provider"));
+	);
 
 	FCoreDelegates::OnEnginePreExit.AddSP(this, &FRH_AnalyticsProvider::OnEngineExit);
+}
+
+void FRH_AnalyticsProvider::Shutdown()
+{
+	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Destroying RallyHere Analytics provider"));
+
+	FCoreDelegates::OnEnginePreExit.RemoveAll(this);
+
+	bShuttingDown = true;
+
+	EndSession();
+}
+
+FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
+{
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
@@ -99,15 +127,6 @@ bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
 		}
 	}
 	return true;
-}
-
-FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
-{
-	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Destroying RallyHere Analytics provider"));
-	bInDestructor = true;
-	FCoreDelegates::OnEnginePreExit.RemoveAll(this);
-
-	EndSession();
 }
 
 bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnalyticsEventAttribute>& Attributes)
@@ -220,11 +239,13 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 		return;
 	}
 
+	// Flush cached events, even if we are not going to be able to send, to ensure that looped calls to this function eventually clear the cache.
+	FReceiveEventWrapperType Request(EventCache.FlushCache());
+
 	if(ensure(FModuleManager::Get().IsModuleLoaded("RallyHereIntegration")))
 	{
 		// grab event API, then compute the endpoint from a test event
 		auto& EventsAPI = RH_APIs::GetEventsAPI();
-		FReceiveEventWrapperType Request(EventCache.FlushCache());
 
 		// this manually emits the event for efficiency using a binary send, rather than using the API version which does extra copies
 		{
@@ -232,7 +253,7 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 
 			// Create/send Http request for an event
 			EventsAPI.ReceiveEventsV1(Request, 
-				!bInDestructor ? BaseReceiveEventsType::Delegate::CreateSP(this, &FRH_AnalyticsProvider::EventRequestComplete) : BaseReceiveEventsType::Delegate(),
+				!bShuttingDown ? BaseReceiveEventsType::Delegate::CreateSP(this, &FRH_AnalyticsProvider::EventRequestComplete) : BaseReceiveEventsType::Delegate(),
 				GetDefault<URH_IntegrationSettings>()->EventsReceiveEventPriority);
 		}
 	}

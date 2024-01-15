@@ -31,6 +31,11 @@ class ANALYTICSRALLYHERE_API FRH_AnalyticsProvider :
 public:
 	FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigValues);
 
+	/** @brief Initialize the provider */
+	virtual void Init();
+	/** @brief Shutdown the provider */
+	virtual void Shutdown();
+
 	// FTSTickerObjectBase
 
 	bool Tick(float DeltaSeconds) override;
@@ -109,7 +114,7 @@ protected:
 	/** Current timer to keep track of FlushIntervalSec flushes */
 	double NextEventFlushTime;
 	/** Track destructing for unbinding callbacks when firing events at shutdown */
-	bool bInDestructor;
+	bool bShuttingDown;
 
 	FRH_AnalyticsProviderEventCache EventCache;
 
