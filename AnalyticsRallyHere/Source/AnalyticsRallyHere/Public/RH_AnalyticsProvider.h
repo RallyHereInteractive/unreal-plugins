@@ -20,8 +20,6 @@
 
 #include "Misc/EngineVersionComparison.h"
 
-#include "EventsAPI.h"
-
 /**
  * @brief Implementation of analytics for RallyHere GETS.
  */
@@ -52,6 +50,7 @@ public:
 	virtual bool StartSession(FString InSessionID, const TArray<FAnalyticsEventAttribute>& Attributes) override;
 	virtual void EndSession() override;
 	virtual void FlushEvents() override;
+	virtual void OnEngineExit();
 
 	// we do not currently handle these, but expose them for completeness and future use
 	virtual void SetAppID(FString&& AppId) override {};
@@ -122,7 +121,7 @@ protected:
 	/**
 	* Delegate called when an event Http request completes
 	*/
-	void EventRequestComplete(const RallyHereAPI::FResponse_ReceiveEventsV1& Response);
+	void EventRequestComplete(const struct RallyHereAPI::FResponse_ReceiveEventsV1& Response);
 
 	TSharedPtr<class FHttpRetrySystem::FManager> HttpRetryManager;
 	FHttpRetrySystem::FRetryDomainsPtr RetryServers;

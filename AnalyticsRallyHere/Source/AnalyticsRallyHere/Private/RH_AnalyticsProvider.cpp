@@ -11,10 +11,12 @@
 #include "Policies/CondensedJsonPrintPolicy.h"
 #include "Serialization/JsonWriter.h"
 #include "Misc/EngineVersion.h"
+#include "Misc/CoreDelegates.h"
 #include "HAL/IConsoleManager.h"
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_IntegrationSettings.h"
+#include "EventsAPI.h"
 
 namespace RH_AnalyticsProviderCvars
 {
@@ -50,6 +52,8 @@ FRH_AnalyticsProvider::FRH_AnalyticsProvider(const FAnalyticsET::Config& ConfigV
 		);
 
 	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Initializing RallyHere Analytics provider"));
+
+	FCoreDelegates::OnEnginePreExit.AddSP(this, &FRH_AnalyticsProvider::OnEngineExit);
 }
 
 bool FRH_AnalyticsProvider::Tick(float DeltaSeconds)
@@ -101,6 +105,8 @@ FRH_AnalyticsProvider::~FRH_AnalyticsProvider()
 {
 	UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Destroying RallyHere Analytics provider"));
 	bInDestructor = true;
+	FCoreDelegates::OnEnginePreExit.RemoveAll(this);
+
 	EndSession();
 }
 
@@ -136,12 +142,27 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
  */
 void FRH_AnalyticsProvider::EndSession()
 {
-	FlushEvents();
+	// only attempt to flush events if a session was in progress
+	if (bSessionInProgress)
+	{
+		FlushEvents();
+	}
+
+	// ensure cache is flushed of all old events
+	while (EventCache.CanFlush())
+	{
+		EventCache.FlushCache();
+	}
 
 	// clear out the old session id
 	SetSessionID(FString());
 
 	bSessionInProgress = false;
+}
+
+void FRH_AnalyticsProvider::OnEngineExit()
+{
+	EndSession();
 }
 
 TSharedRef<IHttpRequest, ESPMode::ThreadSafe> FRH_AnalyticsProvider::CreateRequest()
