@@ -269,7 +269,7 @@ void URH_SessionView::PollForUpdate(const FRH_PollCompleteFunc& Delegate)
 		return;
 	}
 
-	FRH_OnSessionUpdatedDelegate CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
+	FRH_OnSessionUpdatedDelegate CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_SessionView* Session, const FRH_ErrorInfo& ErrorInfo)
 		{
 			// notify poller that execution is done
 			Delegate.ExecuteIfBound(bSuccess, true);

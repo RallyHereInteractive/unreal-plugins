@@ -989,7 +989,7 @@ void URH_GameInstanceServerBootstrapper::OnRegistrationFinalizerComplete(bool bS
 	}
 }
 
-void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool bSuccess, URH_JoinedSession* CreatedRHSession, const FRH_ErrorInfo& ErrorInfo)
+void URH_GameInstanceServerBootstrapper::OnSessionInstanceCreationCompleted(bool bSuccess, URH_SessionView* CreatedRHSession, const FRH_ErrorInfo& ErrorInfo)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 

@@ -46,7 +46,7 @@ protected:
 	{
 		if (SessionOwner.IsValid())
 		{
-			auto* PolledSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+			auto* PolledSession = SessionOwner->GetSessionById(SessionId);
 
 			if (PolledSession != nullptr)
 			{
@@ -67,7 +67,7 @@ protected:
 	{
 		if (bSuccess && SessionOwner.IsValid())
 		{
-			RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+			RHSession = SessionOwner->GetSessionById(SessionId);
 			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 		}
 		else
@@ -83,7 +83,7 @@ protected:
 	}
 
 	FString SessionId;
-	TWeakObjectPtr<URH_JoinedSession> RHSession;
+	TWeakObjectPtr<URH_SessionView> RHSession;
 };
 
 // Boilerplate class that does a full lookup of session data from the API (no-deduplicaiton or throttling, but does not require a pre-existing RHSession)
@@ -139,12 +139,12 @@ protected:
 		else if (Resp.GetHttpResponseCode() == (EHttpResponseCodes::NotModified))
 		{
 			// defer the poll, as we received an update here that said we are up to date
-			auto* RHSessionView = SessionOwner->GetSessionById(SessionId);
-			if (RHSessionView != nullptr)
+			RHSession = SessionOwner->GetSessionById(SessionId);
+			if (RHSession.IsValid())
 			{
-				RHSessionView->DeferPolling();
+				RHSession->DeferPolling();
 			}
-			RHSession = Cast<URH_JoinedSession>(RHSessionView);
+			
 			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound && Resp.GetJsonResponse().IsValid())
@@ -156,7 +156,7 @@ protected:
 			{
 				if (ErrorCodeDesc == TEXT("session_not_found")) // todo - const somewhere?
 				{
-					auto* ExistingSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+					auto* ExistingSession = SessionOwner->GetSessionById(SessionId);
 					if (ExistingSession != nullptr)
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionNotFound, FColor::Purple);
@@ -230,7 +230,7 @@ protected:
 		}
 
 		SessionOwner->ImportAPISession(SessionCache);
-		RHSession = Cast<URH_JoinedSession>(SessionOwner->GetSessionById(SessionId));
+		RHSession = SessionOwner->GetSessionById(SessionId);
 
 		Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
 	}
@@ -243,7 +243,7 @@ protected:
 
 
 	FString SessionId;
-	TWeakObjectPtr<URH_JoinedSession> RHSession;
+	TWeakObjectPtr<URH_SessionView> RHSession;
 	FRH_APISessionWithETag SessionCache;
 	FRH_ErrorInfo ErrorInfo;
 };
