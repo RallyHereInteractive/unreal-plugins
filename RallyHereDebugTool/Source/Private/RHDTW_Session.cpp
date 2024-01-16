@@ -1711,7 +1711,7 @@ void FRHDTW_Session::HandleBrowserSearchResult(bool bSuccess, const FRH_SessionB
 	}
 }
 
-void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession* SessionData, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid)
+void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_SessionView* SessionData, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{

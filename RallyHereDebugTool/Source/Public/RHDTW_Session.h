@@ -75,7 +75,7 @@ protected:
 	void ImGuiDisplayRegionsBrowser(URH_GameInstanceSubsystem* pGISubsystem);
 
 	void HandleBrowserSearchResult(bool bSuccess, const FRH_SessionBrowserSearchResult& Result);
-	void HandleSessionUpdatedResult(bool bSuccess, URH_JoinedSession* SessionData, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid);
+	void HandleSessionUpdatedResult(bool bSuccess, URH_SessionView* SessionData, const FRH_ErrorInfo& ErrorInfo, FGuid PlayerUuid);
 
 	void HandleGetPlayerSessions(bool bSuccess, class URH_PlayerSessions* SessionsData, FGuid PlayerUuid);
 	FString GetPlayerSessionsResult;

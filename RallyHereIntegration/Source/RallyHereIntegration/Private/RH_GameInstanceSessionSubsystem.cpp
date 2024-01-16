@@ -512,7 +512,7 @@ void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& 
 		if (ActiveSession->GetInstanceData()->GetJoinStatus() == ERHAPI_InstanceJoinableStatus::Joinable)
 		{
 			ActiveSession->AcknowledgeBackfill(true,
-				FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_JoinedSession* Session, const FRH_ErrorInfo& ErrorInfo)
+				FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_SessionView* Session, const FRH_ErrorInfo& ErrorInfo)
 					{
 						Delegate.ExecuteIfBound(bSuccess, GetShouldKeepBackfillAlive());
 					}

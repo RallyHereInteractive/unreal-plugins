@@ -342,7 +342,7 @@ protected:
 	* @param [in] CreatedRHSession The session that was created with an instance
 	* @param [in] ErrorInfo Error information about the instance creation
 	*/
-	virtual void OnSessionInstanceCreationCompleted(bool bSuccess, URH_JoinedSession* CreatedRHSession, const FRH_ErrorInfo& ErrorInfo);
+	virtual void OnSessionInstanceCreationCompleted(bool bSuccess, URH_SessionView* CreatedRHSession, const FRH_ErrorInfo& ErrorInfo);
 
 	/**
 	* @brief Bootstrapping Flow [SyncingToSession] - begin the process of synchronizing the session state into RH_GameInstanceSessionSubsystem
