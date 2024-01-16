@@ -25,6 +25,7 @@ class URH_GameInstanceClientBootstrapper;
 class ARH_OnlineBeaconHost;
 
 #define RH_SESSION_PARAMETER_NAME (TEXT("RHSessionId="))
+#define RH_INSTANCE_PARAMETER_NAME (TEXT("RHInstanceId="))
 
 
 UDELEGATE()

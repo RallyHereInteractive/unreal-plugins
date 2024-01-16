@@ -58,6 +58,9 @@ bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* 
 	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
 	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
 
+	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
+	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
+
 	if (!IsRunningDedicatedServer())	// dedicated servers always listen
 	{
 		if (!Session->IsOffline())		// temporary check until we have a template setting for joinability type
@@ -112,7 +115,11 @@ bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* 
 
 	FURL TravelURL(&lastURL, *FormattedURLString, TRAVEL_Absolute);
 
+	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
 	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
+
+	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
+	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
 
 	if (TravelURL.Valid && TravelURL.Host.Len() > 0)
 	{
@@ -193,7 +200,13 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 		const bool bHasSessionId = URL.HasOption(RH_SESSION_PARAMETER_NAME);
 		const FString SessionId = URL.GetOption(RH_SESSION_PARAMETER_NAME, TEXT(""));
 
-		if (URL.HasOption(TEXT("closed")) || URL.HasOption(TEXT("failed")) || !bHasSessionId || SessionId != ActiveSession->GetSessionId())
+		const bool bHasInstanceId = URL.HasOption(RH_INSTANCE_PARAMETER_NAME);
+		const FString InstanceId = URL.GetOption(RH_INSTANCE_PARAMETER_NAME, TEXT(""));
+
+		if (URL.HasOption(TEXT("closed")) || URL.HasOption(TEXT("failed")) 
+			|| !bHasSessionId || SessionId != ActiveSession->GetSessionId()
+			|| !bHasInstanceId || !ActiveSession->GetInstanceData() || InstanceId != ActiveSession->GetInstanceData()->GetInstanceId()
+			)
 		{
 			StartLeaveInstanceFlow(true);
 			return;
