@@ -117,6 +117,11 @@ public:
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
 	FORCEINLINE bool IsMarkedFubar() const { return bHasBeenMarkedFubar; }
 	/**
+	* @brief Gets if the instance has been marked failed.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
+	FORCEINLINE bool IsBackfillTerminated() const { return bIsBackfillTerminated; }
+	/**
 	* @brief Checks if the session has all the players and is good to change maps.
 	* @param [in] Session The session being checked.
 	* @return If true, the session is ready for a map transition.
@@ -182,17 +187,26 @@ public:
 	/**
 	 * @brief Gets whether backfill should be kept alive
 	 */
-	virtual bool GetShouldKeepInstanceHealthAlive() const;
+	UFUNCTION(BlueprintNativeEvent, Category = "Session", meta = (DisplayName = "Should Keep Instance Health Alive"))
+	bool GetShouldKeepInstanceHealthAlive() const;
 
 	/**
 	 * @brief Gets the health status of the instance to report to the API
 	 */
-	virtual ERHAPI_InstanceHealthStatus GetInstanceHealthStatusToReport() const;
+	UFUNCTION(BlueprintNativeEvent, Category = "Session", meta = (DisplayName = "Get Instance Health Status To Report"))
+	ERHAPI_InstanceHealthStatus GetInstanceHealthStatusToReport() const;
 
 	/**
 	 * @brief Gets whether backfill should be kept alive
 	 */
-	virtual bool GetShouldKeepBackfillAlive() const;
+	UFUNCTION(BlueprintNativeEvent, Category = "Session", meta = (DisplayName = "Should Keep Backfill Alive"))
+	bool GetShouldKeepBackfillAlive() const;
+
+	/**
+	 * @brief Shuts down backfill handling for the current session, cannot be reversed
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Terminate Backfill"))
+	virtual void TerminateBackfill() { bIsBackfillTerminated = true; }
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
@@ -226,6 +240,9 @@ protected:
 	/** @brief If set, the session instance is failed and unrecoverable. */
 	UPROPERTY(BlueprintGetter = IsMarkedFubar, Transient, Category = "Session|Instance")
 	bool bHasBeenMarkedFubar;
+
+	UPROPERTY(BlueprintGetter = IsBackfillTerminated, Transient, Category = "Session|Instance")
+	bool bIsBackfillTerminated;
 	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr InstanceHealthPoller;
