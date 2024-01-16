@@ -338,6 +338,10 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		}
 	}
 
+	// clear transient flags for new tracking
+	bHasBeenMarkedFubar = false;
+	bIsBackfillTerminated = false;
+
 	ActiveSession = JoinedSession;
 	FallbackSecurityToken.Reset();
 
@@ -441,12 +445,12 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 }
 
-bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive() const
+bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive_Implementation() const
 {
 	return true;
 }
 
-ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthStatusToReport() const
+ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthStatusToReport_Implementation() const
 {
 	return ERHAPI_InstanceHealthStatus::Healthy;
 }
@@ -474,7 +478,7 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 	}
 }
 
-bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive() const
+bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation() const
 {
 	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
 	{
@@ -484,6 +488,12 @@ bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive() const
 	// if session has no backfill info, then we cannot backfill it
 	const auto BackfillInfo = ActiveSession->GetSessionData().GetBackfillOrNull();
 	if (!BackfillInfo || BackfillInfo->GetBackfillId().IsEmpty())
+	{
+		return false;
+	}
+
+	// if a backfill termination was requested, we should not keep it alive
+	if (bIsBackfillTerminated)
 	{
 		return false;
 	}
@@ -773,9 +783,6 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 
 			// set state now before we start travel (which may fail in line)
 			SetActiveSession(DesiredSession);
-
-			// clear fubar flag for new tracking
-			bHasBeenMarkedFubar = false;
 
 			// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
 			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
