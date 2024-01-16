@@ -24,6 +24,9 @@
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnLoginPollSessionsCompleteMulticastDelegate, bool);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate, bool, bSuccess);
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnFailedToJoinPlatformSessionMulticastDelegate, const FRH_ErrorInfo&);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnFailedToJoinPlatformSessionMulticastDynamicDelegate, const FRH_ErrorInfo&, ErrorInfo);
+
 class URH_LocalPlayerSubsystem;
 
 /** @ingroup LocalPlayer
@@ -372,6 +375,12 @@ public:
 	FRH_OnLoginPollSessionsCompleteMulticastDynamicDelegate BLUEPRINT_OnLoginPollSessionsCompleteDelegate;
 
 	/**
+	* @brief Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to
+	*/
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Session", meta = (DisplayName = "On Failed To Join Platform Session"))
+	FRH_OnFailedToJoinPlatformSessionMulticastDynamicDelegate BLUEPRINT_OnFailedToJoinPlatformSessionDelegate;
+
+	/**
 	* @brief Multicast delegate triggered when a session managed by this subsystem is updated
 	*/
 	FRH_OnSessionUpdatedMulticastDelegate OnSessionUpdatedDelegate;
@@ -391,6 +400,10 @@ public:
 	* @brief Multicast delegate triggered when the initial poll after login is complete, to do first-time setup
 	*/
 	FRH_OnLoginPollSessionsCompleteMulticastDelegate OnLoginPollSessionsCompleteDelegate;
+	/**
+	* @brief Multicast delegate triggered when we fail to join a platform session that we've accepted an invite to
+	*/
+	FRH_OnFailedToJoinPlatformSessionMulticastDelegate OnFailedToJoinPlatformSessionDelegate;
 
 protected:
 	/**

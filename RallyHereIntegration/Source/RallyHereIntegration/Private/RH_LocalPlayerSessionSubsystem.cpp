@@ -138,7 +138,14 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, 
 			if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
 			{
 				// we need to join the session
-				URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, PlatformSessionToJoinOnUserChange.GetValue(), URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+				URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, PlatformSessionToJoinOnUserChange.GetValue(), URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+					{
+						if (!bSuccess)
+						{
+							BLUEPRINT_OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+							OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+						}
+					}));
 			}
 		}
 	}
@@ -826,7 +833,14 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformActivityActivation(const FUnique
 	else
 	{
 		// we need to join the session
-		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+		URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, *SessionInfo, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (!bSuccess)
+				{
+					BLUEPRINT_OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+					OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+				}
+			}));
 	}
 }
 
@@ -855,7 +869,14 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionInviteAccepted(const bool
 		else
 		{
 			// we need to join the session
-			URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorBlock());
+			URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, Session, URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+				{
+					if (!bSuccess)
+					{
+						BLUEPRINT_OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+						OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+					}
+				}));
 		}
 	}
 }
