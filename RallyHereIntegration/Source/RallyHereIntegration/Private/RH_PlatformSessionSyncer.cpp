@@ -240,7 +240,7 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 								}
 							}
 
-							Delegate.ExecuteIfBound(true, FRH_ErrorInfo());
+							Delegate.ExecuteIfBound(true, ErrorInfo);
 						}
 						else
 						{
