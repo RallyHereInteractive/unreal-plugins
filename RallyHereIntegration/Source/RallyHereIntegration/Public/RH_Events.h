@@ -7,6 +7,7 @@
 #include "Containers/UnrealString.h"
 #include "Misc/Optional.h"
 
+#include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
 #include "RH_Common.h"
 #include "EventsAPI.h"
@@ -526,6 +527,351 @@ namespace RHStandardEvents
 
 			Provider->RecordEvent(GetEventName(), Attributes);
 		}
+	};
+
+
+	/**
+	* rh.instance_hello_received
+	* @brief This event is triggered when the host detects a hello signal from a player / game client attempting to connect to it.
+	*/
+	struct FInstanceHelloReceivedEvent
+	{
+		static FString GetEventName() { return TEXT("rh.instance_hello_received"); }
+
+		// Attributes
+
+		/** @brief The session_id of the instance the player is attempting to join */
+		TOptional<FString> SessionId;
+
+		/** @brief The instance_id of the instance the player is attempting to join */
+		TOptional<FString> InstanceId;
+
+		/** @brief The user id of the instance the player is attempting to join */
+		TOptional<FGuid> UserId;
+
+		/** @brief The incoming IP Address the connection is originating from */
+		TOptional<FString> IpAddress;
+
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
+		FInstanceHelloReceivedEvent()
+			: SessionId()
+			, InstanceId()
+			, UserId()
+			, IpAddress()
+			, CustomData()
+		{
+		}
+
+		void EmitTo(IAnalyticsProvider* Provider) const
+		{
+			Emit(Provider, SessionId, InstanceId, UserId, IpAddress, CustomData);
+		}
+
+		static void Emit(
+			IAnalyticsProvider* Provider,
+			const TOptional<FString>& InSessionId,
+			const TOptional<FString>& InInstanceId,
+			const TOptional<FGuid>& InUserId,
+			const TOptional<FString>& InIpAddress,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
+		)
+		{
+			check(Provider != nullptr);
+			TArray<FAnalyticsEventAttribute> Attributes;
+
+			if (InSessionId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("session_id"), InSessionId.GetValue()));
+			}
+			if (InInstanceId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("instance_id"), InInstanceId.GetValue()));
+			}
+			if (InUserId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+			}
+			if (InIpAddress.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("ip_address"), InIpAddress.GetValue()));
+			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
+			Provider->RecordEvent(GetEventName(), Attributes);
+		}
+
+	};
+
+	/**
+	* rh.instance_login_received
+	* @brief This event is triggered when the host receives a login signal from a player / game client attempting to connect to it.
+	*/
+	struct FInstanceLoginReceivedEvent
+	{
+		static FString GetEventName() { return TEXT("rh.instance_login_received"); }
+
+		// Attributes
+
+		bool IsSuccess;
+
+		/** @brief The session_id of the instance the player is attempting to join */
+		TOptional<FString> SessionId;
+
+		/** @brief The instance_id of the instance the player is attempting to join */
+		TOptional<FString> InstanceId;
+
+		/** @brief The user id of the instance the player is attempting to join */
+		TOptional<FGuid> UserId;
+
+		/** @brief Platform UserId of the player */
+		TOptional<FString> PlatformUserId;
+
+		/** @brief Platform Id of the player */
+		TOptional<FString> PlatformId;
+
+		/** @brief The connection string the player is attempting to join with */
+		TOptional<FString> ConnectionString;
+
+		struct FSplitJoinInfo
+		{
+			/** @brief the parent user id for this split connection */
+			TOptional<FGuid> ParentUserId;
+
+			/** @brief the player index for this split connection */
+			TOptional<int32> PlayerIndex;
+
+			/** @brief Converts the receipt data to a JSON value */
+			TSharedRef<FJsonValue> ToJsonValue() const;
+		};
+
+		/** @brief the split join info for this connection */
+		TOptional<FSplitJoinInfo> SplitJoinInfo;
+
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
+		FInstanceLoginReceivedEvent()
+			: IsSuccess(false)
+			, SessionId()
+			, InstanceId()
+			, UserId()
+			, PlatformUserId()
+			, PlatformId()
+			, ConnectionString()
+			, SplitJoinInfo()
+			, CustomData()
+		{
+		}
+
+		void EmitTo(IAnalyticsProvider* Provider) const
+		{
+			Emit(Provider, IsSuccess, SessionId, InstanceId, UserId, PlatformUserId, PlatformId, ConnectionString, SplitJoinInfo, CustomData);
+		}
+
+		static void Emit(
+			IAnalyticsProvider* Provider,
+			bool InIsSuccess,
+			const TOptional<FString>& InSessionId,
+			const TOptional<FString>& InInstanceId,
+			const TOptional<FGuid>& InUserId,
+			const TOptional<FString>& InPlatformUserId,
+			const TOptional<FString>& InPlatformId,
+			const TOptional<FString>& InConnectionString,
+			const TOptional<FSplitJoinInfo>& InSplitJoinInfo,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
+		)
+		{
+			check(Provider != nullptr);
+
+			TArray<FAnalyticsEventAttribute> Attributes;
+
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess));
+
+			if (InSessionId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("session_id"), InSessionId.GetValue()));
+			}
+			if (InInstanceId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("instance_id"), InInstanceId.GetValue()));
+			}
+			if (InUserId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+			}
+			if (InPlatformUserId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("platform_user_id"), InPlatformUserId.GetValue()));
+			}
+			if (InPlatformId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("platform_id"), InPlatformId.GetValue()));
+			}
+			if (InConnectionString.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("connection_string"), InConnectionString.GetValue()));
+			}
+			if (InSplitJoinInfo.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("split_join_info"), JsonValueToFragment(InSplitJoinInfo.GetValue().ToJsonValue())));
+			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
+			Provider->RecordEvent(GetEventName(), Attributes);
+		}
+	};
+
+
+	/**
+	* rh.instance_join_received
+	* @brief This event is triggered when the host receives a join signal from a player / game client attempting to connect to it.
+	*/
+	struct FInstanceJoinReceivedEvent
+	{
+		static FString GetEventName() { return TEXT("rh.instance_login_received"); }
+
+		// Attributes
+
+		bool IsSuccess;
+
+		/** @brief The session_id of the instance the player is attempting to join */
+		TOptional<FString> SessionId;
+
+		/** @brief The instance_id of the instance the player is attempting to join */
+		TOptional<FString> InstanceId;
+
+		/** @brief The user id of the instance the player is attempting to join */
+		TOptional<FGuid> UserId;
+
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
+		FInstanceJoinReceivedEvent()
+			: IsSuccess(false)
+			, SessionId()
+			, InstanceId()
+			, UserId()
+			, CustomData()
+		{
+		}
+
+		void EmitTo(IAnalyticsProvider* Provider) const
+		{
+			Emit(Provider, IsSuccess, SessionId, InstanceId, UserId, CustomData);
+		}
+
+		static void Emit(
+			IAnalyticsProvider* Provider,
+			bool InIsSuccess,
+			const TOptional<FString>& InSessionId,
+			const TOptional<FString>& InInstanceId,
+			const TOptional<FGuid>& InUserId,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
+		)
+		{
+			check(Provider != nullptr);
+
+			TArray<FAnalyticsEventAttribute> Attributes;
+
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("is_success"), InIsSuccess));
+
+			if (InSessionId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("session_id"), InSessionId.GetValue()));
+			}
+			if (InInstanceId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("instance_id"), InInstanceId.GetValue()));
+			}
+			if (InUserId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
+			Provider->RecordEvent(GetEventName(), Attributes);
+		}
+	};
+
+
+	/**
+	* rh.instance_client_disconnect
+	* @brief This event is triggered when the host detects a client disconnection (either caused by it, or by the client).
+	*/
+	struct FInstanceClientDisconnectEvent
+	{
+		static FString GetEventName() { return TEXT("rh.instance_client_disconnect"); }
+
+		// Attributes
+
+		/** @brief The session_id of the session */
+		TOptional<FString> SessionId;
+
+		/** @brief The instance_id of the instance */
+		TOptional<FString> InstanceId;
+
+		/** @brief The user id of the instance the player disconnecting */
+		TOptional<FGuid> UserId;
+
+		/** @brief The reason for the disconnect, if known */
+		TOptional<FString> Reason;
+
+		/** @brief custom data fields (will be auto-prefixed with custom data prefix) */
+		TOptional<TMap<FString, FString>> CustomData;
+
+		FInstanceClientDisconnectEvent()
+			: SessionId()
+			, InstanceId()
+			, UserId()
+			, Reason()
+			, CustomData()
+		{
+		}
+
+		void EmitTo(IAnalyticsProvider* Provider) const
+		{
+			Emit(Provider, SessionId, InstanceId, UserId, Reason, CustomData);
+		}
+
+		static void Emit(
+			IAnalyticsProvider* Provider,
+			const TOptional<FString>& InSessionId,
+			const TOptional<FString>& InInstanceId,
+			const TOptional<FGuid>& InUserId,
+			const TOptional<FString>& InReason,
+			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
+		)
+		{
+			check(Provider != nullptr);
+			TArray<FAnalyticsEventAttribute> Attributes;
+
+			if (InSessionId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("session_id"), InSessionId.GetValue()));
+			}
+			if (InInstanceId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("instance_id"), InInstanceId.GetValue()));
+			}
+			if (InUserId.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+			}
+			if (InReason.IsSet())
+			{
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("reason"), InReason.GetValue()));
+			}
+
+			CreateCustomDataAttributes(InCustomData, Attributes);
+
+			Provider->RecordEvent(GetEventName(), Attributes);
+		}
+
 	};
 
 	/**
