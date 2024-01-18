@@ -6,6 +6,7 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
+#include "RH_Events.h"
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_CatalogSubsystem.h"
 #include "RallyHereIntegrationModule.h"
@@ -156,8 +157,10 @@ void URH_GameInstanceServerBootstrapper::Initialize()
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - Beginning RH Server Bootstrapping"), ANSI_TO_TCHAR(__FUNCTION__));
 
 		// create our auth context
-		AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
-		GetGameInstanceSubsystem()->SetAuthContext(AuthContext);
+		{
+			AuthContext = MakeShared<RallyHereAPI::FAuthContext>(RH_APIs::GetAPIs().GetAuth());
+			GetGameInstanceSubsystem()->SetAuthContext(AuthContext);
+		}
 
 		BeginServerLogin();
 
@@ -180,6 +183,13 @@ void URH_GameInstanceServerBootstrapper::Deinitialize()
 	Super::Deinitialize();
 
 	BestEffortLeaveSession();
+
+	// end any running analytics
+	if (AnalyticsProvider.IsValid())
+	{
+		AnalyticsProvider->EndSession();
+		AnalyticsProvider.Reset();
+	}
 
 	// dispose of any existing game host adapter
 	GameHostProvider.Reset();
@@ -637,6 +647,13 @@ void URH_GameInstanceServerBootstrapper::Recycle()
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Recycling);
 	BootstrappingResult = {};
 
+	// end any running analytics
+	if (AnalyticsProvider.IsValid())
+	{
+		AnalyticsProvider->EndSession();
+		AnalyticsProvider.Reset();
+	}
+
 	// dispose of the previous game host adapter
 	GameHostProvider.Reset();
 
@@ -650,6 +667,24 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Registration);
+
+	// create our analytics provider and initialize it
+	{
+		AnalyticsProvider = RHStandardEvents::AutoCreateAnalyticsProvider();
+
+		if (AnalyticsProvider.IsValid())
+		{
+			AnalyticsProvider->StartSession();
+
+			// emit the auto correlation start event
+			RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GetGameInstanceSubsystem()->GetGameInstance());
+
+			// emit the auto client device event
+			RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetGameInstanceSubsystem()->GetGameInstance());
+
+			GetGameInstanceSubsystem()->SetAnalyticsProvider(AnalyticsProvider);
+		}
+	}
 
 	auto CreateGameHostProvider = [this]() -> IRH_GameHostProviderInterface*
 	{
@@ -1278,8 +1313,6 @@ FUniqueNetIdWrapper URH_GameInstanceServerBootstrapper::GetOSSUniqueId() const
 
 	return FUniqueNetIdRepl();
 }
-
-
 
 void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWithETag& SessionWrapper)
 {

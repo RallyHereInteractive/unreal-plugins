@@ -178,17 +178,42 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 			{
 				// if we are now logged in, update game instance to use our auth context
 				pGISubsystem->SetAuthContext(GetAuthContext());
+
+				// if we have an analytics provider and game instance does not have one, set it as the auth provider
+				if (GetAnalyticsProvider().IsValid() && !pGISubsystem->GetAnalyticsProvider().IsValid())
+				{
+					pGISubsystem->SetAnalyticsProvider(GetAnalyticsProvider());
+				}
 			}
 			else
 			{
 				// if we are no longer logged in, see if there is someone logged in to use for the game instance level auth context
-				for (const auto* Player : pGameInstance->GetLocalPlayers())
+				if (pGISubsystem->GetAuthContext() == GetAuthContext())
 				{
-					auto* pPlayerSubsystem = Player->GetSubsystem<URH_LocalPlayerSubsystem>();
-					if (pPlayerSubsystem != nullptr && pPlayerSubsystem->IsLoggedIn())
+					pGISubsystem->SetAuthContext(nullptr);
+					for (const auto* Player : pGameInstance->GetLocalPlayers())
 					{
-						pGISubsystem->SetAuthContext(pPlayerSubsystem->GetAuthContext());
-						break;
+						auto* pPlayerSubsystem = Player->GetSubsystem<URH_LocalPlayerSubsystem>();
+						if (pPlayerSubsystem != nullptr && pPlayerSubsystem->IsLoggedIn())
+						{
+							pGISubsystem->SetAuthContext(pPlayerSubsystem->GetAuthContext());
+							break;
+						}
+					}
+				}
+
+				// if we are no longer logged in, see if there is someone logged in to use for the game instance level analytics provider
+				if (pGISubsystem->GetAnalyticsProvider() == GetAnalyticsProvider())
+				{
+					pGISubsystem->SetAnalyticsProvider(nullptr);
+					for (const auto* Player : pGameInstance->GetLocalPlayers())
+					{
+						auto* pPlayerSubsystem = Player->GetSubsystem<URH_LocalPlayerSubsystem>();
+						if (pPlayerSubsystem != nullptr && pPlayerSubsystem->GetAnalyticsProvider().IsValid())
+						{
+							pGISubsystem->SetAnalyticsProvider(pPlayerSubsystem->GetAnalyticsProvider());
+							break;
+						}
 					}
 				}
 			}
