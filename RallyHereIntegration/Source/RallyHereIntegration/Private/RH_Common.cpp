@@ -102,7 +102,14 @@ bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName)
 	}
 
 	bool bValue = false;
-	GConfig->GetBool(*OverrideMapName, *OSSNameString, bValue, GRallyHereIntegrationIni);
+
+	FString VersionedOSSNameString = OSSNameString + FString::Printf(TEXT("_UE%d_%d"), ENGINE_MAJOR_VERSION, ENGINE_MINOR_VERSION);
+
+	// check for a version specific override first, if not use the base name
+	if (!GConfig->GetBool(*OverrideMapName, *VersionedOSSNameString, bValue, GRallyHereIntegrationIni))
+	{
+		GConfig->GetBool(*OverrideMapName, *OSSNameString, bValue, GRallyHereIntegrationIni);
+	}
 
 	return bValue;
 }
