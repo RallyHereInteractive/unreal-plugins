@@ -22,14 +22,6 @@
 			"AdditionalDependencies": [
 				"RallyHereGameHostAdapter"
 			]
-		},
-		{
-			"Name": "RallyHereEditor",
-			"Type": "Editor",
-			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"RallyHereIntegration"
-			]
 		}
 	],
 
