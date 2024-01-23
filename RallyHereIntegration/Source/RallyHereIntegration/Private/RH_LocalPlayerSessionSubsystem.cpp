@@ -130,27 +130,6 @@ void URH_LocalPlayerSessionSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, 
 		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("session")).AddUObject(this, &URH_LocalPlayerSessionSubsystem::HandleNotification);
 	}
 
-	if (GetDefault<URH_IntegrationSettings>()->bAutoJoinPlatformSessionsAfterUserChange)
-	{
-		if (PlatformSessionToJoinOnUserChange.IsSet() && PlatformSessionToJoinOnUserChange->IsValid())
-		{
-			const auto AuthContext = GetAuthContext();
-			if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
-			{
-				// we need to join the session
-				URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, PlatformSessionToJoinOnUserChange.GetValue(), URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
-					{
-						if (!bSuccess)
-						{
-							BLUEPRINT_OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
-							OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
-						}
-					}));
-			}
-		}
-	}
-	ClearPlatformSessionToJoinOnUserChange();
-
 	URH_SessionView::PollAllSessions(this, true, true, FRH_OnPollAllSessionsDelegate::CreateUObject(this, &URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete));	// immediate update
 	StartPolling();		// start poll timer
 }
@@ -190,6 +169,41 @@ void URH_LocalPlayerSessionSubsystem::HandleNotification(const FRHAPI_Notificati
 
 void URH_LocalPlayerSessionSubsystem::HandlePollAllSessionsComplete(bool bSuccess, const TArray<FString>& SessionIds)
 {
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	
+	// if we have a pending platform session to join, attempt to join it now
+	const auto CachedPlatformSessionToJoin = PlatformSessionToJoinOnUserChange;
+
+	// make sure we clear out the platform session to join on user change, even if we did not attempt to join it
+	ClearPlatformSessionToJoinOnUserChange();
+
+	// attempt to join cached session if set
+	if (CachedPlatformSessionToJoin.IsSet() && CachedPlatformSessionToJoin->IsValid() && GetDefault<URH_IntegrationSettings>()->bAutoJoinPlatformSessionsAfterUserChange)
+	{
+		const auto AuthContext = GetAuthContext();
+		if (AuthContext.IsValid() && AuthContext->IsLoggedIn())
+		{
+			// we need to join the session
+			URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(this, CachedPlatformSessionToJoin.GetValue(), URH_OnlineSession::GetJoinDetailDefaults(this), FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+				{
+					if (!bSuccess)
+					{
+						BLUEPRINT_OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+						OnFailedToJoinPlatformSessionDelegate.Broadcast(ErrorInfo);
+					}
+
+					// fire the login poll sessions complete delegate
+					SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginPollSessionsComplete, FColor::Purple);
+					OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
+					BLUEPRINT_OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
+				}));
+
+			// we will fire the login poll sessions complete delegate when the join completes
+			return;
+		}
+	}
+
+	// if we did not have a pending session to join, fire the login poll sessions complete delegate
 	SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginPollSessionsComplete, FColor::Purple);
 	OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
 	BLUEPRINT_OnLoginPollSessionsCompleteDelegate.Broadcast(bSuccess);
