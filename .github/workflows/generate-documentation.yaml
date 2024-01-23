@@ -11,6 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Install System Dependencies
+      run: |
+        apt install doxygen
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '14'
+    - name: Install Node Dependencies
+      run: |
+        npm install moxygen
     - name: Run Generate Script
       run: |
         Documentation/generate.bash
