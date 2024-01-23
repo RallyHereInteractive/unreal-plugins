@@ -9,18 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "TrueskillTeam.h"
-#include "TrueskillUpdateRequest.generated.h"
+#include "RankedTeam.h"
+#include "RankUpdateRequest.generated.h"
 
-/** @defgroup RHAPI_TrueskillUpdateRequest RallyHere API Model TrueskillUpdateRequest
+/** @defgroup RHAPI_RankUpdateRequest RallyHere API Model RankUpdateRequest
  *  @{
  */
 
 /**
- * @brief DEPRECATED A request body to update players&#39; trueskill ratings from a match
+ * @brief DEPRECATED A request body to calculate and update players&#39; ratings from a match
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_TrueskillUpdateRequest : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -93,13 +93,13 @@ struct RALLYHEREAPI_API FRHAPI_TrueskillUpdateRequest : public FRHAPI_Model
 
     /** @brief List of teams that participated in this match */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_TrueskillTeam> Teams{  };
+    TArray<FRHAPI_RankedTeam> Teams{  };
     /** @brief Gets the value of Teams */
-    TArray<FRHAPI_TrueskillTeam>& GetTeams() { return Teams; }
+    TArray<FRHAPI_RankedTeam>& GetTeams() { return Teams; }
     /** @brief Gets the value of Teams */
-    const TArray<FRHAPI_TrueskillTeam>& GetTeams() const { return Teams; }
+    const TArray<FRHAPI_RankedTeam>& GetTeams() const { return Teams; }
     /** @brief Sets the value of Teams */
-    void SetTeams(TArray<FRHAPI_TrueskillTeam> NewValue) { Teams = NewValue;  }
+    void SetTeams(TArray<FRHAPI_RankedTeam> NewValue) { Teams = NewValue;  }
 };
 
 /** @} */

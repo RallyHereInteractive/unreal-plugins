@@ -10,7 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "HostType.h"
-#include "InstanceHealthStatus.h"
+#include "InstanceHealth.h"
 #include "InstanceJoinableStatus.h"
 #include "InstanceStartupParams.h"
 #include "JoinParams.h"
@@ -293,28 +293,50 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
-    /** @brief The current status of the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_InstanceHealthStatus InstanceHealth_Optional{  };
+    FRHAPI_InstanceHealth InstanceHealth_Optional{  };
     /** @brief true if InstanceHealth_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool InstanceHealth_IsSet{ false };
     /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
-    ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth_Optional; }
+    FRHAPI_InstanceHealth& GetInstanceHealth() { return InstanceHealth_Optional; }
     /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
-    const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth_Optional; }
+    const FRHAPI_InstanceHealth& GetInstanceHealth() const { return InstanceHealth_Optional; }
     /** @brief Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_InstanceHealthStatus& GetInstanceHealth(const ERHAPI_InstanceHealthStatus& DefaultValue) const { if (InstanceHealth_IsSet) return InstanceHealth_Optional; return DefaultValue; }
+    const FRHAPI_InstanceHealth& GetInstanceHealth(const FRHAPI_InstanceHealth& DefaultValue) const { if (InstanceHealth_IsSet) return InstanceHealth_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInstanceHealth(ERHAPI_InstanceHealthStatus& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
+    bool GetInstanceHealth(FRHAPI_InstanceHealth& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
     /** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+    FRHAPI_InstanceHealth* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
     /** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+    const FRHAPI_InstanceHealth* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
     /** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true */
-    void SetInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
+    void SetInstanceHealth(FRHAPI_InstanceHealth NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
      /** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
     void ClearInstanceHealth() { InstanceHealth_IsSet = false; }
+
+    /** @brief The profile id that this instance was spawned from */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString MatchMakingProfileId_Optional{  };
+    /** @brief true if MatchMakingProfileId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MatchMakingProfileId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+    FString& GetMatchMakingProfileId() { return MatchMakingProfileId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+    const FString& GetMatchMakingProfileId() const { return MatchMakingProfileId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMatchMakingProfileId(const FString& DefaultValue) const { if (MatchMakingProfileId_IsSet) return MatchMakingProfileId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingProfileId(FString& OutValue) const { if (MatchMakingProfileId_IsSet) OutValue = MatchMakingProfileId_Optional; return MatchMakingProfileId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMatchMakingProfileIdOrNull() { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMatchMakingProfileIdOrNull() const { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true */
+    void SetMatchMakingProfileId(FString NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false */
+    void ClearMatchMakingProfileId() { MatchMakingProfileId_IsSet = false; }
 };
 
 /** @} */

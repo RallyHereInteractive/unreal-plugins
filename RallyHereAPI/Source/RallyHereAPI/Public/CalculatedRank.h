@@ -10,17 +10,17 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "RankData.h"
-#include "TrueskillRank.generated.h"
+#include "CalculatedRank.generated.h"
 
-/** @defgroup RHAPI_TrueskillRank RallyHere API Model TrueskillRank
+/** @defgroup RHAPI_CalculatedRank RallyHere API Model CalculatedRank
  *  @{
  */
 
 /**
- * @brief Additional data about a specific player&#39;s rank and previous match in order to make trueskill calculations
+ * @brief Additional data about a specific player&#39;s rank and previous match in order to make rank calculations
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_TrueskillRank : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_CalculatedRank : public FRHAPI_Model
 {
     GENERATED_BODY()
 

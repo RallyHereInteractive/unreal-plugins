@@ -9,14 +9,14 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "InventoryPortal.generated.h"
+#include "FastapicommonPlatformsPortal.generated.h"
 
 
 /**
  * @brief An enumeration.
  */
 UENUM(BlueprintType)
-enum class ERHAPI_InventoryPortal : uint8
+enum class ERHAPI_FastapicommonPlatformsPortal : uint8
 {
     Free UMETA(ToolTip="An enumeration."),
     Sweat UMETA(ToolTip="An enumeration."),
@@ -55,8 +55,8 @@ enum class ERHAPI_InventoryPortal : uint8
     GooglePlay UMETA(ToolTip="An enumeration."),
     NintendoPpid UMETA(ToolTip="An enumeration."),
 };
-RALLYHEREAPI_API FString EnumToString(const ERHAPI_InventoryPortal& EnumValue);
-RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_InventoryPortal& EnumValue);
-RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_InventoryPortal& Value);
-RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_InventoryPortal& Value);
-RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_InventoryPortal& Value);
+RALLYHEREAPI_API FString EnumToString(const ERHAPI_FastapicommonPlatformsPortal& EnumValue);
+RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_FastapicommonPlatformsPortal& EnumValue);
+RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_FastapicommonPlatformsPortal& Value);
+RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_FastapicommonPlatformsPortal& Value);
+RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_FastapicommonPlatformsPortal& Value);

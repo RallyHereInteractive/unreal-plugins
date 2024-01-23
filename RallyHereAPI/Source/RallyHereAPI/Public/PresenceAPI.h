@@ -338,7 +338,7 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
@@ -347,7 +347,6 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerPresenceSelf : public FResponse
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> GetHeader200_ETag() const;
 

@@ -13,24 +13,47 @@
 
 
 /**
- * @brief Portals a.k.a platforms that a player can be linked/authenticated with
+ * @brief An enumeration.
  */
 UENUM(BlueprintType)
 enum class ERHAPI_Portal : uint8
 {
-    Anon UMETA(ToolTip="Anonymous portal used for testing. This is not intended to be used by real players."),
-    Amazon UMETA(ToolTip="Amazon portal"),
-    Steam UMETA(ToolTip="Steam portal"),
-    Psn UMETA(ToolTip="Playstation Network portal"),
-    Xboxlive UMETA(ToolTip="Xbox Live portal"),
-    Basic UMETA(ToolTip="Basic portal"),
-    Google UMETA(ToolTip="Google portal"),
-    Twitch UMETA(ToolTip="Twitch portal"),
-    NintendoSwitch UMETA(ToolTip="Nintendo Switch portal"),
-    Apple UMETA(ToolTip="Apple portal"),
-    Nintendo UMETA(ToolTip="Nintendo portal"),
-    Epic UMETA(ToolTip="Epic portal"),
-    NintendoPpid UMETA(ToolTip="Nintendo PPID portal"),
+    Free UMETA(ToolTip="An enumeration."),
+    Sweat UMETA(ToolTip="An enumeration."),
+    Unknown UMETA(ToolTip="An enumeration."),
+    Standard UMETA(ToolTip="An enumeration."),
+    Anon UMETA(ToolTip="An enumeration."),
+    Kongregate UMETA(ToolTip="An enumeration."),
+    Amazon UMETA(ToolTip="An enumeration."),
+    Steam UMETA(ToolTip="An enumeration."),
+    Tcls UMETA(ToolTip="An enumeration."),
+    LevelupLatam UMETA(ToolTip="An enumeration."),
+    LevelupBra UMETA(ToolTip="An enumeration."),
+    Psn UMETA(ToolTip="An enumeration."),
+    XboxLive UMETA(ToolTip="An enumeration."),
+    Basic UMETA(ToolTip="An enumeration."),
+    Facebook UMETA(ToolTip="An enumeration."),
+    Google UMETA(ToolTip="An enumeration."),
+    UNUSED14 UMETA(ToolTip="An enumeration."),
+    RivalsMobile UMETA(ToolTip="An enumeration."),
+    Twitch UMETA(ToolTip="An enumeration."),
+    PaladinsStrike UMETA(ToolTip="An enumeration."),
+    SmiteBlitz UMETA(ToolTip="An enumeration."),
+    FacebookSmite UMETA(ToolTip="An enumeration."),
+    FacebookPaladins UMETA(ToolTip="An enumeration."),
+    FacebookHotg UMETA(ToolTip="An enumeration."),
+    NintendoSwitch UMETA(ToolTip="An enumeration."),
+    Tune UMETA(ToolTip="An enumeration."),
+    Apple UMETA(ToolTip="An enumeration."),
+    Discord UMETA(ToolTip="An enumeration."),
+    Nintendo UMETA(ToolTip="An enumeration."),
+    UNUSED27 UMETA(ToolTip="An enumeration."),
+    Epic UMETA(ToolTip="An enumeration."),
+    Forte UMETA(ToolTip="An enumeration."),
+    Simulmedia UMETA(ToolTip="An enumeration."),
+    Luna UMETA(ToolTip="An enumeration."),
+    GooglePlay UMETA(ToolTip="An enumeration."),
+    NintendoPpid UMETA(ToolTip="An enumeration."),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Portal& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Portal& EnumValue);

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "TrueskillUpdateRequestV2.h"
+#include "RankUpdateRequest.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_TrueskillUpdateRequestV2
+// Implementation for FRHAPI_RankUpdateRequest
 
-void FRHAPI_TrueskillUpdateRequestV2::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_RankUpdateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
     if (InstanceId_IsSet)
@@ -36,7 +36,7 @@ void FRHAPI_TrueskillUpdateRequestV2::WriteJson(TSharedRef<TJsonWriter<>>& Write
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_TrueskillUpdateRequestV2::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_RankUpdateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))

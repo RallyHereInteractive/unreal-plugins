@@ -9,10 +9,10 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "TrueskillRank.h"
-#include "TrueskillTeam.generated.h"
+#include "CalculatedRank.h"
+#include "RankedTeam.generated.h"
 
-/** @defgroup RHAPI_TrueskillTeam RallyHere API Model TrueskillTeam
+/** @defgroup RHAPI_RankedTeam RallyHere API Model RankedTeam
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief One team of players from a match along with their placement in the match, and previous trueskill data about all of the players
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_TrueskillTeam : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RankedTeam : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,15 +40,15 @@ struct RALLYHEREAPI_API FRHAPI_TrueskillTeam : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of PlayerRankUpdate objects that give stats about a specific player from the match */
+    /** @brief List of CalculatedRank objects that give stats about a specific player from the match */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_TrueskillRank> Players{  };
+    TArray<FRHAPI_CalculatedRank> Players{  };
     /** @brief Gets the value of Players */
-    TArray<FRHAPI_TrueskillRank>& GetPlayers() { return Players; }
+    TArray<FRHAPI_CalculatedRank>& GetPlayers() { return Players; }
     /** @brief Gets the value of Players */
-    const TArray<FRHAPI_TrueskillRank>& GetPlayers() const { return Players; }
+    const TArray<FRHAPI_CalculatedRank>& GetPlayers() const { return Players; }
     /** @brief Sets the value of Players */
-    void SetPlayers(TArray<FRHAPI_TrueskillRank> NewValue) { Players = NewValue;  }
+    void SetPlayers(TArray<FRHAPI_CalculatedRank> NewValue) { Players = NewValue;  }
 
     /** @brief What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

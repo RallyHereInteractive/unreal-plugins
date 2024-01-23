@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "LoginLootReward.h"
 #include "RoleAuthBypass.h"
 #include "Role.generated.h"
 
@@ -49,6 +50,33 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     const FString& GetRoleId() const { return RoleId; }
     /** @brief Sets the value of RoleId */
     void SetRoleId(FString NewValue) { RoleId = NewValue;  }
+
+    /** @brief Legacy role ID */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 LegacyRoleId_Optional{  };
+    /** @brief true if LegacyRoleId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool LegacyRoleId_IsSet{ false };
+    /** @brief Gets the value of LegacyRoleId_Optional, regardless of it having been set */
+    int32& GetLegacyRoleId() { return LegacyRoleId_Optional; }
+    /** @brief Gets the value of LegacyRoleId_Optional, regardless of it having been set */
+    const int32& GetLegacyRoleId() const { return LegacyRoleId_Optional; }
+    /** @brief Gets the value of LegacyRoleId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetLegacyRoleId(const int32& DefaultValue) const { if (LegacyRoleId_IsSet) return LegacyRoleId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LegacyRoleId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLegacyRoleId(int32& OutValue) const { if (LegacyRoleId_IsSet) OutValue = LegacyRoleId_Optional; return LegacyRoleId_IsSet; }
+    /** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetLegacyRoleIdOrNull() { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
+    /** @brief Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetLegacyRoleIdOrNull() const { if (LegacyRoleId_IsSet) return &LegacyRoleId_Optional; return nullptr; }
+    /** @brief Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true */
+    void SetLegacyRoleId(int32 NewValue) { LegacyRoleId_Optional = NewValue; LegacyRoleId_IsSet = true; }
+     /** @brief Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false */
+    void ClearLegacyRoleId() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = false; }
+    /** @brief Returns true if LegacyRoleId_Optional is set and matches the default value */
+    bool IsLegacyRoleIdDefaultValue() const { return LegacyRoleId_IsSet && LegacyRoleId_Optional == 0; }
+    /** @brief Sets the value of LegacyRoleId_Optional to its default and also sets LegacyRoleId_IsSet to true */
+    void SetLegacyRoleIdToDefault() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = true; }
 
     /** @brief Custom data for the role */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
@@ -96,26 +124,26 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
      /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
     void ClearAuthBypass() { AuthBypass_IsSet = false; }
 
-    /** @brief List of loot table item ids that are fulfilled for the player when they begin a new inventory session */
+    /** @brief List of loot ids that are fulfilled for the player when they begin a new inventory session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<int32> LoginLootRewards_Optional{  };
+    TArray<FRHAPI_LoginLootReward> LoginLootRewards_Optional{  };
     /** @brief true if LoginLootRewards_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool LoginLootRewards_IsSet{ false };
     /** @brief Gets the value of LoginLootRewards_Optional, regardless of it having been set */
-    TArray<int32>& GetLoginLootRewards() { return LoginLootRewards_Optional; }
+    TArray<FRHAPI_LoginLootReward>& GetLoginLootRewards() { return LoginLootRewards_Optional; }
     /** @brief Gets the value of LoginLootRewards_Optional, regardless of it having been set */
-    const TArray<int32>& GetLoginLootRewards() const { return LoginLootRewards_Optional; }
+    const TArray<FRHAPI_LoginLootReward>& GetLoginLootRewards() const { return LoginLootRewards_Optional; }
     /** @brief Gets the value of LoginLootRewards_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<int32>& GetLoginLootRewards(const TArray<int32>& DefaultValue) const { if (LoginLootRewards_IsSet) return LoginLootRewards_Optional; return DefaultValue; }
+    const TArray<FRHAPI_LoginLootReward>& GetLoginLootRewards(const TArray<FRHAPI_LoginLootReward>& DefaultValue) const { if (LoginLootRewards_IsSet) return LoginLootRewards_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LoginLootRewards_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLoginLootRewards(TArray<int32>& OutValue) const { if (LoginLootRewards_IsSet) OutValue = LoginLootRewards_Optional; return LoginLootRewards_IsSet; }
+    bool GetLoginLootRewards(TArray<FRHAPI_LoginLootReward>& OutValue) const { if (LoginLootRewards_IsSet) OutValue = LoginLootRewards_Optional; return LoginLootRewards_IsSet; }
     /** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
-    TArray<int32>* GetLoginLootRewardsOrNull() { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
+    TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
     /** @brief Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<int32>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
+    const TArray<FRHAPI_LoginLootReward>* GetLoginLootRewardsOrNull() const { if (LoginLootRewards_IsSet) return &LoginLootRewards_Optional; return nullptr; }
     /** @brief Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true */
-    void SetLoginLootRewards(TArray<int32> NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
+    void SetLoginLootRewards(TArray<FRHAPI_LoginLootReward> NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
      /** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
     void ClearLoginLootRewards() { LoginLootRewards_IsSet = false; }
 };

@@ -10,7 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
-#include "InventoryPortal.h"
+#include "Portal.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 
@@ -68,7 +68,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlements : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     int32 PlayerId = 0;
-    ERHAPI_InventoryPortal PortalId;
+    ERHAPI_Portal PortalId;
 };
 
 struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlements : public FResponse
@@ -130,7 +130,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsPlayerUuid : public FRequ
 
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PlayerUuid;
-    ERHAPI_InventoryPortal PortalId;
+    ERHAPI_Portal PortalId;
 };
 
 struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsPlayerUuid : public FResponse
@@ -191,7 +191,7 @@ struct RALLYHEREAPI_API FRequest_ProcessKeyEntitlementsSelf : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_InventoryPortal PortalId;
+    ERHAPI_Portal PortalId;
 };
 
 struct RALLYHEREAPI_API FResponse_ProcessKeyEntitlementsSelf : public FResponse
@@ -252,7 +252,7 @@ struct RALLYHEREAPI_API FRequest_ProcessPlayerUuidEntitlementsSelf : public FReq
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_InventoryPortal PortalId;
+    ERHAPI_Portal PortalId;
 };
 
 struct RALLYHEREAPI_API FResponse_ProcessPlayerUuidEntitlementsSelf : public FResponse
