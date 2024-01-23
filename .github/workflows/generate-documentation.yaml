@@ -6,13 +6,13 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
-  build:
+  generate:
     name: Generate Documentation
     runs-on: rally-simple
     steps:
     - uses: actions/checkout@v4
-    - name: Install dependencies
-      run:
+    - name: Run Generate Script
+      run: |
         Documentation/generate.bash
     - name: Push Changes
       env:
