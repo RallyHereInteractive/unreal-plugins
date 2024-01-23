@@ -7,7 +7,7 @@ on:
     types: [opened, reopened, synchronize]
 jobs:
   build:
-    name: Build
+    name: Generate Documentation
     runs-on: rally-simple
     steps:
     - uses: actions/checkout@v4
