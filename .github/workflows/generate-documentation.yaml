@@ -8,7 +8,7 @@ on:
 jobs:
   generate:
     name: Generate Documentation
-    runs-on: rally-simple
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - name: Run Generate Script
