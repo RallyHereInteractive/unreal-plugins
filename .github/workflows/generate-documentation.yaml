@@ -23,11 +23,8 @@ jobs:
     - name: Run Generate Script
       run: |
         Documentation/generate.bash
-    - name: Push Changes
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git config user.email "builder@rallyhere.gg"
-        git config user.name "RallyHereBuilder"
-        git add .
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Generate Documentation" && git push)
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Generated Documentation"
+        commit_user_name: "RallyHereBuilder"
+        commit_user_email: "builder@rallyhere.gg"
