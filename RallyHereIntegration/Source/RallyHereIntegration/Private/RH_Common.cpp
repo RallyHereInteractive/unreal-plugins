@@ -129,7 +129,12 @@ bool RH_UseRecentPlayersFromOSSName(FName OSSName)
 	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseRecentPlayersFromOSSName"));
 }
 
-
+FString RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform)
+{
+	FString PlatformName;
+	GConfig->GetString(TEXT("PlatformNameFromPlatformEnumMap"), *EnumToString(Platform), PlatformName, GRallyHereIntegrationIni);
+	return PlatformName;
+}
 
 ERHAPI_InventoryBucket RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform)
 {

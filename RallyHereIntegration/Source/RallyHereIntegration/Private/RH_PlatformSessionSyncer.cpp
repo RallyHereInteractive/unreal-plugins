@@ -6,7 +6,9 @@
 #include "RH_Integration.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "RH_SessionHelpers.h"
+#include "RH_PlayerInfoSubsystem.h"
 
+#include "Interfaces/IMessageSanitizerInterface.h"
 #include "Online/OnlineSessionNames.h"
 
 void MakeSessionIdJsonCaseConsistent(FString& SessionIdStr)
@@ -205,7 +207,79 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 		return true;
 	}
 
-	return false;;
+	return false;
+}
+
+void URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(FRH_SessionOwnerPtr SessionOwnerPtr, FGuid PlayerUuid, FRH_OnSessionPlayerIsBlockedDelegateBlock Delegate)
+{
+	if (!SessionOwnerPtr.IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto* RHPI = SessionOwnerPtr->GetPlayerInfoSubsystem();
+	if (RHPI == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const auto* PlayerInfo = RHPI->GetOrCreatePlayerInfo(PlayerUuid);
+	if (PlayerInfo == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto PlatformUserId = SessionOwnerPtr->GetOSSPlatformUserId();
+	
+	if (!PlatformUserId.IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const IOnlineSubsystem* OSS = SessionOwnerPtr->GetOSS();
+	if (OSS == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	FString AuthTypeToExclude;
+	const IMessageSanitizerPtr MessageSanitizer = OSS->GetMessageSanitizer(PlatformUserId, AuthTypeToExclude);
+	if (!MessageSanitizer.IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	FString PortalUserId;
+	for (const auto& PlatformId : PlayerInfo->GetPlayerPlatformIds())
+	{
+		if (PlatformId.PlatformType == PlayerInfo->GetLoggedInPlatform())
+		{
+			PortalUserId = PlatformId.UserId;
+		}
+	}
+
+	if (PortalUserId.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	MessageSanitizer->ResetBlockedUserCache();
+
+	MessageSanitizer->QueryBlockedUser(
+		PlatformUserId,
+		PortalUserId,
+		RH_GetPlatformNameFromPlatformEnum(PlayerInfo->GetLoggedInPlatform()),
+		FOnQueryUserBlockedResponse::CreateLambda([Delegate](const FBlockedQueryResult& QueryResult)
+			{
+				Delegate.ExecuteIfBound(QueryResult.bIsBlocked || QueryResult.bIsBlockedNonFriends);
+			}));
 }
 
 void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_GenericSuccessWithErrorBlock& Delegate)

@@ -229,6 +229,11 @@ FUniqueNetIdWrapper URH_LocalPlayerSessionSubsystem::GetOSSUniqueId() const
 	return GetLocalPlayerSubsystem()->GetOSSUniqueId();
 }
 
+FPlatformUserId URH_LocalPlayerSessionSubsystem::GetOSSPlatformUserId() const
+{
+	return GetLocalPlayerSubsystem()->GetPlatformUserId();
+}
+
 FGuid URH_LocalPlayerSessionSubsystem::GetPlayerUuid() const
 {
 	return GetLocalPlayerSubsystem()->GetPlayerUuid();

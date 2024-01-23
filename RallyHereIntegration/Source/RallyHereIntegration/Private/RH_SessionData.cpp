@@ -424,6 +424,35 @@ void URH_InvitedSession::Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate
 	Helper->Start(Request);
 }
 
+void URH_InvitedSession::QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate)
+{
+	auto SessionOwner = GetSessionOwner();
+	if (SessionOwner == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	if (!SessionOwner->GetPlayerUuid().IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const FRHAPI_SessionPlayer* pSessionPlayer = GetSessionPlayer(SessionOwner->GetPlayerUuid());
+	if (pSessionPlayer == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const FGuid InviterId = pSessionPlayer->GetInvitingPlayerUuid(FGuid());
+	URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(MakeWeakInterface(SessionOwner), InviterId, FRH_OnSessionPlayerIsBlockedDelegate::CreateWeakLambda(this, [Delegate](bool bIsInviterBlocked)
+		{
+			Delegate.ExecuteIfBound(bIsInviterBlocked);
+		}));
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 
 URH_JoinedSession::URH_JoinedSession(const FObjectInitializer& ObjectInitializer)
