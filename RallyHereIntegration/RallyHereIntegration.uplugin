@@ -51,6 +51,11 @@
 			"Enabled": true
 		},
 		{
+			"Name": "RallyHereDeveloperAPI",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
 			"Name": "WebAuth",
 			"Enabled": true
 		},
