@@ -1,0 +1,25 @@
+name: Generate Documentation
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  build:
+    name: Build
+    runs-on: rally-simple
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run:
+        Documentation/generate.bash
+    - name: Push Changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config user.email "builder@rallyhere.gg" && \
+        git config user.name "RallyHereBuilder" && \
+        git pull && \
+        git add . && \
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Generate Documentation" && git push)
