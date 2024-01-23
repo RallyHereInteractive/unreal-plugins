@@ -9,7 +9,6 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevMatchMakingProfile.h"
 #include "DevMatchMakingProfileList.generated.h"
 
 /** @defgroup RHAPI_DevMatchMakingProfileList RallyHere API Model DevMatchMakingProfileList
@@ -17,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileList : public FRHAPI_DevModel
@@ -112,35 +111,35 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileList : public FRHAP
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
-    /** @brief ID to uniquely identify this list of MatchMakingProfiles */
-    FGuid ProfileListId{  };
-    /** @brief Gets the value of ProfileListId */
-    FGuid& GetProfileListId() { return ProfileListId; }
-    /** @brief Gets the value of ProfileListId */
-    const FGuid& GetProfileListId() const { return ProfileListId; }
-    /** @brief Sets the value of ProfileListId */
-    void SetProfileListId(FGuid NewValue) { ProfileListId = NewValue;  }
+    /** @brief Timestamp of when this resource was created */
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
-    /** @brief List of MatchMakingProfiles in this list */
-    TArray<FRHAPI_DevMatchMakingProfile> Profiles_Optional{  };
-    /** @brief true if Profiles_Optional has been set to a value */
-    bool Profiles_IsSet{ false };
-    /** @brief Gets the value of Profiles_Optional, regardless of it having been set */
-    TArray<FRHAPI_DevMatchMakingProfile>& GetProfiles() { return Profiles_Optional; }
-    /** @brief Gets the value of Profiles_Optional, regardless of it having been set */
-    const TArray<FRHAPI_DevMatchMakingProfile>& GetProfiles() const { return Profiles_Optional; }
-    /** @brief Gets the value of Profiles_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_DevMatchMakingProfile>& GetProfiles(const TArray<FRHAPI_DevMatchMakingProfile>& DefaultValue) const { if (Profiles_IsSet) return Profiles_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Profiles_Optional and returns true if it has been set, otherwise returns false */
-    bool GetProfiles(TArray<FRHAPI_DevMatchMakingProfile>& OutValue) const { if (Profiles_IsSet) OutValue = Profiles_Optional; return Profiles_IsSet; }
-    /** @brief Returns a pointer to Profiles_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_DevMatchMakingProfile>* GetProfilesOrNull() { if (Profiles_IsSet) return &Profiles_Optional; return nullptr; }
-    /** @brief Returns a pointer to Profiles_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_DevMatchMakingProfile>* GetProfilesOrNull() const { if (Profiles_IsSet) return &Profiles_Optional; return nullptr; }
-    /** @brief Sets the value of Profiles_Optional and also sets Profiles_IsSet to true */
-    void SetProfiles(TArray<FRHAPI_DevMatchMakingProfile> NewValue) { Profiles_Optional = NewValue; Profiles_IsSet = true; }
-     /** @brief Clears the value of Profiles_Optional and sets Profiles_IsSet to false */
-    void ClearProfiles() { Profiles_IsSet = false; }
+    /** @brief ID to uniquely identify this list of MatchMakingProfiles */
+    FGuid MatchMakingProfileListId{  };
+    /** @brief Gets the value of MatchMakingProfileListId */
+    FGuid& GetMatchMakingProfileListId() { return MatchMakingProfileListId; }
+    /** @brief Gets the value of MatchMakingProfileListId */
+    const FGuid& GetMatchMakingProfileListId() const { return MatchMakingProfileListId; }
+    /** @brief Sets the value of MatchMakingProfileListId */
+    void SetMatchMakingProfileListId(FGuid NewValue) { MatchMakingProfileListId = NewValue;  }
 };
 
 /** @} */

@@ -29,8 +29,11 @@ void FRHAPI_DevInstanceStartupParams::WriteJson(TSharedRef<TJsonWriter<>>& Write
         Writer->WriteIdentifierPrefix(TEXT("mode"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, Mode_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("misc_params"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, MiscParams);
+    if (MiscParams_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("misc_params"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, MiscParams_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -56,7 +59,11 @@ bool FRHAPI_DevInstanceStartupParams::FromJson(const TSharedPtr<FJsonValue>& Jso
         ParseSuccess &= Mode_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonMiscParamsField = (*Object)->TryGetField(TEXT("misc_params"));
-    ParseSuccess &= JsonMiscParamsField.IsValid() && !JsonMiscParamsField->IsNull() && TryGetJsonValue(JsonMiscParamsField, MiscParams);
+    if (JsonMiscParamsField.IsValid() && !JsonMiscParamsField->IsNull())
+    {
+        MiscParams_IsSet = TryGetJsonValue(JsonMiscParamsField, MiscParams_Optional);
+        ParseSuccess &= MiscParams_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
     {

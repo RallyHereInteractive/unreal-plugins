@@ -23,2787 +23,6 @@ FMapsAPI::FMapsAPI() : FAPI()
 
 FMapsAPI::~FMapsAPI() {}
 
-FHttpRequestPtr FMapsAPI::OrgProductSandboxCreateMap(const FRequest_OrgProductSandboxCreateMap& Request, const FDelegate_OrgProductSandboxCreateMap& Delegate /*= FDelegate_OrgProductSandboxCreateMap()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxCreateMapResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxCreateMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxCreateMapResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxCreateMap Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxCreateMap::FRequest_OrgProductSandboxCreateMap()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxCreateMap::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxCreateMap::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxCreateMap::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMap - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMap - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMap - Body parameter (FRHAPI_DevMapRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMap - Body parameter (FRHAPI_DevMapRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMap - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxCreateMap::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxCreateMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxCreateMap::FResponse_OrgProductSandboxCreateMap(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxCreateMap::Name = TEXT("OrgProductSandboxCreateMap");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxCreateMapSelectionListEntry(const FRequest_OrgProductSandboxCreateMapSelectionListEntry& Request, const FDelegate_OrgProductSandboxCreateMapSelectionListEntry& Delegate /*= FDelegate_OrgProductSandboxCreateMapSelectionListEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxCreateMapSelectionListEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxCreateMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxCreateMapSelectionListEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxCreateMapSelectionListEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxCreateMapSelectionListEntry::FRequest_OrgProductSandboxCreateMapSelectionListEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxCreateMapSelectionListEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxCreateMapSelectionListEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxCreateMapSelectionListEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMapSelectionListEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMapSelectionListEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapSelectionListEntryRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMapSelectionListEntry - Body parameter (FRHAPI_DevMapSelectionListEntryRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMapSelectionListEntry - Body parameter (FRHAPI_DevMapSelectionListEntryRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateMapSelectionListEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxCreateMapSelectionListEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxCreateMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxCreateMapSelectionListEntry::FResponse_OrgProductSandboxCreateMapSelectionListEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxCreateMapSelectionListEntry::Name = TEXT("OrgProductSandboxCreateMapSelectionListEntry");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxCreateSelectionList(const FRequest_OrgProductSandboxCreateSelectionList& Request, const FDelegate_OrgProductSandboxCreateSelectionList& Delegate /*= FDelegate_OrgProductSandboxCreateSelectionList()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxCreateSelectionListResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxCreateSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxCreateSelectionListResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxCreateSelectionList Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxCreateSelectionList::FRequest_OrgProductSandboxCreateSelectionList()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxCreateSelectionList::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxCreateSelectionList::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxCreateSelectionList::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateSelectionList - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateSelectionList - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapSelectionListRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateSelectionList - Body parameter (FRHAPI_DevMapSelectionListRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateSelectionList - Body parameter (FRHAPI_DevMapSelectionListRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateSelectionList - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxCreateSelectionList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxCreateSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxCreateSelectionList::FResponse_OrgProductSandboxCreateSelectionList(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxCreateSelectionList::Name = TEXT("OrgProductSandboxCreateSelectionList");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxDeleteMap(const FRequest_OrgProductSandboxDeleteMap& Request, const FDelegate_OrgProductSandboxDeleteMap& Delegate /*= FDelegate_OrgProductSandboxDeleteMap()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxDeleteMapResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxDeleteMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxDeleteMapResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxDeleteMap Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxDeleteMap::FRequest_OrgProductSandboxDeleteMap()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxDeleteMap::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxDeleteMap::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("map_id"), ToStringFormatArg(MapId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxDeleteMap::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMap - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMap - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMap - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxDeleteMap::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 204:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxDeleteMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return true;
-}
-
-FResponse_OrgProductSandboxDeleteMap::FResponse_OrgProductSandboxDeleteMap(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxDeleteMap::Name = TEXT("OrgProductSandboxDeleteMap");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxDeleteMapSelectionList(const FRequest_OrgProductSandboxDeleteMapSelectionList& Request, const FDelegate_OrgProductSandboxDeleteMapSelectionList& Delegate /*= FDelegate_OrgProductSandboxDeleteMapSelectionList()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxDeleteMapSelectionListResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxDeleteMapSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMapSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxDeleteMapSelectionListResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxDeleteMapSelectionList Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxDeleteMapSelectionList::FRequest_OrgProductSandboxDeleteMapSelectionList()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxDeleteMapSelectionList::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxDeleteMapSelectionList::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxDeleteMapSelectionList::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMapSelectionList - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMapSelectionList - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMapSelectionList - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxDeleteMapSelectionList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 204:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxDeleteMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return true;
-}
-
-FResponse_OrgProductSandboxDeleteMapSelectionList::FResponse_OrgProductSandboxDeleteMapSelectionList(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxDeleteMapSelectionList::Name = TEXT("OrgProductSandboxDeleteMapSelectionList");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxDeleteMapSelectionListEntry(const FRequest_OrgProductSandboxDeleteMapSelectionListEntry& Request, const FDelegate_OrgProductSandboxDeleteMapSelectionListEntry& Delegate /*= FDelegate_OrgProductSandboxDeleteMapSelectionListEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxDeleteMapSelectionListEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxDeleteMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxDeleteMapSelectionListEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxDeleteMapSelectionListEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxDeleteMapSelectionListEntry::FRequest_OrgProductSandboxDeleteMapSelectionListEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxDeleteMapSelectionListEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxDeleteMapSelectionListEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxDeleteMapSelectionListEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMapSelectionListEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMapSelectionListEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteMapSelectionListEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxDeleteMapSelectionListEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 204:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxDeleteMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return true;
-}
-
-FResponse_OrgProductSandboxDeleteMapSelectionListEntry::FResponse_OrgProductSandboxDeleteMapSelectionListEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxDeleteMapSelectionListEntry::Name = TEXT("OrgProductSandboxDeleteMapSelectionListEntry");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(const FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList& Request, const FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList& Delegate /*= FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionListResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionListResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::FResponse_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList::Name = TEXT("OrgProductSandboxGetAllMapSelectionListEntriesForMapSelectionList");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxGetAllMapSelectionLists(const FRequest_OrgProductSandboxGetAllMapSelectionLists& Request, const FDelegate_OrgProductSandboxGetAllMapSelectionLists& Delegate /*= FDelegate_OrgProductSandboxGetAllMapSelectionLists()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetAllMapSelectionListsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxGetAllMapSelectionListsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMapSelectionLists Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetAllMapSelectionListsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetAllMapSelectionLists Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetAllMapSelectionLists::FRequest_OrgProductSandboxGetAllMapSelectionLists()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetAllMapSelectionLists::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetAllMapSelectionLists::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetAllMapSelectionLists::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMapSelectionLists - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMapSelectionLists - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMapSelectionLists - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetAllMapSelectionLists::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetAllMapSelectionLists::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetAllMapSelectionLists::FResponse_OrgProductSandboxGetAllMapSelectionLists(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetAllMapSelectionLists::Name = TEXT("OrgProductSandboxGetAllMapSelectionLists");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxGetAllMaps(const FRequest_OrgProductSandboxGetAllMaps& Request, const FDelegate_OrgProductSandboxGetAllMaps& Delegate /*= FDelegate_OrgProductSandboxGetAllMaps()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetAllMapsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxGetAllMapsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllMaps Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetAllMapsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetAllMaps Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetAllMaps::FRequest_OrgProductSandboxGetAllMaps()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetAllMaps::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetAllMaps::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetAllMaps::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMaps - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMaps - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllMaps - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetAllMaps::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetAllMaps::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetAllMaps::FResponse_OrgProductSandboxGetAllMaps(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetAllMaps::Name = TEXT("OrgProductSandboxGetAllMaps");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxGetMap(const FRequest_OrgProductSandboxGetMap& Request, const FDelegate_OrgProductSandboxGetMap& Delegate /*= FDelegate_OrgProductSandboxGetMap()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetMapResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxGetMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetMapResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetMap Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetMap::FRequest_OrgProductSandboxGetMap()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetMap::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetMap::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("map_id"), ToStringFormatArg(MapId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetMap::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMap - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMap - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMap - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetMap::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetMap::FResponse_OrgProductSandboxGetMap(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetMap::Name = TEXT("OrgProductSandboxGetMap");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxGetMapSelectionList(const FRequest_OrgProductSandboxGetMapSelectionList& Request, const FDelegate_OrgProductSandboxGetMapSelectionList& Delegate /*= FDelegate_OrgProductSandboxGetMapSelectionList()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetMapSelectionListResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxGetMapSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMapSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetMapSelectionListResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetMapSelectionList Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetMapSelectionList::FRequest_OrgProductSandboxGetMapSelectionList()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetMapSelectionList::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetMapSelectionList::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetMapSelectionList::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMapSelectionList - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMapSelectionList - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMapSelectionList - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetMapSelectionList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetMapSelectionList::FResponse_OrgProductSandboxGetMapSelectionList(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetMapSelectionList::Name = TEXT("OrgProductSandboxGetMapSelectionList");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxGetMapSelectionListEntry(const FRequest_OrgProductSandboxGetMapSelectionListEntry& Request, const FDelegate_OrgProductSandboxGetMapSelectionListEntry& Delegate /*= FDelegate_OrgProductSandboxGetMapSelectionListEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetMapSelectionListEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxGetMapSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetMapSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxGetMapSelectionListEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetMapSelectionListEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetMapSelectionListEntry::FRequest_OrgProductSandboxGetMapSelectionListEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetMapSelectionListEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetMapSelectionListEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetMapSelectionListEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMapSelectionListEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMapSelectionListEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetMapSelectionListEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetMapSelectionListEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetMapSelectionListEntry::FResponse_OrgProductSandboxGetMapSelectionListEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetMapSelectionListEntry::Name = TEXT("OrgProductSandboxGetMapSelectionListEntry");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxPatchMap(const FRequest_OrgProductSandboxPatchMap& Request, const FDelegate_OrgProductSandboxPatchMap& Delegate /*= FDelegate_OrgProductSandboxPatchMap()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPatchMapResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxPatchMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPatchMapResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPatchMap Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPatchMap::FRequest_OrgProductSandboxPatchMap()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPatchMap::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPatchMap::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("map_id"), ToStringFormatArg(MapId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPatchMap::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PATCH"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchMap - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchMap - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapUpdateRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchMap - Body parameter (FRHAPI_DevMapUpdateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchMap - Body parameter (FRHAPI_DevMapUpdateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchMap - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPatchMap::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPatchMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPatchMap::FResponse_OrgProductSandboxPatchMap(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPatchMap::Name = TEXT("OrgProductSandboxPatchMap");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxPatchSelectionList(const FRequest_OrgProductSandboxPatchSelectionList& Request, const FDelegate_OrgProductSandboxPatchSelectionList& Delegate /*= FDelegate_OrgProductSandboxPatchSelectionList()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPatchSelectionListResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxPatchSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPatchSelectionListResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPatchSelectionList Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPatchSelectionList::FRequest_OrgProductSandboxPatchSelectionList()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPatchSelectionList::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPatchSelectionList::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPatchSelectionList::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PATCH"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionList - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionList - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapSelectionListUpdateRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionList - Body parameter (FRHAPI_DevMapSelectionListUpdateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionList - Body parameter (FRHAPI_DevMapSelectionListUpdateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionList - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPatchSelectionList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPatchSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPatchSelectionList::FResponse_OrgProductSandboxPatchSelectionList(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPatchSelectionList::Name = TEXT("OrgProductSandboxPatchSelectionList");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxPatchSelectionListEntry(const FRequest_OrgProductSandboxPatchSelectionListEntry& Request, const FDelegate_OrgProductSandboxPatchSelectionListEntry& Delegate /*= FDelegate_OrgProductSandboxPatchSelectionListEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPatchSelectionListEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxPatchSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPatchSelectionListEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPatchSelectionListEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPatchSelectionListEntry::FRequest_OrgProductSandboxPatchSelectionListEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPatchSelectionListEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPatchSelectionListEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPatchSelectionListEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PATCH"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionListEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionListEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapSelectionListEntryUpdateRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionListEntry - Body parameter (FRHAPI_DevMapSelectionListEntryUpdateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionListEntry - Body parameter (FRHAPI_DevMapSelectionListEntryUpdateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchSelectionListEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPatchSelectionListEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPatchSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPatchSelectionListEntry::FResponse_OrgProductSandboxPatchSelectionListEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPatchSelectionListEntry::Name = TEXT("OrgProductSandboxPatchSelectionListEntry");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxPutMap(const FRequest_OrgProductSandboxPutMap& Request, const FDelegate_OrgProductSandboxPutMap& Delegate /*= FDelegate_OrgProductSandboxPutMap()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPutMapResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxPutMapResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutMap Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPutMapResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPutMap Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPutMap::FRequest_OrgProductSandboxPutMap()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPutMap::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPutMap::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("map_id"), ToStringFormatArg(MapId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map/{map_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPutMap::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutMap - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutMap - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutMap - Body parameter (FRHAPI_DevMapRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutMap - Body parameter (FRHAPI_DevMapRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutMap - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPutMap::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPutMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPutMap::FResponse_OrgProductSandboxPutMap(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPutMap::Name = TEXT("OrgProductSandboxPutMap");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxPutSelectionList(const FRequest_OrgProductSandboxPutSelectionList& Request, const FDelegate_OrgProductSandboxPutSelectionList& Delegate /*= FDelegate_OrgProductSandboxPutSelectionList()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPutSelectionListResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxPutSelectionListResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutSelectionList Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPutSelectionListResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPutSelectionList Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPutSelectionList::FRequest_OrgProductSandboxPutSelectionList()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPutSelectionList::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPutSelectionList::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPutSelectionList::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionList - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionList - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapSelectionListRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionList - Body parameter (FRHAPI_DevMapSelectionListRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionList - Body parameter (FRHAPI_DevMapSelectionListRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionList - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPutSelectionList::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPutSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPutSelectionList::FResponse_OrgProductSandboxPutSelectionList(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPutSelectionList::Name = TEXT("OrgProductSandboxPutSelectionList");
-
-FHttpRequestPtr FMapsAPI::OrgProductSandboxPutSelectionListEntry(const FRequest_OrgProductSandboxPutSelectionListEntry& Request, const FDelegate_OrgProductSandboxPutSelectionListEntry& Delegate /*= FDelegate_OrgProductSandboxPutSelectionListEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPutSelectionListEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMapsAPI::OnOrgProductSandboxPutSelectionListEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutSelectionListEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMapsAPI::OnOrgProductSandboxPutSelectionListEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPutSelectionListEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPutSelectionListEntry::FRequest_OrgProductSandboxPutSelectionListEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPutSelectionListEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPutSelectionListEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
-        { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPutSelectionListEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionListEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionListEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MapSelectionListEntryRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionListEntry - Body parameter (FRHAPI_DevMapSelectionListEntryRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionListEntry - Body parameter (FRHAPI_DevMapSelectionListEntryRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutSelectionListEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPutSelectionListEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPutSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPutSelectionListEntry::FResponse_OrgProductSandboxPutSelectionListEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPutSelectionListEntry::Name = TEXT("OrgProductSandboxPutSelectionListEntry");
-
 FHttpRequestPtr FMapsAPI::SandboxCreateMap(const FRequest_SandboxCreateMap& Request, const FDelegate_SandboxCreateMap& Delegate /*= FDelegate_SandboxCreateMap()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
     if (!IsValid())
@@ -2877,7 +96,7 @@ FName FRequest_SandboxCreateMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -2945,6 +164,16 @@ void FResponse_SandboxCreateMap::SetHttpResponseCode(EHttpResponseCodes::Type In
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateMap::TryGetContentFor200(FRHAPI_DevMap& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateMap::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3026,18 +255,18 @@ FRequest_SandboxCreateMapSelectionListEntry::FRequest_SandboxCreateMapSelectionL
 
 FName FRequest_SandboxCreateMapSelectionListEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry"));
     return Path;
 }
 
 FString FRequest_SandboxCreateMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry"), PathParams);
 
     return Path;
 }
@@ -3101,6 +330,16 @@ void FResponse_SandboxCreateMapSelectionListEntry::SetHttpResponseCode(EHttpResp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateMapSelectionListEntry::TryGetContentFor200(FRHAPI_DevMapSelectionListEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateMapSelectionListEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3188,7 +427,7 @@ FName FRequest_SandboxCreateSelectionList::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -3256,6 +495,16 @@ void FResponse_SandboxCreateSelectionList::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateSelectionList::TryGetContentFor200(FRHAPI_DevMapSelectionList& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateSelectionList::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3343,7 +592,7 @@ FName FRequest_SandboxDeleteMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -3401,6 +650,11 @@ void FResponse_SandboxDeleteMap::SetHttpResponseCode(EHttpResponseCodes::Type In
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteMap::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3482,18 +736,18 @@ FRequest_SandboxDeleteMapSelectionList::FRequest_SandboxDeleteMapSelectionList()
 
 FName FRequest_SandboxDeleteMapSelectionList::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"));
     return Path;
 }
 
 FString FRequest_SandboxDeleteMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"), PathParams);
 
     return Path;
 }
@@ -3546,6 +800,11 @@ void FResponse_SandboxDeleteMapSelectionList::SetHttpResponseCode(EHttpResponseC
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteMapSelectionList::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3627,19 +886,19 @@ FRequest_SandboxDeleteMapSelectionListEntry::FRequest_SandboxDeleteMapSelectionL
 
 FName FRequest_SandboxDeleteMapSelectionListEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxDeleteMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
 
     return Path;
 }
@@ -3692,6 +951,11 @@ void FResponse_SandboxDeleteMapSelectionListEntry::SetHttpResponseCode(EHttpResp
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteMapSelectionListEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3773,18 +1037,18 @@ FRequest_SandboxGetAllMapSelectionListEntriesForMapSelectionList::FRequest_Sandb
 
 FName FRequest_SandboxGetAllMapSelectionListEntriesForMapSelectionList::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry"));
     return Path;
 }
 
 FString FRequest_SandboxGetAllMapSelectionListEntriesForMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry"), PathParams);
 
     TArray<FString> QueryParams;
     if(PageSize.IsSet())
@@ -3849,6 +1113,16 @@ void FResponse_SandboxGetAllMapSelectionListEntriesForMapSelectionList::SetHttpR
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAllMapSelectionListEntriesForMapSelectionList::TryGetContentFor200(FRHAPI_DevAllMapSelectionListEntriesResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllMapSelectionListEntriesForMapSelectionList::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAllMapSelectionListEntriesForMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3936,7 +1210,7 @@ FName FRequest_SandboxGetAllMapSelectionLists::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllMapSelectionLists::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4005,6 +1279,16 @@ void FResponse_SandboxGetAllMapSelectionLists::SetHttpResponseCode(EHttpResponse
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAllMapSelectionLists::TryGetContentFor200(FRHAPI_DevAllMapSelectionListsResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllMapSelectionLists::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAllMapSelectionLists::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4092,7 +1376,7 @@ FName FRequest_SandboxGetAllMaps::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllMaps::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -4161,6 +1445,16 @@ void FResponse_SandboxGetAllMaps::SetHttpResponseCode(EHttpResponseCodes::Type I
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAllMaps::TryGetContentFor200(FRHAPI_DevAllMapsResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllMaps::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAllMaps::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4248,7 +1542,7 @@ FName FRequest_SandboxGetMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4306,6 +1600,16 @@ void FResponse_SandboxGetMap::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetMap::TryGetContentFor200(FRHAPI_DevMap& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetMap::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4387,18 +1691,18 @@ FRequest_SandboxGetMapSelectionList::FRequest_SandboxGetMapSelectionList()
 
 FName FRequest_SandboxGetMapSelectionList::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"));
     return Path;
 }
 
 FString FRequest_SandboxGetMapSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"), PathParams);
 
     return Path;
 }
@@ -4451,6 +1755,16 @@ void FResponse_SandboxGetMapSelectionList::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetMapSelectionList::TryGetContentFor200(FRHAPI_DevMapSelectionListFlattened& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetMapSelectionList::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4532,19 +1846,19 @@ FRequest_SandboxGetMapSelectionListEntry::FRequest_SandboxGetMapSelectionListEnt
 
 FName FRequest_SandboxGetMapSelectionListEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxGetMapSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
 
     return Path;
 }
@@ -4597,6 +1911,16 @@ void FResponse_SandboxGetMapSelectionListEntry::SetHttpResponseCode(EHttpRespons
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetMapSelectionListEntry::TryGetContentFor200(FRHAPI_DevMapSelectionListEntryFlattened& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetMapSelectionListEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetMapSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4684,7 +2008,7 @@ FName FRequest_SandboxPatchMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -4753,6 +2077,16 @@ void FResponse_SandboxPatchMap::SetHttpResponseCode(EHttpResponseCodes::Type InH
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPatchMap::TryGetContentFor200(FRHAPI_DevMap& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchMap::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPatchMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4834,18 +2168,18 @@ FRequest_SandboxPatchSelectionList::FRequest_SandboxPatchSelectionList()
 
 FName FRequest_SandboxPatchSelectionList::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPatchSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"), PathParams);
 
     return Path;
 }
@@ -4909,6 +2243,16 @@ void FResponse_SandboxPatchSelectionList::SetHttpResponseCode(EHttpResponseCodes
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPatchSelectionList::TryGetContentFor200(FRHAPI_DevMapSelectionList& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchSelectionList::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPatchSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -4990,19 +2334,19 @@ FRequest_SandboxPatchSelectionListEntry::FRequest_SandboxPatchSelectionListEntry
 
 FName FRequest_SandboxPatchSelectionListEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPatchSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
 
     return Path;
 }
@@ -5066,6 +2410,16 @@ void FResponse_SandboxPatchSelectionListEntry::SetHttpResponseCode(EHttpResponse
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPatchSelectionListEntry::TryGetContentFor200(FRHAPI_DevMapSelectionListEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchSelectionListEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPatchSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5153,7 +2507,7 @@ FName FRequest_SandboxPutMap::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutMap::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("map_id"), ToStringFormatArg(MapId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -5222,6 +2576,16 @@ void FResponse_SandboxPutMap::SetHttpResponseCode(EHttpResponseCodes::Type InHtt
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPutMap::TryGetContentFor200(FRHAPI_DevMap& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutMap::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPutMap::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5303,18 +2667,18 @@ FRequest_SandboxPutSelectionList::FRequest_SandboxPutSelectionList()
 
 FName FRequest_SandboxPutSelectionList::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPutSelectionList::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}"), PathParams);
 
     return Path;
 }
@@ -5343,7 +2707,7 @@ bool FRequest_SandboxPutSelectionList::SetupHttpRequest(const FHttpRequestRef& H
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MapSelectionListRequest);
+        WriteJsonValue(Writer, MapSelectionListBase);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -5351,11 +2715,11 @@ bool FRequest_SandboxPutSelectionList::SetupHttpRequest(const FHttpRequestRef& H
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutSelectionList - Body parameter (FRHAPI_DevMapSelectionListRequest) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutSelectionList - Body parameter (FRHAPI_DevMapSelectionListBase) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutSelectionList - Body parameter (FRHAPI_DevMapSelectionListRequest) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutSelectionList - Body parameter (FRHAPI_DevMapSelectionListBase) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -5378,6 +2742,16 @@ void FResponse_SandboxPutSelectionList::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPutSelectionList::TryGetContentFor200(FRHAPI_DevMapSelectionList& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutSelectionList::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPutSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -5459,19 +2833,19 @@ FRequest_SandboxPutSelectionListEntry::FRequest_SandboxPutSelectionListEntry()
 
 FName FRequest_SandboxPutSelectionListEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPutSelectionListEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("selection_list_id"), ToStringFormatArg(SelectionListId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("map_selection_list_id"), ToStringFormatArg(MapSelectionListId) },
         { TEXT("map_selection_list_entry_id"), ToStringFormatArg(MapSelectionListEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/map-selection-list/{map_selection_list_id}/map-selection-list-entry/{map_selection_list_entry_id}"), PathParams);
 
     return Path;
 }
@@ -5535,6 +2909,16 @@ void FResponse_SandboxPutSelectionListEntry::SetHttpResponseCode(EHttpResponseCo
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPutSelectionListEntry::TryGetContentFor200(FRHAPI_DevMapSelectionListEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutSelectionListEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPutSelectionListEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

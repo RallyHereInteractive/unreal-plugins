@@ -37,15 +37,15 @@ void FRHAPI_DevMatchMakingProfileUpdateRequest::WriteJson(TSharedRef<TJsonWriter
         Writer->WriteIdentifierPrefix(TEXT("num_sides"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, NumSides_Optional);
     }
-    if (MaxPlayersPerSide_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, MaxPlayersPerSide_Optional);
-    }
     if (MinPlayersPerSide_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("min_players_per_side"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, MinPlayersPerSide_Optional);
+    }
+    if (MaxPlayersPerSide_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("max_players_per_side"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, MaxPlayersPerSide_Optional);
     }
     if (MinPlayersPerLinking_IsSet)
     {
@@ -77,10 +77,15 @@ void FRHAPI_DevMatchMakingProfileUpdateRequest::WriteJson(TSharedRef<TJsonWriter
         Writer->WriteIdentifierPrefix(TEXT("match_making_function_config"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingFunctionConfig_Optional);
     }
-    if (StrideId_IsSet)
+    if (MatchMakingStrideId_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("stride_id"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, StrideId_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("match_making_stride_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingStrideId_Optional);
+    }
+    if (CrossplayPartitionId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("crossplay_partition_id"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CrossplayPartitionId_Optional);
     }
     if (LegacyConfig_IsSet)
     {
@@ -100,12 +105,17 @@ void FRHAPI_DevMatchMakingProfileUpdateRequest::WriteJson(TSharedRef<TJsonWriter
     if (TrueskillQualityByTimeMethod_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("trueskill_quality_by_time_method"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, TrueskillQualityByTimeMethod_Optional);
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(TrueskillQualityByTimeMethod_Optional));
     }
     if (Active_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("active"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, Active_Optional);
+    }
+    if (SupportsBackfill_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("supports_backfill"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, SupportsBackfill_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -136,17 +146,17 @@ bool FRHAPI_DevMatchMakingProfileUpdateRequest::FromJson(const TSharedPtr<FJsonV
         NumSides_IsSet = TryGetJsonValue(JsonNumSidesField, NumSides_Optional);
         ParseSuccess &= NumSides_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
-    if (JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull())
-    {
-        MaxPlayersPerSide_IsSet = TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide_Optional);
-        ParseSuccess &= MaxPlayersPerSide_IsSet;
-    }
     const TSharedPtr<FJsonValue> JsonMinPlayersPerSideField = (*Object)->TryGetField(TEXT("min_players_per_side"));
     if (JsonMinPlayersPerSideField.IsValid() && !JsonMinPlayersPerSideField->IsNull())
     {
         MinPlayersPerSide_IsSet = TryGetJsonValue(JsonMinPlayersPerSideField, MinPlayersPerSide_Optional);
         ParseSuccess &= MinPlayersPerSide_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMaxPlayersPerSideField = (*Object)->TryGetField(TEXT("max_players_per_side"));
+    if (JsonMaxPlayersPerSideField.IsValid() && !JsonMaxPlayersPerSideField->IsNull())
+    {
+        MaxPlayersPerSide_IsSet = TryGetJsonValue(JsonMaxPlayersPerSideField, MaxPlayersPerSide_Optional);
+        ParseSuccess &= MaxPlayersPerSide_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonMinPlayersPerLinkingField = (*Object)->TryGetField(TEXT("min_players_per_linking"));
     if (JsonMinPlayersPerLinkingField.IsValid() && !JsonMinPlayersPerLinkingField->IsNull())
@@ -184,11 +194,17 @@ bool FRHAPI_DevMatchMakingProfileUpdateRequest::FromJson(const TSharedPtr<FJsonV
         MatchMakingFunctionConfig_IsSet = TryGetJsonValue(JsonMatchMakingFunctionConfigField, MatchMakingFunctionConfig_Optional);
         ParseSuccess &= MatchMakingFunctionConfig_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonStrideIdField = (*Object)->TryGetField(TEXT("stride_id"));
-    if (JsonStrideIdField.IsValid() && !JsonStrideIdField->IsNull())
+    const TSharedPtr<FJsonValue> JsonMatchMakingStrideIdField = (*Object)->TryGetField(TEXT("match_making_stride_id"));
+    if (JsonMatchMakingStrideIdField.IsValid() && !JsonMatchMakingStrideIdField->IsNull())
     {
-        StrideId_IsSet = TryGetJsonValue(JsonStrideIdField, StrideId_Optional);
-        ParseSuccess &= StrideId_IsSet;
+        MatchMakingStrideId_IsSet = TryGetJsonValue(JsonMatchMakingStrideIdField, MatchMakingStrideId_Optional);
+        ParseSuccess &= MatchMakingStrideId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCrossplayPartitionIdField = (*Object)->TryGetField(TEXT("crossplay_partition_id"));
+    if (JsonCrossplayPartitionIdField.IsValid() && !JsonCrossplayPartitionIdField->IsNull())
+    {
+        CrossplayPartitionId_IsSet = TryGetJsonValue(JsonCrossplayPartitionIdField, CrossplayPartitionId_Optional);
+        ParseSuccess &= CrossplayPartitionId_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
     if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
@@ -219,6 +235,12 @@ bool FRHAPI_DevMatchMakingProfileUpdateRequest::FromJson(const TSharedPtr<FJsonV
     {
         Active_IsSet = TryGetJsonValue(JsonActiveField, Active_Optional);
         ParseSuccess &= Active_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonSupportsBackfillField = (*Object)->TryGetField(TEXT("supports_backfill"));
+    if (JsonSupportsBackfillField.IsValid() && !JsonSupportsBackfillField->IsNull())
+    {
+        SupportsBackfill_IsSet = TryGetJsonValue(JsonSupportsBackfillField, SupportsBackfill_Optional);
+        ParseSuccess &= SupportsBackfill_IsSet;
     }
 
     return ParseSuccess;

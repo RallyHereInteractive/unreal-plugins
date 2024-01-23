@@ -22,8 +22,8 @@ using RallyHereDeveloperAPI::TryGetJsonValue;
 void FRHAPI_DevMatchMakingProfileListEntry::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("profile_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ProfileId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingProfileId);
     if (SandboxId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
@@ -39,10 +39,15 @@ void FRHAPI_DevMatchMakingProfileListEntry::WriteJson(TSharedRef<TJsonWriter<>>&
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("profile_list_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ProfileListId);
-    Writer->WriteIdentifierPrefix(TEXT("profile_list_entry_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ProfileListEntryId);
+    if (CreatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_list_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingProfileListId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_profile_list_entry_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingProfileListEntryId);
     Writer->WriteObjectEnd();
 }
 
@@ -54,8 +59,8 @@ bool FRHAPI_DevMatchMakingProfileListEntry::FromJson(const TSharedPtr<FJsonValue
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonProfileIdField = (*Object)->TryGetField(TEXT("profile_id"));
-    ParseSuccess &= JsonProfileIdField.IsValid() && !JsonProfileIdField->IsNull() && TryGetJsonValue(JsonProfileIdField, ProfileId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
+    ParseSuccess &= JsonMatchMakingProfileIdField.IsValid() && !JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId);
     const TSharedPtr<FJsonValue> JsonSandboxIdField = (*Object)->TryGetField(TEXT("sandbox_id"));
     if (JsonSandboxIdField.IsValid() && !JsonSandboxIdField->IsNull())
     {
@@ -74,10 +79,16 @@ bool FRHAPI_DevMatchMakingProfileListEntry::FromJson(const TSharedPtr<FJsonValue
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonProfileListIdField = (*Object)->TryGetField(TEXT("profile_list_id"));
-    ParseSuccess &= JsonProfileListIdField.IsValid() && !JsonProfileListIdField->IsNull() && TryGetJsonValue(JsonProfileListIdField, ProfileListId);
-    const TSharedPtr<FJsonValue> JsonProfileListEntryIdField = (*Object)->TryGetField(TEXT("profile_list_entry_id"));
-    ParseSuccess &= JsonProfileListEntryIdField.IsValid() && !JsonProfileListEntryIdField->IsNull() && TryGetJsonValue(JsonProfileListEntryIdField, ProfileListEntryId);
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+    {
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileListIdField = (*Object)->TryGetField(TEXT("match_making_profile_list_id"));
+    ParseSuccess &= JsonMatchMakingProfileListIdField.IsValid() && !JsonMatchMakingProfileListIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileListIdField, MatchMakingProfileListId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingProfileListEntryIdField = (*Object)->TryGetField(TEXT("match_making_profile_list_entry_id"));
+    ParseSuccess &= JsonMatchMakingProfileListEntryIdField.IsValid() && !JsonMatchMakingProfileListEntryIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileListEntryIdField, MatchMakingProfileListEntryId);
 
     return ParseSuccess;
 }

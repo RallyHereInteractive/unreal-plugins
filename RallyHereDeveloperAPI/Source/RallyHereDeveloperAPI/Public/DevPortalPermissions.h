@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPortalPermissions : public FRHAPI_DevModel
@@ -49,6 +49,19 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPortalPermissions : public FRHAPI_Dev
     const FGuid& GetAccountId() const { return AccountId; }
     /** @brief Sets the value of AccountId */
     void SetAccountId(FGuid NewValue) { AccountId = NewValue;  }
+
+    /** @brief Is this account a global admin */
+    bool IsGlobalAdmin{ false };
+    /** @brief Gets the value of IsGlobalAdmin */
+    bool& GetIsGlobalAdmin() { return IsGlobalAdmin; }
+    /** @brief Gets the value of IsGlobalAdmin */
+    const bool& GetIsGlobalAdmin() const { return IsGlobalAdmin; }
+    /** @brief Sets the value of IsGlobalAdmin */
+    void SetIsGlobalAdmin(bool NewValue) { IsGlobalAdmin = NewValue;  }
+    /** @brief Returns true if IsGlobalAdmin matches the default value */
+    bool IsIsGlobalAdminDefaultValue() const { return IsGlobalAdmin == false; }
+    /** @brief Sets the value of IsGlobalAdmin to its default  */
+    void SetIsGlobalAdminToDefault() { IsGlobalAdmin = false;  }
 
     TArray<FRHAPI_DevPortalAccountPermission> AccountPermissions_Optional{  };
     /** @brief true if AccountPermissions_Optional has been set to a value */

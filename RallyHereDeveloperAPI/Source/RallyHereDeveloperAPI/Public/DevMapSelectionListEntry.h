@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMapSelectionListEntry : public FRHAPI_DevModel
@@ -82,24 +82,6 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMapSelectionListEntry : public FRHAPI
      /** @brief Clears the value of SandboxId_Optional and sets SandboxId_IsSet to false */
     void ClearSandboxId() { SandboxId_IsSet = false; }
 
-    /** @brief Which MapSelectionList this entry belongs to */
-    FGuid SelectionListId{  };
-    /** @brief Gets the value of SelectionListId */
-    FGuid& GetSelectionListId() { return SelectionListId; }
-    /** @brief Gets the value of SelectionListId */
-    const FGuid& GetSelectionListId() const { return SelectionListId; }
-    /** @brief Sets the value of SelectionListId */
-    void SetSelectionListId(FGuid NewValue) { SelectionListId = NewValue;  }
-
-    /** @brief ID to uniquely identify this MapSelectionListEntry */
-    FGuid MapSelectionListEntryId{  };
-    /** @brief Gets the value of MapSelectionListEntryId */
-    FGuid& GetMapSelectionListEntryId() { return MapSelectionListEntryId; }
-    /** @brief Gets the value of MapSelectionListEntryId */
-    const FGuid& GetMapSelectionListEntryId() const { return MapSelectionListEntryId; }
-    /** @brief Sets the value of MapSelectionListEntryId */
-    void SetMapSelectionListEntryId(FGuid NewValue) { MapSelectionListEntryId = NewValue;  }
-
     /** @brief Account ID of the user who last modified the resource */
     FGuid LastModifiedAccountId_Optional{  };
     /** @brief true if LastModifiedAccountId_Optional has been set to a value */
@@ -142,68 +124,44 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMapSelectionListEntry : public FRHAPI
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
-    /** @brief The name of the map that will be loaded into */
-    FString MapName_Optional{  };
-    /** @brief true if MapName_Optional has been set to a value */
-    bool MapName_IsSet{ false };
-    /** @brief Gets the value of MapName_Optional, regardless of it having been set */
-    FString& GetMapName() { return MapName_Optional; }
-    /** @brief Gets the value of MapName_Optional, regardless of it having been set */
-    const FString& GetMapName() const { return MapName_Optional; }
-    /** @brief Gets the value of MapName_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetMapName(const FString& DefaultValue) const { if (MapName_IsSet) return MapName_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of MapName_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMapName(FString& OutValue) const { if (MapName_IsSet) OutValue = MapName_Optional; return MapName_IsSet; }
-    /** @brief Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetMapNameOrNull() { if (MapName_IsSet) return &MapName_Optional; return nullptr; }
-    /** @brief Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetMapNameOrNull() const { if (MapName_IsSet) return &MapName_Optional; return nullptr; }
-    /** @brief Sets the value of MapName_Optional and also sets MapName_IsSet to true */
-    void SetMapName(FString NewValue) { MapName_Optional = NewValue; MapName_IsSet = true; }
-     /** @brief Clears the value of MapName_Optional and sets MapName_IsSet to false */
-    void ClearMapName() { MapName_IsSet = false; }
+    /** @brief Timestamp of when this resource was created */
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
-    /** @brief An optional mode that will be loaded into */
-    FString Mode_Optional{  };
-    /** @brief true if Mode_Optional has been set to a value */
-    bool Mode_IsSet{ false };
-    /** @brief Gets the value of Mode_Optional, regardless of it having been set */
-    FString& GetMode() { return Mode_Optional; }
-    /** @brief Gets the value of Mode_Optional, regardless of it having been set */
-    const FString& GetMode() const { return Mode_Optional; }
-    /** @brief Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetMode(const FString& DefaultValue) const { if (Mode_IsSet) return Mode_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMode(FString& OutValue) const { if (Mode_IsSet) OutValue = Mode_Optional; return Mode_IsSet; }
-    /** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetModeOrNull() { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
-    /** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetModeOrNull() const { if (Mode_IsSet) return &Mode_Optional; return nullptr; }
-    /** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true */
-    void SetMode(FString NewValue) { Mode_Optional = NewValue; Mode_IsSet = true; }
-     /** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
-    void ClearMode() { Mode_IsSet = false; }
+    /** @brief Which MapSelectionList this entry belongs to */
+    FGuid MapSelectionListId{  };
+    /** @brief Gets the value of MapSelectionListId */
+    FGuid& GetMapSelectionListId() { return MapSelectionListId; }
+    /** @brief Gets the value of MapSelectionListId */
+    const FGuid& GetMapSelectionListId() const { return MapSelectionListId; }
+    /** @brief Sets the value of MapSelectionListId */
+    void SetMapSelectionListId(FGuid NewValue) { MapSelectionListId = NewValue;  }
 
-    /** @brief Dictionary of config required for legacy games */
-    TMap<FString, FString> LegacyConfig_Optional{  };
-    /** @brief true if LegacyConfig_Optional has been set to a value */
-    bool LegacyConfig_IsSet{ false };
-    /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
-    /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
-    /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
-    /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
-    /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
-    /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
-     /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
-    void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
+    /** @brief ID to uniquely identify this MapSelectionListEntry */
+    FGuid MapSelectionListEntryId{  };
+    /** @brief Gets the value of MapSelectionListEntryId */
+    FGuid& GetMapSelectionListEntryId() { return MapSelectionListEntryId; }
+    /** @brief Gets the value of MapSelectionListEntryId */
+    const FGuid& GetMapSelectionListEntryId() const { return MapSelectionListEntryId; }
+    /** @brief Sets the value of MapSelectionListEntryId */
+    void SetMapSelectionListEntryId(FGuid NewValue) { MapSelectionListEntryId = NewValue;  }
 };
 
 /** @} */

@@ -24,6 +24,11 @@ void FRHAPI_DevPageMeta::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("cursor"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Cursor);
+    if (PageSize_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("page_size"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, PageSize_Optional);
+    }
     if (Total_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("total"));
@@ -42,6 +47,12 @@ bool FRHAPI_DevPageMeta::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
     ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
+    const TSharedPtr<FJsonValue> JsonPageSizeField = (*Object)->TryGetField(TEXT("page_size"));
+    if (JsonPageSizeField.IsValid() && !JsonPageSizeField->IsNull())
+    {
+        PageSize_IsSet = TryGetJsonValue(JsonPageSizeField, PageSize_Optional);
+        ParseSuccess &= PageSize_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonTotalField = (*Object)->TryGetField(TEXT("total"));
     if (JsonTotalField.IsValid() && !JsonTotalField->IsNull())
     {

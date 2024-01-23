@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllPlatformSessionTemplatesResponse : public FRHAPI_DevModel

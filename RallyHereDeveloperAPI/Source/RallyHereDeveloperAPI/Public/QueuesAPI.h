@@ -15,7 +15,6 @@
 #include "DevQueue.h"
 #include "DevQueueRequest.h"
 #include "DevQueueUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -23,18 +22,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateQueue;
-struct FResponse_OrgProductSandboxCreateQueue;
-struct FRequest_OrgProductSandboxDeleteQueue;
-struct FResponse_OrgProductSandboxDeleteQueue;
-struct FRequest_OrgProductSandboxGetAllQueues;
-struct FResponse_OrgProductSandboxGetAllQueues;
-struct FRequest_OrgProductSandboxGetQueue;
-struct FResponse_OrgProductSandboxGetQueue;
-struct FRequest_OrgProductSandboxPatchQueue;
-struct FResponse_OrgProductSandboxPatchQueue;
-struct FRequest_OrgProductSandboxPutQueue;
-struct FResponse_OrgProductSandboxPutQueue;
 struct FRequest_SandboxCreateQueue;
 struct FResponse_SandboxCreateQueue;
 struct FRequest_SandboxDeleteQueue;
@@ -48,12 +35,6 @@ struct FResponse_SandboxPatchQueue;
 struct FRequest_SandboxPutQueue;
 struct FResponse_SandboxPutQueue;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateQueue, const FResponse_OrgProductSandboxCreateQueue&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteQueue, const FResponse_OrgProductSandboxDeleteQueue&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllQueues, const FResponse_OrgProductSandboxGetAllQueues&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetQueue, const FResponse_OrgProductSandboxGetQueue&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchQueue, const FResponse_OrgProductSandboxPatchQueue&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutQueue, const FResponse_OrgProductSandboxPutQueue&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateQueue, const FResponse_SandboxCreateQueue&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteQueue, const FResponse_SandboxDeleteQueue&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllQueues, const FResponse_SandboxGetAllQueues&);
@@ -67,12 +48,6 @@ public:
     FQueuesAPI();
     virtual ~FQueuesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateQueue(const FRequest_OrgProductSandboxCreateQueue& Request, const FDelegate_OrgProductSandboxCreateQueue& Delegate = FDelegate_OrgProductSandboxCreateQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteQueue(const FRequest_OrgProductSandboxDeleteQueue& Request, const FDelegate_OrgProductSandboxDeleteQueue& Delegate = FDelegate_OrgProductSandboxDeleteQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllQueues(const FRequest_OrgProductSandboxGetAllQueues& Request, const FDelegate_OrgProductSandboxGetAllQueues& Delegate = FDelegate_OrgProductSandboxGetAllQueues(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetQueue(const FRequest_OrgProductSandboxGetQueue& Request, const FDelegate_OrgProductSandboxGetQueue& Delegate = FDelegate_OrgProductSandboxGetQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchQueue(const FRequest_OrgProductSandboxPatchQueue& Request, const FDelegate_OrgProductSandboxPatchQueue& Delegate = FDelegate_OrgProductSandboxPatchQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutQueue(const FRequest_OrgProductSandboxPutQueue& Request, const FDelegate_OrgProductSandboxPutQueue& Delegate = FDelegate_OrgProductSandboxPutQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateQueue(const FRequest_SandboxCreateQueue& Request, const FDelegate_SandboxCreateQueue& Delegate = FDelegate_SandboxCreateQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeleteQueue(const FRequest_SandboxDeleteQueue& Request, const FDelegate_SandboxDeleteQueue& Delegate = FDelegate_SandboxDeleteQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetAllQueues(const FRequest_SandboxGetAllQueues& Request, const FDelegate_SandboxGetAllQueues& Delegate = FDelegate_SandboxGetAllQueues(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -81,12 +56,6 @@ public:
     FHttpRequestPtr SandboxPutQueue(const FRequest_SandboxPutQueue& Request, const FDelegate_SandboxPutQueue& Delegate = FDelegate_SandboxPutQueue(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllQueuesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllQueues Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeleteQueueResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteQueue Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetAllQueuesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllQueues Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -98,282 +67,9 @@ private:
 
 /* Create Queue
  *
- * Create a new Queue for a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateQueue : public FRequest
-{
-    FRequest_OrgProductSandboxCreateQueue();
-    virtual ~FRequest_OrgProductSandboxCreateQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevQueueRequest QueueRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateQueue : public FResponse
-{
-    FResponse_OrgProductSandboxCreateQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevQueue Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateQueue
-{
-    typedef FRequest_OrgProductSandboxCreateQueue Request;
-    typedef FResponse_OrgProductSandboxCreateQueue Response;
-    typedef FDelegate_OrgProductSandboxCreateQueue Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateQueue(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Queue
- *
- * Delete a Queue for a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteQueue : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteQueue();
-    virtual ~FRequest_OrgProductSandboxDeleteQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid QueueId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteQueue : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteQueue
-{
-    typedef FRequest_OrgProductSandboxDeleteQueue Request;
-    typedef FResponse_OrgProductSandboxDeleteQueue Response;
-    typedef FDelegate_OrgProductSandboxDeleteQueue Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteQueue(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Queues
- *
- * Get all Queues for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllQueues : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllQueues();
-    virtual ~FRequest_OrgProductSandboxGetAllQueues() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllQueues : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllQueues(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllQueues() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllQueuesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllQueues
-{
-    typedef FRequest_OrgProductSandboxGetAllQueues Request;
-    typedef FResponse_OrgProductSandboxGetAllQueues Response;
-    typedef FDelegate_OrgProductSandboxGetAllQueues Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllQueues(InRequest, InDelegate, Priority); }
-};
-
-/* Get Queue
- *
- * Get a specific Queue for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetQueue : public FRequest
-{
-    FRequest_OrgProductSandboxGetQueue();
-    virtual ~FRequest_OrgProductSandboxGetQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid QueueId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetQueue : public FResponse
-{
-    FResponse_OrgProductSandboxGetQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevQueue Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetQueue
-{
-    typedef FRequest_OrgProductSandboxGetQueue Request;
-    typedef FResponse_OrgProductSandboxGetQueue Response;
-    typedef FDelegate_OrgProductSandboxGetQueue Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetQueue(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Queue
- *
- * Update an existing Queue for a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchQueue : public FRequest
-{
-    FRequest_OrgProductSandboxPatchQueue();
-    virtual ~FRequest_OrgProductSandboxPatchQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid QueueId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevQueueUpdateRequest QueueUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchQueue : public FResponse
-{
-    FResponse_OrgProductSandboxPatchQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevQueue Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchQueue
-{
-    typedef FRequest_OrgProductSandboxPatchQueue Request;
-    typedef FResponse_OrgProductSandboxPatchQueue Response;
-    typedef FDelegate_OrgProductSandboxPatchQueue Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchQueue(InRequest, InDelegate, Priority); }
-};
-
-/* Put Queue
- *
- * Update an existing Queue for a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutQueue : public FRequest
-{
-    FRequest_OrgProductSandboxPutQueue();
-    virtual ~FRequest_OrgProductSandboxPutQueue() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid QueueId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevQueueRequest QueueRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutQueue : public FResponse
-{
-    FResponse_OrgProductSandboxPutQueue(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutQueue() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevQueue Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutQueue
-{
-    typedef FRequest_OrgProductSandboxPutQueue Request;
-    typedef FResponse_OrgProductSandboxPutQueue Response;
-    typedef FDelegate_OrgProductSandboxPutQueue Delegate;
-    typedef FQueuesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutQueue(InRequest, InDelegate, Priority); }
-};
-
-/* Create Queue
- *
- * Create a new Queue for a sandbox  Requires permission sandbox:config:edit.
+ * Create a new Queue for a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateQueue : public FRequest
 {
@@ -399,6 +95,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateQueue : public FResponse
 
     FRHAPI_DevQueue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevQueue& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateQueue
@@ -414,7 +122,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateQueue
 
 /* Delete Queue
  *
- * Delete a Queue for a sandbox  Requires permission sandbox:config:edit.
+ * Delete a Queue for a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteQueue : public FRequest
 {
@@ -438,7 +148,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteQueue : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -455,7 +176,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteQueue
 
 /* Get All Queues
  *
- * Get all Queues for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all Queues for a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllQueues : public FRequest
 {
@@ -484,6 +208,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllQueues : public FRespons
 
     FRHAPI_DevAllQueuesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllQueuesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllQueues
@@ -499,7 +235,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllQueues
 
 /* Get Queue
  *
- * Get a specific Queue for a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific Queue for a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetQueue : public FRequest
 {
@@ -525,6 +264,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetQueue : public FResponse
 
     FRHAPI_DevQueue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevQueue& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetQueue
@@ -540,7 +291,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetQueue
 
 /* Patch Queue
  *
- * Update an existing Queue for a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing Queue for a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchQueue : public FRequest
 {
@@ -567,6 +320,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchQueue : public FResponse
 
     FRHAPI_DevQueue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevQueue& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchQueue
@@ -582,7 +347,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchQueue
 
 /* Put Queue
  *
- * Update an existing Queue for a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing Queue for a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutQueue : public FRequest
 {
@@ -608,6 +375,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutQueue : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevQueue Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevQueue& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

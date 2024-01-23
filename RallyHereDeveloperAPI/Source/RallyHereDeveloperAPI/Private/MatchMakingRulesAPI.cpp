@@ -23,931 +23,6 @@ FMatchMakingRulesAPI::FMatchMakingRulesAPI() : FAPI()
 
 FMatchMakingRulesAPI::~FMatchMakingRulesAPI() {}
 
-FHttpRequestPtr FMatchMakingRulesAPI::OrgProductSandboxCreateRule(const FRequest_OrgProductSandboxCreateRule& Request, const FDelegate_OrgProductSandboxCreateRule& Delegate /*= FDelegate_OrgProductSandboxCreateRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxCreateRuleResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingRulesAPI::OnOrgProductSandboxCreateRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxCreateRuleResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxCreateRule Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxCreateRule::FRequest_OrgProductSandboxCreateRule()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxCreateRule::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxCreateRule::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxCreateRule::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateRule - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateRule - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingRuleRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateRule - Body parameter (FRHAPI_DevMatchMakingRuleRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateRule - Body parameter (FRHAPI_DevMatchMakingRuleRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateRule - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxCreateRule::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxCreateRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxCreateRule::FResponse_OrgProductSandboxCreateRule(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxCreateRule::Name = TEXT("OrgProductSandboxCreateRule");
-
-FHttpRequestPtr FMatchMakingRulesAPI::OrgProductSandboxDeleteRule(const FRequest_OrgProductSandboxDeleteRule& Request, const FDelegate_OrgProductSandboxDeleteRule& Delegate /*= FDelegate_OrgProductSandboxDeleteRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxDeleteRuleResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingRulesAPI::OnOrgProductSandboxDeleteRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxDeleteRuleResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxDeleteRule Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxDeleteRule::FRequest_OrgProductSandboxDeleteRule()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxDeleteRule::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxDeleteRule::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxDeleteRule::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteRule - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteRule - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteRule - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxDeleteRule::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 204:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxDeleteRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return true;
-}
-
-FResponse_OrgProductSandboxDeleteRule::FResponse_OrgProductSandboxDeleteRule(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxDeleteRule::Name = TEXT("OrgProductSandboxDeleteRule");
-
-FHttpRequestPtr FMatchMakingRulesAPI::OrgProductSandboxGetAllRules(const FRequest_OrgProductSandboxGetAllRules& Request, const FDelegate_OrgProductSandboxGetAllRules& Delegate /*= FDelegate_OrgProductSandboxGetAllRules()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxGetAllRulesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingRulesAPI::OnOrgProductSandboxGetAllRulesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllRules Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxGetAllRulesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetAllRules Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetAllRules::FRequest_OrgProductSandboxGetAllRules()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetAllRules::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetAllRules::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetAllRules::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllRules - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllRules - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllRules - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetAllRules::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetAllRules::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetAllRules::FResponse_OrgProductSandboxGetAllRules(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetAllRules::Name = TEXT("OrgProductSandboxGetAllRules");
-
-FHttpRequestPtr FMatchMakingRulesAPI::OrgProductSandboxGetRule(const FRequest_OrgProductSandboxGetRule& Request, const FDelegate_OrgProductSandboxGetRule& Delegate /*= FDelegate_OrgProductSandboxGetRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxGetRuleResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingRulesAPI::OnOrgProductSandboxGetRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxGetRuleResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetRule Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetRule::FRequest_OrgProductSandboxGetRule()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetRule::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetRule::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetRule::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetRule - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetRule - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetRule - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetRule::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetRule::FResponse_OrgProductSandboxGetRule(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetRule::Name = TEXT("OrgProductSandboxGetRule");
-
-FHttpRequestPtr FMatchMakingRulesAPI::OrgProductSandboxPatchRule(const FRequest_OrgProductSandboxPatchRule& Request, const FDelegate_OrgProductSandboxPatchRule& Delegate /*= FDelegate_OrgProductSandboxPatchRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxPatchRuleResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingRulesAPI::OnOrgProductSandboxPatchRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxPatchRuleResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPatchRule Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPatchRule::FRequest_OrgProductSandboxPatchRule()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPatchRule::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPatchRule::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPatchRule::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PATCH"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchRule - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchRule - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingRuleUpdateRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchRule - Body parameter (FRHAPI_DevMatchMakingRuleUpdateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchRule - Body parameter (FRHAPI_DevMatchMakingRuleUpdateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchRule - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPatchRule::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPatchRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPatchRule::FResponse_OrgProductSandboxPatchRule(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPatchRule::Name = TEXT("OrgProductSandboxPatchRule");
-
-FHttpRequestPtr FMatchMakingRulesAPI::OrgProductSandboxPutRule(const FRequest_OrgProductSandboxPutRule& Request, const FDelegate_OrgProductSandboxPutRule& Delegate /*= FDelegate_OrgProductSandboxPutRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxPutRuleResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingRulesAPI::OnOrgProductSandboxPutRuleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutRule Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnOrgProductSandboxPutRuleResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPutRule Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPutRule::FRequest_OrgProductSandboxPutRule()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPutRule::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPutRule::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-rule/{match_making_rule_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPutRule::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutRule - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutRule - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingRuleRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutRule - Body parameter (FRHAPI_DevMatchMakingRuleRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutRule - Body parameter (FRHAPI_DevMatchMakingRuleRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutRule - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPutRule::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPutRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPutRule::FResponse_OrgProductSandboxPutRule(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPutRule::Name = TEXT("OrgProductSandboxPutRule");
-
 FHttpRequestPtr FMatchMakingRulesAPI::SandboxCreateRule(const FRequest_SandboxCreateRule& Request, const FDelegate_SandboxCreateRule& Delegate /*= FDelegate_SandboxCreateRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
     if (!IsValid())
@@ -1021,7 +96,7 @@ FName FRequest_SandboxCreateRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1091,6 +166,16 @@ void FResponse_SandboxCreateRule::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
+bool FResponse_SandboxCreateRule::TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateRule::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxCreateRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1102,6 +187,171 @@ FResponse_SandboxCreateRule::FResponse_SandboxCreateRule(FRequestMetadata InRequ
 }
 
 FString Traits_SandboxCreateRule::Name = TEXT("SandboxCreateRule");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxCreateRuleset(const FRequest_SandboxCreateRuleset& Request, const FDelegate_SandboxCreateRuleset& Delegate /*= FDelegate_SandboxCreateRuleset()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxCreateRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxCreateRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxCreateRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxCreateRuleset Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxCreateRuleset::FRequest_SandboxCreateRuleset()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxCreateRuleset::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset"));
+    return Path;
+}
+
+FString FRequest_SandboxCreateRuleset::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxCreateRuleset::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("POST"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxCreateRuleset - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxCreateRuleset - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, MatchMakingRulesetRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxCreateRuleset - Body parameter (FRHAPI_DevMatchMakingRulesetRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxCreateRuleset - Body parameter (FRHAPI_DevMatchMakingRulesetRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxCreateRuleset - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxCreateRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxCreateRuleset::TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateRuleset::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxCreateRuleset::FResponse_SandboxCreateRuleset(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxCreateRuleset::Name = TEXT("SandboxCreateRuleset");
 
 FHttpRequestPtr FMatchMakingRulesAPI::SandboxDeleteRule(const FRequest_SandboxDeleteRule& Request, const FDelegate_SandboxDeleteRule& Delegate /*= FDelegate_SandboxDeleteRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1176,7 +426,7 @@ FName FRequest_SandboxDeleteRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxDeleteRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1236,6 +486,11 @@ void FResponse_SandboxDeleteRule::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
+bool FResponse_SandboxDeleteRule::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxDeleteRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return true;
@@ -1247,6 +502,156 @@ FResponse_SandboxDeleteRule::FResponse_SandboxDeleteRule(FRequestMetadata InRequ
 }
 
 FString Traits_SandboxDeleteRule::Name = TEXT("SandboxDeleteRule");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxDeleteRuleset(const FRequest_SandboxDeleteRuleset& Request, const FDelegate_SandboxDeleteRuleset& Delegate /*= FDelegate_SandboxDeleteRuleset()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxDeleteRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxDeleteRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxDeleteRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxDeleteRuleset Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxDeleteRuleset::FRequest_SandboxDeleteRuleset()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxDeleteRuleset::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"));
+    return Path;
+}
+
+FString FRequest_SandboxDeleteRuleset::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_ruleset_id"), ToStringFormatArg(MatchMakingRulesetId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxDeleteRuleset::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("DELETE"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxDeleteRuleset - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxDeleteRuleset - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxDeleteRuleset - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxDeleteRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 204:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxDeleteRuleset::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxDeleteRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return true;
+}
+
+FResponse_SandboxDeleteRuleset::FResponse_SandboxDeleteRuleset(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxDeleteRuleset::Name = TEXT("SandboxDeleteRuleset");
 
 FHttpRequestPtr FMatchMakingRulesAPI::SandboxGetAllRules(const FRequest_SandboxGetAllRules& Request, const FDelegate_SandboxGetAllRules& Delegate /*= FDelegate_SandboxGetAllRules()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1321,7 +726,7 @@ FName FRequest_SandboxGetAllRules::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllRules::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -1392,6 +797,16 @@ void FResponse_SandboxGetAllRules::SetHttpResponseCode(EHttpResponseCodes::Type 
     }
 }
 
+bool FResponse_SandboxGetAllRules::TryGetContentFor200(FRHAPI_DevAllMatchMakingRulesResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllRules::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetAllRules::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1403,6 +818,172 @@ FResponse_SandboxGetAllRules::FResponse_SandboxGetAllRules(FRequestMetadata InRe
 }
 
 FString Traits_SandboxGetAllRules::Name = TEXT("SandboxGetAllRules");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxGetAllRulesets(const FRequest_SandboxGetAllRulesets& Request, const FDelegate_SandboxGetAllRulesets& Delegate /*= FDelegate_SandboxGetAllRulesets()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxGetAllRulesetsResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxGetAllRulesetsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllRulesets Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxGetAllRulesetsResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxGetAllRulesets Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxGetAllRulesets::FRequest_SandboxGetAllRulesets()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxGetAllRulesets::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset"));
+    return Path;
+}
+
+FString FRequest_SandboxGetAllRulesets::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset"), PathParams);
+
+    TArray<FString> QueryParams;
+    if(PageSize.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
+    }
+    if(Cursor.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+    }
+    Path += TCHAR('?');
+    Path += FString::Join(QueryParams, TEXT("&"));
+
+    return Path;
+}
+
+bool FRequest_SandboxGetAllRulesets::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetAllRulesets - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetAllRulesets - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetAllRulesets - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxGetAllRulesets::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxGetAllRulesets::TryGetContentFor200(FRHAPI_DevAllMatchMakingRulesetsResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllRulesets::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllRulesets::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxGetAllRulesets::FResponse_SandboxGetAllRulesets(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxGetAllRulesets::Name = TEXT("SandboxGetAllRulesets");
 
 FHttpRequestPtr FMatchMakingRulesAPI::SandboxGetRule(const FRequest_SandboxGetRule& Request, const FDelegate_SandboxGetRule& Delegate /*= FDelegate_SandboxGetRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1477,7 +1058,7 @@ FName FRequest_SandboxGetRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1537,6 +1118,16 @@ void FResponse_SandboxGetRule::SetHttpResponseCode(EHttpResponseCodes::Type InHt
     }
 }
 
+bool FResponse_SandboxGetRule::TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRule::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxGetRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1548,6 +1139,328 @@ FResponse_SandboxGetRule::FResponse_SandboxGetRule(FRequestMetadata InRequestMet
 }
 
 FString Traits_SandboxGetRule::Name = TEXT("SandboxGetRule");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxGetRulesInRuleset(const FRequest_SandboxGetRulesInRuleset& Request, const FDelegate_SandboxGetRulesInRuleset& Delegate /*= FDelegate_SandboxGetRulesInRuleset()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxGetRulesInRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxGetRulesInRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetRulesInRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxGetRulesInRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxGetRulesInRuleset Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxGetRulesInRuleset::FRequest_SandboxGetRulesInRuleset()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxGetRulesInRuleset::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}/rules"));
+    return Path;
+}
+
+FString FRequest_SandboxGetRulesInRuleset::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_ruleset_id"), ToStringFormatArg(MatchMakingRulesetId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}/rules"), PathParams);
+
+    TArray<FString> QueryParams;
+    if(PageSize.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
+    }
+    if(Cursor.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+    }
+    Path += TCHAR('?');
+    Path += FString::Join(QueryParams, TEXT("&"));
+
+    return Path;
+}
+
+bool FRequest_SandboxGetRulesInRuleset::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetRulesInRuleset - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetRulesInRuleset - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetRulesInRuleset - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxGetRulesInRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxGetRulesInRuleset::TryGetContentFor200(FRHAPI_DevAllMatchMakingRulesResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRulesInRuleset::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRulesInRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxGetRulesInRuleset::FResponse_SandboxGetRulesInRuleset(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxGetRulesInRuleset::Name = TEXT("SandboxGetRulesInRuleset");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxGetRuleset(const FRequest_SandboxGetRuleset& Request, const FDelegate_SandboxGetRuleset& Delegate /*= FDelegate_SandboxGetRuleset()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxGetRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxGetRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxGetRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxGetRuleset Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxGetRuleset::FRequest_SandboxGetRuleset()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxGetRuleset::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"));
+    return Path;
+}
+
+FString FRequest_SandboxGetRuleset::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_ruleset_id"), ToStringFormatArg(MatchMakingRulesetId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxGetRuleset::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetRuleset - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetRuleset - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxGetRuleset - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxGetRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxGetRuleset::TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRuleset::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxGetRuleset::FResponse_SandboxGetRuleset(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxGetRuleset::Name = TEXT("SandboxGetRuleset");
 
 FHttpRequestPtr FMatchMakingRulesAPI::SandboxPatchRule(const FRequest_SandboxPatchRule& Request, const FDelegate_SandboxPatchRule& Delegate /*= FDelegate_SandboxPatchRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1622,7 +1535,7 @@ FName FRequest_SandboxPatchRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxPatchRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1693,6 +1606,16 @@ void FResponse_SandboxPatchRule::SetHttpResponseCode(EHttpResponseCodes::Type In
     }
 }
 
+bool FResponse_SandboxPatchRule::TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchRule::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxPatchRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1704,6 +1627,172 @@ FResponse_SandboxPatchRule::FResponse_SandboxPatchRule(FRequestMetadata InReques
 }
 
 FString Traits_SandboxPatchRule::Name = TEXT("SandboxPatchRule");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxPatchRuleset(const FRequest_SandboxPatchRuleset& Request, const FDelegate_SandboxPatchRuleset& Delegate /*= FDelegate_SandboxPatchRuleset()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxPatchRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxPatchRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPatchRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxPatchRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxPatchRuleset Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxPatchRuleset::FRequest_SandboxPatchRuleset()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxPatchRuleset::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"));
+    return Path;
+}
+
+FString FRequest_SandboxPatchRuleset::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_ruleset_id"), ToStringFormatArg(MatchMakingRulesetId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxPatchRuleset::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("PATCH"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPatchRuleset - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPatchRuleset - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, MatchMakingRulesetUpdateRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPatchRuleset - Body parameter (FRHAPI_DevMatchMakingRulesetUpdateRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPatchRuleset - Body parameter (FRHAPI_DevMatchMakingRulesetUpdateRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPatchRuleset - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxPatchRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxPatchRuleset::TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchRuleset::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxPatchRuleset::FResponse_SandboxPatchRuleset(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxPatchRuleset::Name = TEXT("SandboxPatchRuleset");
 
 FHttpRequestPtr FMatchMakingRulesAPI::SandboxPutRule(const FRequest_SandboxPutRule& Request, const FDelegate_SandboxPutRule& Delegate /*= FDelegate_SandboxPutRule()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1778,7 +1867,7 @@ FName FRequest_SandboxPutRule::GetSimplifiedPath() const
 
 FString FRequest_SandboxPutRule::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("match_making_rule_id"), ToStringFormatArg(MatchMakingRuleId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
@@ -1849,6 +1938,16 @@ void FResponse_SandboxPutRule::SetHttpResponseCode(EHttpResponseCodes::Type InHt
     }
 }
 
+bool FResponse_SandboxPutRule::TryGetContentFor200(FRHAPI_DevMatchMakingRule& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutRule::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_SandboxPutRule::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1860,6 +1959,172 @@ FResponse_SandboxPutRule::FResponse_SandboxPutRule(FRequestMetadata InRequestMet
 }
 
 FString Traits_SandboxPutRule::Name = TEXT("SandboxPutRule");
+
+FHttpRequestPtr FMatchMakingRulesAPI::SandboxPutRuleset(const FRequest_SandboxPutRuleset& Request, const FDelegate_SandboxPutRuleset& Delegate /*= FDelegate_SandboxPutRuleset()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxPutRulesetResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FMatchMakingRulesAPI::OnSandboxPutRulesetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxPutRuleset Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FMatchMakingRulesAPI::OnSandboxPutRulesetResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_SandboxPutRuleset Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_SandboxPutRuleset::FRequest_SandboxPutRuleset()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_SandboxPutRuleset::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"));
+    return Path;
+}
+
+FString FRequest_SandboxPutRuleset::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_ruleset_id"), ToStringFormatArg(MatchMakingRulesetId) },
+        { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-ruleset/{match_making_ruleset_id}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_SandboxPutRuleset::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("PUT"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutRuleset - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutRuleset - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, MatchMakingRulesetRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutRuleset - Body parameter (FRHAPI_DevMatchMakingRulesetRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutRuleset - Body parameter (FRHAPI_DevMatchMakingRulesetRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_SandboxPutRuleset - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_SandboxPutRuleset::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_SandboxPutRuleset::TryGetContentFor200(FRHAPI_DevMatchMakingRuleset& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutRuleset::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutRuleset::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_SandboxPutRuleset::FResponse_SandboxPutRuleset(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_SandboxPutRuleset::Name = TEXT("SandboxPutRuleset");
 
 
 }

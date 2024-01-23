@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_DevMatchMakingFunctionClientType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevMatchMakingFunctionClientType& Value)
 {
-    static TMap<FString, ERHAPI_DevMatchMakingFunctionClientType> StringToEnum = {
+    static TMap<FString, ERHAPI_DevMatchMakingFunctionClientType> StringToEnum = { 
         { TEXT("GRPC"), ERHAPI_DevMatchMakingFunctionClientType::Grpc },
         { TEXT("REST"), ERHAPI_DevMatchMakingFunctionClientType::Rest },    };
 

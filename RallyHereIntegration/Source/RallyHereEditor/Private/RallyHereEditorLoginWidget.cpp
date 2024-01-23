@@ -27,7 +27,9 @@ void SRallyHereEditorLoginWidget::Construct(const FArguments& InArgs, const TSha
 
 	LoginStateGuid = FGuid::NewGuid();
 
-	FString InitialURL = SandboxConfig->AuthUrl + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + Settings->LoginCallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
+	FString InitialURL = SandboxConfig->AuthUrl + (SandboxConfig->AuthUrl.EndsWith(TEXT("/")) ? TEXT("") : TEXT("/")) + "authorize?response_type=token&client_id=" + SandboxConfig->ClientId + "&redirect_uri=" + Settings->LoginCallbackURL + "&state=" + LoginStateGuid.ToString() + "&scope=" + Settings->LoginScopeArg + "&audience=" + Settings->LoginAudienceArg;
+
+	UE_LOG(LogRallyHereEditor, Log, TEXT("LogRallyHereEditor: InitialURL: %s"), *InitialURL);
 
 	ChildSlot
 	[

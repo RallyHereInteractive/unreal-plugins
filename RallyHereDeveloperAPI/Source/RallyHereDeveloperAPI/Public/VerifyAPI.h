@@ -39,7 +39,6 @@ private:
 };
 
 /* Verify
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_Verify : public FRequest
 {
@@ -65,6 +64,30 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_Verify : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPermissionsListResponse Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPermissionsListResponse& OutContent) const;
+
+    /* Response 400
+    Bad Request
+    */
+
+    /* Response 401
+    Unauthorized
+    */
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

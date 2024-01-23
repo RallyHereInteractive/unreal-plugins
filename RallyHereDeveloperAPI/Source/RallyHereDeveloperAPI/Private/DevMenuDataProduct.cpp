@@ -30,6 +30,10 @@ void FRHAPI_DevMenuDataProduct::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
     RallyHereDeveloperAPI::WriteJsonValue(Writer, ShortName);
     Writer->WriteIdentifierPrefix(TEXT("sandboxes"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Sandboxes);
+    Writer->WriteIdentifierPrefix(TEXT("environments"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, Environments);
+    Writer->WriteIdentifierPrefix(TEXT("archive"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, Archive);
     Writer->WriteObjectEnd();
 }
 
@@ -49,6 +53,10 @@ bool FRHAPI_DevMenuDataProduct::FromJson(const TSharedPtr<FJsonValue>& JsonValue
     ParseSuccess &= JsonShortNameField.IsValid() && !JsonShortNameField->IsNull() && TryGetJsonValue(JsonShortNameField, ShortName);
     const TSharedPtr<FJsonValue> JsonSandboxesField = (*Object)->TryGetField(TEXT("sandboxes"));
     ParseSuccess &= JsonSandboxesField.IsValid() && !JsonSandboxesField->IsNull() && TryGetJsonValue(JsonSandboxesField, Sandboxes);
+    const TSharedPtr<FJsonValue> JsonEnvironmentsField = (*Object)->TryGetField(TEXT("environments"));
+    ParseSuccess &= JsonEnvironmentsField.IsValid() && !JsonEnvironmentsField->IsNull() && TryGetJsonValue(JsonEnvironmentsField, Environments);
+    const TSharedPtr<FJsonValue> JsonArchiveField = (*Object)->TryGetField(TEXT("archive"));
+    ParseSuccess &= JsonArchiveField.IsValid() && !JsonArchiveField->IsNull() && TryGetJsonValue(JsonArchiveField, Archive);
 
     return ParseSuccess;
 }

@@ -25,14 +25,14 @@ void FRHAPI_DevMatchMakingRuleRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writ
     Writer->WriteIdentifierPrefix(TEXT("match_making_ruleset_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingRulesetId);
     Writer->WriteIdentifierPrefix(TEXT("comparison_operation"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, ComparisonOperation);
-    Writer->WriteIdentifierPrefix(TEXT("rule_type"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(RuleType));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(ComparisonOperation));
     if (ItemId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("item_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, ItemId_Optional);
     }
+    Writer->WriteIdentifierPrefix(TEXT("rule_type"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(RuleType));
     Writer->WriteIdentifierPrefix(TEXT("comparison_value"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, ComparisonValue);
     Writer->WriteObjectEnd();
@@ -50,14 +50,14 @@ bool FRHAPI_DevMatchMakingRuleRequest::FromJson(const TSharedPtr<FJsonValue>& Js
     ParseSuccess &= JsonMatchMakingRulesetIdField.IsValid() && !JsonMatchMakingRulesetIdField->IsNull() && TryGetJsonValue(JsonMatchMakingRulesetIdField, MatchMakingRulesetId);
     const TSharedPtr<FJsonValue> JsonComparisonOperationField = (*Object)->TryGetField(TEXT("comparison_operation"));
     ParseSuccess &= JsonComparisonOperationField.IsValid() && !JsonComparisonOperationField->IsNull() && TryGetJsonValue(JsonComparisonOperationField, ComparisonOperation);
-    const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
-    ParseSuccess &= JsonRuleTypeField.IsValid() && !JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType);
     const TSharedPtr<FJsonValue> JsonItemIdField = (*Object)->TryGetField(TEXT("item_id"));
     if (JsonItemIdField.IsValid() && !JsonItemIdField->IsNull())
     {
         ItemId_IsSet = TryGetJsonValue(JsonItemIdField, ItemId_Optional);
         ParseSuccess &= ItemId_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonRuleTypeField = (*Object)->TryGetField(TEXT("rule_type"));
+    ParseSuccess &= JsonRuleTypeField.IsValid() && !JsonRuleTypeField->IsNull() && TryGetJsonValue(JsonRuleTypeField, RuleType);
     const TSharedPtr<FJsonValue> JsonComparisonValueField = (*Object)->TryGetField(TEXT("comparison_value"));
     ParseSuccess &= JsonComparisonValueField.IsValid() && !JsonComparisonValueField->IsNull() && TryGetJsonValue(JsonComparisonValueField, ComparisonValue);
 

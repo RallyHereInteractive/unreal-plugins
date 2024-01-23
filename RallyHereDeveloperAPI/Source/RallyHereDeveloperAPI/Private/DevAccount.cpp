@@ -28,6 +28,11 @@ void FRHAPI_DevAccount::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Auth0AccountId);
     Writer->WriteIdentifierPrefix(TEXT("account_email"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, AccountEmail);
+    if (GlobalAdmin_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("global_admin"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, GlobalAdmin_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -45,6 +50,12 @@ bool FRHAPI_DevAccount::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     ParseSuccess &= JsonAuth0AccountIdField.IsValid() && !JsonAuth0AccountIdField->IsNull() && TryGetJsonValue(JsonAuth0AccountIdField, Auth0AccountId);
     const TSharedPtr<FJsonValue> JsonAccountEmailField = (*Object)->TryGetField(TEXT("account_email"));
     ParseSuccess &= JsonAccountEmailField.IsValid() && !JsonAccountEmailField->IsNull() && TryGetJsonValue(JsonAccountEmailField, AccountEmail);
+    const TSharedPtr<FJsonValue> JsonGlobalAdminField = (*Object)->TryGetField(TEXT("global_admin"));
+    if (JsonGlobalAdminField.IsValid() && !JsonGlobalAdminField->IsNull())
+    {
+        GlobalAdmin_IsSet = TryGetJsonValue(JsonGlobalAdminField, GlobalAdmin_Optional);
+        ParseSuccess &= GlobalAdmin_IsSet;
+    }
 
     return ParseSuccess;
 }

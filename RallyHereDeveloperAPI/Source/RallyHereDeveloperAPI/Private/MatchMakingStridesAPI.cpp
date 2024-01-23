@@ -23,1862 +23,6 @@ FMatchMakingStridesAPI::FMatchMakingStridesAPI() : FAPI()
 
 FMatchMakingStridesAPI::~FMatchMakingStridesAPI() {}
 
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxCreateStride(const FRequest_OrgProductSandboxCreateStride& Request, const FDelegate_OrgProductSandboxCreateStride& Delegate /*= FDelegate_OrgProductSandboxCreateStride()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxCreateStrideResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxCreateStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxCreateStrideResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxCreateStride Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxCreateStride::FRequest_OrgProductSandboxCreateStride()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxCreateStride::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxCreateStride::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxCreateStride::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStride - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStride - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingStrideRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStride - Body parameter (FRHAPI_DevMatchMakingStrideRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStride - Body parameter (FRHAPI_DevMatchMakingStrideRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStride - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxCreateStride::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxCreateStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxCreateStride::FResponse_OrgProductSandboxCreateStride(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxCreateStride::Name = TEXT("OrgProductSandboxCreateStride");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxCreateStrideEntry(const FRequest_OrgProductSandboxCreateStrideEntry& Request, const FDelegate_OrgProductSandboxCreateStrideEntry& Delegate /*= FDelegate_OrgProductSandboxCreateStrideEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxCreateStrideEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxCreateStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxCreateStrideEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxCreateStrideEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxCreateStrideEntry::FRequest_OrgProductSandboxCreateStrideEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxCreateStrideEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxCreateStrideEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxCreateStrideEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStrideEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStrideEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingStrideEntryRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStrideEntry - Body parameter (FRHAPI_DevMatchMakingStrideEntryRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStrideEntry - Body parameter (FRHAPI_DevMatchMakingStrideEntryRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxCreateStrideEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxCreateStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxCreateStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxCreateStrideEntry::FResponse_OrgProductSandboxCreateStrideEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxCreateStrideEntry::Name = TEXT("OrgProductSandboxCreateStrideEntry");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxDeleteStride(const FRequest_OrgProductSandboxDeleteStride& Request, const FDelegate_OrgProductSandboxDeleteStride& Delegate /*= FDelegate_OrgProductSandboxDeleteStride()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxDeleteStrideResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxDeleteStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxDeleteStrideResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxDeleteStride Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxDeleteStride::FRequest_OrgProductSandboxDeleteStride()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxDeleteStride::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxDeleteStride::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxDeleteStride::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteStride - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteStride - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteStride - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxDeleteStride::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 204:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxDeleteStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return true;
-}
-
-FResponse_OrgProductSandboxDeleteStride::FResponse_OrgProductSandboxDeleteStride(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxDeleteStride::Name = TEXT("OrgProductSandboxDeleteStride");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxDeleteStrideEntry(const FRequest_OrgProductSandboxDeleteStrideEntry& Request, const FDelegate_OrgProductSandboxDeleteStrideEntry& Delegate /*= FDelegate_OrgProductSandboxDeleteStrideEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxDeleteStrideEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxDeleteStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxDeleteStrideEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxDeleteStrideEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxDeleteStrideEntry::FRequest_OrgProductSandboxDeleteStrideEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxDeleteStrideEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxDeleteStrideEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxDeleteStrideEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteStrideEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteStrideEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxDeleteStrideEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxDeleteStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 204:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxDeleteStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return true;
-}
-
-FResponse_OrgProductSandboxDeleteStrideEntry::FResponse_OrgProductSandboxDeleteStrideEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxDeleteStrideEntry::Name = TEXT("OrgProductSandboxDeleteStrideEntry");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxGetAllStrideEntries(const FRequest_OrgProductSandboxGetAllStrideEntries& Request, const FDelegate_OrgProductSandboxGetAllStrideEntries& Delegate /*= FDelegate_OrgProductSandboxGetAllStrideEntries()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetAllStrideEntriesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxGetAllStrideEntriesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllStrideEntries Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetAllStrideEntriesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetAllStrideEntries Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetAllStrideEntries::FRequest_OrgProductSandboxGetAllStrideEntries()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetAllStrideEntries::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetAllStrideEntries::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetAllStrideEntries::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllStrideEntries - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllStrideEntries - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllStrideEntries - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetAllStrideEntries::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetAllStrideEntries::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetAllStrideEntries::FResponse_OrgProductSandboxGetAllStrideEntries(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetAllStrideEntries::Name = TEXT("OrgProductSandboxGetAllStrideEntries");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxGetAllStrides(const FRequest_OrgProductSandboxGetAllStrides& Request, const FDelegate_OrgProductSandboxGetAllStrides& Delegate /*= FDelegate_OrgProductSandboxGetAllStrides()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetAllStridesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxGetAllStridesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllStrides Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetAllStridesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetAllStrides Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetAllStrides::FRequest_OrgProductSandboxGetAllStrides()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetAllStrides::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetAllStrides::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride"), PathParams);
-
-    TArray<FString> QueryParams;
-    if(PageSize.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
-    }
-    if(Cursor.IsSet())
-    {
-        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
-    }
-    Path += TCHAR('?');
-    Path += FString::Join(QueryParams, TEXT("&"));
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetAllStrides::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllStrides - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllStrides - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetAllStrides - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetAllStrides::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetAllStrides::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetAllStrides::FResponse_OrgProductSandboxGetAllStrides(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetAllStrides::Name = TEXT("OrgProductSandboxGetAllStrides");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxGetStride(const FRequest_OrgProductSandboxGetStride& Request, const FDelegate_OrgProductSandboxGetStride& Delegate /*= FDelegate_OrgProductSandboxGetStride()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetStrideResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxGetStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetStrideResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetStride Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetStride::FRequest_OrgProductSandboxGetStride()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetStride::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetStride::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetStride::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetStride - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetStride - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetStride - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetStride::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetStride::FResponse_OrgProductSandboxGetStride(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetStride::Name = TEXT("OrgProductSandboxGetStride");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxGetStrideEntry(const FRequest_OrgProductSandboxGetStrideEntry& Request, const FDelegate_OrgProductSandboxGetStrideEntry& Delegate /*= FDelegate_OrgProductSandboxGetStrideEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetStrideEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxGetStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxGetStrideEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxGetStrideEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxGetStrideEntry::FRequest_OrgProductSandboxGetStrideEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxGetStrideEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxGetStrideEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxGetStrideEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetStrideEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetStrideEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxGetStrideEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxGetStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxGetStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxGetStrideEntry::FResponse_OrgProductSandboxGetStrideEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxGetStrideEntry::Name = TEXT("OrgProductSandboxGetStrideEntry");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxPatchStride(const FRequest_OrgProductSandboxPatchStride& Request, const FDelegate_OrgProductSandboxPatchStride& Delegate /*= FDelegate_OrgProductSandboxPatchStride()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPatchStrideResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxPatchStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPatchStrideResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPatchStride Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPatchStride::FRequest_OrgProductSandboxPatchStride()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPatchStride::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPatchStride::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPatchStride::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PATCH"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStride - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStride - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingStrideUpdateRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStride - Body parameter (FRHAPI_DevMatchMakingStrideUpdateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStride - Body parameter (FRHAPI_DevMatchMakingStrideUpdateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStride - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPatchStride::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPatchStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPatchStride::FResponse_OrgProductSandboxPatchStride(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPatchStride::Name = TEXT("OrgProductSandboxPatchStride");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxPatchStrideEntry(const FRequest_OrgProductSandboxPatchStrideEntry& Request, const FDelegate_OrgProductSandboxPatchStrideEntry& Delegate /*= FDelegate_OrgProductSandboxPatchStrideEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPatchStrideEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxPatchStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPatchStrideEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPatchStrideEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPatchStrideEntry::FRequest_OrgProductSandboxPatchStrideEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPatchStrideEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPatchStrideEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPatchStrideEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PATCH"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStrideEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStrideEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingStrideEntryUpdateRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStrideEntry - Body parameter (FRHAPI_DevMatchMakingStrideEntryUpdateRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStrideEntry - Body parameter (FRHAPI_DevMatchMakingStrideEntryUpdateRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPatchStrideEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPatchStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPatchStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPatchStrideEntry::FResponse_OrgProductSandboxPatchStrideEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPatchStrideEntry::Name = TEXT("OrgProductSandboxPatchStrideEntry");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxPutStride(const FRequest_OrgProductSandboxPutStride& Request, const FDelegate_OrgProductSandboxPutStride& Delegate /*= FDelegate_OrgProductSandboxPutStride()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPutStrideResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxPutStrideResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutStride Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPutStrideResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPutStride Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPutStride::FRequest_OrgProductSandboxPutStride()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPutStride::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPutStride::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPutStride::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStride - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStride - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingStrideRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStride - Body parameter (FRHAPI_DevMatchMakingStrideRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStride - Body parameter (FRHAPI_DevMatchMakingStrideRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStride - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPutStride::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPutStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPutStride::FResponse_OrgProductSandboxPutStride(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPutStride::Name = TEXT("OrgProductSandboxPutStride");
-
-FHttpRequestPtr FMatchMakingStridesAPI::OrgProductSandboxPutStrideEntry(const FRequest_OrgProductSandboxPutStrideEntry& Request, const FDelegate_OrgProductSandboxPutStrideEntry& Delegate /*= FDelegate_OrgProductSandboxPutStrideEntry()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPutStrideEntryResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FMatchMakingStridesAPI::OnOrgProductSandboxPutStrideEntryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutStrideEntry Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FMatchMakingStridesAPI::OnOrgProductSandboxPutStrideEntryResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductSandboxPutStrideEntry Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductSandboxPutStrideEntry::FRequest_OrgProductSandboxPutStrideEntry()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductSandboxPutStrideEntry::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductSandboxPutStrideEntry::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) },
-        { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/sandbox/{sandbox_identifier}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductSandboxPutStrideEntry::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStrideEntry - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStrideEntry - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, MatchMakingStrideEntryRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStrideEntry - Body parameter (FRHAPI_DevMatchMakingStrideEntryRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStrideEntry - Body parameter (FRHAPI_DevMatchMakingStrideEntryRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductSandboxPutStrideEntry - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductSandboxPutStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductSandboxPutStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductSandboxPutStrideEntry::FResponse_OrgProductSandboxPutStrideEntry(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductSandboxPutStrideEntry::Name = TEXT("OrgProductSandboxPutStrideEntry");
-
 FHttpRequestPtr FMatchMakingStridesAPI::SandboxCreateStride(const FRequest_SandboxCreateStride& Request, const FDelegate_SandboxCreateStride& Delegate /*= FDelegate_SandboxCreateStride()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
     if (!IsValid())
@@ -1952,7 +96,7 @@ FName FRequest_SandboxCreateStride::GetSimplifiedPath() const
 
 FString FRequest_SandboxCreateStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -2020,6 +164,16 @@ void FResponse_SandboxCreateStride::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateStride::TryGetContentFor200(FRHAPI_DevMatchMakingStride& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateStride::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2101,18 +255,18 @@ FRequest_SandboxCreateStrideEntry::FRequest_SandboxCreateStrideEntry()
 
 FName FRequest_SandboxCreateStrideEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry"));
     return Path;
 }
 
 FString FRequest_SandboxCreateStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry"), PathParams);
 
     return Path;
 }
@@ -2176,6 +330,16 @@ void FResponse_SandboxCreateStrideEntry::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxCreateStrideEntry::TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxCreateStrideEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxCreateStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2257,18 +421,18 @@ FRequest_SandboxDeleteStride::FRequest_SandboxDeleteStride()
 
 FName FRequest_SandboxDeleteStride::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"));
     return Path;
 }
 
 FString FRequest_SandboxDeleteStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"), PathParams);
 
     return Path;
 }
@@ -2321,6 +485,11 @@ void FResponse_SandboxDeleteStride::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteStride::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2402,19 +571,19 @@ FRequest_SandboxDeleteStrideEntry::FRequest_SandboxDeleteStrideEntry()
 
 FName FRequest_SandboxDeleteStrideEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxDeleteStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
+        { TEXT("match_making_stride_entry_id"), ToStringFormatArg(MatchMakingStrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"), PathParams);
 
     return Path;
 }
@@ -2467,6 +636,11 @@ void FResponse_SandboxDeleteStrideEntry::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxDeleteStrideEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxDeleteStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2548,18 +722,18 @@ FRequest_SandboxGetAllStrideEntries::FRequest_SandboxGetAllStrideEntries()
 
 FName FRequest_SandboxGetAllStrideEntries::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry"));
     return Path;
 }
 
 FString FRequest_SandboxGetAllStrideEntries::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry"), PathParams);
 
     TArray<FString> QueryParams;
     if(PageSize.IsSet())
@@ -2624,6 +798,16 @@ void FResponse_SandboxGetAllStrideEntries::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAllStrideEntries::TryGetContentFor200(FRHAPI_DevAllMatchMakingStrideEntriesResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllStrideEntries::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAllStrideEntries::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2711,7 +895,7 @@ FName FRequest_SandboxGetAllStrides::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAllStrides::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -2780,6 +964,16 @@ void FResponse_SandboxGetAllStrides::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAllStrides::TryGetContentFor200(FRHAPI_DevAllMatchMakingStridesResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAllStrides::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAllStrides::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -2861,18 +1055,18 @@ FRequest_SandboxGetStride::FRequest_SandboxGetStride()
 
 FName FRequest_SandboxGetStride::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"));
     return Path;
 }
 
 FString FRequest_SandboxGetStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"), PathParams);
 
     return Path;
 }
@@ -2925,6 +1119,16 @@ void FResponse_SandboxGetStride::SetHttpResponseCode(EHttpResponseCodes::Type In
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetStride::TryGetContentFor200(FRHAPI_DevMatchMakingStrideResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetStride::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3006,19 +1210,19 @@ FRequest_SandboxGetStrideEntry::FRequest_SandboxGetStrideEntry()
 
 FName FRequest_SandboxGetStrideEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxGetStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
+        { TEXT("match_making_stride_entry_id"), ToStringFormatArg(MatchMakingStrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"), PathParams);
 
     return Path;
 }
@@ -3071,6 +1275,16 @@ void FResponse_SandboxGetStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetStrideEntry::TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetStrideEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3152,18 +1366,18 @@ FRequest_SandboxPatchStride::FRequest_SandboxPatchStride()
 
 FName FRequest_SandboxPatchStride::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPatchStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"), PathParams);
 
     return Path;
 }
@@ -3227,6 +1441,16 @@ void FResponse_SandboxPatchStride::SetHttpResponseCode(EHttpResponseCodes::Type 
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPatchStride::TryGetContentFor200(FRHAPI_DevMatchMakingStride& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchStride::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPatchStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3308,19 +1532,19 @@ FRequest_SandboxPatchStrideEntry::FRequest_SandboxPatchStrideEntry()
 
 FName FRequest_SandboxPatchStrideEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPatchStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
+        { TEXT("match_making_stride_entry_id"), ToStringFormatArg(MatchMakingStrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"), PathParams);
 
     return Path;
 }
@@ -3384,6 +1608,16 @@ void FResponse_SandboxPatchStrideEntry::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPatchStrideEntry::TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPatchStrideEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPatchStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3465,18 +1699,18 @@ FRequest_SandboxPutStride::FRequest_SandboxPutStride()
 
 FName FRequest_SandboxPutStride::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPutStride::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}"), PathParams);
 
     return Path;
 }
@@ -3540,6 +1774,16 @@ void FResponse_SandboxPutStride::SetHttpResponseCode(EHttpResponseCodes::Type In
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPutStride::TryGetContentFor200(FRHAPI_DevMatchMakingStride& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutStride::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPutStride::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -3621,19 +1865,19 @@ FRequest_SandboxPutStrideEntry::FRequest_SandboxPutStrideEntry()
 
 FName FRequest_SandboxPutStrideEntry::GetSimplifiedPath() const
 {
-    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"));
+    static FName Path = FName(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"));
     return Path;
 }
 
 FString FRequest_SandboxPutStrideEntry::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("stride_id"), ToStringFormatArg(StrideId) },
-        { TEXT("stride_entry_id"), ToStringFormatArg(StrideEntryId) },
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("match_making_stride_id"), ToStringFormatArg(MatchMakingStrideId) },
+        { TEXT("match_making_stride_entry_id"), ToStringFormatArg(MatchMakingStrideEntryId) },
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
-    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{stride_id}/match-making-stride-entry/{stride_entry_id}"), PathParams);
+    FString Path = FString::Format(TEXT("/v1/sandbox/{sandbox_id}/match-making-stride/{match_making_stride_id}/match-making-stride-entry/{match_making_stride_entry_id}"), PathParams);
 
     return Path;
 }
@@ -3697,6 +1941,16 @@ void FResponse_SandboxPutStrideEntry::SetHttpResponseCode(EHttpResponseCodes::Ty
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxPutStrideEntry::TryGetContentFor200(FRHAPI_DevMatchMakingStrideEntry& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxPutStrideEntry::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxPutStrideEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

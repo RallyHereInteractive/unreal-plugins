@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_DevSortOrder& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevSortOrder& Value)
 {
-    static TMap<FString, ERHAPI_DevSortOrder> StringToEnum = {
+    static TMap<FString, ERHAPI_DevSortOrder> StringToEnum = { 
         { TEXT("asc"), ERHAPI_DevSortOrder::Asc },
         { TEXT("desc"), ERHAPI_DevSortOrder::Desc },    };
 

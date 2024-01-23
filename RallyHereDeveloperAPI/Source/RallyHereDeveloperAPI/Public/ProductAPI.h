@@ -88,6 +88,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreateProduct : public FResponse
 
     FRHAPI_DevProduct Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevProduct& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_CreateProduct
@@ -129,6 +145,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeleteProduct : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevJsonValue Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -172,6 +204,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrgProduct : public FResponse
 
     FRHAPI_DevProduct Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevProduct& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgProduct
@@ -211,6 +255,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrgProducts : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevProduct> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevProduct>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -254,6 +310,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_UpdateProduct : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevProduct Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevProduct& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

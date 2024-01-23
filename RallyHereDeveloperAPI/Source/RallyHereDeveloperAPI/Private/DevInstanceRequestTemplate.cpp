@@ -24,6 +24,8 @@ void FRHAPI_DevInstanceRequestTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Wri
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("map_selection_list_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, MapSelectionListId);
+    Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, InstanceRequestTemplateId);
     Writer->WriteIdentifierPrefix(TEXT("default_host_type"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(DefaultHostType));
     if (LegacyConfig_IsSet)
@@ -36,8 +38,6 @@ void FRHAPI_DevInstanceRequestTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Wri
         Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, SandboxId_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("instance_request_template_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, InstanceRequestTemplateId);
     if (LastModifiedAccountId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
@@ -47,6 +47,11 @@ void FRHAPI_DevInstanceRequestTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Wri
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
+    }
+    if (CreatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -61,6 +66,8 @@ bool FRHAPI_DevInstanceRequestTemplate::FromJson(const TSharedPtr<FJsonValue>& J
 
     const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
     ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
+    const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
+    ParseSuccess &= JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId);
     const TSharedPtr<FJsonValue> JsonDefaultHostTypeField = (*Object)->TryGetField(TEXT("default_host_type"));
     ParseSuccess &= JsonDefaultHostTypeField.IsValid() && !JsonDefaultHostTypeField->IsNull() && TryGetJsonValue(JsonDefaultHostTypeField, DefaultHostType);
     const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
@@ -75,8 +82,6 @@ bool FRHAPI_DevInstanceRequestTemplate::FromJson(const TSharedPtr<FJsonValue>& J
         SandboxId_IsSet = TryGetJsonValue(JsonSandboxIdField, SandboxId_Optional);
         ParseSuccess &= SandboxId_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonInstanceRequestTemplateIdField = (*Object)->TryGetField(TEXT("instance_request_template_id"));
-    ParseSuccess &= JsonInstanceRequestTemplateIdField.IsValid() && !JsonInstanceRequestTemplateIdField->IsNull() && TryGetJsonValue(JsonInstanceRequestTemplateIdField, InstanceRequestTemplateId);
     const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
     if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
     {
@@ -88,6 +93,12 @@ bool FRHAPI_DevInstanceRequestTemplate::FromJson(const TSharedPtr<FJsonValue>& J
     {
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+    {
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
     }
 
     return ParseSuccess;

@@ -14,7 +14,6 @@
 #include "DevKv.h"
 #include "DevKvRequest.h"
 #include "DevKvUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -26,16 +25,6 @@ struct FRequest_SandboxCreateKv;
 struct FResponse_SandboxCreateKv;
 struct FRequest_SandboxDeleteKv;
 struct FResponse_SandboxDeleteKv;
-struct FRequest_SandboxFullCreateKv;
-struct FResponse_SandboxFullCreateKv;
-struct FRequest_SandboxFullDeleteKv;
-struct FResponse_SandboxFullDeleteKv;
-struct FRequest_SandboxFullGetKvForSandbox;
-struct FResponse_SandboxFullGetKvForSandbox;
-struct FRequest_SandboxFullGetKvsForSandbox;
-struct FResponse_SandboxFullGetKvsForSandbox;
-struct FRequest_SandboxFullUpdateKv;
-struct FResponse_SandboxFullUpdateKv;
 struct FRequest_SandboxGetKvForSandbox;
 struct FResponse_SandboxGetKvForSandbox;
 struct FRequest_SandboxGetKvsForSandbox;
@@ -45,11 +34,6 @@ struct FResponse_SandboxUpdateKv;
 
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateKv, const FResponse_SandboxCreateKv&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteKv, const FResponse_SandboxDeleteKv&);
-DECLARE_DELEGATE_OneParam(FDelegate_SandboxFullCreateKv, const FResponse_SandboxFullCreateKv&);
-DECLARE_DELEGATE_OneParam(FDelegate_SandboxFullDeleteKv, const FResponse_SandboxFullDeleteKv&);
-DECLARE_DELEGATE_OneParam(FDelegate_SandboxFullGetKvForSandbox, const FResponse_SandboxFullGetKvForSandbox&);
-DECLARE_DELEGATE_OneParam(FDelegate_SandboxFullGetKvsForSandbox, const FResponse_SandboxFullGetKvsForSandbox&);
-DECLARE_DELEGATE_OneParam(FDelegate_SandboxFullUpdateKv, const FResponse_SandboxFullUpdateKv&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetKvForSandbox, const FResponse_SandboxGetKvForSandbox&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetKvsForSandbox, const FResponse_SandboxGetKvsForSandbox&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxUpdateKv, const FResponse_SandboxUpdateKv&);
@@ -62,11 +46,6 @@ public:
 
     FHttpRequestPtr SandboxCreateKv(const FRequest_SandboxCreateKv& Request, const FDelegate_SandboxCreateKv& Delegate = FDelegate_SandboxCreateKv(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeleteKv(const FRequest_SandboxDeleteKv& Request, const FDelegate_SandboxDeleteKv& Delegate = FDelegate_SandboxDeleteKv(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr SandboxFullCreateKv(const FRequest_SandboxFullCreateKv& Request, const FDelegate_SandboxFullCreateKv& Delegate = FDelegate_SandboxFullCreateKv(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr SandboxFullDeleteKv(const FRequest_SandboxFullDeleteKv& Request, const FDelegate_SandboxFullDeleteKv& Delegate = FDelegate_SandboxFullDeleteKv(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr SandboxFullGetKvForSandbox(const FRequest_SandboxFullGetKvForSandbox& Request, const FDelegate_SandboxFullGetKvForSandbox& Delegate = FDelegate_SandboxFullGetKvForSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr SandboxFullGetKvsForSandbox(const FRequest_SandboxFullGetKvsForSandbox& Request, const FDelegate_SandboxFullGetKvsForSandbox& Delegate = FDelegate_SandboxFullGetKvsForSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr SandboxFullUpdateKv(const FRequest_SandboxFullUpdateKv& Request, const FDelegate_SandboxFullUpdateKv& Delegate = FDelegate_SandboxFullUpdateKv(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetKvForSandbox(const FRequest_SandboxGetKvForSandbox& Request, const FDelegate_SandboxGetKvForSandbox& Delegate = FDelegate_SandboxGetKvForSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetKvsForSandbox(const FRequest_SandboxGetKvsForSandbox& Request, const FDelegate_SandboxGetKvsForSandbox& Delegate = FDelegate_SandboxGetKvsForSandbox(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxUpdateKv(const FRequest_SandboxUpdateKv& Request, const FDelegate_SandboxUpdateKv& Delegate = FDelegate_SandboxUpdateKv(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -74,11 +53,6 @@ public:
 private:
     void OnSandboxCreateKvResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateKv Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeleteKvResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteKv Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSandboxFullCreateKvResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxFullCreateKv Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSandboxFullDeleteKvResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxFullDeleteKv Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSandboxFullGetKvForSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxFullGetKvForSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSandboxFullGetKvsForSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxFullGetKvsForSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnSandboxFullUpdateKvResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxFullUpdateKv Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetKvForSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetKvForSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetKvsForSandboxResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetKvsForSandbox Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxUpdateKvResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxUpdateKv Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -87,7 +61,9 @@ private:
 
 /* Create Kv
  *
- * Create Key Value pair for a sandbox          Requires permission sandbox:config:edit.
+ * Create Key Value pair for a sandbox    
+ * 
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateKv : public FRequest
 {
@@ -113,6 +89,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateKv : public FResponse
 
     FRHAPI_DevKvRequest Content;
 
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(FRHAPI_DevKvRequest& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateKv
@@ -128,7 +116,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateKv
 
 /* Delete Kv
  *
- * Delet Key Value pair for a sandbox          Requires permission sandbox:config:edit.
+ * Delet Key Value pair for a sandbox    
+ * 
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteKv : public FRequest
 {
@@ -155,6 +145,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteKv : public FResponse
 
     bool Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(bool& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteKv
@@ -168,237 +170,12 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteKv
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxDeleteKv(InRequest, InDelegate, Priority); }
 };
 
-/* Create Kv
- *
- * Create Key Value pair for a sandbox          Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxFullCreateKv : public FRequest
-{
-    FRequest_SandboxFullCreateKv();
-    virtual ~FRequest_SandboxFullCreateKv() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevKv Kv;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxFullCreateKv : public FResponse
-{
-    FResponse_SandboxFullCreateKv(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SandboxFullCreateKv() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevKvRequest Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullCreateKv
-{
-    typedef FRequest_SandboxFullCreateKv Request;
-    typedef FResponse_SandboxFullCreateKv Response;
-    typedef FDelegate_SandboxFullCreateKv Delegate;
-    typedef FSandboxConfigKVAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullCreateKv(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Kv
- *
- * Delet Key Value pair for a sandbox          Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxFullDeleteKv : public FRequest
-{
-    FRequest_SandboxFullDeleteKv();
-    virtual ~FRequest_SandboxFullDeleteKv() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* KV Key */
-    FString KvKey;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxFullDeleteKv : public FResponse
-{
-    FResponse_SandboxFullDeleteKv(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SandboxFullDeleteKv() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    bool Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullDeleteKv
-{
-    typedef FRequest_SandboxFullDeleteKv Request;
-    typedef FResponse_SandboxFullDeleteKv Response;
-    typedef FDelegate_SandboxFullDeleteKv Delegate;
-    typedef FSandboxConfigKVAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullDeleteKv(InRequest, InDelegate, Priority); }
-};
-
 /* Get Kv For Sandbox
  *
- * Get Key Value pair for a sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxFullGetKvForSandbox : public FRequest
-{
-    FRequest_SandboxFullGetKvForSandbox();
-    virtual ~FRequest_SandboxFullGetKvForSandbox() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* KV Key */
-    FString KvKey;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxFullGetKvForSandbox : public FResponse
-{
-    FResponse_SandboxFullGetKvForSandbox(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SandboxFullGetKvForSandbox() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevKv Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetKvForSandbox
-{
-    typedef FRequest_SandboxFullGetKvForSandbox Request;
-    typedef FResponse_SandboxFullGetKvForSandbox Response;
-    typedef FDelegate_SandboxFullGetKvForSandbox Delegate;
-    typedef FSandboxConfigKVAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetKvForSandbox(InRequest, InDelegate, Priority); }
-};
-
-/* Get Kvs For Sandbox
- *
- * Get all Key Value pairs for a sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxFullGetKvsForSandbox : public FRequest
-{
-    FRequest_SandboxFullGetKvsForSandbox();
-    virtual ~FRequest_SandboxFullGetKvsForSandbox() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxFullGetKvsForSandbox : public FResponse
-{
-    FResponse_SandboxFullGetKvsForSandbox(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SandboxFullGetKvsForSandbox() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    TArray<FRHAPI_DevKv> Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullGetKvsForSandbox
-{
-    typedef FRequest_SandboxFullGetKvsForSandbox Request;
-    typedef FResponse_SandboxFullGetKvsForSandbox Response;
-    typedef FDelegate_SandboxFullGetKvsForSandbox Delegate;
-    typedef FSandboxConfigKVAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullGetKvsForSandbox(InRequest, InDelegate, Priority); }
-};
-
-/* Update Kv
- *
- * Update Key Value pair for a sandbox          Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxFullUpdateKv : public FRequest
-{
-    FRequest_SandboxFullUpdateKv();
-    virtual ~FRequest_SandboxFullUpdateKv() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* KV Key */
-    FString KvKey;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevKvUpdateRequest KvUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxFullUpdateKv : public FResponse
-{
-    FResponse_SandboxFullUpdateKv(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_SandboxFullUpdateKv() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevKv Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_SandboxFullUpdateKv
-{
-    typedef FRequest_SandboxFullUpdateKv Request;
-    typedef FResponse_SandboxFullUpdateKv Response;
-    typedef FDelegate_SandboxFullUpdateKv Delegate;
-    typedef FSandboxConfigKVAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxFullUpdateKv(InRequest, InDelegate, Priority); }
-};
-
-/* Get Kv For Sandbox
- *
- * Get Key Value pair for a sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Key Value pair for a sandbox    
+ * 
+ *     Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetKvForSandbox : public FRequest
 {
@@ -425,6 +202,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetKvForSandbox : public FResp
 
     FRHAPI_DevKv Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevKv& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetKvForSandbox
@@ -440,7 +229,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetKvForSandbox
 
 /* Get Kvs For Sandbox
  *
- * Get all Key Value pairs for a sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all Key Value pairs for a sandbox    
+ * 
+ *     Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetKvsForSandbox : public FRequest
 {
@@ -465,6 +257,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetKvsForSandbox : public FRes
 
     TArray<FRHAPI_DevKv> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevKv>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetKvsForSandbox
@@ -480,7 +284,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetKvsForSandbox
 
 /* Update Kv
  *
- * Update Key Value pair for a sandbox          Requires permission sandbox:config:edit.
+ * Update Key Value pair for a sandbox    
+ * 
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxUpdateKv : public FRequest
 {
@@ -507,6 +313,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateKv : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevKv Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevKv& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

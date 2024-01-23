@@ -23,783 +23,6 @@ FPoliciesAPI::FPoliciesAPI() : FAPI()
 
 FPoliciesAPI::~FPoliciesAPI() {}
 
-FHttpRequestPtr FPoliciesAPI::OrgProductCreatePolicy(const FRequest_OrgProductCreatePolicy& Request, const FDelegate_OrgProductCreatePolicy& Delegate /*= FDelegate_OrgProductCreatePolicy()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductCreatePolicyResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPoliciesAPI::OnOrgProductCreatePolicyResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductCreatePolicy Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductCreatePolicyResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductCreatePolicy Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductCreatePolicy::FRequest_OrgProductCreatePolicy()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductCreatePolicy::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy"));
-    return Path;
-}
-
-FString FRequest_OrgProductCreatePolicy::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductCreatePolicy::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("POST"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductCreatePolicy - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductCreatePolicy - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, PolicyRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductCreatePolicy - Body parameter (FRHAPI_DevPolicyRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductCreatePolicy - Body parameter (FRHAPI_DevPolicyRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductCreatePolicy - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductCreatePolicy::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT("Bad Request"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Not Found"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductCreatePolicy::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductCreatePolicy::FResponse_OrgProductCreatePolicy(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductCreatePolicy::Name = TEXT("OrgProductCreatePolicy");
-
-FHttpRequestPtr FPoliciesAPI::OrgProductDeletePolicyById(const FRequest_OrgProductDeletePolicyById& Request, const FDelegate_OrgProductDeletePolicyById& Delegate /*= FDelegate_OrgProductDeletePolicyById()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductDeletePolicyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPoliciesAPI::OnOrgProductDeletePolicyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductDeletePolicyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductDeletePolicyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductDeletePolicyById Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductDeletePolicyById::FRequest_OrgProductDeletePolicyById()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductDeletePolicyById::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy/{policy_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductDeletePolicyById::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy/{policy_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductDeletePolicyById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("DELETE"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductDeletePolicyById - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductDeletePolicyById - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductDeletePolicyById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductDeletePolicyById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT("Bad Request"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Not Found"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductDeletePolicyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductDeletePolicyById::FResponse_OrgProductDeletePolicyById(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductDeletePolicyById::Name = TEXT("OrgProductDeletePolicyById");
-
-FHttpRequestPtr FPoliciesAPI::OrgProductGetAllPolicies(const FRequest_OrgProductGetAllPolicies& Request, const FDelegate_OrgProductGetAllPolicies& Delegate /*= FDelegate_OrgProductGetAllPolicies()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductGetAllPoliciesResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPoliciesAPI::OnOrgProductGetAllPoliciesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductGetAllPolicies Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductGetAllPoliciesResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductGetAllPolicies Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductGetAllPolicies::FRequest_OrgProductGetAllPolicies()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductGetAllPolicies::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy"));
-    return Path;
-}
-
-FString FRequest_OrgProductGetAllPolicies::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductGetAllPolicies::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductGetAllPolicies - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductGetAllPolicies - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductGetAllPolicies - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductGetAllPolicies::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT("Bad Request"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductGetAllPolicies::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductGetAllPolicies::FResponse_OrgProductGetAllPolicies(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductGetAllPolicies::Name = TEXT("OrgProductGetAllPolicies");
-
-FHttpRequestPtr FPoliciesAPI::OrgProductGetPolicyById(const FRequest_OrgProductGetPolicyById& Request, const FDelegate_OrgProductGetPolicyById& Delegate /*= FDelegate_OrgProductGetPolicyById()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductGetPolicyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPoliciesAPI::OnOrgProductGetPolicyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductGetPolicyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductGetPolicyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductGetPolicyById Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductGetPolicyById::FRequest_OrgProductGetPolicyById()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductGetPolicyById::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy/{policy_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductGetPolicyById::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy/{policy_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductGetPolicyById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = {  };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductGetPolicyById - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductGetPolicyById - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductGetPolicyById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductGetPolicyById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT("Bad Request"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Not Found"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductGetPolicyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductGetPolicyById::FResponse_OrgProductGetPolicyById(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductGetPolicyById::Name = TEXT("OrgProductGetPolicyById");
-
-FHttpRequestPtr FPoliciesAPI::OrgProductUpdatePolicyById(const FRequest_OrgProductUpdatePolicyById& Request, const FDelegate_OrgProductUpdatePolicyById& Delegate /*= FDelegate_OrgProductUpdatePolicyById()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
-{
-    if (!IsValid())
-        return nullptr;
-
-    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
-    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
-
-    for(const auto& It : AdditionalHeaderParams)
-    {
-        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
-    }
-
-    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
-    {
-        return nullptr;
-    }
-
-    RequestData->SetMetadata(Request.GetRequestMetadata());
-
-    FHttpRequestCompleteDelegate ResponseDelegate;
-    ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductUpdatePolicyByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
-    RequestData->SetDelegate(ResponseDelegate);
-
-    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
-    if (HttpRequester)
-    {
-        HttpRequester->EnqueueHttpRequest(RequestData);
-    }
-    return RequestData->HttpRequest;
-}
-
-void FPoliciesAPI::OnOrgProductUpdatePolicyByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductUpdatePolicyById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
-{
-    FHttpRequestCompleteDelegate ResponseDelegate;
-
-    if (AuthContextForRetry)
-    {
-        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
-        // So, we set the callback to use a null context for the retry
-        ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnOrgProductUpdatePolicyByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
-    }
-
-    FResponse_OrgProductUpdatePolicyById Response{ RequestMetadata };
-    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
-
-    {
-        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
-        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
-    }
-
-    if (!bWillRetryWithRefreshedAuth)
-    {
-        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
-        Delegate.ExecuteIfBound(Response);
-    }
-}
-
-FRequest_OrgProductUpdatePolicyById::FRequest_OrgProductUpdatePolicyById()
-{
-    RequestMetadata.Identifier = FGuid::NewGuid();
-    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
-    RequestMetadata.RetryCount = 0;
-}
-
-FName FRequest_OrgProductUpdatePolicyById::GetSimplifiedPath() const
-{
-    static FName Path = FName(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy/{policy_id}"));
-    return Path;
-}
-
-FString FRequest_OrgProductUpdatePolicyById::ComputePath() const
-{
-    TMap<FString, FStringFormatArg> PathParams = {
-        { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
-        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
-        { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
-    };
-
-    FString Path = FString::Format(TEXT("/v1/org/{org_identifier}/product/{product_identifier}/policy/{policy_id}"), PathParams);
-
-    return Path;
-}
-
-bool FRequest_OrgProductUpdatePolicyById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
-{
-    static const TArray<FString> Consumes = { TEXT("application/json") };
-    //static const TArray<FString> Produces = { TEXT("application/json") };
-
-    HttpRequest->SetVerb(TEXT("PUT"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductUpdatePolicyById - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductUpdatePolicyById - failed to add bearer token"));
-        return false;
-    }
-
-    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
-    {
-        // Body parameters
-        FString JsonBody;
-        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
-
-        WriteJsonValue(Writer, PolicyRequest);
-        Writer->Close();
-
-        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
-        HttpRequest->SetContentAsString(JsonBody);
-    }
-    else if (Consumes.Contains(TEXT("multipart/form-data")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductUpdatePolicyById - Body parameter (FRHAPI_DevPolicyRequest) was ignored, not supported in multipart form"));
-    }
-    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductUpdatePolicyById - Body parameter (FRHAPI_DevPolicyRequest) was ignored, not supported in urlencoded requests"));
-    }
-    else
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_OrgProductUpdatePolicyById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
-        return false;
-    }
-
-    return true;
-}
-
-void FResponse_OrgProductUpdatePolicyById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
-{
-    FResponse::SetHttpResponseCode(InHttpResponseCode);
-    switch ((int)InHttpResponseCode)
-    {
-    case 200:
-        SetResponseString(TEXT("Successful Response"));
-        break;
-    case 400:
-        SetResponseString(TEXT("Bad Request"));
-        break;
-    case 404:
-        SetResponseString(TEXT("Not Found"));
-        break;
-    case 422:
-        SetResponseString(TEXT("Validation Error"));
-        break;
-    }
-}
-
-bool FResponse_OrgProductUpdatePolicyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
-{
-    return TryGetJsonValue(JsonValue, Content);
-}
-
-FResponse_OrgProductUpdatePolicyById::FResponse_OrgProductUpdatePolicyById(FRequestMetadata InRequestMetadata) :
-    FResponse(MoveTemp(InRequestMetadata))
-{
-}
-
-FString Traits_OrgProductUpdatePolicyById::Name = TEXT("OrgProductUpdatePolicyById");
-
 FHttpRequestPtr FPoliciesAPI::ProductCreatePolicy(const FRequest_ProductCreatePolicy& Request, const FDelegate_ProductCreatePolicy& Delegate /*= FDelegate_ProductCreatePolicy()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
     if (!IsValid())
@@ -873,7 +96,7 @@ FName FRequest_ProductCreatePolicy::GetSimplifiedPath() const
 
 FString FRequest_ProductCreatePolicy::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
 
@@ -947,6 +170,16 @@ void FResponse_ProductCreatePolicy::SetHttpResponseCode(EHttpResponseCodes::Type
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_ProductCreatePolicy::TryGetContentFor200(FRHAPI_DevPolicyResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ProductCreatePolicy::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_ProductCreatePolicy::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1034,7 +267,7 @@ FName FRequest_ProductDeletePolicyById::GetSimplifiedPath() const
 
 FString FRequest_ProductDeletePolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1098,6 +331,16 @@ void FResponse_ProductDeletePolicyById::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_ProductDeletePolicyById::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ProductDeletePolicyById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_ProductDeletePolicyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1185,7 +428,7 @@ FName FRequest_ProductGetAllPolicies::GetSimplifiedPath() const
 
 FString FRequest_ProductGetAllPolicies::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
 
@@ -1247,6 +490,16 @@ void FResponse_ProductGetAllPolicies::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
+bool FResponse_ProductGetAllPolicies::TryGetContentFor200(FRHAPI_DevPolicyListResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ProductGetAllPolicies::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_ProductGetAllPolicies::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -1258,6 +511,150 @@ FResponse_ProductGetAllPolicies::FResponse_ProductGetAllPolicies(FRequestMetadat
 }
 
 FString Traits_ProductGetAllPolicies::Name = TEXT("ProductGetAllPolicies");
+
+FHttpRequestPtr FPoliciesAPI::ProductGetAllPolicies1(const FRequest_ProductGetAllPolicies1& Request, const FDelegate_ProductGetAllPolicies1& Delegate /*= FDelegate_ProductGetAllPolicies1()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnProductGetAllPolicies1Response, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FPoliciesAPI::OnProductGetAllPolicies1Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ProductGetAllPolicies1 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FPoliciesAPI::OnProductGetAllPolicies1Response, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_ProductGetAllPolicies1 Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_ProductGetAllPolicies1::FRequest_ProductGetAllPolicies1()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_ProductGetAllPolicies1::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/policy"));
+    return Path;
+}
+
+FString FRequest_ProductGetAllPolicies1::ComputePath() const
+{
+    FString Path = GetSimplifiedPath().ToString();
+    return Path;
+}
+
+bool FRequest_ProductGetAllPolicies1::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_ProductGetAllPolicies1 - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_ProductGetAllPolicies1 - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_ProductGetAllPolicies1 - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_ProductGetAllPolicies1::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 400:
+        SetResponseString(TEXT("Bad Request"));
+        break;
+    }
+}
+
+bool FResponse_ProductGetAllPolicies1::TryGetContentFor200(FRHAPI_DevPolicyListResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ProductGetAllPolicies1::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_ProductGetAllPolicies1::FResponse_ProductGetAllPolicies1(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_ProductGetAllPolicies1::Name = TEXT("ProductGetAllPolicies1");
 
 FHttpRequestPtr FPoliciesAPI::ProductGetPolicyById(const FRequest_ProductGetPolicyById& Request, const FDelegate_ProductGetPolicyById& Delegate /*= FDelegate_ProductGetPolicyById()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -1332,7 +729,7 @@ FName FRequest_ProductGetPolicyById::GetSimplifiedPath() const
 
 FString FRequest_ProductGetPolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1396,6 +793,16 @@ void FResponse_ProductGetPolicyById::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_ProductGetPolicyById::TryGetContentFor200(FRHAPI_DevPolicyResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ProductGetPolicyById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_ProductGetPolicyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -1483,7 +890,7 @@ FName FRequest_ProductUpdatePolicyById::GetSimplifiedPath() const
 
 FString FRequest_ProductUpdatePolicyById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("policy_id"), ToStringFormatArg(PolicyId) },
         { TEXT("product_id"), ToStringFormatArg(ProductId) }
     };
@@ -1558,6 +965,16 @@ void FResponse_ProductUpdatePolicyById::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_ProductUpdatePolicyById::TryGetContentFor200(FRHAPI_DevPolicyResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_ProductUpdatePolicyById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_ProductUpdatePolicyById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

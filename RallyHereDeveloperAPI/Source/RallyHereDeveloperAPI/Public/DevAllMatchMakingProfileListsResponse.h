@@ -9,7 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevMatchMakingProfileList.h"
+#include "DevMatchMakingProfileListFlattened.h"
 #include "DevAllMatchMakingProfileListsResponse.generated.h"
 
 /** @defgroup RHAPI_DevAllMatchMakingProfileListsResponse RallyHere API Model DevAllMatchMakingProfileListsResponse
@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMatchMakingProfileListsResponse : public FRHAPI_DevModel
@@ -50,23 +50,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMatchMakingProfileListsResponse : 
     void SetCursor(FString NewValue) { Cursor = NewValue;  }
 
     /** @brief List of MatchMakingProfileLists */
-    TArray<FRHAPI_DevMatchMakingProfileList> ProfileLists_Optional{  };
+    TArray<FRHAPI_DevMatchMakingProfileListFlattened> ProfileLists_Optional{  };
     /** @brief true if ProfileLists_Optional has been set to a value */
     bool ProfileLists_IsSet{ false };
     /** @brief Gets the value of ProfileLists_Optional, regardless of it having been set */
-    TArray<FRHAPI_DevMatchMakingProfileList>& GetProfileLists() { return ProfileLists_Optional; }
+    TArray<FRHAPI_DevMatchMakingProfileListFlattened>& GetProfileLists() { return ProfileLists_Optional; }
     /** @brief Gets the value of ProfileLists_Optional, regardless of it having been set */
-    const TArray<FRHAPI_DevMatchMakingProfileList>& GetProfileLists() const { return ProfileLists_Optional; }
+    const TArray<FRHAPI_DevMatchMakingProfileListFlattened>& GetProfileLists() const { return ProfileLists_Optional; }
     /** @brief Gets the value of ProfileLists_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_DevMatchMakingProfileList>& GetProfileLists(const TArray<FRHAPI_DevMatchMakingProfileList>& DefaultValue) const { if (ProfileLists_IsSet) return ProfileLists_Optional; return DefaultValue; }
+    const TArray<FRHAPI_DevMatchMakingProfileListFlattened>& GetProfileLists(const TArray<FRHAPI_DevMatchMakingProfileListFlattened>& DefaultValue) const { if (ProfileLists_IsSet) return ProfileLists_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of ProfileLists_Optional and returns true if it has been set, otherwise returns false */
-    bool GetProfileLists(TArray<FRHAPI_DevMatchMakingProfileList>& OutValue) const { if (ProfileLists_IsSet) OutValue = ProfileLists_Optional; return ProfileLists_IsSet; }
+    bool GetProfileLists(TArray<FRHAPI_DevMatchMakingProfileListFlattened>& OutValue) const { if (ProfileLists_IsSet) OutValue = ProfileLists_Optional; return ProfileLists_IsSet; }
     /** @brief Returns a pointer to ProfileLists_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_DevMatchMakingProfileList>* GetProfileListsOrNull() { if (ProfileLists_IsSet) return &ProfileLists_Optional; return nullptr; }
+    TArray<FRHAPI_DevMatchMakingProfileListFlattened>* GetProfileListsOrNull() { if (ProfileLists_IsSet) return &ProfileLists_Optional; return nullptr; }
     /** @brief Returns a pointer to ProfileLists_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_DevMatchMakingProfileList>* GetProfileListsOrNull() const { if (ProfileLists_IsSet) return &ProfileLists_Optional; return nullptr; }
+    const TArray<FRHAPI_DevMatchMakingProfileListFlattened>* GetProfileListsOrNull() const { if (ProfileLists_IsSet) return &ProfileLists_Optional; return nullptr; }
     /** @brief Sets the value of ProfileLists_Optional and also sets ProfileLists_IsSet to true */
-    void SetProfileLists(TArray<FRHAPI_DevMatchMakingProfileList> NewValue) { ProfileLists_Optional = NewValue; ProfileLists_IsSet = true; }
+    void SetProfileLists(TArray<FRHAPI_DevMatchMakingProfileListFlattened> NewValue) { ProfileLists_Optional = NewValue; ProfileLists_IsSet = true; }
      /** @brief Clears the value of ProfileLists_Optional and sets ProfileLists_IsSet to false */
     void ClearProfileLists() { ProfileLists_IsSet = false; }
 };

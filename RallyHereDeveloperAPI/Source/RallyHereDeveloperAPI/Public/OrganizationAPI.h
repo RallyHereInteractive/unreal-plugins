@@ -13,6 +13,7 @@
 #include "DevHTTPValidationError.h"
 #include "DevOrganization.h"
 #include "DevOrganizationRequest.h"
+#include "DevOrganizationStructure.h"
 #include "DevOrganizationUpdateRequest.h"
 #include "Misc/TVariant.h"
 
@@ -30,6 +31,8 @@ struct FRequest_GetAllOrgs;
 struct FResponse_GetAllOrgs;
 struct FRequest_GetOrg;
 struct FResponse_GetOrg;
+struct FRequest_GetOrgStructure;
+struct FResponse_GetOrgStructure;
 struct FRequest_UpdateOrg;
 struct FResponse_UpdateOrg;
 
@@ -37,6 +40,7 @@ DECLARE_DELEGATE_OneParam(FDelegate_CreateOrg, const FResponse_CreateOrg&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteOrg, const FResponse_DeleteOrg&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllOrgs, const FResponse_GetAllOrgs&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetOrg, const FResponse_GetOrg&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetOrgStructure, const FResponse_GetOrgStructure&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateOrg, const FResponse_UpdateOrg&);
 
 class RALLYHEREDEVELOPERAPI_API FOrganizationAPI : public FAPI
@@ -49,6 +53,7 @@ public:
     FHttpRequestPtr DeleteOrg(const FRequest_DeleteOrg& Request, const FDelegate_DeleteOrg& Delegate = FDelegate_DeleteOrg(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr GetAllOrgs(const FRequest_GetAllOrgs& Request, const FDelegate_GetAllOrgs& Delegate = FDelegate_GetAllOrgs(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr GetOrg(const FRequest_GetOrg& Request, const FDelegate_GetOrg& Delegate = FDelegate_GetOrg(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr GetOrgStructure(const FRequest_GetOrgStructure& Request, const FDelegate_GetOrgStructure& Delegate = FDelegate_GetOrgStructure(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr UpdateOrg(const FRequest_UpdateOrg& Request, const FDelegate_UpdateOrg& Delegate = FDelegate_UpdateOrg(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
@@ -56,6 +61,7 @@ private:
     void OnDeleteOrgResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteOrg Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAllOrgsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllOrgs Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetOrgResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetOrg Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetOrgStructureResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetOrgStructure Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnUpdateOrgResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateOrg Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
@@ -85,6 +91,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreateOrg : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevOrganization Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevOrganization& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -126,6 +144,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeleteOrg : public FResponse
 
     FRHAPI_DevJsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_DeleteOrg
@@ -163,6 +197,13 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAllOrgs : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevOrganization> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevOrganization>& OutContent) const;
 
 };
 
@@ -204,6 +245,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrg : public FResponse
 
     FRHAPI_DevOrganization Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevOrganization& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetOrg
@@ -215,6 +268,58 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetOrg
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrg(InRequest, InDelegate, Priority); }
+};
+
+/* Get Org Structure
+ *
+ * Get an organization structure by ID or short name, requires org:config:view or org:config:edit permissions on the organization
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_GetOrgStructure : public FRequest
+{
+    FRequest_GetOrgStructure();
+    virtual ~FRequest_GetOrgStructure() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* Organization ID or short name */
+    TVariant<FGuid, FString> OrgIdentifier;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrgStructure : public FResponse
+{
+    FResponse_GetOrgStructure(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetOrgStructure() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    TArray<FRHAPI_DevOrganizationStructure> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevOrganizationStructure>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_GetOrgStructure
+{
+    typedef FRequest_GetOrgStructure Request;
+    typedef FResponse_GetOrgStructure Response;
+    typedef FDelegate_GetOrgStructure Delegate;
+    typedef FOrganizationAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetOrgStructure(InRequest, InDelegate, Priority); }
 };
 
 /* Update Org
@@ -244,6 +349,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_UpdateOrg : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevOrganizationUpdateRequest Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevOrganizationUpdateRequest& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

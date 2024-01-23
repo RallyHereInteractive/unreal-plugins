@@ -94,6 +94,27 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPriceBreakpoint : public FRHAPI_DevMo
     bool IsPriceDefaultValue() const { return Price == 0; }
     /** @brief Sets the value of Price to its default  */
     void SetPriceToDefault() { Price = 0;  }
+
+    /** @brief Name corresponding Item ID  */
+    FString PriceItemName_Optional{  };
+    /** @brief true if PriceItemName_Optional has been set to a value */
+    bool PriceItemName_IsSet{ false };
+    /** @brief Gets the value of PriceItemName_Optional, regardless of it having been set */
+    FString& GetPriceItemName() { return PriceItemName_Optional; }
+    /** @brief Gets the value of PriceItemName_Optional, regardless of it having been set */
+    const FString& GetPriceItemName() const { return PriceItemName_Optional; }
+    /** @brief Gets the value of PriceItemName_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetPriceItemName(const FString& DefaultValue) const { if (PriceItemName_IsSet) return PriceItemName_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PriceItemName_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPriceItemName(FString& OutValue) const { if (PriceItemName_IsSet) OutValue = PriceItemName_Optional; return PriceItemName_IsSet; }
+    /** @brief Returns a pointer to PriceItemName_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetPriceItemNameOrNull() { if (PriceItemName_IsSet) return &PriceItemName_Optional; return nullptr; }
+    /** @brief Returns a pointer to PriceItemName_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetPriceItemNameOrNull() const { if (PriceItemName_IsSet) return &PriceItemName_Optional; return nullptr; }
+    /** @brief Sets the value of PriceItemName_Optional and also sets PriceItemName_IsSet to true */
+    void SetPriceItemName(FString NewValue) { PriceItemName_Optional = NewValue; PriceItemName_IsSet = true; }
+     /** @brief Clears the value of PriceItemName_Optional and sets PriceItemName_IsSet to false */
+    void ClearPriceItemName() { PriceItemName_IsSet = false; }
 };
 
 /** @} */

@@ -96,7 +96,7 @@ FName FRequest_Verify::GetSimplifiedPath() const
 
 FString FRequest_Verify::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) },
         { TEXT("product_identifier"), ToStringFormatArg(ProductIdentifier) }
     };
@@ -163,6 +163,16 @@ void FResponse_Verify::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_Verify::TryGetContentFor200(FRHAPI_DevPermissionsListResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_Verify::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_Verify::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

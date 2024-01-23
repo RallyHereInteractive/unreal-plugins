@@ -47,13 +47,13 @@ void FRHAPI_DevMatchMakingStride::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("stride_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, StrideId);
-    if (Steps_IsSet)
+    if (CreatedTimestamp_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("steps"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, Steps_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
+    Writer->WriteIdentifierPrefix(TEXT("match_making_stride_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MatchMakingStrideId);
     Writer->WriteObjectEnd();
 }
 
@@ -95,14 +95,14 @@ bool FRHAPI_DevMatchMakingStride::FromJson(const TSharedPtr<FJsonValue>& JsonVal
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonStrideIdField = (*Object)->TryGetField(TEXT("stride_id"));
-    ParseSuccess &= JsonStrideIdField.IsValid() && !JsonStrideIdField->IsNull() && TryGetJsonValue(JsonStrideIdField, StrideId);
-    const TSharedPtr<FJsonValue> JsonStepsField = (*Object)->TryGetField(TEXT("steps"));
-    if (JsonStepsField.IsValid() && !JsonStepsField->IsNull())
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
     {
-        Steps_IsSet = TryGetJsonValue(JsonStepsField, Steps_Optional);
-        ParseSuccess &= Steps_IsSet;
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonMatchMakingStrideIdField = (*Object)->TryGetField(TEXT("match_making_stride_id"));
+    ParseSuccess &= JsonMatchMakingStrideIdField.IsValid() && !JsonMatchMakingStrideIdField->IsNull() && TryGetJsonValue(JsonMatchMakingStrideIdField, MatchMakingStrideId);
 
     return ParseSuccess;
 }

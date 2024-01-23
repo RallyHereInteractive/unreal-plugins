@@ -15,7 +15,6 @@
 #include "DevInstanceRequestTemplate.h"
 #include "DevInstanceRequestTemplateRequest.h"
 #include "DevInstanceRequestTemplateUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -23,18 +22,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreateInstanceRequestTemplate;
-struct FResponse_OrgProductSandboxCreateInstanceRequestTemplate;
-struct FRequest_OrgProductSandboxDeleteInstanceRequestTemplate;
-struct FResponse_OrgProductSandboxDeleteInstanceRequestTemplate;
-struct FRequest_OrgProductSandboxGetAllInstanceRequestTemplates;
-struct FResponse_OrgProductSandboxGetAllInstanceRequestTemplates;
-struct FRequest_OrgProductSandboxGetInstanceRequestTemplate;
-struct FResponse_OrgProductSandboxGetInstanceRequestTemplate;
-struct FRequest_OrgProductSandboxPatchInstanceRequestTemplate;
-struct FResponse_OrgProductSandboxPatchInstanceRequestTemplate;
-struct FRequest_OrgProductSandboxPutInstanceRequestTemplate;
-struct FResponse_OrgProductSandboxPutInstanceRequestTemplate;
 struct FRequest_SandboxCreateInstanceRequestTemplate;
 struct FResponse_SandboxCreateInstanceRequestTemplate;
 struct FRequest_SandboxDeleteInstanceRequestTemplate;
@@ -48,12 +35,6 @@ struct FResponse_SandboxPatchInstanceRequestTemplate;
 struct FRequest_SandboxPutInstanceRequestTemplate;
 struct FResponse_SandboxPutInstanceRequestTemplate;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreateInstanceRequestTemplate, const FResponse_OrgProductSandboxCreateInstanceRequestTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeleteInstanceRequestTemplate, const FResponse_OrgProductSandboxDeleteInstanceRequestTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllInstanceRequestTemplates, const FResponse_OrgProductSandboxGetAllInstanceRequestTemplates&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetInstanceRequestTemplate, const FResponse_OrgProductSandboxGetInstanceRequestTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchInstanceRequestTemplate, const FResponse_OrgProductSandboxPatchInstanceRequestTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutInstanceRequestTemplate, const FResponse_OrgProductSandboxPutInstanceRequestTemplate&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreateInstanceRequestTemplate, const FResponse_SandboxCreateInstanceRequestTemplate&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeleteInstanceRequestTemplate, const FResponse_SandboxDeleteInstanceRequestTemplate&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllInstanceRequestTemplates, const FResponse_SandboxGetAllInstanceRequestTemplates&);
@@ -67,12 +48,6 @@ public:
     FInstanceRequestTemplatesAPI();
     virtual ~FInstanceRequestTemplatesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreateInstanceRequestTemplate(const FRequest_OrgProductSandboxCreateInstanceRequestTemplate& Request, const FDelegate_OrgProductSandboxCreateInstanceRequestTemplate& Delegate = FDelegate_OrgProductSandboxCreateInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeleteInstanceRequestTemplate(const FRequest_OrgProductSandboxDeleteInstanceRequestTemplate& Request, const FDelegate_OrgProductSandboxDeleteInstanceRequestTemplate& Delegate = FDelegate_OrgProductSandboxDeleteInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllInstanceRequestTemplates(const FRequest_OrgProductSandboxGetAllInstanceRequestTemplates& Request, const FDelegate_OrgProductSandboxGetAllInstanceRequestTemplates& Delegate = FDelegate_OrgProductSandboxGetAllInstanceRequestTemplates(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetInstanceRequestTemplate(const FRequest_OrgProductSandboxGetInstanceRequestTemplate& Request, const FDelegate_OrgProductSandboxGetInstanceRequestTemplate& Delegate = FDelegate_OrgProductSandboxGetInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchInstanceRequestTemplate(const FRequest_OrgProductSandboxPatchInstanceRequestTemplate& Request, const FDelegate_OrgProductSandboxPatchInstanceRequestTemplate& Delegate = FDelegate_OrgProductSandboxPatchInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutInstanceRequestTemplate(const FRequest_OrgProductSandboxPutInstanceRequestTemplate& Request, const FDelegate_OrgProductSandboxPutInstanceRequestTemplate& Delegate = FDelegate_OrgProductSandboxPutInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreateInstanceRequestTemplate(const FRequest_SandboxCreateInstanceRequestTemplate& Request, const FDelegate_SandboxCreateInstanceRequestTemplate& Delegate = FDelegate_SandboxCreateInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeleteInstanceRequestTemplate(const FRequest_SandboxDeleteInstanceRequestTemplate& Request, const FDelegate_SandboxDeleteInstanceRequestTemplate& Delegate = FDelegate_SandboxDeleteInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetAllInstanceRequestTemplates(const FRequest_SandboxGetAllInstanceRequestTemplates& Request, const FDelegate_SandboxGetAllInstanceRequestTemplates& Delegate = FDelegate_SandboxGetAllInstanceRequestTemplates(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -81,12 +56,6 @@ public:
     FHttpRequestPtr SandboxPutInstanceRequestTemplate(const FRequest_SandboxPutInstanceRequestTemplate& Request, const FDelegate_SandboxPutInstanceRequestTemplate& Delegate = FDelegate_SandboxPutInstanceRequestTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreateInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreateInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeleteInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeleteInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllInstanceRequestTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllInstanceRequestTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreateInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreateInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeleteInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeleteInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetAllInstanceRequestTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllInstanceRequestTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -98,282 +67,9 @@ private:
 
 /* Create Instance Request Template
  *
- * Create a new Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreateInstanceRequestTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxCreateInstanceRequestTemplate();
-    virtual ~FRequest_OrgProductSandboxCreateInstanceRequestTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevInstanceRequestTemplateRequest InstanceRequestTemplateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreateInstanceRequestTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxCreateInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreateInstanceRequestTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevInstanceRequestTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreateInstanceRequestTemplate
-{
-    typedef FRequest_OrgProductSandboxCreateInstanceRequestTemplate Request;
-    typedef FResponse_OrgProductSandboxCreateInstanceRequestTemplate Response;
-    typedef FDelegate_OrgProductSandboxCreateInstanceRequestTemplate Delegate;
-    typedef FInstanceRequestTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreateInstanceRequestTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Instance Request Template
- *
- * Delete an Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeleteInstanceRequestTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxDeleteInstanceRequestTemplate();
-    virtual ~FRequest_OrgProductSandboxDeleteInstanceRequestTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid InstanceRequestTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeleteInstanceRequestTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxDeleteInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeleteInstanceRequestTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeleteInstanceRequestTemplate
-{
-    typedef FRequest_OrgProductSandboxDeleteInstanceRequestTemplate Request;
-    typedef FResponse_OrgProductSandboxDeleteInstanceRequestTemplate Response;
-    typedef FDelegate_OrgProductSandboxDeleteInstanceRequestTemplate Delegate;
-    typedef FInstanceRequestTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeleteInstanceRequestTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Instance Request Templates
- *
- * Get all Instance Request Templates in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllInstanceRequestTemplates : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllInstanceRequestTemplates();
-    virtual ~FRequest_OrgProductSandboxGetAllInstanceRequestTemplates() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllInstanceRequestTemplates : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllInstanceRequestTemplates(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllInstanceRequestTemplates() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllInstanceRequestTemplatesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllInstanceRequestTemplates
-{
-    typedef FRequest_OrgProductSandboxGetAllInstanceRequestTemplates Request;
-    typedef FResponse_OrgProductSandboxGetAllInstanceRequestTemplates Response;
-    typedef FDelegate_OrgProductSandboxGetAllInstanceRequestTemplates Delegate;
-    typedef FInstanceRequestTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllInstanceRequestTemplates(InRequest, InDelegate, Priority); }
-};
-
-/* Get Instance Request Template
- *
- * Get a specific Instance Request Template in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetInstanceRequestTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxGetInstanceRequestTemplate();
-    virtual ~FRequest_OrgProductSandboxGetInstanceRequestTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid InstanceRequestTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetInstanceRequestTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxGetInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetInstanceRequestTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevInstanceRequestTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetInstanceRequestTemplate
-{
-    typedef FRequest_OrgProductSandboxGetInstanceRequestTemplate Request;
-    typedef FResponse_OrgProductSandboxGetInstanceRequestTemplate Response;
-    typedef FDelegate_OrgProductSandboxGetInstanceRequestTemplate Delegate;
-    typedef FInstanceRequestTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Instance Request Template
- *
- * Update an existing Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchInstanceRequestTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxPatchInstanceRequestTemplate();
-    virtual ~FRequest_OrgProductSandboxPatchInstanceRequestTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid InstanceRequestTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevInstanceRequestTemplateUpdateRequest InstanceRequestTemplateUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchInstanceRequestTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxPatchInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchInstanceRequestTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevInstanceRequestTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchInstanceRequestTemplate
-{
-    typedef FRequest_OrgProductSandboxPatchInstanceRequestTemplate Request;
-    typedef FResponse_OrgProductSandboxPatchInstanceRequestTemplate Response;
-    typedef FDelegate_OrgProductSandboxPatchInstanceRequestTemplate Delegate;
-    typedef FInstanceRequestTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchInstanceRequestTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Put Instance Request Template
- *
- * Update an existing Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutInstanceRequestTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxPutInstanceRequestTemplate();
-    virtual ~FRequest_OrgProductSandboxPutInstanceRequestTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid InstanceRequestTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevInstanceRequestTemplateRequest InstanceRequestTemplateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutInstanceRequestTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxPutInstanceRequestTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutInstanceRequestTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevInstanceRequestTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutInstanceRequestTemplate
-{
-    typedef FRequest_OrgProductSandboxPutInstanceRequestTemplate Request;
-    typedef FResponse_OrgProductSandboxPutInstanceRequestTemplate Response;
-    typedef FDelegate_OrgProductSandboxPutInstanceRequestTemplate Delegate;
-    typedef FInstanceRequestTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutInstanceRequestTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Create Instance Request Template
- *
- * Create a new Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
+ * Create a new Instance Request Template in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreateInstanceRequestTemplate : public FRequest
 {
@@ -399,6 +95,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateInstanceRequestTemplate 
 
     FRHAPI_DevInstanceRequestTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInstanceRequestTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateInstanceRequestTemplate
@@ -414,7 +122,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateInstanceRequestTemplate
 
 /* Delete Instance Request Template
  *
- * Delete an Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
+ * Delete an Instance Request Template in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeleteInstanceRequestTemplate : public FRequest
 {
@@ -438,7 +148,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteInstanceRequestTemplate 
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -455,7 +176,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteInstanceRequestTemplate
 
 /* Get All Instance Request Templates
  *
- * Get all Instance Request Templates in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all Instance Request Templates in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllInstanceRequestTemplates : public FRequest
 {
@@ -484,6 +208,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllInstanceRequestTemplates
 
     FRHAPI_DevAllInstanceRequestTemplatesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllInstanceRequestTemplatesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllInstanceRequestTemplates
@@ -499,7 +235,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllInstanceRequestTemplates
 
 /* Get Instance Request Template
  *
- * Get a specific Instance Request Template in a sandbox  Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific Instance Request Template in a sandbox
+ * 
+ * Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetInstanceRequestTemplate : public FRequest
 {
@@ -525,6 +264,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetInstanceRequestTemplate : p
 
     FRHAPI_DevInstanceRequestTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInstanceRequestTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetInstanceRequestTemplate
@@ -540,7 +291,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetInstanceRequestTemplate
 
 /* Patch Instance Request Template
  *
- * Update an existing Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing Instance Request Template in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchInstanceRequestTemplate : public FRequest
 {
@@ -567,6 +320,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchInstanceRequestTemplate :
 
     FRHAPI_DevInstanceRequestTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInstanceRequestTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchInstanceRequestTemplate
@@ -582,7 +347,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchInstanceRequestTemplate
 
 /* Put Instance Request Template
  *
- * Update an existing Instance Request Template in a sandbox  Requires permission sandbox:config:edit.
+ * Update an existing Instance Request Template in a sandbox
+ * 
+ * Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutInstanceRequestTemplate : public FRequest
 {
@@ -608,6 +375,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutInstanceRequestTemplate : p
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevInstanceRequestTemplate Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInstanceRequestTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

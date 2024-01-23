@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPortalPermissionOrgGroup : public FRHAPI_DevModel
@@ -62,6 +62,46 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevPortalPermissionOrgGroup : public FRH
     const FGuid& GetOrgId() const { return OrgId; }
     /** @brief Sets the value of OrgId */
     void SetOrgId(FGuid NewValue) { OrgId = NewValue;  }
+
+    FString DisplayName_Optional{  };
+    /** @brief true if DisplayName_Optional has been set to a value */
+    bool DisplayName_IsSet{ false };
+    /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
+    FString& GetDisplayName() { return DisplayName_Optional; }
+    /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
+    const FString& GetDisplayName() const { return DisplayName_Optional; }
+    /** @brief Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
+    bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
+    /** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+    /** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return &DisplayName_Optional; return nullptr; }
+    /** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
+    void SetDisplayName(FString NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; }
+     /** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
+    void ClearDisplayName() { DisplayName_IsSet = false; }
+
+    FString Description_Optional{  };
+    /** @brief true if Description_Optional has been set to a value */
+    bool Description_IsSet{ false };
+    /** @brief Gets the value of Description_Optional, regardless of it having been set */
+    FString& GetDescription() { return Description_Optional; }
+    /** @brief Gets the value of Description_Optional, regardless of it having been set */
+    const FString& GetDescription() const { return Description_Optional; }
+    /** @brief Gets the value of Description_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetDescription(const FString& DefaultValue) const { if (Description_IsSet) return Description_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
+    bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
+    /** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetDescriptionOrNull() { if (Description_IsSet) return &Description_Optional; return nullptr; }
+    /** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
+    /** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
+    void SetDescription(FString NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+     /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+    void ClearDescription() { Description_IsSet = false; }
 };
 
 /** @} */

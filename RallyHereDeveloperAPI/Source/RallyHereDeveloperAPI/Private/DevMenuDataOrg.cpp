@@ -30,6 +30,8 @@ void FRHAPI_DevMenuDataOrg::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     RallyHereDeveloperAPI::WriteJsonValue(Writer, ShortName);
     Writer->WriteIdentifierPrefix(TEXT("products"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Products);
+    Writer->WriteIdentifierPrefix(TEXT("archive"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, Archive);
     Writer->WriteObjectEnd();
 }
 
@@ -49,6 +51,8 @@ bool FRHAPI_DevMenuDataOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     ParseSuccess &= JsonShortNameField.IsValid() && !JsonShortNameField->IsNull() && TryGetJsonValue(JsonShortNameField, ShortName);
     const TSharedPtr<FJsonValue> JsonProductsField = (*Object)->TryGetField(TEXT("products"));
     ParseSuccess &= JsonProductsField.IsValid() && !JsonProductsField->IsNull() && TryGetJsonValue(JsonProductsField, Products);
+    const TSharedPtr<FJsonValue> JsonArchiveField = (*Object)->TryGetField(TEXT("archive"));
+    ParseSuccess &= JsonArchiveField.IsValid() && !JsonArchiveField->IsNull() && TryGetJsonValue(JsonArchiveField, Archive);
 
     return ParseSuccess;
 }

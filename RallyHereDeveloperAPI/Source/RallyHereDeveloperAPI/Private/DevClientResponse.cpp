@@ -24,6 +24,11 @@ void FRHAPI_DevClientResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("client_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, ClientId);
+    if (ClientSecret_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("client_secret"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, ClientSecret_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("name"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Name);
     Writer->WriteIdentifierPrefix(TEXT("policy"));
@@ -43,6 +48,12 @@ bool FRHAPI_DevClientResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     const TSharedPtr<FJsonValue> JsonClientIdField = (*Object)->TryGetField(TEXT("client_id"));
     ParseSuccess &= JsonClientIdField.IsValid() && !JsonClientIdField->IsNull() && TryGetJsonValue(JsonClientIdField, ClientId);
+    const TSharedPtr<FJsonValue> JsonClientSecretField = (*Object)->TryGetField(TEXT("client_secret"));
+    if (JsonClientSecretField.IsValid() && !JsonClientSecretField->IsNull())
+    {
+        ClientSecret_IsSet = TryGetJsonValue(JsonClientSecretField, ClientSecret_Optional);
+        ParseSuccess &= ClientSecret_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
     ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
     const TSharedPtr<FJsonValue> JsonPolicyField = (*Object)->TryGetField(TEXT("policy"));

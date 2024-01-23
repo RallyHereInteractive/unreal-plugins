@@ -29,15 +29,10 @@ void FRHAPI_DevPortalAccountPermissionRequest::WriteJson(TSharedRef<TJsonWriter<
     if (Level_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("level"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, Level_Optional);
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(Level_Optional));
     }
     Writer->WriteIdentifierPrefix(TEXT("level_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, LevelId);
-    if (GlobalAdmin_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("global_admin"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, GlobalAdmin_Optional);
-    }
     Writer->WriteIdentifierPrefix(TEXT("account_permission_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, AccountPermissionId);
     Writer->WriteIdentifierPrefix(TEXT("permission_id"));
@@ -65,12 +60,6 @@ bool FRHAPI_DevPortalAccountPermissionRequest::FromJson(const TSharedPtr<FJsonVa
     }
     const TSharedPtr<FJsonValue> JsonLevelIdField = (*Object)->TryGetField(TEXT("level_id"));
     ParseSuccess &= JsonLevelIdField.IsValid() && !JsonLevelIdField->IsNull() && TryGetJsonValue(JsonLevelIdField, LevelId);
-    const TSharedPtr<FJsonValue> JsonGlobalAdminField = (*Object)->TryGetField(TEXT("global_admin"));
-    if (JsonGlobalAdminField.IsValid() && !JsonGlobalAdminField->IsNull())
-    {
-        GlobalAdmin_IsSet = TryGetJsonValue(JsonGlobalAdminField, GlobalAdmin_Optional);
-        ParseSuccess &= GlobalAdmin_IsSet;
-    }
     const TSharedPtr<FJsonValue> JsonAccountPermissionIdField = (*Object)->TryGetField(TEXT("account_permission_id"));
     ParseSuccess &= JsonAccountPermissionIdField.IsValid() && !JsonAccountPermissionIdField->IsNull() && TryGetJsonValue(JsonAccountPermissionIdField, AccountPermissionId);
     const TSharedPtr<FJsonValue> JsonPermissionIdField = (*Object)->TryGetField(TEXT("permission_id"));

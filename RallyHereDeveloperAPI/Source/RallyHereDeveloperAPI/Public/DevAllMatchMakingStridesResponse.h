@@ -9,7 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
-#include "DevMatchMakingStride.h"
+#include "DevMatchMakingStrideResponse.h"
 #include "DevAllMatchMakingStridesResponse.generated.h"
 
 /** @defgroup RHAPI_DevAllMatchMakingStridesResponse RallyHere API Model DevAllMatchMakingStridesResponse
@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMatchMakingStridesResponse : public FRHAPI_DevModel
@@ -50,13 +50,13 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevAllMatchMakingStridesResponse : publi
     void SetCursor(FString NewValue) { Cursor = NewValue;  }
 
     /** @brief List of MatchMakingStrides */
-    TArray<FRHAPI_DevMatchMakingStride> Strides{  };
+    TArray<FRHAPI_DevMatchMakingStrideResponse> Strides{  };
     /** @brief Gets the value of Strides */
-    TArray<FRHAPI_DevMatchMakingStride>& GetStrides() { return Strides; }
+    TArray<FRHAPI_DevMatchMakingStrideResponse>& GetStrides() { return Strides; }
     /** @brief Gets the value of Strides */
-    const TArray<FRHAPI_DevMatchMakingStride>& GetStrides() const { return Strides; }
+    const TArray<FRHAPI_DevMatchMakingStrideResponse>& GetStrides() const { return Strides; }
     /** @brief Sets the value of Strides */
-    void SetStrides(TArray<FRHAPI_DevMatchMakingStride> NewValue) { Strides = NewValue;  }
+    void SetStrides(TArray<FRHAPI_DevMatchMakingStrideResponse> NewValue) { Strides = NewValue;  }
 };
 
 /** @} */

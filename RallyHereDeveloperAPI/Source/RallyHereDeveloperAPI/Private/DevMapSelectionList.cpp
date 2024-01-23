@@ -29,8 +29,6 @@ void FRHAPI_DevMapSelectionList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, SandboxId_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("selection_list_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, SelectionListId);
     if (LastModifiedAccountId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
@@ -41,11 +39,13 @@ void FRHAPI_DevMapSelectionList::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
     }
-    if (Maps_IsSet)
+    if (CreatedTimestamp_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("maps"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, Maps_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
+    Writer->WriteIdentifierPrefix(TEXT("map_selection_list_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, MapSelectionListId);
     Writer->WriteObjectEnd();
 }
 
@@ -65,8 +65,6 @@ bool FRHAPI_DevMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValu
         SandboxId_IsSet = TryGetJsonValue(JsonSandboxIdField, SandboxId_Optional);
         ParseSuccess &= SandboxId_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonSelectionListIdField = (*Object)->TryGetField(TEXT("selection_list_id"));
-    ParseSuccess &= JsonSelectionListIdField.IsValid() && !JsonSelectionListIdField->IsNull() && TryGetJsonValue(JsonSelectionListIdField, SelectionListId);
     const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
     if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
     {
@@ -79,12 +77,14 @@ bool FRHAPI_DevMapSelectionList::FromJson(const TSharedPtr<FJsonValue>& JsonValu
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonMapsField = (*Object)->TryGetField(TEXT("maps"));
-    if (JsonMapsField.IsValid() && !JsonMapsField->IsNull())
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
     {
-        Maps_IsSet = TryGetJsonValue(JsonMapsField, Maps_Optional);
-        ParseSuccess &= Maps_IsSet;
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonMapSelectionListIdField = (*Object)->TryGetField(TEXT("map_selection_list_id"));
+    ParseSuccess &= JsonMapSelectionListIdField.IsValid() && !JsonMapSelectionListIdField->IsNull() && TryGetJsonValue(JsonMapSelectionListIdField, MapSelectionListId);
 
     return ParseSuccess;
 }

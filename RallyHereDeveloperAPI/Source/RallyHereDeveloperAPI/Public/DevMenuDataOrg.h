@@ -17,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMenuDataOrg : public FRHAPI_DevModel
@@ -71,6 +71,18 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMenuDataOrg : public FRHAPI_DevModel
     const TArray<FRHAPI_DevMenuDataProduct>& GetProducts() const { return Products; }
     /** @brief Sets the value of Products */
     void SetProducts(TArray<FRHAPI_DevMenuDataProduct> NewValue) { Products = NewValue;  }
+
+    bool Archive{ false };
+    /** @brief Gets the value of Archive */
+    bool& GetArchive() { return Archive; }
+    /** @brief Gets the value of Archive */
+    const bool& GetArchive() const { return Archive; }
+    /** @brief Sets the value of Archive */
+    void SetArchive(bool NewValue) { Archive = NewValue;  }
+    /** @brief Returns true if Archive matches the default value */
+    bool IsArchiveDefaultValue() const { return Archive == false; }
+    /** @brief Sets the value of Archive to its default  */
+    void SetArchiveToDefault() { Archive = false;  }
 };
 
 /** @} */

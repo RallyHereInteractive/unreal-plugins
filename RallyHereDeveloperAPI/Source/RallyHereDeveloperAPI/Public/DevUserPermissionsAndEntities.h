@@ -18,7 +18,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevUserPermissionsAndEntities : public FRHAPI_DevModel

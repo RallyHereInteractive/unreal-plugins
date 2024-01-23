@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevRoleAuthBypassMethod.h"
 #include "DevRoleLoginLootBase.h"
 #include "DevRoleUpdate.generated.h"
 
@@ -123,6 +124,27 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevRoleUpdate : public FRHAPI_DevModel
     void SetLoginLootRewards(TArray<FRHAPI_DevRoleLoginLootBase> NewValue) { LoginLootRewards_Optional = NewValue; LoginLootRewards_IsSet = true; }
      /** @brief Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false */
     void ClearLoginLootRewards() { LoginLootRewards_IsSet = false; }
+
+    /** @brief Auth bypass method for this role */
+    ERHAPI_DevRoleAuthBypassMethod AuthBypass_Optional{  };
+    /** @brief true if AuthBypass_Optional has been set to a value */
+    bool AuthBypass_IsSet{ false };
+    /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
+    ERHAPI_DevRoleAuthBypassMethod& GetAuthBypass() { return AuthBypass_Optional; }
+    /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
+    const ERHAPI_DevRoleAuthBypassMethod& GetAuthBypass() const { return AuthBypass_Optional; }
+    /** @brief Gets the value of AuthBypass_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_DevRoleAuthBypassMethod& GetAuthBypass(const ERHAPI_DevRoleAuthBypassMethod& DefaultValue) const { if (AuthBypass_IsSet) return AuthBypass_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false */
+    bool GetAuthBypass(ERHAPI_DevRoleAuthBypassMethod& OutValue) const { if (AuthBypass_IsSet) OutValue = AuthBypass_Optional; return AuthBypass_IsSet; }
+    /** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_DevRoleAuthBypassMethod* GetAuthBypassOrNull() { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+    /** @brief Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_DevRoleAuthBypassMethod* GetAuthBypassOrNull() const { if (AuthBypass_IsSet) return &AuthBypass_Optional; return nullptr; }
+    /** @brief Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true */
+    void SetAuthBypass(ERHAPI_DevRoleAuthBypassMethod NewValue) { AuthBypass_Optional = NewValue; AuthBypass_IsSet = true; }
+     /** @brief Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false */
+    void ClearAuthBypass() { AuthBypass_IsSet = false; }
 };
 
 /** @} */

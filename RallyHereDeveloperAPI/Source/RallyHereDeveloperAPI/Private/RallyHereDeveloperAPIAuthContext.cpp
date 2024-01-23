@@ -8,13 +8,15 @@
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "RallyHereDeveloperAPIModule.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+//#include "AuthAPI.h"
 
 namespace RallyHereDeveloperAPI
 {
 
-FAuthContext::FAuthContext(FString ClientId, FString ClientSecret) : ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, LoginComplete{}
+FAuthContext::FAuthContext(FString ClientId, FString ClientSecret) : 
+	ClientId{std::move(ClientId)}, ClientSecret{std::move(ClientSecret)}, LoginComplete{}
 {
-    UpdateBasicAuthValue();
+	UpdateBasicAuthValue();
 }
 
 FAuthContext::FAuthContext() : LoginComplete{}
@@ -23,43 +25,43 @@ FAuthContext::FAuthContext() : LoginComplete{}
 
 void FAuthContext::AuthFromWebURL(const FString& URL)
 {
-    int32 AccessTokenIndex = URL.Find("#access_token=");
+	int32 AccessTokenIndex = URL.Find("#access_token=");
 
-    if (AccessTokenIndex > 0)
-    {
-        AccessToken = URL.RightChop(AccessTokenIndex + 14);
+	if (AccessTokenIndex > 0)
+	{
+		AccessToken = URL.RightChop(AccessTokenIndex + 14);
 		int32 AccessTokenEndIndex = AccessToken.Find("&");
 		if (AccessTokenEndIndex > 0)
 		{
 			AccessToken = AccessToken.Left(AccessTokenEndIndex);
 		}
 
-        {
-            SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
-            LoginComplete.Broadcast(true);
-        }
-    }
+		{
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastLoginComplete, FColor::Purple);
+			LoginComplete.Broadcast(true);
+		}
+	}
 }
 
-bool FAuthContext::Refresh()
-{
-    LoginRequested.Broadcast();
-    return true;
-}
+	bool FAuthContext::Refresh()
+	{
+		LoginRequested.Broadcast();
+		return true;
+	}
 
 bool FAuthContext::IsLoggedIn() const
 {
-    return !AccessToken.IsEmpty();
+		return !AccessToken.IsEmpty();
 }
 
 FString FAuthContext::GetAccessToken() const
 {
-    return AccessToken;
+		return AccessToken;
 }
 
 void FAuthContext::ClearAuthContext()
 {
-    AccessToken = "";
+		AccessToken = "";
 }
 
 void FAuthContext::SetClientId(const FString& InClientId)

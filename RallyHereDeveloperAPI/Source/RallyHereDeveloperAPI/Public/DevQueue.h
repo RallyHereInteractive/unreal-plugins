@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig.h"
 #include "DevQueue.generated.h"
 
 /** @defgroup RHAPI_DevQueue RallyHere API Model DevQueue
@@ -16,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevQueue : public FRHAPI_DevModel
@@ -74,24 +75,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevQueue : public FRHAPI_DevModel
     /** @brief Sets the value of MatchMakingTemplateGroupId */
     void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 
-    /** @brief Dictionary of config required for legacy games */
-    TMap<FString, FString> LegacyConfig_Optional{  };
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& GetLegacyConfig() { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& GetLegacyConfig() const { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& GetLegacyConfig(const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+    bool GetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+    void SetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
      /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
     void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 
@@ -115,15 +115,6 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevQueue : public FRHAPI_DevModel
     void SetSandboxId(FGuid NewValue) { SandboxId_Optional = NewValue; SandboxId_IsSet = true; }
      /** @brief Clears the value of SandboxId_Optional and sets SandboxId_IsSet to false */
     void ClearSandboxId() { SandboxId_IsSet = false; }
-
-    /** @brief ID to uniquely identify this queue */
-    FGuid QueueId{  };
-    /** @brief Gets the value of QueueId */
-    FGuid& GetQueueId() { return QueueId; }
-    /** @brief Gets the value of QueueId */
-    const FGuid& GetQueueId() const { return QueueId; }
-    /** @brief Sets the value of QueueId */
-    void SetQueueId(FGuid NewValue) { QueueId = NewValue;  }
 
     /** @brief Account ID of the user who last modified the resource */
     FGuid LastModifiedAccountId_Optional{  };
@@ -166,6 +157,36 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevQueue : public FRHAPI_DevModel
     void SetLastModifiedTimestamp(FDateTime NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true; }
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
+
+    /** @brief Timestamp of when this resource was created */
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
+
+    /** @brief ID to uniquely identify this queue */
+    FGuid QueueId{  };
+    /** @brief Gets the value of QueueId */
+    FGuid& GetQueueId() { return QueueId; }
+    /** @brief Gets the value of QueueId */
+    const FGuid& GetQueueId() const { return QueueId; }
+    /** @brief Sets the value of QueueId */
+    void SetQueueId(FGuid NewValue) { QueueId = NewValue;  }
 };
 
 /** @} */

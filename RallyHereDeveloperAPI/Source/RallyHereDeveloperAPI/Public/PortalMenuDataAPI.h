@@ -43,7 +43,6 @@ private:
 };
 
 /* Get Menu Data
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_GetMenuData : public FRequest
 {
@@ -68,6 +67,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetMenuData : public FResponse
 
     FRHAPI_DevMenuData Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMenuData& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetMenuData
@@ -82,7 +93,6 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetMenuData
 };
 
 /* Get Menu Data User From Token
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_GetMenuDataUserFromToken : public FRequest
 {
@@ -104,6 +114,13 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetMenuDataUserFromToken : public FRe
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevMenuData Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevMenuData& OutContent) const;
 
 };
 

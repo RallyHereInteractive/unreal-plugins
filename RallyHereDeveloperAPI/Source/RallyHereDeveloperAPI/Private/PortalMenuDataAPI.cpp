@@ -96,7 +96,7 @@ FName FRequest_GetMenuData::GetSimplifiedPath() const
 
 FString FRequest_GetMenuData::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("account_id"), ToStringFormatArg(AccountId) }
     };
 
@@ -153,6 +153,16 @@ void FResponse_GetMenuData::SetHttpResponseCode(EHttpResponseCodes::Type InHttpR
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetMenuData::TryGetContentFor200(FRHAPI_DevMenuData& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetMenuData::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMenuData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -289,6 +299,11 @@ void FResponse_GetMenuDataUserFromToken::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT("Successful Response"));
         break;
     }
+}
+
+bool FResponse_GetMenuDataUserFromToken::TryGetContentFor200(FRHAPI_DevMenuData& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetMenuDataUserFromToken::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

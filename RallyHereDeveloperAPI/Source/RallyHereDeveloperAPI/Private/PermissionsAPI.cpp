@@ -107,17 +107,6 @@ bool FRequest_GetAllPermissions::SetupHttpRequest(const FHttpRequestRef& HttpReq
 
     HttpRequest->SetVerb(TEXT("GET"));
 
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetAllPermissions - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetAllPermissions - failed to add bearer token"));
-        return false;
-    }
-
     if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
     {
     }
@@ -145,6 +134,11 @@ void FResponse_GetAllPermissions::SetHttpResponseCode(EHttpResponseCodes::Type I
         SetResponseString(TEXT("Successful Response"));
         break;
     }
+}
+
+bool FResponse_GetAllPermissions::TryGetContentFor200(FRHAPI_DevPermissionsListResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAllPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -232,7 +226,7 @@ FName FRequest_GetPermissionById::GetSimplifiedPath() const
 
 FString FRequest_GetPermissionById::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("permission_id"), ToStringFormatArg(PermissionId) }
     };
 
@@ -247,17 +241,6 @@ bool FRequest_GetPermissionById::SetupHttpRequest(const FHttpRequestRef& HttpReq
     //static const TArray<FString> Produces = { TEXT("application/json") };
 
     HttpRequest->SetVerb(TEXT("GET"));
-
-    if (!AuthContext)
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetPermissionById - missing auth context"));
-        return false;
-    }
-    if (!AuthContext->AddBearerToken(HttpRequest))
-    {
-        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetPermissionById - failed to add bearer token"));
-        return false;
-    }
 
     if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
     {
@@ -292,6 +275,16 @@ void FResponse_GetPermissionById::SetHttpResponseCode(EHttpResponseCodes::Type I
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetPermissionById::TryGetContentFor200(FRHAPI_DevPermissionResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetPermissionById::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPermissionById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

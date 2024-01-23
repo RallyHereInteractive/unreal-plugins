@@ -16,7 +16,6 @@
 #include "DevPlatformSessionTemplate.h"
 #include "DevPlatformSessionTemplateRequest.h"
 #include "DevPlatformSessionTemplateUpdateRequest.h"
-#include "Misc/TVariant.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -24,18 +23,6 @@ using RallyHereDeveloperAPI::ToStringFormatArg;
 using RallyHereDeveloperAPI::WriteJsonValue;
 using RallyHereDeveloperAPI::TryGetJsonValue;
 
-struct FRequest_OrgProductSandboxCreatePlatformSessionTemplate;
-struct FResponse_OrgProductSandboxCreatePlatformSessionTemplate;
-struct FRequest_OrgProductSandboxDeletePlatformSessionTemplate;
-struct FResponse_OrgProductSandboxDeletePlatformSessionTemplate;
-struct FRequest_OrgProductSandboxGetAllPlatformSessionTemplates;
-struct FResponse_OrgProductSandboxGetAllPlatformSessionTemplates;
-struct FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate;
-struct FResponse_OrgProductSandboxGetSpecificPlatformSessionTemplate;
-struct FRequest_OrgProductSandboxPatchPlatformSessionTemplate;
-struct FResponse_OrgProductSandboxPatchPlatformSessionTemplate;
-struct FRequest_OrgProductSandboxPutPlatformSessionTemplate;
-struct FResponse_OrgProductSandboxPutPlatformSessionTemplate;
 struct FRequest_SandboxCreatePlatformSessionTemplate;
 struct FResponse_SandboxCreatePlatformSessionTemplate;
 struct FRequest_SandboxDeletePlatformSessionTemplate;
@@ -49,12 +36,6 @@ struct FResponse_SandboxPatchPlatformSessionTemplate;
 struct FRequest_SandboxPutPlatformSessionTemplate;
 struct FResponse_SandboxPutPlatformSessionTemplate;
 
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxCreatePlatformSessionTemplate, const FResponse_OrgProductSandboxCreatePlatformSessionTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxDeletePlatformSessionTemplate, const FResponse_OrgProductSandboxDeletePlatformSessionTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetAllPlatformSessionTemplates, const FResponse_OrgProductSandboxGetAllPlatformSessionTemplates&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxGetSpecificPlatformSessionTemplate, const FResponse_OrgProductSandboxGetSpecificPlatformSessionTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPatchPlatformSessionTemplate, const FResponse_OrgProductSandboxPatchPlatformSessionTemplate&);
-DECLARE_DELEGATE_OneParam(FDelegate_OrgProductSandboxPutPlatformSessionTemplate, const FResponse_OrgProductSandboxPutPlatformSessionTemplate&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxCreatePlatformSessionTemplate, const FResponse_SandboxCreatePlatformSessionTemplate&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxDeletePlatformSessionTemplate, const FResponse_SandboxDeletePlatformSessionTemplate&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetAllPlatformSessionTemplates, const FResponse_SandboxGetAllPlatformSessionTemplates&);
@@ -68,12 +49,6 @@ public:
     FPlatformSessionTemplatesAPI();
     virtual ~FPlatformSessionTemplatesAPI();
 
-    FHttpRequestPtr OrgProductSandboxCreatePlatformSessionTemplate(const FRequest_OrgProductSandboxCreatePlatformSessionTemplate& Request, const FDelegate_OrgProductSandboxCreatePlatformSessionTemplate& Delegate = FDelegate_OrgProductSandboxCreatePlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxDeletePlatformSessionTemplate(const FRequest_OrgProductSandboxDeletePlatformSessionTemplate& Request, const FDelegate_OrgProductSandboxDeletePlatformSessionTemplate& Delegate = FDelegate_OrgProductSandboxDeletePlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetAllPlatformSessionTemplates(const FRequest_OrgProductSandboxGetAllPlatformSessionTemplates& Request, const FDelegate_OrgProductSandboxGetAllPlatformSessionTemplates& Delegate = FDelegate_OrgProductSandboxGetAllPlatformSessionTemplates(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxGetSpecificPlatformSessionTemplate(const FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate& Request, const FDelegate_OrgProductSandboxGetSpecificPlatformSessionTemplate& Delegate = FDelegate_OrgProductSandboxGetSpecificPlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPatchPlatformSessionTemplate(const FRequest_OrgProductSandboxPatchPlatformSessionTemplate& Request, const FDelegate_OrgProductSandboxPatchPlatformSessionTemplate& Delegate = FDelegate_OrgProductSandboxPatchPlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr OrgProductSandboxPutPlatformSessionTemplate(const FRequest_OrgProductSandboxPutPlatformSessionTemplate& Request, const FDelegate_OrgProductSandboxPutPlatformSessionTemplate& Delegate = FDelegate_OrgProductSandboxPutPlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxCreatePlatformSessionTemplate(const FRequest_SandboxCreatePlatformSessionTemplate& Request, const FDelegate_SandboxCreatePlatformSessionTemplate& Delegate = FDelegate_SandboxCreatePlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxDeletePlatformSessionTemplate(const FRequest_SandboxDeletePlatformSessionTemplate& Request, const FDelegate_SandboxDeletePlatformSessionTemplate& Delegate = FDelegate_SandboxDeletePlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetAllPlatformSessionTemplates(const FRequest_SandboxGetAllPlatformSessionTemplates& Request, const FDelegate_SandboxGetAllPlatformSessionTemplates& Delegate = FDelegate_SandboxGetAllPlatformSessionTemplates(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -82,12 +57,6 @@ public:
     FHttpRequestPtr SandboxPutPlatformSessionTemplate(const FRequest_SandboxPutPlatformSessionTemplate& Request, const FDelegate_SandboxPutPlatformSessionTemplate& Delegate = FDelegate_SandboxPutPlatformSessionTemplate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
 
 private:
-    void OnOrgProductSandboxCreatePlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxCreatePlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxDeletePlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxDeletePlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetAllPlatformSessionTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetAllPlatformSessionTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxGetSpecificPlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxGetSpecificPlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPatchPlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPatchPlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnOrgProductSandboxPutPlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OrgProductSandboxPutPlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxCreatePlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxCreatePlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxDeletePlatformSessionTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxDeletePlatformSessionTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetAllPlatformSessionTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetAllPlatformSessionTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -99,289 +68,9 @@ private:
 
 /* Create Platform Session Template
  *
- * Add a new Platform Session Template for a specific Session Template          Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxCreatePlatformSessionTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxCreatePlatformSessionTemplate();
-    virtual ~FRequest_OrgProductSandboxCreatePlatformSessionTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SessionTemplateId;
-    ERHAPI_DevPlatform Platform;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevPlatformSessionTemplateRequest PlatformSessionTemplateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxCreatePlatformSessionTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxCreatePlatformSessionTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxCreatePlatformSessionTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformSessionTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxCreatePlatformSessionTemplate
-{
-    typedef FRequest_OrgProductSandboxCreatePlatformSessionTemplate Request;
-    typedef FResponse_OrgProductSandboxCreatePlatformSessionTemplate Response;
-    typedef FDelegate_OrgProductSandboxCreatePlatformSessionTemplate Delegate;
-    typedef FPlatformSessionTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxCreatePlatformSessionTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Platform Session Template
- *
- * Delete a specific Platform Session Template for a specific Session Template          Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxDeletePlatformSessionTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxDeletePlatformSessionTemplate();
-    virtual ~FRequest_OrgProductSandboxDeletePlatformSessionTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SessionTemplateId;
-    ERHAPI_DevPlatform Platform;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxDeletePlatformSessionTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxDeletePlatformSessionTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxDeletePlatformSessionTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxDeletePlatformSessionTemplate
-{
-    typedef FRequest_OrgProductSandboxDeletePlatformSessionTemplate Request;
-    typedef FResponse_OrgProductSandboxDeletePlatformSessionTemplate Response;
-    typedef FDelegate_OrgProductSandboxDeletePlatformSessionTemplate Delegate;
-    typedef FPlatformSessionTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxDeletePlatformSessionTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Get All Platform Session Templates
- *
- * Get all Platform Session Templates in a specific sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetAllPlatformSessionTemplates : public FRequest
-{
-    FRequest_OrgProductSandboxGetAllPlatformSessionTemplates();
-    virtual ~FRequest_OrgProductSandboxGetAllPlatformSessionTemplates() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid SessionTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    /* The maximum number of elements to be returned per call */
-    TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetAllPlatformSessionTemplates : public FResponse
-{
-    FResponse_OrgProductSandboxGetAllPlatformSessionTemplates(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetAllPlatformSessionTemplates() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevAllPlatformSessionTemplatesResponse Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetAllPlatformSessionTemplates
-{
-    typedef FRequest_OrgProductSandboxGetAllPlatformSessionTemplates Request;
-    typedef FResponse_OrgProductSandboxGetAllPlatformSessionTemplates Response;
-    typedef FDelegate_OrgProductSandboxGetAllPlatformSessionTemplates Delegate;
-    typedef FPlatformSessionTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetAllPlatformSessionTemplates(InRequest, InDelegate, Priority); }
-};
-
-/* Get Specific Platform Session Template
- *
- * Get a specific Platform Session Template for a specific Session Template in a specific sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate();
-    virtual ~FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_DevPlatform Platform;
-    FGuid SessionTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxGetSpecificPlatformSessionTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxGetSpecificPlatformSessionTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxGetSpecificPlatformSessionTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformSessionTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxGetSpecificPlatformSessionTemplate
-{
-    typedef FRequest_OrgProductSandboxGetSpecificPlatformSessionTemplate Request;
-    typedef FResponse_OrgProductSandboxGetSpecificPlatformSessionTemplate Response;
-    typedef FDelegate_OrgProductSandboxGetSpecificPlatformSessionTemplate Delegate;
-    typedef FPlatformSessionTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxGetSpecificPlatformSessionTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Platform Session Template
- *
- * Update a Platform Session Template for a specific Session Template          Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPatchPlatformSessionTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxPatchPlatformSessionTemplate();
-    virtual ~FRequest_OrgProductSandboxPatchPlatformSessionTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_DevPlatform Platform;
-    FGuid SessionTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevPlatformSessionTemplateUpdateRequest PlatformSessionTemplateUpdateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPatchPlatformSessionTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxPatchPlatformSessionTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPatchPlatformSessionTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformSessionTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPatchPlatformSessionTemplate
-{
-    typedef FRequest_OrgProductSandboxPatchPlatformSessionTemplate Request;
-    typedef FResponse_OrgProductSandboxPatchPlatformSessionTemplate Response;
-    typedef FDelegate_OrgProductSandboxPatchPlatformSessionTemplate Delegate;
-    typedef FPlatformSessionTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPatchPlatformSessionTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Put Platform Session Template
- *
- * Update a Platform Session Template for a specific Session Template      Requires permission sandbox:config:edit.
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_OrgProductSandboxPutPlatformSessionTemplate : public FRequest
-{
-    FRequest_OrgProductSandboxPutPlatformSessionTemplate();
-    virtual ~FRequest_OrgProductSandboxPutPlatformSessionTemplate() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    ERHAPI_DevPlatform Platform;
-    FGuid SessionTemplateId;
-    /* Organization ID or short name */
-    TVariant<FGuid, FString> OrgIdentifier;
-    /* Product ID or short name */
-    TVariant<FGuid, FString> ProductIdentifier;
-    /* Sandbox ID or short name */
-    TVariant<FGuid, FString> SandboxIdentifier;
-    FRHAPI_DevPlatformSessionTemplateRequest PlatformSessionTemplateRequest;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_OrgProductSandboxPutPlatformSessionTemplate : public FResponse
-{
-    FResponse_OrgProductSandboxPutPlatformSessionTemplate(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_OrgProductSandboxPutPlatformSessionTemplate() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPlatformSessionTemplate Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_OrgProductSandboxPutPlatformSessionTemplate
-{
-    typedef FRequest_OrgProductSandboxPutPlatformSessionTemplate Request;
-    typedef FResponse_OrgProductSandboxPutPlatformSessionTemplate Response;
-    typedef FDelegate_OrgProductSandboxPutPlatformSessionTemplate Delegate;
-    typedef FPlatformSessionTemplatesAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.OrgProductSandboxPutPlatformSessionTemplate(InRequest, InDelegate, Priority); }
-};
-
-/* Create Platform Session Template
- *
- * Add a new Platform Session Template for a specific Session Template          Requires permission sandbox:config:edit.
+ * Add a new Platform Session Template for a specific Session Template
+ *     
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxCreatePlatformSessionTemplate : public FRequest
 {
@@ -409,6 +98,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreatePlatformSessionTemplate 
 
     FRHAPI_DevPlatformSessionTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformSessionTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreatePlatformSessionTemplate
@@ -424,7 +125,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreatePlatformSessionTemplate
 
 /* Delete Platform Session Template
  *
- * Delete a specific Platform Session Template for a specific Session Template          Requires permission sandbox:config:edit.
+ * Delete a specific Platform Session Template for a specific Session Template
+ *     
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxDeletePlatformSessionTemplate : public FRequest
 {
@@ -449,7 +152,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeletePlatformSessionTemplate 
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -466,7 +180,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeletePlatformSessionTemplate
 
 /* Get All Platform Session Templates
  *
- * Get all Platform Session Templates in a specific sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get all Platform Session Templates in a specific sandbox
+ *     
+ *     Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAllPlatformSessionTemplates : public FRequest
 {
@@ -496,6 +213,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAllPlatformSessionTemplates
 
     FRHAPI_DevAllPlatformSessionTemplatesResponse Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevAllPlatformSessionTemplatesResponse& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllPlatformSessionTemplates
@@ -511,7 +240,10 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAllPlatformSessionTemplates
 
 /* Get Specific Platform Session Template
  *
- * Get a specific Platform Session Template for a specific Session Template in a specific sandbox          Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get a specific Platform Session Template for a specific Session Template in a specific sandbox
+ *     
+ *     Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetSpecificPlatformSessionTemplate : public FRequest
 {
@@ -538,6 +270,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetSpecificPlatformSessionTemp
 
     FRHAPI_DevPlatformSessionTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformSessionTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetSpecificPlatformSessionTemplate
@@ -553,7 +297,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetSpecificPlatformSessionTemplat
 
 /* Patch Platform Session Template
  *
- * Update a Platform Session Template for a specific Session Template          Requires permission sandbox:config:edit.
+ * Update a Platform Session Template for a specific Session Template
+ *     
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPatchPlatformSessionTemplate : public FRequest
 {
@@ -581,6 +327,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPatchPlatformSessionTemplate :
 
     FRHAPI_DevPlatformSessionTemplate Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformSessionTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchPlatformSessionTemplate
@@ -596,7 +354,9 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxPatchPlatformSessionTemplate
 
 /* Put Platform Session Template
  *
- * Update a Platform Session Template for a specific Session Template      Requires permission sandbox:config:edit.
+ * Update a Platform Session Template for a specific Session Template
+ * 
+ *     Requires permission sandbox:config:edit.
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxPutPlatformSessionTemplate : public FRequest
 {
@@ -623,6 +383,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxPutPlatformSessionTemplate : p
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPlatformSessionTemplate Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPlatformSessionTemplate& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

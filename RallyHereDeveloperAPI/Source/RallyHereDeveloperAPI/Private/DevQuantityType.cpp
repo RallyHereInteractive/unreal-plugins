@@ -34,7 +34,7 @@ FString EnumToString(const ERHAPI_DevQuantityType& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevQuantityType& Value)
 {
-    static TMap<FString, ERHAPI_DevQuantityType> StringToEnum = {
+    static TMap<FString, ERHAPI_DevQuantityType> StringToEnum = { 
         { TEXT("relative"), ERHAPI_DevQuantityType::Relative },
         { TEXT("absolute"), ERHAPI_DevQuantityType::Absolute },    };
 

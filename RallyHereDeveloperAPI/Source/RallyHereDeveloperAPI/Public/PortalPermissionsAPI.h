@@ -11,6 +11,7 @@
 #include "RallyHereDeveloperAPIAuthContext.h"
 #include "RallyHereDeveloperAPIHelpers.h"
 #include "DevHTTPValidationError.h"
+#include "DevOrgPortalAccountsPermissions.h"
 #include "DevPortalAccountPermission.h"
 #include "DevPortalAccountPermissionRequest.h"
 #include "DevPortalPermission.h"
@@ -30,8 +31,6 @@ struct FRequest_CreateAccountPermissions;
 struct FResponse_CreateAccountPermissions;
 struct FRequest_CreateOrgGroup;
 struct FResponse_CreateOrgGroup;
-struct FRequest_CreatePortalPermissions;
-struct FResponse_CreatePortalPermissions;
 struct FRequest_CreatePortalPermissionsOrgGroupAccount;
 struct FResponse_CreatePortalPermissionsOrgGroupAccount;
 struct FRequest_CreatePortalPermissionsOrgGroupPermission;
@@ -40,12 +39,12 @@ struct FRequest_DeleteAccountPermissions;
 struct FResponse_DeleteAccountPermissions;
 struct FRequest_DeleteOrgGroup;
 struct FResponse_DeleteOrgGroup;
-struct FRequest_DeletePortalPermission;
-struct FResponse_DeletePortalPermission;
 struct FRequest_DeletePortalPermissionsOrgGroupAccount;
 struct FResponse_DeletePortalPermissionsOrgGroupAccount;
 struct FRequest_DeletePortalPermissionsOrgGroupPermission;
 struct FResponse_DeletePortalPermissionsOrgGroupPermission;
+struct FRequest_GetAccountPermissionForOrg;
+struct FResponse_GetAccountPermissionForOrg;
 struct FRequest_GetAllAccountPermissionsForAccount;
 struct FResponse_GetAllAccountPermissionsForAccount;
 struct FRequest_GetAllAccountPermissionsForAssignedOrg;
@@ -69,14 +68,13 @@ struct FResponse_UpdateOrgGroup;
 
 DECLARE_DELEGATE_OneParam(FDelegate_CreateAccountPermissions, const FResponse_CreateAccountPermissions&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreateOrgGroup, const FResponse_CreateOrgGroup&);
-DECLARE_DELEGATE_OneParam(FDelegate_CreatePortalPermissions, const FResponse_CreatePortalPermissions&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreatePortalPermissionsOrgGroupAccount, const FResponse_CreatePortalPermissionsOrgGroupAccount&);
 DECLARE_DELEGATE_OneParam(FDelegate_CreatePortalPermissionsOrgGroupPermission, const FResponse_CreatePortalPermissionsOrgGroupPermission&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteAccountPermissions, const FResponse_DeleteAccountPermissions&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteOrgGroup, const FResponse_DeleteOrgGroup&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeletePortalPermission, const FResponse_DeletePortalPermission&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeletePortalPermissionsOrgGroupAccount, const FResponse_DeletePortalPermissionsOrgGroupAccount&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeletePortalPermissionsOrgGroupPermission, const FResponse_DeletePortalPermissionsOrgGroupPermission&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetAccountPermissionForOrg, const FResponse_GetAccountPermissionForOrg&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllAccountPermissionsForAccount, const FResponse_GetAllAccountPermissionsForAccount&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllAccountPermissionsForAssignedOrg, const FResponse_GetAllAccountPermissionsForAssignedOrg&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllPermissionsForPermissionsOrgGroup, const FResponse_GetAllPermissionsForPermissionsOrgGroup&);
@@ -96,14 +94,13 @@ public:
 
     FHttpRequestPtr CreateAccountPermissions(const FRequest_CreateAccountPermissions& Request, const FDelegate_CreateAccountPermissions& Delegate = FDelegate_CreateAccountPermissions(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr CreateOrgGroup(const FRequest_CreateOrgGroup& Request, const FDelegate_CreateOrgGroup& Delegate = FDelegate_CreateOrgGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr CreatePortalPermissions(const FRequest_CreatePortalPermissions& Request, const FDelegate_CreatePortalPermissions& Delegate = FDelegate_CreatePortalPermissions(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr CreatePortalPermissionsOrgGroupAccount(const FRequest_CreatePortalPermissionsOrgGroupAccount& Request, const FDelegate_CreatePortalPermissionsOrgGroupAccount& Delegate = FDelegate_CreatePortalPermissionsOrgGroupAccount(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr CreatePortalPermissionsOrgGroupPermission(const FRequest_CreatePortalPermissionsOrgGroupPermission& Request, const FDelegate_CreatePortalPermissionsOrgGroupPermission& Delegate = FDelegate_CreatePortalPermissionsOrgGroupPermission(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr DeleteAccountPermissions(const FRequest_DeleteAccountPermissions& Request, const FDelegate_DeleteAccountPermissions& Delegate = FDelegate_DeleteAccountPermissions(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr DeleteOrgGroup(const FRequest_DeleteOrgGroup& Request, const FDelegate_DeleteOrgGroup& Delegate = FDelegate_DeleteOrgGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
-    FHttpRequestPtr DeletePortalPermission(const FRequest_DeletePortalPermission& Request, const FDelegate_DeletePortalPermission& Delegate = FDelegate_DeletePortalPermission(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr DeletePortalPermissionsOrgGroupAccount(const FRequest_DeletePortalPermissionsOrgGroupAccount& Request, const FDelegate_DeletePortalPermissionsOrgGroupAccount& Delegate = FDelegate_DeletePortalPermissionsOrgGroupAccount(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr DeletePortalPermissionsOrgGroupPermission(const FRequest_DeletePortalPermissionsOrgGroupPermission& Request, const FDelegate_DeletePortalPermissionsOrgGroupPermission& Delegate = FDelegate_DeletePortalPermissionsOrgGroupPermission(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr GetAccountPermissionForOrg(const FRequest_GetAccountPermissionForOrg& Request, const FDelegate_GetAccountPermissionForOrg& Delegate = FDelegate_GetAccountPermissionForOrg(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr GetAllAccountPermissionsForAccount(const FRequest_GetAllAccountPermissionsForAccount& Request, const FDelegate_GetAllAccountPermissionsForAccount& Delegate = FDelegate_GetAllAccountPermissionsForAccount(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr GetAllAccountPermissionsForAssignedOrg(const FRequest_GetAllAccountPermissionsForAssignedOrg& Request, const FDelegate_GetAllAccountPermissionsForAssignedOrg& Delegate = FDelegate_GetAllAccountPermissionsForAssignedOrg(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr GetAllPermissionsForPermissionsOrgGroup(const FRequest_GetAllPermissionsForPermissionsOrgGroup& Request, const FDelegate_GetAllPermissionsForPermissionsOrgGroup& Delegate = FDelegate_GetAllPermissionsForPermissionsOrgGroup(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -118,14 +115,13 @@ public:
 private:
     void OnCreateAccountPermissionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateAccountPermissions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreateOrgGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateOrgGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnCreatePortalPermissionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePortalPermissions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreatePortalPermissionsOrgGroupAccountResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePortalPermissionsOrgGroupAccount Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnCreatePortalPermissionsOrgGroupPermissionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePortalPermissionsOrgGroupPermission Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeleteAccountPermissionsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteAccountPermissions Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeleteOrgGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteOrgGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeletePortalPermissionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePortalPermission Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeletePortalPermissionsOrgGroupAccountResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePortalPermissionsOrgGroupAccount Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeletePortalPermissionsOrgGroupPermissionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePortalPermissionsOrgGroupPermission Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetAccountPermissionForOrgResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAccountPermissionForOrg Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAllAccountPermissionsForAccountResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllAccountPermissionsForAccount Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAllAccountPermissionsForAssignedOrgResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllAccountPermissionsForAssignedOrg Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAllPermissionsForPermissionsOrgGroupResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllPermissionsForPermissionsOrgGroup Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -153,6 +149,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_CreateAccountPermissions : public FReq
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
+    /* Organization ID */
+    FGuid AssignedOrgId;
     FRHAPI_DevPortalAccountPermissionRequest Body;
 };
 
@@ -164,6 +162,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreateAccountPermissions : public FRe
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPortalAccountPermission Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalAccountPermission& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -192,6 +202,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_CreateOrgGroup : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
+    /* Organization ID or short name */
+    TVariant<FGuid, FString> OrgIdentifier;
     FRHAPI_DevPortalPermissionOrgGroup Body;
 };
 
@@ -204,6 +216,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreateOrgGroup : public FResponse
 
     FRHAPI_DevPortalPermissionOrgGroup Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissionOrgGroup& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_CreateOrgGroup
@@ -215,46 +239,6 @@ struct RALLYHEREDEVELOPERAPI_API Traits_CreateOrgGroup
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreateOrgGroup(InRequest, InDelegate, Priority); }
-};
-
-/* Create Portal Permissions
- *
- * Create a new portal permission, requires portalPermissions:config:edit permission
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_CreatePortalPermissions : public FRequest
-{
-    FRequest_CreatePortalPermissions();
-    virtual ~FRequest_CreatePortalPermissions() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Permission ID in the format <type>:<scope>:<access> */
-    FString PermissionId;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_CreatePortalPermissions : public FResponse
-{
-    FResponse_CreatePortalPermissions(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreatePortalPermissions() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevPortalPermission Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_CreatePortalPermissions
-{
-    typedef FRequest_CreatePortalPermissions Request;
-    typedef FResponse_CreatePortalPermissions Response;
-    typedef FDelegate_CreatePortalPermissions Delegate;
-    typedef FPortalPermissionsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.CreatePortalPermissions(InRequest, InDelegate, Priority); }
 };
 
 /* Create Portal Permissions Org Group Account
@@ -284,6 +268,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreatePortalPermissionsOrgGroupAccoun
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPortalPermissionsOrgGroupAccount Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissionsOrgGroupAccount& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -325,6 +321,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_CreatePortalPermissionsOrgGroupPermis
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPortalPermissionsOrgGroupPermission Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissionsOrgGroupPermission& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -370,6 +378,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeleteAccountPermissions : public FRe
 
     FRHAPI_DevJsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_DeleteAccountPermissions
@@ -412,6 +436,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeleteOrgGroup : public FResponse
 
     FRHAPI_DevJsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_DeleteOrgGroup
@@ -423,46 +463,6 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeleteOrgGroup
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeleteOrgGroup(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Portal Permission
- *
- * Delete a portal permission, requires portalPermissions:config:edit permission
-*/
-struct RALLYHEREDEVELOPERAPI_API FRequest_DeletePortalPermission : public FRequest
-{
-    FRequest_DeletePortalPermission();
-    virtual ~FRequest_DeletePortalPermission() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    /* Permission ID in the format <type>:<scope>:<access> */
-    TVariant<FGuid, FString> PermissionId;
-};
-
-struct RALLYHEREDEVELOPERAPI_API FResponse_DeletePortalPermission : public FResponse
-{
-    FResponse_DeletePortalPermission(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeletePortalPermission() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_DevJsonValue Content;
-
-};
-
-struct RALLYHEREDEVELOPERAPI_API Traits_DeletePortalPermission
-{
-    typedef FRequest_DeletePortalPermission Request;
-    typedef FResponse_DeletePortalPermission Response;
-    typedef FDelegate_DeletePortalPermission Delegate;
-    typedef FPortalPermissionsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeletePortalPermission(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Portal Permissions Org Group Account
@@ -495,6 +495,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeletePortalPermissionsOrgGroupAccoun
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevJsonValue Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -540,6 +556,22 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_DeletePortalPermissionsOrgGroupPermis
 
     FRHAPI_DevJsonValue Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_DeletePortalPermissionsOrgGroupPermission
@@ -551,6 +583,58 @@ struct RALLYHEREDEVELOPERAPI_API Traits_DeletePortalPermissionsOrgGroupPermissio
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.DeletePortalPermissionsOrgGroupPermission(InRequest, InDelegate, Priority); }
+};
+
+/* Get Account Permission For Org
+ *
+ * Get an account permission for all accounts in an org, requires accountPermissions:config:view or accountPermissions:config:edit permission
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_GetAccountPermissionForOrg : public FRequest
+{
+    FRequest_GetAccountPermissionForOrg();
+    virtual ~FRequest_GetAccountPermissionForOrg() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* Org ID or Short Name */
+    TVariant<FGuid, FString> AssignedOrgId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_GetAccountPermissionForOrg : public FResponse
+{
+    FResponse_GetAccountPermissionForOrg(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetAccountPermissionForOrg() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    TArray<FRHAPI_DevOrgPortalAccountsPermissions> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevOrgPortalAccountsPermissions>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_GetAccountPermissionForOrg
+{
+    typedef FRequest_GetAccountPermissionForOrg Request;
+    typedef FResponse_GetAccountPermissionForOrg Response;
+    typedef FDelegate_GetAccountPermissionForOrg Delegate;
+    typedef FPortalPermissionsAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.GetAccountPermissionForOrg(InRequest, InDelegate, Priority); }
 };
 
 /* Get All Account Permissions For Account
@@ -580,6 +664,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAllAccountPermissionsForAccount : 
 
     TArray<FRHAPI_DevPortalAccountPermission> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalAccountPermission>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetAllAccountPermissionsForAccount
@@ -608,7 +704,7 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_GetAllAccountPermissionsForAssignedOrg
 
     TSharedPtr<FAuthContext> AuthContext;
     /* Org ID or Short Name */
-    TVariant<FGuid, FString> OrgIdentifier;
+    TVariant<FGuid, FString> AssignedOrgId;
     /* Account ID */
     FGuid AccountId;
 };
@@ -621,6 +717,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAllAccountPermissionsForAssignedOr
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevPortalAccountPermission> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalAccountPermission>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -664,6 +772,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAllPermissionsForPermissionsOrgGro
 
     TArray<FRHAPI_DevPortalPermissionsOrgGroupPermission> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionsOrgGroupPermission>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetAllPermissionsForPermissionsOrgGroup
@@ -679,7 +799,7 @@ struct RALLYHEREDEVELOPERAPI_API Traits_GetAllPermissionsForPermissionsOrgGroup
 
 /* Get All Portal Permissions
  *
- * Get all portal permissions, requires global admin permissions
+ * Get all portal permissions, requires portalPermissions:config:view or edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_GetAllPortalPermissions : public FRequest
 {
@@ -701,6 +821,13 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetAllPortalPermissions : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevPortalPermission> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalPermission>& OutContent) const;
 
 };
 
@@ -741,6 +868,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetOrgGroupsForOrg : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevPortalPermissionOrgGroup> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionOrgGroup>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -786,6 +925,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetPermissionsForPermissionsOrgGroup 
 
     FRHAPI_DevPortalPermissionsOrgGroupPermission Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissionsOrgGroupPermission& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetPermissionsForPermissionsOrgGroup
@@ -825,6 +976,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetPortalPermissionById : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPortalPermission Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermission& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -868,6 +1031,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetPortalPermissionsOrgGroupAccounts 
 
     TArray<FRHAPI_DevPortalPermissionsOrgGroupAccount> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionsOrgGroupAccount>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_GetPortalPermissionsOrgGroupAccounts
@@ -908,7 +1083,19 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_GetPortalPermissionsOrgGroupsAssigned
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    TArray<FRHAPI_DevPortalPermissionsOrgGroupAccount> Content;
+    TArray<FRHAPI_DevPortalPermissionOrgGroup> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevPortalPermissionOrgGroup>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -950,6 +1137,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_UpdateOrgGroup : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPortalPermissionOrgGroup Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPortalPermissionOrgGroup& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

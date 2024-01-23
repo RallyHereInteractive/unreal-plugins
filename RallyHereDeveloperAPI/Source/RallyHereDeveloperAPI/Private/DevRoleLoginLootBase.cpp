@@ -22,11 +22,8 @@ using RallyHereDeveloperAPI::TryGetJsonValue;
 void FRHAPI_DevRoleLoginLootBase::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    if (LootId_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("loot_id"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, LootId_Optional);
-    }
+    Writer->WriteIdentifierPrefix(TEXT("loot_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, LootId);
     Writer->WriteObjectEnd();
 }
 
@@ -39,11 +36,7 @@ bool FRHAPI_DevRoleLoginLootBase::FromJson(const TSharedPtr<FJsonValue>& JsonVal
     bool ParseSuccess = true;
 
     const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-    if (JsonLootIdField.IsValid() && !JsonLootIdField->IsNull())
-    {
-        LootId_IsSet = TryGetJsonValue(JsonLootIdField, LootId_Optional);
-        ParseSuccess &= LootId_IsSet;
-    }
+    ParseSuccess &= JsonLootIdField.IsValid() && !JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId);
 
     return ParseSuccess;
 }

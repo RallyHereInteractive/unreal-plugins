@@ -9,6 +9,7 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig.h"
 #include "DevQueueUpdateRequest.generated.h"
 
 /** @defgroup RHAPI_DevQueueUpdateRequest RallyHere API Model DevQueueUpdateRequest
@@ -16,7 +17,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevQueueUpdateRequest : public FRHAPI_DevModel
@@ -110,24 +111,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevQueueUpdateRequest : public FRHAPI_De
      /** @brief Clears the value of MatchMakingTemplateGroupId_Optional and sets MatchMakingTemplateGroupId_IsSet to false */
     void ClearMatchMakingTemplateGroupId() { MatchMakingTemplateGroupId_IsSet = false; }
 
-    /** @brief Dictionary of config required for legacy games */
-    TMap<FString, FString> LegacyConfig_Optional{  };
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& GetLegacyConfig() { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& GetLegacyConfig() const { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& GetLegacyConfig(const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+    bool GetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+    void SetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingQueuesSchemasLegacyConfig NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
      /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
     void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 };

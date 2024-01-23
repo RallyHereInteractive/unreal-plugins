@@ -40,7 +40,7 @@ FString EnumToString(const ERHAPI_DevVendorSortOptions& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevVendorSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevVendorSortOptions> StringToEnum = {
+    static TMap<FString, ERHAPI_DevVendorSortOptions> StringToEnum = { 
         { TEXT("vendor_id"), ERHAPI_DevVendorSortOptions::VendorId },
         { TEXT("legacy_vendor_id"), ERHAPI_DevVendorSortOptions::LegacyVendorId },
         { TEXT("name"), ERHAPI_DevVendorSortOptions::Name },

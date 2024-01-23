@@ -49,6 +49,7 @@
 #include "DevXpCollection.h"
 #include "DevXpLevelThreshold.h"
 #include "DevXpLevelThresholdRequest.h"
+#include "DevXpThresholdCollection.h"
 
 namespace RallyHereDeveloperAPI
 {
@@ -106,6 +107,8 @@ struct FRequest_SandboxGetLootById;
 struct FResponse_SandboxGetLootById;
 struct FRequest_SandboxGetManyXp;
 struct FResponse_SandboxGetManyXp;
+struct FRequest_SandboxGetManyXpThresholds;
+struct FResponse_SandboxGetManyXpThresholds;
 struct FRequest_SandboxGetPricePointById;
 struct FResponse_SandboxGetPricePointById;
 struct FRequest_SandboxGetPricePoints;
@@ -120,6 +123,8 @@ struct FRequest_SandboxGetVendors;
 struct FResponse_SandboxGetVendors;
 struct FRequest_SandboxGetXpById;
 struct FResponse_SandboxGetXpById;
+struct FRequest_SandboxGetXpThresholdByIdAndXpId;
+struct FResponse_SandboxGetXpThresholdByIdAndXpId;
 struct FRequest_SandboxUpdateItem;
 struct FResponse_SandboxUpdateItem;
 struct FRequest_SandboxUpdateLoot;
@@ -160,6 +165,7 @@ DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetItems, const FResponse_SandboxGetI
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetLoot, const FResponse_SandboxGetLoot&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetLootById, const FResponse_SandboxGetLootById&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetManyXp, const FResponse_SandboxGetManyXp&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetManyXpThresholds, const FResponse_SandboxGetManyXpThresholds&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetPricePointById, const FResponse_SandboxGetPricePointById&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetPricePoints, const FResponse_SandboxGetPricePoints&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetRuleSetById, const FResponse_SandboxGetRuleSetById&);
@@ -167,6 +173,7 @@ DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetRuleSets, const FResponse_SandboxG
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetVendorById, const FResponse_SandboxGetVendorById&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetVendors, const FResponse_SandboxGetVendors&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetXpById, const FResponse_SandboxGetXpById&);
+DECLARE_DELEGATE_OneParam(FDelegate_SandboxGetXpThresholdByIdAndXpId, const FResponse_SandboxGetXpThresholdByIdAndXpId&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxUpdateItem, const FResponse_SandboxUpdateItem&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxUpdateLoot, const FResponse_SandboxUpdateLoot&);
 DECLARE_DELEGATE_OneParam(FDelegate_SandboxUpdatePricePoint, const FResponse_SandboxUpdatePricePoint&);
@@ -206,6 +213,7 @@ public:
     FHttpRequestPtr SandboxGetLoot(const FRequest_SandboxGetLoot& Request, const FDelegate_SandboxGetLoot& Delegate = FDelegate_SandboxGetLoot(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetLootById(const FRequest_SandboxGetLootById& Request, const FDelegate_SandboxGetLootById& Delegate = FDelegate_SandboxGetLootById(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetManyXp(const FRequest_SandboxGetManyXp& Request, const FDelegate_SandboxGetManyXp& Delegate = FDelegate_SandboxGetManyXp(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetManyXpThresholds(const FRequest_SandboxGetManyXpThresholds& Request, const FDelegate_SandboxGetManyXpThresholds& Delegate = FDelegate_SandboxGetManyXpThresholds(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetPricePointById(const FRequest_SandboxGetPricePointById& Request, const FDelegate_SandboxGetPricePointById& Delegate = FDelegate_SandboxGetPricePointById(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetPricePoints(const FRequest_SandboxGetPricePoints& Request, const FDelegate_SandboxGetPricePoints& Delegate = FDelegate_SandboxGetPricePoints(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetRuleSetById(const FRequest_SandboxGetRuleSetById& Request, const FDelegate_SandboxGetRuleSetById& Delegate = FDelegate_SandboxGetRuleSetById(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -213,6 +221,7 @@ public:
     FHttpRequestPtr SandboxGetVendorById(const FRequest_SandboxGetVendorById& Request, const FDelegate_SandboxGetVendorById& Delegate = FDelegate_SandboxGetVendorById(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetVendors(const FRequest_SandboxGetVendors& Request, const FDelegate_SandboxGetVendors& Delegate = FDelegate_SandboxGetVendors(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxGetXpById(const FRequest_SandboxGetXpById& Request, const FDelegate_SandboxGetXpById& Delegate = FDelegate_SandboxGetXpById(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
+    FHttpRequestPtr SandboxGetXpThresholdByIdAndXpId(const FRequest_SandboxGetXpThresholdByIdAndXpId& Request, const FDelegate_SandboxGetXpThresholdByIdAndXpId& Delegate = FDelegate_SandboxGetXpThresholdByIdAndXpId(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxUpdateItem(const FRequest_SandboxUpdateItem& Request, const FDelegate_SandboxUpdateItem& Delegate = FDelegate_SandboxUpdateItem(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxUpdateLoot(const FRequest_SandboxUpdateLoot& Request, const FDelegate_SandboxUpdateLoot& Delegate = FDelegate_SandboxUpdateLoot(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
     FHttpRequestPtr SandboxUpdatePricePoint(const FRequest_SandboxUpdatePricePoint& Request, const FDelegate_SandboxUpdatePricePoint& Delegate = FDelegate_SandboxUpdatePricePoint(), int32 Priority = DefaultRallyHereDeveloperAPIPriority);
@@ -247,6 +256,7 @@ private:
     void OnSandboxGetLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetLootByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetLootById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetManyXpResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetManyXp Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetManyXpThresholdsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetManyXpThresholds Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetPricePointByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetPricePointById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetPricePointsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetPricePoints Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetRuleSetByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetRuleSetById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -254,6 +264,7 @@ private:
     void OnSandboxGetVendorByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetVendorById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetVendorsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetVendors Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxGetXpByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetXpById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnSandboxGetXpThresholdByIdAndXpIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxGetXpThresholdByIdAndXpId Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxUpdateItemResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxUpdateItem Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxUpdateLootResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxUpdateLoot Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnSandboxUpdatePricePointResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SandboxUpdatePricePoint Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -291,6 +302,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateInventoryBucketUseRuleSe
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevInventoryBucketUseRuleSet> Content;
+
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(TArray<FRHAPI_DevInventoryBucketUseRuleSet>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -333,6 +356,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateItems : public FResponse
 
     TArray<FRHAPI_DevItem> Content;
 
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(TArray<FRHAPI_DevItem>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateItems
@@ -373,6 +408,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateLoot : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevLoot> Content;
+
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(TArray<FRHAPI_DevLoot>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -415,6 +462,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateManyXp : public FRespons
 
     TArray<FRHAPI_DevXp> Content;
 
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(TArray<FRHAPI_DevXp>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateManyXp
@@ -456,6 +515,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreatePricePoints : public FRe
 
     TArray<FRHAPI_DevPricePoint> Content;
 
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(TArray<FRHAPI_DevPricePoint>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreatePricePoints
@@ -496,6 +567,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateVendors : public FRespon
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevVendor> Content;
+
+
+    // Manual Response Helpers
+    /* Response 201
+    Successful Response
+    */
+    bool TryGetContentFor201(TArray<FRHAPI_DevVendor>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -539,6 +622,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxCreateXpThreshold : public FRe
 
     FRHAPI_DevXpLevelThreshold Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXpLevelThreshold& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxCreateXpThreshold
@@ -579,7 +674,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteManyItems : public FResp
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -621,7 +727,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteManyLoot : public FRespo
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -663,7 +780,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteManyPricePoints : public
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -705,7 +833,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteManyRuleSets : public FR
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -747,7 +886,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteManyXp : public FRespons
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -788,7 +938,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSingleItem : public FRes
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -829,7 +990,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSingleLoot : public FRes
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -870,7 +1042,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSinglePricePoint : publi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -911,7 +1094,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSingleRuleSet : public F
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -952,7 +1146,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSingleXp : public FRespo
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -994,7 +1199,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteSingleXpThreshold : publ
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1035,7 +1251,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteVendor : public FRespons
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1077,7 +1304,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxDeleteVendors : public FRespon
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
+    
 
+
+    // Manual Response Helpers
+    /* Response 204
+    Successful Response
+    */
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1094,7 +1332,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxDeleteVendors
 
 /* Get Item By Id
  *
- * Get Item by ID. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Item by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetItemById : public FRequest
 {
@@ -1123,6 +1362,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetItemById : public FResponse
 
     FRHAPI_DevItem Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevItem& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetItemById
@@ -1138,7 +1389,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetItemById
 
 /* Get Items
  *
- * Get Items by filters. All filters must be true for an Item to be returned. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Items by filters. All filters must be true for an Item to be returned. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetItems : public FRequest
 {
@@ -1164,8 +1416,6 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetItems : public FRequest
     TOptional<TArray<FGuid>> InventoryBucketUseRuleSetIds;
     /* Level Xp IDs to filter by */
     TOptional<TArray<FGuid>> LevelXpIds;
-    /* Level Vendor IDs to filter by */
-    TOptional<TArray<FGuid>> LevelVendorIds;
     /* Filter by case insensitive name */
     TOptional<FString> Name;
     /* Resources to expand and fill in additional detail */
@@ -1191,6 +1441,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetItems : public FResponse
 
     FRHAPI_DevItemCollection Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevItemCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetItems
@@ -1206,7 +1468,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetItems
 
 /* Get Loot
  *
- * Get Loot by filters. All filters must be true for a Loot to be returned. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Loot by filters. All filters must be true for a Loot to be returned. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetLoot : public FRequest
 {
@@ -1265,6 +1528,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetLoot : public FResponse
 
     FRHAPI_DevLootCollection Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevLootCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetLoot
@@ -1280,7 +1555,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetLoot
 
 /* Get Loot By Id
  *
- * Get Loot by ID. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Loot by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetLootById : public FRequest
 {
@@ -1309,6 +1585,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetLootById : public FResponse
 
     FRHAPI_DevLoot Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevLoot& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetLootById
@@ -1324,7 +1612,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetLootById
 
 /* Get Many Xp
  *
- * Get Xp by filters. All filters must be true for a Xp to be returned. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Xp by filters. All filters must be true for a Xp to be returned. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetManyXp : public FRequest
 {
@@ -1365,6 +1654,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetManyXp : public FResponse
 
     FRHAPI_DevXpCollection Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXpCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetManyXp
@@ -1378,9 +1679,64 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetManyXp
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetManyXp(InRequest, InDelegate, Priority); }
 };
 
+/* Get Many Xp Thresholds
+ *
+ * Get Xp Thresholds for Xp table. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetManyXpThresholds : public FRequest
+{
+    FRequest_SandboxGetManyXpThresholds();
+    virtual ~FRequest_SandboxGetManyXpThresholds() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid XpId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetManyXpThresholds : public FResponse
+{
+    FResponse_SandboxGetManyXpThresholds(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetManyXpThresholds() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevXpThresholdCollection Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXpThresholdCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetManyXpThresholds
+{
+    typedef FRequest_SandboxGetManyXpThresholds Request;
+    typedef FResponse_SandboxGetManyXpThresholds Response;
+    typedef FDelegate_SandboxGetManyXpThresholds Delegate;
+    typedef FCatalogAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetManyXpThresholds(InRequest, InDelegate, Priority); }
+};
+
 /* Get Price Point By Id
  *
- * Get Price Point by ID. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Price Point by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetPricePointById : public FRequest
 {
@@ -1407,6 +1763,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetPricePointById : public FRe
 
     FRHAPI_DevPricePoint Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPricePoint& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetPricePointById
@@ -1422,7 +1790,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetPricePointById
 
 /* Get Price Points
  *
- * Get Price Points by filters. All filters must be true for a Price Point to be returned. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Price Points by filters. All filters must be true for a Price Point to be returned. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetPricePoints : public FRequest
 {
@@ -1444,6 +1813,8 @@ struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetPricePoints : public FReques
     TOptional<bool> CapFlag;
     /* Filter by case insensitive name */
     TOptional<FString> Name;
+    /* Resources to expand and fill in additional detail */
+    TOptional<TArray<ERHAPI_DevExpandProperty>> Expand;
     /* Filter by last modified account ID */
     TOptional<TArray<FGuid>> LastModifiedAccountIds;
     /* Sort results by */
@@ -1465,6 +1836,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetPricePoints : public FRespo
 
     FRHAPI_DevPricePointCollection Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPricePointCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetPricePoints
@@ -1480,7 +1863,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetPricePoints
 
 /* Get Rule Set By Id
  *
- * Get Inventory Bucket Use Rule Set by ID. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Inventory Bucket Use Rule Set by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetRuleSetById : public FRequest
 {
@@ -1507,6 +1891,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetRuleSetById : public FRespo
 
     FRHAPI_DevInventoryBucketUseRuleSet Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInventoryBucketUseRuleSet& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRuleSetById
@@ -1522,7 +1918,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRuleSetById
 
 /* Get Rule Sets
  *
- * Get Inventory Bucket Use Rule Sets by filters. All filters must be true for an Inventory Bucket Use Rule Sets to be returned. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Inventory Bucket Use Rule Sets by filters. All filters must be true for an Inventory Bucket Use Rule Sets to be returned. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetRuleSets : public FRequest
 {
@@ -1563,6 +1960,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetRuleSets : public FResponse
 
     FRHAPI_DevInventoryBucketUseRuleSetCollection Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInventoryBucketUseRuleSetCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRuleSets
@@ -1578,7 +1987,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetRuleSets
 
 /* Get Vendor By Id
  *
- * Get Vendor by ID. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Vendor by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetVendorById : public FRequest
 {
@@ -1605,6 +2015,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetVendorById : public FRespon
 
     FRHAPI_DevVendor Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevVendor& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetVendorById
@@ -1620,7 +2042,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetVendorById
 
 /* Get Vendors
  *
- * Get Vendors by filters. All filters must be true for a Vendor to be returned. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Vendors by filters. All filters must be true for a Vendor to be returned. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetVendors : public FRequest
 {
@@ -1663,6 +2086,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetVendors : public FResponse
 
     FRHAPI_DevVendorCollection Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevVendorCollection& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetVendors
@@ -1678,7 +2113,8 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetVendors
 
 /* Get Xp By Id
  *
- * Get Xp by ID. Requires any of permissions:    sandbox:config:view, sandbox:config:edit
+ * Get Xp by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetXpById : public FRequest
 {
@@ -1705,6 +2141,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetXpById : public FResponse
 
     FRHAPI_DevXp Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXp& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetXpById
@@ -1716,6 +2164,61 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetXpById
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetXpById(InRequest, InDelegate, Priority); }
+};
+
+/* Get Xp Threshold By Id And Xp Id
+ *
+ * Get Xp Threshold by ID. Requires any of permissions: 
+ * 	 sandbox:config:view, sandbox:config:edit
+*/
+struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetXpThresholdByIdAndXpId : public FRequest
+{
+    FRequest_SandboxGetXpThresholdByIdAndXpId();
+    virtual ~FRequest_SandboxGetXpThresholdByIdAndXpId() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FGuid XpId;
+    FGuid XpThresholdId;
+    /* Sandbox ID */
+    FGuid SandboxId;
+};
+
+struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetXpThresholdByIdAndXpId : public FResponse
+{
+    FResponse_SandboxGetXpThresholdByIdAndXpId(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_SandboxGetXpThresholdByIdAndXpId() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_DevXpLevelThreshold Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXpLevelThreshold& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetXpThresholdByIdAndXpId
+{
+    typedef FRequest_SandboxGetXpThresholdByIdAndXpId Request;
+    typedef FResponse_SandboxGetXpThresholdByIdAndXpId Response;
+    typedef FDelegate_SandboxGetXpThresholdByIdAndXpId Delegate;
+    typedef FCatalogAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereDeveloperAPIPriority) { return InAPI.SandboxGetXpThresholdByIdAndXpId(InRequest, InDelegate, Priority); }
 };
 
 /* Update Item
@@ -1746,6 +2249,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateItem : public FResponse
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevItem Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevItem& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1789,6 +2304,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateLoot : public FResponse
 
     FRHAPI_DevLoot Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevLoot& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxUpdateLoot
@@ -1830,6 +2357,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdatePricePoint : public FRes
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevPricePoint Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevPricePoint& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1873,6 +2412,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateRuleSet : public FRespon
 
     FRHAPI_DevInventoryBucketUseRuleSet Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevInventoryBucketUseRuleSet& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxUpdateRuleSet
@@ -1914,6 +2465,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateVendor : public FRespons
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevVendor Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevVendor& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 
@@ -1957,6 +2520,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateXp : public FResponse
 
     FRHAPI_DevXp Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXp& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxUpdateXp
@@ -1999,6 +2574,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxUpdateXpThreshold : public FRe
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     FRHAPI_DevXpLevelThreshold Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_DevXpLevelThreshold& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

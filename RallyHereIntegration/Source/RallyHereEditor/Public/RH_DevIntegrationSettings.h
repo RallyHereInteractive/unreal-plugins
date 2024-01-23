@@ -49,7 +49,7 @@ struct FRH_DevSandboxConfiguration
 /**
  * @brief Main settings for the Integration.
  */
-UCLASS(Config = EditorSettings, DefaultConfig, meta = (DisplayName = "Rally Here Integration Settings"))
+UCLASS(Config = EditorSettings, DefaultConfig, meta = (DisplayName = "Rally Here Dev Integration Settings"))
 class RALLYHEREEDITOR_API URH_DevIntegrationSettings : public UDeveloperSettings
 {
     GENERATED_UCLASS_BODY()

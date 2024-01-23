@@ -147,6 +147,11 @@ void FResponse_GetAccountPermissions::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
+bool FResponse_GetAccountPermissions::TryGetContentFor200(FRHAPI_DevPortalPermissions& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetAccountPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -232,7 +237,7 @@ FName FRequest_GetAccountPermissionsForAuth0::GetSimplifiedPath() const
 
 FString FRequest_GetAccountPermissionsForAuth0::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("auth0_user_id"), ToStringFormatArg(Auth0UserId) }
     };
 
@@ -289,6 +294,16 @@ void FResponse_GetAccountPermissionsForAuth0::SetHttpResponseCode(EHttpResponseC
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetAccountPermissionsForAuth0::TryGetContentFor200(FRHAPI_DevPortalPermissions& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetAccountPermissionsForAuth0::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetAccountPermissionsForAuth0::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -425,6 +440,11 @@ void FResponse_GetPortalPermissions::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Successful Response"));
         break;
     }
+}
+
+bool FResponse_GetPortalPermissions::TryGetContentFor200(FRHAPI_DevUserPermissionsAndEntities& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetPortalPermissions::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

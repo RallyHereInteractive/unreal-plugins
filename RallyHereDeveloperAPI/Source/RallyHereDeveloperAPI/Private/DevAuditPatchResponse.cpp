@@ -30,8 +30,11 @@ void FRHAPI_DevAuditPatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) 
     RallyHereDeveloperAPI::WriteJsonValue(Writer, AuditRefId);
     Writer->WriteIdentifierPrefix(TEXT("audit_path"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, AuditPath);
-    Writer->WriteIdentifierPrefix(TEXT("patch"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, Patch);
+    if (Patch_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("patch"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, Patch_Optional);
+    }
     Writer->WriteIdentifierPrefix(TEXT("account_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, AccountId);
     Writer->WriteIdentifierPrefix(TEXT("modified_timestamp"));
@@ -56,7 +59,11 @@ bool FRHAPI_DevAuditPatchResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVa
     const TSharedPtr<FJsonValue> JsonAuditPathField = (*Object)->TryGetField(TEXT("audit_path"));
     ParseSuccess &= JsonAuditPathField.IsValid() && !JsonAuditPathField->IsNull() && TryGetJsonValue(JsonAuditPathField, AuditPath);
     const TSharedPtr<FJsonValue> JsonPatchField = (*Object)->TryGetField(TEXT("patch"));
-    ParseSuccess &= JsonPatchField.IsValid() && !JsonPatchField->IsNull() && TryGetJsonValue(JsonPatchField, Patch);
+    if (JsonPatchField.IsValid() && !JsonPatchField->IsNull())
+    {
+        Patch_IsSet = TryGetJsonValue(JsonPatchField, Patch_Optional);
+        ParseSuccess &= Patch_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonAccountIdField = (*Object)->TryGetField(TEXT("account_id"));
     ParseSuccess &= JsonAccountIdField.IsValid() && !JsonAccountIdField->IsNull() && TryGetJsonValue(JsonAccountIdField, AccountId);
     const TSharedPtr<FJsonValue> JsonModifiedTimestampField = (*Object)->TryGetField(TEXT("modified_timestamp"));

@@ -22,6 +22,21 @@ using RallyHereDeveloperAPI::TryGetJsonValue;
 void FRHAPI_DevSettingType::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    if (CustomData_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
+    if (Name_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("name"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, Name_Optional);
+    }
+    if (Description_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("description"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, Description_Optional);
+    }
     if (LastModifiedAccountId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
@@ -37,8 +52,8 @@ void FRHAPI_DevSettingType::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("setting_type_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, SettingTypeId);
+    Writer->WriteIdentifierPrefix(TEXT("setting_type_unique_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, SettingTypeUniqueId);
     Writer->WriteIdentifierPrefix(TEXT("type"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Type);
     if (Version_IsSet)
@@ -56,6 +71,11 @@ void FRHAPI_DevSettingType::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("allow_update"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, AllowUpdate_Optional);
     }
+    if (KeyRegex_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("key_regex"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, KeyRegex_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -67,6 +87,24 @@ bool FRHAPI_DevSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
+    if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())
+    {
+        CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+        ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
+    if (JsonNameField.IsValid() && !JsonNameField->IsNull())
+    {
+        Name_IsSet = TryGetJsonValue(JsonNameField, Name_Optional);
+        ParseSuccess &= Name_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonDescriptionField = (*Object)->TryGetField(TEXT("description"));
+    if (JsonDescriptionField.IsValid() && !JsonDescriptionField->IsNull())
+    {
+        Description_IsSet = TryGetJsonValue(JsonDescriptionField, Description_Optional);
+        ParseSuccess &= Description_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
     if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
     {
@@ -85,8 +123,8 @@ bool FRHAPI_DevSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
         ParseSuccess &= CreatedTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonSettingTypeIdField = (*Object)->TryGetField(TEXT("setting_type_id"));
-    ParseSuccess &= JsonSettingTypeIdField.IsValid() && !JsonSettingTypeIdField->IsNull() && TryGetJsonValue(JsonSettingTypeIdField, SettingTypeId);
+    const TSharedPtr<FJsonValue> JsonSettingTypeUniqueIdField = (*Object)->TryGetField(TEXT("setting_type_unique_id"));
+    ParseSuccess &= JsonSettingTypeUniqueIdField.IsValid() && !JsonSettingTypeUniqueIdField->IsNull() && TryGetJsonValue(JsonSettingTypeUniqueIdField, SettingTypeUniqueId);
     const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
     ParseSuccess &= JsonTypeField.IsValid() && !JsonTypeField->IsNull() && TryGetJsonValue(JsonTypeField, Type);
     const TSharedPtr<FJsonValue> JsonVersionField = (*Object)->TryGetField(TEXT("version"));
@@ -106,6 +144,12 @@ bool FRHAPI_DevSettingType::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         AllowUpdate_IsSet = TryGetJsonValue(JsonAllowUpdateField, AllowUpdate_Optional);
         ParseSuccess &= AllowUpdate_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonKeyRegexField = (*Object)->TryGetField(TEXT("key_regex"));
+    if (JsonKeyRegexField.IsValid() && !JsonKeyRegexField->IsNull())
+    {
+        KeyRegex_IsSet = TryGetJsonValue(JsonKeyRegexField, KeyRegex_Optional);
+        ParseSuccess &= KeyRegex_IsSet;
     }
 
     return ParseSuccess;

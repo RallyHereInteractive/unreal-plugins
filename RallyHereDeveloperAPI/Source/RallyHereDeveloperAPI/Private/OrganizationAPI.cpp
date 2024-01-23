@@ -161,6 +161,16 @@ void FResponse_CreateOrg::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRes
     }
 }
 
+bool FResponse_CreateOrg::TryGetContentFor200(FRHAPI_DevOrganization& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreateOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_CreateOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -246,7 +256,7 @@ FName FRequest_DeleteOrg::GetSimplifiedPath() const
 
 FString FRequest_DeleteOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -306,6 +316,16 @@ void FResponse_DeleteOrg::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRes
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_DeleteOrg::TryGetContentFor200(FRHAPI_DevJsonValue& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_DeleteOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_DeleteOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -444,6 +464,11 @@ void FResponse_GetAllOrgs::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRe
     }
 }
 
+bool FResponse_GetAllOrgs::TryGetContentFor200(TArray<FRHAPI_DevOrganization>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetAllOrgs::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -529,7 +554,7 @@ FName FRequest_GetOrg::GetSimplifiedPath() const
 
 FString FRequest_GetOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -588,6 +613,16 @@ void FResponse_GetOrg::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRespon
     }
 }
 
+bool FResponse_GetOrg::TryGetContentFor200(FRHAPI_DevOrganization& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_GetOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     return TryGetJsonValue(JsonValue, Content);
@@ -599,6 +634,160 @@ FResponse_GetOrg::FResponse_GetOrg(FRequestMetadata InRequestMetadata) :
 }
 
 FString Traits_GetOrg::Name = TEXT("GetOrg");
+
+FHttpRequestPtr FOrganizationAPI::GetOrgStructure(const FRequest_GetOrgStructure& Request, const FDelegate_GetOrgStructure& Delegate /*= FDelegate_GetOrgStructure()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereDeveloperAPIHttpRequestData> RequestData = MakeShared<FRallyHereDeveloperAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FOrganizationAPI::OnGetOrgStructureResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereDeveloperAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FOrganizationAPI::OnGetOrgStructureResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetOrgStructure Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FOrganizationAPI::OnGetOrgStructureResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_GetOrgStructure Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_GetOrgStructure::FRequest_GetOrgStructure()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_GetOrgStructure::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/v1/org-structure/{org_identifier}"));
+    return Path;
+}
+
+FString FRequest_GetOrgStructure::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
+    };
+
+    FString Path = FString::Format(TEXT("/v1/org-structure/{org_identifier}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_GetOrgStructure::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetOrgStructure - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetOrgStructure - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereDeveloperAPI, Error, TEXT("FRequest_GetOrgStructure - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_GetOrgStructure::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_GetOrgStructure::TryGetContentFor200(TArray<FRHAPI_DevOrganizationStructure>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgStructure::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetOrgStructure::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetOrgStructure::FResponse_GetOrgStructure(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetOrgStructure::Name = TEXT("GetOrgStructure");
 
 FHttpRequestPtr FOrganizationAPI::UpdateOrg(const FRequest_UpdateOrg& Request, const FDelegate_UpdateOrg& Delegate /*= FDelegate_UpdateOrg()*/, int32 Priority /*= DefaultRallyHereDeveloperAPIPriority*/)
 {
@@ -673,7 +862,7 @@ FName FRequest_UpdateOrg::GetSimplifiedPath() const
 
 FString FRequest_UpdateOrg::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("org_identifier"), ToStringFormatArg(OrgIdentifier) }
     };
 
@@ -744,6 +933,16 @@ void FResponse_UpdateOrg::SetHttpResponseCode(EHttpResponseCodes::Type InHttpRes
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateOrg::TryGetContentFor200(FRHAPI_DevOrganizationUpdateRequest& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateOrg::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateOrg::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

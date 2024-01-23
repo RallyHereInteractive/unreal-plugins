@@ -29,7 +29,7 @@ void FRHAPI_DevPortalPermissionsOrgGroupPermissionRequest::WriteJson(TSharedRef<
     if (Level_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("level"));
-        RallyHereDeveloperAPI::WriteJsonValue(Writer, Level_Optional);
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, EnumToString(Level_Optional));
     }
     Writer->WriteIdentifierPrefix(TEXT("level_id"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, LevelId);

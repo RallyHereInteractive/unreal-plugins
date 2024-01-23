@@ -96,7 +96,7 @@ FName FRequest_SandboxGetAuditComparisonsForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAuditComparisonsForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -169,6 +169,16 @@ void FResponse_SandboxGetAuditComparisonsForSandbox::SetHttpResponseCode(EHttpRe
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAuditComparisonsForSandbox::TryGetContentFor200(TArray<FRHAPI_DevAuditComparisonResponse>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAuditComparisonsForSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAuditComparisonsForSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -256,7 +266,7 @@ FName FRequest_SandboxGetAuditForSandbox::GetSimplifiedPath() const
 
 FString FRequest_SandboxGetAuditForSandbox::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_id"), ToStringFormatArg(SandboxId) }
     };
 
@@ -329,6 +339,16 @@ void FResponse_SandboxGetAuditForSandbox::SetHttpResponseCode(EHttpResponseCodes
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_SandboxGetAuditForSandbox::TryGetContentFor200(TArray<FRHAPI_DevAuditPatchResponse>& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_SandboxGetAuditForSandbox::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_SandboxGetAuditForSandbox::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

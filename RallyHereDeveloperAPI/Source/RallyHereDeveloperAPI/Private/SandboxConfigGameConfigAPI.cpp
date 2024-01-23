@@ -96,7 +96,7 @@ FName FRequest_GetSandboxGameConfig::GetSimplifiedPath() const
 
 FString FRequest_GetSandboxGameConfig::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
     };
 
@@ -153,6 +153,16 @@ void FResponse_GetSandboxGameConfig::SetHttpResponseCode(EHttpResponseCodes::Typ
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_GetSandboxGameConfig::TryGetContentFor200(FRHAPI_DevGeneralConfig& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetSandboxGameConfig::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_GetSandboxGameConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
@@ -240,7 +250,7 @@ FName FRequest_UpdateSandboxGameConfig::GetSimplifiedPath() const
 
 FString FRequest_UpdateSandboxGameConfig::ComputePath() const
 {
-    TMap<FString, FStringFormatArg> PathParams = {
+    TMap<FString, FStringFormatArg> PathParams = { 
         { TEXT("sandbox_identifier"), ToStringFormatArg(SandboxIdentifier) }
     };
 
@@ -308,6 +318,16 @@ void FResponse_UpdateSandboxGameConfig::SetHttpResponseCode(EHttpResponseCodes::
         SetResponseString(TEXT("Validation Error"));
         break;
     }
+}
+
+bool FResponse_UpdateSandboxGameConfig::TryGetContentFor200(FRHAPI_DevGeneralConfig& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_UpdateSandboxGameConfig::TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
 }
 
 bool FResponse_UpdateSandboxGameConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)

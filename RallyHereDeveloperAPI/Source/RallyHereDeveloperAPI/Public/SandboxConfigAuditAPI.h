@@ -44,7 +44,6 @@ private:
 };
 
 /* Get Audit Comparisons For Sandbox
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAuditComparisonsForSandbox : public FRequest
 {
@@ -72,6 +71,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAuditComparisonsForSandbox 
 
     TArray<FRHAPI_DevAuditComparisonResponse> Content;
 
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevAuditComparisonResponse>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
+
 };
 
 struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAuditComparisonsForSandbox
@@ -86,7 +97,6 @@ struct RALLYHEREDEVELOPERAPI_API Traits_SandboxGetAuditComparisonsForSandbox
 };
 
 /* Get Audit For Sandbox
-
 */
 struct RALLYHEREDEVELOPERAPI_API FRequest_SandboxGetAuditForSandbox : public FRequest
 {
@@ -113,6 +123,18 @@ struct RALLYHEREDEVELOPERAPI_API FResponse_SandboxGetAuditForSandbox : public FR
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
     TArray<FRHAPI_DevAuditPatchResponse> Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(TArray<FRHAPI_DevAuditPatchResponse>& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_DevHTTPValidationError& OutContent) const;
 
 };
 

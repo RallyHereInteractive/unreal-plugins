@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntryRequest : public FRHAPI_DevModel
@@ -40,13 +40,13 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntryRequest : 
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Which MatchMakingProfile this entry refers to */
-    FGuid ProfileId{  };
-    /** @brief Gets the value of ProfileId */
-    FGuid& GetProfileId() { return ProfileId; }
-    /** @brief Gets the value of ProfileId */
-    const FGuid& GetProfileId() const { return ProfileId; }
-    /** @brief Sets the value of ProfileId */
-    void SetProfileId(FGuid NewValue) { ProfileId = NewValue;  }
+    FGuid MatchMakingProfileId{  };
+    /** @brief Gets the value of MatchMakingProfileId */
+    FGuid& GetMatchMakingProfileId() { return MatchMakingProfileId; }
+    /** @brief Gets the value of MatchMakingProfileId */
+    const FGuid& GetMatchMakingProfileId() const { return MatchMakingProfileId; }
+    /** @brief Sets the value of MatchMakingProfileId */
+    void SetMatchMakingProfileId(FGuid NewValue) { MatchMakingProfileId = NewValue;  }
 };
 
 /** @} */

@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief This mixin is meant to give a set of common properties to root config models
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevSettingType : public FRHAPI_DevModel
@@ -38,6 +38,69 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevSettingType : public FRHAPI_DevModel
     * @param [in] Writer JSON Writer stream to push .
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+
+    /** @brief Custom data associated with the resource */
+    TMap<FString, FString> CustomData_Optional{  };
+    /** @brief true if CustomData_Optional has been set to a value */
+    bool CustomData_IsSet{ false };
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
+    const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+    /** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
+    const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return &CustomData_Optional; return nullptr; }
+    /** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
+    void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
+     /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
+    void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief Name of the resource */
+    FString Name_Optional{  };
+    /** @brief true if Name_Optional has been set to a value */
+    bool Name_IsSet{ false };
+    /** @brief Gets the value of Name_Optional, regardless of it having been set */
+    FString& GetName() { return Name_Optional; }
+    /** @brief Gets the value of Name_Optional, regardless of it having been set */
+    const FString& GetName() const { return Name_Optional; }
+    /** @brief Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetName(const FString& DefaultValue) const { if (Name_IsSet) return Name_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false */
+    bool GetName(FString& OutValue) const { if (Name_IsSet) OutValue = Name_Optional; return Name_IsSet; }
+    /** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetNameOrNull() { if (Name_IsSet) return &Name_Optional; return nullptr; }
+    /** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetNameOrNull() const { if (Name_IsSet) return &Name_Optional; return nullptr; }
+    /** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
+    void SetName(FString NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
+     /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+    void ClearName() { Name_IsSet = false; }
+
+    /** @brief Description of the resource */
+    FString Description_Optional{  };
+    /** @brief true if Description_Optional has been set to a value */
+    bool Description_IsSet{ false };
+    /** @brief Gets the value of Description_Optional, regardless of it having been set */
+    FString& GetDescription() { return Description_Optional; }
+    /** @brief Gets the value of Description_Optional, regardless of it having been set */
+    const FString& GetDescription() const { return Description_Optional; }
+    /** @brief Gets the value of Description_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetDescription(const FString& DefaultValue) const { if (Description_IsSet) return Description_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
+    bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
+    /** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetDescriptionOrNull() { if (Description_IsSet) return &Description_Optional; return nullptr; }
+    /** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
+    /** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
+    void SetDescription(FString NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+     /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+    void ClearDescription() { Description_IsSet = false; }
 
     /** @brief Account ID of the user who last modified the resource */
     FGuid LastModifiedAccountId_Optional{  };
@@ -102,13 +165,14 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevSettingType : public FRHAPI_DevModel
      /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
     void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
-    FGuid SettingTypeId{  };
-    /** @brief Gets the value of SettingTypeId */
-    FGuid& GetSettingTypeId() { return SettingTypeId; }
-    /** @brief Gets the value of SettingTypeId */
-    const FGuid& GetSettingTypeId() const { return SettingTypeId; }
-    /** @brief Sets the value of SettingTypeId */
-    void SetSettingTypeId(FGuid NewValue) { SettingTypeId = NewValue;  }
+    /** @brief Unique identifier for this setting type */
+    FGuid SettingTypeUniqueId{  };
+    /** @brief Gets the value of SettingTypeUniqueId */
+    FGuid& GetSettingTypeUniqueId() { return SettingTypeUniqueId; }
+    /** @brief Gets the value of SettingTypeUniqueId */
+    const FGuid& GetSettingTypeUniqueId() const { return SettingTypeUniqueId; }
+    /** @brief Sets the value of SettingTypeUniqueId */
+    void SetSettingTypeUniqueId(FGuid NewValue) { SettingTypeUniqueId = NewValue;  }
 
     /** @brief User friendly identifier of setting type */
     FString Type{  };
@@ -144,7 +208,7 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevSettingType : public FRHAPI_DevModel
     /** @brief Sets the value of Version_Optional to its default and also sets Version_IsSet to true */
     void SetVersionToDefault() { Version_Optional = 1; Version_IsSet = true; }
 
-    /** @brief JSONSchema defintion of the setting */
+    /** @brief JSONSchema definition of the setting */
     FRHAPI_DevJsonObject ValueJsonschema_Optional{  };
     /** @brief true if ValueJsonschema_Optional has been set to a value */
     bool ValueJsonschema_IsSet{ false };
@@ -189,6 +253,31 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevSettingType : public FRHAPI_DevModel
     bool IsAllowUpdateDefaultValue() const { return AllowUpdate_IsSet && AllowUpdate_Optional == true; }
     /** @brief Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true */
     void SetAllowUpdateToDefault() { AllowUpdate_Optional = true; AllowUpdate_IsSet = true; }
+
+    /** @brief Regex that is used to verify keys at assignment time */
+    FString KeyRegex_Optional{  };
+    /** @brief true if KeyRegex_Optional has been set to a value */
+    bool KeyRegex_IsSet{ false };
+    /** @brief Gets the value of KeyRegex_Optional, regardless of it having been set */
+    FString& GetKeyRegex() { return KeyRegex_Optional; }
+    /** @brief Gets the value of KeyRegex_Optional, regardless of it having been set */
+    const FString& GetKeyRegex() const { return KeyRegex_Optional; }
+    /** @brief Gets the value of KeyRegex_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetKeyRegex(const FString& DefaultValue) const { if (KeyRegex_IsSet) return KeyRegex_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of KeyRegex_Optional and returns true if it has been set, otherwise returns false */
+    bool GetKeyRegex(FString& OutValue) const { if (KeyRegex_IsSet) OutValue = KeyRegex_Optional; return KeyRegex_IsSet; }
+    /** @brief Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetKeyRegexOrNull() { if (KeyRegex_IsSet) return &KeyRegex_Optional; return nullptr; }
+    /** @brief Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetKeyRegexOrNull() const { if (KeyRegex_IsSet) return &KeyRegex_Optional; return nullptr; }
+    /** @brief Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true */
+    void SetKeyRegex(FString NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true; }
+     /** @brief Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false */
+    void ClearKeyRegex() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = false; }
+    /** @brief Returns true if KeyRegex_Optional is set and matches the default value */
+    bool IsKeyRegexDefaultValue() const { return KeyRegex_IsSet && KeyRegex_Optional == TEXT("^.+$"); }
+    /** @brief Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true */
+    void SetKeyRegexToDefault() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = true; }
 };
 
 /** @} */

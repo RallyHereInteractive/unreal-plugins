@@ -83,6 +83,28 @@ struct RALLYHEREDEVELOPERAPI_API FHttpRetryParams
     FRetryDomainsPtr RetryDomains;
 };
 
+class FHttpRetryRequest : public FHttpRetrySystem::FRequest
+{
+public:
+	FHttpRetryRequest(
+		class FManager& InManager,
+		const TSharedRef<IHttpRequest, ESPMode::ThreadSafe>& HttpRequest,
+		const FRetryLimitCountSetting& InRetryLimitCountOverride = FRetryLimitCountSetting(),
+		const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride = FRetryTimeoutRelativeSecondsSetting(),
+		const FRetryResponseCodes& InRetryResponseCodes = FRetryResponseCodes(),
+		const FRetryVerbs& InRetryVerbs = FRetryVerbs(),
+		const FRetryDomainsPtr& InRetryDomains = FRetryDomainsPtr()
+	) : FHttpRetrySystem::FRequest (InManager, HttpRequest, InRetryLimitCountOverride, InRetryTimeoutRelativeSecondsOverride, InRetryResponseCodes, InRetryVerbs, InRetryDomains)
+	{ }
+
+	// Reset state of the request to not started, in case we are retrying after an auth failure
+	virtual bool RALLYHEREDEVELOPERAPI_API ProcessRequest() override
+	{
+		Status = EStatus::NotStarted;
+		return FHttpRetrySystem::FRequest::ProcessRequest();
+	}
+};
+
 /*
  * Metadata used to track a request through the Unreal systems
  */
@@ -96,6 +118,11 @@ struct RALLYHEREDEVELOPERAPI_API FRequestMetadata
 class RALLYHEREDEVELOPERAPI_API FRequest
 {
 public:
+    FRequest()
+    {
+        // default to enabling retry
+        SetShouldRetry();
+    }
     virtual ~FRequest() = default;
     virtual bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const = 0;
     virtual FString ComputePath() const = 0;
@@ -105,6 +132,7 @@ public:
 
     /* Enables retry and optionally sets a retry policy for this request */
     void SetShouldRetry(const FHttpRetryParams& Params = FHttpRetryParams()) { RetryParams = Params; }
+    void ClearShouldRetry() { RetryParams.Reset(); }
     const TOptional<FHttpRetryParams>& GetRetryParams() const { return RetryParams; }
 
 protected:

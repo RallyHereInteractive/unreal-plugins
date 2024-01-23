@@ -9,9 +9,11 @@
 
 #include "RallyHereDeveloperAPIBaseModel.h"
 #include "RallyHereDeveloperAPIHelpers.h"
+#include "DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig.h"
 #include "DevMatchMakingFunctionConfig.h"
 #include "DevProfileJoinMode.h"
 #include "DevTaskforceSizeByTime.h"
+#include "DevTrueSkillQualityByTimeMethod.h"
 #include "DevMatchMakingProfileUpdateRequest.generated.h"
 
 /** @defgroup RHAPI_DevMatchMakingProfileUpdateRequest RallyHere API Model DevMatchMakingProfileUpdateRequest
@@ -19,7 +21,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileUpdateRequest : public FRHAPI_DevModel
@@ -109,31 +111,6 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileUpdateRequest : pub
     /** @brief Sets the value of NumSides_Optional to its default and also sets NumSides_IsSet to true */
     void SetNumSidesToDefault() { NumSides_Optional = 0; NumSides_IsSet = true; }
 
-    /** @brief The maximum number of players that can be on each team */
-    int32 MaxPlayersPerSide_Optional{  };
-    /** @brief true if MaxPlayersPerSide_Optional has been set to a value */
-    bool MaxPlayersPerSide_IsSet{ false };
-    /** @brief Gets the value of MaxPlayersPerSide_Optional, regardless of it having been set */
-    int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide_Optional; }
-    /** @brief Gets the value of MaxPlayersPerSide_Optional, regardless of it having been set */
-    const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide_Optional; }
-    /** @brief Gets the value of MaxPlayersPerSide_Optional, if it has been set, otherwise it returns DefaultValue */
-    const int32& GetMaxPlayersPerSide(const int32& DefaultValue) const { if (MaxPlayersPerSide_IsSet) return MaxPlayersPerSide_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of MaxPlayersPerSide_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMaxPlayersPerSide(int32& OutValue) const { if (MaxPlayersPerSide_IsSet) OutValue = MaxPlayersPerSide_Optional; return MaxPlayersPerSide_IsSet; }
-    /** @brief Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr */
-    int32* GetMaxPlayersPerSideOrNull() { if (MaxPlayersPerSide_IsSet) return &MaxPlayersPerSide_Optional; return nullptr; }
-    /** @brief Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr */
-    const int32* GetMaxPlayersPerSideOrNull() const { if (MaxPlayersPerSide_IsSet) return &MaxPlayersPerSide_Optional; return nullptr; }
-    /** @brief Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true */
-    void SetMaxPlayersPerSide(int32 NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true; }
-     /** @brief Clears the value of MaxPlayersPerSide_Optional and sets MaxPlayersPerSide_IsSet to false */
-    void ClearMaxPlayersPerSide() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = false; }
-    /** @brief Returns true if MaxPlayersPerSide_Optional is set and matches the default value */
-    bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide_IsSet && MaxPlayersPerSide_Optional == 0; }
-    /** @brief Sets the value of MaxPlayersPerSide_Optional to its default and also sets MaxPlayersPerSide_IsSet to true */
-    void SetMaxPlayersPerSideToDefault() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = true; }
-
     /** @brief The minimum number of players that can be on each team */
     int32 MinPlayersPerSide_Optional{  };
     /** @brief true if MinPlayersPerSide_Optional has been set to a value */
@@ -158,6 +135,31 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileUpdateRequest : pub
     bool IsMinPlayersPerSideDefaultValue() const { return MinPlayersPerSide_IsSet && MinPlayersPerSide_Optional == 0; }
     /** @brief Sets the value of MinPlayersPerSide_Optional to its default and also sets MinPlayersPerSide_IsSet to true */
     void SetMinPlayersPerSideToDefault() { MinPlayersPerSide_Optional = 0; MinPlayersPerSide_IsSet = true; }
+
+    /** @brief The maximum number of players that can be on each team */
+    int32 MaxPlayersPerSide_Optional{  };
+    /** @brief true if MaxPlayersPerSide_Optional has been set to a value */
+    bool MaxPlayersPerSide_IsSet{ false };
+    /** @brief Gets the value of MaxPlayersPerSide_Optional, regardless of it having been set */
+    int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide_Optional; }
+    /** @brief Gets the value of MaxPlayersPerSide_Optional, regardless of it having been set */
+    const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide_Optional; }
+    /** @brief Gets the value of MaxPlayersPerSide_Optional, if it has been set, otherwise it returns DefaultValue */
+    const int32& GetMaxPlayersPerSide(const int32& DefaultValue) const { if (MaxPlayersPerSide_IsSet) return MaxPlayersPerSide_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MaxPlayersPerSide_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMaxPlayersPerSide(int32& OutValue) const { if (MaxPlayersPerSide_IsSet) OutValue = MaxPlayersPerSide_Optional; return MaxPlayersPerSide_IsSet; }
+    /** @brief Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr */
+    int32* GetMaxPlayersPerSideOrNull() { if (MaxPlayersPerSide_IsSet) return &MaxPlayersPerSide_Optional; return nullptr; }
+    /** @brief Returns a pointer to MaxPlayersPerSide_Optional, if it has been set, otherwise returns nullptr */
+    const int32* GetMaxPlayersPerSideOrNull() const { if (MaxPlayersPerSide_IsSet) return &MaxPlayersPerSide_Optional; return nullptr; }
+    /** @brief Sets the value of MaxPlayersPerSide_Optional and also sets MaxPlayersPerSide_IsSet to true */
+    void SetMaxPlayersPerSide(int32 NewValue) { MaxPlayersPerSide_Optional = NewValue; MaxPlayersPerSide_IsSet = true; }
+     /** @brief Clears the value of MaxPlayersPerSide_Optional and sets MaxPlayersPerSide_IsSet to false */
+    void ClearMaxPlayersPerSide() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = false; }
+    /** @brief Returns true if MaxPlayersPerSide_Optional is set and matches the default value */
+    bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide_IsSet && MaxPlayersPerSide_Optional == 0; }
+    /** @brief Sets the value of MaxPlayersPerSide_Optional to its default and also sets MaxPlayersPerSide_IsSet to true */
+    void SetMaxPlayersPerSideToDefault() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = true; }
 
     /** @brief The minimum number of players that can be on a single linking (a party) */
     int32 MinPlayersPerLinking_Optional{  };
@@ -296,44 +298,64 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileUpdateRequest : pub
     void ClearMatchMakingFunctionConfig() { MatchMakingFunctionConfig_IsSet = false; }
 
     /** @brief Which matchmaking strides should be used to divide the queue population */
-    FGuid StrideId_Optional{  };
-    /** @brief true if StrideId_Optional has been set to a value */
-    bool StrideId_IsSet{ false };
-    /** @brief Gets the value of StrideId_Optional, regardless of it having been set */
-    FGuid& GetStrideId() { return StrideId_Optional; }
-    /** @brief Gets the value of StrideId_Optional, regardless of it having been set */
-    const FGuid& GetStrideId() const { return StrideId_Optional; }
-    /** @brief Gets the value of StrideId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetStrideId(const FGuid& DefaultValue) const { if (StrideId_IsSet) return StrideId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of StrideId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetStrideId(FGuid& OutValue) const { if (StrideId_IsSet) OutValue = StrideId_Optional; return StrideId_IsSet; }
-    /** @brief Returns a pointer to StrideId_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetStrideIdOrNull() { if (StrideId_IsSet) return &StrideId_Optional; return nullptr; }
-    /** @brief Returns a pointer to StrideId_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetStrideIdOrNull() const { if (StrideId_IsSet) return &StrideId_Optional; return nullptr; }
-    /** @brief Sets the value of StrideId_Optional and also sets StrideId_IsSet to true */
-    void SetStrideId(FGuid NewValue) { StrideId_Optional = NewValue; StrideId_IsSet = true; }
-     /** @brief Clears the value of StrideId_Optional and sets StrideId_IsSet to false */
-    void ClearStrideId() { StrideId_IsSet = false; }
+    FGuid MatchMakingStrideId_Optional{  };
+    /** @brief true if MatchMakingStrideId_Optional has been set to a value */
+    bool MatchMakingStrideId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingStrideId_Optional, regardless of it having been set */
+    FGuid& GetMatchMakingStrideId() { return MatchMakingStrideId_Optional; }
+    /** @brief Gets the value of MatchMakingStrideId_Optional, regardless of it having been set */
+    const FGuid& GetMatchMakingStrideId() const { return MatchMakingStrideId_Optional; }
+    /** @brief Gets the value of MatchMakingStrideId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetMatchMakingStrideId(const FGuid& DefaultValue) const { if (MatchMakingStrideId_IsSet) return MatchMakingStrideId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingStrideId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingStrideId(FGuid& OutValue) const { if (MatchMakingStrideId_IsSet) OutValue = MatchMakingStrideId_Optional; return MatchMakingStrideId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingStrideId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetMatchMakingStrideIdOrNull() { if (MatchMakingStrideId_IsSet) return &MatchMakingStrideId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingStrideId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetMatchMakingStrideIdOrNull() const { if (MatchMakingStrideId_IsSet) return &MatchMakingStrideId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingStrideId_Optional and also sets MatchMakingStrideId_IsSet to true */
+    void SetMatchMakingStrideId(FGuid NewValue) { MatchMakingStrideId_Optional = NewValue; MatchMakingStrideId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingStrideId_Optional and sets MatchMakingStrideId_IsSet to false */
+    void ClearMatchMakingStrideId() { MatchMakingStrideId_IsSet = false; }
 
-    /** @brief Dictionary of config required for legacy games */
-    TMap<FString, FString> LegacyConfig_Optional{  };
+    /** @brief Which set of CrossplayPartitions rules should be used when generating matches in this profile */
+    FGuid CrossplayPartitionId_Optional{  };
+    /** @brief true if CrossplayPartitionId_Optional has been set to a value */
+    bool CrossplayPartitionId_IsSet{ false };
+    /** @brief Gets the value of CrossplayPartitionId_Optional, regardless of it having been set */
+    FGuid& GetCrossplayPartitionId() { return CrossplayPartitionId_Optional; }
+    /** @brief Gets the value of CrossplayPartitionId_Optional, regardless of it having been set */
+    const FGuid& GetCrossplayPartitionId() const { return CrossplayPartitionId_Optional; }
+    /** @brief Gets the value of CrossplayPartitionId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetCrossplayPartitionId(const FGuid& DefaultValue) const { if (CrossplayPartitionId_IsSet) return CrossplayPartitionId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CrossplayPartitionId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCrossplayPartitionId(FGuid& OutValue) const { if (CrossplayPartitionId_IsSet) OutValue = CrossplayPartitionId_Optional; return CrossplayPartitionId_IsSet; }
+    /** @brief Returns a pointer to CrossplayPartitionId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetCrossplayPartitionIdOrNull() { if (CrossplayPartitionId_IsSet) return &CrossplayPartitionId_Optional; return nullptr; }
+    /** @brief Returns a pointer to CrossplayPartitionId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetCrossplayPartitionIdOrNull() const { if (CrossplayPartitionId_IsSet) return &CrossplayPartitionId_Optional; return nullptr; }
+    /** @brief Sets the value of CrossplayPartitionId_Optional and also sets CrossplayPartitionId_IsSet to true */
+    void SetCrossplayPartitionId(FGuid NewValue) { CrossplayPartitionId_Optional = NewValue; CrossplayPartitionId_IsSet = true; }
+     /** @brief Clears the value of CrossplayPartitionId_Optional and sets CrossplayPartitionId_IsSet to false */
+    void ClearCrossplayPartitionId() { CrossplayPartitionId_IsSet = false; }
+
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& GetLegacyConfig() { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
-    const TMap<FString, FString>& GetLegacyConfig() const { return LegacyConfig_Optional; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& GetLegacyConfig() const { return LegacyConfig_Optional; }
     /** @brief Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, FString>& GetLegacyConfig(const TMap<FString, FString>& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& GetLegacyConfig(const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& DefaultValue) const { if (LegacyConfig_IsSet) return LegacyConfig_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLegacyConfig(TMap<FString, FString>& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
+    bool GetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig& OutValue) const { if (LegacyConfig_IsSet) OutValue = LegacyConfig_Optional; return LegacyConfig_IsSet; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, FString>* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig* GetLegacyConfigOrNull() { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, FString>* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
+    const FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig* GetLegacyConfigOrNull() const { if (LegacyConfig_IsSet) return &LegacyConfig_Optional; return nullptr; }
     /** @brief Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true */
-    void SetLegacyConfig(TMap<FString, FString> NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
+    void SetLegacyConfig(FRHAPI_DevDependenciesSandboxConfigMatchmakingProfilesSchemasLegacyConfig NewValue) { LegacyConfig_Optional = NewValue; LegacyConfig_IsSet = true; }
      /** @brief Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false */
     void ClearLegacyConfig() { LegacyConfig_IsSet = false; }
 
@@ -380,23 +402,23 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileUpdateRequest : pub
     void ClearTrueskillQualityByTimeMaxMinutes() { TrueskillQualityByTimeMaxMinutes_IsSet = false; }
 
     /** @brief Method used to decay the required quality of matches over time. Currently only 'two_term_quadratic' is supported */
-    FString TrueskillQualityByTimeMethod_Optional{  };
+    ERHAPI_DevTrueSkillQualityByTimeMethod TrueskillQualityByTimeMethod_Optional{  };
     /** @brief true if TrueskillQualityByTimeMethod_Optional has been set to a value */
     bool TrueskillQualityByTimeMethod_IsSet{ false };
     /** @brief Gets the value of TrueskillQualityByTimeMethod_Optional, regardless of it having been set */
-    FString& GetTrueskillQualityByTimeMethod() { return TrueskillQualityByTimeMethod_Optional; }
+    ERHAPI_DevTrueSkillQualityByTimeMethod& GetTrueskillQualityByTimeMethod() { return TrueskillQualityByTimeMethod_Optional; }
     /** @brief Gets the value of TrueskillQualityByTimeMethod_Optional, regardless of it having been set */
-    const FString& GetTrueskillQualityByTimeMethod() const { return TrueskillQualityByTimeMethod_Optional; }
+    const ERHAPI_DevTrueSkillQualityByTimeMethod& GetTrueskillQualityByTimeMethod() const { return TrueskillQualityByTimeMethod_Optional; }
     /** @brief Gets the value of TrueskillQualityByTimeMethod_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetTrueskillQualityByTimeMethod(const FString& DefaultValue) const { if (TrueskillQualityByTimeMethod_IsSet) return TrueskillQualityByTimeMethod_Optional; return DefaultValue; }
+    const ERHAPI_DevTrueSkillQualityByTimeMethod& GetTrueskillQualityByTimeMethod(const ERHAPI_DevTrueSkillQualityByTimeMethod& DefaultValue) const { if (TrueskillQualityByTimeMethod_IsSet) return TrueskillQualityByTimeMethod_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of TrueskillQualityByTimeMethod_Optional and returns true if it has been set, otherwise returns false */
-    bool GetTrueskillQualityByTimeMethod(FString& OutValue) const { if (TrueskillQualityByTimeMethod_IsSet) OutValue = TrueskillQualityByTimeMethod_Optional; return TrueskillQualityByTimeMethod_IsSet; }
+    bool GetTrueskillQualityByTimeMethod(ERHAPI_DevTrueSkillQualityByTimeMethod& OutValue) const { if (TrueskillQualityByTimeMethod_IsSet) OutValue = TrueskillQualityByTimeMethod_Optional; return TrueskillQualityByTimeMethod_IsSet; }
     /** @brief Returns a pointer to TrueskillQualityByTimeMethod_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetTrueskillQualityByTimeMethodOrNull() { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
+    ERHAPI_DevTrueSkillQualityByTimeMethod* GetTrueskillQualityByTimeMethodOrNull() { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
     /** @brief Returns a pointer to TrueskillQualityByTimeMethod_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetTrueskillQualityByTimeMethodOrNull() const { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
+    const ERHAPI_DevTrueSkillQualityByTimeMethod* GetTrueskillQualityByTimeMethodOrNull() const { if (TrueskillQualityByTimeMethod_IsSet) return &TrueskillQualityByTimeMethod_Optional; return nullptr; }
     /** @brief Sets the value of TrueskillQualityByTimeMethod_Optional and also sets TrueskillQualityByTimeMethod_IsSet to true */
-    void SetTrueskillQualityByTimeMethod(FString NewValue) { TrueskillQualityByTimeMethod_Optional = NewValue; TrueskillQualityByTimeMethod_IsSet = true; }
+    void SetTrueskillQualityByTimeMethod(ERHAPI_DevTrueSkillQualityByTimeMethod NewValue) { TrueskillQualityByTimeMethod_Optional = NewValue; TrueskillQualityByTimeMethod_IsSet = true; }
      /** @brief Clears the value of TrueskillQualityByTimeMethod_Optional and sets TrueskillQualityByTimeMethod_IsSet to false */
     void ClearTrueskillQualityByTimeMethod() { TrueskillQualityByTimeMethod_IsSet = false; }
 
@@ -424,6 +446,31 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileUpdateRequest : pub
     bool IsActiveDefaultValue() const { return Active_IsSet && Active_Optional == false; }
     /** @brief Sets the value of Active_Optional to its default and also sets Active_IsSet to true */
     void SetActiveToDefault() { Active_Optional = false; Active_IsSet = true; }
+
+    /** @brief Flag determining whether or not backfill objects should be created when generating matches in this profile */
+    bool SupportsBackfill_Optional{  };
+    /** @brief true if SupportsBackfill_Optional has been set to a value */
+    bool SupportsBackfill_IsSet{ false };
+    /** @brief Gets the value of SupportsBackfill_Optional, regardless of it having been set */
+    bool& GetSupportsBackfill() { return SupportsBackfill_Optional; }
+    /** @brief Gets the value of SupportsBackfill_Optional, regardless of it having been set */
+    const bool& GetSupportsBackfill() const { return SupportsBackfill_Optional; }
+    /** @brief Gets the value of SupportsBackfill_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetSupportsBackfill(const bool& DefaultValue) const { if (SupportsBackfill_IsSet) return SupportsBackfill_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of SupportsBackfill_Optional and returns true if it has been set, otherwise returns false */
+    bool GetSupportsBackfill(bool& OutValue) const { if (SupportsBackfill_IsSet) OutValue = SupportsBackfill_Optional; return SupportsBackfill_IsSet; }
+    /** @brief Returns a pointer to SupportsBackfill_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetSupportsBackfillOrNull() { if (SupportsBackfill_IsSet) return &SupportsBackfill_Optional; return nullptr; }
+    /** @brief Returns a pointer to SupportsBackfill_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetSupportsBackfillOrNull() const { if (SupportsBackfill_IsSet) return &SupportsBackfill_Optional; return nullptr; }
+    /** @brief Sets the value of SupportsBackfill_Optional and also sets SupportsBackfill_IsSet to true */
+    void SetSupportsBackfill(bool NewValue) { SupportsBackfill_Optional = NewValue; SupportsBackfill_IsSet = true; }
+     /** @brief Clears the value of SupportsBackfill_Optional and sets SupportsBackfill_IsSet to false */
+    void ClearSupportsBackfill() { SupportsBackfill_Optional = false; SupportsBackfill_IsSet = false; }
+    /** @brief Returns true if SupportsBackfill_Optional is set and matches the default value */
+    bool IsSupportsBackfillDefaultValue() const { return SupportsBackfill_IsSet && SupportsBackfill_Optional == false; }
+    /** @brief Sets the value of SupportsBackfill_Optional to its default and also sets SupportsBackfill_IsSet to true */
+    void SetSupportsBackfillToDefault() { SupportsBackfill_Optional = false; SupportsBackfill_IsSet = true; }
 };
 
 /** @} */

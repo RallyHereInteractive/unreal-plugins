@@ -42,7 +42,7 @@ FString EnumToString(const ERHAPI_DevInventoryOperation& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevInventoryOperation& Value)
 {
-    static TMap<FString, ERHAPI_DevInventoryOperation> StringToEnum = {
+    static TMap<FString, ERHAPI_DevInventoryOperation> StringToEnum = { 
         { TEXT("add"), ERHAPI_DevInventoryOperation::Add },
         { TEXT("subtract"), ERHAPI_DevInventoryOperation::Subtract },
         { TEXT("set"), ERHAPI_DevInventoryOperation::Set },

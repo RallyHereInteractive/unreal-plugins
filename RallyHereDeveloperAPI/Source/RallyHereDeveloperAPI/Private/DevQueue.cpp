@@ -38,8 +38,6 @@ void FRHAPI_DevQueue::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("sandbox_id"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, SandboxId_Optional);
     }
-    Writer->WriteIdentifierPrefix(TEXT("queue_id"));
-    RallyHereDeveloperAPI::WriteJsonValue(Writer, QueueId);
     if (LastModifiedAccountId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("last_modified_account_id"));
@@ -50,6 +48,13 @@ void FRHAPI_DevQueue::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
     }
+    if (CreatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
+    }
+    Writer->WriteIdentifierPrefix(TEXT("queue_id"));
+    RallyHereDeveloperAPI::WriteJsonValue(Writer, QueueId);
     Writer->WriteObjectEnd();
 }
 
@@ -79,8 +84,6 @@ bool FRHAPI_DevQueue::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         SandboxId_IsSet = TryGetJsonValue(JsonSandboxIdField, SandboxId_Optional);
         ParseSuccess &= SandboxId_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
-    ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
     const TSharedPtr<FJsonValue> JsonLastModifiedAccountIdField = (*Object)->TryGetField(TEXT("last_modified_account_id"));
     if (JsonLastModifiedAccountIdField.IsValid() && !JsonLastModifiedAccountIdField->IsNull())
     {
@@ -93,6 +96,14 @@ bool FRHAPI_DevQueue::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
         ParseSuccess &= LastModifiedTimestamp_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+    {
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonQueueIdField = (*Object)->TryGetField(TEXT("queue_id"));
+    ParseSuccess &= JsonQueueIdField.IsValid() && !JsonQueueIdField->IsNull() && TryGetJsonValue(JsonQueueIdField, QueueId);
 
     return ParseSuccess;
 }

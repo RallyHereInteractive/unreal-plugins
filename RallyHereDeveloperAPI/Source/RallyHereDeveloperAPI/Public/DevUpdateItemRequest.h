@@ -166,7 +166,7 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevUpdateItemRequest : public FRHAPI_Dev
      /** @brief Clears the value of LevelXpTableId_Optional and sets LevelXpTableId_IsSet to false */
     void ClearLevelXpTableId() { LevelXpTableId_IsSet = false; }
 
-    /** @brief The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item. */
+    /** @brief The vendor containing the rewards to grant to the player as they level up.  If a `level_xp_table_id` is configured, when this item is granted to a player their quantity is converted to a level using that table and rewards are granted based on the `sort_order` of loot inside this reward vendor.  If there is no `level_xp_table_id` configured, the quantity is used to select loot to grant from this reward vendor.  This is only valid for an unit Item. */
     FGuid LevelVendorId_Optional{  };
     /** @brief true if LevelVendorId_Optional has been set to a value */
     bool LevelVendorId_IsSet{ false };

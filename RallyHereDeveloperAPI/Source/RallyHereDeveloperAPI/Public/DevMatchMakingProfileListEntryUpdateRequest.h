@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief
+ * @brief 
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntryUpdateRequest : public FRHAPI_DevModel
@@ -40,25 +40,25 @@ struct RALLYHEREDEVELOPERAPI_API FRHAPI_DevMatchMakingProfileListEntryUpdateRequ
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Which MatchMakingProfile this entry refers to */
-    FGuid ProfileId_Optional{  };
-    /** @brief true if ProfileId_Optional has been set to a value */
-    bool ProfileId_IsSet{ false };
-    /** @brief Gets the value of ProfileId_Optional, regardless of it having been set */
-    FGuid& GetProfileId() { return ProfileId_Optional; }
-    /** @brief Gets the value of ProfileId_Optional, regardless of it having been set */
-    const FGuid& GetProfileId() const { return ProfileId_Optional; }
-    /** @brief Gets the value of ProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetProfileId(const FGuid& DefaultValue) const { if (ProfileId_IsSet) return ProfileId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of ProfileId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetProfileId(FGuid& OutValue) const { if (ProfileId_IsSet) OutValue = ProfileId_Optional; return ProfileId_IsSet; }
-    /** @brief Returns a pointer to ProfileId_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetProfileIdOrNull() { if (ProfileId_IsSet) return &ProfileId_Optional; return nullptr; }
-    /** @brief Returns a pointer to ProfileId_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetProfileIdOrNull() const { if (ProfileId_IsSet) return &ProfileId_Optional; return nullptr; }
-    /** @brief Sets the value of ProfileId_Optional and also sets ProfileId_IsSet to true */
-    void SetProfileId(FGuid NewValue) { ProfileId_Optional = NewValue; ProfileId_IsSet = true; }
-     /** @brief Clears the value of ProfileId_Optional and sets ProfileId_IsSet to false */
-    void ClearProfileId() { ProfileId_IsSet = false; }
+    FGuid MatchMakingProfileId_Optional{  };
+    /** @brief true if MatchMakingProfileId_Optional has been set to a value */
+    bool MatchMakingProfileId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+    FGuid& GetMatchMakingProfileId() { return MatchMakingProfileId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+    const FGuid& GetMatchMakingProfileId() const { return MatchMakingProfileId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetMatchMakingProfileId(const FGuid& DefaultValue) const { if (MatchMakingProfileId_IsSet) return MatchMakingProfileId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingProfileId(FGuid& OutValue) const { if (MatchMakingProfileId_IsSet) OutValue = MatchMakingProfileId_Optional; return MatchMakingProfileId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetMatchMakingProfileIdOrNull() { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetMatchMakingProfileIdOrNull() const { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true */
+    void SetMatchMakingProfileId(FGuid NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false */
+    void ClearMatchMakingProfileId() { MatchMakingProfileId_IsSet = false; }
 };
 
 /** @} */

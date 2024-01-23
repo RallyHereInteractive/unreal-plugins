@@ -42,7 +42,7 @@ FString EnumToString(const ERHAPI_DevPricePointSortOptions& Value)
 
 bool EnumFromString(const FString& EnumAsString, ERHAPI_DevPricePointSortOptions& Value)
 {
-    static TMap<FString, ERHAPI_DevPricePointSortOptions> StringToEnum = {
+    static TMap<FString, ERHAPI_DevPricePointSortOptions> StringToEnum = { 
         { TEXT("price_point_id"), ERHAPI_DevPricePointSortOptions::PricePointId },
         { TEXT("strict_flag"), ERHAPI_DevPricePointSortOptions::StrictFlag },
         { TEXT("cap_flag"), ERHAPI_DevPricePointSortOptions::CapFlag },

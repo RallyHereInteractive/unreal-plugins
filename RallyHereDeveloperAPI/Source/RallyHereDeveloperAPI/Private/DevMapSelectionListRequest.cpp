@@ -24,6 +24,11 @@ void FRHAPI_DevMapSelectionListRequest::WriteJson(TSharedRef<TJsonWriter<>>& Wri
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("name"));
     RallyHereDeveloperAPI::WriteJsonValue(Writer, Name);
+    if (LegacyConfig_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -37,6 +42,12 @@ bool FRHAPI_DevMapSelectionListRequest::FromJson(const TSharedPtr<FJsonValue>& J
 
     const TSharedPtr<FJsonValue> JsonNameField = (*Object)->TryGetField(TEXT("name"));
     ParseSuccess &= JsonNameField.IsValid() && !JsonNameField->IsNull() && TryGetJsonValue(JsonNameField, Name);
+    const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
+    if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
+    {
+        LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
+        ParseSuccess &= LegacyConfig_IsSet;
+    }
 
     return ParseSuccess;
 }

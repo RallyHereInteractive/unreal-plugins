@@ -58,6 +58,11 @@ void FRHAPI_DevRankRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("trueskill_tau"));
         RallyHereDeveloperAPI::WriteJsonValue(Writer, TrueskillTau_Optional);
     }
+    if (LegacyConfig_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("legacy_config"));
+        RallyHereDeveloperAPI::WriteJsonValue(Writer, LegacyConfig_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -110,6 +115,12 @@ bool FRHAPI_DevRankRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         TrueskillTau_IsSet = TryGetJsonValue(JsonTrueskillTauField, TrueskillTau_Optional);
         ParseSuccess &= TrueskillTau_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLegacyConfigField = (*Object)->TryGetField(TEXT("legacy_config"));
+    if (JsonLegacyConfigField.IsValid() && !JsonLegacyConfigField->IsNull())
+    {
+        LegacyConfig_IsSet = TryGetJsonValue(JsonLegacyConfigField, LegacyConfig_Optional);
+        ParseSuccess &= LegacyConfig_IsSet;
     }
 
     return ParseSuccess;
