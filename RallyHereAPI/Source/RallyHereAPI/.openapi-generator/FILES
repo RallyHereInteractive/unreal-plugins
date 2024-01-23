@@ -75,7 +75,6 @@ Private/HzApiErrorModel.cpp
 Private/IndividualCCUs.cpp
 Private/Input.cpp
 Private/InstanceFubar.cpp
-Private/InstanceHealth.cpp
 Private/InstanceHealthSettingsResponse.cpp
 Private/InstanceHealthStatus.cpp
 Private/InstanceHealthStatusResponse.cpp
@@ -89,7 +88,6 @@ Private/InstanceRequest.cpp
 Private/InstanceRequestTemplate.cpp
 Private/InstanceSourceProvider.cpp
 Private/InstanceStartupParams.cpp
-Private/InstanceStatus.cpp
 Private/Inventory.cpp
 Private/InventoryAPI.cpp
 Private/InventoryBucket.cpp
@@ -288,6 +286,7 @@ Private/SiteSettings.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
 Private/TeamOverflowAction.cpp
+Private/TeamUpdate.cpp
 Private/TimeAPI.cpp
 Private/TimeFrame.cpp
 Private/TimeFrames.cpp
@@ -384,7 +383,6 @@ Public/HzApiErrorModel.h
 Public/IndividualCCUs.h
 Public/Input.h
 Public/InstanceFubar.h
-Public/InstanceHealth.h
 Public/InstanceHealthSettingsResponse.h
 Public/InstanceHealthStatus.h
 Public/InstanceHealthStatusResponse.h
@@ -398,7 +396,6 @@ Public/InstanceRequest.h
 Public/InstanceRequestTemplate.h
 Public/InstanceSourceProvider.h
 Public/InstanceStartupParams.h
-Public/InstanceStatus.h
 Public/Inventory.h
 Public/InventoryAPI.h
 Public/InventoryBucket.h
@@ -597,6 +594,7 @@ Public/SiteSettings.h
 Public/SortOrder.h
 Public/Source.h
 Public/TeamOverflowAction.h
+Public/TeamUpdate.h
 Public/TimeAPI.h
 Public/TimeFrame.h
 Public/TimeFrames.h

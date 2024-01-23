@@ -10,7 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "HostType.h"
-#include "InstanceHealth.h"
+#include "InstanceHealthStatus.h"
 #include "InstanceJoinableStatus.h"
 #include "InstanceStartupParams.h"
 #include "JoinParams.h"
@@ -293,25 +293,26 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief The current status of the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_InstanceHealth InstanceHealth_Optional{  };
+    ERHAPI_InstanceHealthStatus InstanceHealth_Optional{  };
     /** @brief true if InstanceHealth_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool InstanceHealth_IsSet{ false };
     /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
-    FRHAPI_InstanceHealth& GetInstanceHealth() { return InstanceHealth_Optional; }
+    ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth_Optional; }
     /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
-    const FRHAPI_InstanceHealth& GetInstanceHealth() const { return InstanceHealth_Optional; }
+    const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth_Optional; }
     /** @brief Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_InstanceHealth& GetInstanceHealth(const FRHAPI_InstanceHealth& DefaultValue) const { if (InstanceHealth_IsSet) return InstanceHealth_Optional; return DefaultValue; }
+    const ERHAPI_InstanceHealthStatus& GetInstanceHealth(const ERHAPI_InstanceHealthStatus& DefaultValue) const { if (InstanceHealth_IsSet) return InstanceHealth_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false */
-    bool GetInstanceHealth(FRHAPI_InstanceHealth& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
+    bool GetInstanceHealth(ERHAPI_InstanceHealthStatus& OutValue) const { if (InstanceHealth_IsSet) OutValue = InstanceHealth_Optional; return InstanceHealth_IsSet; }
     /** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_InstanceHealth* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+    ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
     /** @brief Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_InstanceHealth* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
+    const ERHAPI_InstanceHealthStatus* GetInstanceHealthOrNull() const { if (InstanceHealth_IsSet) return &InstanceHealth_Optional; return nullptr; }
     /** @brief Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true */
-    void SetInstanceHealth(FRHAPI_InstanceHealth NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
+    void SetInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
      /** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
     void ClearInstanceHealth() { InstanceHealth_IsSet = false; }
 

@@ -510,7 +510,7 @@ struct RALLYHEREAPI_API Traits_BackfillConfig
  * Request an instance be spawned for the session, or register self as a host of the instance
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission
@@ -640,7 +640,7 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
  * relevant.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:event`, `session:*`
+ * 	For any player (including themselves)any of: `session:update:event`, `session:*`, `session:update:any`
  * 
  * 
  * Required Session Permissions: None
@@ -845,7 +845,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
  * Unregister the instance from the session.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission
@@ -911,7 +911,7 @@ struct RALLYHEREAPI_API Traits_EndInstance
  * Unregister the match from the session.
  *                
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  *              
  * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission
@@ -1041,7 +1041,7 @@ struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
  * Get all public sessions of a specific type
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:browser`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:browser`
  * 
  * 
  * Required Permissions: None
@@ -1248,7 +1248,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
  * Get Sessions associated with a player by id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read-player:any`
  * 	For the player themselves: `session:read-player:self`
  * 
  * Required Session Permissions: None
@@ -1312,7 +1312,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
  * Get Sessions associated with a player by uuid
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read-player:any`
  * 	For the player themselves: `session:read-player:self`
  * 
  * Required Session Permissions: None
@@ -1382,7 +1382,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
  * Get Sessions associated with a player by uuid
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read-player:any`
  * 	For the player themselves: `session:read-player:self`
  * 
  * Required Session Permissions: None
@@ -1517,7 +1517,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
  * Get session by allocation ID. Returns the same limited results as getting the session by session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:allocation`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:allocation`
  * 
  * 
  * Required Session Permissions: None
@@ -1657,7 +1657,7 @@ struct RALLYHEREAPI_API Traits_GetSessionById
  * Get all events for the session.  Empty list means there is no event history for it.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read-player:any`, `session:read:event`, `session:*`
+ * 	For any player (including themselves)any of: `session:read:event`, `session:*`, `session:read-player:any`
  * 
  * 
  * Required Session Permissions: None
@@ -1906,11 +1906,11 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
  * Invite an entire session to a target session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
  *  to invite any session regardless of membership status
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
  *  to invite a session you are part of
  * 
  * Required Session Permissions: None
@@ -1984,7 +1984,7 @@ struct RALLYHEREAPI_API Traits_InviteSessionToSession
  * Add session to a matchmaking queue
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.session_admin`
@@ -2047,7 +2047,7 @@ struct RALLYHEREAPI_API Traits_JoinQueue
  * Join a session with currently authed player
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2120,7 +2120,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
  * Join a platform session by platform ID and parent platform session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2203,7 +2203,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
  * Join a platform session by ID, and the parent session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2284,7 +2284,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
  * Kick or Remove a player from a session, or cancel an invite for a player to the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
  * 
  * 
  * Required Session Permissions: None for players operating on themselves.
@@ -2354,7 +2354,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
  * Kick or Remove a player from a session, or cancel an invite for a player to the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
  * 
  * 
  * Required Session Permissions: None for users operating on themselves. 
@@ -2428,7 +2428,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
  * Kick or Remove a player from a session, or cancel an invite for a player to the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
  * 
  * 
  * Required Session Permissions: None for users operating on themselves. 
@@ -2505,7 +2505,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
  *  to kick any session regardless of membership status
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:self`, `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:update-player:self`, `session:*`, `session:update-player:any`
  *  to invite a session you are part of
  * 
  * Required Session Permissions: None
@@ -2572,7 +2572,7 @@ struct RALLYHEREAPI_API Traits_KickSessionFromSession
  * Remove session from a matchmaking queue
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  *                
  * Required Session Permissions: `SessionPermissions.session_admin`
@@ -2705,7 +2705,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
  * Leave a platform session by platform ID and parent platform session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2780,7 +2780,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
  * Leave a platform session by platform ID and parent platform session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update-player:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update-player:any`
  * 	For the player themselves: `session:update-player:self`
  * 
  * Required Session Permissions: None
@@ -2981,7 +2981,7 @@ struct RALLYHEREAPI_API Traits_ReportFubar
  * Begin a new match for the current session, on the current instance
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  *              
  * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission
@@ -3170,7 +3170,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
  * Allocated instances must send their allocation id for updates to ensure they are still the proper allocation.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission
@@ -3233,7 +3233,7 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
  * Update info about a match
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  *              
  * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission
@@ -3296,7 +3296,7 @@ struct RALLYHEREAPI_API Traits_UpdateMatchInfo
  * Update session info by session id
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:update:any`, `session:update:self`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:update:self`, `session:update:any`
  * 
  * 
  * Required Session Permissions: `SessionPermissions.session_admin` for users who do not have the `session:update:any` auth permission
@@ -3364,7 +3364,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
  * Add or invite a player to the session, or change the status of a player already in the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited.
@@ -3436,7 +3436,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * Add or invite a player to the session, or change the status of a player already in the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 
@@ -3512,7 +3512,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
  * Add or invite a player to the session, or change the status of a player already in the session
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:promote:self`, `session:promote:any`, `session:*`
+ * 	For any player (including themselves)any of: `session:promote:self`, `session:*`, `session:promote:any`
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 

@@ -9,19 +9,17 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "InstanceHealthStatus.h"
-#include "InstanceStatus.h"
-#include "InstanceHealth.generated.h"
+#include "TeamUpdate.generated.h"
 
-/** @defgroup RHAPI_InstanceHealth RallyHere API Model InstanceHealth
+/** @defgroup RHAPI_TeamUpdate RallyHere API Model TeamUpdate
  *  @{
  */
 
 /**
- * @brief The current status of the instance
+ * @brief An update to a specific team&#39;s number of max players
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_InstanceHealth : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -41,6 +39,19 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealth : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Maximum number of players for this team */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    int32 MaxSize{ 0 };
+    /** @brief Gets the value of MaxSize */
+    int32& GetMaxSize() { return MaxSize; }
+    /** @brief Gets the value of MaxSize */
+    const int32& GetMaxSize() const { return MaxSize; }
+    /** @brief Sets the value of MaxSize */
+    void SetMaxSize(int32 NewValue) { MaxSize = NewValue;  }
+    /** @brief Returns true if MaxSize matches the default value */
+    bool IsMaxSizeDefaultValue() const { return MaxSize == 0; }
+    /** @brief Sets the value of MaxSize to its default  */
+    void SetMaxSizeToDefault() { MaxSize = 0;  }
 };
 
 /** @} */

@@ -78,7 +78,7 @@ void FRHAPI_InstanceInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     if (InstanceHealth_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("instance_health"));
-        RallyHereAPI::WriteJsonValue(Writer, InstanceHealth_Optional);
+        RallyHereAPI::WriteJsonValue(Writer, EnumToString(InstanceHealth_Optional));
     }
     if (MatchMakingProfileId_IsSet)
     {

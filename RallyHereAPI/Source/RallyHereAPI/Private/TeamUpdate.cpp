@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "InstanceHealth.h"
+#include "TeamUpdate.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,15 +17,17 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_InstanceHealth
+// Implementation for FRHAPI_TeamUpdate
 
-void FRHAPI_InstanceHealth::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_TeamUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    Writer->WriteIdentifierPrefix(TEXT("max_size"));
+    RallyHereAPI::WriteJsonValue(Writer, MaxSize);
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_InstanceHealth::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_TeamUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -33,6 +35,8 @@ bool FRHAPI_InstanceHealth::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonMaxSizeField = (*Object)->TryGetField(TEXT("max_size"));
+    ParseSuccess &= JsonMaxSizeField.IsValid() && !JsonMaxSizeField->IsNull() && TryGetJsonValue(JsonMaxSizeField, MaxSize);
 
     return ParseSuccess;
 }
