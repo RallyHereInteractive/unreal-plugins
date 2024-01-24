@@ -13,13 +13,13 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install System Dependencies
       run: |
-        sudo apt install -y doxygen
+        sudo apt install -y doxygen graphviz
     - uses: actions/setup-node@v4
       with:
         node-version: '14'
     - name: Install Node Dependencies
       run: |
-        npm install moxygen
+        npm install moxygen -g
     - name: Run Generate Script
       run: |
         Documentation/generate.bash
