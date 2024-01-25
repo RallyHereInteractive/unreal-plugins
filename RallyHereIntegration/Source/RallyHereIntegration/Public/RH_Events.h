@@ -732,7 +732,7 @@ namespace RHStandardEvents
 	*/
 	struct FInstanceJoinReceivedEvent
 	{
-		static FString GetEventName() { return TEXT("rh.instance_login_received"); }
+		static FString GetEventName() { return TEXT("rh.instance_join_received"); }
 
 		// Attributes
 
