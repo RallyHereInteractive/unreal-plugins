@@ -22,8 +22,7 @@ void FRallyHereIntegrationModule::StartupModule()
 
     if (!Integration.IsValid())
     {
-        Integration = NewObject<URH_Integration>();
-        Integration->AddToRoot();
+        Integration = MakeUnique<FRH_Integration>();
         Integration->Initialize();
     }
 }
@@ -38,7 +37,6 @@ void FRallyHereIntegrationModule::ShutdownModule()
     if (Integration.IsValid())
     {
         Integration->Uninitialize();
-        Integration->RemoveFromRoot();
 		Integration.Reset();
     }
 

@@ -15,6 +15,11 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 
 	bLocalPlayerSubsystemSandboxing = false;
 
+	WebRequestsMaxSimultaneousRequests = 15;
+	WebRequestsTrackedRequestsCountLimit = 200;
+	WebRequestsBurstCountThreshold = 5;
+	WebRequestsBurstTimeThresholdInSeconds = 5;
+
 	BeginNewAdSessionPriority = 1100000;
 	FindAdOppertunitiesPriority = 1100000;
 	UpdateAdOppertunitiesPriority = 900000;

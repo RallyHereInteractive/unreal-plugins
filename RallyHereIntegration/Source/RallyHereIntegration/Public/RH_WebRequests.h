@@ -7,8 +7,6 @@
 #include "RallyHereAPIAll.h"
 #include "RallyHereAPIHelpers.h"
 
-#include "RH_WebRequests.generated.h"
-
 /** @defgroup WebRequest RallyHere Web Request
  *  @{
  */
@@ -62,12 +60,12 @@ struct FRH_WebRequest
 /**
  * @brief Class to handle executing and tracking low-level Http Web Requests.
  */
-UCLASS(Config = RallyHereIntegration, DefaultConfig)
-class RALLYHEREINTEGRATION_API URH_WebRequests: public UObject
+class RALLYHEREINTEGRATION_API FRH_WebRequests : public TSharedFromThis<FRH_WebRequests>
 {
-	GENERATED_BODY()
-
 public:
+
+	FRH_WebRequests();
+
 	/**
 	* @brief Initialize the Web Request system.
 	* @param [in] InAPIs The APIs the web request system tracks requests from.
@@ -175,11 +173,7 @@ public:
 private:
 	RallyHereAPI::FRallyHereAPIAll* APIs = nullptr;
 
-	UPROPERTY(Config)
 	TArray<FName> LoggedAPIs;
-
-	UPROPERTY(Config)
-	int TrackedRequestsCountLimit;
 	bool bRetainWebRequests;
 
 	TDoubleLinkedList<TSharedPtr<FRH_WebRequest>> TrackedRequests;
@@ -187,12 +181,6 @@ private:
 
 	TMap<FName, int32> APINameToCallCountMap;
 	TMap<FName, int32> SimplifiedPathToCallCountMap;
-
-	UPROPERTY(Config)
-	int32 BurstCountThreshold;
-
-	UPROPERTY(Config)
-	int32 BurstTimeThresholdInSeconds;
 
 	void OnWebRequestStarted(const RallyHereAPI::FRequestMetadata& RequestMetadata, FHttpRequestRef HttpRequest, RallyHereAPI::FAPI* API);
 	void OnWebRequestCompleted(const RallyHereAPI::FResponse& Response, FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess, bool bWillRetryWithAuth, RallyHereAPI::FAPI* API);
