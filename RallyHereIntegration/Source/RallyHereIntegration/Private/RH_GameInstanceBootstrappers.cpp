@@ -187,6 +187,21 @@ void URH_GameInstanceServerBootstrapper::Deinitialize()
 	// end any running analytics
 	if (AnalyticsProvider.IsValid())
 	{
+		// emit a correlation end event
+		{
+			RHStandardEvents::FCorrelationEndEvent CorrelationEndEvent;
+
+			CorrelationEndEvent.Reason = TEXT("Shutdown");
+
+			if (AnalyticsStartTime.IsSet())
+			{
+				CorrelationEndEvent.DurationSeconds = (FDateTime::UtcNow() - AnalyticsStartTime.GetValue()).GetTotalSeconds();
+			}
+			AnalyticsStartTime.Reset();
+
+			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+		}
+
 		AnalyticsProvider->EndSession();
 		AnalyticsProvider.Reset();
 	}
@@ -639,20 +654,19 @@ void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess, co
 void URH_GameInstanceServerBootstrapper::Recycle()
 {
 	++CurrentRecycleCount;
-	// we can only recycle if RHSession has been properly cleared
-	check(RHSession == nullptr);
-
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]  - Recycling [%d]"), ANSI_TO_TCHAR(__FUNCTION__), CurrentRecycleCount);
 
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::Recycling);
 	BootstrappingResult = {};
 
-	// end any running analytics
-	if (AnalyticsProvider.IsValid())
-	{
-		AnalyticsProvider->EndSession();
-		AnalyticsProvider.Reset();
-	}
+	// we can only recycle if RHSession has been properly cleared
+	check(RHSession == nullptr);
+
+	// make sure we do not have an active host providing context
+	check(!GameHostProvider.IsValid());
+
+	// check that there is no running analytics provider
+	check(!AnalyticsProvider.IsValid());
 
 	// dispose of the previous game host adapter
 	GameHostProvider.Reset();
@@ -674,6 +688,7 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 
 		if (AnalyticsProvider.IsValid())
 		{
+			AnalyticsStartTime = FDateTime::UtcNow();
 			AnalyticsProvider->StartSession();
 
 			// emit the auto correlation start event
@@ -1166,6 +1181,10 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 		BestEffortLeaveSession();
 		SessionSubsystem->SyncToSession(nullptr, FRH_GameInstanceSessionSyncDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete));
 	}
+	else
+	{
+		OnCleanupSessionSyncComplete(nullptr, false, TEXT("CleanupAfterInstanceRemoval called without a valid session subsystem or session"));
+	}
 }
 
 void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_JoinedSession* Session, bool bSuccess, const FString& Error)
@@ -1177,6 +1196,36 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 		*Error
 	);
 
+	// make sure game host dapter is cleaned up
+	GameHostProvider.Reset();
+
+	// end any currently running analytics
+	if (AnalyticsProvider.IsValid())
+	{
+		// emit a correlation end event
+		{
+			RHStandardEvents::FCorrelationEndEvent CorrelationEndEvent;
+
+			CorrelationEndEvent.Reason = TEXT("Recycle");
+
+			if (AnalyticsStartTime.IsSet())
+			{
+				CorrelationEndEvent.DurationSeconds = (FDateTime::UtcNow() - AnalyticsStartTime.GetValue()).GetTotalSeconds();
+			}
+			AnalyticsStartTime.Reset();
+
+			CorrelationEndEvent.EmitTo(AnalyticsProvider.Get());
+		}
+
+		AnalyticsProvider->EndSession();
+
+		// immediate flush (generally EndSession() should flush, but do not assume)
+		AnalyticsProvider->FlushEvents();
+
+		AnalyticsProvider.Reset();
+	}
+
+	// recycle if allowed, otherwise shut down
 	if (ShouldRecycleAfterCleanup())
 	{
 		Recycle();
@@ -1189,6 +1238,14 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 		}
 		else
 		{
+			// attempt to fully flush HTTP system before we shut down
+#if RH_FROM_ENGINE_VERSION(5,0)
+			FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
+#else
+			FHttpModule::Get().GetHttpManager().Flush(false);
+#endif
+
+
 			if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
 			{
 				FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);

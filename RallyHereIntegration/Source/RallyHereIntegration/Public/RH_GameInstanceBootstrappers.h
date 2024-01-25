@@ -512,6 +512,9 @@ protected:
 	/** The analytics provider for this bootstrapper */
 	TSharedPtr<class IAnalyticsProvider> AnalyticsProvider;
 
+	/** The start time of the AnalyticsProvider */
+	TOptional<FDateTime> AnalyticsStartTime;
+
 	/** The game host provider for this bootstrapper */
 	TUniquePtr<IRH_GameHostProviderInterface> GameHostProvider;
 
