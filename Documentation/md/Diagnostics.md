@@ -7,7 +7,8 @@
 `public  `[`DECLARE_DELEGATE_RetVal`](#group__Diagnostics_1ga5c0e0f7ab52220c28ea3c2013a8d01ab)`(TSharedPtr< FJsonObject >,FGetCustomDiagnosticMetadata)`            | Bindable delegate to get custom metadata to add to diagnostic reports. Can be used by a project to add data to the Metadata section.
 `public  `[`DECLARE_DELEGATE_OneParam`](#group__Diagnostics_1gaca3c1dd67b5858439ff6ba89a1098a40)`(FRH_OnDiagnosticReportComplete,const TSharedRef< const `[`FRH_DiagnosticReportGenerator`](Diagnostics.md#classFRH__DiagnosticReportGenerator)` > &)`            | Bindable delegate to notify that a report generation is complete
 `class `[`FRH_DiagnosticReportGenerator`](#classFRH__DiagnosticReportGenerator) | Report generator worker, which is responsible for collecting information from various locations, organizing the report, and then writing it to a destination.
-`class `[`URH_Diagnostics`](#classURH__Diagnostics) | Class to handle initializing and running a diagnostic (blueprint compatible). Tracks and stores local state from the running engine for tracking previous errors.
+`class `[`FRH_Diagnostics`](#classFRH__Diagnostics) | Class to handle initializing and running a diagnostic (blueprint compatible). Tracks and stores local state from the running engine for tracking previous errors.
+`class `[`URH_DiagnosticsBlueprintLibrary`](#classURH__DiagnosticsBlueprintLibrary) | Wrapper library to generate diagnostic reports via blueprint.
 `struct `[`FRH_DiagnosticReportOptions`](#structFRH__DiagnosticReportOptions) | Options for generating a diagnostic report.
 
 ## Members
@@ -179,11 +180,11 @@ Complete            |
 Generation stage for report generation
 
 <br>
-## class `URH_Diagnostics` <a id="classURH__Diagnostics"></a>
+## class `FRH_Diagnostics` <a id="classFRH__Diagnostics"></a>
 
 ```
-class URH_Diagnostics
-  : public UObject
+class FRH_Diagnostics
+  : public TSharedFromThis< FRH_Diagnostics >
 ```
 
 Class to handle initializing and running a diagnostic (blueprint compatible). Tracks and stores local state from the running engine for tracking previous errors.
@@ -192,35 +193,39 @@ Class to handle initializing and running a diagnostic (blueprint compatible). Tr
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FGetCustomDiagnosticMetadata `[`CustomDiagnosticMetadataDelegate`](#classURH__Diagnostics_1ab860df08eb6095f4f5f43444e8d7c11d) | Delegate to bind to to add extra custom data to the diagnostic report.
-`public void `[`Initialize`](#classURH__Diagnostics_1a09db63ade24dff6ca72fa074123e2ae4)`()` | Initialize the system.
-`public void `[`Uninitialize`](#classURH__Diagnostics_1aef532309fb4b7286c73b1d13e28ec724)`()` | Safely tears down the system.
-`public inline void `[`ClearCache`](#classURH__Diagnostics_1ae4b65389f97cffb4688e812dbbfe1299)`()` | Clears the diagnostics cache.
-`public void `[`GenerateReport`](#classURH__Diagnostics_1a9a78e0f94f71290018966989baed3988)`(const `[`FRH_DiagnosticReportOptions`](Diagnostics.md#structFRH__DiagnosticReportOptions)` & Options) const` | Generates a report in JSON format.
+`public FGetCustomDiagnosticMetadata `[`CustomDiagnosticMetadataDelegate`](#classFRH__Diagnostics_1ac8e8b53c27e0c2f4d437654551cf235b) | Delegate to bind to to add extra custom data to the diagnostic report.
+`public  `[`FRH_Diagnostics`](#classFRH__Diagnostics_1ad3d045b72c14e877b003ee8c7e8d66da)`()` | 
+`public void `[`Initialize`](#classFRH__Diagnostics_1ad5444a3df81d6df8e72c6f28bd628ffb)`()` | Initialize the system.
+`public void `[`Uninitialize`](#classFRH__Diagnostics_1aabfaaf4bb0d726a2e1b88e5bd43ed23c)`()` | Safely tears down the system.
+`public inline void `[`ClearCache`](#classFRH__Diagnostics_1a2858cf748a6c4fcf3425f443b8d01e5c)`()` | Clears the diagnostics cache.
+`public void `[`GenerateReport`](#classFRH__Diagnostics_1ad763783b4820ab6e33a4588dffc87f29)`(const `[`FRH_DiagnosticReportOptions`](Diagnostics.md#structFRH__DiagnosticReportOptions)` & Options) const` | Generates a report in JSON format.
 
 #### Members
 
-#### `public FGetCustomDiagnosticMetadata `[`CustomDiagnosticMetadataDelegate`](#classURH__Diagnostics_1ab860df08eb6095f4f5f43444e8d7c11d) <a id="classURH__Diagnostics_1ab860df08eb6095f4f5f43444e8d7c11d"></a>
+#### `public FGetCustomDiagnosticMetadata `[`CustomDiagnosticMetadataDelegate`](#classFRH__Diagnostics_1ac8e8b53c27e0c2f4d437654551cf235b) <a id="classFRH__Diagnostics_1ac8e8b53c27e0c2f4d437654551cf235b"></a>
 
 Delegate to bind to to add extra custom data to the diagnostic report.
 
 <br>
-#### `public void `[`Initialize`](#classURH__Diagnostics_1a09db63ade24dff6ca72fa074123e2ae4)`()` <a id="classURH__Diagnostics_1a09db63ade24dff6ca72fa074123e2ae4"></a>
+#### `public  `[`FRH_Diagnostics`](#classFRH__Diagnostics_1ad3d045b72c14e877b003ee8c7e8d66da)`()` <a id="classFRH__Diagnostics_1ad3d045b72c14e877b003ee8c7e8d66da"></a>
+
+<br>
+#### `public void `[`Initialize`](#classFRH__Diagnostics_1ad5444a3df81d6df8e72c6f28bd628ffb)`()` <a id="classFRH__Diagnostics_1ad5444a3df81d6df8e72c6f28bd628ffb"></a>
 
 Initialize the system.
 
 <br>
-#### `public void `[`Uninitialize`](#classURH__Diagnostics_1aef532309fb4b7286c73b1d13e28ec724)`()` <a id="classURH__Diagnostics_1aef532309fb4b7286c73b1d13e28ec724"></a>
+#### `public void `[`Uninitialize`](#classFRH__Diagnostics_1aabfaaf4bb0d726a2e1b88e5bd43ed23c)`()` <a id="classFRH__Diagnostics_1aabfaaf4bb0d726a2e1b88e5bd43ed23c"></a>
 
 Safely tears down the system.
 
 <br>
-#### `public inline void `[`ClearCache`](#classURH__Diagnostics_1ae4b65389f97cffb4688e812dbbfe1299)`()` <a id="classURH__Diagnostics_1ae4b65389f97cffb4688e812dbbfe1299"></a>
+#### `public inline void `[`ClearCache`](#classFRH__Diagnostics_1a2858cf748a6c4fcf3425f443b8d01e5c)`()` <a id="classFRH__Diagnostics_1a2858cf748a6c4fcf3425f443b8d01e5c"></a>
 
 Clears the diagnostics cache.
 
 <br>
-#### `public void `[`GenerateReport`](#classURH__Diagnostics_1a9a78e0f94f71290018966989baed3988)`(const `[`FRH_DiagnosticReportOptions`](Diagnostics.md#structFRH__DiagnosticReportOptions)` & Options) const` <a id="classURH__Diagnostics_1a9a78e0f94f71290018966989baed3988"></a>
+#### `public void `[`GenerateReport`](#classFRH__Diagnostics_1ad763783b4820ab6e33a4588dffc87f29)`(const `[`FRH_DiagnosticReportOptions`](Diagnostics.md#structFRH__DiagnosticReportOptions)` & Options) const` <a id="classFRH__Diagnostics_1ad763783b4820ab6e33a4588dffc87f29"></a>
 
 Generates a report in JSON format.
 
@@ -233,6 +238,22 @@ Generates a report in JSON format.
 The generated object
 
 <br>
+## class `URH_DiagnosticsBlueprintLibrary` <a id="classURH__DiagnosticsBlueprintLibrary"></a>
+
+```
+class URH_DiagnosticsBlueprintLibrary
+  : public UBlueprintFunctionLibrary
+```
+
+Wrapper library to generate diagnostic reports via blueprint.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+
+#### Members
+
 ## struct `FRH_DiagnosticReportOptions` <a id="structFRH__DiagnosticReportOptions"></a>
 
 Options for generating a diagnostic report.
