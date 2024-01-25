@@ -1,5 +1,4 @@
 
-
 # Ignore intermediate or generated files
 */Binaries/
 */Intermediate/
@@ -9,3 +8,6 @@ Documentation/html/
 Documentation/latex/
 Documentation/xml/
 
+# Ignore Node artifacts
+node_modules/
+package-lock.json
