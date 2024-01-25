@@ -103,19 +103,13 @@ bool FAPI::IsValid() const
     return true;
 }
 
-void FAPI::SetHttpRetryManager(FHttpRetrySystem::FManager& InRetryManager)
+void FAPI::SetHttpRetryManager(const TSharedRef<FHttpRetrySystem::FManager>& InRetryManager)
 {
-    if(&InRetryManager != RetryManager)
+    if(InRetryManager != RetryManager)
     {
         DefaultRetryManager.Reset();
-        RetryManager = &InRetryManager;
+        RetryManager = InRetryManager;
     }
-}
-
-FHttpRetrySystem::FManager& FAPI::GetHttpRetryManager()
-{
-    checkf(RetryManager, TEXT("Log{{unrealModuleName}}: RetryManager is null.  You may have meant to set it with SetHttpRetryManager first, or you may not be using a custom RetryManager at all."))
-    return *RetryManager;
 }
 
 FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
@@ -123,12 +117,14 @@ FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
 	auto HttpRequest = FHttpModule::Get().CreateRequest();
     if (Request.GetRetryParams().IsSet())
     {
-        if (!RetryManager)
+        if (RetryManager.IsValid())
         {
             // Create default retry manager if none was specified
-            DefaultRetryManager = MakeUnique<FHttpRetryManager>(6, 60);
-            RetryManager = DefaultRetryManager.Get();
+            DefaultRetryManager = MakeShared<FHttpRetryManager>(6, 60);
+            RetryManager = DefaultRetryManager.ToSharedRef();
         }
+		
+		check(RetryManager.IsValid());
 
         const FHttpRetryParams& Params = Request.GetRetryParams().GetValue();
 
