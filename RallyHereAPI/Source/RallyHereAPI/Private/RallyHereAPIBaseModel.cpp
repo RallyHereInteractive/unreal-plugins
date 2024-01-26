@@ -105,7 +105,7 @@ FHttpRequestRef FAPI::CreateHttpRequest(const FRequest& Request) const
 	auto HttpRequest = FHttpModule::Get().CreateRequest();
     if (Request.GetRetryParams().IsSet())
     {
-        if (RetryManager.IsValid())
+        if (!RetryManager.IsValid())
         {
             // Create default retry manager if none was specified
             DefaultRetryManager = MakeShared<FHttpRetryManager>(6, 60);
