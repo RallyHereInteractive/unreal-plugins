@@ -268,11 +268,22 @@ void URH_PlayerInfo::StopStreamingNotifications(bool bClearCache)
 
 ERHAPI_Platform URH_PlayerInfo::GetLoggedInPlatform() const
 {
+	// if this player info is for the player matching the auth context we are using, return the platform from the auth context as it is the *most accurate* and the presence data may not be updated yet
 	const FAuthContextPtr AuthContext = GetAuthContext();
-	if (AuthContext.IsValid() && AuthContext->IsLoggedIn() && AuthContext->GetLoginResult().IsSet())
+	if (AuthContext.IsValid() && AuthContext->IsLoggedIn() && AuthContext->GetLoginResult().IsSet() &&
+		AuthContext->GetLoginResult().GetValue().GetActivePlayerUuid() == RHPlayerUuid)
 	{
 		return AuthContext->GetLoginResult().GetValue().GetPlatform();
 	}
+
+	// return the platform from the presence data if it is available
+	if (GetPresence())
+	{
+		ERHAPI_Platform Platform;
+		EnumFromString(GetPresence()->Platform, Platform);
+		return Platform;
+	}
+
 	return ERHAPI_Platform::Anon;
 }
 
