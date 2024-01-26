@@ -23,7 +23,7 @@ Create a new Player Order. <b>Note: &#x60;use_inventory_bucket&#x60; will be ign
 `public bool `[`Source_IsSet`](#structFRHAPI__PlayerOrderCreate_1a838c290f3929beefc7f1654848b17ce2) | true if Source_Optional has been set to a value
 `public FGuid `[`ClientOrderRefId_Optional`](#structFRHAPI__PlayerOrderCreate_1a2592a08e1d12c14e2e777e0186440b18) | Arbitrary UUID clients can use to track Orders between request to response.
 `public bool `[`ClientOrderRefId_IsSet`](#structFRHAPI__PlayerOrderCreate_1ab8c2b6274813dd15856ecba2da059d87) | true if ClientOrderRefId_Optional has been set to a value
-`public ERHAPI_InventoryPortal `[`PortalId_Optional`](#structFRHAPI__PlayerOrderCreate_1a402c72866c8914e4e509c05e308678b7) | Portal of the Portal User the Player Order belongs to.
+`public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__PlayerOrderCreate_1a4094b4112a76345b0e8614152e8177b6) | Portal of the Portal User the Player Order belongs to.
 `public bool `[`PortalId_IsSet`](#structFRHAPI__PlayerOrderCreate_1add956175eaa66b94492b2723d3004fe2) | true if PortalId_Optional has been set to a value
 `public FString `[`PortalUserId_Optional`](#structFRHAPI__PlayerOrderCreate_1a20e727081a392d86144bd31f90c0bf6a) | Portal User Id for the Player this Player Order belongs to.
 `public bool `[`PortalUserId_IsSet`](#structFRHAPI__PlayerOrderCreate_1afdc460887f23d5f25dc5982a72793ec6) | true if PortalUserId_Optional has been set to a value
@@ -54,13 +54,13 @@ Create a new Player Order. <b>Note: &#x60;use_inventory_bucket&#x60; will be ign
 `public inline const FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreate_1a634cebd69b9da3526348a43e6a45c36a)`() const` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreate_1a6cd856895032dd1b1545c2fd89db238f)`(FGuid NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
 `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__PlayerOrderCreate_1a915af97c830cd33d8abda95866a7ebf3)`()` | Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
-`public inline ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a5a01fad460ab9b7ac4e51738e6a5b22f)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1ac3d5c913d0262558cedd5d8439401a49)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1afbef5298ade9fea7f87c27cea2238aff)`(const ERHAPI_InventoryPortal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1aa304c80214d94483cc3595368be24367)`(ERHAPI_InventoryPortal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1accf8e5b187ab7a7d8a4129ece1bba5b6)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1ad95835d62fbce1a345e0b071ff6a2fe4)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreate_1a74651823a1bed1b58b14bd2b486985e9)`(ERHAPI_InventoryPortal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1ad301186ff84e4bb2b2a906d7dd4d2e07)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a0de266860ae0d2f9c08c665a072e1379)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a930c4bbc73a9d95eee0951ab96d8dcae)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a46cbcd4a33f1e2228b8b0ac28e1c7103)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1a4143db9c3a0a983367daa864e40145f2)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1ab42e8c879dd537eeda939524d79318c7)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreate_1a5cacf2bf7a1322246e3aa45a05f47c10)`(ERHAPI_Portal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 `public inline void `[`ClearPortalId`](#structFRHAPI__PlayerOrderCreate_1a16fe446b76a3b5502cc79cb4f9d643e1)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreate_1ae72c39c73d34c432b83235010450a1c7)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreate_1ab3d6fce75f63390f7d32634a41e30559)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
@@ -130,7 +130,7 @@ Arbitrary UUID clients can use to track Orders between request to response.
 true if ClientOrderRefId_Optional has been set to a value
 
 <br>
-#### `public ERHAPI_InventoryPortal `[`PortalId_Optional`](#structFRHAPI__PlayerOrderCreate_1a402c72866c8914e4e509c05e308678b7) <a id="structFRHAPI__PlayerOrderCreate_1a402c72866c8914e4e509c05e308678b7"></a>
+#### `public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__PlayerOrderCreate_1a4094b4112a76345b0e8614152e8177b6) <a id="structFRHAPI__PlayerOrderCreate_1a4094b4112a76345b0e8614152e8177b6"></a>
 
 Portal of the Portal User the Player Order belongs to.
 
@@ -294,37 +294,37 @@ Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet
 Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
 
 <br>
-#### `public inline ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a5a01fad460ab9b7ac4e51738e6a5b22f)`()` <a id="structFRHAPI__PlayerOrderCreate_1a5a01fad460ab9b7ac4e51738e6a5b22f"></a>
+#### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1ad301186ff84e4bb2b2a906d7dd4d2e07)`()` <a id="structFRHAPI__PlayerOrderCreate_1ad301186ff84e4bb2b2a906d7dd4d2e07"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1ac3d5c913d0262558cedd5d8439401a49)`() const` <a id="structFRHAPI__PlayerOrderCreate_1ac3d5c913d0262558cedd5d8439401a49"></a>
+#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a0de266860ae0d2f9c08c665a072e1379)`() const` <a id="structFRHAPI__PlayerOrderCreate_1a0de266860ae0d2f9c08c665a072e1379"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1afbef5298ade9fea7f87c27cea2238aff)`(const ERHAPI_InventoryPortal & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreate_1afbef5298ade9fea7f87c27cea2238aff"></a>
+#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a930c4bbc73a9d95eee0951ab96d8dcae)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreate_1a930c4bbc73a9d95eee0951ab96d8dcae"></a>
 
 Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
 
 <br>
-#### `public inline bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1aa304c80214d94483cc3595368be24367)`(ERHAPI_InventoryPortal & OutValue) const` <a id="structFRHAPI__PlayerOrderCreate_1aa304c80214d94483cc3595368be24367"></a>
+#### `public inline bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreate_1a46cbcd4a33f1e2228b8b0ac28e1c7103)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__PlayerOrderCreate_1a46cbcd4a33f1e2228b8b0ac28e1c7103"></a>
 
 Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
 
 <br>
-#### `public inline ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1accf8e5b187ab7a7d8a4129ece1bba5b6)`()` <a id="structFRHAPI__PlayerOrderCreate_1accf8e5b187ab7a7d8a4129ece1bba5b6"></a>
+#### `public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1a4143db9c3a0a983367daa864e40145f2)`()` <a id="structFRHAPI__PlayerOrderCreate_1a4143db9c3a0a983367daa864e40145f2"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1ad95835d62fbce1a345e0b071ff6a2fe4)`() const` <a id="structFRHAPI__PlayerOrderCreate_1ad95835d62fbce1a345e0b071ff6a2fe4"></a>
+#### `public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreate_1ab42e8c879dd537eeda939524d79318c7)`() const` <a id="structFRHAPI__PlayerOrderCreate_1ab42e8c879dd537eeda939524d79318c7"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreate_1a74651823a1bed1b58b14bd2b486985e9)`(ERHAPI_InventoryPortal NewValue)` <a id="structFRHAPI__PlayerOrderCreate_1a74651823a1bed1b58b14bd2b486985e9"></a>
+#### `public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreate_1a5cacf2bf7a1322246e3aa45a05f47c10)`(ERHAPI_Portal NewValue)` <a id="structFRHAPI__PlayerOrderCreate_1a5cacf2bf7a1322246e3aa45a05f47c10"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 

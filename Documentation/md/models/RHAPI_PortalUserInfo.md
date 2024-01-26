@@ -20,7 +20,7 @@ Portal user info.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06) | Platform for the user.
-`public ERHAPI_Portal `[`PortalId`](#structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644) | Portal ID. *DEPRECATED* use `platform` instead.
+`public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) | Portal ID. *DEPRECATED* use `platform` instead.
 `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) | Platform User ID.
 `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) | Display name.
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserInfo_1a157222df92a9e58a8a7f4e86a8451e6e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -28,9 +28,9 @@ Portal user info.
 `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a3f453744df9708c61b8d4cbc145eb71a)`()` | Gets the value of Platform.
 `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserInfo_1a40e45a21d723e554b55aa7a41b4af6d1)`() const` | Gets the value of Platform.
 `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserInfo_1aa5016a42a179303e547de00d3d6a1134)`(ERHAPI_Platform NewValue)` | Sets the value of Platform.
-`public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a450d1eb3a351c952f6e653df28e64152)`()` | Gets the value of PortalId.
-`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a30a26996c34aaa6e6ace87b335c5f983)`() const` | Gets the value of PortalId.
-`public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a11ca7c43d92f81fd4a714f4dfe9f0388)`(ERHAPI_Portal NewValue)` | Sets the value of PortalId.
+`public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb)`()` | Gets the value of PortalId.
+`public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a)`() const` | Gets the value of PortalId.
+`public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1af0b57cfbb402e0ff9a4c90a27203f43a)`(ERHAPI_DependenciesSchemasPortal NewValue)` | Sets the value of PortalId.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1a02293533e662c590c4d1434fa698c8e8)`()` | Gets the value of PortalUserId.
 `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1add30541439590b909bdcff70ceaed762)`() const` | Gets the value of PortalUserId.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserInfo_1a94df2aa5c3d86b04e197424b6c87aef4)`(FString NewValue)` | Sets the value of PortalUserId.
@@ -45,7 +45,7 @@ Portal user info.
 Platform for the user.
 
 <br>
-#### `public ERHAPI_Portal `[`PortalId`](#structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644) <a id="structFRHAPI__PortalUserInfo_1adb682b56cd6f79975dedcb3c3062e644"></a>
+#### `public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) <a id="structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286"></a>
 
 Portal ID. *DEPRECATED* use `platform` instead.
 
@@ -94,17 +94,17 @@ Gets the value of Platform.
 Sets the value of Platform.
 
 <br>
-#### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a450d1eb3a351c952f6e653df28e64152)`()` <a id="structFRHAPI__PortalUserInfo_1a450d1eb3a351c952f6e653df28e64152"></a>
+#### `public inline ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb)`()` <a id="structFRHAPI__PortalUserInfo_1a9d1356770916296ce708f009273a37eb"></a>
 
 Gets the value of PortalId.
 
 <br>
-#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a30a26996c34aaa6e6ace87b335c5f983)`() const` <a id="structFRHAPI__PortalUserInfo_1a30a26996c34aaa6e6ace87b335c5f983"></a>
+#### `public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a)`() const` <a id="structFRHAPI__PortalUserInfo_1af6f98c6f6ac2cf9e5de6510e2217681a"></a>
 
 Gets the value of PortalId.
 
 <br>
-#### `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a11ca7c43d92f81fd4a714f4dfe9f0388)`(ERHAPI_Portal NewValue)` <a id="structFRHAPI__PortalUserInfo_1a11ca7c43d92f81fd4a714f4dfe9f0388"></a>
+#### `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1af0b57cfbb402e0ff9a4c90a27203f43a)`(ERHAPI_DependenciesSchemasPortal NewValue)` <a id="structFRHAPI__PortalUserInfo_1af0b57cfbb402e0ff9a4c90a27203f43a"></a>
 
 Sets the value of PortalId.
 

@@ -21,7 +21,7 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 --------------------------------|---------------------------------------------
 `public FGuid `[`Uuid`](#structFRHAPI__MarketingCampaign_1a589be2b0982738de14e8d98b16436a64) | The unique identifier for the Marketing Campaign.
 `public FString `[`Name`](#structFRHAPI__MarketingCampaign_1a99687e46e9281d06d4c5c295d6bc42a5) | The name of the Marketing Campaign.
-`public ERHAPI_InventoryPortal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a14a8c7399ef2083e7fbf1ca37324599c) | Platform for the Marketing Campaign.
+`public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4) | Platform for the Marketing Campaign.
 `public bool `[`PortalId_IsSet`](#structFRHAPI__MarketingCampaign_1a91a202384b8e443bfabf183ef18fe555) | true if PortalId_Optional has been set to a value
 `public TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > `[`KeyTypes`](#structFRHAPI__MarketingCampaign_1ac277f1290b832a4d25e273b803263187) | The types of keys that can be claimed from this campaign.
 `public FString `[`CreatedOn_Optional`](#structFRHAPI__MarketingCampaign_1ab6949176b14e548b9b2d7055e733d5e5) | The time the MarketingCampaign was created.
@@ -36,13 +36,13 @@ A Marketing Campaign is a set of external keys that can be claimed by players.Th
 `public inline FString & `[`GetName`](#structFRHAPI__MarketingCampaign_1a4d1656a7c3c5ee9b7139d5c8ce31e90d)`()` | Gets the value of Name.
 `public inline const FString & `[`GetName`](#structFRHAPI__MarketingCampaign_1a3b052047bead420245b451ec7759e8b4)`() const` | Gets the value of Name.
 `public inline void `[`SetName`](#structFRHAPI__MarketingCampaign_1a43d09e85d07f6fe9becb151ccdd406a9)`(FString NewValue)` | Sets the value of Name.
-`public inline ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a62601fc98cab2459b867ef42a48a66d2)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a4b5ea75bebeca35dbcf06cc9beff1ee4)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a74710a724c6d9feb986b9809be254442)`(const ERHAPI_InventoryPortal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1afe918724bc70308a92f3781fbb59f267)`(ERHAPI_InventoryPortal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a98eb847ad52a0a69ce7817abdd0d5495)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a5e0c3f91342035f088108494ca57b9e4)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a9f49215dd72fb5a277ab43423153d4dc)`(ERHAPI_InventoryPortal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1afefb2ec2fc173cd53c0b3591d8e4bf3b)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1ad7162fd470886e6684e797e143ef6570)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1ac65237e926e5521e602737d1befbfa7b)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a785a09229a439d5dee598899d56edeff)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a78000ff02df5641ac43b29bc1afc70ad)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a2f2f5ba03022ff2bc63592980564e2bc)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1af27df46acdcdfbe80f18b5ca6af19d0e)`(ERHAPI_Portal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 `public inline void `[`ClearPortalId`](#structFRHAPI__MarketingCampaign_1a18a4f2fa4cfe73481188dd0d065b2899)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 `public inline TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1ab1a2efa3ebfc416759425bc944c14751)`()` | Gets the value of KeyTypes.
 `public inline const TArray< `[`FRHAPI_KeyType`](RHAPI_KeyType.md#structFRHAPI__KeyType)` > & `[`GetKeyTypes`](#structFRHAPI__MarketingCampaign_1a6e04603948a382008325629abc892da6)`() const` | Gets the value of KeyTypes.
@@ -76,7 +76,7 @@ The unique identifier for the Marketing Campaign.
 The name of the Marketing Campaign.
 
 <br>
-#### `public ERHAPI_InventoryPortal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a14a8c7399ef2083e7fbf1ca37324599c) <a id="structFRHAPI__MarketingCampaign_1a14a8c7399ef2083e7fbf1ca37324599c"></a>
+#### `public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4) <a id="structFRHAPI__MarketingCampaign_1a31b0b077ed1ad08557c16d620802c1b4"></a>
 
 Platform for the Marketing Campaign.
 
@@ -160,37 +160,37 @@ Gets the value of Name.
 Sets the value of Name.
 
 <br>
-#### `public inline ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a62601fc98cab2459b867ef42a48a66d2)`()` <a id="structFRHAPI__MarketingCampaign_1a62601fc98cab2459b867ef42a48a66d2"></a>
+#### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1afefb2ec2fc173cd53c0b3591d8e4bf3b)`()` <a id="structFRHAPI__MarketingCampaign_1afefb2ec2fc173cd53c0b3591d8e4bf3b"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a4b5ea75bebeca35dbcf06cc9beff1ee4)`() const` <a id="structFRHAPI__MarketingCampaign_1a4b5ea75bebeca35dbcf06cc9beff1ee4"></a>
+#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1ad7162fd470886e6684e797e143ef6570)`() const` <a id="structFRHAPI__MarketingCampaign_1ad7162fd470886e6684e797e143ef6570"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a74710a724c6d9feb986b9809be254442)`(const ERHAPI_InventoryPortal & DefaultValue) const` <a id="structFRHAPI__MarketingCampaign_1a74710a724c6d9feb986b9809be254442"></a>
+#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1ac65237e926e5521e602737d1befbfa7b)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__MarketingCampaign_1ac65237e926e5521e602737d1befbfa7b"></a>
 
 Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
 
 <br>
-#### `public inline bool `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1afe918724bc70308a92f3781fbb59f267)`(ERHAPI_InventoryPortal & OutValue) const` <a id="structFRHAPI__MarketingCampaign_1afe918724bc70308a92f3781fbb59f267"></a>
+#### `public inline bool `[`GetPortalId`](#structFRHAPI__MarketingCampaign_1a785a09229a439d5dee598899d56edeff)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__MarketingCampaign_1a785a09229a439d5dee598899d56edeff"></a>
 
 Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
 
 <br>
-#### `public inline ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a98eb847ad52a0a69ce7817abdd0d5495)`()` <a id="structFRHAPI__MarketingCampaign_1a98eb847ad52a0a69ce7817abdd0d5495"></a>
+#### `public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a78000ff02df5641ac43b29bc1afc70ad)`()` <a id="structFRHAPI__MarketingCampaign_1a78000ff02df5641ac43b29bc1afc70ad"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a5e0c3f91342035f088108494ca57b9e4)`() const` <a id="structFRHAPI__MarketingCampaign_1a5e0c3f91342035f088108494ca57b9e4"></a>
+#### `public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__MarketingCampaign_1a2f2f5ba03022ff2bc63592980564e2bc)`() const` <a id="structFRHAPI__MarketingCampaign_1a2f2f5ba03022ff2bc63592980564e2bc"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1a9f49215dd72fb5a277ab43423153d4dc)`(ERHAPI_InventoryPortal NewValue)` <a id="structFRHAPI__MarketingCampaign_1a9f49215dd72fb5a277ab43423153d4dc"></a>
+#### `public inline void `[`SetPortalId`](#structFRHAPI__MarketingCampaign_1af27df46acdcdfbe80f18b5ca6af19d0e)`(ERHAPI_Portal NewValue)` <a id="structFRHAPI__MarketingCampaign_1af27df46acdcdfbe80f18b5ca6af19d0e"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 

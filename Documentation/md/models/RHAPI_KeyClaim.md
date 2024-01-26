@@ -19,7 +19,7 @@ A KeyClaim is a reward a player for fulfilling requirements of an eternal market
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_InventoryPortal `[`PortalId_Optional`](#structFRHAPI__KeyClaim_1ac799e1995190304db6b0896a44a5611c) | Platform the player is on.
+`public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__KeyClaim_1a230d8f8464d3ff7466cdd4d785081567) | Platform the player is on.
 `public bool `[`PortalId_IsSet`](#structFRHAPI__KeyClaim_1af95158bbcd4208da12c12283b11139c3) | true if PortalId_Optional has been set to a value
 `public FString `[`PortalUserId_Optional`](#structFRHAPI__KeyClaim_1af5375f7ebdab0eb347e86e21d2e13f97) | The Platform's unique identifier for the player.
 `public bool `[`PortalUserId_IsSet`](#structFRHAPI__KeyClaim_1ad8d5eefad96c5147965f2218c07df582) | true if PortalUserId_Optional has been set to a value
@@ -38,13 +38,13 @@ A KeyClaim is a reward a player for fulfilling requirements of an eternal market
 `public bool `[`LastModifiedOn_IsSet`](#structFRHAPI__KeyClaim_1ae12ac92f275fb4658fb13839b3a92a8f) | true if LastModifiedOn_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__KeyClaim_1a681722ebe833129d706e9f11ffef7a78)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__KeyClaim_1a163dc496e4025332a78aaea155647534)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1aec9aa50becf9a17426b29a283bf211ee)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1afd856396baa4cf6e23471420567b09c2)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a8ad0a5f895d520110e3284ed71b6ef04)`(const ERHAPI_InventoryPortal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1a1a2671651f5ae1abd6c8d379526212fb)`(ERHAPI_InventoryPortal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a67cb0a317b0ad9ba8af07079ecc4afce)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a3bf6ad70764c28c4e82872ecfe5e4839)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a536b9ec037266735fd84801e927f3517)`(ERHAPI_InventoryPortal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a5266ae75f80f5752e66afb7c7a3c6549)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1aa3b9a16f6886cd19148006f769bc2bfc)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a3581500021bff570324d72de78d6b436)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1ab02963a36020a78db711b6280a6e06f4)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1ad8d17e2a98961fb3fa2876eb328710f2)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1adee0a7aadbccd3271e086f72e47c310d)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a2e3bb43bc5ee7d3621084660a16f9a14)`(ERHAPI_Portal NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 `public inline void `[`ClearPortalId`](#structFRHAPI__KeyClaim_1aa84223198e5d8c855734ff8f6c594708)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1af5c4926f2a02d408c5bf65a1e85cd7a2)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
 `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1ac05d8c0fc346da172ac72610811773e7)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
@@ -110,7 +110,7 @@ A KeyClaim is a reward a player for fulfilling requirements of an eternal market
 
 #### Members
 
-#### `public ERHAPI_InventoryPortal `[`PortalId_Optional`](#structFRHAPI__KeyClaim_1ac799e1995190304db6b0896a44a5611c) <a id="structFRHAPI__KeyClaim_1ac799e1995190304db6b0896a44a5611c"></a>
+#### `public ERHAPI_Portal `[`PortalId_Optional`](#structFRHAPI__KeyClaim_1a230d8f8464d3ff7466cdd4d785081567) <a id="structFRHAPI__KeyClaim_1a230d8f8464d3ff7466cdd4d785081567"></a>
 
 Platform the player is on.
 
@@ -214,37 +214,37 @@ Writes the data from this object into the specified JSON Writer stream.
 * `Writer` JSON Writer stream to push .
 
 <br>
-#### `public inline ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1aec9aa50becf9a17426b29a283bf211ee)`()` <a id="structFRHAPI__KeyClaim_1aec9aa50becf9a17426b29a283bf211ee"></a>
+#### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a5266ae75f80f5752e66afb7c7a3c6549)`()` <a id="structFRHAPI__KeyClaim_1a5266ae75f80f5752e66afb7c7a3c6549"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1afd856396baa4cf6e23471420567b09c2)`() const` <a id="structFRHAPI__KeyClaim_1afd856396baa4cf6e23471420567b09c2"></a>
+#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1aa3b9a16f6886cd19148006f769bc2bfc)`() const` <a id="structFRHAPI__KeyClaim_1aa3b9a16f6886cd19148006f769bc2bfc"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a8ad0a5f895d520110e3284ed71b6ef04)`(const ERHAPI_InventoryPortal & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a8ad0a5f895d520110e3284ed71b6ef04"></a>
+#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a3581500021bff570324d72de78d6b436)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a3581500021bff570324d72de78d6b436"></a>
 
 Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
 
 <br>
-#### `public inline bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1a1a2671651f5ae1abd6c8d379526212fb)`(ERHAPI_InventoryPortal & OutValue) const` <a id="structFRHAPI__KeyClaim_1a1a2671651f5ae1abd6c8d379526212fb"></a>
+#### `public inline bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1ab02963a36020a78db711b6280a6e06f4)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__KeyClaim_1ab02963a36020a78db711b6280a6e06f4"></a>
 
 Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
 
 <br>
-#### `public inline ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a67cb0a317b0ad9ba8af07079ecc4afce)`()` <a id="structFRHAPI__KeyClaim_1a67cb0a317b0ad9ba8af07079ecc4afce"></a>
+#### `public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1ad8d17e2a98961fb3fa2876eb328710f2)`()` <a id="structFRHAPI__KeyClaim_1ad8d17e2a98961fb3fa2876eb328710f2"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline const ERHAPI_InventoryPortal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a3bf6ad70764c28c4e82872ecfe5e4839)`() const` <a id="structFRHAPI__KeyClaim_1a3bf6ad70764c28c4e82872ecfe5e4839"></a>
+#### `public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1adee0a7aadbccd3271e086f72e47c310d)`() const` <a id="structFRHAPI__KeyClaim_1adee0a7aadbccd3271e086f72e47c310d"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
 <br>
-#### `public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a536b9ec037266735fd84801e927f3517)`(ERHAPI_InventoryPortal NewValue)` <a id="structFRHAPI__KeyClaim_1a536b9ec037266735fd84801e927f3517"></a>
+#### `public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a2e3bb43bc5ee7d3621084660a16f9a14)`(ERHAPI_Portal NewValue)` <a id="structFRHAPI__KeyClaim_1a2e3bb43bc5ee7d3621084660a16f9a14"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 

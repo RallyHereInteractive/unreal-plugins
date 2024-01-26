@@ -43,6 +43,8 @@ Information about the instance resource in a session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InstanceInfo_1a03e270792bf6f6994f6656c65da324b8) | true if CustomData_Optional has been set to a value
 `public ERHAPI_InstanceHealthStatus `[`InstanceHealth_Optional`](#structFRHAPI__InstanceInfo_1a8e5826ce58477abb2788b69571438b48) | The current status of the instance.
 `public bool `[`InstanceHealth_IsSet`](#structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2) | true if InstanceHealth_Optional has been set to a value
+`public FString `[`MatchMakingProfileId_Optional`](#structFRHAPI__InstanceInfo_1a05b49888b26a3e1d4806f7a803912694) | The profile id that this instance was spawned from.
+`public bool `[`MatchMakingProfileId_IsSet`](#structFRHAPI__InstanceInfo_1a7ceba240433b15224dd6784b4f0b4b93) | true if MatchMakingProfileId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceInfo_1ad647ee64ac9cdb174f6780b91bceda2e)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfo_1af406c06b9e864153010e790b5104f51b)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
@@ -139,6 +141,14 @@ Information about the instance resource in a session.
 `public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__InstanceInfo_1af278ac0b3df4a018f7683e0fb52a1cbe)`() const` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetInstanceHealth`](#structFRHAPI__InstanceInfo_1a487a71d1326071756c253177e1572c4d)`(ERHAPI_InstanceHealthStatus NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
 `public inline void `[`ClearInstanceHealth`](#structFRHAPI__InstanceInfo_1abd4b04df319d6b3af78cbd8a5c50ca9f)`()` | Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
+`public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a7594174cd8fce7945975c50ae140f2da)`()` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a35b5f693c2a211ed5652796df928212c)`() const` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a23c9dfd30f926eaf03edbcf5ed4634e2)`(const FString & DefaultValue) const` | Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a42b7d63deb24a9f02d28f46324056918)`(FString & OutValue) const` | Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__InstanceInfo_1a8b0dc2717dc91238f898bf995c496a26)`()` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__InstanceInfo_1af7ad93c9d28d614c0ed888ddfae82343)`() const` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a46c7764d5f97cbb15ca8d536ab5d2c59)`(FString NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
+`public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba)`()` | Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
 
 #### Members
 
@@ -256,6 +266,16 @@ The current status of the instance.
 #### `public bool `[`InstanceHealth_IsSet`](#structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2) <a id="structFRHAPI__InstanceInfo_1a03be84bada6a81a63991b0f4513dd2b2"></a>
 
 true if InstanceHealth_Optional has been set to a value
+
+<br>
+#### `public FString `[`MatchMakingProfileId_Optional`](#structFRHAPI__InstanceInfo_1a05b49888b26a3e1d4806f7a803912694) <a id="structFRHAPI__InstanceInfo_1a05b49888b26a3e1d4806f7a803912694"></a>
+
+The profile id that this instance was spawned from.
+
+<br>
+#### `public bool `[`MatchMakingProfileId_IsSet`](#structFRHAPI__InstanceInfo_1a7ceba240433b15224dd6784b4f0b4b93) <a id="structFRHAPI__InstanceInfo_1a7ceba240433b15224dd6784b4f0b4b93"></a>
+
+true if MatchMakingProfileId_Optional has been set to a value
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__InstanceInfo_1a6534ad7c92643f1e74f384ecea120524"></a>
@@ -745,5 +765,45 @@ Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to 
 #### `public inline void `[`ClearInstanceHealth`](#structFRHAPI__InstanceInfo_1abd4b04df319d6b3af78cbd8a5c50ca9f)`()` <a id="structFRHAPI__InstanceInfo_1abd4b04df319d6b3af78cbd8a5c50ca9f"></a>
 
 Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
+
+<br>
+#### `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a7594174cd8fce7945975c50ae140f2da)`()` <a id="structFRHAPI__InstanceInfo_1a7594174cd8fce7945975c50ae140f2da"></a>
+
+Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a35b5f693c2a211ed5652796df928212c)`() const` <a id="structFRHAPI__InstanceInfo_1a35b5f693c2a211ed5652796df928212c"></a>
+
+Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a23c9dfd30f926eaf03edbcf5ed4634e2)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfo_1a23c9dfd30f926eaf03edbcf5ed4634e2"></a>
+
+Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a42b7d63deb24a9f02d28f46324056918)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfo_1a42b7d63deb24a9f02d28f46324056918"></a>
+
+Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__InstanceInfo_1a8b0dc2717dc91238f898bf995c496a26)`()` <a id="structFRHAPI__InstanceInfo_1a8b0dc2717dc91238f898bf995c496a26"></a>
+
+Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__InstanceInfo_1af7ad93c9d28d614c0ed888ddfae82343)`() const` <a id="structFRHAPI__InstanceInfo_1af7ad93c9d28d614c0ed888ddfae82343"></a>
+
+Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1a46c7764d5f97cbb15ca8d536ab5d2c59)`(FString NewValue)` <a id="structFRHAPI__InstanceInfo_1a46c7764d5f97cbb15ca8d536ab5d2c59"></a>
+
+Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba)`()` <a id="structFRHAPI__InstanceInfo_1ae29004885f4edeb474dbee20fd20eaba"></a>
+
+Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
 
 <br>
