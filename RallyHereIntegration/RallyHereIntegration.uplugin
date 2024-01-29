@@ -20,7 +20,7 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
-				"RallyHereGameHostAdapter"
+				"RallyHereGameHostProvider"
 			]
 		}
 	],
