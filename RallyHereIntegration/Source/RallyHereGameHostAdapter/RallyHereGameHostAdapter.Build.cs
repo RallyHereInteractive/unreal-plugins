@@ -37,6 +37,10 @@ public class RallyHereGameHostAdapter : ModuleRules
 					Path.Combine(LibSubdirectory, "Win64", "zlib1.dll"));
 				RuntimeDependencies.Add("$(TargetOutputDir)/fmt.dll",
 					Path.Combine(LibSubdirectory, "Win64", "fmt.dll"));
+				RuntimeDependencies.Add("$(TargetOutputDir)/civetweb.dll",
+					Path.Combine(LibSubdirectory, "Win64", "civetweb.dll"));
+				RuntimeDependencies.Add("$(TargetOutputDir)/civetweb-cpp.dll",
+					Path.Combine(LibSubdirectory, "Win64", "civetweb-cpp.dll"));
 			}
 			
 			PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "include"));
