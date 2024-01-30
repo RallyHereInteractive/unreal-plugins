@@ -64,12 +64,7 @@ bool URH_PlatformSessionSyncer::Initialize(const FString& InSessionId, FRH_Sessi
 	// no session, nothing to sync
 	if (!RHSession)
 	{
-		return false;
-	}
-
-	FString SessionType;
-	if (!RHSession->GetTemplate().GetEngineSessionType(SessionType))
-	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - No RHSession to initialze for"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
 
@@ -77,20 +72,42 @@ bool URH_PlatformSessionSyncer::Initialize(const FString& InSessionId, FRH_Sessi
 	auto* OSS = GetOSS();
 	if (!OSS)
 	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find OSS to use"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
-
-	OSSSessionName = FName(*GetRHSession()->GetSessionId());
-	auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
-	check(OptionalPlatformId.IsSet());
-	RHPlatform = OptionalPlatformId.GetValue();
 
 	// determine if session already exists in OSS
 	auto OSSInterface = GetOSSSessionInterface();
 	if (OSSInterface == nullptr)
 	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find OSS Session Interface to use"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
+
+	// determine platform and platform session name
+	OSSSessionName = FName(*GetRHSession()->GetSessionId());
+	auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	check(OptionalPlatformId.IsSet());
+	RHPlatform = OptionalPlatformId.GetValue();
+
+	// ensure that we have a platform template for the platform in the session template
+	const auto& Template = RHSession->GetTemplate();
+	const auto* PlatformTemplatesMap = Template.GetPlatformTemplatesOrNull();
+
+	if (PlatformTemplatesMap == nullptr)
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform templates map"), ANSI_TO_TCHAR(__FUNCTION__));
+		return false;
+	}
+
+	const auto* PlatformTemplate = PlatformTemplatesMap->Find(EnumToString(RHPlatform));
+
+	if (PlatformTemplate == nullptr)
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform session template for %s using platform %s"), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId(), *EnumToString(RHPlatform));
+		return false;
+	}
+	check(PlatformTemplate->GetPlatform() == RHPlatform);
 
 	check(CurrentSyncActionState == ESyncActionState::Uninitialized);
 

@@ -782,16 +782,36 @@ URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::CreatePlatformSyncer
 
 		// do sanity checking before object creation while we can
 		FString SessionType;
-		if (JoinedSession != nullptr && JoinedSession->GetTemplate().GetEngineSessionType(SessionType))
+		if (JoinedSession != nullptr)
 		{
-			// for now, only support RH sessions owned by a local player session subsystem
+			// make sure we have an OSS that supports sessions
 			auto* OSS = GetOSS();
-			if (OSS != nullptr && OSS->GetSessionInterface() != nullptr && RH_GetPlatformFromOSSName(OSS->GetSubsystemName()).IsSet())
+			if (OSS != nullptr && OSS->GetSessionInterface() != nullptr)
 			{
-				PlatformSyncer = NewObject<URH_PlatformSessionSyncer>(this, SyncerClass);
-				if (PlatformSyncer->Initialize(SessionId, this))
+				// make sure the OSS represents a known type of platform
+				const auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+				if (OptionalPlatformId.IsSet())
 				{
-					PlatformSyncers.Add(SessionId, PlatformSyncer);
+					const auto RHPlatform = OptionalPlatformId.GetValue();
+
+					// make sure the session template has a platform template for this platform
+					const auto& Template = JoinedSession->GetTemplate();
+					const auto* PlatformTemplatesMap = Template.GetPlatformTemplatesOrNull();
+					if (PlatformTemplatesMap != nullptr)
+					{
+						const auto* PlatformTemplate = PlatformTemplatesMap->Find(EnumToString(RHPlatform));
+						if (PlatformTemplate != nullptr)
+						{
+							check(PlatformTemplate->GetPlatform() == RHPlatform);
+
+							// create the syncer (which will re-perform all of these checks initialization, but we want to skip creating the object if possible)
+							PlatformSyncer = NewObject<URH_PlatformSessionSyncer>(this, SyncerClass);
+							if (PlatformSyncer->Initialize(SessionId, this))
+							{
+								PlatformSyncers.Add(SessionId, PlatformSyncer);
+							}
+						}
+					}
 				}
 			}
 		}
