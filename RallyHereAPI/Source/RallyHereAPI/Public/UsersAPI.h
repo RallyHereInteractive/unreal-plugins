@@ -223,7 +223,7 @@ private:
  * WARNING: This endpoint does not validate that the provided user ID is valid, and should only be used after validating a user's identity.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `user:*`, `user:platform:create`
+ * 	For any player (including themselves)any of: `user:platform:create`, `user:*`
 */
 struct RALLYHEREAPI_API FRequest_CreatePlatformUserById : public FRequest
 {
@@ -495,7 +495,7 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
  * Find an existing platform user with their platform identity.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `user:*`, `user:platform:read`
+ * 	For any player (including themselves)any of: `user:platform:read`, `user:*`
 */
 struct RALLYHEREAPI_API FRequest_FindPlatformUserById : public FRequest
 {

@@ -9,17 +9,17 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "MatchInfo.generated.h"
+#include "MatchmakingResults.generated.h"
 
-/** @defgroup RHAPI_MatchInfo RallyHere API Model MatchInfo
+/** @defgroup RHAPI_MatchmakingResults RallyHere API Model MatchmakingResults
  *  @{
  */
 
 /**
- * @brief DEPRECATED Information about a match
+ * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -59,7 +59,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
     /** @brief Sets the value of Created */
     void SetCreated(FDateTime NewValue) { Created = NewValue;  }
 
-    /** @brief instance-defined custom data */
+    /** @brief MMF defined custom data */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
@@ -104,6 +104,33 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
     void SetTicketIds(TArray<FString> NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true; }
      /** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
     void ClearTicketIds() { TicketIds_IsSet = false; }
+
+    /** @brief Whether or not the tickets from these results have been assigned */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool TicketsAssigned_Optional{  };
+    /** @brief true if TicketsAssigned_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool TicketsAssigned_IsSet{ false };
+    /** @brief Gets the value of TicketsAssigned_Optional, regardless of it having been set */
+    bool& GetTicketsAssigned() { return TicketsAssigned_Optional; }
+    /** @brief Gets the value of TicketsAssigned_Optional, regardless of it having been set */
+    const bool& GetTicketsAssigned() const { return TicketsAssigned_Optional; }
+    /** @brief Gets the value of TicketsAssigned_Optional, if it has been set, otherwise it returns DefaultValue */
+    const bool& GetTicketsAssigned(const bool& DefaultValue) const { if (TicketsAssigned_IsSet) return TicketsAssigned_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of TicketsAssigned_Optional and returns true if it has been set, otherwise returns false */
+    bool GetTicketsAssigned(bool& OutValue) const { if (TicketsAssigned_IsSet) OutValue = TicketsAssigned_Optional; return TicketsAssigned_IsSet; }
+    /** @brief Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise returns nullptr */
+    bool* GetTicketsAssignedOrNull() { if (TicketsAssigned_IsSet) return &TicketsAssigned_Optional; return nullptr; }
+    /** @brief Returns a pointer to TicketsAssigned_Optional, if it has been set, otherwise returns nullptr */
+    const bool* GetTicketsAssignedOrNull() const { if (TicketsAssigned_IsSet) return &TicketsAssigned_Optional; return nullptr; }
+    /** @brief Sets the value of TicketsAssigned_Optional and also sets TicketsAssigned_IsSet to true */
+    void SetTicketsAssigned(bool NewValue) { TicketsAssigned_Optional = NewValue; TicketsAssigned_IsSet = true; }
+     /** @brief Clears the value of TicketsAssigned_Optional and sets TicketsAssigned_IsSet to false */
+    void ClearTicketsAssigned() { TicketsAssigned_Optional = false; TicketsAssigned_IsSet = false; }
+    /** @brief Returns true if TicketsAssigned_Optional is set and matches the default value */
+    bool IsTicketsAssignedDefaultValue() const { return TicketsAssigned_IsSet && TicketsAssigned_Optional == false; }
+    /** @brief Sets the value of TicketsAssigned_Optional to its default and also sets TicketsAssigned_IsSet to true */
+    void SetTicketsAssignedToDefault() { TicketsAssigned_Optional = false; TicketsAssigned_IsSet = true; }
 };
 
 /** @} */

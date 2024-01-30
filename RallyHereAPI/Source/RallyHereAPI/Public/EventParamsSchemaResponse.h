@@ -9,17 +9,17 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "MatchCreateResponse.generated.h"
+#include "EventParamsSchemaResponse.generated.h"
 
-/** @defgroup RHAPI_MatchCreateResponse RallyHere API Model MatchCreateResponse
+/** @defgroup RHAPI_EventParamsSchemaResponse RallyHere API Model EventParamsSchemaResponse
  *  @{
  */
 
 /**
- * @brief The response to successfully creating a match on a session
+ * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_MatchCreateResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -39,15 +39,15 @@ struct RALLYHEREAPI_API FRHAPI_MatchCreateResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Unique ID */
+    /** @brief Dictionary contains event name and Json schema definition for its event_params parameter */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString MatchId{  };
-    /** @brief Gets the value of MatchId */
-    FString& GetMatchId() { return MatchId; }
-    /** @brief Gets the value of MatchId */
-    const FString& GetMatchId() const { return MatchId; }
-    /** @brief Sets the value of MatchId */
-    void SetMatchId(FString NewValue) { MatchId = NewValue;  }
+    FRHAPI_JsonObject EventParamSchemas{  };
+    /** @brief Gets the value of EventParamSchemas */
+    FRHAPI_JsonObject& GetEventParamSchemas() { return EventParamSchemas; }
+    /** @brief Gets the value of EventParamSchemas */
+    const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
+    /** @brief Sets the value of EventParamSchemas */
+    void SetEventParamSchemas(FRHAPI_JsonObject NewValue) { EventParamSchemas = NewValue;  }
 };
 
 /** @} */

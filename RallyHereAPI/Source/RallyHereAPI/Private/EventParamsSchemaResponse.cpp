@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "MatchCreateResponse.h"
+#include "EventParamsSchemaResponse.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,17 +17,17 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_MatchCreateResponse
+// Implementation for FRHAPI_EventParamsSchemaResponse
 
-void FRHAPI_MatchCreateResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_EventParamsSchemaResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("match_id"));
-    RallyHereAPI::WriteJsonValue(Writer, MatchId);
+    Writer->WriteIdentifierPrefix(TEXT("event_param_schemas"));
+    RallyHereAPI::WriteJsonValue(Writer, EventParamSchemas);
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_MatchCreateResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_EventParamsSchemaResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -35,8 +35,8 @@ bool FRHAPI_MatchCreateResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-    ParseSuccess &= JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId);
+    const TSharedPtr<FJsonValue> JsonEventParamSchemasField = (*Object)->TryGetField(TEXT("event_param_schemas"));
+    ParseSuccess &= JsonEventParamSchemasField.IsValid() && !JsonEventParamSchemasField->IsNull() && TryGetJsonValue(JsonEventParamSchemasField, EventParamSchemas);
 
     return ParseSuccess;
 }

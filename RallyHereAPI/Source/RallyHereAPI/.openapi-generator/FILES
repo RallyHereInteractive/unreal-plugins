@@ -55,6 +55,7 @@ Private/EntitlementsAPI.cpp
 Private/EnvironmentAPI.cpp
 Private/EnvironmentConfig.cpp
 Private/EventList.cpp
+Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
 Private/FastapicommonPlatformsPortal.cpp
 Private/FriendRelationship.cpp
@@ -129,8 +130,6 @@ Private/MapSelectionListV2.cpp
 Private/MarketingAPI.cpp
 Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
-Private/MatchCreateRequest.cpp
-Private/MatchCreateResponse.cpp
 Private/MatchInfo.cpp
 Private/MatchMakingProfile.cpp
 Private/MatchMakingProfileV2.cpp
@@ -140,6 +139,7 @@ Private/MatchMakingTemplateGroup.cpp
 Private/MatchMakingTemplateGroupV2.cpp
 Private/MatchMakingTemplateV2.cpp
 Private/MatchmakingInfo.cpp
+Private/MatchmakingResults.cpp
 Private/MessageOnly.cpp
 Private/Notes.cpp
 Private/Notification.cpp
@@ -363,6 +363,7 @@ Public/EntitlementsAPI.h
 Public/EnvironmentAPI.h
 Public/EnvironmentConfig.h
 Public/EventList.h
+Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
 Public/FastapicommonPlatformsPortal.h
 Public/FriendRelationship.h
@@ -437,8 +438,6 @@ Public/MapSelectionListV2.h
 Public/MarketingAPI.h
 Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
-Public/MatchCreateRequest.h
-Public/MatchCreateResponse.h
 Public/MatchInfo.h
 Public/MatchMakingProfile.h
 Public/MatchMakingProfileV2.h
@@ -448,6 +447,7 @@ Public/MatchMakingTemplateGroup.h
 Public/MatchMakingTemplateGroupV2.h
 Public/MatchMakingTemplateV2.h
 Public/MatchmakingInfo.h
+Public/MatchmakingResults.h
 Public/MessageOnly.h
 Public/Notes.h
 Public/Notification.h
