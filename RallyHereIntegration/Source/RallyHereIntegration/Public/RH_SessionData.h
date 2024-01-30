@@ -768,28 +768,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "End Instance", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_EndInstance(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { EndInstance(Delegate); };
 	/**
-	 * @brief Starts the match of the instance on the session.
-	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
-	 */
-	virtual void StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::StartMatch, ); };
-	/**
-	 * @brief Blueprint compatible version of StartMatch
-	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
-	 */
-	UFUNCTION(BlueprintCallable, Category = "Session|Match", meta = (DisplayName = "Start Match", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_StartMatch(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { StartMatch(Delegate); };
-	/**
-	 * @brief Ends the match of the instance on the session.
-	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
-	 */
-	virtual void EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::EndMatch, ); };
-	/**
-	 * @brief Blueprint compatible version of EndMatch
-	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
-	 */
-	UFUNCTION(BlueprintCallable, Category = "Session|Match", meta = (DisplayName = "End Match", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_EndMatch(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { EndMatch(Delegate); };
-	/**
 	* @brief Updates the session info.
 	* @param [in] Update The session info for the update.
 	* @param [in] Delegate Callback delegate for the session being updated with new session data.
@@ -970,16 +948,6 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
 	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
-	/**
-	 * @brief Starts the match of the instance on the session.
-	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
-	 */
-	virtual void StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
-	/**
-	 * @brief Ends the match of the instance on the session.
-	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
-	 */
-	virtual void EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 
 	// Host only functions
 	/**
@@ -1210,17 +1178,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated with the instance ending.
 	 */
 	virtual void EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
-	/**
-	 * @brief Starts the match of the instance on the session.
-	 * @param [in] Delegate Callback delegate for the session being updated with the match start.
-	 */
-	virtual void StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
-	/**
-	 * @brief Ends the match of the instance on the session.
-	 * @param [in] Delegate Callback delegate for the session being updated with the match end.
-	 */
-	virtual void EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
-
+	
 	// Host only functions
 	/**
 	* @brief Updates the session info.

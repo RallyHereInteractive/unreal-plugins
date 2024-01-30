@@ -534,20 +534,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			}
 		}
 
-		// Match
-		if (const auto Match = Session.GetMatchOrNull())
-		{
-			if (RHJoinedSession != nullptr && ImGui::Button("End Match"))
-			{
-				RHJoinedSession->EndMatch(FRH_OnSessionUpdatedDelegate());
-			}
-			ImGuiDisplayMatch(*Match);
-		}
-		else if (RHJoinedSession != nullptr && ImGui::Button("Start Match"))
-		{
-			RHJoinedSession->StartMatch(FRH_OnSessionUpdatedDelegate());
-		}
-
+		// Matchmaking
 		if (ImGui::TreeNodeEx("MatchMaking", RH_DefaultTreeFlags))
 		{
 			if (const auto MatchMaking = Session.GetMatchmakingOrNull())
@@ -573,6 +560,41 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 					JoinQueueRequest.QueueId = ImGuiGetStringFromTextInputBuffer(JoinQueueByIdString);
 					RHOnlineSession->JoinQueue(JoinQueueRequest);
 				}
+			}
+
+			ImGui::TreePop();
+		}
+
+		if (ImGui::TreeNodeEx("MatchMaking Result", RH_DefaultTreeFlags))
+		{
+			auto MatchMakingResults = Session.GetMatchmakingResultsOrNull();
+			if (MatchMakingResults)
+			{
+				ImGuiDisplayCopyableValue(TEXT("MatchId"), MatchMakingResults->GetMatchId());
+				ImGuiDisplayCopyableValue(TEXT("Created"), MatchMakingResults->GetCreated());
+				
+				if (ImGui::TreeNodeEx("Ticket Ids", RH_DefaultTreeFlagsLeaf))
+				{
+					auto* TicketIds = MatchMakingResults->GetTicketIdsOrNull();
+					if (TicketIds != nullptr)
+					{
+						for (auto TicketId : *TicketIds)
+						{
+							ImGuiDisplayCopyableValue(TEXT("TicketId"), TicketId);
+						}
+					}
+
+					ImGui::TreePop();
+				}
+
+				auto* bTicketsAssigned = MatchMakingResults->GetTicketsAssignedOrNull();
+				ImGui::Text("Tickets Assigned: %s", 
+					bTicketsAssigned != nullptr
+					? (*bTicketsAssigned ? "true" : "false") 
+					: "<UNSET>"
+				);
+
+				ImGuiDisplayCustomData(MatchMakingResults->GetCustomData());
 			}
 
 			ImGui::TreePop();
