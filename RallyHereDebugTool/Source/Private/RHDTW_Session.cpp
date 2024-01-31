@@ -570,7 +570,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			auto MatchMakingResults = Session.GetMatchmakingResultsOrNull();
 			if (MatchMakingResults)
 			{
-				ImGuiDisplayCopyableValue(TEXT("MatchId"), MatchMakingResults->GetMatchId());
+				ImGuiDisplayCopyableValue(TEXT("MatchMakingId"), MatchMakingResults->GetMatchMakingId());
 				ImGuiDisplayCopyableValue(TEXT("Created"), MatchMakingResults->GetCreated());
 				
 				if (ImGui::TreeNodeEx("Ticket Ids", RH_DefaultTreeFlagsLeaf))
