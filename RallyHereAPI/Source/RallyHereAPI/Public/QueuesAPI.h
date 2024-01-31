@@ -86,7 +86,7 @@ private:
  * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None
@@ -156,7 +156,7 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
  * Get all the available and active queues that sessions can try to join
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None
@@ -227,7 +227,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
  * Get all the available and active queues that sessions can try to join
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None
@@ -298,7 +298,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
  * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None
@@ -367,7 +367,7 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
  * Get info about a specific match making profile
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None
@@ -437,7 +437,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
  * Get info about a specific match making profile
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None
@@ -507,7 +507,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
  * from the `queues` config endpoints
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  *             
  * Required Session Permissions: None
@@ -578,7 +578,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
  * from the `queues` config endpoints
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `session:read:config`, `session:*`
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
  * 
  * 
  * Required Session Permissions: None

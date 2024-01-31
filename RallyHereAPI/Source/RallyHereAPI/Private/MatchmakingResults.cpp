@@ -22,8 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchmakingResults::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("match_id"));
-    RallyHereAPI::WriteJsonValue(Writer, MatchId);
+    Writer->WriteIdentifierPrefix(TEXT("match_making_id"));
+    RallyHereAPI::WriteJsonValue(Writer, MatchMakingId);
     Writer->WriteIdentifierPrefix(TEXT("created"));
     RallyHereAPI::WriteJsonValue(Writer, Created);
     if (CustomData_IsSet)
@@ -52,8 +52,8 @@ bool FRHAPI_MatchmakingResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
-    ParseSuccess &= JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId);
+    const TSharedPtr<FJsonValue> JsonMatchMakingIdField = (*Object)->TryGetField(TEXT("match_making_id"));
+    ParseSuccess &= JsonMatchMakingIdField.IsValid() && !JsonMatchMakingIdField->IsNull() && TryGetJsonValue(JsonMatchMakingIdField, MatchMakingId);
     const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
     ParseSuccess &= JsonCreatedField.IsValid() && !JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created);
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));

@@ -164,7 +164,7 @@ void FResponse_PlayeridCreateNotification::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -203,6 +203,182 @@ FResponse_PlayeridCreateNotification::FResponse_PlayeridCreateNotification(FRequ
 }
 
 FString Traits_PlayeridCreateNotification::Name = TEXT("PlayeridCreateNotification");
+
+FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate /*= FDelegate_PlayeridCreateNotificationSelf()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FPlayerIdNotificationAPI::OnPlayeridCreateNotificationSelfResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_PlayeridCreateNotificationSelf Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_PlayeridCreateNotificationSelf::FRequest_PlayeridCreateNotificationSelf()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_PlayeridCreateNotificationSelf::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/notification/v1/playerid/me/notification"));
+    return Path;
+}
+
+FString FRequest_PlayeridCreateNotificationSelf::ComputePath() const
+{
+    FString Path = GetSimplifiedPath().ToString();
+    return Path;
+}
+
+bool FRequest_PlayeridCreateNotificationSelf::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("POST"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, NotificationCreates);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - Body parameter (FRHAPI_NotificationCreates) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PlayeridCreateNotificationSelf - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_PlayeridCreateNotificationSelf::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 400:
+        SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
+        break;
+    case 403:
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotificationSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayeridCreateNotificationSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_PlayeridCreateNotificationSelf::FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_PlayeridCreateNotificationSelf::Name = TEXT("PlayeridCreateNotificationSelf");
 
 FHttpRequestPtr FPlayerIdNotificationAPI::PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate /*= FDelegate_PlayeridGetNotificationById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
@@ -335,7 +511,7 @@ void FResponse_PlayeridGetNotificationById::SetHttpResponseCode(EHttpResponseCod
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 404:
         SetResponseString(TEXT(" Error Codes: - resource_not_found - Notification could not be found "));
@@ -513,7 +689,7 @@ void FResponse_PlayeridGetNotificationByIdSelf::SetHttpResponseCode(EHttpRespons
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 404:
         SetResponseString(TEXT(" Error Codes: - resource_not_found - Notification could not be found "));
@@ -716,7 +892,7 @@ void FResponse_PlayeridGetNotificationsPage::SetHttpResponseCode(EHttpResponseCo
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -906,7 +1082,7 @@ void FResponse_PlayeridGetNotificationsPageSelf::SetHttpResponseCode(EHttpRespon
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -1096,7 +1272,7 @@ void FResponse_PlayeridLongPollForNotifications::SetHttpResponseCode(EHttpRespon
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
@@ -1281,7 +1457,7 @@ void FResponse_PlayeridLongPollForNotificationsSelf::SetHttpResponseCode(EHttpRe
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} "));
+        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));

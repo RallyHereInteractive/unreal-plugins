@@ -26,6 +26,8 @@ using RallyHereAPI::TryGetJsonValue;
 
 struct FRequest_PlayeridCreateNotification;
 struct FResponse_PlayeridCreateNotification;
+struct FRequest_PlayeridCreateNotificationSelf;
+struct FResponse_PlayeridCreateNotificationSelf;
 struct FRequest_PlayeridGetNotificationById;
 struct FResponse_PlayeridGetNotificationById;
 struct FRequest_PlayeridGetNotificationByIdSelf;
@@ -40,6 +42,7 @@ struct FRequest_PlayeridLongPollForNotificationsSelf;
 struct FResponse_PlayeridLongPollForNotificationsSelf;
 
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridCreateNotification, const FResponse_PlayeridCreateNotification&);
+DECLARE_DELEGATE_OneParam(FDelegate_PlayeridCreateNotificationSelf, const FResponse_PlayeridCreateNotificationSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationById, const FResponse_PlayeridGetNotificationById&);
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationByIdSelf, const FResponse_PlayeridGetNotificationByIdSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_PlayeridGetNotificationsPage, const FResponse_PlayeridGetNotificationsPage&);
@@ -54,6 +57,7 @@ public:
     virtual ~FPlayerIdNotificationAPI();
 
     FHttpRequestPtr PlayeridCreateNotification(const FRequest_PlayeridCreateNotification& Request, const FDelegate_PlayeridCreateNotification& Delegate = FDelegate_PlayeridCreateNotification(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PlayeridCreateNotificationSelf(const FRequest_PlayeridCreateNotificationSelf& Request, const FDelegate_PlayeridCreateNotificationSelf& Delegate = FDelegate_PlayeridCreateNotificationSelf(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PlayeridGetNotificationById(const FRequest_PlayeridGetNotificationById& Request, const FDelegate_PlayeridGetNotificationById& Delegate = FDelegate_PlayeridGetNotificationById(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PlayeridGetNotificationByIdSelf(const FRequest_PlayeridGetNotificationByIdSelf& Request, const FDelegate_PlayeridGetNotificationByIdSelf& Delegate = FDelegate_PlayeridGetNotificationByIdSelf(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PlayeridGetNotificationsPage(const FRequest_PlayeridGetNotificationsPage& Request, const FDelegate_PlayeridGetNotificationsPage& Delegate = FDelegate_PlayeridGetNotificationsPage(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -63,6 +67,7 @@ public:
 
 private:
     void OnPlayeridCreateNotificationResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotification Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPlayeridCreateNotificationSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridCreateNotificationSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPlayeridGetNotificationByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPlayeridGetNotificationByIdSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationByIdSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPlayeridGetNotificationsPageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PlayeridGetNotificationsPage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -76,7 +81,11 @@ private:
  *
  * Create new notification for client.  Requires permission to create for a different client
  * 
- * Requires permissions: Any of `notification:playerid:*`, `notification:playerid:write`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:write`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:write`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridCreateNotification : public FRequest
 {
@@ -114,7 +123,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridCreateNotification : public FResponse
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -136,13 +145,81 @@ struct RALLYHEREAPI_API Traits_PlayeridCreateNotification
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotification(InRequest, InDelegate, Priority); }
 };
 
+/* Create Notification Self
+ *
+ * Create new notification for client.
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:write`, `notification:playerid:write`, `notification:playerid:self:*`
+*/
+struct RALLYHEREAPI_API FRequest_PlayeridCreateNotificationSelf : public FRequest
+{
+    FRequest_PlayeridCreateNotificationSelf();
+    virtual ~FRequest_PlayeridCreateNotificationSelf() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FRHAPI_NotificationCreates NotificationCreates;
+};
+
+struct RALLYHEREAPI_API FResponse_PlayeridCreateNotificationSelf : public FResponse
+{
+    FResponse_PlayeridCreateNotificationSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_PlayeridCreateNotificationSelf() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_NotificationCreateResult Content;
+
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_NotificationCreateResult& OutContent) const;
+
+    /* Response 400
+     Error Codes: - bad_id - Passed client id is not a valid id 
+    */
+    bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 403
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_PlayeridCreateNotificationSelf
+{
+    typedef FRequest_PlayeridCreateNotificationSelf Request;
+    typedef FResponse_PlayeridCreateNotificationSelf Response;
+    typedef FDelegate_PlayeridCreateNotificationSelf Delegate;
+    typedef FPlayerIdNotificationAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PlayeridCreateNotificationSelf(InRequest, InDelegate, Priority); }
+};
+
 /* Get Notification By Id
  *
  * Retrieve a single notification by id
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationById : public FRequest
 {
@@ -180,7 +257,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationById : public FResponse
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -211,7 +288,9 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationById
  *
  * Retrieve a single notification by id
  * 
- * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationByIdSelf : public FRequest
 {
@@ -248,7 +327,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationByIdSelf : public FResp
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -290,7 +369,11 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationByIdSelf
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPage : public FRequest
 {
@@ -338,7 +421,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPage : public FRespons
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -373,7 +456,9 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPage
  * 
  * Client are expected to poll this endpoint regularly.
  * 
- * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridGetNotificationsPageSelf : public FRequest
 {
@@ -420,7 +505,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridGetNotificationsPageSelf : public FRes
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -454,7 +539,11 @@ struct RALLYHEREAPI_API Traits_PlayeridGetNotificationsPageSelf
  * 
  * This version can be used for any client provided its id (with proper permissions)
  * 
- * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:read`
+ * 
+ * - For the playerid themselves any of: `notification:playerid:self:read`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotifications : public FRequest
 {
@@ -499,7 +588,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotifications : public FRes
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -531,7 +620,9 @@ struct RALLYHEREAPI_API Traits_PlayeridLongPollForNotifications
  * or until the passed in deadline (to the best of our ability).  Once one of these happens, we will return
  * the notifications found.
  * 
- * Requires permissions: Any of `notification:playerid:*`,`notification:playerid:read`
+ * Required Permissions:
+ * 
+ * - For any playerid (including themselves) any of: `notification:playerid:*`, `notification:playerid:self:read`, `notification:playerid:read`, `notification:playerid:self:*`
 */
 struct RALLYHEREAPI_API FRequest_PlayeridLongPollForNotificationsSelf : public FRequest
 {
@@ -575,7 +666,7 @@ struct RALLYHEREAPI_API FResponse_PlayeridLongPollForNotificationsSelf : public 
     bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 403
-     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - insufficient_permissions - Insufficient Permissions - auth_token_sig_invalid - Token Signature is invalid - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_not_jwt - Invalid Authorization - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} 
+     Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired 
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 

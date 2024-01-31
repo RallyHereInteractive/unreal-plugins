@@ -41,13 +41,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 
     /** @brief Unique ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString MatchId{  };
-    /** @brief Gets the value of MatchId */
-    FString& GetMatchId() { return MatchId; }
-    /** @brief Gets the value of MatchId */
-    const FString& GetMatchId() const { return MatchId; }
-    /** @brief Sets the value of MatchId */
-    void SetMatchId(FString NewValue) { MatchId = NewValue;  }
+    FString MatchMakingId{  };
+    /** @brief Gets the value of MatchMakingId */
+    FString& GetMatchMakingId() { return MatchMakingId; }
+    /** @brief Gets the value of MatchMakingId */
+    const FString& GetMatchMakingId() const { return MatchMakingId; }
+    /** @brief Sets the value of MatchMakingId */
+    void SetMatchMakingId(FString NewValue) { MatchMakingId = NewValue;  }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
