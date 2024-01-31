@@ -24,6 +24,8 @@ A request body to update information about a player in a session.
 `public int32 `[`TeamId`](#structFRHAPI__SessionPlayerUpdateRequest_1aa56a7eab4923715500aefa8b8fbb941b) | Which team the player should be on.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a5413846e2f8ff07b8a34f6483807cadc) | player-defined custom data
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a29f9f54c835b137b0f22c711cf8229bf) | true if CustomData_Optional has been set to a value
+`public ERHAPI_TeamOverflowAction `[`OverflowAction_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a13e3e939ca8bf749c90b48164ea7b903) | How we should handle too many players being invited to the chosen team.
+`public bool `[`OverflowAction_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a288dac5df002a17a3bddf83479515062) | true if OverflowAction_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayerUpdateRequest_1a062c4404f35a61d1b96ab4d8c9d2608b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionPlayerUpdateRequest_1afe7828080f27d4a6c72ac936f20ae699)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SessionPlayerUpdateRequest_1aad26eb338b12e2665a1b14ef80a7c3fc)`()` | Gets the value of Status_Optional, regardless of it having been set.
@@ -47,6 +49,14 @@ A request body to update information about a player in a session.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a0ddbe103d6085af6264d144d2b378216)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a17ffb5766ae78cf4899c253af52c44cc)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a90415b775835034b0bb2f6e8e7f98426)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a60ae170f15ae710197a04360abdc3ece)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1add074c72686cfede59af894b6c6ac96e)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a1e9dbdf2ad5d608fa1b382b17ef10a71)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` | Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1afb021030411f4c9b1d3d3bfb65a44892)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a621e63c898c45feb3393e90d30d5e7c0)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a51193f8bd28c91ee1abbe002f7a63841)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1)`(ERHAPI_TeamOverflowAction NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
 #### Members
 
@@ -73,6 +83,16 @@ player-defined custom data
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a29f9f54c835b137b0f22c711cf8229bf) <a id="structFRHAPI__SessionPlayerUpdateRequest_1a29f9f54c835b137b0f22c711cf8229bf"></a>
 
 true if CustomData_Optional has been set to a value
+
+<br>
+#### `public ERHAPI_TeamOverflowAction `[`OverflowAction_Optional`](#structFRHAPI__SessionPlayerUpdateRequest_1a13e3e939ca8bf749c90b48164ea7b903) <a id="structFRHAPI__SessionPlayerUpdateRequest_1a13e3e939ca8bf749c90b48164ea7b903"></a>
+
+How we should handle too many players being invited to the chosen team.
+
+<br>
+#### `public bool `[`OverflowAction_IsSet`](#structFRHAPI__SessionPlayerUpdateRequest_1a288dac5df002a17a3bddf83479515062) <a id="structFRHAPI__SessionPlayerUpdateRequest_1a288dac5df002a17a3bddf83479515062"></a>
+
+true if OverflowAction_Optional has been set to a value
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionPlayerUpdateRequest_1a062c4404f35a61d1b96ab4d8c9d2608b)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a062c4404f35a61d1b96ab4d8c9d2608b"></a>
@@ -197,5 +217,45 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__SessionPlayerUpdateRequest_1a90415b775835034b0bb2f6e8e7f98426)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a90415b775835034b0bb2f6e8e7f98426"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+<br>
+#### `public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a60ae170f15ae710197a04360abdc3ece)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a60ae170f15ae710197a04360abdc3ece"></a>
+
+Gets the value of OverflowAction_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1add074c72686cfede59af894b6c6ac96e)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1add074c72686cfede59af894b6c6ac96e"></a>
+
+Gets the value of OverflowAction_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a1e9dbdf2ad5d608fa1b382b17ef10a71)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a1e9dbdf2ad5d608fa1b382b17ef10a71"></a>
+
+Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1afb021030411f4c9b1d3d3bfb65a44892)`(ERHAPI_TeamOverflowAction & OutValue) const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1afb021030411f4c9b1d3d3bfb65a44892"></a>
+
+Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a621e63c898c45feb3393e90d30d5e7c0)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a621e63c898c45feb3393e90d30d5e7c0"></a>
+
+Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__SessionPlayerUpdateRequest_1a51193f8bd28c91ee1abbe002f7a63841)`() const` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a51193f8bd28c91ee1abbe002f7a63841"></a>
+
+Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1)`(ERHAPI_TeamOverflowAction NewValue)` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a2dd0c3ba91633a87d6dd757308b78de1"></a>
+
+Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearOverflowAction`](#structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16)`()` <a id="structFRHAPI__SessionPlayerUpdateRequest_1a99c41fad98394fd5ee4d5a01a480de16"></a>
+
+Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
 <br>

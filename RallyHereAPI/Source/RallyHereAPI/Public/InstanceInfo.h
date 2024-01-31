@@ -315,6 +315,29 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void SetInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { InstanceHealth_Optional = NewValue; InstanceHealth_IsSet = true; }
      /** @brief Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false */
     void ClearInstanceHealth() { InstanceHealth_IsSet = false; }
+
+    /** @brief The profile id that this instance was spawned from */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString MatchMakingProfileId_Optional{  };
+    /** @brief true if MatchMakingProfileId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MatchMakingProfileId_IsSet{ false };
+    /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+    FString& GetMatchMakingProfileId() { return MatchMakingProfileId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+    const FString& GetMatchMakingProfileId() const { return MatchMakingProfileId_Optional; }
+    /** @brief Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMatchMakingProfileId(const FString& DefaultValue) const { if (MatchMakingProfileId_IsSet) return MatchMakingProfileId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchMakingProfileId(FString& OutValue) const { if (MatchMakingProfileId_IsSet) OutValue = MatchMakingProfileId_Optional; return MatchMakingProfileId_IsSet; }
+    /** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMatchMakingProfileIdOrNull() { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMatchMakingProfileIdOrNull() const { if (MatchMakingProfileId_IsSet) return &MatchMakingProfileId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true */
+    void SetMatchMakingProfileId(FString NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true; }
+     /** @brief Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false */
+    void ClearMatchMakingProfileId() { MatchMakingProfileId_IsSet = false; }
 };
 
 /** @} */

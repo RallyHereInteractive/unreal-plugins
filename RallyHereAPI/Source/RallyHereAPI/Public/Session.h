@@ -14,6 +14,7 @@
 #include "InstanceInfo.h"
 #include "MatchInfo.h"
 #include "MatchmakingInfo.h"
+#include "MatchmakingResults.h"
 #include "PlatformSession.h"
 #include "SessionTeam.h"
 #include "Session.generated.h"
@@ -109,6 +110,28 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetMatch(FRHAPI_MatchInfo NewValue) { Match_Optional = NewValue; Match_IsSet = true; }
      /** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
     void ClearMatch() { Match_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FRHAPI_MatchmakingResults MatchmakingResults_Optional{  };
+    /** @brief true if MatchmakingResults_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MatchmakingResults_IsSet{ false };
+    /** @brief Gets the value of MatchmakingResults_Optional, regardless of it having been set */
+    FRHAPI_MatchmakingResults& GetMatchmakingResults() { return MatchmakingResults_Optional; }
+    /** @brief Gets the value of MatchmakingResults_Optional, regardless of it having been set */
+    const FRHAPI_MatchmakingResults& GetMatchmakingResults() const { return MatchmakingResults_Optional; }
+    /** @brief Gets the value of MatchmakingResults_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_MatchmakingResults& GetMatchmakingResults(const FRHAPI_MatchmakingResults& DefaultValue) const { if (MatchmakingResults_IsSet) return MatchmakingResults_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchmakingResults_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchmakingResults(FRHAPI_MatchmakingResults& OutValue) const { if (MatchmakingResults_IsSet) OutValue = MatchmakingResults_Optional; return MatchmakingResults_IsSet; }
+    /** @brief Returns a pointer to MatchmakingResults_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_MatchmakingResults* GetMatchmakingResultsOrNull() { if (MatchmakingResults_IsSet) return &MatchmakingResults_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchmakingResults_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_MatchmakingResults* GetMatchmakingResultsOrNull() const { if (MatchmakingResults_IsSet) return &MatchmakingResults_Optional; return nullptr; }
+    /** @brief Sets the value of MatchmakingResults_Optional and also sets MatchmakingResults_IsSet to true */
+    void SetMatchmakingResults(FRHAPI_MatchmakingResults NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true; }
+     /** @brief Clears the value of MatchmakingResults_Optional and sets MatchmakingResults_IsSet to false */
+    void ClearMatchmakingResults() { MatchmakingResults_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MatchmakingInfo Matchmaking_Optional{  };

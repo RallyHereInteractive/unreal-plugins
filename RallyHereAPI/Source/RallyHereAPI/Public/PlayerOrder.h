@@ -9,8 +9,8 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "InventoryPortal.h"
 #include "PlayerOrderEntry.h"
+#include "Portal.h"
 #include "Source.h"
 #include "PlayerOrder.generated.h"
 
@@ -90,24 +90,24 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrder : public FRHAPI_Model
 
     /** @brief Portal of the Portal User the Player Order belongs to. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_InventoryPortal PortalId_Optional{  };
+    ERHAPI_Portal PortalId_Optional{  };
     /** @brief true if PortalId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool PortalId_IsSet{ false };
     /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-    ERHAPI_InventoryPortal& GetPortalId() { return PortalId_Optional; }
+    ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
     /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-    const ERHAPI_InventoryPortal& GetPortalId() const { return PortalId_Optional; }
+    const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
     /** @brief Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const ERHAPI_InventoryPortal& GetPortalId(const ERHAPI_InventoryPortal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
+    const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPortalId(ERHAPI_InventoryPortal& OutValue) const { if (PortalId_IsSet) OutValue = PortalId_Optional; return PortalId_IsSet; }
+    bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet) OutValue = PortalId_Optional; return PortalId_IsSet; }
     /** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-    ERHAPI_InventoryPortal* GetPortalIdOrNull() { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
+    ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
     /** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-    const ERHAPI_InventoryPortal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
+    const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return &PortalId_Optional; return nullptr; }
     /** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-    void SetPortalId(ERHAPI_InventoryPortal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
+    void SetPortalId(ERHAPI_Portal NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; }
      /** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
     void ClearPortalId() { PortalId_IsSet = false; }
 

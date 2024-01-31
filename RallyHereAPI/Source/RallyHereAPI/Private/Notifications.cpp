@@ -27,6 +27,8 @@ void FRHAPI_Notifications::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("notifications"));
         RallyHereAPI::WriteJsonValue(Writer, Notifications_Optional);
     }
+    Writer->WriteIdentifierPrefix(TEXT("cursor"));
+    RallyHereAPI::WriteJsonValue(Writer, Cursor);
     Writer->WriteObjectEnd();
 }
 
@@ -44,6 +46,8 @@ bool FRHAPI_Notifications::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         Notifications_IsSet = TryGetJsonValue(JsonNotificationsField, Notifications_Optional);
         ParseSuccess &= Notifications_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
+    ParseSuccess &= JsonCursorField.IsValid() && !JsonCursorField->IsNull() && TryGetJsonValue(JsonCursorField, Cursor);
 
     return ParseSuccess;
 }

@@ -12,8 +12,13 @@
 #include "RallyHereAPIHelpers.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "IndividualCCUs.h"
+#include "PlatformIndividualCCUs.h"
+#include "PlatformUnionCCUs.h"
+#include "Platforms.h"
 #include "PlayerLastSeenUpdate.h"
 #include "PlayerPresence.h"
+#include "UnionCCU.h"
 
 namespace RallyHereAPI
 {
@@ -173,14 +178,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetKnownPlatforms : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_Platforms Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_Platforms& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -363,14 +368,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcu : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_UnionCCU Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -419,14 +424,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformCombined : pub
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformUnionCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -475,14 +480,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuAllPlatformIndividual : p
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformIndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -535,14 +540,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuIndividual : public FResp
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_IndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -592,14 +597,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformCombined : public
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformUnionCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -649,14 +654,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetRequestingCcuPlatformIndividual : publ
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformIndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -711,14 +716,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcu : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_UnionCCU Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -767,14 +772,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformCombined : public F
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformUnionCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -823,14 +828,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuAllPlatformIndividual : public
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformIndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -883,14 +888,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuIndividual : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_IndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -940,14 +945,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformCombined : public FRes
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformUnionCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -997,14 +1002,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetTotalCcuPlatformIndividual : public FR
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformIndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1059,14 +1064,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcu : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_UnionCCU Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1115,14 +1120,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformCombined : publi
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformUnionCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1171,14 +1176,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuAllPlatformIndividual : pub
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformIndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1231,14 +1236,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuIndividual : public FRespon
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_IndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1288,14 +1293,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformCombined : public F
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformUnionCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1345,14 +1350,14 @@ struct RALLYHEREAPI_API FResponse_AdminGetUpdatingCcuPlatformIndividual : public
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    FRHAPI_PlatformIndividualCCUs Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -1475,7 +1480,7 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
     bool ParseHeaders() override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    
     // Headers
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> ETag;
@@ -1484,7 +1489,6 @@ struct RALLYHEREAPI_API FResponse_AdminUpdatePlayerLastSeenId : public FResponse
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
     /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
     TOptional<FString> GetHeader200_ETag() const;
 

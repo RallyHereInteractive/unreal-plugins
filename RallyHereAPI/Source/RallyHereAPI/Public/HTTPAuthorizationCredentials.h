@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief 
+ * @brief The HTTP authorization credentials in the result of using &#x60;HTTPBearer&#x60; or &#x60;HTTPDigest&#x60; in a dependency.  The HTTP authorization header value is split by the first space.  The first part is the &#x60;scheme&#x60;, the second part is the &#x60;credentials&#x60;.  For example, in an HTTP Bearer token scheme, the client will send a header like:  &#x60;&#x60;&#x60; Authorization: Bearer deadbeef12346 &#x60;&#x60;&#x60;  In this case:  * &#x60;scheme&#x60; will have the value &#x60;\&quot;Bearer\&quot;&#x60; * &#x60;credentials&#x60; will have the value &#x60;\&quot;deadbeef12346\&quot;&#x60;
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_HTTPAuthorizationCredentials : public FRHAPI_Model
