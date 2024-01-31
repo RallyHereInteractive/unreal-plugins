@@ -9,19 +9,7 @@
 // this is done here rather than at point of use, as the UHT / UBT system wants to treat this as a "first party" file and enforce unreal include orders
 THIRD_PARTY_INCLUDES_START
 
-#if PLATFORM_WINDOWS
-// define RH_EXPORT macro into include mode
-#define RH_EXPORT __declspec(dllimport)
-#define RH_CPP_EXPORT __declspec(dllimport)
-#else
-#define RH_EXPORT
-#define RH_CPP_EXPORT
-#endif
-
 #include "game-host-adapter/c_api.h"
-
-#undef RH_EXPORT
-#undef RH_CPP_EXPORT
 
 // declare a foreach macro for each known imported function, to reduce boilerplate
 #define FOREACH_RHGHA_IMPORT_FUNC() \
