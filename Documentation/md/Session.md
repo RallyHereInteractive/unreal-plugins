@@ -974,8 +974,6 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OfflineSession_1a15f9d178c350737ffd1c7315b174b9d3)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OfflineSession_1a42d2adfee51e818244e98e0d0888f410)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
-`public virtual void `[`StartMatch`](#classURH__OfflineSession_1ab4a188cca6cdc1bc9171349041d757c8)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Starts the match of the instance on the session.
-`public virtual void `[`EndMatch`](#classURH__OfflineSession_1a223aa688a4f71b889c4e18605e978ced)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Ends the match of the instance on the session.
 `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OfflineSession_1a8b36aeef35d1acbe6e6af22d9a55cf0f)`(const `[`FRHAPI_InstanceInfoUpdate`](models/RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OfflineSession_1a1efa399f684ce083ce292c87717f22ad)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1058,22 +1056,6 @@ Shutdown the existing instance for the session.
 
 #### Parameters
 * `Delegate` Callback delegate for the session being updated with the instance ending.
-
-<br>
-#### `public virtual void `[`StartMatch`](#classURH__OfflineSession_1ab4a188cca6cdc1bc9171349041d757c8)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ab4a188cca6cdc1bc9171349041d757c8"></a>
-
-Starts the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match start.
-
-<br>
-#### `public virtual void `[`EndMatch`](#classURH__OfflineSession_1a223aa688a4f71b889c4e18605e978ced)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a223aa688a4f71b889c4e18605e978ced"></a>
-
-Ends the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match end.
 
 <br>
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a298d217d999690851348cb4041ff7599"></a>
@@ -1168,8 +1150,6 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`Leave`](#classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OnlineSession_1aae906a67108cba268d73786229e8aa94)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OnlineSession_1a38a05f415495a019c3f02fcae76317ec)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
-`public virtual void `[`StartMatch`](#classURH__OnlineSession_1a0f028da11d7b9881afa4400ee58bc5e1)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Starts the match of the instance on the session.
-`public virtual void `[`EndMatch`](#classURH__OnlineSession_1a4cc20fcaa5c722e3aa23272b344ac563)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Ends the match of the instance on the session.
 `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OnlineSession_1abdfc1e53b834da4afdfdce29de9b318b)`(const `[`FRHAPI_InstanceInfoUpdate`](models/RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OnlineSession_1a35197db28a89b5325ef4384dca5d76c8)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1391,22 +1371,6 @@ Shutdown the existing instance for the session.
 
 #### Parameters
 * `Delegate` Callback delegate for the session being updated with the instance ending.
-
-<br>
-#### `public virtual void `[`StartMatch`](#classURH__OnlineSession_1a0f028da11d7b9881afa4400ee58bc5e1)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a0f028da11d7b9881afa4400ee58bc5e1"></a>
-
-Starts the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match start.
-
-<br>
-#### `public virtual void `[`EndMatch`](#classURH__OnlineSession_1a4cc20fcaa5c722e3aa23272b344ac563)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a4cc20fcaa5c722e3aa23272b344ac563"></a>
-
-Ends the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match end.
 
 <br>
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50"></a>
