@@ -6,6 +6,7 @@
 --------------------------------|---------------------------------------------
 `class `[`URH_MatchmakingQueueInfo`](#classURH__MatchmakingQueueInfo) | Class to define a matchmaking queue.
 `class `[`URH_MatchmakingTemplateGroupInfo`](#classURH__MatchmakingTemplateGroupInfo) | Class to organize a matchmaking Templates information.
+`class `[`URH_MatchmakingProfileInfo`](#classURH__MatchmakingProfileInfo) | Class to organize a matchmaking Profiles information.
 `class `[`URH_InstanceRequestTemplate`](#classURH__InstanceRequestTemplate) | Class to organize a Instance Request Templates information.
 `class `[`URH_MatchmakingBrowserCache`](#classURH__MatchmakingBrowserCache) | Simple container class to hold matchmaking data, does not have its own auth context, relies upon getting it from elsewhere during calls, so that it can be used to cache across multiple players.
 `struct `[`FRH_QueueSearchParams`](#structFRH__QueueSearchParams) | Struct to define queue search parameters.
@@ -135,6 +136,57 @@ Imports template info from an API call.
 Gets a description of the template, display its id for debugging.
 
 <br>
+## class `URH_MatchmakingProfileInfo` <a id="classURH__MatchmakingProfileInfo"></a>
+
+```
+class URH_MatchmakingProfileInfo
+  : public UObject
+```
+
+Class to organize a matchmaking Profiles information.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public inline const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#classURH__MatchmakingProfileInfo_1a7e7bedc948b5df9807c65049887a9e94)`() const` | Gets the template info.
+`public inline const FString & `[`GetETag`](#classURH__MatchmakingProfileInfo_1a7df50ac8372ec5355d06b60a16df508d)`() const` | Gets the Etag for the template info.
+`public inline const FString & `[`GetProfileId`](#classURH__MatchmakingProfileInfo_1a92f892bc995361fb97c8cbc8c66a44da)`() const` | ID for this set of potential matchmaking templates.
+`public inline void `[`ImportAPIProfile`](#classURH__MatchmakingProfileInfo_1a9dd1be36d55cc15ef0ece4a15bcb94bd)`(const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & APIProfile,const FString & InETag)` | Imports profile info from an API call.
+`public inline FString `[`GetDescription`](#classURH__MatchmakingProfileInfo_1a46ec1205f947cb0f88626d6f2c121c6f)`() const` | Gets a description of the template, display its id for debugging.
+
+#### Members
+
+#### `public inline const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & `[`GetProfile`](#classURH__MatchmakingProfileInfo_1a7e7bedc948b5df9807c65049887a9e94)`() const` <a id="classURH__MatchmakingProfileInfo_1a7e7bedc948b5df9807c65049887a9e94"></a>
+
+Gets the template info.
+
+<br>
+#### `public inline const FString & `[`GetETag`](#classURH__MatchmakingProfileInfo_1a7df50ac8372ec5355d06b60a16df508d)`() const` <a id="classURH__MatchmakingProfileInfo_1a7df50ac8372ec5355d06b60a16df508d"></a>
+
+Gets the Etag for the template info.
+
+<br>
+#### `public inline const FString & `[`GetProfileId`](#classURH__MatchmakingProfileInfo_1a92f892bc995361fb97c8cbc8c66a44da)`() const` <a id="classURH__MatchmakingProfileInfo_1a92f892bc995361fb97c8cbc8c66a44da"></a>
+
+ID for this set of potential matchmaking templates.
+
+<br>
+#### `public inline void `[`ImportAPIProfile`](#classURH__MatchmakingProfileInfo_1a9dd1be36d55cc15ef0ece4a15bcb94bd)`(const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & APIProfile,const FString & InETag)` <a id="classURH__MatchmakingProfileInfo_1a9dd1be36d55cc15ef0ece4a15bcb94bd"></a>
+
+Imports profile info from an API call.
+
+#### Parameters
+* `APIProfile` Profile info from API call. 
+
+* `InETag` ETag from API call.
+
+<br>
+#### `public inline FString `[`GetDescription`](#classURH__MatchmakingProfileInfo_1a46ec1205f947cb0f88626d6f2c121c6f)`() const` <a id="classURH__MatchmakingProfileInfo_1a46ec1205f947cb0f88626d6f2c121c6f"></a>
+
+Gets a description of the template, display its id for debugging.
+
+<br>
 ## class `URH_InstanceRequestTemplate` <a id="classURH__InstanceRequestTemplate"></a>
 
 ```
@@ -212,21 +264,30 @@ Simple container class to hold matchmaking data, does not have its own auth cont
 `public inline void `[`BLUEPRINT_SearchQueues`](#classURH__MatchmakingBrowserCache_1a9abc7b72ccdaf7221103a5672d912d82)`(const `[`FRH_QueueSearchParams`](MatchmakingBrowser.md#structFRH__QueueSearchParams)` & params,const FRH_OnQueueSearchCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1ad03ac193720eba4073da3d52854d7360)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock & Delegate)` | Search for a matchmaking template.
 `public inline void `[`BLUEPRINT_SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a401e5ed7ec61a89b9c9bd9bfa711bd67)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate & Delegate)` | 
+`public void `[`SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1ad120b4e1486d486c43a63460e8f601dd)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDelegateBlock & Delegate)` | Search for a matchmaking profiles.
+`public inline void `[`BLUEPRINT_SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a820d21853c61f75ca4a9de6dbc6d60b5)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a3f8201f2b4185755194cea5b084b60f2)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock & Delegate)` | Search for an instance launch template.
 `public inline void `[`BLUEPRINT_SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a8a33bdd8eaf6dd18cea26c877436f526)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate & Delegate)` | 
 `public void `[`SearchRegions`](#classURH__MatchmakingBrowserCache_1a5d947800e76bf2a7f42a97f7b57d5c87)`(const FRH_OnRegionSearchCompleteDelegateBlock & Delegate)` | Search for matchmaking regions.
 `public inline void `[`BLUEPRINT_SearchRegions`](#classURH__MatchmakingBrowserCache_1a4c2d949c15795848d3f6218a12887832)`(const FRH_OnRegionSearchCompleteDynamicDelegate & Delegate)` | 
 `public inline `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * `[`GetQueue`](#classURH__MatchmakingBrowserCache_1ad5e5847ba5ab4fd96b6e8303bc757673)`(const FString & QueueId) const` | Get a cached queue by Queue Id.
-`public inline FORCEINLINE TArray< `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * > `[`GetAllQueues`](#classURH__MatchmakingBrowserCache_1acc6cf6d685038c0c9c2104c8d36c6dda)`() const` | Get all cached queues.
 `public inline `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * `[`GetMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a768be90ca3e0b3d27f489b3faffb0b97)`(const FGuid & TemplateGroupId) const` | Get a cached matchmaking template by Template Id.
+`public inline `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * `[`GetMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a2866e2052e00350d9d8cdb93b5ea237a)`(const FString & ProfileId) const` | Get a cached matchmaking template by Template Id.
 `public inline `[`URH_InstanceRequestTemplate`](MatchmakingBrowser.md#classURH__InstanceRequestTemplate)` * `[`GetInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a42ac148127a03d9f6217910af1368828)`(const FGuid & InstanceRequestTemplateId) const` | Get a cached instance request template by Template Id.
+`public inline bool `[`GetRegion`](#classURH__MatchmakingBrowserCache_1af2c5ac0df83ec2dec39aa85561665e74)`(const FString & RegionId,`[`FRHAPI_SiteSettings`](models/RHAPI_SiteSettings.md#structFRHAPI__SiteSettings)` & OutRegion) const` | Get a cached region by Region Id.
+`public inline FORCEINLINE TArray< `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * > `[`GetAllQueues`](#classURH__MatchmakingBrowserCache_1acc6cf6d685038c0c9c2104c8d36c6dda)`() const` | Get all cached queues.
+`public inline const TArray< `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * > `[`GetAllMatchmakingTemplateGroups`](#classURH__MatchmakingBrowserCache_1a317f7e3dfacb2655b90f9b800b44a3ee)`() const` | Get all cached matchmaking templates.
+`public inline const TArray< `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * > `[`GetAllMatchmakingProfiles`](#classURH__MatchmakingBrowserCache_1a9219e421c0d36387df20d83672003753)`() const` | Get all cached matchmaking profiles.
+`public inline const TArray< `[`URH_InstanceRequestTemplate`](MatchmakingBrowser.md#classURH__InstanceRequestTemplate)` * > `[`GetAllInstanceRequestTemplates`](#classURH__MatchmakingBrowserCache_1a45a7dcf847d413bd118f942dd770130b)`() const` | Get all cached instance request templates.
 `public inline const TArray< `[`FRHAPI_SiteSettings`](models/RHAPI_SiteSettings.md#structFRHAPI__SiteSettings)` > & `[`GetAllRegions`](#classURH__MatchmakingBrowserCache_1af72098f3ad79f03f4eebb0e156a244f5)`() const` | Get all cached matchmaking regions.
 `public inline void `[`ClearCache`](#classURH__MatchmakingBrowserCache_1a025eb8002aeeb328ea4dc90d9ddf0cb7)`()` | Clears the cache of all queues and templates.
 `public void `[`ImportAPIQueue`](#classURH__MatchmakingBrowserCache_1a2211b26aa34c82987f9c750dbd02e771)`(const `[`FRHAPI_QueueConfigV2`](models/RHAPI_QueueConfigV2.md#structFRHAPI__QueueConfigV2)` & APIQueue,const FString & ETag)` | Imports queue info from an API call.
-`public void `[`ImportAPITemplateGroup`](#classURH__MatchmakingBrowserCache_1a20a6a2c8c4557265571f0e34f8eb246d)`(const `[`FRHAPI_MatchMakingTemplateGroupV2`](models/RHAPI_MatchMakingTemplateGroupV2.md#structFRHAPI__MatchMakingTemplateGroupV2)` & APITemplateGroup,const FString & ETag)` | Imports template info from an API call.
+`public void `[`ImportAPIMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a5c027f8f2825c8ab12993cc68b3e8d6f)`(const `[`FRHAPI_MatchMakingTemplateGroupV2`](models/RHAPI_MatchMakingTemplateGroupV2.md#structFRHAPI__MatchMakingTemplateGroupV2)` & APITemplateGroup,const FString & ETag)` | Imports template info from an API call.
+`public void `[`ImportAPIMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a9d7b941805808803430cfc1ca7fbf939)`(const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & APIProfile,const FString & ETag)` | Imports profile info from an API call.
 `public void `[`ImportAPIInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1aec281f583cfc8c2f2b9da701815afb4a)`(const `[`FRHAPI_InstanceRequestTemplate`](models/RHAPI_InstanceRequestTemplate.md#structFRHAPI__InstanceRequestTemplate)` & APITemplate,const FString & ETag)` | Imports template info from an API call.
 `protected TMap< FString, `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * > `[`QueueCache`](#classURH__MatchmakingBrowserCache_1a2a75852ef2d0fb69f17d52bbacfbc3af) | Map of Queue Id to Queue Infos.
-`protected TMap< FGuid, `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * > `[`TemplateGroupCache`](#classURH__MatchmakingBrowserCache_1a605b9ddc4ffcab08985920a0ff341168) | Map of Template Id to Matchmaking Template Group Infos.
+`protected TMap< FGuid, `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * > `[`MatchmakingTemplateGroupCache`](#classURH__MatchmakingBrowserCache_1a1bf4997104b834d957c1f73e1d5937bf) | Map of Template Id to Matchmaking Template Group Infos.
+`protected TMap< FString, `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * > `[`MatchmakingProfileCache`](#classURH__MatchmakingBrowserCache_1a0db6df5fa481ad82411d61ab6017647c) | Map of Matchmaking Profile Id to Profile Objects.
 `protected TMap< FGuid, `[`URH_InstanceRequestTemplate`](MatchmakingBrowser.md#classURH__InstanceRequestTemplate)` * > `[`InstanceRequestTemplateCache`](#classURH__MatchmakingBrowserCache_1a0f80a47c99dc221a9d2d3a46a08f7c84) | Map of Template Id to Instance Launch Template Infos.
 `protected TArray< `[`FRHAPI_SiteSettings`](models/RHAPI_SiteSettings.md#structFRHAPI__SiteSettings)` > `[`RegionsCache`](#classURH__MatchmakingBrowserCache_1a3984df761367b754d4a2dcf29a8cc3f1) | Array of Regions.
 
@@ -271,6 +332,19 @@ Search for a matchmaking template.
 #### `public inline void `[`BLUEPRINT_SearchMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a401e5ed7ec61a89b9c9bd9bfa711bd67)`(const FGuid & TemplateId,const FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a401e5ed7ec61a89b9c9bd9bfa711bd67"></a>
 
 <br>
+#### `public void `[`SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1ad120b4e1486d486c43a63460e8f601dd)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDelegateBlock & Delegate)` <a id="classURH__MatchmakingBrowserCache_1ad120b4e1486d486c43a63460e8f601dd"></a>
+
+Search for a matchmaking profiles.
+
+#### Parameters
+* `ProfileId` The matchmaking profile to search for. 
+
+* `Delegate` Callback with the results of the search.
+
+<br>
+#### `public inline void `[`BLUEPRINT_SearchMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a820d21853c61f75ca4a9de6dbc6d60b5)`(const FString & ProfileId,const FRH_OnGetMatchmakingProfileCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a820d21853c61f75ca4a9de6dbc6d60b5"></a>
+
+<br>
 #### `public void `[`SearchInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a3f8201f2b4185755194cea5b084b60f2)`(const FGuid & TemplateId,const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchmakingBrowserCache_1a3f8201f2b4185755194cea5b084b60f2"></a>
 
 Search for an instance launch template.
@@ -300,12 +374,12 @@ Search for matchmaking regions.
 Get a cached queue by Queue Id.
 
 <br>
-#### `public inline FORCEINLINE TArray< `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * > `[`GetAllQueues`](#classURH__MatchmakingBrowserCache_1acc6cf6d685038c0c9c2104c8d36c6dda)`() const` <a id="classURH__MatchmakingBrowserCache_1acc6cf6d685038c0c9c2104c8d36c6dda"></a>
+#### `public inline `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * `[`GetMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a768be90ca3e0b3d27f489b3faffb0b97)`(const FGuid & TemplateGroupId) const` <a id="classURH__MatchmakingBrowserCache_1a768be90ca3e0b3d27f489b3faffb0b97"></a>
 
-Get all cached queues.
+Get a cached matchmaking template by Template Id.
 
 <br>
-#### `public inline `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * `[`GetMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a768be90ca3e0b3d27f489b3faffb0b97)`(const FGuid & TemplateGroupId) const` <a id="classURH__MatchmakingBrowserCache_1a768be90ca3e0b3d27f489b3faffb0b97"></a>
+#### `public inline `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * `[`GetMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a2866e2052e00350d9d8cdb93b5ea237a)`(const FString & ProfileId) const` <a id="classURH__MatchmakingBrowserCache_1a2866e2052e00350d9d8cdb93b5ea237a"></a>
 
 Get a cached matchmaking template by Template Id.
 
@@ -313,6 +387,31 @@ Get a cached matchmaking template by Template Id.
 #### `public inline `[`URH_InstanceRequestTemplate`](MatchmakingBrowser.md#classURH__InstanceRequestTemplate)` * `[`GetInstanceRequestTemplate`](#classURH__MatchmakingBrowserCache_1a42ac148127a03d9f6217910af1368828)`(const FGuid & InstanceRequestTemplateId) const` <a id="classURH__MatchmakingBrowserCache_1a42ac148127a03d9f6217910af1368828"></a>
 
 Get a cached instance request template by Template Id.
+
+<br>
+#### `public inline bool `[`GetRegion`](#classURH__MatchmakingBrowserCache_1af2c5ac0df83ec2dec39aa85561665e74)`(const FString & RegionId,`[`FRHAPI_SiteSettings`](models/RHAPI_SiteSettings.md#structFRHAPI__SiteSettings)` & OutRegion) const` <a id="classURH__MatchmakingBrowserCache_1af2c5ac0df83ec2dec39aa85561665e74"></a>
+
+Get a cached region by Region Id.
+
+<br>
+#### `public inline FORCEINLINE TArray< `[`URH_MatchmakingQueueInfo`](MatchmakingBrowser.md#classURH__MatchmakingQueueInfo)` * > `[`GetAllQueues`](#classURH__MatchmakingBrowserCache_1acc6cf6d685038c0c9c2104c8d36c6dda)`() const` <a id="classURH__MatchmakingBrowserCache_1acc6cf6d685038c0c9c2104c8d36c6dda"></a>
+
+Get all cached queues.
+
+<br>
+#### `public inline const TArray< `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * > `[`GetAllMatchmakingTemplateGroups`](#classURH__MatchmakingBrowserCache_1a317f7e3dfacb2655b90f9b800b44a3ee)`() const` <a id="classURH__MatchmakingBrowserCache_1a317f7e3dfacb2655b90f9b800b44a3ee"></a>
+
+Get all cached matchmaking templates.
+
+<br>
+#### `public inline const TArray< `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * > `[`GetAllMatchmakingProfiles`](#classURH__MatchmakingBrowserCache_1a9219e421c0d36387df20d83672003753)`() const` <a id="classURH__MatchmakingBrowserCache_1a9219e421c0d36387df20d83672003753"></a>
+
+Get all cached matchmaking profiles.
+
+<br>
+#### `public inline const TArray< `[`URH_InstanceRequestTemplate`](MatchmakingBrowser.md#classURH__InstanceRequestTemplate)` * > `[`GetAllInstanceRequestTemplates`](#classURH__MatchmakingBrowserCache_1a45a7dcf847d413bd118f942dd770130b)`() const` <a id="classURH__MatchmakingBrowserCache_1a45a7dcf847d413bd118f942dd770130b"></a>
+
+Get all cached instance request templates.
 
 <br>
 #### `public inline const TArray< `[`FRHAPI_SiteSettings`](models/RHAPI_SiteSettings.md#structFRHAPI__SiteSettings)` > & `[`GetAllRegions`](#classURH__MatchmakingBrowserCache_1af72098f3ad79f03f4eebb0e156a244f5)`() const` <a id="classURH__MatchmakingBrowserCache_1af72098f3ad79f03f4eebb0e156a244f5"></a>
@@ -335,12 +434,22 @@ Imports queue info from an API call.
 * `InETag` ETag from API call.
 
 <br>
-#### `public void `[`ImportAPITemplateGroup`](#classURH__MatchmakingBrowserCache_1a20a6a2c8c4557265571f0e34f8eb246d)`(const `[`FRHAPI_MatchMakingTemplateGroupV2`](models/RHAPI_MatchMakingTemplateGroupV2.md#structFRHAPI__MatchMakingTemplateGroupV2)` & APITemplateGroup,const FString & ETag)` <a id="classURH__MatchmakingBrowserCache_1a20a6a2c8c4557265571f0e34f8eb246d"></a>
+#### `public void `[`ImportAPIMatchmakingTemplateGroup`](#classURH__MatchmakingBrowserCache_1a5c027f8f2825c8ab12993cc68b3e8d6f)`(const `[`FRHAPI_MatchMakingTemplateGroupV2`](models/RHAPI_MatchMakingTemplateGroupV2.md#structFRHAPI__MatchMakingTemplateGroupV2)` & APITemplateGroup,const FString & ETag)` <a id="classURH__MatchmakingBrowserCache_1a5c027f8f2825c8ab12993cc68b3e8d6f"></a>
 
 Imports template info from an API call.
 
 #### Parameters
 * `APITemplateGroup` Template info from API call. 
+
+* `InETag` ETag from API call.
+
+<br>
+#### `public void `[`ImportAPIMatchmakingProfile`](#classURH__MatchmakingBrowserCache_1a9d7b941805808803430cfc1ca7fbf939)`(const `[`FRHAPI_MatchMakingProfileV2`](models/RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` & APIProfile,const FString & ETag)` <a id="classURH__MatchmakingBrowserCache_1a9d7b941805808803430cfc1ca7fbf939"></a>
+
+Imports profile info from an API call.
+
+#### Parameters
+* `APIProfile` Profile info from API call. 
 
 * `InETag` ETag from API call.
 
@@ -360,9 +469,14 @@ Imports template info from an API call.
 Map of Queue Id to Queue Infos.
 
 <br>
-#### `protected TMap< FGuid, `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * > `[`TemplateGroupCache`](#classURH__MatchmakingBrowserCache_1a605b9ddc4ffcab08985920a0ff341168) <a id="classURH__MatchmakingBrowserCache_1a605b9ddc4ffcab08985920a0ff341168"></a>
+#### `protected TMap< FGuid, `[`URH_MatchmakingTemplateGroupInfo`](MatchmakingBrowser.md#classURH__MatchmakingTemplateGroupInfo)` * > `[`MatchmakingTemplateGroupCache`](#classURH__MatchmakingBrowserCache_1a1bf4997104b834d957c1f73e1d5937bf) <a id="classURH__MatchmakingBrowserCache_1a1bf4997104b834d957c1f73e1d5937bf"></a>
 
 Map of Template Id to Matchmaking Template Group Infos.
+
+<br>
+#### `protected TMap< FString, `[`URH_MatchmakingProfileInfo`](MatchmakingBrowser.md#classURH__MatchmakingProfileInfo)` * > `[`MatchmakingProfileCache`](#classURH__MatchmakingBrowserCache_1a0db6df5fa481ad82411d61ab6017647c) <a id="classURH__MatchmakingBrowserCache_1a0db6df5fa481ad82411d61ab6017647c"></a>
+
+Map of Matchmaking Profile Id to Profile Objects.
 
 <br>
 #### `protected TMap< FGuid, `[`URH_InstanceRequestTemplate`](MatchmakingBrowser.md#classURH__InstanceRequestTemplate)` * > `[`InstanceRequestTemplateCache`](#classURH__MatchmakingBrowserCache_1a0f80a47c99dc221a9d2d3a46a08f7c84) <a id="classURH__MatchmakingBrowserCache_1a0f80a47c99dc221a9d2d3a46a08f7c84"></a>
