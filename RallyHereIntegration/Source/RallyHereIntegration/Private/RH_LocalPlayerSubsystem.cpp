@@ -197,12 +197,12 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 
 }
 
-void URH_LocalPlayerSubsystem::OnUserLoggedOut()
+void URH_LocalPlayerSubsystem::OnUserLoggedOut(bool bRefreshTokenExpired)
 {
 	// trigger login as failure, to push logout to game instance
 	OnUserLoggedIn(false);
 
-	// trigger use change, to handle user delta resposne
+	// trigger use change, to handle user delta response
 	OnUserChanged();
 }
 

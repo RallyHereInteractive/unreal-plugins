@@ -134,6 +134,42 @@ void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
     }
 }
 
+void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
+{
+    const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
+
+    // if refresh was successful, use normal login handler
+    if (bSuccess)
+    {
+        ProcessLogin(LoginResponse_);
+        return;
+    }
+
+    // if refresh was not successful, dispatch delegate to attempt to relogin
+    if (RefreshTokenExpired.IsBound())
+    {
+        // fire the token expiration delegate if it is bound.  If we are not logged in when its delegate is completed, clear the auth context to log out
+        TWeakPtr<FAuthContext> WeakSharedThis = AsShared();
+        RefreshTokenExpired.Execute(FSimpleDelegate::CreateLambda([WeakSharedThis]() {
+            auto StrongThis = WeakSharedThis.Pin();
+            if (StrongThis.IsValid())
+            {
+                StrongThis->bIsRefreshing = false;
+                if (!StrongThis->IsLoggedIn())
+                {
+                    StrongThis->ClearAuthContext(true);
+                }
+            }
+        }));
+    }
+    else
+    {
+        // no handler is bound for when the refresh token expires, so clear the auth context to log out
+        bIsRefreshing = false;
+        ClearAuthContext(true);
+    }
+}
+
 bool FAuthContext::IsSameUser(const TOptional<{{unrealModelPrefix}}LoginResult>& A, const TOptional<{{unrealModelPrefix}}LoginResult>& B)
 {
     if (A.IsSet() != B.IsSet())
@@ -165,7 +201,7 @@ bool FAuthContext::Refresh()
     }
 
     FDelegate_Login Delegate;
-    Delegate.BindSP(AsShared(), &FAuthContext::ProcessLogin);
+    Delegate.BindSP(AsShared(), &FAuthContext::ProcessLoginRefresh);
     FRequest_Login Request;
     Request.AuthContext = SharedThis(this);
     Request.LoginRequestV1.SetIncludeRefresh(true);
@@ -177,14 +213,15 @@ bool FAuthContext::Refresh()
     return bIsRefreshing;
 }
 
-void FAuthContext::ClearAuthContext()
+void FAuthContext::ClearAuthContext(bool bRefreshTokenExpired)
 {
+    bIsRefreshing = false;
     LoginResult.Reset();
     TokenResponse.Reset();
 
     {
         SCOPED_NAMED_EVENT(RallyHere_BroadcastLogout, FColor::Purple);
-        Logout.Broadcast();
+        Logout.Broadcast(bRefreshTokenExpired);
     }
 }
 

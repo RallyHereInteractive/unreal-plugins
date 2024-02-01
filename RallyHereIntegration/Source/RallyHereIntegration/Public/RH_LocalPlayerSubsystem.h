@@ -235,7 +235,7 @@ protected:
 	/**
 	 * @brief Called whenever the user logs out explicitly.
 	 */
-	virtual void OnUserLoggedOut();
+	virtual void OnUserLoggedOut(bool bRefreshTokenExpired);
 	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
 	virtual void OnUserChanged();
 	/** @brief The Login Subsystem for the player. */
