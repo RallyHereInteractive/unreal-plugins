@@ -1670,8 +1670,9 @@ Subsystem to manage the local player.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
-`protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a9ea340cc151118f71e42ddb33299dacc)`()` | Called whenever the user logs out explicitly.
+`protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5)`(bool bRefreshTokenExpired)` | Called whenever the user logs out explicitly.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
+`protected virtual void `[`OnUserRefreshTokenExpired`](#classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56)`(FSimpleDelegate CompletionDelegate)` | Callback that occurs when the player's refresh token expires while logged in.
 
 #### Members
 
@@ -1920,7 +1921,7 @@ Called whenever the user logs in.
 * `bSuccess` True if the login was successful, false otherwise.
 
 <br>
-#### `protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a9ea340cc151118f71e42ddb33299dacc)`()` <a id="classURH__LocalPlayerSubsystem_1a9ea340cc151118f71e42ddb33299dacc"></a>
+#### `protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5)`(bool bRefreshTokenExpired)` <a id="classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5"></a>
 
 Called whenever the user logs out explicitly.
 
@@ -1928,6 +1929,11 @@ Called whenever the user logs out explicitly.
 #### `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` <a id="classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7"></a>
 
 Callback that occurs whenever the local player this subsystem is associated with changes.
+
+<br>
+#### `protected virtual void `[`OnUserRefreshTokenExpired`](#classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56)`(FSimpleDelegate CompletionDelegate)` <a id="classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56"></a>
+
+Callback that occurs when the player's refresh token expires while logged in.
 
 <br>
 ## struct `FRH_LoginResult` <a id="structFRH__LoginResult"></a>
