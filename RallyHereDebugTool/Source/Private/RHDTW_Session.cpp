@@ -1699,23 +1699,23 @@ void FRHDTW_Session::ImGuiDisplayRegionsBrowser(URH_GameInstanceSubsystem* pGISu
 		ImGui::TableSetupColumn("Region ID");
 		ImGui::TableSetupColumn("Custom Only");
 		ImGui::TableSetupColumn("Sort Order");
-		ImGui::TableSetupColumn("Message");
+		ImGui::TableSetupColumn("Description");
 		ImGui::TableHeadersRow();
 
 		// Content
 		for (const auto& Region : pGIMatchmakingCache->GetAllRegions())
 		{
-			ImGui::PushID(Region.SiteId);
+			ImGui::PushID(TCHAR_TO_ANSI(*Region.GetRegionId()));
 
 			ImGui::TableNextRow();
 			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(TEXT("RegionID"), FString::Printf(TEXT("%d"), Region.SiteId), ECopyMode::Value);
+			ImGuiDisplayCopyableValue(TEXT("RegionID"), Region.GetRegionId(), ECopyMode::Value);
 			ImGui::TableNextColumn();
 			ImGui::Text("%d", Region.CustomOnly);
 			ImGui::TableNextColumn();
 			ImGui::Text("%d", Region.SortOrder);
 			ImGui::TableNextColumn();
-			ImGuiDisplayCopyableValue(TEXT("Message"), Region.GetMessageNameOrNull(), ECopyMode::Value);
+			ImGuiDisplayCopyableValue(TEXT("Description"), Region.GetDescriptionOrNull(), ECopyMode::Value);
 
 			ImGui::PopID();
 		}

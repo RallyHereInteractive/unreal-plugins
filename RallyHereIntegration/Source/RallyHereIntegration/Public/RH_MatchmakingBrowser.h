@@ -95,9 +95,9 @@ DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock,
 
 // delegate for region search complete
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnRegionSearchCompleteDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_SiteSettings>&, Result, const FRH_ErrorInfo&, ErrorInfo);
-DECLARE_DELEGATE_ThreeParams(FRH_OnRegionSearchCompleteDelegate, bool, const TArray<FRHAPI_SiteSettings>&, const FRH_ErrorInfo&);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnRegionSearchCompleteDelegateBlock, FRH_OnRegionSearchCompleteDelegate, FRH_OnRegionSearchCompleteDynamicDelegate, bool, const TArray<FRHAPI_SiteSettings>&, const FRH_ErrorInfo&);
+DECLARE_DYNAMIC_DELEGATE_FourParams(FRH_OnRegionSearchCompleteDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_Region>&, Result, int32, Cursor, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_FourParams(FRH_OnRegionSearchCompleteDelegate, bool, const TArray<FRHAPI_Region>&, int32 Cursor, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnRegionSearchCompleteDelegateBlock, FRH_OnRegionSearchCompleteDelegate, FRH_OnRegionSearchCompleteDynamicDelegate, bool, const TArray<FRHAPI_Region>&, int32, const FRH_ErrorInfo&);
 
 // multicast delegates for region search complete
 DECLARE_MULTICAST_DELEGATE_OneParam(FRegionSettingsUpdatedDelegate, URH_MatchmakingBrowserCache*);
@@ -340,9 +340,9 @@ public:
 	 * @brief Search for matchmaking regions.
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
-	void SearchRegions(const FRH_OnRegionSearchCompleteDelegateBlock& Delegate = FRH_OnRegionSearchCompleteDelegateBlock());
+	void SearchRegions(int32 Cursor = 0, const FRH_OnRegionSearchCompleteDelegateBlock& Delegate = FRH_OnRegionSearchCompleteDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Template Group", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_SearchRegions(const FRH_OnRegionSearchCompleteDynamicDelegate& Delegate) { SearchRegions(Delegate); }
+	void BLUEPRINT_SearchRegions(int32 Cursor, const FRH_OnRegionSearchCompleteDynamicDelegate& Delegate) { SearchRegions(Cursor, Delegate); }
 	/** @brief Get a cached queue by Queue Id. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
 	URH_MatchmakingQueueInfo* GetQueue(const FString& QueueId) const
@@ -373,17 +373,13 @@ public:
 	}
 	/** @brief Get a cached region by Region Id. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Region")
-	bool GetRegion(const FString& RegionId, FRHAPI_SiteSettings& OutRegion) const
+	bool GetRegion(const FString& RegionId, FRHAPI_Region& OutRegion) const
 	{
-		// Region id is still half converted from int32 to string, so convert here for comparison
-		int32 Id = FCString::Atoi(*RegionId);
-		for (auto& Region : RegionsCache)
+		auto ptr = RegionsCache.Find(RegionId);
+		if (ptr != nullptr)
 		{
-			if (Region.SiteId == Id)
-			{
-				OutRegion = Region;
-				return true;
-			}
+			OutRegion = *ptr;
+			return true;
 		}
 		return false;
 	}
@@ -422,9 +418,11 @@ public:
 	}
 	/** @brief Get all cached matchmaking regions. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Region")
-	const TArray<FRHAPI_SiteSettings>& GetAllRegions() const
+	TArray<FRHAPI_Region> GetAllRegions() const
 	{
-		return RegionsCache;
+		TArray<FRHAPI_Region> Result;
+		RegionsCache.GenerateValueArray(Result);
+		return Result;
 	}
 	/** @brief Delegate to listen for matchmaking regions updated. */
 	FRegionSettingsUpdatedDelegate OnRegionsUpdatedNative;
@@ -437,6 +435,10 @@ public:
 		MatchmakingTemplateGroupCache.Reset();
 		MatchmakingProfileCache.Reset();
 		InstanceRequestTemplateCache.Reset();
+	}
+	/** @brief Clears the cache of regions. */
+	void ClearRegionsCache()
+	{
 		RegionsCache.Reset();
 	}
 	/**
@@ -463,6 +465,12 @@ public:
 	 * @param [in] InETag ETag from API call.
 	 */
 	void ImportAPIInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& ETag);
+	/**
+	 * @brief Imports region info from an API call.
+	 * @param [in] APIRegions Region info from API call.
+	 */
+	void ImportAPIRegion(const FRHAPI_Region& APIRegion);
+
 
 protected:
 	/** @brief Map of Queue Id to Queue Infos. */
@@ -479,7 +487,9 @@ protected:
 	TMap<FGuid, URH_InstanceRequestTemplate*> InstanceRequestTemplateCache;
 	/** @brief Array of Regions. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Region")
-	TArray<FRHAPI_SiteSettings> RegionsCache;
+	TMap<FString, FRHAPI_Region> RegionsCache;
+	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Region")
+	int32 LastRegionCursor;
 };
 
 /** @} */

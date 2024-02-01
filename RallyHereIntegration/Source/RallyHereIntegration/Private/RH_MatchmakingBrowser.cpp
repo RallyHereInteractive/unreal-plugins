@@ -232,21 +232,33 @@ void URH_MatchmakingBrowserCache::ImportAPIInstanceRequestTemplate(const FRHAPI_
 	TemplateWrapper->ImportAPIInstanceLaunchTemplate(APITemplate, ETag);
 }
 
-void URH_MatchmakingBrowserCache::SearchRegions(const FRH_OnRegionSearchCompleteDelegateBlock& Delegate)
+void URH_MatchmakingBrowserCache::SearchRegions(int32 Cursor, const FRH_OnRegionSearchCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	typedef RallyHereAPI::Traits_GetSiteSettings BaseType;
+	typedef RallyHereAPI::Traits_GetAllRegions BaseType;
 
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
-	//Request.IfNoneMatch = AppSettingsETag;
+	if (Cursor != 0)
+	{
+		Request.Cursor = Cursor;
+	}
+
+	LastRegionCursor = 0;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
 				if (Resp.IsSuccessful())
 				{
-					RegionsCache = Resp.Content;
+					// merge the regions in to the cache
+					for (auto Region : Resp.Content.GetRegions())
+					{
+						ImportAPIRegion(Region);
+					}
+
+					// stash cursor for callback
+					LastRegionCursor = Resp.Content.GetCursor();
 
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRegionsUpdated, FColor::Purple);
@@ -257,10 +269,17 @@ void URH_MatchmakingBrowserCache::SearchRegions(const FRH_OnRegionSearchComplete
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				Delegate.ExecuteIfBound(bSuccess, GetAllRegions(), ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, GetAllRegions(), LastRegionCursor, ErrorInfo);
 			}),
-		GetDefault<URH_IntegrationSettings>()->GetSiteSettingsPriority
+		GetDefault<URH_IntegrationSettings>()->GetRegionsPriority
 	);
 
-	Helper->Start(RH_APIs::GetAPIs().GetSite(), Request);
+	Helper->Start(RH_APIs::GetAPIs().GetRegions(), Request);
+}
+
+void URH_MatchmakingBrowserCache::ImportAPIRegion(const FRHAPI_Region& APIRegion)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APIRegion.GetRegionId());
+
+	RegionsCache.Add(APIRegion.GetRegionId(), APIRegion);
 }
