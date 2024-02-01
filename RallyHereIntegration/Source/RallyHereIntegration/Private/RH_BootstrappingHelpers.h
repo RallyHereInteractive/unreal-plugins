@@ -8,6 +8,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_GameInstanceBootstrappers.h"
 #include "RH_GameHostProviderInterface.h"
+#include "OnlineSubsystem.h"
 #include "Tickable.h"
 #include "HttpModule.h"
 
@@ -289,4 +290,234 @@ public:
 	{
 		OnProviderSelfAllocateComplete.ExecuteIfBound(true);
 	}
+};
+
+// helper class that contains the full flow of a server login (so it can be called during bootstrapping, or other times)
+class FRH_ServerLoginHelper : public FRH_AsyncTaskHelper
+{
+	typedef RallyHereAPI::Traits_Login LoginType;
+
+public:
+	FRH_ServerLoginHelper(FAuthContextPtr InAuthContext, IOnlineSubsystem* InOSS, const FRH_GenericSuccessWithErrorDelegate& InDelegate )
+		: AuthContext(InAuthContext)
+		, OSS(InOSS)
+		, Delegate(InDelegate)
+	{
+	}
+
+	void Start()
+	{
+		Started();
+
+		if (AuthContext.IsValid() == false)
+		{
+			Failed(TEXT("Invalid AuthContext"));
+			return;
+		}
+
+		// update the auth context with the current client id and secret in case it changed since prior logins
+		AuthContext->SetClientId(FRallyHereIntegrationModule::Get().GetClientId());
+		AuthContext->SetClientSecret(FRallyHereIntegrationModule::Get().GetClientSecret());
+
+		// if we have an OSS that is valid and has a grant type, use it
+		if (OSS != nullptr && RH_GetGrantTypeFromOSSName(OSS->GetSubsystemName()).IsSet())
+		{
+			DoOSSLogin();
+		}
+		else
+		{
+			DoCredentialLogin();
+		}
+	}
+
+protected:
+
+	void DoOSSLogin()
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		auto Identity = OSS != nullptr ? OSS->GetIdentityInterface() : nullptr;
+		if (!Identity.IsValid())
+		{
+			Failed(FString::Printf(TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__)));
+			return;
+		}
+
+		if (OnOSSLoginCompleteDelegateHandle.IsValid())
+		{
+			Failed(FString::Printf(TEXT("[%s] OSS Login already pending"), ANSI_TO_TCHAR(__FUNCTION__)));
+			return;
+		}
+
+		int32 ControllerId = 0;
+
+		OnOSSLoginCompleteDelegateHandle = Identity->AddOnLoginCompleteDelegate_Handle(
+			ControllerId, FOnLoginCompleteDelegate::CreateSP(this, &FRH_ServerLoginHelper::OnOSSLoginComplete));
+
+		if (!Identity->AutoLogin(ControllerId))
+		{
+			Failed(FString::Printf(TEXT("[%s] Autologin failed"), ANSI_TO_TCHAR(__FUNCTION__)));
+		}
+	}
+
+	void OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
+		if (OSS == nullptr || !Identity.IsValid())
+		{
+			Failed(FString::Printf(TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__)));
+			return;
+		}
+
+		// clear the delegate, because the controller id may change next time
+		Identity->ClearOnLoginCompleteDelegate_Handle(ControllerId, OnOSSLoginCompleteDelegateHandle);
+		OnOSSLoginCompleteDelegateHandle.Reset();
+
+		if (!bSuccessful)
+		{
+			Failed(FString::Printf(TEXT("[%s] OSS Login Failed: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorMessage));
+			return;
+		}
+
+		auto UniqueIdPtr = Identity->GetUniquePlayerId(ControllerId);
+		if (Identity->GetLoginStatus(*UniqueIdPtr) != ELoginStatus::LoggedIn)
+		{
+			Failed(FString::Printf(TEXT("[%s] OSS User Not Logged In: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorMessage));
+			return;
+		}
+
+		if (RH_UseGetAuthTokenFallbackFromOSSName(OSS->GetSubsystemName()))
+		{
+			FExternalAuthToken AuthToken;
+			AuthToken.TokenString = Identity->GetAuthToken(ControllerId);;
+			RetrieveOSSAuthTokenComplete(ControllerId, !AuthToken.IsValid(), AuthToken);
+		}
+		else
+		{
+#if RH_FROM_ENGINE_VERSION(5,2)
+			Identity->GetLinkedAccountAuthToken(ControllerId, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_ServerLoginHelper::RetrieveOSSAuthTokenComplete));
+#else
+			Identity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateSP(this, &FRH_ServerLoginHelper::RetrieveOSSAuthTokenComplete));
+#endif
+		}
+	}
+
+	void RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthTokenWrapper)
+	{
+		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		auto Identity = OSS != nullptr ? OSS->GetIdentityInterface() : nullptr;
+		if (OSS == nullptr || !Identity.IsValid())
+		{
+			Failed(FString::Printf(TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__)));
+			return;
+		}
+
+		if (!bWasSuccessful)
+		{
+			Failed(FString::Printf(TEXT("[%s] Could not retrieve auth token - check that the OSS '%s' was able to fully log in (ex: may have logged into a local account rather than a network account)"), ANSI_TO_TCHAR(__FUNCTION__),
+				*OSS->GetSubsystemName().ToString()));
+			return;
+		}
+		else if (!AuthTokenWrapper.HasTokenString())
+		{
+			Failed(FString::Printf(TEXT("[%s] Auth token has no token string, and RH bootstrapping does not currently support a binary auth token"), ANSI_TO_TCHAR(__FUNCTION__),
+				*OSS->GetSubsystemName().ToString()));
+			return;
+		}
+
+		if (OSS == nullptr)
+		{
+			Failed(TEXT("Invalid OSS"));
+			return;
+		}
+
+		auto GrantType = RH_GetGrantTypeFromOSSName(OSS->GetSubsystemName());
+		if (!GrantType.IsSet())
+		{
+			Failed(FString::Printf(TEXT("[%s] Unable to find grant type for OSS '%s'."), ANSI_TO_TCHAR(__FUNCTION__),
+				*OSS->GetSubsystemName().ToString()));
+			return;
+		}
+
+		LoginType::Request Request;
+		Request.SetShouldRetry();
+		Request.AuthContext = AuthContext;
+		Request.LoginRequestV1.SetIncludeRefresh(true);
+		Request.LoginRequestV1.SetAcceptEula(true);
+		Request.LoginRequestV1.SetAcceptTos(true);
+		Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);
+		Request.LoginRequestV1.SetGrantType(GrantType.GetValue());
+		Request.LoginRequestV1.SetPortalAccessToken(AuthTokenWrapper.TokenString);
+
+		HttpRequest = LoginType::DoCall(RH_APIs::GetAuthAPI(), Request, LoginType::Delegate::CreateSP(this, &FRH_ServerLoginHelper::OnRHLoginComplete), GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
+		if (!HttpRequest)
+		{
+			FString ErrorMsg = FString::Printf(TEXT("Could not create login request"));
+			Failed(*ErrorMsg);
+		}
+	}
+
+	void DoCredentialLogin()
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		LoginType::Request Request;
+		Request.SetShouldRetry();
+		Request.AuthContext = AuthContext;
+		Request.LoginRequestV1.SetIncludeRefresh(true);
+		Request.LoginRequestV1.SetAcceptEula(true);
+		Request.LoginRequestV1.SetAcceptTos(true);
+		Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);
+		Request.LoginRequestV1.SetGrantType(ERHAPI_GrantType::ClientCredentials);
+
+		HttpRequest = LoginType::DoCall(RH_APIs::GetAuthAPI(), Request, LoginType::Delegate::CreateSP(this, &FRH_ServerLoginHelper::OnRHLoginComplete), GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
+		if (!HttpRequest)
+		{
+			FString ErrorMsg = FString::Printf(TEXT("Could not create login request"));
+			Failed(*ErrorMsg);
+		}
+	}
+
+	void OnRHLoginComplete(const LoginType::Response& Resp)
+	{
+		UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		HttpRequest = nullptr;
+
+		// handle the response from the auth context
+		AuthContext->ProcessLogin(Resp);
+
+		if (Resp.IsSuccessful())
+		{
+			Completed(true);
+		}
+		else
+		{
+			Failed(TEXT("RallyHere Login Failed"));
+		}
+	}
+
+	virtual FString GetName() const override
+	{
+		static const FString Name(TEXT("FRH_SessionBootstrappingFinalizer"));
+		return Name;
+	}
+
+	virtual void ExecuteCallback(bool bSuccess) const override
+	{
+		Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
+	}
+
+	FAuthContextPtr AuthContext;
+	IOnlineSubsystem* OSS;
+	FRH_GenericSuccessWithErrorDelegate Delegate;
+	FRH_ErrorInfo ErrorInfo;
+
+	FHttpRequestPtr HttpRequest;
+
+	/** Delegate handle for the OSS login call */
+	FDelegateHandle OnOSSLoginCompleteDelegateHandle;
 };
