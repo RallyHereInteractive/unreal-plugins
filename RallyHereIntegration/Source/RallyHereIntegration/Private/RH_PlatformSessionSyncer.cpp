@@ -242,7 +242,7 @@ void URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(FRH_Sessio
 		return;
 	}
 
-	const auto* PlayerInfo = RHPI->GetOrCreatePlayerInfo(PlayerUuid);
+	auto* PlayerInfo = RHPI->GetOrCreatePlayerInfo(PlayerUuid);
 	if (PlayerInfo == nullptr)
 	{
 		Delegate.ExecuteIfBound(false);
@@ -272,31 +272,67 @@ void URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(FRH_Sessio
 		return;
 	}
 
-	FString PortalUserId;
-	for (const auto& PlatformId : PlayerInfo->GetPlayerPlatformIds())
-	{
-		if (PlatformId.PlatformType == PlayerInfo->GetLoggedInPlatform())
-		{
-			PortalUserId = PlatformId.UserId;
-		}
-	}
-
-	if (PortalUserId.IsEmpty())
+	// if local OSS does not have a RH platform, we cannot check for blocked status based on their linked platforms
+	const auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	if (!OptionalPlatformId.IsSet())
 	{
 		Delegate.ExecuteIfBound(false);
 		return;
 	}
 
-	MessageSanitizer->ResetBlockedUserCache();
-
-	MessageSanitizer->QueryBlockedUser(
-		PlatformUserId,
-		PortalUserId,
-		RH_GetPlatformNameFromPlatformEnum(PlayerInfo->GetLoggedInPlatform()),
-		FOnQueryUserBlockedResponse::CreateLambda([Delegate](const FBlockedQueryResult& QueryResult)
+	PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([Delegate, SessionOwnerPtr, PlatformUserId, OptionalPlatformId](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+		{
+			// if session owner pointer has become stale, do not continue
+			if (!SessionOwnerPtr.IsValid())
 			{
-				Delegate.ExecuteIfBound(QueryResult.bIsBlocked || QueryResult.bIsBlockedNonFriends);
-			}));
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			// look up the OSS again, as this is an async result
+			const IOnlineSubsystem* OSS = SessionOwnerPtr->GetOSS();
+			if (OSS == nullptr)
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			// look up the message sanitizer again, as this is an async result
+			FString AuthTypeToExclude;
+			const IMessageSanitizerPtr MessageSanitizer = OSS->GetMessageSanitizer(PlatformUserId, AuthTypeToExclude);
+			if (!MessageSanitizer.IsValid())
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			// get the platform user id from the linked platforms
+			FString TargetPlatformUserId;
+			for (const auto& PlatformInfo : Platforms)
+			{
+				if (PlatformInfo->GetPlatform() == OptionalPlatformId.GetValue())
+				{
+					TargetPlatformUserId = PlatformInfo->GetPlatformUserId();
+				}
+			}
+
+			if (TargetPlatformUserId.IsEmpty())
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			MessageSanitizer->ResetBlockedUserCache();
+
+			MessageSanitizer->QueryBlockedUser(
+				PlatformUserId,
+				TargetPlatformUserId,
+				RH_GetPlatformNameFromPlatformEnum(OptionalPlatformId.GetValue()),
+				FOnQueryUserBlockedResponse::CreateLambda([Delegate](const FBlockedQueryResult& QueryResult)
+					{
+						Delegate.ExecuteIfBound(QueryResult.bIsBlocked || QueryResult.bIsBlockedNonFriends);
+					}));
+		}));
 }
 
 void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_GenericSuccessWithErrorBlock& Delegate)
