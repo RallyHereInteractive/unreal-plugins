@@ -124,16 +124,18 @@ void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
 
 void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
 {
+	// NOTE - intentionally do not clear bIsRefreshing here, as we want to stay in the refreshing state where we cache failed web calls until we attempt to resolve the expired token
+
     const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
 
-    // if refresh was successful, use normal login handler
+    // if refresh was successful, use normal login handler, which will clear the refreshing state
     if (bSuccess)
     {
         ProcessLogin(LoginResponse_);
         return;
     }
 
-    // if refresh was not successful, dispatch delegate to attempt to relogin
+    // if refresh was not successful, dispatch delegate to attempt to relogin while still in the refreshing state
     if (RefreshTokenExpired.IsBound())
     {
         // fire the token expiration delegate if it is bound.  If we are not logged in when its delegate is completed, clear the auth context to log out
@@ -142,9 +144,10 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
             auto StrongThis = WeakSharedThis.Pin();
             if (StrongThis.IsValid())
             {
-                StrongThis->bIsRefreshing = false;
-                if (!StrongThis->IsLoggedIn())
+                // if we are still marked as refreshing (ProcessLogin did not clear the refreshing state), or we are not logged in, then clear the auth context to fully log out
+                if (StrongThis->bIsRefreshing || !StrongThis->IsLoggedIn())
                 {
+					StrongThis->bIsRefreshing = false;
                     StrongThis->ClearAuthContext(true);
                 }
             }
@@ -152,7 +155,7 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
     }
     else
     {
-        // no handler is bound for when the refresh token expires, so clear the auth context to log out
+        // no handler is bound for when the refresh token expires, so clear the auth context to fully log out
         bIsRefreshing = false;
         ClearAuthContext(true);
     }

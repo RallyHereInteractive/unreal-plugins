@@ -191,6 +191,15 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 		Event.EmitTo(AnalyticsProvider);
 	}
 
+	if (Res.Result == ERHAPI_LoginResult::Success)
+	{
+		LastSuccessfulLoginRequest = Req;
+	}
+	else
+	{
+		LastSuccessfulLoginRequest.Reset();
+	}
+
     Req.OnLoginComplete.ExecuteIfBound(Res);
 
 	SCOPED_NAMED_EVENT(RallyHere_BroadcastOnLoginComplete, FColor::Purple);
@@ -227,6 +236,26 @@ void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcce
     }
 
     SubmitLogin(Credentials, SavedRefreshToken, bAcceptEULA, bAcceptTOS, bAcceptPP, OnLoginCompleteDelegate);
+}
+
+void URH_LocalPlayerLoginSubsystem::ResubmitLastSuccessfulLogin(const FRH_OnLoginComplete& OnLoginCompleteDelegate)
+{
+	if (LastSuccessfulLoginRequest.IsSet())
+	{
+		SubmitLogin(LastSuccessfulLoginRequest->Credentials, LastSuccessfulLoginRequest->CredentialRefreshToken,
+			LastSuccessfulLoginRequest->bAcceptEULA, LastSuccessfulLoginRequest->bAcceptTOS,
+			LastSuccessfulLoginRequest->bAcceptPP, OnLoginCompleteDelegate);
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] No last successful login to resubmit"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		FRH_PendingLoginRequest Req;
+		Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::Login;
+		Req.OnLoginComplete = OnLoginCompleteDelegate;
+
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_ReloginWithoutSavedCredentials));
+	}
 }
 
 void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials& Credentials,

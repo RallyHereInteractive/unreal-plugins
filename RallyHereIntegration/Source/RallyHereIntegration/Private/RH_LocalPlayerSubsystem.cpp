@@ -251,7 +251,7 @@ void URH_LocalPlayerSubsystem::OnUserRefreshTokenExpired(FSimpleDelegate Complet
 	// attempt an autologin
 	if (LoginSubsystem != nullptr)
 	{
-		LoginSubsystem->SubmitAutoLogin(false, false, false, FRH_OnLoginComplete::CreateWeakLambda(this, [this, CompletionDelegate](const FRH_LoginResult&) {
+		LoginSubsystem->ResubmitLastSuccessfulLogin(FRH_OnLoginComplete::CreateWeakLambda(this, [this, CompletionDelegate](const FRH_LoginResult&) {
 			// login has completed, either login was successful (in which case auth context is already updated), or it failed, in which case auth context needs to know to logout
 			CompletionDelegate.ExecuteIfBound();
 		}));
