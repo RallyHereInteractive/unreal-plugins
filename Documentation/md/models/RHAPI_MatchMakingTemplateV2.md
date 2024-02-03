@@ -22,7 +22,7 @@ Configuration about what rules must be satisfied to use this template, and what 
 `public FGuid `[`MatchMakingTemplateId_Optional`](#structFRHAPI__MatchMakingTemplateV2_1a3295d654d889fe7043ad146896039b4b) | ID for this unique MatchMakingTemplate.
 `public bool `[`MatchMakingTemplateId_IsSet`](#structFRHAPI__MatchMakingTemplateV2_1a6c386f1d13fd054ed3af35f140eea282) | true if MatchMakingTemplateId_Optional has been set to a value
 `public ERHAPI_MMRGroupingMethod `[`MmrGroupingMethod`](#structFRHAPI__MatchMakingTemplateV2_1a6851769d87be8fa66eed7673454e6a3e) | What method should be used to calculate a group's MMR based on the individual player's ranks.
-`public `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` `[`Ruleset_Optional`](#structFRHAPI__MatchMakingTemplateV2_1a85ff3e95e6d7eca87856477431951e12) | 
+`public `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` `[`Ruleset_Optional`](#structFRHAPI__MatchMakingTemplateV2_1a85ff3e95e6d7eca87856477431951e12) | A set of rules that determine whether or not this matchmaking config should be used.
 `public bool `[`Ruleset_IsSet`](#structFRHAPI__MatchMakingTemplateV2_1a9de7f5bcdf3afa3e10a05380d1f5caf2) | true if Ruleset_Optional has been set to a value
 `public TArray< `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` > `[`Profiles`](#structFRHAPI__MatchMakingTemplateV2_1abd9787ccfc61fbbce96bd078274122c6) | A list of which match making profiles are going to be created on the ticket.
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateV2_1a09913cfeba8e84397ee528f2b90b6278)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -68,6 +68,8 @@ What method should be used to calculate a group's MMR based on the individual pl
 
 <br>
 #### `public `[`FRHAPI_MatchMakingRuleset`](RHAPI_MatchMakingRuleset.md#structFRHAPI__MatchMakingRuleset)` `[`Ruleset_Optional`](#structFRHAPI__MatchMakingTemplateV2_1a85ff3e95e6d7eca87856477431951e12) <a id="structFRHAPI__MatchMakingTemplateV2_1a85ff3e95e6d7eca87856477431951e12"></a>
+
+A set of rules that determine whether or not this matchmaking config should be used.
 
 <br>
 #### `public bool `[`Ruleset_IsSet`](#structFRHAPI__MatchMakingTemplateV2_1a9de7f5bcdf3afa3e10a05380d1f5caf2) <a id="structFRHAPI__MatchMakingTemplateV2_1a9de7f5bcdf3afa3e10a05380d1f5caf2"></a>

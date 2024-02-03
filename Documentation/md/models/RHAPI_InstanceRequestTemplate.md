@@ -20,7 +20,7 @@ Configuration about how an instance should behave when it&#39;s allocated.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FGuid `[`InstanceRequestTemplateId`](#structFRHAPI__InstanceRequestTemplate_1af5b45933ea6a680723d746ad01d20a6f) | ID to uniquely identify this instance launch template.
-`public `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` `[`MapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a4ef0b1d2d12365b73ba57d3f17028cd1) | 
+`public `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` `[`MapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a4ef0b1d2d12365b73ba57d3f17028cd1) | A selection list of maps that can be chosen to launch into.
 `public ERHAPI_HostType `[`DefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a5ba4b7d3a1cae608a8bcbc1d47e13874) | Default host type for this template. Can be overriden in instance requests.
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__InstanceRequestTemplate_1ae5ca6a7369d28296f09fa18d94db571a) | Custom data that will be passed to the session during the instance launch request.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InstanceRequestTemplate_1a64805530c4189001f0d28d7e6aef6d56) | true if CustomData_Optional has been set to a value
@@ -52,6 +52,8 @@ ID to uniquely identify this instance launch template.
 
 <br>
 #### `public `[`FRHAPI_MapSelectionListV2`](RHAPI_MapSelectionListV2.md#structFRHAPI__MapSelectionListV2)` `[`MapSelectionList`](#structFRHAPI__InstanceRequestTemplate_1a4ef0b1d2d12365b73ba57d3f17028cd1) <a id="structFRHAPI__InstanceRequestTemplate_1a4ef0b1d2d12365b73ba57d3f17028cd1"></a>
+
+A selection list of maps that can be chosen to launch into.
 
 <br>
 #### `public ERHAPI_HostType `[`DefaultHostType`](#structFRHAPI__InstanceRequestTemplate_1a5ba4b7d3a1cae608a8bcbc1d47e13874) <a id="structFRHAPI__InstanceRequestTemplate_1a5ba4b7d3a1cae608a8bcbc1d47e13874"></a>

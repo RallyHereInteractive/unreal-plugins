@@ -31,9 +31,9 @@ A player resource in a session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionPlayer_1a2fb78b14e916ce432c24c730d7895ab7) | true if CustomData_Optional has been set to a value
 `public FString `[`Version_Optional`](#structFRHAPI__SessionPlayer_1a8464dd89d0dbd289132aaa1e0f1edb22) | Product Client Version number. Used for compatibility checking with other players and instances.
 `public bool `[`Version_IsSet`](#structFRHAPI__SessionPlayer_1a739f1593fa6f0f828b3acbae17b9a581) | true if Version_Optional has been set to a value
-`public `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` `[`ClientSettings_Optional`](#structFRHAPI__SessionPlayer_1a2f8f0d43f78a9b08db040a591e550082) | 
+`public `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` `[`ClientSettings_Optional`](#structFRHAPI__SessionPlayer_1a2f8f0d43f78a9b08db040a591e550082) | Which input type and platform the client is using.
 `public bool `[`ClientSettings_IsSet`](#structFRHAPI__SessionPlayer_1a0cb461cb01254f28e33b4ee098fff636) | true if ClientSettings_Optional has been set to a value
-`public `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` `[`CrossplayPreferences_Optional`](#structFRHAPI__SessionPlayer_1a1df5a79e2e5f967579ad882122b7ad74) | 
+`public `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` `[`CrossplayPreferences_Optional`](#structFRHAPI__SessionPlayer_1a1df5a79e2e5f967579ad882122b7ad74) | Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible.
 `public bool `[`CrossplayPreferences_IsSet`](#structFRHAPI__SessionPlayer_1a09fdf10fbfcdc3cdeea386b671d75273) | true if CrossplayPreferences_Optional has been set to a value
 `public FDateTime `[`Invited_Optional`](#structFRHAPI__SessionPlayer_1a2e47dda3a7a7e474f39950a1487054a5) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`Invited_IsSet`](#structFRHAPI__SessionPlayer_1a24180c0ac76cb70443d34261572d511c) | true if Invited_Optional has been set to a value
@@ -186,6 +186,8 @@ true if Version_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` `[`ClientSettings_Optional`](#structFRHAPI__SessionPlayer_1a2f8f0d43f78a9b08db040a591e550082) <a id="structFRHAPI__SessionPlayer_1a2f8f0d43f78a9b08db040a591e550082"></a>
 
+Which input type and platform the client is using.
+
 <br>
 #### `public bool `[`ClientSettings_IsSet`](#structFRHAPI__SessionPlayer_1a0cb461cb01254f28e33b4ee098fff636) <a id="structFRHAPI__SessionPlayer_1a0cb461cb01254f28e33b4ee098fff636"></a>
 
@@ -193,6 +195,8 @@ true if ClientSettings_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` `[`CrossplayPreferences_Optional`](#structFRHAPI__SessionPlayer_1a1df5a79e2e5f967579ad882122b7ad74) <a id="structFRHAPI__SessionPlayer_1a1df5a79e2e5f967579ad882122b7ad74"></a>
+
+Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible.
 
 <br>
 #### `public bool `[`CrossplayPreferences_IsSet`](#structFRHAPI__SessionPlayer_1a09fdf10fbfcdc3cdeea386b671d75273) <a id="structFRHAPI__SessionPlayer_1a09fdf10fbfcdc3cdeea386b671d75273"></a>

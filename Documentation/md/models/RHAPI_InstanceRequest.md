@@ -21,7 +21,7 @@ A request body to create an instance resource in a session.
 --------------------------------|---------------------------------------------
 `public FString `[`InstanceId_Optional`](#structFRHAPI__InstanceRequest_1ae2cd025e6006ed29f473eea7e99a5831) | Unique ID for the instance, a new one will be generated if not provided.
 `public bool `[`InstanceId_IsSet`](#structFRHAPI__InstanceRequest_1aa2407894fadb8014e21cd940b890673d) | true if InstanceId_Optional has been set to a value
-`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`InstanceStartupParams_Optional`](#structFRHAPI__InstanceRequest_1ae58f5b8ca0b462edb52e44c683a4c1d8) | 
+`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`InstanceStartupParams_Optional`](#structFRHAPI__InstanceRequest_1ae58f5b8ca0b462edb52e44c683a4c1d8) | Parameters used by the host to startup. For UE5 this will contain the map and gamemode.
 `public bool `[`InstanceStartupParams_IsSet`](#structFRHAPI__InstanceRequest_1a31863d6683b7e334f0080c322c519cec) | true if InstanceStartupParams_Optional has been set to a value
 `public ERHAPI_HostType `[`HostType`](#structFRHAPI__InstanceRequest_1ac1fb0f22f5da79bcdf7356ebcba4e972) | Type of the host.
 `public FGuid `[`HostPlayerUuid_Optional`](#structFRHAPI__InstanceRequest_1aec1e068ce4fb2675ce05dc50f6abcbc8) | Player UUID of the host, if the host type is player.
@@ -79,6 +79,8 @@ true if InstanceId_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`InstanceStartupParams_Optional`](#structFRHAPI__InstanceRequest_1ae58f5b8ca0b462edb52e44c683a4c1d8) <a id="structFRHAPI__InstanceRequest_1ae58f5b8ca0b462edb52e44c683a4c1d8"></a>
+
+Parameters used by the host to startup. For UE5 this will contain the map and gamemode.
 
 <br>
 #### `public bool `[`InstanceStartupParams_IsSet`](#structFRHAPI__InstanceRequest_1a31863d6683b7e334f0080c322c519cec) <a id="structFRHAPI__InstanceRequest_1a31863d6683b7e334f0080c322c519cec"></a>
