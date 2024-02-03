@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package com.hirezstudios.rallyhere.codegen;
+package com.rallyhere.codegen;
 
 import java.io.IOException;
 import java.io.Writer;

@@ -1,7 +1,6 @@
 /*
  * Copyright 2018 OpenAPI-Generator Contributors (https://openapi-generator.tech)
- * Copyright 2022 HiRez Studios
- * Copyright 2022-2023 RallyHere Interactive
+ * Copyright 2023-2024 RallyHere Interactive
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +15,10 @@
  * limitations under the License.
  */
 
-package com.hirezstudios.rallyhere.codegen;
+package com.rallyhere.codegen;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.*;
-import io.swagger.models.properties.*;
 import org.openapitools.codegen.languages.AbstractCppCodegen;
-import org.openapitools.codegen.model.ModelMap;
-import org.openapitools.codegen.model.ModelsMap;
-import org.openapitools.codegen.templating.mustache.SplitStringLambda;
-import org.openapitools.codegen.utils.CamelizeOption;
 import org.openapitools.codegen.utils.ModelUtils;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.media.ArraySchema;
@@ -38,8 +31,6 @@ import java.util.*;
 import java.io.File;
 
 import static org.openapitools.codegen.utils.StringUtils.camelize;
-
-import org.apache.commons.text.StringEscapeUtils;
 
 public class RhCppUe4Generator extends AbstractCppCodegen {
 
