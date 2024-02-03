@@ -64,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrames : public FRHAPI_Model
      /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
     void ClearTimeFrames() { TimeFrames_IsSet = false; }
 
+    /** @brief Cache info for the Time Frames. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

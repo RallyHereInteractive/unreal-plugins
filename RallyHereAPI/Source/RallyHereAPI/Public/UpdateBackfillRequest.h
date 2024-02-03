@@ -51,6 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
     /** @brief Sets the value of InstanceId */
     void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
+    /** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_AdditionalJoinParams AdditionalJoinParams_Optional{  };
     /** @brief true if AdditionalJoinParams_Optional has been set to a value */

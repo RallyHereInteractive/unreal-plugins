@@ -64,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
      /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
+    /** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InstanceStartupParams InstanceStartupParams_Optional{  };
     /** @brief true if InstanceStartupParams_Optional has been set to a value */

@@ -193,6 +193,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     /** @brief Sets the value of JoinStatus */
     void SetJoinStatus(ERHAPI_InstanceJoinableStatus NewValue) { JoinStatus = NewValue;  }
 
+    /** @brief Parameters to join the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_JoinParams JoinParams_Optional{  };
     /** @brief true if JoinParams_Optional has been set to a value */
@@ -215,6 +216,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
      /** @brief Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false */
     void ClearJoinParams() { JoinParams_IsSet = false; }
 
+    /** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InstanceStartupParams InstanceStartupParams_Optional{  };
     /** @brief true if InstanceStartupParams_Optional has been set to a value */

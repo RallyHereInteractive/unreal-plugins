@@ -187,6 +187,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
      /** @brief Clears the value of PreSaleBreakpoints_Optional and sets PreSaleBreakpoints_IsSet to false */
     void ClearPreSaleBreakpoints() { PreSaleBreakpoints_IsSet = false; }
 
+    /** @brief Cache info for the Price Point. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

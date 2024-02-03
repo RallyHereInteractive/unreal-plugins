@@ -94,6 +94,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     /** @brief Sets the value of AfterItemId_Optional to its default and also sets AfterItemId_IsSet to true */
     void SetAfterItemIdToDefault() { AfterItemId_Optional = 0; AfterItemId_IsSet = true; }
 
+    /** @brief The Inventory Record before the change. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InventoryRecord Before_Optional{  };
     /** @brief true if Before_Optional has been set to a value */
@@ -116,6 +117,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
      /** @brief Clears the value of Before_Optional and sets Before_IsSet to false */
     void ClearBefore() { Before_IsSet = false; }
 
+    /** @brief The Inventory Record after the change. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InventoryRecord After_Optional{  };
     /** @brief true if After_Optional has been set to a value */

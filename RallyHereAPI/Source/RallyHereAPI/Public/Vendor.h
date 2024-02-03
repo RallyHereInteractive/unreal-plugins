@@ -163,6 +163,7 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
      /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
     void ClearLoot() { Loot_IsSet = false; }
 
+    /** @brief Cache info for the Vendor. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

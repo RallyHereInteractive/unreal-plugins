@@ -35,7 +35,6 @@ Private/ClientVisibleSettings.cpp
 Private/ConfigAPI.cpp
 Private/ConfigurationV1API.cpp
 Private/ConnectionInfo.cpp
-Private/CorrelationId.cpp
 Private/CreateInventoryRequest.cpp
 Private/CreateInventoryRequests.cpp
 Private/CreateInventoryType.cpp
@@ -264,7 +263,6 @@ Private/Session.cpp
 Private/SessionEvent.cpp
 Private/SessionEventCreateRequest.cpp
 Private/SessionEvents.cpp
-Private/SessionId.cpp
 Private/SessionInviteRequest.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
@@ -299,7 +297,6 @@ Private/UpdateInventoryRequest.cpp
 Private/UpdateInventoryRequestById.cpp
 Private/UpdateInventoryRequests.cpp
 Private/UpdatePersonInfoRequest.cpp
-Private/UserId.cpp
 Private/UsersAPI.cpp
 Private/ValidationError.cpp
 Private/Vendor.cpp
@@ -344,7 +341,6 @@ Public/ClientVisibleSettings.h
 Public/ConfigAPI.h
 Public/ConfigurationV1API.h
 Public/ConnectionInfo.h
-Public/CorrelationId.h
 Public/CreateInventoryRequest.h
 Public/CreateInventoryRequests.h
 Public/CreateInventoryType.h
@@ -573,7 +569,6 @@ Public/Session.h
 Public/SessionEvent.h
 Public/SessionEventCreateRequest.h
 Public/SessionEvents.h
-Public/SessionId.h
 Public/SessionInviteRequest.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
@@ -608,7 +603,6 @@ Public/UpdateInventoryRequest.h
 Public/UpdateInventoryRequestById.h
 Public/UpdateInventoryRequests.h
 Public/UpdatePersonInfoRequest.h
-Public/UserId.h
 Public/UsersAPI.h
 Public/ValidationError.h
 Public/Vendor.h

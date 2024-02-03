@@ -79,6 +79,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     /** @brief Sets the value of LootId_Optional to its default and also sets LootId_IsSet to true */
     void SetLootIdToDefault() { LootId_Optional = 0; LootId_IsSet = true; }
 
+    /** @brief The Inventory change that occurred as part of this detail. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PlayerInventoryChange InvChange_Optional{  };
     /** @brief true if InvChange_Optional has been set to a value */
@@ -101,6 +102,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
      /** @brief Clears the value of InvChange_Optional and sets InvChange_IsSet to false */
     void ClearInvChange() { InvChange_IsSet = false; }
 
+    /** @brief Reference to the Player Order that this detail belongs to. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PlayerOrderCreate Order_Optional{  };
     /** @brief true if Order_Optional has been set to a value */

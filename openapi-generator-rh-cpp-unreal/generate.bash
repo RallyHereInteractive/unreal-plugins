@@ -43,7 +43,7 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 ########################################
 # Download openapi-generator-cli
-curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.5.0/openapi-generator-cli-6.5.0.jar --create-dirs -o bin/openapi-generator-cli.jar
+curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.2.0/openapi-generator-cli-7.2.0.jar --create-dirs -o bin/openapi-generator-cli.jar
 
 ########################################
 # Build the rh-cpp-ue4 generator

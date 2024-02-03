@@ -64,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
      /** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
     void ClearItems() { Items_IsSet = false; }
 
+    /** @brief Item's cache information. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

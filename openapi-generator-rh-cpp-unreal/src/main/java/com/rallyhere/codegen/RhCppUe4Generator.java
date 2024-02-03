@@ -438,7 +438,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             ArraySchema ap = (ArraySchema) p;
             return openAPIType + "<" + getTypeDeclaration(ap.getItems()) + ">";
         } else if (ModelUtils.isMapSchema(p)) {
-            Schema props = getAdditionalProperties(p);
+            Schema props = ModelUtils.getAdditionalProperties(p);
             return openAPIType + "<FString, " + getTypeDeclaration(props) + ">";
         } else if (ModelUtils.isComposedSchema(p)) {
             ComposedSchema cs = (ComposedSchema)p;

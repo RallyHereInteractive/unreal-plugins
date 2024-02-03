@@ -52,6 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     /** @brief Sets the value of ClientVersion */
     void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
 
+    /** @brief Which input type and platform the client is using */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_ClientSettings ClientSettings{  };
     /** @brief Gets the value of ClientSettings */
@@ -61,6 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     /** @brief Sets the value of ClientSettings */
     void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings = NewValue;  }
 
+    /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
     /** @brief true if CrossplayPreferences_Optional has been set to a value */
@@ -116,6 +118,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
      /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
     void ClearRegionId() { RegionId_IsSet = false; }
 
+    /** @brief Optional information about player in order to join the new/existing session. V2 version of CreateOrJoin will require this */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_SelfSessionPlayerUpdateRequest Player_Optional{  };
     /** @brief true if Player_Optional has been set to a value */

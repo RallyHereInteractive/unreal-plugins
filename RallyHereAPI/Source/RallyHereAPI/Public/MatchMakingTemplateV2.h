@@ -75,6 +75,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
     /** @brief Sets the value of MmrGroupingMethod */
     void SetMmrGroupingMethod(ERHAPI_MMRGroupingMethod NewValue) { MmrGroupingMethod = NewValue;  }
 
+    /** @brief A set of rules that determine whether or not this matchmaking config should be used. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MatchMakingRuleset Ruleset_Optional{  };
     /** @brief true if Ruleset_Optional has been set to a value */
