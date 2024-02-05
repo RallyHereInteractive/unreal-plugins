@@ -50,8 +50,8 @@ namespace RHEventCacheStatic
 	const int32 PayloadTrailerLength = 2;
 
 	// a prefix for an attribute to mark it as belonging in the "custom_data" section
-	const ANSICHAR* CustomTextPrefix = "__CUSTOM__.";
-	const int32 CustomPrefixLength = 11;
+	const ANSICHAR* CustomTextPrefix = "__CUSTOM_DATA__.";
+	const int32 CustomPrefixLength = 16;
 
 	/** Determine whether an attribute is a custom attribute and should go in the "custom_data" section */
 	bool IsCustomAttribute(const FAnalyticsEventAttribute& InAttribute)
