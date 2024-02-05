@@ -316,17 +316,33 @@ void FRH_DiagnosticReportGenerator::WriteToCloud()
 	StageComplete();
 }
 
-void URH_Diagnostics::Initialize()
+FRH_Diagnostics::FRH_Diagnostics()
+{
+
+}
+
+void FRH_Diagnostics::Initialize()
 {
 }
 
-void URH_Diagnostics::Uninitialize()
+void FRH_Diagnostics::Uninitialize()
 {
 }
 
-void URH_Diagnostics::GenerateReport(const FRH_DiagnosticReportOptions& Options) const
+void FRH_Diagnostics::GenerateReport(const FRH_DiagnosticReportOptions& Options) const
 {
 	auto Helper = MakeShared<FRH_DiagnosticReportGenerator>();
 
 	Helper->Start(Options);
+}
+
+void URH_DiagnosticsBlueprintLibrary::GenerateReport(const FRH_DiagnosticReportOptions& Options)
+{
+	if (FRallyHereIntegrationModule::IsAvailable())
+	{
+		if (auto Diagnostics = FRallyHereIntegrationModule::Get().GetDiagnostics())
+		{
+			Diagnostics->GenerateReport(Options);
+		}
+	}
 }

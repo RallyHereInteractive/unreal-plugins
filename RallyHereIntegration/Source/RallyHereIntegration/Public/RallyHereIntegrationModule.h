@@ -36,18 +36,18 @@ public:
 		return FModuleManager::Get().IsModuleLoaded(GetModuleName());
 	}
 	/** @brief Gets the module, lazy loads it if needed. */
-	static inline URH_Integration& Get()
+	static inline FRH_Integration& Get()
 	{
 		return FModuleManager::Get().LoadModuleChecked<FRallyHereIntegrationModule>(GetModuleName()).GetIntegration();
 	}
 	/** @brief Gets the Integration class fromt he module. */
-    inline URH_Integration& GetIntegration() const
+    inline FRH_Integration& GetIntegration() const
     {
         return *Integration;
     }
 
 private:
-    TWeakObjectPtr<URH_Integration> Integration;
+    TUniquePtr<FRH_Integration> Integration;
 };
 
 // shortener for the above lookup

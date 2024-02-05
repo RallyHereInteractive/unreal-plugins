@@ -83,7 +83,7 @@ Login Subsystem for the local player.
 `public bool `[`bLogoutAndRetryLoginIfRefreshLoginFailed`](#classURH__LocalPlayerLoginSubsystem_1a1f638ff5b5f352dfffdb315e30478d3c) | Should we logout of the OSS and retry the login (that included a refresh token) failed?
 `public bool `[`bLoginOSSUseIDTokenAsPortalParentAccessToken`](#classURH__LocalPlayerLoginSubsystem_1ae7c66f0f89b289dff65c385c23f0590d) | Should we use the ID Token for populating the PARENT Portal Access Token.
 `public bool `[`bLoginOSSUseIDTokenAsPortalAccessToken`](#classURH__LocalPlayerLoginSubsystem_1a2ddbbfbcad16d8ae949cfcbed714eef1) | Should we use the ID Token for populating the Portal Access Token.
-`public bool `[`bResolveRallyHereBaseURLAfterOSSLogin`](#classURH__LocalPlayerLoginSubsystem_1a92a9774beae64448f7c0895a7e6eacff) | Should an OSS Login trigger a Base URL Resolve on the [URH_Integration](IntegrationBase.md#classURH__Integration)? This is necessary for some OSSes (e.g. Switch/PS4) that don't have environment information until after a login is attempted.
+`public bool `[`bResolveRallyHereBaseURLAfterOSSLogin`](#classURH__LocalPlayerLoginSubsystem_1a92a9774beae64448f7c0895a7e6eacff) | Should an OSS Login trigger a Base URL Resolve on the [FRH_Integration](IntegrationBase.md#classFRH__Integration)? This is necessary for some OSSes (e.g. Switch/PS4) that don't have environment information until after a login is attempted.
 `public FString `[`SavedCredentialPrefix`](#classURH__LocalPlayerLoginSubsystem_1a5ff0051c770983ee18208136805b9754) | Prefix applied to the saved credentials on platforms that support storing the refresh token.
 `public virtual void `[`Initialize`](#classURH__LocalPlayerLoginSubsystem_1a938bd41c5c5fa6b5eacbeb43d0758a63)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18)`()` | Safely tears down the subsystem.
@@ -233,7 +233,7 @@ Should we use the ID Token for populating the Portal Access Token.
 <br>
 #### `public bool `[`bResolveRallyHereBaseURLAfterOSSLogin`](#classURH__LocalPlayerLoginSubsystem_1a92a9774beae64448f7c0895a7e6eacff) <a id="classURH__LocalPlayerLoginSubsystem_1a92a9774beae64448f7c0895a7e6eacff"></a>
 
-Should an OSS Login trigger a Base URL Resolve on the [URH_Integration](IntegrationBase.md#classURH__Integration)? This is necessary for some OSSes (e.g. Switch/PS4) that don't have environment information until after a login is attempted.
+Should an OSS Login trigger a Base URL Resolve on the [FRH_Integration](IntegrationBase.md#classFRH__Integration)? This is necessary for some OSSes (e.g. Switch/PS4) that don't have environment information until after a login is attempted.
 
 <br>
 #### `public FString `[`SavedCredentialPrefix`](#classURH__LocalPlayerLoginSubsystem_1a5ff0051c770983ee18208136805b9754) <a id="classURH__LocalPlayerLoginSubsystem_1a5ff0051c770983ee18208136805b9754"></a>

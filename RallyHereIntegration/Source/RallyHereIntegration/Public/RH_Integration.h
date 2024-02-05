@@ -7,8 +7,8 @@
 #include "RallyHereAPIAll.h"
 #include "RallyHereAPIHelpers.h"
 #include "RH_IntegrationSettings.h"
-
-#include "RH_Integration.generated.h"
+#include "RH_WebRequests.h"
+#include "RH_Diagnostics.h"
 
 typedef TSharedPtr<RallyHereAPI::FHttpRetryManager> HttpRetryManagerPtr;
 
@@ -19,12 +19,11 @@ typedef TSharedPtr<RallyHereAPI::FHttpRetryManager> HttpRetryManagerPtr;
 /**
  * @brief Main integration layer handler.
  */
-UCLASS()
-class RALLYHEREINTEGRATION_API URH_Integration : public UObject
+class RALLYHEREINTEGRATION_API FRH_Integration
 {
-    GENERATED_BODY()
-
 public:
+	FRH_Integration();
+
 	/**
 	 * @brief Initialize the Integration layer.
 	 */
@@ -170,49 +169,41 @@ public:
 	/**
 	 * @brief Gets the Web Request Tracker.
 	 */
-	class URH_WebRequests* GetWebRequestTracker() const { return WebRequestTracker; }
+	FRH_WebRequests* GetWebRequestTracker() const { return WebRequestTracker.Get(); }
 
 	/**
 	 * @brief Gets the Diagnostic Reporter.
 	 */
-	class URH_Diagnostics* GetDiagnostics() const { return Diagnostics; }
+	FRH_Diagnostics* GetDiagnostics() const { return Diagnostics.Get(); }
 private:
     RallyHereAPI::FRallyHereAPIAll APIs;
     HttpRetryManagerPtr RetryManager;
 
-    UPROPERTY(Transient)
     FString ResolvedBaseUrl;
 
 	// Is the base URL locked - aka will not change during ResolveBaseURL calls.
-    UPROPERTY(Transient)
     bool bIsBaseUrlLocked;
 
-    UPROPERTY(Transient)
     FString ResolvedEnvironmentId;
 
 	// Is the EnvironmentId locked - aka will not change during ResolveEnvironmentId calls.
-    UPROPERTY(Transient)
     bool bIsEnvironmentIdLocked;
 
-	UPROPERTY(Transient)
     FString ResolvedClientId;
 
     // Is the client ID locked - aka will not change during ResolveClientId calls.
-    UPROPERTY(Transient)
     bool bIsClientIdLocked;
 
-    UPROPERTY(Transient)
     FString ResolvedClientSecret;
 
     // Is the client secret locked - aka will not change during ResolveClientSecret calls.
-    UPROPERTY(Transient)
     bool bIsClientSecretLocked;
 
-	UPROPERTY()
-	class URH_WebRequests* WebRequestTracker;
+	// Web request tracker
+	TSharedPtr<FRH_WebRequests> WebRequestTracker;
 
-	UPROPERTY()
-	class URH_Diagnostics* Diagnostics;
+	// Diagnostic tracker and reporter
+	TSharedPtr<FRH_Diagnostics> Diagnostics;
 };
 
 /** @} */

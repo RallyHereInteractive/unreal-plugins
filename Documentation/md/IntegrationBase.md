@@ -5,7 +5,7 @@
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `class `[`FRallyHereIntegrationModule`](#classFRallyHereIntegrationModule) | Module for the Rally Here Integration Layer.
-`class `[`URH_Integration`](#classURH__Integration) | Main integration layer handler.
+`class `[`FRH_Integration`](#classFRH__Integration) | Main integration layer handler.
 
 ## class `FRallyHereIntegrationModule` <a id="classFRallyHereIntegrationModule"></a>
 
@@ -23,7 +23,7 @@ Module for the Rally Here Integration Layer.
 `public  `[`~FRallyHereIntegrationModule`](#classFRallyHereIntegrationModule_1a05fc3130408ed64a45219dfdaca29120)`() = default` | Default constructor.
 `public void `[`StartupModule`](#classFRallyHereIntegrationModule_1ac91ef7cb3468c0eb68c74069f99fa47b)`()` | Initializes the module.
 `public void `[`ShutdownModule`](#classFRallyHereIntegrationModule_1a537c97b39e36b257d3499bb8f88b2aff)`()` | Safely ends the module.
-`public inline `[`URH_Integration`](IntegrationBase.md#classURH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1aef9bad7d1f539b0e86e055663d30df2a)`() const` | Gets the Integration class fromt he module.
+`public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8)`() const` | Gets the Integration class fromt he module.
 
 #### Members
 
@@ -42,17 +42,12 @@ Initializes the module.
 Safely ends the module.
 
 <br>
-#### `public inline `[`URH_Integration`](IntegrationBase.md#classURH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1aef9bad7d1f539b0e86e055663d30df2a)`() const` <a id="classFRallyHereIntegrationModule_1aef9bad7d1f539b0e86e055663d30df2a"></a>
+#### `public inline `[`FRH_Integration`](IntegrationBase.md#classFRH__Integration)` & `[`GetIntegration`](#classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8)`() const` <a id="classFRallyHereIntegrationModule_1ab428b2c8db543b36835a636472d55ed8"></a>
 
 Gets the Integration class fromt he module.
 
 <br>
-## class `URH_Integration` <a id="classURH__Integration"></a>
-
-```
-class URH_Integration
-  : public UObject
-```
+## class `FRH_Integration` <a id="classFRH__Integration"></a>
 
 Main integration layer handler.
 
@@ -60,52 +55,56 @@ Main integration layer handler.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public void `[`Initialize`](#classURH__Integration_1a900d421aea13c81ac91e48ec7a0b8f98)`()` | Initialize the Integration layer.
-`public void `[`Uninitialize`](#classURH__Integration_1af1069eb3dfe1229a2a2b0044b5d4ab17)`()` | Safely tears down the Integration layer.
-`public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classURH__Integration_1ae6de9d69bfaa3d3386a3bb47380156b3)`()` | Gets all the APIs.
-`public inline HttpRetryManagerPtr `[`GetRetryManager`](#classURH__Integration_1a79fc427b8c7eebdbd4a973bad90682ad)`() const` | Gets Base Retry Manager for all RallyHereAPI calls.
-`public void `[`SetEnvironmentId`](#classURH__Integration_1ad2478a83d20d2be82097d36162b2e94a)`(FString InEnvironmentId,const FString & Source)` | Sets the environment for he connection.
-`public FString `[`GetEnvironmentId`](#classURH__Integration_1a007194b606488da9cbc5299826c6c3ba)`()` | Get the current Environment Id (will run ResolveEnvironmentId if there isn't one)
-`public void `[`ResolveEnvironmentId`](#classURH__Integration_1a0b20b4df9925d720b4c1c97c1c38a149)`()` | Get the Environment ID used for finding the base URL from the first of the following sources:
-`public inline void `[`LockEnvironmentId`](#classURH__Integration_1a52b751ec4b8385731cf6490a8a4846ac)`(bool bLocked)` | Updates the locked status of the Environment Id.
-`public void `[`SetBaseURL`](#classURH__Integration_1a3f1a9a24ef392322deda7f4e08838889)`(FString InBaseUrl,const FString & Source)` | Set the base URL for all RallyHereAPI calls.
-`public FString `[`GetBaseURL`](#classURH__Integration_1a6a80ff137a6b4417db6a0e022f8bd7f2)`()` | Get the current base URL (will run ResolveBaseURL if there isn't one)
-`public void `[`ResolveBaseURL`](#classURH__Integration_1a9ba65df152ad1d5205d9a43959d63b3b)`()` | Check for a base URL across several sources and assign the first non-empty value to the APIs:
-`public inline void `[`LockBaseURL`](#classURH__Integration_1a2d48d18ed8c425037b48716951c609b7)`(bool bLocked)` | Updates the locked status of the Base URL.
-`public void `[`SetClientId`](#classURH__Integration_1ab09fcf4dd89f17f1867ce6ac9cf93ebb)`(FString InClientId,const FString & Source)` | Set the client ID for the AuthContext.
-`public FString `[`GetClientId`](#classURH__Integration_1a7dde924eb4f662a32d710711a2a5d45d)`()` | Get the current client ID (will run ResolveClientId if there isn't one).
-`public void `[`ResolveClientId`](#classURH__Integration_1aa5c8e07f1530d510afcb84e42c3eef06)`()` | Check for a client ID across several sources and assign the first non-empty value to the APIs:
-`public inline void `[`LockClientId`](#classURH__Integration_1a04b8f6446f4bc3380d15a20129804de6)`(bool bLocked)` | Updates the locked status of the Client Id.
-`public void `[`SetClientSecret`](#classURH__Integration_1aa3c279d80bcc31d8fb2366bf8d4a5a59)`(FString InClientSecret,const FString & Source)` | Set the client secret for the AuthContext.
-`public FString `[`GetClientSecret`](#classURH__Integration_1a3c51a0686676ab34896ed21fe7ed786e)`()` | Get the current client secret (will run ResolveClientSecret if there isn't one).
-`public void `[`ResolveClientSecret`](#classURH__Integration_1acf88cad66d6acbf99495f8895da38917)`()` | Check for a client secret across several sources and assign the first non-empty value to the APIs:
-`public inline void `[`LockClientSecret`](#classURH__Integration_1a05204a2d20528a3b4f59952368ae1814)`(bool bLocked)` | Updates the locked status of the Client Secret.
-`public inline class `[`URH_WebRequests`](WebRequest.md#classURH__WebRequests)` * `[`GetWebRequestTracker`](#classURH__Integration_1aa0eca33c0d2add66db9ecf8d169325a0)`() const` | Gets the Web Request Tracker.
-`public inline class `[`URH_Diagnostics`](Diagnostics.md#classURH__Diagnostics)` * `[`GetDiagnostics`](#classURH__Integration_1a9031d6508ab6dd48cbfa74e9e698fbdb)`() const` | Gets the Diagnostic Reporter.
+`public  `[`FRH_Integration`](#classFRH__Integration_1ad429ec1c11342e1a32bc418f9c527c7f)`()` | 
+`public void `[`Initialize`](#classFRH__Integration_1a5406bc46c19e6268c00ace04a51e13af)`()` | Initialize the Integration layer.
+`public void `[`Uninitialize`](#classFRH__Integration_1affec69b27c9acf7015815812bbb6833f)`()` | Safely tears down the Integration layer.
+`public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classFRH__Integration_1a890bf9b414bc85d6c057a3b9158204ed)`()` | Gets all the APIs.
+`public inline HttpRetryManagerPtr `[`GetRetryManager`](#classFRH__Integration_1afc39eec959666867e8c4bae0de6ff862)`() const` | Gets Base Retry Manager for all RallyHereAPI calls.
+`public void `[`SetEnvironmentId`](#classFRH__Integration_1a2c35e2e9223d77db72f0fc4927a61cac)`(FString InEnvironmentId,const FString & Source)` | Sets the environment for he connection.
+`public FString `[`GetEnvironmentId`](#classFRH__Integration_1ad0d54cb4e8185064ab8feb5b8cfe1158)`()` | Get the current Environment Id (will run ResolveEnvironmentId if there isn't one)
+`public void `[`ResolveEnvironmentId`](#classFRH__Integration_1a9579149b9470a1a8b8eefb9978a6d6aa)`()` | Get the Environment ID used for finding the base URL from the first of the following sources:
+`public inline void `[`LockEnvironmentId`](#classFRH__Integration_1a2416f70e5f8aefa4621077557046b518)`(bool bLocked)` | Updates the locked status of the Environment Id.
+`public void `[`SetBaseURL`](#classFRH__Integration_1a2de7c31c9f2df613372b70899612a75e)`(FString InBaseUrl,const FString & Source)` | Set the base URL for all RallyHereAPI calls.
+`public FString `[`GetBaseURL`](#classFRH__Integration_1a2133066a14b8ece9675e74ab9be18e68)`()` | Get the current base URL (will run ResolveBaseURL if there isn't one)
+`public void `[`ResolveBaseURL`](#classFRH__Integration_1ab948f32204bfe002d03f6faa58f4b761)`()` | Check for a base URL across several sources and assign the first non-empty value to the APIs:
+`public inline void `[`LockBaseURL`](#classFRH__Integration_1a5078259f8298619fa5ac7966da3f6e0c)`(bool bLocked)` | Updates the locked status of the Base URL.
+`public void `[`SetClientId`](#classFRH__Integration_1abbe2d34dc0d7a870c747f00c9ad1e4c5)`(FString InClientId,const FString & Source)` | Set the client ID for the AuthContext.
+`public FString `[`GetClientId`](#classFRH__Integration_1a695e02ae6c4327902afcfe12a121b6cd)`()` | Get the current client ID (will run ResolveClientId if there isn't one).
+`public void `[`ResolveClientId`](#classFRH__Integration_1a13a7c74b6fce44f275bc0131442c5f61)`()` | Check for a client ID across several sources and assign the first non-empty value to the APIs:
+`public inline void `[`LockClientId`](#classFRH__Integration_1ae547716a7648acf415dee0f3d334a7ac)`(bool bLocked)` | Updates the locked status of the Client Id.
+`public void `[`SetClientSecret`](#classFRH__Integration_1a6b05ae0200ee5f66ed2ce503abbbdf88)`(FString InClientSecret,const FString & Source)` | Set the client secret for the AuthContext.
+`public FString `[`GetClientSecret`](#classFRH__Integration_1ac50700a8ff4e112ed60171ffbf5817b7)`()` | Get the current client secret (will run ResolveClientSecret if there isn't one).
+`public void `[`ResolveClientSecret`](#classFRH__Integration_1a19706c54b4a17d6e82b3f86c22247be2)`()` | Check for a client secret across several sources and assign the first non-empty value to the APIs:
+`public inline void `[`LockClientSecret`](#classFRH__Integration_1aeb750cd617fad0b3ade042b7a7c1d54a)`(bool bLocked)` | Updates the locked status of the Client Secret.
+`public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16)`() const` | Gets the Web Request Tracker.
+`public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` | Gets the Diagnostic Reporter.
 
 #### Members
 
-#### `public void `[`Initialize`](#classURH__Integration_1a900d421aea13c81ac91e48ec7a0b8f98)`()` <a id="classURH__Integration_1a900d421aea13c81ac91e48ec7a0b8f98"></a>
+#### `public  `[`FRH_Integration`](#classFRH__Integration_1ad429ec1c11342e1a32bc418f9c527c7f)`()` <a id="classFRH__Integration_1ad429ec1c11342e1a32bc418f9c527c7f"></a>
+
+<br>
+#### `public void `[`Initialize`](#classFRH__Integration_1a5406bc46c19e6268c00ace04a51e13af)`()` <a id="classFRH__Integration_1a5406bc46c19e6268c00ace04a51e13af"></a>
 
 Initialize the Integration layer.
 
 <br>
-#### `public void `[`Uninitialize`](#classURH__Integration_1af1069eb3dfe1229a2a2b0044b5d4ab17)`()` <a id="classURH__Integration_1af1069eb3dfe1229a2a2b0044b5d4ab17"></a>
+#### `public void `[`Uninitialize`](#classFRH__Integration_1affec69b27c9acf7015815812bbb6833f)`()` <a id="classFRH__Integration_1affec69b27c9acf7015815812bbb6833f"></a>
 
 Safely tears down the Integration layer.
 
 <br>
-#### `public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classURH__Integration_1ae6de9d69bfaa3d3386a3bb47380156b3)`()` <a id="classURH__Integration_1ae6de9d69bfaa3d3386a3bb47380156b3"></a>
+#### `public inline RallyHereAPI::FRallyHereAPIAll & `[`GetAPIs`](#classFRH__Integration_1a890bf9b414bc85d6c057a3b9158204ed)`()` <a id="classFRH__Integration_1a890bf9b414bc85d6c057a3b9158204ed"></a>
 
 Gets all the APIs.
 
 <br>
-#### `public inline HttpRetryManagerPtr `[`GetRetryManager`](#classURH__Integration_1a79fc427b8c7eebdbd4a973bad90682ad)`() const` <a id="classURH__Integration_1a79fc427b8c7eebdbd4a973bad90682ad"></a>
+#### `public inline HttpRetryManagerPtr `[`GetRetryManager`](#classFRH__Integration_1afc39eec959666867e8c4bae0de6ff862)`() const` <a id="classFRH__Integration_1afc39eec959666867e8c4bae0de6ff862"></a>
 
 Gets Base Retry Manager for all RallyHereAPI calls.
 
 <br>
-#### `public void `[`SetEnvironmentId`](#classURH__Integration_1ad2478a83d20d2be82097d36162b2e94a)`(FString InEnvironmentId,const FString & Source)` <a id="classURH__Integration_1ad2478a83d20d2be82097d36162b2e94a"></a>
+#### `public void `[`SetEnvironmentId`](#classFRH__Integration_1a2c35e2e9223d77db72f0fc4927a61cac)`(FString InEnvironmentId,const FString & Source)` <a id="classFRH__Integration_1a2c35e2e9223d77db72f0fc4927a61cac"></a>
 
 Sets the environment for he connection.
 
@@ -115,12 +114,12 @@ Sets the environment for he connection.
 * `Source` The source of the environment change, for logging.
 
 <br>
-#### `public FString `[`GetEnvironmentId`](#classURH__Integration_1a007194b606488da9cbc5299826c6c3ba)`()` <a id="classURH__Integration_1a007194b606488da9cbc5299826c6c3ba"></a>
+#### `public FString `[`GetEnvironmentId`](#classFRH__Integration_1ad0d54cb4e8185064ab8feb5b8cfe1158)`()` <a id="classFRH__Integration_1ad0d54cb4e8185064ab8feb5b8cfe1158"></a>
 
 Get the current Environment Id (will run ResolveEnvironmentId if there isn't one)
 
 <br>
-#### `public void `[`ResolveEnvironmentId`](#classURH__Integration_1a0b20b4df9925d720b4c1c97c1c38a149)`()` <a id="classURH__Integration_1a0b20b4df9925d720b4c1c97c1c38a149"></a>
+#### `public void `[`ResolveEnvironmentId`](#classFRH__Integration_1a9579149b9470a1a8b8eefb9978a6d6aa)`()` <a id="classFRH__Integration_1a9579149b9470a1a8b8eefb9978a6d6aa"></a>
 
 Get the Environment ID used for finding the base URL from the first of the following sources:
 
@@ -129,7 +128,7 @@ Get the Environment ID used for finding the base URL from the first of the follo
 * Results from GetEnvironmentId from the EnvironmentOSSName (or default if one is not provided)
 
 <br>
-#### `public inline void `[`LockEnvironmentId`](#classURH__Integration_1a52b751ec4b8385731cf6490a8a4846ac)`(bool bLocked)` <a id="classURH__Integration_1a52b751ec4b8385731cf6490a8a4846ac"></a>
+#### `public inline void `[`LockEnvironmentId`](#classFRH__Integration_1a2416f70e5f8aefa4621077557046b518)`(bool bLocked)` <a id="classFRH__Integration_1a2416f70e5f8aefa4621077557046b518"></a>
 
 Updates the locked status of the Environment Id.
 
@@ -137,7 +136,7 @@ Updates the locked status of the Environment Id.
 * `bLocked` If locked, disables the ResolveEnvironmentId function.
 
 <br>
-#### `public void `[`SetBaseURL`](#classURH__Integration_1a3f1a9a24ef392322deda7f4e08838889)`(FString InBaseUrl,const FString & Source)` <a id="classURH__Integration_1a3f1a9a24ef392322deda7f4e08838889"></a>
+#### `public void `[`SetBaseURL`](#classFRH__Integration_1a2de7c31c9f2df613372b70899612a75e)`(FString InBaseUrl,const FString & Source)` <a id="classFRH__Integration_1a2de7c31c9f2df613372b70899612a75e"></a>
 
 Set the base URL for all RallyHereAPI calls.
 
@@ -147,12 +146,12 @@ Set the base URL for all RallyHereAPI calls.
 * `Source` The source of the base URL change, for logging.
 
 <br>
-#### `public FString `[`GetBaseURL`](#classURH__Integration_1a6a80ff137a6b4417db6a0e022f8bd7f2)`()` <a id="classURH__Integration_1a6a80ff137a6b4417db6a0e022f8bd7f2"></a>
+#### `public FString `[`GetBaseURL`](#classFRH__Integration_1a2133066a14b8ece9675e74ab9be18e68)`()` <a id="classFRH__Integration_1a2133066a14b8ece9675e74ab9be18e68"></a>
 
 Get the current base URL (will run ResolveBaseURL if there isn't one)
 
 <br>
-#### `public void `[`ResolveBaseURL`](#classURH__Integration_1a9ba65df152ad1d5205d9a43959d63b3b)`()` <a id="classURH__Integration_1a9ba65df152ad1d5205d9a43959d63b3b"></a>
+#### `public void `[`ResolveBaseURL`](#classFRH__Integration_1ab948f32204bfe002d03f6faa58f4b761)`()` <a id="classFRH__Integration_1ab948f32204bfe002d03f6faa58f4b761"></a>
 
 Check for a base URL across several sources and assign the first non-empty value to the APIs:
 
@@ -163,7 +162,7 @@ Check for a base URL across several sources and assign the first non-empty value
 * ini value from the section for this class, with the "BaseUrl" key.
 
 <br>
-#### `public inline void `[`LockBaseURL`](#classURH__Integration_1a2d48d18ed8c425037b48716951c609b7)`(bool bLocked)` <a id="classURH__Integration_1a2d48d18ed8c425037b48716951c609b7"></a>
+#### `public inline void `[`LockBaseURL`](#classFRH__Integration_1a5078259f8298619fa5ac7966da3f6e0c)`(bool bLocked)` <a id="classFRH__Integration_1a5078259f8298619fa5ac7966da3f6e0c"></a>
 
 Updates the locked status of the Base URL.
 
@@ -171,7 +170,7 @@ Updates the locked status of the Base URL.
 * `bLocked` If locked, disables the ResolveBaseURL function.
 
 <br>
-#### `public void `[`SetClientId`](#classURH__Integration_1ab09fcf4dd89f17f1867ce6ac9cf93ebb)`(FString InClientId,const FString & Source)` <a id="classURH__Integration_1ab09fcf4dd89f17f1867ce6ac9cf93ebb"></a>
+#### `public void `[`SetClientId`](#classFRH__Integration_1abbe2d34dc0d7a870c747f00c9ad1e4c5)`(FString InClientId,const FString & Source)` <a id="classFRH__Integration_1abbe2d34dc0d7a870c747f00c9ad1e4c5"></a>
 
 Set the client ID for the AuthContext.
 
@@ -181,12 +180,12 @@ Set the client ID for the AuthContext.
 * `Source` The source of the base Client Id Change, for logging.
 
 <br>
-#### `public FString `[`GetClientId`](#classURH__Integration_1a7dde924eb4f662a32d710711a2a5d45d)`()` <a id="classURH__Integration_1a7dde924eb4f662a32d710711a2a5d45d"></a>
+#### `public FString `[`GetClientId`](#classFRH__Integration_1a695e02ae6c4327902afcfe12a121b6cd)`()` <a id="classFRH__Integration_1a695e02ae6c4327902afcfe12a121b6cd"></a>
 
 Get the current client ID (will run ResolveClientId if there isn't one).
 
 <br>
-#### `public void `[`ResolveClientId`](#classURH__Integration_1aa5c8e07f1530d510afcb84e42c3eef06)`()` <a id="classURH__Integration_1aa5c8e07f1530d510afcb84e42c3eef06"></a>
+#### `public void `[`ResolveClientId`](#classFRH__Integration_1a13a7c74b6fce44f275bc0131442c5f61)`()` <a id="classFRH__Integration_1a13a7c74b6fce44f275bc0131442c5f61"></a>
 
 Check for a client ID across several sources and assign the first non-empty value to the APIs:
 
@@ -197,7 +196,7 @@ Check for a client ID across several sources and assign the first non-empty valu
 * ini value from the section for this class, with the "ClientId" key.
 
 <br>
-#### `public inline void `[`LockClientId`](#classURH__Integration_1a04b8f6446f4bc3380d15a20129804de6)`(bool bLocked)` <a id="classURH__Integration_1a04b8f6446f4bc3380d15a20129804de6"></a>
+#### `public inline void `[`LockClientId`](#classFRH__Integration_1ae547716a7648acf415dee0f3d334a7ac)`(bool bLocked)` <a id="classFRH__Integration_1ae547716a7648acf415dee0f3d334a7ac"></a>
 
 Updates the locked status of the Client Id.
 
@@ -205,7 +204,7 @@ Updates the locked status of the Client Id.
 * `bLocked` If locked, disables the ResolveClientId function.
 
 <br>
-#### `public void `[`SetClientSecret`](#classURH__Integration_1aa3c279d80bcc31d8fb2366bf8d4a5a59)`(FString InClientSecret,const FString & Source)` <a id="classURH__Integration_1aa3c279d80bcc31d8fb2366bf8d4a5a59"></a>
+#### `public void `[`SetClientSecret`](#classFRH__Integration_1a6b05ae0200ee5f66ed2ce503abbbdf88)`(FString InClientSecret,const FString & Source)` <a id="classFRH__Integration_1a6b05ae0200ee5f66ed2ce503abbbdf88"></a>
 
 Set the client secret for the AuthContext.
 
@@ -215,12 +214,12 @@ Set the client secret for the AuthContext.
 * `Source` The source of the base Client Secret Change, for logging.
 
 <br>
-#### `public FString `[`GetClientSecret`](#classURH__Integration_1a3c51a0686676ab34896ed21fe7ed786e)`()` <a id="classURH__Integration_1a3c51a0686676ab34896ed21fe7ed786e"></a>
+#### `public FString `[`GetClientSecret`](#classFRH__Integration_1ac50700a8ff4e112ed60171ffbf5817b7)`()` <a id="classFRH__Integration_1ac50700a8ff4e112ed60171ffbf5817b7"></a>
 
 Get the current client secret (will run ResolveClientSecret if there isn't one).
 
 <br>
-#### `public void `[`ResolveClientSecret`](#classURH__Integration_1acf88cad66d6acbf99495f8895da38917)`()` <a id="classURH__Integration_1acf88cad66d6acbf99495f8895da38917"></a>
+#### `public void `[`ResolveClientSecret`](#classFRH__Integration_1a19706c54b4a17d6e82b3f86c22247be2)`()` <a id="classFRH__Integration_1a19706c54b4a17d6e82b3f86c22247be2"></a>
 
 Check for a client secret across several sources and assign the first non-empty value to the APIs:
 
@@ -231,7 +230,7 @@ Check for a client secret across several sources and assign the first non-empty 
 * ini value from the section for this class, with the "ClientSecret" key.
 
 <br>
-#### `public inline void `[`LockClientSecret`](#classURH__Integration_1a05204a2d20528a3b4f59952368ae1814)`(bool bLocked)` <a id="classURH__Integration_1a05204a2d20528a3b4f59952368ae1814"></a>
+#### `public inline void `[`LockClientSecret`](#classFRH__Integration_1aeb750cd617fad0b3ade042b7a7c1d54a)`(bool bLocked)` <a id="classFRH__Integration_1aeb750cd617fad0b3ade042b7a7c1d54a"></a>
 
 Updates the locked status of the Client Secret.
 
@@ -239,12 +238,12 @@ Updates the locked status of the Client Secret.
 * `bLocked` If locked, disables the ResolveClientSecret function.
 
 <br>
-#### `public inline class `[`URH_WebRequests`](WebRequest.md#classURH__WebRequests)` * `[`GetWebRequestTracker`](#classURH__Integration_1aa0eca33c0d2add66db9ecf8d169325a0)`() const` <a id="classURH__Integration_1aa0eca33c0d2add66db9ecf8d169325a0"></a>
+#### `public inline `[`FRH_WebRequests`](WebRequest.md#classFRH__WebRequests)` * `[`GetWebRequestTracker`](#classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16)`() const` <a id="classFRH__Integration_1a3b54823f537913d46a2266f9a4875a16"></a>
 
 Gets the Web Request Tracker.
 
 <br>
-#### `public inline class `[`URH_Diagnostics`](Diagnostics.md#classURH__Diagnostics)` * `[`GetDiagnostics`](#classURH__Integration_1a9031d6508ab6dd48cbfa74e9e698fbdb)`() const` <a id="classURH__Integration_1a9031d6508ab6dd48cbfa74e9e698fbdb"></a>
+#### `public inline `[`FRH_Diagnostics`](Diagnostics.md#classFRH__Diagnostics)` * `[`GetDiagnostics`](#classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288)`() const` <a id="classFRH__Integration_1a0f7dc5599a89b010715dba506bb16288"></a>
 
 Gets the Diagnostic Reporter.
 

@@ -310,7 +310,7 @@ public:
     bool bLoginOSSUseIDTokenAsPortalAccessToken;
 
     /**
-      * @brief Should an OSS Login trigger a Base URL Resolve on the URH_Integration?  This is necessary for some OSSes (e.g. Switch/PS4) that don't
+      * @brief Should an OSS Login trigger a Base URL Resolve on the FRH_Integration?  This is necessary for some OSSes (e.g. Switch/PS4) that don't
       * have environment information until after a login is attempted
       */
     UPROPERTY(Config)

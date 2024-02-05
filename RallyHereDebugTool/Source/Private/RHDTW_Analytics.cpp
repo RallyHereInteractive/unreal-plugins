@@ -29,7 +29,7 @@ FRHDTW_Analytics::~FRHDTW_Analytics()
 
 void FRHDTW_Analytics::Do()
 {
-	URH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
+	FRH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
 	if (WebRequestsTracker == nullptr)
 	{
 		ImGui::Text("RH_WebRequests unavailable.");
@@ -182,7 +182,7 @@ void FRHDTW_Analytics::DoCallCountPlot(const TMap<FName, int32>& CountAllTime, T
 #endif
 }
 
-void FRHDTW_Analytics::DoTimelinePlot(URH_WebRequests* WebRequestsTracker, const FString& FilterString, TFunctionRef<FName(FRH_WebRequest*)> GetKeyFromRequest)
+void FRHDTW_Analytics::DoTimelinePlot(FRH_WebRequests* WebRequestsTracker, const FString& FilterString, TFunctionRef<FName(FRH_WebRequest*)> GetKeyFromRequest)
 {
 #ifdef WITH_IMGUI_IMPLOT
 	static const int SecondsInOneMinute = 60;

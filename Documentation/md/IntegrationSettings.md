@@ -30,7 +30,10 @@ Main settings for the Integration.
 `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
 `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
 `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
-`public int32 `[`MaxSimultaneousRequests`](#classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+`public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+`public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
+`public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
+`public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) | Sets the time threshold for web traffic burst detection.
 `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) | Extensible LocalPlayerLoginSubsystem class path.
 `public FSoftClassPath `[`AdSubsystemClass`](#classURH__IntegrationSettings_1a134dbaebd973ab90d1bdb12027285009) | Extensible AdSubsystem class path.
 `public FSoftClassPath `[`FriendSubsystemClass`](#classURH__IntegrationSettings_1af67c19ac851c03c6e667a609182e1ac9) | Extensible FriendSubsystem class path.
@@ -182,9 +185,24 @@ Whether to automatically start platform sessions after joining them.
 Whether to automatically join platform sessions after a user change when invites were received while logged out.
 
 <br>
-#### `public int32 `[`MaxSimultaneousRequests`](#classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b) <a id="classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b"></a>
+#### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
 
 Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+
+<br>
+#### `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) <a id="classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4"></a>
+
+Sets the maximum number of web requests for which tracking data is kept.
+
+<br>
+#### `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) <a id="classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d"></a>
+
+Sets the count above which web traffic is considered a burst.
+
+<br>
+#### `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) <a id="classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb"></a>
+
+Sets the time threshold for web traffic burst detection.
 
 <br>
 #### `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) <a id="classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816"></a>
