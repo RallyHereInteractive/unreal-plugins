@@ -387,6 +387,7 @@ Simple container class to hold session view data, does not have its own auth con
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__SessionBrowserCache_1ac59f177acf3996badf4dd9907c0e66e8)`() const` | Gets the PlayerInfo Subsystem.
 `public inline virtual IOnlineSubsystem * `[`GetOSS`](#classURH__SessionBrowserCache_1a83aee966f46fa0846e717d03fd9d9963)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public inline virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public inline virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__SessionBrowserCache_1af673c57a58cd96f48687778033b0c9e4)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
@@ -477,6 +478,11 @@ Gets the Online Subsystem to use for OSS calls.
 #### `public inline virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131)`() const` <a id="classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131"></a>
 
 Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public inline virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8)`() const` <a id="classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8"></a>
+
+Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
 <br>
 #### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e)`() const` <a id="classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e"></a>
@@ -910,6 +916,8 @@ Invited Sessions are sessions that the player has been invited to.
 `public inline void `[`BLUEPRINT_Join`](#classURH__InvitedSession_1ae695534cc3653e4cf7374b54a030133b)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Join.
 `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
 `public inline void `[`BLUEPRINT_Leave`](#classURH__InvitedSession_1a5710f9c6987179ca0489029cb3bced79)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Leave.
+`public void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
+`public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` | Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
 
 #### Members
 
@@ -948,6 +956,22 @@ Blueprint compatible version of Leave.
 
 #### Parameters
 * `Delegate` The callback delegate for the session being updated by the leave.
+
+<br>
+#### `public void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f"></a>
+
+Determines if the Inviter of this session is blocked by the player on their current platform.
+
+#### Parameters
+* `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform
+
+<br>
+#### `public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` <a id="classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7"></a>
+
+Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
+
+#### Parameters
+* `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform
 
 <br>
 ## class `URH_OfflineSession` <a id="classURH__OfflineSession"></a>
@@ -1457,6 +1481,7 @@ Session Owner Interface.
 `public class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classIRH__SessionOwnerInterface_1abcf3e2921d15c88817b0a82b936b0f35)`() const` | Gets the PlayerInfo Subsystem.
 `public IOnlineSubsystem * `[`GetOSS`](#classIRH__SessionOwnerInterface_1a3ede591e11069d01484302cbdc7acf25)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public FPlatformUserId `[`GetOSSPlatformUserId`](#classIRH__SessionOwnerInterface_1a3248b77fb0ec5a40669b72eb693b0822)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual FGuid `[`GetPlayerUuid`](#classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
 `public inline TOptional< FString > `[`GetETagForSession`](#classIRH__SessionOwnerInterface_1a1af5c13f953285114e7e0ba2c7133c1d)`(const FString & SessionId) const` | Gets the Etag for a given Session.
 `public TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classIRH__SessionOwnerInterface_1aebf9f97e3204d81b31c92e3a5e6ba63d)`() const` | Gets the etag to use for a "Get all Templates" type query.
@@ -1523,6 +1548,11 @@ Gets the Online Subsystem to use for OSS calls.
 #### `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` <a id="classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf"></a>
 
 Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public FPlatformUserId `[`GetOSSPlatformUserId`](#classIRH__SessionOwnerInterface_1a3248b77fb0ec5a40669b72eb693b0822)`() const` <a id="classIRH__SessionOwnerInterface_1a3248b77fb0ec5a40669b72eb693b0822"></a>
+
+Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
 <br>
 #### `public inline virtual FGuid `[`GetPlayerUuid`](#classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8)`() const` <a id="classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8"></a>

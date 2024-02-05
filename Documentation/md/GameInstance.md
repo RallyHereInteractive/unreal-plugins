@@ -115,7 +115,8 @@ Server Bootstrapper for the Game Instance.
 `public virtual void `[`ReconcileAPITemplates`](#classURH__GameInstanceServerBootstrapper_1a3f046c14798943a59bcb268c75e02e6c)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Updates the list of session templates to those that are active.
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__GameInstanceServerBootstrapper_1ac1a7eee0c5d62a932aba1d57520fba59)`() const` | Gets the PlayerInfo Subsystem.
 `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__GameInstanceServerBootstrapper_1afdc3030fd174d1a570231dcad8429265)`() const` | Gets the Online Subsystem to use for OSS calls.
-`public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__GameInstanceServerBootstrapper_1a935444ab045d0e8647ace5f59b803a72)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__GameInstanceServerBootstrapper_1ab21f0bba37ec5caa75fe83379da54074)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__GameInstanceServerBootstrapper_1a0c31da8cfe9dcfcb2c8988e870e26931)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1ac1eaa7cf3cda91a7a1f412dfe5246fa8)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1ae10409319fa6d2264e124e65a8c9bf8e)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1ac2f94216aa37e0981cbb72db9e8a9f10)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
@@ -293,9 +294,14 @@ Gets the PlayerInfo Subsystem.
 Gets the Online Subsystem to use for OSS calls.
 
 <br>
-#### `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__GameInstanceServerBootstrapper_1a935444ab045d0e8647ace5f59b803a72)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a935444ab045d0e8647ace5f59b803a72"></a>
+#### `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__GameInstanceServerBootstrapper_1ab21f0bba37ec5caa75fe83379da54074)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ab21f0bba37ec5caa75fe83379da54074"></a>
 
 Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__GameInstanceServerBootstrapper_1a0c31da8cfe9dcfcb2c8988e870e26931)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a0c31da8cfe9dcfcb2c8988e870e26931"></a>
+
+Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
 <br>
 #### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1ac1eaa7cf3cda91a7a1f412dfe5246fa8)`() const` <a id="classURH__GameInstanceServerBootstrapper_1ac1eaa7cf3cda91a7a1f412dfe5246fa8"></a>
