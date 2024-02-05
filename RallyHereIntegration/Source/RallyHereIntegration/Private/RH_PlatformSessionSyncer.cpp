@@ -6,7 +6,9 @@
 #include "RH_Integration.h"
 #include "RH_OnlineSubsystemNames.h"
 #include "RH_SessionHelpers.h"
+#include "RH_PlayerInfoSubsystem.h"
 
+#include "Interfaces/IMessageSanitizerInterface.h"
 #include "Online/OnlineSessionNames.h"
 
 void MakeSessionIdJsonCaseConsistent(FString& SessionIdStr)
@@ -62,12 +64,7 @@ bool URH_PlatformSessionSyncer::Initialize(const FString& InSessionId, FRH_Sessi
 	// no session, nothing to sync
 	if (!RHSession)
 	{
-		return false;
-	}
-
-	FString SessionType;
-	if (!RHSession->GetTemplate().GetEngineSessionType(SessionType))
-	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - No RHSession to initialze for"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
 
@@ -75,20 +72,42 @@ bool URH_PlatformSessionSyncer::Initialize(const FString& InSessionId, FRH_Sessi
 	auto* OSS = GetOSS();
 	if (!OSS)
 	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find OSS to use"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
-
-	OSSSessionName = FName(*GetRHSession()->GetSessionId());
-	auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
-	check(OptionalPlatformId.IsSet());
-	RHPlatform = OptionalPlatformId.GetValue();
 
 	// determine if session already exists in OSS
 	auto OSSInterface = GetOSSSessionInterface();
 	if (OSSInterface == nullptr)
 	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find OSS Session Interface to use"), ANSI_TO_TCHAR(__FUNCTION__));
 		return false;
 	}
+
+	// determine platform and platform session name
+	OSSSessionName = FName(*GetRHSession()->GetSessionId());
+	auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	check(OptionalPlatformId.IsSet());
+	RHPlatform = OptionalPlatformId.GetValue();
+
+	// ensure that we have a platform template for the platform in the session template
+	const auto& Template = RHSession->GetTemplate();
+	const auto* PlatformTemplatesMap = Template.GetPlatformTemplatesOrNull();
+
+	if (PlatformTemplatesMap == nullptr)
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform templates map"), ANSI_TO_TCHAR(__FUNCTION__));
+		return false;
+	}
+
+	const auto* PlatformTemplate = PlatformTemplatesMap->Find(EnumToString(RHPlatform));
+
+	if (PlatformTemplate == nullptr)
+	{
+		UE_LOG(LogRHSession, Warning, TEXT("[%s] - Could not find platform session template for %s using platform %s"), ANSI_TO_TCHAR(__FUNCTION__), *RHSession->GetSessionId(), *EnumToString(RHPlatform));
+		return false;
+	}
+	check(PlatformTemplate->GetPlatform() == RHPlatform);
 
 	check(CurrentSyncActionState == ESyncActionState::Uninitialized);
 
@@ -205,7 +224,115 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 		return true;
 	}
 
-	return false;;
+	return false;
+}
+
+void URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(FRH_SessionOwnerPtr SessionOwnerPtr, FGuid PlayerUuid, FRH_OnSessionPlayerIsBlockedDelegateBlock Delegate)
+{
+	if (!SessionOwnerPtr.IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto* RHPI = SessionOwnerPtr->GetPlayerInfoSubsystem();
+	if (RHPI == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto* PlayerInfo = RHPI->GetOrCreatePlayerInfo(PlayerUuid);
+	if (PlayerInfo == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto PlatformUserId = SessionOwnerPtr->GetOSSPlatformUserId();
+	
+	if (!PlatformUserId.IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const IOnlineSubsystem* OSS = SessionOwnerPtr->GetOSS();
+	if (OSS == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	FString AuthTypeToExclude;
+	const IMessageSanitizerPtr MessageSanitizer = OSS->GetMessageSanitizer(PlatformUserId, AuthTypeToExclude);
+	if (!MessageSanitizer.IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	// if local OSS does not have a RH platform, we cannot check for blocked status based on their linked platforms
+	const auto OptionalPlatformId = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	if (!OptionalPlatformId.IsSet())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	PlayerInfo->GetLinkedPlatformInfo(FTimespan(), false, FRH_PlayerInfoGetPlatformsDelegate::CreateLambda([Delegate, SessionOwnerPtr, PlatformUserId, OptionalPlatformId](bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms)
+		{
+			// if session owner pointer has become stale, do not continue
+			if (!SessionOwnerPtr.IsValid())
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			// look up the OSS again, as this is an async result
+			const IOnlineSubsystem* OSS = SessionOwnerPtr->GetOSS();
+			if (OSS == nullptr)
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			// look up the message sanitizer again, as this is an async result
+			FString AuthTypeToExclude;
+			const IMessageSanitizerPtr MessageSanitizer = OSS->GetMessageSanitizer(PlatformUserId, AuthTypeToExclude);
+			if (!MessageSanitizer.IsValid())
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			// get the platform user id from the linked platforms
+			FString TargetPlatformUserId;
+			for (const auto& PlatformInfo : Platforms)
+			{
+				if (PlatformInfo->GetPlatform() == OptionalPlatformId.GetValue())
+				{
+					TargetPlatformUserId = PlatformInfo->GetPlatformUserId();
+				}
+			}
+
+			if (TargetPlatformUserId.IsEmpty())
+			{
+				Delegate.ExecuteIfBound(false);
+				return;
+			}
+
+			MessageSanitizer->ResetBlockedUserCache();
+
+			MessageSanitizer->QueryBlockedUser(
+				PlatformUserId,
+				TargetPlatformUserId,
+				RH_GetPlatformNameFromPlatformEnum(OptionalPlatformId.GetValue()),
+				FOnQueryUserBlockedResponse::CreateLambda([Delegate](const FBlockedQueryResult& QueryResult)
+					{
+						Delegate.ExecuteIfBound(QueryResult.bIsBlocked || QueryResult.bIsBlockedNonFriends);
+					}));
+		}));
 }
 
 void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerPtr SessionOwner, const FOnlineSessionSearchResult& SessionInvite, const FRHAPI_SelfSessionPlayerUpdateRequest& JoinDetails, const FRH_GenericSuccessWithErrorBlock& Delegate)

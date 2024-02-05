@@ -171,6 +171,11 @@ public:
 	virtual bool IsCleanupComplete() const { return CurrentSyncActionState == ESyncActionState::CleanupComplete; }
 
 	/**
+	* @brief Determines if the specified player in this session is blocked by the local player on their current platform
+	*/
+	static void IsSessionPlayerBlockedOnPlatformAsync(FRH_SessionOwnerPtr SessionOwnerPtr, FGuid PlayerUuid, FRH_OnSessionPlayerIsBlockedDelegateBlock Delegate);
+
+	/**
 	* @brief Static helper function to join a rally here session based off a platform session search result (received/accepted invites from the OSS typically come in the form of search results)
 	* @param [in] SessionOwner The session owner object to use when joining the session
 	* @param [in] Session The Platform Session Search Result to join

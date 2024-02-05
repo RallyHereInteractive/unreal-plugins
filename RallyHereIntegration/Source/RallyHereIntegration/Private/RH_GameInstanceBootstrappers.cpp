@@ -1137,18 +1137,13 @@ IOnlineSubsystem* URH_GameInstanceServerBootstrapper::GetOSS() const
 
 FUniqueNetIdWrapper URH_GameInstanceServerBootstrapper::GetOSSUniqueId() const
 {
-	/*
-	UWorld* World = GetWorld();
-	if (World != nullptr)
-	{
-		return FUniqueNetIdRepl(UOnlineEngineInterface::Get()->GetUniquePlayerIdWrapper(World, PlatformUserId));
-	}
-	*/
-
 	return FUniqueNetIdRepl();
 }
 
-
+FPlatformUserId URH_GameInstanceServerBootstrapper::GetOSSPlatformUserId() const
+{
+	return FPlatformUserId();
+}
 
 void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWithETag& SessionWrapper)
 {

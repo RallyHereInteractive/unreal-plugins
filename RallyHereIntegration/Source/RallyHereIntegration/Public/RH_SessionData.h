@@ -39,6 +39,12 @@ DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionUpdatedDelegateBlock, FRH_OnSessionUpdate
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnSessionUpdatedMulticastDynamicDelegate, URH_SessionView*, UpdatedSession);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnSessionUpdatedMulticastDelegate, URH_SessionView*);
 
+// delegate for querying if player is blocked
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_OnSessionPlayerIsBlockedDynamicDelegate, bool, bIsBlocked);
+DECLARE_DELEGATE_OneParam(FRH_OnSessionPlayerIsBlockedDelegate, bool);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionPlayerIsBlockedDelegateBlock, FRH_OnSessionPlayerIsBlockedDelegate, FRH_OnSessionPlayerIsBlockedDynamicDelegate, bool);
+
 /** @defgroup Session RallyHere Session
  *  @{
  */
@@ -561,6 +567,19 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Leave", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_Leave(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { return Leave(Delegate); }
+
+	/**
+	 * @brief Determines if the Inviter of this session is blocked by the player on their current platform
+	 * @param [in] Delegate The callback delegate for the results of querying if the inviter is blocked on the current platform
+	 */
+	void QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate);
+	/**
+	 * @brief Blueprint compatible version of QueryInviterBlockedOnPlatformAsync
+	 * @param [in] Delegate The callback delegate for the results of querying if the inviter is blocked on the current platform
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "QueryInviterBlockedOnPlatformAsync", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDynamicDelegate& Delegate) { return QueryInviterBlockedOnPlatformAsync(Delegate); }
+
 };
 
 /**
@@ -1271,6 +1290,10 @@ public:
 	 * @brief Gets the Online Subsystem Unique Id to use for OSS calls
 	 */
 	virtual FUniqueNetIdWrapper GetOSSUniqueId() const = 0;
+	/**
+	 * @brief Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
+	 */
+	virtual FPlatformUserId GetOSSPlatformUserId() const = 0;
 	/**
 	 * @brief Gets the Player UUID to use for player related calls (can be invalid)
 	 */

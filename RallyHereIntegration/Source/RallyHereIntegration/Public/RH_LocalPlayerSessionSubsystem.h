@@ -159,6 +159,10 @@ public:
 	*/
 	virtual FUniqueNetIdWrapper GetOSSUniqueId() const override;
 	/**
+	 * @brief Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
+	 */
+	virtual FPlatformUserId GetOSSPlatformUserId() const override;
+	/**
 	 * @brief Gets the Player UUID to use for player related calls (can be invalid)
 	 */
 	virtual FGuid GetPlayerUuid() const override;

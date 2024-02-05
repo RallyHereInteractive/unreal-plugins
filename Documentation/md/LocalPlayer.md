@@ -884,6 +884,7 @@ Subsystem to manage sessions for the local player.
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__LocalPlayerSessionSubsystem_1a8978774a71778d9d5a9b4f20f1ee85f6)`() const` | Utility function to look up the player info subsystem ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual IOnlineSubsystem * `[`GetOSS`](#classURH__LocalPlayerSessionSubsystem_1a236725daa5e1b49d96c04a2da868be04)`() const` | Utility function to look up the OnlineSubsystem to use for session calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSessionSubsystem_1a242dea7f5ff3092050c7d15ba05dc8a0)`() const` | Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+`public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__LocalPlayerSessionSubsystem_1a381885585853e65604470259e8a053ff)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
 `public inline virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classURH__LocalPlayerSessionSubsystem_1a4ed75c6f69c267d419355a48e64db6fe)`(const FString & SessionId) const` | Gets the platform session synchronization object for a given session id ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
 `public virtual `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classURH__LocalPlayerSessionSubsystem_1a498582f9ba28c7472e33004de090efe7)`(const FUniqueNetIdRepl & PlatformSessionId) const` | Gets the platform session synchronization object for a given platform session id.
@@ -1142,6 +1143,11 @@ Utility function to look up the OnlineSubsystem to use for session calls ([IRH_S
 #### `public virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__LocalPlayerSessionSubsystem_1a242dea7f5ff3092050c7d15ba05dc8a0)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a242dea7f5ff3092050c7d15ba05dc8a0"></a>
 
 Utility function to look up the UniqueNetId to use for OnlineSubsystem calls ([IRH_SessionOwnerInterface](Session.md#classIRH__SessionOwnerInterface) requirement)
+
+<br>
+#### `public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__LocalPlayerSessionSubsystem_1a381885585853e65604470259e8a053ff)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1a381885585853e65604470259e8a053ff"></a>
+
+Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
 <br>
 #### `public virtual FGuid `[`GetPlayerUuid`](#classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802)`() const` <a id="classURH__LocalPlayerSessionSubsystem_1aaf5587019c1eb05ce9e42c72541dd802"></a>

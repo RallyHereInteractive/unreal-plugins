@@ -75,6 +75,7 @@ TOptional<ERHAPI_GrantType> RALLYHEREINTEGRATION_API RH_GetGrantTypeFromOSSName(
 bool RALLYHEREINTEGRATION_API RH_UseGetAuthTokenFallbackFromOSSName(FName OSSName);
 bool RALLYHEREINTEGRATION_API RH_PlatformSessionsTypeIsCaseInsensitive(FName SessionType);
 bool RALLYHEREINTEGRATION_API RH_UseRecentPlayersFromOSSName(FName OSSName);
+FString RALLYHEREINTEGRATION_API RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform);
 
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
 

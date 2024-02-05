@@ -425,7 +425,11 @@ public:
 	/**
 	 * @brief Gets the Online Subsystem Unique Id to use for OSS calls
 	 */
-	virtual FUniqueNetIdWrapper GetOSSUniqueId() const;
+	virtual FUniqueNetIdWrapper GetOSSUniqueId() const override;
+	/**
+	 * @brief Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
+	 */
+	virtual FPlatformUserId GetOSSPlatformUserId() const override;
 	/**
 	 * @brief Gets the etag to use for a "Get all Templates" type query.
 	 */
