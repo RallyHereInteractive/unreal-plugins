@@ -340,6 +340,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
      /** @brief Clears the value of PlatformTemplates_Optional and sets PlatformTemplates_IsSet to false */
     void ClearPlatformTemplates() { PlatformTemplates_IsSet = false; }
 
+    /** @brief Parameters used to start an instance for this session when it is created */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InstanceStartupParams AutoStartupParams_Optional{  };
     /** @brief true if AutoStartupParams_Optional has been set to a value */

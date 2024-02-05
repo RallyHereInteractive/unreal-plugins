@@ -22,7 +22,7 @@ At this point, you've likely generated a client setup.  It will include somethin
 |-- src
 |--- main
 |---- java
-|----- com.hirezstudios.rallyhere.codegen.RhCppUe4Generator.java // generator file
+|----- com.rallyhere.codegen.RhCppUe4Generator.java // generator file
 |---- resources
 |----- rh-cpp-ue4 // template files
 |----- META-INF

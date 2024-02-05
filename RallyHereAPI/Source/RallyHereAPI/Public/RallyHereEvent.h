@@ -9,9 +9,6 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "CorrelationId.h"
-#include "SessionId.h"
-#include "UserId.h"
 #include "RallyHereEvent.generated.h"
 
 /** @defgroup RHAPI_RallyHereEvent RallyHere API Model RallyHereEvent
@@ -106,68 +103,68 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_UserId UserId_Optional{  };
+    FString UserId_Optional{  };
     /** @brief true if UserId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool UserId_IsSet{ false };
     /** @brief Gets the value of UserId_Optional, regardless of it having been set */
-    FRHAPI_UserId& GetUserId() { return UserId_Optional; }
+    FString& GetUserId() { return UserId_Optional; }
     /** @brief Gets the value of UserId_Optional, regardless of it having been set */
-    const FRHAPI_UserId& GetUserId() const { return UserId_Optional; }
+    const FString& GetUserId() const { return UserId_Optional; }
     /** @brief Gets the value of UserId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_UserId& GetUserId(const FRHAPI_UserId& DefaultValue) const { if (UserId_IsSet) return UserId_Optional; return DefaultValue; }
+    const FString& GetUserId(const FString& DefaultValue) const { if (UserId_IsSet) return UserId_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of UserId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetUserId(FRHAPI_UserId& OutValue) const { if (UserId_IsSet) OutValue = UserId_Optional; return UserId_IsSet; }
+    bool GetUserId(FString& OutValue) const { if (UserId_IsSet) OutValue = UserId_Optional; return UserId_IsSet; }
     /** @brief Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_UserId* GetUserIdOrNull() { if (UserId_IsSet) return &UserId_Optional; return nullptr; }
+    FString* GetUserIdOrNull() { if (UserId_IsSet) return &UserId_Optional; return nullptr; }
     /** @brief Returns a pointer to UserId_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_UserId* GetUserIdOrNull() const { if (UserId_IsSet) return &UserId_Optional; return nullptr; }
+    const FString* GetUserIdOrNull() const { if (UserId_IsSet) return &UserId_Optional; return nullptr; }
     /** @brief Sets the value of UserId_Optional and also sets UserId_IsSet to true */
-    void SetUserId(FRHAPI_UserId NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; }
+    void SetUserId(FString NewValue) { UserId_Optional = NewValue; UserId_IsSet = true; }
      /** @brief Clears the value of UserId_Optional and sets UserId_IsSet to false */
     void ClearUserId() { UserId_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_SessionId SessionId_Optional{  };
+    FString SessionId_Optional{  };
     /** @brief true if SessionId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool SessionId_IsSet{ false };
     /** @brief Gets the value of SessionId_Optional, regardless of it having been set */
-    FRHAPI_SessionId& GetSessionId() { return SessionId_Optional; }
+    FString& GetSessionId() { return SessionId_Optional; }
     /** @brief Gets the value of SessionId_Optional, regardless of it having been set */
-    const FRHAPI_SessionId& GetSessionId() const { return SessionId_Optional; }
+    const FString& GetSessionId() const { return SessionId_Optional; }
     /** @brief Gets the value of SessionId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_SessionId& GetSessionId(const FRHAPI_SessionId& DefaultValue) const { if (SessionId_IsSet) return SessionId_Optional; return DefaultValue; }
+    const FString& GetSessionId(const FString& DefaultValue) const { if (SessionId_IsSet) return SessionId_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of SessionId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSessionId(FRHAPI_SessionId& OutValue) const { if (SessionId_IsSet) OutValue = SessionId_Optional; return SessionId_IsSet; }
+    bool GetSessionId(FString& OutValue) const { if (SessionId_IsSet) OutValue = SessionId_Optional; return SessionId_IsSet; }
     /** @brief Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_SessionId* GetSessionIdOrNull() { if (SessionId_IsSet) return &SessionId_Optional; return nullptr; }
+    FString* GetSessionIdOrNull() { if (SessionId_IsSet) return &SessionId_Optional; return nullptr; }
     /** @brief Returns a pointer to SessionId_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_SessionId* GetSessionIdOrNull() const { if (SessionId_IsSet) return &SessionId_Optional; return nullptr; }
+    const FString* GetSessionIdOrNull() const { if (SessionId_IsSet) return &SessionId_Optional; return nullptr; }
     /** @brief Sets the value of SessionId_Optional and also sets SessionId_IsSet to true */
-    void SetSessionId(FRHAPI_SessionId NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
+    void SetSessionId(FString NewValue) { SessionId_Optional = NewValue; SessionId_IsSet = true; }
      /** @brief Clears the value of SessionId_Optional and sets SessionId_IsSet to false */
     void ClearSessionId() { SessionId_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_CorrelationId CorrelationId_Optional{  };
+    FString CorrelationId_Optional{  };
     /** @brief true if CorrelationId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool CorrelationId_IsSet{ false };
     /** @brief Gets the value of CorrelationId_Optional, regardless of it having been set */
-    FRHAPI_CorrelationId& GetCorrelationId() { return CorrelationId_Optional; }
+    FString& GetCorrelationId() { return CorrelationId_Optional; }
     /** @brief Gets the value of CorrelationId_Optional, regardless of it having been set */
-    const FRHAPI_CorrelationId& GetCorrelationId() const { return CorrelationId_Optional; }
+    const FString& GetCorrelationId() const { return CorrelationId_Optional; }
     /** @brief Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_CorrelationId& GetCorrelationId(const FRHAPI_CorrelationId& DefaultValue) const { if (CorrelationId_IsSet) return CorrelationId_Optional; return DefaultValue; }
+    const FString& GetCorrelationId(const FString& DefaultValue) const { if (CorrelationId_IsSet) return CorrelationId_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of CorrelationId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetCorrelationId(FRHAPI_CorrelationId& OutValue) const { if (CorrelationId_IsSet) OutValue = CorrelationId_Optional; return CorrelationId_IsSet; }
+    bool GetCorrelationId(FString& OutValue) const { if (CorrelationId_IsSet) OutValue = CorrelationId_Optional; return CorrelationId_IsSet; }
     /** @brief Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_CorrelationId* GetCorrelationIdOrNull() { if (CorrelationId_IsSet) return &CorrelationId_Optional; return nullptr; }
+    FString* GetCorrelationIdOrNull() { if (CorrelationId_IsSet) return &CorrelationId_Optional; return nullptr; }
     /** @brief Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_CorrelationId* GetCorrelationIdOrNull() const { if (CorrelationId_IsSet) return &CorrelationId_Optional; return nullptr; }
+    const FString* GetCorrelationIdOrNull() const { if (CorrelationId_IsSet) return &CorrelationId_Optional; return nullptr; }
     /** @brief Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true */
-    void SetCorrelationId(FRHAPI_CorrelationId NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
+    void SetCorrelationId(FString NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
      /** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
     void ClearCorrelationId() { CorrelationId_IsSet = false; }
 };

@@ -67,6 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     /** @brief Sets the value of SessionId */
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
+    /** @brief Info about the current active instance for the session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InstanceInfo Instance_Optional{  };
     /** @brief true if Instance_Optional has been set to a value */
@@ -89,6 +90,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of Instance_Optional and sets Instance_IsSet to false */
     void ClearInstance() { Instance_IsSet = false; }
 
+    /** @brief Info about the current match in the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MatchInfo Match_Optional{  };
     /** @brief true if Match_Optional has been set to a value */
@@ -111,6 +113,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
     void ClearMatch() { Match_IsSet = false; }
 
+    /** @brief Info about the matchmaking results that resulted in this session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MatchmakingResults MatchmakingResults_Optional{  };
     /** @brief true if MatchmakingResults_Optional has been set to a value */
@@ -133,6 +136,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of MatchmakingResults_Optional and sets MatchmakingResults_IsSet to false */
     void ClearMatchmakingResults() { MatchmakingResults_IsSet = false; }
 
+    /** @brief DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MatchmakingInfo Matchmaking_Optional{  };
     /** @brief true if Matchmaking_Optional has been set to a value */
@@ -155,6 +159,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false */
     void ClearMatchmaking() { Matchmaking_IsSet = false; }
 
+    /** @brief Info about the open-match backfill object for the session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_BackfillInfo Backfill_Optional{  };
     /** @brief true if Backfill_Optional has been set to a value */
@@ -177,6 +182,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of Backfill_Optional and sets Backfill_IsSet to false */
     void ClearBackfill() { Backfill_IsSet = false; }
 
+    /** @brief Info about the browser state of the session */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_BrowserInfo Browser_Optional{  };
     /** @brief true if Browser_Optional has been set to a value */

@@ -41,6 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Player info */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PlayerPersonResponse Player{  };
     /** @brief Gets the value of Player */

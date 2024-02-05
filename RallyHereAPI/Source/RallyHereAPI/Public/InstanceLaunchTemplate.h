@@ -51,6 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceLaunchTemplate : public FRHAPI_Model
     /** @brief Sets the value of InstanceLaunchTemplateId */
     void SetInstanceLaunchTemplateId(FGuid NewValue) { InstanceLaunchTemplateId = NewValue;  }
 
+    /** @brief A selection list of maps that can be chosen to launch into */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_MapSelectionList MapSelectionList{  };
     /** @brief Gets the value of MapSelectionList */

@@ -76,7 +76,7 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 			{
 				if (Resp.IsSuccessful())
 				{
-					ImportAPITemplateGroup(Resp.Content, Resp.ETag.Get(TEXT("")));
+					ImportAPIMatchmakingTemplateGroup(Resp.Content, Resp.ETag.Get(TEXT("")));
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, TemplateId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -103,20 +103,81 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
 }
 
-void URH_MatchmakingBrowserCache::ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplate, const FString& ETag)
+void URH_MatchmakingBrowserCache::ImportAPIMatchmakingTemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplate, const FString& ETag)
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.GetMatchMakingTemplateGroupId().ToString(EGuidFormats::DigitsWithHyphens));
 
-	auto existingPtr = TemplateGroupCache.Find(APITemplate.GetMatchMakingTemplateGroupId());
-	URH_MatchmakingTemplateGroupInfo* TemplateWrapper = existingPtr ? *existingPtr : nullptr;
+	auto existingPtr = MatchmakingTemplateGroupCache.Find(APITemplate.GetMatchMakingTemplateGroupId());
+	auto* Wrapper = existingPtr ? *existingPtr : nullptr;
 
-	if (TemplateWrapper == nullptr)
+	if (Wrapper == nullptr)
 	{
-		TemplateWrapper = NewObject<URH_MatchmakingTemplateGroupInfo>(this);
-		TemplateGroupCache.Add(APITemplate.GetMatchMakingTemplateGroupId(), TemplateWrapper);
+		Wrapper = NewObject<URH_MatchmakingTemplateGroupInfo>(this);
+		MatchmakingTemplateGroupCache.Add(APITemplate.GetMatchMakingTemplateGroupId(), Wrapper);
 	}
 
-	TemplateWrapper->ImportAPITemplateGroup(APITemplate, ETag);
+	Wrapper->ImportAPITemplateGroup(APITemplate, ETag);
+
+	// import the profiles to the profile cache, since we have them anyways
+	for (const auto& Options : APITemplate.GetTemplateOptions())
+	{
+		for (const auto& Profile : Options.GetProfiles())
+		{
+			ImportAPIMatchmakingProfile(Profile, FString());
+		}
+	}
+}
+
+void URH_MatchmakingBrowserCache::SearchMatchmakingProfile(const FString& ProfileId, const FRH_OnGetMatchmakingProfileCompleteDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_GetMatchMakingProfileV2 BaseType;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					ImportAPIMatchmakingProfile(Resp.Content, Resp.ETag.Get(TEXT("")));
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, ProfileId, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, GetMatchmakingProfile(ProfileId), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetMatchmakingTemplatePriority
+	);
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchMakingProfileId = ProfileId;
+
+	const auto* Existing = GetMatchmakingProfile(ProfileId);
+	if (Existing != nullptr)
+	{
+		// if we have an etag, use it
+		if (Existing->GetETag().Len() > 0)
+		{
+			Request.IfNoneMatch = Existing->GetETag();
+		}
+	}
+
+	Helper->Start(RH_APIs::GetQueuesAPI(), Request);
+}
+
+void URH_MatchmakingBrowserCache::ImportAPIMatchmakingProfile(const FRHAPI_MatchMakingProfileV2& APIProfile, const FString& ETag)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APIProfile.GetMatchMakingProfileId());
+
+	auto existingPtr = MatchmakingProfileCache.Find(APIProfile.GetMatchMakingProfileId());
+	auto* Wrapper = existingPtr ? *existingPtr : nullptr;
+
+	if (Wrapper == nullptr)
+	{
+		Wrapper = NewObject<URH_MatchmakingProfileInfo>(this);
+		MatchmakingProfileCache.Add(APIProfile.GetMatchMakingProfileId(), Wrapper);
+	}
+
+	Wrapper->ImportAPIProfile(APIProfile, ETag);
 }
 
 void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& TemplateId, const FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock& Delegate)
@@ -171,21 +232,33 @@ void URH_MatchmakingBrowserCache::ImportAPIInstanceRequestTemplate(const FRHAPI_
 	TemplateWrapper->ImportAPIInstanceLaunchTemplate(APITemplate, ETag);
 }
 
-void URH_MatchmakingBrowserCache::SearchRegions(const FRH_OnRegionSearchCompleteDelegateBlock& Delegate)
+void URH_MatchmakingBrowserCache::SearchRegions(int32 Cursor, const FRH_OnRegionSearchCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	typedef RallyHereAPI::Traits_GetSiteSettings BaseType;
+	typedef RallyHereAPI::Traits_GetAllRegions BaseType;
 
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
-	//Request.IfNoneMatch = AppSettingsETag;
+	if (Cursor != 0)
+	{
+		Request.Cursor = Cursor;
+	}
+
+	LastRegionCursor = 0;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
 			{
 				if (Resp.IsSuccessful())
 				{
-					RegionsCache = Resp.Content;
+					// merge the regions in to the cache
+					for (auto Region : Resp.Content.GetRegions())
+					{
+						ImportAPIRegion(Region);
+					}
+
+					// stash cursor for callback
+					LastRegionCursor = Resp.Content.GetCursor();
 
 					{
 						SCOPED_NAMED_EVENT(RallyHere_BroadcastRegionsUpdated, FColor::Purple);
@@ -196,10 +269,17 @@ void URH_MatchmakingBrowserCache::SearchRegions(const FRH_OnRegionSearchComplete
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				Delegate.ExecuteIfBound(bSuccess, GetAllRegions(), ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, GetAllRegions(), LastRegionCursor, ErrorInfo);
 			}),
-		GetDefault<URH_IntegrationSettings>()->GetSiteSettingsPriority
+		GetDefault<URH_IntegrationSettings>()->GetRegionsPriority
 	);
 
-	Helper->Start(RH_APIs::GetAPIs().GetSite(), Request);
+	Helper->Start(RH_APIs::GetAPIs().GetRegions(), Request);
+}
+
+void URH_MatchmakingBrowserCache::ImportAPIRegion(const FRHAPI_Region& APIRegion)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APIRegion.GetRegionId());
+
+	RegionsCache.Add(APIRegion.GetRegionId(), APIRegion);
 }

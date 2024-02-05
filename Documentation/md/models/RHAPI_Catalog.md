@@ -19,23 +19,23 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) | 
+`public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) | The XP Tables.
 `public bool `[`XpTables_IsSet`](#structFRHAPI__Catalog_1af90b7e5ba57c9a0494cebca385d57554) | true if XpTables_Optional has been set to a value
-`public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) | 
+`public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) | The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead.
 `public bool `[`PortalUseRulesets_IsSet`](#structFRHAPI__Catalog_1aa2b91b29308df30644270d464ed59c1a) | true if PortalUseRulesets_Optional has been set to a value
-`public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) | 
+`public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) | The rules on how to use Inventory Buckets.
 `public bool `[`InventoryBucketUseRuleSets_IsSet`](#structFRHAPI__Catalog_1a0586281245ad51f50f42b97a66226541) | true if InventoryBucketUseRuleSets_Optional has been set to a value
-`public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) | 
+`public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) | The Vendors.
 `public bool `[`Vendors_IsSet`](#structFRHAPI__Catalog_1a7825696f94603a9c682c871ea2ffdf48) | true if Vendors_Optional has been set to a value
-`public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) | 
+`public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) | The Loots.
 `public bool `[`Loot_IsSet`](#structFRHAPI__Catalog_1aff1762bd9da5b9e4b538134c4f274458) | true if Loot_Optional has been set to a value
-`public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) | 
+`public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) | The Items.
 `public bool `[`Items_IsSet`](#structFRHAPI__Catalog_1add54c8f6b30746e9e2fc5589e1670020) | true if Items_Optional has been set to a value
-`public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) | 
+`public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) | The Price Points.
 `public bool `[`PricePoints_IsSet`](#structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0) | true if PricePoints_Optional has been set to a value
-`public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) | 
+`public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) | The Time Frames.
 `public bool `[`TimeFrames_IsSet`](#structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9) | true if TimeFrames_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) | 
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) | Cache info for the Catalog.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Catalog_1a8aa802eebad07291e54446219d17ff42)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Catalog_1ae1e9ed1e399d572a268c605ade660c55)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -116,6 +116,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 
 #### `public `[`FRHAPI_XpTables`](RHAPI_XpTables.md#structFRHAPI__XpTables)` `[`XpTables_Optional`](#structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23) <a id="structFRHAPI__Catalog_1af4f0cd76a893a7e28a5434d8bcd18d23"></a>
 
+The XP Tables.
+
 <br>
 #### `public bool `[`XpTables_IsSet`](#structFRHAPI__Catalog_1af90b7e5ba57c9a0494cebca385d57554) <a id="structFRHAPI__Catalog_1af90b7e5ba57c9a0494cebca385d57554"></a>
 
@@ -123,6 +125,8 @@ true if XpTables_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_PortalUseRulesets`](RHAPI_PortalUseRulesets.md#structFRHAPI__PortalUseRulesets)` `[`PortalUseRulesets_Optional`](#structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7) <a id="structFRHAPI__Catalog_1a5c1bc6fb261f498f6a9cb2b53678ada7"></a>
+
+The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead.
 
 <br>
 #### `public bool `[`PortalUseRulesets_IsSet`](#structFRHAPI__Catalog_1aa2b91b29308df30644270d464ed59c1a) <a id="structFRHAPI__Catalog_1aa2b91b29308df30644270d464ed59c1a"></a>
@@ -132,6 +136,8 @@ true if PortalUseRulesets_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_InventoryBucketUseRuleSets`](RHAPI_InventoryBucketUseRuleSets.md#structFRHAPI__InventoryBucketUseRuleSets)` `[`InventoryBucketUseRuleSets_Optional`](#structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe) <a id="structFRHAPI__Catalog_1a9b851c0b6519aede6992d0d9bba421fe"></a>
 
+The rules on how to use Inventory Buckets.
+
 <br>
 #### `public bool `[`InventoryBucketUseRuleSets_IsSet`](#structFRHAPI__Catalog_1a0586281245ad51f50f42b97a66226541) <a id="structFRHAPI__Catalog_1a0586281245ad51f50f42b97a66226541"></a>
 
@@ -139,6 +145,8 @@ true if InventoryBucketUseRuleSets_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_Vendors`](RHAPI_Vendors.md#structFRHAPI__Vendors)` `[`Vendors_Optional`](#structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b) <a id="structFRHAPI__Catalog_1a1f4638b8bf02a2bf9dcd96d8371b184b"></a>
+
+The Vendors.
 
 <br>
 #### `public bool `[`Vendors_IsSet`](#structFRHAPI__Catalog_1a7825696f94603a9c682c871ea2ffdf48) <a id="structFRHAPI__Catalog_1a7825696f94603a9c682c871ea2ffdf48"></a>
@@ -148,6 +156,8 @@ true if Vendors_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_Loots`](RHAPI_Loots.md#structFRHAPI__Loots)` `[`Loot_Optional`](#structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1) <a id="structFRHAPI__Catalog_1a1de575ff599e2024bad49cc64f3c85c1"></a>
 
+The Loots.
+
 <br>
 #### `public bool `[`Loot_IsSet`](#structFRHAPI__Catalog_1aff1762bd9da5b9e4b538134c4f274458) <a id="structFRHAPI__Catalog_1aff1762bd9da5b9e4b538134c4f274458"></a>
 
@@ -155,6 +165,8 @@ true if Loot_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_Items`](RHAPI_Items.md#structFRHAPI__Items)` `[`Items_Optional`](#structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47) <a id="structFRHAPI__Catalog_1aadceaa0da05b125011e20fff72327a47"></a>
+
+The Items.
 
 <br>
 #### `public bool `[`Items_IsSet`](#structFRHAPI__Catalog_1add54c8f6b30746e9e2fc5589e1670020) <a id="structFRHAPI__Catalog_1add54c8f6b30746e9e2fc5589e1670020"></a>
@@ -164,6 +176,8 @@ true if Items_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_PricePoints`](RHAPI_PricePoints.md#structFRHAPI__PricePoints)` `[`PricePoints_Optional`](#structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4) <a id="structFRHAPI__Catalog_1a509fa6f65b75105aa8d3e7abed6f22c4"></a>
 
+The Price Points.
+
 <br>
 #### `public bool `[`PricePoints_IsSet`](#structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0) <a id="structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0"></a>
 
@@ -172,6 +186,8 @@ true if PricePoints_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) <a id="structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25"></a>
 
+The Time Frames.
+
 <br>
 #### `public bool `[`TimeFrames_IsSet`](#structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9) <a id="structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9"></a>
 
@@ -179,6 +195,8 @@ true if TimeFrames_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) <a id="structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae"></a>
+
+Cache info for the Catalog.
 
 <br>
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079) <a id="structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079"></a>
