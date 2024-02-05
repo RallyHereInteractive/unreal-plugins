@@ -29,7 +29,7 @@ Represents a line item in the Player Order and the results of the line item.
 `public bool `[`VendorEtag_IsSet`](#structFRHAPI__PlayerOrderEntry_1ab4257754c991af2dd4040bf0009cbc97) | true if VendorEtag_Optional has been set to a value
 `public TArray< int32 > `[`DynamicBundleLootIds_Optional`](#structFRHAPI__PlayerOrderEntry_1ac9d962191f53b6ccb641b318adb9f5cb) | List of Loot IDs for the dynamic bundle.
 `public bool `[`DynamicBundleLootIds_IsSet`](#structFRHAPI__PlayerOrderEntry_1ac3c5d9b9ae603866b22219786fddcb7f) | true if DynamicBundleLootIds_Optional has been set to a value
-`public `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` `[`PurchasePrice_Optional`](#structFRHAPI__PlayerOrderEntry_1ae0d142dad5970d2a31368fc3a8a42175) | 
+`public `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` `[`PurchasePrice_Optional`](#structFRHAPI__PlayerOrderEntry_1ae0d142dad5970d2a31368fc3a8a42175) | The purchase price of the Loot.
 `public bool `[`PurchasePrice_IsSet`](#structFRHAPI__PlayerOrderEntry_1ad3a9263f522644db2c88f24ee13bef1c) | true if PurchasePrice_Optional has been set to a value
 `public FString `[`ExternalTranId_Optional`](#structFRHAPI__PlayerOrderEntry_1a7790f9a333b141c80e9e834f3182288f) | External Transaction Id for source of the acquisition or a promotion code to claim. Required for [PROMOTION_CODE] types.
 `public bool `[`ExternalTranId_IsSet`](#structFRHAPI__PlayerOrderEntry_1a74e920f1fb01339b03e60891fe58430f) | true if ExternalTranId_Optional has been set to a value
@@ -259,6 +259,8 @@ true if DynamicBundleLootIds_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` `[`PurchasePrice_Optional`](#structFRHAPI__PlayerOrderEntry_1ae0d142dad5970d2a31368fc3a8a42175) <a id="structFRHAPI__PlayerOrderEntry_1ae0d142dad5970d2a31368fc3a8a42175"></a>
+
+The purchase price of the Loot.
 
 <br>
 #### `public bool `[`PurchasePrice_IsSet`](#structFRHAPI__PlayerOrderEntry_1ad3a9263f522644db2c88f24ee13bef1c) <a id="structFRHAPI__PlayerOrderEntry_1ad3a9263f522644db2c88f24ee13bef1c"></a>

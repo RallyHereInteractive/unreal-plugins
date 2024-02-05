@@ -43,7 +43,7 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 ########################################
 # Download openapi-generator-cli
-curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.5.0/openapi-generator-cli-6.5.0.jar --create-dirs -o bin/openapi-generator-cli.jar
+curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.2.0/openapi-generator-cli-7.2.0.jar --create-dirs -o bin/openapi-generator-cli.jar
 
 ########################################
 # Build the rh-cpp-ue4 generator
@@ -53,14 +53,26 @@ mvn package
 # Install the rh-cpp-ue4 generator
 java -cp "target/rh-cpp-ue4-openapi-generator-1.0.0.jar;bin/openapi-generator-cli.jar" org.openapitools.codegen.OpenAPIGenerator
 
+
+########################################
+# Download and convert the OpenAPI spec
+curl "$OPENAPI_SPEC_LOCATION" -o openapi.json
+jq '.openapi = "3.0.3"' openapi.json > openapi_converted.json
+OPENAPI_SPEC_LOCATION="openapi_converted.json"
+
 # Generate the RH-UE4 Client
 rm -rf "$OUTPUT_DIR"
 java -cp \
     "target/rh-cpp-ue4-openapi-generator-1.0.0.jar:bin/openapi-generator-cli.jar" \
     org.openapitools.codegen.OpenAPIGenerator \
     generate \
-    -i "$OPENAPI_SPEC_LOCATION" \
+    -i "openapi_converted.json" \
     --generator-name="rh-cpp-ue4" \
     --output="$OUTPUT_DIR" \
     --additional-properties="$ADDITIONAL_PROPERTIES"
+
+# Cleanup
+rm -f openapi_converted.json
+rm -f openapi.json
+
 popd

@@ -20,7 +20,7 @@ DEPRECATED Response to successfully requesting a player&#39;s rank.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerRankResponse_1ad515f738c5f7ba86c3cc1cbc7aabb511) | UUID for this specific player.
-`public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645) | 
+`public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645) | Current rank info about player.
 `public int32 `[`RankId`](#structFRHAPI__PlayerRankResponse_1a8200a6af92b552e2e7976f8bc6b0356c) | ID for this rank.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankResponse_1a629c47f7b0ca8162bc16f1cdad7b08dc)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankResponse_1a412ba11e1fbd72b54600368177cfddb4)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -44,6 +44,8 @@ UUID for this specific player.
 
 <br>
 #### `public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645) <a id="structFRHAPI__PlayerRankResponse_1a52b54e3853b393e59f3c344ec9e5e645"></a>
+
+Current rank info about player.
 
 <br>
 #### `public int32 `[`RankId`](#structFRHAPI__PlayerRankResponse_1a8200a6af92b552e2e7976f8bc6b0356c) <a id="structFRHAPI__PlayerRankResponse_1a8200a6af92b552e2e7976f8bc6b0356c"></a>

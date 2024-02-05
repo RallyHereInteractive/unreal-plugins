@@ -19,7 +19,7 @@ Login result.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` `[`PortalParentAuthResult_Optional`](#structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b) | 
+`public `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` `[`PortalParentAuthResult_Optional`](#structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b) | Parent portal auth result.
 `public bool `[`PortalParentAuthResult_IsSet`](#structFRHAPI__LoginResult_1ad84a4150a336bc1f6f55819dea19dff2) | true if PortalParentAuthResult_Optional has been set to a value
 `public TArray< FString > `[`Permissions_Optional`](#structFRHAPI__LoginResult_1a2841f8f618dc2680f7ab4c6899561cd9) | List of permissions for this user.
 `public bool `[`Permissions_IsSet`](#structFRHAPI__LoginResult_1a0c607dca5488bdf74bd28eaaef59d5f0) | true if Permissions_Optional has been set to a value
@@ -195,6 +195,8 @@ Login result.
 #### Members
 
 #### `public `[`FRHAPI_PortalUserInfo`](RHAPI_PortalUserInfo.md#structFRHAPI__PortalUserInfo)` `[`PortalParentAuthResult_Optional`](#structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b) <a id="structFRHAPI__LoginResult_1aafa0221a83ff325e02182519fc6a664b"></a>
+
+Parent portal auth result.
 
 <br>
 #### `public bool `[`PortalParentAuthResult_IsSet`](#structFRHAPI__LoginResult_1ad84a4150a336bc1f6f55819dea19dff2) <a id="structFRHAPI__LoginResult_1ad84a4150a336bc1f6f55819dea19dff2"></a>

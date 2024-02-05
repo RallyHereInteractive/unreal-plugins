@@ -23,7 +23,7 @@ A request body to update the instance resource in a session.
 `public bool `[`AllocationId_IsSet`](#structFRHAPI__InstanceInfoUpdate_1ac508606b8473f2e8c181113f9854e38b) | true if AllocationId_Optional has been set to a value
 `public ERHAPI_InstanceJoinableStatus `[`JoinStatus_Optional`](#structFRHAPI__InstanceInfoUpdate_1ac4dc17da51fdc32b763982c1ce5f2280) | Is the instance joinable at this time?
 `public bool `[`JoinStatus_IsSet`](#structFRHAPI__InstanceInfoUpdate_1a58d43b5bcd88cb03d2947cbc05d281c3) | true if JoinStatus_Optional has been set to a value
-`public `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` `[`JoinParams_Optional`](#structFRHAPI__InstanceInfoUpdate_1a67e685eb7f2a83856062a62b1dd97f0f) | 
+`public `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` `[`JoinParams_Optional`](#structFRHAPI__InstanceInfoUpdate_1a67e685eb7f2a83856062a62b1dd97f0f) | Parameters to join the instance.
 `public bool `[`JoinParams_IsSet`](#structFRHAPI__InstanceInfoUpdate_1a282916807722278b12016aa1a3ed5b75) | true if JoinParams_Optional has been set to a value
 `public FString `[`Version_Optional`](#structFRHAPI__InstanceInfoUpdate_1a35ab20e36eed28c547f90e48589061d2) | Product Client Version number. Used for compatibility checking with players. Must be compatible with all players to spawn.
 `public bool `[`Version_IsSet`](#structFRHAPI__InstanceInfoUpdate_1a62dd84585fe7d789fd5d075e16cdf173) | true if Version_Optional has been set to a value
@@ -95,6 +95,8 @@ true if JoinStatus_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` `[`JoinParams_Optional`](#structFRHAPI__InstanceInfoUpdate_1a67e685eb7f2a83856062a62b1dd97f0f) <a id="structFRHAPI__InstanceInfoUpdate_1a67e685eb7f2a83856062a62b1dd97f0f"></a>
+
+Parameters to join the instance.
 
 <br>
 #### `public bool `[`JoinParams_IsSet`](#structFRHAPI__InstanceInfoUpdate_1a282916807722278b12016aa1a3ed5b75) <a id="structFRHAPI__InstanceInfoUpdate_1a282916807722278b12016aa1a3ed5b75"></a>

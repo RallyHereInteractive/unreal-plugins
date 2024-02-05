@@ -16,6 +16,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&Custom);
     AllAPIs.Add(&Discovery);
     AllAPIs.Add(&Entitlements);
+    AllAPIs.Add(&Environment);
     AllAPIs.Add(&Events);
     AllAPIs.Add(&FriendsV1);
     AllAPIs.Add(&FriendsV2);
@@ -141,6 +142,16 @@ FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements()
 const FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements() const
 {
     return Entitlements;
+}
+
+FEnvironmentAPI& FRallyHereAPIAll::GetEnvironment()
+{
+    return Environment;
+}
+
+const FEnvironmentAPI& FRallyHereAPIAll::GetEnvironment() const
+{
+    return Environment;
 }
 
 FEventsAPI& FRallyHereAPIAll::GetEvents()

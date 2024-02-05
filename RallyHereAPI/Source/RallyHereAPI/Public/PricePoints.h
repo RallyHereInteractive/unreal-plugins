@@ -64,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
      /** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
     void ClearPricePoints() { PricePoints_IsSet = false; }
 
+    /** @brief Cache info for the Price Points. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

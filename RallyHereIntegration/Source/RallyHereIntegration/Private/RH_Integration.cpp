@@ -222,7 +222,7 @@ void URH_Integration::Initialize()
 	// Initialize the APIs
 	for (auto& API : APIs.GetAllAPIs())
 	{
-		API->SetHttpRetryManager(*RetryManager);
+		API->SetHttpRetryManager(RetryManager.ToSharedRef());
 	}
 
 	auto* HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();

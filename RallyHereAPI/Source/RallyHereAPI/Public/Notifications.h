@@ -62,6 +62,16 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
     void SetNotifications(TArray<FRHAPI_Notification> NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true; }
      /** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
     void ClearNotifications() { Notifications_IsSet = false; }
+
+    /** @brief Cursor to use for the next request */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString Cursor{  };
+    /** @brief Gets the value of Cursor */
+    FString& GetCursor() { return Cursor; }
+    /** @brief Gets the value of Cursor */
+    const FString& GetCursor() const { return Cursor; }
+    /** @brief Sets the value of Cursor */
+    void SetCursor(FString NewValue) { Cursor = NewValue;  }
 };
 
 /** @} */

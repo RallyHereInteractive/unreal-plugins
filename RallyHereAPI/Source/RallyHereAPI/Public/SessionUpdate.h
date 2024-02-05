@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "TeamUpdate.h"
 #include "SessionUpdate.generated.h"
 
 /** @defgroup RHAPI_SessionUpdate RallyHere API Model SessionUpdate
@@ -111,6 +112,29 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
     bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
     /** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
     void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
+
+    /** @brief List of team size updates for this session. The length of the list represents the number of desired teams */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    TArray<FRHAPI_TeamUpdate> Teams_Optional{  };
+    /** @brief true if Teams_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Teams_IsSet{ false };
+    /** @brief Gets the value of Teams_Optional, regardless of it having been set */
+    TArray<FRHAPI_TeamUpdate>& GetTeams() { return Teams_Optional; }
+    /** @brief Gets the value of Teams_Optional, regardless of it having been set */
+    const TArray<FRHAPI_TeamUpdate>& GetTeams() const { return Teams_Optional; }
+    /** @brief Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TArray<FRHAPI_TeamUpdate>& GetTeams(const TArray<FRHAPI_TeamUpdate>& DefaultValue) const { if (Teams_IsSet) return Teams_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false */
+    bool GetTeams(TArray<FRHAPI_TeamUpdate>& OutValue) const { if (Teams_IsSet) OutValue = Teams_Optional; return Teams_IsSet; }
+    /** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
+    TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
+    /** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
+    const TArray<FRHAPI_TeamUpdate>* GetTeamsOrNull() const { if (Teams_IsSet) return &Teams_Optional; return nullptr; }
+    /** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true */
+    void SetTeams(TArray<FRHAPI_TeamUpdate> NewValue) { Teams_Optional = NewValue; Teams_IsSet = true; }
+     /** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
+    void ClearTeams() { Teams_IsSet = false; }
 };
 
 /** @} */

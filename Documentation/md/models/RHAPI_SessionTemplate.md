@@ -42,7 +42,7 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`KeepAliveOnEmpty_IsSet`](#structFRHAPI__SessionTemplate_1a7a021f27573b66f03bddb164ba2baea4) | true if KeepAliveOnEmpty_Optional has been set to a value
 `public TMap< FString, `[`FRHAPI_PlatformSessionTemplate`](RHAPI_PlatformSessionTemplate.md#structFRHAPI__PlatformSessionTemplate)` > `[`PlatformTemplates_Optional`](#structFRHAPI__SessionTemplate_1a4a953d98de7701f09938b03e88dc447d) | Platform-Specific session mappings that are used to coordinate Rally Here sessions with OnlineSubsystem sessions.
 `public bool `[`PlatformTemplates_IsSet`](#structFRHAPI__SessionTemplate_1a98480d277fd8e297e5b90560f3c10f1a) | true if PlatformTemplates_Optional has been set to a value
-`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`AutoStartupParams_Optional`](#structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287) | 
+`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`AutoStartupParams_Optional`](#structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287) | Parameters used to start an instance for this session when it is created.
 `public bool `[`AutoStartupParams_IsSet`](#structFRHAPI__SessionTemplate_1a1ae179a6de476981a9a38197758b7e14) | true if AutoStartupParams_Optional has been set to a value
 `public int32 `[`MinSessionCount_Optional`](#structFRHAPI__SessionTemplate_1aecf6bdd55d8dc8e92bf1d6e2dc032fc6) | Minimum number of this type of session to be running at any given time per region.
 `public bool `[`MinSessionCount_IsSet`](#structFRHAPI__SessionTemplate_1a067eb5ca1f241b90407f3a373cb0bd79) | true if MinSessionCount_Optional has been set to a value
@@ -340,6 +340,8 @@ true if PlatformTemplates_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`AutoStartupParams_Optional`](#structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287) <a id="structFRHAPI__SessionTemplate_1a32d9a060ff0208b639415cee5d9f7287"></a>
+
+Parameters used to start an instance for this session when it is created.
 
 <br>
 #### `public bool `[`AutoStartupParams_IsSet`](#structFRHAPI__SessionTemplate_1a1ae179a6de476981a9a38197758b7e14) <a id="structFRHAPI__SessionTemplate_1a1ae179a6de476981a9a38197758b7e14"></a>

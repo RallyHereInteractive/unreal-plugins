@@ -36,6 +36,11 @@ void FRHAPI_Session::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("match"));
         RallyHereAPI::WriteJsonValue(Writer, Match_Optional);
     }
+    if (MatchmakingResults_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("matchmaking_results"));
+        RallyHereAPI::WriteJsonValue(Writer, MatchmakingResults_Optional);
+    }
     if (Matchmaking_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("matchmaking"));
@@ -103,6 +108,12 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         Match_IsSet = TryGetJsonValue(JsonMatchField, Match_Optional);
         ParseSuccess &= Match_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchmakingResultsField = (*Object)->TryGetField(TEXT("matchmaking_results"));
+    if (JsonMatchmakingResultsField.IsValid() && !JsonMatchmakingResultsField->IsNull())
+    {
+        MatchmakingResults_IsSet = TryGetJsonValue(JsonMatchmakingResultsField, MatchmakingResults_Optional);
+        ParseSuccess &= MatchmakingResults_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonMatchmakingField = (*Object)->TryGetField(TEXT("matchmaking"));
     if (JsonMatchmakingField.IsValid() && !JsonMatchmakingField->IsNull())

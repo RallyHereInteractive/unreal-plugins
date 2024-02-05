@@ -64,6 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
      /** @brief Clears the value of Data_Optional and sets Data_IsSet to false */
     void ClearData() { Data_IsSet = false; }
 
+    /** @brief Page metadata for the Player Orders. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InventoryPageMeta Page{  };
     /** @brief Gets the value of Page */

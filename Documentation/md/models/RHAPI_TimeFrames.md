@@ -21,7 +21,7 @@ A collection of Time Frames by Time Frame ID.
 --------------------------------|---------------------------------------------
 `public TMap< FString, `[`FRHAPI_TimeFrame`](RHAPI_TimeFrame.md#structFRHAPI__TimeFrame)` > `[`TimeFrames_Optional`](#structFRHAPI__TimeFrames_1abdb0572aae01bc3cf50cec8cd0388968) | Time Frames mapped by Time Frame ID.
 `public bool `[`TimeFrames_IsSet`](#structFRHAPI__TimeFrames_1abc179739c5b667f1fbe350aacd64f941) | true if TimeFrames_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrames_1a658dd30efd4811f5113ac01e04a590f4) | 
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrames_1a658dd30efd4811f5113ac01e04a590f4) | Cache info for the Time Frames.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrames_1a4f869a5a8f88fa36afadc371a9e5498a) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__TimeFrames_1ae878fe3b3c90541d724f10fc6f314553)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__TimeFrames_1af19b5115fb551f63293d5e526bbea6a0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -55,6 +55,8 @@ true if TimeFrames_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__TimeFrames_1a658dd30efd4811f5113ac01e04a590f4) <a id="structFRHAPI__TimeFrames_1a658dd30efd4811f5113ac01e04a590f4"></a>
+
+Cache info for the Time Frames.
 
 <br>
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__TimeFrames_1a4f869a5a8f88fa36afadc371a9e5498a) <a id="structFRHAPI__TimeFrames_1a4f869a5a8f88fa36afadc371a9e5498a"></a>

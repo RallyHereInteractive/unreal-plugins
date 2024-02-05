@@ -20,6 +20,8 @@ struct FRHAPI_AcknowledgeBackfillRequest
 `public FString `[`InstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1a97b0c8cdce253a06e8c124f2ae1e975f) | The instance ID for this backfill request.
 `public TMap< FString, FString > `[`Extensions_Optional`](#structFRHAPI__AcknowledgeBackfillRequest_1a6ac9dbac81edc9fc3dc8305d19fc422e) | Additional extensions to add to the Assignment for the backfill resource associated with the session.
 `public bool `[`Extensions_IsSet`](#structFRHAPI__AcknowledgeBackfillRequest_1a333bfc8516098517d853f5d598b4d602) | true if Extensions_Optional has been set to a value
+`public ERHAPI_TeamOverflowAction `[`OverflowAction_Optional`](#structFRHAPI__AcknowledgeBackfillRequest_1adb9d8b7350b27cc670de60df6f0a5f7b) | How to handle backfills that return too many players for a team.
+`public bool `[`OverflowAction_IsSet`](#structFRHAPI__AcknowledgeBackfillRequest_1af9e3df26a04a27103fe7c58494c43331) | true if OverflowAction_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillRequest_1ae7271024195408c334d05e227b29199d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__AcknowledgeBackfillRequest_1a17e9895536a83263afef85c3340b1f0c)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__AcknowledgeBackfillRequest_1ad8f0beb276ae3c29cf25ee2d0433cc44)`()` | Gets the value of InstanceId.
@@ -33,6 +35,14 @@ struct FRHAPI_AcknowledgeBackfillRequest
 `public inline const TMap< FString, FString > * `[`GetExtensionsOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a973415325b0ff1e8707185310a9555c6)`() const` | Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1a54d89c6f19d0858a857c9eb6817b9110)`(TMap< FString, FString > NewValue)` | Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 `public inline void `[`ClearExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ad11a0dcb1f66f153b38c169e1bb0545f)`()` | Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
+`public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a3ac69be242bef74f6e1783f5ce92d818)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a35a7aa7357ffee073cfe85bb4edea085)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a1d8a1c2ee545ca6178a0cd317784c5c5)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` | Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1ad82aa0969badd398b3671c38652dde11)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1aaefae1ea31ecff78371cc9181d755082)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a26439de08430092f96fcc0f7dfda038f)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1aab7243f33c89e904bc0abd6bcdda2a77)`(ERHAPI_TeamOverflowAction NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline void `[`ClearOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a36d183c608e39df827315e3e1b384383)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
 #### Members
 
@@ -49,6 +59,16 @@ Additional extensions to add to the Assignment for the backfill resource associa
 #### `public bool `[`Extensions_IsSet`](#structFRHAPI__AcknowledgeBackfillRequest_1a333bfc8516098517d853f5d598b4d602) <a id="structFRHAPI__AcknowledgeBackfillRequest_1a333bfc8516098517d853f5d598b4d602"></a>
 
 true if Extensions_Optional has been set to a value
+
+<br>
+#### `public ERHAPI_TeamOverflowAction `[`OverflowAction_Optional`](#structFRHAPI__AcknowledgeBackfillRequest_1adb9d8b7350b27cc670de60df6f0a5f7b) <a id="structFRHAPI__AcknowledgeBackfillRequest_1adb9d8b7350b27cc670de60df6f0a5f7b"></a>
+
+How to handle backfills that return too many players for a team.
+
+<br>
+#### `public bool `[`OverflowAction_IsSet`](#structFRHAPI__AcknowledgeBackfillRequest_1af9e3df26a04a27103fe7c58494c43331) <a id="structFRHAPI__AcknowledgeBackfillRequest_1af9e3df26a04a27103fe7c58494c43331"></a>
+
+true if OverflowAction_Optional has been set to a value
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__AcknowledgeBackfillRequest_1ae7271024195408c334d05e227b29199d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ae7271024195408c334d05e227b29199d"></a>
@@ -123,5 +143,45 @@ Sets the value of Extensions_Optional and also sets Extensions_IsSet to true.
 #### `public inline void `[`ClearExtensions`](#structFRHAPI__AcknowledgeBackfillRequest_1ad11a0dcb1f66f153b38c169e1bb0545f)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ad11a0dcb1f66f153b38c169e1bb0545f"></a>
 
 Clears the value of Extensions_Optional and sets Extensions_IsSet to false.
+
+<br>
+#### `public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a3ac69be242bef74f6e1783f5ce92d818)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a3ac69be242bef74f6e1783f5ce92d818"></a>
+
+Gets the value of OverflowAction_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a35a7aa7357ffee073cfe85bb4edea085)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a35a7aa7357ffee073cfe85bb4edea085"></a>
+
+Gets the value of OverflowAction_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a1d8a1c2ee545ca6178a0cd317784c5c5)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a1d8a1c2ee545ca6178a0cd317784c5c5"></a>
+
+Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1ad82aa0969badd398b3671c38652dde11)`(ERHAPI_TeamOverflowAction & OutValue) const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1ad82aa0969badd398b3671c38652dde11"></a>
+
+Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1aaefae1ea31ecff78371cc9181d755082)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1aaefae1ea31ecff78371cc9181d755082"></a>
+
+Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__AcknowledgeBackfillRequest_1a26439de08430092f96fcc0f7dfda038f)`() const` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a26439de08430092f96fcc0f7dfda038f"></a>
+
+Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1aab7243f33c89e904bc0abd6bcdda2a77)`(ERHAPI_TeamOverflowAction NewValue)` <a id="structFRHAPI__AcknowledgeBackfillRequest_1aab7243f33c89e904bc0abd6bcdda2a77"></a>
+
+Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearOverflowAction`](#structFRHAPI__AcknowledgeBackfillRequest_1a36d183c608e39df827315e3e1b384383)`()` <a id="structFRHAPI__AcknowledgeBackfillRequest_1a36d183c608e39df827315e3e1b384383"></a>
+
+Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
 <br>

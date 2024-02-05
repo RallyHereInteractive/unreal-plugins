@@ -10,7 +10,6 @@
 
 #include "CustomAPI.h"
 
-#include "InventoryPortal.h"
 #include "InventoryBucket.h"
 #include "GrantType.h"
 
@@ -78,7 +77,6 @@ bool RALLYHEREINTEGRATION_API RH_PlatformSessionsTypeIsCaseInsensitive(FName Ses
 bool RALLYHEREINTEGRATION_API RH_UseRecentPlayersFromOSSName(FName OSSName);
 FString RALLYHEREINTEGRATION_API RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform);
 
-ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform);
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
 
 /** @defgroup Common RallyHere Common

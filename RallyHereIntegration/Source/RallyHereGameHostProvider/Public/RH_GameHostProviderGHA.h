@@ -8,7 +8,7 @@
 #include "Tickable.h"
 
 THIRD_PARTY_INCLUDES_START
-#include "RH_GameHostAdapterFwd.h"
+#include "RH_GameHostAdapter.h"
 THIRD_PARTY_INCLUDES_END
 
 /** @ingroup GameHostProviderInterface

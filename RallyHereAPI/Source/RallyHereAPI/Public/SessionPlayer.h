@@ -181,6 +181,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
      /** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
     void ClearVersion() { Version_IsSet = false; }
 
+    /** @brief Which input type and platform the client is using */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_ClientSettings ClientSettings_Optional{  };
     /** @brief true if ClientSettings_Optional has been set to a value */
@@ -203,6 +204,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
      /** @brief Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false */
     void ClearClientSettings() { ClientSettings_IsSet = false; }
 
+    /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
     /** @brief true if CrossplayPreferences_Optional has been set to a value */

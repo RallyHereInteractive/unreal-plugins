@@ -25,6 +25,8 @@ A request body to update information about a session resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SessionUpdate_1a2e97bffd938db16822e8f35b4b808ef6) | true if CustomData_Optional has been set to a value
 `public bool `[`Joinable_Optional`](#structFRHAPI__SessionUpdate_1aacbfdec8b14c38f25c0a26d96e373f80) | Flag for if players can freely join this session without an invite.
 `public bool `[`Joinable_IsSet`](#structFRHAPI__SessionUpdate_1a1771b6a886f26629df2e7c1f798c3632) | true if Joinable_Optional has been set to a value
+`public TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > `[`Teams_Optional`](#structFRHAPI__SessionUpdate_1aea24906b7e7a2d1b3e5fc24dd2475623) | List of team size updates for this session. The length of the list represents the number of desired teams.
+`public bool `[`Teams_IsSet`](#structFRHAPI__SessionUpdate_1aac6261a25e5317b6c4a1a31a7c4bb920) | true if Teams_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionUpdate_1afa43baf74e0c17d38ef79d73a9101d5d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionUpdate_1ac9074a03cedc50aa8525fadaa378bf75)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetRegionId`](#structFRHAPI__SessionUpdate_1a89c91fcd33810a8033ff794ad01923ab)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
@@ -53,6 +55,14 @@ A request body to update information about a session resource.
 `public inline void `[`ClearJoinable`](#structFRHAPI__SessionUpdate_1a5e38954afb4281bfd14241a6b0faca88)`()` | Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
 `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__SessionUpdate_1a6c81424549450bef7b7430faa548f0e4)`() const` | Returns true if Joinable_Optional is set and matches the default value.
 `public inline void `[`SetJoinableToDefault`](#structFRHAPI__SessionUpdate_1a0831036473b80aa18223036feeab2a6f)`()` | Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
+`public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetTeams`](#structFRHAPI__SessionUpdate_1a9ce41bf148bbb238b5708bc07e7d727c)`()` | Gets the value of Teams_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetTeams`](#structFRHAPI__SessionUpdate_1ab8e9afa010557fde834eca1410959bfe)`() const` | Gets the value of Teams_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetTeams`](#structFRHAPI__SessionUpdate_1aa15e021759eb93c5b33e423195e01d36)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` | Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTeams`](#structFRHAPI__SessionUpdate_1a958de74a0023e45b3d6fbd9526536623)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` | Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
+`public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetTeamsOrNull`](#structFRHAPI__SessionUpdate_1aa600a05a479e733189aeca7a9f236fd5)`()` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetTeamsOrNull`](#structFRHAPI__SessionUpdate_1a4422c103e603e65d9d2805fcbe7e7ace)`() const` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+`public inline void `[`ClearTeams`](#structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141)`()` | Clears the value of Teams_Optional and sets Teams_IsSet to false.
 
 #### Members
 
@@ -84,6 +94,16 @@ Flag for if players can freely join this session without an invite.
 #### `public bool `[`Joinable_IsSet`](#structFRHAPI__SessionUpdate_1a1771b6a886f26629df2e7c1f798c3632) <a id="structFRHAPI__SessionUpdate_1a1771b6a886f26629df2e7c1f798c3632"></a>
 
 true if Joinable_Optional has been set to a value
+
+<br>
+#### `public TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > `[`Teams_Optional`](#structFRHAPI__SessionUpdate_1aea24906b7e7a2d1b3e5fc24dd2475623) <a id="structFRHAPI__SessionUpdate_1aea24906b7e7a2d1b3e5fc24dd2475623"></a>
+
+List of team size updates for this session. The length of the list represents the number of desired teams.
+
+<br>
+#### `public bool `[`Teams_IsSet`](#structFRHAPI__SessionUpdate_1aac6261a25e5317b6c4a1a31a7c4bb920) <a id="structFRHAPI__SessionUpdate_1aac6261a25e5317b6c4a1a31a7c4bb920"></a>
+
+true if Teams_Optional has been set to a value
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionUpdate_1afa43baf74e0c17d38ef79d73a9101d5d)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionUpdate_1afa43baf74e0c17d38ef79d73a9101d5d"></a>
@@ -233,5 +253,45 @@ Returns true if Joinable_Optional is set and matches the default value.
 #### `public inline void `[`SetJoinableToDefault`](#structFRHAPI__SessionUpdate_1a0831036473b80aa18223036feeab2a6f)`()` <a id="structFRHAPI__SessionUpdate_1a0831036473b80aa18223036feeab2a6f"></a>
 
 Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
+
+<br>
+#### `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetTeams`](#structFRHAPI__SessionUpdate_1a9ce41bf148bbb238b5708bc07e7d727c)`()` <a id="structFRHAPI__SessionUpdate_1a9ce41bf148bbb238b5708bc07e7d727c"></a>
+
+Gets the value of Teams_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetTeams`](#structFRHAPI__SessionUpdate_1ab8e9afa010557fde834eca1410959bfe)`() const` <a id="structFRHAPI__SessionUpdate_1ab8e9afa010557fde834eca1410959bfe"></a>
+
+Gets the value of Teams_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetTeams`](#structFRHAPI__SessionUpdate_1aa15e021759eb93c5b33e423195e01d36)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` <a id="structFRHAPI__SessionUpdate_1aa15e021759eb93c5b33e423195e01d36"></a>
+
+Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetTeams`](#structFRHAPI__SessionUpdate_1a958de74a0023e45b3d6fbd9526536623)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` <a id="structFRHAPI__SessionUpdate_1a958de74a0023e45b3d6fbd9526536623"></a>
+
+Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetTeamsOrNull`](#structFRHAPI__SessionUpdate_1aa600a05a479e733189aeca7a9f236fd5)`()` <a id="structFRHAPI__SessionUpdate_1aa600a05a479e733189aeca7a9f236fd5"></a>
+
+Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetTeamsOrNull`](#structFRHAPI__SessionUpdate_1a4422c103e603e65d9d2805fcbe7e7ace)`() const` <a id="structFRHAPI__SessionUpdate_1a4422c103e603e65d9d2805fcbe7e7ace"></a>
+
+Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetTeams`](#structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > NewValue)` <a id="structFRHAPI__SessionUpdate_1a99e5ed74bda523a9f8cddb1adb380822"></a>
+
+Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearTeams`](#structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141)`()` <a id="structFRHAPI__SessionUpdate_1a25c2f946c12657cbf3ecd48755f2b141"></a>
+
+Clears the value of Teams_Optional and sets Teams_IsSet to false.
 
 <br>

@@ -10,7 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "CacheInfo.h"
-#include "InventoryPortal.h"
+#include "Portal.h"
 #include "PortalUseRuleset.generated.h"
 
 /** @defgroup RHAPI_PortalUseRuleset RallyHere API Model PortalUseRuleset
@@ -64,24 +64,24 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRuleset : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
-    TMap<FString, TArray<ERHAPI_InventoryPortal>> Rules_Optional{  };
+    TMap<FString, TArray<ERHAPI_Portal>> Rules_Optional{  };
     /** @brief true if Rules_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Rules_IsSet{ false };
     /** @brief Gets the value of Rules_Optional, regardless of it having been set */
-    TMap<FString, TArray<ERHAPI_InventoryPortal>>& GetRules() { return Rules_Optional; }
+    TMap<FString, TArray<ERHAPI_Portal>>& GetRules() { return Rules_Optional; }
     /** @brief Gets the value of Rules_Optional, regardless of it having been set */
-    const TMap<FString, TArray<ERHAPI_InventoryPortal>>& GetRules() const { return Rules_Optional; }
+    const TMap<FString, TArray<ERHAPI_Portal>>& GetRules() const { return Rules_Optional; }
     /** @brief Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TMap<FString, TArray<ERHAPI_InventoryPortal>>& GetRules(const TMap<FString, TArray<ERHAPI_InventoryPortal>>& DefaultValue) const { if (Rules_IsSet) return Rules_Optional; return DefaultValue; }
+    const TMap<FString, TArray<ERHAPI_Portal>>& GetRules(const TMap<FString, TArray<ERHAPI_Portal>>& DefaultValue) const { if (Rules_IsSet) return Rules_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false */
-    bool GetRules(TMap<FString, TArray<ERHAPI_InventoryPortal>>& OutValue) const { if (Rules_IsSet) OutValue = Rules_Optional; return Rules_IsSet; }
+    bool GetRules(TMap<FString, TArray<ERHAPI_Portal>>& OutValue) const { if (Rules_IsSet) OutValue = Rules_Optional; return Rules_IsSet; }
     /** @brief Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr */
-    TMap<FString, TArray<ERHAPI_InventoryPortal>>* GetRulesOrNull() { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
+    TMap<FString, TArray<ERHAPI_Portal>>* GetRulesOrNull() { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
     /** @brief Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr */
-    const TMap<FString, TArray<ERHAPI_InventoryPortal>>* GetRulesOrNull() const { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
+    const TMap<FString, TArray<ERHAPI_Portal>>* GetRulesOrNull() const { if (Rules_IsSet) return &Rules_Optional; return nullptr; }
     /** @brief Sets the value of Rules_Optional and also sets Rules_IsSet to true */
-    void SetRules(TMap<FString, TArray<ERHAPI_InventoryPortal>> NewValue) { Rules_Optional = NewValue; Rules_IsSet = true; }
+    void SetRules(TMap<FString, TArray<ERHAPI_Portal>> NewValue) { Rules_Optional = NewValue; Rules_IsSet = true; }
      /** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
     void ClearRules() { Rules_IsSet = false; }
 

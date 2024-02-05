@@ -200,8 +200,8 @@ public:
     /* Sets the retry manager to the user-defined retry manager. User must manage the lifetime of the retry manager.
      * If no retry manager is specified and a request needs retries, a default retry manager will be used.
      * See also: Request::SetShouldRetry */
-    void SetHttpRetryManager(FHttpRetrySystem::FManager& RetryManager);
-    FHttpRetrySystem::FManager &GetHttpRetryManager();
+    void SetHttpRetryManager(const TSharedRef<FHttpRetrySystem::FManager>& RetryManager);
+    TSharedPtr<FHttpRetrySystem::FManager>& GetHttpRetryManager() const { return RetryManager; }
 
     FAPI_RequestStarted& OnRequestStarted() { return RequestStarted; }
     FAPI_RequestCompleted& OnRequestCompleted() { return RequestCompleted; }
@@ -221,8 +221,8 @@ protected:
     FString Url;
     FName Name;
     TMap<FString, FString> AdditionalHeaderParams;
-    mutable FHttpRetrySystem::FManager* RetryManager = nullptr;
-    mutable TUniquePtr<FHttpRetryManager> DefaultRetryManager;
+    mutable TSharedPtr<FHttpRetrySystem::FManager> RetryManager;
+    mutable TSharedPtr<FHttpRetryManager> DefaultRetryManager;
     FAPI_RequestStarted RequestStarted;
     FAPI_RequestCompleted RequestCompleted;
 };

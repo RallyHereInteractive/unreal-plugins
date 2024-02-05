@@ -14,6 +14,8 @@
 #include "HzApiErrorModel.h"
 #include "InstanceLaunchTemplate.h"
 #include "InstanceRequestTemplate.h"
+#include "MatchMakingProfile.h"
+#include "MatchMakingProfileV2.h"
 #include "MatchMakingTemplateGroup.h"
 #include "MatchMakingTemplateGroupV2.h"
 #include "QueuesResponse.h"
@@ -33,6 +35,10 @@ struct FRequest_GetAllQueueInfoV2;
 struct FResponse_GetAllQueueInfoV2;
 struct FRequest_GetInstanceRequestTemplate;
 struct FResponse_GetInstanceRequestTemplate;
+struct FRequest_GetMatchMakingProfile;
+struct FResponse_GetMatchMakingProfile;
+struct FRequest_GetMatchMakingProfileV2;
+struct FResponse_GetMatchMakingProfileV2;
 struct FRequest_GetMatchMakingTemplates;
 struct FResponse_GetMatchMakingTemplates;
 struct FRequest_GetMatchMakingTemplatesV2;
@@ -42,6 +48,8 @@ DECLARE_DELEGATE_OneParam(FDelegate_GetAllMapGameInfo, const FResponse_GetAllMap
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllQueueInfo, const FResponse_GetAllQueueInfo&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetAllQueueInfoV2, const FResponse_GetAllQueueInfoV2&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetInstanceRequestTemplate, const FResponse_GetInstanceRequestTemplate&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetMatchMakingProfile, const FResponse_GetMatchMakingProfile&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetMatchMakingProfileV2, const FResponse_GetMatchMakingProfileV2&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetMatchMakingTemplates, const FResponse_GetMatchMakingTemplates&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetMatchMakingTemplatesV2, const FResponse_GetMatchMakingTemplatesV2&);
 
@@ -55,6 +63,8 @@ public:
     FHttpRequestPtr GetAllQueueInfo(const FRequest_GetAllQueueInfo& Request, const FDelegate_GetAllQueueInfo& Delegate = FDelegate_GetAllQueueInfo(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetAllQueueInfoV2(const FRequest_GetAllQueueInfoV2& Request, const FDelegate_GetAllQueueInfoV2& Delegate = FDelegate_GetAllQueueInfoV2(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetInstanceRequestTemplate(const FRequest_GetInstanceRequestTemplate& Request, const FDelegate_GetInstanceRequestTemplate& Delegate = FDelegate_GetInstanceRequestTemplate(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetMatchMakingProfile(const FRequest_GetMatchMakingProfile& Request, const FDelegate_GetMatchMakingProfile& Delegate = FDelegate_GetMatchMakingProfile(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetMatchMakingProfileV2(const FRequest_GetMatchMakingProfileV2& Request, const FDelegate_GetMatchMakingProfileV2& Delegate = FDelegate_GetMatchMakingProfileV2(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetMatchMakingTemplates(const FRequest_GetMatchMakingTemplates& Request, const FDelegate_GetMatchMakingTemplates& Delegate = FDelegate_GetMatchMakingTemplates(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetMatchMakingTemplatesV2(const FRequest_GetMatchMakingTemplatesV2& Request, const FDelegate_GetMatchMakingTemplatesV2& Delegate = FDelegate_GetMatchMakingTemplatesV2(), int32 Priority = DefaultRallyHereAPIPriority);
 
@@ -63,6 +73,8 @@ private:
     void OnGetAllQueueInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetAllQueueInfoV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetAllQueueInfoV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetMatchMakingProfileResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingProfile Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetMatchMakingProfileV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingProfileV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetMatchMakingTemplatesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplates Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetMatchMakingTemplatesV2Response(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchMakingTemplatesV2 Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
@@ -348,6 +360,145 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetInstanceRequestTemplate(InRequest, InDelegate, Priority); }
+};
+
+/* Get Match Making Profile
+ *
+ * Get info about a specific match making profile
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
+ * **DEPRECATED** Use the V2 endpoint instead
+*/
+struct RALLYHEREAPI_API FRequest_GetMatchMakingProfile : public FRequest
+{
+    FRequest_GetMatchMakingProfile();
+    virtual ~FRequest_GetMatchMakingProfile() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FString MatchMakingProfileId;
+    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+    TOptional<FString> IfNoneMatch;
+};
+
+struct RALLYHEREAPI_API FResponse_GetMatchMakingProfile : public FResponse
+{
+    FResponse_GetMatchMakingProfile(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetMatchMakingProfile() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_MatchMakingProfile Content;
+    // Headers
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_MatchMakingProfile& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
+{
+    typedef FRequest_GetMatchMakingProfile Request;
+    typedef FResponse_GetMatchMakingProfile Response;
+    typedef FDelegate_GetMatchMakingProfile Delegate;
+    typedef FQueuesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfile(InRequest, InDelegate, Priority); }
+};
+
+/* Get Match Making Profile V2
+ *
+ * Get info about a specific match making profile
+ * 
+ * Required Permissions: 
+ * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * 
+ * 
+ * Required Session Permissions: None
+*/
+struct RALLYHEREAPI_API FRequest_GetMatchMakingProfileV2 : public FRequest
+{
+    FRequest_GetMatchMakingProfileV2();
+    virtual ~FRequest_GetMatchMakingProfileV2() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    FString MatchMakingProfileId;
+    /* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
+    TOptional<FString> IfNoneMatch;
+};
+
+struct RALLYHEREAPI_API FResponse_GetMatchMakingProfileV2 : public FResponse
+{
+    FResponse_GetMatchMakingProfileV2(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetMatchMakingProfileV2() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_MatchMakingProfileV2 Content;
+    // Headers
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_MatchMakingProfileV2& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
+{
+    typedef FRequest_GetMatchMakingProfileV2 Request;
+    typedef FResponse_GetMatchMakingProfileV2 Response;
+    typedef FDelegate_GetMatchMakingProfileV2 Delegate;
+    typedef FQueuesAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchMakingProfileV2(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match Making Templates

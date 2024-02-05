@@ -50,6 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
     /** @brief Sets the value of PlayerUuid */
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
+    /** @brief Current rank info about player */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_RankData Rank{  };
     /** @brief Gets the value of Rank */
