@@ -1,0 +1,32 @@
+name: Generate Documentation
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  generate:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Install System Dependencies
+      run: |
+        sudo apt install -y doxygen graphviz
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '14'
+    - name: Install Node Dependencies
+      run: |
+        npm install moxygen -g
+    - name: Run Generate Script
+      run: |
+        Documentation/generate.bash
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Generated Documentation"
+        commit_user_name: "RallyHereBuilder"
+        commit_user_email: "builder@rallyhere.gg"

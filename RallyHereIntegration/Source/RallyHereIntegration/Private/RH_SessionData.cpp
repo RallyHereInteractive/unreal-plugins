@@ -424,6 +424,35 @@ void URH_InvitedSession::Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate
 	Helper->Start(Request);
 }
 
+void URH_InvitedSession::QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate)
+{
+	auto SessionOwner = GetSessionOwner();
+	if (SessionOwner == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	if (!SessionOwner->GetPlayerUuid().IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const FRHAPI_SessionPlayer* pSessionPlayer = GetSessionPlayer(SessionOwner->GetPlayerUuid());
+	if (pSessionPlayer == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	const FGuid InviterId = pSessionPlayer->GetInvitingPlayerUuid(FGuid());
+	URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(MakeWeakInterface(SessionOwner), InviterId, FRH_OnSessionPlayerIsBlockedDelegate::CreateWeakLambda(this, [Delegate](bool bIsInviterBlocked)
+		{
+			Delegate.ExecuteIfBound(bIsInviterBlocked);
+		}));
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 
 URH_JoinedSession::URH_JoinedSession(const FObjectInitializer& ObjectInitializer)
@@ -902,56 +931,6 @@ void URH_OfflineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& De
 	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
-{
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	if (GetSessionData().GetMatchOrNull())
-	{
-		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because match already exists"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
-		return;
-	}
-
-	FRH_APISessionWithETag UpdateWrapper(SessionData);
-	auto& Update = UpdateWrapper.Data;
-
-	{
-		FRHAPI_MatchInfo Match = {};
-
-		/* Unique ID */
-		Match.MatchId = FGuid::NewGuid().ToString();
-		/* Time the match was created, in UTC */
-		Match.Created = FDateTime::UtcNow();
-		/* instance-defined custom data */
-		Match.ClearCustomData();
-
-		Update.SetMatch(Match);
-	}
-
-	ImportSessionUpdateToAllPlayers(UpdateWrapper);
-
-	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
-}
-void URH_OfflineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
-{
-	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	if (!GetSessionData().GetMatchOrNull())
-	{
-		UE_LOG(LogRHSession, Log, TEXT("[%s] - Failed because match does not exist"), ANSI_TO_TCHAR(__FUNCTION__));
-		Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
-		return;
-	}
-
-	FRH_APISessionWithETag UpdateWrapper(SessionData);
-	auto& Update = UpdateWrapper.Data;
-
-	Update.ClearMatch();
-
-	ImportSessionUpdateToAllPlayers(UpdateWrapper);
-
-	Delegate.ExecuteIfBound(true, this, FRH_ErrorInfo());
-}
-
 void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
@@ -1330,15 +1309,6 @@ void URH_OnlineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceRe
 void URH_OnlineSession::EndInstance(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	DoRequestViaHelper<RallyHereAPI::Traits_EndInstance>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionEndInstancePriority);
-}
-
-void URH_OnlineSession::StartMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
-{
-	DoRequestViaHelper<RallyHereAPI::Traits_StartMatch>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionStartMatchPriority);
-}
-void URH_OnlineSession::EndMatch(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
-{
-	DoRequestViaHelper<RallyHereAPI::Traits_EndMatch>(GetSessionId(), GetSessionOwner(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionEndMatchPriority);
 }
 
 void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)

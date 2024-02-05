@@ -215,9 +215,6 @@ protected:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session")
 	int32 CurrentRecycleCount;
 
-	/** Delegate handle for the OSS login call */
-	FDelegateHandle OnOSSLoginCompleteDelegateHandle;
-
 	/** @brief Set the SIGTERM(Unix) handlers that allow intercepting the SIGTERM signal to trigger a soft stop */
 	static void SetTerminationSignalHandler();
 	/** @brief Callback binding for the default engine SIGTERM / CTRL - C(Windows) handlers - these are indicating an IMMEDIATE shutdown - will defer to game thread if needed */
@@ -247,29 +244,6 @@ protected:
 	* @brief Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API
 	*/
 	virtual void BeginServerLogin();
-	/**
-	* @brief Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials
-	*/
-	virtual void BeginOSSLogin();
-	/**
-	* @brief Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials
-	*/
-	virtual void BeginNullLogin();
-	/**
-	* @brief Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use
-	* @param [in] ControllerId The controller id that was used to login
-	* @param [in] bSuccessful Whether or not the login was successful
-	* @param [in] UniqueId The unique id of the user that logged in
-	* @param [in] ErrorMessage The error message if the login failed
-	*/
-	virtual void OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage);
-	/**
-	 * @brief Start the login to Rally Here.
-	 * @param [in] LocalUserNum Local user number of the player logging in.
-	 * @param [in] bWasSuccessful Was the retrieval successful.
-	 * @param [in] AuthTokenWrapper The auth token wrapper.
-	 */
-	virtual void RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthTokenWrapper);
 	/**
 	* @brief Bootstrapping Flow [Login] - completion callback for RallyHere API login
 	* @param [in] bSuccess Whether or not the login was successful
@@ -378,6 +352,11 @@ protected:
 	*/
 	virtual bool ShouldRecycleAfterCleanup() const;
 
+	/**
+	* @brief Callback for when a refresh token expires
+	*/
+	virtual void OnRefreshTokenExpired(FSimpleDelegate CompleteCallback);
+
 	// GameHostProvider flow
 public:
 	/**
@@ -451,7 +430,11 @@ public:
 	/**
 	 * @brief Gets the Online Subsystem Unique Id to use for OSS calls
 	 */
-	virtual FUniqueNetIdWrapper GetOSSUniqueId() const;
+	virtual FUniqueNetIdWrapper GetOSSUniqueId() const override;
+	/**
+	 * @brief Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
+	 */
+	virtual FPlatformUserId GetOSSPlatformUserId() const override;
 	/**
 	 * @brief Gets the etag to use for a "Get all Templates" type query.
 	 */

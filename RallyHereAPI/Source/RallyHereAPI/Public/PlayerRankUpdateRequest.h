@@ -63,6 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankUpdateRequest : public FRHAPI_Model
      /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
+    /** @brief Current rank info about player */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_RankData Rank{  };
     /** @brief Gets the value of Rank */

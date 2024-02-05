@@ -20,15 +20,7 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
-				"RallyHereGameHostAdapter"
-			]
-		},
-		{
-			"Name": "RallyHereEditor",
-			"Type": "Editor",
-			"LoadingPhase": "Default",
-			"AdditionalDependencies": [
-				"RallyHereIntegration"
+				"RallyHereGameHostProvider"
 			]
 		}
 	],
@@ -49,11 +41,6 @@
 		{
 			"Name": "RallyHereAPI",
 			"Enabled": true
-		},
-		{
-			"Name": "RallyHereDeveloperAPI",
-			"Enabled": true,
-			"TargetAllowList": [ "Editor" ]
 		},
 		{
 			"Name": "WebAuth",

@@ -29,7 +29,7 @@ Request to create a Player Order Entry.
 `public bool `[`VendorEtag_IsSet`](#structFRHAPI__PlayerOrderEntryCreate_1a53115760d6f8b22ad6c638aeb6641574) | true if VendorEtag_Optional has been set to a value
 `public TArray< int32 > `[`DynamicBundleLootIds_Optional`](#structFRHAPI__PlayerOrderEntryCreate_1a5ea4c5bec99ffd7ce5c5554318dd8def) | List of Loot IDs for the dynamic bundle.
 `public bool `[`DynamicBundleLootIds_IsSet`](#structFRHAPI__PlayerOrderEntryCreate_1a58ced26c97e05c07687e89ef6136232c) | true if DynamicBundleLootIds_Optional has been set to a value
-`public `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` `[`PurchasePrice_Optional`](#structFRHAPI__PlayerOrderEntryCreate_1a854b4c83ae188774cadc268527a6d000) | 
+`public `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` `[`PurchasePrice_Optional`](#structFRHAPI__PlayerOrderEntryCreate_1a854b4c83ae188774cadc268527a6d000) | The purchase price of the Loot.
 `public bool `[`PurchasePrice_IsSet`](#structFRHAPI__PlayerOrderEntryCreate_1a11544486b2cbee880bec997881ed153a) | true if PurchasePrice_Optional has been set to a value
 `public FString `[`ExternalTranId_Optional`](#structFRHAPI__PlayerOrderEntryCreate_1ad50ae95f36b01d863df9ffecf9aa8813) | External Transaction Id for source of the acquisition or a promotion code to claim. Required for [PROMOTION_CODE] types.
 `public bool `[`ExternalTranId_IsSet`](#structFRHAPI__PlayerOrderEntryCreate_1a0c65b3dc5ab68ce50108d2278fa738c1) | true if ExternalTranId_Optional has been set to a value
@@ -245,6 +245,8 @@ true if DynamicBundleLootIds_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_PurchasePrice`](RHAPI_PurchasePrice.md#structFRHAPI__PurchasePrice)` `[`PurchasePrice_Optional`](#structFRHAPI__PlayerOrderEntryCreate_1a854b4c83ae188774cadc268527a6d000) <a id="structFRHAPI__PlayerOrderEntryCreate_1a854b4c83ae188774cadc268527a6d000"></a>
+
+The purchase price of the Loot.
 
 <br>
 #### `public bool `[`PurchasePrice_IsSet`](#structFRHAPI__PlayerOrderEntryCreate_1a11544486b2cbee880bec997881ed153a) <a id="structFRHAPI__PlayerOrderEntryCreate_1a11544486b2cbee880bec997881ed153a"></a>

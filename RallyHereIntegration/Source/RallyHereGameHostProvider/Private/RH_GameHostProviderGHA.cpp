@@ -10,8 +10,6 @@
 #include "Misc/ScopeExit.h"
 #include "Async/TaskGraphInterfaces.h"
 
-#include "RH_GameHostAdapter.h"
-
 bool FRH_GameHostProviderGHA::IsAvailable()
 {
 	if (FParse::Param(FCommandLine::Get(), TEXT("ForceNoGHA")))
@@ -25,14 +23,14 @@ bool FRH_GameHostProviderGHA::IsAvailable()
 FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 	: IRH_GameHostProviderInterface(Commandline), GameHostAdapter(nullptr)
 {
-	auto result = rallyhere_create_game_instance_adapter_with_logger(&GameHostAdapter, TCHAR_TO_UTF8(*Commandline), FRH_GameHostProviderGHA::OnLogCallback, nullptr);
+	auto result = GameHostAdapterImporter::rallyhere_create_game_instance_adapter_with_logger(&GameHostAdapter, TCHAR_TO_UTF8(*Commandline), FRH_GameHostProviderGHA::OnLogCallback, nullptr);
 
-	UE_LOG(LogRHGameHostProvider, Warning, TEXT("[%s] - Create game host adapter result %u:%s"), ANSI_TO_TCHAR(__FUNCTION__), result, ANSI_TO_TCHAR(rallyhere_status_text(result)));
+	UE_LOG(LogRHGameHostProvider, Warning, TEXT("[%s] - Create game host adapter result %u:%s"), ANSI_TO_TCHAR(__FUNCTION__), result, ANSI_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(result)));
 
-	if (!rallyhere_is_error(result))
+	if (!GameHostAdapterImporter::rallyhere_is_error(result))
 	{
 		// bind callbacks
-		rallyhere_on_soft_stop_callback(GameHostAdapter, FRH_GameHostProviderGHA::OnSoftStopRequestedCallback, this);
+		GameHostAdapterImporter::rallyhere_on_soft_stop_callback(GameHostAdapter, FRH_GameHostProviderGHA::OnSoftStopRequestedCallback, this);
 
 		// write initial stats
 		RallyHereStatsBase stats{};
@@ -57,7 +55,7 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 		stats.version = (ANSICHAR*)EngineVersion.Get();
 		provided.set_version = true;
 
-		rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
+		GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
 	}
 }
 
@@ -65,7 +63,7 @@ FRH_GameHostProviderGHA::~FRH_GameHostProviderGHA()
 {
 	if (GameHostAdapter != nullptr)
 	{
-		rallyhere_destroy_game_instance_adapter(GameHostAdapter);
+		GameHostAdapterImporter::rallyhere_destroy_game_instance_adapter(GameHostAdapter);
 		GameHostAdapter = nullptr;
 	}
 }
@@ -94,20 +92,20 @@ struct RallyHereStringMapWrapper
 {
 	RallyHereStringMapWrapper(RallyHereGameInstanceAdapterPtr adapter_) : adapter(adapter_)
 	{
-		code = rallyhere_string_map_create(&map);
-		if (rallyhere_is_error(code))
+		code = GameHostAdapterImporter::rallyhere_string_map_create(&map);
+		if (GameHostAdapterImporter::rallyhere_is_error(code))
 		{
 			map = nullptr;
 		}
 	}
 	~RallyHereStringMapWrapper()
 	{
-		rallyhere_string_map_destroy(map);
+		GameHostAdapterImporter::rallyhere_string_map_destroy(map);
 	}
 
 	RallyHereStatusCode add_to_string_map()
 	{
-		if (rallyhere_is_error(code))
+		if (GameHostAdapterImporter::rallyhere_is_error(code))
 			return code;
 		return RH_STATUS_OK;
 	}
@@ -115,10 +113,10 @@ struct RallyHereStringMapWrapper
 	template<typename... Params>
 	RallyHereStatusCode add_to_string_map(const char* key, const char* value, Params... params)
 	{
-		if (rallyhere_is_error(code))
+		if (GameHostAdapterImporter::rallyhere_is_error(code))
 			return code;
-		auto result = rallyhere_string_map_set(map, key, value);
-		if (rallyhere_is_error(result))
+		auto result = GameHostAdapterImporter::rallyhere_string_map_set(map, key, value);
+		if (GameHostAdapterImporter::rallyhere_is_error(result))
 			return result;
 		return add_to_string_map(params...);
 	}
@@ -161,9 +159,9 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 		{
 			RallyHereStringMapWrapper additional_info(GameHostAdapter);
 			auto result = additional_info.add_to_string_map("game_mode", TCHAR_TO_UTF8(*GameStats.GameMode.GetValue()));
-			if (!rallyhere_is_error(result))
+			if (!GameHostAdapterImporter::rallyhere_is_error(result))
 			{
-				rallyhere_set_additional_info(GameHostAdapter, additional_info.map, nullptr, nullptr);
+				GameHostAdapterImporter::rallyhere_set_additional_info(GameHostAdapter, additional_info.map, nullptr, nullptr);
 			}
 		}
 
@@ -172,12 +170,12 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 			stats.players = GameStats.PlayerCount.GetValue();
 			provided.set_players = true;
 		}
-		rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
+		GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
 
-		auto code = rallyhere_tick(GameHostAdapter);
-		if (rallyhere_is_error(code))
+		auto code = GameHostAdapterImporter::rallyhere_tick(GameHostAdapter);
+		if (GameHostAdapterImporter::rallyhere_is_error(code))
 		{
-			UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] Failed tick: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(rallyhere_status_text(code)));
+			UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] Failed tick: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 			OnProviderHardStopRequested.ExecuteIfBound();
 			return;
 		}
@@ -202,13 +200,13 @@ void FRH_GameHostProviderGHA::OnConnectCallback(const RallyHereStatusCode& code,
 
 void FRH_GameHostProviderGHA::BeginConnecting()
 {
-	rallyhere_connect(GameHostAdapter, FRH_GameHostProviderGHA::OnConnectCallback, this);
+	GameHostAdapterImporter::rallyhere_connect(GameHostAdapter, FRH_GameHostProviderGHA::OnConnectCallback, this);
 }
 
 void FRH_GameHostProviderGHA::OnConnectComplete(const RallyHereStatusCode& code)
 {
-	bool bIsError = rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter Failed to connect to provider: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(rallyhere_status_text(code)));
+	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
+	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter Failed to connect to provider: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 	OnProviderConnectComplete.ExecuteIfBound(!bIsError);
 }
 
@@ -224,33 +222,33 @@ void FRH_GameHostProviderGHA::OnReadyCallback(const RallyHereStatusCode& code, v
 
 void FRH_GameHostProviderGHA::BeginRegister()
 {
-	rallyhere_on_allocated_callback(GameHostAdapter, FRH_GameHostProviderGHA::OnAllocatedCallback, this);
-	rallyhere_ready(GameHostAdapter, FRH_GameHostProviderGHA::OnReadyCallback, this);
+	GameHostAdapterImporter::rallyhere_on_allocated_callback(GameHostAdapter, FRH_GameHostProviderGHA::OnAllocatedCallback, this);
+	GameHostAdapterImporter::rallyhere_ready(GameHostAdapter, FRH_GameHostProviderGHA::OnReadyCallback, this);
 }
 
 void FRH_GameHostProviderGHA::OnRegisterComplete(const RallyHereStatusCode& code)
 {
-	bool bIsError = rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to register: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(rallyhere_status_text(code)));
+	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
+	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to register: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 	OnProviderRegisterComplete.ExecuteIfBound(!bIsError);
 }
 
 void FRH_GameHostProviderGHA::OnAllocationComplete(RallyHereStringMapPtr allocation_info, const RallyHereStatusCode& code)
 {
 	// ensure allocation info block is destroyed
-	ON_SCOPE_EXIT{ rallyhere_string_map_destroy(allocation_info); };
+	ON_SCOPE_EXIT{ GameHostAdapterImporter::rallyhere_string_map_destroy(allocation_info); };
 
 	// We can be cancelled in a destructor so make no calls which expect the shared ptr to be valid
-	if (rallyhere_is_cancelled(code))
+	if (GameHostAdapterImporter::rallyhere_is_cancelled(code))
 	{
 		UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] Cancelled"), ANSI_TO_TCHAR(__FUNCTION__));
 		OnProviderAllocationComplete.ExecuteIfBound(ERH_AllocationStatus::Cancelled, FRH_GameHostAllocationInfo());
 		return;
 	}
 
-	if (rallyhere_is_error(code))
+	if (GameHostAdapterImporter::rallyhere_is_error(code))
 	{
-		UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter Failed to successfully get an allocation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(rallyhere_status_text(code)));
+		UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter Failed to successfully get an allocation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 		OnProviderAllocationComplete.ExecuteIfBound(ERH_AllocationStatus::Failed, FRH_GameHostAllocationInfo());
 		return;
 	}
@@ -261,16 +259,16 @@ void FRH_GameHostProviderGHA::OnAllocationComplete(RallyHereStringMapPtr allocat
 	{
 		const char* value_to_check = nullptr;
 		unsigned int value_size = 0;
-		auto result = rallyhere_string_map_get(allocation_info, "allocation_id", &value_to_check, &value_size);
+		auto result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "allocation_id", &value_to_check, &value_size);
 		if (RH_STATUS_OK == result)
 			AllocationInfo.AllocationId = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-		result = rallyhere_string_map_get(allocation_info, "session_id", &value_to_check, &value_size);
+		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "session_id", &value_to_check, &value_size);
 		if (RH_STATUS_OK == result)
 			AllocationInfo.SessionId = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-		result = rallyhere_string_map_get(allocation_info, "public_host", &value_to_check, &value_size);
+		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "public_host", &value_to_check, &value_size);
 		if (RH_STATUS_OK == result)
 			AllocationInfo.PublicHost = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
-		result = rallyhere_string_map_get(allocation_info, "public_port", &value_to_check, &value_size);
+		result = GameHostAdapterImporter::rallyhere_string_map_get(allocation_info, "public_port", &value_to_check, &value_size);
 		if (RH_STATUS_OK == result)
 			AllocationInfo.PublicPort = { static_cast<int32>(value_size), reinterpret_cast<const UTF8CHAR*>(value_to_check) };
 	}
@@ -291,13 +289,13 @@ void FRH_GameHostProviderGHA::OnReservationCallback(const RallyHereStatusCode& c
 
 void FRH_GameHostProviderGHA::BeginReservation()
 {
-	rallyhere_reserve_unconditional(GameHostAdapter, FRH_GameHostProviderGHA::OnReservationCallback, this);
+	GameHostAdapterImporter::rallyhere_reserve_unconditional(GameHostAdapter, FRH_GameHostProviderGHA::OnReservationCallback, this);
 }
 
 void FRH_GameHostProviderGHA::OnReservationComplete(const RallyHereStatusCode& code)
 {
-	bool bIsError = rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to create reservation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(rallyhere_status_text(code)));
+	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
+	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to create reservation: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 	OnProviderReservationComplete.ExecuteIfBound(!bIsError);
 }
 
@@ -309,13 +307,13 @@ void FRH_GameHostProviderGHA::OnSelfAllocateCallback(const RallyHereStatusCode& 
 
 void FRH_GameHostProviderGHA::BeginSelfAllocate()
 {
-	rallyhere_allocate(GameHostAdapter, FRH_GameHostProviderGHA::OnSelfAllocateCallback, this);
+	GameHostAdapterImporter::rallyhere_allocate(GameHostAdapter, FRH_GameHostProviderGHA::OnSelfAllocateCallback, this);
 }
 
 void FRH_GameHostProviderGHA::OnSelfAllocateComplete(const RallyHereStatusCode& code)
 {
-	bool bIsError = rallyhere_is_error(code);
-	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to self allocate: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(rallyhere_status_text(code)));
+	bool bIsError = GameHostAdapterImporter::rallyhere_is_error(code);
+	UE_CLOG(bIsError, LogRHGameHostProvider, Error, TEXT("[%s] GameHostAdapter failed to self allocate: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
 	OnProviderSelfAllocateComplete.ExecuteIfBound(!bIsError);
 }
 
@@ -327,7 +325,7 @@ void FRH_GameHostProviderGHA::OnSoftStopRequestedCallback(const RallyHereStatusC
 
 void FRH_GameHostProviderGHA::OnSoftStopRequested(const RallyHereStatusCode& code)
 {
-	if (rallyhere_is_cancelled(code))
+	if (GameHostAdapterImporter::rallyhere_is_cancelled(code))
 		return;
 	OnProviderSoftStopRequested.ExecuteIfBound();
 }

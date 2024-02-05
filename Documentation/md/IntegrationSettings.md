@@ -30,7 +30,10 @@ Main settings for the Integration.
 `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
 `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
 `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
-`public int32 `[`MaxSimultaneousRequests`](#classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+`public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+`public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
+`public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
+`public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) | Sets the time threshold for web traffic burst detection.
 `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) | Extensible LocalPlayerLoginSubsystem class path.
 `public FSoftClassPath `[`AdSubsystemClass`](#classURH__IntegrationSettings_1a134dbaebd973ab90d1bdb12027285009) | Extensible AdSubsystem class path.
 `public FSoftClassPath `[`FriendSubsystemClass`](#classURH__IntegrationSettings_1af67c19ac851c03c6e667a609182e1ac9) | Extensible FriendSubsystem class path.
@@ -124,7 +127,7 @@ Main settings for the Integration.
 `public int32 `[`SettingsGetPriority`](#classURH__IntegrationSettings_1ab3de492d46aeb771fc964cc02a00f048) | Sets the request priority of Get Settings calls, lower number is higher priority.
 `public int32 `[`SettingsGetTypesPriority`](#classURH__IntegrationSettings_1a96483b01899977de1c9c929e83ef0c71) | Sets the request priority of Get Settings Types calls, lower number is higher priority.
 `public int32 `[`SettingsUpdatePriority`](#classURH__IntegrationSettings_1aab7ca97767260ad27f6ab2ed2f991f35) | Sets the request priority of Update Settings calls, lower number is higher priority.
-`public int32 `[`GetSiteSettingsPriority`](#classURH__IntegrationSettings_1a05394419f792bfa361b0e1b2adccf198) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
+`public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) | Sets the request priority of Get Site Settings calls, lower number is higher priority.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
 `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) | Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
@@ -182,9 +185,24 @@ Whether to automatically start platform sessions after joining them.
 Whether to automatically join platform sessions after a user change when invites were received while logged out.
 
 <br>
-#### `public int32 `[`MaxSimultaneousRequests`](#classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b) <a id="classURH__IntegrationSettings_1a250923c3c001c712d54691a9efa5f98b"></a>
+#### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
 
 Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
+
+<br>
+#### `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) <a id="classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4"></a>
+
+Sets the maximum number of web requests for which tracking data is kept.
+
+<br>
+#### `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) <a id="classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d"></a>
+
+Sets the count above which web traffic is considered a burst.
+
+<br>
+#### `public int32 `[`WebRequestsBurstTimeThresholdInSeconds`](#classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb) <a id="classURH__IntegrationSettings_1abb0a83cebcc39ea7215e7207bca115cb"></a>
+
+Sets the time threshold for web traffic burst detection.
 
 <br>
 #### `public FSoftClassPath `[`LocalPlayerLoginSubsystemClass`](#classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816) <a id="classURH__IntegrationSettings_1aea8c51bec96a3a50100085354f8fe816"></a>
@@ -652,7 +670,7 @@ Sets the request priority of Get Settings Types calls, lower number is higher pr
 Sets the request priority of Update Settings calls, lower number is higher priority.
 
 <br>
-#### `public int32 `[`GetSiteSettingsPriority`](#classURH__IntegrationSettings_1a05394419f792bfa361b0e1b2adccf198) <a id="classURH__IntegrationSettings_1a05394419f792bfa361b0e1b2adccf198"></a>
+#### `public int32 `[`GetRegionsPriority`](#classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1) <a id="classURH__IntegrationSettings_1a97dde13b1e0bbc874333d9fa1d6dbec1"></a>
 
 Sets the request priority of Get Site Settings calls, lower number is higher priority.
 

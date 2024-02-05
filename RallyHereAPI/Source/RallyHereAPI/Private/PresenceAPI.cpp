@@ -960,11 +960,6 @@ bool FResponse_UpdatePlayerPresenceSelf::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
-{
-    return TryGetJsonValue(ResponseJson, OutContent);
-}
-
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 TOptional<FString> FResponse_UpdatePlayerPresenceSelf::GetHeader200_ETag() const
 {
@@ -996,7 +991,7 @@ bool FResponse_UpdatePlayerPresenceSelf::TryGetContentFor500(FRHAPI_HzApiErrorMo
 
 bool FResponse_UpdatePlayerPresenceSelf::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+    return true;
 }
 
 FResponse_UpdatePlayerPresenceSelf::FResponse_UpdatePlayerPresenceSelf(FRequestMetadata InRequestMetadata) :

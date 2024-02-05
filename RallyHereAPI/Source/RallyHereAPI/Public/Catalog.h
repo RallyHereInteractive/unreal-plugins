@@ -48,6 +48,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief The XP Tables. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_XpTables XpTables_Optional{  };
     /** @brief true if XpTables_Optional has been set to a value */
@@ -70,6 +71,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of XpTables_Optional and sets XpTables_IsSet to false */
     void ClearXpTables() { XpTables_IsSet = false; }
 
+    /** @brief The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PortalUseRulesets PortalUseRulesets_Optional{  };
     /** @brief true if PortalUseRulesets_Optional has been set to a value */
@@ -92,6 +94,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of PortalUseRulesets_Optional and sets PortalUseRulesets_IsSet to false */
     void ClearPortalUseRulesets() { PortalUseRulesets_IsSet = false; }
 
+    /** @brief The rules on how to use Inventory Buckets. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_InventoryBucketUseRuleSets InventoryBucketUseRuleSets_Optional{  };
     /** @brief true if InventoryBucketUseRuleSets_Optional has been set to a value */
@@ -114,6 +117,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of InventoryBucketUseRuleSets_Optional and sets InventoryBucketUseRuleSets_IsSet to false */
     void ClearInventoryBucketUseRuleSets() { InventoryBucketUseRuleSets_IsSet = false; }
 
+    /** @brief The Vendors. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_Vendors Vendors_Optional{  };
     /** @brief true if Vendors_Optional has been set to a value */
@@ -136,6 +140,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
     void ClearVendors() { Vendors_IsSet = false; }
 
+    /** @brief The Loots. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_Loots Loot_Optional{  };
     /** @brief true if Loot_Optional has been set to a value */
@@ -158,6 +163,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of Loot_Optional and sets Loot_IsSet to false */
     void ClearLoot() { Loot_IsSet = false; }
 
+    /** @brief The Items. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_Items Items_Optional{  };
     /** @brief true if Items_Optional has been set to a value */
@@ -180,6 +186,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of Items_Optional and sets Items_IsSet to false */
     void ClearItems() { Items_IsSet = false; }
 
+    /** @brief The Price Points. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PricePoints PricePoints_Optional{  };
     /** @brief true if PricePoints_Optional has been set to a value */
@@ -202,6 +209,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of PricePoints_Optional and sets PricePoints_IsSet to false */
     void ClearPricePoints() { PricePoints_IsSet = false; }
 
+    /** @brief The Time Frames. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_TimeFrames TimeFrames_Optional{  };
     /** @brief true if TimeFrames_Optional has been set to a value */
@@ -224,6 +232,7 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
      /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
     void ClearTimeFrames() { TimeFrames_IsSet = false; }
 
+    /** @brief Cache info for the Catalog. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

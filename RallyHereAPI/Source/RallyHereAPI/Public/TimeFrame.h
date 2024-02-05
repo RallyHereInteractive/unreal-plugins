@@ -189,6 +189,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     /** @brief Sets the value of End */
     void SetEnd(FDateTime NewValue) { End = NewValue;  }
 
+    /** @brief Cache info for the Time Frame. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

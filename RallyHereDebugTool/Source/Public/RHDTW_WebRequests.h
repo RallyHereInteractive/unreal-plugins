@@ -19,7 +19,7 @@ public:
 
 	void Do() override;
 private:
-	void DoViewRequests(URH_WebRequests* WebRequestsTracker);
+	void DoViewRequests(FRH_WebRequests* WebRequestsTracker);
 	void DoViewRequest(const FRH_WebRequest* WebRequest);
 	void DoViewResponse(const FRH_WebResponse* WebResponse, const FRH_WebRequest* WebRequest);
 	void DoViewMetadata(const FRH_WebRequest* WebRequest);

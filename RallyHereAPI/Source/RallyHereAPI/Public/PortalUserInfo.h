@@ -9,8 +9,8 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "DependenciesSchemasPortal.h"
 #include "Platform.h"
-#include "Portal.h"
 #include "PortalUserInfo.generated.h"
 
 /** @defgroup RHAPI_PortalUserInfo RallyHere API Model PortalUserInfo
@@ -53,13 +53,13 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 
     /** @brief Portal ID. *DEPRECATED* use `platform` instead */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    ERHAPI_Portal PortalId{  };
+    ERHAPI_DependenciesSchemasPortal PortalId{  };
     /** @brief Gets the value of PortalId */
-    ERHAPI_Portal& GetPortalId() { return PortalId; }
+    ERHAPI_DependenciesSchemasPortal& GetPortalId() { return PortalId; }
     /** @brief Gets the value of PortalId */
-    const ERHAPI_Portal& GetPortalId() const { return PortalId; }
+    const ERHAPI_DependenciesSchemasPortal& GetPortalId() const { return PortalId; }
     /** @brief Sets the value of PortalId */
-    void SetPortalId(ERHAPI_Portal NewValue) { PortalId = NewValue;  }
+    void SetPortalId(ERHAPI_DependenciesSchemasPortal NewValue) { PortalId = NewValue;  }
 
     /** @brief Platform User ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

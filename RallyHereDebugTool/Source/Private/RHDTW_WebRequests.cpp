@@ -45,7 +45,7 @@ FRHDTW_WebRequests::FRHDTW_WebRequests()
 void FRHDTW_WebRequests::Init(URallyHereDebugTool* InOwner, const FString& InName)
 {
 	Super::Init(InOwner, InName);
-	if (URH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker())
+	if (FRH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker())
 	{
 		for (const FName& APIName : WebRequestsTracker->GetAPINames())
 		{
@@ -56,7 +56,7 @@ void FRHDTW_WebRequests::Init(URallyHereDebugTool* InOwner, const FString& InNam
 
 void FRHDTW_WebRequests::Do()
 {
-	URH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
+	FRH_WebRequests* WebRequestsTracker = FRallyHereIntegrationModule::Get().GetWebRequestTracker();
 	if (WebRequestsTracker == nullptr)
 	{
 		ImGui::Text("RH_WebRequests unavailable.");
@@ -162,7 +162,7 @@ void FRHDTW_WebRequests::Do()
 	DoViewRequests(WebRequestsTracker);
 }
 
-void FRHDTW_WebRequests::DoViewRequests(URH_WebRequests* WebRequestsTracker)
+void FRHDTW_WebRequests::DoViewRequests(FRH_WebRequests* WebRequestsTracker)
 {
 	if (!WebRequestsTracker)
 		return;

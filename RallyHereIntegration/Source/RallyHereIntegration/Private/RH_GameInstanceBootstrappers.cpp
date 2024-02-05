@@ -420,10 +420,6 @@ void URH_GameInstanceServerBootstrapper::BeginServerLogin()
 
 	UpdateBootstrapStep(ERH_ServerBootstrapFlowStep::LoggingIn);
 
-	// update the auth context with the current client id and secret in case it changed since prior logins
-	AuthContext->SetClientId(FRallyHereIntegrationModule::Get().GetClientId());
-	AuthContext->SetClientSecret(FRallyHereIntegrationModule::Get().GetClientSecret());
-
 	// if we are already login, just continue (refresh may be triggered during a call if needed)
 	if (AuthContext->IsLoggedIn())
 	{
@@ -431,198 +427,15 @@ void URH_GameInstanceServerBootstrapper::BeginServerLogin()
 	}
 	else
 	{
-		auto* LoginOSS = GetOSS();
-		if (LoginOSS != nullptr)
-		{
-			// if we can determine a grant type for this OSS, use the OSS login
-			if (RH_GetGrantTypeFromOSSName(LoginOSS->GetSubsystemName()).IsSet())
-			{
-				BeginOSSLogin();
-			}
-			else if (LoginOSS->GetSubsystemName() == NULL_SUBSYSTEM)
-			{
-				BeginNullLogin();
-			}
-			else
-			{
-				UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find grant type for OSS '%s'."),
-					ANSI_TO_TCHAR(__FUNCTION__), *LoginOSS->GetSubsystemName().ToString());
-				OnServerLoginComplete(false);
-			}
-		}
-		else
-		{
-			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find login OSS."),
-				ANSI_TO_TCHAR(__FUNCTION__));
-			OnServerLoginComplete(false);
-		}
+		auto LoginOSS = GetOSS();
+
+		auto Helper = MakeShared<FRH_ServerLoginHelper>(
+			AuthContext,
+			LoginOSS,
+			FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete));
+
+		Helper->Start();
 	}
-}
-
-void URH_GameInstanceServerBootstrapper::BeginOSSLogin()
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	auto* OSS = GetOSS();
-
-	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
-	if (!Identity.IsValid())
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	if (OnOSSLoginCompleteDelegateHandle.IsValid())
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS Login already pending"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	int32 ControllerId = 0;
-
-	OnOSSLoginCompleteDelegateHandle = Identity->AddOnLoginCompleteDelegate_Handle(
-		ControllerId, FOnLoginCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnOSSLoginComplete));
-	if (!Identity->AutoLogin(ControllerId))
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Autologin failed"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnServerLoginComplete(false);
-	}
-}
-
-void URH_GameInstanceServerBootstrapper::OnOSSLoginComplete(int32 ControllerId, bool bSuccessful, const FUniqueNetId& UniqueId, const FString& ErrorMessage)
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	auto* OSS = GetOSS();
-
-	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
-	if (OSS == nullptr || !Identity.IsValid())
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	// clear the delegate, because the controller id may change next time
-	Identity->ClearOnLoginCompleteDelegate_Handle(ControllerId, OnOSSLoginCompleteDelegateHandle);
-	OnOSSLoginCompleteDelegateHandle.Reset();
-
-	if (!bSuccessful)
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS Login Failed: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorMessage);
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	auto UniqueIdPtr = Identity->GetUniquePlayerId(ControllerId);
-	if (Identity->GetLoginStatus(*UniqueIdPtr) != ELoginStatus::LoggedIn)
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSS User Not Logged In: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorMessage);
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	if (RH_UseGetAuthTokenFallbackFromOSSName(OSS->GetSubsystemName()))
-	{
-		FExternalAuthToken AuthToken;
-		AuthToken.TokenString = Identity->GetAuthToken(ControllerId);;
-		RetrieveOSSAuthTokenComplete(ControllerId, !AuthToken.IsValid(), AuthToken);
-	}
-	else
-	{
-#if RH_FROM_ENGINE_VERSION(5,2)
-		Identity->GetLinkedAccountAuthToken(ControllerId, FString(), IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
-#else
-		Identity->GetLinkedAccountAuthToken(ControllerId, IOnlineIdentity::FOnGetLinkedAccountAuthTokenCompleteDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete));
-#endif
-	}
-}
-
-void URH_GameInstanceServerBootstrapper::RetrieveOSSAuthTokenComplete(int32 LocalUserNum, bool bWasSuccessful, const FExternalAuthToken& AuthTokenWrapper)
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	auto* OSS = GetOSS();
-
-	auto Identity = OSS ? OSS->GetIdentityInterface() : nullptr;
-	if (OSS == nullptr || !Identity.IsValid())
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not find login OSS to use for server authentication"), ANSI_TO_TCHAR(__FUNCTION__));
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	if (!bWasSuccessful)
-	{
-		UE_LOG(LogRallyHereIntegration, Error,
-			TEXT("[%s] Could not retrieve auth token - check that the OSS '%s' was able to fully log in (ex: may have logged into a local account rather than a network account)"), ANSI_TO_TCHAR(__FUNCTION__),
-			*OSS->GetSubsystemName().ToString());
-
-		OnServerLoginComplete(false);
-		return;
-	}
-	else if (!AuthTokenWrapper.HasTokenString())
-	{
-		UE_LOG(LogRallyHereIntegration, Error,
-			TEXT("[%s] Auth token has no token string, and RH bootstrapping does not currently support a binary auth token"), ANSI_TO_TCHAR(__FUNCTION__),
-			*OSS->GetSubsystemName().ToString());
-
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	auto GrantType = RH_GetGrantTypeFromOSSName(OSS->GetSubsystemName());
-	if (!GrantType.IsSet())
-	{
-		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unable to find grant type for OSS '%s'."),
-			ANSI_TO_TCHAR(__FUNCTION__), *OSS->GetSubsystemName().ToString());
-		OnServerLoginComplete(false);
-		return;
-	}
-
-	// start a RH login helper
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere User Login request"), *GetName());
-	typedef RallyHereAPI::Traits_Login LoginType;
-
-	LoginType::Request Request;
-	Request.SetShouldRetry();
-	Request.AuthContext = AuthContext;
-	Request.LoginRequestV1.SetIncludeRefresh(true);
-	Request.LoginRequestV1.SetAcceptEula(true);
-	Request.LoginRequestV1.SetAcceptTos(true);
-	Request.LoginRequestV1.SetAcceptPrivacyPolicy(true);
-	Request.LoginRequestV1.SetGrantType(GrantType.GetValue());
-	Request.LoginRequestV1.SetPortalAccessToken(AuthTokenWrapper.TokenString);
-
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
-		LoginType::Delegate::CreateSP(AuthContext.Get(), &RallyHereAPI::FAuthContext::ProcessLogin),
-		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete),
-		GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
-
-	Helper->Start(RH_APIs::GetAuthAPI(), Request);
-}
-
-void URH_GameInstanceServerBootstrapper::BeginNullLogin()
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	// start a RH login helper
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Creating RallyHere Token Login request"), *GetName());
-	typedef RallyHereAPI::Traits_Token LoginType;
-
-	LoginType::Request Request;
-	Request.SetShouldRetry();
-	Request.AuthContext = AuthContext;
-	Request.TokenRequest.SetGrantType(ERHAPI_OAuthGrantType::ClientCredentials);
-
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<LoginType>>(
-		LoginType::Delegate::CreateSP(AuthContext.Get(), &RallyHereAPI::FAuthContext::ProcessLoginToken),
-		FRH_GenericSuccessWithErrorDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnServerLoginComplete),
-		GetDefault<URH_IntegrationSettings>()->AuthLoginPriority);
-
-	Helper->Start(RH_APIs::GetAuthAPI(), Request);
 }
 
 void URH_GameInstanceServerBootstrapper::OnServerLoginComplete(bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -1178,12 +991,14 @@ void URH_GameInstanceServerBootstrapper::CleanupAfterInstanceRemoval()
 
 	if (SessionSubsystem != nullptr && RHSession != nullptr)
 	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] - Session no longer exists, cleaning up"), ANSI_TO_TCHAR(__FUNCTION__))
 		BestEffortLeaveSession();
 		SessionSubsystem->SyncToSession(nullptr, FRH_GameInstanceSessionSyncDelegate::CreateUObject(this, &URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete));
 	}
 	else
 	{
-		OnCleanupSessionSyncComplete(nullptr, false, TEXT("CleanupAfterInstanceRemoval called without a valid session subsystem or session"));
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Session subsystem invalid or did not have session"), ANSI_TO_TCHAR(__FUNCTION__));
+		OnCleanupSessionSyncComplete(nullptr, false, TEXT("No session to cleanup"));
 	}
 }
 
@@ -1261,6 +1076,56 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 bool URH_GameInstanceServerBootstrapper::ShouldRecycleAfterCleanup() const
 {
 	return !RallyHere::TermSignalHandler::IsSoftStopRequested() && CurrentRecycleCount < MaxRecycleCount;
+}
+
+void URH_GameInstanceServerBootstrapper::OnRefreshTokenExpired(FSimpleDelegate CompletionCallback)
+{
+	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// if we are not in the middle of bootstrapping, we can just refresh the token
+	if (BootstrapStep == ERH_ServerBootstrapFlowStep::Failed)
+	{
+		// if we have already failed bootstrapping, do not attempt a new login
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Refresh token expired, but we have failed bootstrapping, so do not refresh"), ANSI_TO_TCHAR(__FUNCTION__));
+		CompletionCallback.ExecuteIfBound();
+		return;
+	}
+	else if (BootstrapStep <= ERH_ServerBootstrapFlowStep::LoggingIn)
+	{
+		// if we have not yet gotten to the login step of bootstrapping, or are in the middle of it, do not attempt a new login to refresh
+		CompletionCallback.ExecuteIfBound();
+		return;
+	}
+
+	auto LoginOSS = GetOSS();
+
+	auto Helper = MakeShared<FRH_ServerLoginHelper>(
+		AuthContext,
+		LoginOSS,
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, CompletionCallback](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				// fire completion callback to let auth context know that we are done
+				CompletionCallback.ExecuteIfBound();
+
+				if (bSuccess)
+				{
+					UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] - New login was successful"), ANSI_TO_TCHAR(__FUNCTION__));
+				}
+				else
+				{
+					UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not relogin after refresh token expired"), ANSI_TO_TCHAR(__FUNCTION__));
+
+					// server is now logged out from the backend.  We do not want to change the bootstrapping state here, as it will should get caught (or potentially recovered from) other parts of the bootstrapping flow
+					// instead, the logout delegate and IsLoggedIn() checks should be sufficient to catch this and handle it
+					// however, if bootstrapping was complete and logged in, we should consider this similar to as if a session poll failed, meaning our allocation is no longer valid
+
+					if (BootstrapStep == ERH_ServerBootstrapFlowStep::Complete)
+					{
+						CleanupAfterInstanceRemoval();
+					}
+				}
+			}));
+
 }
 
 void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
@@ -1360,15 +1225,12 @@ IOnlineSubsystem* URH_GameInstanceServerBootstrapper::GetOSS() const
 
 FUniqueNetIdWrapper URH_GameInstanceServerBootstrapper::GetOSSUniqueId() const
 {
-	/*
-	UWorld* World = GetWorld();
-	if (World != nullptr)
-	{
-		return FUniqueNetIdRepl(UOnlineEngineInterface::Get()->GetUniquePlayerIdWrapper(World, PlatformUserId));
-	}
-	*/
-
 	return FUniqueNetIdRepl();
+}
+
+FPlatformUserId URH_GameInstanceServerBootstrapper::GetOSSPlatformUserId() const
+{
+	return FPlatformUserId();
 }
 
 void URH_GameInstanceServerBootstrapper::ImportAPISession(const FRH_APISessionWithETag& SessionWrapper)

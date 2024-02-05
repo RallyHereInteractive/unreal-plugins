@@ -18,7 +18,7 @@ struct FRHAPI_UpdateBackfillRequest
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `public FString `[`InstanceId`](#structFRHAPI__UpdateBackfillRequest_1acbaa3be50199297dc3d82ed419a938d2) | The instance ID for this backfill request.
-`public `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` `[`AdditionalJoinParams_Optional`](#structFRHAPI__UpdateBackfillRequest_1a8733cb6e88822464ff00906f4343479b) | 
+`public `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` `[`AdditionalJoinParams_Optional`](#structFRHAPI__UpdateBackfillRequest_1a8733cb6e88822464ff00906f4343479b) | Additional fields put on the matchmaking ticket for open match to search with (see [https://openmatch.dev/site/docs/reference/api/#searchfields](https://openmatch.dev/site/docs/reference/api/#searchfields))
 `public bool `[`AdditionalJoinParams_IsSet`](#structFRHAPI__UpdateBackfillRequest_1a5297552fe2ee8c2eb9f52dd6a8d4b747) | true if AdditionalJoinParams_Optional has been set to a value
 `public TArray< `[`FRHAPI_BackfillTeam`](RHAPI_BackfillTeam.md#structFRHAPI__BackfillTeam)` > `[`Teams_Optional`](#structFRHAPI__UpdateBackfillRequest_1a0bcca01fbb64b7eb5cc8c6348f9b5a39) | The teams and number of players that need to be backfilled. Leaving this out (or supplying an empty list) is treated as no players are currently required.
 `public bool `[`Teams_IsSet`](#structFRHAPI__UpdateBackfillRequest_1a868168ce21f43fa6d23f1cedf2780215) | true if Teams_Optional has been set to a value
@@ -52,6 +52,8 @@ The instance ID for this backfill request.
 
 <br>
 #### `public `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` `[`AdditionalJoinParams_Optional`](#structFRHAPI__UpdateBackfillRequest_1a8733cb6e88822464ff00906f4343479b) <a id="structFRHAPI__UpdateBackfillRequest_1a8733cb6e88822464ff00906f4343479b"></a>
+
+Additional fields put on the matchmaking ticket for open match to search with (see [https://openmatch.dev/site/docs/reference/api/#searchfields](https://openmatch.dev/site/docs/reference/api/#searchfields))
 
 <br>
 #### `public bool `[`AdditionalJoinParams_IsSet`](#structFRHAPI__UpdateBackfillRequest_1a5297552fe2ee8c2eb9f52dd6a8d4b747) <a id="structFRHAPI__UpdateBackfillRequest_1a5297552fe2ee8c2eb9f52dd6a8d4b747"></a>

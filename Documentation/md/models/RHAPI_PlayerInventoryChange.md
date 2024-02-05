@@ -23,9 +23,9 @@ Represents the change that occurred to an entry in the Player&#39;s Inventory. T
 `public bool `[`BeforeItemId_IsSet`](#structFRHAPI__PlayerInventoryChange_1a2d1b0dddd609db72e177f8890ecda0ec) | true if BeforeItemId_Optional has been set to a value
 `public int32 `[`AfterItemId_Optional`](#structFRHAPI__PlayerInventoryChange_1acf803668dfe5a54fa134fdab6b6aea0f) | The Item ID of the Item after the change.
 `public bool `[`AfterItemId_IsSet`](#structFRHAPI__PlayerInventoryChange_1a98c5e093c32ddaa28569954b14516983) | true if AfterItemId_Optional has been set to a value
-`public `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` `[`Before_Optional`](#structFRHAPI__PlayerInventoryChange_1a9509ac42ceb6cb93ef1f0b1677c82ed7) | 
+`public `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` `[`Before_Optional`](#structFRHAPI__PlayerInventoryChange_1a9509ac42ceb6cb93ef1f0b1677c82ed7) | The Inventory Record before the change.
 `public bool `[`Before_IsSet`](#structFRHAPI__PlayerInventoryChange_1a12edc14fece4272777fbc04317f5b298) | true if Before_Optional has been set to a value
-`public `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` `[`After_Optional`](#structFRHAPI__PlayerInventoryChange_1ad52a7705a82ff9bee12d8e02cfdc8269) | 
+`public `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` `[`After_Optional`](#structFRHAPI__PlayerInventoryChange_1ad52a7705a82ff9bee12d8e02cfdc8269) | The Inventory Record after the change.
 `public bool `[`After_IsSet`](#structFRHAPI__PlayerInventoryChange_1a0c4f4a03e1a551f90a70a525f80d091e) | true if After_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerInventoryChange_1a420c59fa00f220dcf8a9d37e49b16bbe)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerInventoryChange_1a275bc792850cfcc0802d385e99e1924f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -90,6 +90,8 @@ true if AfterItemId_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` `[`Before_Optional`](#structFRHAPI__PlayerInventoryChange_1a9509ac42ceb6cb93ef1f0b1677c82ed7) <a id="structFRHAPI__PlayerInventoryChange_1a9509ac42ceb6cb93ef1f0b1677c82ed7"></a>
 
+The Inventory Record before the change.
+
 <br>
 #### `public bool `[`Before_IsSet`](#structFRHAPI__PlayerInventoryChange_1a12edc14fece4272777fbc04317f5b298) <a id="structFRHAPI__PlayerInventoryChange_1a12edc14fece4272777fbc04317f5b298"></a>
 
@@ -97,6 +99,8 @@ true if Before_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` `[`After_Optional`](#structFRHAPI__PlayerInventoryChange_1ad52a7705a82ff9bee12d8e02cfdc8269) <a id="structFRHAPI__PlayerInventoryChange_1ad52a7705a82ff9bee12d8e02cfdc8269"></a>
+
+The Inventory Record after the change.
 
 <br>
 #### `public bool `[`After_IsSet`](#structFRHAPI__PlayerInventoryChange_1a0c4f4a03e1a551f90a70a525f80d091e) <a id="structFRHAPI__PlayerInventoryChange_1a0c4f4a03e1a551f90a70a525f80d091e"></a>

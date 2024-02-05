@@ -387,6 +387,7 @@ Simple container class to hold session view data, does not have its own auth con
 `public virtual class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classURH__SessionBrowserCache_1ac59f177acf3996badf4dd9907c0e66e8)`() const` | Gets the PlayerInfo Subsystem.
 `public inline virtual IOnlineSubsystem * `[`GetOSS`](#classURH__SessionBrowserCache_1a83aee966f46fa0846e717d03fd9d9963)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public inline virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public inline virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__SessionBrowserCache_1af673c57a58cd96f48687778033b0c9e4)`() const` | Gets the etag to use for a "Get all Sessions" type query.
 `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aa05dd036c2dacc629cbf2d55b90efcdf)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
@@ -477,6 +478,11 @@ Gets the Online Subsystem to use for OSS calls.
 #### `public inline virtual FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131)`() const` <a id="classURH__SessionBrowserCache_1a65fc8b708ead7613eccfff0845f4c131"></a>
 
 Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public inline virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8)`() const` <a id="classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8"></a>
+
+Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
 <br>
 #### `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e)`() const` <a id="classURH__SessionBrowserCache_1aa76b9eb09fb687bff5252effe7da2b0e"></a>
@@ -910,6 +916,8 @@ Invited Sessions are sessions that the player has been invited to.
 `public inline void `[`BLUEPRINT_Join`](#classURH__InvitedSession_1ae695534cc3653e4cf7374b54a030133b)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Join.
 `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
 `public inline void `[`BLUEPRINT_Leave`](#classURH__InvitedSession_1a5710f9c6987179ca0489029cb3bced79)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Leave.
+`public void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
+`public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` | Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
 
 #### Members
 
@@ -950,6 +958,22 @@ Blueprint compatible version of Leave.
 * `Delegate` The callback delegate for the session being updated by the leave.
 
 <br>
+#### `public void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f"></a>
+
+Determines if the Inviter of this session is blocked by the player on their current platform.
+
+#### Parameters
+* `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform
+
+<br>
+#### `public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` <a id="classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7"></a>
+
+Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
+
+#### Parameters
+* `Delegate` The callback delegate for the results of querying if the inviter is blocked on the current platform
+
+<br>
 ## class `URH_OfflineSession` <a id="classURH__OfflineSession"></a>
 
 ```
@@ -974,8 +998,6 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OfflineSession_1a15f9d178c350737ffd1c7315b174b9d3)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OfflineSession_1a42d2adfee51e818244e98e0d0888f410)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
-`public virtual void `[`StartMatch`](#classURH__OfflineSession_1ab4a188cca6cdc1bc9171349041d757c8)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Starts the match of the instance on the session.
-`public virtual void `[`EndMatch`](#classURH__OfflineSession_1a223aa688a4f71b889c4e18605e978ced)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Ends the match of the instance on the session.
 `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OfflineSession_1a8b36aeef35d1acbe6e6af22d9a55cf0f)`(const `[`FRHAPI_InstanceInfoUpdate`](models/RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OfflineSession_1a1efa399f684ce083ce292c87717f22ad)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1058,22 +1080,6 @@ Shutdown the existing instance for the session.
 
 #### Parameters
 * `Delegate` Callback delegate for the session being updated with the instance ending.
-
-<br>
-#### `public virtual void `[`StartMatch`](#classURH__OfflineSession_1ab4a188cca6cdc1bc9171349041d757c8)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ab4a188cca6cdc1bc9171349041d757c8"></a>
-
-Starts the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match start.
-
-<br>
-#### `public virtual void `[`EndMatch`](#classURH__OfflineSession_1a223aa688a4f71b889c4e18605e978ced)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a223aa688a4f71b889c4e18605e978ced"></a>
-
-Ends the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match end.
 
 <br>
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a298d217d999690851348cb4041ff7599"></a>
@@ -1168,8 +1174,6 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`Leave`](#classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OnlineSession_1aae906a67108cba268d73786229e8aa94)`(const `[`FRHAPI_InstanceRequest`](models/RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OnlineSession_1a38a05f415495a019c3f02fcae76317ec)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
-`public virtual void `[`StartMatch`](#classURH__OnlineSession_1a0f028da11d7b9881afa4400ee58bc5e1)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Starts the match of the instance on the session.
-`public virtual void `[`EndMatch`](#classURH__OnlineSession_1a4cc20fcaa5c722e3aa23272b344ac563)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Ends the match of the instance on the session.
 `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OnlineSession_1abdfc1e53b834da4afdfdce29de9b318b)`(const `[`FRHAPI_InstanceInfoUpdate`](models/RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OnlineSession_1a35197db28a89b5325ef4384dca5d76c8)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1393,22 +1397,6 @@ Shutdown the existing instance for the session.
 * `Delegate` Callback delegate for the session being updated with the instance ending.
 
 <br>
-#### `public virtual void `[`StartMatch`](#classURH__OnlineSession_1a0f028da11d7b9881afa4400ee58bc5e1)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a0f028da11d7b9881afa4400ee58bc5e1"></a>
-
-Starts the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match start.
-
-<br>
-#### `public virtual void `[`EndMatch`](#classURH__OnlineSession_1a4cc20fcaa5c722e3aa23272b344ac563)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a4cc20fcaa5c722e3aa23272b344ac563"></a>
-
-Ends the match of the instance on the session.
-
-#### Parameters
-* `Delegate` Callback delegate for the session being updated with the match end.
-
-<br>
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](models/RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50"></a>
 
 Updates the session info.
@@ -1493,6 +1481,7 @@ Session Owner Interface.
 `public class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classIRH__SessionOwnerInterface_1abcf3e2921d15c88817b0a82b936b0f35)`() const` | Gets the PlayerInfo Subsystem.
 `public IOnlineSubsystem * `[`GetOSS`](#classIRH__SessionOwnerInterface_1a3ede591e11069d01484302cbdc7acf25)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
+`public FPlatformUserId `[`GetOSSPlatformUserId`](#classIRH__SessionOwnerInterface_1a3248b77fb0ec5a40669b72eb693b0822)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual FGuid `[`GetPlayerUuid`](#classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8)`() const` | Gets the Player UUID to use for player related calls (can be invalid)
 `public inline TOptional< FString > `[`GetETagForSession`](#classIRH__SessionOwnerInterface_1a1af5c13f953285114e7e0ba2c7133c1d)`(const FString & SessionId) const` | Gets the Etag for a given Session.
 `public TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classIRH__SessionOwnerInterface_1aebf9f97e3204d81b31c92e3a5e6ba63d)`() const` | Gets the etag to use for a "Get all Templates" type query.
@@ -1559,6 +1548,11 @@ Gets the Online Subsystem to use for OSS calls.
 #### `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` <a id="classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf"></a>
 
 Gets the Online Subsystem Unique Id to use for OSS calls.
+
+<br>
+#### `public FPlatformUserId `[`GetOSSPlatformUserId`](#classIRH__SessionOwnerInterface_1a3248b77fb0ec5a40669b72eb693b0822)`() const` <a id="classIRH__SessionOwnerInterface_1a3248b77fb0ec5a40669b72eb693b0822"></a>
+
+Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 
 <br>
 #### `public inline virtual FGuid `[`GetPlayerUuid`](#classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8)`() const` <a id="classIRH__SessionOwnerInterface_1a50d1f47c5c9b99780330b36e6aa496b8"></a>

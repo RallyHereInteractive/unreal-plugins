@@ -16,7 +16,7 @@
  */
 
 /**
- * @brief Information about a match
+ * @brief DEPRECATED Information about a match
  */
 USTRUCT(BlueprintType)
 struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model

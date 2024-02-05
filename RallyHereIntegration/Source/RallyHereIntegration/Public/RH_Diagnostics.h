@@ -267,12 +267,11 @@ public:
 /**
  * @brief Class to handle initializing and running a diagnostic (blueprint compatible).  Tracks and stores local state from the running engine for tracking previous errors.
  */
-UCLASS(Config = RallyHereIntegration, DefaultConfig)
-class RALLYHEREINTEGRATION_API URH_Diagnostics : public UObject
+class RALLYHEREINTEGRATION_API FRH_Diagnostics : public TSharedFromThis<FRH_Diagnostics>
 {
-	GENERATED_BODY()
-
 public:
+	FRH_Diagnostics();
+
 	/**
 	* @brief Initialize the system.
 	*/
@@ -300,11 +299,26 @@ public:
 	 * @param [in] Options Options for the generated report.
 	 * @return The generated object
 	 */
-	UFUNCTION(Category = "RallyHere | Diagnostics")
 	void GenerateReport(const FRH_DiagnosticReportOptions& Options) const;
+};
 
-private:
+/**
+ * @brief Wrapper library to generate diagnostic reports via blueprint
+ */
+UCLASS()
+class RALLYHEREINTEGRATION_API URH_DiagnosticsBlueprintLibrary : public UBlueprintFunctionLibrary
+{
+	GENERATED_BODY()
 
+public:
+	/**
+	 * @brief Generates a report in JSON format
+	 * @param [in] World The context world object.
+	 * @param [in] Options Options for the generated report.
+	 * @return The generated object
+	 */
+	UFUNCTION(Category = "RallyHere | Diagnostics")
+	static void GenerateReport(const FRH_DiagnosticReportOptions& Options);
 };
 
 /** @} */

@@ -1,8 +1,0 @@
-{
-  "inputs": [
-    {
-      "inputURL": "https://developer.rallyhere.gg/api/openapi.json",
-    }
-  ],
-  "output": "./rally-here-developer-api.json"
-}

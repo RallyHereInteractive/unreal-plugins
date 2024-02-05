@@ -112,7 +112,19 @@ public:
 
 	/** @brief Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit */
 	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
-	int32 MaxSimultaneousRequests;
+	int32 WebRequestsMaxSimultaneousRequests;
+
+	/** @brief Sets the maximum number of web requests for which tracking data is kept. */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	int WebRequestsTrackedRequestsCountLimit;
+
+	/** @brief Sets the count above which web traffic is considered a burst. */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	int32 WebRequestsBurstCountThreshold;
+
+	/** @brief Sets the time threshold for web traffic burst detection. */
+	UPROPERTY(EditAnywhere, Config, Category = "Web Requests")
+	int32 WebRequestsBurstTimeThresholdInSeconds;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Subsystem Classes
@@ -402,8 +414,8 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Settings API Priority", AdvancedDisplay)
 	int32 SettingsUpdatePriority;
 	/** @brief Sets the request priority of Get Site Settings calls, lower number is higher priority */
-	UPROPERTY(EditAnywhere, Config, Category = "Site API Priority", AdvancedDisplay)
-	int32 GetSiteSettingsPriority;
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 GetRegionsPriority;
 	/** @brief Sets the request priority of Lookup Users calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 UsersLookupPlayerPriority;

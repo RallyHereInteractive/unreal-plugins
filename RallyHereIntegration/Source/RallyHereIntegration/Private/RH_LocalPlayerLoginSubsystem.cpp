@@ -191,6 +191,15 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 		Event.EmitTo(AnalyticsProvider);
 	}
 
+	if (Res.Result == ERHAPI_LoginResult::Success)
+	{
+		LastSuccessfulLoginRequest = Req;
+	}
+	else
+	{
+		LastSuccessfulLoginRequest.Reset();
+	}
+
     Req.OnLoginComplete.ExecuteIfBound(Res);
 
 	SCOPED_NAMED_EVENT(RallyHere_BroadcastOnLoginComplete, FColor::Purple);
@@ -227,6 +236,26 @@ void URH_LocalPlayerLoginSubsystem::SubmitAutoLogin(bool bAcceptEULA, bool bAcce
     }
 
     SubmitLogin(Credentials, SavedRefreshToken, bAcceptEULA, bAcceptTOS, bAcceptPP, OnLoginCompleteDelegate);
+}
+
+void URH_LocalPlayerLoginSubsystem::ResubmitLastSuccessfulLogin(const FRH_OnLoginComplete& OnLoginCompleteDelegate)
+{
+	if (LastSuccessfulLoginRequest.IsSet())
+	{
+		SubmitLogin(LastSuccessfulLoginRequest->Credentials, LastSuccessfulLoginRequest->CredentialRefreshToken,
+			LastSuccessfulLoginRequest->bAcceptEULA, LastSuccessfulLoginRequest->bAcceptTOS,
+			LastSuccessfulLoginRequest->bAcceptPP, OnLoginCompleteDelegate);
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] No last successful login to resubmit"), ANSI_TO_TCHAR(__FUNCTION__));
+
+		FRH_PendingLoginRequest Req;
+		Req.LoginPhase = ERHAPI_LocalPlayerLoginOSS::Login;
+		Req.OnLoginComplete = OnLoginCompleteDelegate;
+
+		PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_ReloginWithoutSavedCredentials));
+	}
 }
 
 void URH_LocalPlayerLoginSubsystem::SubmitLogin(const FOnlineAccountCredentials& Credentials,
@@ -983,14 +1012,19 @@ void URH_LocalPlayerLoginSubsystem::Logout()
 
 	FString RefreshToken;
 
+	// clear the last successful login request, as we are explicitly logging out
+	LastSuccessfulLoginRequest.Reset();
+
 	auto AuthContext = GetAuthContext();
 	if (AuthContext.IsValid())
 	{
+		// cache off the refresh token, to be used for the logout call (this call is to "play nice" with the backend)
 		RefreshToken = AuthContext->GetRefreshToken();
+
+		// clear the auth context, so no more calls are authorized
 		AuthContext->ClearAuthContext();
 
 		auto Request = TLogout::Request();
-
 		Request.LogoutRequest.SetRefreshToken(RefreshToken);
 		TLogout::DoCall(RH_APIs::GetAuthAPI(), Request, TLogout::Delegate(), GetDefault<URH_IntegrationSettings>()->AuthLogoutPriority);
 	}

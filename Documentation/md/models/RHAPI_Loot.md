@@ -25,7 +25,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public int32 `[`VendorId`](#structFRHAPI__Loot_1aeebadf01967a63239b42fe6094e7a9c5) | The Vendor ID.
 `public int32 `[`ItemId_Optional`](#structFRHAPI__Loot_1a8cd4e2427345b15dd5a3a12f5fdc7497) | The Item ID. Optional Item that will be granted to the player if Sub Vendor ID is not specified.
 `public bool `[`ItemId_IsSet`](#structFRHAPI__Loot_1ab203c9039289860b29222870d6c41689) | true if ItemId_Optional has been set to a value
-`public `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` `[`Item_Optional`](#structFRHAPI__Loot_1a2465b63dbf01c76fa9cc736f7356d278) | 
+`public `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` `[`Item_Optional`](#structFRHAPI__Loot_1a2465b63dbf01c76fa9cc736f7356d278) | In-line Item definition. Optional Item that will be granted to the player if Sub Vendor ID is not specified.
 `public bool `[`Item_IsSet`](#structFRHAPI__Loot_1a5511b7f6472a4da05f937a4262f15843) | true if Item_Optional has been set to a value
 `public int32 `[`SubVendorId_Optional`](#structFRHAPI__Loot_1a9869e1988c40476054db483a6b763e73) | The Sub Vendor ID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item.
 `public bool `[`SubVendorId_IsSet`](#structFRHAPI__Loot_1a97e58634ed48e68a3eb038df38ede464) | true if SubVendorId_Optional has been set to a value
@@ -71,7 +71,7 @@ Loot determines how an Item fulfilled. When Loot is fulfilled, the Item is grant
 `public bool `[`CurrentPricePointGuid_IsSet`](#structFRHAPI__Loot_1a57d3d52962158cb7136a373762b5be5e) | true if CurrentPricePointGuid_Optional has been set to a value
 `public FString `[`PreSalePricePointGuid_Optional`](#structFRHAPI__Loot_1abcf89f067a2db68ae1244e2d9507cf42) | The pre sale price point guid. Optional Price Point ID that will be used to show the previous price of the Loot.
 `public bool `[`PreSalePricePointGuid_IsSet`](#structFRHAPI__Loot_1af34c049ed2551deb2dc219b61a8dfd4c) | true if PreSalePricePointGuid_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Loot_1acf3ab767cf43aebb4a1c5e9eaa5ed60d) | 
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Loot_1acf3ab767cf43aebb4a1c5e9eaa5ed60d) | Cache info for the Loot.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Loot_1aafb036901a2d16ef1337d520d808ec6b) | true if CacheInfo_Optional has been set to a value
 `public int32 `[`HardQuantityMaximum_Optional`](#structFRHAPI__Loot_1aa6a8b8fcd71d2911a55ea28b6be66cde) | Hard cap on quantity of an item this Loot can give. Disabled with 0.
 `public bool `[`HardQuantityMaximum_IsSet`](#structFRHAPI__Loot_1a7d6fe172fee6cd5f1545379d64367c01) | true if HardQuantityMaximum_Optional has been set to a value
@@ -370,6 +370,8 @@ true if ItemId_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` `[`Item_Optional`](#structFRHAPI__Loot_1a2465b63dbf01c76fa9cc736f7356d278) <a id="structFRHAPI__Loot_1a2465b63dbf01c76fa9cc736f7356d278"></a>
 
+In-line Item definition. Optional Item that will be granted to the player if Sub Vendor ID is not specified.
+
 <br>
 #### `public bool `[`Item_IsSet`](#structFRHAPI__Loot_1a5511b7f6472a4da05f937a4262f15843) <a id="structFRHAPI__Loot_1a5511b7f6472a4da05f937a4262f15843"></a>
 
@@ -593,6 +595,8 @@ true if PreSalePricePointGuid_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Loot_1acf3ab767cf43aebb4a1c5e9eaa5ed60d) <a id="structFRHAPI__Loot_1acf3ab767cf43aebb4a1c5e9eaa5ed60d"></a>
+
+Cache info for the Loot.
 
 <br>
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Loot_1aafb036901a2d16ef1337d520d808ec6b) <a id="structFRHAPI__Loot_1aafb036901a2d16ef1337d520d808ec6b"></a>

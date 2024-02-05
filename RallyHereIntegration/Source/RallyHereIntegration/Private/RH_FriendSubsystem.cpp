@@ -1852,10 +1852,35 @@ URH_FriendSubsystem* URH_RHFriendAndPlatformFriend::GetFriendSubsystem() const
 	return CastChecked<URH_FriendSubsystem>(GetOuter());
 }
 
+const FRH_PlayerPlatformId& GetPlayerPlatformId(const FRH_PlayerAndPlatformInfo& PlayerAndPlatformInfo, const URH_PlayerInfoSubsystem* PlayerInfoSubsystem, const ERHAPI_Platform& LocalPlayerPlatform)
+{
+	if (PlayerAndPlatformInfo.PlayerPlatformId.IsValid())
+	{
+		return PlayerAndPlatformInfo.PlayerPlatformId;
+	}
+
+	if (PlayerInfoSubsystem != nullptr)
+	{
+		if (URH_PlayerInfo* PlayerInfo = PlayerInfoSubsystem->GetPlayerInfo(PlayerAndPlatformInfo.PlayerUuid))
+		{
+			for (const auto& PlayerInfoPlatformId : PlayerInfo->GetPlayerPlatformIds())
+			{
+				if (PlayerInfoPlatformId.PlatformType == LocalPlayerPlatform)
+				{
+					return PlayerInfoPlatformId;
+				}
+			}
+		}
+	}
+
+	static FRH_PlayerPlatformId InvalidPlayerPlatformId;
+	return InvalidPlayerPlatformId;
+}
 
 bool URH_RHFriendAndPlatformFriend::CanViewPlatformProfile() const
 {
-	if (!GetPlayerAndPlatformInfo().PlayerPlatformId.IsValid())
+	const URH_PlayerInfoSubsystem* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
+	if (PlayerInfoSubsystem == nullptr)
 	{
 		return false;
 	}
@@ -1872,16 +1897,14 @@ bool URH_RHFriendAndPlatformFriend::CanViewPlatformProfile() const
 		return false;
 	}
 
-	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
-	if (PlayerInfoSubsystem != nullptr)
+	const FRH_PlayerPlatformId& PlatformId = GetPlayerPlatformId(GetPlayerAndPlatformInfo(), PlayerInfoSubsystem, LocalPlayerPlatform.GetValue());
+	if (!PlatformId.IsValid())
 	{
-		if (const URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId))
-		{
-			return PlayerPlatformInfo->GetPlatform() == LocalPlayerPlatform.GetValue();
-		}
+		return false;
 	}
 
-	return false;
+	const URH_PlayerPlatformInfo* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlatformId);
+	return PlayerPlatformInfo != nullptr && PlayerPlatformInfo->GetPlatform() == LocalPlayerPlatform.GetValue();
 }
 
 bool URH_RHFriendAndPlatformFriend::ViewPlatformProfile() const
@@ -1897,13 +1920,26 @@ bool URH_RHFriendAndPlatformFriend::ViewPlatformProfile() const
 	{
 		return false;
 	}
+
 	const auto* PlayerInfoSubsystem = GetFriendSubsystem()->GetRH_PlayerInfoSubsystem();
 	if (PlayerInfoSubsystem == nullptr)
 	{
 		return false;
 	}
 
-	const auto* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlayerAndPlatformInfo.PlayerPlatformId);
+	TOptional<ERHAPI_Platform> LocalPlayerPlatform = RH_GetPlatformFromOSSName(OSS->GetSubsystemName());
+	if (!LocalPlayerPlatform.IsSet())
+	{
+		return false;
+	}
+
+	const FRH_PlayerPlatformId& PlatformId = GetPlayerPlatformId(GetPlayerAndPlatformInfo(), PlayerInfoSubsystem, LocalPlayerPlatform.GetValue());
+	if (!PlatformId.IsValid())
+	{
+		return false;
+	}
+
+	const auto* PlayerPlatformInfo = PlayerInfoSubsystem->GetPlayerPlatformInfo(PlatformId);
 	if (PlayerPlatformInfo != nullptr)
 	{
 		const auto* LPSS = GetFriendSubsystem()->GetLocalPlayerSubsystem();

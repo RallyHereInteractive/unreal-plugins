@@ -77,6 +77,9 @@ enum class ERHAPI_LoginResult : uint8
 	/** Local player went missing during login process */
 	Fail_LocalPlayerMissing,
 
+	/** Relogin called without saved credentials */
+	Fail_ReloginWithoutSavedCredentials,
+
     /** RH web login failed for an unknown reason.  This usually means there was a server error of some kind. */
     Fail_RHUnknown,
 };
@@ -197,6 +200,9 @@ public:
                          bool bAcceptPP = false,
                          const FRH_OnLoginComplete& OnLoginCompleteDelegate = FRH_OnLoginComplete());
 
+	/** @brief Submits a complete multi-phased login using the last successful set of login parameters */
+	void ResubmitLastSuccessfulLogin(const FRH_OnLoginComplete& OnLoginCompleteDelegate = FRH_OnLoginComplete());
+
     /**
       * @brief Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials,
       * checking if the user has appropriate permissions, and logging into RallyHere
@@ -304,7 +310,7 @@ public:
     bool bLoginOSSUseIDTokenAsPortalAccessToken;
 
     /**
-      * @brief Should an OSS Login trigger a Base URL Resolve on the URH_Integration?  This is necessary for some OSSes (e.g. Switch/PS4) that don't
+      * @brief Should an OSS Login trigger a Base URL Resolve on the FRH_Integration?  This is necessary for some OSSes (e.g. Switch/PS4) that don't
       * have environment information until after a login is attempted
       */
     UPROPERTY(Config)
@@ -537,6 +543,8 @@ protected:
     FDelegateHandle OnOSSLoginCompleteDelegateHandle;
 	/** @brief Stores if crossplay is enabled. */
 	bool bCrossplayEnabled;
+	/** @brief Stores the last successful login result, for use when refresh token expires */
+	TOptional<FRH_PendingLoginRequest> LastSuccessfulLoginRequest;
 	/**
 	 * @brief Checks the users OSS privileges for crossplay.
 	 * @param [in] UniqueId Unique Net Id of the player being checked in.

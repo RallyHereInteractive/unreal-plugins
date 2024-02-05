@@ -197,7 +197,15 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetOSS(
 			}
 		}));
 
-void URH_Integration::Initialize()
+FRH_Integration::FRH_Integration()
+	: bIsBaseUrlLocked(false)
+	, bIsEnvironmentIdLocked(false)
+	, bIsClientIdLocked(false)
+	, bIsClientSecretLocked(false)
+{
+}
+
+void FRH_Integration::Initialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -222,33 +230,40 @@ void URH_Integration::Initialize()
 	// Initialize the APIs
 	for (auto& API : APIs.GetAllAPIs())
 	{
-		API->SetHttpRetryManager(*RetryManager);
+		API->SetHttpRetryManager(RetryManager.ToSharedRef());
 	}
 
 	auto* HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
 	if (HttpRequester)
 	{
-		HttpRequester->SetMaxSimultaneousRequests(Settings->MaxSimultaneousRequests);
+		HttpRequester->SetMaxSimultaneousRequests(Settings->WebRequestsMaxSimultaneousRequests);
 	}
 
 	// Go ahead and load a base URL in case one was passed through at startup
 	ResolveBaseURL();
 
-	WebRequestTracker = NewObject<URH_WebRequests>(this);
+	WebRequestTracker = MakeShared<FRH_WebRequests>();
 	WebRequestTracker->Initialize(&APIs);
 
-	Diagnostics = NewObject<URH_Diagnostics>(this);
+	Diagnostics = MakeShared<FRH_Diagnostics>();
 	Diagnostics->Initialize();
 }
 
-void URH_Integration::Uninitialize()
+void FRH_Integration::Uninitialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	WebRequestTracker->Uninitialize();
-	WebRequestTracker = nullptr;
 
-	Diagnostics->Uninitialize();
-	Diagnostics = nullptr;
+	if (WebRequestTracker.IsValid())
+	{
+		WebRequestTracker->Uninitialize();
+	}
+	WebRequestTracker.Reset();
+
+	if (Diagnostics.IsValid())
+	{
+		Diagnostics->Uninitialize();
+	}
+	Diagnostics.Reset();
 
 	for (auto& API : APIs.GetAllAPIs())
 	{
@@ -259,7 +274,7 @@ void URH_Integration::Uninitialize()
 	RetryManager = nullptr;
 }
 
-void URH_Integration::SetBaseURL(FString InBaseUrl, const FString& Source)
+void FRH_Integration::SetBaseURL(FString InBaseUrl, const FString& Source)
 {
 	ResolvedBaseUrl = MoveTemp(InBaseUrl);
 
@@ -299,7 +314,7 @@ void URH_Integration::SetBaseURL(FString InBaseUrl, const FString& Source)
 	}
 }
 
-FString URH_Integration::GetBaseURL()
+FString FRH_Integration::GetBaseURL()
 {
 	if (ResolvedBaseUrl.IsEmpty())
 	{
@@ -308,7 +323,7 @@ FString URH_Integration::GetBaseURL()
 	return ResolvedBaseUrl;
 }
 
-void URH_Integration::ResolveBaseURL()
+void FRH_Integration::ResolveBaseURL()
 {
 	if (bIsBaseUrlLocked)
 	{
@@ -351,14 +366,14 @@ void URH_Integration::ResolveBaseURL()
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a base URL"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
-void URH_Integration::SetEnvironmentId(FString InEnvironmentId, const FString& Source)
+void FRH_Integration::SetEnvironmentId(FString InEnvironmentId, const FString& Source)
 {
 	ResolvedEnvironmentId = MoveTemp(InEnvironmentId);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedEnvironmentId,
 		*Source);
 }
 
-FString URH_Integration::GetEnvironmentId()
+FString FRH_Integration::GetEnvironmentId()
 {
 	if (ResolvedEnvironmentId.IsEmpty())
 	{
@@ -384,7 +399,7 @@ bool GetEnvironmentIdFromOSS(IOnlineSubsystem* OSS, FString& OutEnvironmentId, F
 	return false;
 }
 
-void URH_Integration::ResolveEnvironmentId()
+void FRH_Integration::ResolveEnvironmentId()
 {
 	if (bIsEnvironmentIdLocked)
 	{
@@ -430,14 +445,14 @@ void URH_Integration::ResolveEnvironmentId()
 }
 
 
-void URH_Integration::SetClientId(FString InClientId, const FString& Source)
+void FRH_Integration::SetClientId(FString InClientId, const FString& Source)
 {
 	ResolvedClientId = MoveTemp(InClientId);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *ResolvedClientId,
 		*Source);
 }
 
-FString URH_Integration::GetClientId()
+FString FRH_Integration::GetClientId()
 {
 	if (ResolvedClientId.IsEmpty())
 	{
@@ -446,7 +461,7 @@ FString URH_Integration::GetClientId()
 	return ResolvedClientId;
 }
 
-void URH_Integration::ResolveClientId()
+void FRH_Integration::ResolveClientId()
 {
 	if (bIsClientIdLocked)
 	{
@@ -488,13 +503,13 @@ void URH_Integration::ResolveClientId()
 	UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not find a client ID"), ANSI_TO_TCHAR(__FUNCTION__));
 }
 
-void URH_Integration::SetClientSecret(FString InClientSecret, const FString& Source)
+void FRH_Integration::SetClientSecret(FString InClientSecret, const FString& Source)
 {
 	ResolvedClientSecret = MoveTemp(InClientSecret);
 	UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *Source);
 }
 
-FString URH_Integration::GetClientSecret()
+FString FRH_Integration::GetClientSecret()
 {
 	if (ResolvedClientSecret.IsEmpty())
 	{
@@ -503,7 +518,7 @@ FString URH_Integration::GetClientSecret()
 	return ResolvedClientSecret;
 }
 
-void URH_Integration::ResolveClientSecret()
+void FRH_Integration::ResolveClientSecret()
 {
 	if (bIsClientSecretLocked)
 	{

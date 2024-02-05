@@ -23,6 +23,182 @@ FUsersAPI::FUsersAPI() : FAPI()
 
 FUsersAPI::~FUsersAPI() {}
 
+FHttpRequestPtr FUsersAPI::CreatePlatformUserById(const FRequest_CreatePlatformUserById& Request, const FDelegate_CreatePlatformUserById& Delegate /*= FDelegate_CreatePlatformUserById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FUsersAPI::OnCreatePlatformUserByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnCreatePlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FUsersAPI::OnCreatePlatformUserByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_CreatePlatformUserById Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_CreatePlatformUserById::FRequest_CreatePlatformUserById()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_CreatePlatformUserById::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/users/v1/platform-user"));
+    return Path;
+}
+
+FString FRequest_CreatePlatformUserById::ComputePath() const
+{
+    FString Path = GetSimplifiedPath().ToString();
+    return Path;
+}
+
+bool FRequest_CreatePlatformUserById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = { TEXT("application/json") };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("POST"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreatePlatformUserById - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreatePlatformUserById - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+        // Body parameters
+        FString JsonBody;
+        TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+        WriteJsonValue(Writer, CreatePlatformUserRequest);
+        Writer->Close();
+
+        HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+        HttpRequest->SetContentAsString(JsonBody);
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreatePlatformUserById - Body parameter (FRHAPI_CreatePlatformUserRequest) was ignored, not supported in multipart form"));
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreatePlatformUserById - Body parameter (FRHAPI_CreatePlatformUserRequest) was ignored, not supported in urlencoded requests"));
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreatePlatformUserById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_CreatePlatformUserById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 201:
+        SetResponseString(TEXT("Platform user was created successfully"));
+        break;
+    case 403:
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
+        break;
+    case 409:
+        SetResponseString(TEXT("Failed to create platform user.  See error code and description for further details.   Error Codes: - user_already_exists - User already exists  "));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_CreatePlatformUserById::TryGetContentFor201(FRHAPI_PlatformUserResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreatePlatformUserById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreatePlatformUserById::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreatePlatformUserById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_CreatePlatformUserById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_CreatePlatformUserById::FResponse_CreatePlatformUserById(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_CreatePlatformUserById::Name = TEXT("CreatePlatformUserById");
+
 FHttpRequestPtr FUsersAPI::DequeueMeForPurge(const FRequest_DequeueMeForPurge& Request, const FDelegate_DequeueMeForPurge& Delegate /*= FDelegate_DequeueMeForPurge()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())
@@ -627,6 +803,177 @@ FResponse_EnableCrossProgression::FResponse_EnableCrossProgression(FRequestMetad
 }
 
 FString Traits_EnableCrossProgression::Name = TEXT("EnableCrossProgression");
+
+FHttpRequestPtr FUsersAPI::FindPlatformUserById(const FRequest_FindPlatformUserById& Request, const FDelegate_FindPlatformUserById& Delegate /*= FDelegate_FindPlatformUserById()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FUsersAPI::OnFindPlatformUserByIdResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FUsersAPI::OnFindPlatformUserByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_FindPlatformUserById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FUsersAPI::OnFindPlatformUserByIdResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_FindPlatformUserById Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_FindPlatformUserById::FRequest_FindPlatformUserById()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_FindPlatformUserById::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/users/v1/platform-user"));
+    return Path;
+}
+
+FString FRequest_FindPlatformUserById::ComputePath() const
+{
+    FString Path = GetSimplifiedPath().ToString();
+    TArray<FString> QueryParams;
+    QueryParams.Add(FString(TEXT("platform=")) + ToUrlString(Platform));
+    QueryParams.Add(FString(TEXT("platform_user_id=")) + ToUrlString(PlatformUserId));
+    Path += TCHAR('?');
+    Path += FString::Join(QueryParams, TEXT("&"));
+
+    return Path;
+}
+
+bool FRequest_FindPlatformUserById::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindPlatformUserById - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindPlatformUserById - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_FindPlatformUserById - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_FindPlatformUserById::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Platform user was found successfully"));
+        break;
+    case 403:
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_malformed_access - Invalid Authorization - malformed access token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization - auth_invalid_version - Invalid Authorization - version - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} "));
+        break;
+    case 404:
+        SetResponseString(TEXT("Failed to find platform user.  See error code and description for further details.   Error Codes: - user_not_found - User not found  "));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_FindPlatformUserById::TryGetContentFor200(FRHAPI_PlatformUserResponse& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_FindPlatformUserById::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_FindPlatformUserById::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_FindPlatformUserById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_FindPlatformUserById::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_FindPlatformUserById::FResponse_FindPlatformUserById(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_FindPlatformUserById::Name = TEXT("FindPlatformUserById");
 
 FHttpRequestPtr FUsersAPI::GetAllRoles(const FRequest_GetAllRoles& Request, const FDelegate_GetAllRoles& Delegate /*= FDelegate_GetAllRoles()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {

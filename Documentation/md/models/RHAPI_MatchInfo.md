@@ -4,7 +4,7 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`struct `[`FRHAPI_MatchInfo`](#structFRHAPI__MatchInfo) | Information about a match.
+`struct `[`FRHAPI_MatchInfo`](#structFRHAPI__MatchInfo) | DEPRECATED Information about a match.
 
 ## struct `FRHAPI_MatchInfo` <a id="structFRHAPI__MatchInfo"></a>
 
@@ -13,7 +13,7 @@ struct FRHAPI_MatchInfo
   : public FRHAPI_Model
 ```
 
-Information about a match.
+DEPRECATED Information about a match.
 
 #### Summary
 

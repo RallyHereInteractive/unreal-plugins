@@ -102,7 +102,14 @@ bool RH_LookupBoolOSSOverride(FName OSSName, const FString& OverrideMapName)
 	}
 
 	bool bValue = false;
-	GConfig->GetBool(*OverrideMapName, *OSSNameString, bValue, GRallyHereIntegrationIni);
+
+	FString VersionedOSSNameString = OSSNameString + FString::Printf(TEXT("_UE%d_%d"), ENGINE_MAJOR_VERSION, ENGINE_MINOR_VERSION);
+
+	// check for a version specific override first, if not use the base name
+	if (!GConfig->GetBool(*OverrideMapName, *VersionedOSSNameString, bValue, GRallyHereIntegrationIni))
+	{
+		GConfig->GetBool(*OverrideMapName, *OSSNameString, bValue, GRallyHereIntegrationIni);
+	}
 
 	return bValue;
 }
@@ -122,47 +129,11 @@ bool RH_UseRecentPlayersFromOSSName(FName OSSName)
 	return RH_LookupBoolOSSOverride(OSSName, TEXT("UseRecentPlayersFromOSSName"));
 }
 
-
-
-ERHAPI_InventoryBucket RH_GetInventoryBucketFromInventoryPortal(ERHAPI_InventoryPortal InventoryPlatform)
+FString RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform)
 {
-	switch (InventoryPlatform)
-	{
-	case ERHAPI_InventoryPortal::Free:
-		return ERHAPI_InventoryBucket::Free;
-	case ERHAPI_InventoryPortal::Sweat:
-		return ERHAPI_InventoryBucket::Sweat;
-	case ERHAPI_InventoryPortal::Unknown:
-		return ERHAPI_InventoryBucket::None;
-	case ERHAPI_InventoryPortal::Anon:
-		return ERHAPI_InventoryBucket::Anon;
-	case ERHAPI_InventoryPortal::Amazon:
-		return ERHAPI_InventoryBucket::Amazon;
-	case ERHAPI_InventoryPortal::Steam:
-		return ERHAPI_InventoryBucket::Steam;
-	case ERHAPI_InventoryPortal::Psn:
-		return ERHAPI_InventoryBucket::Psn;
-	case ERHAPI_InventoryPortal::XboxLive:
-		return ERHAPI_InventoryBucket::XboxLive;
-	case ERHAPI_InventoryPortal::Google:
-		return ERHAPI_InventoryBucket::Google;
-	case ERHAPI_InventoryPortal::Twitch:
-		return ERHAPI_InventoryBucket::Twitch;
-	case ERHAPI_InventoryPortal::NintendoSwitch:
-		return  ERHAPI_InventoryBucket::NintendoSwitch;
-	case ERHAPI_InventoryPortal::Apple:
-		return ERHAPI_InventoryBucket::Apple;
-	case ERHAPI_InventoryPortal::Nintendo:
-		return ERHAPI_InventoryBucket::Nintendo;
-	case ERHAPI_InventoryPortal::Epic:
-		return ERHAPI_InventoryBucket::Epic;
-	case ERHAPI_InventoryPortal::GooglePlay:
-		return ERHAPI_InventoryBucket::GooglePlay;
-	case ERHAPI_InventoryPortal::NintendoPpid:
-		return ERHAPI_InventoryBucket::NintendoPpid;
-	}
-
-	return ERHAPI_InventoryBucket::None;
+	FString PlatformName;
+	GConfig->GetString(TEXT("PlatformNameFromPlatformEnumMap"), *EnumToString(Platform), PlatformName, GRallyHereIntegrationIni);
+	return PlatformName;
 }
 
 ERHAPI_InventoryBucket RH_GetInventoryBucketFromPlatform(ERHAPI_Platform Platform)

@@ -81,6 +81,12 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnGetMatchmakingTemplateGroupCompleteDy
 DECLARE_DELEGATE_ThreeParams(FRH_OnGetMatchmakingTemplateGroupCompleteDelegate, bool, const URH_MatchmakingTemplateGroupInfo*, const FRH_ErrorInfo&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetMatchmakingTemplateGroupCompleteDelegateBlock, FRH_OnGetMatchmakingTemplateGroupCompleteDelegate, FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate, bool, URH_MatchmakingTemplateGroupInfo*, const FRH_ErrorInfo&);
 
+// delegate for matchmaking profile search complete
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnGetMatchmakingProfileCompleteDynamicDelegate, bool, bSuccess, URH_MatchmakingProfileInfo*, Result, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnGetMatchmakingProfileCompleteDelegate, bool, const URH_MatchmakingProfileInfo*, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetMatchmakingProfileCompleteDelegateBlock, FRH_OnGetMatchmakingProfileCompleteDelegate, FRH_OnGetMatchmakingProfileCompleteDynamicDelegate, bool, URH_MatchmakingProfileInfo*, const FRH_ErrorInfo&);
+
 // delegate for instance request template search complete
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnGetInstanceRequestTemplateCompleteDynamicDelegate, bool, bSuccess, URH_InstanceRequestTemplate*, Result, const FRH_ErrorInfo&, ErrorInfo);
@@ -89,9 +95,9 @@ DECLARE_RH_DELEGATE_BLOCK(FRH_OnGetInstanceRequestTemplateCompleteDelegateBlock,
 
 // delegate for region search complete
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnRegionSearchCompleteDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_SiteSettings>&, Result, const FRH_ErrorInfo&, ErrorInfo);
-DECLARE_DELEGATE_ThreeParams(FRH_OnRegionSearchCompleteDelegate, bool, const TArray<FRHAPI_SiteSettings>&, const FRH_ErrorInfo&);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnRegionSearchCompleteDelegateBlock, FRH_OnRegionSearchCompleteDelegate, FRH_OnRegionSearchCompleteDynamicDelegate, bool, const TArray<FRHAPI_SiteSettings>&, const FRH_ErrorInfo&);
+DECLARE_DYNAMIC_DELEGATE_FourParams(FRH_OnRegionSearchCompleteDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_Region>&, Result, int32, Cursor, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_FourParams(FRH_OnRegionSearchCompleteDelegate, bool, const TArray<FRHAPI_Region>&, int32 Cursor, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnRegionSearchCompleteDelegateBlock, FRH_OnRegionSearchCompleteDelegate, FRH_OnRegionSearchCompleteDynamicDelegate, bool, const TArray<FRHAPI_Region>&, int32, const FRH_ErrorInfo&);
 
 // multicast delegates for region search complete
 DECLARE_MULTICAST_DELEGATE_OneParam(FRegionSettingsUpdatedDelegate, URH_MatchmakingBrowserCache*);
@@ -203,6 +209,46 @@ public:
 	}
 };
 
+
+/**
+ * @brief Class to organize a matchmaking Profiles information.
+ */
+UCLASS()
+class RALLYHEREINTEGRATION_API URH_MatchmakingProfileInfo : public UObject
+{
+	GENERATED_BODY()
+	/** @brief The configuration of the profile. */
+	FRHAPI_MatchMakingProfileV2 ProfileInfo;
+	/** @brief ETag of last template update. */
+	FString ETag;
+public:
+	/** @brief Gets the template info. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const FRHAPI_MatchMakingProfileV2& GetProfile() const { return ProfileInfo; }
+	/** @brief Gets the Etag for the template info. */
+	const FString& GetETag() const { return ETag; }
+
+	/** @brief ID for this set of potential matchmaking templates */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const FString& GetProfileId() const { return ProfileInfo.GetMatchMakingProfileId(); }
+
+	/**
+	 * @brief Imports profile  info from an API call.
+	 * @param [in] APIProfile Profile info from API call.
+	 * @param [in] InETag ETag from API call.
+	 */
+	void ImportAPIProfile(const FRHAPI_MatchMakingProfileV2& APIProfile, const FString& InETag)
+	{
+		ProfileInfo = APIProfile;
+		ETag = InETag;
+	}
+	/** @brief Gets a description of the template, display its id for debugging. */
+	FString GetDescription() const
+	{
+		return FString::Printf(TEXT("Matchmaking Profile: %s"), *GetProfileId());
+	}
+};
+
 /**
  * @brief Class to organize a Instance Request Templates information.
  */
@@ -275,6 +321,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Template Group", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_SearchMatchmakingTemplateGroup(const FGuid& TemplateId, const FRH_OnGetMatchmakingTemplateGroupCompleteDynamicDelegate& Delegate) { SearchMatchmakingTemplateGroup(TemplateId, Delegate); }
 	/**
+	 * @brief Search for a matchmaking profiles.
+	 * @param [in] ProfileId The matchmaking profile to search for.
+	 * @param [in] Delegate Callback with the results of the search.
+	 */
+	void SearchMatchmakingProfile(const FString& ProfileId, const FRH_OnGetMatchmakingProfileCompleteDelegateBlock& Delegate = FRH_OnGetMatchmakingProfileCompleteDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Profile", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_SearchMatchmakingProfile(const FString& ProfileId, const FRH_OnGetMatchmakingProfileCompleteDynamicDelegate& Delegate) { SearchMatchmakingProfile(ProfileId, Delegate); }
+	/**
 	 * @brief Search for an instance launch template.
 	 * @param [in] TemplateId The matchmaking template to search for.
 	 * @param [in] Delegate Callback with the results of the search.
@@ -286,9 +340,9 @@ public:
 	 * @brief Search for matchmaking regions.
 	 * @param [in] Delegate Callback with the results of the search.
 	 */
-	void SearchRegions(const FRH_OnRegionSearchCompleteDelegateBlock& Delegate = FRH_OnRegionSearchCompleteDelegateBlock());
+	void SearchRegions(int32 Cursor = 0, const FRH_OnRegionSearchCompleteDelegateBlock& Delegate = FRH_OnRegionSearchCompleteDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Matchmaking|Queues", meta = (DisplayName = "Get Matchmaking Template Group", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_SearchRegions(const FRH_OnRegionSearchCompleteDynamicDelegate& Delegate) { SearchRegions(Delegate); }
+	void BLUEPRINT_SearchRegions(int32 Cursor, const FRH_OnRegionSearchCompleteDynamicDelegate& Delegate) { SearchRegions(Cursor, Delegate); }
 	/** @brief Get a cached queue by Queue Id. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
 	URH_MatchmakingQueueInfo* GetQueue(const FString& QueueId) const
@@ -296,19 +350,18 @@ public:
 		auto ptr = QueueCache.Find(QueueId);
 		return ptr != nullptr ? (*ptr) : nullptr;
 	}
-	/** @brief Get all cached queues. */
-	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
-	FORCEINLINE TArray<URH_MatchmakingQueueInfo*> GetAllQueues() const
-	{
-		TArray<URH_MatchmakingQueueInfo*> Result;
-		QueueCache.GenerateValueArray(Result);
-		return Result;
-	}
 	/** @brief Get a cached matchmaking template by Template Id. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
 	URH_MatchmakingTemplateGroupInfo* GetMatchmakingTemplateGroup(const FGuid& TemplateGroupId) const
 	{
-		auto ptr = TemplateGroupCache.Find(TemplateGroupId);
+		auto ptr = MatchmakingTemplateGroupCache.Find(TemplateGroupId);
+		return ptr != nullptr ? (*ptr) : nullptr;
+	}
+	/** @brief Get a cached matchmaking template by Template Id. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	URH_MatchmakingProfileInfo* GetMatchmakingProfile(const FString& ProfileId) const
+	{
+		auto ptr = MatchmakingProfileCache.Find(ProfileId);
 		return ptr != nullptr ? (*ptr) : nullptr;
 	}
 	/** @brief Get a cached instance request template by Template Id. */
@@ -318,11 +371,58 @@ public:
 		auto ptr = InstanceRequestTemplateCache.Find(InstanceRequestTemplateId);
 		return ptr != nullptr ? (*ptr) : nullptr;
 	}
+	/** @brief Get a cached region by Region Id. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Region")
+	bool GetRegion(const FString& RegionId, FRHAPI_Region& OutRegion) const
+	{
+		auto ptr = RegionsCache.Find(RegionId);
+		if (ptr != nullptr)
+		{
+			OutRegion = *ptr;
+			return true;
+		}
+		return false;
+	}
+
+	/** @brief Get all cached queues. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	FORCEINLINE TArray<URH_MatchmakingQueueInfo*> GetAllQueues() const
+	{
+		TArray<URH_MatchmakingQueueInfo*> Result;
+		QueueCache.GenerateValueArray(Result);
+		return Result;
+	}
+	/** @brief Get all cached matchmaking templates. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const TArray<URH_MatchmakingTemplateGroupInfo*> GetAllMatchmakingTemplateGroups() const
+	{
+		TArray<URH_MatchmakingTemplateGroupInfo*> Result;
+		MatchmakingTemplateGroupCache.GenerateValueArray(Result);
+		return Result;
+	}
+	/** @brief Get all cached matchmaking profiles. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const TArray<URH_MatchmakingProfileInfo*> GetAllMatchmakingProfiles() const
+	{
+		TArray<URH_MatchmakingProfileInfo*> Result;
+		MatchmakingProfileCache.GenerateValueArray(Result);
+		return Result;
+	}
+	/** @brief Get all cached instance request templates. */
+	UFUNCTION(BlueprintPure, Category = "Matchmaking|Queues")
+	const TArray<URH_InstanceRequestTemplate*> GetAllInstanceRequestTemplates() const
+	{
+		TArray<URH_InstanceRequestTemplate*> Result;
+		InstanceRequestTemplateCache.GenerateValueArray(Result);
+		return Result;
+	}
 	/** @brief Get all cached matchmaking regions. */
 	UFUNCTION(BlueprintPure, Category = "Matchmaking|Region")
-	const TArray<FRHAPI_SiteSettings>& GetAllRegions() const
+	TArray<FRHAPI_Region> GetAllRegions() const
 	{
-		return RegionsCache;
+		TArray<FRHAPI_Region> Result;
+		RegionsCache.GenerateValueArray(Result);
+		return Result;
 	}
 	/** @brief Delegate to listen for matchmaking regions updated. */
 	FRegionSettingsUpdatedDelegate OnRegionsUpdatedNative;
@@ -332,8 +432,13 @@ public:
 	void ClearCache()
 	{
 		QueueCache.Reset();
-		TemplateGroupCache.Reset();
+		MatchmakingTemplateGroupCache.Reset();
+		MatchmakingProfileCache.Reset();
 		InstanceRequestTemplateCache.Reset();
+	}
+	/** @brief Clears the cache of regions. */
+	void ClearRegionsCache()
+	{
 		RegionsCache.Reset();
 	}
 	/**
@@ -347,13 +452,25 @@ public:
 	 * @param [in] APITemplateGroup Template info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
-	void ImportAPITemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplateGroup, const FString& ETag);
+	void ImportAPIMatchmakingTemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplateGroup, const FString& ETag);
+	/**
+	 * @brief Imports profile info from an API call.
+	 * @param [in] APIProfile Profile info from API call.
+	 * @param [in] InETag ETag from API call.
+	 */
+	void ImportAPIMatchmakingProfile(const FRHAPI_MatchMakingProfileV2& APIProfile, const FString& ETag);
 	/**
 	 * @brief Imports template info from an API call.
 	 * @param [in] APITemplate Template info from API call.
 	 * @param [in] InETag ETag from API call.
 	 */
 	void ImportAPIInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& ETag);
+	/**
+	 * @brief Imports region info from an API call.
+	 * @param [in] APIRegions Region info from API call.
+	 */
+	void ImportAPIRegion(const FRHAPI_Region& APIRegion);
+
 
 protected:
 	/** @brief Map of Queue Id to Queue Infos. */
@@ -361,13 +478,18 @@ protected:
 	TMap<FString, URH_MatchmakingQueueInfo*> QueueCache;
 	/** @brief Map of Template Id to Matchmaking Template Group Infos. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Queue")
-	TMap<FGuid, URH_MatchmakingTemplateGroupInfo*> TemplateGroupCache;
+	TMap<FGuid, URH_MatchmakingTemplateGroupInfo*> MatchmakingTemplateGroupCache;
+	/** @brief Map of Matchmaking Profile Id to Profile Objects. */
+	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Queue")
+	TMap<FString, URH_MatchmakingProfileInfo*> MatchmakingProfileCache;
 	/** @brief Map of Template Id to Instance Launch Template Infos. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Queue")
 	TMap<FGuid, URH_InstanceRequestTemplate*> InstanceRequestTemplateCache;
 	/** @brief Array of Regions. */
 	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Region")
-	TArray<FRHAPI_SiteSettings> RegionsCache;
+	TMap<FString, FRHAPI_Region> RegionsCache;
+	UPROPERTY(VisibleInstanceOnly, Category = "Matchmaking|Region")
+	int32 LastRegionCursor;
 };
 
 /** @} */

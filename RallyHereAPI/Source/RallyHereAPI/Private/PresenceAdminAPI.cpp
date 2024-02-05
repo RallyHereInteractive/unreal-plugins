@@ -161,7 +161,7 @@ void FResponse_AdminGetKnownPlatforms::SetHttpResponseCode(EHttpResponseCodes::T
     }
 }
 
-bool FResponse_AdminGetKnownPlatforms::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetKnownPlatforms::TryGetContentFor200(FRHAPI_Platforms& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -684,7 +684,7 @@ void FResponse_AdminGetRequestingCcu::SetHttpResponseCode(EHttpResponseCodes::Ty
     }
 }
 
-bool FResponse_AdminGetRequestingCcu::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetRequestingCcu::TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -851,7 +851,7 @@ void FResponse_AdminGetRequestingCcuAllPlatformCombined::SetHttpResponseCode(EHt
     }
 }
 
-bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetRequestingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1018,7 +1018,7 @@ void FResponse_AdminGetRequestingCcuAllPlatformIndividual::SetHttpResponseCode(E
     }
 }
 
-bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetRequestingCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1185,7 +1185,7 @@ void FResponse_AdminGetRequestingCcuIndividual::SetHttpResponseCode(EHttpRespons
     }
 }
 
-bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetRequestingCcuIndividual::TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1357,7 +1357,7 @@ void FResponse_AdminGetRequestingCcuPlatformCombined::SetHttpResponseCode(EHttpR
     }
 }
 
-bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetRequestingCcuPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1529,7 +1529,7 @@ void FResponse_AdminGetRequestingCcuPlatformIndividual::SetHttpResponseCode(EHtt
     }
 }
 
-bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetRequestingCcuPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1696,7 +1696,7 @@ void FResponse_AdminGetTotalCcu::SetHttpResponseCode(EHttpResponseCodes::Type In
     }
 }
 
-bool FResponse_AdminGetTotalCcu::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetTotalCcu::TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1863,7 +1863,7 @@ void FResponse_AdminGetTotalCcuAllPlatformCombined::SetHttpResponseCode(EHttpRes
     }
 }
 
-bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetTotalCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2030,7 +2030,7 @@ void FResponse_AdminGetTotalCcuAllPlatformIndividual::SetHttpResponseCode(EHttpR
     }
 }
 
-bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetTotalCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2197,7 +2197,7 @@ void FResponse_AdminGetTotalCcuIndividual::SetHttpResponseCode(EHttpResponseCode
     }
 }
 
-bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetTotalCcuIndividual::TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2369,7 +2369,7 @@ void FResponse_AdminGetTotalCcuPlatformCombined::SetHttpResponseCode(EHttpRespon
     }
 }
 
-bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetTotalCcuPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2541,7 +2541,7 @@ void FResponse_AdminGetTotalCcuPlatformIndividual::SetHttpResponseCode(EHttpResp
     }
 }
 
-bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetTotalCcuPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2708,7 +2708,7 @@ void FResponse_AdminGetUpdatingCcu::SetHttpResponseCode(EHttpResponseCodes::Type
     }
 }
 
-bool FResponse_AdminGetUpdatingCcu::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcu::TryGetContentFor200(FRHAPI_UnionCCU& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2875,7 +2875,7 @@ void FResponse_AdminGetUpdatingCcuAllPlatformCombined::SetHttpResponseCode(EHttp
     }
 }
 
-bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcuAllPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -3042,7 +3042,7 @@ void FResponse_AdminGetUpdatingCcuAllPlatformIndividual::SetHttpResponseCode(EHt
     }
 }
 
-bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcuAllPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -3209,7 +3209,7 @@ void FResponse_AdminGetUpdatingCcuIndividual::SetHttpResponseCode(EHttpResponseC
     }
 }
 
-bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcuIndividual::TryGetContentFor200(FRHAPI_IndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -3381,7 +3381,7 @@ void FResponse_AdminGetUpdatingCcuPlatformCombined::SetHttpResponseCode(EHttpRes
     }
 }
 
-bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcuPlatformCombined::TryGetContentFor200(FRHAPI_PlatformUnionCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -3553,7 +3553,7 @@ void FResponse_AdminGetUpdatingCcuPlatformIndividual::SetHttpResponseCode(EHttpR
     }
 }
 
-bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
+bool FResponse_AdminGetUpdatingCcuPlatformIndividual::TryGetContentFor200(FRHAPI_PlatformIndividualCCUs& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -3975,11 +3975,6 @@ bool FResponse_AdminUpdatePlayerLastSeenId::ParseHeaders()
     return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
-{
-    return TryGetJsonValue(ResponseJson, OutContent);
-}
-
 /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
 TOptional<FString> FResponse_AdminUpdatePlayerLastSeenId::GetHeader200_ETag() const
 {
@@ -4011,7 +4006,7 @@ bool FResponse_AdminUpdatePlayerLastSeenId::TryGetContentFor500(FRHAPI_HzApiErro
 
 bool FResponse_AdminUpdatePlayerLastSeenId::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+    return true;
 }
 
 FResponse_AdminUpdatePlayerLastSeenId::FResponse_AdminUpdatePlayerLastSeenId(FRequestMetadata InRequestMetadata) :
