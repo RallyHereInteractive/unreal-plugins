@@ -42,6 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
+    /** @brief Parent portal auth result */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_PortalUserInfo PortalParentAuthResult_Optional{  };
     /** @brief true if PortalParentAuthResult_Optional has been set to a value */

@@ -21,7 +21,7 @@ Request body to update generic rank data.
 --------------------------------|---------------------------------------------
 `public FString `[`InstanceId_Optional`](#structFRHAPI__PlayerRankUpdateRequest_1af38fcda3794f6b94dd00fba499d1360b) | ID for the instance the match took place on.
 `public bool `[`InstanceId_IsSet`](#structFRHAPI__PlayerRankUpdateRequest_1a40d06b2cf100c0b0b2e47ad7d7853b68) | true if InstanceId_Optional has been set to a value
-`public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankUpdateRequest_1a2bc65f5b21cbd31a5aa56cb3ad11381b) | 
+`public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankUpdateRequest_1a2bc65f5b21cbd31a5aa56cb3ad11381b) | Current rank info about player.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateRequest_1afa1dc423d993330bbc8484b990d77827)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerRankUpdateRequest_1a3b76c5a3d842343b27f0538ace0e665f)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetInstanceId`](#structFRHAPI__PlayerRankUpdateRequest_1ad1cf60fa86e710efd0b046dada4e3c59)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
@@ -49,6 +49,8 @@ true if InstanceId_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` `[`Rank`](#structFRHAPI__PlayerRankUpdateRequest_1a2bc65f5b21cbd31a5aa56cb3ad11381b) <a id="structFRHAPI__PlayerRankUpdateRequest_1a2bc65f5b21cbd31a5aa56cb3ad11381b"></a>
+
+Current rank info about player.
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerRankUpdateRequest_1afa1dc423d993330bbc8484b990d77827)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerRankUpdateRequest_1afa1dc423d993330bbc8484b990d77827"></a>

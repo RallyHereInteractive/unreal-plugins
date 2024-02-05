@@ -21,7 +21,7 @@ A collections of Items by Item ID.
 --------------------------------|---------------------------------------------
 `public TMap< FString, `[`FRHAPI_Item`](RHAPI_Item.md#structFRHAPI__Item)` > `[`Items_Optional`](#structFRHAPI__Items_1acb634134dc074f992328d8d87d1f9d62) | A collection of Items by Item ID.
 `public bool `[`Items_IsSet`](#structFRHAPI__Items_1ab618761f9969f6d5952ba37001edac5a) | true if Items_Optional has been set to a value
-`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Items_1a1217986ceec7a05241e7e957cb9828fa) | 
+`public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Items_1a1217986ceec7a05241e7e957cb9828fa) | Item's cache information.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Items_1aa69362208158a2532fe056d3826818a2) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Items_1a7d988b32b08e2f3336e8a842c35af7b7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Items_1a913a71601a108617f25afa168f333d97)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -55,6 +55,8 @@ true if Items_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Items_1a1217986ceec7a05241e7e957cb9828fa) <a id="structFRHAPI__Items_1a1217986ceec7a05241e7e957cb9828fa"></a>
+
+Item's cache information.
 
 <br>
 #### `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Items_1aa69362208158a2532fe056d3826818a2) <a id="structFRHAPI__Items_1aa69362208158a2532fe056d3826818a2"></a>

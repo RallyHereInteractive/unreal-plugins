@@ -75,6 +75,7 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     /** @brief Sets the value of ClientVersion */
     void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
 
+    /** @brief Which input type and platform the client is using */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_ClientSettings ClientSettings{  };
     /** @brief Gets the value of ClientSettings */
@@ -98,6 +99,7 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     /** @brief Sets the value of TeamId to its default  */
     void SetTeamIdToDefault() { TeamId = 0;  }
 
+    /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
     /** @brief true if CrossplayPreferences_Optional has been set to a value */

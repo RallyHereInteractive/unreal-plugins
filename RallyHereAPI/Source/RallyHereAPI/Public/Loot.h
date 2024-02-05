@@ -124,6 +124,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
     void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
 
+    /** @brief In-line Item definition. Optional Item that will be granted to the player if Sub Vendor ID is not specified. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_Item Item_Optional{  };
     /** @brief true if Item_Optional has been set to a value */
@@ -706,6 +707,7 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of PreSalePricePointGuid_Optional and sets PreSalePricePointGuid_IsSet to false */
     void ClearPreSalePricePointGuid() { PreSalePricePointGuid_IsSet = false; }
 
+    /** @brief Cache info for the Loot. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */

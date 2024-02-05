@@ -21,17 +21,17 @@ A session resource.
 --------------------------------|---------------------------------------------
 `public FString `[`Type`](#structFRHAPI__Session_1aa99c74b9cc52640a6c132b3517d7fcf1) | template type
 `public FString `[`SessionId`](#structFRHAPI__Session_1adb1ba4643cbd9dabfde8d3e359500909) | unique ID for this session within its type
-`public `[`FRHAPI_InstanceInfo`](RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` `[`Instance_Optional`](#structFRHAPI__Session_1a9d5d31fd3e79b62891ba654cfa1bf6e2) | 
+`public `[`FRHAPI_InstanceInfo`](RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` `[`Instance_Optional`](#structFRHAPI__Session_1a9d5d31fd3e79b62891ba654cfa1bf6e2) | Info about the current active instance for the session.
 `public bool `[`Instance_IsSet`](#structFRHAPI__Session_1a9e166a0d902369089a9362287090e1f8) | true if Instance_Optional has been set to a value
-`public `[`FRHAPI_MatchInfo`](RHAPI_MatchInfo.md#structFRHAPI__MatchInfo)` `[`Match_Optional`](#structFRHAPI__Session_1a865f37ad58a4c3eae21fc72d843b6a3a) | 
+`public `[`FRHAPI_MatchInfo`](RHAPI_MatchInfo.md#structFRHAPI__MatchInfo)` `[`Match_Optional`](#structFRHAPI__Session_1a865f37ad58a4c3eae21fc72d843b6a3a) | Info about the current match in the instance.
 `public bool `[`Match_IsSet`](#structFRHAPI__Session_1a97d359ac0758f38f0df5ee49c54c8108) | true if Match_Optional has been set to a value
-`public `[`FRHAPI_MatchmakingResults`](RHAPI_MatchmakingResults.md#structFRHAPI__MatchmakingResults)` `[`MatchmakingResults_Optional`](#structFRHAPI__Session_1a1390c4c7970d2bf3f8b7b7561ed97c73) | 
+`public `[`FRHAPI_MatchmakingResults`](RHAPI_MatchmakingResults.md#structFRHAPI__MatchmakingResults)` `[`MatchmakingResults_Optional`](#structFRHAPI__Session_1a1390c4c7970d2bf3f8b7b7561ed97c73) | Info about the matchmaking results that resulted in this session.
 `public bool `[`MatchmakingResults_IsSet`](#structFRHAPI__Session_1ac4e0d1dd28de1afe3ee7efd0254f7093) | true if MatchmakingResults_Optional has been set to a value
-`public `[`FRHAPI_MatchmakingInfo`](RHAPI_MatchmakingInfo.md#structFRHAPI__MatchmakingInfo)` `[`Matchmaking_Optional`](#structFRHAPI__Session_1af3225af871f86c2aae3381a62dfdd5db) | 
+`public `[`FRHAPI_MatchmakingInfo`](RHAPI_MatchmakingInfo.md#structFRHAPI__MatchmakingInfo)` `[`Matchmaking_Optional`](#structFRHAPI__Session_1af3225af871f86c2aae3381a62dfdd5db) | DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking.
 `public bool `[`Matchmaking_IsSet`](#structFRHAPI__Session_1a61ea704dec07fefa55e7f47d4c47c744) | true if Matchmaking_Optional has been set to a value
-`public `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` `[`Backfill_Optional`](#structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518) | 
+`public `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` `[`Backfill_Optional`](#structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518) | Info about the open-match backfill object for the session.
 `public bool `[`Backfill_IsSet`](#structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594) | true if Backfill_Optional has been set to a value
-`public `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` `[`Browser_Optional`](#structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54) | 
+`public `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` `[`Browser_Optional`](#structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54) | Info about the browser state of the session.
 `public bool `[`Browser_IsSet`](#structFRHAPI__Session_1aa1ace01879821c9c9b2b978cf2d3bcb4) | true if Browser_Optional has been set to a value
 `public bool `[`Joinable`](#structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907) | Is this session freely joinable by players without an invite?
 `public TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > `[`Teams`](#structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e) | List of teams of players currently in the session.
@@ -160,6 +160,8 @@ unique ID for this session within its type
 <br>
 #### `public `[`FRHAPI_InstanceInfo`](RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` `[`Instance_Optional`](#structFRHAPI__Session_1a9d5d31fd3e79b62891ba654cfa1bf6e2) <a id="structFRHAPI__Session_1a9d5d31fd3e79b62891ba654cfa1bf6e2"></a>
 
+Info about the current active instance for the session.
+
 <br>
 #### `public bool `[`Instance_IsSet`](#structFRHAPI__Session_1a9e166a0d902369089a9362287090e1f8) <a id="structFRHAPI__Session_1a9e166a0d902369089a9362287090e1f8"></a>
 
@@ -167,6 +169,8 @@ true if Instance_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_MatchInfo`](RHAPI_MatchInfo.md#structFRHAPI__MatchInfo)` `[`Match_Optional`](#structFRHAPI__Session_1a865f37ad58a4c3eae21fc72d843b6a3a) <a id="structFRHAPI__Session_1a865f37ad58a4c3eae21fc72d843b6a3a"></a>
+
+Info about the current match in the instance.
 
 <br>
 #### `public bool `[`Match_IsSet`](#structFRHAPI__Session_1a97d359ac0758f38f0df5ee49c54c8108) <a id="structFRHAPI__Session_1a97d359ac0758f38f0df5ee49c54c8108"></a>
@@ -176,6 +180,8 @@ true if Match_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_MatchmakingResults`](RHAPI_MatchmakingResults.md#structFRHAPI__MatchmakingResults)` `[`MatchmakingResults_Optional`](#structFRHAPI__Session_1a1390c4c7970d2bf3f8b7b7561ed97c73) <a id="structFRHAPI__Session_1a1390c4c7970d2bf3f8b7b7561ed97c73"></a>
 
+Info about the matchmaking results that resulted in this session.
+
 <br>
 #### `public bool `[`MatchmakingResults_IsSet`](#structFRHAPI__Session_1ac4e0d1dd28de1afe3ee7efd0254f7093) <a id="structFRHAPI__Session_1ac4e0d1dd28de1afe3ee7efd0254f7093"></a>
 
@@ -183,6 +189,8 @@ true if MatchmakingResults_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_MatchmakingInfo`](RHAPI_MatchmakingInfo.md#structFRHAPI__MatchmakingInfo)` `[`Matchmaking_Optional`](#structFRHAPI__Session_1af3225af871f86c2aae3381a62dfdd5db) <a id="structFRHAPI__Session_1af3225af871f86c2aae3381a62dfdd5db"></a>
+
+DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking.
 
 <br>
 #### `public bool `[`Matchmaking_IsSet`](#structFRHAPI__Session_1a61ea704dec07fefa55e7f47d4c47c744) <a id="structFRHAPI__Session_1a61ea704dec07fefa55e7f47d4c47c744"></a>
@@ -192,6 +200,8 @@ true if Matchmaking_Optional has been set to a value
 <br>
 #### `public `[`FRHAPI_BackfillInfo`](RHAPI_BackfillInfo.md#structFRHAPI__BackfillInfo)` `[`Backfill_Optional`](#structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518) <a id="structFRHAPI__Session_1a241a85d41265c1bfdc254c4ba230f518"></a>
 
+Info about the open-match backfill object for the session.
+
 <br>
 #### `public bool `[`Backfill_IsSet`](#structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594) <a id="structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594"></a>
 
@@ -199,6 +209,8 @@ true if Backfill_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` `[`Browser_Optional`](#structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54) <a id="structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54"></a>
+
+Info about the browser state of the session.
 
 <br>
 #### `public bool `[`Browser_IsSet`](#structFRHAPI__Session_1aa1ace01879821c9c9b2b978cf2d3bcb4) <a id="structFRHAPI__Session_1aa1ace01879821c9c9b2b978cf2d3bcb4"></a>

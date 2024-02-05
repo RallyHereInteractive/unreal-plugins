@@ -32,9 +32,9 @@ Information about the instance resource in a session.
 `public FString `[`HostDedicatedServerId_Optional`](#structFRHAPI__InstanceInfo_1adb1a41b1de0b1e457cc9cd22220a6c10) | Unique ID for the machine running the instance.
 `public bool `[`HostDedicatedServerId_IsSet`](#structFRHAPI__InstanceInfo_1a668423caac5dcade44b138c9468bfd6d) | true if HostDedicatedServerId_Optional has been set to a value
 `public ERHAPI_InstanceJoinableStatus `[`JoinStatus`](#structFRHAPI__InstanceInfo_1a540045ffc3cb213adbd178f75d8d8f4f) | Is the instance joinable at this time?
-`public `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` `[`JoinParams_Optional`](#structFRHAPI__InstanceInfo_1aefc6530a0ba91ff0e221f296175f1911) | 
+`public `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` `[`JoinParams_Optional`](#structFRHAPI__InstanceInfo_1aefc6530a0ba91ff0e221f296175f1911) | Parameters to join the instance.
 `public bool `[`JoinParams_IsSet`](#structFRHAPI__InstanceInfo_1a99ccc5782466d7d8602f505042fbdde1) | true if JoinParams_Optional has been set to a value
-`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`InstanceStartupParams_Optional`](#structFRHAPI__InstanceInfo_1a6bf1066eee396cfb6169ef12cb0f63a3) | 
+`public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`InstanceStartupParams_Optional`](#structFRHAPI__InstanceInfo_1a6bf1066eee396cfb6169ef12cb0f63a3) | Parameters used by the host to startup. For UE5 this will contain the map and gamemode.
 `public bool `[`InstanceStartupParams_IsSet`](#structFRHAPI__InstanceInfo_1a26229b0fc19afb7346a59522a95fe8f0) | true if InstanceStartupParams_Optional has been set to a value
 `public FString `[`Version_Optional`](#structFRHAPI__InstanceInfo_1a660e116a2617fc5b28a37c6ea34f93bb) | Product Client Version number. Used for compatibility checking with players.
 `public bool `[`Version_IsSet`](#structFRHAPI__InstanceInfo_1a0089cb3ba53b990e04ae69dae2eba0a0) | true if Version_Optional has been set to a value
@@ -219,6 +219,8 @@ Is the instance joinable at this time?
 <br>
 #### `public `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` `[`JoinParams_Optional`](#structFRHAPI__InstanceInfo_1aefc6530a0ba91ff0e221f296175f1911) <a id="structFRHAPI__InstanceInfo_1aefc6530a0ba91ff0e221f296175f1911"></a>
 
+Parameters to join the instance.
+
 <br>
 #### `public bool `[`JoinParams_IsSet`](#structFRHAPI__InstanceInfo_1a99ccc5782466d7d8602f505042fbdde1) <a id="structFRHAPI__InstanceInfo_1a99ccc5782466d7d8602f505042fbdde1"></a>
 
@@ -226,6 +228,8 @@ true if JoinParams_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` `[`InstanceStartupParams_Optional`](#structFRHAPI__InstanceInfo_1a6bf1066eee396cfb6169ef12cb0f63a3) <a id="structFRHAPI__InstanceInfo_1a6bf1066eee396cfb6169ef12cb0f63a3"></a>
+
+Parameters used by the host to startup. For UE5 this will contain the map and gamemode.
 
 <br>
 #### `public bool `[`InstanceStartupParams_IsSet`](#structFRHAPI__InstanceInfo_1a26229b0fc19afb7346a59522a95fe8f0) <a id="structFRHAPI__InstanceInfo_1a26229b0fc19afb7346a59522a95fe8f0"></a>

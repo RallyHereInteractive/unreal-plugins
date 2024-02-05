@@ -87,6 +87,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
      /** @brief Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false */
     void ClearJoinStatus() { JoinStatus_IsSet = false; }
 
+    /** @brief Parameters to join the instance */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_JoinParams JoinParams_Optional{  };
     /** @brief true if JoinParams_Optional has been set to a value */

@@ -421,6 +421,7 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
      /** @brief Clears the value of CouponDiscountLoot_Optional and sets CouponDiscountLoot_IsSet to false */
     void ClearCouponDiscountLoot() { CouponDiscountLoot_IsSet = false; }
 
+    /** @brief Cache information for this item. */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
