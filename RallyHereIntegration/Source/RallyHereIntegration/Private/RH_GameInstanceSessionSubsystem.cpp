@@ -1020,7 +1020,7 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 
 void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSession* Session, const FString& Reason) const
 {
-	RHStandardEvents::FInstanceJoinCompleteEvent Event;
+	RHStandardEvents::FInstanceLeftEvent Event;
 
 	UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
 
