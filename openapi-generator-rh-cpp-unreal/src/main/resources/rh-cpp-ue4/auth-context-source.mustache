@@ -145,6 +145,11 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
         return;
     }
 
+    OnRefreshTokenExpired();
+}
+
+void FAuthContext::OnRefreshTokenExpired()
+{
     // if refresh was not successful, dispatch delegate to attempt to relogin
     if (RefreshTokenExpired.IsBound())
     {
@@ -197,6 +202,10 @@ bool FAuthContext::Refresh()
     if (refreshToken.IsEmpty())
     {
         UE_LOG(Log{{unrealModuleName}}, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
+
+        // Call the refresh token expiration handler, to do the refresh token expiration logic and attempt a full new login if possible.
+        // This is primarily for cases where a refresh token was not requested during login
+        OnRefreshTokenExpired();
         return false;
     }
 

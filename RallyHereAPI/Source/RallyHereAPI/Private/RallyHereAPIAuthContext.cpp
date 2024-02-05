@@ -124,18 +124,21 @@ void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
 
 void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
 {
-	// NOTE - intentionally do not clear bIsRefreshing here, as we want to stay in the refreshing state where we cache failed web calls until we attempt to resolve the expired token
-
     const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
 
-    // if refresh was successful, use normal login handler, which will clear the refreshing state
+    // if refresh was successful, use normal login handler
     if (bSuccess)
     {
         ProcessLogin(LoginResponse_);
         return;
     }
 
-    // if refresh was not successful, dispatch delegate to attempt to relogin while still in the refreshing state
+    OnRefreshTokenExpired();
+}
+
+void FAuthContext::OnRefreshTokenExpired()
+{
+    // if refresh was not successful, dispatch delegate to attempt to relogin
     if (RefreshTokenExpired.IsBound())
     {
         // fire the token expiration delegate if it is bound.  If we are not logged in when its delegate is completed, clear the auth context to log out
@@ -144,10 +147,9 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
             auto StrongThis = WeakSharedThis.Pin();
             if (StrongThis.IsValid())
             {
-                // if we are still marked as refreshing (ProcessLogin did not clear the refreshing state), or we are not logged in, then clear the auth context to fully log out
-                if (StrongThis->bIsRefreshing || !StrongThis->IsLoggedIn())
+                StrongThis->bIsRefreshing = false;
+                if (!StrongThis->IsLoggedIn())
                 {
-					StrongThis->bIsRefreshing = false;
                     StrongThis->ClearAuthContext(true);
                 }
             }
@@ -155,7 +157,7 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
     }
     else
     {
-        // no handler is bound for when the refresh token expires, so clear the auth context to fully log out
+        // no handler is bound for when the refresh token expires, so clear the auth context to log out
         bIsRefreshing = false;
         ClearAuthContext(true);
     }
@@ -188,6 +190,10 @@ bool FAuthContext::Refresh()
     if (refreshToken.IsEmpty())
     {
         UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::Refresh No token to refresh with"));
+
+        // Call the refresh token expiration handler, to do the refresh token expiration logic and attempt a full new login if possible.
+        // This is primarily for cases where a refresh token was not requested during login
+        OnRefreshTokenExpired();
         return false;
     }
 

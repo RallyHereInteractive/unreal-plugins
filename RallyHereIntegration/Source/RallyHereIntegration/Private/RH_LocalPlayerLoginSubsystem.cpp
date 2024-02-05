@@ -1012,14 +1012,19 @@ void URH_LocalPlayerLoginSubsystem::Logout()
 
 	FString RefreshToken;
 
+	// clear the last successful login request, as we are explicitly logging out
+	LastSuccessfulLoginRequest.Reset();
+
 	auto AuthContext = GetAuthContext();
 	if (AuthContext.IsValid())
 	{
+		// cache off the refresh token, to be used for the logout call (this call is to "play nice" with the backend)
 		RefreshToken = AuthContext->GetRefreshToken();
+
+		// clear the auth context, so no more calls are authorized
 		AuthContext->ClearAuthContext();
 
 		auto Request = TLogout::Request();
-
 		Request.LogoutRequest.SetRefreshToken(RefreshToken);
 		TLogout::DoCall(RH_APIs::GetAuthAPI(), Request, TLogout::Delegate(), GetDefault<URH_IntegrationSettings>()->AuthLogoutPriority);
 	}

@@ -41,7 +41,7 @@ public:
 
     void ProcessLogin(const FResponse_Login &LoginResponse_);
     void ProcessLoginToken(const FResponse_Token &LoginResponse_);
-	void ProcessLoginRefresh(const FResponse_Login &LoginResponse_);
+    void ProcessLoginRefresh(const FResponse_Login &LoginResponse_);
     bool Refresh();
     FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
     FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
@@ -52,6 +52,7 @@ public:
     FString GetAccessToken() const;
     FString GetRefreshToken() const;
 
+    void OnRefreshTokenExpired();
     void ClearAuthContext(bool bRefreshTokenExpired = false);
 
     void SetClientId(const FString& InClientId);
