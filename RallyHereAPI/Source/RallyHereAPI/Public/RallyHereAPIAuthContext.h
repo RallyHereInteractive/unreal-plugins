@@ -22,9 +22,15 @@ struct FResponse_Login;
 struct FRequest_Token;
 struct FResponse_Token;
 
+// delegate triggered when login is complete (success or failure)
 DECLARE_MULTICAST_DELEGATE_OneParam(FAuthContextLoginComplete, bool /* bAuthSuccess */);
-DECLARE_MULTICAST_DELEGATE(FAuthContextLogout);
+// delegate triggered when auth context becomes logged out (auth context is no longer logged in)
+DECLARE_MULTICAST_DELEGATE_OneParam(FAuthContextLogout, bool /* bRefreshTokenExpired */);
+// delegate triggered when auth context with a user has the user change
 DECLARE_MULTICAST_DELEGATE(FAuthContextLoginUserChanged);
+
+// delegate triggered when refresh token expires.  Passes a delegate to be triggered when new login process is complete
+DECLARE_DELEGATE_OneParam(FAuthContextLoginRefreshTokenExpired, FSimpleDelegate);
 
 struct RALLYHEREAPI_API FAuthContext : TSharedFromThis<FAuthContext>
 {
@@ -35,6 +41,7 @@ public:
 
     void ProcessLogin(const FResponse_Login &LoginResponse_);
     void ProcessLoginToken(const FResponse_Token &LoginResponse_);
+    void ProcessLoginRefresh(const FResponse_Login &LoginResponse_);
     bool Refresh();
     FAuthContextLoginComplete& OnLoginComplete() { return LoginComplete; }
     FAuthContextLoginUserChanged& OnLoginUserChanged() { return LoginUserChanged; }
@@ -45,7 +52,8 @@ public:
     FString GetAccessToken() const;
     FString GetRefreshToken() const;
 
-    void ClearAuthContext();
+    void OnRefreshTokenExpired();
+    void ClearAuthContext(bool bRefreshTokenExpired = false);
 
     void SetClientId(const FString& InClientId);
     void SetClientSecret(const FString& InClientSecret);
@@ -55,6 +63,8 @@ public:
 
     bool AddBearerToken(const FHttpRequestRef& HttpRequest) const;
     bool AddBearerToken(const FHttpRequestPtr& HttpRequest) const;
+
+    void SetRefreshTokenExpiredDelegate(FAuthContextLoginRefreshTokenExpired ExpiredDelegate) { RefreshTokenExpired = ExpiredDelegate; }
 
     static bool IsSameUser(const TOptional<FRHAPI_LoginResult>& A, const TOptional<FRHAPI_LoginResult>& B);
 
@@ -67,6 +77,7 @@ private:
     FAuthContextLoginComplete LoginComplete;
     FAuthContextLoginUserChanged LoginUserChanged;
     FAuthContextLogout Logout;
+    FAuthContextLoginRefreshTokenExpired RefreshTokenExpired;
     TOptional<FRHAPI_LoginResult> LoginResult;
     TOptional<FRHAPI_TokenResponse> TokenResponse;
 

@@ -36,6 +36,7 @@ Fail_OSSAuthToken            | OSS AuthToken could not be retrieved for a user t
 Fail_MustAcceptAgreements            | User must accept all required agreements. See [FRH_LoginResult::bMustAcceptEULA](LocalPlayer.md#structFRH__LoginResult_1a3b1a5425c4ad3df85754d7828afa429f), [FRH_LoginResult::bMustAcceptTOS](LocalPlayer.md#structFRH__LoginResult_1a662f76700fe5dd56560bb7df514b0b6a), [FRH_LoginResult::bMustAcceptPP](LocalPlayer.md#structFRH__LoginResult_1a0f6674180918672b79770379a8af937c)
 Fail_RHDenied            | RH web login was denied. There are many reasons that can cause this, including misconfiguration of OSS IDs with the Rally Here APIs
 Fail_LocalPlayerMissing            | Local player went missing during login process
+Fail_ReloginWithoutSavedCredentials            | Relogin called without saved credentials
 Fail_RHUnknown            | RH web login failed for an unknown reason. This usually means there was a server error of some kind.
 
 Login Results.
@@ -87,6 +88,7 @@ Login Subsystem for the local player.
 `public virtual void `[`Initialize`](#classURH__LocalPlayerLoginSubsystem_1a938bd41c5c5fa6b5eacbeb43d0758a63)`()` | Initialize the subsystem.
 `public virtual void `[`Deinitialize`](#classURH__LocalPlayerLoginSubsystem_1a363bdf9386b7854ed44a03cfe6faea18)`()` | Safely tears down the subsystem.
 `public void `[`SubmitAutoLogin`](#classURH__LocalPlayerLoginSubsystem_1aec27fd534d794470e4eb893de8d722c4)`(bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,const FRH_OnLoginComplete & OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
+`public void `[`ResubmitLastSuccessfulLogin`](#classURH__LocalPlayerLoginSubsystem_1a937e6ee9e5592c699ff28bbf89344532)`(const FRH_OnLoginComplete & OnLoginCompleteDelegate)` | Submits a complete multi-phased login using the last successful set of login parameters.
 `public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` | Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
 `public void `[`Logout`](#classURH__LocalPlayerLoginSubsystem_1ae3394f883c697e57a705c23d8b0be23a)`()` | Requests a logout on the server clearing the players auth credentials.
 `public bool `[`ShowLoginProfileSelectionUI`](#classURH__LocalPlayerLoginSubsystem_1a6b569dc65fc1a0a0b6bb9f03a5c33ca9)`(bool bShowOnlineOnly,const FRH_OnProfileSelectionUIClosed & OnClosed,`[`ERHAPI_LocalPlayerLoginOSS`](undefined.md#group__LocalPlayer_1ga0aae9d7dd1467ba0ef09be86df25b7a2)` OSSType)` | Show an OSS-specific profile selection UI to the user. This is for Xbox and other platforms that support profile swapping. A valid profile is required to login on those platforms.
@@ -99,6 +101,7 @@ Login Subsystem for the local player.
 `protected TArray< FString > `[`IgnoreSavedCredentialsCommandLineKeys`](#classURH__LocalPlayerLoginSubsystem_1a807481151c1204a711576e7372534dc1) | Configurations to skip saved credentials.
 `protected FDelegateHandle `[`OnOSSLoginCompleteDelegateHandle`](#classURH__LocalPlayerLoginSubsystem_1a646e2be986b89238b1f25a9de4578e96) | Delegate to listen for OSS login completion.
 `protected bool `[`bCrossplayEnabled`](#classURH__LocalPlayerLoginSubsystem_1a7c85f34c2500e512c00bb4d424948069) | Stores if crossplay is enabled.
+`protected TOptional< `[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` > `[`LastSuccessfulLoginRequest`](#classURH__LocalPlayerLoginSubsystem_1af7d7ed1e837db9861c24dc7100fcac2c) | Stores the last successful login result, for use when refresh token expires.
 `protected bool `[`bCommunicationEnabled`](#classURH__LocalPlayerLoginSubsystem_1a80a9112506cf7920ab1945062b2eb7ca) | Stores if communication is enabled.
 `protected virtual void `[`PostResults`](#classURH__LocalPlayerLoginSubsystem_1aa8588e2a9f530a54818aeb56fd091e7d)`(`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` & Req,const `[`FRH_LoginResult`](LocalPlayer.md#structFRH__LoginResult)` & Res)` | Posts the results from a login request.
 `protected virtual void `[`DoShowLoginOSSLoginUI`](#classURH__LocalPlayerLoginSubsystem_1ac38e03f331309d47d734f788930ed3f4)`(`[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` & Req)` | Prompts the online subsystem to show login UI.
@@ -253,6 +256,11 @@ Safely tears down the subsystem.
 Begins a complete multi-phased login to the OnlineSubsystem with the credentials provided on the command line, checking if the user has appropriate permissions, and logging into RallyHere.
 
 <br>
+#### `public void `[`ResubmitLastSuccessfulLogin`](#classURH__LocalPlayerLoginSubsystem_1a937e6ee9e5592c699ff28bbf89344532)`(const FRH_OnLoginComplete & OnLoginCompleteDelegate)` <a id="classURH__LocalPlayerLoginSubsystem_1a937e6ee9e5592c699ff28bbf89344532"></a>
+
+Submits a complete multi-phased login using the last successful set of login parameters.
+
+<br>
 #### `public void `[`SubmitLogin`](#classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57)`(const FOnlineAccountCredentials & Credentials,FString CredentialRefreshToken,bool bAcceptEULA,bool bAcceptTOS,bool bAcceptPP,FRH_OnLoginComplete OnLoginCompleteDelegate)` <a id="classURH__LocalPlayerLoginSubsystem_1a8feda49ddf6a5f48448d4f989eca3d57"></a>
 
 Begins a complete multi-phased login to the OnlineSubsystem with the provided credentials, checking if the user has appropriate permissions, and logging into RallyHere.
@@ -318,6 +326,11 @@ Delegate to listen for OSS login completion.
 #### `protected bool `[`bCrossplayEnabled`](#classURH__LocalPlayerLoginSubsystem_1a7c85f34c2500e512c00bb4d424948069) <a id="classURH__LocalPlayerLoginSubsystem_1a7c85f34c2500e512c00bb4d424948069"></a>
 
 Stores if crossplay is enabled.
+
+<br>
+#### `protected TOptional< `[`FRH_PendingLoginRequest`](undefined.md#structURH__LocalPlayerLoginSubsystem_1_1FRH__PendingLoginRequest)` > `[`LastSuccessfulLoginRequest`](#classURH__LocalPlayerLoginSubsystem_1af7d7ed1e837db9861c24dc7100fcac2c) <a id="classURH__LocalPlayerLoginSubsystem_1af7d7ed1e837db9861c24dc7100fcac2c"></a>
+
+Stores the last successful login result, for use when refresh token expires.
 
 <br>
 #### `protected bool `[`bCommunicationEnabled`](#classURH__LocalPlayerLoginSubsystem_1a80a9112506cf7920ab1945062b2eb7ca) <a id="classURH__LocalPlayerLoginSubsystem_1a80a9112506cf7920ab1945062b2eb7ca"></a>
@@ -1670,8 +1683,9 @@ Subsystem to manage the local player.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1ab757058d891a562b63869377edf607bf)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected template<>`  <br/>`inline UClassToUse * `[`AddSandboxedSubsystemPlugin`](#classURH__LocalPlayerSubsystem_1a2de7a5eafd696d509f653192edd9a09f)`(const FSoftClassPath & SubsystemClassPath)` | Adds a plugin to the Game Instance Subsystem.
 `protected virtual void `[`OnUserLoggedIn`](#classURH__LocalPlayerSubsystem_1a9ef1338417d75dfc9f463538e2515d72)`(bool bSuccess)` | Called whenever the user logs in.
-`protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a9ea340cc151118f71e42ddb33299dacc)`()` | Called whenever the user logs out explicitly.
+`protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5)`(bool bRefreshTokenExpired)` | Called whenever the user logs out explicitly.
 `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
+`protected virtual void `[`OnUserRefreshTokenExpired`](#classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56)`(FSimpleDelegate CompletionDelegate)` | Callback that occurs when the player's refresh token expires while logged in.
 
 #### Members
 
@@ -1920,7 +1934,7 @@ Called whenever the user logs in.
 * `bSuccess` True if the login was successful, false otherwise.
 
 <br>
-#### `protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a9ea340cc151118f71e42ddb33299dacc)`()` <a id="classURH__LocalPlayerSubsystem_1a9ea340cc151118f71e42ddb33299dacc"></a>
+#### `protected virtual void `[`OnUserLoggedOut`](#classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5)`(bool bRefreshTokenExpired)` <a id="classURH__LocalPlayerSubsystem_1a8486ce5ac38cd0baa2d1a3d8ed319fd5"></a>
 
 Called whenever the user logs out explicitly.
 
@@ -1928,6 +1942,11 @@ Called whenever the user logs out explicitly.
 #### `protected virtual void `[`OnUserChanged`](#classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7)`()` <a id="classURH__LocalPlayerSubsystem_1a8a159f043f9aaed47f06d7c6706cb6b7"></a>
 
 Callback that occurs whenever the local player this subsystem is associated with changes.
+
+<br>
+#### `protected virtual void `[`OnUserRefreshTokenExpired`](#classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56)`(FSimpleDelegate CompletionDelegate)` <a id="classURH__LocalPlayerSubsystem_1a822659671e98773c0c03a3eed95e5b56"></a>
+
+Callback that occurs when the player's refresh token expires while logged in.
 
 <br>
 ## struct `FRH_LoginResult` <a id="structFRH__LoginResult"></a>

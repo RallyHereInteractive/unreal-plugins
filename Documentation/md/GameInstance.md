@@ -126,7 +126,6 @@ Server Bootstrapper for the Game Instance.
 `protected `[`ERH_ServerBootstrapMode`](undefined.md#group__GameInstance_1ga9dd612a2285258b977ec4c21d7a64196)` `[`BootstrapMode`](#classURH__GameInstanceServerBootstrapper_1a437398cd4da11b39dbba5624ac0d4503) | Bootstrap Mode being used
 `protected `[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` `[`BootstrapStep`](#classURH__GameInstanceServerBootstrapper_1a0c41579ef8e737384ac8e1c82efb8d11) | Current Bootstrap Step
 `protected int32 `[`CurrentRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a95d71262cc53a06cf14abb0e1c5ebd76) | The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
-`protected FDelegateHandle `[`OnOSSLoginCompleteDelegateHandle`](#classURH__GameInstanceServerBootstrapper_1ab1b28fef06ce98a58eaea9c81f7a6615) | Delegate handle for the OSS login call
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceServerBootstrapper_1a31e36a649064c176a0727626265f6ff8) | The auth context for this bootstrapper
 `protected TUniquePtr< IRH_GameHostProviderInterface > `[`GameHostProvider`](#classURH__GameInstanceServerBootstrapper_1a1b04f9631853c09086b8f616bf2e14a5) | The game host provider for this bootstrapper
 `protected `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` `[`BootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1a0874c2b9b1ad9a8e9e61e26ac7777d04) | The current bootstrapping result
@@ -145,10 +144,6 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`OnBootstrappingFailed`](#classURH__GameInstanceServerBootstrapper_1a1875bbf2ad7df512f7f1c977a6dfe161)`()` | Bootstrapping Flow [Failed] - trigger bootstrapping failure and handles failure logic.
 `protected virtual void `[`OnBootstrappingComplete`](#classURH__GameInstanceServerBootstrapper_1a2882f79445b73579a19dbb92e8b859df)`()` | Bootstrapping Flow [Complete] - trigger bootstrapping complete and handles completion logic. Note that recycling may start a new bootstrapping flow.
 `protected virtual void `[`BeginServerLogin`](#classURH__GameInstanceServerBootstrapper_1a924d64924d1e13251752ae00763ea765)`()` | Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API.
-`protected virtual void `[`BeginOSSLogin`](#classURH__GameInstanceServerBootstrapper_1a596197bb7c3249d78c7f25cb7a45dee3)`()` | Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
-`protected virtual void `[`BeginNullLogin`](#classURH__GameInstanceServerBootstrapper_1abe2daf2fda783a6322a4baafc3f4ce0e)`()` | Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
-`protected virtual void `[`OnOSSLoginComplete`](#classURH__GameInstanceServerBootstrapper_1afa72878c5edec64e1228cb302676a2a0)`(int32 ControllerId,bool bSuccessful,const FUniqueNetId & UniqueId,const FString & ErrorMessage)` | Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use.
-`protected virtual void `[`RetrieveOSSAuthTokenComplete`](#classURH__GameInstanceServerBootstrapper_1a86498208233cbf6c51ef72ff0043410a)`(int32 LocalUserNum,bool bWasSuccessful,const FExternalAuthToken & AuthTokenWrapper)` | Start the login to Rally Here.
 `protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` | Bootstrapping Flow [Login] - completion callback for RallyHere API login.
 `protected virtual void `[`Recycle`](#classURH__GameInstanceServerBootstrapper_1a4899aaa6b044107233cb45e8695c3029)`()` | Bootstrapping Flow [Recycle] - start a new recycle loop.
 `protected virtual void `[`BeginRegistration`](#classURH__GameInstanceServerBootstrapper_1aa99989cd2184a498b1de613e4eeee199)`()` | Bootstrapping Flow [Registration][Allocation][AutoCreate] - start the process of registering with the game host provider.
@@ -170,6 +165,7 @@ Server Bootstrapper for the Game Instance.
 `protected virtual void `[`CleanupAfterInstanceRemoval`](#classURH__GameInstanceServerBootstrapper_1a9aab21c5a300e982d5216e04acdbf6f4)`()` | Utility function to clean up state after an instance removal and attempt to recycle.
 `protected virtual void `[`OnCleanupSessionSyncComplete`](#classURH__GameInstanceServerBootstrapper_1a38bf567f475e12b06eb5a16883165bb6)`(`[`URH_JoinedSession`](undefined.md#classURH__JoinedSession)` * Session,bool bSuccess,const FString & Error)` | Completion callback for session and instance cleanup.
 `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` | Gets whether we should recycle the state after cleanup.
+`protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` | Callback for when a refresh token expires.
 
 #### Members
 
@@ -362,11 +358,6 @@ Current Bootstrap Step
 The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
 
 <br>
-#### `protected FDelegateHandle `[`OnOSSLoginCompleteDelegateHandle`](#classURH__GameInstanceServerBootstrapper_1ab1b28fef06ce98a58eaea9c81f7a6615) <a id="classURH__GameInstanceServerBootstrapper_1ab1b28fef06ce98a58eaea9c81f7a6615"></a>
-
-Delegate handle for the OSS login call
-
-<br>
 #### `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceServerBootstrapper_1a31e36a649064c176a0727626265f6ff8) <a id="classURH__GameInstanceServerBootstrapper_1a31e36a649064c176a0727626265f6ff8"></a>
 
 The auth context for this bootstrapper
@@ -458,42 +449,6 @@ Bootstrapping Flow [Complete] - trigger bootstrapping complete and handles compl
 #### `protected virtual void `[`BeginServerLogin`](#classURH__GameInstanceServerBootstrapper_1a924d64924d1e13251752ae00763ea765)`()` <a id="classURH__GameInstanceServerBootstrapper_1a924d64924d1e13251752ae00763ea765"></a>
 
 Bootstrapping Flow [LoggingIn] - begin the login process to the RallyHere API.
-
-<br>
-#### `protected virtual void `[`BeginOSSLogin`](#classURH__GameInstanceServerBootstrapper_1a596197bb7c3249d78c7f25cb7a45dee3)`()` <a id="classURH__GameInstanceServerBootstrapper_1a596197bb7c3249d78c7f25cb7a45dee3"></a>
-
-Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
-
-<br>
-#### `protected virtual void `[`BeginNullLogin`](#classURH__GameInstanceServerBootstrapper_1abe2daf2fda783a6322a4baafc3f4ce0e)`()` <a id="classURH__GameInstanceServerBootstrapper_1abe2daf2fda783a6322a4baafc3f4ce0e"></a>
-
-Bootstrapping Flow [LoggingIn] - begin platform OSS login to generate login credentials.
-
-<br>
-#### `protected virtual void `[`OnOSSLoginComplete`](#classURH__GameInstanceServerBootstrapper_1afa72878c5edec64e1228cb302676a2a0)`(int32 ControllerId,bool bSuccessful,const FUniqueNetId & UniqueId,const FString & ErrorMessage)` <a id="classURH__GameInstanceServerBootstrapper_1afa72878c5edec64e1228cb302676a2a0"></a>
-
-Bootstrapping Flow [LoggingIn] - completion callback for platform OSS login with credentials to use.
-
-#### Parameters
-* `ControllerId` The controller id that was used to login 
-
-* `bSuccessful` Whether or not the login was successful 
-
-* `UniqueId` The unique id of the user that logged in 
-
-* `ErrorMessage` The error message if the login failed
-
-<br>
-#### `protected virtual void `[`RetrieveOSSAuthTokenComplete`](#classURH__GameInstanceServerBootstrapper_1a86498208233cbf6c51ef72ff0043410a)`(int32 LocalUserNum,bool bWasSuccessful,const FExternalAuthToken & AuthTokenWrapper)` <a id="classURH__GameInstanceServerBootstrapper_1a86498208233cbf6c51ef72ff0043410a"></a>
-
-Start the login to Rally Here.
-
-#### Parameters
-* `LocalUserNum` Local user number of the player logging in. 
-
-* `bWasSuccessful` Was the retrieval successful. 
-
-* `AuthTokenWrapper` The auth token wrapper.
 
 <br>
 #### `protected virtual void `[`OnServerLoginComplete`](#classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e)`(bool bSuccess,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` & ErrorInfo)` <a id="classURH__GameInstanceServerBootstrapper_1aa3753ed4ef198142046a76016193062e"></a>
@@ -640,6 +595,11 @@ Completion callback for session and instance cleanup.
 #### `protected virtual bool `[`ShouldRecycleAfterCleanup`](#classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a3841facd4998b2ceb4e4f48354c2f665"></a>
 
 Gets whether we should recycle the state after cleanup.
+
+<br>
+#### `protected virtual void `[`OnRefreshTokenExpired`](#classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822)`(FSimpleDelegate CompleteCallback)` <a id="classURH__GameInstanceServerBootstrapper_1a5c36a506ed51f8694e9ea296ab4c1822"></a>
+
+Callback for when a refresh token expires.
 
 <br>
 ## class `URH_GameInstanceClientBootstrapper` <a id="classURH__GameInstanceClientBootstrapper"></a>

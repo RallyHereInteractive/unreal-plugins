@@ -58,6 +58,7 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	AuthContext->OnLoginComplete().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserLoggedIn);
 	AuthContext->OnLogout().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserLoggedOut);
 	AuthContext->OnLoginUserChanged().AddUObject(this, &URH_LocalPlayerSubsystem::OnUserChanged);
+	AuthContext->SetRefreshTokenExpiredDelegate(RallyHereAPI::FAuthContextLoginRefreshTokenExpired::CreateUObject(this, &URH_LocalPlayerSubsystem::OnUserRefreshTokenExpired));
 
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 
@@ -197,12 +198,12 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 
 }
 
-void URH_LocalPlayerSubsystem::OnUserLoggedOut()
+void URH_LocalPlayerSubsystem::OnUserLoggedOut(bool bRefreshTokenExpired)
 {
 	// trigger login as failure, to push logout to game instance
 	OnUserLoggedIn(false);
 
-	// trigger use change, to handle user delta resposne
+	// trigger use change, to handle user delta response
 	OnUserChanged();
 }
 
@@ -242,6 +243,22 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 			// start streaming notifications for this context
 			PlayerInfoCache->StartStreamingNotifications();
 		}
+	}
+}
+
+void URH_LocalPlayerSubsystem::OnUserRefreshTokenExpired(FSimpleDelegate CompletionDelegate)
+{
+	// attempt an autologin
+	if (LoginSubsystem != nullptr)
+	{
+		LoginSubsystem->ResubmitLastSuccessfulLogin(FRH_OnLoginComplete::CreateWeakLambda(this, [this, CompletionDelegate](const FRH_LoginResult&) {
+			// login has completed, either login was successful (in which case auth context is already updated), or it failed, in which case auth context needs to know to logout
+			CompletionDelegate.ExecuteIfBound();
+		}));
+	}
+	else
+	{
+		CompletionDelegate.ExecuteIfBound();
 	}
 }
 
