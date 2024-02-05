@@ -383,6 +383,11 @@ public:
 	*/
 	virtual FAuthContextPtr GetAuthContext() const { return AuthContext; };
 
+	/**
+	 * @brief Get the Analytics Provider
+	 */
+	virtual TSharedPtr<class IAnalyticsProvider> GetAnalyticsProvider() const { return AnalyticsProvider; }
+
 	/** @brief Get the current bootstrapping mode */
 	UFUNCTION(BlueprintGetter, Category = "Session")
 	virtual URH_OnlineSession* GetSession() const { return RHSession; }
@@ -486,6 +491,12 @@ public:
 protected:
 	/** The auth context for this bootstrapper */
 	FAuthContextPtr AuthContext;
+
+	/** The analytics provider for this bootstrapper */
+	TSharedPtr<class IAnalyticsProvider> AnalyticsProvider;
+
+	/** The start time of the AnalyticsProvider */
+	TOptional<FDateTime> AnalyticsStartTime;
 
 	/** The game host provider for this bootstrapper */
 	TUniquePtr<IRH_GameHostProviderInterface> GameHostProvider;

@@ -13,6 +13,10 @@
 `struct `[`RHStandardEvents::FInstanceJoinStartEvent`](#structRHStandardEvents_1_1FInstanceJoinStartEvent) | This event is triggered when the player / game client has an instance to connect to and has started the process to connect to it.
 `struct `[`RHStandardEvents::FInstanceJoinCompleteEvent`](#structRHStandardEvents_1_1FInstanceJoinCompleteEvent) | This event is triggered when the player / game client has attempted to connect to the instance.This event will capture both the success and the failure to connect to an instance.
 `struct `[`RHStandardEvents::FInstanceLeftEvent`](#structRHStandardEvents_1_1FInstanceLeftEvent) | This event is triggered when a player / game client has disconnected from the instance.
+`struct `[`RHStandardEvents::FInstanceHelloReceivedEvent`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent) | This event is triggered when the host detects a hello signal from a player / game client attempting to connect to it.
+`struct `[`RHStandardEvents::FInstanceLoginReceivedEvent`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent) | This event is triggered when the host receives a login signal from a player / game client attempting to connect to it.
+`struct `[`RHStandardEvents::FInstanceJoinReceivedEvent`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent) | This event is triggered when the host receives a join signal from a player / game client attempting to connect to it.
+`struct `[`RHStandardEvents::FInstanceClientDisconnectEvent`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent) | This event is triggered when the host detects a client disconnection (either caused by it, or by the client).
 `struct `[`RHStandardEvents::FLoginStartEvent`](#structRHStandardEvents_1_1FLoginStartEvent) | This event is triggered at the start of the client login process.
 `struct `[`RHStandardEvents::FLoginCompleteEvent`](#structRHStandardEvents_1_1FLoginCompleteEvent) | This event is triggered when the login process has completed.This event is meant to capture both successful and failed login attempts.
 `struct `[`RHStandardEvents::FObjectiveProgressEvent`](#structRHStandardEvents_1_1FObjectiveProgressEvent) | This event is meant to be triggered when a player has earned progress on an objective.The RHIntegration Plugin will not automatically trigger this, but this event is something that RallyHere will process and have an understanding of the data.
@@ -368,6 +372,230 @@ custom data fields (will be auto-prefixed with custom data prefix)
 
 <br>
 #### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLeftEvent_1acb0af23c65982c32df6644f4b4a82b6f)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceLeftEvent_1acb0af23c65982c32df6644f4b4a82b6f"></a>
+
+<br>
+## struct `RHStandardEvents::FInstanceHelloReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent"></a>
+
+This event is triggered when the host detects a hello signal from a player / game client attempting to connect to it.
+
+rh.instance_hello_received
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a62b4a2a6d6cce74d720b1fdf3a14b53e) | The session_id of the instance the player is attempting to join.
+`public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a6153fd5f9c7e753526144af2b90d461e) | The instance_id of the instance the player is attempting to join.
+`public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1aaa5fd1a2f2df19100fda3eaff1683272) | The user id of the instance the player is attempting to join.
+`public TOptional< FString > `[`IpAddress`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1ae7d2fb50c71dac5533ddbd9bd2314bc3) | The incoming IP Address the connection is originating from.
+`public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a4192fcb94955a7d002b4f72f8f638237) | custom data fields (will be auto-prefixed with custom data prefix)
+`public inline  `[`FInstanceHelloReceivedEvent`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677)`()` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a8dd8971a4314464e14e9a02932a0db5c)`(IAnalyticsProvider * Provider) const` | 
+
+#### Members
+
+#### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a62b4a2a6d6cce74d720b1fdf3a14b53e) <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a62b4a2a6d6cce74d720b1fdf3a14b53e"></a>
+
+The session_id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a6153fd5f9c7e753526144af2b90d461e) <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a6153fd5f9c7e753526144af2b90d461e"></a>
+
+The instance_id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1aaa5fd1a2f2df19100fda3eaff1683272) <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1aaa5fd1a2f2df19100fda3eaff1683272"></a>
+
+The user id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FString > `[`IpAddress`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1ae7d2fb50c71dac5533ddbd9bd2314bc3) <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1ae7d2fb50c71dac5533ddbd9bd2314bc3"></a>
+
+The incoming IP Address the connection is originating from.
+
+<br>
+#### `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a4192fcb94955a7d002b4f72f8f638237) <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a4192fcb94955a7d002b4f72f8f638237"></a>
+
+custom data fields (will be auto-prefixed with custom data prefix)
+
+<br>
+#### `public inline  `[`FInstanceHelloReceivedEvent`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677)`()` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1acf31d6acaee497ce21e28d13c868d677"></a>
+
+<br>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a8dd8971a4314464e14e9a02932a0db5c)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceHelloReceivedEvent_1a8dd8971a4314464e14e9a02932a0db5c"></a>
+
+<br>
+## struct `RHStandardEvents::FInstanceLoginReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent"></a>
+
+This event is triggered when the host receives a login signal from a player / game client attempting to connect to it.
+
+rh.instance_login_received
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a3e6b3f4fafeb7250ff18b2e642bb26c7) | 
+`public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a9c4f7c61b422d9a595eb87a1153f288e) | The session_id of the instance the player is attempting to join.
+`public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a32fbe2361d0e5e81bb7c3b9af062faaa) | The instance_id of the instance the player is attempting to join.
+`public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ad01de080b087044b1885ce2904d4af50) | The user id of the instance the player is attempting to join.
+`public TOptional< FString > `[`PlatformUserId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a56e5792c677856299f28f721f6711872) | Platform UserId of the player.
+`public TOptional< FString > `[`PlatformId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a6be08c852916f6670449093b400f6366) | Platform Id of the player.
+`public TOptional< FString > `[`ConnectionString`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a0d0b5a349c42d0395383711ef5265c29) | The connection string the player is attempting to join with.
+`public TOptional< `[`FSplitJoinInfo`](undefined.md#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1_1FSplitJoinInfo)` > `[`SplitJoinInfo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1af380b47e61e9e28a297e09a42f0aba9c) | the split join info for this connection
+`public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a44430050aeffe42e9f26b693afa5c06a) | custom data fields (will be auto-prefixed with custom data prefix)
+`public inline  `[`FInstanceLoginReceivedEvent`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248)`()` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1afc6e60ff75293eb3130004aa8b8f4070)`(IAnalyticsProvider * Provider) const` | 
+
+#### Members
+
+#### `public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a3e6b3f4fafeb7250ff18b2e642bb26c7) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a3e6b3f4fafeb7250ff18b2e642bb26c7"></a>
+
+<br>
+#### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a9c4f7c61b422d9a595eb87a1153f288e) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a9c4f7c61b422d9a595eb87a1153f288e"></a>
+
+The session_id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a32fbe2361d0e5e81bb7c3b9af062faaa) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a32fbe2361d0e5e81bb7c3b9af062faaa"></a>
+
+The instance_id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ad01de080b087044b1885ce2904d4af50) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ad01de080b087044b1885ce2904d4af50"></a>
+
+The user id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FString > `[`PlatformUserId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a56e5792c677856299f28f721f6711872) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a56e5792c677856299f28f721f6711872"></a>
+
+Platform UserId of the player.
+
+<br>
+#### `public TOptional< FString > `[`PlatformId`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a6be08c852916f6670449093b400f6366) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a6be08c852916f6670449093b400f6366"></a>
+
+Platform Id of the player.
+
+<br>
+#### `public TOptional< FString > `[`ConnectionString`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a0d0b5a349c42d0395383711ef5265c29) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a0d0b5a349c42d0395383711ef5265c29"></a>
+
+The connection string the player is attempting to join with.
+
+<br>
+#### `public TOptional< `[`FSplitJoinInfo`](undefined.md#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1_1FSplitJoinInfo)` > `[`SplitJoinInfo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1af380b47e61e9e28a297e09a42f0aba9c) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1af380b47e61e9e28a297e09a42f0aba9c"></a>
+
+the split join info for this connection
+
+<br>
+#### `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a44430050aeffe42e9f26b693afa5c06a) <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1a44430050aeffe42e9f26b693afa5c06a"></a>
+
+custom data fields (will be auto-prefixed with custom data prefix)
+
+<br>
+#### `public inline  `[`FInstanceLoginReceivedEvent`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248)`()` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1ab9cf4514ca3affaad4f8a8d637fae248"></a>
+
+<br>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1afc6e60ff75293eb3130004aa8b8f4070)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceLoginReceivedEvent_1afc6e60ff75293eb3130004aa8b8f4070"></a>
+
+<br>
+## struct `RHStandardEvents::FInstanceJoinReceivedEvent` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent"></a>
+
+This event is triggered when the host receives a join signal from a player / game client attempting to connect to it.
+
+rh.instance_join_received
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a4dd1e3633ac01bc8321a2c4c0186d4e2) | 
+`public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad322381c8f3a6a994f3bb8063d76757a) | The session_id of the instance the player is attempting to join.
+`public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a2142c21d63b77f87f61cb83c0b27986e) | The instance_id of the instance the player is attempting to join.
+`public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f1e4cc77730d933962c6b381138e2d5) | The user id of the instance the player is attempting to join.
+`public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f9b48c48f0943bb96aeca521f38b8f7) | custom data fields (will be auto-prefixed with custom data prefix)
+`public inline  `[`FInstanceJoinReceivedEvent`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db)`()` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a713ce24d16f21526fe567f1bc3993c98)`(IAnalyticsProvider * Provider) const` | 
+
+#### Members
+
+#### `public bool `[`IsSuccess`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a4dd1e3633ac01bc8321a2c4c0186d4e2) <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a4dd1e3633ac01bc8321a2c4c0186d4e2"></a>
+
+<br>
+#### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad322381c8f3a6a994f3bb8063d76757a) <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad322381c8f3a6a994f3bb8063d76757a"></a>
+
+The session_id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a2142c21d63b77f87f61cb83c0b27986e) <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a2142c21d63b77f87f61cb83c0b27986e"></a>
+
+The instance_id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f1e4cc77730d933962c6b381138e2d5) <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f1e4cc77730d933962c6b381138e2d5"></a>
+
+The user id of the instance the player is attempting to join.
+
+<br>
+#### `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f9b48c48f0943bb96aeca521f38b8f7) <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a8f9b48c48f0943bb96aeca521f38b8f7"></a>
+
+custom data fields (will be auto-prefixed with custom data prefix)
+
+<br>
+#### `public inline  `[`FInstanceJoinReceivedEvent`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db)`()` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1ad9f191b94536fd1a693453b5b04aa7db"></a>
+
+<br>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a713ce24d16f21526fe567f1bc3993c98)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceJoinReceivedEvent_1a713ce24d16f21526fe567f1bc3993c98"></a>
+
+<br>
+## struct `RHStandardEvents::FInstanceClientDisconnectEvent` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent"></a>
+
+This event is triggered when the host detects a client disconnection (either caused by it, or by the client).
+
+rh.instance_client_disconnect
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acc115067d56487b45cb1781af2394049) | The session_id of the session.
+`public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acfd49a311f03b19128a86fcdd0917da0) | The instance_id of the instance.
+`public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a29819903437fbc894edf2e66740c949b) | The user id of the instance the player disconnecting.
+`public TOptional< FString > `[`Reason`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a6b570cbbcfd12805a316b70509211289) | The reason for the disconnect, if known.
+`public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ad7aa4cd4a10bbc653a8fc9d275d1002b) | custom data fields (will be auto-prefixed with custom data prefix)
+`public inline  `[`FInstanceClientDisconnectEvent`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76)`()` | 
+`public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ae2d932b03b4e86770c1cf21677c18841)`(IAnalyticsProvider * Provider) const` | 
+
+#### Members
+
+#### `public TOptional< FString > `[`SessionId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acc115067d56487b45cb1781af2394049) <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acc115067d56487b45cb1781af2394049"></a>
+
+The session_id of the session.
+
+<br>
+#### `public TOptional< FString > `[`InstanceId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acfd49a311f03b19128a86fcdd0917da0) <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1acfd49a311f03b19128a86fcdd0917da0"></a>
+
+The instance_id of the instance.
+
+<br>
+#### `public TOptional< FGuid > `[`UserId`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a29819903437fbc894edf2e66740c949b) <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a29819903437fbc894edf2e66740c949b"></a>
+
+The user id of the instance the player disconnecting.
+
+<br>
+#### `public TOptional< FString > `[`Reason`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a6b570cbbcfd12805a316b70509211289) <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a6b570cbbcfd12805a316b70509211289"></a>
+
+The reason for the disconnect, if known.
+
+<br>
+#### `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ad7aa4cd4a10bbc653a8fc9d275d1002b) <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ad7aa4cd4a10bbc653a8fc9d275d1002b"></a>
+
+custom data fields (will be auto-prefixed with custom data prefix)
+
+<br>
+#### `public inline  `[`FInstanceClientDisconnectEvent`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76)`()` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1a66881d90ba7836f59ffdbaf86058ab76"></a>
+
+<br>
+#### `public inline void `[`EmitTo`](#structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ae2d932b03b4e86770c1cf21677c18841)`(IAnalyticsProvider * Provider) const` <a id="structRHStandardEvents_1_1FInstanceClientDisconnectEvent_1ae2d932b03b4e86770c1cf21677c18841"></a>
 
 <br>
 ## struct `RHStandardEvents::FLoginStartEvent` <a id="structRHStandardEvents_1_1FLoginStartEvent"></a>

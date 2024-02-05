@@ -938,9 +938,22 @@ void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, 
 
 // quick analytics hooks
 template<typename EventType>
-void EmitEventToAllLocalPlayers(UGameInstance* pGameInstance, const EventType& Event)
+void EmitEventToAllProvidersOnce(UGameInstance* pGameInstance, const EventType& Event)
 {
-	// emit analytics update to all local players before we start the join
+	const auto pGameInstanceSubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+	TSharedPtr<IAnalyticsProvider> pGameInstanceProvider = nullptr;
+	if (pGameInstanceSubsystem != nullptr)
+	{
+		pGameInstanceProvider = pGameInstanceSubsystem->GetAnalyticsProvider();
+	}
+
+	// emit to the shared provider if it exists
+	if (pGameInstanceProvider.IsValid())
+	{
+		Event.EmitTo(pGameInstanceSubsystem->GetAnalyticsProvider().Get());
+	}
+
+	// emit analytics update to all local players
 	if (pGameInstance != nullptr)
 	{
 		const auto LocalPlayers = pGameInstance->GetLocalPlayers();
@@ -949,12 +962,16 @@ void EmitEventToAllLocalPlayers(UGameInstance* pGameInstance, const EventType& E
 			auto pLPSubsystem = LP->GetSubsystem<URH_LocalPlayerSubsystem>();
 			if (pLPSubsystem != nullptr && pLPSubsystem->GetAnalyticsProvider())
 			{
-				Event.EmitTo(pLPSubsystem->GetAnalyticsProvider().Get());
+				// do not re-emit to the game instance provider if its shared
+				auto Provider = pLPSubsystem->GetAnalyticsProvider();
+				if (Provider != pGameInstanceProvider)
+				{
+					Event.EmitTo(pLPSubsystem->GetAnalyticsProvider().Get());
+				}
 			}
 		}
 	}
 }
-
 
 void URH_GameInstanceSessionSubsystem::EmitJoinInstanceStartedEvent(const URH_JoinedSession* Session) const
 {
@@ -993,7 +1010,7 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceStartedEvent(const URH_Jo
 		}
 	}
 
-	EmitEventToAllLocalPlayers(pGameInstance, Event);
+	EmitEventToAllProvidersOnce(pGameInstance, Event);
 }
 
 void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_JoinedSession* Session, bool bSuccess, const FString& Error) const
@@ -1015,7 +1032,7 @@ void URH_GameInstanceSessionSubsystem::EmitJoinInstanceCompletedEvent(const URH_
 	Event.IsSuccess = bSuccess;
 	Event.Reason = Error;
 
-	EmitEventToAllLocalPlayers(pGameInstance, Event);
+	EmitEventToAllProvidersOnce(pGameInstance, Event);
 }
 
 void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSession* Session, const FString& Reason) const
@@ -1036,5 +1053,5 @@ void URH_GameInstanceSessionSubsystem::EmitLeaveInstanceEvent(const URH_JoinedSe
 
 	Event.Reason = Reason;
 
-	EmitEventToAllLocalPlayers(pGameInstance, Event);
+	EmitEventToAllProvidersOnce(pGameInstance, Event);
 }

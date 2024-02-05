@@ -104,6 +104,23 @@ namespace RHStandardEvents
 
 	}
 
+	TSharedRef<FJsonValue> FInstanceLoginReceivedEvent::FSplitJoinInfo::ToJsonValue() const
+	{
+		auto JsonData = MakeShared<FJsonObject>();
+
+		if (ParentUserId.IsSet())
+		{
+			JsonData->SetStringField(TEXT("parent_user_id"), ParentUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens));
+		}
+
+		if (PlayerIndex.IsSet())
+		{
+			JsonData->SetNumberField(TEXT("player_index"), PlayerIndex.GetValue());
+		}
+
+		return MakeShared<FJsonValueObject>(JsonData);
+	}
+
 	TSharedRef<FJsonValue> FPlatformPurchaseEvent::FCheckoutData::ToJsonValue() const
 	{
 		auto JsonData = MakeShared<FJsonObject>();

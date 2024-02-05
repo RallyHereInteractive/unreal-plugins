@@ -107,6 +107,7 @@ Server Bootstrapper for the Game Instance.
 `public virtual bool `[`IsTickable`](#classURH__GameInstanceServerBootstrapper_1a806c9027d05eece8eed4ebb5ea3838de)`() const` | Whether or not to tick this object.
 `public virtual TStatId `[`GetStatId`](#classURH__GameInstanceServerBootstrapper_1ace60b33a55d1acdc8c07c42fc6f495e3)`() const` | What stat id to use to report for the tick.
 `public inline virtual FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceServerBootstrapper_1a55b7b631d0d985ed2b86cfa8ccfb3690)`() const` | Provides the auth context this bootstrapper owns.
+`public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1a3b8760a66ce261f2c4651298a8012097)`() const` | Get the Analytics Provider.
 `public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e)`() const` | Get the current bootstrapping mode.
 `public inline virtual FAuthContextPtr `[`GetSessionAuthContext`](#classURH__GameInstanceServerBootstrapper_1a3c8ddb006bbc3dea378d179e51be5b62)`() const` | Gets the auth context to use for API calls for the session owner.
 `public virtual void `[`ImportAPISession`](#classURH__GameInstanceServerBootstrapper_1a374284e48119f0092acb4a0da5634215)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Session)` | Imports a session object from the API into the owner (ex: from polling).
@@ -128,6 +129,8 @@ Server Bootstrapper for the Game Instance.
 `protected `[`ERH_ServerBootstrapFlowStep`](undefined.md#group__GameInstance_1ga70ec3ebac3b063bae8ad728c7cdd4d36)` `[`BootstrapStep`](#classURH__GameInstanceServerBootstrapper_1a0c41579ef8e737384ac8e1c82efb8d11) | Current Bootstrap Step
 `protected int32 `[`CurrentRecycleCount`](#classURH__GameInstanceServerBootstrapper_1a95d71262cc53a06cf14abb0e1c5ebd76) | The current recycle count (note that the initial boot is considered the first recycle, so this is effectively 1-based)
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceServerBootstrapper_1a31e36a649064c176a0727626265f6ff8) | The auth context for this bootstrapper
+`protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1a6613fddda184297e91015e16ce6e88f8) | The analytics provider for this bootstrapper
+`protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__GameInstanceServerBootstrapper_1a397fabb31e01701e68081f7cb3da45da) | The start time of the AnalyticsProvider
 `protected TUniquePtr< IRH_GameHostProviderInterface > `[`GameHostProvider`](#classURH__GameInstanceServerBootstrapper_1a1b04f9631853c09086b8f616bf2e14a5) | The game host provider for this bootstrapper
 `protected `[`FRH_BootstrappingResult`](GameInstance.md#structFRH__BootstrappingResult)` `[`BootstrappingResult`](#classURH__GameInstanceServerBootstrapper_1a0874c2b9b1ad9a8e9e61e26ac7777d04) | The current bootstrapping result
 `protected TMap< FString, `[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` > `[`Templates`](#classURH__GameInstanceServerBootstrapper_1a9cd2bf3717733651fd52d461e8f11f16) | Session templates to use to iniailize the session
@@ -232,6 +235,11 @@ What stat id to use to report for the tick.
 #### `public inline virtual FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceServerBootstrapper_1a55b7b631d0d985ed2b86cfa8ccfb3690)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a55b7b631d0d985ed2b86cfa8ccfb3690"></a>
 
 Provides the auth context this bootstrapper owns.
+
+<br>
+#### `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1a3b8760a66ce261f2c4651298a8012097)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a3b8760a66ce261f2c4651298a8012097"></a>
+
+Get the Analytics Provider.
 
 <br>
 #### `public inline virtual `[`URH_OnlineSession`](Session.md#classURH__OnlineSession)` * `[`GetSession`](#classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a2ee4a4f52cbb85e077b2ffb2459f2c3e"></a>
@@ -367,6 +375,16 @@ The current recycle count (note that the initial boot is considered the first re
 #### `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceServerBootstrapper_1a31e36a649064c176a0727626265f6ff8) <a id="classURH__GameInstanceServerBootstrapper_1a31e36a649064c176a0727626265f6ff8"></a>
 
 The auth context for this bootstrapper
+
+<br>
+#### `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceServerBootstrapper_1a6613fddda184297e91015e16ce6e88f8) <a id="classURH__GameInstanceServerBootstrapper_1a6613fddda184297e91015e16ce6e88f8"></a>
+
+The analytics provider for this bootstrapper
+
+<br>
+#### `protected TOptional< FDateTime > `[`AnalyticsStartTime`](#classURH__GameInstanceServerBootstrapper_1a397fabb31e01701e68081f7cb3da45da) <a id="classURH__GameInstanceServerBootstrapper_1a397fabb31e01701e68081f7cb3da45da"></a>
+
+The start time of the AnalyticsProvider
 
 <br>
 #### `protected TUniquePtr< IRH_GameHostProviderInterface > `[`GameHostProvider`](#classURH__GameInstanceServerBootstrapper_1a1b04f9631853c09086b8f616bf2e14a5) <a id="classURH__GameInstanceServerBootstrapper_1a1b04f9631853c09086b8f616bf2e14a5"></a>
@@ -1053,6 +1071,8 @@ Subsystem for the Game Instance.
 `public void `[`Deinitialize`](#classURH__GameInstanceSubsystem_1aae4a94b12bffd66d4d189992104d5694)`()` | Safely tears down the subsystem.
 `public inline void `[`SetAuthContext`](#classURH__GameInstanceSubsystem_1a4a87e0b22af83c1e92b55b9982ef0339)`(FAuthContextPtr InAuthContext)` | Sets the Auth Context for the subsystem.
 `public inline FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceSubsystem_1a3cb8fbd18f2eff771a140fe266a5f4b2)`() const` | Gets the subsystems designated auth context.
+`public inline void `[`SetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1a1319227db10c4bece2cca18069c821a7)`(TSharedPtr< class IAnalyticsProvider > InAnalyticsProvider)` | Sets the analytics provider for the subsystem.
+`public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1a24f6265f8d5f58d838c8efbf2e14f689)`() const` | Gets the instance's analytics provider to use.
 `public inline `[`URH_GameInstanceSessionSubsystem`](GameInstance.md#classURH__GameInstanceSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__GameInstanceSubsystem_1acab54311f541b73a796815cb8333e227)`() const` | Gets the session subsystem on the instance.
 `public inline `[`URH_SessionBrowserCache`](Session.md#classURH__SessionBrowserCache)` * `[`GetSessionSearchCache`](#classURH__GameInstanceSubsystem_1af167d4cc8a173881dc30b7fa64ad7e2b)`() const` | Gets the session search cache on the instance.
 `public inline `[`URH_MatchmakingBrowserCache`](MatchmakingBrowser.md#classURH__MatchmakingBrowserCache)` * `[`GetMatchmakingCache`](#classURH__GameInstanceSubsystem_1acfb5f63d8414c51c0c4b39fb5b6bf4fe)`() const` | Gets the matchmaking cache on the instance.
@@ -1063,11 +1083,14 @@ Subsystem for the Game Instance.
 `public inline `[`URH_ConfigSubsystem`](Config.md#classURH__ConfigSubsystem)` * `[`GetConfigSubsystem`](#classURH__GameInstanceSubsystem_1a7d68319809db5ea58fc8cd87eeeca7a7)`() const` | Gets the config subsystem on the instance.
 `public inline `[`URH_SettingsSubsystem`](Settings.md#classURH__SettingsSubsystem)` * `[`GetSettingsSubsystem`](#classURH__GameInstanceSubsystem_1afafed40a588921b712548ce5071bf4cb)`() const` | Gets the settings subsystem on the instance.
 `public void `[`GameModePreloginEvent`](#classURH__GameInstanceSubsystem_1a50b207a41e2a81673e201387c5ede103)`(class AGameModeBase * GameMode,const FUniqueNetIdRepl & NewPlayer,FString & ErrorMessage)` | Handles verification and validation of a player attempting to connect to the instance.
-`public bool `[`ValidateIncomingConnection`](#classURH__GameInstanceSubsystem_1a5d28941dd50473ed14ccee407715ef0f)`(class UNetConnection * Connection,FString & ErrorMessage) const` | 
+`public bool `[`ValidateIncomingConnection`](#classURH__GameInstanceSubsystem_1a5d28941dd50473ed14ccee407715ef0f)`(class UNetConnection * Connection,FString & ErrorMessage) const` | Handles verification and validation of a player attempting to connect to the instance.
+`public void `[`GameModePostLoginEvent`](#classURH__GameInstanceSubsystem_1ae698aef002846e5ce066775142d4ff0f)`(class AGameModeBase * GameMode,APlayerController * NewPlayer)` | Handles logic for when a player connects.
+`public void `[`GameModeLogoutEvent`](#classURH__GameInstanceSubsystem_1ade0fd2c912188f99417fbc8a778fe80b)`(class AGameModeBase * GameMode,AController * Exiting)` | Handles logic for when a player disconnects.
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1aeb1056507af99208ee7397e1b0d23112)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDelegateBlock & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `public inline void `[`BLUEPRINT_CustomEndpoint`](#classURH__GameInstanceSubsystem_1a42e7af944e181795ad0a71169e588e92)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const FRH_CustomEndpointDynamicDelegate & Delegate)` | Custom Endpoint wrapper (for custom endpoints that require authentication)
 `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) | Auth context used by the Game Instance Subsystem.
+`protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceSubsystem_1aae5830efe955343c08f88ce79747be51) | Analytics provider used by the Game Instance Subsystem.
 `protected TArray< `[`URH_GameInstanceSubsystemPlugin`](SubsystemBase.md#classURH__GameInstanceSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__GameInstanceSubsystem_1a6204638edcade74afc54e77e367b6078) | Array of plugins for the Game Instance Subsystem.
 `protected `[`URH_GameInstanceSessionSubsystem`](GameInstance.md#classURH__GameInstanceSessionSubsystem)` * `[`SessionSubsystem`](#classURH__GameInstanceSubsystem_1a136c6176cf760f3fc26194ea1a5a8ba2) | The Session Subsystem.
 `protected `[`URH_SessionBrowserCache`](Session.md#classURH__SessionBrowserCache)` * `[`SessionSearchCache`](#classURH__GameInstanceSubsystem_1a2fa61113c03eff1731c6b0133826d745) | The Cache for seasion seaches.
@@ -1121,6 +1144,19 @@ Sets the Auth Context for the subsystem.
 #### `public inline FAuthContextPtr `[`GetAuthContext`](#classURH__GameInstanceSubsystem_1a3cb8fbd18f2eff771a140fe266a5f4b2)`() const` <a id="classURH__GameInstanceSubsystem_1a3cb8fbd18f2eff771a140fe266a5f4b2"></a>
 
 Gets the subsystems designated auth context.
+
+<br>
+#### `public inline void `[`SetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1a1319227db10c4bece2cca18069c821a7)`(TSharedPtr< class IAnalyticsProvider > InAnalyticsProvider)` <a id="classURH__GameInstanceSubsystem_1a1319227db10c4bece2cca18069c821a7"></a>
+
+Sets the analytics provider for the subsystem.
+
+#### Parameters
+* `InAnalyticsProvider` The analytics provider to set with.
+
+<br>
+#### `public inline virtual TSharedPtr< class IAnalyticsProvider > `[`GetAnalyticsProvider`](#classURH__GameInstanceSubsystem_1a24f6265f8d5f58d838c8efbf2e14f689)`() const` <a id="classURH__GameInstanceSubsystem_1a24f6265f8d5f58d838c8efbf2e14f689"></a>
+
+Gets the instance's analytics provider to use.
 
 <br>
 #### `public inline `[`URH_GameInstanceSessionSubsystem`](GameInstance.md#classURH__GameInstanceSessionSubsystem)` * `[`GetSessionSubsystem`](#classURH__GameInstanceSubsystem_1acab54311f541b73a796815cb8333e227)`() const` <a id="classURH__GameInstanceSubsystem_1acab54311f541b73a796815cb8333e227"></a>
@@ -1182,6 +1218,33 @@ Handles verification and validation of a player attempting to connect to the ins
 <br>
 #### `public bool `[`ValidateIncomingConnection`](#classURH__GameInstanceSubsystem_1a5d28941dd50473ed14ccee407715ef0f)`(class UNetConnection * Connection,FString & ErrorMessage) const` <a id="classURH__GameInstanceSubsystem_1a5d28941dd50473ed14ccee407715ef0f"></a>
 
+Handles verification and validation of a player attempting to connect to the instance.
+
+#### Parameters
+* `Connection` The player that is attempting to connect. 
+
+* `ErrorMessage` If an Error happens for this player being valid, this will be set to the error message.
+
+<br>
+#### `public void `[`GameModePostLoginEvent`](#classURH__GameInstanceSubsystem_1ae698aef002846e5ce066775142d4ff0f)`(class AGameModeBase * GameMode,APlayerController * NewPlayer)` <a id="classURH__GameInstanceSubsystem_1ae698aef002846e5ce066775142d4ff0f"></a>
+
+Handles logic for when a player connects.
+
+#### Parameters
+* `GameMode` The game mode the instance is running. 
+
+* `NewPlayer` The player that is connecting.
+
+<br>
+#### `public void `[`GameModeLogoutEvent`](#classURH__GameInstanceSubsystem_1ade0fd2c912188f99417fbc8a778fe80b)`(class AGameModeBase * GameMode,AController * Exiting)` <a id="classURH__GameInstanceSubsystem_1ade0fd2c912188f99417fbc8a778fe80b"></a>
+
+Handles logic for when a player disconnects.
+
+#### Parameters
+* `GameMode` The game mode the instance is running. 
+
+* `Exiting` The player that is disconnecting.
+
 <br>
 #### `public void `[`CustomEndpoint`](#classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162)`(const `[`FRH_CustomEndpointRequestWrapper`](Common.md#structFRH__CustomEndpointRequestWrapper)` & Request,const RallyHereAPI::FDelegate_CustomEndpointSend & Delegate)` <a id="classURH__GameInstanceSubsystem_1a1a8dcae5a5642315c8ba20f07aebd162"></a>
 
@@ -1216,6 +1279,11 @@ Custom Endpoint wrapper (for custom endpoints that require authentication)
 #### `protected FAuthContextPtr `[`AuthContext`](#classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775) <a id="classURH__GameInstanceSubsystem_1a8836a0620d1de84cc1383f20b38ab775"></a>
 
 Auth context used by the Game Instance Subsystem.
+
+<br>
+#### `protected TSharedPtr< class IAnalyticsProvider > `[`AnalyticsProvider`](#classURH__GameInstanceSubsystem_1aae5830efe955343c08f88ce79747be51) <a id="classURH__GameInstanceSubsystem_1aae5830efe955343c08f88ce79747be51"></a>
+
+Analytics provider used by the Game Instance Subsystem.
 
 <br>
 #### `protected TArray< `[`URH_GameInstanceSubsystemPlugin`](SubsystemBase.md#classURH__GameInstanceSubsystemPlugin)` * > `[`SubsystemPlugins`](#classURH__GameInstanceSubsystem_1a6204638edcade74afc54e77e367b6078) <a id="classURH__GameInstanceSubsystem_1a6204638edcade74afc54e77e367b6078"></a>
