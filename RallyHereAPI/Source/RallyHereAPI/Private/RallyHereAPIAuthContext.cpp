@@ -122,6 +122,7 @@ void FAuthContext::ProcessLoginToken(const FResponse_Token& LoginResponse_)
     }
 }
 
+
 void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
 {
     const bool bSuccess = LoginResponse_.IsSuccessful() && LoginResponse_.GetHttpResponseCode() == EHttpResponseCodes::Type::Ok;
@@ -133,30 +134,52 @@ void FAuthContext::ProcessLoginRefresh(const FResponse_Login& LoginResponse_)
         return;
     }
 
+    // clear refreshing flag for consistency
+    bIsRefreshing = false;
     OnRefreshTokenExpired();
 }
 
 void FAuthContext::OnRefreshTokenExpired()
 {
+    if (bIsRefreshing)
+    {
+        UE_LOG(LogRallyHereAPI, Verbose, TEXT("FAuthContext::OnRefreshTokenExpired skipping refresh while already in progress"));
+        return;
+    }
+
+    // set refreshing flag for consistency, to block multiple refresh attempts
+    bIsRefreshing = true;
+
     // if refresh was not successful, dispatch delegate to attempt to relogin
     if (RefreshTokenExpired.IsBound())
     {
+        UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired attempting to resolve expired or invalid refresh token via delegate"));
+
         // fire the token expiration delegate if it is bound.  If we are not logged in when its delegate is completed, clear the auth context to log out
         TWeakPtr<FAuthContext> WeakSharedThis = AsShared();
         RefreshTokenExpired.Execute(FSimpleDelegate::CreateLambda([WeakSharedThis]() {
             auto StrongThis = WeakSharedThis.Pin();
             if (StrongThis.IsValid())
             {
-                StrongThis->bIsRefreshing = false;
-                if (!StrongThis->IsLoggedIn())
+                // if we are still in the refreshing state (or if we now are explicitly logged out), we did not successfully relogin
+                if (StrongThis->bIsRefreshing || !StrongThis->IsLoggedIn())
                 {
+                    UE_LOG(LogRallyHereAPI, Warning, TEXT("FAuthContext::OnRefreshTokenExpired was unable to resolve expired or invalid refresh token, clearing auth context"));
+                    // clear refreshing state, and auth context, which will trigger logout callback
+                    StrongThis->bIsRefreshing = false;
                     StrongThis->ClearAuthContext(true);
+                }
+                else
+                {
+                    UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired successfully resolved expired refresh token"));
                 }
             }
         }));
     }
     else
     {
+        UE_LOG(LogRallyHereAPI, Log, TEXT("FAuthContext::OnRefreshTokenExpired does not have a delegate bound, clearing auth context"));
+
         // no handler is bound for when the refresh token expires, so clear the auth context to log out
         bIsRefreshing = false;
         ClearAuthContext(true);
