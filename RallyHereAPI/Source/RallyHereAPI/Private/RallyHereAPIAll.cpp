@@ -14,7 +14,6 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&Config);
     AllAPIs.Add(&ConfigurationV1);
     AllAPIs.Add(&Custom);
-    AllAPIs.Add(&Discovery);
     AllAPIs.Add(&Entitlements);
     AllAPIs.Add(&Environment);
     AllAPIs.Add(&Events);
@@ -25,6 +24,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&KeyClaims);
     AllAPIs.Add(&KeyEntitlements);
     AllAPIs.Add(&Marketing);
+    AllAPIs.Add(&Match);
     AllAPIs.Add(&PlayerIdNotification);
     AllAPIs.Add(&PlayerNotification);
     AllAPIs.Add(&Presence);
@@ -34,7 +34,6 @@ FRallyHereAPIAll::FRallyHereAPIAll()
     AllAPIs.Add(&Regions);
     AllAPIs.Add(&Sessions);
     AllAPIs.Add(&Settings);
-    AllAPIs.Add(&Site);
     AllAPIs.Add(&Time);
     AllAPIs.Add(&Users);
 }
@@ -122,16 +121,6 @@ FCustomAPI& FRallyHereAPIAll::GetCustom()
 const FCustomAPI& FRallyHereAPIAll::GetCustom() const
 {
     return Custom;
-}
-
-FDiscoveryAPI& FRallyHereAPIAll::GetDiscovery()
-{
-    return Discovery;
-}
-
-const FDiscoveryAPI& FRallyHereAPIAll::GetDiscovery() const
-{
-    return Discovery;
 }
 
 FEntitlementsAPI& FRallyHereAPIAll::GetEntitlements()
@@ -234,6 +223,16 @@ const FMarketingAPI& FRallyHereAPIAll::GetMarketing() const
     return Marketing;
 }
 
+FMatchAPI& FRallyHereAPIAll::GetMatch()
+{
+    return Match;
+}
+
+const FMatchAPI& FRallyHereAPIAll::GetMatch() const
+{
+    return Match;
+}
+
 FPlayerIdNotificationAPI& FRallyHereAPIAll::GetPlayerIdNotification()
 {
     return PlayerIdNotification;
@@ -322,16 +321,6 @@ FSettingsAPI& FRallyHereAPIAll::GetSettings()
 const FSettingsAPI& FRallyHereAPIAll::GetSettings() const
 {
     return Settings;
-}
-
-FSiteAPI& FRallyHereAPIAll::GetSite()
-{
-    return Site;
-}
-
-const FSiteAPI& FRallyHereAPIAll::GetSite() const
-{
-    return Site;
 }
 
 FTimeAPI& FRallyHereAPIAll::GetTime()

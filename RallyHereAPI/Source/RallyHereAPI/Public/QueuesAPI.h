@@ -85,8 +85,10 @@ private:
  * Get the config used to launch an instance by the launch template id. Launch template ID can be found in
  * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
@@ -155,8 +157,10 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
  *
  * Get all the available and active queues that sessions can try to join
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
@@ -226,8 +230,10 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
  *
  * Get all the available and active queues that sessions can try to join
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
@@ -297,8 +303,10 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
  * Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in
  * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
@@ -366,8 +374,10 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
  *
  * Get info about a specific match making profile
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
@@ -436,8 +446,10 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
  *
  * Get info about a specific match making profile
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
@@ -506,8 +518,10 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
  * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information
  * from the `queues` config endpoints
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  *             
  * Required Session Permissions: None
@@ -577,8 +591,10 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
  * Get match making templates, rules, and profiles for a template group. Groups can be found on the queue information
  * from the `queues` config endpoints
  * 
- * Required Permissions: 
- * 	For any player (including themselves)any of: `session:*`, `session:read:config`
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * 
  * 
  * 
  * Required Session Permissions: None
