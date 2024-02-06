@@ -1034,7 +1034,7 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_GameInstanceSubsystem* pGISu
 				{
 					if (auto pp = PlayerInfo->GetSessions())
 					{
-						pp->RequestUpdate(false, FRH_OnRequestPlayerSessionsDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleGetPlayerSessions, PlayerInfo->GetRHPlayerUuid()));
+						pp->RequestUpdate(false, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleGetPlayerSessions, PlayerInfo->GetRHPlayerUuid()));
 					}
 					else
 					{
@@ -1053,7 +1053,7 @@ void FRHDTW_Session::ImGuiDisplayPlayerSessions(URH_GameInstanceSubsystem* pGISu
 				{
 					if (auto pp = PlayerInfo->GetSessions())
 					{
-						pp->RequestUpdate(true, FRH_OnRequestPlayerSessionsDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleGetPlayerSessions, PlayerInfo->GetRHPlayerUuid()));
+						pp->RequestUpdate(true, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateSP(SharedThis(this), &FRHDTW_Session::HandleGetPlayerSessions, PlayerInfo->GetRHPlayerUuid()));
 					}
 					else
 					{
@@ -1876,7 +1876,7 @@ void FRHDTW_Session::HandleSessionUpdatedResult(bool bSuccess, URH_SessionView* 
 	}
 }
 
-void FRHDTW_Session::HandleGetPlayerSessions(bool bSuccess, URH_PlayerSessions* SessionsData, FGuid PlayerUuid)
+void FRHDTW_Session::HandleGetPlayerSessions(bool bSuccess, URH_PlayerInfoSubobject* SessionsData, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{

@@ -183,6 +183,9 @@ public:
 	/** @brief Extensible MatchmakingBrowserCache class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath MatchmakingBrowserCacheClass;
+	/** @brief Extensible MatchSubsaystem class path */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath MatchSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
@@ -425,6 +428,9 @@ public:
 	/** @brief Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 EventsReceiveEventPriority;
+	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesGetOtherPriority;
 };
 
 /** @} */

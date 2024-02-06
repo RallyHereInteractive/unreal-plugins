@@ -1768,8 +1768,9 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 				}
 				else
 				{
-					PlayerPresence->RequestUpdate(false, FRH_OnRequestPlayerPresenceDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystem, OSS, IdentityInterface, PlayerInfo](bool bSuccess, URH_PlayerPresence* Presence)
+					PlayerPresence->RequestUpdate(false, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateWeakLambda(this, [this, LocalPlayerSubsystem, OSS, IdentityInterface, PlayerInfo](bool bSuccess, URH_PlayerInfoSubobject* Subobj)
 						{
+							auto Presence = Cast<URH_PlayerPresence>(Subobj);
 							if (bSuccess && Presence != nullptr)
 							{
 								if (FName(Presence->Platform) == OSS->GetSubsystemName())

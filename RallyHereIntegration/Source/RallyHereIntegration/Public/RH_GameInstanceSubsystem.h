@@ -23,6 +23,7 @@ class URH_PlayerInfoSubsystem;
 class URH_CatalogSubsystem;
 class URH_ConfigSubsystem;
 class URH_SettingsSubsystem;
+class URH_MatchSubsystem;
 
 /** @defgroup GameInstance RallyHere Game Instance
  *  @{
@@ -113,6 +114,11 @@ public:
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Config")
 	inline URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; };
+	/**
+	* @brief Gets the match subsystem on the instance.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Match")
+	inline URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; };
 	/**
 	 * @brief Handles verification and validation of a player attempting to connect to the instance.
 	 * @param [in] GameMode The game mode the instance is running.
@@ -234,6 +240,9 @@ protected:
 	/** @brief The Settings Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSettingsSubsystem, Category = "Settings")
 	URH_SettingsSubsystem* SettingsSubsystem;
+	/** @brief The Match Subsystem */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetMatchSubsystem, Category = "Match")
+	URH_MatchSubsystem* MatchSubsystem;
 
 	// control flags
 	/** @brief If the Game Instance Subsystem is enabled. */
