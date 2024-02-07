@@ -1352,4 +1352,12 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
 	virtual URH_PlatformSessionSyncer* GetPlatformSyncerByPlatformSessionId(const FUniqueNetIdRepl& SessionId) const = 0;
+	/**
+	* @brief Gets the allocation id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundAllocationId() const { return TOptional<FString>(); }
+	/**
+	* @brief Gets the instance id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundInstanceId() const { return TOptional<FString>(); }
 };

@@ -593,8 +593,6 @@ void URH_JoinedSession::Expire(const FRH_OnSessionExpiredDelegate& Delegate)
 
 FRHAPI_SessionUpdate URH_JoinedSession::GetSessionUpdateInfoDefaults() const
 {
-	auto Session = GetSessionData();
-
 	FRHAPI_SessionUpdate Update;
 
 	// left for backwards compatiblity, but all elements are now optional, so should default to "not set"
@@ -605,33 +603,15 @@ FRHAPI_SessionUpdate URH_JoinedSession::GetSessionUpdateInfoDefaults() const
 FRHAPI_InstanceInfoUpdate URH_JoinedSession::GetInstanceUpdateInfoDefaults() const
 {
 	FRHAPI_InstanceInfoUpdate Update;
-	const auto* InstanceData = GetInstanceData();
-	if (InstanceData != nullptr)
+
+	// left for backwards compatiblity, but all elements are now optional, so should default to "not set"
+
+	// look up the "bound" allocation id, as it is required for the update when running via an allocation
+	auto SessionOwner = GetSessionOwner();
+	auto AllocationId = SessionOwner->GetBoundAllocationId();
+	if (AllocationId.IsSet())
 	{
-		if (InstanceData->GetAllocationId(Update.GetAllocationId()))
-		{
-			Update.AllocationId_IsSet = true;
-		}
-
-		Update.SetJoinStatus(InstanceData->JoinStatus);
-		if (InstanceData->GetJoinParams(Update.GetJoinParams()))
-		{
-			Update.JoinParams_IsSet = true;
-		}
-
-		if (InstanceData->GetCustomData(Update.GetCustomData()))
-		{
-			Update.CustomData_IsSet = true;
-		}
-
-		if (InstanceData->GetVersion(Update.GetVersion()))
-		{
-			Update.Version_IsSet = true;
-		}
-		else
-		{
-			Update.SetVersion(GetClientVersionForSession());
-		}
+		Update.SetAllocationId(AllocationId.GetValue());
 	}
 
 	return Update;

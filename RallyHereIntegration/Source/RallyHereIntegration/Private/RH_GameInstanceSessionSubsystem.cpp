@@ -216,7 +216,8 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 		{
 			// instance info updates are not really properly using optional flags, so get a default object and pass it
 			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
-			// make sure we send version in case we are updating joinability.  Its possible the default object above will not have received it yet
+
+			// make sure we send version in case we are updating joinability.
 			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
 
 			FString PublicConnStr;
