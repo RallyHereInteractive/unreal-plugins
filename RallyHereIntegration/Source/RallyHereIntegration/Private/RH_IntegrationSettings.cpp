@@ -103,6 +103,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	UsersGetLinkedPlatformsPriority = 900000;
 	EventsReceiveEventPriority = 1000000;
 	MatchesGetOtherPriority = 1000000;
+	MatchesSearchPriority = 1000000;
+	MatchesLookupPriority = 1000000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const

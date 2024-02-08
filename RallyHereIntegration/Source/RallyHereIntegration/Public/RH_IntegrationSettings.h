@@ -441,6 +441,12 @@ public:
 	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
 	int32 MatchesGetOtherPriority;
+	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesSearchPriority;
+	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesLookupPriority;
 };
 
 /** @} */
