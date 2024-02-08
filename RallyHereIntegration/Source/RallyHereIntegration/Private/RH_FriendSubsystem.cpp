@@ -118,7 +118,7 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 			{
 				for (URH_PlayerPlatformInfo* Platform : Platforms)
 				{
-					TArray< URH_RHFriendAndPlatformFriend*> AllFriends = Friends;
+					TArray<URH_RHFriendAndPlatformFriend*> AllFriends = Friends;
 					URH_RHFriendAndPlatformFriend** MatchingFriendPtr = AllFriends.FindByPredicate([Platform](URH_RHFriendAndPlatformFriend* Friend)
 						{
 							if (!Friend->GetRHPlayerUuid().IsValid() && Friend->GetPlatformFriends().Num() > 0)
@@ -141,6 +141,12 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 							MainFriend->PlatformFriends.Add(PlatformFriend);
 						}
 						Friends.Remove(*MatchingFriendPtr);
+					}
+					else
+					{
+						URH_PlatformFriend* RHPlatformFriend = NewObject<URH_PlatformFriend>(this);
+						RHPlatformFriend->Init(Platform);
+						MainFriend->PlatformFriends.Add(RHPlatformFriend);
 					}
 				}
 			};
