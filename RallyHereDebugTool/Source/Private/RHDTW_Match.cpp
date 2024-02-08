@@ -80,13 +80,13 @@ void FRHDTW_Match::DoSearchMatches()
 
 void FRHDTW_Match::DoViewPlayerMatches()
 {
-	int NumTargetedPlayers = 0;
+	int NumSelectedPlayers = 0;
 	if (URallyHereDebugTool* pOwner = GetOwner())
 	{
-		NumTargetedPlayers = pOwner->GetAllTargetedPlayerInfos().Num();
+		NumSelectedPlayers = pOwner->GetAllSelectedPlayerInfos().Num();
 	}
 
-	ImGui::Text("Actions towards [%d] targeted players:", NumTargetedPlayers);
+	ImGui::Text("Actions towards [%d] selected players:", NumSelectedPlayers);
 	bool bRequestHistory = false;
 	bool bForceRequestHistory = false;
 	if (ImGui::Button("Request History"))
@@ -101,7 +101,7 @@ void FRHDTW_Match::DoViewPlayerMatches()
 
 	if (bRequestHistory || bForceRequestHistory)
 	{
-		ForEachTargetedRHPlayer(FRHDT_RHPAction::CreateLambda([this, bForceRequestHistory](URH_PlayerInfo* TargetedPlayer)
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, bForceRequestHistory](URH_PlayerInfo* TargetedPlayer)
 			{
 				if (TargetedPlayer != nullptr && TargetedPlayer->GetMatches() != nullptr)
 				{
@@ -111,7 +111,7 @@ void FRHDTW_Match::DoViewPlayerMatches()
 	}
 
 	// loop through each player and display their matches
-	ForEachTargetedRHPlayer(FRHDT_RHPAction::CreateLambda([this, bForceRequestHistory](URH_PlayerInfo* TargetedPlayer)
+	ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, bForceRequestHistory](URH_PlayerInfo* TargetedPlayer)
 		{
 			ImGui::Separator();
 
