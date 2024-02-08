@@ -14,4 +14,8 @@ struct FRHDTW_Match : public FRH_DebugToolWindow
 
 	virtual void Do() override;
 
+	virtual void DoCreateMatch();
+	virtual void DoSearchMatches();
+	virtual void DoViewPlayerMatches();
+
 };
