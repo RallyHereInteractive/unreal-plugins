@@ -205,9 +205,6 @@ protected:
 	template<typename T>
 	void UpdateBase(const T& Other)
 	{
-		if (Other.ETag.IsSet())
-			ETag = Other.ETag.GetValue();
-
 		LastUpdated = FDateTime::UtcNow();
 		bInitialized = true;
 	}
@@ -279,6 +276,10 @@ protected:
 	virtual void Update(const GetPresenceType::Response& Other)
 	{
 		UpdateBase(Other);
+		if (Other.ETag.IsSet())
+		{
+			ETag = Other.ETag.GetValue();
+		}
 
 		const auto& Presence = Other.Content;
 		Status = Presence.GetStatus(ERHAPI_OnlineStatus::Offline);
@@ -328,6 +329,11 @@ protected:
 	{
 		UpdateBase(Other);
 
+		if (Other.ETag.IsSet())
+		{
+			ETag = Other.ETag.GetValue();
+		}
+
 		Sessions = Other.Content;
 	}
 	/**
@@ -350,10 +356,22 @@ public:
 	typedef RallyHereAPI::Traits_GetPlayersMatches GetMatchesType;
 
 	/**
-	* @brief Cursor to track pages when doing match list requests.
+	* @brief The size of the pages to poll, if 0, uses default
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
-	FString Cursor;
+	int32 PollPageSize;
+
+	/**
+	* @brief Polling of new pages is stopped after this value is reached, if 0, polls until all pages are polled
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
+	int32 PollMaxPageCount;
+
+	/**
+	* @brief The maximum age after which to stop polling new pages, if 0, polls until max count is reached
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
+	FTimespan PollMaxAge;
 
 	/**
 	* @brief The matches the player has participated in.
@@ -363,23 +381,59 @@ public:
 
 protected:
 
+	/** @brief A simple context object to hold the state of a multipage poll */
+	struct FPollContext
+	{
+		// state
+		FString Cursor;
+		FTimespan CurrentMaxAge;
+		int32 CurrentPageCount;
+		
+		// config
+		int32 PageSize;
+		FTimespan MaxAgeLimit;
+		int32 PageCountLimit;
+
+		FPollContext()
+			: Cursor()
+			, CurrentMaxAge(FTimespan::MinValue())
+			, CurrentPageCount(0)
+			, PageSize(0)
+			, MaxAgeLimit(FTimespan::Zero())
+			, PageCountLimit(0)
+		{}
+	};
+
 	/**
 	 * @brief Starts a poll of the object data
 	 * @param Delegate Callback delegate for the poll.
 	 */
 	void Poll(const FRH_PollCompleteFunc& Delegate);
+
+	/**
+	 * @brief Starts a poll of the object data
+	 * @param Delegate Callback delegate for the poll.
+	 * @param Context The context to use for the poll.
+	 */
+	virtual void PollNextPage(const FRH_PollCompleteFunc& Delegate, TSharedPtr<FPollContext> Context = nullptr);
 	
 	/**
 	 * @brief Stores the response data from an API presence request.
-	 * @param Other The presence data to store.
+	 * @param Other The match data to store.
+	 * @param Context The context to use for the poll.
 	 */
-	virtual void Update(const GetMatchesType::Response& Other)
+	virtual void Update(const GetMatchesType::Response& Other, TSharedPtr<FPollContext> Context)
 	{
 		UpdateBase(Other);
 		
-		Cursor = Other.Content.GetCursor();
+		if (Context.IsValid())
+		{
+			Context->CurrentPageCount++;
+		}
 
 		// sort and merge the matches in the response into our cache
+		FTimespan MaxAge;
+		auto TimeNow = FDateTime::UtcNow();
 		const auto MatchesResult = Other.Content.GetPlayerMatchesOrNull();
 		if (MatchesResult != nullptr)
 		{
@@ -389,10 +443,32 @@ protected:
 				if (Match != nullptr)
 				{
 					Matches.Add(Match->GetMatchId(), PlayerMatch);
+
+					const auto* CreatedTime = Match->GetCreatedTimestampOrNull();
+					const auto* EndTime = Match->GetEndTimestampOrNull();
+
+					// prefer using created time for age checks
+					if (CreatedTime != nullptr)
+					{
+						MaxAge = FMath::Max(MaxAge, TimeNow - *CreatedTime);
+					}
+					else if (EndTime != nullptr)
+					{
+						MaxAge = FMath::Max(MaxAge, TimeNow - *EndTime);
+					}
 				}
 			}
 		}
+
+		Context->CurrentMaxAge = FMath::Max(Context->CurrentMaxAge, MaxAge);
 	}
+
+	/**
+	 * @brief Check if we still need to poll more pages
+	 * @param Context The context to use for the poll.
+	 * @return False if we should continue polling, true if we should stop.
+	 */
+	static bool CheckPollingCursorComplete(const TSharedPtr<FPollContext> Context);
 
 	/**
 	 * @brief Handles executing any delegate listeners for the update.

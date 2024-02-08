@@ -891,9 +891,28 @@ URH_PlayerMatches::URH_PlayerMatches(const FObjectInitializer& ObjectInitializer
 {
 	PollTimerName = FName(TEXT("PlayerMatches"));
 	PollPriority = GetDefault<URH_IntegrationSettings>()->MatchesGetOtherPriority;
+
+
+	PollPageSize = GetDefault<URH_IntegrationSettings>()->PlayerMatchesPageSize;
+	PollMaxPageCount = GetDefault<URH_IntegrationSettings>()->PlayerMatchesMaxPageCount;
+	PollMaxAge = GetDefault<URH_IntegrationSettings>()->PlayerMatchesMaxAge;
 }
 
 void URH_PlayerMatches::Poll(const FRH_PollCompleteFunc& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// create a shared pointer to a cursor to track our polling context
+	TSharedPtr<FPollContext> Context = MakeShared<FPollContext>();
+
+	Context->PageSize = PollPageSize;
+	Context->MaxAgeLimit = PollMaxAge;
+	Context->PageCountLimit = PollMaxPageCount;
+
+	PollNextPage(Delegate, Context);
+}
+
+void URH_PlayerMatches::PollNextPage(const FRH_PollCompleteFunc & Delegate, TSharedPtr<FPollContext> Context)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -901,18 +920,73 @@ void URH_PlayerMatches::Poll(const FRH_PollCompleteFunc& Delegate)
 
 	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
-	Request.IfNoneMatch = ETag;
+	//Request.IfNoneMatch = ETag;
+	if (Context.IsValid())
+	{
+		if (!Context->Cursor.IsEmpty())
+		{
+			Request.Cursor = Context->Cursor;
+		}
+
+		if (Context->PageSize > 0)
+		{
+			Request.PageSize = Context->PageSize;
+		}
+	}
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetMatchesType>>(
-		GetMatchesType::Delegate::CreateUObject(this, &URH_PlayerMatches::Update),
-		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		GetMatchesType::Delegate::CreateWeakLambda(this, [this, Context](const GetMatchesType::Response& Response)
 			{
-				PollComplete(bSuccess, Delegate);
+				// update locally based on response, and update our context
+				Update(Response, Context);
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (Context.IsValid() && !CheckPollingCursorComplete(Context))
+				{
+					// if cursor is not empty, continue polling
+					PollNextPage(Delegate, Context);
+				}
+				else
+				{
+					// if cursor is empty, we are done with the poll loop
+					PollComplete(bSuccess, Delegate);
+				}
 			}),
 		PollPriority
 	);
 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
+bool URH_PlayerMatches::CheckPollingCursorComplete(const TSharedPtr<FPollContext> Context)
+{
+	// if cursor is not empty and there are more matches to fetch, check to see if we should fetch them
+	if (Context.IsValid() && !Context->Cursor.IsEmpty())
+	{
+		// check if we have hit our max age limit
+		if (!Context->MaxAgeLimit.IsZero() && Context->CurrentMaxAge > Context->MaxAgeLimit)
+		{
+			// complete the poll
+			return true;
+		}
+		// check if we have hit our max page count limit
+		else if (Context->PageCountLimit > 0 && Context->CurrentPageCount >= Context->PageCountLimit)
+		{
+			// complete the poll
+			return true;
+		}
+		else
+		{
+			// cursor is valid and limit has not been reached, do not complete the poll
+			return false;
+		}
+	}
+	else
+	{
+		// if we have no valid cursor, complete the poll
+		return true;
+	}
 }
 
 void URH_PlayerMatches::ExecuteUpdatedDelegates(bool bSuccess)

@@ -191,6 +191,16 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	bool bLocalPlayerSubsystemSandboxing;
 
+	/** @brief Sets the default page size when requesting a player's match history */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches Player History")
+	int32 PlayerMatchesPageSize;
+	/** @brief Sets the default page size when requesting a player's match history */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches Player History")
+	int32 PlayerMatchesMaxPageCount;
+	/** @brief Sets the default page size when requesting a player's match history */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches Player History")
+	FTimespan PlayerMatchesMaxAge;
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// API Priorities
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
