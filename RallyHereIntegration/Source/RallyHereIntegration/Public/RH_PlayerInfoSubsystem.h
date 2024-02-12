@@ -188,7 +188,7 @@ protected:
 	 */
 	virtual bool ShouldPoll() const
 	{
-		return false;
+		return TemporaryRequestDelegates.Num() > 0 || OnUpdatedDelegate.IsBound() || BLUEPRINT_OnUpdatedDelegate.IsBound();
 	}
 	/**
 	 * @brief Starts a poll of the object data
