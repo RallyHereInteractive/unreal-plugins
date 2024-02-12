@@ -178,6 +178,24 @@ public:
 	
 	}
 
+	/**
+	 * @brief Get all matches from the cache
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Get All Matches"))
+	const TMap<FString, FRHAPI_MatchWithPlayers>& GetAllMatches() const
+	{
+		return MatchesCache;
+	}
+
+	/**
+	 * @brief Clear the match cache
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Clear Matches Cache"))
+	void ClearMatchesCache()
+	{
+		MatchesCache.Empty();
+	}
+
 protected:
 	UPROPERTY(VisibleInstanceOnly, Category = "Session")
 	TMap<FString, FRHAPI_MatchWithPlayers> MatchesCache;
