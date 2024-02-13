@@ -126,6 +126,17 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnMatchLookupCompleteDynamicDelegate, b
 DECLARE_DELEGATE_ThreeParams(FRH_OnMatchLookupCompleteDelegate, bool, const FRHAPI_MatchWithPlayers&, const FRH_ErrorInfo&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnMatchLookupCompleteDelegateBlock, FRH_OnMatchLookupCompleteDelegate, FRH_OnMatchLookupCompleteDynamicDelegate, bool, const FRHAPI_MatchWithPlayers&, const FRH_ErrorInfo&);
 
+// delegates for match create/update events
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnMatchUpdateCompleteDynamicDelegate, bool, bSuccess, const FRHAPI_MatchResponse&, Match, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnMatchUpdateCompleteDelegate, bool, const FRHAPI_MatchResponse&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnMatchUpdateCompleteDelegateBlock, FRH_OnMatchUpdateCompleteDelegate, FRH_OnMatchUpdateCompleteDynamicDelegate, bool, const FRHAPI_MatchResponse&, const FRH_ErrorInfo&);
+
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate, bool, bSuccess, const FRHAPI_MatchPlayerResponse&, Match, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnMatchPlayerUpdateCompleteDelegate, bool, const FRHAPI_MatchPlayerResponse&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnMatchPlayerUpdateCompleteDelegateBlock, FRH_OnMatchPlayerUpdateCompleteDelegate, FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate, bool, const FRHAPI_MatchPlayerResponse&, const FRH_ErrorInfo&);
+
 /**
  * @brief Match Subsystem used for match API calls.
  */
@@ -199,6 +210,97 @@ public:
 protected:
 	UPROPERTY(VisibleInstanceOnly, Category = "Session")
 	TMap<FString, FRHAPI_MatchWithPlayers> MatchesCache;
+
+
+	// ACTIVE MATCH AND MATCH CREATION/UPDATING
+public:
+	/**
+	 * @brief Get the active match ID
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Get Active Match ID"))
+	const FString& GetActiveMatchId() const { return GetActiveMatch().GetMatchId(); }
+	/**
+	 * @brief Get the active match
+	 */
+	const FRHAPI_MatchResponse& GetActiveMatch() const { return ActiveMatch.Get(FRHAPI_MatchResponse()); }
+	
+	/**
+	 * @brief Create a match (POST)
+	 * @param [in] Match The match to create
+	 * @param [in] Players The players to add to the match
+	 * @param [in] bSetActive Whether to set the match as the active match
+	 * @param [in] Delegate Callback with the results of the match creation
+	 */
+	virtual void CreateMatch(const FRHAPI_MatchRequest& Match, const TArray<FRHAPI_PlayerRequest>& Players, bool bSetActive = true, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Create Match", AutoCreateRefTerm = "Match,Players,Delegate"))
+	void BLUEPRINT_CreateMatch(const FRHAPI_MatchRequest& Match, const TArray<FRHAPI_PlayerRequest>& Players, bool bSetActive, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { CreateMatch(Match, Players, bSetActive, Delegate); }
+
+	/**
+	 * @brief Update a match (PATCH)
+	 * @param [in] MatchId The match to update
+	 * @param [in] Match The match to update
+	 * @param [in] Delegate Callback with the results of the match update
+	 */
+	virtual void UpdateMatch(const FString& MatchId, const FRHAPI_MatchRequest& Match, bool bUpdateActive = true, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match", AutoCreateRefTerm = "Match,Delegate"))
+	void BLUEPRINT_UpdateMatch(const FString& MatchId, const FRHAPI_MatchRequest& Match, bool bUpdateActive, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { UpdateMatch(MatchId, Match, bUpdateActive, Delegate); }
+
+	/**
+	 * @brief Update a player in a match (PATCH w/ UPSERT)
+	 * 	 * @param [in] MatchId The match to update
+	 * 	 * @param [in] Player The player to update
+	 * 	 * @param [in] Delegate Callback with the results of the player update
+	 */
+	virtual void UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_PlayerRequest& Player, bool bUpdateActive = true, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchPlayerUpdateCompleteDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Player", AutoCreateRefTerm = "Player,Delegate"))
+	void BLUEPRINT_UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_PlayerRequest& Player, bool bUpdateActive, const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate& Delegate) { UpdateMatchPlayer(MatchId, PlayerId, Player, bUpdateActive, Delegate); }
+
+protected:
+
+	/** @brief Structure containing context information for match update calls */
+	struct FMatchUpdateCallContext
+	{
+		FString MatchId;
+		TOptional<FRHAPI_MatchResponse> Match;
+		bool bUpdateActive;
+
+		FMatchUpdateCallContext()
+			: bUpdateActive(false)
+		{}
+
+		FMatchUpdateCallContext(const FString& InMatchId)
+			: MatchId(InMatchId)
+			, bUpdateActive(false)
+		{}
+	};
+
+	/** @brief Structure containing context information for match player update calls */
+	struct FMatchUpdatePlayerCallContext
+	{
+		FString MatchId;
+		FGuid PlayerId;
+		TOptional<FRHAPI_MatchPlayerResponse> MatchPlayer;
+		bool bUpdateActive;
+
+		FMatchUpdatePlayerCallContext()
+			: bUpdateActive(false)
+		{}
+
+		FMatchUpdatePlayerCallContext(const FString& InMatchId)
+			: MatchId(InMatchId)
+			, bUpdateActive(false)
+		{}
+	};
+
+	/**
+	 * @brief The last match created, for ease of use
+	 */
+	TOptional<FRHAPI_MatchResponse> ActiveMatch;
+	/**
+	 * @brief An map of players associated with the current match
+	 */
+	TMap<FGuid, FRHAPI_MatchPlayerResponse> ActiveMatchPlayers;
+
 };
 
 /** @} */

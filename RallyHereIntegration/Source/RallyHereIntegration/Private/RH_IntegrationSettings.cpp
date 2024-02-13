@@ -105,6 +105,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	MatchesGetOtherPriority = 1000000;
 	MatchesSearchPriority = 1000000;
 	MatchesLookupPriority = 1000000;
+	MatchesUpdatePriority = 900000;
+	MatchesUpdatePlayerPriority = 900000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const
