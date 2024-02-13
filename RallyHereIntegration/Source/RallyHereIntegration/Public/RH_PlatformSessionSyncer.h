@@ -47,6 +47,7 @@ enum class ESyncActionState : uint8
 	LeavePlatformSession, // Flow = (meta) OSS End Session
 	UpdateRHSession, // Flow = RH Update Session with Platform Session Info
 	Synchronized, // we have synchronized our state
+	WaitingForScout, // we have encountered a state where we are waiting for the scout to make changes
 	Error, // we have encountered an error, and should not be taking any actions until a new kick off
 
 	// these states are special, anything beyond this point is a terminal state
