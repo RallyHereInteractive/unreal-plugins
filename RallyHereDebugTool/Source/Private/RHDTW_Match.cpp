@@ -64,19 +64,8 @@ void FRHDTW_Match::Do()
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem("Create"))
-		{
-			DoCreateMatch();
-			ImGui::EndTabItem();
-		}
-
 		ImGui::EndTabBar();
 	}
-}
-
-void FRHDTW_Match::DoCreateMatch()
-{
-
 }
 
 void FRHDTW_Match::DoSearchMatches()
@@ -195,7 +184,8 @@ void FRHDTW_Match::DoSearchMatches()
 
 	for (const auto& MatchPair : pGIMatchSubsystem->GetAllMatches())
 	{
-		const FString MatchHeader = FString::Printf(TEXT("Match [%s]"), *MatchPair.Key);
+		static const FString ActiveFlag = TEXT(" - <ACTIVE>");
+		const FString MatchHeader = FString::Printf(TEXT("Match [%s]%s"), *MatchPair.Key, pGIMatchSubsystem->GetActiveMatchId() == MatchPair.Key ? *ActiveFlag : TEXT(""));
 		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlags))
 		{
 			const auto& Match = MatchPair.Value;

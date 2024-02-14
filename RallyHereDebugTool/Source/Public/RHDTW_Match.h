@@ -15,7 +15,6 @@ public:
 
 	virtual void Do() override;
 
-	virtual void DoCreateMatch();
 	virtual void DoSearchMatches();
 	virtual void DoViewPlayerMatches();
 

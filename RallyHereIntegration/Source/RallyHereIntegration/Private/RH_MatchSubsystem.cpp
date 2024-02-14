@@ -115,7 +115,7 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSet
 	// on a create call, always clear out the old active match
 	if (bSetActive)
 	{
-		ActiveMatch.Reset();
+		ActiveMatchId.Reset();
 	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -123,12 +123,18 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSet
 			{
 				if (Resp.IsSuccessful())
 				{
-					if (Context->bUpdateActive)
-					{
-						ActiveMatch = Resp.Content;
-					}
+					// update the context
 					Context->MatchId = Resp.Content.GetMatchId();
 					Context->Match = Resp.Content;
+
+					// store the match in the cache
+					MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
+
+					// if requested, set thea active match id
+					if (Context->bUpdateActive)
+					{
+						SetActiveMatchId(Context->MatchId);
+					}
 				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
@@ -142,7 +148,7 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSet
 }
 
 
-void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchRequest& Match, bool bUpdateActive, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
+void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -153,23 +159,53 @@ void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchR
 	Request.MatchRequest = Match;
 
 	auto Context = MakeShared<FMatchUpdateCallContext>();
-	Context->bUpdateActive = bUpdateActive;
 	Context->MatchId = MatchId;
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
 			{
-				if (Context->bUpdateActive)
-				{
-					ActiveMatch = Resp.Content;
-				}
+				// update the context
 				Context->Match = Resp.Content;
+
+				// store the match in the cache
+				MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
 				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchWithPlayers()), ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
+void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_PatchPlayerMatch BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	Request.PlayerUuid = PlayerId;
+	Request.MatchPlayerRequest = Player;
+
+	auto Context = MakeShared<FMatchUpdatePlayerCallContext>();
+	Context->MatchId = MatchId;
+	Context->PlayerId = PlayerId;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
+			{
+				Context->MatchPlayer = Resp.Content;
+			}),
+			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, Context->MatchPlayer.Get(FRHAPI_MatchPlayerWithMatch()), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePlayerPriority
 	);
 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
