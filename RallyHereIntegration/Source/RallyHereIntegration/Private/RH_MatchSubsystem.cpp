@@ -30,29 +30,28 @@ void URH_MatchSubsystem::SearchMatches(const FRH_MatchSearchParams& params, cons
 
 	BaseType::Request Request = params.ToAPIRequest(GetAuthContext());
 
+	TSharedRef<FRH_MatchSearchResult> Result = MakeShared<FRH_MatchSearchResult>();
+	Result->SearchParams = params;
+
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateWeakLambda(this, [this](const BaseType::Response& Resp)
+		BaseType::Delegate::CreateWeakLambda(this, [this, Result](const BaseType::Response& Resp)
 			{
 				if (Resp.IsSuccessful())
 				{
-					/*
+					// store results in result object
+					Result->Matches = Resp.Content.GetMatches();
+					Result->NextPageCursor = Resp.Content.GetCursor(FString());
+
+					// merge into the cache
 					for (const auto& Match : Resp.Content.GetMatches())
 					{
 						MatchesCache.Add(Match.GetMatchId(), Match);
 					}
-					*/
 				}
 			}),
-		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, params, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Result, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				FRH_MatchSearchResult Result;
-				Result.SearchParams = params;
-				if (bSuccess)
-				{
-					//Result.Matches = Resp.Content.GetMatches();
-				}
-				//Result.NextCursor = Resp.Cursor;
-				Delegate.ExecuteIfBound(bSuccess, Result, ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, Result.Get(), ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->MatchesSearchPriority
 	);
@@ -100,7 +99,7 @@ void URH_MatchSubsystem::GetMatchAsync(const FString& MatchId, bool bIgnoreCache
 
 //////////////////////////////////////////////////////////////////////////////
 
-void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, const TArray<FRHAPI_PlayerRequest>& Players, bool bSetActive, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
+void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSetActive, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -109,7 +108,6 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, const TAr
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
 	Request.MatchRequest = Match;
-	// Request.Players = Players; // TODO - not yet working on single call, so ignore for now
 
 	auto Context = MakeShared<FMatchUpdateCallContext>();
 	Context->bUpdateActive = bSetActive;
@@ -118,7 +116,6 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, const TAr
 	if (bSetActive)
 	{
 		ActiveMatch.Reset();
-		ActiveMatchPlayers.Reset();
 	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -136,7 +133,7 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, const TAr
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchResponse()), ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchWithPlayers()), ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
 		);
@@ -170,45 +167,9 @@ void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchR
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchResponse()), ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchWithPlayers()), ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
-	);
-
-	Helper->Start(RH_APIs::GetMatchAPI(), Request);
-}
-
-void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_PlayerRequest& Player, bool bUpdateActive, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate)
-{
-	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	typedef RallyHereAPI::Traits_PatchPlayerMatch BaseType;
-
-	BaseType::Request Request;
-	Request.AuthContext = GetAuthContext();
-	Request.MatchId = MatchId;
-	Request.PlayerUuid = PlayerId;
-	Request.PlayerRequest = Player;
-
-	auto Context = MakeShared<FMatchUpdatePlayerCallContext>();
-	Context->bUpdateActive = bUpdateActive;
-	Context->MatchId = MatchId;
-	Context->PlayerId = PlayerId;
-
-	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
-			{
-				if (Context->bUpdateActive)
-				{
-					ActiveMatchPlayers.Add(Context->PlayerId, Resp.Content);
-				}
-				Context->MatchPlayer = Resp.Content;
-			}),
-			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
-			{
-				Delegate.ExecuteIfBound(bSuccess, Context->MatchPlayer.Get(FRHAPI_MatchPlayerResponse()), ErrorInfo);
-			}),
-		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePlayerPriority
 	);
 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);

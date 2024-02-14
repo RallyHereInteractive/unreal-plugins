@@ -377,7 +377,7 @@ public:
 	* @brief The matches the player has participated in.
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
-	TMap<FString, FRHAPI_PlayerWithMatch> Matches;
+	TMap<FString, FRHAPI_MatchPlayerWithMatch> Matches;
 
 protected:
 
@@ -439,23 +439,21 @@ protected:
 		{
 			for (const auto& PlayerMatch : *MatchesResult)
 			{
-				const auto Match = PlayerMatch.GetMatchOrNull();
-				if (Match != nullptr)
+				const auto& Match = PlayerMatch.GetMatch();
+
+				Matches.Add(Match.GetMatchId(), PlayerMatch);
+
+				const auto* CreatedTime = Match.GetCreatedTimestampOrNull();
+				const auto* EndTime = Match.GetEndTimestampOrNull();
+
+				// prefer using created time for age checks
+				if (CreatedTime != nullptr)
 				{
-					Matches.Add(Match->GetMatchId(), PlayerMatch);
-
-					const auto* CreatedTime = Match->GetCreatedTimestampOrNull();
-					const auto* EndTime = Match->GetEndTimestampOrNull();
-
-					// prefer using created time for age checks
-					if (CreatedTime != nullptr)
-					{
-						MaxAge = FMath::Max(MaxAge, TimeNow - *CreatedTime);
-					}
-					else if (EndTime != nullptr)
-					{
-						MaxAge = FMath::Max(MaxAge, TimeNow - *EndTime);
-					}
+					MaxAge = FMath::Max(MaxAge, TimeNow - *CreatedTime);
+				}
+				else if (EndTime != nullptr)
+				{
+					MaxAge = FMath::Max(MaxAge, TimeNow - *EndTime);
 				}
 			}
 		}

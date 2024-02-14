@@ -165,12 +165,12 @@ void FRHDTW_Match::DoSearchMatches()
 					}
 				}
 
-				if (SearchResult.Result.NextPageCursor != 0)
+				if (!SearchResult.Result.NextPageCursor.IsEmpty())
 				{
 					if (ImGui::Button("Search Next Page"))
 					{
 						FRH_MatchSearchParams SearchParams = SearchResult.Result.SearchParams;
-						SearchParams.Cursor = FString::Printf(TEXT("%d"), SearchResult.Result.NextPageCursor);
+						SearchParams.Cursor = SearchResult.Result.NextPageCursor;
 						pGIMatchSubsystem->SearchMatches(SearchParams, FRH_OnMatchSearchCompleteDelegate::CreateSP(this, &FRHDTW_Match::OnSearchMatchesComplete));
 					}
 				}
@@ -268,21 +268,18 @@ void FRHDTW_Match::DoViewPlayerMatches()
 						if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*MatchHeader), RH_DefaultTreeFlagsDefaultOpen))
 						{
 							const auto& PlayerMatch = MatchPair.Value;
-							const auto* Match = PlayerMatch.GetMatchOrNull();
+							const auto& Match = PlayerMatch.GetMatch();
 
 							ImGuiDisplayCopyableValue(TEXT("MatchId"), MatchPair.Key);
 
-							if (Match != nullptr)
+							// if game instance subsystem exists, allow searching full match
+							const auto pGameInstance = GetGameInstance();
+							if (pGameInstance != nullptr)
 							{
-								// if game instance subsystem exists, allow searching full match
-								const auto pGameInstance = GetGameInstance();
-								if (pGameInstance != nullptr)
+								const auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
+								if (pGISubsystem != nullptr)
 								{
-									const auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
-									if (pGISubsystem != nullptr)
-									{
-										// TODO - allow inline search in global match catch and display inline here?
-									}
+									// TODO - allow inline search in global match catch and display inline here?
 								}
 							}
 
