@@ -228,6 +228,22 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
 	bool HasActiveMatchId() const { return ActiveMatchId.IsSet(); }
+
+	/**
+	 * @brief Get the active match ID
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches")
+	virtual const FString& GetActiveMatchSegmentId() const { return ActiveMatchSegmentId.Get(FString()); }
+	/**
+	 * @brief Set the active match
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches")
+	virtual void SetActiveMatchSegmentId(const FString& MatchSegmentId) { MatchSegmentId.IsEmpty() ? ActiveMatchSegmentId.Reset() : ActiveMatchSegmentId = MatchSegmentId; }
+	/**
+	 * @brief Gets whether the active match exists
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Matches")
+	bool HasActiveMatchSegmentId() const { return ActiveMatchSegmentId.IsSet(); }
 	
 	/**
 	 * @brief Create a match (POST)
@@ -260,12 +276,23 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Player", AutoCreateRefTerm = "Player,Delegate"))
 	void BLUEPRINT_UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate& Delegate) { UpdateMatchPlayer(MatchId, PlayerId, Player, Delegate); }
 
+	/**
+	 * @brief Update a match segment (PATCH w/ UPSERT)
+	 * @param [in] MatchId The match to update
+	 * @param [in] MatchId The match segment to update
+	 * @param [in] Match The match to update
+	 * @param [in] Delegate Callback with the results of the match update
+	 */
+	virtual void UpdateMatchSegment(const FString& MatchId, const FString& MatchSegmentId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchUpdateCompleteDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Segment", AutoCreateRefTerm = "Match,Delegate"))
+	void BLUEPRINT_UpdateMatchSegment(const FString& MatchId, const FString& MatchSegmentId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { UpdateMatchSegment(MatchId, MatchSegmentId, Match, Delegate); }
+
 protected:
 
 	/** @brief Structure containing context information for match update calls */
 	struct FMatchUpdateCallContext
 	{
-		FString MatchId;
+		FString MatchId, MatchSegmentId;
 		TOptional<FRHAPI_MatchWithPlayers> Match;
 		bool bUpdateActive;
 
@@ -301,6 +328,11 @@ protected:
 	 * @brief The last match created with bSetActive = true, for ease of use
 	 */
 	TOptional<FString> ActiveMatchId;
+
+	/**
+	 * @brief The last match created with bSetActive = true, for ease of use
+	 */
+	TOptional<FString> ActiveMatchSegmentId;
 
 };
 

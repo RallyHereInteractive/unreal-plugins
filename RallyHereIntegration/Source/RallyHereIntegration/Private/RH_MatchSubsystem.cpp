@@ -210,3 +210,38 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
+
+void URH_MatchSubsystem::UpdateMatchSegment(const FString& MatchId, const FString& MatchSegmentId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	/* TODO
+	typedef RallyHereAPI::Traits_PatchMatch BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchRequest = Match;
+
+	auto Context = MakeShared<FMatchUpdateCallContext>();
+	Context->MatchId = MatchId;
+	Context->MatchSegmentId = MatchSegmentId;
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
+			{
+				// update the context
+				Context->Match = Resp.Content;
+
+				// store the match in the cache
+				MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchWithPlayers()), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
+	);
+	
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+	*/
+}
