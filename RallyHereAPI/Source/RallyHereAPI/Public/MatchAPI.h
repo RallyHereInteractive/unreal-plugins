@@ -13,7 +13,6 @@
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "MatchPlayerRequest.h"
-#include "MatchPlayerResponse.h"
 #include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
 #include "MatchWithPlayers.h"
@@ -186,14 +185,14 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchPlayerResponse Content;
+    FRHAPI_MatchPlayerWithMatch Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchPlayerResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -298,14 +297,13 @@ struct RALLYHEREAPI_API FResponse_DeletePlayerMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -397,7 +395,9 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
+    TSharedPtr<FAuthContext> AuthContext;
     TOptional<FString> Cursor;
     /* The maximum number of elements to be returned per call */
     TOptional<int32> PageSize;
@@ -519,6 +519,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
+    TOptional<FString> Cursor;
     /* The maximum number of elements to be returned per call */
     TOptional<int32> PageSize;
 };
@@ -577,6 +578,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PlayerUuid;
+    TOptional<FString> Cursor;
     /* The maximum number of elements to be returned per call */
     TOptional<int32> PageSize;
 };
@@ -703,14 +705,14 @@ struct RALLYHEREAPI_API FResponse_PatchPlayerMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchPlayerResponse Content;
+    FRHAPI_MatchPlayerWithMatch Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchPlayerResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -818,14 +820,14 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchPlayerResponse Content;
+    FRHAPI_MatchPlayerWithMatch Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchPlayerResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
     /* Response 403
     Forbidden

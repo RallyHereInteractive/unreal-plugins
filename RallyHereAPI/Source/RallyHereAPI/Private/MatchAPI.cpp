@@ -338,7 +338,7 @@ void FResponse_CreatePlayerMatch::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
-bool FResponse_CreatePlayerMatch::TryGetContentFor200(FRHAPI_MatchPlayerResponse& OutContent) const
+bool FResponse_CreatePlayerMatch::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -658,11 +658,6 @@ void FResponse_DeletePlayerMatch::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
-bool FResponse_DeletePlayerMatch::TryGetContentFor200(FRHAPI_JsonValue& OutContent) const
-{
-    return TryGetJsonValue(ResponseJson, OutContent);
-}
-
 bool FResponse_DeletePlayerMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
@@ -675,7 +670,7 @@ bool FResponse_DeletePlayerMatch::TryGetContentFor422(FRHAPI_HTTPValidationError
 
 bool FResponse_DeletePlayerMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
-    return TryGetJsonValue(JsonValue, Content);
+    return true;
 }
 
 FResponse_DeletePlayerMatch::FResponse_DeletePlayerMatch(FRequestMetadata InRequestMetadata) :
@@ -966,6 +961,17 @@ bool FRequest_GetMatches::SetupHttpRequest(const FHttpRequestRef& HttpRequest) c
     //static const TArray<FString> Produces = { TEXT("application/json") };
 
     HttpRequest->SetVerb(TEXT("GET"));
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatches - failed to add bearer token"));
+        return false;
+    }
 
     if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
     {
@@ -1267,6 +1273,10 @@ FString FRequest_GetPlayerMatchesSelf::ComputePath() const
 {
     FString Path = GetSimplifiedPath().ToString();
     TArray<FString> QueryParams;
+    if(Cursor.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+    }
     if(PageSize.IsSet())
     {
         QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
@@ -1437,6 +1447,10 @@ FString FRequest_GetPlayersMatches::ComputePath() const
     FString Path = FString::Format(TEXT("/match/v1/player/{player_uuid}/match"), PathParams);
 
     TArray<FString> QueryParams;
+    if(Cursor.IsSet())
+    {
+        QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+    }
     if(PageSize.IsSet())
     {
         QueryParams.Add(FString(TEXT("page_size=")) + ToUrlString(PageSize.GetValue()));
@@ -1847,7 +1861,7 @@ void FResponse_PatchPlayerMatch::SetHttpResponseCode(EHttpResponseCodes::Type In
     }
 }
 
-bool FResponse_PatchPlayerMatch::TryGetContentFor200(FRHAPI_MatchPlayerResponse& OutContent) const
+bool FResponse_PatchPlayerMatch::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -2194,7 +2208,7 @@ void FResponse_UpdatePlayerMatch::SetHttpResponseCode(EHttpResponseCodes::Type I
     }
 }
 
-bool FResponse_UpdatePlayerMatch::TryGetContentFor200(FRHAPI_MatchPlayerResponse& OutContent) const
+bool FResponse_UpdatePlayerMatch::TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
