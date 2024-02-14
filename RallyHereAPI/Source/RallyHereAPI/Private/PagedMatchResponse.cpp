@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "PagedPlayerMatchResponse.h"
+#include "PagedMatchResponse.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,15 +17,15 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_PagedPlayerMatchResponse
+// Implementation for FRHAPI_PagedMatchResponse
 
-void FRHAPI_PagedPlayerMatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_PagedMatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    if (PlayerMatches_IsSet)
+    if (Matches_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("player_matches"));
-        RallyHereAPI::WriteJsonValue(Writer, PlayerMatches_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("matches"));
+        RallyHereAPI::WriteJsonValue(Writer, Matches_Optional);
     }
     if (Cursor_IsSet)
     {
@@ -35,7 +35,7 @@ void FRHAPI_PagedPlayerMatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Write
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_PagedPlayerMatchResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_PagedMatchResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -43,11 +43,11 @@ bool FRHAPI_PagedPlayerMatchResponse::FromJson(const TSharedPtr<FJsonValue>& Jso
 
     bool ParseSuccess = true;
 
-    const TSharedPtr<FJsonValue> JsonPlayerMatchesField = (*Object)->TryGetField(TEXT("player_matches"));
-    if (JsonPlayerMatchesField.IsValid() && !JsonPlayerMatchesField->IsNull())
+    const TSharedPtr<FJsonValue> JsonMatchesField = (*Object)->TryGetField(TEXT("matches"));
+    if (JsonMatchesField.IsValid() && !JsonMatchesField->IsNull())
     {
-        PlayerMatches_IsSet = TryGetJsonValue(JsonPlayerMatchesField, PlayerMatches_Optional);
-        ParseSuccess &= PlayerMatches_IsSet;
+        Matches_IsSet = TryGetJsonValue(JsonMatchesField, Matches_Optional);
+        ParseSuccess &= Matches_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonCursorField = (*Object)->TryGetField(TEXT("cursor"));
     if (JsonCursorField.IsValid() && !JsonCursorField->IsNull())

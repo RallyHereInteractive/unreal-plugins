@@ -22,8 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchInstance::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
-    Writer->WriteIdentifierPrefix(TEXT("instance_id"));
-    RallyHereAPI::WriteJsonValue(Writer, InstanceId);
+    if (InstanceId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("instance_id"));
+        RallyHereAPI::WriteJsonValue(Writer, InstanceId_Optional);
+    }
     if (HostPlayerUuid_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("host_player_uuid"));
@@ -33,6 +36,11 @@ void FRHAPI_MatchInstance::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     {
         Writer->WriteIdentifierPrefix(TEXT("region_id"));
         RallyHereAPI::WriteJsonValue(Writer, RegionId_Optional);
+    }
+    if (LaunchRequestTemplateId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("launch_request_template_id"));
+        RallyHereAPI::WriteJsonValue(Writer, LaunchRequestTemplateId_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -46,7 +54,11 @@ bool FRHAPI_MatchInstance::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     bool ParseSuccess = true;
 
     const TSharedPtr<FJsonValue> JsonInstanceIdField = (*Object)->TryGetField(TEXT("instance_id"));
-    ParseSuccess &= JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull() && TryGetJsonValue(JsonInstanceIdField, InstanceId);
+    if (JsonInstanceIdField.IsValid() && !JsonInstanceIdField->IsNull())
+    {
+        InstanceId_IsSet = TryGetJsonValue(JsonInstanceIdField, InstanceId_Optional);
+        ParseSuccess &= InstanceId_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonHostPlayerUuidField = (*Object)->TryGetField(TEXT("host_player_uuid"));
     if (JsonHostPlayerUuidField.IsValid() && !JsonHostPlayerUuidField->IsNull())
     {
@@ -58,6 +70,12 @@ bool FRHAPI_MatchInstance::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         RegionId_IsSet = TryGetJsonValue(JsonRegionIdField, RegionId_Optional);
         ParseSuccess &= RegionId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLaunchRequestTemplateIdField = (*Object)->TryGetField(TEXT("launch_request_template_id"));
+    if (JsonLaunchRequestTemplateIdField.IsValid() && !JsonLaunchRequestTemplateIdField->IsNull())
+    {
+        LaunchRequestTemplateId_IsSet = TryGetJsonValue(JsonLaunchRequestTemplateIdField, LaunchRequestTemplateId_Optional);
+        ParseSuccess &= LaunchRequestTemplateId_IsSet;
     }
 
     return ParseSuccess;

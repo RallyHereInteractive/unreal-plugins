@@ -39,15 +39,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Instance ID */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FGuid InstanceId{  };
-    /** @brief Gets the value of InstanceId */
-    FGuid& GetInstanceId() { return InstanceId; }
-    /** @brief Gets the value of InstanceId */
-    const FGuid& GetInstanceId() const { return InstanceId; }
-    /** @brief Sets the value of InstanceId */
-    void SetInstanceId(FGuid NewValue) { InstanceId = NewValue;  }
+    FString InstanceId_Optional{  };
+    /** @brief true if InstanceId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool InstanceId_IsSet{ false };
+    /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
+    FString& GetInstanceId() { return InstanceId_Optional; }
+    /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
+    const FString& GetInstanceId() const { return InstanceId_Optional; }
+    /** @brief Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
+    /** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
+    /** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return &InstanceId_Optional; return nullptr; }
+    /** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
+    void SetInstanceId(FString NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; }
+     /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
+    void ClearInstanceId() { InstanceId_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FGuid HostPlayerUuid_Optional{  };
@@ -92,6 +104,28 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
     void SetRegionId(FString NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; }
      /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
     void ClearRegionId() { RegionId_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString LaunchRequestTemplateId_Optional{  };
+    /** @brief true if LaunchRequestTemplateId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool LaunchRequestTemplateId_IsSet{ false };
+    /** @brief Gets the value of LaunchRequestTemplateId_Optional, regardless of it having been set */
+    FString& GetLaunchRequestTemplateId() { return LaunchRequestTemplateId_Optional; }
+    /** @brief Gets the value of LaunchRequestTemplateId_Optional, regardless of it having been set */
+    const FString& GetLaunchRequestTemplateId() const { return LaunchRequestTemplateId_Optional; }
+    /** @brief Gets the value of LaunchRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetLaunchRequestTemplateId(const FString& DefaultValue) const { if (LaunchRequestTemplateId_IsSet) return LaunchRequestTemplateId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LaunchRequestTemplateId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLaunchRequestTemplateId(FString& OutValue) const { if (LaunchRequestTemplateId_IsSet) OutValue = LaunchRequestTemplateId_Optional; return LaunchRequestTemplateId_IsSet; }
+    /** @brief Returns a pointer to LaunchRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetLaunchRequestTemplateIdOrNull() { if (LaunchRequestTemplateId_IsSet) return &LaunchRequestTemplateId_Optional; return nullptr; }
+    /** @brief Returns a pointer to LaunchRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetLaunchRequestTemplateIdOrNull() const { if (LaunchRequestTemplateId_IsSet) return &LaunchRequestTemplateId_Optional; return nullptr; }
+    /** @brief Sets the value of LaunchRequestTemplateId_Optional and also sets LaunchRequestTemplateId_IsSet to true */
+    void SetLaunchRequestTemplateId(FString NewValue) { LaunchRequestTemplateId_Optional = NewValue; LaunchRequestTemplateId_IsSet = true; }
+     /** @brief Clears the value of LaunchRequestTemplateId_Optional and sets LaunchRequestTemplateId_IsSet to false */
+    void ClearLaunchRequestTemplateId() { LaunchRequestTemplateId_IsSet = false; }
 };
 
 /** @} */

@@ -129,6 +129,7 @@ Private/MarketingAPI.cpp
 Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
 Private/MatchAPI.cpp
+Private/MatchAllocation.cpp
 Private/MatchInfo.cpp
 Private/MatchInstance.cpp
 Private/MatchMakingProfile.cpp
@@ -138,9 +139,13 @@ Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
 Private/MatchMakingTemplateGroupV2.cpp
 Private/MatchMakingTemplateV2.cpp
+Private/MatchPlayerRequest.cpp
 Private/MatchPlayerResponse.cpp
+Private/MatchPlayerWithMatch.cpp
 Private/MatchRequest.cpp
 Private/MatchResponse.cpp
+Private/MatchSession.cpp
+Private/MatchState.cpp
 Private/MatchWithPlayers.cpp
 Private/MatchmakingInfo.cpp
 Private/MatchmakingResults.cpp
@@ -162,6 +167,7 @@ Private/Operation.cpp
 Private/OpportunityAbortReason.cpp
 Private/OpportunityState.cpp
 Private/PageMeta.cpp
+Private/PagedMatchResponse.cpp
 Private/PagedPlayerMatchResponse.cpp
 Private/PersonEmailListRequest.cpp
 Private/PersonEmailListResponse.cpp
@@ -206,13 +212,11 @@ Private/PlayerRankResponseV2.cpp
 Private/PlayerRankUpdateRequest.cpp
 Private/PlayerRankUpdateResponse.cpp
 Private/PlayerRankUpdateResponseV2.cpp
-Private/PlayerRequest.cpp
 Private/PlayerResponse.cpp
 Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
 Private/PlayerSessions.cpp
 Private/PlayerUuidFromId.cpp
-Private/PlayerWithMatch.cpp
 Private/Portal.cpp
 Private/PortalTokenDetailsGrantType.cpp
 Private/PortalTokenDetailsRequest.cpp
@@ -443,6 +447,7 @@ Public/MarketingAPI.h
 Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
 Public/MatchAPI.h
+Public/MatchAllocation.h
 Public/MatchInfo.h
 Public/MatchInstance.h
 Public/MatchMakingProfile.h
@@ -452,9 +457,13 @@ Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
 Public/MatchMakingTemplateGroupV2.h
 Public/MatchMakingTemplateV2.h
+Public/MatchPlayerRequest.h
 Public/MatchPlayerResponse.h
+Public/MatchPlayerWithMatch.h
 Public/MatchRequest.h
 Public/MatchResponse.h
+Public/MatchSession.h
+Public/MatchState.h
 Public/MatchWithPlayers.h
 Public/MatchmakingInfo.h
 Public/MatchmakingResults.h
@@ -476,6 +485,7 @@ Public/Operation.h
 Public/OpportunityAbortReason.h
 Public/OpportunityState.h
 Public/PageMeta.h
+Public/PagedMatchResponse.h
 Public/PagedPlayerMatchResponse.h
 Public/PersonEmailListRequest.h
 Public/PersonEmailListResponse.h
@@ -520,13 +530,11 @@ Public/PlayerRankResponseV2.h
 Public/PlayerRankUpdateRequest.h
 Public/PlayerRankUpdateResponse.h
 Public/PlayerRankUpdateResponseV2.h
-Public/PlayerRequest.h
 Public/PlayerResponse.h
 Public/PlayerSession.h
 Public/PlayerSessionInvite.h
 Public/PlayerSessions.h
 Public/PlayerUuidFromId.h
-Public/PlayerWithMatch.h
 Public/Portal.h
 Public/PortalTokenDetailsGrantType.h
 Public/PortalTokenDetailsRequest.h

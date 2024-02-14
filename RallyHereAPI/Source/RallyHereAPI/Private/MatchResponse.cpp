@@ -32,6 +32,16 @@ void FRHAPI_MatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
         RallyHereAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
+    if (Type_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("type"));
+        RallyHereAPI::WriteJsonValue(Writer, Type_Optional);
+    }
+    if (State_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("state"));
+        RallyHereAPI::WriteJsonValue(Writer, EnumToString(State_Optional));
+    }
     if (StartTimestamp_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("start_timestamp"));
@@ -51,6 +61,16 @@ void FRHAPI_MatchResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
+    }
+    if (CorrelationId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("correlation_id"));
+        RallyHereAPI::WriteJsonValue(Writer, CorrelationId_Optional);
+    }
+    if (Players_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("players"));
+        RallyHereAPI::WriteJsonValue(Writer, Players_Optional);
     }
     if (Sessions_IsSet)
     {
@@ -95,6 +115,18 @@ bool FRHAPI_MatchResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
         ParseSuccess &= CreatedTimestamp_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
+    if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
+    {
+        Type_IsSet = TryGetJsonValue(JsonTypeField, Type_Optional);
+        ParseSuccess &= Type_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonStateField = (*Object)->TryGetField(TEXT("state"));
+    if (JsonStateField.IsValid() && !JsonStateField->IsNull())
+    {
+        State_IsSet = TryGetJsonValue(JsonStateField, State_Optional);
+        ParseSuccess &= State_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonStartTimestampField = (*Object)->TryGetField(TEXT("start_timestamp"));
     if (JsonStartTimestampField.IsValid() && !JsonStartTimestampField->IsNull())
     {
@@ -118,6 +150,18 @@ bool FRHAPI_MatchResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCorrelationIdField = (*Object)->TryGetField(TEXT("correlation_id"));
+    if (JsonCorrelationIdField.IsValid() && !JsonCorrelationIdField->IsNull())
+    {
+        CorrelationId_IsSet = TryGetJsonValue(JsonCorrelationIdField, CorrelationId_Optional);
+        ParseSuccess &= CorrelationId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
+    if (JsonPlayersField.IsValid() && !JsonPlayersField->IsNull())
+    {
+        Players_IsSet = TryGetJsonValue(JsonPlayersField, Players_Optional);
+        ParseSuccess &= Players_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
     if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())

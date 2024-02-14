@@ -12,13 +12,13 @@
 #include "RallyHereAPIHelpers.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "MatchPlayerRequest.h"
 #include "MatchPlayerResponse.h"
+#include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
-#include "MatchResponse.h"
 #include "MatchWithPlayers.h"
+#include "PagedMatchResponse.h"
 #include "PagedPlayerMatchResponse.h"
-#include "PlayerRequest.h"
-#include "PlayerWithMatch.h"
 
 namespace RallyHereAPI
 {
@@ -40,8 +40,8 @@ struct FRequest_GetMatches;
 struct FResponse_GetMatches;
 struct FRequest_GetPlayerMatch;
 struct FResponse_GetPlayerMatch;
-struct FRequest_GetPlayerSelfMatches;
-struct FResponse_GetPlayerSelfMatches;
+struct FRequest_GetPlayerMatchesSelf;
+struct FResponse_GetPlayerMatchesSelf;
 struct FRequest_GetPlayersMatches;
 struct FResponse_GetPlayersMatches;
 struct FRequest_PatchMatch;
@@ -60,7 +60,7 @@ DECLARE_DELEGATE_OneParam(FDelegate_DeletePlayerMatch, const FResponse_DeletePla
 DECLARE_DELEGATE_OneParam(FDelegate_GetMatch, const FResponse_GetMatch&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetMatches, const FResponse_GetMatches&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerMatch, const FResponse_GetPlayerMatch&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerSelfMatches, const FResponse_GetPlayerSelfMatches&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerMatchesSelf, const FResponse_GetPlayerMatchesSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayersMatches, const FResponse_GetPlayersMatches&);
 DECLARE_DELEGATE_OneParam(FDelegate_PatchMatch, const FResponse_PatchMatch&);
 DECLARE_DELEGATE_OneParam(FDelegate_PatchPlayerMatch, const FResponse_PatchPlayerMatch&);
@@ -80,7 +80,7 @@ public:
     FHttpRequestPtr GetMatch(const FRequest_GetMatch& Request, const FDelegate_GetMatch& Delegate = FDelegate_GetMatch(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate = FDelegate_GetMatches(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetPlayerMatch(const FRequest_GetPlayerMatch& Request, const FDelegate_GetPlayerMatch& Delegate = FDelegate_GetPlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerSelfMatches(const FRequest_GetPlayerSelfMatches& Request, const FDelegate_GetPlayerSelfMatches& Delegate = FDelegate_GetPlayerSelfMatches(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate = FDelegate_GetPlayerMatchesSelf(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate = FDelegate_GetPlayersMatches(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PatchMatch(const FRequest_PatchMatch& Request, const FDelegate_PatchMatch& Delegate = FDelegate_PatchMatch(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PatchPlayerMatch(const FRequest_PatchPlayerMatch& Request, const FDelegate_PatchPlayerMatch& Delegate = FDelegate_PatchPlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -95,7 +95,7 @@ private:
     void OnGetMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetPlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerSelfMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerSelfMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatchesSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetPlayersMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPatchMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPatchPlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchPlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -128,14 +128,14 @@ struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchResponse Content;
+    FRHAPI_MatchWithPlayers Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -176,7 +176,7 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerMatch : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PlayerUuid;
     FString MatchId;
-    FRHAPI_PlayerRequest PlayerRequest;
+    FRHAPI_MatchPlayerRequest MatchPlayerRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_CreatePlayerMatch : public FResponse
@@ -242,14 +242,13 @@ struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_JsonValue Content;
+    
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_JsonValue& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -398,9 +397,8 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
-    TSharedPtr<FAuthContext> AuthContext;
+    TOptional<FString> Cursor;
     /* The maximum number of elements to be returned per call */
     TOptional<int32> PageSize;
     TOptional<FString> InstanceId;
@@ -408,8 +406,7 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
     TOptional<FString> SessionId;
     TOptional<FString> HostPlayerUuid;
     TOptional<FString> RegionId;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
+    TOptional<FString> PlayerUuid;
 };
 
 struct RALLYHEREAPI_API FResponse_GetMatches : public FResponse
@@ -419,14 +416,14 @@ struct RALLYHEREAPI_API FResponse_GetMatches : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchResponse Content;
+    FRHAPI_PagedMatchResponse Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_PagedMatchResponse& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -476,14 +473,14 @@ struct RALLYHEREAPI_API FResponse_GetPlayerMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_PlayerWithMatch Content;
+    FRHAPI_MatchPlayerWithMatch Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_PlayerWithMatch& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -508,14 +505,14 @@ struct RALLYHEREAPI_API Traits_GetPlayerMatch
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerMatch(InRequest, InDelegate, Priority); }
 };
 
-/* Get Player Self Matches
+/* Get Player Matches Self
  *
  * Get all matches for self
 */
-struct RALLYHEREAPI_API FRequest_GetPlayerSelfMatches : public FRequest
+struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
 {
-    FRequest_GetPlayerSelfMatches();
-    virtual ~FRequest_GetPlayerSelfMatches() = default;
+    FRequest_GetPlayerMatchesSelf();
+    virtual ~FRequest_GetPlayerMatchesSelf() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
@@ -524,14 +521,12 @@ struct RALLYHEREAPI_API FRequest_GetPlayerSelfMatches : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     /* The maximum number of elements to be returned per call */
     TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
 };
 
-struct RALLYHEREAPI_API FResponse_GetPlayerSelfMatches : public FResponse
+struct RALLYHEREAPI_API FResponse_GetPlayerMatchesSelf : public FResponse
 {
-    FResponse_GetPlayerSelfMatches(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerSelfMatches() = default;
+    FResponse_GetPlayerMatchesSelf(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetPlayerMatchesSelf() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
@@ -556,15 +551,15 @@ struct RALLYHEREAPI_API FResponse_GetPlayerSelfMatches : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_GetPlayerSelfMatches
+struct RALLYHEREAPI_API Traits_GetPlayerMatchesSelf
 {
-    typedef FRequest_GetPlayerSelfMatches Request;
-    typedef FResponse_GetPlayerSelfMatches Response;
-    typedef FDelegate_GetPlayerSelfMatches Delegate;
+    typedef FRequest_GetPlayerMatchesSelf Request;
+    typedef FResponse_GetPlayerMatchesSelf Response;
+    typedef FDelegate_GetPlayerMatchesSelf Delegate;
     typedef FMatchAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerSelfMatches(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerMatchesSelf(InRequest, InDelegate, Priority); }
 };
 
 /* Get Players Matches
@@ -584,8 +579,6 @@ struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
     FGuid PlayerUuid;
     /* The maximum number of elements to be returned per call */
     TOptional<int32> PageSize;
-    /* Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
-    TOptional<FString> Cursor;
 };
 
 struct RALLYHEREAPI_API FResponse_GetPlayersMatches : public FResponse
@@ -652,14 +645,14 @@ struct RALLYHEREAPI_API FResponse_PatchMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchResponse Content;
+    FRHAPI_MatchWithPlayers Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -700,7 +693,7 @@ struct RALLYHEREAPI_API FRequest_PatchPlayerMatch : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PlayerUuid;
     FString MatchId;
-    FRHAPI_PlayerRequest PlayerRequest;
+    FRHAPI_MatchPlayerRequest MatchPlayerRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_PatchPlayerMatch : public FResponse
@@ -767,14 +760,14 @@ struct RALLYHEREAPI_API FResponse_UpdateMatch : public FResponse
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchResponse Content;
+    FRHAPI_MatchWithPlayers Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchResponse& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchWithPlayers& OutContent) const;
 
     /* Response 403
     Forbidden
@@ -815,7 +808,7 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerMatch : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FGuid PlayerUuid;
     FString MatchId;
-    FRHAPI_PlayerRequest PlayerRequest;
+    FRHAPI_MatchPlayerRequest MatchPlayerRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdatePlayerMatch : public FResponse

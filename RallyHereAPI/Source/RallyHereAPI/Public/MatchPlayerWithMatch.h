@@ -10,9 +10,9 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "MatchResponse.h"
-#include "PlayerWithMatch.generated.h"
+#include "MatchPlayerWithMatch.generated.h"
 
-/** @defgroup RHAPI_PlayerWithMatch RallyHere API Model PlayerWithMatch
+/** @defgroup RHAPI_MatchPlayerWithMatch RallyHere API Model MatchPlayerWithMatch
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PlayerWithMatch : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_MatchPlayerWithMatch : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerWithMatch : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+    /** @brief Timestamp of when the resource was last modified */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FDateTime LastModifiedTimestamp_Optional{  };
     /** @brief true if LastModifiedTimestamp_Optional has been set to a value */
@@ -63,7 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerWithMatch : public FRHAPI_Model
      /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
-    /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+    /** @brief Timestamp of when the resource was created */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FDateTime CreatedTimestamp_Optional{  };
     /** @brief true if CreatedTimestamp_Optional has been set to a value */
@@ -85,6 +85,28 @@ struct RALLYHEREAPI_API FRHAPI_PlayerWithMatch : public FRHAPI_Model
     void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
      /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
     void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FGuid PlayerUuid_Optional{  };
+    /** @brief true if PlayerUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool PlayerUuid_IsSet{ false };
+    /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+    FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
+    /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+    const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
+    /** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
+    /** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
+    /** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
+    void SetPlayerUuid(FGuid NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
+     /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+    void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString TeamId_Optional{  };
@@ -131,72 +153,76 @@ struct RALLYHEREAPI_API FRHAPI_PlayerWithMatch : public FRHAPI_Model
     void ClearPartySessionId() { PartySessionId_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString Placement_Optional{  };
+    int32 Placement_Optional{  };
     /** @brief true if Placement_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Placement_IsSet{ false };
     /** @brief Gets the value of Placement_Optional, regardless of it having been set */
-    FString& GetPlacement() { return Placement_Optional; }
+    int32& GetPlacement() { return Placement_Optional; }
     /** @brief Gets the value of Placement_Optional, regardless of it having been set */
-    const FString& GetPlacement() const { return Placement_Optional; }
+    const int32& GetPlacement() const { return Placement_Optional; }
     /** @brief Gets the value of Placement_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetPlacement(const FString& DefaultValue) const { if (Placement_IsSet) return Placement_Optional; return DefaultValue; }
+    const int32& GetPlacement(const int32& DefaultValue) const { if (Placement_IsSet) return Placement_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Placement_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPlacement(FString& OutValue) const { if (Placement_IsSet) OutValue = Placement_Optional; return Placement_IsSet; }
+    bool GetPlacement(int32& OutValue) const { if (Placement_IsSet) OutValue = Placement_Optional; return Placement_IsSet; }
     /** @brief Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetPlacementOrNull() { if (Placement_IsSet) return &Placement_Optional; return nullptr; }
+    int32* GetPlacementOrNull() { if (Placement_IsSet) return &Placement_Optional; return nullptr; }
     /** @brief Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetPlacementOrNull() const { if (Placement_IsSet) return &Placement_Optional; return nullptr; }
+    const int32* GetPlacementOrNull() const { if (Placement_IsSet) return &Placement_Optional; return nullptr; }
     /** @brief Sets the value of Placement_Optional and also sets Placement_IsSet to true */
-    void SetPlacement(FString NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; }
+    void SetPlacement(int32 NewValue) { Placement_Optional = NewValue; Placement_IsSet = true; }
      /** @brief Clears the value of Placement_Optional and sets Placement_IsSet to false */
-    void ClearPlacement() { Placement_IsSet = false; }
+    void ClearPlacement() { Placement_Optional = 0; Placement_IsSet = false; }
+    /** @brief Returns true if Placement_Optional is set and matches the default value */
+    bool IsPlacementDefaultValue() const { return Placement_IsSet && Placement_Optional == 0; }
+    /** @brief Sets the value of Placement_Optional to its default and also sets Placement_IsSet to true */
+    void SetPlacementToDefault() { Placement_Optional = 0; Placement_IsSet = true; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FDateTime JoinedMatch_Optional{  };
-    /** @brief true if JoinedMatch_Optional has been set to a value */
+    FDateTime JoinedMatchTimestamp_Optional{  };
+    /** @brief true if JoinedMatchTimestamp_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool JoinedMatch_IsSet{ false };
-    /** @brief Gets the value of JoinedMatch_Optional, regardless of it having been set */
-    FDateTime& GetJoinedMatch() { return JoinedMatch_Optional; }
-    /** @brief Gets the value of JoinedMatch_Optional, regardless of it having been set */
-    const FDateTime& GetJoinedMatch() const { return JoinedMatch_Optional; }
-    /** @brief Gets the value of JoinedMatch_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FDateTime& GetJoinedMatch(const FDateTime& DefaultValue) const { if (JoinedMatch_IsSet) return JoinedMatch_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of JoinedMatch_Optional and returns true if it has been set, otherwise returns false */
-    bool GetJoinedMatch(FDateTime& OutValue) const { if (JoinedMatch_IsSet) OutValue = JoinedMatch_Optional; return JoinedMatch_IsSet; }
-    /** @brief Returns a pointer to JoinedMatch_Optional, if it has been set, otherwise returns nullptr */
-    FDateTime* GetJoinedMatchOrNull() { if (JoinedMatch_IsSet) return &JoinedMatch_Optional; return nullptr; }
-    /** @brief Returns a pointer to JoinedMatch_Optional, if it has been set, otherwise returns nullptr */
-    const FDateTime* GetJoinedMatchOrNull() const { if (JoinedMatch_IsSet) return &JoinedMatch_Optional; return nullptr; }
-    /** @brief Sets the value of JoinedMatch_Optional and also sets JoinedMatch_IsSet to true */
-    void SetJoinedMatch(FDateTime NewValue) { JoinedMatch_Optional = NewValue; JoinedMatch_IsSet = true; }
-     /** @brief Clears the value of JoinedMatch_Optional and sets JoinedMatch_IsSet to false */
-    void ClearJoinedMatch() { JoinedMatch_IsSet = false; }
+    bool JoinedMatchTimestamp_IsSet{ false };
+    /** @brief Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetJoinedMatchTimestamp() { return JoinedMatchTimestamp_Optional; }
+    /** @brief Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetJoinedMatchTimestamp() const { return JoinedMatchTimestamp_Optional; }
+    /** @brief Gets the value of JoinedMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetJoinedMatchTimestamp(const FDateTime& DefaultValue) const { if (JoinedMatchTimestamp_IsSet) return JoinedMatchTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of JoinedMatchTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetJoinedMatchTimestamp(FDateTime& OutValue) const { if (JoinedMatchTimestamp_IsSet) OutValue = JoinedMatchTimestamp_Optional; return JoinedMatchTimestamp_IsSet; }
+    /** @brief Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetJoinedMatchTimestampOrNull() { if (JoinedMatchTimestamp_IsSet) return &JoinedMatchTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetJoinedMatchTimestampOrNull() const { if (JoinedMatchTimestamp_IsSet) return &JoinedMatchTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true */
+    void SetJoinedMatchTimestamp(FDateTime NewValue) { JoinedMatchTimestamp_Optional = NewValue; JoinedMatchTimestamp_IsSet = true; }
+     /** @brief Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false */
+    void ClearJoinedMatchTimestamp() { JoinedMatchTimestamp_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FDateTime LeftMatch_Optional{  };
-    /** @brief true if LeftMatch_Optional has been set to a value */
+    FDateTime LeftMatchTimestamp_Optional{  };
+    /** @brief true if LeftMatchTimestamp_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool LeftMatch_IsSet{ false };
-    /** @brief Gets the value of LeftMatch_Optional, regardless of it having been set */
-    FDateTime& GetLeftMatch() { return LeftMatch_Optional; }
-    /** @brief Gets the value of LeftMatch_Optional, regardless of it having been set */
-    const FDateTime& GetLeftMatch() const { return LeftMatch_Optional; }
-    /** @brief Gets the value of LeftMatch_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FDateTime& GetLeftMatch(const FDateTime& DefaultValue) const { if (LeftMatch_IsSet) return LeftMatch_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LeftMatch_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLeftMatch(FDateTime& OutValue) const { if (LeftMatch_IsSet) OutValue = LeftMatch_Optional; return LeftMatch_IsSet; }
-    /** @brief Returns a pointer to LeftMatch_Optional, if it has been set, otherwise returns nullptr */
-    FDateTime* GetLeftMatchOrNull() { if (LeftMatch_IsSet) return &LeftMatch_Optional; return nullptr; }
-    /** @brief Returns a pointer to LeftMatch_Optional, if it has been set, otherwise returns nullptr */
-    const FDateTime* GetLeftMatchOrNull() const { if (LeftMatch_IsSet) return &LeftMatch_Optional; return nullptr; }
-    /** @brief Sets the value of LeftMatch_Optional and also sets LeftMatch_IsSet to true */
-    void SetLeftMatch(FDateTime NewValue) { LeftMatch_Optional = NewValue; LeftMatch_IsSet = true; }
-     /** @brief Clears the value of LeftMatch_Optional and sets LeftMatch_IsSet to false */
-    void ClearLeftMatch() { LeftMatch_IsSet = false; }
+    bool LeftMatchTimestamp_IsSet{ false };
+    /** @brief Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetLeftMatchTimestamp() { return LeftMatchTimestamp_Optional; }
+    /** @brief Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetLeftMatchTimestamp() const { return LeftMatchTimestamp_Optional; }
+    /** @brief Gets the value of LeftMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetLeftMatchTimestamp(const FDateTime& DefaultValue) const { if (LeftMatchTimestamp_IsSet) return LeftMatchTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LeftMatchTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLeftMatchTimestamp(FDateTime& OutValue) const { if (LeftMatchTimestamp_IsSet) OutValue = LeftMatchTimestamp_Optional; return LeftMatchTimestamp_IsSet; }
+    /** @brief Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetLeftMatchTimestampOrNull() { if (LeftMatchTimestamp_IsSet) return &LeftMatchTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetLeftMatchTimestampOrNull() const { if (LeftMatchTimestamp_IsSet) return &LeftMatchTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true */
+    void SetLeftMatchTimestamp(FDateTime NewValue) { LeftMatchTimestamp_Optional = NewValue; LeftMatchTimestamp_IsSet = true; }
+     /** @brief Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false */
+    void ClearLeftMatchTimestamp() { LeftMatchTimestamp_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     int32 DurationSeconds_Optional{  };
@@ -290,49 +316,15 @@ struct RALLYHEREAPI_API FRHAPI_PlayerWithMatch : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief Match the player was in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FGuid PlayerUuid_Optional{  };
-    /** @brief true if PlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool PlayerUuid_IsSet{ false };
-    /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-    FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
-    /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-    const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
-    /** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
-    /** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-    FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
-    /** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-    const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return &PlayerUuid_Optional; return nullptr; }
-    /** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-    void SetPlayerUuid(FGuid NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; }
-     /** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
-    void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
-
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_MatchResponse Match_Optional{  };
-    /** @brief true if Match_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool Match_IsSet{ false };
-    /** @brief Gets the value of Match_Optional, regardless of it having been set */
-    FRHAPI_MatchResponse& GetMatch() { return Match_Optional; }
-    /** @brief Gets the value of Match_Optional, regardless of it having been set */
-    const FRHAPI_MatchResponse& GetMatch() const { return Match_Optional; }
-    /** @brief Gets the value of Match_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FRHAPI_MatchResponse& GetMatch(const FRHAPI_MatchResponse& DefaultValue) const { if (Match_IsSet) return Match_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Match_Optional and returns true if it has been set, otherwise returns false */
-    bool GetMatch(FRHAPI_MatchResponse& OutValue) const { if (Match_IsSet) OutValue = Match_Optional; return Match_IsSet; }
-    /** @brief Returns a pointer to Match_Optional, if it has been set, otherwise returns nullptr */
-    FRHAPI_MatchResponse* GetMatchOrNull() { if (Match_IsSet) return &Match_Optional; return nullptr; }
-    /** @brief Returns a pointer to Match_Optional, if it has been set, otherwise returns nullptr */
-    const FRHAPI_MatchResponse* GetMatchOrNull() const { if (Match_IsSet) return &Match_Optional; return nullptr; }
-    /** @brief Sets the value of Match_Optional and also sets Match_IsSet to true */
-    void SetMatch(FRHAPI_MatchResponse NewValue) { Match_Optional = NewValue; Match_IsSet = true; }
-     /** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
-    void ClearMatch() { Match_IsSet = false; }
+    FRHAPI_MatchResponse Match{  };
+    /** @brief Gets the value of Match */
+    FRHAPI_MatchResponse& GetMatch() { return Match; }
+    /** @brief Gets the value of Match */
+    const FRHAPI_MatchResponse& GetMatch() const { return Match; }
+    /** @brief Sets the value of Match */
+    void SetMatch(FRHAPI_MatchResponse NewValue) { Match = NewValue;  }
 };
 
 /** @} */

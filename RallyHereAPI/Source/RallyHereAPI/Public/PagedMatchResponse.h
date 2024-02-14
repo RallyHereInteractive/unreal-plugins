@@ -9,10 +9,10 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "MatchPlayerWithMatch.h"
-#include "PagedPlayerMatchResponse.generated.h"
+#include "MatchWithPlayers.h"
+#include "PagedMatchResponse.generated.h"
 
-/** @defgroup RHAPI_PagedPlayerMatchResponse RallyHere API Model PagedPlayerMatchResponse
+/** @defgroup RHAPI_PagedMatchResponse RallyHere API Model PagedMatchResponse
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_PagedMatchResponse : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -40,28 +40,28 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    /** @brief List of player's matches */
+    /** @brief List of matches */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_MatchPlayerWithMatch> PlayerMatches_Optional{  };
-    /** @brief true if PlayerMatches_Optional has been set to a value */
+    TArray<FRHAPI_MatchWithPlayers> Matches_Optional{  };
+    /** @brief true if Matches_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool PlayerMatches_IsSet{ false };
-    /** @brief Gets the value of PlayerMatches_Optional, regardless of it having been set */
-    TArray<FRHAPI_MatchPlayerWithMatch>& GetPlayerMatches() { return PlayerMatches_Optional; }
-    /** @brief Gets the value of PlayerMatches_Optional, regardless of it having been set */
-    const TArray<FRHAPI_MatchPlayerWithMatch>& GetPlayerMatches() const { return PlayerMatches_Optional; }
-    /** @brief Gets the value of PlayerMatches_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_MatchPlayerWithMatch>& GetPlayerMatches(const TArray<FRHAPI_MatchPlayerWithMatch>& DefaultValue) const { if (PlayerMatches_IsSet) return PlayerMatches_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of PlayerMatches_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPlayerMatches(TArray<FRHAPI_MatchPlayerWithMatch>& OutValue) const { if (PlayerMatches_IsSet) OutValue = PlayerMatches_Optional; return PlayerMatches_IsSet; }
-    /** @brief Returns a pointer to PlayerMatches_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_MatchPlayerWithMatch>* GetPlayerMatchesOrNull() { if (PlayerMatches_IsSet) return &PlayerMatches_Optional; return nullptr; }
-    /** @brief Returns a pointer to PlayerMatches_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_MatchPlayerWithMatch>* GetPlayerMatchesOrNull() const { if (PlayerMatches_IsSet) return &PlayerMatches_Optional; return nullptr; }
-    /** @brief Sets the value of PlayerMatches_Optional and also sets PlayerMatches_IsSet to true */
-    void SetPlayerMatches(TArray<FRHAPI_MatchPlayerWithMatch> NewValue) { PlayerMatches_Optional = NewValue; PlayerMatches_IsSet = true; }
-     /** @brief Clears the value of PlayerMatches_Optional and sets PlayerMatches_IsSet to false */
-    void ClearPlayerMatches() { PlayerMatches_IsSet = false; }
+    bool Matches_IsSet{ false };
+    /** @brief Gets the value of Matches_Optional, regardless of it having been set */
+    TArray<FRHAPI_MatchWithPlayers>& GetMatches() { return Matches_Optional; }
+    /** @brief Gets the value of Matches_Optional, regardless of it having been set */
+    const TArray<FRHAPI_MatchWithPlayers>& GetMatches() const { return Matches_Optional; }
+    /** @brief Gets the value of Matches_Optional, if it has been set, otherwise it returns DefaultValue */
+    const TArray<FRHAPI_MatchWithPlayers>& GetMatches(const TArray<FRHAPI_MatchWithPlayers>& DefaultValue) const { if (Matches_IsSet) return Matches_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Matches_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatches(TArray<FRHAPI_MatchWithPlayers>& OutValue) const { if (Matches_IsSet) OutValue = Matches_Optional; return Matches_IsSet; }
+    /** @brief Returns a pointer to Matches_Optional, if it has been set, otherwise returns nullptr */
+    TArray<FRHAPI_MatchWithPlayers>* GetMatchesOrNull() { if (Matches_IsSet) return &Matches_Optional; return nullptr; }
+    /** @brief Returns a pointer to Matches_Optional, if it has been set, otherwise returns nullptr */
+    const TArray<FRHAPI_MatchWithPlayers>* GetMatchesOrNull() const { if (Matches_IsSet) return &Matches_Optional; return nullptr; }
+    /** @brief Sets the value of Matches_Optional and also sets Matches_IsSet to true */
+    void SetMatches(TArray<FRHAPI_MatchWithPlayers> NewValue) { Matches_Optional = NewValue; Matches_IsSet = true; }
+     /** @brief Clears the value of Matches_Optional and sets Matches_IsSet to false */
+    void ClearMatches() { Matches_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Cursor_Optional{  };

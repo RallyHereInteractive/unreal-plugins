@@ -32,6 +32,11 @@ void FRHAPI_MatchPlayerResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
         RallyHereAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
     }
+    if (PlayerUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, PlayerUuid_Optional);
+    }
     if (TeamId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("team_id"));
@@ -47,15 +52,15 @@ void FRHAPI_MatchPlayerResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("placement"));
         RallyHereAPI::WriteJsonValue(Writer, Placement_Optional);
     }
-    if (JoinedMatch_IsSet)
+    if (JoinedMatchTimestamp_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("joined_match"));
-        RallyHereAPI::WriteJsonValue(Writer, JoinedMatch_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("joined_match_timestamp"));
+        RallyHereAPI::WriteJsonValue(Writer, JoinedMatchTimestamp_Optional);
     }
-    if (LeftMatch_IsSet)
+    if (LeftMatchTimestamp_IsSet)
     {
-        Writer->WriteIdentifierPrefix(TEXT("left_match"));
-        RallyHereAPI::WriteJsonValue(Writer, LeftMatch_Optional);
+        Writer->WriteIdentifierPrefix(TEXT("left_match_timestamp"));
+        RallyHereAPI::WriteJsonValue(Writer, LeftMatchTimestamp_Optional);
     }
     if (DurationSeconds_IsSet)
     {
@@ -76,11 +81,6 @@ void FRHAPI_MatchPlayerResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
-    }
-    if (PlayerUuid_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-        RallyHereAPI::WriteJsonValue(Writer, PlayerUuid_Optional);
     }
     Writer->WriteObjectEnd();
 }
@@ -105,6 +105,12 @@ bool FRHAPI_MatchPlayerResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValu
         CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
         ParseSuccess &= CreatedTimestamp_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
+    if (JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull())
+    {
+        PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
+        ParseSuccess &= PlayerUuid_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonTeamIdField = (*Object)->TryGetField(TEXT("team_id"));
     if (JsonTeamIdField.IsValid() && !JsonTeamIdField->IsNull())
     {
@@ -123,17 +129,17 @@ bool FRHAPI_MatchPlayerResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValu
         Placement_IsSet = TryGetJsonValue(JsonPlacementField, Placement_Optional);
         ParseSuccess &= Placement_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonJoinedMatchField = (*Object)->TryGetField(TEXT("joined_match"));
-    if (JsonJoinedMatchField.IsValid() && !JsonJoinedMatchField->IsNull())
+    const TSharedPtr<FJsonValue> JsonJoinedMatchTimestampField = (*Object)->TryGetField(TEXT("joined_match_timestamp"));
+    if (JsonJoinedMatchTimestampField.IsValid() && !JsonJoinedMatchTimestampField->IsNull())
     {
-        JoinedMatch_IsSet = TryGetJsonValue(JsonJoinedMatchField, JoinedMatch_Optional);
-        ParseSuccess &= JoinedMatch_IsSet;
+        JoinedMatchTimestamp_IsSet = TryGetJsonValue(JsonJoinedMatchTimestampField, JoinedMatchTimestamp_Optional);
+        ParseSuccess &= JoinedMatchTimestamp_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonLeftMatchField = (*Object)->TryGetField(TEXT("left_match"));
-    if (JsonLeftMatchField.IsValid() && !JsonLeftMatchField->IsNull())
+    const TSharedPtr<FJsonValue> JsonLeftMatchTimestampField = (*Object)->TryGetField(TEXT("left_match_timestamp"));
+    if (JsonLeftMatchTimestampField.IsValid() && !JsonLeftMatchTimestampField->IsNull())
     {
-        LeftMatch_IsSet = TryGetJsonValue(JsonLeftMatchField, LeftMatch_Optional);
-        ParseSuccess &= LeftMatch_IsSet;
+        LeftMatchTimestamp_IsSet = TryGetJsonValue(JsonLeftMatchTimestampField, LeftMatchTimestamp_Optional);
+        ParseSuccess &= LeftMatchTimestamp_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonDurationSecondsField = (*Object)->TryGetField(TEXT("duration_seconds"));
     if (JsonDurationSecondsField.IsValid() && !JsonDurationSecondsField->IsNull())
@@ -158,12 +164,6 @@ bool FRHAPI_MatchPlayerResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValu
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-    if (JsonPlayerUuidField.IsValid() && !JsonPlayerUuidField->IsNull())
-    {
-        PlayerUuid_IsSet = TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
-        ParseSuccess &= PlayerUuid_IsSet;
     }
 
     return ParseSuccess;
