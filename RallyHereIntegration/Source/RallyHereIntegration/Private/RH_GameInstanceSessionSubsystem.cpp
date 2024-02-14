@@ -4,12 +4,14 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
+#include "RH_MatchSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
 #include "SessionsAPI.h"
 #include "RH_Beacons.h"
+#include "RH_LocalPlayer.h"
 
 // used to validate state of local players before joining an instance
 #include "Engine/LocalPlayer.h"
@@ -326,6 +328,9 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	static FName HealthPollTimerName(TEXT("SessionInstanceHealth"));
 	static FName BackfillPollTimerName(TEXT("SessionBackfill"));
 
+	const auto* Settings = GetDefault<URH_IntegrationSettings>();
+	auto* MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+
 	auto OldSession = ActiveSession;
 	if (ActiveSession != nullptr)
 	{
@@ -349,6 +354,35 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		{
 			PollControl->ClearPollingIntervalOverride(HealthPollTimerName);
 		}
+
+		if (Settings->bEnableAutomaticMatches && Settings->bCloseOnSessionInactive)
+		{
+			// Send a match update that the match is now in the closed state
+			if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
+			{
+				// send an update with the close state and end time
+				FRHAPI_MatchRequest UpdateRequest;
+				UpdateRequest.SetEndTimestamp(FDateTime::UtcNow());
+				UpdateRequest.SetState(ERHAPI_MatchState::Closed);
+
+				// if we can calculate a duration, do so.  Grab the cached match data since it should have been cached at least once on creation
+				FRHAPI_MatchWithPlayers OldMatch;
+				if (MatchSubsystem->GetMatch(MatchSubsystem->GetActiveMatchId(), OldMatch))
+				{
+					const auto StartTime = OldMatch.GetStartTimestampOrNull();
+					if (StartTime != nullptr)
+					{
+						const auto Duration = FDateTime::UtcNow() - *StartTime;
+						UpdateRequest.SetDurationSeconds(Duration.GetTotalSeconds());
+					}
+				}
+
+				MatchSubsystem->UpdateMatch(MatchSubsystem->GetActiveMatchId(), UpdateRequest);
+
+				// clear out the active match id
+				MatchSubsystem->SetActiveMatchId(FString());
+			}
+		}
 	}
 
 	// clear transient flags for new tracking
@@ -364,9 +398,16 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		ActiveSession->SetActive(true);
 		ActiveSession->SetWatchingPlayers(true);
 
-		// if this instance is locally hosted, set up health polling
+		// if this instance is locally hosted, set up host specific logic
 		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
 		{
+
+			// if automatic matches are enabled, create one now
+			if (Settings->bEnableAutomaticMatches)
+			{
+				CreateMatchForSession(ActiveSession);
+			}
+
 			// instance health polling kickoff and config check
 			if (GetShouldKeepInstanceHealthAlive())
 			{
@@ -456,6 +497,99 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	// fire delegates to allow registration of handler objects
 	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
+}
+
+void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session) const
+{
+	const auto* Settings = GetDefault<URH_IntegrationSettings>();
+	auto* pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+
+	// Send a match create request to the match subsystem
+	if (pMatchSubsystem != nullptr)
+	{
+		// send an update with initial data satte
+		FRHAPI_MatchRequest UpdateRequest;
+		UpdateRequest.SetStartTimestamp(FDateTime::UtcNow());
+		UpdateRequest.SetState(ERHAPI_MatchState::Pending);
+
+		// set the allocation id
+		{
+			if (Session->GetInstanceData() != nullptr)
+			{
+				TArray<FRHAPI_MatchAllocation> Allocations;
+				{
+					FRHAPI_MatchAllocation NewAllocation;
+					NewAllocation.SetAllocationId(Session->GetInstanceData()->GetInstanceId());
+					Allocations.Add(NewAllocation);
+				}
+				UpdateRequest.SetAllocations(Allocations);
+			}
+		}
+
+		// set the session id
+		{
+			TArray<FRHAPI_MatchSession> Sessions;
+			{
+				FRHAPI_MatchSession NewSession;
+				NewSession.SetSessionId(Session->GetSessionId());
+				Sessions.Add(NewSession);
+			}
+			UpdateRequest.SetSessions(Sessions);
+		}
+
+		// set the Instance id
+		{
+			TArray<FRHAPI_MatchInstance> Instances;
+			{
+				FRHAPI_MatchInstance NewInstance;
+				NewInstance.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
+				Instances.Add(NewInstance);
+			}
+			UpdateRequest.SetInstances(Instances);
+		}
+
+		// scan through all known local and remote players for connected players, and add them.  We do not set much state since we cannot determine much here
+		auto* pWorld = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
+		if (Settings->bAutoAddConnectedPlayersToMatches && pWorld != nullptr)
+		{
+			TArray<FRHAPI_MatchPlayerRequest> Players;
+			// add existing local players
+			for (auto LP : GetGameInstanceSubsystem()->GetGameInstance()->GetLocalPlayers())
+			{
+				auto* pRH_LP = Cast<IRH_LocalPlayerInterface>(LP);
+				if (pRH_LP != nullptr)
+				{
+					FRHAPI_MatchPlayerRequest NewPlayer;
+					const auto& PlayerId = pRH_LP->GetRHPlayerUuid();
+					NewPlayer.SetPlayerUuid(PlayerId);
+					NewPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+					Players.Add(NewPlayer);
+				}
+			}
+
+			// add existing remote players			
+			FString RequestURL;
+			if (pWorld->NetDriver != nullptr && pWorld->NetDriver->ClientConnections.Num() > 0)
+			{
+				for (auto Connection : pWorld->NetDriver->ClientConnections)
+				{
+					auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(Connection);
+					if (pRH_Conn != nullptr)
+					{
+						FRHAPI_MatchPlayerRequest NewPlayer;
+						const auto& PlayerId = pRH_Conn->GetRHPlayerUuid();
+						NewPlayer.SetPlayerUuid(PlayerId);
+						NewPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+						Players.Add(NewPlayer);
+					}
+				}
+			}
+			UpdateRequest.SetPlayers(Players);
+		}
+
+		// create the match and set as active
+		pMatchSubsystem->CreateMatch(UpdateRequest, true);
+	}
 }
 
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive_Implementation() const

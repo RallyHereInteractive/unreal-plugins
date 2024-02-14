@@ -314,6 +314,27 @@ void URH_GameInstanceSubsystem::GameModePostLoginEvent(class AGameModeBase* Game
 	{
 		Event.EmitTo(Provider.Get());
 	}
+
+	if (NewPlayer != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
+
+		auto Settings = GetDefault<URH_IntegrationSettings>();
+		auto pMatchSubsystem = GetMatchSubsystem();
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
+		{
+			FRHAPI_MatchPlayerRequest MatchPlayer;
+			const auto PlayerId = pRH_Conn != nullptr ? pRH_Conn->GetRHPlayerUuid() : pRH_LocalPlayer != nullptr ? pRH_LocalPlayer->GetRHPlayerUuid() : FGuid();
+			if (PlayerId.IsValid())
+			{
+				MatchPlayer.SetPlayerUuid(PlayerId);
+				MatchPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+
+				pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId, MatchPlayer);
+			}
+		}
+	}
 }
 
 void URH_GameInstanceSubsystem::GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting)
@@ -339,6 +360,28 @@ void URH_GameInstanceSubsystem::GameModeLogoutEvent(class AGameModeBase* GameMod
 	if (Provider != nullptr)
 	{
 		Event.EmitTo(Provider.Get());
+	}
+
+	auto* NewPlayer = Cast<APlayerController>(Exiting);
+	if (NewPlayer != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
+
+		auto Settings = GetDefault<URH_IntegrationSettings>();
+		auto pMatchSubsystem = GetMatchSubsystem();
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
+		{
+			FRHAPI_MatchPlayerRequest MatchPlayer;
+			const auto PlayerId = pRH_Conn != nullptr ? pRH_Conn->GetRHPlayerUuid() : pRH_LocalPlayer != nullptr ? pRH_LocalPlayer->GetRHPlayerUuid() : FGuid();
+			if (PlayerId.IsValid())
+			{
+				MatchPlayer.SetPlayerUuid(PlayerId);
+				MatchPlayer.SetLeftMatchTimestamp(FDateTime::UtcNow());
+
+				pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId, MatchPlayer);
+			}
+		}
 	}
 }
 

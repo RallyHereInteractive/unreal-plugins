@@ -268,9 +268,10 @@ public:
 
 	/**
 	 * @brief Update a player in a match (PATCH w/ UPSERT)
-	 * 	 * @param [in] MatchId The match to update
-	 * 	 * @param [in] Player The player to update
-	 * 	 * @param [in] Delegate Callback with the results of the player update
+	 * @param [in] MatchId The match to update
+	 * @param [in] Player The player id to update
+	 * @param [in] Player The player data request to update
+	 * @param [in] Delegate Callback with the results of the player update
 	 */
 	virtual void UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate = FRH_OnMatchPlayerUpdateCompleteDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match Player", AutoCreateRefTerm = "Player,Delegate"))

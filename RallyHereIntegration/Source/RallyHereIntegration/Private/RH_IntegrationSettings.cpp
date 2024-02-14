@@ -20,6 +20,10 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsBurstCountThreshold = 5;
 	WebRequestsBurstTimeThresholdInSeconds = 5;
 
+	bEnableAutomaticMatches = true;
+	bAutoAddConnectedPlayersToMatches = true;
+	bCloseOnSessionInactive = true;
+
 	PlayerMatchesPageSize = 0; // use API default page size
 	PlayerMatchesMaxPageCount = 5;
 	PlayerMatchesMaxAge = FTimespan(30, 0, 0, 0);

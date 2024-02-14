@@ -257,6 +257,10 @@ protected:
 	 */
 	virtual void SetActiveSession(URH_JoinedSession* Session);
 	/**
+	 * @brief Creates a match for a given session using the match subsystem
+	 */
+	virtual void CreateMatchForSession(const URH_JoinedSession* Session) const;
+	/**
 	 * @brief Called when the map completes loading.
 	 * @param [in] pWorld The world that was being traveled to.
 	 */
