@@ -46,6 +46,43 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDelegate, URH_Joi
  *  @{
  */
 
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_ActiveSessionState
+{
+public:
+	GENERATED_USTRUCT_BODY()
+
+	/** @brief Session we are synced to. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	URH_JoinedSession* Session;
+
+	/** @brief A fallback security token to be used while the security token set is in flight */
+	TOptional<FString> FallbackSecurityToken;
+
+	/** @brief If set, the session instance is failed and unrecoverable. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	bool bHasBeenMarkedFubar;
+
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	bool bIsBackfillTerminated;
+
+	FRH_ActiveSessionState()
+		: Session(nullptr)
+		, bHasBeenMarkedFubar(false)
+		, bIsBackfillTerminated(false)
+	{
+	}
+
+	/** @brief Reset the state as part of a transition to a new active session */
+	void ResetState()
+	{
+		Session = nullptr;
+		FallbackSecurityToken.Reset();
+		bHasBeenMarkedFubar = false;
+		bIsBackfillTerminated = false;
+	}
+};
+
  /**
   * @brief Subsystem for handling sessions within a game instance.
   */
@@ -107,21 +144,21 @@ public:
 	* @brief Gets the session that is currently active.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE URH_JoinedSession* GetActiveSession() const { return ActiveSession; }
+	FORCEINLINE URH_JoinedSession* GetActiveSession() const { return ActiveSessionState.Session; }
 	/**
 	* @brief Gets the fallback security token
 	*/
-	FORCEINLINE const TOptional<FString>& GetFallbackSessionSecurityToken() const { return FallbackSecurityToken; }
+	FORCEINLINE const TOptional<FString>& GetFallbackSessionSecurityToken() const { return ActiveSessionState.FallbackSecurityToken; }
 	/**
 	* @brief Gets if the instance has been marked failed.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE bool IsMarkedFubar() const { return bHasBeenMarkedFubar; }
+	FORCEINLINE bool IsMarkedFubar() const { return ActiveSessionState.bHasBeenMarkedFubar; }
 	/**
 	* @brief Gets if the instance has been marked failed.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE bool IsBackfillTerminated() const { return bIsBackfillTerminated; }
+	FORCEINLINE bool IsBackfillTerminated() const { return ActiveSessionState.bIsBackfillTerminated; }
 	/**
 	* @brief Checks if the session has all the players and is good to change maps.
 	* @param [in] Session The session being checked.
@@ -214,7 +251,7 @@ public:
 	 * @brief Shuts down backfill handling for the current session, cannot be reversed
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Terminate Backfill"))
-	virtual void TerminateBackfill() { bIsBackfillTerminated = true; }
+	virtual void TerminateBackfill() { ActiveSessionState.bIsBackfillTerminated = true; }
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
@@ -240,17 +277,10 @@ protected:
 	/** @brief Session we want to sync to. */
 	UPROPERTY(BlueprintGetter = GetDesiredSession, Transient, Category = "Session|Instance")
 	URH_JoinedSession*	DesiredSession;
-	/** @brief Session we are synced to. */
-	UPROPERTY(BlueprintGetter = GetActiveSession, Transient, Category = "Session|Instance")
-	URH_JoinedSession* ActiveSession;
-	/** @brief A fallback security token to be used while the security token set is in flight */
-	TOptional<FString> FallbackSecurityToken;
-	/** @brief If set, the session instance is failed and unrecoverable. */
-	UPROPERTY(BlueprintGetter = IsMarkedFubar, Transient, Category = "Session|Instance")
-	bool bHasBeenMarkedFubar;
 
-	UPROPERTY(BlueprintGetter = IsBackfillTerminated, Transient, Category = "Session|Instance")
-	bool bIsBackfillTerminated;
+	/** @brief Session we are synced to. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FRH_ActiveSessionState ActiveSessionState;
 	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr InstanceHealthPoller;

@@ -10,6 +10,7 @@
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
 #include "Engine/World.h"
+#include "GameFramework/GameModeBase.h"
 #include "Misc/CoreDelegates.h"
 #include "SessionsAPI.h"
 #include "RH_Beacons.h"
@@ -64,9 +65,9 @@ void URH_GameInstanceSessionSubsystem::Deinitialize()
 
 	// explicitly do not sync state to null, just clear pointers
 	DesiredSession = nullptr;
-	ActiveSession = nullptr;
-	FallbackSecurityToken.Reset();
+	ActiveSessionState.ResetState();
 	InstanceHealthPoller.Reset();
+	BackfillPoller.Reset();
 
 	FWorldDelegates::OnPostWorldInitialization.RemoveAll(this);
 	if (GEngine != nullptr)
@@ -94,6 +95,7 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
+	auto ActiveSession = GetActiveSession();
 	if (ActiveSession != nullptr)
 	{
 		// this can happen if a map load fails to create the UWorld
@@ -185,7 +187,7 @@ void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
 				{
 					FString SecurityToken = FGuid::NewGuid().ToString();
 
-					FallbackSecurityToken = SecurityToken;
+					ActiveSessionState.FallbackSecurityToken = SecurityToken;
 
 					InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::SessionSecurityTokenName, SecurityToken);
 					InstanceInfo.GetJoinParams().CustomData_IsSet = true;
@@ -223,7 +225,7 @@ void URH_GameInstanceSessionSubsystem::OnTravelFailure(UWorld* World, ETravelFai
 
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorString);
 
-	if (ActiveSession != nullptr)
+	if (GetActiveSession() != nullptr)
 	{
 		StartLeaveInstanceFlow(true);
 	}
@@ -237,13 +239,13 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 	auto* MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
 
-	auto OldSession = ActiveSession;
-	if (ActiveSession != nullptr)
+	auto OldSession = ActiveSessionState.Session;
+	if (OldSession != nullptr)
 	{
-		check(ActiveSession->IsActive());
-		ActiveSession->SetActive(false);
-		ActiveSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
-		ActiveSession = nullptr;
+		check(OldSession->IsActive());
+		OldSession->SetActive(false);
+		OldSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
+		OldSession = nullptr;
 
 		if (InstanceHealthPoller.IsValid())
 		{
@@ -292,17 +294,18 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	}
 
 	// clear transient flags for new tracking
-	bHasBeenMarkedFubar = false;
-	bIsBackfillTerminated = false;
+	ActiveSessionState.ResetState();
 
-	ActiveSession = JoinedSession;
-	FallbackSecurityToken.Reset();
-
-	if (ActiveSession != nullptr)
+	if (JoinedSession != nullptr)
 	{
-		check(!ActiveSession->IsActive());
-		ActiveSession->SetActive(true);
-		ActiveSession->SetWatchingPlayers(true);
+		// set the new active session
+		check(!JoinedSession->IsActive());
+		ActiveSessionState.Session = JoinedSession;
+
+		auto*& ActiveSession = ActiveSessionState.Session;
+
+		JoinedSession->SetActive(true);
+		JoinedSession->SetWatchingPlayers(true);
 
 		// if this instance is locally hosted, set up host specific logic
 		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
@@ -401,8 +404,8 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	}
 
 	// fire delegates to allow registration of handler objects
-	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
-	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
+	OnActiveSessionChanged.Broadcast(OldSession, ActiveSessionState.Session);
+	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSessionState.Session);
 }
 
 
@@ -888,6 +891,7 @@ ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthS
 void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollCompleteFunc& Delegate)
 {
 	// make sure the active session is locally hosted
+	auto* ActiveSession = GetActiveSession();
 	if (	ActiveSession != nullptr
 		&&	ActiveSession->GetInstanceData() != nullptr 
 		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
@@ -910,6 +914,7 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation() const
 {
+	auto* ActiveSession = GetActiveSession();
 	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
 	{
 		return false;
@@ -923,7 +928,7 @@ bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation
 	}
 
 	// if a backfill termination was requested, we should not keep it alive
-	if (bIsBackfillTerminated)
+	if (IsBackfillTerminated())
 	{
 		return false;
 	}
@@ -942,6 +947,7 @@ bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation
 void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& Delegate)
 {
 	// make sure the active session is locally hosted, and that we want to keep backfill alive
+	auto* ActiveSession = GetActiveSession();
 	if (	ActiveSession != nullptr
 		&&	ActiveSession->GetInstanceData() != nullptr 
 		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
@@ -1023,20 +1029,21 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	const FRHAPI_InstanceInfo* newInstanceData = DesiredSession != nullptr ? DesiredSession->GetInstanceData() : nullptr;
 
 	// if we are in a session, and we do not want to be, start leaving (regardless of destination)
-	if (ActiveSession != nullptr && ActiveSession != DesiredSession)
+	auto pOldActiveSession = GetActiveSession();
+	if (pOldActiveSession != nullptr && pOldActiveSession != DesiredSession)
 	{
 		// leave instance flow will call join flow on the desired session
 		StartLeaveInstanceFlow(false, true, Delegate);
 	}
 	// if we have a session to join and are not in one
-	else if (ActiveSession == nullptr && DesiredSession != nullptr)
+	else if (pOldActiveSession == nullptr && DesiredSession != nullptr)
 	{
 		StartJoinInstanceFlow(Delegate);
 	}
 	// we are already in the correct instance
 	else
 	{
-		check(ActiveSession == DesiredSession);
+		check(pOldActiveSession == DesiredSession);
 		Delegate.ExecuteIfBound(DesiredSession, true, TEXT("Already in session"));
 	}
 }
@@ -1112,9 +1119,9 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 
 const FRHAPI_InstanceInfo* URH_GameInstanceSessionSubsystem::GetInstance() const
 {
-	if (ActiveSession != nullptr)
+	if (GetActiveSession() != nullptr)
 	{
-		return ActiveSession->GetSessionData().GetInstanceOrNull();
+		return GetActiveSession()->GetSessionData().GetInstanceOrNull();
 	}
 
 	return nullptr;
@@ -1214,6 +1221,9 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 			// set state now before we start travel (which may fail in line)
 			SetActiveSession(DesiredSession);
 
+			// now that the active session has been set, grab a reference to it for correctness
+			auto ActiveSession = GetActiveSession();
+
 			// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
 			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
 			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
@@ -1258,7 +1268,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 
 		GEngine->SetClientTravel(pWorldContext->World(), *JoinURLString, TRAVEL_Absolute);
 
-		Delegate.ExecuteIfBound(ActiveSession, true, TEXT("Travel started"));
+		Delegate.ExecuteIfBound(GetActiveSession(), true, TEXT("Travel started"));
 		return true;
 	}
 	else
@@ -1279,6 +1289,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
 	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
 
+	auto ActiveSession = GetActiveSession();
 	if (ActiveSession != nullptr && IsLocallyHostedSession(ActiveSession))
 	{
 		// instance info updates are not really properly using optional flags, so get a default object and pass it
@@ -1316,19 +1327,19 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 
 void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
-	if (ActiveSession != nullptr && !bHasBeenMarkedFubar)
+	if (ActiveSessionState.Session != nullptr && !ActiveSessionState.bHasBeenMarkedFubar)
 	{
-		bHasBeenMarkedFubar = true;
+		ActiveSessionState.bHasBeenMarkedFubar = true;
 		typedef RallyHereAPI::Traits_ReportFubar BaseType;
 
 		BaseType::Request Request = {};
 		Request.AuthContext = GetAuthContext();
-		Request.SessionId = ActiveSession->GetSessionId();
-		Request.InstanceFubar.SetRegion(ActiveSession->GetSessionData().GetRegionId());
+		Request.SessionId = ActiveSessionState.Session->GetSessionId();
+		Request.InstanceFubar.SetRegion(ActiveSessionState.Session->GetSessionData().GetRegionId());
 		//Request.InstanceFubar.SetMatchmakingProfileId()
 		Request.InstanceFubar.SetError(Reason);
 
-		auto* Instance = ActiveSession->GetInstanceData();
+		auto* Instance = ActiveSessionState.Session->GetInstanceData();
 		if (Instance != nullptr)
 		{
 			Request.InstanceFubar.SetInstanceId(Instance->GetInstanceId());
