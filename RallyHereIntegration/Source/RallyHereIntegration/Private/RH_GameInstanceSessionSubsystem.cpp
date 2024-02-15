@@ -239,7 +239,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 	auto* MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
 
-	auto OldSession = ActiveSessionState.Session;
+	auto OldSession = GetActiveSession();
 	if (OldSession != nullptr)
 	{
 		check(OldSession->IsActive());
@@ -766,10 +766,6 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 		else if (pRH_LocalPlayer != nullptr)
 		{
 			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
-		}
-		else
-		{
-
 		}
 	}
 	if (PlayerId.IsSet() && !PlayerId->IsValid())
