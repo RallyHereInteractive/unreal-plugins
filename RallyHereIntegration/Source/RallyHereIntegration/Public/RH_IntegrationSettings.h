@@ -106,6 +106,17 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoJoinPlatformSessionsAfterUserChange;
 
+	/** @brief If set, the connection attempt must have a valid security token to be allowed to connect. */
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	bool bUseSecurityTokenForJoining;
+
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	/** @brief If set, the Player Id must have been imported to the instance before being allowed to connect. */
+	bool bRequireImportedPlayerIdsForJoining;
+
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	/** @brief If set, the Player Id must be valid before being allowed to connect. */
+	bool bRequireValidPlayerIdsForJoining;
 
 	/** @brief Sets the default page size when requesting a player's match history */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
@@ -129,7 +140,7 @@ public:
 
 	/** @brief Whether to automatically close a match when a session becomes inactive if the host */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
-	bool bCloseOnSessionInactive;
+	bool bCloseMatchOnSessionInactive;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests

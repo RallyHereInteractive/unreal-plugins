@@ -186,6 +186,13 @@ public:
 	virtual bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 
 	/**
+	 * @brief Handles verification and validation of a player attempting to connect to the instance.
+	 * @param [in] Connection The player that is attempting to connect.
+	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
+	 */
+	virtual bool ValidateIncomingConnection(class UNetConnection* Connection, FString& ErrorMessage) const;
+
+	/**
 	 * @brief Gets whether backfill should be kept alive
 	 */
 	UFUNCTION(BlueprintNativeEvent, Category = "Session", meta = (DisplayName = "Should Keep Instance Health Alive"))
@@ -256,6 +263,27 @@ protected:
 	 * @param [in] Session to set as active session
 	 */
 	virtual void SetActiveSession(URH_JoinedSession* Session);
+
+	/**
+	 * @brief Handles verification and validation of a player attempting to connect to the instance.
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] NewPlayer The player that is attempting to connect.
+	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
+	 */
+	virtual void GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage);
+	/**
+	 * @brief Handles logic for when a player connects
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] NewPlayer The player that is connecting.
+	 */
+	virtual void GameModePostLoginEvent(class AGameModeBase* GameMode, APlayerController* NewPlayer);
+	/**
+	 * @brief Handles logic for when a player disconnects
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] Exiting The player that is disconnecting.
+	 */
+	virtual void GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting);
+
 	/**
 	 * @brief Creates a match for a given session using the match subsystem
 	 */

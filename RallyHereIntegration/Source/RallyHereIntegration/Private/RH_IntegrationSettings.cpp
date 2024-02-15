@@ -20,9 +20,13 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsBurstCountThreshold = 5;
 	WebRequestsBurstTimeThresholdInSeconds = 5;
 
+	bUseSecurityTokenForJoining = true;
+	bRequireImportedPlayerIdsForJoining = true;
+	bRequireValidPlayerIdsForJoining = true;
+
 	bEnableAutomaticMatches = true;
 	bAutoAddConnectedPlayersToMatches = true;
-	bCloseOnSessionInactive = true;
+	bCloseMatchOnSessionInactive = true;
 
 	PlayerMatchesPageSize = 0; // use API default page size
 	PlayerMatchesMaxPageCount = 5;

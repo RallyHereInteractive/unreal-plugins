@@ -9,15 +9,17 @@
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
+#include "Engine/World.h"
+#include "Misc/CoreDelegates.h"
 #include "SessionsAPI.h"
 #include "RH_Beacons.h"
 #include "RH_LocalPlayer.h"
+#include "RH_Events.h"
 
 // used to validate state of local players before joining an instance
 #include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
-#include "RH_Events.h"
 
 // used to look up local IP as a temporary method for determining join IP
 #include <SocketSubsystem.h>
@@ -27,110 +29,6 @@
 
 //==================================================================
 
-bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
-{
-	if (Session == nullptr)
-	{
-		return false;
-	}
-
-	const auto Instance = Session->GetInstanceData();
-	if (Instance == nullptr)
-	{
-		return false;
-	}
-
-	const auto InstanceStartupParams = Instance->GetInstanceStartupParamsOrNull();
-	if (!InstanceStartupParams)
-	{
-		return false;
-	}
-
-	FString FormattedURLString = InstanceStartupParams->Map;
-	if (const auto Mode = InstanceStartupParams->GetModeOrNull())
-	{
-		FormattedURLString += FString::Printf(TEXT("?game=%s"), **Mode);
-	}
-
-	// append misc params directly, assume they are formated as desired
-	FormattedURLString += InstanceStartupParams->GetMiscParams();
-
-	FURL TravelURL(&lastURL, *FormattedURLString, TRAVEL_Absolute);
-
-	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
-	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
-
-	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
-	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
-
-	if (!IsRunningDedicatedServer())	// dedicated servers always listen
-	{
-		if (!Session->IsOffline())		// temporary check until we have a template setting for joinability type
-		{
-			TravelURL.AddOption(TEXT("Listen"));
-		}
-	}
-
-	if (TravelURL.Valid && TravelURL.Map.Len() > 0)
-	{
-		outURL = TravelURL;
-		return true;
-	}
-	return false;
-}
-
-bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
-{
-	if (Session == nullptr)
-	{
-		return false;
-	}
-
-	auto* Instance = Session->GetInstanceData();
-	if (Instance == nullptr)
-	{
-		return false;
-	}
-
-	if (Instance->JoinStatus != ERHAPI_InstanceJoinableStatus::Joinable)
-	{
-		return false;
-	}
-
-	const auto JoinParams = Instance->GetJoinParamsOrNull();
-	if (!JoinParams || (JoinParams->PublicConnStr.Len() == 0 && JoinParams->PrivateConnStr.Len() == 0))
-	{
-		return false;
-	}
-
-	// TODO - determine private vs public connection
-	bool bUsePublic = JoinParams->PublicConnStr.Len() > 0;
-	{
-		// rule out the default address, which is the Any address in IPv4
-		FIPv4Address Addr;
-		if (FIPv4Address::Parse(JoinParams->PublicConnStr, Addr) && Addr == FIPv4Address::Any)
-		{
-			bUsePublic = false;
-		}
-	}
-	const FString FormattedURLString = bUsePublic ? JoinParams->PublicConnStr : JoinParams->PrivateConnStr;
-
-	FURL TravelURL(&lastURL, *FormattedURLString, TRAVEL_Absolute);
-
-	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
-	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
-
-	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
-	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
-
-	if (TravelURL.Valid && TravelURL.Host.Len() > 0)
-	{
-		outURL = TravelURL;
-		return true;
-	}
-
-	return false;
-}
 
 void URH_GameInstanceSessionSubsystem::Initialize()
 {
@@ -153,6 +51,10 @@ void URH_GameInstanceSessionSubsystem::Initialize()
 		GEngine->OnNetworkFailure().AddUObject(this, &URH_GameInstanceSessionSubsystem::OnNetworkFailure);
 		GEngine->OnTravelFailure().AddUObject(this, &URH_GameInstanceSessionSubsystem::OnTravelFailure);
 	}
+
+	FGameModeEvents::GameModePreLoginEvent.AddUObject(this, &URH_GameInstanceSessionSubsystem::GameModePreloginEvent);
+	FGameModeEvents::GameModePostLoginEvent.AddUObject(this, &URH_GameInstanceSessionSubsystem::GameModePostLoginEvent);
+	FGameModeEvents::GameModeLogoutEvent.AddUObject(this, &URH_GameInstanceSessionSubsystem::GameModeLogoutEvent);
 }
 
 void URH_GameInstanceSessionSubsystem::Deinitialize()
@@ -172,6 +74,10 @@ void URH_GameInstanceSessionSubsystem::Deinitialize()
 		GEngine->OnNetworkFailure().RemoveAll(this);
 		GEngine->OnTravelFailure().RemoveAll(this);
 	}
+
+	FGameModeEvents::GameModePreLoginEvent.RemoveAll(this);
+	FGameModeEvents::GameModePostLoginEvent.RemoveAll(this);
+	FGameModeEvents::GameModeLogoutEvent.RemoveAll(this);
 }
 
 void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
@@ -355,7 +261,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 			PollControl->ClearPollingIntervalOverride(HealthPollTimerName);
 		}
 
-		if (Settings->bEnableAutomaticMatches && Settings->bCloseOnSessionInactive)
+		if (Settings->bEnableAutomaticMatches && Settings->bCloseMatchOnSessionInactive)
 		{
 			// Send a match update that the match is now in the closed state
 			if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
@@ -497,6 +403,383 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 	// fire delegates to allow registration of handler objects
 	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
+}
+
+
+bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
+{
+	if (Session == nullptr)
+	{
+		return false;
+	}
+
+	const auto Instance = Session->GetInstanceData();
+	if (Instance == nullptr)
+	{
+		return false;
+	}
+
+	const auto InstanceStartupParams = Instance->GetInstanceStartupParamsOrNull();
+	if (!InstanceStartupParams)
+	{
+		return false;
+	}
+
+	FString FormattedURLString = InstanceStartupParams->Map;
+	if (const auto Mode = InstanceStartupParams->GetModeOrNull())
+	{
+		FormattedURLString += FString::Printf(TEXT("?game=%s"), **Mode);
+	}
+
+	// append misc params directly, assume they are formated as desired
+	FormattedURLString += InstanceStartupParams->GetMiscParams();
+
+	FURL TravelURL(&lastURL, *FormattedURLString, TRAVEL_Absolute);
+
+	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
+	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
+
+	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
+	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
+
+	if (!IsRunningDedicatedServer())	// dedicated servers always listen
+	{
+		if (!Session->IsOffline())		// temporary check until we have a template setting for joinability type
+		{
+			TravelURL.AddOption(TEXT("Listen"));
+		}
+	}
+
+	if (TravelURL.Valid && TravelURL.Map.Len() > 0)
+	{
+		outURL = TravelURL;
+		return true;
+	}
+	return false;
+}
+
+bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
+{
+	if (Session == nullptr)
+	{
+		return false;
+	}
+
+	auto* Instance = Session->GetInstanceData();
+	if (Instance == nullptr)
+	{
+		return false;
+	}
+
+	if (Instance->JoinStatus != ERHAPI_InstanceJoinableStatus::Joinable)
+	{
+		return false;
+	}
+
+	const auto JoinParams = Instance->GetJoinParamsOrNull();
+	if (!JoinParams || (JoinParams->PublicConnStr.Len() == 0 && JoinParams->PrivateConnStr.Len() == 0))
+	{
+		return false;
+	}
+
+	// TODO - determine private vs public connection
+	bool bUsePublic = JoinParams->PublicConnStr.Len() > 0;
+	{
+		// rule out the default address, which is the Any address in IPv4
+		FIPv4Address Addr;
+		if (FIPv4Address::Parse(JoinParams->PublicConnStr, Addr) && Addr == FIPv4Address::Any)
+		{
+			bUsePublic = false;
+		}
+	}
+	const FString FormattedURLString = bUsePublic ? JoinParams->PublicConnStr : JoinParams->PrivateConnStr;
+
+	FURL TravelURL(&lastURL, *FormattedURLString, TRAVEL_Absolute);
+
+	// add the RH Session ID to the URL.  This is used to identify if a map loaded was on behalf of the session, for tracking reasons (ex: enable it to be joined once load completes)
+	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_SESSION_PARAMETER_NAME, *Session->GetSessionId()));
+
+	// add the RH Instance Id to the URL.  This is used to identify if a map loaded was on behalf of the instance, for tracking reasons (ex: enable it to be joined once load completes)
+	TravelURL.AddOption(*FString::Printf(TEXT("%s%s"), RH_INSTANCE_PARAMETER_NAME, *Instance->GetInstanceId()));
+
+	if (TravelURL.Valid && TravelURL.Host.Len() > 0)
+	{
+		outURL = TravelURL;
+		return true;
+	}
+
+	return false;
+}
+
+bool URH_GameInstanceSessionSubsystem::ValidateIncomingConnection(UNetConnection* Connection, FString& ErrorMessage) const
+{
+	RHStandardEvents::FInstanceLoginReceivedEvent Event;
+
+	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
+	const auto* pSession = GetActiveSession();
+	const auto* pSettings = GetDefault<URH_IntegrationSettings>();
+
+	if (Connection != nullptr)
+	{
+		Event.ConnectionString = Connection->RequestURL; // todo: sanitize?
+		auto Platform = RH_GetPlatformFromOSSName(Connection->PlayerId.GetType());
+		if (Platform.IsSet())
+		{
+			Event.PlatformId = EnumToString(Platform.GetValue());
+		}
+		Event.PlatformUserId = Connection->PlayerId.ToString();
+	}
+
+	if (pSession != nullptr)
+	{
+		Event.SessionId = pSession->GetSessionId();
+		if (pSession->GetInstanceData() != nullptr)
+		{
+			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
+		}
+	}
+
+	ON_SCOPE_EXIT
+	{
+		auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
+		if (Provider != nullptr)
+		{
+			Event.IsSuccess = ErrorMessage.Len() == 0;
+
+			Event.EmitTo(Provider.Get());
+		}
+	};
+
+	// if error message is already set, something else already failed
+	if (ErrorMessage.Len() > 0)
+	{
+		return false;
+	}
+
+	if (Connection == nullptr)
+	{
+		ErrorMessage = TEXT("Connection is null");
+		return false;
+	}
+
+	// find the player connection and import any player options desired
+	FString RequestURL = Connection->RequestURL;
+
+	auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(Connection);
+	if (pRH_Conn != nullptr)
+	{
+		bool bFound = false;
+		bool bValid = false;;
+		pRH_Conn->ImportPlayerOptionsfromURL(bFound, bValid);
+
+		Event.UserId = pRH_Conn->GetRHPlayerUuid();
+
+		if (pSettings->bRequireImportedPlayerIdsForJoining && !bFound)
+		{
+			ErrorMessage = TEXT("Could not import player options from URL");
+			return false;
+		}
+
+		//if it is a game type of world, check required id flag (for now, editor may not have valid IDs for PIE, etc)
+		if (pWorld->WorldType == EWorldType::Game)
+		{
+			if (pSettings->bRequireValidPlayerIdsForJoining && !bValid)
+			{
+				ErrorMessage = TEXT("Imported player ids are not valid");
+				return false;
+			}
+		}
+	}
+
+	if (ErrorMessage.Len() == 0 && pSettings->bUseSecurityTokenForJoining)
+	{
+		// temporary url to parse out the token
+		const FURL TempURL(nullptr, *RequestURL, TRAVEL_Absolute);
+		const FString LoginSecurityToken = TempURL.GetOption(TEXT("RHSecurityToken="), TEXT(""));
+
+		// see if a security token was specified for the currently active session
+		const FString* SessionSecurityToken = nullptr;
+		const TOptional<FString> FallbackSessionSecurityToken = GetFallbackSessionSecurityToken();
+		if (pSession != nullptr && pSession->GetInstanceData() != nullptr)
+		{
+			if (const auto JoinParams = pSession->GetInstanceData()->GetJoinParamsOrNull())
+			{
+				if (const auto CustomData = JoinParams->GetCustomDataOrNull())
+				{
+					SessionSecurityToken = CustomData->Find(RH_SessionCustomDataKeys::SessionSecurityTokenName);
+				}
+			}
+		}
+
+		if (SessionSecurityToken != nullptr)
+		{
+			if (*SessionSecurityToken != LoginSecurityToken)
+			{
+				ErrorMessage = TEXT("RH Security Token mismatch");
+				return false;
+			}
+		}
+		// this token is used to cover cases where clients attempt to connect before the server reads its own session data update to add the token
+		else if (FallbackSessionSecurityToken.IsSet())
+		{
+			if (FallbackSessionSecurityToken.GetValue() != LoginSecurityToken)
+			{
+				ErrorMessage = TEXT("RH Security Token (fallback) mismatch");
+				return false;
+			}
+		}
+		else if (IsRunningDedicatedServer() && GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr && GetGameInstanceSubsystem()->GetServerBootstrapper()->IsBootstrapModeEnabled())
+		{
+			// if we are running a dedicated server and the server bootstrapper is enabled, failing to find a token probably means that the server is not part of a valid joinable session
+			ErrorMessage = TEXT("Security token could not be validated");
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void URH_GameInstanceSessionSubsystem::GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage)
+{
+	// find the player connection and import any player options desired
+	auto* pWorld = GetWorld();
+	FString RequestURL;
+	if (pWorld->NetDriver != nullptr && pWorld->NetDriver->ClientConnections.Num() > 0)
+	{
+		for (auto Client : pWorld->NetDriver->ClientConnections)
+		{
+			if (Client->PlayerId == NewPlayer)
+			{
+				ValidateIncomingConnection(Client, ErrorMessage);
+				break;
+			}
+		}
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBase* GameMode, APlayerController* NewPlayer)
+{
+	RHStandardEvents::FInstanceJoinReceivedEvent Event;
+
+	Event.IsSuccess = NewPlayer != nullptr;
+
+	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
+	const auto* pSession = GetActiveSession();
+
+	if (pSession != nullptr)
+	{
+		Event.SessionId = pSession->GetSessionId();
+		if (pSession->GetInstanceData() != nullptr)
+		{
+			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
+		}
+	}
+
+	TOptional<FGuid> PlayerId;
+	if (NewPlayer != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
+
+		if (pRH_Conn != nullptr)
+		{
+			PlayerId = pRH_Conn->GetRHPlayerUuid();
+		}
+		else if (pRH_LocalPlayer != nullptr)
+		{
+			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
+		}
+	}
+	if (PlayerId.IsSet() && !PlayerId->IsValid())
+	{
+		PlayerId.Reset();
+	}
+
+	Event.UserId = PlayerId;
+
+	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
+	if (Provider != nullptr)
+	{
+		Event.EmitTo(Provider.Get());
+	}
+
+	if (NewPlayer != nullptr && PlayerId.IsSet())
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
+
+		auto Settings = GetDefault<URH_IntegrationSettings>();
+		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
+		{
+			FRHAPI_MatchPlayerRequest MatchPlayer;
+
+			MatchPlayer.SetPlayerUuid(PlayerId.GetValue());
+			MatchPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId.GetValue(), MatchPlayer);
+		}
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting)
+{
+	RHStandardEvents::FInstanceClientDisconnectEvent Event;
+
+	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
+	const auto* pSession = GetActiveSession();
+
+	if (pSession != nullptr)
+	{
+		Event.SessionId = pSession->GetSessionId();
+		if (pSession->GetInstanceData() != nullptr)
+		{
+			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
+		}
+	}
+
+	TOptional<FGuid> PlayerId;
+	auto* ExitingPlayer = Cast<APlayerController>(Exiting);
+	if (ExitingPlayer != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(ExitingPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(ExitingPlayer->Player);
+
+		if (pRH_Conn != nullptr)
+		{
+			PlayerId = pRH_Conn->GetRHPlayerUuid();
+		}
+		else if (pRH_LocalPlayer != nullptr)
+		{
+			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
+		}
+	}
+	if (PlayerId.IsSet() && !PlayerId->IsValid())
+	{
+		PlayerId.Reset();
+	}
+
+	Event.UserId = PlayerId;
+
+	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
+	if (Provider != nullptr)
+	{
+		Event.EmitTo(Provider.Get());
+	}
+
+	if (ExitingPlayer != nullptr && PlayerId.IsSet())
+	{
+		auto Settings = GetDefault<URH_IntegrationSettings>();
+		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
+		{
+			FRHAPI_MatchPlayerRequest MatchPlayer;
+			MatchPlayer.SetPlayerUuid(PlayerId.GetValue());
+			MatchPlayer.SetLeftMatchTimestamp(FDateTime::UtcNow());
+
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId.GetValue(), MatchPlayer);
+		}
+	}
 }
 
 void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session) const
