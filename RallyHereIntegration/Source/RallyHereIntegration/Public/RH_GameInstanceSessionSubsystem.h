@@ -63,8 +63,13 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	bool bHasBeenMarkedFubar;
 
+	/** @brief If set, the session should not try to backfill. */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	bool bIsBackfillTerminated;
+
+	/** @brief Map of controllers to player ids for the active session, used for cases where players leave to try to determine who left when there is no longer an active connection */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	TMap<TWeakObjectPtr<AController>, FGuid> FallbackControllerToPlayerIdMap;
 
 	FRH_ActiveSessionState()
 		: Session(nullptr)
@@ -80,6 +85,7 @@ public:
 		FallbackSecurityToken.Reset();
 		bHasBeenMarkedFubar = false;
 		bIsBackfillTerminated = false;
+		FallbackControllerToPlayerIdMap.Reset();
 	}
 };
 

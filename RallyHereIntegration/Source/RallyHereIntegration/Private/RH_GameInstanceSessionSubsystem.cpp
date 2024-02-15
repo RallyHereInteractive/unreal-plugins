@@ -698,7 +698,10 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 		PlayerId.Reset();
 	}
 
-	Event.UserId = PlayerId;
+	if (PlayerId.IsSet() && PlayerId->IsValid())
+	{
+		Event.UserId = PlayerId;
+	}
 
 	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
 	if (Provider != nullptr)
@@ -708,8 +711,7 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 
 	if (NewPlayer != nullptr && PlayerId.IsSet())
 	{
-		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
-		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
+		ActiveSessionState.FallbackControllerToPlayerIdMap.Add(NewPlayer, PlayerId.GetValue());
 
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
@@ -742,6 +744,15 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	}
 
 	TOptional<FGuid> PlayerId;
+
+	// look up the player id from the controller in the fallback map, and clear out their entry
+	if (ActiveSessionState.FallbackControllerToPlayerIdMap.Contains(Exiting))
+	{
+		PlayerId = ActiveSessionState.FallbackControllerToPlayerIdMap[Exiting];
+		ActiveSessionState.FallbackControllerToPlayerIdMap.Remove(Exiting);
+	}
+
+	// try a more proper lookup of the player id, though this can fail if the local player or connection has been removed (likely)
 	auto* ExitingPlayer = Cast<APlayerController>(Exiting);
 	if (ExitingPlayer != nullptr)
 	{
@@ -755,6 +766,10 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 		else if (pRH_LocalPlayer != nullptr)
 		{
 			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
+		}
+		else
+		{
+
 		}
 	}
 	if (PlayerId.IsSet() && !PlayerId->IsValid())
