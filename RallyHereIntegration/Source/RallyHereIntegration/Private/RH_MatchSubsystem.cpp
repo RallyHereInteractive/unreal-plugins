@@ -180,6 +180,30 @@ void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchR
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
 
+FRHAPI_MatchPlayerResponse Convert_MatchPlayerWithMatch_to_MatchPlayerResponse(const FRHAPI_MatchPlayerWithMatch& PlayerWithMatch)
+{
+	FRHAPI_MatchPlayerResponse MatchPlayer;
+
+#define CheckSetOptionalValue(FieldName) if (PlayerWithMatch.FieldName##_IsSet) { MatchPlayer.Set##FieldName(PlayerWithMatch.Get##FieldName()); }
+
+	CheckSetOptionalValue(LastModifiedTimestamp);
+	CheckSetOptionalValue(CreatedTimestamp);
+	CheckSetOptionalValue(PlayerUuid);
+	CheckSetOptionalValue(TeamId);
+	CheckSetOptionalValue(PartySessionId);
+	CheckSetOptionalValue(Placement);
+	CheckSetOptionalValue(JoinedMatchTimestamp);
+	CheckSetOptionalValue(LeftMatchTimestamp);
+	CheckSetOptionalValue(DurationSeconds);
+	CheckSetOptionalValue(StartingRank);
+	CheckSetOptionalValue(FinishingRank);
+	CheckSetOptionalValue(CustomData);
+
+#undef CheckSetOptionalValue
+
+	return MatchPlayer;
+}
+
 void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& PlayerId, const FRHAPI_MatchPlayerRequest& Player, const FRH_OnMatchPlayerUpdateCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -200,6 +224,37 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
 			{
 				Context->MatchPlayer = Resp.Content;
+
+				// generate a new match player response from the update
+				FRHAPI_MatchPlayerResponse UpdatedPlayer = Convert_MatchPlayerWithMatch_to_MatchPlayerResponse(Resp.Content);
+
+				// attempt to splice into cache
+				FRHAPI_MatchWithPlayers* Match = MatchesCache.Find(Context->MatchId);
+				if (Match != nullptr)
+				{
+					bool bFoundPlayer = false;
+
+					// set the players object as being present, if it wasn't already
+					Match->Players_IsSet = true;
+					auto Players = Match->GetPlayersOrNull();
+
+					if (Players != nullptr)
+					{
+						for (auto& Player : *Players)
+						{
+							if (Player.GetPlayerUuid() == Context->PlayerId)
+							{
+								Player = UpdatedPlayer;
+								bFoundPlayer = true;
+								break;
+							}
+						}
+						if (!bFoundPlayer)
+						{
+							Players->Add(UpdatedPlayer);
+						}
+					}
+				}
 			}),
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
