@@ -801,6 +801,8 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 	auto* pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
 
+	const auto* InstanceData = Session->GetInstanceData();
+
 	// Send a match create request to the match subsystem
 	if (pMatchSubsystem != nullptr)
 	{
@@ -811,12 +813,12 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 
 		// set the allocation id
 		{
-			if (Session->GetInstanceData() != nullptr)
+			if (InstanceData != nullptr)
 			{
 				TArray<FRHAPI_MatchAllocation> Allocations;
 				{
 					FRHAPI_MatchAllocation NewAllocation;
-					NewAllocation.SetAllocationId(Session->GetInstanceData()->GetInstanceId());
+					NewAllocation.SetAllocationId(InstanceData->GetInstanceId());
 					Allocations.Add(NewAllocation);
 				}
 				UpdateRequest.SetAllocations(Allocations);
@@ -829,17 +831,40 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 			{
 				FRHAPI_MatchSession NewSession;
 				NewSession.SetSessionId(Session->GetSessionId());
+
+				if (InstanceData != nullptr)
+				{
+					auto ProfileId = InstanceData->GetMatchMakingProfileIdOrNull();
+					if (ProfileId != nullptr)
+					{
+						NewSession.SetProfileId(*ProfileId);
+					}
+				}
 				Sessions.Add(NewSession);
 			}
 			UpdateRequest.SetSessions(Sessions);
 		}
 
 		// set the Instance id
+		if (InstanceData != nullptr)
 		{
 			TArray<FRHAPI_MatchInstance> Instances;
 			{
 				FRHAPI_MatchInstance NewInstance;
-				NewInstance.SetInstanceId(Session->GetInstanceData()->GetInstanceId());
+				
+				NewInstance.SetInstanceId(InstanceData->GetInstanceId());
+
+				auto* HostPlayerId = InstanceData->GetHostPlayerUuidOrNull();
+				if (HostPlayerId != nullptr)
+				{
+					NewInstance.SetHostPlayerUuid(*HostPlayerId);
+				}
+				//NewInstance.SetLaunchRequestTemplateId(InstanceData->GetInstanceStartupParams().launchtemplate)
+				auto* RegionId = Session->GetSessionData().GetRegionIdOrNull();
+				if (RegionId != nullptr)
+				{
+					NewInstance.SetRegionId(*RegionId);
+				}
 				Instances.Add(NewInstance);
 			}
 			UpdateRequest.SetInstances(Instances);
