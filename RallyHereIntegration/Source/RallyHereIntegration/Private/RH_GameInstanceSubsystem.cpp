@@ -86,6 +86,7 @@ void URH_GameInstanceSubsystem::Deinitialize()
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
 	FGameModeEvents::GameModePreLoginEvent.RemoveAll(this);
+	FGameModeEvents::GameModePostLoginEvent.RemoveAll(this);
 	FGameModeEvents::GameModeLogoutEvent.RemoveAll(this);
 
 	// deinitialize all plugins
@@ -294,6 +295,7 @@ void URH_GameInstanceSubsystem::GameModePostLoginEvent(class AGameModeBase* Game
 		}
 	}
 
+	TOptional<FGuid> PlayerId;
 	if (NewPlayer != nullptr)
 	{
 		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
@@ -301,13 +303,19 @@ void URH_GameInstanceSubsystem::GameModePostLoginEvent(class AGameModeBase* Game
 
 		if (pRH_Conn != nullptr)
 		{
-			Event.UserId = pRH_Conn->GetRHPlayerUuid();
+			PlayerId = pRH_Conn->GetRHPlayerUuid();
 		}
 		else if (pRH_LocalPlayer != nullptr)
 		{
-			Event.UserId = pRH_LocalPlayer->GetRHPlayerUuid();
+			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
 		}
 	}
+	if (PlayerId.IsSet() && !PlayerId->IsValid())
+	{
+		PlayerId.Reset();
+	}
+
+	Event.UserId = PlayerId;
 
 	auto Provider = GetAnalyticsProvider();
 	if (Provider != nullptr)
@@ -315,7 +323,7 @@ void URH_GameInstanceSubsystem::GameModePostLoginEvent(class AGameModeBase* Game
 		Event.EmitTo(Provider.Get());
 	}
 
-	if (NewPlayer != nullptr)
+	if (NewPlayer != nullptr && PlayerId.IsSet())
 	{
 		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
 		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
@@ -325,14 +333,11 @@ void URH_GameInstanceSubsystem::GameModePostLoginEvent(class AGameModeBase* Game
 		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
-			const auto PlayerId = pRH_Conn != nullptr ? pRH_Conn->GetRHPlayerUuid() : pRH_LocalPlayer != nullptr ? pRH_LocalPlayer->GetRHPlayerUuid() : FGuid();
-			if (PlayerId.IsValid())
-			{
-				MatchPlayer.SetPlayerUuid(PlayerId);
-				MatchPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
 
-				pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId, MatchPlayer);
-			}
+			MatchPlayer.SetPlayerUuid(PlayerId.GetValue());
+			MatchPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId.GetValue(), MatchPlayer);
 		}
 	}
 }
@@ -356,31 +361,46 @@ void URH_GameInstanceSubsystem::GameModeLogoutEvent(class AGameModeBase* GameMod
 		}
 	}
 
+	TOptional<FGuid> PlayerId;
+	auto* ExitingPlayer = Cast<APlayerController>(Exiting);
+	if (ExitingPlayer != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(ExitingPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(ExitingPlayer->Player);
+
+		if (pRH_Conn != nullptr)
+		{
+			PlayerId = pRH_Conn->GetRHPlayerUuid();
+		}
+		else if (pRH_LocalPlayer != nullptr)
+		{
+			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
+		}
+	}
+	if (PlayerId.IsSet() && !PlayerId->IsValid())
+	{
+		PlayerId.Reset();
+	}
+
+	Event.UserId = PlayerId;
+
 	auto Provider = GetAnalyticsProvider();
 	if (Provider != nullptr)
 	{
 		Event.EmitTo(Provider.Get());
 	}
 
-	auto* NewPlayer = Cast<APlayerController>(Exiting);
-	if (NewPlayer != nullptr)
+	if (ExitingPlayer != nullptr && PlayerId.IsSet())
 	{
-		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
-		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
-
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetMatchSubsystem();
 		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
-			const auto PlayerId = pRH_Conn != nullptr ? pRH_Conn->GetRHPlayerUuid() : pRH_LocalPlayer != nullptr ? pRH_LocalPlayer->GetRHPlayerUuid() : FGuid();
-			if (PlayerId.IsValid())
-			{
-				MatchPlayer.SetPlayerUuid(PlayerId);
-				MatchPlayer.SetLeftMatchTimestamp(FDateTime::UtcNow());
+			MatchPlayer.SetPlayerUuid(PlayerId.GetValue());
+			MatchPlayer.SetLeftMatchTimestamp(FDateTime::UtcNow());
 
-				pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId, MatchPlayer);
-			}
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId.GetValue(), MatchPlayer);
 		}
 	}
 }
