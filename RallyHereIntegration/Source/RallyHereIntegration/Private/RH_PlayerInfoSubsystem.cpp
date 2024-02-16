@@ -811,12 +811,6 @@ void URH_PlayerPresence::ExecuteDelegates(bool bSuccess)
 	{
 		Delegate.ExecuteIfBound(bSuccess, this);
 	}
-
-	auto* PlayerInfo = GetPlayerInfo();
-	if (PlayerInfo != nullptr && bSuccess)
-	{
-		PlayerInfo->OnPresenceUpdated();
-	}
 }
 
 
@@ -905,11 +899,5 @@ void URH_PlayerSessions::ExecuteDelegates(bool bSuccess)
 	for (auto& Delegate : Temp)
 	{
 		Delegate.ExecuteIfBound(bSuccess, this);
-	}
-
-	auto* PlayerInfo = GetPlayerInfo();
-	if (PlayerInfo != nullptr && bSuccess)
-	{
-		PlayerInfo->OnSessionsUpdated();
 	}
 }
