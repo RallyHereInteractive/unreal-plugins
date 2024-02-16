@@ -98,8 +98,19 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 		// emit the auto correlation start event
 		RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
 
-		// emit the auto client device event
-		RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
+		// emit the auto client device event on the next frame (to allow for game viewport to be initialized)
+		if (GetLocalPlayer()->GetWorld() != nullptr)
+		{
+			auto& TimerManager = GetLocalPlayer()->GetWorld()->GetTimerManager();
+
+			TimerManager.SetTimerForNextTick(FTimerDelegate::CreateWeakLambda(this, [this]()
+			{
+				if (AnalyticsProvider.IsValid())
+				{
+					RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GetLocalPlayer()->GetGameInstance());
+				}
+			}));
+		}
 	}
 }
 
