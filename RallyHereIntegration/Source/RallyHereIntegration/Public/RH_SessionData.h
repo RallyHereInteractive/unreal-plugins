@@ -572,7 +572,7 @@ public:
 	 * @brief Determines if the Inviter of this session is blocked by the player on their current platform
 	 * @param [in] Delegate The callback delegate for the results of querying if the inviter is blocked on the current platform
 	 */
-	void QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate);
+	virtual void QueryInviterBlockedOnPlatformAsync(const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate);
 	/**
 	 * @brief Blueprint compatible version of QueryInviterBlockedOnPlatformAsync
 	 * @param [in] Delegate The callback delegate for the results of querying if the inviter is blocked on the current platform
@@ -646,6 +646,19 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Session|Instance")
 	FORCEINLINE bool IsSyncedWithPlatform() const { return GetPlatformSyncer() != nullptr; }
 
+	/**
+	 * @brief helper function to determine if a player is blocked on a given platform (useful to prevent inviting a player that you have blocked)
+	 * @param [in] PlayerUuid The unique player Id to query if they are blocked on the platform
+	 * @param [in] Delegate Callback delegate for the results of querying if the player is blocked on the platform
+	 */
+	virtual void QueryPlayerBlockedOnPlatformAsync(const FGuid& PlayerUuid, const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate);
+	/**
+	 * @brief helper function to determine if a player is blocked on a given platform (useful to prevent inviting a player that you have blocked)
+	 * @param [in] PlayerUuid The unique player Id to query if they are blocked on the platform
+	 * @param [in] Delegate Callback delegate for the results of querying if the player is blocked on the platform
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Is Player Blocked For Inviting", AutoCreateRefTerm = "Delegate"))
+	virtual void BLUEPRINT_QueryPlayerBlockedOnPlatformAsync(const FGuid& PlayerUuid, const FRH_OnSessionPlayerIsBlockedDynamicDelegate& Delegate) { QueryPlayerBlockedOnPlatformAsync(PlayerUuid, Delegate); }
 	/**
 	 * @brief Invites a player to the session.
 	 * @param [in] PlayerUuid The unique player Id to invite to the session.
