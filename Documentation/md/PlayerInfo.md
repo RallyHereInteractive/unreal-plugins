@@ -424,10 +424,6 @@ Stores and fetchs all the information about a given player.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__PlayerInfo_1a54c7f292baed18ac0874999ed4aa6887) | Blueprint delegate to listen for presence updates.
-`public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__PlayerInfo_1ac74aa80ca135a273f845baa99a260b52) | Native delegate to listen for presence updates.
-`public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1af04e5c65d01d1fc0112f5ba31251b803) | Blueprint delegate to listen for session list updates.
-`public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1a08a5bcbd89a31745fe2d338a73c57d40) | Native delegate to listen for session list updates.
 `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` | Gets the players Unique player Id.
 `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` | Gets The players presence class.
 `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players presence class.
@@ -479,8 +475,6 @@ Stores and fetchs all the information about a given player.
 `protected virtual void `[`OnSetPlayerSettingsResponse`](#classURH__PlayerInfo_1a6f59dae05d5371b867091b180280f091)`(const SetSettings::Response & Response,const FRH_PlayerInfoSetPlayerSettingsBlock Delegate,const FString SettingTypeId,const FString SettingKey,`[`FRH_PlayerSettingsDataWrapper`](undefined.md#structFRH__PlayerSettingsDataWrapper)` SettingsData)` | Handles the response to a Set Player Settings call.
 `protected virtual void `[`OnGetPlayerRankingsResponse`](#classURH__PlayerInfo_1a53c355b2f85273d37008d685c3cc113c)`(const GetRankings::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Get Player Rankings call.
 `protected virtual void `[`OnUpdatePlayerRankingResponse`](#classURH__PlayerInfo_1a214672d0d5001ec24098b5414b0fc35d)`(const UpdateRanking::Response & Response,const FRH_PlayerInfoGetPlayerRankingsBlock Delegate)` | Handles the response to a Update Player Ranking call.
-`protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01)`()` | Helper to broadcast results from player presences being updated.
-`protected inline virtual void `[`OnSessionsUpdated`](#classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550)`()` | Helper to broadcast results from player sessions list being updated.
 `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) | 
 `typedef `[`GetSettings`](#classURH__PlayerInfo_1ae425cac3ffa853a48c03df8caa2c8ca9) | 
 `typedef `[`SetSettings`](#classURH__PlayerInfo_1af84cca7ca91da85ceec6caf73af9db11) | 
@@ -489,26 +483,6 @@ Stores and fetchs all the information about a given player.
 
 #### Members
 
-#### `public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__PlayerInfo_1a54c7f292baed18ac0874999ed4aa6887) <a id="classURH__PlayerInfo_1a54c7f292baed18ac0874999ed4aa6887"></a>
-
-Blueprint delegate to listen for presence updates.
-
-<br>
-#### `public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__PlayerInfo_1ac74aa80ca135a273f845baa99a260b52) <a id="classURH__PlayerInfo_1ac74aa80ca135a273f845baa99a260b52"></a>
-
-Native delegate to listen for presence updates.
-
-<br>
-#### `public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1af04e5c65d01d1fc0112f5ba31251b803) <a id="classURH__PlayerInfo_1af04e5c65d01d1fc0112f5ba31251b803"></a>
-
-Blueprint delegate to listen for session list updates.
-
-<br>
-#### `public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerInfo_1a08a5bcbd89a31745fe2d338a73c57d40) <a id="classURH__PlayerInfo_1a08a5bcbd89a31745fe2d338a73c57d40"></a>
-
-Native delegate to listen for session list updates.
-
-<br>
 #### `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` <a id="classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4"></a>
 
 Gets the players Unique player Id.
@@ -908,16 +882,6 @@ Handles the response to a Update Player Ranking call.
 * `Resp` Response given for the call 
 
 * `Delegate` Delegate passed in for original call to respond to when call completes.
-
-<br>
-#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01)`()` <a id="classURH__PlayerInfo_1a838753ffcca41ad5396dfd55a3daaa01"></a>
-
-Helper to broadcast results from player presences being updated.
-
-<br>
-#### `protected inline virtual void `[`OnSessionsUpdated`](#classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550)`()` <a id="classURH__PlayerInfo_1a69eab03e546d94bfa4ff9eb5bba8c550"></a>
-
-Helper to broadcast results from player sessions list being updated.
 
 <br>
 #### `typedef `[`GetPlatforms`](#classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6) <a id="classURH__PlayerInfo_1a88c3597ebf7f47399d936f5a96d344f6"></a>
