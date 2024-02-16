@@ -238,6 +238,17 @@ public:
 		UpdatePresence(Presence);
 	}
 	/**
+	 * @brief Initializes a Platform Friend from linked player platform information
+	 */
+	void Init(const URH_PlayerPlatformInfo* PlayerPlatformInfo)
+	{
+		if (PlayerPlatformInfo != nullptr)
+		{
+			PlayerPlatformId = PlayerPlatformInfo->PlayerPlatformId;
+			DisplayName = PlayerPlatformInfo->GetLastKnownDisplayName();
+		}
+	}
+	/**
 	 * @brief Initializes a Blocked Platform Player with minimal information
 	 */
 	void InitBlocked(FRH_PlayerPlatformId InPlatformId)

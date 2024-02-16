@@ -729,6 +729,27 @@ bool URH_JoinedSession::IsBeaconSession() const
 	return false;
 }
 
+void URH_JoinedSession::QueryPlayerBlockedOnPlatformAsync(const FGuid& PlayerUuid, const FRH_OnSessionPlayerIsBlockedDelegateBlock& Delegate)
+{
+	auto SessionOwner = GetSessionOwner();
+	if (SessionOwner == nullptr)
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	if (!SessionOwner->GetPlayerUuid().IsValid())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	URH_PlatformSessionSyncer::IsSessionPlayerBlockedOnPlatformAsync(MakeWeakInterface(SessionOwner), PlayerUuid, FRH_OnSessionPlayerIsBlockedDelegate::CreateWeakLambda(this, [Delegate](bool bIsInviterBlocked)
+		{
+			Delegate.ExecuteIfBound(bIsInviterBlocked);
+		}));
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 
 URH_OfflineSession::URH_OfflineSession(const FObjectInitializer& ObjectInitializer)

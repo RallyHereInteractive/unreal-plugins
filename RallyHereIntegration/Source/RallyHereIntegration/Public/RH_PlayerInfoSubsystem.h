@@ -289,11 +289,6 @@ protected:
 		CustomData = Presence.GetCustomData(TMap<FString, FString>());
 		PlayerUuid = Presence.PlayerUuid;
 	}
-	/**
-	 * @brief Handles executing any delegate listeners for the players presence.
-	 * @param bSuccess If the poll was successful.
-	 */
-	virtual void ExecuteUpdatedDelegates(bool bSuccess) override;
 };
 
 
@@ -336,11 +331,6 @@ protected:
 
 		Sessions = Other.Content;
 	}
-	/**
-	 * @brief Handles executing any delegate listeners for the players sessions.
-	 * @param bSuccess If the poll was successful.
-	 */
-	virtual void ExecuteUpdatedDelegates(bool bSuccess) override;
 };
 
 
@@ -467,12 +457,6 @@ protected:
 	 * @return False if we should continue polling, true if we should stop.
 	 */
 	static bool CheckPollingCursorComplete(const TSharedPtr<FPollContext> Context);
-
-	/**
-	 * @brief Handles executing any delegate listeners for the update.
-	 * @param bSuccess If the poll was successful.
-	 */
-	virtual void ExecuteUpdatedDelegates(bool bSuccess) override;
 };
 
 /**
@@ -743,33 +727,6 @@ public:
 	 * @return The Platform type of the local user
 	 */
 	ERHAPI_Platform GetLoggedInPlatform() const;
-	/**
-	* @brief Blueprint delegate to listen for presence updates.
-	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Presence Updated"))
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for presence updates.
-	*/
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
-	/**
-	* @brief Blueprint delegate to listen for session list updates.
-	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Sessions Updated"))
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionsUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for session list updates.
-	*/
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate OnSessionsUpdatedDelegate;
-	/**
-	* @brief Blueprint delegate to listen for matches list updates.
-	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Matches Updated"))
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate BLUEPRINT_OnMatchesUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for matches list updates.
-	*/
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate OnMatchesUpdatedDelegate;
 
 protected:
 	/**
@@ -890,45 +847,9 @@ protected:
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
 	virtual void OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
-	/**
-	 * @brief Helper to broadcast results from player presences being updated.
-	 */
-	virtual void OnPresenceUpdated()
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
-		OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
-		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
-	}
-	/**
-	 * @brief Helper to broadcast results from player sessions list being updated.
-	 */
-	virtual void OnSessionsUpdated()
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionsUpdated, FColor::Purple);
-		OnSessionsUpdatedDelegate.Broadcast(PlayerSessions);
-		BLUEPRINT_OnSessionsUpdatedDelegate.Broadcast(PlayerSessions);
-	}
-	/**
-	 * @brief Helper to broadcast results from player matches list being updated.
-	 */
-	virtual void OnMatchesUpdated()
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastMatchesUpdated, FColor::Purple);
-		OnMatchesUpdatedDelegate.Broadcast(PlayerMatches);
-		BLUEPRINT_OnMatchesUpdatedDelegate.Broadcast(PlayerMatches);
-	}
 
 	// allow player info subsystem to directly set data in some cases
 	friend class URH_PlayerInfoSubsystem;
-
-	// allow player presence to call OnPresenceUpdated, so we do not rely on a callback binding
-	friend class URH_PlayerPresence;
-
-	// allow player sessions to call OnSessionsUpdated, so we do not rely on a callback binding
-	friend class URH_PlayerSessions;
-
-	// allow player sessions to call OnMatchesUpdated, so we do not rely on a callback binding
-	friend class URH_PlayerMatches;
 };
 
 /**

@@ -830,17 +830,6 @@ void URH_PlayerPresence::Poll(const FRH_PollCompleteFunc& Delegate)
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
 }
 
-void URH_PlayerPresence::ExecuteUpdatedDelegates(bool bSuccess)
-{
-	Super::ExecuteUpdatedDelegates(bSuccess);
-
-	auto* PlayerInfo = GetPlayerInfo();
-	if (PlayerInfo != nullptr && bSuccess)
-	{
-		PlayerInfo->OnPresenceUpdated();
-	}
-}
-
 ///
 
 URH_PlayerSessions::URH_PlayerSessions(const FObjectInitializer& ObjectInitializer)
@@ -870,17 +859,6 @@ void URH_PlayerSessions::Poll(const FRH_PollCompleteFunc& Delegate)
 	);
 
 	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
-}
-
-void URH_PlayerSessions::ExecuteUpdatedDelegates(bool bSuccess)
-{
-	Super::ExecuteUpdatedDelegates(bSuccess);
-
-	auto* PlayerInfo = GetPlayerInfo();
-	if (PlayerInfo != nullptr && bSuccess)
-	{
-		PlayerInfo->OnSessionsUpdated();
-	}
 }
 
 ///
@@ -986,16 +964,5 @@ bool URH_PlayerMatches::CheckPollingCursorComplete(const TSharedPtr<FPollContext
 	{
 		// if we have no valid cursor, complete the poll
 		return true;
-	}
-}
-
-void URH_PlayerMatches::ExecuteUpdatedDelegates(bool bSuccess)
-{
-	Super::ExecuteUpdatedDelegates(bSuccess);
-
-	auto* PlayerInfo = GetPlayerInfo();
-	if (PlayerInfo != nullptr && bSuccess)
-	{
-		PlayerInfo->OnMatchesUpdated();
 	}
 }

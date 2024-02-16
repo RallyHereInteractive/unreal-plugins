@@ -57,6 +57,7 @@ Platform Friend class tracks all the information for a user you have a relations
 `public inline void `[`ClearFriendAndStatusInfo`](#classURH__PlatformFriend_1a684d343b73ed3fc6bc79a1fdd5e5cd2f)`()` | Clears all the status information but not the users id.
 `public inline void `[`Init`](#classURH__PlatformFriend_1a6aaf6ce557dedb468ce8b471424886fb)`(`[`URH_PlatformFriend`](#classURH__PlatformFriend)` * other)` | Initializes a Platform Friend with another Platform Friend.
 `public inline void `[`Init`](#classURH__PlatformFriend_1a82b31de1b0055a764e97b6f5f0348617)`(const FOnlineFriend & OnlineFriend,const FOnlineUserPresence & Presence,IOnlineSubsystem * OSS,bool bBlocked)` | Initializes a Platform Friend from online information from their platform.
+`public inline void `[`Init`](#classURH__PlatformFriend_1a291f7161ae50b02048ab68f6a703a26c)`(const `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * PlayerPlatformInfo)` | Initializes a Platform Friend from linked player platform information.
 `public inline void `[`InitBlocked`](#classURH__PlatformFriend_1a3dba0aff016b1fc7ee86fc8bc5c3c5a9)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` InPlatformId)` | Initializes a Blocked Platform Player with minimal information.
 `public inline void `[`UpdatePresence`](#classURH__PlatformFriend_1a55dde9ee7ba023fc5b09e8a1e68322d9)`(const FOnlineUserPresence & Presence)` | 
 `protected `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` `[`PlayerPlatformId`](#classURH__PlatformFriend_1a1eca8d8c1f024dbb754aff1ecc7e7ff0) | The players Platform Id.
@@ -177,6 +178,11 @@ Initializes a Platform Friend with another Platform Friend.
 #### `public inline void `[`Init`](#classURH__PlatformFriend_1a82b31de1b0055a764e97b6f5f0348617)`(const FOnlineFriend & OnlineFriend,const FOnlineUserPresence & Presence,IOnlineSubsystem * OSS,bool bBlocked)` <a id="classURH__PlatformFriend_1a82b31de1b0055a764e97b6f5f0348617"></a>
 
 Initializes a Platform Friend from online information from their platform.
+
+<br>
+#### `public inline void `[`Init`](#classURH__PlatformFriend_1a291f7161ae50b02048ab68f6a703a26c)`(const `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * PlayerPlatformInfo)` <a id="classURH__PlatformFriend_1a291f7161ae50b02048ab68f6a703a26c"></a>
+
+Initializes a Platform Friend from linked player platform information.
 
 <br>
 #### `public inline void `[`InitBlocked`](#classURH__PlatformFriend_1a3dba0aff016b1fc7ee86fc8bc5c3c5a9)`(`[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` InPlatformId)` <a id="classURH__PlatformFriend_1a3dba0aff016b1fc7ee86fc8bc5c3c5a9"></a>

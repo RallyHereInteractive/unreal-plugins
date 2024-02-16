@@ -916,7 +916,7 @@ Invited Sessions are sessions that the player has been invited to.
 `public inline void `[`BLUEPRINT_Join`](#classURH__InvitedSession_1ae695534cc3653e4cf7374b54a030133b)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Join.
 `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
 `public inline void `[`BLUEPRINT_Leave`](#classURH__InvitedSession_1a5710f9c6987179ca0489029cb3bced79)`(const FRH_OnSessionUpdatedDynamicDelegate & Delegate)` | Blueprint compatible version of Leave.
-`public void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
+`public virtual void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
 `public inline void `[`BLUEPRINT_QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a44a414d25a7a6581a2de28c861ffa0d7)`(const FRH_OnSessionPlayerIsBlockedDynamicDelegate & Delegate)` | Blueprint compatible version of QueryInviterBlockedOnPlatformAsync.
 
 #### Members
@@ -958,7 +958,7 @@ Blueprint compatible version of Leave.
 * `Delegate` The callback delegate for the session being updated by the leave.
 
 <br>
-#### `public void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1a9261cb26b834b9f8d0152e65108d580f"></a>
+#### `public virtual void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6"></a>
 
 Determines if the Inviter of this session is blocked by the player on their current platform.
 
