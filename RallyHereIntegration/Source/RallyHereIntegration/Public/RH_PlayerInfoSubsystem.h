@@ -647,24 +647,6 @@ public:
 	 * @return The Platform type of the local user
 	 */
 	ERHAPI_Platform GetLoggedInPlatform() const;
-	/**
-	* @brief Blueprint delegate to listen for presence updates.
-	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Presence Updated"))
-	FRH_OnPresenceUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for presence updates.
-	*/
-	FRH_OnPresenceUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
-	/**
-	* @brief Blueprint delegate to listen for session list updates.
-	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "On Sessions Updated"))
-	FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionsUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for session list updates.
-	*/
-	FRH_OnPlayerSessionsUpdatedMulticastDelegate OnSessionsUpdatedDelegate;
 
 protected:
 	/**
@@ -780,33 +762,9 @@ protected:
 	 * @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	 */
 	virtual void OnUpdatePlayerRankingResponse(const UpdateRanking::Response& Response, const FRH_PlayerInfoGetPlayerRankingsBlock Delegate);
-	/**
-	 * @brief Helper to broadcast results from player presences being updated.
-	 */
-	virtual void OnPresenceUpdated()
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
-		OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
-		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
-	}
-	/**
-	 * @brief Helper to broadcast results from player sessions list being updated.
-	 */
-	virtual void OnSessionsUpdated()
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionsUpdated, FColor::Purple);
-		OnSessionsUpdatedDelegate.Broadcast(PlayerSessions);
-		BLUEPRINT_OnSessionsUpdatedDelegate.Broadcast(PlayerSessions);
-	}
 
 	// allow player info subsystem to directly set data in some cases
 	friend class URH_PlayerInfoSubsystem;
-
-	// allow player presence to call OnPresenceUpdated, so we do not rely on a callback binding
-	friend class URH_PlayerPresence;
-
-	// allow player sessions to call OnSessionsUpdated, so we do not rely on a callback binding
-	friend class URH_PlayerSessions;
 };
 
 /**
