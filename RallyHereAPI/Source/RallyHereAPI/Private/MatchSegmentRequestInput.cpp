@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "MatchRequest.h"
+#include "MatchSegmentRequestInput.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,11 +17,13 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_MatchRequest
+// Implementation for FRHAPI_MatchSegmentRequestInput
 
-void FRHAPI_MatchRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_MatchSegmentRequestInput::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    Writer->WriteIdentifierPrefix(TEXT("match_segment"));
+    RallyHereAPI::WriteJsonValue(Writer, MatchSegment);
     if (Type_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("type"));
@@ -77,15 +79,10 @@ void FRHAPI_MatchRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("allocations"));
         RallyHereAPI::WriteJsonValue(Writer, Allocations_Optional);
     }
-    if (Segments_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("segments"));
-        RallyHereAPI::WriteJsonValue(Writer, Segments_Optional);
-    }
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_MatchRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_MatchSegmentRequestInput::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -93,6 +90,8 @@ bool FRHAPI_MatchRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
+    ParseSuccess &= JsonMatchSegmentField.IsValid() && !JsonMatchSegmentField->IsNull() && TryGetJsonValue(JsonMatchSegmentField, MatchSegment);
     const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
     if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
     {
@@ -158,12 +157,6 @@ bool FRHAPI_MatchRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         Allocations_IsSet = TryGetJsonValue(JsonAllocationsField, Allocations_Optional);
         ParseSuccess &= Allocations_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonSegmentsField = (*Object)->TryGetField(TEXT("segments"));
-    if (JsonSegmentsField.IsValid() && !JsonSegmentsField->IsNull())
-    {
-        Segments_IsSet = TryGetJsonValue(JsonSegmentsField, Segments_Optional);
-        ParseSuccess &= Segments_IsSet;
     }
 
     return ParseSuccess;

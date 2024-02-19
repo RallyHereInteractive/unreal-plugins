@@ -12,12 +12,12 @@
 #include "MatchAllocation.h"
 #include "MatchInstance.h"
 #include "MatchPlayerRequest.h"
-#include "MatchSegmentRequestInput.h"
+#include "MatchSegmentRequestOutput.h"
 #include "MatchSession.h"
 #include "MatchState.h"
-#include "MatchRequest.generated.h"
+#include "MatchSegmentResponse.generated.h"
 
-/** @defgroup RHAPI_MatchRequest RallyHere API Model MatchRequest
+/** @defgroup RHAPI_MatchSegmentResponse RallyHere API Model MatchSegmentResponse
  *  @{
  */
 
@@ -25,7 +25,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_MatchRequest : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_MatchSegmentResponse : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -44,6 +44,52 @@ struct RALLYHEREAPI_API FRHAPI_MatchRequest : public FRHAPI_Model
     * @param [in] Writer JSON Writer stream to push .
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
+
+    /** @brief Timestamp of when the resource was last modified */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FDateTime LastModifiedTimestamp_Optional{  };
+    /** @brief true if LastModifiedTimestamp_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool LastModifiedTimestamp_IsSet{ false };
+    /** @brief Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp_Optional; }
+    /** @brief Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetLastModifiedTimestamp() const { return LastModifiedTimestamp_Optional; }
+    /** @brief Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetLastModifiedTimestamp(const FDateTime& DefaultValue) const { if (LastModifiedTimestamp_IsSet) return LastModifiedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLastModifiedTimestamp(FDateTime& OutValue) const { if (LastModifiedTimestamp_IsSet) OutValue = LastModifiedTimestamp_Optional; return LastModifiedTimestamp_IsSet; }
+    /** @brief Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetLastModifiedTimestampOrNull() { if (LastModifiedTimestamp_IsSet) return &LastModifiedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetLastModifiedTimestampOrNull() const { if (LastModifiedTimestamp_IsSet) return &LastModifiedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true */
+    void SetLastModifiedTimestamp(FDateTime NewValue) { LastModifiedTimestamp_Optional = NewValue; LastModifiedTimestamp_IsSet = true; }
+     /** @brief Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false */
+    void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
+
+    /** @brief Timestamp of when the resource was created */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FDateTime CreatedTimestamp_Optional{  };
+    /** @brief true if CreatedTimestamp_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool CreatedTimestamp_IsSet{ false };
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
+    const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp_Optional; }
+    /** @brief Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FDateTime& GetCreatedTimestamp(const FDateTime& DefaultValue) const { if (CreatedTimestamp_IsSet) return CreatedTimestamp_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false */
+    bool GetCreatedTimestamp(FDateTime& OutValue) const { if (CreatedTimestamp_IsSet) OutValue = CreatedTimestamp_Optional; return CreatedTimestamp_IsSet; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    FDateTime* GetCreatedTimestampOrNull() { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr */
+    const FDateTime* GetCreatedTimestampOrNull() const { if (CreatedTimestamp_IsSet) return &CreatedTimestamp_Optional; return nullptr; }
+    /** @brief Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true */
+    void SetCreatedTimestamp(FDateTime NewValue) { CreatedTimestamp_Optional = NewValue; CreatedTimestamp_IsSet = true; }
+     /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
+    void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString Type_Optional{  };
@@ -299,26 +345,58 @@ struct RALLYHEREAPI_API FRHAPI_MatchRequest : public FRHAPI_Model
 
     /** @brief List of segments for the match */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_MatchSegmentRequestInput> Segments_Optional{  };
+    TArray<FRHAPI_MatchSegmentRequestOutput> Segments_Optional{  };
     /** @brief true if Segments_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     bool Segments_IsSet{ false };
     /** @brief Gets the value of Segments_Optional, regardless of it having been set */
-    TArray<FRHAPI_MatchSegmentRequestInput>& GetSegments() { return Segments_Optional; }
+    TArray<FRHAPI_MatchSegmentRequestOutput>& GetSegments() { return Segments_Optional; }
     /** @brief Gets the value of Segments_Optional, regardless of it having been set */
-    const TArray<FRHAPI_MatchSegmentRequestInput>& GetSegments() const { return Segments_Optional; }
+    const TArray<FRHAPI_MatchSegmentRequestOutput>& GetSegments() const { return Segments_Optional; }
     /** @brief Gets the value of Segments_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_MatchSegmentRequestInput>& GetSegments(const TArray<FRHAPI_MatchSegmentRequestInput>& DefaultValue) const { if (Segments_IsSet) return Segments_Optional; return DefaultValue; }
+    const TArray<FRHAPI_MatchSegmentRequestOutput>& GetSegments(const TArray<FRHAPI_MatchSegmentRequestOutput>& DefaultValue) const { if (Segments_IsSet) return Segments_Optional; return DefaultValue; }
     /** @brief Fills OutValue with the value of Segments_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSegments(TArray<FRHAPI_MatchSegmentRequestInput>& OutValue) const { if (Segments_IsSet) OutValue = Segments_Optional; return Segments_IsSet; }
+    bool GetSegments(TArray<FRHAPI_MatchSegmentRequestOutput>& OutValue) const { if (Segments_IsSet) OutValue = Segments_Optional; return Segments_IsSet; }
     /** @brief Returns a pointer to Segments_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_MatchSegmentRequestInput>* GetSegmentsOrNull() { if (Segments_IsSet) return &Segments_Optional; return nullptr; }
+    TArray<FRHAPI_MatchSegmentRequestOutput>* GetSegmentsOrNull() { if (Segments_IsSet) return &Segments_Optional; return nullptr; }
     /** @brief Returns a pointer to Segments_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_MatchSegmentRequestInput>* GetSegmentsOrNull() const { if (Segments_IsSet) return &Segments_Optional; return nullptr; }
+    const TArray<FRHAPI_MatchSegmentRequestOutput>* GetSegmentsOrNull() const { if (Segments_IsSet) return &Segments_Optional; return nullptr; }
     /** @brief Sets the value of Segments_Optional and also sets Segments_IsSet to true */
-    void SetSegments(TArray<FRHAPI_MatchSegmentRequestInput> NewValue) { Segments_Optional = NewValue; Segments_IsSet = true; }
+    void SetSegments(TArray<FRHAPI_MatchSegmentRequestOutput> NewValue) { Segments_Optional = NewValue; Segments_IsSet = true; }
      /** @brief Clears the value of Segments_Optional and sets Segments_IsSet to false */
     void ClearSegments() { Segments_IsSet = false; }
+
+    /** @brief Segment ID of the match */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString MatchSegment{  };
+    /** @brief Gets the value of MatchSegment */
+    FString& GetMatchSegment() { return MatchSegment; }
+    /** @brief Gets the value of MatchSegment */
+    const FString& GetMatchSegment() const { return MatchSegment; }
+    /** @brief Sets the value of MatchSegment */
+    void SetMatchSegment(FString NewValue) { MatchSegment = NewValue;  }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString MatchId_Optional{  };
+    /** @brief true if MatchId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool MatchId_IsSet{ false };
+    /** @brief Gets the value of MatchId_Optional, regardless of it having been set */
+    FString& GetMatchId() { return MatchId_Optional; }
+    /** @brief Gets the value of MatchId_Optional, regardless of it having been set */
+    const FString& GetMatchId() const { return MatchId_Optional; }
+    /** @brief Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMatchId(const FString& DefaultValue) const { if (MatchId_IsSet) return MatchId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchId(FString& OutValue) const { if (MatchId_IsSet) OutValue = MatchId_Optional; return MatchId_IsSet; }
+    /** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMatchIdOrNull() { if (MatchId_IsSet) return &MatchId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return &MatchId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true */
+    void SetMatchId(FString NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; }
+     /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
+    void ClearMatchId() { MatchId_IsSet = false; }
 };
 
 /** @} */

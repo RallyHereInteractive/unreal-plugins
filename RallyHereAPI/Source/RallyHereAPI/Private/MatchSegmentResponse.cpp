@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "MatchRequest.h"
+#include "MatchSegmentResponse.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,11 +17,21 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_MatchRequest
+// Implementation for FRHAPI_MatchSegmentResponse
 
-void FRHAPI_MatchRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_MatchSegmentResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
+    if (LastModifiedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("last_modified_timestamp"));
+        RallyHereAPI::WriteJsonValue(Writer, LastModifiedTimestamp_Optional);
+    }
+    if (CreatedTimestamp_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("created_timestamp"));
+        RallyHereAPI::WriteJsonValue(Writer, CreatedTimestamp_Optional);
+    }
     if (Type_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("type"));
@@ -82,10 +92,17 @@ void FRHAPI_MatchRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("segments"));
         RallyHereAPI::WriteJsonValue(Writer, Segments_Optional);
     }
+    Writer->WriteIdentifierPrefix(TEXT("match_segment"));
+    RallyHereAPI::WriteJsonValue(Writer, MatchSegment);
+    if (MatchId_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("match_id"));
+        RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_MatchRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_MatchSegmentResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -93,6 +110,18 @@ bool FRHAPI_MatchRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
     bool ParseSuccess = true;
 
+    const TSharedPtr<FJsonValue> JsonLastModifiedTimestampField = (*Object)->TryGetField(TEXT("last_modified_timestamp"));
+    if (JsonLastModifiedTimestampField.IsValid() && !JsonLastModifiedTimestampField->IsNull())
+    {
+        LastModifiedTimestamp_IsSet = TryGetJsonValue(JsonLastModifiedTimestampField, LastModifiedTimestamp_Optional);
+        ParseSuccess &= LastModifiedTimestamp_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCreatedTimestampField = (*Object)->TryGetField(TEXT("created_timestamp"));
+    if (JsonCreatedTimestampField.IsValid() && !JsonCreatedTimestampField->IsNull())
+    {
+        CreatedTimestamp_IsSet = TryGetJsonValue(JsonCreatedTimestampField, CreatedTimestamp_Optional);
+        ParseSuccess &= CreatedTimestamp_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
     if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
     {
@@ -164,6 +193,14 @@ bool FRHAPI_MatchRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         Segments_IsSet = TryGetJsonValue(JsonSegmentsField, Segments_Optional);
         ParseSuccess &= Segments_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
+    ParseSuccess &= JsonMatchSegmentField.IsValid() && !JsonMatchSegmentField->IsNull() && TryGetJsonValue(JsonMatchSegmentField, MatchSegment);
+    const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
+    if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
+    {
+        MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
+        ParseSuccess &= MatchId_IsSet;
     }
 
     return ParseSuccess;

@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchHostType.h"
 #include "MatchInstance.generated.h"
 
 /** @defgroup RHAPI_MatchInstance RallyHere API Model MatchInstance
@@ -106,26 +107,92 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
     void ClearRegionId() { RegionId_IsSet = false; }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString LaunchRequestTemplateId_Optional{  };
-    /** @brief true if LaunchRequestTemplateId_Optional has been set to a value */
+    FString InstanceRequestTemplateId_Optional{  };
+    /** @brief true if InstanceRequestTemplateId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool LaunchRequestTemplateId_IsSet{ false };
-    /** @brief Gets the value of LaunchRequestTemplateId_Optional, regardless of it having been set */
-    FString& GetLaunchRequestTemplateId() { return LaunchRequestTemplateId_Optional; }
-    /** @brief Gets the value of LaunchRequestTemplateId_Optional, regardless of it having been set */
-    const FString& GetLaunchRequestTemplateId() const { return LaunchRequestTemplateId_Optional; }
-    /** @brief Gets the value of LaunchRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetLaunchRequestTemplateId(const FString& DefaultValue) const { if (LaunchRequestTemplateId_IsSet) return LaunchRequestTemplateId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of LaunchRequestTemplateId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetLaunchRequestTemplateId(FString& OutValue) const { if (LaunchRequestTemplateId_IsSet) OutValue = LaunchRequestTemplateId_Optional; return LaunchRequestTemplateId_IsSet; }
-    /** @brief Returns a pointer to LaunchRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetLaunchRequestTemplateIdOrNull() { if (LaunchRequestTemplateId_IsSet) return &LaunchRequestTemplateId_Optional; return nullptr; }
-    /** @brief Returns a pointer to LaunchRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetLaunchRequestTemplateIdOrNull() const { if (LaunchRequestTemplateId_IsSet) return &LaunchRequestTemplateId_Optional; return nullptr; }
-    /** @brief Sets the value of LaunchRequestTemplateId_Optional and also sets LaunchRequestTemplateId_IsSet to true */
-    void SetLaunchRequestTemplateId(FString NewValue) { LaunchRequestTemplateId_Optional = NewValue; LaunchRequestTemplateId_IsSet = true; }
-     /** @brief Clears the value of LaunchRequestTemplateId_Optional and sets LaunchRequestTemplateId_IsSet to false */
-    void ClearLaunchRequestTemplateId() { LaunchRequestTemplateId_IsSet = false; }
+    bool InstanceRequestTemplateId_IsSet{ false };
+    /** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+    FString& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId_Optional; }
+    /** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
+    const FString& GetInstanceRequestTemplateId() const { return InstanceRequestTemplateId_Optional; }
+    /** @brief Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetInstanceRequestTemplateId(const FString& DefaultValue) const { if (InstanceRequestTemplateId_IsSet) return InstanceRequestTemplateId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetInstanceRequestTemplateId(FString& OutValue) const { if (InstanceRequestTemplateId_IsSet) OutValue = InstanceRequestTemplateId_Optional; return InstanceRequestTemplateId_IsSet; }
+    /** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetInstanceRequestTemplateIdOrNull() { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
+    /** @brief Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetInstanceRequestTemplateIdOrNull() const { if (InstanceRequestTemplateId_IsSet) return &InstanceRequestTemplateId_Optional; return nullptr; }
+    /** @brief Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true */
+    void SetInstanceRequestTemplateId(FString NewValue) { InstanceRequestTemplateId_Optional = NewValue; InstanceRequestTemplateId_IsSet = true; }
+     /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
+    void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString Map_Optional{  };
+    /** @brief true if Map_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool Map_IsSet{ false };
+    /** @brief Gets the value of Map_Optional, regardless of it having been set */
+    FString& GetMap() { return Map_Optional; }
+    /** @brief Gets the value of Map_Optional, regardless of it having been set */
+    const FString& GetMap() const { return Map_Optional; }
+    /** @brief Gets the value of Map_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMap(const FString& DefaultValue) const { if (Map_IsSet) return Map_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Map_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMap(FString& OutValue) const { if (Map_IsSet) OutValue = Map_Optional; return Map_IsSet; }
+    /** @brief Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMapOrNull() { if (Map_IsSet) return &Map_Optional; return nullptr; }
+    /** @brief Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMapOrNull() const { if (Map_IsSet) return &Map_Optional; return nullptr; }
+    /** @brief Sets the value of Map_Optional and also sets Map_IsSet to true */
+    void SetMap(FString NewValue) { Map_Optional = NewValue; Map_IsSet = true; }
+     /** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
+    void ClearMap() { Map_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    FString GameMode_Optional{  };
+    /** @brief true if GameMode_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool GameMode_IsSet{ false };
+    /** @brief Gets the value of GameMode_Optional, regardless of it having been set */
+    FString& GetGameMode() { return GameMode_Optional; }
+    /** @brief Gets the value of GameMode_Optional, regardless of it having been set */
+    const FString& GetGameMode() const { return GameMode_Optional; }
+    /** @brief Gets the value of GameMode_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetGameMode(const FString& DefaultValue) const { if (GameMode_IsSet) return GameMode_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of GameMode_Optional and returns true if it has been set, otherwise returns false */
+    bool GetGameMode(FString& OutValue) const { if (GameMode_IsSet) OutValue = GameMode_Optional; return GameMode_IsSet; }
+    /** @brief Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetGameModeOrNull() { if (GameMode_IsSet) return &GameMode_Optional; return nullptr; }
+    /** @brief Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetGameModeOrNull() const { if (GameMode_IsSet) return &GameMode_Optional; return nullptr; }
+    /** @brief Sets the value of GameMode_Optional and also sets GameMode_IsSet to true */
+    void SetGameMode(FString NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; }
+     /** @brief Clears the value of GameMode_Optional and sets GameMode_IsSet to false */
+    void ClearGameMode() { GameMode_IsSet = false; }
+
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    ERHAPI_MatchHostType HostType_Optional{  };
+    /** @brief true if HostType_Optional has been set to a value */
+    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    bool HostType_IsSet{ false };
+    /** @brief Gets the value of HostType_Optional, regardless of it having been set */
+    ERHAPI_MatchHostType& GetHostType() { return HostType_Optional; }
+    /** @brief Gets the value of HostType_Optional, regardless of it having been set */
+    const ERHAPI_MatchHostType& GetHostType() const { return HostType_Optional; }
+    /** @brief Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue */
+    const ERHAPI_MatchHostType& GetHostType(const ERHAPI_MatchHostType& DefaultValue) const { if (HostType_IsSet) return HostType_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false */
+    bool GetHostType(ERHAPI_MatchHostType& OutValue) const { if (HostType_IsSet) OutValue = HostType_Optional; return HostType_IsSet; }
+    /** @brief Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr */
+    ERHAPI_MatchHostType* GetHostTypeOrNull() { if (HostType_IsSet) return &HostType_Optional; return nullptr; }
+    /** @brief Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr */
+    const ERHAPI_MatchHostType* GetHostTypeOrNull() const { if (HostType_IsSet) return &HostType_Optional; return nullptr; }
+    /** @brief Sets the value of HostType_Optional and also sets HostType_IsSet to true */
+    void SetHostType(ERHAPI_MatchHostType NewValue) { HostType_Optional = NewValue; HostType_IsSet = true; }
+     /** @brief Clears the value of HostType_Optional and sets HostType_IsSet to false */
+    void ClearHostType() { HostType_IsSet = false; }
 };
 
 /** @} */

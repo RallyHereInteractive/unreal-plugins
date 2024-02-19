@@ -130,6 +130,7 @@ Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
 Private/MatchAPI.cpp
 Private/MatchAllocation.cpp
+Private/MatchHostType.cpp
 Private/MatchInfo.cpp
 Private/MatchInstance.cpp
 Private/MatchMakingProfile.cpp
@@ -144,6 +145,10 @@ Private/MatchPlayerResponse.cpp
 Private/MatchPlayerWithMatch.cpp
 Private/MatchRequest.cpp
 Private/MatchResponse.cpp
+Private/MatchSegmentRequestInput.cpp
+Private/MatchSegmentRequestOutput.cpp
+Private/MatchSegmentResponse.cpp
+Private/MatchSegmentWithPlayers.cpp
 Private/MatchSession.cpp
 Private/MatchState.cpp
 Private/MatchWithPlayers.cpp
@@ -448,6 +453,7 @@ Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
 Public/MatchAPI.h
 Public/MatchAllocation.h
+Public/MatchHostType.h
 Public/MatchInfo.h
 Public/MatchInstance.h
 Public/MatchMakingProfile.h
@@ -462,6 +468,10 @@ Public/MatchPlayerResponse.h
 Public/MatchPlayerWithMatch.h
 Public/MatchRequest.h
 Public/MatchResponse.h
+Public/MatchSegmentRequestInput.h
+Public/MatchSegmentRequestOutput.h
+Public/MatchSegmentResponse.h
+Public/MatchSegmentWithPlayers.h
 Public/MatchSession.h
 Public/MatchState.h
 Public/MatchWithPlayers.h

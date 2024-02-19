@@ -50,26 +50,26 @@ struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString ProfileId_Optional{  };
-    /** @brief true if ProfileId_Optional has been set to a value */
+    FString MatchmakingProfileId_Optional{  };
+    /** @brief true if MatchmakingProfileId_Optional has been set to a value */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool ProfileId_IsSet{ false };
-    /** @brief Gets the value of ProfileId_Optional, regardless of it having been set */
-    FString& GetProfileId() { return ProfileId_Optional; }
-    /** @brief Gets the value of ProfileId_Optional, regardless of it having been set */
-    const FString& GetProfileId() const { return ProfileId_Optional; }
-    /** @brief Gets the value of ProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
-    const FString& GetProfileId(const FString& DefaultValue) const { if (ProfileId_IsSet) return ProfileId_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of ProfileId_Optional and returns true if it has been set, otherwise returns false */
-    bool GetProfileId(FString& OutValue) const { if (ProfileId_IsSet) OutValue = ProfileId_Optional; return ProfileId_IsSet; }
-    /** @brief Returns a pointer to ProfileId_Optional, if it has been set, otherwise returns nullptr */
-    FString* GetProfileIdOrNull() { if (ProfileId_IsSet) return &ProfileId_Optional; return nullptr; }
-    /** @brief Returns a pointer to ProfileId_Optional, if it has been set, otherwise returns nullptr */
-    const FString* GetProfileIdOrNull() const { if (ProfileId_IsSet) return &ProfileId_Optional; return nullptr; }
-    /** @brief Sets the value of ProfileId_Optional and also sets ProfileId_IsSet to true */
-    void SetProfileId(FString NewValue) { ProfileId_Optional = NewValue; ProfileId_IsSet = true; }
-     /** @brief Clears the value of ProfileId_Optional and sets ProfileId_IsSet to false */
-    void ClearProfileId() { ProfileId_IsSet = false; }
+    bool MatchmakingProfileId_IsSet{ false };
+    /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
+    FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
+    /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
+    const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId_Optional; }
+    /** @brief Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMatchmakingProfileId(const FString& DefaultValue) const { if (MatchmakingProfileId_IsSet) return MatchmakingProfileId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchmakingProfileId(FString& OutValue) const { if (MatchmakingProfileId_IsSet) OutValue = MatchmakingProfileId_Optional; return MatchmakingProfileId_IsSet; }
+    /** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMatchmakingProfileIdOrNull() { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return &MatchmakingProfileId_Optional; return nullptr; }
+    /** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true */
+    void SetMatchmakingProfileId(FString NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; }
+     /** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
+    void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; }
 };
 
 /** @} */
