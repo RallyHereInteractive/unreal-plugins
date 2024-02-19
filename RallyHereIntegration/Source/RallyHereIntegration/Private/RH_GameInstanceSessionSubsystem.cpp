@@ -837,7 +837,7 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 					auto ProfileId = InstanceData->GetMatchMakingProfileIdOrNull();
 					if (ProfileId != nullptr)
 					{
-						NewSession.SetProfileId(*ProfileId);
+						NewSession.SetMatchmakingProfileId(*ProfileId);
 					}
 				}
 				Sessions.Add(NewSession);
