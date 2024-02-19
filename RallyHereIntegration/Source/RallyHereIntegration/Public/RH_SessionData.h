@@ -194,7 +194,7 @@ namespace RH_SessionCustomDataKeys
  * @brief Base class providing functionality for viewing session data and interacting with it from blueprint.
  * Specifically does not have an "owner" meaning it cannot do "work" - it is read only. The subclasses have owners.
  */
-UCLASS(Config = RallyHereIntegration, DefaultConfig)
+UCLASS(Config = RallyHereIntegration, DefaultConfig, BlueprintType)
 class RALLYHEREINTEGRATION_API URH_SessionView : public UObject
 {
 	GENERATED_UCLASS_BODY()
