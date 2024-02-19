@@ -1079,7 +1079,7 @@ public:
 		JoinQueue(Request, Delegate);
 	}
 	/**
-	 * @brief Blueprint copmatible version of JoinQueue
+	 * @brief Blueprint compatible version of JoinQueue
 	 * @param [in] QueueId The Id of the queue being joined.
 	 * @param [in] MatchmakingTags Specific data to be passed in as extra params for matchmaking.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
@@ -1090,7 +1090,7 @@ public:
 		JoinQueue(QueueId, MatchmakingTags, Delegate);
 	}
 	/**
-	 * @brief Blueprint copmatible version of JoinQueue
+	 * @brief Blueprint compatible version of JoinQueue
 	 * @param [in] Request The request for joining the queue.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
 	 */
@@ -1105,7 +1105,7 @@ public:
 	 * @brief Blueprint compatible version of LeaveQueue
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Queue", AutoCreateRefTerm = "Delegate"))
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Leave Queue", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LeaveQueue(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { LeaveQueue(Delegate); }
 	/**
 	 * @brief Gets a set of default join details for a session owner.

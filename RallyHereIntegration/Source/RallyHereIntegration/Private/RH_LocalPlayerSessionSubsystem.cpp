@@ -626,7 +626,7 @@ void URH_LocalPlayerSessionSubsystem::OnExpirationComplete(URH_SessionView* RHSe
 	}
 	else
 	{
-		UE_LOG(LogRHSession, Warning, TEXT("Expired session %s was not in the expiring sesions map"), *SessionId);
+		UE_LOG(LogRHSession, Warning, TEXT("Expired session %s was not in the expiring sessions map"), *SessionId);
 	}
 }
 

@@ -212,7 +212,7 @@ public:
 	* @param [in] CreateParams Creation paramters for the session
 	* @param [in] Delegate delegate to trigger when complete
 	*/
-	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Create Or Join Sesion by Type", AutoCreateRefTerm = "CreateParams,Delegate"))
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Create Or Join Session by Type", AutoCreateRefTerm = "CreateParams,Delegate"))
 	void BLUEPRINT_CreateOrJoinSessionByType(const FRHAPI_CreateOrJoinRequest& CreateParams, const FRH_OnSessionUpdatedDynamicDelegate& Delegate)
 	{
 		CreateOrJoinSessionByType(CreateParams, Delegate);
