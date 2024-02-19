@@ -116,6 +116,7 @@ void URH_MatchSubsystem::CreateMatch(const FRHAPI_MatchRequest& Match, bool bSet
 	if (bSetActive)
 	{
 		ActiveMatchId.Reset();
+		ActiveMatchSegmentId.Reset();
 	}
 
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
@@ -266,16 +267,89 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
 
-void URH_MatchSubsystem::UpdateMatchSegment(const FString& MatchId, const FString& MatchSegmentId, const FRHAPI_MatchRequest& Match, const FRH_OnMatchUpdateCompleteDelegateBlock& Delegate)
+void URH_MatchSubsystem::CreateMatchSegment(const FString& MatchId, const FRHAPI_MatchSegmentRequest& Segment, bool bSetActive, const FRH_OnMatchSegmentUpdateCompleteDelegateBlock& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	/* TODO
-	typedef RallyHereAPI::Traits_PatchMatch BaseType;
+	typedef RallyHereAPI::Traits_CreateMatchSegment BaseType;
 
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
-	Request.MatchRequest = Match;
+	Request.MatchId = MatchId;
+	Request.MatchSegmentRequest = Segment;
+
+	auto Context = MakeShared<FMatchUpdateCallContext>();
+	Context->bUpdateActive = bSetActive;
+	Context->MatchId = MatchId;
+
+	// on a create call, always clear out the old active match
+	if (bSetActive)
+	{
+		ActiveMatchId.Reset();
+		ActiveMatchSegmentId.Reset();
+	}
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					// update the context
+					Context->MatchSegmentId = Resp.Content.GetMatchSegment();
+					Context->MatchSegment = Resp.Content;
+
+					// store the match segment in the cache
+					if (FRHAPI_MatchWithPlayers* Match = MatchesCache.Find(Context->MatchId))
+					{
+						bool bFoundSegment = false;
+
+						// set the match segments object as being present, if it wasn't already
+						Match->Segments_IsSet = true;
+						for (auto& Seg : Match->Segments_Optional)
+						{
+							if (Seg.GetMatchSegment() == Context->MatchSegmentId)
+							{
+								Seg = Resp.Content;
+								bFoundSegment = true;
+								break;
+							}
+						}
+						if (!bFoundSegment)
+						{
+							Match->Segments_Optional.Add(Resp.Content);
+						}
+					}
+
+					// if requested, set thea active match id
+					if (Context->bUpdateActive)
+					{
+						SetActiveMatchId(Context->MatchId);
+						SetActiveMatchSegmentId(Context->MatchSegmentId);
+					}
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, Context->MatchSegment.Get(FRHAPI_MatchSegmentWithPlayers()), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
+	);
+
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
+
+void URH_MatchSubsystem::UpdateMatchSegment(const FString& MatchId, const FString& MatchSegmentId, const FRHAPI_MatchSegmentRequest& Segment, const FRH_OnMatchSegmentUpdateCompleteDelegateBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_PatchMatchSegment BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	Request.SegmentId = MatchSegmentId;
+	Request.MatchSegmentRequest = Segment;
 
 	auto Context = MakeShared<FMatchUpdateCallContext>();
 	Context->MatchId = MatchId;
@@ -284,19 +358,41 @@ void URH_MatchSubsystem::UpdateMatchSegment(const FString& MatchId, const FStrin
 	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
 		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
 			{
-				// update the context
-				Context->Match = Resp.Content;
+				if (Resp.IsSuccessful())
+				{
+					// update the context
+					Context->MatchSegmentId = Resp.Content.GetMatchSegment();
+					Context->MatchSegment = Resp.Content;
 
-				// store the match in the cache
-				MatchesCache.Add(Resp.Content.GetMatchId(), Resp.Content);
+					// store the match segment in the cache
+					if (FRHAPI_MatchWithPlayers* Match = MatchesCache.Find(Context->MatchId))
+					{
+						bool bFoundSegment = false;
+
+						// set the match segments object as being present, if it wasn't already
+						Match->Segments_IsSet = true;
+						for (auto& Seg : Match->Segments_Optional)
+						{
+							if (Seg.GetMatchSegment() == Context->MatchSegmentId)
+							{
+								Seg = Resp.Content;
+								bFoundSegment = true;
+								break;
+							}
+						}
+						if (!bFoundSegment)
+						{
+							Match->Segments_Optional.Add(Resp.Content);
+						}
+					}
+				}
 			}),
 		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 			{
-				Delegate.ExecuteIfBound(bSuccess, Context->Match.Get(FRHAPI_MatchWithPlayers()), ErrorInfo);
+				Delegate.ExecuteIfBound(bSuccess, Context->MatchSegment.Get(FRHAPI_MatchSegmentWithPlayers()), ErrorInfo);
 			}),
 		GetDefault<URH_IntegrationSettings>()->MatchesUpdatePriority
 	);
-	
+
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
-	*/
 }
