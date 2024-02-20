@@ -711,18 +711,32 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 
 	if (NewPlayer != nullptr && PlayerId.IsSet())
 	{
-		ActiveSessionState.FallbackControllerToPlayerIdMap.Add(NewPlayer, PlayerId.GetValue());
+		// lookup if an existing context exists for the player, else make a new one
+		auto* PlayerContext = ActiveSessionState.PlayerContexts.FindByPredicate([PlayerId](const FRH_ActiveSessionStatePlayerContext& Context) { return Context.RHPlayerId == PlayerId.GetValue(); });
+		if (PlayerContext == nullptr)
+		{
+			// create a new context for the player
+			FRH_ActiveSessionStatePlayerContext NewContext;
+			NewContext.RHPlayerId = PlayerId.GetValue();
+			auto Index = ActiveSessionState.PlayerContexts.Add(NewContext);
+			PlayerContext = &ActiveSessionState.PlayerContexts[Index];
+		}
 
+		// update the context with the new controller, and set join time
+		PlayerContext->Controller = NewPlayer;
+		PlayerContext->JoinedTime = FDateTime::UtcNow();
+
+		// update the match player
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
 		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
 
-			MatchPlayer.SetPlayerUuid(PlayerId.GetValue());
-			MatchPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);
+			MatchPlayer.SetJoinedMatchTimestamp(PlayerContext->JoinedTime);
 
-			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId.GetValue(), MatchPlayer);
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerContext->RHPlayerId, MatchPlayer);
 		}
 	}
 }
@@ -743,55 +757,43 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 		}
 	}
 
-	TOptional<FGuid> PlayerId;
-
-	// look up the player id from the controller in the fallback map, and clear out their entry
-	if (ActiveSessionState.FallbackControllerToPlayerIdMap.Contains(Exiting))
+	// lookup the player context using the controller reference (as the local player or connection may be gone)
+	auto* PlayerContext = ActiveSessionState.PlayerContexts.FindByPredicate([Exiting](const FRH_ActiveSessionStatePlayerContext& Context) { return Context.Controller == Exiting; });
+	if (PlayerContext != nullptr)
 	{
-		PlayerId = ActiveSessionState.FallbackControllerToPlayerIdMap[Exiting];
-		ActiveSessionState.FallbackControllerToPlayerIdMap.Remove(Exiting);
+		// clear the controller reference, as it will be invalid soon
+		PlayerContext->Controller = nullptr;
+
+		// update the context with the leave time
+		PlayerContext->LeaveTime = FDateTime::UtcNow();
+
+		// calculate the duration, add to duration connected in case this is not the only time this player has been connected
+		PlayerContext->DurationSeconds += (PlayerContext->LeaveTime - PlayerContext->JoinedTime).GetTotalSeconds();
+
+		// update the event with the player id
+		Event.UserId = PlayerContext->RHPlayerId;
 	}
 
-	// try a more proper lookup of the player id, though this can fail if the local player or connection has been removed (likely)
-	auto* ExitingPlayer = Cast<APlayerController>(Exiting);
-	if (ExitingPlayer != nullptr)
-	{
-		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(ExitingPlayer->Player);
-		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(ExitingPlayer->Player);
-
-		if (pRH_Conn != nullptr)
-		{
-			PlayerId = pRH_Conn->GetRHPlayerUuid();
-		}
-		else if (pRH_LocalPlayer != nullptr)
-		{
-			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
-		}
-	}
-	if (PlayerId.IsSet() && !PlayerId->IsValid())
-	{
-		PlayerId.Reset();
-	}
-
-	Event.UserId = PlayerId;
-
+	// emit the event
 	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
 	if (Provider != nullptr)
 	{
 		Event.EmitTo(Provider.Get());
 	}
 
-	if (ExitingPlayer != nullptr && PlayerId.IsSet())
+	// update the match player
+	if (PlayerContext != nullptr)
 	{
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
 		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
-			MatchPlayer.SetPlayerUuid(PlayerId.GetValue());
-			MatchPlayer.SetLeftMatchTimestamp(FDateTime::UtcNow());
+			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);
+			MatchPlayer.SetLeftMatchTimestamp(PlayerContext->LeaveTime);
+			MatchPlayer.SetDurationSeconds(PlayerContext->DurationSeconds);
 
-			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerId.GetValue(), MatchPlayer);
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerContext->RHPlayerId, MatchPlayer);
 		}
 	}
 }

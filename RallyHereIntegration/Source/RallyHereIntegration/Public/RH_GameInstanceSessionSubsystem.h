@@ -47,6 +47,33 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDelegate, URH_Joi
  */
 
 USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_ActiveSessionStatePlayerContext
+{
+public:
+	GENERATED_USTRUCT_BODY()
+
+	/** @brief The player id for the context */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FGuid RHPlayerId;
+
+	/** @brief The controller for the context */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	TWeakObjectPtr<AController> Controller;
+
+	/** @brief The time the player joined the server */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FDateTime JoinedTime;
+
+	/** @brief The time the player left the server */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FDateTime LeaveTime;
+
+	/** @brief The total time the player has been connected */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	float DurationSeconds;
+};
+
+USTRUCT(BlueprintType)
 struct RALLYHEREINTEGRATION_API FRH_ActiveSessionState
 {
 public:
@@ -67,9 +94,9 @@ public:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	bool bIsBackfillTerminated;
 
-	/** @brief Map of controllers to player ids for the active session, used for cases where players leave to try to determine who left when there is no longer an active connection */
+	/** @brief Array player contexts for the active session, used to track connectivity times and such */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
-	TMap<TWeakObjectPtr<AController>, FGuid> FallbackControllerToPlayerIdMap;
+	TArray<FRH_ActiveSessionStatePlayerContext> PlayerContexts;
 
 	FRH_ActiveSessionState()
 		: Session(nullptr)
@@ -85,7 +112,7 @@ public:
 		FallbackSecurityToken.Reset();
 		bHasBeenMarkedFubar = false;
 		bIsBackfillTerminated = false;
-		FallbackControllerToPlayerIdMap.Reset();
+		PlayerContexts.Reset();
 	}
 };
 
