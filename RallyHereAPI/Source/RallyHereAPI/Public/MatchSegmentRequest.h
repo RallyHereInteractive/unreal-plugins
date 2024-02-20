@@ -11,12 +11,11 @@
 #include "RallyHereAPIHelpers.h"
 #include "MatchAllocation.h"
 #include "MatchInstance.h"
-#include "MatchPlayerRequest.h"
 #include "MatchSession.h"
 #include "MatchState.h"
-#include "MatchSegmentRequestOutput.generated.h"
+#include "MatchSegmentRequest.generated.h"
 
-/** @defgroup RHAPI_MatchSegmentRequestOutput RallyHere API Model MatchSegmentRequestOutput
+/** @defgroup RHAPI_MatchSegmentRequest RallyHere API Model MatchSegmentRequest
  *  @{
  */
 
@@ -24,7 +23,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_MatchSegmentRequestOutput : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_MatchSegmentRequest : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -213,29 +212,6 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentRequestOutput : public FRHAPI_Model
     void SetCorrelationId(FString NewValue) { CorrelationId_Optional = NewValue; CorrelationId_IsSet = true; }
      /** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
     void ClearCorrelationId() { CorrelationId_IsSet = false; }
-
-    /** @brief List of players in the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_MatchPlayerRequest> Players_Optional{  };
-    /** @brief true if Players_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool Players_IsSet{ false };
-    /** @brief Gets the value of Players_Optional, regardless of it having been set */
-    TArray<FRHAPI_MatchPlayerRequest>& GetPlayers() { return Players_Optional; }
-    /** @brief Gets the value of Players_Optional, regardless of it having been set */
-    const TArray<FRHAPI_MatchPlayerRequest>& GetPlayers() const { return Players_Optional; }
-    /** @brief Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_MatchPlayerRequest>& GetPlayers(const TArray<FRHAPI_MatchPlayerRequest>& DefaultValue) const { if (Players_IsSet) return Players_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPlayers(TArray<FRHAPI_MatchPlayerRequest>& OutValue) const { if (Players_IsSet) OutValue = Players_Optional; return Players_IsSet; }
-    /** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_MatchPlayerRequest>* GetPlayersOrNull() { if (Players_IsSet) return &Players_Optional; return nullptr; }
-    /** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_MatchPlayerRequest>* GetPlayersOrNull() const { if (Players_IsSet) return &Players_Optional; return nullptr; }
-    /** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-    void SetPlayers(TArray<FRHAPI_MatchPlayerRequest> NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
-     /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
-    void ClearPlayers() { Players_IsSet = false; }
 
     /** @brief List of session IDs for the match */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "MatchSegmentResponse.h"
+#include "MatchValuesOnly.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_MatchSegmentResponse
+// Implementation for FRHAPI_MatchValuesOnly
 
-void FRHAPI_MatchSegmentResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_MatchValuesOnly::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
     if (LastModifiedTimestamp_IsSet)
@@ -67,11 +67,6 @@ void FRHAPI_MatchSegmentResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
         Writer->WriteIdentifierPrefix(TEXT("correlation_id"));
         RallyHereAPI::WriteJsonValue(Writer, CorrelationId_Optional);
     }
-    if (Players_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("players"));
-        RallyHereAPI::WriteJsonValue(Writer, Players_Optional);
-    }
     if (Sessions_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("sessions"));
@@ -87,13 +82,6 @@ void FRHAPI_MatchSegmentResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
         Writer->WriteIdentifierPrefix(TEXT("allocations"));
         RallyHereAPI::WriteJsonValue(Writer, Allocations_Optional);
     }
-    if (Segments_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("segments"));
-        RallyHereAPI::WriteJsonValue(Writer, Segments_Optional);
-    }
-    Writer->WriteIdentifierPrefix(TEXT("match_segment"));
-    RallyHereAPI::WriteJsonValue(Writer, MatchSegment);
     if (MatchId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("match_id"));
@@ -102,7 +90,7 @@ void FRHAPI_MatchSegmentResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_MatchSegmentResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_MatchValuesOnly::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -164,12 +152,6 @@ bool FRHAPI_MatchSegmentResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
         CorrelationId_IsSet = TryGetJsonValue(JsonCorrelationIdField, CorrelationId_Optional);
         ParseSuccess &= CorrelationId_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-    if (JsonPlayersField.IsValid() && !JsonPlayersField->IsNull())
-    {
-        Players_IsSet = TryGetJsonValue(JsonPlayersField, Players_Optional);
-        ParseSuccess &= Players_IsSet;
-    }
     const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
     if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())
     {
@@ -188,14 +170,6 @@ bool FRHAPI_MatchSegmentResponse::FromJson(const TSharedPtr<FJsonValue>& JsonVal
         Allocations_IsSet = TryGetJsonValue(JsonAllocationsField, Allocations_Optional);
         ParseSuccess &= Allocations_IsSet;
     }
-    const TSharedPtr<FJsonValue> JsonSegmentsField = (*Object)->TryGetField(TEXT("segments"));
-    if (JsonSegmentsField.IsValid() && !JsonSegmentsField->IsNull())
-    {
-        Segments_IsSet = TryGetJsonValue(JsonSegmentsField, Segments_Optional);
-        ParseSuccess &= Segments_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
-    ParseSuccess &= JsonMatchSegmentField.IsValid() && !JsonMatchSegmentField->IsNull() && TryGetJsonValue(JsonMatchSegmentField, MatchSegment);
     const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
     if (JsonMatchIdField.IsValid() && !JsonMatchIdField->IsNull())
     {

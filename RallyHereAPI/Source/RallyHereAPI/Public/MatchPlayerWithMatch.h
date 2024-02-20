@@ -9,7 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "MatchResponse.h"
+#include "MatchValuesOnly.h"
 #include "MatchPlayerWithMatch.generated.h"
 
 /** @defgroup RHAPI_MatchPlayerWithMatch RallyHere API Model MatchPlayerWithMatch
@@ -318,13 +318,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchPlayerWithMatch : public FRHAPI_Model
 
     /** @brief Match the player was in */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FRHAPI_MatchResponse Match{  };
+    FRHAPI_MatchValuesOnly Match{  };
     /** @brief Gets the value of Match */
-    FRHAPI_MatchResponse& GetMatch() { return Match; }
+    FRHAPI_MatchValuesOnly& GetMatch() { return Match; }
     /** @brief Gets the value of Match */
-    const FRHAPI_MatchResponse& GetMatch() const { return Match; }
+    const FRHAPI_MatchValuesOnly& GetMatch() const { return Match; }
     /** @brief Sets the value of Match */
-    void SetMatch(FRHAPI_MatchResponse NewValue) { Match = NewValue;  }
+    void SetMatch(FRHAPI_MatchValuesOnly NewValue) { Match = NewValue;  }
 };
 
 /** @} */

@@ -297,7 +297,7 @@ bool FRequest_CreateMatchSegment::SetupHttpRequest(const FHttpRequestRef& HttpRe
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchSegmentRequestInput);
+        WriteJsonValue(Writer, MatchSegmentRequest);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -305,11 +305,11 @@ bool FRequest_CreateMatchSegment::SetupHttpRequest(const FHttpRequestRef& HttpRe
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequestInput) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequest) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequestInput) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequest) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -2323,7 +2323,7 @@ bool FRequest_PatchMatchSegment::SetupHttpRequest(const FHttpRequestRef& HttpReq
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchSegmentRequestInput);
+        WriteJsonValue(Writer, MatchSegmentRequest);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -2331,11 +2331,11 @@ bool FRequest_PatchMatchSegment::SetupHttpRequest(const FHttpRequestRef& HttpReq
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchSegment - Body parameter (FRHAPI_MatchSegmentRequestInput) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchSegment - Body parameter (FRHAPI_MatchSegmentRequest) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchSegment - Body parameter (FRHAPI_MatchSegmentRequestInput) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_PatchMatchSegment - Body parameter (FRHAPI_MatchSegmentRequest) was ignored, not supported in urlencoded requests"));
     }
     else
     {
@@ -2844,7 +2844,7 @@ bool FRequest_UpdateMatchSegment::SetupHttpRequest(const FHttpRequestRef& HttpRe
         FString JsonBody;
         TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-        WriteJsonValue(Writer, MatchSegmentRequestInput);
+        WriteJsonValue(Writer, MatchSegmentRequest);
         Writer->Close();
 
         HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -2852,11 +2852,11 @@ bool FRequest_UpdateMatchSegment::SetupHttpRequest(const FHttpRequestRef& HttpRe
     }
     else if (Consumes.Contains(TEXT("multipart/form-data")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequestInput) was ignored, not supported in multipart form"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequest) was ignored, not supported in multipart form"));
     }
     else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
     {
-        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequestInput) was ignored, not supported in urlencoded requests"));
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_UpdateMatchSegment - Body parameter (FRHAPI_MatchSegmentRequest) was ignored, not supported in urlencoded requests"));
     }
     else
     {

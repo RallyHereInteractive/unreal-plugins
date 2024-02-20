@@ -11,13 +11,11 @@
 #include "RallyHereAPIHelpers.h"
 #include "MatchAllocation.h"
 #include "MatchInstance.h"
-#include "MatchPlayerRequest.h"
-#include "MatchSegmentRequestOutput.h"
 #include "MatchSession.h"
 #include "MatchState.h"
-#include "MatchSegmentResponse.generated.h"
+#include "MatchValuesOnly.generated.h"
 
-/** @defgroup RHAPI_MatchSegmentResponse RallyHere API Model MatchSegmentResponse
+/** @defgroup RHAPI_MatchValuesOnly RallyHere API Model MatchValuesOnly
  *  @{
  */
 
@@ -25,7 +23,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_MatchSegmentResponse : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
 {
     GENERATED_BODY()
 
@@ -251,29 +249,6 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentResponse : public FRHAPI_Model
      /** @brief Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false */
     void ClearCorrelationId() { CorrelationId_IsSet = false; }
 
-    /** @brief List of players in the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_MatchPlayerRequest> Players_Optional{  };
-    /** @brief true if Players_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool Players_IsSet{ false };
-    /** @brief Gets the value of Players_Optional, regardless of it having been set */
-    TArray<FRHAPI_MatchPlayerRequest>& GetPlayers() { return Players_Optional; }
-    /** @brief Gets the value of Players_Optional, regardless of it having been set */
-    const TArray<FRHAPI_MatchPlayerRequest>& GetPlayers() const { return Players_Optional; }
-    /** @brief Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_MatchPlayerRequest>& GetPlayers(const TArray<FRHAPI_MatchPlayerRequest>& DefaultValue) const { if (Players_IsSet) return Players_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false */
-    bool GetPlayers(TArray<FRHAPI_MatchPlayerRequest>& OutValue) const { if (Players_IsSet) OutValue = Players_Optional; return Players_IsSet; }
-    /** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_MatchPlayerRequest>* GetPlayersOrNull() { if (Players_IsSet) return &Players_Optional; return nullptr; }
-    /** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_MatchPlayerRequest>* GetPlayersOrNull() const { if (Players_IsSet) return &Players_Optional; return nullptr; }
-    /** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-    void SetPlayers(TArray<FRHAPI_MatchPlayerRequest> NewValue) { Players_Optional = NewValue; Players_IsSet = true; }
-     /** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
-    void ClearPlayers() { Players_IsSet = false; }
-
     /** @brief List of session IDs for the match */
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     TArray<FRHAPI_MatchSession> Sessions_Optional{  };
@@ -342,39 +317,6 @@ struct RALLYHEREAPI_API FRHAPI_MatchSegmentResponse : public FRHAPI_Model
     void SetAllocations(TArray<FRHAPI_MatchAllocation> NewValue) { Allocations_Optional = NewValue; Allocations_IsSet = true; }
      /** @brief Clears the value of Allocations_Optional and sets Allocations_IsSet to false */
     void ClearAllocations() { Allocations_IsSet = false; }
-
-    /** @brief List of segments for the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    TArray<FRHAPI_MatchSegmentRequestOutput> Segments_Optional{  };
-    /** @brief true if Segments_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    bool Segments_IsSet{ false };
-    /** @brief Gets the value of Segments_Optional, regardless of it having been set */
-    TArray<FRHAPI_MatchSegmentRequestOutput>& GetSegments() { return Segments_Optional; }
-    /** @brief Gets the value of Segments_Optional, regardless of it having been set */
-    const TArray<FRHAPI_MatchSegmentRequestOutput>& GetSegments() const { return Segments_Optional; }
-    /** @brief Gets the value of Segments_Optional, if it has been set, otherwise it returns DefaultValue */
-    const TArray<FRHAPI_MatchSegmentRequestOutput>& GetSegments(const TArray<FRHAPI_MatchSegmentRequestOutput>& DefaultValue) const { if (Segments_IsSet) return Segments_Optional; return DefaultValue; }
-    /** @brief Fills OutValue with the value of Segments_Optional and returns true if it has been set, otherwise returns false */
-    bool GetSegments(TArray<FRHAPI_MatchSegmentRequestOutput>& OutValue) const { if (Segments_IsSet) OutValue = Segments_Optional; return Segments_IsSet; }
-    /** @brief Returns a pointer to Segments_Optional, if it has been set, otherwise returns nullptr */
-    TArray<FRHAPI_MatchSegmentRequestOutput>* GetSegmentsOrNull() { if (Segments_IsSet) return &Segments_Optional; return nullptr; }
-    /** @brief Returns a pointer to Segments_Optional, if it has been set, otherwise returns nullptr */
-    const TArray<FRHAPI_MatchSegmentRequestOutput>* GetSegmentsOrNull() const { if (Segments_IsSet) return &Segments_Optional; return nullptr; }
-    /** @brief Sets the value of Segments_Optional and also sets Segments_IsSet to true */
-    void SetSegments(TArray<FRHAPI_MatchSegmentRequestOutput> NewValue) { Segments_Optional = NewValue; Segments_IsSet = true; }
-     /** @brief Clears the value of Segments_Optional and sets Segments_IsSet to false */
-    void ClearSegments() { Segments_IsSet = false; }
-
-    /** @brief Segment ID of the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
-    FString MatchSegment{  };
-    /** @brief Gets the value of MatchSegment */
-    FString& GetMatchSegment() { return MatchSegment; }
-    /** @brief Gets the value of MatchSegment */
-    const FString& GetMatchSegment() const { return MatchSegment; }
-    /** @brief Sets the value of MatchSegment */
-    void SetMatchSegment(FString NewValue) { MatchSegment = NewValue;  }
 
     UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
     FString MatchId_Optional{  };

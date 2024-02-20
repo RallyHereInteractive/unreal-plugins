@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "MatchSegmentRequestOutput.h"
+#include "MatchSegmentRequest.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_MatchSegmentRequestOutput
+// Implementation for FRHAPI_MatchSegmentRequest
 
-void FRHAPI_MatchSegmentRequestOutput::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_MatchSegmentRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
     Writer->WriteIdentifierPrefix(TEXT("match_segment"));
@@ -59,11 +59,6 @@ void FRHAPI_MatchSegmentRequestOutput::WriteJson(TSharedRef<TJsonWriter<>>& Writ
         Writer->WriteIdentifierPrefix(TEXT("correlation_id"));
         RallyHereAPI::WriteJsonValue(Writer, CorrelationId_Optional);
     }
-    if (Players_IsSet)
-    {
-        Writer->WriteIdentifierPrefix(TEXT("players"));
-        RallyHereAPI::WriteJsonValue(Writer, Players_Optional);
-    }
     if (Sessions_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("sessions"));
@@ -82,7 +77,7 @@ void FRHAPI_MatchSegmentRequestOutput::WriteJson(TSharedRef<TJsonWriter<>>& Writ
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_MatchSegmentRequestOutput::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_MatchSegmentRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
@@ -133,12 +128,6 @@ bool FRHAPI_MatchSegmentRequestOutput::FromJson(const TSharedPtr<FJsonValue>& Js
     {
         CorrelationId_IsSet = TryGetJsonValue(JsonCorrelationIdField, CorrelationId_Optional);
         ParseSuccess &= CorrelationId_IsSet;
-    }
-    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
-    if (JsonPlayersField.IsValid() && !JsonPlayersField->IsNull())
-    {
-        Players_IsSet = TryGetJsonValue(JsonPlayersField, Players_Optional);
-        ParseSuccess &= Players_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonSessionsField = (*Object)->TryGetField(TEXT("sessions"));
     if (JsonSessionsField.IsValid() && !JsonSessionsField->IsNull())

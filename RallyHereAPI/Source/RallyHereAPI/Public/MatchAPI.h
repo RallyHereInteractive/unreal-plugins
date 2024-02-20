@@ -15,7 +15,7 @@
 #include "MatchPlayerRequest.h"
 #include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
-#include "MatchSegmentRequestInput.h"
+#include "MatchSegmentRequest.h"
 #include "MatchSegmentWithPlayers.h"
 #include "MatchWithPlayers.h"
 #include "PagedMatchResponse.h"
@@ -201,7 +201,7 @@ struct RALLYHEREAPI_API FRequest_CreateMatchSegment : public FRequest
 
     TSharedPtr<FAuthContext> AuthContext;
     FString MatchId;
-    FRHAPI_MatchSegmentRequestInput MatchSegmentRequestInput;
+    FRHAPI_MatchSegmentRequest MatchSegmentRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponse
@@ -897,7 +897,7 @@ struct RALLYHEREAPI_API FRequest_PatchMatchSegment : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FString MatchId;
     FString SegmentId;
-    FRHAPI_MatchSegmentRequestInput MatchSegmentRequestInput;
+    FRHAPI_MatchSegmentRequest MatchSegmentRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponse
@@ -1070,7 +1070,7 @@ struct RALLYHEREAPI_API FRequest_UpdateMatchSegment : public FRequest
     TSharedPtr<FAuthContext> AuthContext;
     FString MatchId;
     FString SegmentId;
-    FRHAPI_MatchSegmentRequestInput MatchSegmentRequestInput;
+    FRHAPI_MatchSegmentRequest MatchSegmentRequest;
 };
 
 struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponse
