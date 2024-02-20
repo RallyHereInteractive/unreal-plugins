@@ -30,6 +30,15 @@ Main settings for the Integration.
 `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
 `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
 `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
+`public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) | If set, the connection attempt must have a valid security token to be allowed to connect.
+`public bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f) | If set, the Player Id must have been imported to the instance before being allowed to connect.
+`public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) | If set, the Player Id must be valid before being allowed to connect.
+`public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) | Sets the default page size when requesting a player's match history.
+`public int32 `[`PlayerMatchesMaxPageCount`](#classURH__IntegrationSettings_1a4a31dbbe3c82b41e88dcd3dfc9ff5ff4) | Sets the default page size when requesting a player's match history.
+`public FTimespan `[`PlayerMatchesMaxAge`](#classURH__IntegrationSettings_1a095b6baec0e5e9fb0be991db00ff975d) | Sets the default page size when requesting a player's match history.
+`public bool `[`bEnableAutomaticMatches`](#classURH__IntegrationSettings_1a1c1b5cf9793acf776e3d1ce52ca366f5) | Whether to automatically create a match when a session becomes active if the host.
+`public bool `[`bAutoAddConnectedPlayersToMatches`](#classURH__IntegrationSettings_1a469c1d73694b665b028459c025ff2c1b) | Whether to automatically add players who connect to the match.
+`public bool `[`bCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a059594885a144be3538f5a21d5ad14c3) | Whether to automatically close a match when a session becomes inactive if the host.
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
 `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
@@ -52,6 +61,7 @@ Main settings for the Integration.
 `public FSoftClassPath `[`SettingsSubsystemClass`](#classURH__IntegrationSettings_1a6115ed0ac4a35c8f131dc5a0fd56900f) | Extensible ConfigSubsystem class path.
 `public FSoftClassPath `[`SessionBrowserCacheClass`](#classURH__IntegrationSettings_1af5ecb3103ab065d38eed4634e6916817) | Extensible SessionBrowserCache class path.
 `public FSoftClassPath `[`MatchmakingBrowserCacheClass`](#classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c) | Extensible MatchmakingBrowserCache class path.
+`public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) | Extensible MatchSubsaystem class path.
 `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) | Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches.
 `public int32 `[`BeginNewAdSessionPriority`](#classURH__IntegrationSettings_1afc878742df435a86affa3c28c65da19a) | Sets the request priority of Begin New Session calls, lower number is higher priority.
 `public int32 `[`FindAdOppertunitiesPriority`](#classURH__IntegrationSettings_1a9e9a3b6b65a8ae71a7d5f7e985066f36) | Sets the request priority of Find Oppertunities calls, lower number is higher priority.
@@ -131,6 +141,11 @@ Main settings for the Integration.
 `public int32 `[`UsersLookupPlayerPriority`](#classURH__IntegrationSettings_1a17589c62d53386508f41321e98bbfeeb) | Sets the request priority of Lookup Users calls, lower number is higher priority.
 `public int32 `[`UsersGetLinkedPlatformsPriority`](#classURH__IntegrationSettings_1a99b0ffa18f2f78923fdd46d4499588e1) | Sets the request priority of Get Linked Platforms calls, lower number is higher priority.
 `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) | Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
+`public int32 `[`MatchesGetOtherPriority`](#classURH__IntegrationSettings_1a0ba5746a30eaee0bc00d496e278609ec) | Sets the request priority of Get Player Matches calls, lower number is higher priority.
+`public int32 `[`MatchesSearchPriority`](#classURH__IntegrationSettings_1a63a7d8e525b0db6042f399d61094761a) | Sets the request priority of Get Player Matches calls, lower number is higher priority.
+`public int32 `[`MatchesLookupPriority`](#classURH__IntegrationSettings_1a8c79269125b15b8e0edf76a04b5993d5) | Sets the request priority of Get Player Matches calls, lower number is higher priority.
+`public int32 `[`MatchesUpdatePriority`](#classURH__IntegrationSettings_1a2ca3d1abb532f983a051b1cd7b5ce1d1) | Sets the request priority of Create and Update Match calls, lower number is higher priority.
+`public int32 `[`MatchesUpdatePlayerPriority`](#classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585) | Sets the request priority of Create Match calls, lower number is higher priority.
 `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` | Helper to get the configuration for a given environment by EnvironmentId.
 
 #### Members
@@ -183,6 +198,51 @@ Whether to automatically start platform sessions after joining them.
 #### `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) <a id="classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a"></a>
 
 Whether to automatically join platform sessions after a user change when invites were received while logged out.
+
+<br>
+#### `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) <a id="classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2"></a>
+
+If set, the connection attempt must have a valid security token to be allowed to connect.
+
+<br>
+#### `public bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f) <a id="classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f"></a>
+
+If set, the Player Id must have been imported to the instance before being allowed to connect.
+
+<br>
+#### `public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) <a id="classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9"></a>
+
+If set, the Player Id must be valid before being allowed to connect.
+
+<br>
+#### `public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) <a id="classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1"></a>
+
+Sets the default page size when requesting a player's match history.
+
+<br>
+#### `public int32 `[`PlayerMatchesMaxPageCount`](#classURH__IntegrationSettings_1a4a31dbbe3c82b41e88dcd3dfc9ff5ff4) <a id="classURH__IntegrationSettings_1a4a31dbbe3c82b41e88dcd3dfc9ff5ff4"></a>
+
+Sets the default page size when requesting a player's match history.
+
+<br>
+#### `public FTimespan `[`PlayerMatchesMaxAge`](#classURH__IntegrationSettings_1a095b6baec0e5e9fb0be991db00ff975d) <a id="classURH__IntegrationSettings_1a095b6baec0e5e9fb0be991db00ff975d"></a>
+
+Sets the default page size when requesting a player's match history.
+
+<br>
+#### `public bool `[`bEnableAutomaticMatches`](#classURH__IntegrationSettings_1a1c1b5cf9793acf776e3d1ce52ca366f5) <a id="classURH__IntegrationSettings_1a1c1b5cf9793acf776e3d1ce52ca366f5"></a>
+
+Whether to automatically create a match when a session becomes active if the host.
+
+<br>
+#### `public bool `[`bAutoAddConnectedPlayersToMatches`](#classURH__IntegrationSettings_1a469c1d73694b665b028459c025ff2c1b) <a id="classURH__IntegrationSettings_1a469c1d73694b665b028459c025ff2c1b"></a>
+
+Whether to automatically add players who connect to the match.
+
+<br>
+#### `public bool `[`bCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a059594885a144be3538f5a21d5ad14c3) <a id="classURH__IntegrationSettings_1a059594885a144be3538f5a21d5ad14c3"></a>
+
+Whether to automatically close a match when a session becomes inactive if the host.
 
 <br>
 #### `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) <a id="classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe"></a>
@@ -293,6 +353,11 @@ Extensible SessionBrowserCache class path.
 #### `public FSoftClassPath `[`MatchmakingBrowserCacheClass`](#classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c) <a id="classURH__IntegrationSettings_1a035a0b0d29e2ed12a2663446c60d811c"></a>
 
 Extensible MatchmakingBrowserCache class path.
+
+<br>
+#### `public FSoftClassPath `[`MatchSubsystemClass`](#classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097) <a id="classURH__IntegrationSettings_1a2e753925aea5df2e1f47add2fa970097"></a>
+
+Extensible MatchSubsaystem class path.
 
 <br>
 #### `public bool `[`bLocalPlayerSubsystemSandboxing`](#classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af) <a id="classURH__IntegrationSettings_1a5826903f6e88cefabe7d9c2ede15e9af"></a>
@@ -688,6 +753,31 @@ Sets the request priority of Get Linked Platforms calls, lower number is higher 
 #### `public int32 `[`EventsReceiveEventPriority`](#classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08) <a id="classURH__IntegrationSettings_1a47f81afe37f5fd5d8b49a8c5d5101e08"></a>
 
 Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority.
+
+<br>
+#### `public int32 `[`MatchesGetOtherPriority`](#classURH__IntegrationSettings_1a0ba5746a30eaee0bc00d496e278609ec) <a id="classURH__IntegrationSettings_1a0ba5746a30eaee0bc00d496e278609ec"></a>
+
+Sets the request priority of Get Player Matches calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`MatchesSearchPriority`](#classURH__IntegrationSettings_1a63a7d8e525b0db6042f399d61094761a) <a id="classURH__IntegrationSettings_1a63a7d8e525b0db6042f399d61094761a"></a>
+
+Sets the request priority of Get Player Matches calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`MatchesLookupPriority`](#classURH__IntegrationSettings_1a8c79269125b15b8e0edf76a04b5993d5) <a id="classURH__IntegrationSettings_1a8c79269125b15b8e0edf76a04b5993d5"></a>
+
+Sets the request priority of Get Player Matches calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`MatchesUpdatePriority`](#classURH__IntegrationSettings_1a2ca3d1abb532f983a051b1cd7b5ce1d1) <a id="classURH__IntegrationSettings_1a2ca3d1abb532f983a051b1cd7b5ce1d1"></a>
+
+Sets the request priority of Create and Update Match calls, lower number is higher priority.
+
+<br>
+#### `public int32 `[`MatchesUpdatePlayerPriority`](#classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585) <a id="classURH__IntegrationSettings_1aa6524d86c96ab7bb34fc238a6fe50585"></a>
+
+Sets the request priority of Create Match calls, lower number is higher priority.
 
 <br>
 #### `public const `[`FRH_EnvironmentConfiguration`](IntegrationSettings.md#structFRH__EnvironmentConfiguration)` * `[`GetEnvironmentConfiguration`](#classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151)`(const FString & EnvironmentId) const` <a id="classURH__IntegrationSettings_1a833c95a5c96e642faa2a3038d9c8f151"></a>

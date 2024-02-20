@@ -266,8 +266,8 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a65b2017a3425ee682f706f14990be2a7) | Blueprint delegate to listen for presence updates.
-`public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a55317bf6b9ee5a4bb83e0f92fae106e2) | Native delegate to listen for presence updates.
+`public FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a4e582df1e970de8d0320132f789a05ba) | Blueprint delegate to listen for presence updates.
+`public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) | Native delegate to listen for presence updates.
 `public class `[`URH_FriendSubsystem`](Friends.md#classURH__FriendSubsystem)` * `[`GetFriendSubsystem`](#classURH__RHFriendAndPlatformFriend_1afca989ff581d5d013cfac12722f5f4ee)`() const` | 
 `public inline bool `[`AreFriends`](#classURH__RHFriendAndPlatformFriend_1a3614d4c1ddb543c6f262dd27b65ab67b)`() const` | Gets if the player is a friend through Rally Here systems or their platform.
 `public inline bool `[`AreRHFriends`](#classURH__RHFriendAndPlatformFriend_1a4fe2dc0a23755f8069aa7adac470b79b)`() const` | Gets if the player is a friend through Rally Here.
@@ -311,18 +311,18 @@ RH Friend and Platform Friend class that wraps a Rally Here Friend and Platform 
 `protected FString `[`Notes`](#classURH__RHFriendAndPlatformFriend_1a66cefbb47f0cad7d59bd18df980022c5) | Notes set for the friend.
 `protected TArray< `[`URH_PlatformFriend`](Friends.md#classURH__PlatformFriend)` * > `[`PlatformFriends`](#classURH__RHFriendAndPlatformFriend_1a2a7cea15c536d6f1dc0e372bd75a7dc3) | Array of platforms the player has linked to their account.
 `protected FString `[`Etag`](#classURH__RHFriendAndPlatformFriend_1ab4bca6808ed022b3d72edf548745c04c) | ETag of last friend update response.
-`protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a42b31a6399415e3b0cf5e272a07a0488)`(`[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * PlayerPresence)` | Passes presence updates of the player on through internal delgates.
+`protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` | Passes presence updates of the player on through internal delgates.
 `protected inline virtual void `[`ClearRHFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a192552b9a61592ae648c4e50afafeca0)`()` | Clears the cached friendship status for the player.
 `protected inline virtual void `[`ClearPlatformFriendStatus`](#classURH__RHFriendAndPlatformFriend_1a2868052b24a6cf21af2ba2ce0aab026b)`()` | Clears cached data for the platform friends for this player.
 
 #### Members
 
-#### `public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a65b2017a3425ee682f706f14990be2a7) <a id="classURH__RHFriendAndPlatformFriend_1a65b2017a3425ee682f706f14990be2a7"></a>
+#### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a4e582df1e970de8d0320132f789a05ba) <a id="classURH__RHFriendAndPlatformFriend_1a4e582df1e970de8d0320132f789a05ba"></a>
 
 Blueprint delegate to listen for presence updates.
 
 <br>
-#### `public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a55317bf6b9ee5a4bb83e0f92fae106e2) <a id="classURH__RHFriendAndPlatformFriend_1a55317bf6b9ee5a4bb83e0f92fae106e2"></a>
+#### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0) <a id="classURH__RHFriendAndPlatformFriend_1a8a0e044ae90e40b27535bb747f7dbda0"></a>
 
 Native delegate to listen for presence updates.
 
@@ -559,7 +559,7 @@ Array of platforms the player has linked to their account.
 ETag of last friend update response.
 
 <br>
-#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a42b31a6399415e3b0cf5e272a07a0488)`(`[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * PlayerPresence)` <a id="classURH__RHFriendAndPlatformFriend_1a42b31a6399415e3b0cf5e272a07a0488"></a>
+#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` <a id="classURH__RHFriendAndPlatformFriend_1a4621cd567a8229bce29ab035bb3fc469"></a>
 
 Passes presence updates of the player on through internal delgates.
 
@@ -657,7 +657,7 @@ Friends Subsystem for handling a users relationships with other players.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__FriendSubsystem_1a329dc919c010125a81f508eaf83f3d74)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual bool `[`SetDefaultParamsForGetFriendRequest`](#classURH__FriendSubsystem_1ac4a8491381ccb8bcc26a031048d628b9)`(GetFriendRelationshipType::Request & Request) const` | Fills our a Get Friend request.
 `protected virtual void `[`PostReloadConfig`](#classURH__FriendSubsystem_1ad94ca4a65eeae28cd4fde373c4035d8d)`(class FProperty * PropertyThatWasLoaded)` | Called from ReloadConfig after the object has reloaded its configuration data.
-`protected inline virtual void `[`OnPresenceUpdated`](#classURH__FriendSubsystem_1aaaa983d7ebd475108c9664d2bc29bff7)`(`[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * PlayerPresence)` | Helper function to push out presence updates on delegates on this system.
+`protected inline virtual void `[`OnPresenceUpdated`](#classURH__FriendSubsystem_1af43a2ad8bee539b08cb56d1d5800755d)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` | Helper function to push out presence updates on delegates on this system.
 `protected virtual void `[`OnFetchFriendsListResponse`](#classURH__FriendSubsystem_1a1f31555fd208d81eaddc8f9fc1aadb17)`(const GetFriendsListType::Response & Resp,const FRH_GenericFriendBlock Delegate)` | Handles the response to a Fetch Friend List call.
 `protected virtual void `[`OnFetchFriendResponse`](#classURH__FriendSubsystem_1a095efd57afb8653f4deccfd1ca6da1c5)`(const GetFriendRelationshipType::Response & Resp,const FRH_GenericFriendWithUuidBlock Delegate)` | Handles the response to a Fetch Friend call.
 `protected virtual void `[`OnAddFriendResponse`](#classURH__FriendSubsystem_1a193027a404185d6cb776bca21dcdd9b9)`(const AddFriendType::Response & Resp,const FRH_AddFriendBlock Delegate,const AddFriendType::Request Request,int32 RetryEtagFailureCount)` | Handles the response to a Add Friend call.
@@ -1130,7 +1130,7 @@ Called from ReloadConfig after the object has reloaded its configuration data.
 * `PropertyThatWasLoaded` The property loaded.
 
 <br>
-#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__FriendSubsystem_1aaaa983d7ebd475108c9664d2bc29bff7)`(`[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * PlayerPresence)` <a id="classURH__FriendSubsystem_1aaaa983d7ebd475108c9664d2bc29bff7"></a>
+#### `protected inline virtual void `[`OnPresenceUpdated`](#classURH__FriendSubsystem_1af43a2ad8bee539b08cb56d1d5800755d)`(`[`URH_PlayerInfoSubobject`](PlayerInfo.md#classURH__PlayerInfoSubobject)` * PlayerPresence)` <a id="classURH__FriendSubsystem_1af43a2ad8bee539b08cb56d1d5800755d"></a>
 
 Helper function to push out presence updates on delegates on this system.
 
