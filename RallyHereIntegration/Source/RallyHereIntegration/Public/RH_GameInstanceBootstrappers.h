@@ -488,6 +488,26 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Session")
 	virtual URH_PlatformSessionSyncer* GetPlatformSyncerByPlatformSessionId(const FUniqueNetIdRepl& PlatformSessionId) const override { return nullptr; }
 
+	/**
+	* @brief Gets the allocation id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundAllocationId() const { return BootstrappingResult.AllocationInfo.AllocationId; }
+	/**
+	* @brief Gets the instance id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundInstanceId() const
+	{
+		if (BootstrappingResult.Session.IsSet())
+		{
+			if (const auto Instance = BootstrappingResult.Session->Data.GetInstanceOrNull())
+			{
+				return Instance->InstanceId;
+			}
+		}
+
+		return TOptional<FString>();
+	}
+
 protected:
 	/** The auth context for this bootstrapper */
 	FAuthContextPtr AuthContext;

@@ -1491,6 +1491,8 @@ Session Owner Interface.
 `public bool `[`GetTemplate`](#classIRH__SessionOwnerInterface_1ae474fab73509d0a00372966f39ce216b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](models/RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
 `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByRHSessionId`](#classIRH__SessionOwnerInterface_1ade9ca2876030b163a060e8f417889985)`(const FString & SessionId) const` | Gets the platform synchronization object using the rally here session id.
 `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` | Gets the platform synchronization object using the platform session id.
+`public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classIRH__SessionOwnerInterface_1ad99ac10113649bae8b6622f6399bf5e0)`() const` | Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+`public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classIRH__SessionOwnerInterface_1a9c6431597880a47737b20b12c48ee697)`() const` | Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
 #### Members
 
@@ -1618,6 +1620,16 @@ Gets the platform synchronization object using the rally here session id.
 #### `public `[`URH_PlatformSessionSyncer`](Session.md#classURH__PlatformSessionSyncer)` * `[`GetPlatformSyncerByPlatformSessionId`](#classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c)`(const FUniqueNetIdRepl & SessionId) const` <a id="classIRH__SessionOwnerInterface_1a47d9ac6d2c0326ddc79c563932a6754c"></a>
 
 Gets the platform synchronization object using the platform session id.
+
+<br>
+#### `public inline virtual TOptional< FString > `[`GetBoundAllocationId`](#classIRH__SessionOwnerInterface_1ad99ac10113649bae8b6622f6399bf5e0)`() const` <a id="classIRH__SessionOwnerInterface_1ad99ac10113649bae8b6622f6399bf5e0"></a>
+
+Gets the allocation id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
+
+<br>
+#### `public inline virtual TOptional< FString > `[`GetBoundInstanceId`](#classIRH__SessionOwnerInterface_1a9c6431597880a47737b20b12c48ee697)`() const` <a id="classIRH__SessionOwnerInterface_1a9c6431597880a47737b20b12c48ee697"></a>
+
+Gets the instance id this session owner is bound to, if any. Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view.
 
 <br>
 ## struct `FRH_SessionBrowserSearchParams` <a id="structFRH__SessionBrowserSearchParams"></a>
