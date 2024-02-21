@@ -861,12 +861,25 @@ void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSes
 				{
 					NewInstance.SetHostPlayerUuid(*HostPlayerId);
 				}
-				//NewInstance.SetLaunchRequestTemplateId(InstanceData->GetInstanceStartupParams().launchtemplate)
 				auto* RegionId = Session->GetSessionData().GetRegionIdOrNull();
 				if (RegionId != nullptr)
 				{
 					NewInstance.SetRegionId(*RegionId);
 				}
+				//NewInstance.SetLaunchRequestTemplateId(InstanceData->GetInstanceStartupParams().launchtemplate)
+				NewInstance.SetMap(InstanceData->GetInstanceStartupParams().Map);
+				auto* GameMode = InstanceData->GetInstanceStartupParams().GetModeOrNull();
+				if (GameMode != nullptr)
+				{
+					NewInstance.SetGameMode(*GameMode);
+				}
+				// assume match host type can be converted directly by name from instance host type
+				ERHAPI_MatchHostType HostType;
+				if (EnumFromString(EnumToString(InstanceData->GetHostType()), HostType))
+				{
+					NewInstance.SetHostType(HostType);
+				}
+
 				Instances.Add(NewInstance);
 			}
 			UpdateRequest.SetInstances(Instances);
