@@ -225,11 +225,22 @@ void FRHDTW_Players::Do()
 	pOwner->CheckForFirstEverSelectValidLocalPlayer();
 
 	URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = nullptr;
-	if (auto pGameInstance = GetGameInstance())
+	auto* SandboxPlayer = pOwner->GetSandboxPlayer();
+	if (pOwner->IsUsingLocalPlayerSandboxing() && SandboxPlayer != nullptr)
 	{
-		if (auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
+		if (URH_LocalPlayerSubsystem* pRHLocalPlayerSubsystem = SandboxPlayer->GetSubsystem<URH_LocalPlayerSubsystem>())
 		{
-			pRH_PlayerInfoSubsystem = pGISubsystem->GetPlayerInfoSubsystem();
+			pRH_PlayerInfoSubsystem = pRHLocalPlayerSubsystem->GetPlayerInfoSubsystem();
+		}
+	}
+	else
+	{
+		if (auto pGameInstance = GetGameInstance())
+		{
+			if (auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
+			{
+				pRH_PlayerInfoSubsystem = pGISubsystem->GetPlayerInfoSubsystem();
+			}
 		}
 	}
 
