@@ -526,10 +526,16 @@ bool URH_PlatformSessionSyncer::SetSyncActionState(ESyncActionState NewState)
 			return false;
 		}
 	}
-	else if (CurrentSyncActionState != ESyncActionState::Unsynchronized && CurrentSyncActionState != ESyncActionState::Synchronized && CurrentSyncActionState != ESyncActionState::Error)
+	else if (CurrentSyncActionState != ESyncActionState::Unsynchronized 
+		&& CurrentSyncActionState != ESyncActionState::Synchronized 
+		&& CurrentSyncActionState != ESyncActionState::WaitingForScout
+		&& CurrentSyncActionState != ESyncActionState::Error)
 	{
 		// if we are currently performing an action, let that action complete first
-		if (NewState != ESyncActionState::Unsynchronized && NewState != ESyncActionState::Synchronized && NewState != ESyncActionState::Error)
+		if (NewState != ESyncActionState::Unsynchronized 
+			&& NewState != ESyncActionState::Synchronized 
+			&& NewState != ESyncActionState::WaitingForScout
+			&& NewState != ESyncActionState::Error)
 		{
 			return false;
 		}
@@ -603,6 +609,9 @@ void URH_PlatformSessionSyncer::KickOffState(ESyncActionState NewState)
 	case ESyncActionState::Synchronized:
 		// we are syhcronized, no work to do
 		break;
+	case ESyncActionState::WaitingForScout:
+		// we need to wait for someone else to accomplish a task (such as the session scout doing work)
+		break;
 	case ESyncActionState::Error:
 		// we encountered an error from which we do not want to recycle into another state
 		break;
@@ -628,14 +637,15 @@ void URH_PlatformSessionSyncer::CheckState()
 	if (RHSession == nullptr)
 	{
 		UE_LOG(LogRHSession, Log, TEXT("[%s] - RHSession is no longer valid, starting cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
-
-		SetSyncActionState(ESyncActionState::Cleanup);
 		Cleanup();
 		return;
 	}
 
 	// if we are currently performing an action, let that action complete first
-	if (CurrentSyncActionState != ESyncActionState::Unsynchronized && CurrentSyncActionState != ESyncActionState::Synchronized && CurrentSyncActionState != ESyncActionState::Error)
+	if (CurrentSyncActionState != ESyncActionState::Unsynchronized
+		&& CurrentSyncActionState != ESyncActionState::Synchronized 
+		&& CurrentSyncActionState != ESyncActionState::WaitingForScout
+		&& CurrentSyncActionState != ESyncActionState::Error)
 	{
 		UE_LOG(LogRHSession, Verbose, TEXT("[%s] - Attempting to check state while another action is running"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -669,11 +679,22 @@ void URH_PlatformSessionSyncer::CheckState()
 				if (!RHPlatformSessionId.IsValid())
 				{
 					// we found a session for the session id, but we are not in the RH session, we need to update the RH session to match
-					UE_LOG(LogRHSession, Verbose, TEXT("[%s] - RHSession has no valid session id, but we have a OSS Session, so update RH Session"), ANSI_TO_TCHAR(__FUNCTION__));
-					SetSyncActionState(ESyncActionState::UpdateRHSession);
+					if (IsLocalPlayerScout())
+					{
+						// we are the scout, so update the RH Session
+						UE_LOG(LogRHSession, Verbose, TEXT("[%s] - RHSession has no valid session id, but we have a OSS Session, so update RH Session"), ANSI_TO_TCHAR(__FUNCTION__));
+						SetSyncActionState(ESyncActionState::UpdateRHSession);
+					}
+					else
+					{
+						// we are not the scout, so we need to wait for the scout to update the RH Session
+						UE_LOG(LogRHSession, Verbose, TEXT("[%s] - RHSession has no valid session id, but we have a OSS Session, so waiting for scout to update RH Session"), ANSI_TO_TCHAR(__FUNCTION__));
+						SetSyncActionState(ESyncActionState::WaitingForScout);
+					}
 				}
 				else
 				{
+					// we have found a session for the session id, check to make sure its the correct one
 					if (CompareSessionIds(OSSSessionId, RHPlatformSessionId))
 					{
 						// already in the right session, potentially need to update it but no create/join
@@ -706,6 +727,12 @@ void URH_PlatformSessionSyncer::CheckState()
 					UE_LOG(LogRHSession, Verbose, TEXT("[%s] - No session found, and we are the scout, starting OSS Session creation"), ANSI_TO_TCHAR(__FUNCTION__));
 					SetSyncActionState(ESyncActionState::CreatePlatformSession);
 				}
+				else
+				{
+					// wait for a session to be created
+					UE_LOG(LogRHSession, Verbose, TEXT("[%s] - No session found, and we are NOT the scout, waiting for scout to complete OSS Session creation"), ANSI_TO_TCHAR(__FUNCTION__));
+					SetSyncActionState(ESyncActionState::WaitingForScout);
+				}
 			}
 			else
 			{
@@ -714,6 +741,13 @@ void URH_PlatformSessionSyncer::CheckState()
 				SetSyncActionState(ESyncActionState::JoinPlatformSession);
 			}
 		}
+	}
+	else
+	{
+		// no OSS session interface could be found, syncer should not have been instantiated
+		UE_LOG(LogRHSession, Error, TEXT("[%s] - No valid Session Interface, starting cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
+		Cleanup();
+		return;
 	}
 }
 
