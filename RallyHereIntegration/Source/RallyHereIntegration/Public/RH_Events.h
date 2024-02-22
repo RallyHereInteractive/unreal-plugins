@@ -1434,8 +1434,8 @@ namespace RHStandardEvents
 			check(Provider != nullptr);
 			TArray<FAnalyticsEventAttribute> Attributes;
 
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout_data"), JsonValueToFragment(InCheckoutData.ToJsonValue())));
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt_data"), JsonValueToFragment(InReceiptData.ToJsonValue())));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout"), JsonValueToFragment(InCheckoutData.ToJsonValue())));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt"), JsonValueToFragment(InReceiptData.ToJsonValue())));
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("state"), InState));
 
 			CreateCustomDataAttributes(InCustomData, Attributes);
