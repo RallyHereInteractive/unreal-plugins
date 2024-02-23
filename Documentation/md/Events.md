@@ -926,8 +926,8 @@ rh.platform_purchase
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public `[`FCheckoutData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FCheckoutData)` `[`CheckoutData`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aa2dcc9195ad14b4c9d808b9beee6d6a9) | The checkout data for the purchase
-`public `[`FReceiptData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FReceiptData)` `[`ReceiptData`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a86b933f5cb29196705c7a72828050f4b) | The receipt data for the purchase
+`public `[`FCheckoutData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FCheckoutData)` `[`Checkout`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aea4d2e7889aa801abadf580c0bba9102) | The checkout data for the purchase
+`public `[`FReceiptData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FReceiptData)` `[`Receipt`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a4f90b4c43115a19e7651a7dc6e26157b) | The receipt data for the purchase
 `public FString `[`State`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aa20e40471f982db8d7544951a49d253c) | The state of the purchase
 `public TOptional< TMap< FString, FString > > `[`CustomData`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1ad5022bcbe859ffa72c5b593fa292d395) | custom data fields (will be auto-prefixed with custom data prefix)
 `public inline  `[`FPlatformPurchaseEvent`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a1b772cdc5a20dc0eac0f5b71f24531d7)`()` | 
@@ -935,12 +935,12 @@ rh.platform_purchase
 
 #### Members
 
-#### `public `[`FCheckoutData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FCheckoutData)` `[`CheckoutData`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aa2dcc9195ad14b4c9d808b9beee6d6a9) <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1aa2dcc9195ad14b4c9d808b9beee6d6a9"></a>
+#### `public `[`FCheckoutData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FCheckoutData)` `[`Checkout`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1aea4d2e7889aa801abadf580c0bba9102) <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1aea4d2e7889aa801abadf580c0bba9102"></a>
 
 The checkout data for the purchase
 
 <br>
-#### `public `[`FReceiptData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FReceiptData)` `[`ReceiptData`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a86b933f5cb29196705c7a72828050f4b) <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1a86b933f5cb29196705c7a72828050f4b"></a>
+#### `public `[`FReceiptData`](undefined.md#structRHStandardEvents_1_1FPlatformPurchaseEvent_1_1FReceiptData)` `[`Receipt`](#structRHStandardEvents_1_1FPlatformPurchaseEvent_1a4f90b4c43115a19e7651a7dc6e26157b) <a id="structRHStandardEvents_1_1FPlatformPurchaseEvent_1a4f90b4c43115a19e7651a7dc6e26157b"></a>
 
 The receipt data for the purchase
 
