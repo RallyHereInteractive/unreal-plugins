@@ -210,3 +210,125 @@ namespace RHStandardEvents
 		return MakeShared<FJsonValueObject>(JsonData);
 	}
 }
+
+#include "Misc/AutomationTest.h"
+
+#if WITH_DEV_AUTOMATION_TESTS
+
+// todo - move this somewhere more convenient
+UWorld* RH_GetSimpleEngineAutomationTestGameWorld(const int32 TestFlags)
+{
+	// Accessing the game world is only valid for game-only 
+	check((TestFlags & EAutomationTestFlags::ApplicationContextMask) == EAutomationTestFlags::ClientContext);
+	check(GEngine->GetWorldContexts().Num() == 1);
+	check(GEngine->GetWorldContexts()[0].WorldType == EWorldType::Game);
+
+	return GEngine->GetWorldContexts()[0].World();
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FRH_GetsAutomationTestAll, "RHAutomation.Events.All", EAutomationTestFlags::ClientContext | EAutomationTestFlags::RequiresUser | EAutomationTestFlags::ProductFilter | EAutomationTestFlags::MediumPriority)
+
+bool FRH_GetsAutomationTestAll::RunTest(const FString& Parameters)
+{
+	auto AnalyticsProvider = RHStandardEvents::AutoCreateAnalyticsProvider();
+	UTEST_VALID(TEXT("AnalyticsProvider"), AnalyticsProvider);
+
+	auto World = RH_GetSimpleEngineAutomationTestGameWorld(GetTestFlags());
+	UTEST_NOT_NULL(TEXT("World"), World);
+
+	auto GameInstance = World->GetGameInstance();
+	UTEST_NOT_NULL(TEXT("GameInstance"), GameInstance);
+
+	FDateTime AnalyticsStartTime = FDateTime::UtcNow();
+	TMap<FString, FString> GenericCustomData;
+	GenericCustomData.Add(TEXT("Test"), TEXT("Automation"));
+
+	AnalyticsProvider->StartSession();
+
+	// emit the auto correlation start event
+	RHStandardEvents::FCorrelationStartEvent::AutoEmit(AnalyticsProvider.Get(), GameInstance);
+	RHStandardEvents::FClientDeviceEvent::AutoEmit(AnalyticsProvider.Get(), GameInstance);
+
+	{
+		// common values for consistency across the entire run
+		const FGuid UserIdGuid = FGuid::NewGuid();
+		const FString UserId = UserIdGuid.ToString(EGuidFormats::DigitsWithHyphens);
+		const FString UserIdPlatformId = EnumToString(ERHAPI_Platform::Anon);
+		const FString UserIdPlatformUserId = UserId;
+		const FString UserIdPlatformDisplayName = TEXT("TestUser");
+		const FString UserIdPersonId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+
+		const FGuid UserId2Guid = FGuid::NewGuid();
+		const FString UserId2 = UserId2Guid.ToString(EGuidFormats::DigitsWithHyphens);
+		const FString UserId2PlatformId = EnumToString(ERHAPI_Platform::Anon);
+		const FString UserId2PlatformUserId = UserId2;
+
+		const FString SessionId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+		const FString InstanceId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+		const FString Reason = TEXT("TestReason");
+		const FString LocalIp = TEXT("127.0.0.1");
+		const FString ConnectionString = TEXT("TestConnectionString");
+		const FString Status = TEXT("TestStatus");
+
+		const FString VendorId = TEXT("0");
+		const FString LootId = TEXT("0");
+		const FString ItemId = TEXT("0");
+
+		// set the user id
+		AnalyticsProvider->SetUserID(UserId);
+
+		// client instance events
+		RHStandardEvents::FInstanceJoinStartEvent::Emit(AnalyticsProvider.Get(), SessionId, InstanceId, ConnectionString, GenericCustomData);
+		RHStandardEvents::FInstanceJoinCompleteEvent::Emit(AnalyticsProvider.Get(), true, SessionId, InstanceId, Reason, GenericCustomData);
+		RHStandardEvents::FInstanceLeftEvent::Emit(AnalyticsProvider.Get(), SessionId, InstanceId, Reason, GenericCustomData);
+
+		// host instance events
+		RHStandardEvents::FInstanceHelloReceivedEvent::Emit(AnalyticsProvider.Get(), SessionId, InstanceId, UserId2Guid, LocalIp, GenericCustomData);
+		RHStandardEvents::FInstanceLoginReceivedEvent::Emit(AnalyticsProvider.Get(), true, SessionId, InstanceId, UserId2Guid, UserId2PlatformUserId, UserId2PlatformId, ConnectionString, RHStandardEvents::FInstanceLoginReceivedEvent::FSplitJoinInfo(UserId2Guid, 0), GenericCustomData);
+		RHStandardEvents::FInstanceJoinReceivedEvent::Emit(AnalyticsProvider.Get(), true, SessionId, InstanceId, UserId2Guid, GenericCustomData);
+		RHStandardEvents::FInstanceClientDisconnectEvent::Emit(AnalyticsProvider.Get(), SessionId, InstanceId, UserId2Guid, Reason, GenericCustomData);
+
+		// login events
+		RHStandardEvents::FLoginStartEvent::Emit(AnalyticsProvider.Get(), UserIdPlatformDisplayName, GenericCustomData);
+		RHStandardEvents::FLoginCompleteEvent::Emit(AnalyticsProvider.Get(), UserIdPlatformUserId, UserIdPlatformId, Status, UserIdPlatformDisplayName,
+			UserIdPersonId, Reason, 0.0f, AnalyticsStartTime.ToIso8601(), AnalyticsStartTime.ToIso8601(),
+			GenericCustomData);
+
+		// purchase events
+		RHStandardEvents::FObjectiveProgressEvent::Emit(AnalyticsProvider.Get(), FString(TEXT("TestObjective")), Status, Reason, VendorId, LootId, ItemId, 0, 1, 
+			FString(TEXT("TestProvider")), FString(TEXT("TestOrderRefId")), FString(TEXT("TestOrderId")), FString(TEXT("TestOrderEntryId")), FString(TEXT("TestDescription")), 
+			SessionId, InstanceId,
+			GenericCustomData);
+
+		auto Checkout = RHStandardEvents::FPlatformPurchaseEvent::FCheckoutData(FString(TEXT("TestDisplayedPrice")), 5.f, FString(TEXT("TestDisplayedPresalePrice")), 10.f, FString(TEXT("TestCurrencyCode")), FString(TEXT("TestSku")), UserIdPlatformId);
+		auto Receipt = RHStandardEvents::FPlatformPurchaseEvent::FReceiptData(FString(TEXT("TestTransactionId")), TArray<RHStandardEvents::FPlatformPurchaseEvent::FReceiptOfferData>());
+		TArray<FString> EntitlementIds;
+		EntitlementIds.Add(FString(TEXT("TestEntitlementId")));
+		Receipt.ReceiptOffers.Add(RHStandardEvents::FPlatformPurchaseEvent::FReceiptOfferData(FString(TEXT("TestNamespace")), FString(TEXT("TestSku")), 1, EntitlementIds));
+		RHStandardEvents::FPlatformPurchaseEvent::Emit(AnalyticsProvider.Get(), Checkout, Receipt, FString(TEXT("Complete")), GenericCustomData);
+
+		// misc events
+		RHStandardEvents::FPlayerGameResultEvent::Emit(AnalyticsProvider.Get(), 1, SessionId, InstanceId, 0, FString(TEXT("TestTeamId")), FString(TEXT("TestRound")), 
+			SessionId, false, false, FString(TEXT("TestPrimaryInputType")),
+			GenericCustomData);
+
+		TArray<FAnalyticsEventAttribute> Attributes;
+		Attributes.Add(FAnalyticsEventAttribute(TEXT("TestKey"), TEXT("TestValue")));
+		RHStandardEvents::FCustomEvent::Emit(AnalyticsProvider.Get(), FString(TEXT("TestEvent")), Attributes, GenericCustomData);
+	}
+
+	// emit the correlation end event
+	RHStandardEvents::FCorrelationEndEvent::Emit(AnalyticsProvider.Get(), FString(TEXT("End of Test")), (FDateTime::UtcNow() - AnalyticsStartTime).GetTotalSeconds(), GenericCustomData);
+
+	// close the session to flush the events
+	AnalyticsProvider->EndSession();
+	AnalyticsProvider->FlushEvents();
+
+	// clear out the provider pointer, which should run cleanup
+	AnalyticsProvider.Reset();
+
+	// todo - figure out way to evaluate if the events were sent correctly
+	return true;
+}
+
+#endif
