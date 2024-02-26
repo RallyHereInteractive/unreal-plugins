@@ -398,7 +398,8 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		if (HttpRequester != nullptr)
 		{
 			HttpRequester->FlushRequestQueue();
-	}
+		}
+
 #if RH_FROM_ENGINE_VERSION(5,0)
 		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
 #else
