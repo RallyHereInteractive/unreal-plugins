@@ -22,12 +22,21 @@ namespace {{this}}
 {
 {{/cppNamespaceDeclarations}}
 
-F{{unrealModuleName}}HttpRequester* F{{unrealModuleName}}HttpRequester::Singleton = nullptr;
+TSharedPtr<F{{unrealModuleName}}HttpRequester> F{{unrealModuleName}}HttpRequester::Singleton = nullptr;
 
 F{{unrealModuleName}}HttpRequester::F{{unrealModuleName}}HttpRequester()
 {
     MaxSimultaneousRequests = 15;
     PendingRequestCount = 0;
+}
+
+void F{{unrealModuleName}}HttpRequester::FlushRequestQueue()
+{
+    // temporarily unlimit requests
+    TGuardValue<int32> MaxRequestsGuard(MaxSimultaneousRequests, 0);
+
+    // execute all queued requests
+    TryExecuteNextRequest();
 }
 
 void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest()
@@ -49,7 +58,7 @@ void F{{unrealModuleName}}HttpRequester::TryExecuteNextRequest()
                 while ((*findItem).Num())
                 {
                     const auto Request = (*findItem).Pop();
-                    Request->HttpRequest->OnProcessRequestComplete().BindRaw(this, &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
+                    Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &F{{unrealModuleName}}HttpRequester::OnResponse, Request->ResponseDelegate);
                     if (Request->HttpRequest->ProcessRequest())
                     {
                         PendingRequestCount++;

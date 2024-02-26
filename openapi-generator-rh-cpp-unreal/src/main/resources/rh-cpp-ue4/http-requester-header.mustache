@@ -61,7 +61,7 @@ public:
 
 typedef TMap<int32, TArray<TSharedPtr<struct F{{unrealModuleName}}HttpRequestData>, TInlineAllocator<10>>> HttpRequestMap;
 
-class {{dllapi}} F{{unrealModuleName}}HttpRequester
+class {{dllapi}} F{{unrealModuleName}}HttpRequester : public TSharedFromThis<F{{unrealModuleName}}HttpRequester>
 {
 public:
     F{{unrealModuleName}}HttpRequester();
@@ -69,22 +69,27 @@ public:
 
     static void Initialize()
     {
-        if (Singleton == nullptr)
+        if (!Singleton.IsValid())
         {
-            Singleton = new F{{unrealModuleName}}HttpRequester();
+            Singleton = MakeShared<F{{unrealModuleName}}HttpRequester>();
         }
     }
 
     static void Uninitialize()
     {
-        if (Singleton != nullptr)
+        if (Singleton.IsValid())
         {
-            delete Singleton;
-			Singleton = nullptr;
+            Singleton->FlushRequestQueue();
+            Singleton.Reset();
         }
     }
 
     static F{{unrealModuleName}}HttpRequester* Get()
+    {
+        return Singleton.Get();
+    }
+
+    static TSharedPtr<F{{unrealModuleName}}HttpRequester> GetShared()
     {
         return Singleton;
     }
@@ -95,12 +100,15 @@ public:
 
     void OnResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FHttpRequestCompleteDelegate ResponseDelegate);
 
+    // Immediately flushes all requests in the queue (useful in cases where the http system may be shutting down soon)
+    void FlushRequestQueue();
+
 private:
     void QueueNextRequestCall();
     void TryExecuteNextRequest();
     bool CanExecuteRequest() const { return HttpRequestQueue.Num() > 0 && (MaxSimultaneousRequests == 0 || PendingRequestCount < MaxSimultaneousRequests); }
 
-    static F{{unrealModuleName}}HttpRequester* Singleton;
+    static TSharedPtr<F{{unrealModuleName}}HttpRequester> Singleton;
 
     HttpRequestMap HttpRequestQueue;
 

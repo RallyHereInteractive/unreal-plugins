@@ -10,6 +10,7 @@
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_CatalogSubsystem.h"
 #include "RallyHereIntegrationModule.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
 #include "Engine/LocalPlayer.h"
@@ -392,6 +393,13 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Server bootstrapping failed - bootstrap error is fatal"), ANSI_TO_TCHAR(__FUNCTION__));
 
 		// attempt to fully flush HTTP system before we shut down
+		// flush requests to ensure we do not have any pending requests
+		auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
+		if (HttpRequester != nullptr)
+		{
+			HttpRequester->FlushRequestQueue();
+		}
+
 #if RH_FROM_ENGINE_VERSION(5,0)
 		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
 #else
@@ -1060,6 +1068,14 @@ void URH_GameInstanceServerBootstrapper::OnCleanupSessionSyncComplete(URH_Joined
 		else
 		{
 			// attempt to fully flush HTTP system before we shut down
+			// flush requests to ensure we do not have any pending requests
+			auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
+			if (HttpRequester != nullptr)
+			{
+				HttpRequester->FlushRequestQueue();
+			}
+
+			// flush the HTTP manager
 #if RH_FROM_ENGINE_VERSION(5,0)
 			FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
 #else
