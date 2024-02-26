@@ -322,7 +322,9 @@ void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshol
 	if (LastRequestPlatforms.GetTicks() != 0 && !bForceRefresh)
 	{
 		const FDateTime Now = FDateTime::UtcNow();
-		if (LastRequestPlatforms + StaleThreshold < Now)
+
+		// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
+		if (LastRequestPlatforms + StaleThreshold < Now || StaleThreshold.IsZero())
 		{
 			FString OutDisplayName;
 			Delegate.ExecuteIfBound(GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType), OutDisplayName);
@@ -398,8 +400,9 @@ void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = 
 {
 	if (LastRequestPlatforms.GetTicks() != 0 && !bForceRefresh)
 	{
+		// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
 		FDateTime Now = FDateTime::UtcNow();
-		if (LastRequestPlatforms + StaleThreshold < Now)
+		if (LastRequestPlatforms + StaleThreshold < Now || StaleThreshold.IsZero())
 		{
 			Delegate.ExecuteIfBound(true, GetPlayerPlatforms());
 			return;
@@ -462,14 +465,18 @@ void URH_PlayerInfo::GetPlayerSettings(const FString& SettingTypeId, const FTime
 	if (auto FoundLastRequested = LastRequestSettingsByTypeId.Find(SettingTypeId))
 	{
 		FDateTime Now = FDateTime::UtcNow();
-		if (FoundLastRequested->GetTicks() != 0 && (*FoundLastRequested) + StaleThreshold < Now && !bForceRefresh)
+		if (FoundLastRequested->GetTicks() != 0 && !bForceRefresh)
 		{
-			if (auto FoundSettings = PlayerSettingsByTypeId.Find(SettingTypeId))
+			// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
+			if ((*FoundLastRequested) + StaleThreshold < Now || StaleThreshold.IsZero())
 			{
-				if (FoundSettings->Content.Num() > 0)
+				if (auto FoundSettings = PlayerSettingsByTypeId.Find(SettingTypeId))
 				{
-					Delegate.ExecuteIfBound(true, *FoundSettings);
-					return;
+					if (FoundSettings->Content.Num() > 0)
+					{
+						Delegate.ExecuteIfBound(true, *FoundSettings);
+						return;
+					}
 				}
 			}
 		}
@@ -601,12 +608,16 @@ void URH_PlayerInfo::OnSetPlayerSettingsResponse(const SetSettings::Response& Re
 void URH_PlayerInfo::GetPlayerRankings(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerRankingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerRankingsBlock()*/)
 {
 	FDateTime Now = FDateTime::UtcNow();
-	if (LastRequestRankings.GetTicks() != 0 && (LastRequestRankings + StaleThreshold) < Now && !bForceRefresh)
+	if (LastRequestRankings.GetTicks() != 0 && !bForceRefresh)
 	{
-		TArray<FRHAPI_PlayerRankResponseV2> Values;
-		PlayerRankingsByRankingId.GenerateValueArray(Values);
-		Delegate.ExecuteIfBound(false, Values);
-		return;
+		// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
+		if ((LastRequestRankings + StaleThreshold) < Now || StaleThreshold.IsZero())
+		{
+			TArray<FRHAPI_PlayerRankResponseV2> Values;
+			PlayerRankingsByRankingId.GenerateValueArray(Values);
+			Delegate.ExecuteIfBound(false, Values);
+			return;
+		}
 	}
 
 	auto Request = GetRankings::Request();
