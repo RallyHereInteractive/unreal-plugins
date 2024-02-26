@@ -194,7 +194,7 @@ namespace RH_SessionCustomDataKeys
  * @brief Base class providing functionality for viewing session data and interacting with it from blueprint.
  * Specifically does not have an "owner" meaning it cannot do "work" - it is read only. The subclasses have owners.
  */
-UCLASS(Config = RallyHereIntegration, DefaultConfig)
+UCLASS(Config = RallyHereIntegration, DefaultConfig, BlueprintType)
 class RALLYHEREINTEGRATION_API URH_SessionView : public UObject
 {
 	GENERATED_UCLASS_BODY()
@@ -1079,7 +1079,7 @@ public:
 		JoinQueue(Request, Delegate);
 	}
 	/**
-	 * @brief Blueprint copmatible version of JoinQueue
+	 * @brief Blueprint compatible version of JoinQueue
 	 * @param [in] QueueId The Id of the queue being joined.
 	 * @param [in] MatchmakingTags Specific data to be passed in as extra params for matchmaking.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
@@ -1090,7 +1090,7 @@ public:
 		JoinQueue(QueueId, MatchmakingTags, Delegate);
 	}
 	/**
-	 * @brief Blueprint copmatible version of JoinQueue
+	 * @brief Blueprint compatible version of JoinQueue
 	 * @param [in] Request The request for joining the queue.
 	 * @param [in] Delegate Callback delegate on the session being updated from joining matchmaking.
 	 */
@@ -1105,7 +1105,7 @@ public:
 	 * @brief Blueprint compatible version of LeaveQueue
 	 * @param [in] Delegate Callback delegate on the session being updated from leaving matchmaking.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Join Queue", AutoCreateRefTerm = "Delegate"))
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Leave Queue", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_LeaveQueue(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { LeaveQueue(Delegate); }
 	/**
 	 * @brief Gets a set of default join details for a session owner.
@@ -1365,4 +1365,12 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
 	virtual URH_PlatformSessionSyncer* GetPlatformSyncerByPlatformSessionId(const FUniqueNetIdRepl& SessionId) const = 0;
+	/**
+	* @brief Gets the allocation id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundAllocationId() const { return TOptional<FString>(); }
+	/**
+	* @brief Gets the instance id this session owner is bound to, if any.  Needed for some specific calls to ensure they are operating on the proper object regardless of our current session view
+	*/
+	virtual TOptional<FString> GetBoundInstanceId() const { return TOptional<FString>(); }
 };

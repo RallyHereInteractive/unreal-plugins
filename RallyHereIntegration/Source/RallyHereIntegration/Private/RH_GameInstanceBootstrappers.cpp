@@ -374,6 +374,12 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		{
 			// mark instance as closed
 			FRHAPI_InstanceInfoUpdate InstanceInfo = RHSession->GetInstanceUpdateInfoDefaults();
+
+			if (BootstrappingResult.AllocationInfo.AllocationId.IsSet())
+			{
+				InstanceInfo.SetAllocationId(BootstrappingResult.AllocationInfo.AllocationId.GetValue());
+			}
+
 			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Closed);
 			RHSession->UpdateInstanceInfo(InstanceInfo);
 		}

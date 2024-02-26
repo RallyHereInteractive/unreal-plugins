@@ -645,6 +645,18 @@ namespace RHStandardEvents
 
 			/** @brief Converts the receipt data to a JSON value */
 			TSharedRef<FJsonValue> ToJsonValue() const;
+
+			FSplitJoinInfo()
+				: ParentUserId()
+				, PlayerIndex()
+			{
+			}
+
+			FSplitJoinInfo(TOptional<FGuid> InParentUserId, TOptional<int32> InPlayerIndex)
+				: ParentUserId(InParentUserId)
+				, PlayerIndex(InPlayerIndex)
+			{
+			}
 		};
 
 		/** @brief the split join info for this connection */
@@ -1364,6 +1376,28 @@ namespace RHStandardEvents
 
 			/** @brief Converts the receipt data to a JSON value */
 			TSharedRef<FJsonValue> ToJsonValue() const;
+
+			FCheckoutData()
+				: DisplayedPrice()
+				, NumericPrice()
+				, DisplayedPresalePrice()
+				, NumericPresalePrice()
+				, CurrencyCode()
+				, Sku()
+				, Platform()
+			{
+			}
+
+			FCheckoutData(TOptional<FString> InDisplayedPrice, TOptional<float> InNumericPrice, TOptional<FString> InDisplayedPresalePrice, TOptional<float> InNumericPresalePrice, TOptional<FString> InCurrencyCode, TOptional<FString> InSku, TOptional<FString> InPlatform)
+				: DisplayedPrice(InDisplayedPrice)
+				, NumericPrice(InNumericPrice)
+				, DisplayedPresalePrice(InDisplayedPresalePrice)
+				, NumericPresalePrice(InNumericPresalePrice)
+				, CurrencyCode(InCurrencyCode)
+				, Sku(InSku)
+				, Platform(InPlatform)
+			{
+			}
 		};
 
 		/** @brief A structure containing individual receipt offer data for a platform purchase */
@@ -1383,6 +1417,22 @@ namespace RHStandardEvents
 
 			/** @brief Converts the receipt data to a JSON value */
 			TSharedRef<FJsonValue> ToJsonValue() const;
+
+			FReceiptOfferData()
+				: Namespace()
+				, Sku()
+				, Quantity()
+				, EntitlementIds()
+			{
+			}
+
+			FReceiptOfferData(TOptional<FString> InNamespace, TOptional<FString> InSku, TOptional<int32> InQuantity, TOptional<TArray<FString>> InEntitlementIds)
+				: Namespace(InNamespace)
+				, Sku(InSku)
+				, Quantity(InQuantity)
+				, EntitlementIds(InEntitlementIds)
+			{
+			}
 		};
 
 		/** @brief A structure containing receipt data for a platform purchase */
@@ -1396,13 +1446,25 @@ namespace RHStandardEvents
 
 			/** @brief Converts the receipt data to a JSON value */
 			TSharedRef<FJsonValue> ToJsonValue() const;
+
+			FReceiptData()
+				: TransactionId()
+				, ReceiptOffers()
+			{
+			}
+
+			FReceiptData(TOptional<FString> InTransactionId, TArray<FReceiptOfferData> InReceiptOffers)
+				: TransactionId(InTransactionId)
+				, ReceiptOffers(InReceiptOffers)
+			{
+			}
 		};
 
 		/** The checkout data for the purchase */
-		FCheckoutData CheckoutData;
+		FCheckoutData Checkout;
 
 		/** The receipt data for the purchase */
-		FReceiptData ReceiptData;
+		FReceiptData Receipt;
 
 		/** The state of the purchase */
 		FString State;
@@ -1411,8 +1473,8 @@ namespace RHStandardEvents
 		TOptional<TMap<FString, FString>> CustomData;
 
 		FPlatformPurchaseEvent()
-			: CheckoutData()
-			, ReceiptData()
+			: Checkout()
+			, Receipt()
 			, State()
 			, CustomData()
 		{
@@ -1420,13 +1482,13 @@ namespace RHStandardEvents
 
 		void EmitTo(IAnalyticsProvider* Provider) const
 		{
-			Emit(Provider, CheckoutData, ReceiptData, State, CustomData);
+			Emit(Provider, Checkout, Receipt, State, CustomData);
 		}
 
 		static void Emit(
 			IAnalyticsProvider* Provider,
-			const FCheckoutData& InCheckoutData,
-			const FReceiptData& InReceiptData,
+			const FCheckoutData& InCheckout,
+			const FReceiptData& InReceipt,
 			const FString& InState,
 			const TOptional<TMap<FString, FString>>& InCustomData = TOptional<TMap<FString, FString>>()
 		)
@@ -1434,8 +1496,8 @@ namespace RHStandardEvents
 			check(Provider != nullptr);
 			TArray<FAnalyticsEventAttribute> Attributes;
 
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout_data"), JsonValueToFragment(InCheckoutData.ToJsonValue())));
-			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt_data"), JsonValueToFragment(InReceiptData.ToJsonValue())));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("checkout"), JsonValueToFragment(InCheckout.ToJsonValue())));
+			Attributes.Add(FAnalyticsEventAttribute(TEXT("receipt"), JsonValueToFragment(InReceipt.ToJsonValue())));
 			Attributes.Add(FAnalyticsEventAttribute(TEXT("state"), InState));
 
 			CreateCustomDataAttributes(InCustomData, Attributes);
