@@ -393,6 +393,12 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Server bootstrapping failed - bootstrap error is fatal"), ANSI_TO_TCHAR(__FUNCTION__));
 
 		// attempt to fully flush HTTP system before we shut down
+		// flush requests to ensure we do not have any pending requests
+		auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
+		if (HttpRequester != nullptr)
+		{
+			HttpRequester->FlushRequestQueue();
+	}
 #if RH_FROM_ENGINE_VERSION(5,0)
 		FHttpModule::Get().GetHttpManager().Flush(EHttpFlushReason::FullFlush);
 #else
