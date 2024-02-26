@@ -157,6 +157,7 @@ void URH_MatchSubsystem::UpdateMatch(const FString& MatchId, const FRHAPI_MatchR
 
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
 	Request.MatchRequest = Match;
 
 	auto Context = MakeShared<FMatchUpdateCallContext>();
