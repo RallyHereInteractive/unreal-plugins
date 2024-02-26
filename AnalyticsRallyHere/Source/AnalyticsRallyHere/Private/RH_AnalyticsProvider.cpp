@@ -16,6 +16,7 @@
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_IntegrationSettings.h"
+#include "RallyHereAPIHttpRequester.h"
 #include "EventsAPI.h"
 
 namespace RH_AnalyticsProviderCvars
@@ -182,6 +183,13 @@ void FRH_AnalyticsProvider::EndSession()
 void FRH_AnalyticsProvider::OnEngineExit()
 {
 	EndSession();
+
+	// flush requests to ensure we do not have any pending requests, as there will not be another tick to flush them.
+	auto HttpRequester = RallyHereAPI::FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester != nullptr)
+	{
+		HttpRequester->FlushRequestQueue();
+	}
 }
 
 TSharedRef<IHttpRequest, ESPMode::ThreadSafe> FRH_AnalyticsProvider::CreateRequest()

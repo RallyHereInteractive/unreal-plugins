@@ -4,12 +4,21 @@
 namespace RallyHereAPI
 {
 
-FRallyHereAPIHttpRequester* FRallyHereAPIHttpRequester::Singleton = nullptr;
+TSharedPtr<FRallyHereAPIHttpRequester> FRallyHereAPIHttpRequester::Singleton = nullptr;
 
 FRallyHereAPIHttpRequester::FRallyHereAPIHttpRequester()
 {
     MaxSimultaneousRequests = 15;
     PendingRequestCount = 0;
+}
+
+void FRallyHereAPIHttpRequester::FlushRequestQueue()
+{
+    // temporarily unlimit requests
+    TGuardValue<int32> MaxRequestsGuard(MaxSimultaneousRequests, 0);
+
+    // execute all queued requests
+    TryExecuteNextRequest();
 }
 
 void FRallyHereAPIHttpRequester::TryExecuteNextRequest()
@@ -31,7 +40,7 @@ void FRallyHereAPIHttpRequester::TryExecuteNextRequest()
                 while ((*findItem).Num())
                 {
                     const auto Request = (*findItem).Pop();
-                    Request->HttpRequest->OnProcessRequestComplete().BindRaw(this, &FRallyHereAPIHttpRequester::OnResponse, Request->ResponseDelegate);
+                    Request->HttpRequest->OnProcessRequestComplete().BindSP(AsShared(), &FRallyHereAPIHttpRequester::OnResponse, Request->ResponseDelegate);
                     if (Request->HttpRequest->ProcessRequest())
                     {
                         PendingRequestCount++;
