@@ -481,6 +481,16 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 		ActiveSession->UpdateInstanceHealth(GetInstanceHealthStatusToReport(), 
 			FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
 				{
+					if (!bSuccess && ErrorInfo.ResponseCode == EHttpResponseCodes::NotFound)
+					{
+						// its possible the session has closed this instance or is gone, in which case, poll the session immediately to trigger logic faster rather than waiting on cleanup on next poll cycle
+						auto ActiveSession = GetActiveSession();
+						if (ActiveSession != nullptr)
+						{
+							ActiveSession->ForcePollForUpdate();
+						}
+					}
+
 					Delegate.ExecuteIfBound(bSuccess, GetShouldKeepInstanceHealthAlive());
 				}
 			));
@@ -538,6 +548,16 @@ void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& 
 			ActiveSession->AcknowledgeBackfill(true,
 				FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_SessionView* Session, const FRH_ErrorInfo& ErrorInfo)
 					{
+						if (!bSuccess && ErrorInfo.ResponseCode == EHttpResponseCodes::NotFound)
+						{
+							// its possible the session has closed this instance or the backfill data is not present, so poll the session to get an updated state.  This should prevent new backfill requests via the state checks in GetShouldKeepBackfillAlive()
+							auto ActiveSession = GetActiveSession();
+							if (ActiveSession != nullptr)
+							{
+								ActiveSession->ForcePollForUpdate();
+							}
+						}
+
 						Delegate.ExecuteIfBound(bSuccess, GetShouldKeepBackfillAlive());
 					}
 			));
