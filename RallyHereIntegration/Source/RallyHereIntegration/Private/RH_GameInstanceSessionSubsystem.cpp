@@ -483,6 +483,8 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 				{
 					if (!bSuccess && ErrorInfo.ResponseCode == EHttpResponseCodes::NotFound)
 					{
+						UE_LOG(LogRHSession, Warning, TEXT("[%s] - Instance health not found, polling session"), ANSI_TO_TCHAR(__FUNCTION__))
+
 						// its possible the session has closed this instance or is gone, in which case, poll the session immediately to trigger logic faster rather than waiting on cleanup on next poll cycle
 						auto ActiveSession = GetActiveSession();
 						if (ActiveSession != nullptr)
@@ -550,6 +552,7 @@ void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& 
 					{
 						if (!bSuccess && ErrorInfo.ResponseCode == EHttpResponseCodes::NotFound)
 						{
+							UE_LOG(LogRHSession, Warning, TEXT("[%s] - Backfill not found, polling session"), ANSI_TO_TCHAR(__FUNCTION__))
 							// its possible the session has closed this instance or the backfill data is not present, so poll the session to get an updated state.  This should prevent new backfill requests via the state checks in GetShouldKeepBackfillAlive()
 							auto ActiveSession = GetActiveSession();
 							if (ActiveSession != nullptr)
