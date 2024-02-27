@@ -20,7 +20,7 @@
 `struct `[`RHStandardEvents::FLoginStartEvent`](#structRHStandardEvents_1_1FLoginStartEvent) | This event is triggered at the start of the client login process.
 `struct `[`RHStandardEvents::FLoginCompleteEvent`](#structRHStandardEvents_1_1FLoginCompleteEvent) | This event is triggered when the login process has completed.This event is meant to capture both successful and failed login attempts.
 `struct `[`RHStandardEvents::FObjectiveProgressEvent`](#structRHStandardEvents_1_1FObjectiveProgressEvent) | This event is meant to be triggered when a player has earned progress on an objective.The RHIntegration Plugin will not automatically trigger this, but this event is something that RallyHere will process and have an understanding of the data.
-`struct `[`RHStandardEvents::FPlayerGameResultEvent`](#structRHStandardEvents_1_1FPlayerGameResultEvent) | This event is meant to capture high level information about a completed match.The RHIntegration Plugin will not automatically trigger this, but this event is something that RallyHere will process and have an understanding of the data.
+`struct `[`RHStandardEvents::FPlayerGameResultEvent`](#structRHStandardEvents_1_1FPlayerGameResultEvent) | This event is meant to capture high level information about a completed match.
 `struct `[`RHStandardEvents::FPlatformPurchaseEvent`](#structRHStandardEvents_1_1FPlatformPurchaseEvent) | This event is triggered when processing of a real money purchase has been completed.
 `struct `[`RHStandardEvents::FCustomEvent`](#structRHStandardEvents_1_1FCustomEvent) | This is a wrapper for providing custom event data.
 
@@ -831,7 +831,7 @@ custom data fields (will be auto-prefixed with custom data prefix)
 <br>
 ## struct `RHStandardEvents::FPlayerGameResultEvent` <a id="structRHStandardEvents_1_1FPlayerGameResultEvent"></a>
 
-This event is meant to capture high level information about a completed match.The RHIntegration Plugin will not automatically trigger this, but this event is something that RallyHere will process and have an understanding of the data.
+This event is meant to capture high level information about a completed match.
 
 rh.player_game_result
 
