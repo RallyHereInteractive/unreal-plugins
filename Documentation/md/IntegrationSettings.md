@@ -36,9 +36,9 @@ Main settings for the Integration.
 `public int32 `[`PlayerMatchesPageSize`](#classURH__IntegrationSettings_1a5971d2f902ad05b49be9d9c21e20e6b1) | Sets the default page size when requesting a player's match history.
 `public int32 `[`PlayerMatchesMaxPageCount`](#classURH__IntegrationSettings_1a4a31dbbe3c82b41e88dcd3dfc9ff5ff4) | Sets the default page size when requesting a player's match history.
 `public FTimespan `[`PlayerMatchesMaxAge`](#classURH__IntegrationSettings_1a095b6baec0e5e9fb0be991db00ff975d) | Sets the default page size when requesting a player's match history.
-`public bool `[`bEnableAutomaticMatches`](#classURH__IntegrationSettings_1a1c1b5cf9793acf776e3d1ce52ca366f5) | Whether to automatically create a match when a session becomes active if the host.
+`public bool `[`bAutoCreateMatches`](#classURH__IntegrationSettings_1a52ca137edf91dc8a02a83a89f0aea548) | Whether to automatically create a match when a session becomes active if the host.
 `public bool `[`bAutoAddConnectedPlayersToMatches`](#classURH__IntegrationSettings_1a469c1d73694b665b028459c025ff2c1b) | Whether to automatically add players who connect to the match.
-`public bool `[`bCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a059594885a144be3538f5a21d5ad14c3) | Whether to automatically close a match when a session becomes inactive if the host.
+`public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) | Whether to automatically close a match when a session becomes inactive if the host.
 `public int32 `[`WebRequestsMaxSimultaneousRequests`](#classURH__IntegrationSettings_1a86e14803734cde1b954191b437ceaafe) | Sets the maximum number of Http Requests that can be made simultaneously. 0 = No Limit.
 `public int `[`WebRequestsTrackedRequestsCountLimit`](#classURH__IntegrationSettings_1a35b03db2758bd2f4e393fb1fb3c7aab4) | Sets the maximum number of web requests for which tracking data is kept.
 `public int32 `[`WebRequestsBurstCountThreshold`](#classURH__IntegrationSettings_1af81d481668affe4c87d3fb8c20cf239d) | Sets the count above which web traffic is considered a burst.
@@ -230,7 +230,7 @@ Sets the default page size when requesting a player's match history.
 Sets the default page size when requesting a player's match history.
 
 <br>
-#### `public bool `[`bEnableAutomaticMatches`](#classURH__IntegrationSettings_1a1c1b5cf9793acf776e3d1ce52ca366f5) <a id="classURH__IntegrationSettings_1a1c1b5cf9793acf776e3d1ce52ca366f5"></a>
+#### `public bool `[`bAutoCreateMatches`](#classURH__IntegrationSettings_1a52ca137edf91dc8a02a83a89f0aea548) <a id="classURH__IntegrationSettings_1a52ca137edf91dc8a02a83a89f0aea548"></a>
 
 Whether to automatically create a match when a session becomes active if the host.
 
@@ -240,7 +240,7 @@ Whether to automatically create a match when a session becomes active if the hos
 Whether to automatically add players who connect to the match.
 
 <br>
-#### `public bool `[`bCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a059594885a144be3538f5a21d5ad14c3) <a id="classURH__IntegrationSettings_1a059594885a144be3538f5a21d5ad14c3"></a>
+#### `public bool `[`bAutoCloseMatchOnSessionInactive`](#classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c) <a id="classURH__IntegrationSettings_1a089e31e1c743c7933b237fb62b4a5d8c"></a>
 
 Whether to automatically close a match when a session becomes inactive if the host.
 
