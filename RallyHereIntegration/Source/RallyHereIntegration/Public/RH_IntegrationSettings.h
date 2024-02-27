@@ -132,7 +132,7 @@ public:
 
 	/** @brief Whether to automatically create a match when a session becomes active if the host */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
-	bool bEnableAutomaticMatches;
+	bool bAutoCreateMatches;
 
 	/** @brief Whether to automatically add players who connect to the match */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
@@ -140,7 +140,7 @@ public:
 
 	/** @brief Whether to automatically close a match when a session becomes inactive if the host */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
-	bool bCloseMatchOnSessionInactive;
+	bool bAutoCloseMatchOnSessionInactive;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests

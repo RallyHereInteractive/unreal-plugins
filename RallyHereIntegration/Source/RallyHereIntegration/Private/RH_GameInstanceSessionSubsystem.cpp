@@ -263,7 +263,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 			PollControl->ClearPollingIntervalOverride(HealthPollTimerName);
 		}
 
-		if (Settings->bEnableAutomaticMatches && Settings->bCloseMatchOnSessionInactive)
+		if (Settings->bAutoCloseMatchOnSessionInactive)
 		{
 			// Send a match update that the match is now in the closed state
 			if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
@@ -312,7 +312,7 @@ void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* Joine
 		{
 
 			// if automatic matches are enabled, create one now
-			if (Settings->bEnableAutomaticMatches)
+			if (Settings->bAutoCreateMatches)
 			{
 				CreateMatchForSession(ActiveSession);
 			}
@@ -729,7 +729,7 @@ void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBas
 		// update the match player
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
-		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
 
@@ -786,7 +786,7 @@ void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* 
 	{
 		auto Settings = GetDefault<URH_IntegrationSettings>();
 		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
-		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bEnableAutomaticMatches && Settings->bAutoAddConnectedPlayersToMatches)
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bAutoAddConnectedPlayersToMatches)
 		{
 			FRHAPI_MatchPlayerRequest MatchPlayer;
 			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);

@@ -24,9 +24,9 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	bRequireImportedPlayerIdsForJoining = true;
 	bRequireValidPlayerIdsForJoining = true;
 
-	bEnableAutomaticMatches = true;
+	bAutoCreateMatches = true;
 	bAutoAddConnectedPlayersToMatches = true;
-	bCloseMatchOnSessionInactive = true;
+	bAutoCloseMatchOnSessionInactive = true;
 
 	PlayerMatchesPageSize = 0; // use API default page size
 	PlayerMatchesMaxPageCount = 5;
