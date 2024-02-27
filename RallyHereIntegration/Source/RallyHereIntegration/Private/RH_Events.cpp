@@ -11,6 +11,8 @@
 #include "Analytics.h"
 #include "Interfaces/IAnalyticsProvider.h"
 #include "Misc/EngineVersion.h"
+#include "Misc/App.h"
+#include "Misc/CommandLine.h"
 
 #include "RallyHereIntegrationModule.h"
 #include "RH_GameInstanceSubsystem.h"

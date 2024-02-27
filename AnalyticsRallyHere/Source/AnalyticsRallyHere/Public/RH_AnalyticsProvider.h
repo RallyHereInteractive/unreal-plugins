@@ -20,6 +20,12 @@
 
 #include "Misc/EngineVersionComparison.h"
 
+// forward declare the response struct
+namespace RallyHereAPI
+{
+	struct FResponse_ReceiveEventsV1;
+}
+
 /**
  * @brief Implementation of analytics for RallyHere GETS.
  */
@@ -126,7 +132,7 @@ protected:
 	/**
 	* Delegate called when an event Http request completes
 	*/
-	void EventRequestComplete(const struct RallyHereAPI::FResponse_ReceiveEventsV1& Response);
+	void EventRequestComplete(const RallyHereAPI::FResponse_ReceiveEventsV1& Response);
 
 	TSharedPtr<class FHttpRetrySystem::FManager> HttpRetryManager;
 	FHttpRetrySystem::FRetryDomainsPtr RetryServers;
