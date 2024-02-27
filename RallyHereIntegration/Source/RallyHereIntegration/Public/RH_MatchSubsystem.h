@@ -224,7 +224,7 @@ public:
 	 * @brief Get the active match ID
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual const FString& GetActiveMatchId() const { return ActiveMatchId.Get(FString()); }
+	virtual const FString GetActiveMatchId() const { return ActiveMatchId.Get(FString()); }
 	/**
 	 * @brief Set the active match
 	 */
@@ -250,7 +250,7 @@ public:
 	 * @brief Get the active match ID
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual const FString& GetActiveMatchSegmentId() const { return ActiveMatchSegmentId.Get(FString()); }
+	virtual const FString GetActiveMatchSegmentId() const { return ActiveMatchSegmentId.Get(FString()); }
 	/**
 	 * @brief Set the active match
 	 */
@@ -265,6 +265,7 @@ public:
 		{
 			ActiveMatchSegmentId = MatchSegmentId;
 		}
+	}
 	/**
 	 * @brief Gets whether the active match exists
 	 */
