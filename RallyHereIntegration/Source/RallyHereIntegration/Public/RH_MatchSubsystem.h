@@ -229,7 +229,17 @@ public:
 	 * @brief Set the active match
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual void SetActiveMatchId(const FString& MatchId) { MatchId.IsEmpty() ? ActiveMatchId.Reset() : ActiveMatchId = MatchId; }
+	virtual void SetActiveMatchId(const FString& MatchId)
+	{
+		if (MatchId.IsEmpty())
+		{
+			ActiveMatchId.Reset();
+		}
+		else
+		{
+			ActiveMatchId = MatchId;
+		}
+	}
 	/**
 	 * @brief Gets whether the active match exists
 	 */
@@ -245,7 +255,16 @@ public:
 	 * @brief Set the active match
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Matches")
-	virtual void SetActiveMatchSegmentId(const FString& MatchSegmentId) { MatchSegmentId.IsEmpty() ? ActiveMatchSegmentId.Reset() : ActiveMatchSegmentId = MatchSegmentId; }
+	virtual void SetActiveMatchSegmentId(const FString& MatchSegmentId)
+	{
+		if (MatchSegmentId.IsEmpty())
+		{
+			ActiveMatchSegmentId.Reset();
+		}
+		else
+		{
+			ActiveMatchSegmentId = MatchSegmentId;
+		}
 	/**
 	 * @brief Gets whether the active match exists
 	 */
