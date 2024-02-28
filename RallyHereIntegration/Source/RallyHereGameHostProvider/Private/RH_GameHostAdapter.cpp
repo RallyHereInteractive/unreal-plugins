@@ -9,6 +9,7 @@
 #include "Misc/Paths.h"
 #include "Ssl.h"
 
+#ifdef WITH_RALLYHERE_GAME_HOST_ADAPTER
 
 static void* GetDeepDllHandle( const TCHAR* Filename )
 {
@@ -92,3 +93,5 @@ GameHostAdapterImporter::~GameHostAdapterImporter()
 	FSslModule& SslModule = FModuleManager::LoadModuleChecked<FSslModule>("SSL");
 	SslModule.GetSslManager().ShutdownSsl();
 }
+
+#endif

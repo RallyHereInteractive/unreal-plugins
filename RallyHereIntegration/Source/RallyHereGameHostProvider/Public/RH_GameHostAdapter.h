@@ -3,6 +3,8 @@
 
 #pragma once
 
+#ifdef WITH_RALLYHERE_GAME_HOST_ADAPTER
+
 #include "CoreMinimal.h"
 
 // this entire file is effectively a "third party" file, so enforce the third party include flags (as defined in CoreMinimal.h) to make sure it works properly
@@ -67,3 +69,5 @@ protected:
 //#undef FOREACH_RHGHA_IMPORT_FUNC
 
 THIRD_PARTY_INCLUDES_END
+
+#endif // WITH_RALLYHERE_GAME_HOST_ADAPTER

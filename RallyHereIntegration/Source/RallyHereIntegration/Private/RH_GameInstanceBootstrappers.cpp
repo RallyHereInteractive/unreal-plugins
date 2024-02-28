@@ -545,11 +545,14 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 
 		UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Create game host provider: %s"), ANSI_TO_TCHAR(__FUNCTION__), *arguments);
 
+#ifdef WITH_RALLYHERE_GAME_HOST_ADAPTER
 		if (auto* GHAInterface = IRH_GameHostProviderInterface::Create<FRH_GameHostProviderGHA>(arguments))
 		{
 			return GHAInterface;
 		}
-		else if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
+		else 
+#endif
+		if (BootstrapMode == ERH_ServerBootstrapMode::AutoCreate)
 		{
 			return IRH_GameHostProviderInterface::Create<FRH_GameHostProviderFallbackAutoCreate>(arguments);
 		}

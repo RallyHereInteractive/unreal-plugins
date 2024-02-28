@@ -7,6 +7,8 @@
 #include "RH_GameHostProviderInterface.h"
 #include "Tickable.h"
 
+#ifdef WITH_RALLYHERE_GAME_HOST_ADAPTER
+
 THIRD_PARTY_INCLUDES_START
 #include "RH_GameHostAdapter.h"
 THIRD_PARTY_INCLUDES_END
@@ -74,3 +76,5 @@ protected:
 };
 
 /** @} */
+
+#endif // WITH_RALLYHERE_GAME_HOST_ADAPTER
