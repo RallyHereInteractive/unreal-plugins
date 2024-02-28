@@ -15,9 +15,18 @@ public class RallyHereGameHostProvider : ModuleRules
                 "CoreUObject",
 				"Engine",
                 "Json",
-				"RallyHereGameHostAdapter"
+				
 			}
         );
+
+		if (Target.Type == TargetType.Server || Target.Type == TargetType.Editor)
+		{
+			if (Target.Platform == UnrealTargetPlatform.Linux || Target.Platform == UnrealTargetPlatform.Win64)
+			{
+				PublicDependencyModuleNames.Add("RallyHereGameHostAdapter");
+				PublicDefinitions.Add("WITH_RALLYHERE_GAME_HOST_ADAPTER=1");
+			}
+		}
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[] {

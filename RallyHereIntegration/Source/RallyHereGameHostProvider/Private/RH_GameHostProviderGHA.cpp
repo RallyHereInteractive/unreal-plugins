@@ -10,6 +10,8 @@
 #include "Misc/ScopeExit.h"
 #include "Async/TaskGraphInterfaces.h"
 
+#ifdef WITH_RALLYHERE_GAME_HOST_ADAPTER
+
 bool FRH_GameHostProviderGHA::IsAvailable()
 {
 	if (FParse::Param(FCommandLine::Get(), TEXT("ForceNoGHA")))
@@ -329,3 +331,5 @@ void FRH_GameHostProviderGHA::OnSoftStopRequested(const RallyHereStatusCode& cod
 		return;
 	OnProviderSoftStopRequested.ExecuteIfBound();
 }
+
+#endif // WITH_RALLYHERE_GAME_HOST_ADAPTER
