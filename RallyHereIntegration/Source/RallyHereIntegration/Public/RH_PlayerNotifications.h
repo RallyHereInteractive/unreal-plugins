@@ -183,9 +183,13 @@ public:
 
 protected:
 	/**
+	 * @brief Restarts the long poll loop (potentially with deferal) to long poll for notifications.
+	 */
+	virtual void RestartLongPollLoop(bool bPreviousPollSuccess = true);
+	/**
 	 * @brief Starts a long poll for Notifications.
 	 */
-	void StartLongPoll();
+	virtual void StartLongPoll();
 	/**
 	* @brief Handles the response to a Nofitication poll.
 	* @param [in] bSuccess True if the poll was successful.
@@ -233,6 +237,17 @@ protected:
 	/** @brief The player info associated with the notification polling. */
 	UPROPERTY(Transient)
 	URH_PlayerInfo* PlayerInfo;
+
+	/** @brief The delay to use before the next poll starts. */
+	UPROPERTY(Transient)
+	float NextLongPollDelay;
+	/** @brief The max delay to use before the next poll starts. */
+	UPROPERTY(Config)
+	float MaxLongPollDelay;
+	/** @brief The timer handler for long poll deferrals. */
+	UPROPERTY(Transient)
+	FTimerHandle LongPollDeferralHandle;
+
 };
 
 /** @} */
