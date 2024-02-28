@@ -57,7 +57,11 @@ Notification Subsystem used for polling notifications of updates.
 `protected TArray< `[`FRHAPI_Notification`](models/RHAPI_Notification.md#structFRHAPI__Notification)` > `[`StreamingHistory`](#classURH__PlayerNotifications_1afd9c29d10b04dbbb9dfc45db0badf2d5) | Cache of the polled notifications.
 `protected int32 `[`StreamingHistorySize`](#classURH__PlayerNotifications_1add7165e0ac8297b7fb22484981c01178) | The number of cached notifications to store before purging old ones.
 `protected `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`PlayerInfo`](#classURH__PlayerNotifications_1a68ca966f25d236f47a0daa44a264b853) | The player info associated with the notification polling.
-`protected void `[`StartLongPoll`](#classURH__PlayerNotifications_1aaeb081c051fa87431207bc5b2f46481f)`()` | Starts a long poll for Notifications.
+`protected float `[`NextLongPollDelay`](#classURH__PlayerNotifications_1a288e884fe0398426946010fbc2bd5891) | The delay to use before the next poll starts.
+`protected float `[`MaxLongPollDelay`](#classURH__PlayerNotifications_1a3510b51a6bca1330b594754604933e4f) | The max delay to use before the next poll starts.
+`protected FTimerHandle `[`LongPollDeferralHandle`](#classURH__PlayerNotifications_1ab2b566201fe898b46c537e02b8766427) | The timer handler for long poll deferrals.
+`protected virtual void `[`RestartLongPollLoop`](#classURH__PlayerNotifications_1ab86249ecd1802147308a737a7d16780a)`(bool bPreviousPollSuccess)` | Restarts the long poll loop (potentially with deferal) to long poll for notifications.
+`protected virtual void `[`StartLongPoll`](#classURH__PlayerNotifications_1a53a11f6613bff01aa95cfe82b02855f9)`()` | Starts a long poll for Notifications.
 `protected virtual void `[`OnNotificationsStreamed`](#classURH__PlayerNotifications_1a66de68270859ef7889171e8c050b271b)`(bool bSuccess,const FString & CursorAfter,float RequestDuration,const `[`FRHAPI_Notifications`](models/RHAPI_Notifications.md#structFRHAPI__Notifications)` & Resp)` | Handles the response to a Nofitication poll.
 `protected virtual void `[`OnNotificationCreated`](#classURH__PlayerNotifications_1a16ad788389a4551cfbb53c0899c27cdb)`(const RallyHereAPI::FResponse_PlayerCreateNotification & Resp,const FRH_OnSingularNotificationIDDelegateBlock Delegate)` | Handles the response to a Nofitication Creation call.
 `protected inline void `[`TrimStreamingHistory`](#classURH__PlayerNotifications_1a05dfd936492620353632b25f85c41055)`()` | Keeps the notification history size within the configured size for the cache.
@@ -229,7 +233,27 @@ The number of cached notifications to store before purging old ones.
 The player info associated with the notification polling.
 
 <br>
-#### `protected void `[`StartLongPoll`](#classURH__PlayerNotifications_1aaeb081c051fa87431207bc5b2f46481f)`()` <a id="classURH__PlayerNotifications_1aaeb081c051fa87431207bc5b2f46481f"></a>
+#### `protected float `[`NextLongPollDelay`](#classURH__PlayerNotifications_1a288e884fe0398426946010fbc2bd5891) <a id="classURH__PlayerNotifications_1a288e884fe0398426946010fbc2bd5891"></a>
+
+The delay to use before the next poll starts.
+
+<br>
+#### `protected float `[`MaxLongPollDelay`](#classURH__PlayerNotifications_1a3510b51a6bca1330b594754604933e4f) <a id="classURH__PlayerNotifications_1a3510b51a6bca1330b594754604933e4f"></a>
+
+The max delay to use before the next poll starts.
+
+<br>
+#### `protected FTimerHandle `[`LongPollDeferralHandle`](#classURH__PlayerNotifications_1ab2b566201fe898b46c537e02b8766427) <a id="classURH__PlayerNotifications_1ab2b566201fe898b46c537e02b8766427"></a>
+
+The timer handler for long poll deferrals.
+
+<br>
+#### `protected virtual void `[`RestartLongPollLoop`](#classURH__PlayerNotifications_1ab86249ecd1802147308a737a7d16780a)`(bool bPreviousPollSuccess)` <a id="classURH__PlayerNotifications_1ab86249ecd1802147308a737a7d16780a"></a>
+
+Restarts the long poll loop (potentially with deferal) to long poll for notifications.
+
+<br>
+#### `protected virtual void `[`StartLongPoll`](#classURH__PlayerNotifications_1a53a11f6613bff01aa95cfe82b02855f9)`()` <a id="classURH__PlayerNotifications_1a53a11f6613bff01aa95cfe82b02855f9"></a>
 
 Starts a long poll for Notifications.
 
