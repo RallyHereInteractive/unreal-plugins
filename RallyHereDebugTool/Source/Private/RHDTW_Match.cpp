@@ -131,7 +131,7 @@ void FRHDTW_Match::DoSearchMatches()
 
 	ImGui::Text("Results");
 	ImGui::SameLine();
-	if (ImGui::SmallButton("Clear"))
+	if (ImGui::SmallButton("Clear Results"))
 	{
 		SearchResults.Empty();
 	}
@@ -177,7 +177,7 @@ void FRHDTW_Match::DoSearchMatches()
 
 	ImGui::Text("Match Cache");
 	ImGui::SameLine();
-	if (ImGui::SmallButton("Clear"))
+	if (ImGui::SmallButton("Clear Match Cache"))
 	{
 		pGIMatchSubsystem->ClearMatchesCache();
 	}
