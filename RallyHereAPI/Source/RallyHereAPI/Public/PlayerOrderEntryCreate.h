@@ -43,7 +43,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The type of entry. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PlayerOrderEntryType Type{  };
     /** @brief Gets the value of Type */
     ERHAPI_PlayerOrderEntryType& GetType() { return Type; }
@@ -53,10 +53,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetType(ERHAPI_PlayerOrderEntryType NewValue) { Type = NewValue;  }
 
     /** @brief Unique Identifier for the Loot */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LootId_Optional{  };
     /** @brief true if LootId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LootId_IsSet{ false };
     /** @brief Gets the value of LootId_Optional, regardless of it having been set */
     int32& GetLootId() { return LootId_Optional; }
@@ -80,7 +80,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetLootIdToDefault() { LootId_Optional = 0; LootId_IsSet = true; }
 
     /** @brief Quantity of Inventory */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Quantity{ 0 };
     /** @brief Gets the value of Quantity */
     int32& GetQuantity() { return Quantity; }
@@ -94,10 +94,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetQuantityToDefault() { Quantity = 0;  }
 
     /** @brief Legacy version for the vendor owning the loot_id.  Use `vendor_etag` instead. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int64 VendorVersion_Optional{  };
     /** @brief true if VendorVersion_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool VendorVersion_IsSet{ false };
     /** @brief Gets the value of VendorVersion_Optional, regardless of it having been set */
     int64& GetVendorVersion() { return VendorVersion_Optional; }
@@ -121,10 +121,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetVendorVersionToDefault() { VendorVersion_Optional = 0; VendorVersion_IsSet = true; }
 
     /** @brief etag for the vendor owning the loot_id.  Will fail the fulfillment if they do not match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString VendorEtag_Optional{  };
     /** @brief true if VendorEtag_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool VendorEtag_IsSet{ false };
     /** @brief Gets the value of VendorEtag_Optional, regardless of it having been set */
     FString& GetVendorEtag() { return VendorEtag_Optional; }
@@ -144,10 +144,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearVendorEtag() { VendorEtag_IsSet = false; }
 
     /** @brief List of Loot IDs for the dynamic bundle. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<int32> DynamicBundleLootIds_Optional{  };
     /** @brief true if DynamicBundleLootIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DynamicBundleLootIds_IsSet{ false };
     /** @brief Gets the value of DynamicBundleLootIds_Optional, regardless of it having been set */
     TArray<int32>& GetDynamicBundleLootIds() { return DynamicBundleLootIds_Optional; }
@@ -167,10 +167,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearDynamicBundleLootIds() { DynamicBundleLootIds_IsSet = false; }
 
     /** @brief The purchase price of the Loot. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PurchasePrice PurchasePrice_Optional{  };
     /** @brief true if PurchasePrice_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PurchasePrice_IsSet{ false };
     /** @brief Gets the value of PurchasePrice_Optional, regardless of it having been set */
     FRHAPI_PurchasePrice& GetPurchasePrice() { return PurchasePrice_Optional; }
@@ -190,10 +190,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearPurchasePrice() { PurchasePrice_IsSet = false; }
 
     /** @brief External Transaction Id for source of the acquisition or a promotion code to claim. Required for [PROMOTION_CODE] types */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ExternalTranId_Optional{  };
     /** @brief true if ExternalTranId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ExternalTranId_IsSet{ false };
     /** @brief Gets the value of ExternalTranId_Optional, regardless of it having been set */
     FString& GetExternalTranId() { return ExternalTranId_Optional; }
@@ -213,10 +213,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearExternalTranId() { ExternalTranId_IsSet = false; }
 
     /** @brief External item SKU for the Order Entry. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ExternalItemSku_Optional{  };
     /** @brief true if ExternalItemSku_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ExternalItemSku_IsSet{ false };
     /** @brief Gets the value of ExternalItemSku_Optional, regardless of it having been set */
     FString& GetExternalItemSku() { return ExternalItemSku_Optional; }
@@ -236,10 +236,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearExternalItemSku() { ExternalItemSku_IsSet = false; }
 
     /** @brief Inventory Bucket to use for the Order Entry. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InventoryBucket UseInventoryBucket_Optional{  };
     /** @brief true if UseInventoryBucket_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool UseInventoryBucket_IsSet{ false };
     /** @brief Gets the value of UseInventoryBucket_Optional, regardless of it having been set */
     ERHAPI_InventoryBucket& GetUseInventoryBucket() { return UseInventoryBucket_Optional; }
@@ -259,10 +259,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearUseInventoryBucket() { UseInventoryBucket_IsSet = false; }
 
     /** @brief Player Portal Event Id for the Order Entry. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int64 PlayerPortalEventId_Optional{  };
     /** @brief true if PlayerPortalEventId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerPortalEventId_IsSet{ false };
     /** @brief Gets the value of PlayerPortalEventId_Optional, regardless of it having been set */
     int64& GetPlayerPortalEventId() { return PlayerPortalEventId_Optional; }
@@ -286,10 +286,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetPlayerPortalEventIdToDefault() { PlayerPortalEventId_Optional = 0; PlayerPortalEventId_IsSet = true; }
 
     /** @brief Unique Identifier for the Inventory */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid InventoryId_Optional{  };
     /** @brief true if InventoryId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InventoryId_IsSet{ false };
     /** @brief Gets the value of InventoryId_Optional, regardless of it having been set */
     FGuid& GetInventoryId() { return InventoryId_Optional; }
@@ -309,10 +309,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearInventoryId() { InventoryId_IsSet = false; }
 
     /** @brief Legacy Inventory Id. This is only used when type equals [UPDATE_EXISTING_PERSISTENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY] */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int64 LegacyInventoryId_Optional{  };
     /** @brief true if LegacyInventoryId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyInventoryId_IsSet{ false };
     /** @brief Gets the value of LegacyInventoryId_Optional, regardless of it having been set */
     int64& GetLegacyInventoryId() { return LegacyInventoryId_Optional; }
@@ -336,10 +336,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetLegacyInventoryIdToDefault() { LegacyInventoryId_Optional = 0; LegacyInventoryId_IsSet = true; }
 
     /** @brief Item Id used create or update Inventory directly. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY] */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ItemId_Optional{  };
     /** @brief true if ItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ItemId_IsSet{ false };
     /** @brief Gets the value of ItemId_Optional, regardless of it having been set */
     int32& GetItemId() { return ItemId_Optional; }
@@ -363,10 +363,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Expires_Optional{  };
     /** @brief true if Expires_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Expires_IsSet{ false };
     /** @brief Gets the value of Expires_Optional, regardless of it having been set */
     FDateTime& GetExpires() { return Expires_Optional; }
@@ -386,10 +386,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearExpires() { Expires_IsSet = false; }
 
     /** @brief Custom Data Attributes for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY] */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -409,10 +409,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntryCreate : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Unique Identifier for the Order Entry. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString EntryId_Optional{  };
     /** @brief true if EntryId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EntryId_IsSet{ false };
     /** @brief Gets the value of EntryId_Optional, regardless of it having been set */
     FString& GetEntryId() { return EntryId_Optional; }

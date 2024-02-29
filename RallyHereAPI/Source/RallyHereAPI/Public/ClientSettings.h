@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief DEPRECATED. Use 'platform' instead. Id for which platform this client is on. ID will be ignored if 'platform' is given. At least one of the two is required */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PlatformID PlatformId_Optional{  };
     /** @brief true if PlatformId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlatformId_IsSet{ false };
     /** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
     ERHAPI_PlatformID& GetPlatformId() { return PlatformId_Optional; }
@@ -66,10 +66,10 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
     void ClearPlatformId() { PlatformId_IsSet = false; }
 
     /** @brief Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. At least one of the two is required */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform_Optional{  };
     /** @brief true if Platform_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Platform_IsSet{ false };
     /** @brief Gets the value of Platform_Optional, regardless of it having been set */
     ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
@@ -89,7 +89,7 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
     void ClearPlatform() { Platform_IsSet = false; }
 
     /** @brief Which input type this client is using */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Input Input{  };
     /** @brief Gets the value of Input */
     ERHAPI_Input& GetInput() { return Input; }

@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for this unique MatchMakingTemplate */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid MatchMakingTemplateId_Optional{  };
     /** @brief true if MatchMakingTemplateId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchMakingTemplateId_IsSet{ false };
     /** @brief Gets the value of MatchMakingTemplateId_Optional, regardless of it having been set */
     FGuid& GetMatchMakingTemplateId() { return MatchMakingTemplateId_Optional; }
@@ -66,7 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
     void ClearMatchMakingTemplateId() { MatchMakingTemplateId_IsSet = false; }
 
     /** @brief What method should be used to calculate a group's MMR based on the individual player's ranks */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_MMRGroupingMethod MmrGroupingMethod{  };
     /** @brief Gets the value of MmrGroupingMethod */
     ERHAPI_MMRGroupingMethod& GetMmrGroupingMethod() { return MmrGroupingMethod; }
@@ -76,10 +76,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
     void SetMmrGroupingMethod(ERHAPI_MMRGroupingMethod NewValue) { MmrGroupingMethod = NewValue;  }
 
     /** @brief A set of rules that determine whether or not this matchmaking config should be used. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MatchMakingRuleset Ruleset_Optional{  };
     /** @brief true if Ruleset_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Ruleset_IsSet{ false };
     /** @brief Gets the value of Ruleset_Optional, regardless of it having been set */
     FRHAPI_MatchMakingRuleset& GetRuleset() { return Ruleset_Optional; }
@@ -99,7 +99,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateV2 : public FRHAPI_Model
     void ClearRuleset() { Ruleset_IsSet = false; }
 
     /** @brief A list of which match making profiles are going to be created on the ticket */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MatchMakingProfileV2> Profiles{  };
     /** @brief Gets the value of Profiles */
     TArray<FRHAPI_MatchMakingProfileV2>& GetProfiles() { return Profiles; }

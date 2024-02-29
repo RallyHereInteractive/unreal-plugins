@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_Platforms : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FString> Platforms{  };
     /** @brief Gets the value of Platforms */
     TArray<FString>& GetPlatforms() { return Platforms; }

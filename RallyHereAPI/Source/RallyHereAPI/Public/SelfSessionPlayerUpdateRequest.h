@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Status that the player would like after the request is complete. Note that some join operations may promote the player from `member` to `leader` */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_SessionPlayerStatus Status_Optional{  };
     /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Status_IsSet{ false };
     /** @brief Gets the value of Status_Optional, regardless of it having been set */
     ERHAPI_SessionPlayerStatus& GetStatus() { return Status_Optional; }
@@ -66,7 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     void ClearStatus() { Status_IsSet = false; }
 
     /** @brief Semver for updated client */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ClientVersion{  };
     /** @brief Gets the value of ClientVersion */
     FString& GetClientVersion() { return ClientVersion; }
@@ -76,7 +76,7 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
 
     /** @brief Which input type and platform the client is using */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_ClientSettings ClientSettings{  };
     /** @brief Gets the value of ClientSettings */
     FRHAPI_ClientSettings& GetClientSettings() { return ClientSettings; }
@@ -86,7 +86,7 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings = NewValue;  }
 
     /** @brief Which team the player is one */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamId{ 0 };
     /** @brief Gets the value of TeamId */
     int32& GetTeamId() { return TeamId; }
@@ -100,10 +100,10 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     void SetTeamIdToDefault() { TeamId = 0;  }
 
     /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
     /** @brief true if CrossplayPreferences_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CrossplayPreferences_IsSet{ false };
     /** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
     FRHAPI_CrossplayPreferences& GetCrossplayPreferences() { return CrossplayPreferences_Optional; }
@@ -123,10 +123,10 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
     void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
 
     /** @brief player-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

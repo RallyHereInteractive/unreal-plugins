@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PortalTokenDetailsGrantType GrantType{  };
     /** @brief Gets the value of GrantType */
     ERHAPI_PortalTokenDetailsGrantType& GetGrantType() { return GrantType; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
     void SetGrantType(ERHAPI_PortalTokenDetailsGrantType NewValue) { GrantType = NewValue;  }
 
     /** @brief Token or secret used to authenticate the provided grant type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalAccessToken{  };
     /** @brief Gets the value of PortalAccessToken */
     FString& GetPortalAccessToken() { return PortalAccessToken; }

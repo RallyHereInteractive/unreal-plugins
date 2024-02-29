@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Platform for the user */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
     ERHAPI_Platform& GetPlatform() { return Platform; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     /** @brief Portal ID. *DEPRECATED* use `platform` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_DependenciesSchemasPortal PortalId{  };
     /** @brief Gets the value of PortalId */
     ERHAPI_DependenciesSchemasPortal& GetPortalId() { return PortalId; }
@@ -62,7 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     void SetPortalId(ERHAPI_DependenciesSchemasPortal NewValue) { PortalId = NewValue;  }
 
     /** @brief Platform User ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalUserId{  };
     /** @brief Gets the value of PortalUserId */
     FString& GetPortalUserId() { return PortalUserId; }
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
     void SetPortalUserId(FString NewValue) { PortalUserId = NewValue;  }
 
     /** @brief Display name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DisplayName{  };
     /** @brief Gets the value of DisplayName */
     FString& GetDisplayName() { return DisplayName; }

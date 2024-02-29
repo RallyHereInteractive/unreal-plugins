@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Key ID - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.5 */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Kid{  };
     /** @brief Gets the value of Kid */
     FString& GetKid() { return Kid; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
     void SetKid(FString NewValue) { Kid = NewValue;  }
 
     /** @brief Key Type - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.1 */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Kty{  };
     /** @brief Gets the value of Kty */
     FString& GetKty() { return Kty; }
@@ -60,7 +60,7 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
     void SetKty(FString NewValue) { Kty = NewValue;  }
 
     /** @brief Modulus - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1 */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString N{  };
     /** @brief Gets the value of N */
     FString& GetN() { return N; }
@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
     void SetN(FString NewValue) { N = NewValue;  }
 
     /** @brief Exponent - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1 */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString E{  };
     /** @brief Gets the value of E */
     FString& GetE() { return E; }

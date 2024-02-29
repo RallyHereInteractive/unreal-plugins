@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The grant type to use for authentication */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_GrantType GrantType{  };
     /** @brief Gets the value of GrantType */
     ERHAPI_GrantType& GetGrantType() { return GrantType; }
@@ -51,10 +51,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetGrantType(ERHAPI_GrantType NewValue) { GrantType = NewValue;  }
 
     /** @brief Token or secret used to authenticate the provided grant type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalAccessToken_Optional{  };
     /** @brief true if PortalAccessToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalAccessToken_IsSet{ false };
     /** @brief Gets the value of PortalAccessToken_Optional, regardless of it having been set */
     FString& GetPortalAccessToken() { return PortalAccessToken_Optional; }
@@ -78,10 +78,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetPortalAccessTokenToDefault() { PortalAccessToken_Optional = TEXT(""); PortalAccessToken_IsSet = true; }
 
     /** @brief Some grant types support client-provided names */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalDisplayName_Optional{  };
     /** @brief true if PortalDisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalDisplayName_IsSet{ false };
     /** @brief Gets the value of PortalDisplayName_Optional, regardless of it having been set */
     FString& GetPortalDisplayName() { return PortalDisplayName_Optional; }
@@ -105,10 +105,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetPortalDisplayNameToDefault() { PortalDisplayName_Optional = TEXT(""); PortalDisplayName_IsSet = true; }
 
     /** @brief Some grant types have 2 tier authentication and require a second token/secret */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalParentAccessToken_Optional{  };
     /** @brief true if PortalParentAccessToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalParentAccessToken_IsSet{ false };
     /** @brief Gets the value of PortalParentAccessToken_Optional, regardless of it having been set */
     FString& GetPortalParentAccessToken() { return PortalParentAccessToken_Optional; }
@@ -132,10 +132,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetPortalParentAccessTokenToDefault() { PortalParentAccessToken_Optional = TEXT(""); PortalParentAccessToken_IsSet = true; }
 
     /** @brief Some grant types have 2 tier authentication and support a second display name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalParentDisplayName_Optional{  };
     /** @brief true if PortalParentDisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalParentDisplayName_IsSet{ false };
     /** @brief Gets the value of PortalParentDisplayName_Optional, regardless of it having been set */
     FString& GetPortalParentDisplayName() { return PortalParentDisplayName_Optional; }
@@ -159,10 +159,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetPortalParentDisplayNameToDefault() { PortalParentDisplayName_Optional = TEXT(""); PortalParentDisplayName_IsSet = true; }
 
     /** @brief Indicates if the client wants a refresh token returned */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool IncludeRefresh_Optional{  };
     /** @brief true if IncludeRefresh_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool IncludeRefresh_IsSet{ false };
     /** @brief Gets the value of IncludeRefresh_Optional, regardless of it having been set */
     bool& GetIncludeRefresh() { return IncludeRefresh_Optional; }
@@ -186,10 +186,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetIncludeRefreshToDefault() { IncludeRefresh_Optional = false; IncludeRefresh_IsSet = true; }
 
     /** @brief If true, the user has accepted the EULA */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptEula_Optional{  };
     /** @brief true if AcceptEula_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptEula_IsSet{ false };
     /** @brief Gets the value of AcceptEula_Optional, regardless of it having been set */
     bool& GetAcceptEula() { return AcceptEula_Optional; }
@@ -213,10 +213,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetAcceptEulaToDefault() { AcceptEula_Optional = false; AcceptEula_IsSet = true; }
 
     /** @brief If true, the user has accepted the Terms of Service */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptTos_Optional{  };
     /** @brief true if AcceptTos_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptTos_IsSet{ false };
     /** @brief Gets the value of AcceptTos_Optional, regardless of it having been set */
     bool& GetAcceptTos() { return AcceptTos_Optional; }
@@ -240,10 +240,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
     void SetAcceptTosToDefault() { AcceptTos_Optional = false; AcceptTos_IsSet = true; }
 
     /** @brief If true, the user has accepted the Privacy Policy */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptPrivacyPolicy_Optional{  };
     /** @brief true if AcceptPrivacyPolicy_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptPrivacyPolicy_IsSet{ false };
     /** @brief Gets the value of AcceptPrivacyPolicy_Optional, regardless of it having been set */
     bool& GetAcceptPrivacyPolicy() { return AcceptPrivacyPolicy_Optional; }

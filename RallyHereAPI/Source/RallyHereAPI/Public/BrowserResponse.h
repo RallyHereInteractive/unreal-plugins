@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Cursor to continue iterating through browser sessions. 0 means we have returned the last entry */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Cursor{ 0 };
     /** @brief Gets the value of Cursor */
     int32& GetCursor() { return Cursor; }
@@ -55,7 +55,7 @@ struct RALLYHEREAPI_API FRHAPI_BrowserResponse : public FRHAPI_Model
     void SetCursorToDefault() { Cursor = 0;  }
 
     /** @brief List of sessions in the browser */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_BrowserSessionInfo> BrowserSessions{  };
     /** @brief Gets the value of BrowserSessions */
     TArray<FRHAPI_BrowserSessionInfo>& GetBrowserSessions() { return BrowserSessions; }

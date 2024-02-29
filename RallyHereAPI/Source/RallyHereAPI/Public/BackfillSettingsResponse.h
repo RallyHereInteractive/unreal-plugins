@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BackfillSettingsResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief How often we expect backfill heartbeats to occur */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float Timeout{  };
     /** @brief Gets the value of Timeout */
     float& GetTimeout() { return Timeout; }

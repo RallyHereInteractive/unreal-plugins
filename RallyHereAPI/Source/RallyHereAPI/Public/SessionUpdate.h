@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Preferred region for the instance and match to take place in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RegionId_Optional{  };
     /** @brief true if RegionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RegionId_IsSet{ false };
     /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
     FString& GetRegionId() { return RegionId_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
     void ClearRegionId() { RegionId_IsSet = false; }
 
     /** @brief Leader Player or instance defined custom data about this session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -87,10 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Flag for if players can freely join this session without an invite */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Joinable_Optional{  };
     /** @brief true if Joinable_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Joinable_IsSet{ false };
     /** @brief Gets the value of Joinable_Optional, regardless of it having been set */
     bool& GetJoinable() { return Joinable_Optional; }
@@ -114,10 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionUpdate : public FRHAPI_Model
     void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
 
     /** @brief List of team size updates for this session. The length of the list represents the number of desired teams */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_TeamUpdate> Teams_Optional{  };
     /** @brief true if Teams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Teams_IsSet{ false };
     /** @brief Gets the value of Teams_Optional, regardless of it having been set */
     TArray<FRHAPI_TeamUpdate>& GetTeams() { return Teams_Optional; }

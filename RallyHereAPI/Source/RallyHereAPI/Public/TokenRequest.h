@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief OAuth2 grant type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_OAuthGrantType GrantType{  };
     /** @brief Gets the value of GrantType */
     ERHAPI_OAuthGrantType& GetGrantType() { return GrantType; }

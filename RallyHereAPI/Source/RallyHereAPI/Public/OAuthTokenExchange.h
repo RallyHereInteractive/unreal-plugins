@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Grant type for the OAuth exchange. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_OAuthTokenEchangeGrantType GrantType{  };
     /** @brief Gets the value of GrantType */
     ERHAPI_OAuthTokenEchangeGrantType& GetGrantType() { return GrantType; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
     void SetGrantType(ERHAPI_OAuthTokenEchangeGrantType NewValue) { GrantType = NewValue;  }
 
     /** @brief authorization_code for the OAuth exchange. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Code{  };
     /** @brief Gets the value of Code */
     FString& GetCode() { return Code; }
@@ -61,10 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
     void SetCode(FString NewValue) { Code = NewValue;  }
 
     /** @brief If true, the user has accepted the EULA. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptedEula_Optional{  };
     /** @brief true if AcceptedEula_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptedEula_IsSet{ false };
     /** @brief Gets the value of AcceptedEula_Optional, regardless of it having been set */
     bool& GetAcceptedEula() { return AcceptedEula_Optional; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
     void SetAcceptedEulaToDefault() { AcceptedEula_Optional = false; AcceptedEula_IsSet = true; }
 
     /** @brief If true, the user has accepted the TOS. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptedTos_Optional{  };
     /** @brief true if AcceptedTos_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptedTos_IsSet{ false };
     /** @brief Gets the value of AcceptedTos_Optional, regardless of it having been set */
     bool& GetAcceptedTos() { return AcceptedTos_Optional; }
@@ -115,10 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenExchange : public FRHAPI_Model
     void SetAcceptedTosToDefault() { AcceptedTos_Optional = false; AcceptedTos_IsSet = true; }
 
     /** @brief If true, the user has accepted the Privacy Policy. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptedPrivacyPolicy_Optional{  };
     /** @brief true if AcceptedPrivacyPolicy_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AcceptedPrivacyPolicy_IsSet{ false };
     /** @brief Gets the value of AcceptedPrivacyPolicy_Optional, regardless of it having been set */
     bool& GetAcceptedPrivacyPolicy() { return AcceptedPrivacyPolicy_Optional; }

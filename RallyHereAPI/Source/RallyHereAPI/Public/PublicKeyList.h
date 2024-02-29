@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PublicKeyList : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of public keys for verifying Access Token JWTs */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PublicKey> Keys{  };
     /** @brief Gets the value of Keys */
     TArray<FRHAPI_PublicKey>& GetKeys() { return Keys; }

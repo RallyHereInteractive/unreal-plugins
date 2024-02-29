@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_TrueskillTeam : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of PlayerRankUpdate objects that give stats about a specific player from the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_TrueskillRank> Players{  };
     /** @brief Gets the value of Players */
     TArray<FRHAPI_TrueskillRank>& GetPlayers() { return Players; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_TrueskillTeam : public FRHAPI_Model
     void SetPlayers(TArray<FRHAPI_TrueskillRank> NewValue) { Players = NewValue;  }
 
     /** @brief What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamRank{ 0 };
     /** @brief Gets the value of TeamRank */
     int32& GetTeamRank() { return TeamRank; }

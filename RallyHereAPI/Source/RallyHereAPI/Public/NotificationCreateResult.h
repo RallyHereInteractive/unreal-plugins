@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreateResult : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique Identifier for the last notification created.  You cannot depend on the format of this string, and it must be considered opaque */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString NotificationId{  };
     /** @brief Gets the value of NotificationId */
     FString& GetNotificationId() { return NotificationId; }

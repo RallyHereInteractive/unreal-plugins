@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Platform to create with */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
     ERHAPI_Platform& GetPlatform() { return Platform; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     /** @brief Platform user ID to create with */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformUserId{  };
     /** @brief Gets the value of PlatformUserId */
     FString& GetPlatformUserId() { return PlatformUserId; }
@@ -61,10 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_CreatePlatformUserRequest : public FRHAPI_Model
     void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
 
     /** @brief Display name used when creating a new player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DisplayName_Optional{  };
     /** @brief true if DisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DisplayName_IsSet{ false };
     /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
     FString& GetDisplayName() { return DisplayName_Optional; }

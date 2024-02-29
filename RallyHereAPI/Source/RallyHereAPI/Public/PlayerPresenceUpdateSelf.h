@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Is the player currently online? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_OnlineStatus Status_Optional{  };
     /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Status_IsSet{ false };
     /** @brief Gets the value of Status_Optional, regardless of it having been set */
     ERHAPI_OnlineStatus& GetStatus() { return Status_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
     void ClearStatus() { Status_IsSet = false; }
 
     /** @brief Optional custom message to display alongside the user's online status. Leaving this unset will not change the value. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Message_Optional{  };
     /** @brief true if Message_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Message_IsSet{ false };
     /** @brief Gets the value of Message_Optional, regardless of it having been set */
     FString& GetMessage() { return Message_Optional; }
@@ -87,10 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
     void ClearMessage() { Message_IsSet = false; }
 
     /** @brief Disables notifications and invites. Leaving this unset will not change the value. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DoNotDisturb_Optional{  };
     /** @brief true if DoNotDisturb_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DoNotDisturb_IsSet{ false };
     /** @brief Gets the value of DoNotDisturb_Optional, regardless of it having been set */
     bool& GetDoNotDisturb() { return DoNotDisturb_Optional; }
@@ -114,10 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
     void SetDoNotDisturbToDefault() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = true; }
 
     /** @brief custom fields for the player to update about their presence. Custom data with a null value will be removed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

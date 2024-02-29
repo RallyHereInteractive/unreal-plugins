@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
     FString& GetSessionId() { return SessionId; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
     /** @brief Number of players actively in this session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerCount_Optional{  };
     /** @brief true if PlayerCount_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerCount_IsSet{ false };
     /** @brief Gets the value of PlayerCount_Optional, regardless of it having been set */
     int32& GetPlayerCount() { return PlayerCount_Optional; }
@@ -77,10 +77,10 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
     void SetPlayerCountToDefault() { PlayerCount_Optional = 0; PlayerCount_IsSet = true; }
 
     /** @brief Maximum number of players that can be in this session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxPlayerCount_Optional{  };
     /** @brief true if MaxPlayerCount_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MaxPlayerCount_IsSet{ false };
     /** @brief Gets the value of MaxPlayerCount_Optional, regardless of it having been set */
     int32& GetMaxPlayerCount() { return MaxPlayerCount_Optional; }
@@ -104,10 +104,10 @@ struct RALLYHEREAPI_API FRHAPI_BrowserSessionInfo : public FRHAPI_Model
     void SetMaxPlayerCountToDefault() { MaxPlayerCount_Optional = 0; MaxPlayerCount_IsSet = true; }
 
     /** @brief Custom data with the listing of the instance in the Session browser */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

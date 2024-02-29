@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_HTTPValidationError : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_ValidationError> Detail_Optional{  };
     /** @brief true if Detail_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Detail_IsSet{ false };
     /** @brief Gets the value of Detail_Optional, regardless of it having been set */
     TArray<FRHAPI_ValidationError>& GetDetail() { return Detail_Optional; }

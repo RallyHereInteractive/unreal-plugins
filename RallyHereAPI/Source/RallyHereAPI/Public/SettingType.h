@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_SettingType : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Map of setting type version ids to the version */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_SettingTypeVersion> Versions{  };
     /** @brief Gets the value of Versions */
     TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() { return Versions; }

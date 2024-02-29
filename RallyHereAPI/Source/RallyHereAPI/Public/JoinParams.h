@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Public connection string for instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PublicConnStr{  };
     /** @brief Gets the value of PublicConnStr */
     FString& GetPublicConnStr() { return PublicConnStr; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
     void SetPublicConnStr(FString NewValue) { PublicConnStr = NewValue;  }
 
     /** @brief Private connection string for instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PrivateConnStr{  };
     /** @brief Gets the value of PrivateConnStr */
     FString& GetPrivateConnStr() { return PrivateConnStr; }
@@ -60,10 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_JoinParams : public FRHAPI_Model
     void SetPrivateConnStr(FString NewValue) { PrivateConnStr = NewValue;  }
 
     /** @brief Custom data to join a instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

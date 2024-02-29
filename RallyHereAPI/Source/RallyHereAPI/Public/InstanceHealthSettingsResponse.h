@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief How often we expect instance health checks to occur */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 CadenceSeconds{ 0 };
     /** @brief Gets the value of CadenceSeconds */
     int32& GetCadenceSeconds() { return CadenceSeconds; }
@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
     void SetCadenceSecondsToDefault() { CadenceSeconds = 0;  }
 
     /** @brief What percentage of health checks must be missing before an instance's status becomes unhealthy */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float UnhealthyHealthCheckPercentage{  };
     /** @brief Gets the value of UnhealthyHealthCheckPercentage */
     float& GetUnhealthyHealthCheckPercentage() { return UnhealthyHealthCheckPercentage; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
     void SetUnhealthyHealthCheckPercentage(float NewValue) { UnhealthyHealthCheckPercentage = NewValue;  }
 
     /** @brief How many health checks we must miss in a row before an instance's status becomes unknown */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MissedChecksBeforeUnknown{ 0 };
     /** @brief Gets the value of MissedChecksBeforeUnknown */
     int32& GetMissedChecksBeforeUnknown() { return MissedChecksBeforeUnknown; }

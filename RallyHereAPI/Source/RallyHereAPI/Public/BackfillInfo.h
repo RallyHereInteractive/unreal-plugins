@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BackfillInfo : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique ID for the backfill object */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString BackfillId{  };
     /** @brief Gets the value of BackfillId */
     FString& GetBackfillId() { return BackfillId; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_BackfillInfo : public FRHAPI_Model
     void SetBackfillId(FString NewValue) { BackfillId = NewValue;  }
 
     /** @brief Optional additional extensions used when acknowledging backfill requests */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> Extensions_Optional{  };
     /** @brief true if Extensions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Extensions_IsSet{ false };
     /** @brief Gets the value of Extensions_Optional, regardless of it having been set */
     TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }

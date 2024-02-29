@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief template type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Type{  };
     /** @brief Gets the value of Type */
     FString& GetType() { return Type; }
@@ -52,10 +52,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
     void SetType(FString NewValue) { Type = NewValue;  }
 
     /** @brief Sessions the player is currently a part of for this session type, if any. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TSet<FString> SessionIds_Optional{  };
     /** @brief true if SessionIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SessionIds_IsSet{ false };
     /** @brief Gets the value of SessionIds_Optional, regardless of it having been set */
     TSet<FString>& GetSessionIds() { return SessionIds_Optional; }
@@ -75,10 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSession : public FRHAPI_Model
     void ClearSessionIds() { SessionIds_IsSet = false; }
 
     /** @brief Pending invites, if any, for the current player in this session type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_PlayerSessionInvite> PendingInvites_Optional{  };
     /** @brief true if PendingInvites_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PendingInvites_IsSet{ false };
     /** @brief Gets the value of PendingInvites_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_PlayerSessionInvite>& GetPendingInvites() { return PendingInvites_Optional; }

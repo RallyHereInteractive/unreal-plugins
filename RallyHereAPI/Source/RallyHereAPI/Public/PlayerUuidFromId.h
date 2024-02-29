@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerUuidFromId : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Player UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid Uuid{  };
     /** @brief Gets the value of Uuid */
     FGuid& GetUuid() { return Uuid; }

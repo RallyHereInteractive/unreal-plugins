@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Name of the map for the instance to spawn with */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Map{  };
     /** @brief Gets the value of Map */
     FString& GetMap() { return Map; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
     void SetMap(FString NewValue) { Map = NewValue;  }
 
     /** @brief Game mode for the instance to spawn in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Mode_Optional{  };
     /** @brief true if Mode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Mode_IsSet{ false };
     /** @brief Gets the value of Mode_Optional, regardless of it having been set */
     FString& GetMode() { return Mode_Optional; }
@@ -73,7 +73,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
     void ClearMode() { Mode_IsSet = false; }
 
     /** @brief Additional commandline parameters for the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MiscParams{  };
     /** @brief Gets the value of MiscParams */
     FString& GetMiscParams() { return MiscParams; }
@@ -83,10 +83,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
     void SetMiscParams(FString NewValue) { MiscParams = NewValue;  }
 
     /** @brief Custom data to pass through to the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

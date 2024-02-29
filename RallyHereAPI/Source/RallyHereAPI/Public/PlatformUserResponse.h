@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Platform to search/create with */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
     ERHAPI_Platform& GetPlatform() { return Platform; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     /** @brief Platform user ID to search/create with */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformUserId{  };
     /** @brief Gets the value of PlatformUserId */
     FString& GetPlatformUserId() { return PlatformUserId; }
@@ -61,10 +61,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
 
     /** @brief Platform Display name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DisplayName_Optional{  };
     /** @brief true if DisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DisplayName_IsSet{ false };
     /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
     FString& GetDisplayName() { return DisplayName_Optional; }
@@ -84,7 +84,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void ClearDisplayName() { DisplayName_IsSet = false; }
 
     /** @brief Player ID *DEPRECATED* use `player_uuid` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerId{ 0 };
     /** @brief Gets the value of PlayerId */
     int32& GetPlayerId() { return PlayerId; }
@@ -98,7 +98,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
     /** @brief Player UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }
@@ -108,7 +108,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
     /** @brief Person ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PersonId{  };
     /** @brief Gets the value of PersonId */
     FGuid& GetPersonId() { return PersonId; }
@@ -118,10 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
 
     /** @brief *DEPRECATED* use `active_player_uuid` instead.  Active player ID, if the player has an active player. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ActivePlayerId_Optional{  };
     /** @brief true if ActivePlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ActivePlayerId_IsSet{ false };
     /** @brief Gets the value of ActivePlayerId_Optional, regardless of it having been set */
     int32& GetActivePlayerId() { return ActivePlayerId_Optional; }
@@ -145,10 +145,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUserResponse : public FRHAPI_Model
     void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
     /** @brief Active player UUID, if the player has an active player. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ActivePlayerUuid_Optional{  };
     /** @brief true if ActivePlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ActivePlayerUuid_IsSet{ false };
     /** @brief Gets the value of ActivePlayerUuid_Optional, regardless of it having been set */
     FGuid& GetActivePlayerUuid() { return ActivePlayerUuid_Optional; }

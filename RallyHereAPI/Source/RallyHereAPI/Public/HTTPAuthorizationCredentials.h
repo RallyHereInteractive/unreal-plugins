@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_HTTPAuthorizationCredentials : public FRHAPI_Mode
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Scheme{  };
     /** @brief Gets the value of Scheme */
     FString& GetScheme() { return Scheme; }
@@ -48,7 +48,7 @@ struct RALLYHEREAPI_API FRHAPI_HTTPAuthorizationCredentials : public FRHAPI_Mode
     /** @brief Sets the value of Scheme */
     void SetScheme(FString NewValue) { Scheme = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Credentials{  };
     /** @brief Gets the value of Credentials */
     FString& GetCredentials() { return Credentials; }

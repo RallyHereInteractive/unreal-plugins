@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Custom data associated with the resource */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief The name of the Price Point. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Name_Optional{  };
     /** @brief true if Name_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Name_IsSet{ false };
     /** @brief Gets the value of Name_Optional, regardless of it having been set */
     FString& GetName() { return Name_Optional; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void ClearName() { Name_IsSet = false; }
 
     /** @brief Forces the quantity to be equal to a quantity on a Price Breakpoint. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool StrictFlag_Optional{  };
     /** @brief true if StrictFlag_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool StrictFlag_IsSet{ false };
     /** @brief Gets the value of StrictFlag_Optional, regardless of it having been set */
     bool& GetStrictFlag() { return StrictFlag_Optional; }
@@ -115,10 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void SetStrictFlagToDefault() { StrictFlag_Optional = false; StrictFlag_IsSet = true; }
 
     /** @brief Only allows quantity to be fulfilled up the highest quantity on the Price Breakpoints */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CapFlag_Optional{  };
     /** @brief true if CapFlag_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CapFlag_IsSet{ false };
     /** @brief Gets the value of CapFlag_Optional, regardless of it having been set */
     bool& GetCapFlag() { return CapFlag_Optional; }
@@ -142,10 +142,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void SetCapFlagToDefault() { CapFlag_Optional = false; CapFlag_IsSet = true; }
 
     /** @brief Current Price Breakpoints. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PriceBreakpoint> CurrentBreakpoints_Optional{  };
     /** @brief true if CurrentBreakpoints_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CurrentBreakpoints_IsSet{ false };
     /** @brief Gets the value of CurrentBreakpoints_Optional, regardless of it having been set */
     TArray<FRHAPI_PriceBreakpoint>& GetCurrentBreakpoints() { return CurrentBreakpoints_Optional; }
@@ -165,10 +165,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void ClearCurrentBreakpoints() { CurrentBreakpoints_IsSet = false; }
 
     /** @brief Previous Price Breakpoints. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PriceBreakpoint> PreSaleBreakpoints_Optional{  };
     /** @brief true if PreSaleBreakpoints_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PreSaleBreakpoints_IsSet{ false };
     /** @brief Gets the value of PreSaleBreakpoints_Optional, regardless of it having been set */
     TArray<FRHAPI_PriceBreakpoint>& GetPreSaleBreakpoints() { return PreSaleBreakpoints_Optional; }
@@ -188,10 +188,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoint : public FRHAPI_Model
     void ClearPreSaleBreakpoints() { PreSaleBreakpoints_IsSet = false; }
 
     /** @brief Cache info for the Price Point. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

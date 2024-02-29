@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId_Optional{  };
     /** @brief true if InstanceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceId_IsSet{ false };
     /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
     FString& GetInstanceId() { return InstanceId_Optional; }
@@ -62,10 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
      /** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid HostPlayerUuid_Optional{  };
     /** @brief true if HostPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostPlayerUuid_IsSet{ false };
     /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
     FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
@@ -84,10 +84,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
      /** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
     void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RegionId_Optional{  };
     /** @brief true if RegionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RegionId_IsSet{ false };
     /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
     FString& GetRegionId() { return RegionId_Optional; }
@@ -106,10 +106,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
      /** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
     void ClearRegionId() { RegionId_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceRequestTemplateId_Optional{  };
     /** @brief true if InstanceRequestTemplateId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceRequestTemplateId_IsSet{ false };
     /** @brief Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set */
     FString& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId_Optional; }
@@ -128,10 +128,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
      /** @brief Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false */
     void ClearInstanceRequestTemplateId() { InstanceRequestTemplateId_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Map_Optional{  };
     /** @brief true if Map_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Map_IsSet{ false };
     /** @brief Gets the value of Map_Optional, regardless of it having been set */
     FString& GetMap() { return Map_Optional; }
@@ -150,10 +150,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
      /** @brief Clears the value of Map_Optional and sets Map_IsSet to false */
     void ClearMap() { Map_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString GameMode_Optional{  };
     /** @brief true if GameMode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool GameMode_IsSet{ false };
     /** @brief Gets the value of GameMode_Optional, regardless of it having been set */
     FString& GetGameMode() { return GameMode_Optional; }
@@ -172,10 +172,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchInstance : public FRHAPI_Model
      /** @brief Clears the value of GameMode_Optional and sets GameMode_IsSet to false */
     void ClearGameMode() { GameMode_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_MatchHostType HostType_Optional{  };
     /** @brief true if HostType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostType_IsSet{ false };
     /** @brief Gets the value of HostType_Optional, regardless of it having been set */
     ERHAPI_MatchHostType& GetHostType() { return HostType_Optional; }

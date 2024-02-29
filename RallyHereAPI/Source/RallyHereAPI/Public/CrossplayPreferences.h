@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The platform type that the client is allowed to play with (any, xbox-like only, playstation-like only etc.) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_CrossplayPlatform PermittedPlatform{  };
     /** @brief Gets the value of PermittedPlatform */
     ERHAPI_CrossplayPlatform& GetPermittedPlatform() { return PermittedPlatform; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
     void SetPermittedPlatform(ERHAPI_CrossplayPlatform NewValue) { PermittedPlatform = NewValue;  }
 
     /** @brief The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_CrossplayInput PermittedInput{  };
     /** @brief Gets the value of PermittedInput */
     ERHAPI_CrossplayInput& GetPermittedInput() { return PermittedInput; }

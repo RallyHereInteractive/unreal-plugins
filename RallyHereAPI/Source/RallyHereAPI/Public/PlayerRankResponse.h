@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief UUID for this specific player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
     /** @brief Current rank info about player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_RankData Rank{  };
     /** @brief Gets the value of Rank */
     FRHAPI_RankData& GetRank() { return Rank; }
@@ -61,7 +61,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankResponse : public FRHAPI_Model
     void SetRank(FRHAPI_RankData NewValue) { Rank = NewValue;  }
 
     /** @brief ID for this rank */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 RankId{ 0 };
     /** @brief Gets the value of RankId */
     int32& GetRankId() { return RankId; }

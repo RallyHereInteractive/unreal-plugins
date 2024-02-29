@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID to uniquely identify this map game */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MapGameId_Optional{  };
     /** @brief true if MapGameId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MapGameId_IsSet{ false };
     /** @brief Gets the value of MapGameId_Optional, regardless of it having been set */
     int32& GetMapGameId() { return MapGameId_Optional; }
@@ -67,7 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
     void SetMapGameIdToDefault() { MapGameId_Optional = 0; MapGameId_IsSet = true; }
 
     /** @brief Name of the map the instance should load into */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MapName{  };
     /** @brief Gets the value of MapName */
     FString& GetMapName() { return MapName; }
@@ -77,10 +77,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
     void SetMapName(FString NewValue) { MapName = NewValue;  }
 
     /** @brief Game mode for the instance to spawn in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Mode_Optional{  };
     /** @brief true if Mode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Mode_IsSet{ false };
     /** @brief Gets the value of Mode_Optional, regardless of it having been set */
     FString& GetMode() { return Mode_Optional; }
@@ -100,10 +100,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
     void ClearMode() { Mode_IsSet = false; }
 
     /** @brief Chance that this map will get selected in a rotation list */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float SelectionChance_Optional{  };
     /** @brief true if SelectionChance_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SelectionChance_IsSet{ false };
     /** @brief Gets the value of SelectionChance_Optional, regardless of it having been set */
     float& GetSelectionChance() { return SelectionChance_Optional; }
@@ -123,10 +123,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfig : public FRHAPI_Model
     void ClearSelectionChance() { SelectionChance_IsSet = false; }
 
     /** @brief Custom data to pass through to the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

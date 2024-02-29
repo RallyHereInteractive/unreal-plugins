@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of players that were backfilled. If empty, no players were backfilled */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_SessionPlayer> BackfilledPlayers_Optional{  };
     /** @brief true if BackfilledPlayers_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool BackfilledPlayers_IsSet{ false };
     /** @brief Gets the value of BackfilledPlayers_Optional, regardless of it having been set */
     TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers() { return BackfilledPlayers_Optional; }

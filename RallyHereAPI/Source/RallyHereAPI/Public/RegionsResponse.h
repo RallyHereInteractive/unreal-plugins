@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_RegionsResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of all regions */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_Region> Regions{  };
     /** @brief Gets the value of Regions */
     TArray<FRHAPI_Region>& GetRegions() { return Regions; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_RegionsResponse : public FRHAPI_Model
     void SetRegions(TArray<FRHAPI_Region> NewValue) { Regions = NewValue;  }
 
     /** @brief Cursor to continue iterating through enabled regions. Non 0 cursor in the response means there are more regions. Pass the returned cursor up on a subsequent call to continue. A 0 cursor in the response means you have reached the end */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Cursor{ 0 };
     /** @brief Gets the value of Cursor */
     int32& GetCursor() { return Cursor; }

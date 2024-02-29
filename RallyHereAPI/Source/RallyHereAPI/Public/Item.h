@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Custom data associated with the resource */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief The type of item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_ItemType Type_Optional{  };
     /** @brief true if Type_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Type_IsSet{ false };
     /** @brief Gets the value of Type_Optional, regardless of it having been set */
     ERHAPI_ItemType& GetType() { return Type_Optional; }
@@ -87,10 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
      /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
     void ClearType() { Type_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LegacyType_Optional{  };
     /** @brief true if LegacyType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyType_IsSet{ false };
     /** @brief Gets the value of LegacyType_Optional, regardless of it having been set */
     int32& GetLegacyType() { return LegacyType_Optional; }
@@ -113,10 +113,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     /** @brief Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true */
     void SetLegacyTypeToDefault() { LegacyType_Optional = 0; LegacyType_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LegacySubtype_Optional{  };
     /** @brief true if LegacySubtype_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacySubtype_IsSet{ false };
     /** @brief Gets the value of LegacySubtype_Optional, regardless of it having been set */
     int32& GetLegacySubtype() { return LegacySubtype_Optional; }
@@ -139,10 +139,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     /** @brief Sets the value of LegacySubtype_Optional to its default and also sets LegacySubtype_IsSet to true */
     void SetLegacySubtypeToDefault() { LegacySubtype_Optional = 0; LegacySubtype_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 RefItemId_Optional{  };
     /** @brief true if RefItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RefItemId_IsSet{ false };
     /** @brief Gets the value of RefItemId_Optional, regardless of it having been set */
     int32& GetRefItemId() { return RefItemId_Optional; }
@@ -165,10 +165,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     /** @brief Sets the value of RefItemId_Optional to its default and also sets RefItemId_IsSet to true */
     void SetRefItemIdToDefault() { RefItemId_Optional = 0; RefItemId_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 AvailabilityFlags_Optional{  };
     /** @brief true if AvailabilityFlags_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AvailabilityFlags_IsSet{ false };
     /** @brief Gets the value of AvailabilityFlags_Optional, regardless of it having been set */
     int32& GetAvailabilityFlags() { return AvailabilityFlags_Optional; }
@@ -192,10 +192,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void SetAvailabilityFlagsToDefault() { AvailabilityFlags_Optional = 0; AvailabilityFlags_IsSet = true; }
 
     /** @brief This is only valid for an entitlement Item. When this item is granted and Inventory Session creation, this is the Loot ID that will be fulfilled. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 EntitledLootId_Optional{  };
     /** @brief true if EntitledLootId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EntitledLootId_IsSet{ false };
     /** @brief Gets the value of EntitledLootId_Optional, regardless of it having been set */
     int32& GetEntitledLootId() { return EntitledLootId_Optional; }
@@ -219,10 +219,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void SetEntitledLootIdToDefault() { EntitledLootId_Optional = 0; EntitledLootId_IsSet = true; }
 
     /** @brief The XP Table that is used to determine the Player's level for this XP. The level increase occurs when the quantity of this Item increases above the minimum XP of an XP Level. This is only valid for an unit Item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LevelXpTableId_Optional{  };
     /** @brief true if LevelXpTableId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LevelXpTableId_IsSet{ false };
     /** @brief Gets the value of LevelXpTableId_Optional, regardless of it having been set */
     int32& GetLevelXpTableId() { return LevelXpTableId_Optional; }
@@ -246,10 +246,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void SetLevelXpTableIdToDefault() { LevelXpTableId_Optional = 0; LevelXpTableId_IsSet = true; }
 
     /** @brief The Vendor that is used filfill level up rewards for this item. The level of the Player is used as the index into the Vendor's Loot table. This is only valid for an unit Item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LevelVendorId_Optional{  };
     /** @brief true if LevelVendorId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LevelVendorId_IsSet{ false };
     /** @brief Gets the value of LevelVendorId_Optional, regardless of it having been set */
     int32& GetLevelVendorId() { return LevelVendorId_Optional; }
@@ -273,10 +273,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void SetLevelVendorIdToDefault() { LevelVendorId_Optional = 0; LevelVendorId_IsSet = true; }
 
     /** @brief The item of the currency used by this coupon. This is only valid for an unit Item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 CouponDiscountCurrencyItemId_Optional{  };
     /** @brief true if CouponDiscountCurrencyItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CouponDiscountCurrencyItemId_IsSet{ false };
     /** @brief Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set */
     int32& GetCouponDiscountCurrencyItemId() { return CouponDiscountCurrencyItemId_Optional; }
@@ -300,10 +300,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void SetCouponDiscountCurrencyItemIdToDefault() { CouponDiscountCurrencyItemId_Optional = 0; CouponDiscountCurrencyItemId_IsSet = true; }
 
     /** @brief The percentage of the discount. This is only valid for an unit Item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float CouponDiscountPercentage_Optional{  };
     /** @brief true if CouponDiscountPercentage_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CouponDiscountPercentage_IsSet{ false };
     /** @brief Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set */
     float& GetCouponDiscountPercentage() { return CouponDiscountPercentage_Optional; }
@@ -323,10 +323,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void ClearCouponDiscountPercentage() { CouponDiscountPercentage_IsSet = false; }
 
     /** @brief If true, the coupon will be consumed when used; reducing the Player's Inventory quantity by 1. This is only valid for an unit Item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CouponConsumeOnUse_Optional{  };
     /** @brief true if CouponConsumeOnUse_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CouponConsumeOnUse_IsSet{ false };
     /** @brief Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set */
     bool& GetCouponConsumeOnUse() { return CouponConsumeOnUse_Optional; }
@@ -349,10 +349,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     /** @brief Sets the value of CouponConsumeOnUse_Optional to its default and also sets CouponConsumeOnUse_IsSet to true */
     void SetCouponConsumeOnUseToDefault() { CouponConsumeOnUse_Optional = false; CouponConsumeOnUse_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ItemPortalUseRulesetId_Optional{  };
     /** @brief true if ItemPortalUseRulesetId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ItemPortalUseRulesetId_IsSet{ false };
     /** @brief Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set */
     int32& GetItemPortalUseRulesetId() { return ItemPortalUseRulesetId_Optional; }
@@ -376,10 +376,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void SetItemPortalUseRulesetIdToDefault() { ItemPortalUseRulesetId_Optional = 0; ItemPortalUseRulesetId_IsSet = true; }
 
     /** @brief The Inventory Bucket Use Rule Set ID that determines how this item can be used across buckets. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InventoryBucketUseRuleSetId_Optional{  };
     /** @brief true if InventoryBucketUseRuleSetId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InventoryBucketUseRuleSetId_IsSet{ false };
     /** @brief Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set */
     FString& GetInventoryBucketUseRuleSetId() { return InventoryBucketUseRuleSetId_Optional; }
@@ -399,10 +399,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void ClearInventoryBucketUseRuleSetId() { InventoryBucketUseRuleSetId_IsSet = false; }
 
     /** @brief List of Loot IDs this item can discount */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<int32> CouponDiscountLoot_Optional{  };
     /** @brief true if CouponDiscountLoot_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CouponDiscountLoot_IsSet{ false };
     /** @brief Gets the value of CouponDiscountLoot_Optional, regardless of it having been set */
     TArray<int32>& GetCouponDiscountLoot() { return CouponDiscountLoot_Optional; }
@@ -422,10 +422,10 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
     void ClearCouponDiscountLoot() { CouponDiscountLoot_IsSet = false; }
 
     /** @brief Cache information for this item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

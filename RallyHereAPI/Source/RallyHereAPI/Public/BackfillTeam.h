@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The number of players we want to backfill */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayersRequired{ 0 };
     /** @brief Gets the value of PlayersRequired */
     int32& GetPlayersRequired() { return PlayersRequired; }
@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_BackfillTeam : public FRHAPI_Model
     void SetPlayersRequiredToDefault() { PlayersRequired = 0;  }
 
     /** @brief Id for the team that requires backfilled players */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamId{ 0 };
     /** @brief Gets the value of TeamId */
     int32& GetTeamId() { return TeamId; }

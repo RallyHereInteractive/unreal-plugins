@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Player ID *DEPRECATED* use `player_uuid` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerId{ 0 };
     /** @brief Gets the value of PlayerId */
     int32& GetPlayerId() { return PlayerId; }
@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerResponse : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
     /** @brief Player UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }

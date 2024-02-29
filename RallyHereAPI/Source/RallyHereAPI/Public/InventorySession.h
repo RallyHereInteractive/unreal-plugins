@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique ID for this Inventory Session. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
     FString& GetSessionId() { return SessionId; }
@@ -51,10 +51,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
     /** @brief Platform for this Inventory Session. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform SessionPlatform_Optional{  };
     /** @brief true if SessionPlatform_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SessionPlatform_IsSet{ false };
     /** @brief Gets the value of SessionPlatform_Optional, regardless of it having been set */
     ERHAPI_Platform& GetSessionPlatform() { return SessionPlatform_Optional; }
@@ -74,10 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySession : public FRHAPI_Model
     void ClearSessionPlatform() { SessionPlatform_IsSet = false; }
 
     /** @brief Durable Loot that has been applied when this Inventory Session was created. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<int32> AppliedDurableLoot_Optional{  };
     /** @brief true if AppliedDurableLoot_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AppliedDurableLoot_IsSet{ false };
     /** @brief Gets the value of AppliedDurableLoot_Optional, regardless of it having been set */
     TArray<int32>& GetAppliedDurableLoot() { return AppliedDurableLoot_Optional; }

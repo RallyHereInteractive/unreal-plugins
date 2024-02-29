@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSet : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Custom data associated with the resource */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -66,7 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSet : public FRHAPI_Model
 
     TMap<FString, TArray<ERHAPI_InventoryBucket>> Rules_Optional{  };
     /** @brief true if Rules_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Rules_IsSet{ false };
     /** @brief Gets the value of Rules_Optional, regardless of it having been set */
     TMap<FString, TArray<ERHAPI_InventoryBucket>>& GetRules() { return Rules_Optional; }
@@ -85,10 +85,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryBucketUseRuleSet : public FRHAPI_Model
      /** @brief Clears the value of Rules_Optional and sets Rules_IsSet to false */
     void ClearRules() { Rules_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

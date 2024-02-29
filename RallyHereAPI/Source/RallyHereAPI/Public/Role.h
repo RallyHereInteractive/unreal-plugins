@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique Role ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RoleId{  };
     /** @brief Gets the value of RoleId */
     FString& GetRoleId() { return RoleId; }
@@ -52,10 +52,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     void SetRoleId(FString NewValue) { RoleId = NewValue;  }
 
     /** @brief Legacy role ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LegacyRoleId_Optional{  };
     /** @brief true if LegacyRoleId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyRoleId_IsSet{ false };
     /** @brief Gets the value of LegacyRoleId_Optional, regardless of it having been set */
     int32& GetLegacyRoleId() { return LegacyRoleId_Optional; }
@@ -79,10 +79,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     void SetLegacyRoleIdToDefault() { LegacyRoleId_Optional = 0; LegacyRoleId_IsSet = true; }
 
     /** @brief Custom data for the role */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     FRHAPI_JsonObject& GetCustomData() { return CustomData_Optional; }
@@ -102,10 +102,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Level of auth bypass for limited/locked modes */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_RoleAuthBypass AuthBypass_Optional{  };
     /** @brief true if AuthBypass_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AuthBypass_IsSet{ false };
     /** @brief Gets the value of AuthBypass_Optional, regardless of it having been set */
     ERHAPI_RoleAuthBypass& GetAuthBypass() { return AuthBypass_Optional; }
@@ -125,10 +125,10 @@ struct RALLYHEREAPI_API FRHAPI_Role : public FRHAPI_Model
     void ClearAuthBypass() { AuthBypass_IsSet = false; }
 
     /** @brief List of loot ids that are fulfilled for the player when they begin a new inventory session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_LoginLootReward> LoginLootRewards_Optional{  };
     /** @brief true if LoginLootRewards_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LoginLootRewards_IsSet{ false };
     /** @brief Gets the value of LoginLootRewards_Optional, regardless of it having been set */
     TArray<FRHAPI_LoginLootReward>& GetLoginLootRewards() { return LoginLootRewards_Optional; }

@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Etag{  };
     /** @brief Gets the value of Etag */
     FString& GetEtag() { return Etag; }
@@ -48,10 +48,10 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
     /** @brief Sets the value of Etag */
     void SetEtag(FString NewValue) { Etag = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString StrRep_Optional{  };
     /** @brief true if StrRep_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool StrRep_IsSet{ false };
     /** @brief Gets the value of StrRep_Optional, regardless of it having been set */
     FString& GetStrRep() { return StrRep_Optional; }

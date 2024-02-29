@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_IndividualCCUs : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, int32> Ccus{  };
     /** @brief Gets the value of Ccus */
     TMap<FString, int32>& GetCcus() { return Ccus; }

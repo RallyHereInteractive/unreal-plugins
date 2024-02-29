@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Code that identifies this type of event.  See CommonEventCode for common examples. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString EventCode{  };
     /** @brief Gets the value of EventCode */
     FString& GetEventCode() { return EventCode; }
@@ -51,10 +51,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void SetEventCode(FString NewValue) { EventCode = NewValue;  }
 
     /** @brief Description metadata about the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Description_Optional{  };
     /** @brief true if Description_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Description_IsSet{ false };
     /** @brief Gets the value of Description_Optional, regardless of it having been set */
     FString& GetDescription() { return Description_Optional; }
@@ -78,10 +78,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void SetDescriptionToDefault() { Description_Optional = TEXT(""); Description_IsSet = true; }
 
     /** @brief Player who triggered the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 SourcePlayerId_Optional{  };
     /** @brief true if SourcePlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SourcePlayerId_IsSet{ false };
     /** @brief Gets the value of SourcePlayerId_Optional, regardless of it having been set */
     int32& GetSourcePlayerId() { return SourcePlayerId_Optional; }
@@ -105,10 +105,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void SetSourcePlayerIdToDefault() { SourcePlayerId_Optional = 0; SourcePlayerId_IsSet = true; }
 
     /** @brief Player who triggered the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid SourcePlayerUuid_Optional{  };
     /** @brief true if SourcePlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SourcePlayerUuid_IsSet{ false };
     /** @brief Gets the value of SourcePlayerUuid_Optional, regardless of it having been set */
     FGuid& GetSourcePlayerUuid() { return SourcePlayerUuid_Optional; }
@@ -128,10 +128,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearSourcePlayerUuid() { SourcePlayerUuid_IsSet = false; }
 
     /** @brief Player who the event was targetted toward, if relevant */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TargetPlayerId_Optional{  };
     /** @brief true if TargetPlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TargetPlayerId_IsSet{ false };
     /** @brief Gets the value of TargetPlayerId_Optional, regardless of it having been set */
     int32& GetTargetPlayerId() { return TargetPlayerId_Optional; }
@@ -155,10 +155,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void SetTargetPlayerIdToDefault() { TargetPlayerId_Optional = 0; TargetPlayerId_IsSet = true; }
 
     /** @brief Player who the event was targetted toward, if relevant */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid TargetPlayerUuid_Optional{  };
     /** @brief true if TargetPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TargetPlayerUuid_IsSet{ false };
     /** @brief Gets the value of TargetPlayerUuid_Optional, regardless of it having been set */
     FGuid& GetTargetPlayerUuid() { return TargetPlayerUuid_Optional; }
@@ -178,10 +178,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearTargetPlayerUuid() { TargetPlayerUuid_IsSet = false; }
 
     /** @brief Instance that was active at the time of the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Instance_Optional{  };
     /** @brief true if Instance_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Instance_IsSet{ false };
     /** @brief Gets the value of Instance_Optional, regardless of it having been set */
     FString& GetInstance() { return Instance_Optional; }
@@ -201,10 +201,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearInstance() { Instance_IsSet = false; }
 
     /** @brief Match that was active at the time of the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Match_Optional{  };
     /** @brief true if Match_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Match_IsSet{ false };
     /** @brief Gets the value of Match_Optional, regardless of it having been set */
     FString& GetMatch() { return Match_Optional; }
@@ -224,10 +224,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearMatch() { Match_IsSet = false; }
 
     /** @brief Relevant platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform_Optional{  };
     /** @brief true if Platform_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Platform_IsSet{ false };
     /** @brief Gets the value of Platform_Optional, regardless of it having been set */
     ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
@@ -247,10 +247,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearPlatform() { Platform_IsSet = false; }
 
     /** @brief Relevant platform session id */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformSessionIdBase64_Optional{  };
     /** @brief true if PlatformSessionIdBase64_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlatformSessionIdBase64_IsSet{ false };
     /** @brief Gets the value of PlatformSessionIdBase64_Optional, regardless of it having been set */
     FString& GetPlatformSessionIdBase64() { return PlatformSessionIdBase64_Optional; }
@@ -270,10 +270,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearPlatformSessionIdBase64() { PlatformSessionIdBase64_IsSet = false; }
 
     /** @brief custom data about this event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -293,7 +293,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvent : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Timestamp{  };
     /** @brief Gets the value of Timestamp */
     FDateTime& GetTimestamp() { return Timestamp; }

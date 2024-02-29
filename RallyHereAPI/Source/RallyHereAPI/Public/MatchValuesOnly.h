@@ -44,10 +44,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Timestamp of when the resource was last modified */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastModifiedTimestamp_Optional{  };
     /** @brief true if LastModifiedTimestamp_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LastModifiedTimestamp_IsSet{ false };
     /** @brief Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set */
     FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp_Optional; }
@@ -67,10 +67,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void ClearLastModifiedTimestamp() { LastModifiedTimestamp_IsSet = false; }
 
     /** @brief Timestamp of when the resource was created */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime CreatedTimestamp_Optional{  };
     /** @brief true if CreatedTimestamp_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CreatedTimestamp_IsSet{ false };
     /** @brief Gets the value of CreatedTimestamp_Optional, regardless of it having been set */
     FDateTime& GetCreatedTimestamp() { return CreatedTimestamp_Optional; }
@@ -89,10 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
      /** @brief Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false */
     void ClearCreatedTimestamp() { CreatedTimestamp_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Type_Optional{  };
     /** @brief true if Type_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Type_IsSet{ false };
     /** @brief Gets the value of Type_Optional, regardless of it having been set */
     FString& GetType() { return Type_Optional; }
@@ -111,10 +111,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
      /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
     void ClearType() { Type_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_MatchState State_Optional{  };
     /** @brief true if State_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool State_IsSet{ false };
     /** @brief Gets the value of State_Optional, regardless of it having been set */
     ERHAPI_MatchState& GetState() { return State_Optional; }
@@ -134,10 +134,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void ClearState() { State_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime StartTimestamp_Optional{  };
     /** @brief true if StartTimestamp_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool StartTimestamp_IsSet{ false };
     /** @brief Gets the value of StartTimestamp_Optional, regardless of it having been set */
     FDateTime& GetStartTimestamp() { return StartTimestamp_Optional; }
@@ -157,10 +157,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void ClearStartTimestamp() { StartTimestamp_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime EndTimestamp_Optional{  };
     /** @brief true if EndTimestamp_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EndTimestamp_IsSet{ false };
     /** @brief Gets the value of EndTimestamp_Optional, regardless of it having been set */
     FDateTime& GetEndTimestamp() { return EndTimestamp_Optional; }
@@ -179,10 +179,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
      /** @brief Clears the value of EndTimestamp_Optional and sets EndTimestamp_IsSet to false */
     void ClearEndTimestamp() { EndTimestamp_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 DurationSeconds_Optional{  };
     /** @brief true if DurationSeconds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DurationSeconds_IsSet{ false };
     /** @brief Gets the value of DurationSeconds_Optional, regardless of it having been set */
     int32& GetDurationSeconds() { return DurationSeconds_Optional; }
@@ -205,10 +205,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     /** @brief Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true */
     void SetDurationSecondsToDefault() { DurationSeconds_Optional = 0; DurationSeconds_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     FRHAPI_JsonObject& GetCustomData() { return CustomData_Optional; }
@@ -227,10 +227,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString CorrelationId_Optional{  };
     /** @brief true if CorrelationId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CorrelationId_IsSet{ false };
     /** @brief Gets the value of CorrelationId_Optional, regardless of it having been set */
     FString& GetCorrelationId() { return CorrelationId_Optional; }
@@ -250,10 +250,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void ClearCorrelationId() { CorrelationId_IsSet = false; }
 
     /** @brief List of session IDs for the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MatchSession> Sessions_Optional{  };
     /** @brief true if Sessions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Sessions_IsSet{ false };
     /** @brief Gets the value of Sessions_Optional, regardless of it having been set */
     TArray<FRHAPI_MatchSession>& GetSessions() { return Sessions_Optional; }
@@ -273,10 +273,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void ClearSessions() { Sessions_IsSet = false; }
 
     /** @brief List of MatchInstances for the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MatchInstance> Instances_Optional{  };
     /** @brief true if Instances_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Instances_IsSet{ false };
     /** @brief Gets the value of Instances_Optional, regardless of it having been set */
     TArray<FRHAPI_MatchInstance>& GetInstances() { return Instances_Optional; }
@@ -296,10 +296,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
     void ClearInstances() { Instances_IsSet = false; }
 
     /** @brief List of allocation IDs for the match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MatchAllocation> Allocations_Optional{  };
     /** @brief true if Allocations_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Allocations_IsSet{ false };
     /** @brief Gets the value of Allocations_Optional, regardless of it having been set */
     TArray<FRHAPI_MatchAllocation>& GetAllocations() { return Allocations_Optional; }
@@ -318,10 +318,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchValuesOnly : public FRHAPI_Model
      /** @brief Clears the value of Allocations_Optional and sets Allocations_IsSet to false */
     void ClearAllocations() { Allocations_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchId_Optional{  };
     /** @brief true if MatchId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchId_IsSet{ false };
     /** @brief Gets the value of MatchId_Optional, regardless of it having been set */
     FString& GetMatchId() { return MatchId_Optional; }

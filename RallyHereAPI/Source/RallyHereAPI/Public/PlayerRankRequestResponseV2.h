@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponseV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of player's ranks */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlayerRankResponseV2> PlayerRanks{  };
     /** @brief Gets the value of PlayerRanks */
     TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() { return PlayerRanks; }

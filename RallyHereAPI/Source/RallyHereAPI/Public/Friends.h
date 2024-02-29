@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_Friends : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FGuid> Friends{  };
     /** @brief Gets the value of Friends */
     TArray<FGuid>& GetFriends() { return Friends; }

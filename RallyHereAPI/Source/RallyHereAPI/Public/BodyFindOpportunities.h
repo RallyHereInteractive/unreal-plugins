@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Width of the screen in pixels */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ScreenPixelWidth_Optional{  };
     /** @brief true if ScreenPixelWidth_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ScreenPixelWidth_IsSet{ false };
     /** @brief Gets the value of ScreenPixelWidth_Optional, regardless of it having been set */
     int32& GetScreenPixelWidth() { return ScreenPixelWidth_Optional; }
@@ -67,10 +67,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
     void SetScreenPixelWidthToDefault() { ScreenPixelWidth_Optional = 0; ScreenPixelWidth_IsSet = true; }
 
     /** @brief Height of the screen in pixels */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ScreenPixelHeight_Optional{  };
     /** @brief true if ScreenPixelHeight_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ScreenPixelHeight_IsSet{ false };
     /** @brief Gets the value of ScreenPixelHeight_Optional, regardless of it having been set */
     int32& GetScreenPixelHeight() { return ScreenPixelHeight_Optional; }
@@ -94,7 +94,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
     void SetScreenPixelHeightToDefault() { ScreenPixelHeight_Optional = 0; ScreenPixelHeight_IsSet = true; }
 
     /** @brief [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code for the user */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString CountryCode{  };
     /** @brief Gets the value of CountryCode */
     FString& GetCountryCode() { return CountryCode; }
@@ -104,7 +104,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
     void SetCountryCode(FString NewValue) { CountryCode = NewValue;  }
 
     /** @brief [ISO 639-2](https://www.loc.gov/standards/iso639-2/php/code_list.php) language code */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString LanguageCode{  };
     /** @brief Gets the value of LanguageCode */
     FString& GetLanguageCode() { return LanguageCode; }
@@ -114,10 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyFindOpportunities : public FRHAPI_Model
     void SetLanguageCode(FString NewValue) { LanguageCode = NewValue;  }
 
     /** @brief Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DeviceId_Optional{  };
     /** @brief true if DeviceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DeviceId_IsSet{ false };
     /** @brief Gets the value of DeviceId_Optional, regardless of it having been set */
     FString& GetDeviceId() { return DeviceId_Optional; }

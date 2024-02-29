@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief A collection of Items by Item ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_Item> Items_Optional{  };
     /** @brief true if Items_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Items_IsSet{ false };
     /** @brief Gets the value of Items_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_Item>& GetItems() { return Items_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_Items : public FRHAPI_Model
     void ClearItems() { Items_IsSet = false; }
 
     /** @brief Item's cache information. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

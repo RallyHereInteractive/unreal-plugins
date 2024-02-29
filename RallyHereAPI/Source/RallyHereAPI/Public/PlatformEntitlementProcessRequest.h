@@ -43,7 +43,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief unique id for this transaction on the platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString TransactionId{  };
     /** @brief Gets the value of TransactionId */
     FString& GetTransactionId() { return TransactionId; }
@@ -53,7 +53,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
     void SetTransactionId(FString NewValue) { TransactionId = NewValue;  }
 
     /** @brief Platform token that can be used to verify the identity of the user */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformToken{  };
     /** @brief Gets the value of PlatformToken */
     FString& GetPlatformToken() { return PlatformToken; }
@@ -63,7 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
     void SetPlatformToken(FString NewValue) { PlatformToken = NewValue;  }
 
     /** @brief Platform this entitlement was purchased was made on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformId{  };
     /** @brief Gets the value of PlatformId */
     FString& GetPlatformId() { return PlatformId; }
@@ -73,7 +73,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
     void SetPlatformId(FString NewValue) { PlatformId = NewValue;  }
 
     /** @brief region this purchase was made in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PlatformRegion PlatformRegion{  };
     /** @brief Gets the value of PlatformRegion */
     ERHAPI_PlatformRegion& GetPlatformRegion() { return PlatformRegion; }
@@ -83,7 +83,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
     void SetPlatformRegion(ERHAPI_PlatformRegion NewValue) { PlatformRegion = NewValue;  }
 
     /** @brief client type this purchase was made on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_ClientType ClientType{  };
     /** @brief Gets the value of ClientType */
     ERHAPI_ClientType& GetClientType() { return ClientType; }
@@ -93,10 +93,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
     void SetClientType(ERHAPI_ClientType NewValue) { ClientType = NewValue;  }
 
     /** @brief Platform entitlements to process */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlatformEntitlement> Entitlements_Optional{  };
     /** @brief true if Entitlements_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Entitlements_IsSet{ false };
     /** @brief Gets the value of Entitlements_Optional, regardless of it having been set */
     TArray<FRHAPI_PlatformEntitlement>& GetEntitlements() { return Entitlements_Optional; }

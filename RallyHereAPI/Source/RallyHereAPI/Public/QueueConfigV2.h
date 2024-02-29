@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID to uniquely identify this queue */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString QueueId{  };
     /** @brief Gets the value of QueueId */
     FString& GetQueueId() { return QueueId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
     void SetQueueId(FString NewValue) { QueueId = NewValue;  }
 
     /** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Active{ false };
     /** @brief Gets the value of Active */
     bool& GetActive() { return Active; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
     void SetActiveToDefault() { Active = false;  }
 
     /** @brief The maximum size of a group that can join this queue */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxQueueGroupSize{ 0 };
     /** @brief Gets the value of MaxQueueGroupSize */
     int32& GetMaxQueueGroupSize() { return MaxQueueGroupSize; }
@@ -78,7 +78,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
     void SetMaxQueueGroupSizeToDefault() { MaxQueueGroupSize = 0;  }
 
     /** @brief ID for which group of matchmaking templates/rules will be used when joining this queue */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid MatchMakingTemplateGroupId{  };
     /** @brief Gets the value of MatchMakingTemplateGroupId */
     FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfigV2 : public FRHAPI_Model
     void SetMatchMakingTemplateGroupId(FGuid NewValue) { MatchMakingTemplateGroupId = NewValue;  }
 
     /** @brief Legacy config to help migrate clients */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
     TMap<FString, FString>& GetLegacyConfig() { return LegacyConfig_Optional; }

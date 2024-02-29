@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique Event ID for this instance of the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid EventUuid{  };
     /** @brief Gets the value of EventUuid */
     FGuid& GetEventUuid() { return EventUuid; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     void SetEventUuid(FGuid NewValue) { EventUuid = NewValue;  }
 
     /** @brief Type of event to process this as. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString EventName{  };
     /** @brief Gets the value of EventName */
     FString& GetEventName() { return EventName; }
@@ -60,7 +60,7 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     void SetEventName(FString NewValue) { EventName = NewValue;  }
 
     /** @brief Time the event was triggered */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime EventTimestamp{  };
     /** @brief Gets the value of EventTimestamp */
     FDateTime& GetEventTimestamp() { return EventTimestamp; }
@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     void SetEventTimestamp(FDateTime NewValue) { EventTimestamp = NewValue;  }
 
     /** @brief Event specific parameters */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject EventParams{  };
     /** @brief Gets the value of EventParams */
     FRHAPI_JsonObject& GetEventParams() { return EventParams; }
@@ -80,10 +80,10 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
     void SetEventParams(FRHAPI_JsonObject NewValue) { EventParams = NewValue;  }
 
     /** @brief Event custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -102,10 +102,10 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString UserId_Optional{  };
     /** @brief true if UserId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool UserId_IsSet{ false };
     /** @brief Gets the value of UserId_Optional, regardless of it having been set */
     FString& GetUserId() { return UserId_Optional; }
@@ -124,10 +124,10 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
      /** @brief Clears the value of UserId_Optional and sets UserId_IsSet to false */
     void ClearUserId() { UserId_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId_Optional{  };
     /** @brief true if SessionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SessionId_IsSet{ false };
     /** @brief Gets the value of SessionId_Optional, regardless of it having been set */
     FString& GetSessionId() { return SessionId_Optional; }
@@ -146,10 +146,10 @@ struct RALLYHEREAPI_API FRHAPI_RallyHereEvent : public FRHAPI_Model
      /** @brief Clears the value of SessionId_Optional and sets SessionId_IsSet to false */
     void ClearSessionId() { SessionId_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString CorrelationId_Optional{  };
     /** @brief true if CorrelationId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CorrelationId_IsSet{ false };
     /** @brief Gets the value of CorrelationId_Optional, regardless of it having been set */
     FString& GetCorrelationId() { return CorrelationId_Optional; }

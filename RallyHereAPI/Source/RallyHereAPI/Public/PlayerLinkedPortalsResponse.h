@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Player info */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PlayerPersonResponse Player{  };
     /** @brief Gets the value of Player */
     FRHAPI_PlayerPersonResponse& GetPlayer() { return Player; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
     void SetPlayer(FRHAPI_PlayerPersonResponse NewValue) { Player = NewValue;  }
 
     /** @brief List of linked portals */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PortalUserResponse> LinkedPortals{  };
     /** @brief Gets the value of LinkedPortals */
     TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() { return LinkedPortals; }

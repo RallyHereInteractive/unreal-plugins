@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The list of key/value pairs */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_AppSetting> Kvs_Optional{  };
     /** @brief true if Kvs_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Kvs_IsSet{ false };
     /** @brief Gets the value of Kvs_Optional, regardless of it having been set */
     TArray<FRHAPI_AppSetting>& GetKvs() { return Kvs_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponse : public FRHAPI_Model
     void ClearKvs() { Kvs_IsSet = false; }
 
     /** @brief The list of secret key/value pairs */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_AppSetting> SecretKvs_Optional{  };
     /** @brief true if SecretKvs_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SecretKvs_IsSet{ false };
     /** @brief Gets the value of SecretKvs_Optional, regardless of it having been set */
     TArray<FRHAPI_AppSetting>& GetSecretKvs() { return SecretKvs_Optional; }

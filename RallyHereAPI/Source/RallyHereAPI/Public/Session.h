@@ -48,7 +48,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief template type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Type{  };
     /** @brief Gets the value of Type */
     FString& GetType() { return Type; }
@@ -58,7 +58,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetType(FString NewValue) { Type = NewValue;  }
 
     /** @brief unique ID for this session within its type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
     FString& GetSessionId() { return SessionId; }
@@ -68,10 +68,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
     /** @brief Info about the current active instance for the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InstanceInfo Instance_Optional{  };
     /** @brief true if Instance_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Instance_IsSet{ false };
     /** @brief Gets the value of Instance_Optional, regardless of it having been set */
     FRHAPI_InstanceInfo& GetInstance() { return Instance_Optional; }
@@ -91,10 +91,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearInstance() { Instance_IsSet = false; }
 
     /** @brief Info about the current match in the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MatchInfo Match_Optional{  };
     /** @brief true if Match_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Match_IsSet{ false };
     /** @brief Gets the value of Match_Optional, regardless of it having been set */
     FRHAPI_MatchInfo& GetMatch() { return Match_Optional; }
@@ -114,10 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearMatch() { Match_IsSet = false; }
 
     /** @brief Info about the matchmaking results that resulted in this session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MatchmakingResults MatchmakingResults_Optional{  };
     /** @brief true if MatchmakingResults_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchmakingResults_IsSet{ false };
     /** @brief Gets the value of MatchmakingResults_Optional, regardless of it having been set */
     FRHAPI_MatchmakingResults& GetMatchmakingResults() { return MatchmakingResults_Optional; }
@@ -137,10 +137,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearMatchmakingResults() { MatchmakingResults_IsSet = false; }
 
     /** @brief DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MatchmakingInfo Matchmaking_Optional{  };
     /** @brief true if Matchmaking_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Matchmaking_IsSet{ false };
     /** @brief Gets the value of Matchmaking_Optional, regardless of it having been set */
     FRHAPI_MatchmakingInfo& GetMatchmaking() { return Matchmaking_Optional; }
@@ -160,10 +160,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearMatchmaking() { Matchmaking_IsSet = false; }
 
     /** @brief Info about the open-match backfill object for the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_BackfillInfo Backfill_Optional{  };
     /** @brief true if Backfill_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Backfill_IsSet{ false };
     /** @brief Gets the value of Backfill_Optional, regardless of it having been set */
     FRHAPI_BackfillInfo& GetBackfill() { return Backfill_Optional; }
@@ -183,10 +183,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearBackfill() { Backfill_IsSet = false; }
 
     /** @brief Info about the browser state of the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_BrowserInfo Browser_Optional{  };
     /** @brief true if Browser_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Browser_IsSet{ false };
     /** @brief Gets the value of Browser_Optional, regardless of it having been set */
     FRHAPI_BrowserInfo& GetBrowser() { return Browser_Optional; }
@@ -206,7 +206,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearBrowser() { Browser_IsSet = false; }
 
     /** @brief Is this session freely joinable by players without an invite? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Joinable{ false };
     /** @brief Gets the value of Joinable */
     bool& GetJoinable() { return Joinable; }
@@ -220,7 +220,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetJoinableToDefault() { Joinable = false;  }
 
     /** @brief List of teams of players currently in the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_SessionTeam> Teams{  };
     /** @brief Gets the value of Teams */
     TArray<FRHAPI_SessionTeam>& GetTeams() { return Teams; }
@@ -230,10 +230,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetTeams(TArray<FRHAPI_SessionTeam> NewValue) { Teams = NewValue;  }
 
     /** @brief Child Platform Sessions for this session.  A player joining one of the child platform sessions implicitly joins the parent session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlatformSession> PlatformSession_Optional{  };
     /** @brief true if PlatformSession_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlatformSession_IsSet{ false };
     /** @brief Gets the value of PlatformSession_Optional, regardless of it having been set */
     TArray<FRHAPI_PlatformSession>& GetPlatformSession() { return PlatformSession_Optional; }
@@ -253,10 +253,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearPlatformSession() { PlatformSession_IsSet = false; }
 
     /** @brief Leader Player or instance defined custom data about this session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -276,7 +276,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Created{  };
     /** @brief Gets the value of Created */
     FDateTime& GetCreated() { return Created; }
@@ -286,10 +286,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void SetCreated(FDateTime NewValue) { Created = NewValue;  }
 
     /** @brief Preferred region for the instance and match to take place in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RegionId_Optional{  };
     /** @brief true if RegionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RegionId_IsSet{ false };
     /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
     FString& GetRegionId() { return RegionId_Optional; }
@@ -309,10 +309,10 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
     void ClearRegionId() { RegionId_IsSet = false; }
 
     /** @brief Flag of whether or not this session was created by matchmaking or not */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CreatedByMatchmaking_Optional{  };
     /** @brief true if CreatedByMatchmaking_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CreatedByMatchmaking_IsSet{ false };
     /** @brief Gets the value of CreatedByMatchmaking_Optional, regardless of it having been set */
     bool& GetCreatedByMatchmaking() { return CreatedByMatchmaking_Optional; }

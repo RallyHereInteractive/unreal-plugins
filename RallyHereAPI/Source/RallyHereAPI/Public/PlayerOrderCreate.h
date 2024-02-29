@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The source of the Player Order. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Source Source_Optional{  };
     /** @brief true if Source_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Source_IsSet{ false };
     /** @brief Gets the value of Source_Optional, regardless of it having been set */
     ERHAPI_Source& GetSource() { return Source_Optional; }
@@ -66,10 +66,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearSource() { Source_IsSet = false; }
 
     /** @brief Arbitrary UUID clients can use to track Orders between request to response. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ClientOrderRefId_Optional{  };
     /** @brief true if ClientOrderRefId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ClientOrderRefId_IsSet{ false };
     /** @brief Gets the value of ClientOrderRefId_Optional, regardless of it having been set */
     FGuid& GetClientOrderRefId() { return ClientOrderRefId_Optional; }
@@ -89,10 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
 
     /** @brief Portal of the Portal User the Player Order belongs to. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Portal PortalId_Optional{  };
     /** @brief true if PortalId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalId_IsSet{ false };
     /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
     ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
@@ -112,10 +112,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearPortalId() { PortalId_IsSet = false; }
 
     /** @brief Portal User Id for the Player this Player Order belongs to. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalUserId_Optional{  };
     /** @brief true if PortalUserId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalUserId_IsSet{ false };
     /** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
     FString& GetPortalUserId() { return PortalUserId_Optional; }
@@ -135,10 +135,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
     /** @brief Instance Id for the Instance who submits the Player Order. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId_Optional{  };
     /** @brief true if InstanceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceId_IsSet{ false };
     /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
     FString& GetInstanceId() { return InstanceId_Optional; }
@@ -158,10 +158,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
     /** @brief Match Id for the Match that generated the Player Order. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchId_Optional{  };
     /** @brief true if MatchId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchId_IsSet{ false };
     /** @brief Gets the value of MatchId_Optional, regardless of it having been set */
     FString& GetMatchId() { return MatchId_Optional; }
@@ -181,10 +181,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearMatchId() { MatchId_IsSet = false; }
 
     /** @brief If an order is a transaction, any failed entries will roll back changes from all other entries. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool IsTransaction_Optional{  };
     /** @brief true if IsTransaction_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool IsTransaction_IsSet{ false };
     /** @brief Gets the value of IsTransaction_Optional, regardless of it having been set */
     bool& GetIsTransaction() { return IsTransaction_Optional; }
@@ -208,10 +208,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void SetIsTransactionToDefault() { IsTransaction_Optional = false; IsTransaction_IsSet = true; }
 
     /** @brief Unique Identifier for the Order. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString OrderId_Optional{  };
     /** @brief true if OrderId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool OrderId_IsSet{ false };
     /** @brief Gets the value of OrderId_Optional, regardless of it having been set */
     FString& GetOrderId() { return OrderId_Optional; }
@@ -231,7 +231,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreate : public FRHAPI_Model
     void ClearOrderId() { OrderId_IsSet = false; }
 
     /** @brief List of Player Order Entries for the Player Order. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlayerOrderEntryCreate> Entries{  };
     /** @brief Gets the value of Entries */
     TArray<FRHAPI_PlayerOrderEntryCreate>& GetEntries() { return Entries; }

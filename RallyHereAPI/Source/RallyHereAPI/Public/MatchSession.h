@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Session ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
     FString& GetSessionId() { return SessionId; }
@@ -49,10 +49,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchSession : public FRHAPI_Model
     /** @brief Sets the value of SessionId */
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchmakingProfileId_Optional{  };
     /** @brief true if MatchmakingProfileId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchmakingProfileId_IsSet{ false };
     /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
     FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }

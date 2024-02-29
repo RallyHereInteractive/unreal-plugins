@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Inventory Bucket for this Inventory Operation. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InventoryBucket Bucket_Optional{  };
     /** @brief true if Bucket_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Bucket_IsSet{ false };
     /** @brief Gets the value of Bucket_Optional, regardless of it having been set */
     ERHAPI_InventoryBucket& GetBucket() { return Bucket_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
     void ClearBucket() { Bucket_IsSet = false; }
 
     /** @brief Count for this Inventory Operation. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Count_Optional{  };
     /** @brief true if Count_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Count_IsSet{ false };
     /** @brief Gets the value of Count_Optional, regardless of it having been set */
     int32& GetCount() { return Count_Optional; }
@@ -92,10 +92,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
     void SetCountToDefault() { Count_Optional = 1; Count_IsSet = true; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Expires_Optional{  };
     /** @brief true if Expires_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Expires_IsSet{ false };
     /** @brief Gets the value of Expires_Optional, regardless of it having been set */
     FDateTime& GetExpires() { return Expires_Optional; }
@@ -115,10 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
     void ClearExpires() { Expires_IsSet = false; }
 
     /** @brief Arbitrary data map that can be set to add additional data to Inventory. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -137,7 +137,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ItemId{ 0 };
     /** @brief Gets the value of ItemId */
     int32& GetItemId() { return ItemId; }
@@ -150,10 +150,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequest : public FRHAPI_Model
     /** @brief Sets the value of ItemId to its default  */
     void SetItemIdToDefault() { ItemId = 0;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_CreateInventoryType Type_Optional{  };
     /** @brief true if Type_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Type_IsSet{ false };
     /** @brief Gets the value of Type_Optional, regardless of it having been set */
     ERHAPI_CreateInventoryType& GetType() { return Type_Optional; }

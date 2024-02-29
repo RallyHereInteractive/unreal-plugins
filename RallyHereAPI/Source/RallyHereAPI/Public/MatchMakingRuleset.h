@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief A list of the rules to be checked for this ruleset */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_Rule> Rules{  };
     /** @brief Gets the value of Rules */
     TArray<FRHAPI_Rule>& GetRules() { return Rules; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingRuleset : public FRHAPI_Model
     void SetRules(TArray<FRHAPI_Rule> NewValue) { Rules = NewValue;  }
 
     /** @brief Determiner of how many rules must be satisfied in this rulest (all, any, one, none) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Determiner Determiner{  };
     /** @brief Gets the value of Determiner */
     ERHAPI_Determiner& GetDeterminer() { return Determiner; }

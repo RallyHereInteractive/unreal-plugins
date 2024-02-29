@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Dictionary contains event name and Json schema definition for its event_params parameter */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject EventParamSchemas{  };
     /** @brief Gets the value of EventParamSchemas */
     FRHAPI_JsonObject& GetEventParamSchemas() { return EventParamSchemas; }

@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime StartingPosition_Optional{  };
     /** @brief true if StartingPosition_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool StartingPosition_IsSet{ false };
     /** @brief Gets the value of StartingPosition_Optional, regardless of it having been set */
     FDateTime& GetStartingPosition() { return StartingPosition_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
     void ClearStartingPosition() { StartingPosition_IsSet = false; }
 
     /** @brief The cursor value pointing to the next page of results. If cursor is provided, starting_position is ignored */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Cursor_Optional{  };
     /** @brief true if Cursor_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Cursor_IsSet{ false };
     /** @brief Gets the value of Cursor_Optional, regardless of it having been set */
     FString& GetCursor() { return Cursor_Optional; }
@@ -87,10 +87,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
     void ClearCursor() { Cursor_IsSet = false; }
 
     /** @brief The direction to search. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_SortOrder Sort_Optional{  };
     /** @brief true if Sort_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Sort_IsSet{ false };
     /** @brief Gets the value of Sort_Optional, regardless of it having been set */
     ERHAPI_SortOrder& GetSort() { return Sort_Optional; }
@@ -110,10 +110,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryPageMeta : public FRHAPI_Model
     void ClearSort() { Sort_IsSet = false; }
 
     /** @brief The number of Orders to return */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Limit_Optional{  };
     /** @brief true if Limit_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Limit_IsSet{ false };
     /** @brief Gets the value of Limit_Optional, regardless of it having been set */
     int32& GetLimit() { return Limit_Optional; }

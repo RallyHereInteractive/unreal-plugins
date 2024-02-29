@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Setting Version */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 V{ 0 };
     /** @brief Gets the value of V */
     int32& GetV() { return V; }
@@ -54,10 +54,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
     void SetVToDefault() { V = 0;  }
 
     /** @brief Setting Value document */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonValue Value_Optional{  };
     /** @brief true if Value_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Value_IsSet{ false };
     /** @brief Gets the value of Value_Optional, regardless of it having been set */
     FRHAPI_JsonValue& GetValue() { return Value_Optional; }

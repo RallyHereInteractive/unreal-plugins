@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief platform identifier for this purchase type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformSku{  };
     /** @brief Gets the value of PlatformSku */
     FString& GetPlatformSku() { return PlatformSku; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
     void SetPlatformSku(FString NewValue) { PlatformSku = NewValue;  }
 
     /** @brief unique identifier for this purchased item (instance owned by this user) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformEntitlementId{  };
     /** @brief Gets the value of PlatformEntitlementId */
     FString& GetPlatformEntitlementId() { return PlatformEntitlementId; }
@@ -62,10 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
     void SetPlatformEntitlementId(FString NewValue) { PlatformEntitlementId = NewValue;  }
 
     /** @brief number purchased */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Quantity_Optional{  };
     /** @brief true if Quantity_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Quantity_IsSet{ false };
     /** @brief Gets the value of Quantity_Optional, regardless of it having been set */
     int32& GetQuantity() { return Quantity_Optional; }
@@ -89,10 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
     void SetQuantityToDefault() { Quantity_Optional = 1; Quantity_IsSet = true; }
 
     /** @brief status of this entitlement */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_EntitlementStatus Status_Optional{  };
     /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Status_IsSet{ false };
     /** @brief Gets the value of Status_Optional, regardless of it having been set */
     ERHAPI_EntitlementStatus& GetStatus() { return Status_Optional; }
@@ -112,10 +112,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
     void ClearStatus() { Status_IsSet = false; }
 
     /** @brief Error code for this entitlement */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_EntitlementErrorCode ErrorCode_Optional{  };
     /** @brief true if ErrorCode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ErrorCode_IsSet{ false };
     /** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
     ERHAPI_EntitlementErrorCode& GetErrorCode() { return ErrorCode_Optional; }
@@ -135,10 +135,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlement : public FRHAPI_Model
     void ClearErrorCode() { ErrorCode_IsSet = false; }
 
     /** @brief Order ID for this entitlement */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString OrderId_Optional{  };
     /** @brief true if OrderId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool OrderId_IsSet{ false };
     /** @brief Gets the value of OrderId_Optional, regardless of it having been set */
     FString& GetOrderId() { return OrderId_Optional; }

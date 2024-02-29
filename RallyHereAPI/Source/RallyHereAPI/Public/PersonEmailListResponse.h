@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of all email list ids the user is subscribed to */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<int32> EmailListIds{  };
     /** @brief Gets the value of EmailListIds */
     TArray<int32>& GetEmailListIds() { return EmailListIds; }

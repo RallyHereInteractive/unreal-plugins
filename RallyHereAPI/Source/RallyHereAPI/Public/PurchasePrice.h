@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The Item used as the currency for the purchase. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PriceItemId{ 0 };
     /** @brief Gets the value of PriceItemId */
     int32& GetPriceItemId() { return PriceItemId; }
@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     void SetPriceItemIdToDefault() { PriceItemId = 0;  }
 
     /** @brief The price of the Item. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Price{ 0 };
     /** @brief Gets the value of Price */
     int32& GetPrice() { return Price; }
@@ -68,10 +68,10 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePrice : public FRHAPI_Model
     void SetPriceToDefault() { Price = 0;  }
 
     /** @brief The Item used as the coupon for the purchase. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PriceCouponItemId_Optional{  };
     /** @brief true if PriceCouponItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PriceCouponItemId_IsSet{ false };
     /** @brief Gets the value of PriceCouponItemId_Optional, regardless of it having been set */
     int32& GetPriceCouponItemId() { return PriceCouponItemId_Optional; }

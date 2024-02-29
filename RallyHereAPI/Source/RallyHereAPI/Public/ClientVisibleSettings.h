@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief How frequently the client should tell this service that it's online. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 SelfPingIntervalSeconds_Optional{  };
     /** @brief true if SelfPingIntervalSeconds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SelfPingIntervalSeconds_IsSet{ false };
     /** @brief Gets the value of SelfPingIntervalSeconds_Optional, regardless of it having been set */
     int32& GetSelfPingIntervalSeconds() { return SelfPingIntervalSeconds_Optional; }
@@ -67,10 +67,10 @@ struct RALLYHEREAPI_API FRHAPI_ClientVisibleSettings : public FRHAPI_Model
     void SetSelfPingIntervalSecondsToDefault() { SelfPingIntervalSeconds_Optional = 30; SelfPingIntervalSeconds_IsSet = true; }
 
     /** @brief If a client hasn't said that it's online within this time period, it will be treated as offline when others query its presence. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LastSeenAgeConsideredOfflineSeconds_Optional{  };
     /** @brief true if LastSeenAgeConsideredOfflineSeconds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LastSeenAgeConsideredOfflineSeconds_IsSet{ false };
     /** @brief Gets the value of LastSeenAgeConsideredOfflineSeconds_Optional, regardless of it having been set */
     int32& GetLastSeenAgeConsideredOfflineSeconds() { return LastSeenAgeConsideredOfflineSeconds_Optional; }

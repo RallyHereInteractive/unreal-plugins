@@ -44,7 +44,7 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
     /** @brief List of display names and the players that match that display name */
     TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>> DisplayNames_Optional{  };
     /** @brief true if DisplayNames_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DisplayNames_IsSet{ false };
     /** @brief Gets the value of DisplayNames_Optional, regardless of it having been set */
     TArray<TMap<FString, TArray<FRHAPI_PlayerResponse>>>& GetDisplayNames() { return DisplayNames_Optional; }
@@ -66,7 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
     /** @brief *DEPRECATED* Use `identity_platforms_by_platform` instead. List of platforms and the players that match that platform user id */
     TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatforms_Optional{  };
     /** @brief true if IdentityPlatforms_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool IdentityPlatforms_IsSet{ false };
     /** @brief Gets the value of IdentityPlatforms_Optional, regardless of it having been set */
     TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& GetIdentityPlatforms() { return IdentityPlatforms_Optional; }
@@ -88,7 +88,7 @@ struct RALLYHEREAPI_API FRHAPI_LookupResults : public FRHAPI_Model
     /** @brief List of platforms and the players that match that platform user id */
     TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>> IdentityPlatformsByPlatform_Optional{  };
     /** @brief true if IdentityPlatformsByPlatform_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool IdentityPlatformsByPlatform_IsSet{ false };
     /** @brief Gets the value of IdentityPlatformsByPlatform_Optional, regardless of it having been set */
     TMap<FString, TArray<FRHAPI_PlatformIdentityLookupResults>>& GetIdentityPlatformsByPlatform() { return IdentityPlatformsByPlatform_Optional; }

@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Is the player currently online? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_OnlineStatus Status_Optional{  };
     /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Status_IsSet{ false };
     /** @brief Gets the value of Status_Optional, regardless of it having been set */
     ERHAPI_OnlineStatus& GetStatus() { return Status_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void ClearStatus() { Status_IsSet = false; }
 
     /** @brief Optional custom message to display alongside the user's online status */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Message_Optional{  };
     /** @brief true if Message_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Message_IsSet{ false };
     /** @brief Gets the value of Message_Optional, regardless of it having been set */
     FString& GetMessage() { return Message_Optional; }
@@ -91,7 +91,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void SetMessageToDefault() { Message_Optional = TEXT(""); Message_IsSet = true; }
 
     /** @brief Platform the user was online in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Platform{  };
     /** @brief Gets the value of Platform */
     FString& GetPlatform() { return Platform; }
@@ -101,7 +101,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void SetPlatform(FString NewValue) { Platform = NewValue;  }
 
     /** @brief Player Display Name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DisplayName{  };
     /** @brief Gets the value of DisplayName */
     FString& GetDisplayName() { return DisplayName; }
@@ -111,10 +111,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void SetDisplayName(FString NewValue) { DisplayName = NewValue;  }
 
     /** @brief custom fields for the player to update about their presence */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -134,10 +134,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Player ID for the player if it was provided as part of the request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerId_Optional{  };
     /** @brief true if PlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerId_IsSet{ false };
     /** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
     int32& GetPlayerId() { return PlayerId_Optional; }
@@ -161,7 +161,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId_Optional = 0; PlayerId_IsSet = true; }
 
     /** @brief UUID of the player whose presence this represents */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }
@@ -171,10 +171,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
     /** @brief Disables notifications and invites. Only set for self or admin. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DoNotDisturb_Optional{  };
     /** @brief true if DoNotDisturb_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DoNotDisturb_IsSet{ false };
     /** @brief Gets the value of DoNotDisturb_Optional, regardless of it having been set */
     bool& GetDoNotDisturb() { return DoNotDisturb_Optional; }
@@ -198,10 +198,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
     void SetDoNotDisturbToDefault() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = true; }
 
     /** @brief Info about the player the last time they reported their status. Only set for self or admin */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastSeen_Optional{  };
     /** @brief true if LastSeen_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LastSeen_IsSet{ false };
     /** @brief Gets the value of LastSeen_Optional, regardless of it having been set */
     FDateTime& GetLastSeen() { return LastSeen_Optional; }

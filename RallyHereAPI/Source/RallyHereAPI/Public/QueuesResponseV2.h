@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_QueuesResponseV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of queues */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_QueueConfigV2> Queues{  };
     /** @brief Gets the value of Queues */
     TArray<FRHAPI_QueueConfigV2>& GetQueues() { return Queues; }

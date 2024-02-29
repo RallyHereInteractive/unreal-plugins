@@ -39,10 +39,10 @@ struct RALLYHEREAPI_API FRHAPI_Notes : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Notes_Optional{  };
     /** @brief true if Notes_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Notes_IsSet{ false };
     /** @brief Gets the value of Notes_Optional, regardless of it having been set */
     FString& GetNotes() { return Notes_Optional; }

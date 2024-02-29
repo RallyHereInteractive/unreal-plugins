@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Price Points mapped by Price Point ID. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_PricePoint> PricePoints_Optional{  };
     /** @brief true if PricePoints_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PricePoints_IsSet{ false };
     /** @brief Gets the value of PricePoints_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_PricePoint>& GetPricePoints() { return PricePoints_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_PricePoints : public FRHAPI_Model
     void ClearPricePoints() { PricePoints_IsSet = false; }
 
     /** @brief Cache info for the Price Points. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

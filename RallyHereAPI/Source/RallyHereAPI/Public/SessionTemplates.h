@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplates : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Dictionary of SessionTemplates keyed on their template type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_SessionTemplate> Templates_Optional{  };
     /** @brief true if Templates_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Templates_IsSet{ false };
     /** @brief Gets the value of Templates_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_SessionTemplate>& GetTemplates() { return Templates_Optional; }

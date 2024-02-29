@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of player's matches */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MatchPlayerWithMatch> PlayerMatches_Optional{  };
     /** @brief true if PlayerMatches_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerMatches_IsSet{ false };
     /** @brief Gets the value of PlayerMatches_Optional, regardless of it having been set */
     TArray<FRHAPI_MatchPlayerWithMatch>& GetPlayerMatches() { return PlayerMatches_Optional; }
@@ -63,10 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayerMatchResponse : public FRHAPI_Model
      /** @brief Clears the value of PlayerMatches_Optional and sets PlayerMatches_IsSet to false */
     void ClearPlayerMatches() { PlayerMatches_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Cursor_Optional{  };
     /** @brief true if Cursor_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Cursor_IsSet{ false };
     /** @brief Gets the value of Cursor_Optional, regardless of it having been set */
     FString& GetCursor() { return Cursor_Optional; }

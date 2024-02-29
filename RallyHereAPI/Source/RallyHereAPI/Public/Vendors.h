@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendors : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_Vendor> Vendors_Optional{  };
     /** @brief true if Vendors_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Vendors_IsSet{ false };
     /** @brief Gets the value of Vendors_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_Vendor>& GetVendors() { return Vendors_Optional; }
@@ -63,10 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendors : public FRHAPI_Model
      /** @brief Clears the value of Vendors_Optional and sets Vendors_IsSet to false */
     void ClearVendors() { Vendors_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

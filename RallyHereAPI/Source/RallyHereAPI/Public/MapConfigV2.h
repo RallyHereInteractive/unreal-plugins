@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID to uniquely identify this map game */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MapId{  };
     /** @brief Gets the value of MapId */
     FString& GetMapId() { return MapId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
     void SetMapId(FString NewValue) { MapId = NewValue;  }
 
     /** @brief Name of the map the instance should load into */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Name{  };
     /** @brief Gets the value of Name */
     FString& GetName() { return Name; }
@@ -60,10 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
     void SetName(FString NewValue) { Name = NewValue;  }
 
     /** @brief Game mode for the instance to spawn in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Mode_Optional{  };
     /** @brief true if Mode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Mode_IsSet{ false };
     /** @brief Gets the value of Mode_Optional, regardless of it having been set */
     FString& GetMode() { return Mode_Optional; }
@@ -83,7 +83,7 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
     void ClearMode() { Mode_IsSet = false; }
 
     /** @brief Chance that this map will get selected in a rotation list */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float MapWeight{  };
     /** @brief Gets the value of MapWeight */
     float& GetMapWeight() { return MapWeight; }
@@ -93,10 +93,10 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
     void SetMapWeight(float NewValue) { MapWeight = NewValue;  }
 
     /** @brief Custom data to pass through to the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

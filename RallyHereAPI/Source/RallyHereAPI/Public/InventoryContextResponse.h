@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Inventory Context for a Player. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_Inventory Inventory_Optional{  };
     /** @brief true if Inventory_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Inventory_IsSet{ false };
     /** @brief Gets the value of Inventory_Optional, regardless of it having been set */
     FRHAPI_Inventory& GetInventory() { return Inventory_Optional; }

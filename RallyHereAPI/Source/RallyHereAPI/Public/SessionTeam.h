@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Players currently on this team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_SessionPlayer> Players{  };
     /** @brief Gets the value of Players */
     TArray<FRHAPI_SessionPlayer>& GetPlayers() { return Players; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
     void SetPlayers(TArray<FRHAPI_SessionPlayer> NewValue) { Players = NewValue;  }
 
     /** @brief Maximum number of players allowed on this team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxSize{ 0 };
     /** @brief Gets the value of MaxSize */
     int32& GetMaxSize() { return MaxSize; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
     void SetMaxSizeToDefault() { MaxSize = 0;  }
 
     /** @brief Which team this is */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamId_Optional{  };
     /** @brief true if TeamId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TeamId_IsSet{ false };
     /** @brief Gets the value of TeamId_Optional, regardless of it having been set */
     int32& GetTeamId() { return TeamId_Optional; }
@@ -92,10 +92,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTeam : public FRHAPI_Model
     void SetTeamIdToDefault() { TeamId_Optional = 0; TeamId_IsSet = true; }
 
     /** @brief Matchmaking tickets that were assigned to this team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FString> TicketIds_Optional{  };
     /** @brief true if TicketIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TicketIds_IsSet{ false };
     /** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
     TArray<FString>& GetTicketIds() { return TicketIds_Optional; }

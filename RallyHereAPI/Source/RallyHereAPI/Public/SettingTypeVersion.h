@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AllowUpdate_Optional{  };
     /** @brief true if AllowUpdate_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AllowUpdate_IsSet{ false };
     /** @brief Gets the value of AllowUpdate_Optional, regardless of it having been set */
     bool& GetAllowUpdate() { return AllowUpdate_Optional; }
@@ -67,10 +67,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
     void SetAllowUpdateToDefault() { AllowUpdate_Optional = true; AllowUpdate_IsSet = true; }
 
     /** @brief Regex that is used to verify keys at assignment time */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString KeyRegex_Optional{  };
     /** @brief true if KeyRegex_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool KeyRegex_IsSet{ false };
     /** @brief Gets the value of KeyRegex_Optional, regardless of it having been set */
     FString& GetKeyRegex() { return KeyRegex_Optional; }
@@ -94,7 +94,7 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
     void SetKeyRegexToDefault() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = true; }
 
     /** @brief [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject ValueJsonschema{  };
     /** @brief Gets the value of ValueJsonschema */
     FRHAPI_JsonObject& GetValueJsonschema() { return ValueJsonschema; }
@@ -104,10 +104,10 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
     void SetValueJsonschema(FRHAPI_JsonObject NewValue) { ValueJsonschema = NewValue;  }
 
     /** @brief Custom data that was provided when the setting type was created */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
