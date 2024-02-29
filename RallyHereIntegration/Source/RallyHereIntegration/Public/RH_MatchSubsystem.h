@@ -65,13 +65,34 @@ struct FRH_MatchSearchParams
 	{
 		RallyHereAPI::FRequest_GetMatches Request;
 		Request.AuthContext = AuthContext;
-		Request.PageSize = PageSize;
-		Request.InstanceId = InstanceId;
-		Request.AllocationId = AllocationId;
-		Request.SessionId = SessionId;
-		Request.HostPlayerUuid = HostPlayerUuid;
-		Request.RegionId = RegionId;
-		Request.Cursor = Cursor;
+		if (PageSize > 0)
+		{
+			Request.PageSize = PageSize;
+		}
+		if (!InstanceId.IsEmpty())
+		{
+			Request.InstanceId = InstanceId;
+		}
+		if (!AllocationId.IsEmpty())
+		{
+			Request.AllocationId = AllocationId;
+		}
+		if (!SessionId.IsEmpty())
+		{
+			Request.SessionId = SessionId;
+		}
+		if (!HostPlayerUuid.IsEmpty())
+		{
+			Request.HostPlayerUuid = HostPlayerUuid;
+		}
+		if (!RegionId.IsEmpty())
+		{
+			Request.RegionId = RegionId;
+		}
+		if (!Cursor.IsEmpty())
+		{
+			Request.Cursor = Cursor;
+		}
 		return Request;
 	}
 };
