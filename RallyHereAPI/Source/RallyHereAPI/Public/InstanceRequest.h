@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique ID for the instance, a new one will be generated if not provided */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId_Optional{  };
     /** @brief true if InstanceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceId_IsSet{ false };
     /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
     FString& GetInstanceId() { return InstanceId_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
     /** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InstanceStartupParams InstanceStartupParams_Optional{  };
     /** @brief true if InstanceStartupParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceStartupParams_IsSet{ false };
     /** @brief Gets the value of InstanceStartupParams_Optional, regardless of it having been set */
     FRHAPI_InstanceStartupParams& GetInstanceStartupParams() { return InstanceStartupParams_Optional; }
@@ -88,7 +88,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
     void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false; }
 
     /** @brief Type of the host */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_HostType HostType{  };
     /** @brief Gets the value of HostType */
     ERHAPI_HostType& GetHostType() { return HostType; }
@@ -98,10 +98,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
     void SetHostType(ERHAPI_HostType NewValue) { HostType = NewValue;  }
 
     /** @brief Player UUID of the host, if the host type is player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid HostPlayerUuid_Optional{  };
     /** @brief true if HostPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostPlayerUuid_IsSet{ false };
     /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
     FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
@@ -121,10 +121,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequest : public FRHAPI_Model
     void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
     /** @brief instance-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

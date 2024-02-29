@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for which instance was marked as FUBAR */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId{  };
     /** @brief Gets the value of InstanceId */
     FString& GetInstanceId() { return InstanceId; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
     void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
     /** @brief Error string describing what caused the instance failure */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Error{  };
     /** @brief Gets the value of Error */
     FString& GetError() { return Error; }
@@ -61,7 +61,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
     void SetError(FString NewValue) { Error = NewValue;  }
 
     /** @brief What region the failed instance was in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Region{  };
     /** @brief Gets the value of Region */
     FString& GetRegion() { return Region; }
@@ -71,10 +71,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
     void SetRegion(FString NewValue) { Region = NewValue;  }
 
     /** @brief ID for which matchmaking profile was used to generate the failed instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchmakingProfileId_Optional{  };
     /** @brief true if MatchmakingProfileId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchmakingProfileId_IsSet{ false };
     /** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
     FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
@@ -94,10 +94,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceFubar : public FRHAPI_Model
     void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; }
 
     /** @brief Which instance provider allocated this failed instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InstanceSourceProvider InstanceSourceProvider_Optional{  };
     /** @brief true if InstanceSourceProvider_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceSourceProvider_IsSet{ false };
     /** @brief Gets the value of InstanceSourceProvider_Optional, regardless of it having been set */
     ERHAPI_InstanceSourceProvider& GetInstanceSourceProvider() { return InstanceSourceProvider_Optional; }

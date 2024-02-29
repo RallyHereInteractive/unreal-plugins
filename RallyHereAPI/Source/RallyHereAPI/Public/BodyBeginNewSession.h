@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code for the user */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString CountryCode{  };
     /** @brief Gets the value of CountryCode */
     FString& GetCountryCode() { return CountryCode; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyBeginNewSession : public FRHAPI_Model
     void SetCountryCode(FString NewValue) { CountryCode = NewValue;  }
 
     /** @brief Unique Identifier for the device a session is started on.  E.g should be the same for multiple users on the same device. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DeviceId_Optional{  };
     /** @brief true if DeviceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DeviceId_IsSet{ false };
     /** @brief Gets the value of DeviceId_Optional, regardless of it having been set */
     FString& GetDeviceId() { return DeviceId_Optional; }

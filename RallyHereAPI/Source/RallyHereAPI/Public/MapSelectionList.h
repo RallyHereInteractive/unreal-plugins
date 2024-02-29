@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID to uniquely identify this map selection list */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MapSelectionListId{  };
     /** @brief Gets the value of MapSelectionListId */
     FString& GetMapSelectionListId() { return MapSelectionListId; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionList : public FRHAPI_Model
     void SetMapSelectionListId(FString NewValue) { MapSelectionListId = NewValue;  }
 
     /** @brief List of maps that can be chosen in this selection list */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MapConfig> Maps{  };
     /** @brief Gets the value of Maps */
     TArray<FRHAPI_MapConfig>& GetMaps() { return Maps; }

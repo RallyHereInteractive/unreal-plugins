@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Loot ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString LootId_Optional{  };
     /** @brief true if LootId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LootId_IsSet{ false };
     /** @brief Gets the value of LootId_Optional, regardless of it having been set */
     FString& GetLootId() { return LootId_Optional; }
@@ -63,7 +63,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
     void ClearLootId() { LootId_IsSet = false; }
 
     /** @brief Legacy Loot ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LegacyLootId{ 0 };
     /** @brief Gets the value of LegacyLootId */
     int32& GetLegacyLootId() { return LegacyLootId; }

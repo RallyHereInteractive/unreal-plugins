@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Source of this Inventory Operation. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Source Source_Optional{  };
     /** @brief true if Source_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Source_IsSet{ false };
     /** @brief Gets the value of Source_Optional, regardless of it having been set */
     ERHAPI_Source& GetSource() { return Source_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
     void ClearSource() { Source_IsSet = false; }
 
     /** @brief Arbitrary UUID that can be used by clients to correlate Order requests with Order responses. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ClientOrderRefId_Optional{  };
     /** @brief true if ClientOrderRefId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ClientOrderRefId_IsSet{ false };
     /** @brief Gets the value of ClientOrderRefId_Optional, regardless of it having been set */
     FGuid& GetClientOrderRefId() { return ClientOrderRefId_Optional; }
@@ -87,7 +87,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateInventoryRequests : public FRHAPI_Model
      /** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
     void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_CreateInventoryRequest> Inventory{  };
     /** @brief Gets the value of Inventory */
     TArray<FRHAPI_CreateInventoryRequest>& GetInventory() { return Inventory; }

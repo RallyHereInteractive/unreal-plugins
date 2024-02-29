@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Access token for the user. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AccessToken_Optional{  };
     /** @brief true if AccessToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AccessToken_IsSet{ false };
     /** @brief Gets the value of AccessToken_Optional, regardless of it having been set */
     FString& GetAccessToken() { return AccessToken_Optional; }
@@ -63,10 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void ClearAccessToken() { AccessToken_IsSet = false; }
 
     /** @brief Refresh token for the user. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RefreshToken_Optional{  };
     /** @brief true if RefreshToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RefreshToken_IsSet{ false };
     /** @brief Gets the value of RefreshToken_Optional, regardless of it having been set */
     FString& GetRefreshToken() { return RefreshToken_Optional; }
@@ -86,10 +86,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
     /** @brief If true, the user must accept the EULA before a token can be generated. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsEula_Optional{  };
     /** @brief true if NeedsEula_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsEula_IsSet{ false };
     /** @brief Gets the value of NeedsEula_Optional, regardless of it having been set */
     bool& GetNeedsEula() { return NeedsEula_Optional; }
@@ -113,10 +113,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void SetNeedsEulaToDefault() { NeedsEula_Optional = false; NeedsEula_IsSet = true; }
 
     /** @brief If true, the user must accept the TOS before a token can be generated. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsTos_Optional{  };
     /** @brief true if NeedsTos_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsTos_IsSet{ false };
     /** @brief Gets the value of NeedsTos_Optional, regardless of it having been set */
     bool& GetNeedsTos() { return NeedsTos_Optional; }
@@ -140,10 +140,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void SetNeedsTosToDefault() { NeedsTos_Optional = false; NeedsTos_IsSet = true; }
 
     /** @brief If true, the user must accept the Privacy Policy before a token can be generated. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsPrivacyPolicy_Optional{  };
     /** @brief true if NeedsPrivacyPolicy_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsPrivacyPolicy_IsSet{ false };
     /** @brief Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set */
     bool& GetNeedsPrivacyPolicy() { return NeedsPrivacyPolicy_Optional; }
@@ -167,10 +167,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void SetNeedsPrivacyPolicyToDefault() { NeedsPrivacyPolicy_Optional = false; NeedsPrivacyPolicy_IsSet = true; }
 
     /** @brief If present, a new code was generated and can be used after the user accepts the required agreements. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RegeneratedCode_Optional{  };
     /** @brief true if RegeneratedCode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RegeneratedCode_IsSet{ false };
     /** @brief Gets the value of RegeneratedCode_Optional, regardless of it having been set */
     FString& GetRegeneratedCode() { return RegeneratedCode_Optional; }
@@ -190,10 +190,10 @@ struct RALLYHEREAPI_API FRHAPI_OAuthTokenResponse : public FRHAPI_Model
     void ClearRegeneratedCode() { RegeneratedCode_IsSet = false; }
 
     /** @brief Error message if an error occurred. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ErrorMessage_Optional{  };
     /** @brief true if ErrorMessage_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ErrorMessage_IsSet{ false };
     /** @brief Gets the value of ErrorMessage_Optional, regardless of it having been set */
     FString& GetErrorMessage() { return ErrorMessage_Optional; }

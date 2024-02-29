@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for the newly created match making ticket */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString TicketId{  };
     /** @brief Gets the value of TicketId */
     FString& GetTicketId() { return TicketId; }

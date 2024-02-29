@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Legacy id for this player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerId_Optional{  };
     /** @brief true if PlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerId_IsSet{ false };
     /** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
     int32& GetPlayerId() { return PlayerId_Optional; }
@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId_Optional = 0; PlayerId_IsSet = true; }
 
     /** @brief UUID for this player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }
@@ -80,7 +80,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
     /** @brief Status of the player in the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_SessionPlayerStatus Status{  };
     /** @brief Gets the value of Status */
     ERHAPI_SessionPlayerStatus& GetStatus() { return Status; }
@@ -90,10 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status = NewValue;  }
 
     /** @brief UUID of the player who sent this players invite, if any */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid InvitingPlayerUuid_Optional{  };
     /** @brief true if InvitingPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InvitingPlayerUuid_IsSet{ false };
     /** @brief Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set */
     FGuid& GetInvitingPlayerUuid() { return InvitingPlayerUuid_Optional; }
@@ -113,10 +113,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false; }
 
     /** @brief The UUID of the session that this player was invited from */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SourceSessionId_Optional{  };
     /** @brief true if SourceSessionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SourceSessionId_IsSet{ false };
     /** @brief Gets the value of SourceSessionId_Optional, regardless of it having been set */
     FString& GetSourceSessionId() { return SourceSessionId_Optional; }
@@ -136,10 +136,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearSourceSessionId() { SourceSessionId_IsSet = false; }
 
     /** @brief player-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -159,10 +159,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Product Client Version number.  Used for compatibility checking with other players and instances */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Version_Optional{  };
     /** @brief true if Version_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Version_IsSet{ false };
     /** @brief Gets the value of Version_Optional, regardless of it having been set */
     FString& GetVersion() { return Version_Optional; }
@@ -182,10 +182,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearVersion() { Version_IsSet = false; }
 
     /** @brief Which input type and platform the client is using */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_ClientSettings ClientSettings_Optional{  };
     /** @brief true if ClientSettings_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ClientSettings_IsSet{ false };
     /** @brief Gets the value of ClientSettings_Optional, regardless of it having been set */
     FRHAPI_ClientSettings& GetClientSettings() { return ClientSettings_Optional; }
@@ -205,10 +205,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearClientSettings() { ClientSettings_IsSet = false; }
 
     /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
     /** @brief true if CrossplayPreferences_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CrossplayPreferences_IsSet{ false };
     /** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
     FRHAPI_CrossplayPreferences& GetCrossplayPreferences() { return CrossplayPreferences_Optional; }
@@ -228,10 +228,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Invited_Optional{  };
     /** @brief true if Invited_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Invited_IsSet{ false };
     /** @brief Gets the value of Invited_Optional, regardless of it having been set */
     FDateTime& GetInvited() { return Invited_Optional; }
@@ -251,10 +251,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayer : public FRHAPI_Model
     void ClearInvited() { Invited_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Joined_Optional{  };
     /** @brief true if Joined_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Joined_IsSet{ false };
     /** @brief Gets the value of Joined_Optional, regardless of it having been set */
     FDateTime& GetJoined() { return Joined_Optional; }

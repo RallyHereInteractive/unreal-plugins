@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Portal user ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalUserId_Optional{  };
     /** @brief true if PortalUserId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalUserId_IsSet{ false };
     /** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
     FString& GetPortalUserId() { return PortalUserId_Optional; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
     /** @brief Portal ID *DEPRECATED* use `platform` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PortalId{ 0 };
     /** @brief Gets the value of PortalId */
     int32& GetPortalId() { return PortalId; }
@@ -78,7 +78,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void SetPortalIdToDefault() { PortalId = 0;  }
 
     /** @brief Platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
     ERHAPI_Platform& GetPlatform() { return Platform; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     /** @brief Display name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DisplayName_Optional{  };
     /** @brief true if DisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DisplayName_IsSet{ false };
     /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
     FString& GetDisplayName() { return DisplayName_Optional; }
@@ -111,7 +111,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void ClearDisplayName() { DisplayName_IsSet = false; }
 
     /** @brief Player ID *DEPRECATED* use `player_uuid` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerId{ 0 };
     /** @brief Gets the value of PlayerId */
     int32& GetPlayerId() { return PlayerId; }
@@ -125,7 +125,7 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId = 0;  }
 
     /** @brief Player UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }

@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Page{ 0 };
     /** @brief Gets the value of Page */
     int32& GetPage() { return Page; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
     /** @brief Sets the value of Page to its default  */
     void SetPageToDefault() { Page = 0;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Limit{ 0 };
     /** @brief Gets the value of Limit */
     int32& GetLimit() { return Limit; }
@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
     /** @brief Sets the value of Limit to its default  */
     void SetLimitToDefault() { Limit = 0;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Total{ 0 };
     /** @brief Gets the value of Total */
     int32& GetTotal() { return Total; }

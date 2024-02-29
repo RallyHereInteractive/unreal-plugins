@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_EventList : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of events */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_RallyHereEvent> EventList{  };
     /** @brief Gets the value of EventList */
     TArray<FRHAPI_RallyHereEvent>& GetEventList() { return EventList; }

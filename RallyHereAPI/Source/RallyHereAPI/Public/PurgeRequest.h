@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime SuggestedPurgeTime_Optional{  };
     /** @brief true if SuggestedPurgeTime_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SuggestedPurgeTime_IsSet{ false };
     /** @brief Gets the value of SuggestedPurgeTime_Optional, regardless of it having been set */
     FDateTime& GetSuggestedPurgeTime() { return SuggestedPurgeTime_Optional; }

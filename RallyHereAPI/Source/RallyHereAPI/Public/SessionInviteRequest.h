@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Which team the players in the source session should be on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamId_Optional{  };
     /** @brief true if TeamId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TeamId_IsSet{ false };
     /** @brief Gets the value of TeamId_Optional, regardless of it having been set */
     int32& GetTeamId() { return TeamId_Optional; }
@@ -68,10 +68,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
     void SetTeamIdToDefault() { TeamId_Optional = 0; TeamId_IsSet = true; }
 
     /** @brief How we should handle too many players being invited to the chosen team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_TeamOverflowAction OverflowAction_Optional{  };
     /** @brief true if OverflowAction_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool OverflowAction_IsSet{ false };
     /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
     ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }
@@ -91,10 +91,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteRequest : public FRHAPI_Model
     void ClearOverflowAction() { OverflowAction_IsSet = false; }
 
     /** @brief Custom data for all players being invited */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

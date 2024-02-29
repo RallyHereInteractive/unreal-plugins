@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The instance ID for this backfill request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId{  };
     /** @brief Gets the value of InstanceId */
     FString& GetInstanceId() { return InstanceId; }
@@ -52,10 +52,10 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
     void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
     /** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_AdditionalJoinParams AdditionalJoinParams_Optional{  };
     /** @brief true if AdditionalJoinParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AdditionalJoinParams_IsSet{ false };
     /** @brief Gets the value of AdditionalJoinParams_Optional, regardless of it having been set */
     FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() { return AdditionalJoinParams_Optional; }
@@ -75,10 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_UpdateBackfillRequest : public FRHAPI_Model
     void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false; }
 
     /** @brief The teams and number of players that need to be backfilled. Leaving this out (or supplying an empty list) is treated as no players are currently required */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_BackfillTeam> Teams_Optional{  };
     /** @brief true if Teams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Teams_IsSet{ false };
     /** @brief Gets the value of Teams_Optional, regardless of it having been set */
     TArray<FRHAPI_BackfillTeam>& GetTeams() { return Teams_Optional; }

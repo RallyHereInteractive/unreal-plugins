@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionEventCreateRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Code that identifies this type of event.  See CommonEventCode for common examples. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString EventCode{  };
     /** @brief Gets the value of EventCode */
     FString& GetEventCode() { return EventCode; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEventCreateRequest : public FRHAPI_Model
     void SetEventCode(FString NewValue) { EventCode = NewValue;  }
 
     /** @brief Description metadata about the event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Description_Optional{  };
     /** @brief true if Description_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Description_IsSet{ false };
     /** @brief Gets the value of Description_Optional, regardless of it having been set */
     FString& GetDescription() { return Description_Optional; }
@@ -77,10 +77,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEventCreateRequest : public FRHAPI_Model
     void SetDescriptionToDefault() { Description_Optional = TEXT(""); Description_IsSet = true; }
 
     /** @brief custom data about this event */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -100,7 +100,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionEventCreateRequest : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Timestamp{  };
     /** @brief Gets the value of Timestamp */
     FDateTime& GetTimestamp() { return Timestamp; }

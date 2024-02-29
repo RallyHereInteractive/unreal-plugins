@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Session ID the player is now a part of */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
     FString& GetSessionId() { return SessionId; }

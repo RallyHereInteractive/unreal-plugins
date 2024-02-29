@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Platform the player is on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Portal PortalId_Optional{  };
     /** @brief true if PortalId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalId_IsSet{ false };
     /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
     ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void ClearPortalId() { PortalId_IsSet = false; }
 
     /** @brief The Platform's unique identifier for the player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalUserId_Optional{  };
     /** @brief true if PortalUserId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalUserId_IsSet{ false };
     /** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
     FString& GetPortalUserId() { return PortalUserId_Optional; }
@@ -87,7 +87,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
     /** @brief The unique identifier for the KeyClaim */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid KeyClaimUuid{  };
     /** @brief Gets the value of KeyClaimUuid */
     FGuid& GetKeyClaimUuid() { return KeyClaimUuid; }
@@ -97,10 +97,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void SetKeyClaimUuid(FGuid NewValue) { KeyClaimUuid = NewValue;  }
 
     /** @brief Whether the KeyClaim has been claimed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Claimed_Optional{  };
     /** @brief true if Claimed_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Claimed_IsSet{ false };
     /** @brief Gets the value of Claimed_Optional, regardless of it having been set */
     bool& GetClaimed() { return Claimed_Optional; }
@@ -124,10 +124,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void SetClaimedToDefault() { Claimed_Optional = false; Claimed_IsSet = true; }
 
     /** @brief The external key that was been claimed by the player. This is only filled out once the KeyClaim has been claimed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ExternalKey_Optional{  };
     /** @brief true if ExternalKey_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ExternalKey_IsSet{ false };
     /** @brief Gets the value of ExternalKey_Optional, regardless of it having been set */
     FString& GetExternalKey() { return ExternalKey_Optional; }
@@ -147,10 +147,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void ClearExternalKey() { ExternalKey_IsSet = false; }
 
     /** @brief The unique identifier for the MarketingCampaign that the external key was claimed from */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ExternalKeyCampaignUuid_Optional{  };
     /** @brief true if ExternalKeyCampaignUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ExternalKeyCampaignUuid_IsSet{ false };
     /** @brief Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set */
     FGuid& GetExternalKeyCampaignUuid() { return ExternalKeyCampaignUuid_Optional; }
@@ -170,10 +170,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void ClearExternalKeyCampaignUuid() { ExternalKeyCampaignUuid_IsSet = false; }
 
     /** @brief This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ExternalKeyType_Optional{  };
     /** @brief true if ExternalKeyType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ExternalKeyType_IsSet{ false };
     /** @brief Gets the value of ExternalKeyType_Optional, regardless of it having been set */
     FString& GetExternalKeyType() { return ExternalKeyType_Optional; }
@@ -193,10 +193,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void ClearExternalKeyType() { ExternalKeyType_IsSet = false; }
 
     /** @brief The time the KeyClaim was created */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString CreatedOn_Optional{  };
     /** @brief true if CreatedOn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CreatedOn_IsSet{ false };
     /** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
     FString& GetCreatedOn() { return CreatedOn_Optional; }
@@ -216,10 +216,10 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
     void ClearCreatedOn() { CreatedOn_IsSet = false; }
 
     /** @brief The time the KeyClaim was last modified */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString LastModifiedOn_Optional{  };
     /** @brief true if LastModifiedOn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LastModifiedOn_IsSet{ false };
     /** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
     FString& GetLastModifiedOn() { return LastModifiedOn_Optional; }

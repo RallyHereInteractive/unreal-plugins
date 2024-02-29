@@ -39,10 +39,10 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 BlockedPlayerId_Optional{  };
     /** @brief true if BlockedPlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool BlockedPlayerId_IsSet{ false };
     /** @brief Gets the value of BlockedPlayerId_Optional, regardless of it having been set */
     int32& GetBlockedPlayerId() { return BlockedPlayerId_Optional; }
@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
     /** @brief Sets the value of BlockedPlayerId_Optional to its default and also sets BlockedPlayerId_IsSet to true */
     void SetBlockedPlayerIdToDefault() { BlockedPlayerId_Optional = 0; BlockedPlayerId_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid BlockedPlayerUuid{  };
     /** @brief Gets the value of BlockedPlayerUuid */
     FGuid& GetBlockedPlayerUuid() { return BlockedPlayerUuid; }
@@ -74,7 +74,7 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayerV1 : public FRHAPI_Model
     /** @brief Sets the value of BlockedPlayerUuid */
     void SetBlockedPlayerUuid(FGuid NewValue) { BlockedPlayerUuid = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastModifiedOn{  };
     /** @brief Gets the value of LastModifiedOn */
     FDateTime& GetLastModifiedOn() { return LastModifiedOn; }

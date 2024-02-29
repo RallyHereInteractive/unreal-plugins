@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID to uniquely identify this queue */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString QueueId{  };
     /** @brief Gets the value of QueueId */
     FString& GetQueueId() { return QueueId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetQueueId(FString NewValue) { QueueId = NewValue;  }
 
     /** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Active{ false };
     /** @brief Gets the value of Active */
     bool& GetActive() { return Active; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetActiveToDefault() { Active = false;  }
 
     /** @brief Which rank this queue should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 RankingType{ 0 };
     /** @brief Gets the value of RankingType */
     int32& GetRankingType() { return RankingType; }
@@ -78,7 +78,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetRankingTypeToDefault() { RankingType = 0;  }
 
     /** @brief The number of sides a game in this queue will have (2 in a 1v1 and 3 in a 1v1v1 for example */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 NumSides{ 0 };
     /** @brief Gets the value of NumSides */
     int32& GetNumSides() { return NumSides; }
@@ -92,7 +92,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetNumSidesToDefault() { NumSides = 0;  }
 
     /** @brief The maximum number of players that can be on each team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxPlayersPerSide{ 0 };
     /** @brief Gets the value of MaxPlayersPerSide */
     int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide; }
@@ -106,7 +106,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetMaxPlayersPerSideToDefault() { MaxPlayersPerSide = 0;  }
 
     /** @brief The minimum number of players that can be on each team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MinPlayersPerSide{ 0 };
     /** @brief Gets the value of MinPlayersPerSide */
     int32& GetMinPlayersPerSide() { return MinPlayersPerSide; }
@@ -120,7 +120,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetMinPlayersPerSideToDefault() { MinPlayersPerSide = 0;  }
 
     /** @brief The maximum size of a group that can join this queue */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxQueueGroupSize{ 0 };
     /** @brief Gets the value of MaxQueueGroupSize */
     int32& GetMaxQueueGroupSize() { return MaxQueueGroupSize; }
@@ -134,7 +134,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
     void SetMaxQueueGroupSizeToDefault() { MaxQueueGroupSize = 0;  }
 
     /** @brief ID for which group of matchmaking templates/rules will be used when joining this queue */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid MatchMakingTemplateGroupId{  };
     /** @brief Gets the value of MatchMakingTemplateGroupId */
     FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }

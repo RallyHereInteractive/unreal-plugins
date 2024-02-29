@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionInviteResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of players that were updated */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_SessionPlayerUpdateResponse> Players{  };
     /** @brief Gets the value of Players */
     TArray<FRHAPI_SessionPlayerUpdateResponse>& GetPlayers() { return Players; }

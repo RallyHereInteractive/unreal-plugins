@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief State of the opportunity */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_OpportunityState State{  };
     /** @brief Gets the value of State */
     ERHAPI_OpportunityState& GetState() { return State; }
@@ -52,10 +52,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
     void SetState(ERHAPI_OpportunityState NewValue) { State = NewValue;  }
 
     /** @brief Reason for aborting the opportunity */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_OpportunityAbortReason AbortReason_Optional{  };
     /** @brief true if AbortReason_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AbortReason_IsSet{ false };
     /** @brief Gets the value of AbortReason_Optional, regardless of it having been set */
     ERHAPI_OpportunityAbortReason& GetAbortReason() { return AbortReason_Optional; }
@@ -75,10 +75,10 @@ struct RALLYHEREAPI_API FRHAPI_BodyUpdateOpportunityById : public FRHAPI_Model
     void ClearAbortReason() { AbortReason_IsSet = false; }
 
     /** @brief Number of seconds into the video when the abort happened */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 AbortSeconds_Optional{  };
     /** @brief true if AbortSeconds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AbortSeconds_IsSet{ false };
     /** @brief Gets the value of AbortSeconds_Optional, regardless of it having been set */
     int32& GetAbortSeconds() { return AbortSeconds_Optional; }

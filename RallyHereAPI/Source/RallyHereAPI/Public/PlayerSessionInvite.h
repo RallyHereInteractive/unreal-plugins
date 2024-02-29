@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Session ID for the invite */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionId{  };
     /** @brief Gets the value of SessionId */
     FString& GetSessionId() { return SessionId; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
     void SetSessionId(FString NewValue) { SessionId = NewValue;  }
 
     /** @brief Player who sent the invite */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid InvitingPlayerUuid_Optional{  };
     /** @brief true if InvitingPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InvitingPlayerUuid_IsSet{ false };
     /** @brief Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set */
     FGuid& GetInvitingPlayerUuid() { return InvitingPlayerUuid_Optional; }

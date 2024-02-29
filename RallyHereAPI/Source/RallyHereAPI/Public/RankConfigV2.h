@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for this rank type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RankId{  };
     /** @brief Gets the value of RankId */
     FString& GetRankId() { return RankId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void SetRankId(FString NewValue) { RankId = NewValue;  }
 
     /** @brief The default rank value for this rank id. Will be used when players do not have any rank history */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float DefaultRank{  };
     /** @brief Gets the value of DefaultRank */
     float& GetDefaultRank() { return DefaultRank; }
@@ -60,7 +60,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void SetDefaultRank(float NewValue) { DefaultRank = NewValue;  }
 
     /** @brief The default skill variance for this rank id. Will be used when players do not have any rank history */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float DefaultVariance{  };
     /** @brief Gets the value of DefaultVariance */
     float& GetDefaultVariance() { return DefaultVariance; }
@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void SetDefaultVariance(float NewValue) { DefaultVariance = NewValue;  }
 
     /** @brief The maximum rank value achievable. Any attempts to update a rank value to be higher than this get clamped to the maximum */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float MaxRankAllowed{  };
     /** @brief Gets the value of MaxRankAllowed */
     float& GetMaxRankAllowed() { return MaxRankAllowed; }
@@ -80,7 +80,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void SetMaxRankAllowed(float NewValue) { MaxRankAllowed = NewValue;  }
 
     /** @brief The minimum rank value achievable. Any attempts to update a rank value to be lower than this get clamped to the minimum */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float MinRankAllowed{  };
     /** @brief Gets the value of MinRankAllowed */
     float& GetMinRankAllowed() { return MinRankAllowed; }
@@ -90,7 +90,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void SetMinRankAllowed(float NewValue) { MinRankAllowed = NewValue;  }
 
     /** @brief The minimum skill variance allowed. Any attempts to update variance to be lower than this get clamped to the minimum */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float MinVarianceAllowed{  };
     /** @brief Gets the value of MinVarianceAllowed */
     float& GetMinVarianceAllowed() { return MinVarianceAllowed; }
@@ -100,10 +100,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void SetMinVarianceAllowed(float NewValue) { MinVarianceAllowed = NewValue;  }
 
     /** @brief The distance between skill ranks that yields ~76% chance of winning. Recommended value is half the default variance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float TrueskillBeta_Optional{  };
     /** @brief true if TrueskillBeta_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TrueskillBeta_IsSet{ false };
     /** @brief Gets the value of TrueskillBeta_Optional, regardless of it having been set */
     float& GetTrueskillBeta() { return TrueskillBeta_Optional; }
@@ -123,10 +123,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void ClearTrueskillBeta() { TrueskillBeta_IsSet = false; }
 
     /** @brief Factor that determines how quickly a player's variance is adjusted. A larger tau will result in more volatile in ranks. Recommended value is is (default_variance * .01) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float TrueskillTau_Optional{  };
     /** @brief true if TrueskillTau_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TrueskillTau_IsSet{ false };
     /** @brief Gets the value of TrueskillTau_Optional, regardless of it having been set */
     float& GetTrueskillTau() { return TrueskillTau_Optional; }
@@ -146,10 +146,10 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigV2 : public FRHAPI_Model
     void ClearTrueskillTau() { TrueskillTau_IsSet = false; }
 
     /** @brief The percent probability of a draw occuring in the game. Must be in [0, 1) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float TrueskillDrawProbability_Optional{  };
     /** @brief true if TrueskillDrawProbability_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TrueskillDrawProbability_IsSet{ false };
     /** @brief Gets the value of TrueskillDrawProbability_Optional, regardless of it having been set */
     float& GetTrueskillDrawProbability() { return TrueskillDrawProbability_Optional; }

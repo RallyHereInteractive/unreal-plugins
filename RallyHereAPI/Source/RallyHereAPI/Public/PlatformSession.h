@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSession : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Platform that this session is for */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
     ERHAPI_Platform& GetPlatform() { return Platform; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSession : public FRHAPI_Model
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     /** @brief Platform-Specific Identifier for the Platform's template */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformSessionType{  };
     /** @brief Gets the value of PlatformSessionType */
     FString& GetPlatformSessionType() { return PlatformSessionType; }
@@ -62,7 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSession : public FRHAPI_Model
     void SetPlatformSessionType(FString NewValue) { PlatformSessionType = NewValue;  }
 
     /** @brief Platform session's unique identifier */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformSessionIdBase64{  };
     /** @brief Gets the value of PlatformSessionIdBase64 */
     FString& GetPlatformSessionIdBase64() { return PlatformSessionIdBase64; }
@@ -72,7 +72,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSession : public FRHAPI_Model
     void SetPlatformSessionIdBase64(FString NewValue) { PlatformSessionIdBase64 = NewValue;  }
 
     /** @brief DEPRECATED. PlatformSessions no longer keep tracking of players. Players in the platform session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlatformSessionPlayer> Players{  };
     /** @brief Gets the value of Players */
     TArray<FRHAPI_PlatformSessionPlayer>& GetPlayers() { return Players; }
@@ -82,10 +82,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSession : public FRHAPI_Model
     void SetPlayers(TArray<FRHAPI_PlatformSessionPlayer> NewValue) { Players = NewValue;  }
 
     /** @brief Product defined custom data fields about the platform session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

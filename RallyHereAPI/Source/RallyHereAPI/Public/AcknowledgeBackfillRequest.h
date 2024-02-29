@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The instance ID for this backfill request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId{  };
     /** @brief Gets the value of InstanceId */
     FString& GetInstanceId() { return InstanceId; }
@@ -51,10 +51,10 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
     void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
     /** @brief Additional extensions to add to the Assignment for the backfill resource associated with the session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> Extensions_Optional{  };
     /** @brief true if Extensions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Extensions_IsSet{ false };
     /** @brief Gets the value of Extensions_Optional, regardless of it having been set */
     TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
@@ -74,10 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
     void ClearExtensions() { Extensions_IsSet = false; }
 
     /** @brief How to handle backfills that return too many players for a team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_TeamOverflowAction OverflowAction_Optional{  };
     /** @brief true if OverflowAction_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool OverflowAction_IsSet{ false };
     /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
     ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }

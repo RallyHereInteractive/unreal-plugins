@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIdentityLookupResults : public FRHAPI_Mod
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of platform user ids and the players that match that platform user id */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_PlayerResponse> Identity_Optional{  };
     /** @brief true if Identity_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Identity_IsSet{ false };
     /** @brief Gets the value of Identity_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_PlayerResponse>& GetIdentity() { return Identity_Optional; }

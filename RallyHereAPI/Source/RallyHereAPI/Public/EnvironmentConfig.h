@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_EnvironmentConfig : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid OrgId{  };
     /** @brief Gets the value of OrgId */
     FGuid& GetOrgId() { return OrgId; }
@@ -48,7 +48,7 @@ struct RALLYHEREAPI_API FRHAPI_EnvironmentConfig : public FRHAPI_Model
     /** @brief Sets the value of OrgId */
     void SetOrgId(FGuid NewValue) { OrgId = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ProductId{  };
     /** @brief Gets the value of ProductId */
     FGuid& GetProductId() { return ProductId; }
@@ -57,7 +57,7 @@ struct RALLYHEREAPI_API FRHAPI_EnvironmentConfig : public FRHAPI_Model
     /** @brief Sets the value of ProductId */
     void SetProductId(FGuid NewValue) { ProductId = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid EnvironmentId{  };
     /** @brief Gets the value of EnvironmentId */
     FGuid& GetEnvironmentId() { return EnvironmentId; }
@@ -66,7 +66,7 @@ struct RALLYHEREAPI_API FRHAPI_EnvironmentConfig : public FRHAPI_Model
     /** @brief Sets the value of EnvironmentId */
     void SetEnvironmentId(FGuid NewValue) { EnvironmentId = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid SandboxId{  };
     /** @brief Gets the value of SandboxId */
     FGuid& GetSandboxId() { return SandboxId; }

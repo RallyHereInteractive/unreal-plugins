@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionEvents : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief A list of the events that have occurred in a given session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_SessionEvent> Events_Optional{  };
     /** @brief true if Events_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Events_IsSet{ false };
     /** @brief Gets the value of Events_Optional, regardless of it having been set */
     TArray<FRHAPI_SessionEvent>& GetEvents() { return Events_Optional; }

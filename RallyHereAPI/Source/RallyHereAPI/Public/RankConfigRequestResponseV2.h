@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_RankConfigRequestResponseV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of rank configurations */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_RankConfigV2> RankConfigs{  };
     /** @brief Gets the value of RankConfigs */
     TArray<FRHAPI_RankConfigV2>& GetRankConfigs() { return RankConfigs; }

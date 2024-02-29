@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for this region */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RegionId{  };
     /** @brief Gets the value of RegionId */
     FString& GetRegionId() { return RegionId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
     void SetRegionId(FString NewValue) { RegionId = NewValue;  }
 
     /** @brief The sorting priority order for this region */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 SortOrder{ 0 };
     /** @brief Gets the value of SortOrder */
     int32& GetSortOrder() { return SortOrder; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
     void SetSortOrderToDefault() { SortOrder = 0;  }
 
     /** @brief Indicates if the region is for custom games only */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomOnly{ false };
     /** @brief Gets the value of CustomOnly */
     bool& GetCustomOnly() { return CustomOnly; }
@@ -78,10 +78,10 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
     void SetCustomOnlyToDefault() { CustomOnly = false;  }
 
     /** @brief Text description of the region */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Description_Optional{  };
     /** @brief true if Description_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Description_IsSet{ false };
     /** @brief Gets the value of Description_Optional, regardless of it having been set */
     FString& GetDescription() { return Description_Optional; }

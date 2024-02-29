@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_BaseBackfillRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The instance ID for this backfill request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId{  };
     /** @brief Gets the value of InstanceId */
     FString& GetInstanceId() { return InstanceId; }

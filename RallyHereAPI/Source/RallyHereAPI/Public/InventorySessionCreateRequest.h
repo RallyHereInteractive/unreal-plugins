@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateRequest : public FRHAPI_Mod
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The platform for the session. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform SessionPlatform_Optional{  };
     /** @brief true if SessionPlatform_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SessionPlatform_IsSet{ false };
     /** @brief Gets the value of SessionPlatform_Optional, regardless of it having been set */
     ERHAPI_Platform& GetSessionPlatform() { return SessionPlatform_Optional; }

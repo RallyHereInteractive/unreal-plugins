@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of external Marketing Campaigns */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MarketingCampaign> Campaigns{  };
     /** @brief Gets the value of Campaigns */
     TArray<FRHAPI_MarketingCampaign>& GetCampaigns() { return Campaigns; }

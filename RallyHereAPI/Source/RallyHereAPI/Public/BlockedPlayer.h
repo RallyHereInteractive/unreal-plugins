@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid BlockedPlayerUuid{  };
     /** @brief Gets the value of BlockedPlayerUuid */
     FGuid& GetBlockedPlayerUuid() { return BlockedPlayerUuid; }
@@ -48,7 +48,7 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
     /** @brief Sets the value of BlockedPlayerUuid */
     void SetBlockedPlayerUuid(FGuid NewValue) { BlockedPlayerUuid = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastModifiedOn{  };
     /** @brief Gets the value of LastModifiedOn */
     FDateTime& GetLastModifiedOn() { return LastModifiedOn; }

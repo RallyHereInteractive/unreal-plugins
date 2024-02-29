@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief A collection of Player Orders. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlayerOrder> Data_Optional{  };
     /** @brief true if Data_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Data_IsSet{ false };
     /** @brief Gets the value of Data_Optional, regardless of it having been set */
     TArray<FRHAPI_PlayerOrder>& GetData() { return Data_Optional; }
@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
     void ClearData() { Data_IsSet = false; }
 
     /** @brief Page metadata for the Player Orders. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InventoryPageMeta Page{  };
     /** @brief Gets the value of Page */
     FRHAPI_InventoryPageMeta& GetPage() { return Page; }

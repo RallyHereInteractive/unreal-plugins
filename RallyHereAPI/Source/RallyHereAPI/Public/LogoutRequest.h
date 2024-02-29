@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_LogoutRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Refresh token to be invalidated */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RefreshToken{  };
     /** @brief Gets the value of RefreshToken */
     FString& GetRefreshToken() { return RefreshToken; }

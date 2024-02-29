@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of Key Claims available to the Player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_KeyClaim> Claims{  };
     /** @brief Gets the value of Claims */
     TArray<FRHAPI_KeyClaim>& GetClaims() { return Claims; }

@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Player UUID of the player updated */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid_Optional{  };
     /** @brief true if PlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerUuid_IsSet{ false };
     /** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
     FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
     void ClearPlayerUuid() { PlayerUuid_IsSet = false; }
 
     /** @brief Status of the player after the request is completed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_SessionPlayerStatus Status{  };
     /** @brief Gets the value of Status */
     ERHAPI_SessionPlayerStatus& GetStatus() { return Status; }
@@ -74,7 +74,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
     void SetStatus(ERHAPI_SessionPlayerStatus NewValue) { Status = NewValue;  }
 
     /** @brief Which team the player joined */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamId{ 0 };
     /** @brief Gets the value of TeamId */
     int32& GetTeamId() { return TeamId; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
     void SetTeamIdToDefault() { TeamId = 0;  }
 
     /** @brief Resulting custom data about the player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

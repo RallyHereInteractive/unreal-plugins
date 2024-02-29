@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for the instance the match took place on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId_Optional{  };
     /** @brief true if InstanceId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceId_IsSet{ false };
     /** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
     FString& GetInstanceId() { return InstanceId_Optional; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
     void ClearInstanceId() { InstanceId_IsSet = false; }
 
     /** @brief ID for the rank type used in this match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 RankId{ 0 };
     /** @brief Gets the value of RankId */
     int32& GetRankId() { return RankId; }
@@ -78,7 +78,7 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
     void SetRankIdToDefault() { RankId = 0;  }
 
     /** @brief How many seconds the match lasted */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MatchLengthSeconds{ 0 };
     /** @brief Gets the value of MatchLengthSeconds */
     int32& GetMatchLengthSeconds() { return MatchLengthSeconds; }
@@ -92,7 +92,7 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
     void SetMatchLengthSecondsToDefault() { MatchLengthSeconds = 0;  }
 
     /** @brief List of teams that participated in this match */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_RankedTeam> Teams{  };
     /** @brief Gets the value of Teams */
     TArray<FRHAPI_RankedTeam>& GetTeams() { return Teams; }

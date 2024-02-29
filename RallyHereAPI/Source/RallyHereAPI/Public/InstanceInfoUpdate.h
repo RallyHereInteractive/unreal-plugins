@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Allocation ID for instance that's been spun up */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AllocationId_Optional{  };
     /** @brief true if AllocationId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AllocationId_IsSet{ false };
     /** @brief Gets the value of AllocationId_Optional, regardless of it having been set */
     FString& GetAllocationId() { return AllocationId_Optional; }
@@ -65,10 +65,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
     void ClearAllocationId() { AllocationId_IsSet = false; }
 
     /** @brief Is the instance joinable at this time? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InstanceJoinableStatus JoinStatus_Optional{  };
     /** @brief true if JoinStatus_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool JoinStatus_IsSet{ false };
     /** @brief Gets the value of JoinStatus_Optional, regardless of it having been set */
     ERHAPI_InstanceJoinableStatus& GetJoinStatus() { return JoinStatus_Optional; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
     void ClearJoinStatus() { JoinStatus_IsSet = false; }
 
     /** @brief Parameters to join the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JoinParams JoinParams_Optional{  };
     /** @brief true if JoinParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool JoinParams_IsSet{ false };
     /** @brief Gets the value of JoinParams_Optional, regardless of it having been set */
     FRHAPI_JoinParams& GetJoinParams() { return JoinParams_Optional; }
@@ -111,10 +111,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
     void ClearJoinParams() { JoinParams_IsSet = false; }
 
     /** @brief Product Client Version number.  Used for compatibility checking with players.  Must be compatible with all players to spawn */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Version_Optional{  };
     /** @brief true if Version_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Version_IsSet{ false };
     /** @brief Gets the value of Version_Optional, regardless of it having been set */
     FString& GetVersion() { return Version_Optional; }
@@ -134,10 +134,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfoUpdate : public FRHAPI_Model
     void ClearVersion() { Version_IsSet = false; }
 
     /** @brief instance-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

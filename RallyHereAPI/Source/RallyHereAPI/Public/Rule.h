@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief What type of rule this is */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_RuleType RuleType{  };
     /** @brief Gets the value of RuleType */
     ERHAPI_RuleType& GetRuleType() { return RuleType; }
@@ -52,10 +52,10 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
     void SetRuleType(ERHAPI_RuleType NewValue) { RuleType = NewValue;  }
 
     /** @brief Id of the item we are comparing if this is an inventory rule */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ItemId_Optional{  };
     /** @brief true if ItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ItemId_IsSet{ false };
     /** @brief Gets the value of ItemId_Optional, regardless of it having been set */
     int32& GetItemId() { return ItemId_Optional; }
@@ -79,7 +79,7 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
     void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
 
     /** @brief Comparison operation to be performed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Operation ComparisonOperation{  };
     /** @brief Gets the value of ComparisonOperation */
     ERHAPI_Operation& GetComparisonOperation() { return ComparisonOperation; }
@@ -89,7 +89,7 @@ struct RALLYHEREAPI_API FRHAPI_Rule : public FRHAPI_Model
     void SetComparisonOperation(ERHAPI_Operation NewValue) { ComparisonOperation = NewValue;  }
 
     /** @brief Value to compare to */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ComparisonValue{ 0 };
     /** @brief Gets the value of ComparisonValue */
     int32& GetComparisonValue() { return ComparisonValue; }

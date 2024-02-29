@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PriceItemId{ 0 };
     /** @brief Gets the value of PriceItemId */
     int32& GetPriceItemId() { return PriceItemId; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
     /** @brief Sets the value of PriceItemId to its default  */
     void SetPriceItemIdToDefault() { PriceItemId = 0;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Quantity{ 0 };
     /** @brief Gets the value of Quantity */
     int32& GetQuantity() { return Quantity; }
@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
     /** @brief Sets the value of Quantity to its default  */
     void SetQuantityToDefault() { Quantity = 0;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Price{ 0 };
     /** @brief Gets the value of Price */
     int32& GetPrice() { return Price; }

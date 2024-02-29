@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroup : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID for this set of potential matchmaking templates */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid TemplateGroupId{  };
     /** @brief Gets the value of TemplateGroupId */
     FGuid& GetTemplateGroupId() { return TemplateGroupId; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroup : public FRHAPI_Model
     void SetTemplateGroupId(FGuid NewValue) { TemplateGroupId = NewValue;  }
 
     /** @brief List of the different matchmaking templates that could be used. The config is chosen based on a set of rules in each MatchMakingTemplate object. If there are no rules, it's the default template */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_MatchMakingTemplate> TemplateOptions{  };
     /** @brief Gets the value of TemplateOptions */
     TArray<FRHAPI_MatchMakingTemplate>& GetTemplateOptions() { return TemplateOptions; }
@@ -62,10 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingTemplateGroup : public FRHAPI_Model
     void SetTemplateOptions(TArray<FRHAPI_MatchMakingTemplate> NewValue) { TemplateOptions = NewValue;  }
 
     /** @brief Set of all the item ids that are required to validate every rule contained in this template group */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TSet<int32> RequiredItemIds_Optional{  };
     /** @brief true if RequiredItemIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RequiredItemIds_IsSet{ false };
     /** @brief Gets the value of RequiredItemIds_Optional, regardless of it having been set */
     TSet<int32>& GetRequiredItemIds() { return RequiredItemIds_Optional; }

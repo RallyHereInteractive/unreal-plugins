@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchAllocation : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Allocation ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AllocationId{  };
     /** @brief Gets the value of AllocationId */
     FString& GetAllocationId() { return AllocationId; }

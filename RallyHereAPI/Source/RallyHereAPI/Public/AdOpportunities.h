@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunities : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_AdOpportunity> Opportunities{  };
     /** @brief Gets the value of Opportunities */
     TArray<FRHAPI_AdOpportunity>& GetOpportunities() { return Opportunities; }

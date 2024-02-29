@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The Item ID of the Item before the change. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 BeforeItemId_Optional{  };
     /** @brief true if BeforeItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool BeforeItemId_IsSet{ false };
     /** @brief Gets the value of BeforeItemId_Optional, regardless of it having been set */
     int32& GetBeforeItemId() { return BeforeItemId_Optional; }
@@ -68,10 +68,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     void SetBeforeItemIdToDefault() { BeforeItemId_Optional = 0; BeforeItemId_IsSet = true; }
 
     /** @brief The Item ID of the Item after the change. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 AfterItemId_Optional{  };
     /** @brief true if AfterItemId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AfterItemId_IsSet{ false };
     /** @brief Gets the value of AfterItemId_Optional, regardless of it having been set */
     int32& GetAfterItemId() { return AfterItemId_Optional; }
@@ -95,10 +95,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     void SetAfterItemIdToDefault() { AfterItemId_Optional = 0; AfterItemId_IsSet = true; }
 
     /** @brief The Inventory Record before the change. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InventoryRecord Before_Optional{  };
     /** @brief true if Before_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Before_IsSet{ false };
     /** @brief Gets the value of Before_Optional, regardless of it having been set */
     FRHAPI_InventoryRecord& GetBefore() { return Before_Optional; }
@@ -118,10 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
     void ClearBefore() { Before_IsSet = false; }
 
     /** @brief The Inventory Record after the change. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InventoryRecord After_Optional{  };
     /** @brief true if After_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool After_IsSet{ false };
     /** @brief Gets the value of After_Optional, regardless of it having been set */
     FRHAPI_InventoryRecord& GetAfter() { return After_Optional; }

@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUnionCCUs : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_UnionCCU> PlatformCounts{  };
     /** @brief Gets the value of PlatformCounts */
     TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() { return PlatformCounts; }

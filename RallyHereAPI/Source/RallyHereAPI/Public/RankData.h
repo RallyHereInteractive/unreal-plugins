@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Trueskill mu. This is a measure of perceived skill in a player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float Mu{  };
     /** @brief Gets the value of Mu */
     float& GetMu() { return Mu; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
     void SetMu(float NewValue) { Mu = NewValue;  }
 
     /** @brief Trueskill sigma. This is a measure of how unconfident we are in the perceived skill (high sigma means less confident) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     float Sigma{  };
     /** @brief Gets the value of Sigma */
     float& GetSigma() { return Sigma; }
@@ -60,10 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
     void SetSigma(float NewValue) { Sigma = NewValue;  }
 
     /** @brief Custom key-value player rank data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

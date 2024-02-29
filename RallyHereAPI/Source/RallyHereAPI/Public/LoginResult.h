@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Parent portal auth result */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PortalUserInfo PortalParentAuthResult_Optional{  };
     /** @brief true if PortalParentAuthResult_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalParentAuthResult_IsSet{ false };
     /** @brief Gets the value of PortalParentAuthResult_Optional, regardless of it having been set */
     FRHAPI_PortalUserInfo& GetPortalParentAuthResult() { return PortalParentAuthResult_Optional; }
@@ -66,10 +66,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearPortalParentAuthResult() { PortalParentAuthResult_IsSet = false; }
 
     /** @brief List of permissions for this user. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FString> Permissions_Optional{  };
     /** @brief true if Permissions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Permissions_IsSet{ false };
     /** @brief Gets the value of Permissions_Optional, regardless of it having been set */
     TArray<FString>& GetPermissions() { return Permissions_Optional; }
@@ -89,10 +89,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearPermissions() { Permissions_IsSet = false; }
 
     /** @brief List of restrictions on this player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_Restriction> Restrictions_Optional{  };
     /** @brief true if Restrictions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Restrictions_IsSet{ false };
     /** @brief Gets the value of Restrictions_Optional, regardless of it having been set */
     TArray<FRHAPI_Restriction>& GetRestrictions() { return Restrictions_Optional; }
@@ -112,10 +112,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearRestrictions() { Restrictions_IsSet = false; }
 
     /** @brief Active player ID. *DEPRECATED* use `active_player_uuid` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ActivePlayerId_Optional{  };
     /** @brief true if ActivePlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ActivePlayerId_IsSet{ false };
     /** @brief Gets the value of ActivePlayerId_Optional, regardless of it having been set */
     int32& GetActivePlayerId() { return ActivePlayerId_Optional; }
@@ -139,10 +139,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
     /** @brief Active player UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ActivePlayerUuid_Optional{  };
     /** @brief true if ActivePlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ActivePlayerUuid_IsSet{ false };
     /** @brief Gets the value of ActivePlayerUuid_Optional, regardless of it having been set */
     FGuid& GetActivePlayerUuid() { return ActivePlayerUuid_Optional; }
@@ -162,10 +162,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false; }
 
     /** @brief Platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform_Optional{  };
     /** @brief true if Platform_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Platform_IsSet{ false };
     /** @brief Gets the value of Platform_Optional, regardless of it having been set */
     ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
@@ -185,10 +185,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearPlatform() { Platform_IsSet = false; }
 
     /** @brief Portal ID *DEPRECATED* use `platform` instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PortalId_Optional{  };
     /** @brief true if PortalId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalId_IsSet{ false };
     /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
     int32& GetPortalId() { return PortalId_Optional; }
@@ -212,10 +212,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetPortalIdToDefault() { PortalId_Optional = 0; PortalId_IsSet = true; }
 
     /** @brief Portal user ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PortalUserId_Optional{  };
     /** @brief true if PortalUserId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalUserId_IsSet{ false };
     /** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
     FString& GetPortalUserId() { return PortalUserId_Optional; }
@@ -235,10 +235,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearPortalUserId() { PortalUserId_IsSet = false; }
 
     /** @brief Display name */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString DisplayName_Optional{  };
     /** @brief true if DisplayName_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DisplayName_IsSet{ false };
     /** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
     FString& GetDisplayName() { return DisplayName_Optional; }
@@ -258,10 +258,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearDisplayName() { DisplayName_IsSet = false; }
 
     /** @brief Role ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 RoleId_Optional{  };
     /** @brief true if RoleId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RoleId_IsSet{ false };
     /** @brief Gets the value of RoleId_Optional, regardless of it having been set */
     int32& GetRoleId() { return RoleId_Optional; }
@@ -285,10 +285,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetRoleIdToDefault() { RoleId_Optional = 0; RoleId_IsSet = true; }
 
     /** @brief Person ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PersonId_Optional{  };
     /** @brief true if PersonId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PersonId_IsSet{ false };
     /** @brief Gets the value of PersonId_Optional, regardless of it having been set */
     FGuid& GetPersonId() { return PersonId_Optional; }
@@ -308,10 +308,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearPersonId() { PersonId_IsSet = false; }
 
     /** @brief Access token that can be used for future requests */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AccessToken_Optional{  };
     /** @brief true if AccessToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AccessToken_IsSet{ false };
     /** @brief Gets the value of AccessToken_Optional, regardless of it having been set */
     FString& GetAccessToken() { return AccessToken_Optional; }
@@ -335,10 +335,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetAccessTokenToDefault() { AccessToken_Optional = TEXT(""); AccessToken_IsSet = true; }
 
     /** @brief Refresh token that can be used to refresh authentication for a new access token */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RefreshToken_Optional{  };
     /** @brief true if RefreshToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RefreshToken_IsSet{ false };
     /** @brief Gets the value of RefreshToken_Optional, regardless of it having been set */
     FString& GetRefreshToken() { return RefreshToken_Optional; }
@@ -358,7 +358,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
     /** @brief Publisher UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PublisherUuid{  };
     /** @brief Gets the value of PublisherUuid */
     FGuid& GetPublisherUuid() { return PublisherUuid; }
@@ -368,7 +368,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetPublisherUuid(FGuid NewValue) { PublisherUuid = NewValue;  }
 
     /** @brief Tenant UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid TenantUuid{  };
     /** @brief Gets the value of TenantUuid */
     FGuid& GetTenantUuid() { return TenantUuid; }
@@ -378,7 +378,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetTenantUuid(FGuid NewValue) { TenantUuid = NewValue;  }
 
     /** @brief Config elector UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ConfigElectorUuid{  };
     /** @brief Gets the value of ConfigElectorUuid */
     FGuid& GetConfigElectorUuid() { return ConfigElectorUuid; }
@@ -388,7 +388,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetConfigElectorUuid(FGuid NewValue) { ConfigElectorUuid = NewValue;  }
 
     /** @brief Client UUID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid ClientUuid{  };
     /** @brief Gets the value of ClientUuid */
     FGuid& GetClientUuid() { return ClientUuid; }
@@ -398,7 +398,7 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetClientUuid(FGuid NewValue) { ClientUuid = NewValue;  }
 
     /** @brief Token type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString TokenType{  };
     /** @brief Gets the value of TokenType */
     FString& GetTokenType() { return TokenType; }
@@ -408,10 +408,10 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
     void SetTokenType(FString NewValue) { TokenType = NewValue;  }
 
     /** @brief Result access token expiration time in seconds */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ExpiresIn_Optional{  };
     /** @brief true if ExpiresIn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ExpiresIn_IsSet{ false };
     /** @brief Gets the value of ExpiresIn_Optional, regardless of it having been set */
     int32& GetExpiresIn() { return ExpiresIn_Optional; }

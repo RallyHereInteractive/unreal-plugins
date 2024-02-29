@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Number of events successfully posted to Event Hub */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PostedEvents{ 0 };
     /** @brief Gets the value of PostedEvents */
     int32& GetPostedEvents() { return PostedEvents; }
@@ -54,10 +54,10 @@ struct RALLYHEREAPI_API FRHAPI_PostGameEventsResponse : public FRHAPI_Model
     void SetPostedEventsToDefault() { PostedEvents = 0;  }
 
     /** @brief list of validation failure for each event. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_JsonValue> Errors_Optional{  };
     /** @brief true if Errors_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Errors_IsSet{ false };
     /** @brief Gets the value of Errors_Optional, regardless of it having been set */
     TArray<FRHAPI_JsonValue>& GetErrors() { return Errors_Optional; }

@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The type of key */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Type{  };
     /** @brief Gets the value of Type */
     FString& GetType() { return Type; }

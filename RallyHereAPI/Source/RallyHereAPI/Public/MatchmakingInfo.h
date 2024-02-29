@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique ID for this attempt at matchmaking */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString TicketId{  };
     /** @brief Gets the value of TicketId */
     FString& GetTicketId() { return TicketId; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
     void SetTicketId(FString NewValue) { TicketId = NewValue;  }
 
     /** @brief session-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

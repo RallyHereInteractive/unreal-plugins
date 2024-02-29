@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Additional double arguments to add to the matchmaking ticket */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, float> DoubleArgs_Optional{  };
     /** @brief true if DoubleArgs_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DoubleArgs_IsSet{ false };
     /** @brief Gets the value of DoubleArgs_Optional, regardless of it having been set */
     TMap<FString, float>& GetDoubleArgs() { return DoubleArgs_Optional; }
@@ -63,10 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
     void ClearDoubleArgs() { DoubleArgs_IsSet = false; }
 
     /** @brief Additional string arguments to add to the matchmaking ticket */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> StringArgs_Optional{  };
     /** @brief true if StringArgs_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool StringArgs_IsSet{ false };
     /** @brief Gets the value of StringArgs_Optional, regardless of it having been set */
     TMap<FString, FString>& GetStringArgs() { return StringArgs_Optional; }
@@ -86,10 +86,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
     void ClearStringArgs() { StringArgs_IsSet = false; }
 
     /** @brief Additional tags to add to the matchmaking ticket */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FString> Tags_Optional{  };
     /** @brief true if Tags_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Tags_IsSet{ false };
     /** @brief Gets the value of Tags_Optional, regardless of it having been set */
     TArray<FString>& GetTags() { return Tags_Optional; }
@@ -109,10 +109,10 @@ struct RALLYHEREAPI_API FRHAPI_AdditionalJoinParams : public FRHAPI_Model
     void ClearTags() { Tags_IsSet = false; }
 
     /** @brief Additional extensions to add to the matchmaking ticket. Value is a base64 string representation of the protobuf binary data. The data will be converted back to binary before being put on the ticket */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> Extensions_Optional{  };
     /** @brief true if Extensions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Extensions_IsSet{ false };
     /** @brief Gets the value of Extensions_Optional, regardless of it having been set */
     TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }

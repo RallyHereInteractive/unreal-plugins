@@ -45,10 +45,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Allocation ID for instance that's been spun up */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AllocationId_Optional{  };
     /** @brief true if AllocationId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AllocationId_IsSet{ false };
     /** @brief Gets the value of AllocationId_Optional, regardless of it having been set */
     FString& GetAllocationId() { return AllocationId_Optional; }
@@ -68,7 +68,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearAllocationId() { AllocationId_IsSet = false; }
 
     /** @brief Unique ID for the host/session relationship */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId{  };
     /** @brief Gets the value of InstanceId */
     FString& GetInstanceId() { return InstanceId; }
@@ -78,7 +78,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void SetInstanceId(FString NewValue) { InstanceId = NewValue;  }
 
     /** @brief Type of the host */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_HostType HostType{  };
     /** @brief Gets the value of HostType */
     ERHAPI_HostType& GetHostType() { return HostType; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void SetHostType(ERHAPI_HostType NewValue) { HostType = NewValue;  }
 
     /** @brief Player ID of the host, if the host type is player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 HostPlayerId_Optional{  };
     /** @brief true if HostPlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostPlayerId_IsSet{ false };
     /** @brief Gets the value of HostPlayerId_Optional, regardless of it having been set */
     int32& GetHostPlayerId() { return HostPlayerId_Optional; }
@@ -115,10 +115,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void SetHostPlayerIdToDefault() { HostPlayerId_Optional = 0; HostPlayerId_IsSet = true; }
 
     /** @brief Player UUID of the host, if the host type is player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid HostPlayerUuid_Optional{  };
     /** @brief true if HostPlayerUuid_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostPlayerUuid_IsSet{ false };
     /** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
     FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
@@ -138,10 +138,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; }
 
     /** @brief Unique ID for the process that is running this instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString HostDedicatedProcessId_Optional{  };
     /** @brief true if HostDedicatedProcessId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostDedicatedProcessId_IsSet{ false };
     /** @brief Gets the value of HostDedicatedProcessId_Optional, regardless of it having been set */
     FString& GetHostDedicatedProcessId() { return HostDedicatedProcessId_Optional; }
@@ -161,10 +161,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearHostDedicatedProcessId() { HostDedicatedProcessId_IsSet = false; }
 
     /** @brief Unique ID for the machine running the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString HostDedicatedServerId_Optional{  };
     /** @brief true if HostDedicatedServerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HostDedicatedServerId_IsSet{ false };
     /** @brief Gets the value of HostDedicatedServerId_Optional, regardless of it having been set */
     FString& GetHostDedicatedServerId() { return HostDedicatedServerId_Optional; }
@@ -184,7 +184,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearHostDedicatedServerId() { HostDedicatedServerId_IsSet = false; }
 
     /** @brief Is the instance joinable at this time? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InstanceJoinableStatus JoinStatus{  };
     /** @brief Gets the value of JoinStatus */
     ERHAPI_InstanceJoinableStatus& GetJoinStatus() { return JoinStatus; }
@@ -194,10 +194,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void SetJoinStatus(ERHAPI_InstanceJoinableStatus NewValue) { JoinStatus = NewValue;  }
 
     /** @brief Parameters to join the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JoinParams JoinParams_Optional{  };
     /** @brief true if JoinParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool JoinParams_IsSet{ false };
     /** @brief Gets the value of JoinParams_Optional, regardless of it having been set */
     FRHAPI_JoinParams& GetJoinParams() { return JoinParams_Optional; }
@@ -217,10 +217,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearJoinParams() { JoinParams_IsSet = false; }
 
     /** @brief Parameters used by the host to startup. For UE5 this will contain the map and gamemode */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InstanceStartupParams InstanceStartupParams_Optional{  };
     /** @brief true if InstanceStartupParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceStartupParams_IsSet{ false };
     /** @brief Gets the value of InstanceStartupParams_Optional, regardless of it having been set */
     FRHAPI_InstanceStartupParams& GetInstanceStartupParams() { return InstanceStartupParams_Optional; }
@@ -240,10 +240,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearInstanceStartupParams() { InstanceStartupParams_IsSet = false; }
 
     /** @brief Product Client Version number.  Used for compatibility checking with players */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Version_Optional{  };
     /** @brief true if Version_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Version_IsSet{ false };
     /** @brief Gets the value of Version_Optional, regardless of it having been set */
     FString& GetVersion() { return Version_Optional; }
@@ -263,7 +263,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearVersion() { Version_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Created{  };
     /** @brief Gets the value of Created */
     FDateTime& GetCreated() { return Created; }
@@ -273,10 +273,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void SetCreated(FDateTime NewValue) { Created = NewValue;  }
 
     /** @brief instance-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -296,10 +296,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief The current status of the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InstanceHealthStatus InstanceHealth_Optional{  };
     /** @brief true if InstanceHealth_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InstanceHealth_IsSet{ false };
     /** @brief Gets the value of InstanceHealth_Optional, regardless of it having been set */
     ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth_Optional; }
@@ -319,10 +319,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceInfo : public FRHAPI_Model
     void ClearInstanceHealth() { InstanceHealth_IsSet = false; }
 
     /** @brief The profile id that this instance was spawned from */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchMakingProfileId_Optional{  };
     /** @brief true if MatchMakingProfileId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MatchMakingProfileId_IsSet{ false };
     /** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
     FString& GetMatchMakingProfileId() { return MatchMakingProfileId_Optional; }

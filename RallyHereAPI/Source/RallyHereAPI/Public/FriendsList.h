@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
     /** @brief Sets the value of PlayerUuid */
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_FriendRelationship> Friends{  };
     /** @brief Gets the value of Friends */
     TArray<FRHAPI_FriendRelationship>& GetFriends() { return Friends; }
@@ -59,7 +59,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
     /** @brief Sets the value of Friends */
     void SetFriends(TArray<FRHAPI_FriendRelationship> NewValue) { Friends = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PageMeta Page{  };
     /** @brief Gets the value of Page */
     FRHAPI_PageMeta& GetPage() { return Page; }

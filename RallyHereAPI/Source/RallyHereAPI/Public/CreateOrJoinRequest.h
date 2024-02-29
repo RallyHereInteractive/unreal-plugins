@@ -43,7 +43,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief String representation of semver for client */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ClientVersion{  };
     /** @brief Gets the value of ClientVersion */
     FString& GetClientVersion() { return ClientVersion; }
@@ -53,7 +53,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void SetClientVersion(FString NewValue) { ClientVersion = NewValue;  }
 
     /** @brief Which input type and platform the client is using */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_ClientSettings ClientSettings{  };
     /** @brief Gets the value of ClientSettings */
     FRHAPI_ClientSettings& GetClientSettings() { return ClientSettings; }
@@ -63,10 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void SetClientSettings(FRHAPI_ClientSettings NewValue) { ClientSettings = NewValue;  }
 
     /** @brief Client's desired crossplay settings to determine which other clients it can play with. If not defined, assumed to be as permissive as possible */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CrossplayPreferences CrossplayPreferences_Optional{  };
     /** @brief true if CrossplayPreferences_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CrossplayPreferences_IsSet{ false };
     /** @brief Gets the value of CrossplayPreferences_Optional, regardless of it having been set */
     FRHAPI_CrossplayPreferences& GetCrossplayPreferences() { return CrossplayPreferences_Optional; }
@@ -86,7 +86,7 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void ClearCrossplayPreferences() { CrossplayPreferences_IsSet = false; }
 
     /** @brief Type of session client is creating or joining */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionType{  };
     /** @brief Gets the value of SessionType */
     FString& GetSessionType() { return SessionType; }
@@ -96,10 +96,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void SetSessionType(FString NewValue) { SessionType = NewValue;  }
 
     /** @brief Preferred region for the instance and match to take place in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RegionId_Optional{  };
     /** @brief true if RegionId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RegionId_IsSet{ false };
     /** @brief Gets the value of RegionId_Optional, regardless of it having been set */
     FString& GetRegionId() { return RegionId_Optional; }
@@ -119,10 +119,10 @@ struct RALLYHEREAPI_API FRHAPI_CreateOrJoinRequest : public FRHAPI_Model
     void ClearRegionId() { RegionId_IsSet = false; }
 
     /** @brief Optional information about player in order to join the new/existing session. V2 version of CreateOrJoin will require this */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_SelfSessionPlayerUpdateRequest Player_Optional{  };
     /** @brief true if Player_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Player_IsSet{ false };
     /** @brief Gets the value of Player_Optional, regardless of it having been set */
     FRHAPI_SelfSessionPlayerUpdateRequest& GetPlayer() { return Player_Optional; }

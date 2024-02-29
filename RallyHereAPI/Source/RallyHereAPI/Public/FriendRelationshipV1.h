@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid FriendsPlayerUuid{  };
     /** @brief Gets the value of FriendsPlayerUuid */
     FGuid& GetFriendsPlayerUuid() { return FriendsPlayerUuid; }
@@ -49,10 +49,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
     /** @brief Sets the value of FriendsPlayerUuid */
     void SetFriendsPlayerUuid(FGuid NewValue) { FriendsPlayerUuid = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 FriendsPlayerId_Optional{  };
     /** @brief true if FriendsPlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool FriendsPlayerId_IsSet{ false };
     /** @brief Gets the value of FriendsPlayerId_Optional, regardless of it having been set */
     int32& GetFriendsPlayerId() { return FriendsPlayerId_Optional; }
@@ -75,7 +75,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
     /** @brief Sets the value of FriendsPlayerId_Optional to its default and also sets FriendsPlayerId_IsSet to true */
     void SetFriendsPlayerIdToDefault() { FriendsPlayerId_Optional = 0; FriendsPlayerId_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_FriendshipStatus Status{  };
     /** @brief Gets the value of Status */
     ERHAPI_FriendshipStatus& GetStatus() { return Status; }
@@ -84,10 +84,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
     /** @brief Sets the value of Status */
     void SetStatus(ERHAPI_FriendshipStatus NewValue) { Status = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Notes_Optional{  };
     /** @brief true if Notes_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Notes_IsSet{ false };
     /** @brief Gets the value of Notes_Optional, regardless of it having been set */
     FString& GetNotes() { return Notes_Optional; }
@@ -106,7 +106,7 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationshipV1 : public FRHAPI_Model
      /** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
     void ClearNotes() { Notes_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastModifiedOn{  };
     /** @brief Gets the value of LastModifiedOn */
     FDateTime& GetLastModifiedOn() { return LastModifiedOn; }

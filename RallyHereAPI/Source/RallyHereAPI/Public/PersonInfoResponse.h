@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Person ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PersonId_Optional{  };
     /** @brief true if PersonId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PersonId_IsSet{ false };
     /** @brief Gets the value of PersonId_Optional, regardless of it having been set */
     FGuid& GetPersonId() { return PersonId_Optional; }
@@ -63,10 +63,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
     void ClearPersonId() { PersonId_IsSet = false; }
 
     /** @brief Active player ID, if the person has an active player. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ActivePlayerId_Optional{  };
     /** @brief true if ActivePlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ActivePlayerId_IsSet{ false };
     /** @brief Gets the value of ActivePlayerId_Optional, regardless of it having been set */
     int32& GetActivePlayerId() { return ActivePlayerId_Optional; }
@@ -90,10 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_PersonInfoResponse : public FRHAPI_Model
     void SetActivePlayerIdToDefault() { ActivePlayerId_Optional = 0; ActivePlayerId_IsSet = true; }
 
     /** @brief Email address */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Email_Optional{  };
     /** @brief true if Email_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Email_IsSet{ false };
     /** @brief Gets the value of Email_Optional, regardless of it having been set */
     FString& GetEmail() { return Email_Optional; }

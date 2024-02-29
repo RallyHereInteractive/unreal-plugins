@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of notifications */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_Notification> Notifications_Optional{  };
     /** @brief true if Notifications_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Notifications_IsSet{ false };
     /** @brief Gets the value of Notifications_Optional, regardless of it having been set */
     TArray<FRHAPI_Notification>& GetNotifications() { return Notifications_Optional; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
     void ClearNotifications() { Notifications_IsSet = false; }
 
     /** @brief Cursor to use for the next request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Cursor{  };
     /** @brief Gets the value of Cursor */
     FString& GetCursor() { return Cursor; }

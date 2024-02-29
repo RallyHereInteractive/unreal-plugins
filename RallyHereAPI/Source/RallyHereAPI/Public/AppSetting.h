@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The key for the setting */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Key{  };
     /** @brief Gets the value of Key */
     FString& GetKey() { return Key; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     void SetKey(FString NewValue) { Key = NewValue;  }
 
     /** @brief The value for the setting */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Value{  };
     /** @brief Gets the value of Value */
     FString& GetValue() { return Value; }
@@ -60,10 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_AppSetting : public FRHAPI_Model
     void SetValue(FString NewValue) { Value = NewValue;  }
 
     /** @brief Notes to describe the key value pair */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Notes_Optional{  };
     /** @brief true if Notes_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Notes_IsSet{ false };
     /** @brief Gets the value of Notes_Optional, regardless of it having been set */
     FString& GetNotes() { return Notes_Optional; }

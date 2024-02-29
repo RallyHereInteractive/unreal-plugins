@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Unique ID */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchMakingId{  };
     /** @brief Gets the value of MatchMakingId */
     FString& GetMatchMakingId() { return MatchMakingId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
     void SetMatchMakingId(FString NewValue) { MatchMakingId = NewValue;  }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Created{  };
     /** @brief Gets the value of Created */
     FDateTime& GetCreated() { return Created; }
@@ -60,10 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
     void SetCreated(FDateTime NewValue) { Created = NewValue;  }
 
     /** @brief MMF defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -83,10 +83,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief List of tickets that were assigned to this match if created by matchmaking */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FString> TicketIds_Optional{  };
     /** @brief true if TicketIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TicketIds_IsSet{ false };
     /** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
     TArray<FString>& GetTicketIds() { return TicketIds_Optional; }
@@ -106,10 +106,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
     void ClearTicketIds() { TicketIds_IsSet = false; }
 
     /** @brief Whether or not the tickets from these results have been assigned */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TicketsAssigned_Optional{  };
     /** @brief true if TicketsAssigned_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TicketsAssigned_IsSet{ false };
     /** @brief Gets the value of TicketsAssigned_Optional, regardless of it having been set */
     bool& GetTicketsAssigned() { return TicketsAssigned_Optional; }

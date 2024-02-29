@@ -43,10 +43,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Custom data associated with the resource */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -66,10 +66,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief Determines how the Vendor fulfills the loot */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_VendorType Type_Optional{  };
     /** @brief true if Type_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Type_IsSet{ false };
     /** @brief Gets the value of Type_Optional, regardless of it having been set */
     ERHAPI_VendorType& GetType() { return Type_Optional; }
@@ -88,10 +88,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
      /** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
     void ClearType() { Type_IsSet = false; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LegacyType_Optional{  };
     /** @brief true if LegacyType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyType_IsSet{ false };
     /** @brief Gets the value of LegacyType_Optional, regardless of it having been set */
     int32& GetLegacyType() { return LegacyType_Optional; }
@@ -114,10 +114,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     /** @brief Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true */
     void SetLegacyTypeToDefault() { LegacyType_Optional = 0; LegacyType_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LegacyConfigVersion_Optional{  };
     /** @brief true if LegacyConfigVersion_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyConfigVersion_IsSet{ false };
     /** @brief Gets the value of LegacyConfigVersion_Optional, regardless of it having been set */
     int32& GetLegacyConfigVersion() { return LegacyConfigVersion_Optional; }
@@ -141,10 +141,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     void SetLegacyConfigVersionToDefault() { LegacyConfigVersion_Optional = 0; LegacyConfigVersion_IsSet = true; }
 
     /** @brief The Loot the Vendor will fulfill mapped by Loot ID. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_Loot> Loot_Optional{  };
     /** @brief true if Loot_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Loot_IsSet{ false };
     /** @brief Gets the value of Loot_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_Loot>& GetLoot() { return Loot_Optional; }
@@ -164,10 +164,10 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
     void ClearLoot() { Loot_IsSet = false; }
 
     /** @brief Cache info for the Vendor. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

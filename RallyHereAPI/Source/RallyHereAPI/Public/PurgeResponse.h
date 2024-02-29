@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Person ID that will be purged */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PersonId{  };
     /** @brief Gets the value of PersonId */
     FGuid& GetPersonId() { return PersonId; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     void SetPersonId(FGuid NewValue) { PersonId = NewValue;  }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime PurgeOn{  };
     /** @brief Gets the value of PurgeOn */
     FDateTime& GetPurgeOn() { return PurgeOn; }
@@ -60,7 +60,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     void SetPurgeOn(FDateTime NewValue) { PurgeOn = NewValue;  }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime CreatedOn{  };
     /** @brief Gets the value of CreatedOn */
     FDateTime& GetCreatedOn() { return CreatedOn; }
@@ -70,7 +70,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     void SetCreatedOn(FDateTime NewValue) { CreatedOn = NewValue;  }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastModifiedOn{  };
     /** @brief Gets the value of LastModifiedOn */
     FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
@@ -80,7 +80,7 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
     void SetLastModifiedOn(FDateTime NewValue) { LastModifiedOn = NewValue;  }
 
     /** @brief Status of the purge request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Status{  };
     /** @brief Gets the value of Status */
     FString& GetStatus() { return Status; }

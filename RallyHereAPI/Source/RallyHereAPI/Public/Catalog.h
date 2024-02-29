@@ -49,10 +49,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The XP Tables. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_XpTables XpTables_Optional{  };
     /** @brief true if XpTables_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool XpTables_IsSet{ false };
     /** @brief Gets the value of XpTables_Optional, regardless of it having been set */
     FRHAPI_XpTables& GetXpTables() { return XpTables_Optional; }
@@ -72,10 +72,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearXpTables() { XpTables_IsSet = false; }
 
     /** @brief The Portal Use Rulesets. Use Inventory Bucket Use Rule Sets instead. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PortalUseRulesets PortalUseRulesets_Optional{  };
     /** @brief true if PortalUseRulesets_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalUseRulesets_IsSet{ false };
     /** @brief Gets the value of PortalUseRulesets_Optional, regardless of it having been set */
     FRHAPI_PortalUseRulesets& GetPortalUseRulesets() { return PortalUseRulesets_Optional; }
@@ -95,10 +95,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearPortalUseRulesets() { PortalUseRulesets_IsSet = false; }
 
     /** @brief The rules on how to use Inventory Buckets. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InventoryBucketUseRuleSets InventoryBucketUseRuleSets_Optional{  };
     /** @brief true if InventoryBucketUseRuleSets_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InventoryBucketUseRuleSets_IsSet{ false };
     /** @brief Gets the value of InventoryBucketUseRuleSets_Optional, regardless of it having been set */
     FRHAPI_InventoryBucketUseRuleSets& GetInventoryBucketUseRuleSets() { return InventoryBucketUseRuleSets_Optional; }
@@ -118,10 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearInventoryBucketUseRuleSets() { InventoryBucketUseRuleSets_IsSet = false; }
 
     /** @brief The Vendors. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_Vendors Vendors_Optional{  };
     /** @brief true if Vendors_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Vendors_IsSet{ false };
     /** @brief Gets the value of Vendors_Optional, regardless of it having been set */
     FRHAPI_Vendors& GetVendors() { return Vendors_Optional; }
@@ -141,10 +141,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearVendors() { Vendors_IsSet = false; }
 
     /** @brief The Loots. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_Loots Loot_Optional{  };
     /** @brief true if Loot_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Loot_IsSet{ false };
     /** @brief Gets the value of Loot_Optional, regardless of it having been set */
     FRHAPI_Loots& GetLoot() { return Loot_Optional; }
@@ -164,10 +164,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearLoot() { Loot_IsSet = false; }
 
     /** @brief The Items. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_Items Items_Optional{  };
     /** @brief true if Items_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Items_IsSet{ false };
     /** @brief Gets the value of Items_Optional, regardless of it having been set */
     FRHAPI_Items& GetItems() { return Items_Optional; }
@@ -187,10 +187,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearItems() { Items_IsSet = false; }
 
     /** @brief The Price Points. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PricePoints PricePoints_Optional{  };
     /** @brief true if PricePoints_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PricePoints_IsSet{ false };
     /** @brief Gets the value of PricePoints_Optional, regardless of it having been set */
     FRHAPI_PricePoints& GetPricePoints() { return PricePoints_Optional; }
@@ -210,10 +210,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearPricePoints() { PricePoints_IsSet = false; }
 
     /** @brief The Time Frames. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_TimeFrames TimeFrames_Optional{  };
     /** @brief true if TimeFrames_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool TimeFrames_IsSet{ false };
     /** @brief Gets the value of TimeFrames_Optional, regardless of it having been set */
     FRHAPI_TimeFrames& GetTimeFrames() { return TimeFrames_Optional; }
@@ -233,10 +233,10 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void ClearTimeFrames() { TimeFrames_IsSet = false; }
 
     /** @brief Cache info for the Catalog. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

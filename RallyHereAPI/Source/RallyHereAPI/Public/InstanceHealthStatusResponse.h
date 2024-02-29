@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Mode
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The new health status of the instance. It may not match the status sent up if too few health checks are being recieved */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InstanceHealthStatus UpdatedInstanceHealth{  };
     /** @brief Gets the value of UpdatedInstanceHealth */
     ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() { return UpdatedInstanceHealth; }

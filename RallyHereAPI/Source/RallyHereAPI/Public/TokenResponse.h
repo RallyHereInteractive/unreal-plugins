@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Result access token */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AccessToken{  };
     /** @brief Gets the value of AccessToken */
     FString& GetAccessToken() { return AccessToken; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     void SetAccessToken(FString NewValue) { AccessToken = NewValue;  }
 
     /** @brief Result token type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString TokenType{  };
     /** @brief Gets the value of TokenType */
     FString& GetTokenType() { return TokenType; }
@@ -60,10 +60,10 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     void SetTokenType(FString NewValue) { TokenType = NewValue;  }
 
     /** @brief Result refresh token that can be used to get new access tokens */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RefreshToken_Optional{  };
     /** @brief true if RefreshToken_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RefreshToken_IsSet{ false };
     /** @brief Gets the value of RefreshToken_Optional, regardless of it having been set */
     FString& GetRefreshToken() { return RefreshToken_Optional; }
@@ -83,7 +83,7 @@ struct RALLYHEREAPI_API FRHAPI_TokenResponse : public FRHAPI_Model
     void ClearRefreshToken() { RefreshToken_IsSet = false; }
 
     /** @brief Result access token expiration time in seconds */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ExpiresIn{ 0 };
     /** @brief Gets the value of ExpiresIn */
     int32& GetExpiresIn() { return ExpiresIn; }

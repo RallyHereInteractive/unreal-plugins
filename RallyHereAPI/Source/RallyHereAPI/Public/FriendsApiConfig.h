@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Maximum number of friends a user can have */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 FriendLimit_Optional{  };
     /** @brief true if FriendLimit_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool FriendLimit_IsSet{ false };
     /** @brief Gets the value of FriendLimit_Optional, regardless of it having been set */
     int32& GetFriendLimit() { return FriendLimit_Optional; }
@@ -67,10 +67,10 @@ struct RALLYHEREAPI_API FRHAPI_FriendsApiConfig : public FRHAPI_Model
     void SetFriendLimitToDefault() { FriendLimit_Optional = 10000; FriendLimit_IsSet = true; }
 
     /** @brief Maximum number of blocked users a user can have */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 BlockLimit_Optional{  };
     /** @brief true if BlockLimit_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool BlockLimit_IsSet{ false };
     /** @brief Gets the value of BlockLimit_Optional, regardless of it having been set */
     int32& GetBlockLimit() { return BlockLimit_Optional; }

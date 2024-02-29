@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief IP that sent the request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Ip{  };
     /** @brief Gets the value of Ip */
     FString& GetIp() { return Ip; }

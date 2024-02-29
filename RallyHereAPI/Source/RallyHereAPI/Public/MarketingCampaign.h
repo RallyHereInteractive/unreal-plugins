@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The unique identifier for the Marketing Campaign */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid Uuid{  };
     /** @brief Gets the value of Uuid */
     FGuid& GetUuid() { return Uuid; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
     void SetUuid(FGuid NewValue) { Uuid = NewValue;  }
 
     /** @brief The name of the Marketing Campaign */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Name{  };
     /** @brief Gets the value of Name */
     FString& GetName() { return Name; }
@@ -62,10 +62,10 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
     void SetName(FString NewValue) { Name = NewValue;  }
 
     /** @brief Platform for the Marketing Campaign */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Portal PortalId_Optional{  };
     /** @brief true if PortalId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PortalId_IsSet{ false };
     /** @brief Gets the value of PortalId_Optional, regardless of it having been set */
     ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
@@ -85,7 +85,7 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
     void ClearPortalId() { PortalId_IsSet = false; }
 
     /** @brief The types of keys that can be claimed from this campaign */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_KeyType> KeyTypes{  };
     /** @brief Gets the value of KeyTypes */
     TArray<FRHAPI_KeyType>& GetKeyTypes() { return KeyTypes; }
@@ -95,10 +95,10 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
     void SetKeyTypes(TArray<FRHAPI_KeyType> NewValue) { KeyTypes = NewValue;  }
 
     /** @brief The time the MarketingCampaign was created */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString CreatedOn_Optional{  };
     /** @brief true if CreatedOn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CreatedOn_IsSet{ false };
     /** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
     FString& GetCreatedOn() { return CreatedOn_Optional; }
@@ -118,10 +118,10 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaign : public FRHAPI_Model
     void ClearCreatedOn() { CreatedOn_IsSet = false; }
 
     /** @brief The time the MarketingCampaign was last modified */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString LastModifiedOn_Optional{  };
     /** @brief true if LastModifiedOn_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LastModifiedOn_IsSet{ false };
     /** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
     FString& GetLastModifiedOn() { return LastModifiedOn_Optional; }

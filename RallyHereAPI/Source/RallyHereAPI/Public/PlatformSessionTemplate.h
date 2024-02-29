@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief DEPRECATED. ID for the platform type for this template. Use 'platform' instead */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PlatformID PlatformId{  };
     /** @brief Gets the value of PlatformId */
     ERHAPI_PlatformID& GetPlatformId() { return PlatformId; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
     void SetPlatformId(ERHAPI_PlatformID NewValue) { PlatformId = NewValue;  }
 
     /** @brief Platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform Platform{  };
     /** @brief Gets the value of Platform */
     ERHAPI_Platform& GetPlatform() { return Platform; }
@@ -62,7 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
     void SetPlatform(ERHAPI_Platform NewValue) { Platform = NewValue;  }
 
     /** @brief Platform-Specific Identifier for the Platform's template */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformSessionType{  };
     /** @brief Gets the value of PlatformSessionType */
     FString& GetPlatformSessionType() { return PlatformSessionType; }
@@ -72,10 +72,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
     void SetPlatformSessionType(FString NewValue) { PlatformSessionType = NewValue;  }
 
     /** @brief The maximum number of players that can be a part of this platform session */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxPlayers_Optional{  };
     /** @brief true if MaxPlayers_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MaxPlayers_IsSet{ false };
     /** @brief Gets the value of MaxPlayers_Optional, regardless of it having been set */
     int32& GetMaxPlayers() { return MaxPlayers_Optional; }
@@ -99,10 +99,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionTemplate : public FRHAPI_Model
     void SetMaxPlayersToDefault() { MaxPlayers_Optional = 0; MaxPlayers_IsSet = true; }
 
     /** @brief Product-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

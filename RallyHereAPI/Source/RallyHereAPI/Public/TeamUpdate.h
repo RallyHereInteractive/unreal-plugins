@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_TeamUpdate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Maximum number of players for this team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxSize{ 0 };
     /** @brief Gets the value of MaxSize */
     int32& GetMaxSize() { return MaxSize; }

@@ -39,10 +39,10 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AuthSuccess_Optional{  };
     /** @brief true if AuthSuccess_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AuthSuccess_IsSet{ false };
     /** @brief Gets the value of AuthSuccess_Optional, regardless of it having been set */
     bool& GetAuthSuccess() { return AuthSuccess_Optional; }
@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     /** @brief Sets the value of AuthSuccess_Optional to its default and also sets AuthSuccess_IsSet to true */
     void SetAuthSuccessToDefault() { AuthSuccess_Optional = true; AuthSuccess_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString ErrorCode{  };
     /** @brief Gets the value of ErrorCode */
     FString& GetErrorCode() { return ErrorCode; }
@@ -74,7 +74,7 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     /** @brief Sets the value of ErrorCode */
     void SetErrorCode(FString NewValue) { ErrorCode = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Desc{  };
     /** @brief Gets the value of Desc */
     FString& GetDesc() { return Desc; }
@@ -84,10 +84,10 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     void SetDesc(FString NewValue) { Desc = NewValue;  }
 
     /** @brief Whether the user needs to accept the End User License Agreement */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsEula_Optional{  };
     /** @brief true if NeedsEula_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsEula_IsSet{ false };
     /** @brief Gets the value of NeedsEula_Optional, regardless of it having been set */
     bool& GetNeedsEula() { return NeedsEula_Optional; }
@@ -111,10 +111,10 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     void SetNeedsEulaToDefault() { NeedsEula_Optional = false; NeedsEula_IsSet = true; }
 
     /** @brief Whether the user needs to accept the Terms of Service */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsTos_Optional{  };
     /** @brief true if NeedsTos_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsTos_IsSet{ false };
     /** @brief Gets the value of NeedsTos_Optional, regardless of it having been set */
     bool& GetNeedsTos() { return NeedsTos_Optional; }
@@ -138,10 +138,10 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
     void SetNeedsTosToDefault() { NeedsTos_Optional = false; NeedsTos_IsSet = true; }
 
     /** @brief Whether the user needs to accept the Privacy Policy */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsPrivacyPolicy_Optional{  };
     /** @brief true if NeedsPrivacyPolicy_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NeedsPrivacyPolicy_IsSet{ false };
     /** @brief Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set */
     bool& GetNeedsPrivacyPolicy() { return NeedsPrivacyPolicy_Optional; }

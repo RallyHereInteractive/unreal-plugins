@@ -43,7 +43,7 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The type of detail. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PlayerOrderDetailType Type{  };
     /** @brief Gets the value of Type */
     ERHAPI_PlayerOrderDetailType& GetType() { return Type; }
@@ -53,10 +53,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     void SetType(ERHAPI_PlayerOrderDetailType NewValue) { Type = NewValue;  }
 
     /** @brief The Loot ID. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LootId_Optional{  };
     /** @brief true if LootId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LootId_IsSet{ false };
     /** @brief Gets the value of LootId_Optional, regardless of it having been set */
     int32& GetLootId() { return LootId_Optional; }
@@ -80,10 +80,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     void SetLootIdToDefault() { LootId_Optional = 0; LootId_IsSet = true; }
 
     /** @brief The Inventory change that occurred as part of this detail. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PlayerInventoryChange InvChange_Optional{  };
     /** @brief true if InvChange_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool InvChange_IsSet{ false };
     /** @brief Gets the value of InvChange_Optional, regardless of it having been set */
     FRHAPI_PlayerInventoryChange& GetInvChange() { return InvChange_Optional; }
@@ -103,10 +103,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderDetail : public FRHAPI_Model
     void ClearInvChange() { InvChange_IsSet = false; }
 
     /** @brief Reference to the Player Order that this detail belongs to. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_PlayerOrderCreate Order_Optional{  };
     /** @brief true if Order_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Order_IsSet{ false };
     /** @brief Gets the value of Order_Optional, regardless of it having been set */
     FRHAPI_PlayerOrderCreate& GetOrder() { return Order_Optional; }

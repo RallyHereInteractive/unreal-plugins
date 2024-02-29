@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Setting Type Version to update setting for.  Must be a valid version for the setting type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 V{ 0 };
     /** @brief Gets the value of V */
     int32& GetV() { return V; }
@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
     void SetVToDefault() { V = 0;  }
 
     /** @brief New value for the setting.  Must conform to the jsonschema defined for the setting type+version */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonValue Value{  };
     /** @brief Gets the value of Value */
     FRHAPI_JsonValue& GetValue() { return Value; }

@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of players.  An empty list means iteration is complete */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlayerResponse> Players_Optional{  };
     /** @brief true if Players_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Players_IsSet{ false };
     /** @brief Gets the value of Players_Optional, regardless of it having been set */
     TArray<FRHAPI_PlayerResponse>& GetPlayers() { return Players_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerIterateResponse : public FRHAPI_Model
     void ClearPlayers() { Players_IsSet = false; }
 
     /** @brief Cursor to continue iteration */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Cursor_Optional{  };
     /** @brief true if Cursor_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Cursor_IsSet{ false };
     /** @brief Gets the value of Cursor_Optional, regardless of it having been set */
     FString& GetCursor() { return Cursor_Optional; }

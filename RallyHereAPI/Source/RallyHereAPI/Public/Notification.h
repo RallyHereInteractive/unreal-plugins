@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Base Message for the notification */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Message{  };
     /** @brief Gets the value of Message */
     FString& GetMessage() { return Message; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     void SetMessage(FString NewValue) { Message = NewValue;  }
 
     /** @brief Path to get additional data about this notification */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RhUrl_Optional{  };
     /** @brief true if RhUrl_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RhUrl_IsSet{ false };
     /** @brief Gets the value of RhUrl_Optional, regardless of it having been set */
     FString& GetRhUrl() { return RhUrl_Optional; }
@@ -73,10 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     void ClearRhUrl() { RhUrl_IsSet = false; }
 
     /** @brief Custom values for the notification */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -96,10 +96,10 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief ETag for the resource at rh_url at the time of this notification */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Etag_Optional{  };
     /** @brief true if Etag_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Etag_IsSet{ false };
     /** @brief Gets the value of Etag_Optional, regardless of it having been set */
     FString& GetEtag() { return Etag_Optional; }
@@ -119,7 +119,7 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     void ClearEtag() { Etag_IsSet = false; }
 
     /** @brief Unique Identifier for the notification.  You cannot depend on the format of this string, and it must be considered opaque */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString NotificationId{  };
     /** @brief Gets the value of NotificationId */
     FString& GetNotificationId() { return NotificationId; }
@@ -129,7 +129,7 @@ struct RALLYHEREAPI_API FRHAPI_Notification : public FRHAPI_Model
     void SetNotificationId(FString NewValue) { NotificationId = NewValue;  }
 
     /** @brief When this notification was added */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Created{  };
     /** @brief Gets the value of Created */
     FDateTime& GetCreated() { return Created; }

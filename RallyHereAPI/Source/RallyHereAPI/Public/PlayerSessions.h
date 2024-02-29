@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessions : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Session associated with this player, and any pending invites */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_PlayerSession> Sessions_Optional{  };
     /** @brief true if Sessions_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Sessions_IsSet{ false };
     /** @brief Gets the value of Sessions_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_PlayerSession>& GetSessions() { return Sessions_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessions : public FRHAPI_Model
     void ClearSessions() { Sessions_IsSet = false; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime LastUpdatedTimestamp_Optional{  };
     /** @brief true if LastUpdatedTimestamp_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LastUpdatedTimestamp_IsSet{ false };
     /** @brief Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set */
     FDateTime& GetLastUpdatedTimestamp() { return LastUpdatedTimestamp_Optional; }

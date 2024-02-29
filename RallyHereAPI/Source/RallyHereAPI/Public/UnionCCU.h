@@ -39,7 +39,7 @@ struct RALLYHEREAPI_API FRHAPI_UnionCCU : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Count{ 0 };
     /** @brief Gets the value of Count */
     int32& GetCount() { return Count; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_UnionCCU : public FRHAPI_Model
     /** @brief Sets the value of Count to its default  */
     void SetCountToDefault() { Count = 0;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FDateTime> Timestamps{  };
     /** @brief Gets the value of Timestamps */
     TArray<FDateTime>& GetTimestamps() { return Timestamps; }

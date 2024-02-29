@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreates : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief List of notifications creation requests */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_NotificationCreate> Notifications{  };
     /** @brief Gets the value of Notifications */
     TArray<FRHAPI_NotificationCreate>& GetNotifications() { return Notifications; }

@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_MessageOnly : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Message */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Message{  };
     /** @brief Gets the value of Message */
     FString& GetMessage() { return Message; }

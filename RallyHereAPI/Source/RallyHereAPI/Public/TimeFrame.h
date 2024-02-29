@@ -41,10 +41,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The name of the Time Frame. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Name_Optional{  };
     /** @brief true if Name_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Name_IsSet{ false };
     /** @brief Gets the value of Name_Optional, regardless of it having been set */
     FString& GetName() { return Name_Optional; }
@@ -64,10 +64,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     void ClearName() { Name_IsSet = false; }
 
     /** @brief Whether or not the Time Frame is active. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Active_Optional{  };
     /** @brief true if Active_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Active_IsSet{ false };
     /** @brief Gets the value of Active_Optional, regardless of it having been set */
     bool& GetActive() { return Active_Optional; }
@@ -90,10 +90,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     /** @brief Sets the value of Active_Optional to its default and also sets Active_IsSet to true */
     void SetActiveToDefault() { Active_Optional = false; Active_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Episode_Optional{  };
     /** @brief true if Episode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Episode_IsSet{ false };
     /** @brief Gets the value of Episode_Optional, regardless of it having been set */
     int32& GetEpisode() { return Episode_Optional; }
@@ -116,10 +116,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     /** @brief Sets the value of Episode_Optional to its default and also sets Episode_IsSet to true */
     void SetEpisodeToDefault() { Episode_Optional = 0; Episode_IsSet = true; }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 EpisodeType_Optional{  };
     /** @brief true if EpisodeType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EpisodeType_IsSet{ false };
     /** @brief Gets the value of EpisodeType_Optional, regardless of it having been set */
     int32& GetEpisodeType() { return EpisodeType_Optional; }
@@ -143,10 +143,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     void SetEpisodeTypeToDefault() { EpisodeType_Optional = 0; EpisodeType_IsSet = true; }
 
     /** @brief Number of hours that this time frame lasts until restarting.0 interval means no repeating. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 HourInterval_Optional{  };
     /** @brief true if HourInterval_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool HourInterval_IsSet{ false };
     /** @brief Gets the value of HourInterval_Optional, regardless of it having been set */
     int32& GetHourInterval() { return HourInterval_Optional; }
@@ -170,7 +170,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     void SetHourIntervalToDefault() { HourInterval_Optional = 0; HourInterval_IsSet = true; }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime Start{  };
     /** @brief Gets the value of Start */
     FDateTime& GetStart() { return Start; }
@@ -180,7 +180,7 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     void SetStart(FDateTime NewValue) { Start = NewValue;  }
 
     /** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FDateTime End{  };
     /** @brief Gets the value of End */
     FDateTime& GetEnd() { return End; }
@@ -190,10 +190,10 @@ struct RALLYHEREAPI_API FRHAPI_TimeFrame : public FRHAPI_Model
     void SetEnd(FDateTime NewValue) { End = NewValue;  }
 
     /** @brief Cache info for the Time Frame. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_CacheInfo CacheInfo_Optional{  };
     /** @brief true if CacheInfo_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CacheInfo_IsSet{ false };
     /** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
     FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }

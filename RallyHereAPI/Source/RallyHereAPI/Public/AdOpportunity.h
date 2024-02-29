@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The URL to the ad */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString AdUrl{  };
     /** @brief Gets the value of AdUrl */
     FString& GetAdUrl() { return AdUrl; }
@@ -50,7 +50,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     void SetAdUrl(FString NewValue) { AdUrl = NewValue;  }
 
     /** @brief The number of seconds the ad is */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 Seconds{ 0 };
     /** @brief Gets the value of Seconds */
     int32& GetSeconds() { return Seconds; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
     void SetSecondsToDefault() { Seconds = 0;  }
 
     /** @brief The ID of the ad opportunity */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString OpportunityId{  };
     /** @brief Gets the value of OpportunityId */
     FString& GetOpportunityId() { return OpportunityId; }

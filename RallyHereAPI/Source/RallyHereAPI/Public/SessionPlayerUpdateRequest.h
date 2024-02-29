@@ -42,10 +42,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Status that the player would like after the request is complete.  Note that some join operations may promote the player from `member` to `leader` */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_SessionPlayerStatus Status_Optional{  };
     /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Status_IsSet{ false };
     /** @brief Gets the value of Status_Optional, regardless of it having been set */
     ERHAPI_SessionPlayerStatus& GetStatus() { return Status_Optional; }
@@ -65,7 +65,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
     void ClearStatus() { Status_IsSet = false; }
 
     /** @brief Which team the player should be on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 TeamId{ 0 };
     /** @brief Gets the value of TeamId */
     int32& GetTeamId() { return TeamId; }
@@ -79,10 +79,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
     void SetTeamIdToDefault() { TeamId = 0;  }
 
     /** @brief player-defined custom data */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -102,10 +102,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateRequest : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief How we should handle too many players being invited to the chosen team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_TeamOverflowAction OverflowAction_Optional{  };
     /** @brief true if OverflowAction_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool OverflowAction_IsSet{ false };
     /** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
     ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }

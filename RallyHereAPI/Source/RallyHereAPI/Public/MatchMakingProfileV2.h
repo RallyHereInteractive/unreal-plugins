@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID of the matchmaking profile to join */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString MatchMakingProfileId{  };
     /** @brief Gets the value of MatchMakingProfileId */
     FString& GetMatchMakingProfileId() { return MatchMakingProfileId; }
@@ -51,10 +51,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void SetMatchMakingProfileId(FString NewValue) { MatchMakingProfileId = NewValue;  }
 
     /** @brief What mode to set on the matchmaking profile (normal, backfill etc) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_ProfileJoinMode JoinMode_Optional{  };
     /** @brief true if JoinMode_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool JoinMode_IsSet{ false };
     /** @brief Gets the value of JoinMode_Optional, regardless of it having been set */
     ERHAPI_ProfileJoinMode& GetJoinMode() { return JoinMode_Optional; }
@@ -74,7 +74,7 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void ClearJoinMode() { JoinMode_IsSet = false; }
 
     /** @brief Which instance template to use when launching a match in this profile */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid InstanceRequestTemplateId{  };
     /** @brief Gets the value of InstanceRequestTemplateId */
     FGuid& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId; }
@@ -84,10 +84,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void SetInstanceRequestTemplateId(FGuid NewValue) { InstanceRequestTemplateId = NewValue;  }
 
     /** @brief Which rank this profile should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RankId_Optional{  };
     /** @brief true if RankId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool RankId_IsSet{ false };
     /** @brief Gets the value of RankId_Optional, regardless of it having been set */
     FString& GetRankId() { return RankId_Optional; }
@@ -107,10 +107,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void ClearRankId() { RankId_IsSet = false; }
 
     /** @brief The number of sides a game in this profile will have (2 in a 1v1 and 3 in a 1v1v1 for example */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 NumSides_Optional{  };
     /** @brief true if NumSides_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NumSides_IsSet{ false };
     /** @brief Gets the value of NumSides_Optional, regardless of it having been set */
     int32& GetNumSides() { return NumSides_Optional; }
@@ -134,10 +134,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void SetNumSidesToDefault() { NumSides_Optional = 0; NumSides_IsSet = true; }
 
     /** @brief The maximum number of players that can be on each team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MaxPlayersPerSide_Optional{  };
     /** @brief true if MaxPlayersPerSide_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MaxPlayersPerSide_IsSet{ false };
     /** @brief Gets the value of MaxPlayersPerSide_Optional, regardless of it having been set */
     int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide_Optional; }
@@ -161,10 +161,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void SetMaxPlayersPerSideToDefault() { MaxPlayersPerSide_Optional = 0; MaxPlayersPerSide_IsSet = true; }
 
     /** @brief The minimum number of players that can be on each team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MinPlayersPerSide_Optional{  };
     /** @brief true if MinPlayersPerSide_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MinPlayersPerSide_IsSet{ false };
     /** @brief Gets the value of MinPlayersPerSide_Optional, regardless of it having been set */
     int32& GetMinPlayersPerSide() { return MinPlayersPerSide_Optional; }
@@ -188,10 +188,10 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingProfileV2 : public FRHAPI_Model
     void SetMinPlayersPerSideToDefault() { MinPlayersPerSide_Optional = 0; MinPlayersPerSide_IsSet = true; }
 
     /** @brief Legacy config to help migrate clients */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject LegacyConfig_Optional{  };
     /** @brief true if LegacyConfig_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool LegacyConfig_IsSet{ false };
     /** @brief Gets the value of LegacyConfig_Optional, regardless of it having been set */
     FRHAPI_JsonObject& GetLegacyConfig() { return LegacyConfig_Optional; }

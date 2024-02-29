@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief The health status of the instance */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_InstanceHealthStatus InstanceHealth{  };
     /** @brief Gets the value of InstanceHealth */
     ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth; }
@@ -51,7 +51,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
     void SetInstanceHealth(ERHAPI_InstanceHealthStatus NewValue) { InstanceHealth = NewValue;  }
 
     /** @brief The instance ID for the instance whose health you are reporting */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString InstanceId{  };
     /** @brief Gets the value of InstanceId */
     FString& GetInstanceId() { return InstanceId; }

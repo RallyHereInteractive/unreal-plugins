@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief unique name for this template */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString SessionType{  };
     /** @brief Gets the value of SessionType */
     FString& GetSessionType() { return SessionType; }
@@ -52,10 +52,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetSessionType(FString NewValue) { SessionType = NewValue;  }
 
     /** @brief Engine identifier for sessions of this type.  For UE, this is commonly `Party` or `Game`. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString EngineSessionType_Optional{  };
     /** @brief true if EngineSessionType_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EngineSessionType_IsSet{ false };
     /** @brief Gets the value of EngineSessionType_Optional, regardless of it having been set */
     FString& GetEngineSessionType() { return EngineSessionType_Optional; }
@@ -79,10 +79,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetEngineSessionTypeToDefault() { EngineSessionType_Optional = TEXT("Game"); EngineSessionType_IsSet = true; }
 
     /** @brief Are sessions of this type allowed to join matchmaking? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanJoinMatchmaking_Optional{  };
     /** @brief true if CanJoinMatchmaking_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanJoinMatchmaking_IsSet{ false };
     /** @brief Gets the value of CanJoinMatchmaking_Optional, regardless of it having been set */
     bool& GetCanJoinMatchmaking() { return CanJoinMatchmaking_Optional; }
@@ -106,10 +106,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetCanJoinMatchmakingToDefault() { CanJoinMatchmaking_Optional = false; CanJoinMatchmaking_IsSet = true; }
 
     /** @brief Are players allowed to create sessions of this type? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanBeCreatedByPlayersDirectly_Optional{  };
     /** @brief true if CanBeCreatedByPlayersDirectly_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanBeCreatedByPlayersDirectly_IsSet{ false };
     /** @brief Gets the value of CanBeCreatedByPlayersDirectly_Optional, regardless of it having been set */
     bool& GetCanBeCreatedByPlayersDirectly() { return CanBeCreatedByPlayersDirectly_Optional; }
@@ -133,10 +133,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetCanBeCreatedByPlayersDirectlyToDefault() { CanBeCreatedByPlayersDirectly_Optional = false; CanBeCreatedByPlayersDirectly_IsSet = true; }
 
     /** @brief DEPRECATED. Use 'attempt_auto_join' instead. Should players join existing sessions of this type before creating a new one */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Joinable_Optional{  };
     /** @brief true if Joinable_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Joinable_IsSet{ false };
     /** @brief Gets the value of Joinable_Optional, regardless of it having been set */
     bool& GetJoinable() { return Joinable_Optional; }
@@ -160,10 +160,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetJoinableToDefault() { Joinable_Optional = false; Joinable_IsSet = true; }
 
     /** @brief Should players join existing sessions of this type before creating a new one */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AttemptAutoJoin_Optional{  };
     /** @brief true if AttemptAutoJoin_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AttemptAutoJoin_IsSet{ false };
     /** @brief Gets the value of AttemptAutoJoin_Optional, regardless of it having been set */
     bool& GetAttemptAutoJoin() { return AttemptAutoJoin_Optional; }
@@ -187,10 +187,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetAttemptAutoJoinToDefault() { AttemptAutoJoin_Optional = false; AttemptAutoJoin_IsSet = true; }
 
     /** @brief Should sessions of this type should be publicly joinable by default */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DefaultPublic_Optional{  };
     /** @brief true if DefaultPublic_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool DefaultPublic_IsSet{ false };
     /** @brief Gets the value of DefaultPublic_Optional, regardless of it having been set */
     bool& GetDefaultPublic() { return DefaultPublic_Optional; }
@@ -214,10 +214,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetDefaultPublicToDefault() { DefaultPublic_Optional = false; DefaultPublic_IsSet = true; }
 
     /** @brief Should session be automatically added to the browser list */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AutoAddToBrowser_Optional{  };
     /** @brief true if AutoAddToBrowser_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AutoAddToBrowser_IsSet{ false };
     /** @brief Gets the value of AutoAddToBrowser_Optional, regardless of it having been set */
     bool& GetAutoAddToBrowser() { return AutoAddToBrowser_Optional; }
@@ -241,10 +241,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetAutoAddToBrowserToDefault() { AutoAddToBrowser_Optional = false; AutoAddToBrowser_IsSet = true; }
 
     /** @brief Browser parameters that can be used to filter results */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> AutoBrowserParams_Optional{  };
     /** @brief true if AutoBrowserParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AutoBrowserParams_IsSet{ false };
     /** @brief Gets the value of AutoBrowserParams_Optional, regardless of it having been set */
     TMap<FString, FString>& GetAutoBrowserParams() { return AutoBrowserParams_Optional; }
@@ -264,10 +264,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void ClearAutoBrowserParams() { AutoBrowserParams_IsSet = false; }
 
     /** @brief Are sessions of this type able to be added to the server browser by players? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanBeAddedToServerBrowser_Optional{  };
     /** @brief true if CanBeAddedToServerBrowser_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanBeAddedToServerBrowser_IsSet{ false };
     /** @brief Gets the value of CanBeAddedToServerBrowser_Optional, regardless of it having been set */
     bool& GetCanBeAddedToServerBrowser() { return CanBeAddedToServerBrowser_Optional; }
@@ -291,10 +291,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetCanBeAddedToServerBrowserToDefault() { CanBeAddedToServerBrowser_Optional = false; CanBeAddedToServerBrowser_IsSet = true; }
 
     /** @brief Should the session stay around, or be destroyed when the last player leaves it? */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool KeepAliveOnEmpty_Optional{  };
     /** @brief true if KeepAliveOnEmpty_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool KeepAliveOnEmpty_IsSet{ false };
     /** @brief Gets the value of KeepAliveOnEmpty_Optional, regardless of it having been set */
     bool& GetKeepAliveOnEmpty() { return KeepAliveOnEmpty_Optional; }
@@ -318,10 +318,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetKeepAliveOnEmptyToDefault() { KeepAliveOnEmpty_Optional = false; KeepAliveOnEmpty_IsSet = true; }
 
     /** @brief Platform-Specific session mappings that are used to coordinate Rally Here sessions with OnlineSubsystem sessions */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FRHAPI_PlatformSessionTemplate> PlatformTemplates_Optional{  };
     /** @brief true if PlatformTemplates_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlatformTemplates_IsSet{ false };
     /** @brief Gets the value of PlatformTemplates_Optional, regardless of it having been set */
     TMap<FString, FRHAPI_PlatformSessionTemplate>& GetPlatformTemplates() { return PlatformTemplates_Optional; }
@@ -341,10 +341,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void ClearPlatformTemplates() { PlatformTemplates_IsSet = false; }
 
     /** @brief Parameters used to start an instance for this session when it is created */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_InstanceStartupParams AutoStartupParams_Optional{  };
     /** @brief true if AutoStartupParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AutoStartupParams_IsSet{ false };
     /** @brief Gets the value of AutoStartupParams_Optional, regardless of it having been set */
     FRHAPI_InstanceStartupParams& GetAutoStartupParams() { return AutoStartupParams_Optional; }
@@ -364,10 +364,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void ClearAutoStartupParams() { AutoStartupParams_IsSet = false; }
 
     /** @brief Minimum number of this type of session to be running at any given time per region. */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 MinSessionCount_Optional{  };
     /** @brief true if MinSessionCount_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MinSessionCount_IsSet{ false };
     /** @brief Gets the value of MinSessionCount_Optional, regardless of it having been set */
     int32& GetMinSessionCount() { return MinSessionCount_Optional; }
@@ -391,10 +391,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetMinSessionCountToDefault() { MinSessionCount_Optional = 0; MinSessionCount_IsSet = true; }
 
     /** @brief Product-defined custom data about this session type */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
@@ -414,10 +414,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void ClearCustomData() { CustomData_IsSet = false; }
 
     /** @brief The number of teams this session type can have */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 NumTeams_Optional{  };
     /** @brief true if NumTeams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool NumTeams_IsSet{ false };
     /** @brief Gets the value of NumTeams_Optional, regardless of it having been set */
     int32& GetNumTeams() { return NumTeams_Optional; }
@@ -441,10 +441,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetNumTeamsToDefault() { NumTeams_Optional = 1; NumTeams_IsSet = true; }
 
     /** @brief The number of players that can be on each team */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayersPerTeam_Optional{  };
     /** @brief true if PlayersPerTeam_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayersPerTeam_IsSet{ false };
     /** @brief Gets the value of PlayersPerTeam_Optional, regardless of it having been set */
     int32& GetPlayersPerTeam() { return PlayersPerTeam_Optional; }
@@ -468,10 +468,10 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
     void SetPlayersPerTeamToDefault() { PlayersPerTeam_Optional = 4; PlayersPerTeam_IsSet = true; }
 
     /** @brief Whether or not a player can change which team they are on. If true, they are able to. If False, they player's team can only be changed by an admin */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanChangeOwnTeam_Optional{  };
     /** @brief true if CanChangeOwnTeam_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CanChangeOwnTeam_IsSet{ false };
     /** @brief Gets the value of CanChangeOwnTeam_Optional, regardless of it having been set */
     bool& GetCanChangeOwnTeam() { return CanChangeOwnTeam_Optional; }

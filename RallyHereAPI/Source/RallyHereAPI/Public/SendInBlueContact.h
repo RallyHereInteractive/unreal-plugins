@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Email address */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Email{  };
     /** @brief Gets the value of Email */
     FString& GetEmail() { return Email; }
@@ -50,10 +50,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     void SetEmail(FString NewValue) { Email = NewValue;  }
 
     /** @brief Attributes */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_JsonObject Attributes_Optional{  };
     /** @brief true if Attributes_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Attributes_IsSet{ false };
     /** @brief Gets the value of Attributes_Optional, regardless of it having been set */
     FRHAPI_JsonObject& GetAttributes() { return Attributes_Optional; }
@@ -73,10 +73,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     void ClearAttributes() { Attributes_IsSet = false; }
 
     /** @brief Email blacklisted */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EmailBlacklisted_Optional{  };
     /** @brief true if EmailBlacklisted_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool EmailBlacklisted_IsSet{ false };
     /** @brief Gets the value of EmailBlacklisted_Optional, regardless of it having been set */
     bool& GetEmailBlacklisted() { return EmailBlacklisted_Optional; }
@@ -100,10 +100,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     void SetEmailBlacklistedToDefault() { EmailBlacklisted_Optional = false; EmailBlacklisted_IsSet = true; }
 
     /** @brief List IDs */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<int32> ListIds_Optional{  };
     /** @brief true if ListIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ListIds_IsSet{ false };
     /** @brief Gets the value of ListIds_Optional, regardless of it having been set */
     TArray<int32>& GetListIds() { return ListIds_Optional; }
@@ -123,10 +123,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     void ClearListIds() { ListIds_IsSet = false; }
 
     /** @brief Unlink list IDs */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<int32> UnlinkListIds_Optional{  };
     /** @brief true if UnlinkListIds_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool UnlinkListIds_IsSet{ false };
     /** @brief Gets the value of UnlinkListIds_Optional, regardless of it having been set */
     TArray<int32>& GetUnlinkListIds() { return UnlinkListIds_Optional; }
@@ -146,10 +146,10 @@ struct RALLYHEREAPI_API FRHAPI_SendInBlueContact : public FRHAPI_Model
     void ClearUnlinkListIds() { UnlinkListIds_IsSet = false; }
 
     /** @brief Update enabled */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool UpdateEnabled_Optional{  };
     /** @brief true if UpdateEnabled_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool UpdateEnabled_IsSet{ false };
     /** @brief Gets the value of UpdateEnabled_Optional, regardless of it having been set */
     bool& GetUpdateEnabled() { return UpdateEnabled_Optional; }

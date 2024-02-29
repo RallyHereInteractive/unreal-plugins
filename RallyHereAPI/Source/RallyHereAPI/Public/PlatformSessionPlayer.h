@@ -40,10 +40,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief Player ID representing the current player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 PlayerId_Optional{  };
     /** @brief true if PlayerId_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool PlayerId_IsSet{ false };
     /** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
     int32& GetPlayerId() { return PlayerId_Optional; }
@@ -67,7 +67,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
     void SetPlayerIdToDefault() { PlayerId_Optional = 0; PlayerId_IsSet = true; }
 
     /** @brief Player UUID representing the current player */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid PlayerUuid{  };
     /** @brief Gets the value of PlayerUuid */
     FGuid& GetPlayerUuid() { return PlayerUuid; }
@@ -77,10 +77,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSessionPlayer : public FRHAPI_Model
     void SetPlayerUuid(FGuid NewValue) { PlayerUuid = NewValue;  }
 
     /** @brief Is this player the leader of the platform session?  When setting up the parent session, if all players are from the same platform session, leadership is coordinated */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Leader_Optional{  };
     /** @brief true if Leader_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Leader_IsSet{ false };
     /** @brief Gets the value of Leader_Optional, regardless of it having been set */
     bool& GetLeader() { return Leader_Optional; }

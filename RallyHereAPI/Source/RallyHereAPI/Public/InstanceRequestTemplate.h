@@ -42,7 +42,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID to uniquely identify this instance launch template */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FGuid InstanceRequestTemplateId{  };
     /** @brief Gets the value of InstanceRequestTemplateId */
     FGuid& GetInstanceRequestTemplateId() { return InstanceRequestTemplateId; }
@@ -52,7 +52,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
     void SetInstanceRequestTemplateId(FGuid NewValue) { InstanceRequestTemplateId = NewValue;  }
 
     /** @brief A selection list of maps that can be chosen to launch into */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MapSelectionListV2 MapSelectionList{  };
     /** @brief Gets the value of MapSelectionList */
     FRHAPI_MapSelectionListV2& GetMapSelectionList() { return MapSelectionList; }
@@ -62,7 +62,7 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
     void SetMapSelectionList(FRHAPI_MapSelectionListV2 NewValue) { MapSelectionList = NewValue;  }
 
     /** @brief Default host type for this template. Can be overriden in instance requests */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_HostType DefaultHostType{  };
     /** @brief Gets the value of DefaultHostType */
     ERHAPI_HostType& GetDefaultHostType() { return DefaultHostType; }
@@ -72,10 +72,10 @@ struct RALLYHEREAPI_API FRHAPI_InstanceRequestTemplate : public FRHAPI_Model
     void SetDefaultHostType(ERHAPI_HostType NewValue) { DefaultHostType = NewValue;  }
 
     /** @brief Custom data that will be passed to the session during the instance launch request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };
     /** @brief true if CustomData_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool CustomData_IsSet{ false };
     /** @brief Gets the value of CustomData_Optional, regardless of it having been set */
     TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }

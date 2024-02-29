@@ -41,7 +41,7 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief ID of the queue to join */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString QueueId{  };
     /** @brief Gets the value of QueueId */
     FString& GetQueueId() { return QueueId; }
@@ -51,10 +51,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
     void SetQueueId(FString NewValue) { QueueId = NewValue;  }
 
     /** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_AdditionalJoinParams AdditionalJoinParams_Optional{  };
     /** @brief true if AdditionalJoinParams_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool AdditionalJoinParams_IsSet{ false };
     /** @brief Gets the value of AdditionalJoinParams_Optional, regardless of it having been set */
     FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() { return AdditionalJoinParams_Optional; }
@@ -74,10 +74,10 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
     void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false; }
 
     /** @brief List of map preferences in order from most desired, to least desired */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FString> MapPreferences_Optional{  };
     /** @brief true if MapPreferences_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool MapPreferences_IsSet{ false };
     /** @brief Gets the value of MapPreferences_Optional, regardless of it having been set */
     TArray<FString>& GetMapPreferences() { return MapPreferences_Optional; }

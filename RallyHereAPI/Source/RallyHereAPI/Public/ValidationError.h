@@ -40,7 +40,7 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
     */
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_LocationInner> Loc{  };
     /** @brief Gets the value of Loc */
     TArray<FRHAPI_LocationInner>& GetLoc() { return Loc; }
@@ -49,7 +49,7 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
     /** @brief Sets the value of Loc */
     void SetLoc(TArray<FRHAPI_LocationInner> NewValue) { Loc = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Msg{  };
     /** @brief Gets the value of Msg */
     FString& GetMsg() { return Msg; }
@@ -58,7 +58,7 @@ struct RALLYHEREAPI_API FRHAPI_ValidationError : public FRHAPI_Model
     /** @brief Sets the value of Msg */
     void SetMsg(FString NewValue) { Msg = NewValue;  }
 
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Type{  };
     /** @brief Gets the value of Type */
     FString& GetType() { return Type; }

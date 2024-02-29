@@ -44,7 +44,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
     /** @brief unique id to allow tracking the request */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString RequestId{  };
     /** @brief Gets the value of RequestId */
     FString& GetRequestId() { return RequestId; }
@@ -54,7 +54,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetRequestId(FString NewValue) { RequestId = NewValue;  }
 
     /** @brief client type this purchase was made on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_ClientType ClientType{  };
     /** @brief Gets the value of ClientType */
     ERHAPI_ClientType& GetClientType() { return ClientType; }
@@ -64,7 +64,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetClientType(ERHAPI_ClientType NewValue) { ClientType = NewValue;  }
 
     /** @brief unique id for this transaction on the platform */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString TransactionId{  };
     /** @brief Gets the value of TransactionId */
     FString& GetTransactionId() { return TransactionId; }
@@ -74,7 +74,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetTransactionId(FString NewValue) { TransactionId = NewValue;  }
 
     /** @brief region this purchase was made in */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_PlatformRegion PlatformRegion{  };
     /** @brief Gets the value of PlatformRegion */
     ERHAPI_PlatformRegion& GetPlatformRegion() { return PlatformRegion; }
@@ -84,10 +84,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetPlatformRegion(ERHAPI_PlatformRegion NewValue) { PlatformRegion = NewValue;  }
 
     /** @brief status of this result */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString Status_Optional{  };
     /** @brief true if Status_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool Status_IsSet{ false };
     /** @brief Gets the value of Status_Optional, regardless of it having been set */
     FString& GetStatus() { return Status_Optional; }
@@ -111,10 +111,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetStatusToDefault() { Status_Optional = TEXT("SUBMITTED"); Status_IsSet = true; }
 
     /** @brief Client entitlements that have been processed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlatformEntitlement> ClientEntitlements_Optional{  };
     /** @brief true if ClientEntitlements_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ClientEntitlements_IsSet{ false };
     /** @brief Gets the value of ClientEntitlements_Optional, regardless of it having been set */
     TArray<FRHAPI_PlatformEntitlement>& GetClientEntitlements() { return ClientEntitlements_Optional; }
@@ -134,10 +134,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void ClearClientEntitlements() { ClientEntitlements_IsSet = false; }
 
     /** @brief Server entitlements that have been processed */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TArray<FRHAPI_PlatformEntitlement> ServerEntitlements_Optional{  };
     /** @brief true if ServerEntitlements_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool ServerEntitlements_IsSet{ false };
     /** @brief Gets the value of ServerEntitlements_Optional, regardless of it having been set */
     TArray<FRHAPI_PlatformEntitlement>& GetServerEntitlements() { return ServerEntitlements_Optional; }
@@ -157,7 +157,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void ClearServerEntitlements() { ServerEntitlements_IsSet = false; }
 
     /** @brief Platform these transactions were processed on */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_Platform PlatformId{  };
     /** @brief Gets the value of PlatformId */
     ERHAPI_Platform& GetPlatformId() { return PlatformId; }
@@ -167,7 +167,7 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetPlatformId(ERHAPI_Platform NewValue) { PlatformId = NewValue;  }
 
     /** @brief Unique identifier for the platform user that processed this entitlement */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FString PlatformUserId{  };
     /** @brief Gets the value of PlatformUserId */
     FString& GetPlatformUserId() { return PlatformUserId; }
@@ -177,10 +177,10 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessResult : public FRHAPI_
     void SetPlatformUserId(FString NewValue) { PlatformUserId = NewValue;  }
 
     /** @brief True if the server entitlements were skipped */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SkippedServerEntitlements_Optional{  };
     /** @brief true if SkippedServerEntitlements_Optional has been set to a value */
-    UPROPERTY(BlueprintReadOnly, Category = "RallyHere")
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     bool SkippedServerEntitlements_IsSet{ false };
     /** @brief Gets the value of SkippedServerEntitlements_Optional, regardless of it having been set */
     bool& GetSkippedServerEntitlements() { return SkippedServerEntitlements_Optional; }
