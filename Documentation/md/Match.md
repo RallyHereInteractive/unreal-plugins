@@ -74,7 +74,7 @@ Match Subsystem used for match API calls.
 `public virtual void `[`Deinitialize`](#classURH__MatchSubsystem_1ab7136837d1d9bf468d9be59cc33463b7)`()` | Safely tears down the subsystem.
 `public virtual void `[`SearchMatches`](#classURH__MatchSubsystem_1a23248c4305bc3aa2a6dfc4ef3aa93573)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDelegateBlock & Delegate)` | Search for Matches.
 `public inline void `[`BLUEPRINT_SearchMatches`](#classURH__MatchSubsystem_1a3557ad010d1dc2a951c114699f4ab0a8)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDynamicDelegate & Delegate)` | 
-`public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1a5a1ff4bb909ab513114466d9a6540680)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` | Lookup a specific match.
+`public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` | Lookup a specific match.
 `public  `[`UFUNCTION`](#classURH__MatchSubsystem_1ab0fddd0741eb99997cf1fb3948c7f815)`(BlueprintCallable,Category,meta) const` | 
 `public inline bool `[`GetMatch`](#classURH__MatchSubsystem_1a893610997366c15dd53fa65e311ce1b8)`(const FString & MatchId,`[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` & OutMatch)` | Lookup a specific match from the cache.
 `public inline const TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > & `[`GetAllMatches`](#classURH__MatchSubsystem_1a051681ea68418192d99aaffe1264b258)`() const` | Get all matches from the cache.
@@ -130,7 +130,7 @@ Search for Matches.
 #### `public inline void `[`BLUEPRINT_SearchMatches`](#classURH__MatchSubsystem_1a3557ad010d1dc2a951c114699f4ab0a8)`(const `[`FRH_MatchSearchParams`](Match.md#structFRH__MatchSearchParams)` & params,const FRH_OnMatchSearchCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1a3557ad010d1dc2a951c114699f4ab0a8"></a>
 
 <br>
-#### `public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1a5a1ff4bb909ab513114466d9a6540680)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a5a1ff4bb909ab513114466d9a6540680"></a>
+#### `public virtual void `[`GetMatchAsync`](#classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b)`(const FString & MatchId,bool bIgnoreCache,const FRH_OnMatchLookupCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1ac5d211f2d31af98c42373828fad8d86b"></a>
 
 Lookup a specific match.
 
@@ -293,6 +293,7 @@ The last match created with bSetActive = true, for ease of use.
 `public FString `[`SessionId`](#structFRH__MatchSearchParams_1a42a4fd664ccf349ebb36eaec862c9133) | The session id to search on, ignored if empty.
 `public FString `[`HostPlayerUuid`](#structFRH__MatchSearchParams_1a067924a1c1a542270163b0ba5b9ca541) | The host player id to search on, ignored if empty.
 `public FString `[`RegionId`](#structFRH__MatchSearchParams_1a8874651d0cadc4ed51898c0987be697a) | The region id to search on, ignored if empty.
+`public FString `[`PlayerUuid`](#structFRH__MatchSearchParams_1a08a9351cd2ac8f2483e0e49c44b286f1) | The participant player id to search on, ignored if empty.
 `public FString `[`Cursor`](#structFRH__MatchSearchParams_1a2b3af805c98580faddaa3495131c2eb6) | Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration.
 `public inline  `[`FRH_MatchSearchParams`](#structFRH__MatchSearchParams_1a703357c85c089fd0675e83eaa69ca12c)`()` | 
 `public inline FString `[`GetDescription`](#structFRH__MatchSearchParams_1a682aada2005d21246404e340217c4229)`() const` | Returns summary of params for tooling/logging.
@@ -328,6 +329,11 @@ The host player id to search on, ignored if empty.
 #### `public FString `[`RegionId`](#structFRH__MatchSearchParams_1a8874651d0cadc4ed51898c0987be697a) <a id="structFRH__MatchSearchParams_1a8874651d0cadc4ed51898c0987be697a"></a>
 
 The region id to search on, ignored if empty.
+
+<br>
+#### `public FString `[`PlayerUuid`](#structFRH__MatchSearchParams_1a08a9351cd2ac8f2483e0e49c44b286f1) <a id="structFRH__MatchSearchParams_1a08a9351cd2ac8f2483e0e49c44b286f1"></a>
+
+The participant player id to search on, ignored if empty.
 
 <br>
 #### `public FString `[`Cursor`](#structFRH__MatchSearchParams_1a2b3af805c98580faddaa3495131c2eb6) <a id="structFRH__MatchSearchParams_1a2b3af805c98580faddaa3495131c2eb6"></a>
