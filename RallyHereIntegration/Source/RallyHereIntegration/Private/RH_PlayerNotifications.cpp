@@ -7,12 +7,18 @@
 #include "RH_NotificationHelpers.h"
 #include "RH_PlayerInfoSubsystem.h"
 
+#include "RH_GameInstanceSubsystem.h"
+#include "Engine/World.h"
+
 void URH_PlayerNotifications::Initialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	StreamingHistorySize = 50;
 
 	PollingType = FRH_NotificationPollingTypes::LongPoll;
+
+	NextLongPollDelay = 0.f;
+	MaxLongPollDelay = 30.f;
 }
 
 FAuthContextPtr URH_PlayerNotifications::GetAuthContext() const
@@ -41,11 +47,48 @@ void URH_PlayerNotifications::StartStreamingLatestNotifications(const FString& C
 	StreamingCursor = Cursor;
 	StreamingPlayerUuid = GetRHPlayerUuid();
 
+	// reset the delay on long polls
+	NextLongPollDelay = 0.f;
+
 	bIsStreaming = true;
 
 	if (PollingType == FRH_NotificationPollingTypes::LongPoll)
 	{
+		RestartLongPollLoop();
+	}
+}
+
+void URH_PlayerNotifications::RestartLongPollLoop(bool bPreviousPollSuccessful)
+{
+	if (bPreviousPollSuccessful)
+	{
+		// clear poll delay and restart immediately if previous poll was successful
+		NextLongPollDelay = 0.f;
 		StartLongPoll();
+	}
+	else
+	{
+		// increment delay and restart on a timer (2 second base increase, capped at max time)
+		NextLongPollDelay = FMath::Min(2.f + NextLongPollDelay * 2.f, MaxLongPollDelay);
+		if (PlayerInfo != nullptr)
+		{
+			auto GISS = PlayerInfo->GetPlayerInfoSubsystem()->GetGameInstanceSubsystem();
+			if (GISS != nullptr)
+			{
+				auto pWorld = GISS->GetWorld();
+
+				if (pWorld != nullptr)
+				{
+					pWorld->GetTimerManager().SetTimer(LongPollDeferralHandle, this, &URH_PlayerNotifications::StartLongPoll, NextLongPollDelay, false);
+				}
+			}
+		}
+
+		// if we failed to set a deferal timer on a failure, stop streaming
+		if (!LongPollDeferralHandle.IsValid())
+		{
+			StopStreamingLatestNotifications();
+		}
 	}
 }
 
@@ -73,6 +116,23 @@ void URH_PlayerNotifications::StopStreamingLatestNotifications(bool bClearCache)
 	ClearStreamingHistory();
 	StreamingCursor = TEXT("");
 	StreamingPlayerUuid.Invalidate();
+
+	// clear timer handle if it's still active
+	if (LongPollDeferralHandle.IsValid())
+	{
+		if (PlayerInfo != nullptr)
+		{
+			auto GISS = PlayerInfo->GetPlayerInfoSubsystem()->GetGameInstanceSubsystem();
+			if (GISS != nullptr)
+			{
+				auto pWorld = GISS->GetWorld();
+
+				pWorld->GetTimerManager().ClearTimer(LongPollDeferralHandle);
+			}
+		}
+
+		LongPollDeferralHandle.Invalidate();
+	}
 }
 
 bool URH_PlayerNotifications::CreateNotification(const FGuid& PlayerUuid,
@@ -160,17 +220,10 @@ void URH_PlayerNotifications::OnNotificationsStreamed(bool bSuccess, const FStri
 		StreamingCursor = CursorAfter;
 	}
 
-	if (!bSuccess && RequestDuration <= 3.f) // magic number!
-	{
-		// long poll probably had an internal systemic failure, shut down notification streaming until new streaming is requested
-		StopStreamingLatestNotifications();
-	}
-
-	// TODO - make timer, make this new kickoff more robust
-	// make sure streaming is still enabled before kicking off the next request
+	// if notifications are still enabled, restart polling loop
 	if (bIsStreaming)
 	{
-		StartLongPoll();
+		RestartLongPollLoop(bSuccess);
 	}
 }
 
