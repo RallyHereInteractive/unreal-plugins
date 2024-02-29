@@ -40,7 +40,11 @@ struct FRH_MatchSearchParams
 	/** @brief The region id to search on, ignored if empty */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
 	FString RegionId;
-	
+
+	/** @brief The participant player id to search on, ignored if empty */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
+	FString PlayerUuid;
+
 	/** @brief Cursor to designate where you are in iterating through values. Start with '0', and pass this on subsequent calls to continue iteration */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Matchmaking|Search")
 	FString Cursor;
@@ -54,8 +58,8 @@ struct FRH_MatchSearchParams
 	 */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("PageSize: %d, InstanceId: %s, AllocationId: %s, SessionId: %s, HostPlayerUuid: %s, RegionId: %s, Cursor: %s"),
-						PageSize, *InstanceId, *AllocationId, *SessionId, *HostPlayerUuid, *RegionId, *Cursor);
+		return FString::Printf(TEXT("PageSize: %d, InstanceId: %s, AllocationId: %s, SessionId: %s, HostPlayerUuid: %s, RegionId: %s, PlayerUuid: %s, Cursor: %s"),
+						PageSize, *InstanceId, *AllocationId, *SessionId, *HostPlayerUuid, *RegionId, *Cursor, *PlayerUuid);
 	}
 
 	/**
@@ -88,6 +92,10 @@ struct FRH_MatchSearchParams
 		if (!RegionId.IsEmpty())
 		{
 			Request.RegionId = RegionId;
+		}
+		if (!PlayerUuid.IsEmpty())
+		{
+			Request.PlayerUuid = PlayerUuid;
 		}
 		if (!Cursor.IsEmpty())
 		{
@@ -196,7 +204,7 @@ public:
 	/**
 	 * @brief Lookup a specific match
 	 */
-	virtual void GetMatchAsync(const FString& MatchId, bool bIgnoreCache, const FRH_OnMatchLookupCompleteDelegateBlock& Delegate = FRH_OnMatchLookupCompleteDelegateBlock());
+	virtual void GetMatchAsync(const FString& MatchId, bool bIgnoreCache = false, const FRH_OnMatchLookupCompleteDelegateBlock& Delegate = FRH_OnMatchLookupCompleteDelegateBlock());
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Get Match (Async)", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetMatchAsync(const FString& MatchId, bool bIgnoreCache, const FRH_OnMatchLookupCompleteDynamicDelegate& Delegate) { GetMatchAsync(MatchId, bIgnoreCache, Delegate); }
 
