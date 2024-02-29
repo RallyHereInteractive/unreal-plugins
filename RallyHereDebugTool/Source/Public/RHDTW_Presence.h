@@ -24,7 +24,7 @@ struct FRHDTW_Presence : public FRH_DebugToolWindow
 	/** Display presence information for the selected player info */
 	void DoViewPresenceTab();
 
-	void HandleGetPresence(bool bSuccess, URH_PlayerPresence* PresenceData, FGuid PlayerUuid);
+	void HandleGetPresence(bool bSuccess, URH_PlayerInfoSubobject* PresenceData, FGuid PlayerUuid);
 	FString GetPresenceResult;
 #pragma endregion
 

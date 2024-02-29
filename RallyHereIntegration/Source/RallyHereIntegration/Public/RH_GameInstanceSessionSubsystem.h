@@ -46,6 +46,76 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_OnActiveSessionChangedDelegate, URH_Joi
  *  @{
  */
 
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_ActiveSessionStatePlayerContext
+{
+public:
+	GENERATED_USTRUCT_BODY()
+
+	/** @brief The player id for the context */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FGuid RHPlayerId;
+
+	/** @brief The controller for the context */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	TWeakObjectPtr<AController> Controller;
+
+	/** @brief The time the player joined the server */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FDateTime JoinedTime;
+
+	/** @brief The time the player left the server */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FDateTime LeaveTime;
+
+	/** @brief The total time the player has been connected */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	float DurationSeconds;
+};
+
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_ActiveSessionState
+{
+public:
+	GENERATED_USTRUCT_BODY()
+
+	/** @brief Session we are synced to. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	URH_JoinedSession* Session;
+
+	/** @brief A fallback security token to be used while the security token set is in flight */
+	TOptional<FString> FallbackSecurityToken;
+
+	/** @brief If set, the session instance is failed and unrecoverable. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	bool bHasBeenMarkedFubar;
+
+	/** @brief If set, the session should not try to backfill. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	bool bIsBackfillTerminated;
+
+	/** @brief Array player contexts for the active session, used to track connectivity times and such */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	TArray<FRH_ActiveSessionStatePlayerContext> PlayerContexts;
+
+	FRH_ActiveSessionState()
+		: Session(nullptr)
+		, bHasBeenMarkedFubar(false)
+		, bIsBackfillTerminated(false)
+	{
+	}
+
+	/** @brief Reset the state as part of a transition to a new active session */
+	void ResetState()
+	{
+		Session = nullptr;
+		FallbackSecurityToken.Reset();
+		bHasBeenMarkedFubar = false;
+		bIsBackfillTerminated = false;
+		PlayerContexts.Reset();
+	}
+};
+
  /**
   * @brief Subsystem for handling sessions within a game instance.
   */
@@ -107,21 +177,21 @@ public:
 	* @brief Gets the session that is currently active.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE URH_JoinedSession* GetActiveSession() const { return ActiveSession; }
+	FORCEINLINE URH_JoinedSession* GetActiveSession() const { return ActiveSessionState.Session; }
 	/**
 	* @brief Gets the fallback security token
 	*/
-	FORCEINLINE const TOptional<FString>& GetFallbackSessionSecurityToken() const { return FallbackSecurityToken; }
+	FORCEINLINE const TOptional<FString>& GetFallbackSessionSecurityToken() const { return ActiveSessionState.FallbackSecurityToken; }
 	/**
 	* @brief Gets if the instance has been marked failed.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE bool IsMarkedFubar() const { return bHasBeenMarkedFubar; }
+	FORCEINLINE bool IsMarkedFubar() const { return ActiveSessionState.bHasBeenMarkedFubar; }
 	/**
 	* @brief Gets if the instance has been marked failed.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE bool IsBackfillTerminated() const { return bIsBackfillTerminated; }
+	FORCEINLINE bool IsBackfillTerminated() const { return ActiveSessionState.bIsBackfillTerminated; }
 	/**
 	* @brief Checks if the session has all the players and is good to change maps.
 	* @param [in] Session The session being checked.
@@ -186,6 +256,13 @@ public:
 	virtual bool GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const;
 
 	/**
+	 * @brief Handles verification and validation of a player attempting to connect to the instance.
+	 * @param [in] Connection The player that is attempting to connect.
+	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
+	 */
+	virtual bool ValidateIncomingConnection(class UNetConnection* Connection, FString& ErrorMessage) const;
+
+	/**
 	 * @brief Gets whether backfill should be kept alive
 	 */
 	UFUNCTION(BlueprintNativeEvent, Category = "Session", meta = (DisplayName = "Should Keep Instance Health Alive"))
@@ -207,7 +284,7 @@ public:
 	 * @brief Shuts down backfill handling for the current session, cannot be reversed
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Terminate Backfill"))
-	virtual void TerminateBackfill() { bIsBackfillTerminated = true; }
+	virtual void TerminateBackfill() { ActiveSessionState.bIsBackfillTerminated = true; }
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
@@ -233,17 +310,10 @@ protected:
 	/** @brief Session we want to sync to. */
 	UPROPERTY(BlueprintGetter = GetDesiredSession, Transient, Category = "Session|Instance")
 	URH_JoinedSession*	DesiredSession;
-	/** @brief Session we are synced to. */
-	UPROPERTY(BlueprintGetter = GetActiveSession, Transient, Category = "Session|Instance")
-	URH_JoinedSession* ActiveSession;
-	/** @brief A fallback security token to be used while the security token set is in flight */
-	TOptional<FString> FallbackSecurityToken;
-	/** @brief If set, the session instance is failed and unrecoverable. */
-	UPROPERTY(BlueprintGetter = IsMarkedFubar, Transient, Category = "Session|Instance")
-	bool bHasBeenMarkedFubar;
 
-	UPROPERTY(BlueprintGetter = IsBackfillTerminated, Transient, Category = "Session|Instance")
-	bool bIsBackfillTerminated;
+	/** @brief Session we are synced to. */
+	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
+	FRH_ActiveSessionState ActiveSessionState;
 	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr InstanceHealthPoller;
@@ -256,6 +326,31 @@ protected:
 	 * @param [in] Session to set as active session
 	 */
 	virtual void SetActiveSession(URH_JoinedSession* Session);
+
+	/**
+	 * @brief Handles verification and validation of a player attempting to connect to the instance.
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] NewPlayer The player that is attempting to connect.
+	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
+	 */
+	virtual void GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage);
+	/**
+	 * @brief Handles logic for when a player connects
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] NewPlayer The player that is connecting.
+	 */
+	virtual void GameModePostLoginEvent(class AGameModeBase* GameMode, APlayerController* NewPlayer);
+	/**
+	 * @brief Handles logic for when a player disconnects
+	 * @param [in] GameMode The game mode the instance is running.
+	 * @param [in] Exiting The player that is disconnecting.
+	 */
+	virtual void GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting);
+
+	/**
+	 * @brief Creates a match for a given session using the match subsystem
+	 */
+	virtual void CreateMatchForSession(const URH_JoinedSession* Session) const;
 	/**
 	 * @brief Called when the map completes loading.
 	 * @param [in] pWorld The world that was being traveled to.

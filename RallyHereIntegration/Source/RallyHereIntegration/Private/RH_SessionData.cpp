@@ -529,11 +529,15 @@ void URH_JoinedSession::SetWatchingPlayers(bool bWatch)
 								if (Presence != nullptr)
 								{
 									// bind to listen callback
-									Presence->OnPresenceUpdatedDelegate.AddWeakLambda(this, [this](URH_PlayerPresence* Presence)
+									Presence->OnUpdatedDelegate.AddWeakLambda(this, [this](URH_PlayerInfoSubobject* Subobj)
 										{
 											// notify listeners
-											OnSessionMemberPresenceChangedDelegate.Broadcast(this, Presence);
-											BLUEPRINT_OnSessionMemberPresenceChangedDelegate.Broadcast(this, Presence);
+											auto Presence = Cast<URH_PlayerPresence>(Subobj);
+											if (Presence != nullptr)
+											{
+												OnSessionMemberPresenceChangedDelegate.Broadcast(this, Presence);
+												BLUEPRINT_OnSessionMemberPresenceChangedDelegate.Broadcast(this, Presence);
+											}
 										});
 
 									// kick a request for an update
@@ -559,7 +563,7 @@ void URH_JoinedSession::SetWatchingPlayers(bool bWatch)
 								if (Presence != nullptr)
 								{
 									// unbind to listen callback
-									Presence->OnPresenceUpdatedDelegate.RemoveAll(this);
+									Presence->OnUpdatedDelegate.RemoveAll(this);
 								}
 							}
 						}

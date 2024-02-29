@@ -7,6 +7,7 @@
 // needed for doing authentication using our normal gamemode auth handler
 #include "GameFramework/GameModeBase.h"
 #include "RH_GameInstanceSubsystem.h"
+#include "RH_GameInstanceSessionSubsystem.h"
 #include "Engine/GameInstance.h"
 
 // needed for beacon message parsing
@@ -90,9 +91,9 @@ bool ARH_OnlineBeaconHost::CommonVerifyAuthentication(const FUniqueNetId& Player
 		if (GameInstance != nullptr)
 		{
 			auto* GISS = GameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
-			if (GISS != nullptr)
+			if (GISS != nullptr && GISS->GetSessionSubsystem() != nullptr)
 			{
-				bPassedAuthentication = GISS->ValidateIncomingConnection(pConnection, ErrorMessage);
+				bPassedAuthentication = GISS->GetSessionSubsystem()->ValidateIncomingConnection(pConnection, ErrorMessage);
 			}
 		}
 

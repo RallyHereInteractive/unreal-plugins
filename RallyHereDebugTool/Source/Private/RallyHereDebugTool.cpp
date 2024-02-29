@@ -45,6 +45,7 @@
 #include "RHDTW_Notifications.h"
 #include "RHDTW_Analytics.h"
 #include "RHDTW_About.h"
+#include "RHDTW_Match.h"
 
 #include "Runtime/Launch/Resources/Version.h"
 
@@ -124,6 +125,9 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 
 	AboutWindow = MakeShared<FRHDTW_About>();
 	AboutWindow->Init(this, TEXT("About"));
+
+	MatchesWindow = MakeShared<FRHDTW_Match>();
+	MatchesWindow->Init(this, TEXT("Matches"));
 
 	SavedWindowVisibilities.Add(LoginWindow->Name, true);
 	SavedWindowVisibilities.Add(OutputLogWindow->Name, true);

@@ -95,7 +95,7 @@ public:
     FName EnvironmentOSSName;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sessions
+	// Sessions & Matches
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/** @brief Whether to automatically start platform sessions after joining them */
@@ -105,6 +105,42 @@ public:
 	/** @brief Whether to automatically join platform sessions after a user change when invites were received while logged out */
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoJoinPlatformSessionsAfterUserChange;
+
+	/** @brief If set, the connection attempt must have a valid security token to be allowed to connect. */
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	bool bUseSecurityTokenForJoining;
+
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	/** @brief If set, the Player Id must have been imported to the instance before being allowed to connect. */
+	bool bRequireImportedPlayerIdsForJoining;
+
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	/** @brief If set, the Player Id must be valid before being allowed to connect. */
+	bool bRequireValidPlayerIdsForJoining;
+
+	/** @brief Sets the default page size when requesting a player's match history */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
+	int32 PlayerMatchesPageSize;
+
+	/** @brief Sets the default page size when requesting a player's match history */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
+	int32 PlayerMatchesMaxPageCount;
+
+	/** @brief Sets the default page size when requesting a player's match history */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Player History")
+	FTimespan PlayerMatchesMaxAge;
+
+	/** @brief Whether to automatically create a match when a session becomes active if the host */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
+	bool bAutoCreateMatches;
+
+	/** @brief Whether to automatically add players who connect to the match */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
+	bool bAutoAddConnectedPlayersToMatches;
+
+	/** @brief Whether to automatically close a match when a session becomes inactive if the host */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches|Automated Match Handling")
+	bool bAutoCloseMatchOnSessionInactive;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Web Requests
@@ -183,6 +219,9 @@ public:
 	/** @brief Extensible MatchmakingBrowserCache class path. */
 	UPROPERTY(EditAnywhere, Config, Category="Subsystem Classes")
 	FSoftClassPath MatchmakingBrowserCacheClass;
+	/** @brief Extensible MatchSubsaystem class path */
+	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
+	FSoftClassPath MatchSubsystemClass;
 
 	/** @brief Flag to determine if the local player subsystem should use its own subsystems instead of relying on GameInstanceSubsystem shared caches. */
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
@@ -425,6 +464,21 @@ public:
 	/** @brief Sets the request priority of ReceiveEvent, which is the GETS endpoint, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Users API Priority", AdvancedDisplay)
 	int32 EventsReceiveEventPriority;
+	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesGetOtherPriority;
+	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesSearchPriority;
+	/** @brief Sets the request priority of Get Player Matches calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesLookupPriority;
+	/** @brief Sets the request priority of Create and Update Match calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesUpdatePriority;
+	/** @brief Sets the request priority of Create Match calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchesUpdatePlayerPriority;
 };
 
 /** @} */

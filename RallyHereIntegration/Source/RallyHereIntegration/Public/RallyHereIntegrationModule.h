@@ -60,6 +60,7 @@ namespace RH_APIs
 	FORCEINLINE static RallyHereAPI::FFriendsV2API& GetFriendsV2API() { return GetAPIs().GetFriendsV2(); }
 	FORCEINLINE static RallyHereAPI::FBlockedV2API& GetBlockedV2API() { return GetAPIs().GetBlockedV2(); }
 	FORCEINLINE static RallyHereAPI::FSessionsAPI& GetSessionsAPI() { return GetAPIs().GetSessions(); }
+	FORCEINLINE static RallyHereAPI::FMatchAPI& GetMatchAPI() { return GetAPIs().GetMatch(); }
 	FORCEINLINE static RallyHereAPI::FRankAPI& GetRankAPI() { return GetAPIs().GetRank(); }
 	FORCEINLINE static RallyHereAPI::FQueuesAPI& GetQueuesAPI() { return GetAPIs().GetQueues(); }
 	FORCEINLINE static RallyHereAPI::FPresenceAPI& GetPresenceAPI() { return GetAPIs().GetPresence(); }

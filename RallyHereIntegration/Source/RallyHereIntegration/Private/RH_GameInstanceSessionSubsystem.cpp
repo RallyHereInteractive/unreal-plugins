@@ -4,18 +4,23 @@
 #include "RH_GameInstanceSessionSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
+#include "RH_MatchSubsystem.h"
 #include "RallyHereIntegrationModule.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
+#include "Engine/World.h"
+#include "GameFramework/GameModeBase.h"
+#include "Misc/CoreDelegates.h"
 #include "SessionsAPI.h"
 #include "RH_Beacons.h"
+#include "RH_LocalPlayer.h"
+#include "RH_Events.h"
 
 // used to validate state of local players before joining an instance
 #include "Engine/LocalPlayer.h"
 #include "RH_LocalPlayerSessionSubsystem.h"
 #include "RH_GameInstanceBootstrappers.h"
-#include "RH_Events.h"
 
 // used to look up local IP as a temporary method for determining join IP
 #include <SocketSubsystem.h>
@@ -24,6 +29,385 @@
 
 
 //==================================================================
+
+
+void URH_GameInstanceSessionSubsystem::Initialize()
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	Super::Initialize();
+
+	if (!InstanceHealthPoller.IsValid())
+	{
+		InstanceHealthPoller = FRH_PollControl::CreateAutoPoller();
+	}
+
+	if (!BackfillPoller.IsValid())
+	{
+		BackfillPoller = FRH_PollControl::CreateAutoPoller();
+	}
+
+	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &URH_GameInstanceSessionSubsystem::OnMapLoadComplete);
+	if (GEngine != nullptr)
+	{
+		GEngine->OnNetworkFailure().AddUObject(this, &URH_GameInstanceSessionSubsystem::OnNetworkFailure);
+		GEngine->OnTravelFailure().AddUObject(this, &URH_GameInstanceSessionSubsystem::OnTravelFailure);
+	}
+
+	FGameModeEvents::GameModePreLoginEvent.AddUObject(this, &URH_GameInstanceSessionSubsystem::GameModePreloginEvent);
+	FGameModeEvents::GameModePostLoginEvent.AddUObject(this, &URH_GameInstanceSessionSubsystem::GameModePostLoginEvent);
+	FGameModeEvents::GameModeLogoutEvent.AddUObject(this, &URH_GameInstanceSessionSubsystem::GameModeLogoutEvent);
+}
+
+void URH_GameInstanceSessionSubsystem::Deinitialize()
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+	Super::Deinitialize();
+
+	// explicitly do not sync state to null, just clear pointers
+	DesiredSession = nullptr;
+	ActiveSessionState.ResetState();
+	InstanceHealthPoller.Reset();
+	BackfillPoller.Reset();
+
+	FWorldDelegates::OnPostWorldInitialization.RemoveAll(this);
+	if (GEngine != nullptr)
+	{
+		GEngine->OnNetworkFailure().RemoveAll(this);
+		GEngine->OnTravelFailure().RemoveAll(this);
+	}
+
+	FGameModeEvents::GameModePreLoginEvent.RemoveAll(this);
+	FGameModeEvents::GameModePostLoginEvent.RemoveAll(this);
+	FGameModeEvents::GameModeLogoutEvent.RemoveAll(this);
+}
+
+void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
+{
+	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
+
+	const FWorldContext* pWorldContext = pGameInstance->GetWorldContext();
+	if (pWorldContext == nullptr || pWorldContext->World() != World)
+	{
+		// not for our world
+		return;
+	}
+
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	auto ActiveSession = GetActiveSession();
+	if (ActiveSession != nullptr)
+	{
+		// this can happen if a map load fails to create the UWorld
+		if (World == nullptr)
+		{
+			// in this case, the engine should abort the load and load a new map with the ?closed or ?failed flags, handled below.  We will handle it in that case, as too many things depend on the UWorld reference (rather than the Context)
+			return;
+		}
+
+		const FURL& URL = World->URL;
+
+		const bool bHasSessionId = URL.HasOption(RH_SESSION_PARAMETER_NAME);
+		const FString SessionId = URL.GetOption(RH_SESSION_PARAMETER_NAME, TEXT(""));
+
+		const bool bHasInstanceId = URL.HasOption(RH_INSTANCE_PARAMETER_NAME);
+		const FString InstanceId = URL.GetOption(RH_INSTANCE_PARAMETER_NAME, TEXT(""));
+
+		if (URL.HasOption(TEXT("closed")) || URL.HasOption(TEXT("failed")) 
+			|| !bHasSessionId || SessionId != ActiveSession->GetSessionId()
+			|| !bHasInstanceId || !ActiveSession->GetInstanceData() || InstanceId != ActiveSession->GetInstanceData()->GetInstanceId()
+			)
+		{
+			StartLeaveInstanceFlow(true);
+			return;
+		}
+
+		if (IsLocallyHostedSession(ActiveSession))
+		{
+			// instance info updates are not really properly using optional flags, so get a default object and pass it
+			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
+			// make sure we send version in case we are updating joinability.  Its possible the default object above will not have received it yet
+			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
+
+			FString PublicConnStr;
+			FString PrivateConnStr;
+
+			// if dedicated server, look up the server's join parameters, else inspect locally (TODO - find a better lookup for a public IP for P2P)
+			if (GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr && GetGameInstanceSubsystem()->GetServerBootstrapper()->DetermineJoinParameters(PublicConnStr, PrivateConnStr))
+			{
+				InstanceInfo.JoinParams_IsSet = true;
+				InstanceInfo.GetJoinParams().PublicConnStr = PublicConnStr;
+				InstanceInfo.GetJoinParams().PrivateConnStr = PrivateConnStr;
+			}
+			else
+			{
+				// fall back to local LAN detection
+				auto* NetDriver = World->GetNetDriver();
+				if (NetDriver != nullptr && NetDriver->IsServer() && NetDriver->GetSocketSubsystem() != nullptr && World->URL.Port > 0)
+				{
+					bool bCanBind = false;
+					const TSharedRef<FInternetAddr> LocalIp = NetDriver->GetSocketSubsystem()->GetLocalHostAddr(*GLog, bCanBind);
+					if (LocalIp->IsValid()) // validity check for the address not the shared ref
+					{
+						const auto LocalIPModified = LocalIp->Clone();
+						// world URL should have the port that was opened for listen
+						LocalIPModified->SetPort(World->URL.Port);
+
+						// temp - parse as IPv4 to determine if it should be public or private
+						FIPv4Address tempIPv4;
+						if (FIPv4Address::Parse(LocalIPModified->ToString(false), tempIPv4) && tempIPv4.IsSiteLocalAddress())
+						{
+							InstanceInfo.JoinParams_IsSet = true;
+							InstanceInfo.GetJoinParams().PublicConnStr.Empty();
+							InstanceInfo.GetJoinParams().PrivateConnStr = TEXT("unreal://") + LocalIPModified->ToString(true);
+						}
+						else
+						{
+							// add unreal protocol name
+							InstanceInfo.JoinParams_IsSet = true;
+							InstanceInfo.GetJoinParams().PublicConnStr = TEXT("unreal://") + LocalIPModified->ToString(true);
+							InstanceInfo.GetJoinParams().PrivateConnStr.Empty();
+						}
+					}
+				}
+			}
+
+
+			// if it is a beacon, convert world to beacon mode
+			if (ActiveSession && ActiveSession->IsBeaconSession())
+			{
+				CreateBeaconHost(World, World->URL.Port, true);
+			}
+
+			const bool bRequireConnectivity = IsRunningDedicatedServer(); //|| World->URL.HasOption(TEXT("listen"));
+			if (!bRequireConnectivity || InstanceInfo.GetJoinParams().PublicConnStr.Len() > 0 || InstanceInfo.GetJoinParams().PrivateConnStr.Len() > 0)
+			{
+				InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
+				if (!InstanceInfo.GetJoinParams().GetCustomData().Contains(RH_SessionCustomDataKeys::SessionSecurityTokenName))
+				{
+					FString SecurityToken = FGuid::NewGuid().ToString();
+
+					ActiveSessionState.FallbackSecurityToken = SecurityToken;
+
+					InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::SessionSecurityTokenName, SecurityToken);
+					InstanceInfo.GetJoinParams().CustomData_IsSet = true;
+					InstanceInfo.JoinParams_IsSet = true;
+				}
+
+				ActiveSession->UpdateInstanceInfo(InstanceInfo);
+			}
+			else
+			{
+				UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %d could not find a valid connection string on the host"));
+				StartLeaveInstanceFlow();
+			}
+
+		}
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
+{
+	// Stub in case it is needed, the default engine handler should close the map which we detect above
+}
+
+void URH_GameInstanceSessionSubsystem::OnTravelFailure(UWorld* World, ETravelFailure::Type FailureType, const FString& ErrorString)
+{
+	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
+
+	const FWorldContext* pWorldContext = pGameInstance->GetWorldContext();
+	if (pWorldContext == nullptr || pWorldContext->World() != World)
+	{
+		// not for our world
+		return;
+	}
+
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorString);
+
+	if (GetActiveSession() != nullptr)
+	{
+		StartLeaveInstanceFlow(true);
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* JoinedSession)
+{
+	static FName HealthPollTimerName(TEXT("SessionInstanceHealth"));
+	static FName BackfillPollTimerName(TEXT("SessionBackfill"));
+
+	const auto* Settings = GetDefault<URH_IntegrationSettings>();
+	auto* MatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+
+	auto OldSession = GetActiveSession();
+	if (OldSession != nullptr)
+	{
+		check(OldSession->IsActive());
+		OldSession->SetActive(false);
+		OldSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
+		OldSession = nullptr;
+
+		if (InstanceHealthPoller.IsValid())
+		{
+			InstanceHealthPoller->StopPoll();
+		}
+		if (BackfillPoller.IsValid())
+		{
+			BackfillPoller->StopPoll();
+		}
+
+		// reset any polling override as needed for instance health
+		auto* PollControl = FRH_PollControl::Get();
+		if (PollControl)
+		{
+			PollControl->ClearPollingIntervalOverride(HealthPollTimerName);
+		}
+
+		if (Settings->bAutoCloseMatchOnSessionInactive)
+		{
+			// Send a match update that the match is now in the closed state
+			if (MatchSubsystem != nullptr && MatchSubsystem->HasActiveMatchId())
+			{
+				// send an update with the close state and end time
+				FRHAPI_MatchRequest UpdateRequest;
+				UpdateRequest.SetEndTimestamp(FDateTime::UtcNow());
+				UpdateRequest.SetState(ERHAPI_MatchState::Closed);
+
+				// if we can calculate a duration, do so.  Grab the cached match data since it should have been cached at least once on creation
+				FRHAPI_MatchWithPlayers OldMatch;
+				if (MatchSubsystem->GetMatch(MatchSubsystem->GetActiveMatchId(), OldMatch))
+				{
+					const auto StartTime = OldMatch.GetStartTimestampOrNull();
+					if (StartTime != nullptr)
+					{
+						const auto Duration = FDateTime::UtcNow() - *StartTime;
+						UpdateRequest.SetDurationSeconds(Duration.GetTotalSeconds());
+					}
+				}
+
+				MatchSubsystem->UpdateMatch(MatchSubsystem->GetActiveMatchId(), UpdateRequest);
+
+				// clear out the active match id
+				MatchSubsystem->SetActiveMatchId(FString());
+			}
+		}
+	}
+
+	// clear transient flags for new tracking
+	ActiveSessionState.ResetState();
+
+	if (JoinedSession != nullptr)
+	{
+		// set the new active session
+		check(!JoinedSession->IsActive());
+		ActiveSessionState.Session = JoinedSession;
+
+		auto*& ActiveSession = ActiveSessionState.Session;
+
+		JoinedSession->SetActive(true);
+		JoinedSession->SetWatchingPlayers(true);
+
+		// if this instance is locally hosted, set up host specific logic
+		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
+		{
+
+			// if automatic matches are enabled, create one now
+			if (Settings->bAutoCreateMatches)
+			{
+				CreateMatchForSession(ActiveSession);
+			}
+
+			// instance health polling kickoff and config check
+			if (GetShouldKeepInstanceHealthAlive())
+			{
+				// initiate polling
+				if (InstanceHealthPoller.IsValid())
+				{
+					InstanceHealthPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollInstanceHealth), HealthPollTimerName, true);
+				}
+
+				// kick off a check to determine if we need to override our health interval
+				auto* PollControl = FRH_PollControl::Get();
+				if (PollControl)
+				{
+					typedef RallyHereAPI::Traits_InstanceHealthConfig BaseType;
+
+					BaseType::Request Request = {};
+					Request.AuthContext = GetAuthContext();
+
+					auto PollTimerNameCopy = HealthPollTimerName;
+					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
+							{
+								auto* PollControl = FRH_PollControl::Get();
+								if (PollControl && Resp.IsSuccessful())
+								{
+									float NewInterval = Resp.Content.CadenceSeconds;
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), NewInterval);
+
+									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
+									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
+									NewSetting.Interval = NewInterval;
+									PollControl->SetPollingIntervalOverride(NewSetting);
+								}
+							}),
+						FRH_GenericSuccessWithErrorDelegate(),
+						GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+					);
+
+					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+				}
+			}
+
+			// backfill polling kickoff and config check
+			if (GetShouldKeepBackfillAlive())
+			{
+				// initiate polling
+				if (BackfillPoller.IsValid())
+				{
+					BackfillPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollBackfill), BackfillPollTimerName, false);
+				}
+
+				// kick off a check to determine if we need to override our health interval
+				auto* PollControl = FRH_PollControl::Get();
+				if (PollControl)
+				{
+					typedef RallyHereAPI::Traits_BackfillConfig BaseType;
+
+					BaseType::Request Request = {};
+					Request.AuthContext = GetAuthContext();
+
+					auto PollTimerNameCopy = BackfillPollTimerName;
+					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
+							{
+								auto* PollControl = FRH_PollControl::Get();
+								if (PollControl && Resp.IsSuccessful())
+								{
+									const auto CadenceSeconds = Resp.Content.Timeout;
+									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), CadenceSeconds);
+
+									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
+									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
+									NewSetting.Interval = CadenceSeconds;
+									PollControl->SetPollingIntervalOverride(NewSetting);
+								}
+							}),
+						FRH_GenericSuccessWithErrorDelegate(),
+						GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
+					);
+
+					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+				}
+			}
+		}
+	}
+
+	// fire delegates to allow registration of handler objects
+	OnActiveSessionChanged.Broadcast(OldSession, ActiveSessionState.Session);
+	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSessionState.Session);
+}
+
 
 bool URH_GameInstanceSessionSubsystem::GenerateHostURL(const URH_JoinedSession* Session, FURL& lastURL, FURL& outURL) const
 {
@@ -130,333 +514,419 @@ bool URH_GameInstanceSessionSubsystem::GenerateJoinURL(const URH_JoinedSession* 
 	return false;
 }
 
-void URH_GameInstanceSessionSubsystem::Initialize()
+bool URH_GameInstanceSessionSubsystem::ValidateIncomingConnection(UNetConnection* Connection, FString& ErrorMessage) const
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	Super::Initialize();
+	RHStandardEvents::FInstanceLoginReceivedEvent Event;
 
-	if (!InstanceHealthPoller.IsValid())
+	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
+	const auto* pSession = GetActiveSession();
+	const auto* pSettings = GetDefault<URH_IntegrationSettings>();
+
+	if (Connection != nullptr)
 	{
-		InstanceHealthPoller = FRH_PollControl::CreateAutoPoller();
-	}
-
-	if (!BackfillPoller.IsValid())
-	{
-		BackfillPoller = FRH_PollControl::CreateAutoPoller();
-	}
-
-	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &URH_GameInstanceSessionSubsystem::OnMapLoadComplete);
-	if (GEngine != nullptr)
-	{
-		GEngine->OnNetworkFailure().AddUObject(this, &URH_GameInstanceSessionSubsystem::OnNetworkFailure);
-		GEngine->OnTravelFailure().AddUObject(this, &URH_GameInstanceSessionSubsystem::OnTravelFailure);
-	}
-}
-
-void URH_GameInstanceSessionSubsystem::Deinitialize()
-{
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-	Super::Deinitialize();
-
-	// explicitly do not sync state to null, just clear pointers
-	DesiredSession = nullptr;
-	ActiveSession = nullptr;
-	FallbackSecurityToken.Reset();
-	InstanceHealthPoller.Reset();
-
-	FWorldDelegates::OnPostWorldInitialization.RemoveAll(this);
-	if (GEngine != nullptr)
-	{
-		GEngine->OnNetworkFailure().RemoveAll(this);
-		GEngine->OnTravelFailure().RemoveAll(this);
-	}
-}
-
-void URH_GameInstanceSessionSubsystem::OnMapLoadComplete(UWorld* World)
-{
-	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
-	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
-
-	const FWorldContext* pWorldContext = pGameInstance->GetWorldContext();
-	if (pWorldContext == nullptr || pWorldContext->World() != World)
-	{
-		// not for our world
-		return;
-	}
-
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	if (ActiveSession != nullptr)
-	{
-		// this can happen if a map load fails to create the UWorld
-		if (World == nullptr)
+		Event.ConnectionString = Connection->RequestURL; // todo: sanitize?
+		auto Platform = RH_GetPlatformFromOSSName(Connection->PlayerId.GetType());
+		if (Platform.IsSet())
 		{
-			// in this case, the engine should abort the load and load a new map with the ?closed or ?failed flags, handled below.  We will handle it in that case, as too many things depend on the UWorld reference (rather than the Context)
-			return;
+			Event.PlatformId = EnumToString(Platform.GetValue());
+		}
+		Event.PlatformUserId = Connection->PlayerId.ToString();
+	}
+
+	if (pSession != nullptr)
+	{
+		Event.SessionId = pSession->GetSessionId();
+		if (pSession->GetInstanceData() != nullptr)
+		{
+			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
+		}
+	}
+
+	ON_SCOPE_EXIT
+	{
+		auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
+		if (Provider != nullptr)
+		{
+			Event.IsSuccess = ErrorMessage.Len() == 0;
+
+			Event.EmitTo(Provider.Get());
+		}
+	};
+
+	// if error message is already set, something else already failed
+	if (ErrorMessage.Len() > 0)
+	{
+		return false;
+	}
+
+	if (Connection == nullptr)
+	{
+		ErrorMessage = TEXT("Connection is null");
+		return false;
+	}
+
+	// find the player connection and import any player options desired
+	FString RequestURL = Connection->RequestURL;
+
+	auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(Connection);
+	if (pRH_Conn != nullptr)
+	{
+		bool bFound = false;
+		bool bValid = false;;
+		pRH_Conn->ImportPlayerOptionsfromURL(bFound, bValid);
+
+		Event.UserId = pRH_Conn->GetRHPlayerUuid();
+
+		if (pSettings->bRequireImportedPlayerIdsForJoining && !bFound)
+		{
+			ErrorMessage = TEXT("Could not import player options from URL");
+			return false;
 		}
 
-		const FURL& URL = World->URL;
-
-		const bool bHasSessionId = URL.HasOption(RH_SESSION_PARAMETER_NAME);
-		const FString SessionId = URL.GetOption(RH_SESSION_PARAMETER_NAME, TEXT(""));
-
-		const bool bHasInstanceId = URL.HasOption(RH_INSTANCE_PARAMETER_NAME);
-		const FString InstanceId = URL.GetOption(RH_INSTANCE_PARAMETER_NAME, TEXT(""));
-
-		if (URL.HasOption(TEXT("closed")) || URL.HasOption(TEXT("failed")) 
-			|| !bHasSessionId || SessionId != ActiveSession->GetSessionId()
-			|| !bHasInstanceId || !ActiveSession->GetInstanceData() || InstanceId != ActiveSession->GetInstanceData()->GetInstanceId()
-			)
+		//if it is a game type of world, check required id flag (for now, editor may not have valid IDs for PIE, etc)
+		if (pWorld->WorldType == EWorldType::Game)
 		{
-			StartLeaveInstanceFlow(true);
-			return;
-		}
-
-		if (IsLocallyHostedSession(ActiveSession))
-		{
-			// instance info updates are not really properly using optional flags, so get a default object and pass it
-			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
-
-			// make sure we send version in case we are updating joinability.
-			InstanceInfo.SetVersion(URH_JoinedSession::GetClientVersionForSession());
-
-			FString PublicConnStr;
-			FString PrivateConnStr;
-
-			// if dedicated server, look up the server's join parameters, else inspect locally (TODO - find a better lookup for a public IP for P2P)
-			if (GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr && GetGameInstanceSubsystem()->GetServerBootstrapper()->DetermineJoinParameters(PublicConnStr, PrivateConnStr))
+			if (pSettings->bRequireValidPlayerIdsForJoining && !bValid)
 			{
-				InstanceInfo.JoinParams_IsSet = true;
-				InstanceInfo.GetJoinParams().PublicConnStr = PublicConnStr;
-				InstanceInfo.GetJoinParams().PrivateConnStr = PrivateConnStr;
+				ErrorMessage = TEXT("Imported player ids are not valid");
+				return false;
 			}
-			else
-			{
-				// fall back to local LAN detection
-				auto* NetDriver = World->GetNetDriver();
-				if (NetDriver != nullptr && NetDriver->IsServer() && NetDriver->GetSocketSubsystem() != nullptr && World->URL.Port > 0)
-				{
-					bool bCanBind = false;
-					const TSharedRef<FInternetAddr> LocalIp = NetDriver->GetSocketSubsystem()->GetLocalHostAddr(*GLog, bCanBind);
-					if (LocalIp->IsValid()) // validity check for the address not the shared ref
-					{
-						const auto LocalIPModified = LocalIp->Clone();
-						// world URL should have the port that was opened for listen
-						LocalIPModified->SetPort(World->URL.Port);
+		}
+	}
 
-						// temp - parse as IPv4 to determine if it should be public or private
-						FIPv4Address tempIPv4;
-						if (FIPv4Address::Parse(LocalIPModified->ToString(false), tempIPv4) && tempIPv4.IsSiteLocalAddress())
-						{
-							InstanceInfo.JoinParams_IsSet = true;
-							InstanceInfo.GetJoinParams().PublicConnStr.Empty();
-							InstanceInfo.GetJoinParams().PrivateConnStr = TEXT("unreal://") + LocalIPModified->ToString(true);
-						}
-						else
-						{
-							// add unreal protocol name
-							InstanceInfo.JoinParams_IsSet = true;
-							InstanceInfo.GetJoinParams().PublicConnStr = TEXT("unreal://") + LocalIPModified->ToString(true);
-							InstanceInfo.GetJoinParams().PrivateConnStr.Empty();
-						}
+	if (ErrorMessage.Len() == 0 && pSettings->bUseSecurityTokenForJoining)
+	{
+		// temporary url to parse out the token
+		const FURL TempURL(nullptr, *RequestURL, TRAVEL_Absolute);
+		const FString LoginSecurityToken = TempURL.GetOption(TEXT("RHSecurityToken="), TEXT(""));
+
+		// see if a security token was specified for the currently active session
+		const FString* SessionSecurityToken = nullptr;
+		const TOptional<FString> FallbackSessionSecurityToken = GetFallbackSessionSecurityToken();
+		if (pSession != nullptr && pSession->GetInstanceData() != nullptr)
+		{
+			if (const auto JoinParams = pSession->GetInstanceData()->GetJoinParamsOrNull())
+			{
+				if (const auto CustomData = JoinParams->GetCustomDataOrNull())
+				{
+					SessionSecurityToken = CustomData->Find(RH_SessionCustomDataKeys::SessionSecurityTokenName);
+				}
+			}
+		}
+
+		if (SessionSecurityToken != nullptr)
+		{
+			if (*SessionSecurityToken != LoginSecurityToken)
+			{
+				ErrorMessage = TEXT("RH Security Token mismatch");
+				return false;
+			}
+		}
+		// this token is used to cover cases where clients attempt to connect before the server reads its own session data update to add the token
+		else if (FallbackSessionSecurityToken.IsSet())
+		{
+			if (FallbackSessionSecurityToken.GetValue() != LoginSecurityToken)
+			{
+				ErrorMessage = TEXT("RH Security Token (fallback) mismatch");
+				return false;
+			}
+		}
+		else if (IsRunningDedicatedServer() && GetGameInstanceSubsystem()->GetServerBootstrapper() != nullptr && GetGameInstanceSubsystem()->GetServerBootstrapper()->IsBootstrapModeEnabled())
+		{
+			// if we are running a dedicated server and the server bootstrapper is enabled, failing to find a token probably means that the server is not part of a valid joinable session
+			ErrorMessage = TEXT("Security token could not be validated");
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void URH_GameInstanceSessionSubsystem::GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage)
+{
+	// find the player connection and import any player options desired
+	auto* pWorld = GetWorld();
+	FString RequestURL;
+	if (pWorld->NetDriver != nullptr && pWorld->NetDriver->ClientConnections.Num() > 0)
+	{
+		for (auto Client : pWorld->NetDriver->ClientConnections)
+		{
+			if (Client->PlayerId == NewPlayer)
+			{
+				ValidateIncomingConnection(Client, ErrorMessage);
+				break;
+			}
+		}
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::GameModePostLoginEvent(class AGameModeBase* GameMode, APlayerController* NewPlayer)
+{
+	RHStandardEvents::FInstanceJoinReceivedEvent Event;
+
+	Event.IsSuccess = NewPlayer != nullptr;
+
+	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
+	const auto* pSession = GetActiveSession();
+
+	if (pSession != nullptr)
+	{
+		Event.SessionId = pSession->GetSessionId();
+		if (pSession->GetInstanceData() != nullptr)
+		{
+			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
+		}
+	}
+
+	TOptional<FGuid> PlayerId;
+	if (NewPlayer != nullptr)
+	{
+		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
+		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
+
+		if (pRH_Conn != nullptr)
+		{
+			PlayerId = pRH_Conn->GetRHPlayerUuid();
+		}
+		else if (pRH_LocalPlayer != nullptr)
+		{
+			PlayerId = pRH_LocalPlayer->GetRHPlayerUuid();
+		}
+	}
+	if (PlayerId.IsSet() && !PlayerId->IsValid())
+	{
+		PlayerId.Reset();
+	}
+
+	if (PlayerId.IsSet() && PlayerId->IsValid())
+	{
+		Event.UserId = PlayerId;
+	}
+
+	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
+	if (Provider != nullptr)
+	{
+		Event.EmitTo(Provider.Get());
+	}
+
+	if (NewPlayer != nullptr && PlayerId.IsSet())
+	{
+		// lookup if an existing context exists for the player, else make a new one
+		auto* PlayerContext = ActiveSessionState.PlayerContexts.FindByPredicate([PlayerId](const FRH_ActiveSessionStatePlayerContext& Context) { return Context.RHPlayerId == PlayerId.GetValue(); });
+		if (PlayerContext == nullptr)
+		{
+			// create a new context for the player
+			FRH_ActiveSessionStatePlayerContext NewContext;
+			NewContext.RHPlayerId = PlayerId.GetValue();
+			auto Index = ActiveSessionState.PlayerContexts.Add(NewContext);
+			PlayerContext = &ActiveSessionState.PlayerContexts[Index];
+		}
+
+		// update the context with the new controller, and set join time
+		PlayerContext->Controller = NewPlayer;
+		PlayerContext->JoinedTime = FDateTime::UtcNow();
+
+		// update the match player
+		auto Settings = GetDefault<URH_IntegrationSettings>();
+		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bAutoAddConnectedPlayersToMatches)
+		{
+			FRHAPI_MatchPlayerRequest MatchPlayer;
+
+			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);
+			MatchPlayer.SetJoinedMatchTimestamp(PlayerContext->JoinedTime);
+
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerContext->RHPlayerId, MatchPlayer);
+		}
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting)
+{
+	RHStandardEvents::FInstanceClientDisconnectEvent Event;
+
+	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
+	const auto* pSession = GetActiveSession();
+
+	if (pSession != nullptr)
+	{
+		Event.SessionId = pSession->GetSessionId();
+		if (pSession->GetInstanceData() != nullptr)
+		{
+			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
+		}
+	}
+
+	// lookup the player context using the controller reference (as the local player or connection may be gone)
+	auto* PlayerContext = ActiveSessionState.PlayerContexts.FindByPredicate([Exiting](const FRH_ActiveSessionStatePlayerContext& Context) { return Context.Controller == Exiting; });
+	if (PlayerContext != nullptr)
+	{
+		// clear the controller reference, as it will be invalid soon
+		PlayerContext->Controller = nullptr;
+
+		// update the context with the leave time
+		PlayerContext->LeaveTime = FDateTime::UtcNow();
+
+		// calculate the duration, add to duration connected in case this is not the only time this player has been connected
+		PlayerContext->DurationSeconds += (PlayerContext->LeaveTime - PlayerContext->JoinedTime).GetTotalSeconds();
+
+		// update the event with the player id
+		Event.UserId = PlayerContext->RHPlayerId;
+	}
+
+	// emit the event
+	auto Provider = GetGameInstanceSubsystem()->GetAnalyticsProvider();
+	if (Provider != nullptr)
+	{
+		Event.EmitTo(Provider.Get());
+	}
+
+	// update the match player
+	if (PlayerContext != nullptr)
+	{
+		auto Settings = GetDefault<URH_IntegrationSettings>();
+		auto pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+		if (pMatchSubsystem != nullptr && pMatchSubsystem->HasActiveMatchId() && Settings->bAutoAddConnectedPlayersToMatches)
+		{
+			FRHAPI_MatchPlayerRequest MatchPlayer;
+			MatchPlayer.SetPlayerUuid(PlayerContext->RHPlayerId);
+			MatchPlayer.SetLeftMatchTimestamp(PlayerContext->LeaveTime);
+			MatchPlayer.SetDurationSeconds(PlayerContext->DurationSeconds);
+
+			pMatchSubsystem->UpdateMatchPlayer(pMatchSubsystem->GetActiveMatchId(), PlayerContext->RHPlayerId, MatchPlayer);
+		}
+	}
+}
+
+void URH_GameInstanceSessionSubsystem::CreateMatchForSession(const URH_JoinedSession* Session) const
+{
+	const auto* Settings = GetDefault<URH_IntegrationSettings>();
+	auto* pMatchSubsystem = GetGameInstanceSubsystem()->GetMatchSubsystem();
+
+	const auto* InstanceData = Session->GetInstanceData();
+
+	// Send a match create request to the match subsystem
+	if (pMatchSubsystem != nullptr)
+	{
+		// send an update with initial data satte
+		FRHAPI_MatchRequest UpdateRequest;
+		UpdateRequest.SetStartTimestamp(FDateTime::UtcNow());
+		UpdateRequest.SetState(ERHAPI_MatchState::Pending);
+
+		// set the allocation id
+		{
+			if (InstanceData != nullptr)
+			{
+				TArray<FRHAPI_MatchAllocation> Allocations;
+				{
+					FRHAPI_MatchAllocation NewAllocation;
+					NewAllocation.SetAllocationId(InstanceData->GetInstanceId());
+					Allocations.Add(NewAllocation);
+				}
+				UpdateRequest.SetAllocations(Allocations);
+			}
+		}
+
+		// set the session id
+		{
+			TArray<FRHAPI_MatchSession> Sessions;
+			{
+				FRHAPI_MatchSession NewSession;
+				NewSession.SetSessionId(Session->GetSessionId());
+
+				if (InstanceData != nullptr)
+				{
+					auto ProfileId = InstanceData->GetMatchMakingProfileIdOrNull();
+					if (ProfileId != nullptr)
+					{
+						NewSession.SetMatchmakingProfileId(*ProfileId);
+					}
+				}
+				Sessions.Add(NewSession);
+			}
+			UpdateRequest.SetSessions(Sessions);
+		}
+
+		// set the Instance id
+		if (InstanceData != nullptr)
+		{
+			TArray<FRHAPI_MatchInstance> Instances;
+			{
+				FRHAPI_MatchInstance NewInstance;
+				
+				NewInstance.SetInstanceId(InstanceData->GetInstanceId());
+
+				auto* HostPlayerId = InstanceData->GetHostPlayerUuidOrNull();
+				if (HostPlayerId != nullptr)
+				{
+					NewInstance.SetHostPlayerUuid(*HostPlayerId);
+				}
+				auto* RegionId = Session->GetSessionData().GetRegionIdOrNull();
+				if (RegionId != nullptr)
+				{
+					NewInstance.SetRegionId(*RegionId);
+				}
+				//NewInstance.SetLaunchRequestTemplateId(InstanceData->GetInstanceStartupParams().launchtemplate)
+				NewInstance.SetMap(InstanceData->GetInstanceStartupParams().Map);
+				auto* GameMode = InstanceData->GetInstanceStartupParams().GetModeOrNull();
+				if (GameMode != nullptr)
+				{
+					NewInstance.SetGameMode(*GameMode);
+				}
+				// assume match host type can be converted directly by name from instance host type
+				ERHAPI_MatchHostType HostType;
+				if (EnumFromString(EnumToString(InstanceData->GetHostType()), HostType))
+				{
+					NewInstance.SetHostType(HostType);
+				}
+
+				Instances.Add(NewInstance);
+			}
+			UpdateRequest.SetInstances(Instances);
+		}
+
+		// scan through all known local and remote players for connected players, and add them.  We do not set much state since we cannot determine much here
+		auto* pWorld = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
+		if (Settings->bAutoAddConnectedPlayersToMatches && pWorld != nullptr)
+		{
+			TArray<FRHAPI_MatchPlayerRequest> Players;
+			// add existing local players
+			for (auto LP : GetGameInstanceSubsystem()->GetGameInstance()->GetLocalPlayers())
+			{
+				auto* pRH_LP = Cast<IRH_LocalPlayerInterface>(LP);
+				if (pRH_LP != nullptr)
+				{
+					FRHAPI_MatchPlayerRequest NewPlayer;
+					const auto& PlayerId = pRH_LP->GetRHPlayerUuid();
+					NewPlayer.SetPlayerUuid(PlayerId);
+					NewPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+					Players.Add(NewPlayer);
+				}
+			}
+
+			// add existing remote players			
+			FString RequestURL;
+			if (pWorld->NetDriver != nullptr && pWorld->NetDriver->ClientConnections.Num() > 0)
+			{
+				for (auto Connection : pWorld->NetDriver->ClientConnections)
+				{
+					auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(Connection);
+					if (pRH_Conn != nullptr)
+					{
+						FRHAPI_MatchPlayerRequest NewPlayer;
+						const auto& PlayerId = pRH_Conn->GetRHPlayerUuid();
+						NewPlayer.SetPlayerUuid(PlayerId);
+						NewPlayer.SetJoinedMatchTimestamp(FDateTime::UtcNow());
+						Players.Add(NewPlayer);
 					}
 				}
 			}
-
-
-			// if it is a beacon, convert world to beacon mode
-			if (ActiveSession && ActiveSession->IsBeaconSession())
-			{
-				CreateBeaconHost(World, World->URL.Port, true);
-			}
-
-			const bool bRequireConnectivity = IsRunningDedicatedServer(); //|| World->URL.HasOption(TEXT("listen"));
-			if (!bRequireConnectivity || InstanceInfo.GetJoinParams().PublicConnStr.Len() > 0 || InstanceInfo.GetJoinParams().PrivateConnStr.Len() > 0)
-			{
-				InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Joinable);
-				if (!InstanceInfo.GetJoinParams().GetCustomData().Contains(RH_SessionCustomDataKeys::SessionSecurityTokenName))
-				{
-					FString SecurityToken = FGuid::NewGuid().ToString();
-
-					FallbackSecurityToken = SecurityToken;
-
-					InstanceInfo.GetJoinParams().GetCustomData().Add(RH_SessionCustomDataKeys::SessionSecurityTokenName, SecurityToken);
-					InstanceInfo.GetJoinParams().CustomData_IsSet = true;
-					InstanceInfo.JoinParams_IsSet = true;
-				}
-
-				ActiveSession->UpdateInstanceInfo(InstanceInfo);
-			}
-			else
-			{
-				UE_LOG(LogRallyHereIntegration, Error, TEXT("Session %d could not find a valid connection string on the host"));
-				StartLeaveInstanceFlow();
-			}
-
-		}
-	}
-}
-
-void URH_GameInstanceSessionSubsystem::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
-{
-	// Stub in case it is needed, the default engine handler should close the map which we detect above
-}
-
-void URH_GameInstanceSessionSubsystem::OnTravelFailure(UWorld* World, ETravelFailure::Type FailureType, const FString& ErrorString)
-{
-	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
-	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
-
-	const FWorldContext* pWorldContext = pGameInstance->GetWorldContext();
-	if (pWorldContext == nullptr || pWorldContext->World() != World)
-	{
-		// not for our world
-		return;
-	}
-
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorString);
-
-	if (ActiveSession != nullptr)
-	{
-		StartLeaveInstanceFlow(true);
-	}
-}
-
-void URH_GameInstanceSessionSubsystem::SetActiveSession(URH_JoinedSession* JoinedSession)
-{
-	static FName HealthPollTimerName(TEXT("SessionInstanceHealth"));
-	static FName BackfillPollTimerName(TEXT("SessionBackfill"));
-
-	auto OldSession = ActiveSession;
-	if (ActiveSession != nullptr)
-	{
-		check(ActiveSession->IsActive());
-		ActiveSession->SetActive(false);
-		ActiveSession->SetWatchingPlayers(false); // TODO - maybe should be incrementing/decrementing watch counter?
-		ActiveSession = nullptr;
-
-		if (InstanceHealthPoller.IsValid())
-		{
-			InstanceHealthPoller->StopPoll();
-		}
-		if (BackfillPoller.IsValid())
-		{
-			BackfillPoller->StopPoll();
+			UpdateRequest.SetPlayers(Players);
 		}
 
-		// reset any polling override as needed for instance health
-		auto* PollControl = FRH_PollControl::Get();
-		if (PollControl)
-		{
-			PollControl->ClearPollingIntervalOverride(HealthPollTimerName);
-		}
+		// create the match and set as active
+		pMatchSubsystem->CreateMatch(UpdateRequest, true);
 	}
-
-	// clear transient flags for new tracking
-	bHasBeenMarkedFubar = false;
-	bIsBackfillTerminated = false;
-
-	ActiveSession = JoinedSession;
-	FallbackSecurityToken.Reset();
-
-	if (ActiveSession != nullptr)
-	{
-		check(!ActiveSession->IsActive());
-		ActiveSession->SetActive(true);
-		ActiveSession->SetWatchingPlayers(true);
-
-		// if this instance is locally hosted, set up health polling
-		if (ActiveSession->GetInstanceData() != nullptr && IsLocallyHostedInstance(*ActiveSession->GetInstanceData()))
-		{
-			// instance health polling kickoff and config check
-			if (GetShouldKeepInstanceHealthAlive())
-			{
-				// initiate polling
-				if (InstanceHealthPoller.IsValid())
-				{
-					InstanceHealthPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollInstanceHealth), HealthPollTimerName, true);
-				}
-
-				// kick off a check to determine if we need to override our health interval
-				auto* PollControl = FRH_PollControl::Get();
-				if (PollControl)
-				{
-					typedef RallyHereAPI::Traits_InstanceHealthConfig BaseType;
-
-					BaseType::Request Request = {};
-					Request.AuthContext = GetAuthContext();
-
-					auto PollTimerNameCopy = HealthPollTimerName;
-					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
-							{
-								auto* PollControl = FRH_PollControl::Get();
-								if (PollControl && Resp.IsSuccessful())
-								{
-									float NewInterval = Resp.Content.CadenceSeconds;
-									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), NewInterval);
-
-									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
-									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
-									NewSetting.Interval = NewInterval;
-									PollControl->SetPollingIntervalOverride(NewSetting);
-								}
-							}),
-						FRH_GenericSuccessWithErrorDelegate(),
-						GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
-					);
-
-					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
-				}
-			}
-
-			// backfill polling kickoff and config check
-			if (GetShouldKeepBackfillAlive())
-			{
-				// initiate polling
-				if (BackfillPoller.IsValid())
-				{
-					BackfillPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_GameInstanceSessionSubsystem::PollBackfill), BackfillPollTimerName, false);
-				}
-
-				// kick off a check to determine if we need to override our health interval
-				auto* PollControl = FRH_PollControl::Get();
-				if (PollControl)
-				{
-					typedef RallyHereAPI::Traits_BackfillConfig BaseType;
-
-					BaseType::Request Request = {};
-					Request.AuthContext = GetAuthContext();
-
-					auto PollTimerNameCopy = BackfillPollTimerName;
-					auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-						BaseType::Delegate::CreateLambda([PollTimerNameCopy](const BaseType::Response& Resp)
-							{
-								auto* PollControl = FRH_PollControl::Get();
-								if (PollControl && Resp.IsSuccessful())
-								{
-									const auto CadenceSeconds = Resp.Content.Timeout;
-									UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] - Updating %s timer to %f interval"), ANSI_TO_TCHAR(__FUNCTION__), *PollTimerNameCopy.ToString(), CadenceSeconds);
-
-									FRH_PollTimerSetting NewSetting = PollControl->GetPollTimerSetting(PollTimerNameCopy);
-									NewSetting.TimerName = PollTimerNameCopy;	// make sure we set the timer name, as this could be the default configuration
-									NewSetting.Interval = CadenceSeconds;
-									PollControl->SetPollingIntervalOverride(NewSetting);
-								}
-							}),
-						FRH_GenericSuccessWithErrorDelegate(),
-						GetDefault<URH_IntegrationSettings>()->SessionInstanceHealthUpdatePriority
-					);
-
-					Helper->Start(RH_APIs::GetSessionsAPI(), Request);
-				}
-			}
-		}
-	}
-
-	// fire delegates to allow registration of handler objects
-	OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
-	BLUEPRINT_OnActiveSessionChanged.Broadcast(OldSession, ActiveSession);
 }
 
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepInstanceHealthAlive_Implementation() const
@@ -472,6 +942,7 @@ ERHAPI_InstanceHealthStatus URH_GameInstanceSessionSubsystem::GetInstanceHealthS
 void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollCompleteFunc& Delegate)
 {
 	// make sure the active session is locally hosted
+	auto* ActiveSession = GetActiveSession();
 	if (	ActiveSession != nullptr
 		&&	ActiveSession->GetInstanceData() != nullptr 
 		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
@@ -506,6 +977,7 @@ void URH_GameInstanceSessionSubsystem::PollInstanceHealth(const FRH_PollComplete
 
 bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation() const
 {
+	auto* ActiveSession = GetActiveSession();
 	if (ActiveSession == nullptr || ActiveSession->GetInstanceData() == nullptr)
 	{
 		return false;
@@ -519,7 +991,7 @@ bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation
 	}
 
 	// if a backfill termination was requested, we should not keep it alive
-	if (bIsBackfillTerminated)
+	if (IsBackfillTerminated())
 	{
 		return false;
 	}
@@ -538,6 +1010,7 @@ bool URH_GameInstanceSessionSubsystem::GetShouldKeepBackfillAlive_Implementation
 void URH_GameInstanceSessionSubsystem::PollBackfill(const FRH_PollCompleteFunc& Delegate)
 {
 	// make sure the active session is locally hosted, and that we want to keep backfill alive
+	auto* ActiveSession = GetActiveSession();
 	if (	ActiveSession != nullptr
 		&&	ActiveSession->GetInstanceData() != nullptr 
 		&&	IsLocallyHostedInstance(*ActiveSession->GetInstanceData())
@@ -630,20 +1103,21 @@ void URH_GameInstanceSessionSubsystem::SyncToSession(URH_JoinedSession* SessionI
 	const FRHAPI_InstanceInfo* newInstanceData = DesiredSession != nullptr ? DesiredSession->GetInstanceData() : nullptr;
 
 	// if we are in a session, and we do not want to be, start leaving (regardless of destination)
-	if (ActiveSession != nullptr && ActiveSession != DesiredSession)
+	auto pOldActiveSession = GetActiveSession();
+	if (pOldActiveSession != nullptr && pOldActiveSession != DesiredSession)
 	{
 		// leave instance flow will call join flow on the desired session
 		StartLeaveInstanceFlow(false, true, Delegate);
 	}
 	// if we have a session to join and are not in one
-	else if (ActiveSession == nullptr && DesiredSession != nullptr)
+	else if (pOldActiveSession == nullptr && DesiredSession != nullptr)
 	{
 		StartJoinInstanceFlow(Delegate);
 	}
 	// we are already in the correct instance
 	else
 	{
-		check(ActiveSession == DesiredSession);
+		check(pOldActiveSession == DesiredSession);
 		Delegate.ExecuteIfBound(DesiredSession, true, TEXT("Already in session"));
 	}
 }
@@ -719,9 +1193,9 @@ bool URH_GameInstanceSessionSubsystem::IsReadyToJoinInstance(const URH_JoinedSes
 
 const FRHAPI_InstanceInfo* URH_GameInstanceSessionSubsystem::GetInstance() const
 {
-	if (ActiveSession != nullptr)
+	if (GetActiveSession() != nullptr)
 	{
-		return ActiveSession->GetSessionData().GetInstanceOrNull();
+		return GetActiveSession()->GetSessionData().GetInstanceOrNull();
 	}
 
 	return nullptr;
@@ -821,6 +1295,9 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 			// set state now before we start travel (which may fail in line)
 			SetActiveSession(DesiredSession);
 
+			// now that the active session has been set, grab a reference to it for correctness
+			auto ActiveSession = GetActiveSession();
+
 			// set status to pending before starting travel (it will run asyncnrhonously on the http thread while travelling)
 			FRHAPI_InstanceInfoUpdate InstanceInfo = ActiveSession->GetInstanceUpdateInfoDefaults();
 			InstanceInfo.SetJoinStatus(ERHAPI_InstanceJoinableStatus::Pending);
@@ -865,7 +1342,7 @@ bool URH_GameInstanceSessionSubsystem::StartJoinInstanceFlow(const FRH_GameInsta
 
 		GEngine->SetClientTravel(pWorldContext->World(), *JoinURLString, TRAVEL_Absolute);
 
-		Delegate.ExecuteIfBound(ActiveSession, true, TEXT("Travel started"));
+		Delegate.ExecuteIfBound(GetActiveSession(), true, TEXT("Travel started"));
 		return true;
 	}
 	else
@@ -886,6 +1363,7 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	const UGameInstance* pGameInstance = GetGameInstanceSubsystem()->GetGameInstance();
 	check(pGameInstance != nullptr);	// if this is somehow nullptr, this object should not exist, and we are in a very broken state
 
+	auto ActiveSession = GetActiveSession();
 	if (ActiveSession != nullptr && IsLocallyHostedSession(ActiveSession))
 	{
 		// instance info updates are not really properly using optional flags, so get a default object and pass it
@@ -923,19 +1401,19 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 
 void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorBlock& Delegate)
 {
-	if (ActiveSession != nullptr && !bHasBeenMarkedFubar)
+	if (ActiveSessionState.Session != nullptr && !ActiveSessionState.bHasBeenMarkedFubar)
 	{
-		bHasBeenMarkedFubar = true;
+		ActiveSessionState.bHasBeenMarkedFubar = true;
 		typedef RallyHereAPI::Traits_ReportFubar BaseType;
 
 		BaseType::Request Request = {};
 		Request.AuthContext = GetAuthContext();
-		Request.SessionId = ActiveSession->GetSessionId();
-		Request.InstanceFubar.SetRegion(ActiveSession->GetSessionData().GetRegionId());
+		Request.SessionId = ActiveSessionState.Session->GetSessionId();
+		Request.InstanceFubar.SetRegion(ActiveSessionState.Session->GetSessionData().GetRegionId());
 		//Request.InstanceFubar.SetMatchmakingProfileId()
 		Request.InstanceFubar.SetError(Reason);
 
-		auto* Instance = ActiveSession->GetInstanceData();
+		auto* Instance = ActiveSessionState.Session->GetInstanceData();
 		if (Instance != nullptr)
 		{
 			Request.InstanceFubar.SetInstanceId(Instance->GetInstanceId());

@@ -79,7 +79,7 @@ void FRHDTW_Presence::DoViewPresenceTab()
 				{
 					if (auto pp = PlayerInfo->GetPresence())
 					{
-						pp->RequestUpdate(false, FRH_OnRequestPlayerPresenceDelegate::CreateSP(SharedThis(this), &FRHDTW_Presence::HandleGetPresence, PlayerInfo->GetRHPlayerUuid()));
+						pp->RequestUpdate(false, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateSP(SharedThis(this), &FRHDTW_Presence::HandleGetPresence, PlayerInfo->GetRHPlayerUuid()));
 					}
 					else
 					{
@@ -98,7 +98,7 @@ void FRHDTW_Presence::DoViewPresenceTab()
 				{
 					if (auto pp = PlayerInfo->GetPresence())
 					{
-						pp->RequestUpdate(true, FRH_OnRequestPlayerPresenceDelegate::CreateSP(SharedThis(this), &FRHDTW_Presence::HandleGetPresence, PlayerInfo->GetRHPlayerUuid()));
+						pp->RequestUpdate(true, FRH_OnRequestPlayerInfoSubobjectDelegate::CreateSP(SharedThis(this), &FRHDTW_Presence::HandleGetPresence, PlayerInfo->GetRHPlayerUuid()));
 					}
 					else
 					{
@@ -293,7 +293,7 @@ void FRHDTW_Presence::DoSelfTab()
 	}
 }
 
-void FRHDTW_Presence::HandleGetPresence(bool bSuccess, URH_PlayerPresence* PresenceData, FGuid PlayerUuid)
+void FRHDTW_Presence::HandleGetPresence(bool bSuccess, URH_PlayerInfoSubobject* PresenceData, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{

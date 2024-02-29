@@ -10,6 +10,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "SettingsAPI.h"
 #include "SessionsAPI.h"
+#include "MatchAPI.h"
 #include "RankAPI.h"
 #include "Engine/EngineTypes.h"
 #include "RH_Common.h"
@@ -66,46 +67,174 @@ DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDynamicDelegat
 DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerRankingsBlock, FRH_PlayerInfoGetPlayerRankingsDelegate, FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>&)
 
-// multicast delegates to notify listeners of presence events
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPresenceUpdatedMulticastDynamicDelegate, URH_PlayerPresence*, PresenceData);
-DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnPresenceUpdatedMulticastDelegate, URH_PlayerPresence*);
+// multicast delegates to notify listeners of player info subobject events
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate, URH_PlayerInfoSubobject*, Subobject);
+DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate, URH_PlayerInfoSubobject*);
 
 // non multicast delegates for update request tracking
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnRequestPlayerPresenceDynamicDelegate, bool, bSuccess, URH_PlayerPresence*, PresenceData);
-DECLARE_DELEGATE_TwoParams(FRH_OnRequestPlayerPresenceDelegate, bool, URH_PlayerPresence*);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnRequestPlayerPresenceBlock, FRH_OnRequestPlayerPresenceDelegate, FRH_OnRequestPlayerPresenceDynamicDelegate, bool, URH_PlayerPresence*)
-
-// multicast delegates to notify listeners of session events
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate, URH_PlayerSessions*, SessionData);
-DECLARE_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerSessionsUpdatedMulticastDelegate, URH_PlayerSessions*);
-
-// non multicast delegates for update request tracking
-UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnRequestPlayerSessionsDynamicDelegate, bool, bSuccess, URH_PlayerSessions*, SessionData);
-DECLARE_DELEGATE_TwoParams(FRH_OnRequestPlayerSessionsDelegate, bool, URH_PlayerSessions*);
-DECLARE_RH_DELEGATE_BLOCK(FRH_OnRequestPlayerSessionsBlock, FRH_OnRequestPlayerSessionsDelegate, FRH_OnRequestPlayerSessionsDynamicDelegate, bool, URH_PlayerSessions*)
+DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_OnRequestPlayerInfoSubobjectDynamicDelegate, bool, bSuccess, URH_PlayerInfoSubobject*, Subobject);
+DECLARE_DELEGATE_TwoParams(FRH_OnRequestPlayerInfoSubobjectDelegate, bool, URH_PlayerInfoSubobject*);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnRequestPlayerInfoSubobjectDelegateBlock, FRH_OnRequestPlayerInfoSubobjectDelegate, FRH_OnRequestPlayerInfoSubobjectDynamicDelegate, bool, URH_PlayerInfoSubobject*)
 
 /** @defgroup PlayerInfo RallyHere Player Info
  *  @{
  */
 
+ /**
+  * @brief Player Info Subobject base class used to store player data
+  */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerInfoSubobject : public UObject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	/**
+	* @brief Tracks if the subobject has been initialized (updated at least once).
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	bool bInitialized;
+
+	/**
+	* @brief The last time the players data was updated on the client.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	FDateTime LastUpdated;
+
+	/**
+	* @brief ETag to track if the data is stale during requests.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FString ETag;
+
+	/**
+	* @brief Players unique identifier.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FGuid PlayerUuid;
+
+	/**
+	* @brief Gets the PlayerInfo that owns this Player Matches object.
+	* @return The PlayerInfo that owns the Player Matches object.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Matches")
+	class URH_PlayerInfo* GetPlayerInfo() const;
+
+	/**
+	 * @brief Blueprint delegate to listen for updates.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "On Presence Updated"))
+	FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate BLUEPRINT_OnUpdatedDelegate;
+	/**
+	* @brief Native delegate to listen for presence updates.
+	*/
+	FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate OnUpdatedDelegate;
+	/**
+	* @brief Delegates stored to response to currently active requests.
+	*/
+	TArray<FRH_OnRequestPlayerInfoSubobjectDelegateBlock> TemporaryRequestDelegates;
+
+	/**
+	 * @brief Sets the last updated time to now.
+	 */
+	void MarkUpdated()
+	{
+		LastUpdated = FDateTime::UtcNow();
+	}
+
+	/**
+	 * @brief Clears the last updated time to force an update.
+	 */
+	void MarkDirty()
+	{
+		LastUpdated = FDateTime();
+	}
+
+	/**
+	* @brief Enqueues an update request for the players information from the RallyHere API.
+	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+	* @param [in] Delegate Callback delegate for the request.
+	*/
+	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerInfoSubobjectDelegateBlock& Delegate = FRH_OnRequestPlayerInfoSubobjectDelegateBlock())
+	{
+		TemporaryRequestDelegates.Add(Delegate);
+		CheckPollStatus(bForceUpdate);
+	}
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "Get Presence Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_RequestUpdate(bool bForceUpdate, const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate& Delegate) { RequestUpdate(bForceUpdate, Delegate); }
+
+	/**
+	* @brief Updates the poll status to be active or inactive based on if it should currently be polling.
+	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+	*/
+	void CheckPollStatus(const bool bForceUpdate = false);
+protected:
+	/**
+	 * @brief Poller for the players matches.
+	 */
+	FRH_AutoPollerPtr Poller;
+	/**
+	* @brief The name of the timer preset to use for polling
+	*/
+	FName PollTimerName;
+	/**
+	* @brief The priority of the poll request
+	*/
+	int32 PollPriority;
+
+	/**
+	 * @brief Gets if the poller should be actively polling, only polls if something cares about it.
+	 */
+	virtual bool ShouldPoll() const
+	{
+		return TemporaryRequestDelegates.Num() > 0 || OnUpdatedDelegate.IsBound() || BLUEPRINT_OnUpdatedDelegate.IsBound();
+	}
+	/**
+	 * @brief Starts a poll of the object data
+	 * @param Delegate Callback delegate for the poll.
+	 */
+	virtual void Poll(const FRH_PollCompleteFunc& Delegate)
+	{
+		Delegate.ExecuteIfBound(false, false);
+	}
+	/**
+	 * @brief Stores the response data from an API presence request.
+	 * @tparam Other The presence data to store.
+	 */
+	template<typename T>
+	void UpdateBase(const T& Other)
+	{
+		LastUpdated = FDateTime::UtcNow();
+		bInitialized = true;
+	}
+	/**
+	 * @brief Starts a poll of the object data
+	 * @param Delegate Callback delegate for the poll.
+	 */
+	virtual void PollComplete(bool bSuccess, const FRH_PollCompleteFunc& Delegate)
+	{
+		Delegate.ExecuteIfBound(bSuccess, ShouldPoll());
+		ExecuteUpdatedDelegates(bSuccess);
+	}
+	/**
+	 * @brief Handles executing any delegate listeners for the update.
+	 * @param bSuccess If the poll was successful.
+	 */
+	virtual void ExecuteUpdatedDelegates(bool bSuccess);
+};
+
 /**
  * @brief Player Presence class used to store player presence data.
  */
 UCLASS(Config = RallyHereIntegration, DefaultConfig)
-class RALLYHEREINTEGRATION_API URH_PlayerPresence : public UObject
+class RALLYHEREINTEGRATION_API URH_PlayerPresence : public URH_PlayerInfoSubobject
 {
 	GENERATED_UCLASS_BODY()
 
 public:
 	typedef RallyHereAPI::Traits_GetPlayerPresencePublicByUuid GetPresenceType;
 
-	/**
-	* @brief Tracks if the Presence has been initialized.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
-	bool bInitialized;
 	/**
 	* @brief Online status of the player.
 	*/
@@ -131,130 +260,35 @@ public:
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
 	TMap<FString, FString> CustomData;
-	/**
-	* @brief Players unique identifier.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
-	FGuid PlayerUuid;
-	/**
-	* @brief The last time the players presence data was updated on the client.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
-	FDateTime LastUpdated;
-	/**
-	* @brief ETag to track if the presence is stale during requests.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
-	FString ETag;
-	/**
-	 * @brief Blueprint delegate to listen for presence updates.
-	 */
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "On Presence Updated"))
-	FRH_OnPresenceUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for presence updates.
-	*/
-	FRH_OnPresenceUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
-	/**
-	* @brief Delegates stored to response to currently active requests.
-	*/
-	TArray<FRH_OnRequestPlayerPresenceBlock> TemporaryRequestDelegates;
-
-	/**
-	 * @brief Stores the response data from an API presence request.
-	 * @param Other The presence data to store.
-	 */
-	virtual void Update(const FRHAPI_PlayerPresence& Other)
-	{
-		bInitialized = true;
-
-		LastUpdated = FDateTime::UtcNow();
-		Status = Other.GetStatus(ERHAPI_OnlineStatus::Offline);
-		Message = Other.GetMessage(TEXT(""));
-		Platform = Other.Platform;
-		DisplayName = Other.DisplayName;
-		CustomData = Other.GetCustomData(TMap<FString, FString>());
-		PlayerUuid = Other.PlayerUuid;
-	}
-
-	/**
-	 * @brief Stores the response data from an API presence request.
-	 * @tparam Other The presence data to store.
-	 */
-	template<typename T>
-	void Update(const T& Other)
-	{
-		if (Other.ETag.IsSet())
-			ETag = Other.ETag.GetValue();
-		Update(Other.Content);
-	}
-
-	/**
-	 * @brief Sets the last updated time to now.
-	 */
-	void MarkUpdated()
-	{
-		LastUpdated = FDateTime::UtcNow();
-	}
-
-	/**
-	 * @brief Clears the last updated time to force an update.
-	 */
-	void MarkDirty()
-	{
-		LastUpdated = FDateTime();
-	}
-
-	/**
-	* @brief Enqueues an update request for the players presence information from the RallyHere API.
-	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
-	* @param [in] Delegate Callback delegate for the request.
-	*/
-	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerPresenceBlock& Delegate = FRH_OnRequestPlayerPresenceBlock())
-	{
-		TemporaryRequestDelegates.Add(Delegate);
-		CheckPollStatus(bForceUpdate);
-	}
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "Get Presence Async", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_RequestUpdate(bool bForceUpdate, const FRH_OnRequestPlayerPresenceDynamicDelegate& Delegate) { RequestUpdate(bForceUpdate, Delegate); }
 
 
-	/**
-	* @brief Gets the PlayerInfo that owns this Player Presence.
-	* @return The PlayerInfo that owns the Presence.
-	*/
-	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Presence")
-	class URH_PlayerInfo* GetPlayerInfo() const;
 
-	/**
-	* @brief Updates the poll status to be active or inactive based on if it should currently be polling.
-	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
-	*/
-	void CheckPollStatus(const bool bForceUpdate = false);
 protected:
-	/**
-	 * @brief Poller for the players presence.
-	 */
-	FRH_AutoPollerPtr PresencePoller;
-	/**
-	 * @brief Gets if the poller should be actively polling, only polls if something cares about it.
-	 */
-	virtual bool ShouldPoll() const
-	{
-		return !(TemporaryRequestDelegates.Num() == 0
-			&& !BLUEPRINT_OnPresenceUpdatedDelegate.IsBound()
-			&& !OnPresenceUpdatedDelegate.IsBound());
-	}
 	/**
 	 * @brief Starts a poll of the players presence.
 	 * @param Delegate Callback delegate for the poll.
 	 */
-	void PollPresence(const FRH_PollCompleteFunc& Delegate);
+	virtual void Poll(const FRH_PollCompleteFunc& Delegate) override;
 	/**
-	 * @brief Handles executing any delegate listeners for the players presence.
-	 * @param bSuccess If the poll was successful.
+	 * @brief Stores the response data from an API presence request.
+	 * @param Other The presence data to store.
 	 */
-	virtual void ExecuteDelegates(bool bSuccess);
+	virtual void Update(const GetPresenceType::Response& Other)
+	{
+		UpdateBase(Other);
+		if (Other.ETag.IsSet())
+		{
+			ETag = Other.ETag.GetValue();
+		}
+
+		const auto& Presence = Other.Content;
+		Status = Presence.GetStatus(ERHAPI_OnlineStatus::Offline);
+		Message = Presence.GetMessage(TEXT(""));
+		Platform = Presence.Platform;
+		DisplayName = Presence.DisplayName;
+		CustomData = Presence.GetCustomData(TMap<FString, FString>());
+		PlayerUuid = Presence.PlayerUuid;
+	}
 };
 
 
@@ -262,128 +296,167 @@ protected:
  * @brief Player Sessions class used to store player session membership information
  */
 UCLASS(Config = RallyHereIntegration, DefaultConfig)
-class RALLYHEREINTEGRATION_API URH_PlayerSessions : public UObject
+class RALLYHEREINTEGRATION_API URH_PlayerSessions : public URH_PlayerInfoSubobject
 {
 	GENERATED_UCLASS_BODY()
 
 public:
 	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid GetSessionsType;
 
-	/**
-	* @brief Tracks if the Presence has been initialized.
+	/** 
+	* @brief The sessions the player is a member of.
 	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
-	bool bInitialized;
-	/**
-	* @brief Players unique identifier.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
-	FGuid PlayerUuid;
-	/**
-	* @brief The last time the players session data was updated on the client.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
-	FDateTime LastUpdated;
-	/**
-	* @brief ETag to track if the session list is stale during requests.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
-	FString ETag;
-
 	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
 	FRHAPI_PlayerSessions Sessions;
 
-	/**
-	 * @brief Blueprint delegate to listen for sessions updates.
-	 */
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Player Info Subsystem | Player Sessions", meta = (DisplayName = "On Sessions Updated"))
-	FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate BLUEPRINT_OnSessionsUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for sessions updates.
-	*/
-	FRH_OnPlayerSessionsUpdatedMulticastDelegate OnSessionsUpdatedDelegate;
-	/**
-	* @brief Delegates stored to response to currently active requests.
-	*/
-	TArray<FRH_OnRequestPlayerSessionsBlock> TemporaryRequestDelegates;
+protected:
 
 	/**
-	 * @brief Stores the response data from an API presence request.
-	 * @param Other The presence data to store.
+	 * @brief Starts a poll of the players sessions.
+	 * @param Delegate Callback delegate for the poll.
+	 */
+	virtual void Poll(const FRH_PollCompleteFunc& Delegate) override;
+	/**
+	 * @brief Stores the response data from an API request.
+	 * @param Other The response data to store.
 	 */
 	virtual void Update(const GetSessionsType::Response& Other)
 	{
-		bInitialized = true;
+		UpdateBase(Other);
 
-		ETag = Other.ETag.Get(FString());
+		if (Other.ETag.IsSet())
+		{
+			ETag = Other.ETag.GetValue();
+		}
+
 		Sessions = Other.Content;
 	}
+};
+
+
+/**
+ * @brief Player Matches class used to store player match history information
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerMatches : public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	typedef RallyHereAPI::Traits_GetPlayersMatches GetMatchesType;
 
 	/**
-	 * @brief Sets the last updated time to now.
-	 */
-	void MarkUpdated()
-	{
-		LastUpdated = FDateTime::UtcNow();
-	}
-
-	/**
-	 * @brief Clears the last updated time to force an update.
-	 */
-	void MarkDirty()
-	{
-		LastUpdated = FDateTime();
-	}
-
-	/**
-	* @brief Enqueues an update request for the players presence information from the RallyHere API.
-	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
-	* @param [in] Delegate Callback delegate for the request.
+	* @brief The size of the pages to poll, if 0, uses default
 	*/
-	void RequestUpdate(bool bForceUpdate = false, const FRH_OnRequestPlayerSessionsBlock& Delegate = FRH_OnRequestPlayerSessionsBlock())
-	{
-		TemporaryRequestDelegates.Add(Delegate);
-		CheckPollStatus(bForceUpdate);
-	}
-	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Presence", meta = (DisplayName = "Get Presence Async", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_RequestUpdate(bool bForceUpdate, const FRH_OnRequestPlayerSessionsDynamicDelegate& Delegate) { RequestUpdate(bForceUpdate, Delegate); }
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
+	int32 PollPageSize;
 
 	/**
-	* @brief Gets the PlayerInfo that owns this Player Presence.
-	* @return The PlayerInfo that owns the Presence.
+	* @brief Polling of new pages is stopped after this value is reached, if 0, polls until all pages are polled
 	*/
-	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Presence")
-	class URH_PlayerInfo* GetPlayerInfo() const;
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
+	int32 PollMaxPageCount;
 
 	/**
-	* @brief Updates the poll status to be active or inactive based on if it should currently be polling.
-	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+	* @brief The maximum age after which to stop polling new pages, if 0, polls until max count is reached
 	*/
-	void CheckPollStatus(const bool bForceUpdate = false);
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
+	FTimespan PollMaxAge;
+
+	/**
+	* @brief The matches the player has participated in.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Matches")
+	TMap<FString, FRHAPI_MatchPlayerWithMatch> Matches;
+
 protected:
-	/**
-	 * @brief Poller for the players presence.
-	 */
-	FRH_AutoPollerPtr SessionsPoller;
-	/**
-	 * @brief Gets if the poller should be actively polling, only polls if something cares about it.
-	 */
-	virtual bool ShouldPoll() const
+
+	/** @brief A simple context object to hold the state of a multipage poll */
+	struct FPollContext
 	{
-		return !(TemporaryRequestDelegates.Num() == 0
-			&& !BLUEPRINT_OnSessionsUpdatedDelegate.IsBound()
-			&& !OnSessionsUpdatedDelegate.IsBound());
-	}
+		// state
+		FString Cursor;
+		FTimespan CurrentMaxAge;
+		int32 CurrentPageCount;
+		
+		// config
+		int32 PageSize;
+		FTimespan MaxAgeLimit;
+		int32 PageCountLimit;
+
+		FPollContext()
+			: Cursor()
+			, CurrentMaxAge(FTimespan::MinValue())
+			, CurrentPageCount(0)
+			, PageSize(0)
+			, MaxAgeLimit(FTimespan::Zero())
+			, PageCountLimit(0)
+		{}
+	};
+
 	/**
-	 * @brief Starts a poll of the players presence.
+	 * @brief Starts a poll of the object data
 	 * @param Delegate Callback delegate for the poll.
 	 */
-	void PollSessions(const FRH_PollCompleteFunc& Delegate);
+	void Poll(const FRH_PollCompleteFunc& Delegate);
+
 	/**
-	 * @brief Handles executing any delegate listeners for the players presence.
-	 * @param bSuccess If the poll was successful.
+	 * @brief Starts a poll of the object data
+	 * @param Delegate Callback delegate for the poll.
+	 * @param Context The context to use for the poll.
 	 */
-	virtual void ExecuteDelegates(bool bSuccess);
+	virtual void PollNextPage(const FRH_PollCompleteFunc& Delegate, TSharedPtr<FPollContext> Context = nullptr);
+	
+	/**
+	 * @brief Stores the response data from an API presence request.
+	 * @param Other The match data to store.
+	 * @param Context The context to use for the poll.
+	 */
+	virtual void Update(const GetMatchesType::Response& Other, TSharedPtr<FPollContext> Context)
+	{
+		UpdateBase(Other);
+		
+		if (Context.IsValid())
+		{
+			Context->CurrentPageCount++;
+		}
+
+		// sort and merge the matches in the response into our cache
+		FTimespan MaxAge;
+		auto TimeNow = FDateTime::UtcNow();
+		const auto MatchesResult = Other.Content.GetPlayerMatchesOrNull();
+		if (MatchesResult != nullptr)
+		{
+			for (const auto& PlayerMatch : *MatchesResult)
+			{
+				const auto& Match = PlayerMatch.GetMatch();
+
+				Matches.Add(Match.GetMatchId(), PlayerMatch);
+
+				const auto* CreatedTime = Match.GetCreatedTimestampOrNull();
+				const auto* EndTime = Match.GetEndTimestampOrNull();
+
+				// prefer using created time for age checks
+				if (CreatedTime != nullptr)
+				{
+					MaxAge = FMath::Max(MaxAge, TimeNow - *CreatedTime);
+				}
+				else if (EndTime != nullptr)
+				{
+					MaxAge = FMath::Max(MaxAge, TimeNow - *EndTime);
+				}
+			}
+		}
+
+		Context->CurrentMaxAge = FMath::Max(Context->CurrentMaxAge, MaxAge);
+	}
+
+	/**
+	 * @brief Check if we still need to poll more pages
+	 * @param Context The context to use for the poll.
+	 * @return False if we should continue polling, true if we should stop.
+	 */
+	static bool CheckPollingCursorComplete(const TSharedPtr<FPollContext> Context);
 };
 
 /**
@@ -480,11 +553,18 @@ public:
 	FORCEINLINE URH_PlayerPresence* GetPresence() const { return PlayerPresence;}
 
 	/**
-	* @brief Gets The players presence class.
-	* @return The players presence class.
+	* @brief Gets The players sessions class.
+	* @return The players sessions class.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerSessions* GetSessions() const { return PlayerSessions;}
+
+	/**
+	* @brief Gets The players matches class.
+	* @return The players matches class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerMatches* GetMatches() const { return PlayerMatches; }
 
 	/**
 	* @brief Gets the associated platform ids of the player.
@@ -684,6 +764,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetSessions, Category = "Sessions")
 	URH_PlayerSessions* PlayerSessions;
+	/**
+	 * @brief The players Matches Information.
+	 */
+	UPROPERTY(BlueprintGetter = GetMatches, Category = "Matches")
+	URH_PlayerMatches* PlayerMatches;
 	/**
 	 * @brief The Players Inventory Subsystem.
 	 */

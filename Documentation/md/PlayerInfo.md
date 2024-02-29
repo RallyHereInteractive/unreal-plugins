@@ -4,19 +4,184 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`class `[`URH_PlayerInfoSubobject`](#classURH__PlayerInfoSubobject) | Player Info Subobject base class used to store player data.
 `class `[`URH_PlayerPresence`](#classURH__PlayerPresence) | Player Presence class used to store player presence data.
 `class `[`URH_PlayerSessions`](#classURH__PlayerSessions) | Player Sessions class used to store player session membership information.
+`class `[`URH_PlayerMatches`](#classURH__PlayerMatches) | Player Matches class used to store player match history information.
 `class `[`URH_PlayerPlatformInfo`](#classURH__PlayerPlatformInfo) | Stores information a specific platform the player has linked to their account.
 `class `[`URH_PlayerInfo`](#classURH__PlayerInfo) | Stores and fetchs all the information about a given player.
 `class `[`URH_PlayerInfoSubsystem`](#classURH__PlayerInfoSubsystem) | Subsystem used to track and request information about players.
 `struct `[`FRH_PlayerSettingKeySetWrapper`](#structFRH__PlayerSettingKeySetWrapper) | Wrapper to help with setting keys for player settings.
 `struct `[`FRH_PlayerAndPlatformInfo`](#structFRH__PlayerAndPlatformInfo) | Wrapper to pair a players Unique Player Id and their current logged in Platform Id.
 
+## class `URH_PlayerInfoSubobject` <a id="classURH__PlayerInfoSubobject"></a>
+
+```
+class URH_PlayerInfoSubobject
+  : public UObject
+```
+
+Player Info Subobject base class used to store player data.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public bool `[`bInitialized`](#classURH__PlayerInfoSubobject_1ad175e37aa5147360d2e216a70d5390ce) | Tracks if the subobject has been initialized (updated at least once).
+`public FDateTime `[`LastUpdated`](#classURH__PlayerInfoSubobject_1ae5d67bedce410bcc2f7ee5e6ac49cd92) | The last time the players data was updated on the client.
+`public FString `[`ETag`](#classURH__PlayerInfoSubobject_1a43c6b83f587859abb61d71842801a64c) | ETag to track if the data is stale during requests.
+`public FGuid `[`PlayerUuid`](#classURH__PlayerInfoSubobject_1ae2cc7f7dfc47525f2d6edaf01b04403f) | Players unique identifier.
+`public FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnUpdatedDelegate`](#classURH__PlayerInfoSubobject_1acd235146d3e5d44c3deeee04a658bee6) | Blueprint delegate to listen for updates.
+`public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnUpdatedDelegate`](#classURH__PlayerInfoSubobject_1a79fe3beb1968bb4fec503603aab7c7c5) | Native delegate to listen for presence updates.
+`public TArray< FRH_OnRequestPlayerInfoSubobjectDelegateBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerInfoSubobject_1a5968c4b094b525f7e54adc02b11a35bf) | Delegates stored to response to currently active requests.
+`public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubobject_1aa4e6fb9d2cdcfd4690022db8ea155e0e)`() const` | Gets the PlayerInfo that owns this Player Matches object.
+`public inline void `[`MarkUpdated`](#classURH__PlayerInfoSubobject_1a58ec05a187f04f59e206487e5130c20d)`()` | Sets the last updated time to now.
+`public inline void `[`MarkDirty`](#classURH__PlayerInfoSubobject_1a65e9f132b7fb7d3dfa8be3fad451337a)`()` | Clears the last updated time to force an update.
+`public inline void `[`RequestUpdate`](#classURH__PlayerInfoSubobject_1a973f4d625860eb6477b615d24a906461)`(bool bForceUpdate,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` | Enqueues an update request for the players information from the RallyHere API.
+`public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerInfoSubobject_1ad60fb784f621475df3a543126b379209)`(bool bForceUpdate,const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate & Delegate)` | 
+`public void `[`CheckPollStatus`](#classURH__PlayerInfoSubobject_1a993e45b8a7968072c2469392e97c86b2)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
+`protected FRH_AutoPollerPtr `[`Poller`](#classURH__PlayerInfoSubobject_1a9abab6c88fabe22a23835813a56bffbd) | Poller for the players matches.
+`protected FName `[`PollTimerName`](#classURH__PlayerInfoSubobject_1a697ccd6d2e132cd4ac05fcc31e64272f) | The name of the timer preset to use for polling.
+`protected int32 `[`PollPriority`](#classURH__PlayerInfoSubobject_1aa0795fa3b53d3842dc358564abed8f5d) | The priority of the poll request.
+`protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerInfoSubobject_1aa73d16e9e42fd18afd95db6723ead346)`() const` | Gets if the poller should be actively polling, only polls if something cares about it.
+`protected inline virtual void `[`Poll`](#classURH__PlayerInfoSubobject_1aa6bc5fb282ea6eb162c44106b89d1fc5)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the object data.
+`protected template<>`  <br/>`inline void `[`UpdateBase`](#classURH__PlayerInfoSubobject_1a9256fdd7baceb430ba944ce641646273)`(const T & Other)` | Stores the response data from an API presence request.
+`protected inline virtual void `[`PollComplete`](#classURH__PlayerInfoSubobject_1a25950945c3f6bfd0122858aa944a2bac)`(bool bSuccess,const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the object data.
+`protected virtual void `[`ExecuteUpdatedDelegates`](#classURH__PlayerInfoSubobject_1a38d53acfed235ac77964549ec780a2d4)`(bool bSuccess)` | Handles executing any delegate listeners for the update.
+
+#### Members
+
+#### `public bool `[`bInitialized`](#classURH__PlayerInfoSubobject_1ad175e37aa5147360d2e216a70d5390ce) <a id="classURH__PlayerInfoSubobject_1ad175e37aa5147360d2e216a70d5390ce"></a>
+
+Tracks if the subobject has been initialized (updated at least once).
+
+<br>
+#### `public FDateTime `[`LastUpdated`](#classURH__PlayerInfoSubobject_1ae5d67bedce410bcc2f7ee5e6ac49cd92) <a id="classURH__PlayerInfoSubobject_1ae5d67bedce410bcc2f7ee5e6ac49cd92"></a>
+
+The last time the players data was updated on the client.
+
+<br>
+#### `public FString `[`ETag`](#classURH__PlayerInfoSubobject_1a43c6b83f587859abb61d71842801a64c) <a id="classURH__PlayerInfoSubobject_1a43c6b83f587859abb61d71842801a64c"></a>
+
+ETag to track if the data is stale during requests.
+
+<br>
+#### `public FGuid `[`PlayerUuid`](#classURH__PlayerInfoSubobject_1ae2cc7f7dfc47525f2d6edaf01b04403f) <a id="classURH__PlayerInfoSubobject_1ae2cc7f7dfc47525f2d6edaf01b04403f"></a>
+
+Players unique identifier.
+
+<br>
+#### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnUpdatedDelegate`](#classURH__PlayerInfoSubobject_1acd235146d3e5d44c3deeee04a658bee6) <a id="classURH__PlayerInfoSubobject_1acd235146d3e5d44c3deeee04a658bee6"></a>
+
+Blueprint delegate to listen for updates.
+
+<br>
+#### `public FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate `[`OnUpdatedDelegate`](#classURH__PlayerInfoSubobject_1a79fe3beb1968bb4fec503603aab7c7c5) <a id="classURH__PlayerInfoSubobject_1a79fe3beb1968bb4fec503603aab7c7c5"></a>
+
+Native delegate to listen for presence updates.
+
+<br>
+#### `public TArray< FRH_OnRequestPlayerInfoSubobjectDelegateBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerInfoSubobject_1a5968c4b094b525f7e54adc02b11a35bf) <a id="classURH__PlayerInfoSubobject_1a5968c4b094b525f7e54adc02b11a35bf"></a>
+
+Delegates stored to response to currently active requests.
+
+<br>
+#### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerInfoSubobject_1aa4e6fb9d2cdcfd4690022db8ea155e0e)`() const` <a id="classURH__PlayerInfoSubobject_1aa4e6fb9d2cdcfd4690022db8ea155e0e"></a>
+
+Gets the PlayerInfo that owns this Player Matches object.
+
+#### Returns
+The PlayerInfo that owns the Player Matches object.
+
+<br>
+#### `public inline void `[`MarkUpdated`](#classURH__PlayerInfoSubobject_1a58ec05a187f04f59e206487e5130c20d)`()` <a id="classURH__PlayerInfoSubobject_1a58ec05a187f04f59e206487e5130c20d"></a>
+
+Sets the last updated time to now.
+
+<br>
+#### `public inline void `[`MarkDirty`](#classURH__PlayerInfoSubobject_1a65e9f132b7fb7d3dfa8be3fad451337a)`()` <a id="classURH__PlayerInfoSubobject_1a65e9f132b7fb7d3dfa8be3fad451337a"></a>
+
+Clears the last updated time to force an update.
+
+<br>
+#### `public inline void `[`RequestUpdate`](#classURH__PlayerInfoSubobject_1a973f4d625860eb6477b615d24a906461)`(bool bForceUpdate,const FRH_OnRequestPlayerInfoSubobjectDelegateBlock & Delegate)` <a id="classURH__PlayerInfoSubobject_1a973f4d625860eb6477b615d24a906461"></a>
+
+Enqueues an update request for the players information from the RallyHere API.
+
+#### Parameters
+* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerInfoSubobject_1ad60fb784f621475df3a543126b379209)`(bool bForceUpdate,const FRH_OnRequestPlayerInfoSubobjectDynamicDelegate & Delegate)` <a id="classURH__PlayerInfoSubobject_1ad60fb784f621475df3a543126b379209"></a>
+
+<br>
+#### `public void `[`CheckPollStatus`](#classURH__PlayerInfoSubobject_1a993e45b8a7968072c2469392e97c86b2)`(const bool bForceUpdate)` <a id="classURH__PlayerInfoSubobject_1a993e45b8a7968072c2469392e97c86b2"></a>
+
+Updates the poll status to be active or inactive based on if it should currently be polling.
+
+#### Parameters
+* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
+
+<br>
+#### `protected FRH_AutoPollerPtr `[`Poller`](#classURH__PlayerInfoSubobject_1a9abab6c88fabe22a23835813a56bffbd) <a id="classURH__PlayerInfoSubobject_1a9abab6c88fabe22a23835813a56bffbd"></a>
+
+Poller for the players matches.
+
+<br>
+#### `protected FName `[`PollTimerName`](#classURH__PlayerInfoSubobject_1a697ccd6d2e132cd4ac05fcc31e64272f) <a id="classURH__PlayerInfoSubobject_1a697ccd6d2e132cd4ac05fcc31e64272f"></a>
+
+The name of the timer preset to use for polling.
+
+<br>
+#### `protected int32 `[`PollPriority`](#classURH__PlayerInfoSubobject_1aa0795fa3b53d3842dc358564abed8f5d) <a id="classURH__PlayerInfoSubobject_1aa0795fa3b53d3842dc358564abed8f5d"></a>
+
+The priority of the poll request.
+
+<br>
+#### `protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerInfoSubobject_1aa73d16e9e42fd18afd95db6723ead346)`() const` <a id="classURH__PlayerInfoSubobject_1aa73d16e9e42fd18afd95db6723ead346"></a>
+
+Gets if the poller should be actively polling, only polls if something cares about it.
+
+<br>
+#### `protected inline virtual void `[`Poll`](#classURH__PlayerInfoSubobject_1aa6bc5fb282ea6eb162c44106b89d1fc5)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerInfoSubobject_1aa6bc5fb282ea6eb162c44106b89d1fc5"></a>
+
+Starts a poll of the object data.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll.
+
+<br>
+#### `protected template<>`  <br/>`inline void `[`UpdateBase`](#classURH__PlayerInfoSubobject_1a9256fdd7baceb430ba944ce641646273)`(const T & Other)` <a id="classURH__PlayerInfoSubobject_1a9256fdd7baceb430ba944ce641646273"></a>
+
+Stores the response data from an API presence request.
+
+#### Parameters
+* `Other` The presence data to store.
+
+<br>
+#### `protected inline virtual void `[`PollComplete`](#classURH__PlayerInfoSubobject_1a25950945c3f6bfd0122858aa944a2bac)`(bool bSuccess,const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerInfoSubobject_1a25950945c3f6bfd0122858aa944a2bac"></a>
+
+Starts a poll of the object data.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll.
+
+<br>
+#### `protected virtual void `[`ExecuteUpdatedDelegates`](#classURH__PlayerInfoSubobject_1a38d53acfed235ac77964549ec780a2d4)`(bool bSuccess)` <a id="classURH__PlayerInfoSubobject_1a38d53acfed235ac77964549ec780a2d4"></a>
+
+Handles executing any delegate listeners for the update.
+
+#### Parameters
+* `bSuccess` If the poll was successful.
+
+<br>
 ## class `URH_PlayerPresence` <a id="classURH__PlayerPresence"></a>
 
 ```
 class URH_PlayerPresence
-  : public UObject
+  : public URH_PlayerInfoSubobject
 ```
 
 Player Presence class used to store player presence data.
@@ -25,39 +190,17 @@ Player Presence class used to store player presence data.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public bool `[`bInitialized`](#classURH__PlayerPresence_1a3f6af11e501d2f96fe4b520e193e46da) | Tracks if the Presence has been initialized.
 `public ERHAPI_OnlineStatus `[`Status`](#classURH__PlayerPresence_1a51af6d5a0caf4f5e47e4498a7bb3e456) | Online status of the player.
 `public FString `[`Message`](#classURH__PlayerPresence_1abd625e3be04fcb0527bbc719dc929d6e) | Message set by a player to display on their presence information.
 `public FString `[`Platform`](#classURH__PlayerPresence_1ad461b02f3065a8e712a127e954fb9e36) | Which platform the player is currently playing / last seen on.
 `public FString `[`DisplayName`](#classURH__PlayerPresence_1a93fef7276ca2b984c0d2e66ca3dc3852) | The players display name for their current or last seen platform.
 `public TMap< FString, FString > `[`CustomData`](#classURH__PlayerPresence_1abbc5a206683a5117cc6c3aa200e137c8) | Custom data that can be set by the player.
-`public FGuid `[`PlayerUuid`](#classURH__PlayerPresence_1a124c1f1a05dbd0993286b8c62348d46d) | Players unique identifier.
-`public FDateTime `[`LastUpdated`](#classURH__PlayerPresence_1ab54ee60de419c460569b4500725eb111) | The last time the players presence data was updated on the client.
-`public FString `[`ETag`](#classURH__PlayerPresence_1a7608e0238c8c94c369b7ee9b42bac10d) | ETag to track if the presence is stale during requests.
-`public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__PlayerPresence_1a7cb31d865f01ae74eff5ed5ce7f121f7) | Blueprint delegate to listen for presence updates.
-`public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__PlayerPresence_1aef3e7a5f08976a00d0a7e72af535d645) | Native delegate to listen for presence updates.
-`public TArray< FRH_OnRequestPlayerPresenceBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerPresence_1a0c4a50a5612408e6a017ca3f249e8763) | Delegates stored to response to currently active requests.
-`public inline virtual void `[`Update`](#classURH__PlayerPresence_1ad8e9439f6208b737bbf2c34428567a96)`(const `[`FRHAPI_PlayerPresence`](models/RHAPI_PlayerPresence.md#structFRHAPI__PlayerPresence)` & Other)` | Stores the response data from an API presence request.
-`public template<>`  <br/>`inline void `[`Update`](#classURH__PlayerPresence_1ada7244129a60c38caea63a604c65d21c)`(const T & Other)` | Stores the response data from an API presence request.
-`public inline void `[`MarkUpdated`](#classURH__PlayerPresence_1ada0aeb79948e6a326c4e0730722012c8)`()` | Sets the last updated time to now.
-`public inline void `[`MarkDirty`](#classURH__PlayerPresence_1a0c5758952db9d0daa9840032fb010b22)`()` | Clears the last updated time to force an update.
-`public inline void `[`RequestUpdate`](#classURH__PlayerPresence_1a7c2429b932c790fc766b1dd081a3d1eb)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceBlock & Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
-`public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerPresence_1a2c3c8c9dfa0005d87b61fb75f57ec7f9)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceDynamicDelegate & Delegate)` | 
-`public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerPresence_1aa423b5dc5ad1bb56fbba410f634a955b)`() const` | Gets the PlayerInfo that owns this Player Presence.
-`public void `[`CheckPollStatus`](#classURH__PlayerPresence_1af4e990217a6d2e06b4ad6ee7f4188229)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
-`protected FRH_AutoPollerPtr `[`PresencePoller`](#classURH__PlayerPresence_1a733193654e8f5783c4d69380ec946686) | Poller for the players presence.
-`protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerPresence_1a46f7f69fa125dbdcbda3b0a8c0281c34)`() const` | Gets if the poller should be actively polling, only polls if something cares about it.
-`protected void `[`PollPresence`](#classURH__PlayerPresence_1a6d563892989854c37ca316298c0f7edc)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players presence.
-`protected virtual void `[`ExecuteDelegates`](#classURH__PlayerPresence_1a81e83d51d446fcd89c4d5f7c5519c0e4)`(bool bSuccess)` | Handles executing any delegate listeners for the players presence.
+`protected virtual void `[`Poll`](#classURH__PlayerPresence_1adf598cc475db7d98b03df67879097808)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players presence.
+`protected inline virtual void `[`Update`](#classURH__PlayerPresence_1aa6ef217e8b96b79fa309824e8bd73520)`(const GetPresenceType::Response & Other)` | Stores the response data from an API presence request.
 `typedef `[`GetPresenceType`](#classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214) | 
 
 #### Members
 
-#### `public bool `[`bInitialized`](#classURH__PlayerPresence_1a3f6af11e501d2f96fe4b520e193e46da) <a id="classURH__PlayerPresence_1a3f6af11e501d2f96fe4b520e193e46da"></a>
-
-Tracks if the Presence has been initialized.
-
-<br>
 #### `public ERHAPI_OnlineStatus `[`Status`](#classURH__PlayerPresence_1a51af6d5a0caf4f5e47e4498a7bb3e456) <a id="classURH__PlayerPresence_1a51af6d5a0caf4f5e47e4498a7bb3e456"></a>
 
 Online status of the player.
@@ -83,102 +226,7 @@ The players display name for their current or last seen platform.
 Custom data that can be set by the player.
 
 <br>
-#### `public FGuid `[`PlayerUuid`](#classURH__PlayerPresence_1a124c1f1a05dbd0993286b8c62348d46d) <a id="classURH__PlayerPresence_1a124c1f1a05dbd0993286b8c62348d46d"></a>
-
-Players unique identifier.
-
-<br>
-#### `public FDateTime `[`LastUpdated`](#classURH__PlayerPresence_1ab54ee60de419c460569b4500725eb111) <a id="classURH__PlayerPresence_1ab54ee60de419c460569b4500725eb111"></a>
-
-The last time the players presence data was updated on the client.
-
-<br>
-#### `public FString `[`ETag`](#classURH__PlayerPresence_1a7608e0238c8c94c369b7ee9b42bac10d) <a id="classURH__PlayerPresence_1a7608e0238c8c94c369b7ee9b42bac10d"></a>
-
-ETag to track if the presence is stale during requests.
-
-<br>
-#### `public FRH_OnPresenceUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnPresenceUpdatedDelegate`](#classURH__PlayerPresence_1a7cb31d865f01ae74eff5ed5ce7f121f7) <a id="classURH__PlayerPresence_1a7cb31d865f01ae74eff5ed5ce7f121f7"></a>
-
-Blueprint delegate to listen for presence updates.
-
-<br>
-#### `public FRH_OnPresenceUpdatedMulticastDelegate `[`OnPresenceUpdatedDelegate`](#classURH__PlayerPresence_1aef3e7a5f08976a00d0a7e72af535d645) <a id="classURH__PlayerPresence_1aef3e7a5f08976a00d0a7e72af535d645"></a>
-
-Native delegate to listen for presence updates.
-
-<br>
-#### `public TArray< FRH_OnRequestPlayerPresenceBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerPresence_1a0c4a50a5612408e6a017ca3f249e8763) <a id="classURH__PlayerPresence_1a0c4a50a5612408e6a017ca3f249e8763"></a>
-
-Delegates stored to response to currently active requests.
-
-<br>
-#### `public inline virtual void `[`Update`](#classURH__PlayerPresence_1ad8e9439f6208b737bbf2c34428567a96)`(const `[`FRHAPI_PlayerPresence`](models/RHAPI_PlayerPresence.md#structFRHAPI__PlayerPresence)` & Other)` <a id="classURH__PlayerPresence_1ad8e9439f6208b737bbf2c34428567a96"></a>
-
-Stores the response data from an API presence request.
-
-#### Parameters
-* `Other` The presence data to store.
-
-<br>
-#### `public template<>`  <br/>`inline void `[`Update`](#classURH__PlayerPresence_1ada7244129a60c38caea63a604c65d21c)`(const T & Other)` <a id="classURH__PlayerPresence_1ada7244129a60c38caea63a604c65d21c"></a>
-
-Stores the response data from an API presence request.
-
-#### Parameters
-* `Other` The presence data to store.
-
-<br>
-#### `public inline void `[`MarkUpdated`](#classURH__PlayerPresence_1ada0aeb79948e6a326c4e0730722012c8)`()` <a id="classURH__PlayerPresence_1ada0aeb79948e6a326c4e0730722012c8"></a>
-
-Sets the last updated time to now.
-
-<br>
-#### `public inline void `[`MarkDirty`](#classURH__PlayerPresence_1a0c5758952db9d0daa9840032fb010b22)`()` <a id="classURH__PlayerPresence_1a0c5758952db9d0daa9840032fb010b22"></a>
-
-Clears the last updated time to force an update.
-
-<br>
-#### `public inline void `[`RequestUpdate`](#classURH__PlayerPresence_1a7c2429b932c790fc766b1dd081a3d1eb)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceBlock & Delegate)` <a id="classURH__PlayerPresence_1a7c2429b932c790fc766b1dd081a3d1eb"></a>
-
-Enqueues an update request for the players presence information from the RallyHere API.
-
-#### Parameters
-* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly 
-
-* `Delegate` Callback delegate for the request.
-
-<br>
-#### `public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerPresence_1a2c3c8c9dfa0005d87b61fb75f57ec7f9)`(bool bForceUpdate,const FRH_OnRequestPlayerPresenceDynamicDelegate & Delegate)` <a id="classURH__PlayerPresence_1a2c3c8c9dfa0005d87b61fb75f57ec7f9"></a>
-
-<br>
-#### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerPresence_1aa423b5dc5ad1bb56fbba410f634a955b)`() const` <a id="classURH__PlayerPresence_1aa423b5dc5ad1bb56fbba410f634a955b"></a>
-
-Gets the PlayerInfo that owns this Player Presence.
-
-#### Returns
-The PlayerInfo that owns the Presence.
-
-<br>
-#### `public void `[`CheckPollStatus`](#classURH__PlayerPresence_1af4e990217a6d2e06b4ad6ee7f4188229)`(const bool bForceUpdate)` <a id="classURH__PlayerPresence_1af4e990217a6d2e06b4ad6ee7f4188229"></a>
-
-Updates the poll status to be active or inactive based on if it should currently be polling.
-
-#### Parameters
-* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
-
-<br>
-#### `protected FRH_AutoPollerPtr `[`PresencePoller`](#classURH__PlayerPresence_1a733193654e8f5783c4d69380ec946686) <a id="classURH__PlayerPresence_1a733193654e8f5783c4d69380ec946686"></a>
-
-Poller for the players presence.
-
-<br>
-#### `protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerPresence_1a46f7f69fa125dbdcbda3b0a8c0281c34)`() const` <a id="classURH__PlayerPresence_1a46f7f69fa125dbdcbda3b0a8c0281c34"></a>
-
-Gets if the poller should be actively polling, only polls if something cares about it.
-
-<br>
-#### `protected void `[`PollPresence`](#classURH__PlayerPresence_1a6d563892989854c37ca316298c0f7edc)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerPresence_1a6d563892989854c37ca316298c0f7edc"></a>
+#### `protected virtual void `[`Poll`](#classURH__PlayerPresence_1adf598cc475db7d98b03df67879097808)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerPresence_1adf598cc475db7d98b03df67879097808"></a>
 
 Starts a poll of the players presence.
 
@@ -186,12 +234,12 @@ Starts a poll of the players presence.
 * `Delegate` Callback delegate for the poll.
 
 <br>
-#### `protected virtual void `[`ExecuteDelegates`](#classURH__PlayerPresence_1a81e83d51d446fcd89c4d5f7c5519c0e4)`(bool bSuccess)` <a id="classURH__PlayerPresence_1a81e83d51d446fcd89c4d5f7c5519c0e4"></a>
+#### `protected inline virtual void `[`Update`](#classURH__PlayerPresence_1aa6ef217e8b96b79fa309824e8bd73520)`(const GetPresenceType::Response & Other)` <a id="classURH__PlayerPresence_1aa6ef217e8b96b79fa309824e8bd73520"></a>
 
-Handles executing any delegate listeners for the players presence.
+Stores the response data from an API presence request.
 
 #### Parameters
-* `bSuccess` If the poll was successful.
+* `Other` The presence data to store.
 
 <br>
 #### `typedef `[`GetPresenceType`](#classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214) <a id="classURH__PlayerPresence_1a08e8229618b324bafea2d8195b6b9214"></a>
@@ -201,7 +249,7 @@ Handles executing any delegate listeners for the players presence.
 
 ```
 class URH_PlayerSessions
-  : public UObject
+  : public URH_PlayerInfoSubobject
 ```
 
 Player Sessions class used to store player session membership information.
@@ -210,141 +258,110 @@ Player Sessions class used to store player session membership information.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public bool `[`bInitialized`](#classURH__PlayerSessions_1a30bb48d8307e142e04960dcc1e9256f5) | Tracks if the Presence has been initialized.
-`public FGuid `[`PlayerUuid`](#classURH__PlayerSessions_1ae2b7f7a6ea620af20b267980081fa7a1) | Players unique identifier.
-`public FDateTime `[`LastUpdated`](#classURH__PlayerSessions_1aecfe8c9469d2bc7080457d5636b0404f) | The last time the players session data was updated on the client.
-`public FString `[`ETag`](#classURH__PlayerSessions_1a9f9cebbae2067bc4b0f813531f19b903) | ETag to track if the session list is stale during requests.
-`public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) | 
-`public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a64fc4ec7f3776ac0420da639183df59b) | Blueprint delegate to listen for sessions updates.
-`public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a7739454886f42eb35d0bb043c9a5f4fe) | Native delegate to listen for sessions updates.
-`public TArray< FRH_OnRequestPlayerSessionsBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerSessions_1a209f56744d0a9207e9a775bc474a9f4a) | Delegates stored to response to currently active requests.
-`public inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` | Stores the response data from an API presence request.
-`public inline void `[`MarkUpdated`](#classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da)`()` | Sets the last updated time to now.
-`public inline void `[`MarkDirty`](#classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b)`()` | Clears the last updated time to force an update.
-`public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1a1e6bb38840955f354f932da78ef351cb)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock & Delegate)` | Enqueues an update request for the players presence information from the RallyHere API.
-`public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsDynamicDelegate & Delegate)` | 
-`public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9)`() const` | Gets the PlayerInfo that owns this Player Presence.
-`public void `[`CheckPollStatus`](#classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983)`(const bool bForceUpdate)` | Updates the poll status to be active or inactive based on if it should currently be polling.
-`protected FRH_AutoPollerPtr `[`SessionsPoller`](#classURH__PlayerSessions_1adcdf9391c758196a1ce00b648f897c6d) | Poller for the players presence.
-`protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerSessions_1a1650dfe4743702dd125c8b584e96e263)`() const` | Gets if the poller should be actively polling, only polls if something cares about it.
-`protected void `[`PollSessions`](#classURH__PlayerSessions_1a26d7c63218d1c3cd1b91293cf5b6bd4a)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players presence.
-`protected virtual void `[`ExecuteDelegates`](#classURH__PlayerSessions_1ae34694cba191f48499bae15e8a13336c)`(bool bSuccess)` | Handles executing any delegate listeners for the players presence.
+`public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) | The sessions the player is a member of.
+`protected virtual void `[`Poll`](#classURH__PlayerSessions_1a7adb05ae630f0bffb316507c08749a95)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the players sessions.
+`protected inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` | Stores the response data from an API request.
 `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) | 
 
 #### Members
 
-#### `public bool `[`bInitialized`](#classURH__PlayerSessions_1a30bb48d8307e142e04960dcc1e9256f5) <a id="classURH__PlayerSessions_1a30bb48d8307e142e04960dcc1e9256f5"></a>
-
-Tracks if the Presence has been initialized.
-
-<br>
-#### `public FGuid `[`PlayerUuid`](#classURH__PlayerSessions_1ae2b7f7a6ea620af20b267980081fa7a1) <a id="classURH__PlayerSessions_1ae2b7f7a6ea620af20b267980081fa7a1"></a>
-
-Players unique identifier.
-
-<br>
-#### `public FDateTime `[`LastUpdated`](#classURH__PlayerSessions_1aecfe8c9469d2bc7080457d5636b0404f) <a id="classURH__PlayerSessions_1aecfe8c9469d2bc7080457d5636b0404f"></a>
-
-The last time the players session data was updated on the client.
-
-<br>
-#### `public FString `[`ETag`](#classURH__PlayerSessions_1a9f9cebbae2067bc4b0f813531f19b903) <a id="classURH__PlayerSessions_1a9f9cebbae2067bc4b0f813531f19b903"></a>
-
-ETag to track if the session list is stale during requests.
-
-<br>
 #### `public `[`FRHAPI_PlayerSessions`](models/RHAPI_PlayerSessions.md#structFRHAPI__PlayerSessions)` `[`Sessions`](#classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab) <a id="classURH__PlayerSessions_1ac1c23232b2bb48fc13ea1b7fd438f2ab"></a>
 
-<br>
-#### `public FRH_OnPlayerSessionsUpdatedMulticastDynamicDelegate `[`BLUEPRINT_OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a64fc4ec7f3776ac0420da639183df59b) <a id="classURH__PlayerSessions_1a64fc4ec7f3776ac0420da639183df59b"></a>
-
-Blueprint delegate to listen for sessions updates.
+The sessions the player is a member of.
 
 <br>
-#### `public FRH_OnPlayerSessionsUpdatedMulticastDelegate `[`OnSessionsUpdatedDelegate`](#classURH__PlayerSessions_1a7739454886f42eb35d0bb043c9a5f4fe) <a id="classURH__PlayerSessions_1a7739454886f42eb35d0bb043c9a5f4fe"></a>
+#### `protected virtual void `[`Poll`](#classURH__PlayerSessions_1a7adb05ae630f0bffb316507c08749a95)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerSessions_1a7adb05ae630f0bffb316507c08749a95"></a>
 
-Native delegate to listen for sessions updates.
-
-<br>
-#### `public TArray< FRH_OnRequestPlayerSessionsBlock > `[`TemporaryRequestDelegates`](#classURH__PlayerSessions_1a209f56744d0a9207e9a775bc474a9f4a) <a id="classURH__PlayerSessions_1a209f56744d0a9207e9a775bc474a9f4a"></a>
-
-Delegates stored to response to currently active requests.
-
-<br>
-#### `public inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` <a id="classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e"></a>
-
-Stores the response data from an API presence request.
-
-#### Parameters
-* `Other` The presence data to store.
-
-<br>
-#### `public inline void `[`MarkUpdated`](#classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da)`()` <a id="classURH__PlayerSessions_1ad046ac0a8e57425ebcb234bc404bb5da"></a>
-
-Sets the last updated time to now.
-
-<br>
-#### `public inline void `[`MarkDirty`](#classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b)`()` <a id="classURH__PlayerSessions_1ae06b941d9bb3c94e5927d27d11cfc79b"></a>
-
-Clears the last updated time to force an update.
-
-<br>
-#### `public inline void `[`RequestUpdate`](#classURH__PlayerSessions_1a1e6bb38840955f354f932da78ef351cb)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsBlock & Delegate)` <a id="classURH__PlayerSessions_1a1e6bb38840955f354f932da78ef351cb"></a>
-
-Enqueues an update request for the players presence information from the RallyHere API.
-
-#### Parameters
-* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly 
-
-* `Delegate` Callback delegate for the request.
-
-<br>
-#### `public inline void `[`BLUEPRINT_RequestUpdate`](#classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec)`(bool bForceUpdate,const FRH_OnRequestPlayerSessionsDynamicDelegate & Delegate)` <a id="classURH__PlayerSessions_1a09c0ba6876623cb118d164d40fc2caec"></a>
-
-<br>
-#### `public class `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`GetPlayerInfo`](#classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9)`() const` <a id="classURH__PlayerSessions_1ab2165d110e8f88374fbe82d39b4c23e9"></a>
-
-Gets the PlayerInfo that owns this Player Presence.
-
-#### Returns
-The PlayerInfo that owns the Presence.
-
-<br>
-#### `public void `[`CheckPollStatus`](#classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983)`(const bool bForceUpdate)` <a id="classURH__PlayerSessions_1a77273d2f5e1e57948b992c9fa7806983"></a>
-
-Updates the poll status to be active or inactive based on if it should currently be polling.
-
-#### Parameters
-* `bForceUpdate` If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
-
-<br>
-#### `protected FRH_AutoPollerPtr `[`SessionsPoller`](#classURH__PlayerSessions_1adcdf9391c758196a1ce00b648f897c6d) <a id="classURH__PlayerSessions_1adcdf9391c758196a1ce00b648f897c6d"></a>
-
-Poller for the players presence.
-
-<br>
-#### `protected inline virtual bool `[`ShouldPoll`](#classURH__PlayerSessions_1a1650dfe4743702dd125c8b584e96e263)`() const` <a id="classURH__PlayerSessions_1a1650dfe4743702dd125c8b584e96e263"></a>
-
-Gets if the poller should be actively polling, only polls if something cares about it.
-
-<br>
-#### `protected void `[`PollSessions`](#classURH__PlayerSessions_1a26d7c63218d1c3cd1b91293cf5b6bd4a)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerSessions_1a26d7c63218d1c3cd1b91293cf5b6bd4a"></a>
-
-Starts a poll of the players presence.
+Starts a poll of the players sessions.
 
 #### Parameters
 * `Delegate` Callback delegate for the poll.
 
 <br>
-#### `protected virtual void `[`ExecuteDelegates`](#classURH__PlayerSessions_1ae34694cba191f48499bae15e8a13336c)`(bool bSuccess)` <a id="classURH__PlayerSessions_1ae34694cba191f48499bae15e8a13336c"></a>
+#### `protected inline virtual void `[`Update`](#classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e)`(const GetSessionsType::Response & Other)` <a id="classURH__PlayerSessions_1aec7d221dfaac8ca3386fc25280a9817e"></a>
 
-Handles executing any delegate listeners for the players presence.
+Stores the response data from an API request.
 
 #### Parameters
-* `bSuccess` If the poll was successful.
+* `Other` The response data to store.
 
 <br>
 #### `typedef `[`GetSessionsType`](#classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92) <a id="classURH__PlayerSessions_1afa8a5657954ca5d686f07cea03b23b92"></a>
+
+<br>
+## class `URH_PlayerMatches` <a id="classURH__PlayerMatches"></a>
+
+```
+class URH_PlayerMatches
+  : public URH_PlayerInfoSubobject
+```
+
+Player Matches class used to store player match history information.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public int32 `[`PollPageSize`](#classURH__PlayerMatches_1a5d396c7fa4ed1186a1e88fc848571be2) | The size of the pages to poll, if 0, uses default.
+`public int32 `[`PollMaxPageCount`](#classURH__PlayerMatches_1ab61d485e5d851ff8fea078e331c9c7b8) | Polling of new pages is stopped after this value is reached, if 0, polls until all pages are polled.
+`public FTimespan `[`PollMaxAge`](#classURH__PlayerMatches_1ae4bebdc4d6137fb5585f4310b1d7c4e7) | The maximum age after which to stop polling new pages, if 0, polls until max count is reached.
+`public TMap< FString, `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` > `[`Matches`](#classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea) | The matches the player has participated in.
+`protected virtual void `[`Poll`](#classURH__PlayerMatches_1a078e6c98d6151bf84750e9118fcdbf71)`(const FRH_PollCompleteFunc & Delegate)` | Starts a poll of the object data.
+`protected virtual void `[`PollNextPage`](#classURH__PlayerMatches_1a2ca5a0cec9f116fd4469fb3a2a387e11)`(const FRH_PollCompleteFunc & Delegate,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` | Starts a poll of the object data.
+`protected inline virtual void `[`Update`](#classURH__PlayerMatches_1a2d718f1945307bc4570e9b6fc1a10a27)`(const GetMatchesType::Response & Other,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` | Stores the response data from an API presence request.
+`typedef `[`GetMatchesType`](#classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9) | 
+
+#### Members
+
+#### `public int32 `[`PollPageSize`](#classURH__PlayerMatches_1a5d396c7fa4ed1186a1e88fc848571be2) <a id="classURH__PlayerMatches_1a5d396c7fa4ed1186a1e88fc848571be2"></a>
+
+The size of the pages to poll, if 0, uses default.
+
+<br>
+#### `public int32 `[`PollMaxPageCount`](#classURH__PlayerMatches_1ab61d485e5d851ff8fea078e331c9c7b8) <a id="classURH__PlayerMatches_1ab61d485e5d851ff8fea078e331c9c7b8"></a>
+
+Polling of new pages is stopped after this value is reached, if 0, polls until all pages are polled.
+
+<br>
+#### `public FTimespan `[`PollMaxAge`](#classURH__PlayerMatches_1ae4bebdc4d6137fb5585f4310b1d7c4e7) <a id="classURH__PlayerMatches_1ae4bebdc4d6137fb5585f4310b1d7c4e7"></a>
+
+The maximum age after which to stop polling new pages, if 0, polls until max count is reached.
+
+<br>
+#### `public TMap< FString, `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` > `[`Matches`](#classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea) <a id="classURH__PlayerMatches_1aca9fc68c9d093c1a90bce75d0f9832ea"></a>
+
+The matches the player has participated in.
+
+<br>
+#### `protected virtual void `[`Poll`](#classURH__PlayerMatches_1a078e6c98d6151bf84750e9118fcdbf71)`(const FRH_PollCompleteFunc & Delegate)` <a id="classURH__PlayerMatches_1a078e6c98d6151bf84750e9118fcdbf71"></a>
+
+Starts a poll of the object data.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll.
+
+<br>
+#### `protected virtual void `[`PollNextPage`](#classURH__PlayerMatches_1a2ca5a0cec9f116fd4469fb3a2a387e11)`(const FRH_PollCompleteFunc & Delegate,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` <a id="classURH__PlayerMatches_1a2ca5a0cec9f116fd4469fb3a2a387e11"></a>
+
+Starts a poll of the object data.
+
+#### Parameters
+* `Delegate` Callback delegate for the poll. 
+
+* `Context` The context to use for the poll.
+
+<br>
+#### `protected inline virtual void `[`Update`](#classURH__PlayerMatches_1a2d718f1945307bc4570e9b6fc1a10a27)`(const GetMatchesType::Response & Other,TSharedPtr< `[`FPollContext`](undefined.md#structURH__PlayerMatches_1_1FPollContext)` > Context)` <a id="classURH__PlayerMatches_1a2d718f1945307bc4570e9b6fc1a10a27"></a>
+
+Stores the response data from an API presence request.
+
+#### Parameters
+* `Other` The match data to store. 
+
+* `Context` The context to use for the poll.
+
+<br>
+#### `typedef `[`GetMatchesType`](#classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9) <a id="classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9"></a>
 
 <br>
 ## class `URH_PlayerPlatformInfo` <a id="classURH__PlayerPlatformInfo"></a>
@@ -426,7 +443,8 @@ Stores and fetchs all the information about a given player.
 --------------------------------|---------------------------------------------
 `public inline FORCEINLINE FGuid & `[`GetRHPlayerUuid`](#classURH__PlayerInfo_1ab4bac7a190b2e5fec6d242c25f7672f4)`()` | Gets the players Unique player Id.
 `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` | Gets The players presence class.
-`public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players presence class.
+`public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players sessions class.
+`public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` | Gets The players matches class.
 `public inline FORCEINLINE TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480)`()` | Gets the associated platform ids of the player.
 `public inline FORCEINLINE const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1ab0617adb51499a0c8ce36ef60693e6d6)`() const` | Gets the associated platform ids of the player.
 `public TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1a3896d84ba5481158ce3cfc62b39e064e)`() const` | Gets the associated platforms of the player.
@@ -462,6 +480,7 @@ Stores and fetchs all the information about a given player.
 `protected TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > `[`LinkedPlayerPlatforms`](#classURH__PlayerInfo_1a9f74bbf7a958d7a5a00d7daa8c159c2f) | Cache of all platforms the player is linked to.
 `protected `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`PlayerPresence`](#classURH__PlayerInfo_1ae3c851503d0b5b8c024dc55252acb688) | The players Presence Information.
 `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) | The players Sessions Information.
+`protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) | The players Matches Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
 `protected `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`PlayerNotifications`](#classURH__PlayerInfo_1ac1eb1a25b4d89a7f7c75cbb6d4c9e4a8) | The Players Inventory Subsystem.
 `protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) | List of the player's rankings.
@@ -501,10 +520,18 @@ The players presence class.
 <br>
 #### `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` <a id="classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4"></a>
 
-Gets The players presence class.
+Gets The players sessions class.
 
 #### Returns
-The players presence class.
+The players sessions class.
+
+<br>
+#### `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` <a id="classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84"></a>
+
+Gets The players matches class.
+
+#### Returns
+The players matches class.
 
 <br>
 #### `public inline FORCEINLINE TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480)`()` <a id="classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480"></a>
@@ -764,6 +791,11 @@ The players Presence Information.
 #### `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) <a id="classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd"></a>
 
 The players Sessions Information.
+
+<br>
+#### `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) <a id="classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa"></a>
+
+The players Matches Information.
 
 <br>
 #### `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) <a id="classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da"></a>

@@ -18,6 +18,7 @@
 #include "RH_CatalogSubsystem.h"
 #include "RH_ConfigSubsystem.h"
 #include "RH_SettingsSubsystem.h"
+#include "RH_MatchSubsystem.h"
 
 #include "RH_SessionBrowser.h"
 #include "RH_MatchmakingBrowser.h"
@@ -26,10 +27,6 @@
 void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
-
-	FGameModeEvents::GameModePreLoginEvent.AddUObject(this, &URH_GameInstanceSubsystem::GameModePreloginEvent);
-	FGameModeEvents::GameModePostLoginEvent.AddUObject(this, &URH_GameInstanceSubsystem::GameModePostLoginEvent);
-	FGameModeEvents::GameModeLogoutEvent.AddUObject(this, &URH_GameInstanceSubsystem::GameModeLogoutEvent);
 
 	const auto* Settings = GetDefault<URH_IntegrationSettings>();
 
@@ -62,6 +59,7 @@ void URH_GameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	CatalogSubsystem = AddSubsystemPlugin<URH_CatalogSubsystem>(Settings->CatalogSubsystemClass);
 	ConfigSubsystem = AddSubsystemPlugin<URH_ConfigSubsystem>(Settings->ConfigSubsystemClass);
 	SettingsSubsystem = AddSubsystemPlugin<URH_SettingsSubsystem>(Settings->SettingsSubsystemClass);
+	MatchSubsystem = AddSubsystemPlugin<URH_MatchSubsystem>(Settings->MatchSubsystemClass);
 
 	if (bEnableSessionBrowser)
 	{
@@ -83,9 +81,6 @@ void URH_GameInstanceSubsystem::Deinitialize()
 {
     UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	FGameModeEvents::GameModePreLoginEvent.RemoveAll(this);
-	FGameModeEvents::GameModeLogoutEvent.RemoveAll(this);
-
 	// deinitialize all plugins
 	for (auto Plugin : SubsystemPlugins)
 	{
@@ -99,6 +94,8 @@ void URH_GameInstanceSubsystem::Deinitialize()
 	PlayerInfoSubsystem = nullptr;
 	CatalogSubsystem = nullptr;
 	ConfigSubsystem = nullptr;
+	SettingsSubsystem = nullptr;
+	MatchSubsystem = nullptr;
 	SessionSearchCache = nullptr;
 	MatchmakingCache = nullptr;
 
@@ -117,224 +114,6 @@ void URH_GameInstanceSubsystem::Deinitialize()
 	if (AppReactivatedHandle.IsValid())
 	{
 		FCoreDelegates::ApplicationHasReactivatedDelegate.Remove(AppReactivatedHandle);
-	}
-}
-
-void URH_GameInstanceSubsystem::GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage)
-{
-	// find the player connection and import any player options desired
-	auto* World = GetGameInstance()->GetWorld();
-	FString RequestURL;
-	if (World->NetDriver != nullptr && World->NetDriver->ClientConnections.Num() > 0)
-	{
-		for (auto Client : World->NetDriver->ClientConnections)
-		{
-			if (Client->PlayerId == NewPlayer)
-			{
-				ValidateIncomingConnection(Client, ErrorMessage);
-				break;
-			}
-		}
-	}
-}
-
-bool URH_GameInstanceSubsystem::ValidateIncomingConnection(UNetConnection* Connection, FString& ErrorMessage) const
-{
-	RHStandardEvents::FInstanceLoginReceivedEvent Event;
-
-	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
-	const auto* pGameInstance = pWorld->GetGameInstance();
-	const auto* pRHSubsystem = pGameInstance != nullptr ? pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>() : nullptr;
-	const auto* pRHSessionSubsystem = pRHSubsystem != nullptr ? pRHSubsystem->GetSessionSubsystem() : nullptr;
-	const auto* pSession = pRHSessionSubsystem != nullptr ? pRHSessionSubsystem->GetActiveSession() : nullptr;
-
-	if (Connection != nullptr)
-	{
-		Event.ConnectionString = Connection->RequestURL; // todo: sanitize?
-		auto Platform = RH_GetPlatformFromOSSName(Connection->PlayerId.GetType());
-		if (Platform.IsSet())
-		{
-			Event.PlatformId = EnumToString(Platform.GetValue());
-		}
-		Event.PlatformUserId = Connection->PlayerId.ToString();
-	}
-
-	if (pSession != nullptr)
-	{
-		Event.SessionId = pSession->GetSessionId();
-		if (pSession->GetInstanceData() != nullptr)
-		{
-			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
-		}
-	}
-
-	ON_SCOPE_EXIT
-	{
-		auto Provider = GetAnalyticsProvider();
-		if (Provider != nullptr)
-		{
-			Event.IsSuccess = ErrorMessage.Len() == 0;
-
-			Event.EmitTo(Provider.Get());
-		}
-	};
-
-	// if error message is already set, something else already failed
-	if (ErrorMessage.Len() > 0)
-	{
-		return false;
-	}
-
-	if (Connection == nullptr)
-	{
-		ErrorMessage = TEXT("Connection is null");
-		return false;
-	}
-
-	// find the player connection and import any player options desired
-	auto* World = GetGameInstance()->GetWorld();
-	FString RequestURL = Connection->RequestURL;
-
-	auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(Connection);
-	if (pRH_Conn != nullptr)
-	{
-		bool bFound = false;
-		bool bValid = false;;
-		pRH_Conn->ImportPlayerOptionsfromURL(bFound, bValid);
-
-		Event.UserId = pRH_Conn->GetRHPlayerUuid();
-
-		if (bRequireImportedPlayerIdsForJoining && !bFound)
-		{
-			ErrorMessage = TEXT("Could not import player options from URL");
-			return false;
-		}
-
-		//if it is a game type of world, check required id flag (for now, editor may not have valid IDs for PIE, etc)
-		if (World->WorldType == EWorldType::Game)
-		{
-			if (bRequireValidPlayerIdsForJoining && !bValid)
-			{
-				ErrorMessage = TEXT("Imported player ids are not valid");
-				return false;
-			}
-		}
-	}
-
-	if (ErrorMessage.Len() == 0 && bUseSecurityTokenForJoining)
-	{
-		// temporary url to parse out the token
-		const FURL TempURL(nullptr, *RequestURL, TRAVEL_Absolute);
-		const FString LoginSecurityToken = TempURL.GetOption(TEXT("RHSecurityToken="), TEXT(""));
-
-		// see if a security token was specified for the currently active session
-		const FString* SessionSecurityToken = nullptr;
-		const TOptional<FString> FallbackSessionSecurityToken = pRHSessionSubsystem != nullptr ? pRHSessionSubsystem->GetFallbackSessionSecurityToken() : TOptional<FString>();
-		if (pSession != nullptr && pSession->GetInstanceData() != nullptr)
-		{
-			if (const auto JoinParams = pSession->GetInstanceData()->GetJoinParamsOrNull())
-			{
-				if (const auto CustomData = JoinParams->GetCustomDataOrNull())
-				{
-					SessionSecurityToken = CustomData->Find(RH_SessionCustomDataKeys::SessionSecurityTokenName);
-				}
-			}
-		}
-
-		if (SessionSecurityToken != nullptr)
-		{
-			if (*SessionSecurityToken != LoginSecurityToken)
-			{
-				ErrorMessage = TEXT("RH Security Token mismatch");
-				return false;
-			}
-		}
-		// this token is used to cover cases where clients attempt to connect before the server reads its own session data update to add the token
-		else if (FallbackSessionSecurityToken.IsSet())
-		{
-			if (FallbackSessionSecurityToken.GetValue() != LoginSecurityToken)
-			{
-				ErrorMessage = TEXT("RH Security Token (fallback) mismatch");
-				return false;
-			}
-		}
-		else if (IsRunningDedicatedServer() && GetServerBootstrapper() != nullptr && GetServerBootstrapper()->IsBootstrapModeEnabled())
-		{
-			// if we are running a dedicated server and the server bootstrapper is enabled, failing to find a token probably means that the server is not part of a valid joinable session
-			ErrorMessage = TEXT("Security token could not be validated");
-			return false;
-		}
-	}
-
-	return true;
-}
-
-void URH_GameInstanceSubsystem::GameModePostLoginEvent(class AGameModeBase* GameMode, APlayerController* NewPlayer)
-{
-	RHStandardEvents::FInstanceJoinReceivedEvent Event;
-
-	Event.IsSuccess = NewPlayer != nullptr;
-
-	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
-	const auto* pGameInstance = pWorld->GetGameInstance();
-	const auto* pRHSubsystem = pGameInstance != nullptr ? pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>() : nullptr;
-	const auto* pRHSessionSubsystem = pRHSubsystem != nullptr ? pRHSubsystem->GetSessionSubsystem() : nullptr;
-	const auto* pSession = pRHSessionSubsystem != nullptr ? pRHSessionSubsystem->GetActiveSession() : nullptr;
-
-	if (pSession != nullptr)
-	{
-		Event.SessionId = pSession->GetSessionId();
-		if (pSession->GetInstanceData() != nullptr)
-		{
-			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
-		}
-	}
-
-	if (NewPlayer != nullptr)
-	{
-		auto* pRH_Conn = Cast<IRH_IpConnectionInterface>(NewPlayer->Player);
-		auto* pRH_LocalPlayer = Cast<IRH_LocalPlayerInterface>(NewPlayer->Player);
-
-		if (pRH_Conn != nullptr)
-		{
-			Event.UserId = pRH_Conn->GetRHPlayerUuid();
-		}
-		else if (pRH_LocalPlayer != nullptr)
-		{
-			Event.UserId = pRH_LocalPlayer->GetRHPlayerUuid();
-		}
-	}
-
-	auto Provider = GetAnalyticsProvider();
-	if (Provider != nullptr)
-	{
-		Event.EmitTo(Provider.Get());
-	}
-}
-
-void URH_GameInstanceSubsystem::GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting)
-{
-	RHStandardEvents::FInstanceClientDisconnectEvent Event;
-
-	const auto* pWorld = GetWorld();	// actors that are not default objects always have a world
-	const auto* pGameInstance = pWorld->GetGameInstance();
-	const auto* pRHSubsystem = pGameInstance != nullptr ? pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>() : nullptr;
-	const auto* pRHSessionSubsystem = pRHSubsystem != nullptr ? pRHSubsystem->GetSessionSubsystem() : nullptr;
-	const auto* pSession = pRHSessionSubsystem != nullptr ? pRHSessionSubsystem->GetActiveSession() : nullptr;
-
-	if (pSession != nullptr)
-	{
-		Event.SessionId = pSession->GetSessionId();
-		if (pSession->GetInstanceData() != nullptr)
-		{
-			Event.InstanceId = pSession->GetInstanceData()->GetInstanceId();
-		}
-	}
-
-	auto Provider = GetAnalyticsProvider();
-	if (Provider != nullptr)
-	{
-		Event.EmitTo(Provider.Get());
 	}
 }
 

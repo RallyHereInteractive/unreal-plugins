@@ -1215,7 +1215,7 @@ namespace RHStandardEvents
 
 	/**
 	* rh.player_game_result
-	* @brief This event is meant to capture high level information about a completed match.The RHIntegration Plugin will not automatically trigger this, but this event is something that RallyHere will process and have an understanding of the data.
+	* @brief This event is meant to capture high level information about a completed match.
 	*/
 	struct FPlayerGameResultEvent
 	{

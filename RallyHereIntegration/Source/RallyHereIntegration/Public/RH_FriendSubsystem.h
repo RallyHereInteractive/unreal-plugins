@@ -323,11 +323,11 @@ public:
 	* @brief Blueprint delegate to listen for presence updates.
 	*/
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "RH And Platform Friend", meta = (DisplayName = "On Presence Updated"))
-	FRH_OnPresenceUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
+    FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
 	/**
 	* @brief Native delegate to listen for presence updates.
 	*/
-	FRH_OnPresenceUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
+	FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
 	/**
 	 * @brief Gets if the player is a friend through Rally Here systems or their platform.
 	 */
@@ -630,7 +630,7 @@ protected:
 	 * @brief Passes presence updates of the player on through internal delgates.
 	 * @param PlayerPresence The players precence information.
 	 */
-	virtual void OnPresenceUpdated(URH_PlayerPresence* PlayerPresence)
+	virtual void OnPresenceUpdated(URH_PlayerInfoSubobject* PlayerPresence)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
 		OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
@@ -1027,7 +1027,7 @@ protected:
 	 * @brief Helper function to push out presence updates on delegates on this system.
 	 * @param [in] PlayerPresence The Player Presence updated.
 	 */
-	virtual void OnPresenceUpdated(URH_PlayerPresence* PlayerPresence)
+	virtual void OnPresenceUpdated(URH_PlayerInfoSubobject* PlayerPresence)
 	{
 		if (URH_RHFriendAndPlatformFriend* Friend = GetFriendByPlayerInfo(PlayerPresence->GetPlayerInfo()))
 		{

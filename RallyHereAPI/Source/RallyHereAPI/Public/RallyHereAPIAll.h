@@ -17,7 +17,6 @@
 #include "ConfigAPI.h"
 #include "ConfigurationV1API.h"
 #include "CustomAPI.h"
-#include "DiscoveryAPI.h"
 #include "EntitlementsAPI.h"
 #include "EnvironmentAPI.h"
 #include "EventsAPI.h"
@@ -28,6 +27,7 @@
 #include "KeyClaimsAPI.h"
 #include "KeyEntitlementsAPI.h"
 #include "MarketingAPI.h"
+#include "MatchAPI.h"
 #include "PlayerIdNotificationAPI.h"
 #include "PlayerNotificationAPI.h"
 #include "PresenceAPI.h"
@@ -37,7 +37,6 @@
 #include "RegionsAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
-#include "SiteAPI.h"
 #include "TimeAPI.h"
 #include "UsersAPI.h"
 
@@ -75,9 +74,6 @@ public:
     FCustomAPI& GetCustom();
     const FCustomAPI& GetCustom() const;
 
-    FDiscoveryAPI& GetDiscovery();
-    const FDiscoveryAPI& GetDiscovery() const;
-
     FEntitlementsAPI& GetEntitlements();
     const FEntitlementsAPI& GetEntitlements() const;
 
@@ -108,6 +104,9 @@ public:
     FMarketingAPI& GetMarketing();
     const FMarketingAPI& GetMarketing() const;
 
+    FMatchAPI& GetMatch();
+    const FMatchAPI& GetMatch() const;
+
     FPlayerIdNotificationAPI& GetPlayerIdNotification();
     const FPlayerIdNotificationAPI& GetPlayerIdNotification() const;
 
@@ -135,9 +134,6 @@ public:
     FSettingsAPI& GetSettings();
     const FSettingsAPI& GetSettings() const;
 
-    FSiteAPI& GetSite();
-    const FSiteAPI& GetSite() const;
-
     FTimeAPI& GetTime();
     const FTimeAPI& GetTime() const;
 
@@ -154,7 +150,6 @@ private:
     FConfigAPI Config;
     FConfigurationV1API ConfigurationV1;
     FCustomAPI Custom;
-    FDiscoveryAPI Discovery;
     FEntitlementsAPI Entitlements;
     FEnvironmentAPI Environment;
     FEventsAPI Events;
@@ -165,6 +160,7 @@ private:
     FKeyClaimsAPI KeyClaims;
     FKeyEntitlementsAPI KeyEntitlements;
     FMarketingAPI Marketing;
+    FMatchAPI Match;
     FPlayerIdNotificationAPI PlayerIdNotification;
     FPlayerNotificationAPI PlayerNotification;
     FPresenceAPI Presence;
@@ -174,7 +170,6 @@ private:
     FRegionsAPI Regions;
     FSessionsAPI Sessions;
     FSettingsAPI Settings;
-    FSiteAPI Site;
     FTimeAPI Time;
     FUsersAPI Users;
 };

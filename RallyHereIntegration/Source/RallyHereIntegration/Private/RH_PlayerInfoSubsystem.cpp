@@ -226,6 +226,8 @@ URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Su
 
 	PlayerSessions = CreateDefaultSubobject<URH_PlayerSessions>(TEXT("PlayerSessions"));
 
+	PlayerMatches = CreateDefaultSubobject<URH_PlayerMatches>(TEXT("PlayerMatches"));
+
 	PlayerInventory = CreateDefaultSubobject<URH_PlayerInventory>(TEXT("PlayerInventory"));
 	PlayerInventory->SetPlayerInfo(this);
 
@@ -249,6 +251,10 @@ void URH_PlayerInfo::InitializeForPlayer(const FGuid& Value)
 	if (PlayerSessions != nullptr)
 	{
 		PlayerSessions->PlayerUuid = Value;
+	}
+	if (PlayerMatches != nullptr)
+	{
+		PlayerMatches->PlayerUuid = Value;
 	}
 	PlayerInventory->Initialize();
 	PlayerNotifications->Initialize();
@@ -736,56 +742,84 @@ FAuthContextPtr URH_PlayerInfo::GetAuthContext() const
 }
 
 
-
 ///
 
-URH_PlayerPresence::URH_PlayerPresence(const FObjectInitializer& ObjectInitializer)
+URH_PlayerInfoSubobject::URH_PlayerInfoSubobject(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 	, bInitialized(false)
-	, Status(ERHAPI_OnlineStatus::Offline)
 {
+	PollTimerName = NAME_None;
+	PollPriority = 0;
 }
 
-UFUNCTION(BlueprintPure, Category = "Presence")
-URH_PlayerInfo* URH_PlayerPresence::GetPlayerInfo() const
+URH_PlayerInfo* URH_PlayerInfoSubobject::GetPlayerInfo() const
 {
 	return Cast<URH_PlayerInfo>(GetOuter());
 }
 
-void URH_PlayerPresence::CheckPollStatus(const bool bForceUpdate)
+void URH_PlayerInfoSubobject::CheckPollStatus(const bool bForceUpdate)
 {
 	if (!ShouldPoll())
 	{
 		// no one is listening, disable polling
-		if (PresencePoller.IsValid())
+		if (Poller.IsValid())
 		{
-			PresencePoller->StopPoll();
+			Poller->StopPoll();
 		}
 
 		return;
 	}
 
-	static FName PollTimerName(TEXT("PlayerPresence"));
-
 	// create a poller if one was not created yet
-	if (!PresencePoller.IsValid())
+	if (!Poller.IsValid())
 	{
-		PresencePoller = FRH_PollControl::CreateAutoPoller();
+		Poller = FRH_PollControl::CreateAutoPoller();
 	}
 
 	// only start if poller was not already started
-	if (PresencePoller->IsInactive())
+	if (Poller->IsInactive())
 	{
 		// kick immediately, as someone just became interested in this result
-		PresencePoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_PlayerPresence::PollPresence), PollTimerName, true);
+		Poller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_PlayerInfoSubobject::Poll), PollTimerName, true);
 	}
 	else if (bForceUpdate)
 	{
-		PresencePoller->ExecutePoll();
+		Poller->ExecutePoll();
 	}
 }
 
-void URH_PlayerPresence::PollPresence(const FRH_PollCompleteFunc& Delegate)
+
+void URH_PlayerInfoSubobject::ExecuteUpdatedDelegates(bool bSuccess)
+{
+	if (bSuccess)
+	{
+		LastUpdated = FDateTime::UtcNow();
+
+		SCOPED_NAMED_EVENT(RallyHere_BroadcastPlayerSubobjectUpdated, FColor::Purple);
+		BLUEPRINT_OnUpdatedDelegate.Broadcast(this);
+		OnUpdatedDelegate.Broadcast(this);
+	}
+
+	// copy the temporary request array before invoking, then clear
+	auto Temp = TemporaryRequestDelegates;
+	TemporaryRequestDelegates.Reset();
+	for (auto& Delegate : Temp)
+	{
+		Delegate.ExecuteIfBound(bSuccess, this);
+	}
+}
+
+///
+
+URH_PlayerPresence::URH_PlayerPresence(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+	, Status(ERHAPI_OnlineStatus::Offline)
+{
+	PollTimerName = FName(TEXT("PlayerPresence"));
+	PollPriority = GetDefault<URH_IntegrationSettings>()->PresenceGetOtherPriority;
+}
+
+void URH_PlayerPresence::Poll(const FRH_PollCompleteFunc& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -797,84 +831,26 @@ void URH_PlayerPresence::PollPresence(const FRH_PollCompleteFunc& Delegate)
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetPresenceType>>(
 		GetPresenceType::Delegate::CreateUObject(this, &URH_PlayerPresence::Update),
-		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) { ExecuteDelegates(bSuccess); Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); }),
-		GetDefault<URH_IntegrationSettings>()->PresenceGetOtherPriority
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				PollComplete(bSuccess, Delegate);
+			}),
+		PollPriority
 	);
 
 	Helper->Start(RH_APIs::GetPresenceAPI(), Request);
 }
 
-void URH_PlayerPresence::ExecuteDelegates(bool bSuccess)
-{
-	if (bSuccess)
-	{
-		LastUpdated = FDateTime::UtcNow();
-
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
-		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(this);
-		OnPresenceUpdatedDelegate.Broadcast(this);
-	}
-
-	// copy the temporary request array before invoking, then clear
-	TArray<FRH_OnRequestPlayerPresenceBlock> Temp = TemporaryRequestDelegates;
-	TemporaryRequestDelegates.Reset();
-	for (auto& Delegate : Temp)
-	{
-		Delegate.ExecuteIfBound(bSuccess, this);
-	}
-}
-
-
-
-
 ///
 
 URH_PlayerSessions::URH_PlayerSessions(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
-	, bInitialized(false)
 {
+	PollTimerName = FName(TEXT("PlayerSessions"));
+	PollPriority = GetDefault<URH_IntegrationSettings>()->SessionsGetOtherPriority;
 }
 
-UFUNCTION(BlueprintPure, Category = "Presence")
-URH_PlayerInfo* URH_PlayerSessions::GetPlayerInfo() const
-{
-	return Cast<URH_PlayerInfo>(GetOuter());
-}
-
-void URH_PlayerSessions::CheckPollStatus(const bool bForceUpdate)
-{
-	if (!ShouldPoll())
-	{
-		// no one is listening, disable polling
-		if (SessionsPoller.IsValid())
-		{
-			SessionsPoller->StopPoll();
-		}
-
-		return;
-	}
-
-	static FName PollTimerName(TEXT("PlayerSessions"));
-
-	// create a poller if one was not created yet
-	if (!SessionsPoller.IsValid())
-	{
-		SessionsPoller = FRH_PollControl::CreateAutoPoller();
-	}
-
-	// only start if poller was not already started
-	if (SessionsPoller->IsInactive())
-	{
-		// kick immediately, as someone just became interested in this result
-		SessionsPoller->StartPoll(FRH_PollFunc::CreateUObject(this, &URH_PlayerSessions::PollSessions), PollTimerName, true);
-	}
-	else if (bForceUpdate)
-	{
-		SessionsPoller->ExecutePoll();
-	}
-}
-
-void URH_PlayerSessions::PollSessions(const FRH_PollCompleteFunc& Delegate)
+void URH_PlayerSessions::Poll(const FRH_PollCompleteFunc& Delegate)
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -886,29 +862,118 @@ void URH_PlayerSessions::PollSessions(const FRH_PollCompleteFunc& Delegate)
 
 	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetSessionsType>>(
 		GetSessionsType::Delegate::CreateUObject(this, &URH_PlayerSessions::Update),
-		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo) { ExecuteDelegates(bSuccess); Delegate.ExecuteIfBound(bSuccess, ShouldPoll()); }),
-		GetDefault<URH_IntegrationSettings>()->SessionsGetOtherPriority
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				PollComplete(bSuccess, Delegate);
+			}),
+		PollPriority
 	);
 
 	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
-void URH_PlayerSessions::ExecuteDelegates(bool bSuccess)
-{
-	if (bSuccess)
-	{
-		LastUpdated = FDateTime::UtcNow();
+///
 
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastSessionUpdated, FColor::Purple);
-		BLUEPRINT_OnSessionsUpdatedDelegate.Broadcast(this);
-		OnSessionsUpdatedDelegate.Broadcast(this);
+
+URH_PlayerMatches::URH_PlayerMatches(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	PollTimerName = FName(TEXT("PlayerMatches"));
+	PollPriority = GetDefault<URH_IntegrationSettings>()->MatchesGetOtherPriority;
+
+
+	PollPageSize = GetDefault<URH_IntegrationSettings>()->PlayerMatchesPageSize;
+	PollMaxPageCount = GetDefault<URH_IntegrationSettings>()->PlayerMatchesMaxPageCount;
+	PollMaxAge = GetDefault<URH_IntegrationSettings>()->PlayerMatchesMaxAge;
+}
+
+void URH_PlayerMatches::Poll(const FRH_PollCompleteFunc& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// create a shared pointer to a cursor to track our polling context
+	TSharedPtr<FPollContext> Context = MakeShared<FPollContext>();
+
+	Context->PageSize = PollPageSize;
+	Context->MaxAgeLimit = PollMaxAge;
+	Context->PageCountLimit = PollMaxPageCount;
+
+	PollNextPage(Delegate, Context);
+}
+
+void URH_PlayerMatches::PollNextPage(const FRH_PollCompleteFunc & Delegate, TSharedPtr<FPollContext> Context)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	GetMatchesType::Request Request;
+
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	//Request.IfNoneMatch = ETag;
+	if (Context.IsValid())
+	{
+		if (!Context->Cursor.IsEmpty())
+		{
+			Request.Cursor = Context->Cursor;
+		}
+
+		if (Context->PageSize > 0)
+		{
+			Request.PageSize = Context->PageSize;
+		}
 	}
 
-	// copy the temporary request array before invoking, then clear
-	TArray<FRH_OnRequestPlayerSessionsBlock> Temp = TemporaryRequestDelegates;
-	TemporaryRequestDelegates.Reset();
-	for (auto& Delegate : Temp)
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<GetMatchesType>>(
+		GetMatchesType::Delegate::CreateWeakLambda(this, [this, Context](const GetMatchesType::Response& Response)
+			{
+				// update locally based on response, and update our context
+				Update(Response, Context);
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (Context.IsValid() && !CheckPollingCursorComplete(Context))
+				{
+					// if cursor is not empty, continue polling
+					PollNextPage(Delegate, Context);
+				}
+				else
+				{
+					// if cursor is empty, we are done with the poll loop
+					PollComplete(bSuccess, Delegate);
+				}
+			}),
+		PollPriority
+	);
+
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
+bool URH_PlayerMatches::CheckPollingCursorComplete(const TSharedPtr<FPollContext> Context)
+{
+	// if cursor is not empty and there are more matches to fetch, check to see if we should fetch them
+	if (Context.IsValid() && !Context->Cursor.IsEmpty())
 	{
-		Delegate.ExecuteIfBound(bSuccess, this);
+		// check if we have hit our max age limit
+		if (!Context->MaxAgeLimit.IsZero() && Context->CurrentMaxAge > Context->MaxAgeLimit)
+		{
+			// complete the poll
+			return true;
+		}
+		// check if we have hit our max page count limit
+		else if (Context->PageCountLimit > 0 && Context->CurrentPageCount >= Context->PageCountLimit)
+		{
+			// complete the poll
+			return true;
+		}
+		else
+		{
+			// cursor is valid and limit has not been reached, do not complete the poll
+			return false;
+		}
+	}
+	else
+	{
+		// if we have no valid cursor, complete the poll
+		return true;
 	}
 }

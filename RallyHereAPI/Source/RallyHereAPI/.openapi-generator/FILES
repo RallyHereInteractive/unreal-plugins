@@ -47,8 +47,6 @@ Private/CustomAPI.cpp
 Private/DeleteTicketReason.cpp
 Private/DependenciesSchemasPortal.cpp
 Private/Determiner.cpp
-Private/DiscoveryAPI.cpp
-Private/DiscoveryResponse.cpp
 Private/EntitlementErrorCode.cpp
 Private/EntitlementStatus.cpp
 Private/EntitlementsAPI.cpp
@@ -130,7 +128,11 @@ Private/MapSelectionListV2.cpp
 Private/MarketingAPI.cpp
 Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
+Private/MatchAPI.cpp
+Private/MatchAllocation.cpp
+Private/MatchHostType.cpp
 Private/MatchInfo.cpp
+Private/MatchInstance.cpp
 Private/MatchMakingProfile.cpp
 Private/MatchMakingProfileV2.cpp
 Private/MatchMakingRuleset.cpp
@@ -138,6 +140,16 @@ Private/MatchMakingTemplate.cpp
 Private/MatchMakingTemplateGroup.cpp
 Private/MatchMakingTemplateGroupV2.cpp
 Private/MatchMakingTemplateV2.cpp
+Private/MatchPlayerRequest.cpp
+Private/MatchPlayerResponse.cpp
+Private/MatchPlayerWithMatch.cpp
+Private/MatchRequest.cpp
+Private/MatchSegmentRequest.cpp
+Private/MatchSegmentWithPlayers.cpp
+Private/MatchSession.cpp
+Private/MatchState.cpp
+Private/MatchValuesOnly.cpp
+Private/MatchWithPlayers.cpp
 Private/MatchmakingInfo.cpp
 Private/MatchmakingResults.cpp
 Private/MessageOnly.cpp
@@ -158,6 +170,8 @@ Private/Operation.cpp
 Private/OpportunityAbortReason.cpp
 Private/OpportunityState.cpp
 Private/PageMeta.cpp
+Private/PagedMatchResponse.cpp
+Private/PagedPlayerMatchResponse.cpp
 Private/PersonEmailListRequest.cpp
 Private/PersonEmailListResponse.cpp
 Private/PersonInfoResponse.cpp
@@ -247,6 +261,7 @@ Private/RankConfigRequestResponseV2.cpp
 Private/RankConfigV2.cpp
 Private/RankData.cpp
 Private/RankUpdateRequest.cpp
+Private/RankUpdateRequestV2.cpp
 Private/RankedTeam.cpp
 Private/Region.cpp
 Private/RegionsAPI.cpp
@@ -280,8 +295,6 @@ Private/SettingData.cpp
 Private/SettingType.cpp
 Private/SettingTypeVersion.cpp
 Private/SettingsAPI.cpp
-Private/SiteAPI.cpp
-Private/SiteSettings.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
 Private/TeamOverflowAction.cpp
@@ -291,6 +304,8 @@ Private/TimeFrame.cpp
 Private/TimeFrames.cpp
 Private/TokenRequest.cpp
 Private/TokenResponse.cpp
+Private/TrueskillRank.cpp
+Private/TrueskillTeam.cpp
 Private/UnionCCU.cpp
 Private/UpdateBackfillRequest.cpp
 Private/UpdateInventoryRequest.cpp
@@ -353,8 +368,6 @@ Public/CustomAPI.h
 Public/DeleteTicketReason.h
 Public/DependenciesSchemasPortal.h
 Public/Determiner.h
-Public/DiscoveryAPI.h
-Public/DiscoveryResponse.h
 Public/EntitlementErrorCode.h
 Public/EntitlementStatus.h
 Public/EntitlementsAPI.h
@@ -436,7 +449,11 @@ Public/MapSelectionListV2.h
 Public/MarketingAPI.h
 Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
+Public/MatchAPI.h
+Public/MatchAllocation.h
+Public/MatchHostType.h
 Public/MatchInfo.h
+Public/MatchInstance.h
 Public/MatchMakingProfile.h
 Public/MatchMakingProfileV2.h
 Public/MatchMakingRuleset.h
@@ -444,6 +461,16 @@ Public/MatchMakingTemplate.h
 Public/MatchMakingTemplateGroup.h
 Public/MatchMakingTemplateGroupV2.h
 Public/MatchMakingTemplateV2.h
+Public/MatchPlayerRequest.h
+Public/MatchPlayerResponse.h
+Public/MatchPlayerWithMatch.h
+Public/MatchRequest.h
+Public/MatchSegmentRequest.h
+Public/MatchSegmentWithPlayers.h
+Public/MatchSession.h
+Public/MatchState.h
+Public/MatchValuesOnly.h
+Public/MatchWithPlayers.h
 Public/MatchmakingInfo.h
 Public/MatchmakingResults.h
 Public/MessageOnly.h
@@ -464,6 +491,8 @@ Public/Operation.h
 Public/OpportunityAbortReason.h
 Public/OpportunityState.h
 Public/PageMeta.h
+Public/PagedMatchResponse.h
+Public/PagedPlayerMatchResponse.h
 Public/PersonEmailListRequest.h
 Public/PersonEmailListResponse.h
 Public/PersonInfoResponse.h
@@ -553,6 +582,7 @@ Public/RankConfigRequestResponseV2.h
 Public/RankConfigV2.h
 Public/RankData.h
 Public/RankUpdateRequest.h
+Public/RankUpdateRequestV2.h
 Public/RankedTeam.h
 Public/Region.h
 Public/RegionsAPI.h
@@ -586,8 +616,6 @@ Public/SettingData.h
 Public/SettingType.h
 Public/SettingTypeVersion.h
 Public/SettingsAPI.h
-Public/SiteAPI.h
-Public/SiteSettings.h
 Public/SortOrder.h
 Public/Source.h
 Public/TeamOverflowAction.h
@@ -597,6 +625,8 @@ Public/TimeFrame.h
 Public/TimeFrames.h
 Public/TokenRequest.h
 Public/TokenResponse.h
+Public/TrueskillRank.h
+Public/TrueskillTeam.h
 Public/UnionCCU.h
 Public/UpdateBackfillRequest.h
 Public/UpdateInventoryRequest.h

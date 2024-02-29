@@ -23,6 +23,7 @@ class URH_PlayerInfoSubsystem;
 class URH_CatalogSubsystem;
 class URH_ConfigSubsystem;
 class URH_SettingsSubsystem;
+class URH_MatchSubsystem;
 
 /** @defgroup GameInstance RallyHere Game Instance
  *  @{
@@ -114,30 +115,10 @@ public:
 	UFUNCTION(BlueprintGetter, Category = "Config")
 	inline URH_SettingsSubsystem* GetSettingsSubsystem() const { return SettingsSubsystem; };
 	/**
-	 * @brief Handles verification and validation of a player attempting to connect to the instance.
-	 * @param [in] GameMode The game mode the instance is running.
-	 * @param [in] NewPlayer The player that is attempting to connect.
-	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
-	 */
-	void GameModePreloginEvent(class AGameModeBase* GameMode, const FUniqueNetIdRepl& NewPlayer, FString& ErrorMessage);
-	/**
-	 * @brief Handles verification and validation of a player attempting to connect to the instance.
-	 * @param [in] Connection The player that is attempting to connect.
-	 * @param [out] ErrorMessage If an Error happens for this player being valid, this will be set to the error message.
-	 */
-	bool ValidateIncomingConnection(class UNetConnection* Connection, FString& ErrorMessage) const;
-	/**
-	 * @brief Handles logic for when a player connects
-	 * @param [in] GameMode The game mode the instance is running.
-	 * @param [in] NewPlayer The player that is connecting.
-	 */
-	void GameModePostLoginEvent(class AGameModeBase* GameMode, APlayerController* NewPlayer);
-	/**
-	 * @brief Handles logic for when a player disconnects
-	 * @param [in] GameMode The game mode the instance is running.
-	 * @param [in] Exiting The player that is disconnecting.
-	 */
-	void GameModeLogoutEvent(class AGameModeBase* GameMode, AController* Exiting);
+	* @brief Gets the match subsystem on the instance.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Match")
+	inline URH_MatchSubsystem* GetMatchSubsystem() const { return MatchSubsystem; };
 
 	/**
 	* @brief Gets if server boostrapping is enabled, by inspecting state of default object before game instance is initialized, once it is initialized use the above
@@ -234,6 +215,9 @@ protected:
 	/** @brief The Settings Subsystem. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetSettingsSubsystem, Category = "Settings")
 	URH_SettingsSubsystem* SettingsSubsystem;
+	/** @brief The Match Subsystem */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter = GetMatchSubsystem, Category = "Match")
+	URH_MatchSubsystem* MatchSubsystem;
 
 	// control flags
 	/** @brief If the Game Instance Subsystem is enabled. */
@@ -254,15 +238,6 @@ protected:
 	/** @brief If the Game Instance Client Bootstrapper is enabled. */
 	UPROPERTY(config)
 	bool bEnableClientBootstrapper = true;
-	/** @brief If set, the connection attempt must have a valid security token to be allowed to connect. */
-	UPROPERTY(config)
-	bool bUseSecurityTokenForJoining = true;
-	UPROPERTY(config)
-	/** @brief If set, the Player Id must have been imported to the instance before being allowed to connect. */
-	bool bRequireImportedPlayerIdsForJoining = true;
-	UPROPERTY(config)
-	/** @brief If set, the Player Id must be valid before being allowed to connect. */
-	bool bRequireValidPlayerIdsForJoining = true;
 
 	/** @brief Handle application going into suspension (these involve the application losing focus). */
 	virtual void AppSuspendCallbackInGameThread();

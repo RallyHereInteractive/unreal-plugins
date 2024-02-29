@@ -20,6 +20,18 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsBurstCountThreshold = 5;
 	WebRequestsBurstTimeThresholdInSeconds = 5;
 
+	bUseSecurityTokenForJoining = true;
+	bRequireImportedPlayerIdsForJoining = true;
+	bRequireValidPlayerIdsForJoining = true;
+
+	bAutoCreateMatches = true;
+	bAutoAddConnectedPlayersToMatches = true;
+	bAutoCloseMatchOnSessionInactive = true;
+
+	PlayerMatchesPageSize = 0; // use API default page size
+	PlayerMatchesMaxPageCount = 5;
+	PlayerMatchesMaxAge = FTimespan(30, 0, 0, 0);
+
 	BeginNewAdSessionPriority = 1100000;
 	FindAdOppertunitiesPriority = 1100000;
 	UpdateAdOppertunitiesPriority = 900000;
@@ -98,6 +110,11 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	UsersLookupPlayerPriority = 1000000;
 	UsersGetLinkedPlatformsPriority = 900000;
 	EventsReceiveEventPriority = 1000000;
+	MatchesGetOtherPriority = 1000000;
+	MatchesSearchPriority = 1000000;
+	MatchesLookupPriority = 1000000;
+	MatchesUpdatePriority = 900000;
+	MatchesUpdatePlayerPriority = 900000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const
