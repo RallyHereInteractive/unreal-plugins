@@ -26,6 +26,7 @@ protected:
 	TArray<ANSICHAR> SearchSessionId;
 	TArray<ANSICHAR> SearchHostPlayerUuid;
 	TArray<ANSICHAR> SearchRegionId;
+	TArray<ANSICHAR> SearchPlayerUuid;
 	TArray<ANSICHAR> SearchCursor;
 
 	struct FFullSearchResult

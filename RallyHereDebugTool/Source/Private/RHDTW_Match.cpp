@@ -20,6 +20,7 @@ FRHDTW_Match::FRHDTW_Match()
 	SearchSessionId.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	SearchHostPlayerUuid.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	SearchRegionId.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
+	SearchPlayerUuid.SetNumZeroed(RH_STRINGENTRY_GUIDSIZE);
 	SearchCursor.SetNumZeroed(1024);	// cursor may have data packed in, so make it large
 }
 
@@ -104,6 +105,8 @@ void FRHDTW_Match::DoSearchMatches()
 	ImGui::InputText("AllocationId", SearchAllocationId.GetData(), SearchAllocationId.Num());
 	
 	ImGui::SetNextItemWidth(GuidFieldLength);
+	ImGui::InputText("PlayerUuid", SearchPlayerUuid.GetData(), SearchPlayerUuid.Num());
+	ImGui::SetNextItemWidth(GuidFieldLength);
 	ImGui::InputText("HostPlayerUuid", SearchHostPlayerUuid.GetData(), SearchHostPlayerUuid.Num());
 	ImGui::SetNextItemWidth(GuidFieldLength);
 	ImGui::InputText("RegionId", SearchRegionId.GetData(), SearchRegionId.Num());
@@ -122,9 +125,22 @@ void FRHDTW_Match::DoSearchMatches()
 		SearchParams.SessionId = FString(ANSI_TO_TCHAR(SearchSessionId.GetData()));
 		SearchParams.HostPlayerUuid = FString(ANSI_TO_TCHAR(SearchHostPlayerUuid.GetData()));
 		SearchParams.RegionId = FString(ANSI_TO_TCHAR(SearchRegionId.GetData()));
+		SearchParams.PlayerUuid = FString(ANSI_TO_TCHAR(SearchPlayerUuid.GetData()));
 		SearchParams.Cursor = FString(ANSI_TO_TCHAR(SearchCursor.GetData()));
 
 		pGIMatchSubsystem->SearchMatches(SearchParams, FRH_OnMatchSearchCompleteDelegate::CreateSP(this, &FRHDTW_Match::OnSearchMatchesComplete));	
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Clear Search"))
+	{
+		SearchPageSize = 0;
+		SearchInstanceId.Empty();
+		SearchAllocationId.Empty();
+		SearchSessionId.Empty();
+		SearchHostPlayerUuid.Empty();
+		SearchRegionId.Empty();
+		SearchPlayerUuid.Empty();
+		SearchCursor.Empty();
 	}
 
 	ImGui::Separator();
@@ -267,9 +283,24 @@ void FRHDTW_Match::DoViewPlayerMatches()
 							if (pGameInstance != nullptr)
 							{
 								const auto pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>();
-								if (pGISubsystem != nullptr)
+								if (pGISubsystem != nullptr && pGISubsystem->GetMatchSubsystem() != nullptr)
 								{
-									// TODO - allow inline search in global match catch and display inline here?
+									FRHAPI_MatchWithPlayers MatchWithPlayers;
+									if (pGISubsystem->GetMatchSubsystem()->GetMatch(MatchPair.Key, MatchWithPlayers))
+									{
+										if (ImGui::TreeNodeEx("Full Details", RH_DefaultTreeFlags))
+										{
+											ImGuiDisplayModelData(MatchWithPlayers);
+											ImGui::TreePop();
+										}
+									}
+									else
+									{
+										if (ImGui::Button("Search Full Match"))
+										{
+											pGISubsystem->GetMatchSubsystem()->GetMatchAsync(MatchPair.Key);
+										}
+									}
 								}
 							}
 
