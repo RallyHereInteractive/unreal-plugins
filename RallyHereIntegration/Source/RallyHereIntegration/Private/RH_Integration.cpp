@@ -197,6 +197,40 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleRHSetOSS(
 			}
 		}));
 
+FString ParseCommandlineOverrideCommon(const FString& temp)
+{
+	FString result = temp;
+	result.TrimQuotesInline();
+
+	// allow @ prefix to indicate that we should read from a file or env variable
+	if (result.StartsWith(TEXT("@")))
+	{
+		// file has priority
+		FString value = result.RightChop(1).TrimQuotes();
+		FString fileContents;
+		if (FFileHelper::LoadFileToString(fileContents, *value))
+		{
+			result = fileContents;
+		}
+		else
+		{
+			// if failed to load from file, attempt to load from environment variable
+			FString envVarContents;
+			envVarContents = FPlatformMisc::GetEnvironmentVariable(*value);
+			if (!envVarContents.IsEmpty())
+			{
+				result = envVarContents;
+			}
+			else
+			{
+				UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Could not read file or environment variable %s"), ANSI_TO_TCHAR(__FUNCTION__), *value);
+			}
+		}
+	}
+
+	return result;
+}
+
 FRH_Integration::FRH_Integration()
 	: bIsBaseUrlLocked(false)
 	, bIsEnvironmentIdLocked(false)
@@ -217,6 +251,7 @@ void FRH_Integration::Initialize()
 		FString temp;
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
+			temp = ParseCommandlineOverrideCommon(temp);
 			UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Update Default OSS Value=%s Source=%s"), ANSI_TO_TCHAR(__FUNCTION__), *temp, *Key);
 			GConfig->SetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), *temp, GEngineIni);
 			IOnlineSubsystem::ReloadDefaultSubsystem();
@@ -338,6 +373,7 @@ void FRH_Integration::ResolveBaseURL()
 		FString temp;
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
+			temp = ParseCommandlineOverrideCommon(temp);
 			SetBaseURL(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
 		}
@@ -409,12 +445,13 @@ void FRH_Integration::ResolveEnvironmentId()
 
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
 
-	FString NewEnvironmentId;
+	FString temp;
 	for (const auto& Key : Settings->EnvironmentCommandLineKeys)
 	{
-		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), NewEnvironmentId))
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), temp))
 		{
-			SetEnvironmentId(MoveTemp(NewEnvironmentId), TEXT("CmdLine '") + Key + TEXT("'"));
+			temp = ParseCommandlineOverrideCommon(temp);
+			SetEnvironmentId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
 		}
 	}
@@ -422,22 +459,22 @@ void FRH_Integration::ResolveEnvironmentId()
 	FString Source;
 	if (!Settings->EnvironmentOSSName.IsNone())
 	{
-		if (GetEnvironmentIdFromOSS(IOnlineSubsystem::Get(Settings->EnvironmentOSSName), NewEnvironmentId, Source))
+		if (GetEnvironmentIdFromOSS(IOnlineSubsystem::Get(Settings->EnvironmentOSSName), temp, Source))
 		{
-			SetEnvironmentId(MoveTemp(NewEnvironmentId), MoveTemp(Source));
+			SetEnvironmentId(MoveTemp(temp), MoveTemp(Source));
 			return;
 		}
 	}
 
-	if (GetEnvironmentIdFromOSS(IOnlineSubsystem::GetByPlatform(true), NewEnvironmentId, Source))
+	if (GetEnvironmentIdFromOSS(IOnlineSubsystem::GetByPlatform(true), temp, Source))
 	{
-		SetEnvironmentId(MoveTemp(NewEnvironmentId), MoveTemp(Source));
+		SetEnvironmentId(MoveTemp(temp), MoveTemp(Source));
 		return;
 	}
 
-	if (GetEnvironmentIdFromOSS(IOnlineSubsystem::Get(NAME_None), NewEnvironmentId, Source))
+	if (GetEnvironmentIdFromOSS(IOnlineSubsystem::Get(NAME_None), temp, Source))
 	{
-		SetEnvironmentId(MoveTemp(NewEnvironmentId), MoveTemp(Source));
+		SetEnvironmentId(MoveTemp(temp), MoveTemp(Source));
 		return;
 	}
 
@@ -476,6 +513,7 @@ void FRH_Integration::ResolveClientId()
 		FString temp;
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
+			temp = ParseCommandlineOverrideCommon(temp);
 			SetClientId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
 		}
@@ -533,6 +571,7 @@ void FRH_Integration::ResolveClientSecret()
 		FString temp;
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
 		{
+			temp = ParseCommandlineOverrideCommon(temp);
 			SetClientSecret(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("'"));
 			return;
 		}
