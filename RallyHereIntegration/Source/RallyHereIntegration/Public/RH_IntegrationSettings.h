@@ -36,14 +36,6 @@ struct FRH_EnvironmentConfiguration
 	/** @brief RallyHere Client secret. Must be associated with the defined client ID */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
 	FString ClientSecret;
-
-	/** @brief RallyHere PlayerExperience reporting URL */
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-	FString PlayerExperienceReportURL;
-
-	/** @brief RallyHere PlayerExperience reporting URL */
-	UPROPERTY(EditAnywhere, Config, Category = "Connectivity")
-	FString AnalyticsURL;
 };
 
 /**

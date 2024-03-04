@@ -797,8 +797,6 @@ Settings for Environment Configuration. If set, these override the defaults when
 `public FString `[`BaseUrl`](#structFRH__EnvironmentConfiguration_1a4d83e6b00d9676173cfce51696239f33) | RallyHere BaseURL. Determines the base URL to use when connecting to the RallyHere API.
 `public FString `[`ClientId`](#structFRH__EnvironmentConfiguration_1ad89cebe1e08c49b87a7132acb5ad8da4) | RallyHere Client ID. Determines the available permissions for RallyHere APIs.
 `public FString `[`ClientSecret`](#structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666) | RallyHere Client secret. Must be associated with the defined client ID.
-`public FString `[`PlayerExperienceReportURL`](#structFRH__EnvironmentConfiguration_1aec198dc7dc0ea963521331e690f289c9) | RallyHere PlayerExperience reporting URL.
-`public FString `[`AnalyticsURL`](#structFRH__EnvironmentConfiguration_1a0c3b133e57f57fc6cf12753f5f74b157) | RallyHere PlayerExperience reporting URL.
 
 #### Members
 
@@ -820,15 +818,5 @@ RallyHere Client ID. Determines the available permissions for RallyHere APIs.
 #### `public FString `[`ClientSecret`](#structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666) <a id="structFRH__EnvironmentConfiguration_1a92ac23bcd32f8ec70f2d361594e4a666"></a>
 
 RallyHere Client secret. Must be associated with the defined client ID.
-
-<br>
-#### `public FString `[`PlayerExperienceReportURL`](#structFRH__EnvironmentConfiguration_1aec198dc7dc0ea963521331e690f289c9) <a id="structFRH__EnvironmentConfiguration_1aec198dc7dc0ea963521331e690f289c9"></a>
-
-RallyHere PlayerExperience reporting URL.
-
-<br>
-#### `public FString `[`AnalyticsURL`](#structFRH__EnvironmentConfiguration_1a0c3b133e57f57fc6cf12753f5f74b157) <a id="structFRH__EnvironmentConfiguration_1a0c3b133e57f57fc6cf12753f5f74b157"></a>
-
-RallyHere PlayerExperience reporting URL.
 
 <br>
