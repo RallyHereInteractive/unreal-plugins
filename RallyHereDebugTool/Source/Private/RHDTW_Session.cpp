@@ -434,11 +434,6 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 						{
 							pGISessionSubsystem->SyncToSession(nullptr);
 						}
-						ImGui::SameLine();
-						if (ImGui::Button("Mark Fubar"))
-						{
-							pGISessionSubsystem->MarkInstanceFubar(TEXT("Debug Tool"));
-						}
 					}
 					else
 					{

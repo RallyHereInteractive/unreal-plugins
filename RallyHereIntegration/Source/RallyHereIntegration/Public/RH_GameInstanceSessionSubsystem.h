@@ -86,10 +86,6 @@ public:
 	/** @brief A fallback security token to be used while the security token set is in flight */
 	TOptional<FString> FallbackSecurityToken;
 
-	/** @brief If set, the session instance is failed and unrecoverable. */
-	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
-	bool bHasBeenMarkedFubar;
-
 	/** @brief If set, the session should not try to backfill. */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	bool bIsBackfillTerminated;
@@ -100,7 +96,6 @@ public:
 
 	FRH_ActiveSessionState()
 		: Session(nullptr)
-		, bHasBeenMarkedFubar(false)
 		, bIsBackfillTerminated(false)
 	{
 	}
@@ -110,7 +105,6 @@ public:
 	{
 		Session = nullptr;
 		FallbackSecurityToken.Reset();
-		bHasBeenMarkedFubar = false;
 		bIsBackfillTerminated = false;
 		PlayerContexts.Reset();
 	}
@@ -186,11 +180,6 @@ public:
 	* @brief Gets if the instance has been marked failed.
 	*/
 	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
-	FORCEINLINE bool IsMarkedFubar() const { return ActiveSessionState.bHasBeenMarkedFubar; }
-	/**
-	* @brief Gets if the instance has been marked failed.
-	*/
-	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
 	FORCEINLINE bool IsBackfillTerminated() const { return ActiveSessionState.bIsBackfillTerminated; }
 	/**
 	* @brief Checks if the session has all the players and is good to change maps.
@@ -221,22 +210,6 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Start Leave Instance Flow", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_StartLeaveInstanceFlow(bool bAlreadyDisconnected, bool bCheckDesired, const FRH_GameInstanceSessionSyncDynamicDelegate& Delegate) { StartLeaveInstanceFlow(bAlreadyDisconnected, bCheckDesired, Delegate); }
-	/**
-	* @brief Set an instance to a failed state marking it unrecoverable.
-	* @param [in] Reason The reason the instance was marked failed.
-	* @param [in] Delegate Callback delegate for if the instance was marked failed.
-	*/
-	virtual void MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
-	UE_DEPRECATED(5.0, "Please use the version with the error delegate")
-	FORCEINLINE void MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessBlock& Delegate)
-	{
-		MarkInstanceFubar(Reason, RH_ConvertGenericSucessDelegateBlock(Delegate));
-	}
-	/**
-	* @brief Blueprint compatible wrapper for MarkInstanceFubar
-	*/
-	UFUNCTION(BlueprintCallable, Category = "Session|Instance", meta = (DisplayName = "Mark Instance Fubar", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { MarkInstanceFubar(Reason, Delegate); }
 
 	/**
 	 * @brief @brief Attempt to generate a join URL from a session.
