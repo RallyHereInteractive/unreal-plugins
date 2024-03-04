@@ -125,7 +125,6 @@ Main settings for the Integration.
 `public int32 `[`SessionUpdateInstanceInfoPriority`](#classURH__IntegrationSettings_1a0865134ce8ddd336130583187cd67aa4) | Sets the request priority of Update Instance Info calls, lower number is higher priority.
 `public int32 `[`SessionUpdateBrowserInfoPriority`](#classURH__IntegrationSettings_1aa5e0c76dbae5e34b456bcaaafa68cf94) | Sets the request priority of Update Browser Info calls, lower number is higher priority.
 `public int32 `[`SessionDeleteBrowserInfoPriority`](#classURH__IntegrationSettings_1a005338696286a0b743bfbdb480e12e44) | Sets the request priority of Delete Browser Info calls, lower number is higher priority.
-`public int32 `[`SessionInstanceMarkFubarPriority`](#classURH__IntegrationSettings_1adb06a4293164df68adea68c00521e5fb) | Sets the request priority of Marking an Instane Fubar calls, lower number is higher priority.
 `public int32 `[`SessionInstanceHealthUpdatePriority`](#classURH__IntegrationSettings_1a48b7cedb5478f436eb426108906f2d6a) | Sets the request priority of Instance Health update calls, lower number is higher priority.
 `public int32 `[`SessionBackfillUpdatePriority`](#classURH__IntegrationSettings_1ac2b018d245179295e531c7e170db7663) | Sets the request priority of Backfill update calls, lower number is higher priority.
 `public int32 `[`SessionUpdateWithPlatformSessionPriority`](#classURH__IntegrationSettings_1ae52bf61cfe6e937cc6a563133a209991) | Sets the request priority of Session Update With Platform Session calls, lower number is higher priority.
@@ -673,11 +672,6 @@ Sets the request priority of Update Browser Info calls, lower number is higher p
 #### `public int32 `[`SessionDeleteBrowserInfoPriority`](#classURH__IntegrationSettings_1a005338696286a0b743bfbdb480e12e44) <a id="classURH__IntegrationSettings_1a005338696286a0b743bfbdb480e12e44"></a>
 
 Sets the request priority of Delete Browser Info calls, lower number is higher priority.
-
-<br>
-#### `public int32 `[`SessionInstanceMarkFubarPriority`](#classURH__IntegrationSettings_1adb06a4293164df68adea68c00521e5fb) <a id="classURH__IntegrationSettings_1adb06a4293164df68adea68c00521e5fb"></a>
-
-Sets the request priority of Marking an Instane Fubar calls, lower number is higher priority.
 
 <br>
 #### `public int32 `[`SessionInstanceHealthUpdatePriority`](#classURH__IntegrationSettings_1a48b7cedb5478f436eb426108906f2d6a) <a id="classURH__IntegrationSettings_1a48b7cedb5478f436eb426108906f2d6a"></a>

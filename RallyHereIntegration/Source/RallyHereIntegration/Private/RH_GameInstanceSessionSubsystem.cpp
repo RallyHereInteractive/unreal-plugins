@@ -1399,45 +1399,6 @@ void URH_GameInstanceSessionSubsystem::StartLeaveInstanceFlow(bool bAlreadyDisco
 	}
 }
 
-void URH_GameInstanceSessionSubsystem::MarkInstanceFubar(const FString& Reason, const FRH_GenericSuccessWithErrorBlock& Delegate)
-{
-	if (ActiveSessionState.Session != nullptr && !ActiveSessionState.bHasBeenMarkedFubar)
-	{
-		ActiveSessionState.bHasBeenMarkedFubar = true;
-		typedef RallyHereAPI::Traits_ReportFubar BaseType;
-
-		BaseType::Request Request = {};
-		Request.AuthContext = GetAuthContext();
-		Request.SessionId = ActiveSessionState.Session->GetSessionId();
-		Request.InstanceFubar.SetRegion(ActiveSessionState.Session->GetSessionData().GetRegionId());
-		//Request.InstanceFubar.SetMatchmakingProfileId()
-		Request.InstanceFubar.SetError(Reason);
-
-		auto* Instance = ActiveSessionState.Session->GetInstanceData();
-		if (Instance != nullptr)
-		{
-			Request.InstanceFubar.SetInstanceId(Instance->GetInstanceId());
-
-			if (Instance->HostType == ERHAPI_HostType::Player)
-			{
-				Request.InstanceFubar.SetInstanceSourceProvider(ERHAPI_InstanceSourceProvider::Player);
-			}
-			else
-			{
-				// not sure how to determine other host types
-			}
-		}
-
-		auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
-			BaseType::Delegate(),
-			Delegate,
-			GetDefault<URH_IntegrationSettings>()->SessionInstanceMarkFubarPriority
-		);
-
-		Helper->Start(RH_APIs::GetSessionsAPI(), Request);
-	}
-}
-
 // quick analytics hooks
 template<typename EventType>
 void EmitEventToAllProvidersOnce(UGameInstance* pGameInstance, const EventType& Event)
