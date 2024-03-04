@@ -134,13 +134,15 @@ void FRHDTW_Match::DoSearchMatches()
 	if (ImGui::Button("Clear Search"))
 	{
 		SearchPageSize = 0;
-		SearchInstanceId.Empty();
-		SearchAllocationId.Empty();
-		SearchSessionId.Empty();
-		SearchHostPlayerUuid.Empty();
-		SearchRegionId.Empty();
-		SearchPlayerUuid.Empty();
-		SearchCursor.Empty();
+#define ResetStringField(Field) Field.Reset(); Field.AddZeroed(Field.GetSlack());
+		ResetStringField(SearchInstanceId);
+		ResetStringField(SearchAllocationId);
+		ResetStringField(SearchSessionId);
+		ResetStringField(SearchHostPlayerUuid);
+		ResetStringField(SearchRegionId);
+		ResetStringField(SearchPlayerUuid);
+		ResetStringField(SearchCursor);
+#undef ResetStringField
 	}
 
 	ImGui::Separator();
