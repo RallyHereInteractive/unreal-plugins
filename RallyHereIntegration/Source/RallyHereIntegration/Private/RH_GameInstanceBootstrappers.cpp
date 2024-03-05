@@ -1169,15 +1169,33 @@ void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
 
 void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostProviderStats& Stats)
 {
-	const auto* World = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
-	if (World != nullptr)
+	// fill in basic information
 	{
-		Stats.Map = World->GetMapName();
-		if (auto* GameMode = World->GetAuthGameMode())
+		const auto* World = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
+		if (World != nullptr)
 		{
-			Stats.GameMode = GameMode->GetName();
-			Stats.PlayerCount = GameMode->GetNumPlayers();
+			Stats.Map = World->GetMapName();
+			if (auto* GameMode = World->GetAuthGameMode())
+			{
+				Stats.GameMode = GameMode->GetName();
+				Stats.PlayerCount = GameMode->GetNumPlayers() + GameMode->GetNumSpectators();
+			}
+
+			if (RHSession != nullptr)
+			{
+				int32 TeamCount = RHSession->GetTemplate().GetNumTeams(1);
+				int MaxPerTeam = RHSession->GetTemplate().GetPlayersPerTeam(1);
+				Stats.MaxPlayerCount = TeamCount * MaxPerTeam;
+
+				Stats.Private = !RHSession->GetSessionData().Joinable;
+			}
 		}
+	}
+
+	// if we have a delegate, use it to fill in the stats for additional information
+	if (OnGameHostProviderStatsRequested.IsBound())
+	{
+		OnGameHostProviderStatsRequested.Execute(Stats);
 	}
 }
 
