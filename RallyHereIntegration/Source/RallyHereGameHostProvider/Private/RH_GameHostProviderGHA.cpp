@@ -50,8 +50,6 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 		provided.set_folder = true;
 		stats.game = (ANSICHAR*)ProjectName.Get();
 		provided.set_game = true;
-		stats.max_players = 1;
-		provided.set_max_players = true;
 		stats.visibility = 0;
 		provided.set_visibility = true;
 		stats.version = (ANSICHAR*)EngineVersion.Get();
