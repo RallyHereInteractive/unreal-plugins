@@ -96,6 +96,7 @@ Server Bootstrapper for the Game Instance.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
+`public FRH_GameHostProviderStatsRequested `[`OnGameHostProviderStatsRequested`](#classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4) | callback triggered to request stats if default implementation is not sufficient
 `public  `[`URH_GameInstanceServerBootstrapper`](#classURH__GameInstanceServerBootstrapper_1a3da69fd930b5f05a1c46fac0b93d8cdb)`()` | 
 `public virtual void `[`Initialize`](#classURH__GameInstanceServerBootstrapper_1a432619f05655325816a804827d2628da)`()` | Initialize the bootstrapper.
 `public virtual void `[`Deinitialize`](#classURH__GameInstanceServerBootstrapper_1a59eb0bc34504af7e31816b52a7bf8098)`()` | Deinitialize the bootstrapper.
@@ -175,6 +176,11 @@ Server Bootstrapper for the Game Instance.
 
 #### Members
 
+#### `public FRH_GameHostProviderStatsRequested `[`OnGameHostProviderStatsRequested`](#classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4) <a id="classURH__GameInstanceServerBootstrapper_1ac3fec0c2d9228db884a97ea32c82ebc4"></a>
+
+callback triggered to request stats if default implementation is not sufficient
+
+<br>
 #### `public  `[`URH_GameInstanceServerBootstrapper`](#classURH__GameInstanceServerBootstrapper_1a3da69fd930b5f05a1c46fac0b93d8cdb)`()` <a id="classURH__GameInstanceServerBootstrapper_1a3da69fd930b5f05a1c46fac0b93d8cdb"></a>
 
 <br>
