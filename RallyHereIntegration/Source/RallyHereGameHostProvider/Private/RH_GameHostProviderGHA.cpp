@@ -46,14 +46,29 @@ FRH_GameHostProviderGHA::FRH_GameHostProviderGHA(const FString& Commandline)
 
 		stats.name = (ANSICHAR*)InstanceName.Get();
 		provided.set_name = true;
+
 		stats.folder = (ANSICHAR*)LaunchDir.Get();
 		provided.set_folder = true;
+
 		stats.game = (ANSICHAR*)ProjectName.Get();
 		provided.set_game = true;
+
 		stats.visibility = 0;
 		provided.set_visibility = true;
+
 		stats.version = (ANSICHAR*)EngineVersion.Get();
 		provided.set_version = true;
+
+		stats.server_type = IsRunningDedicatedServer() ? 'd' : 'l';
+		provided.set_server_type = true;
+
+#if PLATFORM_WINDOWS
+		stats.environment = 'w';
+		provided.set_environment = true;
+#elif PLATFORM_LINUX
+		stats.environment = 'l';
+		provided.set_environment = true;
+#endif
 
 		GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
 	}
@@ -140,21 +155,45 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 		RallyHereStatsBaseProvided provided{};
 		memset(&provided, 0x00, sizeof(provided));
 
-		// make sure the string storage for the map name persists properly until the call
+		// make sure the string storage persists properly until the call
 		FString MapName;
 		if (GameStats.Map.IsSet())
 		{
 			MapName = GameStats.Map.GetValue();
-
-		}
-
-		FTCHARToUTF8 MapNameUTF8(*MapName);
-		if (GameStats.Map.IsSet())
-		{
+			FTCHARToUTF8 MapNameUTF8(*MapName);
 			stats.map = (ANSICHAR*)MapNameUTF8.Get();
 			provided.set_map = true;
 		}
 
+		if (GameStats.PlayerCount.IsSet())
+		{
+			stats.players = GameStats.PlayerCount.GetValue();
+			provided.set_players = true;
+		}
+		if (GameStats.MaxPlayerCount.IsSet())
+		{
+			stats.max_players = GameStats.MaxPlayerCount.GetValue();
+			provided.set_max_players = true;
+		}
+		if (GameStats.BotCount.IsSet())
+		{
+			stats.bots = GameStats.BotCount.GetValue();
+			provided.set_bots = true;
+		}
+		if (GameStats.Private.IsSet())
+		{
+			stats.visibility = GameStats.Private.GetValue() ? 1 : 0;
+			provided.set_visibility = true;
+		}
+		if (GameStats.AntiCheatEnabled.IsSet())
+		{
+			stats.anticheat = GameStats.AntiCheatEnabled.GetValue() ? 1 : 0;
+			provided.set_anticheat = true;
+		}
+
+		GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
+
+		// pass other additional params
 		if (GameStats.GameMode.IsSet())
 		{
 			RallyHereStringMapWrapper additional_info(GameHostAdapter);
@@ -164,13 +203,6 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 				GameHostAdapterImporter::rallyhere_set_additional_info(GameHostAdapter, additional_info.map, nullptr, nullptr);
 			}
 		}
-
-		if (GameStats.PlayerCount.IsSet())
-		{
-			stats.players = GameStats.PlayerCount.GetValue();
-			provided.set_players = true;
-		}
-		GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
 
 		auto code = GameHostAdapterImporter::rallyhere_tick(GameHostAdapter);
 		if (GameHostAdapterImporter::rallyhere_is_error(code))

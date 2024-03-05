@@ -53,6 +53,14 @@ struct FRH_GameHostProviderStats
 	TOptional<FString> GameMode;
 	/** Player Count, if known */
 	TOptional<uint32> PlayerCount;
+	/** Max Player Count, if known */
+	TOptional<uint32> MaxPlayerCount;
+	/** Bot (AI player) Count, if known */
+	TOptional<uint32> BotCount;
+	/** Whether the server is private or public is enabled, if known */
+	TOptional<bool> Private;
+	/** Whether anti cheat is enabled, if known */
+	TOptional<bool> AntiCheatEnabled;
 
 	FRH_GameHostProviderStats()
 	{
