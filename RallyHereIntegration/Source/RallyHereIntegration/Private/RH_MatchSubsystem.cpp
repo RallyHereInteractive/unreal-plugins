@@ -209,7 +209,7 @@ void URH_MatchSubsystem::UpdateMatchPlayer(const FString& MatchId, const FGuid& 
 {
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	typedef RallyHereAPI::Traits_PatchPlayerMatch BaseType;
+	typedef RallyHereAPI::Traits_PatchMatchPlayer BaseType;
 
 	BaseType::Request Request;
 	Request.AuthContext = GetAuthContext();
