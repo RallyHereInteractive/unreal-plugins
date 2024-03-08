@@ -22,7 +22,6 @@
 #include "CreateOrJoinRequest.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
-#include "InstanceFubar.h"
 #include "InstanceHealthSettingsResponse.h"
 #include "InstanceHealthStatusResponse.h"
 #include "InstanceHealthStatusUpdate.h"
@@ -129,8 +128,6 @@ struct FRequest_LeaveSessionByPlatformSessionSelf;
 struct FResponse_LeaveSessionByPlatformSessionSelf;
 struct FRequest_PostBrowserInfo;
 struct FResponse_PostBrowserInfo;
-struct FRequest_ReportFubar;
-struct FResponse_ReportFubar;
 struct FRequest_UpdateBackfillRequest;
 struct FResponse_UpdateBackfillRequest;
 struct FRequest_UpdateBrowserInfo;
@@ -184,7 +181,6 @@ DECLARE_DELEGATE_OneParam(FDelegate_LeaveSessionByIdSelf, const FResponse_LeaveS
 DECLARE_DELEGATE_OneParam(FDelegate_LeaveSessionByPlatformSessionByUuid, const FResponse_LeaveSessionByPlatformSessionByUuid&);
 DECLARE_DELEGATE_OneParam(FDelegate_LeaveSessionByPlatformSessionSelf, const FResponse_LeaveSessionByPlatformSessionSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_PostBrowserInfo, const FResponse_PostBrowserInfo&);
-DECLARE_DELEGATE_OneParam(FDelegate_ReportFubar, const FResponse_ReportFubar&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateBackfillRequest, const FResponse_UpdateBackfillRequest&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateBrowserInfo, const FResponse_UpdateBrowserInfo&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateInstanceInfo, const FResponse_UpdateInstanceInfo&);
@@ -237,7 +233,6 @@ public:
     FHttpRequestPtr LeaveSessionByPlatformSessionByUuid(const FRequest_LeaveSessionByPlatformSessionByUuid& Request, const FDelegate_LeaveSessionByPlatformSessionByUuid& Delegate = FDelegate_LeaveSessionByPlatformSessionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr LeaveSessionByPlatformSessionSelf(const FRequest_LeaveSessionByPlatformSessionSelf& Request, const FDelegate_LeaveSessionByPlatformSessionSelf& Delegate = FDelegate_LeaveSessionByPlatformSessionSelf(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PostBrowserInfo(const FRequest_PostBrowserInfo& Request, const FDelegate_PostBrowserInfo& Delegate = FDelegate_PostBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr ReportFubar(const FRequest_ReportFubar& Request, const FDelegate_ReportFubar& Delegate = FDelegate_ReportFubar(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr UpdateBackfillRequest(const FRequest_UpdateBackfillRequest& Request, const FDelegate_UpdateBackfillRequest& Delegate = FDelegate_UpdateBackfillRequest(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr UpdateBrowserInfo(const FRequest_UpdateBrowserInfo& Request, const FDelegate_UpdateBrowserInfo& Delegate = FDelegate_UpdateBrowserInfo(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr UpdateInstanceInfo(const FRequest_UpdateInstanceInfo& Request, const FDelegate_UpdateInstanceInfo& Delegate = FDelegate_UpdateInstanceInfo(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -285,7 +280,6 @@ private:
     void OnLeaveSessionByPlatformSessionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnLeaveSessionByPlatformSessionSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_LeaveSessionByPlatformSessionSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPostBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PostBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnReportFubarResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_ReportFubar Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnUpdateBackfillRequestResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBackfillRequest Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnUpdateBrowserInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateBrowserInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnUpdateInstanceInfoResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateInstanceInfo Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -503,7 +497,7 @@ struct RALLYHEREAPI_API Traits_BackfillConfig
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
  * 
  * 
  * 
@@ -637,7 +631,7 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:event`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:event`, `session:*`
  * 
  * 
  * 
@@ -769,7 +763,7 @@ struct RALLYHEREAPI_API Traits_DeleteBackfillRequest
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:browser`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update:browser`
  * 
  * 
  * 
@@ -910,7 +904,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
  * 
  * 
  * 
@@ -1048,7 +1042,7 @@ struct RALLYHEREAPI_API Traits_GetAllSessionTemplates
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:browser`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:browser`
  * 
  * 
  * 
@@ -1184,7 +1178,7 @@ struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:platform`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:platform`
  * 
  * 
  * 
@@ -1261,7 +1255,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read-player:any`
  * 
  * - For the player themselves : `session:read-player:self`
  * 
@@ -1327,7 +1321,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read-player:any`
  * 
  * - For the player themselves : `session:read-player:self`
  * 
@@ -1399,7 +1393,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read-player:any`
  * 
  * - For the player themselves : `session:read-player:self`
  * 
@@ -1536,7 +1530,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:allocation`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:allocation`
  * 
  * 
  * 
@@ -1608,7 +1602,7 @@ struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:any`, `session:read:self`, `session:*`
+ * - For any player (including themselves) any of: `session:read:self`, `session:*`, `session:read:any`
  * 
  * 
  * 
@@ -1680,7 +1674,7 @@ struct RALLYHEREAPI_API Traits_GetSessionById
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read-player:any`, `session:read:event`, `session:*`
+ * - For any player (including themselves) any of: `session:read-player:any`, `session:*`, `session:read:event`
  * 
  * 
  * 
@@ -1936,13 +1930,13 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  *  to invite any session regardless of membership status
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`
  * 
  *  to invite a session you are part of
  * 
@@ -2018,7 +2012,7 @@ struct RALLYHEREAPI_API Traits_InviteSessionToSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
  * 
  * 
  * 
@@ -2083,7 +2077,7 @@ struct RALLYHEREAPI_API Traits_JoinQueue
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
  * 
@@ -2158,7 +2152,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByIdSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
  * 
@@ -2243,7 +2237,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
  * 
@@ -2326,7 +2320,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`
  * 
  * 
  * 
@@ -2398,7 +2392,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`
  * 
  * 
  * 
@@ -2474,7 +2468,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`
  * 
  * 
  * 
@@ -2555,7 +2549,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:update-player:self`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`, `session:update-player:self`
  * 
  *  to invite a session you are part of
  * 
@@ -2624,7 +2618,7 @@ struct RALLYHEREAPI_API Traits_KickSessionFromSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
  * 
  * 
  *                
@@ -2761,7 +2755,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByIdSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
  * 
@@ -2838,7 +2832,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update-player:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
  * 
@@ -2914,7 +2908,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:browser`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update:browser`
  * 
  * 
  * 
@@ -2972,71 +2966,6 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PostBrowserInfo(InRequest, InDelegate, Priority); }
-};
-
-/* Report Fubar
- *
- * Report an instance as fubar with a reason and optional metadata. Results will be graphed on your product's grafana page
- * 
- * Required Permissions:
- * 
- * - For any player (including themselves) any of: `session:update:fubar`, `session:*`
- * 
- * 
- * 
- * Required Session Permissions: `SessionPermissions.session_admin`
-*/
-struct RALLYHEREAPI_API FRequest_ReportFubar : public FRequest
-{
-    FRequest_ReportFubar();
-    virtual ~FRequest_ReportFubar() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FString SessionId;
-    FRHAPI_InstanceFubar InstanceFubar;
-};
-
-struct RALLYHEREAPI_API FResponse_ReportFubar : public FResponse
-{
-    FResponse_ReportFubar(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_ReportFubar() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_JsonObject Content;
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_JsonObject& OutContent) const;
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_ReportFubar
-{
-    typedef FRequest_ReportFubar Request;
-    typedef FResponse_ReportFubar Response;
-    typedef FDelegate_ReportFubar Delegate;
-    typedef FSessionsAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.ReportFubar(InRequest, InDelegate, Priority); }
 };
 
 /* Update Backfill Request
@@ -3107,7 +3036,7 @@ struct RALLYHEREAPI_API Traits_UpdateBackfillRequest
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:browser`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update:browser`
  * 
  * 
  * 
@@ -3173,7 +3102,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
  * 
  * 
  * 
@@ -3238,7 +3167,7 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:self`, `session:update:any`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
  * 
  * 
  * 
@@ -3308,7 +3237,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
  * 
  * 
  * 
@@ -3382,7 +3311,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
  * 
  * 
  * 
@@ -3460,7 +3389,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:promote:self`, `session:promote:any`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
  * 
  * 
  * 

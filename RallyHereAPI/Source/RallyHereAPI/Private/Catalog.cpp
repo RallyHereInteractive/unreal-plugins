@@ -62,6 +62,11 @@ void FRHAPI_Catalog::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("time_frames"));
         RallyHereAPI::WriteJsonValue(Writer, TimeFrames_Optional);
     }
+    if (Skus_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("skus"));
+        RallyHereAPI::WriteJsonValue(Writer, Skus_Optional);
+    }
     if (CacheInfo_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("cache_info"));
@@ -125,6 +130,12 @@ bool FRHAPI_Catalog::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         TimeFrames_IsSet = TryGetJsonValue(JsonTimeFramesField, TimeFrames_Optional);
         ParseSuccess &= TimeFrames_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonSkusField = (*Object)->TryGetField(TEXT("skus"));
+    if (JsonSkusField.IsValid() && !JsonSkusField->IsNull())
+    {
+        Skus_IsSet = TryGetJsonValue(JsonSkusField, Skus_Optional);
+        ParseSuccess &= Skus_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
     if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())

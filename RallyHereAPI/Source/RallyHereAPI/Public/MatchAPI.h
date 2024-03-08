@@ -15,8 +15,6 @@
 #include "MatchPlayerRequest.h"
 #include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
-#include "MatchSegmentRequest.h"
-#include "MatchSegmentWithPlayers.h"
 #include "MatchWithPlayers.h"
 #include "PagedMatchResponse.h"
 #include "PagedPlayerMatchResponse.h"
@@ -29,59 +27,44 @@ using RallyHereAPI::TryGetJsonValue;
 
 struct FRequest_CreateMatch;
 struct FResponse_CreateMatch;
-struct FRequest_CreateMatchSegment;
-struct FResponse_CreateMatchSegment;
-struct FRequest_CreatePlayerMatch;
-struct FResponse_CreatePlayerMatch;
+struct FRequest_CreateMatchPlayer;
+struct FResponse_CreateMatchPlayer;
 struct FRequest_DeleteMatch;
 struct FResponse_DeleteMatch;
-struct FRequest_DeleteMatchSegment;
-struct FResponse_DeleteMatchSegment;
-struct FRequest_DeletePlayerMatch;
-struct FResponse_DeletePlayerMatch;
+struct FRequest_DeleteMatchPlayer;
+struct FResponse_DeleteMatchPlayer;
 struct FRequest_GetMatch;
 struct FResponse_GetMatch;
-struct FRequest_GetMatchSegment;
-struct FResponse_GetMatchSegment;
+struct FRequest_GetMatchPlayer;
+struct FResponse_GetMatchPlayer;
 struct FRequest_GetMatches;
 struct FResponse_GetMatches;
-struct FRequest_GetPlayerMatch;
-struct FResponse_GetPlayerMatch;
 struct FRequest_GetPlayerMatchesSelf;
 struct FResponse_GetPlayerMatchesSelf;
 struct FRequest_GetPlayersMatches;
 struct FResponse_GetPlayersMatches;
 struct FRequest_PatchMatch;
 struct FResponse_PatchMatch;
-struct FRequest_PatchMatchSegment;
-struct FResponse_PatchMatchSegment;
-struct FRequest_PatchPlayerMatch;
-struct FResponse_PatchPlayerMatch;
+struct FRequest_PatchMatchPlayer;
+struct FResponse_PatchMatchPlayer;
 struct FRequest_UpdateMatch;
 struct FResponse_UpdateMatch;
-struct FRequest_UpdateMatchSegment;
-struct FResponse_UpdateMatchSegment;
-struct FRequest_UpdatePlayerMatch;
-struct FResponse_UpdatePlayerMatch;
+struct FRequest_UpdateMatchPlayer;
+struct FResponse_UpdateMatchPlayer;
 
 DECLARE_DELEGATE_OneParam(FDelegate_CreateMatch, const FResponse_CreateMatch&);
-DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchSegment, const FResponse_CreateMatchSegment&);
-DECLARE_DELEGATE_OneParam(FDelegate_CreatePlayerMatch, const FResponse_CreatePlayerMatch&);
+DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchPlayer, const FResponse_CreateMatchPlayer&);
 DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatch, const FResponse_DeleteMatch&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatchSegment, const FResponse_DeleteMatchSegment&);
-DECLARE_DELEGATE_OneParam(FDelegate_DeletePlayerMatch, const FResponse_DeletePlayerMatch&);
+DECLARE_DELEGATE_OneParam(FDelegate_DeleteMatchPlayer, const FResponse_DeleteMatchPlayer&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetMatch, const FResponse_GetMatch&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetMatchSegment, const FResponse_GetMatchSegment&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetMatchPlayer, const FResponse_GetMatchPlayer&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetMatches, const FResponse_GetMatches&);
-DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerMatch, const FResponse_GetPlayerMatch&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayerMatchesSelf, const FResponse_GetPlayerMatchesSelf&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetPlayersMatches, const FResponse_GetPlayersMatches&);
 DECLARE_DELEGATE_OneParam(FDelegate_PatchMatch, const FResponse_PatchMatch&);
-DECLARE_DELEGATE_OneParam(FDelegate_PatchMatchSegment, const FResponse_PatchMatchSegment&);
-DECLARE_DELEGATE_OneParam(FDelegate_PatchPlayerMatch, const FResponse_PatchPlayerMatch&);
+DECLARE_DELEGATE_OneParam(FDelegate_PatchMatchPlayer, const FResponse_PatchMatchPlayer&);
 DECLARE_DELEGATE_OneParam(FDelegate_UpdateMatch, const FResponse_UpdateMatch&);
-DECLARE_DELEGATE_OneParam(FDelegate_UpdateMatchSegment, const FResponse_UpdateMatchSegment&);
-DECLARE_DELEGATE_OneParam(FDelegate_UpdatePlayerMatch, const FResponse_UpdatePlayerMatch&);
+DECLARE_DELEGATE_OneParam(FDelegate_UpdateMatchPlayer, const FResponse_UpdateMatchPlayer&);
 
 class RALLYHEREAPI_API FMatchAPI : public FAPI
 {
@@ -90,43 +73,33 @@ public:
     virtual ~FMatchAPI();
 
     FHttpRequestPtr CreateMatch(const FRequest_CreateMatch& Request, const FDelegate_CreateMatch& Delegate = FDelegate_CreateMatch(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr CreateMatchSegment(const FRequest_CreateMatchSegment& Request, const FDelegate_CreateMatchSegment& Delegate = FDelegate_CreateMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr CreatePlayerMatch(const FRequest_CreatePlayerMatch& Request, const FDelegate_CreatePlayerMatch& Delegate = FDelegate_CreatePlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr CreateMatchPlayer(const FRequest_CreateMatchPlayer& Request, const FDelegate_CreateMatchPlayer& Delegate = FDelegate_CreateMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr DeleteMatch(const FRequest_DeleteMatch& Request, const FDelegate_DeleteMatch& Delegate = FDelegate_DeleteMatch(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeleteMatchSegment(const FRequest_DeleteMatchSegment& Request, const FDelegate_DeleteMatchSegment& Delegate = FDelegate_DeleteMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr DeletePlayerMatch(const FRequest_DeletePlayerMatch& Request, const FDelegate_DeletePlayerMatch& Delegate = FDelegate_DeletePlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr DeleteMatchPlayer(const FRequest_DeleteMatchPlayer& Request, const FDelegate_DeleteMatchPlayer& Delegate = FDelegate_DeleteMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetMatch(const FRequest_GetMatch& Request, const FDelegate_GetMatch& Delegate = FDelegate_GetMatch(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetMatchSegment(const FRequest_GetMatchSegment& Request, const FDelegate_GetMatchSegment& Delegate = FDelegate_GetMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetMatchPlayer(const FRequest_GetMatchPlayer& Request, const FDelegate_GetMatchPlayer& Delegate = FDelegate_GetMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate = FDelegate_GetMatches(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr GetPlayerMatch(const FRequest_GetPlayerMatch& Request, const FDelegate_GetPlayerMatch& Delegate = FDelegate_GetPlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate = FDelegate_GetPlayerMatchesSelf(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetPlayersMatches(const FRequest_GetPlayersMatches& Request, const FDelegate_GetPlayersMatches& Delegate = FDelegate_GetPlayersMatches(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr PatchMatch(const FRequest_PatchMatch& Request, const FDelegate_PatchMatch& Delegate = FDelegate_PatchMatch(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PatchMatchSegment(const FRequest_PatchMatchSegment& Request, const FDelegate_PatchMatchSegment& Delegate = FDelegate_PatchMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr PatchPlayerMatch(const FRequest_PatchPlayerMatch& Request, const FDelegate_PatchPlayerMatch& Delegate = FDelegate_PatchPlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr PatchMatchPlayer(const FRequest_PatchMatchPlayer& Request, const FDelegate_PatchMatchPlayer& Delegate = FDelegate_PatchMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr UpdateMatch(const FRequest_UpdateMatch& Request, const FDelegate_UpdateMatch& Delegate = FDelegate_UpdateMatch(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdateMatchSegment(const FRequest_UpdateMatchSegment& Request, const FDelegate_UpdateMatchSegment& Delegate = FDelegate_UpdateMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
-    FHttpRequestPtr UpdatePlayerMatch(const FRequest_UpdatePlayerMatch& Request, const FDelegate_UpdatePlayerMatch& Delegate = FDelegate_UpdatePlayerMatch(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr UpdateMatchPlayer(const FRequest_UpdateMatchPlayer& Request, const FDelegate_UpdateMatchPlayer& Delegate = FDelegate_UpdateMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
 
 private:
     void OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnCreateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnCreatePlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreatePlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnDeleteMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeleteMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnDeletePlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeletePlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnDeleteMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnGetPlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetPlayerMatchesSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayerMatchesSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetPlayersMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetPlayersMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnPatchMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPatchMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnPatchPlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchPlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnPatchMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_PatchMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnUpdateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-    void OnUpdatePlayerMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdatePlayerMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnUpdateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 
 };
 
@@ -186,71 +159,14 @@ struct RALLYHEREAPI_API Traits_CreateMatch
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatch(InRequest, InDelegate, Priority); }
 };
 
-/* Create Match Segment
- *
- * Create match segment by match_id
-*/
-struct RALLYHEREAPI_API FRequest_CreateMatchSegment : public FRequest
-{
-    FRequest_CreateMatchSegment();
-    virtual ~FRequest_CreateMatchSegment() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FString MatchId;
-    FRHAPI_MatchSegmentRequest MatchSegmentRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponse
-{
-    FResponse_CreateMatchSegment(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreateMatchSegment() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_MatchSegmentWithPlayers Content;
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_CreateMatchSegment
-{
-    typedef FRequest_CreateMatchSegment Request;
-    typedef FResponse_CreateMatchSegment Response;
-    typedef FDelegate_CreateMatchSegment Delegate;
-    typedef FMatchAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatchSegment(InRequest, InDelegate, Priority); }
-};
-
-/* Create Player Match
+/* Create Match Player
  *
  * Create player match record for the provided player_uuid and match_id
 */
-struct RALLYHEREAPI_API FRequest_CreatePlayerMatch : public FRequest
+struct RALLYHEREAPI_API FRequest_CreateMatchPlayer : public FRequest
 {
-    FRequest_CreatePlayerMatch();
-    virtual ~FRequest_CreatePlayerMatch() = default;
+    FRequest_CreateMatchPlayer();
+    virtual ~FRequest_CreateMatchPlayer() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
@@ -262,10 +178,10 @@ struct RALLYHEREAPI_API FRequest_CreatePlayerMatch : public FRequest
     FRHAPI_MatchPlayerRequest MatchPlayerRequest;
 };
 
-struct RALLYHEREAPI_API FResponse_CreatePlayerMatch : public FResponse
+struct RALLYHEREAPI_API FResponse_CreateMatchPlayer : public FResponse
 {
-    FResponse_CreatePlayerMatch(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_CreatePlayerMatch() = default;
+    FResponse_CreateMatchPlayer(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_CreateMatchPlayer() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
@@ -290,15 +206,15 @@ struct RALLYHEREAPI_API FResponse_CreatePlayerMatch : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_CreatePlayerMatch
+struct RALLYHEREAPI_API Traits_CreateMatchPlayer
 {
-    typedef FRequest_CreatePlayerMatch Request;
-    typedef FResponse_CreatePlayerMatch Response;
-    typedef FDelegate_CreatePlayerMatch Delegate;
+    typedef FRequest_CreateMatchPlayer Request;
+    typedef FResponse_CreateMatchPlayer Response;
+    typedef FDelegate_CreateMatchPlayer Delegate;
     typedef FMatchAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreatePlayerMatch(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.CreateMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Delete Match
@@ -356,70 +272,14 @@ struct RALLYHEREAPI_API Traits_DeleteMatch
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteMatch(InRequest, InDelegate, Priority); }
 };
 
-/* Delete Match Segment
- *
- * Delete match segment by match_id and segment_id
-*/
-struct RALLYHEREAPI_API FRequest_DeleteMatchSegment : public FRequest
-{
-    FRequest_DeleteMatchSegment();
-    virtual ~FRequest_DeleteMatchSegment() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FString MatchId;
-    FString SegmentId;
-};
-
-struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponse
-{
-    FResponse_DeleteMatchSegment(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeleteMatchSegment() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_DeleteMatchSegment
-{
-    typedef FRequest_DeleteMatchSegment Request;
-    typedef FResponse_DeleteMatchSegment Response;
-    typedef FDelegate_DeleteMatchSegment Delegate;
-    typedef FMatchAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteMatchSegment(InRequest, InDelegate, Priority); }
-};
-
-/* Delete Player Match
+/* Delete Match Player
  *
  * Delete player by player_uuid and match_id
 */
-struct RALLYHEREAPI_API FRequest_DeletePlayerMatch : public FRequest
+struct RALLYHEREAPI_API FRequest_DeleteMatchPlayer : public FRequest
 {
-    FRequest_DeletePlayerMatch();
-    virtual ~FRequest_DeletePlayerMatch() = default;
+    FRequest_DeleteMatchPlayer();
+    virtual ~FRequest_DeleteMatchPlayer() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
@@ -430,10 +290,10 @@ struct RALLYHEREAPI_API FRequest_DeletePlayerMatch : public FRequest
     FString MatchId;
 };
 
-struct RALLYHEREAPI_API FResponse_DeletePlayerMatch : public FResponse
+struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponse
 {
-    FResponse_DeletePlayerMatch(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_DeletePlayerMatch() = default;
+    FResponse_DeleteMatchPlayer(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_DeleteMatchPlayer() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
@@ -457,15 +317,15 @@ struct RALLYHEREAPI_API FResponse_DeletePlayerMatch : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_DeletePlayerMatch
+struct RALLYHEREAPI_API Traits_DeleteMatchPlayer
 {
-    typedef FRequest_DeletePlayerMatch Request;
-    typedef FResponse_DeletePlayerMatch Response;
-    typedef FDelegate_DeletePlayerMatch Delegate;
+    typedef FRequest_DeleteMatchPlayer Request;
+    typedef FResponse_DeleteMatchPlayer Response;
+    typedef FDelegate_DeleteMatchPlayer Delegate;
     typedef FMatchAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeletePlayerMatch(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.DeleteMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Get Match
@@ -506,6 +366,11 @@ struct RALLYHEREAPI_API FResponse_GetMatch : public FResponse
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
     /* Response 422
     Validation Error
     */
@@ -524,49 +389,44 @@ struct RALLYHEREAPI_API Traits_GetMatch
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatch(InRequest, InDelegate, Priority); }
 };
 
-/* Get Match Segment
+/* Get Match Player
  *
- * Get match segment by match_id and segment_id
+ * Get a player match record for the provided player_uuid and match_id
 */
-struct RALLYHEREAPI_API FRequest_GetMatchSegment : public FRequest
+struct RALLYHEREAPI_API FRequest_GetMatchPlayer : public FRequest
 {
-    FRequest_GetMatchSegment();
-    virtual ~FRequest_GetMatchSegment() = default;
+    FRequest_GetMatchPlayer();
+    virtual ~FRequest_GetMatchPlayer() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
     TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
 
     TSharedPtr<FAuthContext> AuthContext;
+    FGuid PlayerUuid;
     FString MatchId;
-    FString SegmentId;
 };
 
-struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponse
+struct RALLYHEREAPI_API FResponse_GetMatchPlayer : public FResponse
 {
-    FResponse_GetMatchSegment(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetMatchSegment() = default;
+    FResponse_GetMatchPlayer(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetMatchPlayer() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
-    FRHAPI_MatchSegmentWithPlayers Content;
+    FRHAPI_MatchPlayerWithMatch Content;
 
 
     // Manual Response Helpers
     /* Response 200
     Successful Response
     */
-    bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
+    bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
 
     /* Response 403
     Forbidden
     */
     bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 404
-    Not Found
-    */
-    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
     /* Response 422
     Validation Error
@@ -575,15 +435,15 @@ struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_GetMatchSegment
+struct RALLYHEREAPI_API Traits_GetMatchPlayer
 {
-    typedef FRequest_GetMatchSegment Request;
-    typedef FResponse_GetMatchSegment Response;
-    typedef FDelegate_GetMatchSegment Delegate;
+    typedef FRequest_GetMatchPlayer Request;
+    typedef FResponse_GetMatchPlayer Response;
+    typedef FDelegate_GetMatchPlayer Delegate;
     typedef FMatchAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchSegment(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Get Matches
@@ -648,63 +508,6 @@ struct RALLYHEREAPI_API Traits_GetMatches
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetMatches(InRequest, InDelegate, Priority); }
-};
-
-/* Get Player Match
- *
- * Get a player match record for the provided player_uuid and match_id
-*/
-struct RALLYHEREAPI_API FRequest_GetPlayerMatch : public FRequest
-{
-    FRequest_GetPlayerMatch();
-    virtual ~FRequest_GetPlayerMatch() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FGuid PlayerUuid;
-    FString MatchId;
-};
-
-struct RALLYHEREAPI_API FResponse_GetPlayerMatch : public FResponse
-{
-    FResponse_GetPlayerMatch(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_GetPlayerMatch() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_MatchPlayerWithMatch Content;
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchPlayerWithMatch& OutContent) const;
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_GetPlayerMatch
-{
-    typedef FRequest_GetPlayerMatch Request;
-    typedef FResponse_GetPlayerMatch Response;
-    typedef FDelegate_GetPlayerMatch Delegate;
-    typedef FMatchAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetPlayerMatch(InRequest, InDelegate, Priority); }
 };
 
 /* Get Player Matches Self
@@ -881,72 +684,14 @@ struct RALLYHEREAPI_API Traits_PatchMatch
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PatchMatch(InRequest, InDelegate, Priority); }
 };
 
-/* Patch Match Segment
- *
- * Update match segment by match_id and segment_id only with provided fields
-*/
-struct RALLYHEREAPI_API FRequest_PatchMatchSegment : public FRequest
-{
-    FRequest_PatchMatchSegment();
-    virtual ~FRequest_PatchMatchSegment() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FString MatchId;
-    FString SegmentId;
-    FRHAPI_MatchSegmentRequest MatchSegmentRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponse
-{
-    FResponse_PatchMatchSegment(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PatchMatchSegment() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_MatchSegmentWithPlayers Content;
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_PatchMatchSegment
-{
-    typedef FRequest_PatchMatchSegment Request;
-    typedef FResponse_PatchMatchSegment Response;
-    typedef FDelegate_PatchMatchSegment Delegate;
-    typedef FMatchAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PatchMatchSegment(InRequest, InDelegate, Priority); }
-};
-
-/* Patch Player Match
+/* Patch Match Player
  *
  * Update player match record for the provided player_uuid and match_id only with provided fields
 */
-struct RALLYHEREAPI_API FRequest_PatchPlayerMatch : public FRequest
+struct RALLYHEREAPI_API FRequest_PatchMatchPlayer : public FRequest
 {
-    FRequest_PatchPlayerMatch();
-    virtual ~FRequest_PatchPlayerMatch() = default;
+    FRequest_PatchMatchPlayer();
+    virtual ~FRequest_PatchMatchPlayer() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
@@ -958,10 +703,10 @@ struct RALLYHEREAPI_API FRequest_PatchPlayerMatch : public FRequest
     FRHAPI_MatchPlayerRequest MatchPlayerRequest;
 };
 
-struct RALLYHEREAPI_API FResponse_PatchPlayerMatch : public FResponse
+struct RALLYHEREAPI_API FResponse_PatchMatchPlayer : public FResponse
 {
-    FResponse_PatchPlayerMatch(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_PatchPlayerMatch() = default;
+    FResponse_PatchMatchPlayer(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_PatchMatchPlayer() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
@@ -986,15 +731,15 @@ struct RALLYHEREAPI_API FResponse_PatchPlayerMatch : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_PatchPlayerMatch
+struct RALLYHEREAPI_API Traits_PatchMatchPlayer
 {
-    typedef FRequest_PatchPlayerMatch Request;
-    typedef FResponse_PatchPlayerMatch Response;
-    typedef FDelegate_PatchPlayerMatch Delegate;
+    typedef FRequest_PatchMatchPlayer Request;
+    typedef FResponse_PatchMatchPlayer Response;
+    typedef FDelegate_PatchMatchPlayer Delegate;
     typedef FMatchAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PatchPlayerMatch(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.PatchMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 /* Update Match
@@ -1054,72 +799,14 @@ struct RALLYHEREAPI_API Traits_UpdateMatch
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateMatch(InRequest, InDelegate, Priority); }
 };
 
-/* Update Match Segment
- *
- * Update match segment by match_id and segment_id
-*/
-struct RALLYHEREAPI_API FRequest_UpdateMatchSegment : public FRequest
-{
-    FRequest_UpdateMatchSegment();
-    virtual ~FRequest_UpdateMatchSegment() = default;
-    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-    FString ComputePath() const override;
-    FName GetSimplifiedPath() const override;
-    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-    TSharedPtr<FAuthContext> AuthContext;
-    FString MatchId;
-    FString SegmentId;
-    FRHAPI_MatchSegmentRequest MatchSegmentRequest;
-};
-
-struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponse
-{
-    FResponse_UpdateMatchSegment(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdateMatchSegment() = default;
-    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
-
-    FRHAPI_MatchSegmentWithPlayers Content;
-
-
-    // Manual Response Helpers
-    /* Response 200
-    Successful Response
-    */
-    bool TryGetContentFor200(FRHAPI_MatchSegmentWithPlayers& OutContent) const;
-
-    /* Response 403
-    Forbidden
-    */
-    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-    /* Response 422
-    Validation Error
-    */
-    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-struct RALLYHEREAPI_API Traits_UpdateMatchSegment
-{
-    typedef FRequest_UpdateMatchSegment Request;
-    typedef FResponse_UpdateMatchSegment Response;
-    typedef FDelegate_UpdateMatchSegment Delegate;
-    typedef FMatchAPI API;
-    static FString Name;
-
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateMatchSegment(InRequest, InDelegate, Priority); }
-};
-
-/* Update Player Match
+/* Update Match Player
  *
  * Update player match record for the provided player_uuid and match_id
 */
-struct RALLYHEREAPI_API FRequest_UpdatePlayerMatch : public FRequest
+struct RALLYHEREAPI_API FRequest_UpdateMatchPlayer : public FRequest
 {
-    FRequest_UpdatePlayerMatch();
-    virtual ~FRequest_UpdatePlayerMatch() = default;
+    FRequest_UpdateMatchPlayer();
+    virtual ~FRequest_UpdateMatchPlayer() = default;
     bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
     FString ComputePath() const override;
     FName GetSimplifiedPath() const override;
@@ -1131,10 +818,10 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerMatch : public FRequest
     FRHAPI_MatchPlayerRequest MatchPlayerRequest;
 };
 
-struct RALLYHEREAPI_API FResponse_UpdatePlayerMatch : public FResponse
+struct RALLYHEREAPI_API FResponse_UpdateMatchPlayer : public FResponse
 {
-    FResponse_UpdatePlayerMatch(FRequestMetadata InRequestMetadata);
-    virtual ~FResponse_UpdatePlayerMatch() = default;
+    FResponse_UpdateMatchPlayer(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_UpdateMatchPlayer() = default;
     bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
     void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
 
@@ -1159,15 +846,15 @@ struct RALLYHEREAPI_API FResponse_UpdatePlayerMatch : public FResponse
 
 };
 
-struct RALLYHEREAPI_API Traits_UpdatePlayerMatch
+struct RALLYHEREAPI_API Traits_UpdateMatchPlayer
 {
-    typedef FRequest_UpdatePlayerMatch Request;
-    typedef FResponse_UpdatePlayerMatch Response;
-    typedef FDelegate_UpdatePlayerMatch Delegate;
+    typedef FRequest_UpdateMatchPlayer Request;
+    typedef FResponse_UpdateMatchPlayer Response;
+    typedef FDelegate_UpdateMatchPlayer Delegate;
     typedef FMatchAPI API;
     static FString Name;
 
-    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdatePlayerMatch(InRequest, InDelegate, Priority); }
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.UpdateMatchPlayer(InRequest, InDelegate, Priority); }
 };
 
 

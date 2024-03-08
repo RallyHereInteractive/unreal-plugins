@@ -74,6 +74,11 @@ void FRHAPI_MatchSegmentRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) co
         Writer->WriteIdentifierPrefix(TEXT("allocations"));
         RallyHereAPI::WriteJsonValue(Writer, Allocations_Optional);
     }
+    if (Players_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("players"));
+        RallyHereAPI::WriteJsonValue(Writer, Players_Optional);
+    }
     Writer->WriteObjectEnd();
 }
 
@@ -146,6 +151,12 @@ bool FRHAPI_MatchSegmentRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
     {
         Allocations_IsSet = TryGetJsonValue(JsonAllocationsField, Allocations_Optional);
         ParseSuccess &= Allocations_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonPlayersField = (*Object)->TryGetField(TEXT("players"));
+    if (JsonPlayersField.IsValid() && !JsonPlayersField->IsNull())
+    {
+        Players_IsSet = TryGetJsonValue(JsonPlayersField, Players_Optional);
+        ParseSuccess &= Players_IsSet;
     }
 
     return ParseSuccess;
