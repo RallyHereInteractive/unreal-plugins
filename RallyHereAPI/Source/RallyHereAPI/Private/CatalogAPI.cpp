@@ -231,6 +231,428 @@ FResponse_GetCatalogAll::FResponse_GetCatalogAll(FRequestMetadata InRequestMetad
 
 FString Traits_GetCatalogAll::Name = TEXT("GetCatalogAll");
 
+FHttpRequestPtr FCatalogAPI::GetCatalogEntitlementSku(const FRequest_GetCatalogEntitlementSku& Request, const FDelegate_GetCatalogEntitlementSku& Delegate /*= FDelegate_GetCatalogEntitlementSku()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FCatalogAPI::OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSku Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_GetCatalogEntitlementSku Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_GetCatalogEntitlementSku::FRequest_GetCatalogEntitlementSku()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_GetCatalogEntitlementSku::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/inventory/v1/catalog/entitlement-sku/{platform}/{sku}"));
+    return Path;
+}
+
+FString FRequest_GetCatalogEntitlementSku::ComputePath() const
+{
+    TMap<FString, FStringFormatArg> PathParams = { 
+        { TEXT("platform"), ToStringFormatArg(Platform) },
+        { TEXT("sku"), ToStringFormatArg(Sku) }
+    };
+
+    FString Path = FString::Format(TEXT("/inventory/v1/catalog/entitlement-sku/{platform}/{sku}"), PathParams);
+
+    return Path;
+}
+
+bool FRequest_GetCatalogEntitlementSku::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    // Header parameters
+    if (IfNoneMatch.IsSet())
+    {
+        HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+    }
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSku - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSku - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSku - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_GetCatalogEntitlementSku::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 304:
+        SetResponseString(TEXT("Content still has the same etag and has not changed"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Not Found"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
+{
+    // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+    TMap<FString, FString> HeadersMap;
+    for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+    {
+        int32 index;
+        if (HeaderStr.FindChar(TEXT(':'), index))
+        {
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+        }
+    }
+    bool bParsedAllRequiredHeaders = true;
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = *Val;
+    }
+    return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetCatalogEntitlementSku::TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogEntitlementSku::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return FromHeaderString<FString>(HeaderVal);
+        }
+    }
+    return TOptional<FString>{};
+}
+
+bool FResponse_GetCatalogEntitlementSku::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetCatalogEntitlementSku::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetCatalogEntitlementSku::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetCatalogEntitlementSku::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetCatalogEntitlementSku::FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetCatalogEntitlementSku::Name = TEXT("GetCatalogEntitlementSku");
+
+FHttpRequestPtr FCatalogAPI::GetCatalogEntitlementSkuAll(const FRequest_GetCatalogEntitlementSkuAll& Request, const FDelegate_GetCatalogEntitlementSkuAll& Delegate /*= FDelegate_GetCatalogEntitlementSkuAll()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+    if (!IsValid())
+        return nullptr;
+
+    TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), *this, Priority);
+    RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+    for(const auto& It : AdditionalHeaderParams)
+    {
+        RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+    }
+
+    if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+    {
+        return nullptr;
+    }
+
+    RequestData->SetMetadata(Request.GetRequestMetadata());
+
+    FHttpRequestCompleteDelegate ResponseDelegate;
+    ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse, Delegate, Request.GetRequestMetadata(), Request.GetAuthContext(), Priority);
+    RequestData->SetDelegate(ResponseDelegate);
+
+    auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+    if (HttpRequester)
+    {
+        HttpRequester->EnqueueHttpRequest(RequestData);
+    }
+    return RequestData->HttpRequest;
+}
+
+void FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSkuAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+    FHttpRequestCompleteDelegate ResponseDelegate;
+
+    if (AuthContextForRetry)
+    {
+        // An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+        // So, we set the callback to use a null context for the retry
+        ResponseDelegate.BindRaw(this, &FCatalogAPI::OnGetCatalogEntitlementSkuAllResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+    }
+
+    FResponse_GetCatalogEntitlementSkuAll Response{ RequestMetadata };
+    const bool bWillRetryWithRefreshedAuth = HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, RequestMetadata, Priority);
+
+    {
+        SCOPED_NAMED_EVENT(RallyHere_BroadcastRequestCompleted, FColor::Purple);
+        OnRequestCompleted().Broadcast(Response, HttpRequest, HttpResponse, bSucceeded, bWillRetryWithRefreshedAuth);
+    }
+
+    if (!bWillRetryWithRefreshedAuth)
+    {
+        SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+        Delegate.ExecuteIfBound(Response);
+    }
+}
+
+FRequest_GetCatalogEntitlementSkuAll::FRequest_GetCatalogEntitlementSkuAll()
+{
+    RequestMetadata.Identifier = FGuid::NewGuid();
+    RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+    RequestMetadata.RetryCount = 0;
+}
+
+FName FRequest_GetCatalogEntitlementSkuAll::GetSimplifiedPath() const
+{
+    static FName Path = FName(TEXT("/inventory/v1/catalog/entitlement-sku"));
+    return Path;
+}
+
+FString FRequest_GetCatalogEntitlementSkuAll::ComputePath() const
+{
+    FString Path = GetSimplifiedPath().ToString();
+    return Path;
+}
+
+bool FRequest_GetCatalogEntitlementSkuAll::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+    static const TArray<FString> Consumes = {  };
+    //static const TArray<FString> Produces = { TEXT("application/json") };
+
+    HttpRequest->SetVerb(TEXT("GET"));
+
+    // Header parameters
+    if (IfNoneMatch.IsSet())
+    {
+        HttpRequest->SetHeader(TEXT("if-none-match"), IfNoneMatch.GetValue());
+    }
+
+    if (!AuthContext)
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSkuAll - missing auth context"));
+        return false;
+    }
+    if (!AuthContext->AddBearerToken(HttpRequest))
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSkuAll - failed to add bearer token"));
+        return false;
+    }
+
+    if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+    {
+    }
+    else if (Consumes.Contains(TEXT("multipart/form-data")))
+    {
+    }
+    else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+    {
+    }
+    else
+    {
+        UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetCatalogEntitlementSkuAll - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+        return false;
+    }
+
+    return true;
+}
+
+void FResponse_GetCatalogEntitlementSkuAll::SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode)
+{
+    FResponse::SetHttpResponseCode(InHttpResponseCode);
+    switch ((int)InHttpResponseCode)
+    {
+    case 200:
+        SetResponseString(TEXT("Successful Response"));
+        break;
+    case 304:
+        SetResponseString(TEXT("Content still has the same etag and has not changed"));
+        break;
+    case 403:
+        SetResponseString(TEXT("Forbidden"));
+        break;
+    case 404:
+        SetResponseString(TEXT("Not Found"));
+        break;
+    case 422:
+        SetResponseString(TEXT("Validation Error"));
+        break;
+    }
+}
+
+bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
+{
+    // The IHttpBase::GetHeader function doesn't distinguish between missing and empty, so we need to parse ourselves
+    TMap<FString, FString> HeadersMap;
+    for (const auto& HeaderStr : HttpResponse->GetAllHeaders())
+    {
+        int32 index;
+        if (HeaderStr.FindChar(TEXT(':'), index))
+        {
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+        }
+    }
+    bool bParsedAllRequiredHeaders = true;
+    if (const FString* Val = HeadersMap.Find(TEXT("ETag")))
+    {
+        ETag = *Val;
+    }
+    return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+/* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+TOptional<FString> FResponse_GetCatalogEntitlementSkuAll::GetHeader200_ETag() const
+{
+    if (HttpResponse)
+    {
+        FString HeaderVal = HttpResponse->GetHeader(TEXT("ETag"));
+        if (!HeaderVal.IsEmpty())
+        {
+            return FromHeaderString<FString>(HeaderVal);
+        }
+    }
+    return TOptional<FString>{};
+}
+
+bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetCatalogEntitlementSkuAll::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_GetCatalogEntitlementSkuAll::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+    return TryGetJsonValue(JsonValue, Content);
+}
+
+FResponse_GetCatalogEntitlementSkuAll::FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata) :
+    FResponse(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetCatalogEntitlementSkuAll::Name = TEXT("GetCatalogEntitlementSkuAll");
+
 FHttpRequestPtr FCatalogAPI::GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate /*= FDelegate_GetCatalogInventoryBucketUseRuleSet()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
     if (!IsValid())

@@ -335,13 +335,13 @@ protected:
 
 		ProcessEntitlementResult.SetStatus("POLLING");
 
-		auto Request = RallyHereAPI::FRequest_RetrieveEntitlementsByPlayerUuid();
+		auto Request = RallyHereAPI::FRequest_RetrieveEntitlementRequestByPlayerUuid();
 		Request.AuthContext = AuthContext;
 		Request.PlayerUuid = AuthContext->GetLoginResult()->GetActivePlayerUuid();
 		Request.RequestId = ProcessEntitlementResult.RequestId;
 
-		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().RetrieveEntitlementsByPlayerUuid(Request,
-			RallyHereAPI::FDelegate_RetrieveEntitlementsByPlayerUuid::CreateSP(this,
+		const auto HttpPtr = RH_APIs::GetAPIs().GetEntitlements().RetrieveEntitlementRequestByPlayerUuid(Request,
+			RallyHereAPI::FDelegate_RetrieveEntitlementRequestByPlayerUuid::CreateSP(this,
 				&FRH_EntitlementProcessor::PollEntitlementComplete, Delegate), GetDefault<URH_IntegrationSettings>()->RetrievePlatformEntitlementsPriority);
 
 		if (!HttpPtr)
@@ -354,7 +354,7 @@ protected:
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
-	void PollEntitlementComplete(const RallyHereAPI::FResponse_RetrieveEntitlementsByPlayerUuid& Resp, FRH_PollCompleteFunc Delegate)
+	void PollEntitlementComplete(const RallyHereAPI::FResponse_RetrieveEntitlementRequestByPlayerUuid& Resp, FRH_PollCompleteFunc Delegate)
 	{
 		ProcessEntitlementResult = Resp.Content;
 

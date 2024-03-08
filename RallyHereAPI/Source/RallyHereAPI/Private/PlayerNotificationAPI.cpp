@@ -164,10 +164,16 @@ void FResponse_PlayerCreateNotification::SetHttpResponseCode(EHttpResponseCodes:
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -187,7 +193,17 @@ bool FResponse_PlayerCreateNotification::TryGetContentFor403(FRHAPI_HzApiErrorMo
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerCreateNotification::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerCreateNotification::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerCreateNotification::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -340,10 +356,16 @@ void FResponse_PlayerCreateNotificationSelf::SetHttpResponseCode(EHttpResponseCo
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -363,7 +385,17 @@ bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor403(FRHAPI_HzApiErr
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerCreateNotificationSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -511,13 +543,19 @@ void FResponse_PlayerGetNotificationById::SetHttpResponseCode(EHttpResponseCodes
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
         break;
     case 404:
         SetResponseString(TEXT(" Error Codes: - resource_not_found - Notification could not be found "));
         break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
+        break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -542,7 +580,17 @@ bool FResponse_PlayerGetNotificationById::TryGetContentFor404(FRHAPI_HzApiErrorM
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerGetNotificationById::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerGetNotificationById::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerGetNotificationById::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -689,13 +737,19 @@ void FResponse_PlayerGetNotificationByIdSelf::SetHttpResponseCode(EHttpResponseC
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
         break;
     case 404:
         SetResponseString(TEXT(" Error Codes: - resource_not_found - Notification could not be found "));
         break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
+        break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -720,7 +774,17 @@ bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor404(FRHAPI_HzApiEr
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerGetNotificationByIdSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -892,10 +956,16 @@ void FResponse_PlayerGetNotificationsPage::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -915,7 +985,17 @@ bool FResponse_PlayerGetNotificationsPage::TryGetContentFor403(FRHAPI_HzApiError
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerGetNotificationsPage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerGetNotificationsPage::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1082,10 +1162,16 @@ void FResponse_PlayerGetNotificationsPageSelf::SetHttpResponseCode(EHttpResponse
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -1105,7 +1191,17 @@ bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor403(FRHAPI_HzApiE
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerGetNotificationsPageSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1272,10 +1368,16 @@ void FResponse_PlayerLongPollForNotifications::SetHttpResponseCode(EHttpResponse
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -1295,7 +1397,17 @@ bool FResponse_PlayerLongPollForNotifications::TryGetContentFor403(FRHAPI_HzApiE
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerLongPollForNotifications::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerLongPollForNotifications::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }
@@ -1457,10 +1569,16 @@ void FResponse_PlayerLongPollForNotificationsSelf::SetHttpResponseCode(EHttpResp
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_invalid_version - Invalid Authorization - version - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_unknown - Failed to parse token - auth_not_jwt - Invalid Authorization - auth_token_sig_invalid - Token Signature is invalid - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_expired - Token is expired "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        break;
+    case 409:
+        SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
         break;
     case 422:
         SetResponseString(TEXT("Validation Error"));
+        break;
+    case 503:
+        SetResponseString(TEXT(" Error Codes: - connection_limit_reached - An enumeration. "));
         break;
     }
 }
@@ -1480,7 +1598,17 @@ bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor403(FRHAPI_Hz
     return TryGetJsonValue(ResponseJson, OutContent);
 }
 
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor409(FRHAPI_HzApiErrorModel& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
 bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+    return TryGetJsonValue(ResponseJson, OutContent);
+}
+
+bool FResponse_PlayerLongPollForNotificationsSelf::TryGetContentFor503(FRHAPI_HzApiErrorModel& OutContent) const
 {
     return TryGetJsonValue(ResponseJson, OutContent);
 }

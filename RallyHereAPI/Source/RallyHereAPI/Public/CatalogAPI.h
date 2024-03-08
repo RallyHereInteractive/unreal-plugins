@@ -10,6 +10,7 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "Platform.h"
 #include "Catalog.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
@@ -19,6 +20,8 @@
 #include "Items.h"
 #include "Loot.h"
 #include "Loots.h"
+#include "PlatformSKU.h"
+#include "PlatformSKUs.h"
 #include "PortalUseRuleset.h"
 #include "PortalUseRulesets.h"
 #include "PricePoint.h"
@@ -38,6 +41,10 @@ using RallyHereAPI::TryGetJsonValue;
 
 struct FRequest_GetCatalogAll;
 struct FResponse_GetCatalogAll;
+struct FRequest_GetCatalogEntitlementSku;
+struct FResponse_GetCatalogEntitlementSku;
+struct FRequest_GetCatalogEntitlementSkuAll;
+struct FResponse_GetCatalogEntitlementSkuAll;
 struct FRequest_GetCatalogInventoryBucketUseRuleSet;
 struct FResponse_GetCatalogInventoryBucketUseRuleSet;
 struct FRequest_GetCatalogInventoryBucketUseRuleSetsAll;
@@ -72,6 +79,8 @@ struct FRequest_GetCatalogXpTable;
 struct FResponse_GetCatalogXpTable;
 
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogAll, const FResponse_GetCatalogAll&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogEntitlementSku, const FResponse_GetCatalogEntitlementSku&);
+DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogEntitlementSkuAll, const FResponse_GetCatalogEntitlementSkuAll&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogInventoryBucketUseRuleSet, const FResponse_GetCatalogInventoryBucketUseRuleSet&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogInventoryBucketUseRuleSetsAll, const FResponse_GetCatalogInventoryBucketUseRuleSetsAll&);
 DECLARE_DELEGATE_OneParam(FDelegate_GetCatalogItem, const FResponse_GetCatalogItem&);
@@ -96,6 +105,8 @@ public:
     virtual ~FCatalogAPI();
 
     FHttpRequestPtr GetCatalogAll(const FRequest_GetCatalogAll& Request, const FDelegate_GetCatalogAll& Delegate = FDelegate_GetCatalogAll(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogEntitlementSku(const FRequest_GetCatalogEntitlementSku& Request, const FDelegate_GetCatalogEntitlementSku& Delegate = FDelegate_GetCatalogEntitlementSku(), int32 Priority = DefaultRallyHereAPIPriority);
+    FHttpRequestPtr GetCatalogEntitlementSkuAll(const FRequest_GetCatalogEntitlementSkuAll& Request, const FDelegate_GetCatalogEntitlementSkuAll& Delegate = FDelegate_GetCatalogEntitlementSkuAll(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetCatalogInventoryBucketUseRuleSet(const FRequest_GetCatalogInventoryBucketUseRuleSet& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSet& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSet(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetCatalogInventoryBucketUseRuleSetsAll(const FRequest_GetCatalogInventoryBucketUseRuleSetsAll& Request, const FDelegate_GetCatalogInventoryBucketUseRuleSetsAll& Delegate = FDelegate_GetCatalogInventoryBucketUseRuleSetsAll(), int32 Priority = DefaultRallyHereAPIPriority);
     FHttpRequestPtr GetCatalogItem(const FRequest_GetCatalogItem& Request, const FDelegate_GetCatalogItem& Delegate = FDelegate_GetCatalogItem(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -115,6 +126,8 @@ public:
 
 private:
     void OnGetCatalogAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogEntitlementSkuResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSku Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+    void OnGetCatalogEntitlementSkuAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogEntitlementSkuAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetCatalogInventoryBucketUseRuleSetResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSet Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetCatalogInventoryBucketUseRuleSetsAllResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogInventoryBucketUseRuleSetsAll Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
     void OnGetCatalogItemResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetCatalogItem Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
@@ -203,6 +216,150 @@ struct RALLYHEREAPI_API Traits_GetCatalogAll
     static FString Name;
 
     static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogAll(InRequest, InDelegate, Priority); }
+};
+
+/* Get Catalog Entitlement Sku
+ *
+ * Get a specific Entitlement SKU.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSku : public FRequest
+{
+    FRequest_GetCatalogEntitlementSku();
+    virtual ~FRequest_GetCatalogEntitlementSku() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    ERHAPI_Platform Platform;
+    FString Sku;
+    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+    TOptional<FString> IfNoneMatch;
+};
+
+struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSku : public FResponse
+{
+    FResponse_GetCatalogEntitlementSku(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetCatalogEntitlementSku() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlatformSKU Content;
+    // Headers
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlatformSKU& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSku
+{
+    typedef FRequest_GetCatalogEntitlementSku Request;
+    typedef FResponse_GetCatalogEntitlementSku Response;
+    typedef FDelegate_GetCatalogEntitlementSku Delegate;
+    typedef FCatalogAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSku(InRequest, InDelegate, Priority); }
+};
+
+/* Get Catalog Entitlement Sku All
+ *
+ * Get all Entitlement SKUs.
+*/
+struct RALLYHEREAPI_API FRequest_GetCatalogEntitlementSkuAll : public FRequest
+{
+    FRequest_GetCatalogEntitlementSkuAll();
+    virtual ~FRequest_GetCatalogEntitlementSkuAll() = default;
+    bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+    FString ComputePath() const override;
+    FName GetSimplifiedPath() const override;
+    TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+    TSharedPtr<FAuthContext> AuthContext;
+    /* If you provide the ETag that matches the current ETag for this content, will return a 304 response - indicating that the content has not changed. */
+    TOptional<FString> IfNoneMatch;
+};
+
+struct RALLYHEREAPI_API FResponse_GetCatalogEntitlementSkuAll : public FResponse
+{
+    FResponse_GetCatalogEntitlementSkuAll(FRequestMetadata InRequestMetadata);
+    virtual ~FResponse_GetCatalogEntitlementSkuAll() = default;
+    bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+    bool ParseHeaders() override;
+    void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) override;
+
+    FRHAPI_PlatformSKUs Content;
+    // Headers
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> ETag;
+
+    // Manual Response Helpers
+    /* Response 200
+    Successful Response
+    */
+    bool TryGetContentFor200(FRHAPI_PlatformSKUs& OutContent) const;
+    /* Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times. */
+    TOptional<FString> GetHeader200_ETag() const;
+
+    /* Response 304
+    Content still has the same etag and has not changed
+    */
+
+    /* Response 403
+    Forbidden
+    */
+    bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 404
+    Not Found
+    */
+    bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+    /* Response 422
+    Validation Error
+    */
+    bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+struct RALLYHEREAPI_API Traits_GetCatalogEntitlementSkuAll
+{
+    typedef FRequest_GetCatalogEntitlementSkuAll Request;
+    typedef FResponse_GetCatalogEntitlementSkuAll Response;
+    typedef FDelegate_GetCatalogEntitlementSkuAll Delegate;
+    typedef FCatalogAPI API;
+    static FString Name;
+
+    static FHttpRequestPtr DoCall(API& InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 Priority = DefaultRallyHereAPIPriority) { return InAPI.GetCatalogEntitlementSkuAll(InRequest, InDelegate, Priority); }
 };
 
 /* Get Catalog Inventory Bucket Use Rule Set

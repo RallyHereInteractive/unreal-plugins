@@ -495,7 +495,7 @@ struct RALLYHEREAPI_API Traits_EnableCrossProgression
  * Find an existing platform user with their platform identity.
  * 
  * Required Permissions: 
- * 	For any player (including themselves)any of: `user:*`, `user:platform:read`
+ * 	For any player (including themselves)any of: `user:platform:read`, `user:*`
 */
 struct RALLYHEREAPI_API FRequest_FindPlatformUserById : public FRequest
 {
