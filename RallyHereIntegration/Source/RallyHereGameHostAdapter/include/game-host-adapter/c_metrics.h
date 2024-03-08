@@ -21,10 +21,18 @@ extern "C"
 {
 #endif
 
+
+/// @file c_metrics.h
+///
+/// An interface for structuring metrics in a way that can be used either with statsd or graphite
+
 typedef enum RallyHereMetricType {
-    RALLY_HERE_METRIC_TYPE_COUNTER, /** Can be incremented with or without sampling */
-    RALLY_HERE_METRIC_TYPE_GAUGE, /** Can be set or incremented without sampling rate */
-    RALLY_HERE_METRIC_TYPE_TIMER, /** Can be set with or without sampling rate */
+    /** Can be incremented with or without sampling */
+    RALLY_HERE_METRIC_TYPE_COUNTER,
+    /** Can be set or incremented without sampling rate */
+    RALLY_HERE_METRIC_TYPE_GAUGE,
+    /** Can be set with or without sampling rate */
+    RALLY_HERE_METRIC_TYPE_TIMER,
     RALLY_HERE_METRIC_TYPE_SET,
 } RallyHereMetricType;
 
