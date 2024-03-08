@@ -35,6 +35,8 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public bool `[`PricePoints_IsSet`](#structFRHAPI__Catalog_1a374717ee3e59783724b9f7626bf107b0) | true if PricePoints_Optional has been set to a value
 `public `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` `[`TimeFrames_Optional`](#structFRHAPI__Catalog_1abaaeb0cae5fcc66283a5a88005569a25) | The Time Frames.
 `public bool `[`TimeFrames_IsSet`](#structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9) | true if TimeFrames_Optional has been set to a value
+`public `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` `[`Skus_Optional`](#structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb) | The Platform SKUs.
+`public bool `[`Skus_IsSet`](#structFRHAPI__Catalog_1ab7c1c1bb089e8e7d18bd75da56bbc462) | true if Skus_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) | Cache info for the Catalog.
 `public bool `[`CacheInfo_IsSet`](#structFRHAPI__Catalog_1af1aa2319fa555fe776de228ccaafc079) | true if CacheInfo_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Catalog_1a8aa802eebad07291e54446219d17ff42)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -103,6 +105,14 @@ Full list of all loaded objects for the catalog. Organized in a normalized model
 `public inline const `[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` * `[`GetTimeFramesOrNull`](#structFRHAPI__Catalog_1a091f3b84759ff8222a18440bb27a1ae7)`() const` | Returns a pointer to TimeFrames_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetTimeFrames`](#structFRHAPI__Catalog_1ad437e7449a235919572299f83508c535)`(`[`FRHAPI_TimeFrames`](RHAPI_TimeFrames.md#structFRHAPI__TimeFrames)` NewValue)` | Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
 `public inline void `[`ClearTimeFrames`](#structFRHAPI__Catalog_1ac3f2252f7dd6be43359b67c6a264cde5)`()` | Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
+`public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1aecd3e567a3e8505612cff0a6060ded3c)`()` | Gets the value of Skus_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a2ec9a13449858fe7b30ca8da6a18da71)`() const` | Gets the value of Skus_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a7778d38213342b764ba32de27877a87e)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` | Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetSkus`](#structFRHAPI__Catalog_1a949ae87736f8b02e0dc8b210f5872b7f)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & OutValue) const` | Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a60b66383a155cce30ad54b6eb92e00f8)`()` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a20ecb5baaedad96eff367f1605dfa2f8)`() const` | Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetSkus`](#structFRHAPI__Catalog_1a8a5f9240698b22a40bb014468d74fff9)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` NewValue)` | Sets the value of Skus_Optional and also sets Skus_IsSet to true.
+`public inline void `[`ClearSkus`](#structFRHAPI__Catalog_1a765461b15f5b17e1425f262afc0940a2)`()` | Clears the value of Skus_Optional and sets Skus_IsSet to false.
 `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3bcfc74eef1b5ed8c468aa203d73505a)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3767f024df63790d04bfaba39add23a6)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a44b14981d1b3157b786d07adbc36fb73)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -192,6 +202,16 @@ The Time Frames.
 #### `public bool `[`TimeFrames_IsSet`](#structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9) <a id="structFRHAPI__Catalog_1a0152d227f29fbba74e728eba75f2a4b9"></a>
 
 true if TimeFrames_Optional has been set to a value
+
+<br>
+#### `public `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` `[`Skus_Optional`](#structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb) <a id="structFRHAPI__Catalog_1ad0b904c73c45e324ed314ca93dc213fb"></a>
+
+The Platform SKUs.
+
+<br>
+#### `public bool `[`Skus_IsSet`](#structFRHAPI__Catalog_1ab7c1c1bb089e8e7d18bd75da56bbc462) <a id="structFRHAPI__Catalog_1ab7c1c1bb089e8e7d18bd75da56bbc462"></a>
+
+true if Skus_Optional has been set to a value
 
 <br>
 #### `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae) <a id="structFRHAPI__Catalog_1a44d0ba982a4d410b0b93ccaca10970ae"></a>
@@ -541,6 +561,46 @@ Sets the value of TimeFrames_Optional and also sets TimeFrames_IsSet to true.
 #### `public inline void `[`ClearTimeFrames`](#structFRHAPI__Catalog_1ac3f2252f7dd6be43359b67c6a264cde5)`()` <a id="structFRHAPI__Catalog_1ac3f2252f7dd6be43359b67c6a264cde5"></a>
 
 Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false.
+
+<br>
+#### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1aecd3e567a3e8505612cff0a6060ded3c)`()` <a id="structFRHAPI__Catalog_1aecd3e567a3e8505612cff0a6060ded3c"></a>
+
+Gets the value of Skus_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a2ec9a13449858fe7b30ca8da6a18da71)`() const` <a id="structFRHAPI__Catalog_1a2ec9a13449858fe7b30ca8da6a18da71"></a>
+
+Gets the value of Skus_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & `[`GetSkus`](#structFRHAPI__Catalog_1a7778d38213342b764ba32de27877a87e)`(const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & DefaultValue) const` <a id="structFRHAPI__Catalog_1a7778d38213342b764ba32de27877a87e"></a>
+
+Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetSkus`](#structFRHAPI__Catalog_1a949ae87736f8b02e0dc8b210f5872b7f)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` & OutValue) const` <a id="structFRHAPI__Catalog_1a949ae87736f8b02e0dc8b210f5872b7f"></a>
+
+Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a60b66383a155cce30ad54b6eb92e00f8)`()` <a id="structFRHAPI__Catalog_1a60b66383a155cce30ad54b6eb92e00f8"></a>
+
+Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const `[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` * `[`GetSkusOrNull`](#structFRHAPI__Catalog_1a20ecb5baaedad96eff367f1605dfa2f8)`() const` <a id="structFRHAPI__Catalog_1a20ecb5baaedad96eff367f1605dfa2f8"></a>
+
+Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetSkus`](#structFRHAPI__Catalog_1a8a5f9240698b22a40bb014468d74fff9)`(`[`FRHAPI_PlatformSKUs`](RHAPI_PlatformSKUs.md#structFRHAPI__PlatformSKUs)` NewValue)` <a id="structFRHAPI__Catalog_1a8a5f9240698b22a40bb014468d74fff9"></a>
+
+Sets the value of Skus_Optional and also sets Skus_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearSkus`](#structFRHAPI__Catalog_1a765461b15f5b17e1425f262afc0940a2)`()` <a id="structFRHAPI__Catalog_1a765461b15f5b17e1425f262afc0940a2"></a>
+
+Clears the value of Skus_Optional and sets Skus_IsSet to false.
 
 <br>
 #### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Catalog_1a3bcfc74eef1b5ed8c468aa203d73505a)`()` <a id="structFRHAPI__Catalog_1a3bcfc74eef1b5ed8c468aa203d73505a"></a>
