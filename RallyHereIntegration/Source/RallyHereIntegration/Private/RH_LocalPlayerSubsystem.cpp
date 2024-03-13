@@ -276,8 +276,14 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 	{
 		if (PlayerInfoCache->GetPlayerNotifications() != nullptr)
 		{
-			// start streaming notifications for this context
+			// start streaming notifications for this player
 			PlayerInfoCache->StartStreamingNotifications();
+		}
+
+		if (PlayerInfoCache->GetPlayerInventory() != nullptr)
+		{
+			// start an inventory session so that inventory queries will work as expected for session based inventory grants
+			PlayerInfoCache->GetPlayerInventory()->CreateInventorySession({});
 		}
 	}
 }
