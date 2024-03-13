@@ -123,7 +123,9 @@ Get the current Environment Id (will run ResolveEnvironmentId if there isn't one
 
 Get the Environment ID used for finding the base URL from the first of the following sources:
 
-* Command line values from the keys in EnvironmentCommandLineKeys. By default these are: RallyHereEnvX RallyHereEnv RallyHereEnvInternal
+* Command line values from the keys in EnvironmentCommandLineKeysInternal. By default these are: RallyHereEnvX RallyHereEnv RallyHereEnvInternal
+
+* Command line values from the keys in EnvironmentCommandLineKeys, which are configured by ini
 
 * Results from GetEnvironmentId from the EnvironmentOSSName (or default if one is not provided)
 
@@ -155,7 +157,9 @@ Get the current base URL (will run ResolveBaseURL if there isn't one)
 
 Check for a base URL across several sources and assign the first non-empty value to the APIs:
 
-* Command line values from the keys in BaseURLCommandLineKeys. By default these are: RallyHereURLX RallyHereURL RallyHereURLInternal
+* Command line values from the keys in BaseURLCommandLineKeysInternal. By default these are: RallyHereURLX RallyHereURL RallyHereURLInternal
+
+* Command line values from the keys in BaseURLCommandLineKeys, which are configured by ini
 
 * ini value from the "RallyHereEnvURL" section, where the key is the current EnvironmentId returned from GetEnvironmentId
 
@@ -189,7 +193,9 @@ Get the current client ID (will run ResolveClientId if there isn't one).
 
 Check for a client ID across several sources and assign the first non-empty value to the APIs:
 
-* Command line values from the keys in ClientIdCommandLineKeys. By default these are: RallyHereClientIdX RallyHereClientId RallyHereClientIdInternal
+* Command line values from the keys in ClientIdCommandLineKeysInternal. By default these are: RallyHereClientIdX RallyHereClientId RallyHereClientIdInternal
+
+* Command line values from the keys in ClientIdCommandLineKeys, which are configured by ini
 
 * ini value from the "RallyHere" section, with the "ClientId" key.
 
@@ -223,7 +229,9 @@ Get the current client secret (will run ResolveClientSecret if there isn't one).
 
 Check for a client secret across several sources and assign the first non-empty value to the APIs:
 
-* Command line values from the keys in ClientSecretCommandLineKeys. By default these are: RallyHereClientSecretX RallyHereClientSecret RallyHereClientSecretInternal
+* Command line values from the keys in ClientSecretCommandLineKeysInternal. By default these are: RallyHereClientSecretX RallyHereClientSecret RallyHereClientSecretInternal
+
+* Command line values from the keys in ClientSecretCommandLineKeys, which are configured by ini
 
 * ini value from the "RallyHere" section, with the "ClientSecret" key.
 
