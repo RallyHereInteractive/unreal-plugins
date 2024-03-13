@@ -1,0 +1,676 @@
+---
+title: FRHAPI_SettingTypeVersion Struct
+---
+Inherits from [FRHAPI_Model](/unreal-plugins/all/structfrhapi__model/#structFRHAPI__Model)
+
+
+
+## Summary
+| Kind | View | Description |
+|------|------|-------------|
+|bool|[AllowUpdate_Optional](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a7cde63d5e798189074a83f5e9b24a3e8)|Are players allowed to set/update keys to this version of the setting type? Does not affect getting or deleting existing settings.|
+|bool|[AllowUpdate_IsSet](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1aee033cacb8048accef460ffe06293b98)|true if AllowUpdate_Optional has been set to a value|
+|FString|[KeyRegex_Optional](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a560ade93145afb89f7492f48cd498b22)|Regex that is used to verify keys at assignment time.|
+|bool|[KeyRegex_IsSet](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a06f3feaf49700c1a9892c62a9c33cf5f)|true if KeyRegex_Optional has been set to a value|
+|[FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject)|[ValueJsonschema](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1adc61f49842f20cd4f9f9c37907bccbb8)|jsonschema that is used to verify values at assignment time|
+|TMap< FString, FString >|[CustomData_Optional](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a7cbfb62ce0108a560c234e8eb60399f0)|Custom data that was provided when the setting type was created.|
+|bool|[CustomData_IsSet](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a417b1215b3b7522fe6f0d2c11a96bcda)|true if CustomData_Optional has been set to a value|
+|bool|[FromJson](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1aa4e70ba4519b150f2e99c4a90bc8fbbf)(const TSharedPtr< FJsonValue > & JsonValue)|Fills this object with data from the passed in JSON.|
+|void|[WriteJson](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1ae3daee712cb6f91e68d51b5fe1b2ce98)(TSharedRef< TJsonWriter<>> & Writer)|Writes the data from this object into the specified JSON Writer stream.|
+|bool &|[GetAllowUpdate](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1afcaaef3adca90f4fd1358d088320bbb1)()|Gets the value of AllowUpdate_Optional, regardless of it having been set.|
+|const bool &|[GetAllowUpdate](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a485cfe9aa04a52fa93b602ffc907eff3)()|Gets the value of AllowUpdate_Optional, regardless of it having been set.|
+|const bool &|[GetAllowUpdate](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1af8560e913b8d8204e582c2b6cf20b210)(const bool & DefaultValue)|Gets the value of AllowUpdate_Optional, if it has been set, otherwise it returns DefaultValue.|
+|bool|[GetAllowUpdate](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1aa16fb445c5661b7a5c497ea5ef9ede58)(bool & OutValue)|Fills OutValue with the value of AllowUpdate_Optional and returns true if it has been set, otherwise returns false.|
+|bool *|[GetAllowUpdateOrNull](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a76e0f40975999f5433999dec08c0b99d)()|Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr.|
+|const bool *|[GetAllowUpdateOrNull](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1acde990775bfd52843e105c59abd8bed2)()|Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr.|
+|void|[SetAllowUpdate](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a76b8cbf55cddce6c8bbd936aca5694c7)(bool NewValue)|Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true.|
+|void|[ClearAllowUpdate](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a98769cdb1c9d46e61140d4629267ea9a)()|Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false.|
+|bool|[IsAllowUpdateDefaultValue](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1ac836a8cfed8cd7dae4a460fab86ab2e3)()|Returns true if AllowUpdate_Optional is set and matches the default value.|
+|void|[SetAllowUpdateToDefault](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a391bf3452ed0068b495d2a3754156586)()|Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true.|
+|FString &|[GetKeyRegex](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a9d935fb43394e65e044cf3065f73af0d)()|Gets the value of KeyRegex_Optional, regardless of it having been set.|
+|const FString &|[GetKeyRegex](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1ac66a76588ac510c1147cee96013194f7)()|Gets the value of KeyRegex_Optional, regardless of it having been set.|
+|const FString &|[GetKeyRegex](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a52e09af92f1901e1cd232e930a695122)(const FString & DefaultValue)|Gets the value of KeyRegex_Optional, if it has been set, otherwise it returns DefaultValue.|
+|bool|[GetKeyRegex](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a83b8a32269644c1ff31d599254741e48)(FString & OutValue)|Fills OutValue with the value of KeyRegex_Optional and returns true if it has been set, otherwise returns false.|
+|FString *|[GetKeyRegexOrNull](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a032ecb833d81269e63ea24f80347f750)()|Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr.|
+|const FString *|[GetKeyRegexOrNull](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a5388309d3f8093010ef2013d785faa0c)()|Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr.|
+|void|[SetKeyRegex](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1ae4e39149102c921eca7c26f0fc23c362)(FString NewValue)|Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true.|
+|void|[ClearKeyRegex](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a128d3490d334f968e82b0ab89318c5b3)()|Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false.|
+|bool|[IsKeyRegexDefaultValue](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a5936bb1b4543b1a515ff9b69d296bc76)()|Returns true if KeyRegex_Optional is set and matches the default value.|
+|void|[SetKeyRegexToDefault](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a22341ac9a7abce8cbb643ac7cf1089d2)()|Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true.|
+|[FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject) &|[GetValueJsonschema](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1ab213f4d77b44b6d6386a5408ca76021b)()|Gets the value of ValueJsonschema.|
+|const [FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject) &|[GetValueJsonschema](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a549ec1a091924dd29295bb00668fd0c7)()|Gets the value of ValueJsonschema.|
+|void|[SetValueJsonschema](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a633c27cecfa21ba5533ca498adb40eff)([FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject) NewValue)|Sets the value of ValueJsonschema.|
+|TMap< FString, FString > &|[GetCustomData](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1aabd97f56553b79db5d43b9ba57a6dd21)()|Gets the value of CustomData_Optional, regardless of it having been set.|
+|const TMap< FString, FString > &|[GetCustomData](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1ab7247a5f9b2a329ed2b9667ec64cbaa2)()|Gets the value of CustomData_Optional, regardless of it having been set.|
+|const TMap< FString, FString > &|[GetCustomData](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1afcb635723e12d92035726b375c09b3fe)(const TMap< FString, FString > & DefaultValue)|Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.|
+|bool|[GetCustomData](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a77dcaf48288c55129f4f280cfd046733)(TMap< FString, FString > & OutValue)|Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.|
+|TMap< FString, FString > *|[GetCustomDataOrNull](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1af651b7e40f15018550e94733b8da23b4)()|Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.|
+|const TMap< FString, FString > *|[GetCustomDataOrNull](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a0628b64189adc569c97aa65afd095d3e)()|Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.|
+|void|[SetCustomData](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a662dff9af912202577d78e2f1dd3b19a)(TMap< FString, FString > NewValue)|Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.|
+|void|[ClearCustomData](/unreal-plugins/all/structfrhapi__settingtypeversion/#structFRHAPI__SettingTypeVersion_1a87ffa31269dfdc6b9737d3f8653735bc)()|Clears the value of CustomData_Optional and sets CustomData_IsSet to false.|
+## Public Attributes
+
+
+
+### `AllowUpdate_Optional` <a id="structFRHAPI__SettingTypeVersion_1a7cde63d5e798189074a83f5e9b24a3e8"></a>
+
+`bool FRHAPI_SettingTypeVersion::AllowUpdate_Optional`
+
+Are players allowed to set/update keys to this version of the setting type? Does not affect getting or deleting existing settings.
+
+
+
+
+### `AllowUpdate_IsSet` <a id="structFRHAPI__SettingTypeVersion_1aee033cacb8048accef460ffe06293b98"></a>
+
+`bool FRHAPI_SettingTypeVersion::AllowUpdate_IsSet`
+
+true if AllowUpdate_Optional has been set to a value
+
+
+
+
+### `KeyRegex_Optional` <a id="structFRHAPI__SettingTypeVersion_1a560ade93145afb89f7492f48cd498b22"></a>
+
+`FString FRHAPI_SettingTypeVersion::KeyRegex_Optional`
+
+Regex that is used to verify keys at assignment time.
+
+
+
+
+### `KeyRegex_IsSet` <a id="structFRHAPI__SettingTypeVersion_1a06f3feaf49700c1a9892c62a9c33cf5f"></a>
+
+`bool FRHAPI_SettingTypeVersion::KeyRegex_IsSet`
+
+true if KeyRegex_Optional has been set to a value
+
+
+
+
+### `ValueJsonschema` <a id="structFRHAPI__SettingTypeVersion_1adc61f49842f20cd4f9f9c37907bccbb8"></a>
+
+`FRHAPI_JsonObject FRHAPI_SettingTypeVersion::ValueJsonschema`
+
+jsonschema that is used to verify values at assignment time
+
+
+
+
+### `CustomData_Optional` <a id="structFRHAPI__SettingTypeVersion_1a7cbfb62ce0108a560c234e8eb60399f0"></a>
+
+`TMap<FString, FString> FRHAPI_SettingTypeVersion::CustomData_Optional`
+
+Custom data that was provided when the setting type was created.
+
+
+
+
+### `CustomData_IsSet` <a id="structFRHAPI__SettingTypeVersion_1a417b1215b3b7522fe6f0d2c11a96bcda"></a>
+
+`bool FRHAPI_SettingTypeVersion::CustomData_IsSet`
+
+true if CustomData_Optional has been set to a value
+
+
+
+
+
+## Public Functions
+
+
+
+### `FromJson` <a id="structFRHAPI__SettingTypeVersion_1aa4e70ba4519b150f2e99c4a90bc8fbbf"></a>
+
+bool FromJson(const TSharedPtr< FJsonValue > & JsonValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|const TSharedPtr< FJsonValue > &|JsonValue|
+
+#### Description
+
+Fills this object with data from the passed in JSON.
+
+
+#### Parameters
+
+JsonValue
+: Data from the API call.
+
+#### Returns
+true if parsing of the JSON data was successful. 
+
+
+
+### `WriteJson` <a id="structFRHAPI__SettingTypeVersion_1ae3daee712cb6f91e68d51b5fe1b2ce98"></a>
+
+void WriteJson(TSharedRef< TJsonWriter<>> & Writer)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|TSharedRef< TJsonWriter<>> &|Writer|
+
+#### Description
+
+Writes the data from this object into the specified JSON Writer stream.
+
+
+#### Parameters
+
+Writer
+: JSON Writer stream to push . 
+
+
+
+### `GetAllowUpdate` <a id="structFRHAPI__SettingTypeVersion_1afcaaef3adca90f4fd1358d088320bbb1"></a>
+
+bool & GetAllowUpdate()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of AllowUpdate_Optional, regardless of it having been set.
+
+
+
+
+### `GetAllowUpdate` <a id="structFRHAPI__SettingTypeVersion_1a485cfe9aa04a52fa93b602ffc907eff3"></a>
+
+const bool & GetAllowUpdate()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of AllowUpdate_Optional, regardless of it having been set.
+
+
+
+
+### `GetAllowUpdate` <a id="structFRHAPI__SettingTypeVersion_1af8560e913b8d8204e582c2b6cf20b210"></a>
+
+const bool & GetAllowUpdate(const bool & DefaultValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|const bool &|DefaultValue|
+
+#### Description
+
+Gets the value of AllowUpdate_Optional, if it has been set, otherwise it returns DefaultValue.
+
+
+
+
+### `GetAllowUpdate` <a id="structFRHAPI__SettingTypeVersion_1aa16fb445c5661b7a5c497ea5ef9ede58"></a>
+
+bool GetAllowUpdate(bool & OutValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|bool &|OutValue|
+
+#### Description
+
+Fills OutValue with the value of AllowUpdate_Optional and returns true if it has been set, otherwise returns false.
+
+
+
+
+### `GetAllowUpdateOrNull` <a id="structFRHAPI__SettingTypeVersion_1a76e0f40975999f5433999dec08c0b99d"></a>
+
+bool * GetAllowUpdateOrNull()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr.
+
+
+
+
+### `GetAllowUpdateOrNull` <a id="structFRHAPI__SettingTypeVersion_1acde990775bfd52843e105c59abd8bed2"></a>
+
+const bool * GetAllowUpdateOrNull()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr.
+
+
+
+
+### `SetAllowUpdate` <a id="structFRHAPI__SettingTypeVersion_1a76b8cbf55cddce6c8bbd936aca5694c7"></a>
+
+void SetAllowUpdate(bool NewValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|bool|NewValue|
+
+#### Description
+
+Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true.
+
+
+
+
+### `ClearAllowUpdate` <a id="structFRHAPI__SettingTypeVersion_1a98769cdb1c9d46e61140d4629267ea9a"></a>
+
+void ClearAllowUpdate()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false.
+
+
+
+
+### `IsAllowUpdateDefaultValue` <a id="structFRHAPI__SettingTypeVersion_1ac836a8cfed8cd7dae4a460fab86ab2e3"></a>
+
+bool IsAllowUpdateDefaultValue()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns true if AllowUpdate_Optional is set and matches the default value.
+
+
+
+
+### `SetAllowUpdateToDefault` <a id="structFRHAPI__SettingTypeVersion_1a391bf3452ed0068b495d2a3754156586"></a>
+
+void SetAllowUpdateToDefault()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true.
+
+
+
+
+### `GetKeyRegex` <a id="structFRHAPI__SettingTypeVersion_1a9d935fb43394e65e044cf3065f73af0d"></a>
+
+FString & GetKeyRegex()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of KeyRegex_Optional, regardless of it having been set.
+
+
+
+
+### `GetKeyRegex` <a id="structFRHAPI__SettingTypeVersion_1ac66a76588ac510c1147cee96013194f7"></a>
+
+const FString & GetKeyRegex()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of KeyRegex_Optional, regardless of it having been set.
+
+
+
+
+### `GetKeyRegex` <a id="structFRHAPI__SettingTypeVersion_1a52e09af92f1901e1cd232e930a695122"></a>
+
+const FString & GetKeyRegex(const FString & DefaultValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|const FString &|DefaultValue|
+
+#### Description
+
+Gets the value of KeyRegex_Optional, if it has been set, otherwise it returns DefaultValue.
+
+
+
+
+### `GetKeyRegex` <a id="structFRHAPI__SettingTypeVersion_1a83b8a32269644c1ff31d599254741e48"></a>
+
+bool GetKeyRegex(FString & OutValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|FString &|OutValue|
+
+#### Description
+
+Fills OutValue with the value of KeyRegex_Optional and returns true if it has been set, otherwise returns false.
+
+
+
+
+### `GetKeyRegexOrNull` <a id="structFRHAPI__SettingTypeVersion_1a032ecb833d81269e63ea24f80347f750"></a>
+
+FString * GetKeyRegexOrNull()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr.
+
+
+
+
+### `GetKeyRegexOrNull` <a id="structFRHAPI__SettingTypeVersion_1a5388309d3f8093010ef2013d785faa0c"></a>
+
+const FString * GetKeyRegexOrNull()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr.
+
+
+
+
+### `SetKeyRegex` <a id="structFRHAPI__SettingTypeVersion_1ae4e39149102c921eca7c26f0fc23c362"></a>
+
+void SetKeyRegex(FString NewValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|FString|NewValue|
+
+#### Description
+
+Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true.
+
+
+
+
+### `ClearKeyRegex` <a id="structFRHAPI__SettingTypeVersion_1a128d3490d334f968e82b0ab89318c5b3"></a>
+
+void ClearKeyRegex()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false.
+
+
+
+
+### `IsKeyRegexDefaultValue` <a id="structFRHAPI__SettingTypeVersion_1a5936bb1b4543b1a515ff9b69d296bc76"></a>
+
+bool IsKeyRegexDefaultValue()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns true if KeyRegex_Optional is set and matches the default value.
+
+
+
+
+### `SetKeyRegexToDefault` <a id="structFRHAPI__SettingTypeVersion_1a22341ac9a7abce8cbb643ac7cf1089d2"></a>
+
+void SetKeyRegexToDefault()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true.
+
+
+
+
+### `GetValueJsonschema` <a id="structFRHAPI__SettingTypeVersion_1ab213f4d77b44b6d6386a5408ca76021b"></a>
+
+[FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject) & GetValueJsonschema()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of ValueJsonschema.
+
+
+
+
+### `GetValueJsonschema` <a id="structFRHAPI__SettingTypeVersion_1a549ec1a091924dd29295bb00668fd0c7"></a>
+
+const [FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject) & GetValueJsonschema()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of ValueJsonschema.
+
+
+
+
+### `SetValueJsonschema` <a id="structFRHAPI__SettingTypeVersion_1a633c27cecfa21ba5533ca498adb40eff"></a>
+
+void SetValueJsonschema([FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject) NewValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|[FRHAPI_JsonObject](/unreal-plugins/all/structfrhapi__jsonobject/#structFRHAPI__JsonObject)|NewValue|
+
+#### Description
+
+Sets the value of ValueJsonschema.
+
+
+
+
+### `GetCustomData` <a id="structFRHAPI__SettingTypeVersion_1aabd97f56553b79db5d43b9ba57a6dd21"></a>
+
+TMap< FString, FString > & GetCustomData()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+
+
+
+### `GetCustomData` <a id="structFRHAPI__SettingTypeVersion_1ab7247a5f9b2a329ed2b9667ec64cbaa2"></a>
+
+const TMap< FString, FString > & GetCustomData()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Gets the value of CustomData_Optional, regardless of it having been set.
+
+
+
+
+### `GetCustomData` <a id="structFRHAPI__SettingTypeVersion_1afcb635723e12d92035726b375c09b3fe"></a>
+
+const TMap< FString, FString > & GetCustomData(const TMap< FString, FString > & DefaultValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|const TMap< FString, FString > &|DefaultValue|
+
+#### Description
+
+Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+
+
+
+
+### `GetCustomData` <a id="structFRHAPI__SettingTypeVersion_1a77dcaf48288c55129f4f280cfd046733"></a>
+
+bool GetCustomData(TMap< FString, FString > & OutValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|TMap< FString, FString > &|OutValue|
+
+#### Description
+
+Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+
+
+
+
+### `GetCustomDataOrNull` <a id="structFRHAPI__SettingTypeVersion_1af651b7e40f15018550e94733b8da23b4"></a>
+
+TMap< FString, FString > * GetCustomDataOrNull()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+
+
+
+### `GetCustomDataOrNull` <a id="structFRHAPI__SettingTypeVersion_1a0628b64189adc569c97aa65afd095d3e"></a>
+
+const TMap< FString, FString > * GetCustomDataOrNull()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+
+
+
+
+### `SetCustomData` <a id="structFRHAPI__SettingTypeVersion_1a662dff9af912202577d78e2f1dd3b19a"></a>
+
+void SetCustomData(TMap< FString, FString > NewValue)
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+|TMap< FString, FString >|NewValue|
+
+#### Description
+
+Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+
+
+
+
+### `ClearCustomData` <a id="structFRHAPI__SettingTypeVersion_1a87ffa31269dfdc6b9737d3f8653735bc"></a>
+
+void ClearCustomData()
+
+#### Parameters
+
+| Type | Name |
+|------|------|
+
+#### Description
+
+Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+
+
+
+
