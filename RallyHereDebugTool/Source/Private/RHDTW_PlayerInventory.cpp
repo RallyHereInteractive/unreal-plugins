@@ -178,14 +178,8 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 					if (URH_PlayerInventory* pURH_PlayerInventory = PlayerInfo->GetPlayerInventory())
 					{
 						auto Delegate = FRH_OnInventorySessionUpdateDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerInventory::HandleInventorySessionUpdated, PlayerInfo->GetRHPlayerUuid());
-						if (SelectedPlatform == 0)
-						{
-							pURH_PlayerInventory->CreateInventorySession({}, MoveTemp(Delegate));
-						}
-						else
-						{
-							pURH_PlayerInventory->GetInventorySession(MoveTemp(Delegate));
-						}
+
+						pURH_PlayerInventory->GetInventorySession(MoveTemp(Delegate));
 					}
 					else
 					{
