@@ -16,9 +16,6 @@
 `public  `[`DECLARE_DYNAMIC_DELEGATE_ThreeParams`](#group__Match_1ga92b4d9fb42e1e8fed8edf6794eefd15f)`(FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,bSuccess,const `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,Match,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)`            | 
 `public  `[`DECLARE_DELEGATE_ThreeParams`](#group__Match_1ga15de38ee827d4b11f3b5f121c40ce77f)`(FRH_OnMatchPlayerUpdateCompleteDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
 `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1gadb89201c5ff064ef71a8fddb770c9343)`(FRH_OnMatchPlayerUpdateCompleteDelegateBlock,FRH_OnMatchPlayerUpdateCompleteDelegate,FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
-`public  `[`DECLARE_DYNAMIC_DELEGATE_ThreeParams`](#group__Match_1ga34b65961f4ba99a862853c7ff7184e19)`(FRH_OnMatchSegmentUpdateCompleteDynamicDelegate,bool,bSuccess,const `[`FRHAPI_MatchSegmentWithPlayers`](models/RHAPI_MatchSegmentWithPlayers.md#structFRHAPI__MatchSegmentWithPlayers)` &,MatchSegment,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)`            | 
-`public  `[`DECLARE_DELEGATE_ThreeParams`](#group__Match_1ga93bfb68700d34f3ed69f6d15e9beadd0)`(FRH_OnMatchSegmentUpdateCompleteDelegate,bool,const `[`FRHAPI_MatchSegmentWithPlayers`](models/RHAPI_MatchSegmentWithPlayers.md#structFRHAPI__MatchSegmentWithPlayers)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
-`public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1ga29313d5c3a4e7d99162d33ac3e7a692d)`(FRH_OnMatchSegmentUpdateCompleteDelegateBlock,FRH_OnMatchSegmentUpdateCompleteDelegate,FRH_OnMatchSegmentUpdateCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchSegmentWithPlayers`](models/RHAPI_MatchSegmentWithPlayers.md#structFRHAPI__MatchSegmentWithPlayers)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
 `class `[`URH_MatchSubsystem`](#classURH__MatchSubsystem) | Match Subsystem used for match API calls.
 `struct `[`FRH_MatchSearchParams`](#structFRH__MatchSearchParams) | 
 `struct `[`FRH_MatchSearchResult`](#structFRH__MatchSearchResult) | Struct containint the results of a Session Browser search.
@@ -49,12 +46,6 @@
 
 #### `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1gadb89201c5ff064ef71a8fddb770c9343)`(FRH_OnMatchPlayerUpdateCompleteDelegateBlock,FRH_OnMatchPlayerUpdateCompleteDelegate,FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](models/RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1gadb89201c5ff064ef71a8fddb770c9343"></a>
 
-#### `public  `[`DECLARE_DYNAMIC_DELEGATE_ThreeParams`](#group__Match_1ga34b65961f4ba99a862853c7ff7184e19)`(FRH_OnMatchSegmentUpdateCompleteDynamicDelegate,bool,bSuccess,const `[`FRHAPI_MatchSegmentWithPlayers`](models/RHAPI_MatchSegmentWithPlayers.md#structFRHAPI__MatchSegmentWithPlayers)` &,MatchSegment,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)` <a id="group__Match_1ga34b65961f4ba99a862853c7ff7184e19"></a>
-
-#### `public  `[`DECLARE_DELEGATE_ThreeParams`](#group__Match_1ga93bfb68700d34f3ed69f6d15e9beadd0)`(FRH_OnMatchSegmentUpdateCompleteDelegate,bool,const `[`FRHAPI_MatchSegmentWithPlayers`](models/RHAPI_MatchSegmentWithPlayers.md#structFRHAPI__MatchSegmentWithPlayers)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1ga93bfb68700d34f3ed69f6d15e9beadd0"></a>
-
-#### `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1ga29313d5c3a4e7d99162d33ac3e7a692d)`(FRH_OnMatchSegmentUpdateCompleteDelegateBlock,FRH_OnMatchSegmentUpdateCompleteDelegate,FRH_OnMatchSegmentUpdateCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchSegmentWithPlayers`](models/RHAPI_MatchSegmentWithPlayers.md#structFRHAPI__MatchSegmentWithPlayers)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1ga29313d5c3a4e7d99162d33ac3e7a692d"></a>
-
 ## class `URH_MatchSubsystem` <a id="classURH__MatchSubsystem"></a>
 
 ```
@@ -82,22 +73,14 @@ Match Subsystem used for match API calls.
 `public inline virtual const FString `[`GetActiveMatchId`](#classURH__MatchSubsystem_1ae1c52d179cfaab95d435d7e4c05b756c)`() const` | Get the active match ID.
 `public inline virtual void `[`SetActiveMatchId`](#classURH__MatchSubsystem_1a763cfebaad6b8e6e884e8beda81b862e)`(const FString & MatchId)` | Set the active match.
 `public inline bool `[`HasActiveMatchId`](#classURH__MatchSubsystem_1a573c61acf388354a9875ac765df1b0c4)`() const` | Gets whether the active match exists.
-`public inline virtual const FString `[`GetActiveMatchSegmentId`](#classURH__MatchSubsystem_1a9b20d85f71d62aea8fb6c7d55778f02f)`() const` | Get the active match ID.
-`public inline virtual void `[`SetActiveMatchSegmentId`](#classURH__MatchSubsystem_1add41f49f9018a48a6a1e42e2642b57f1)`(const FString & MatchSegmentId)` | Set the active match.
-`public inline bool `[`HasActiveMatchSegmentId`](#classURH__MatchSubsystem_1a8a884ac901dc6f278319933333635909)`() const` | Gets whether the active match exists.
 `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Create a match (POST)
 `public inline void `[`BLUEPRINT_CreateMatch`](#classURH__MatchSubsystem_1ab410c3b3372a427d1ef2284d609c9fb8)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` | 
 `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH)
 `public inline void `[`BLUEPRINT_UpdateMatch`](#classURH__MatchSubsystem_1ae8d39ccaca77e3cb780fcde4189caa10)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDynamicDelegate & Delegate)` | 
 `public virtual void `[`UpdateMatchPlayer`](#classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdateCompleteDelegateBlock & Delegate)` | Update a player in a match (PATCH w/ UPSERT)
 `public inline void `[`BLUEPRINT_UpdateMatchPlayer`](#classURH__MatchSubsystem_1a9fd3f47fb61af076c88c24e2402863ec)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate & Delegate)` | 
-`public virtual void `[`CreateMatchSegment`](#classURH__MatchSubsystem_1a7bfbd597ab93155c9afe5912ee0aa103)`(const FString & MatchId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Segment,bool bSetActive,const FRH_OnMatchSegmentUpdateCompleteDelegateBlock & Delegate)` | Create a match segment (POST)
-`public inline void `[`BLUEPRINT_CreateMatchSegment`](#classURH__MatchSubsystem_1a20a7acf9a3b9b06c2e9a17cce78c8891)`(const FString & MatchId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Segment,bool bSetActive,const FRH_OnMatchSegmentUpdateCompleteDynamicDelegate & Delegate)` | 
-`public virtual void `[`UpdateMatchSegment`](#classURH__MatchSubsystem_1a91917687149f06be55fe67e2daae4037)`(const FString & MatchId,const FString & MatchSegmentId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Match,const FRH_OnMatchSegmentUpdateCompleteDelegateBlock & Delegate)` | Update a match segment (PATCH w/ UPSERT)
-`public inline void `[`BLUEPRINT_UpdateMatchSegment`](#classURH__MatchSubsystem_1aaf2781aea0584c3bdeaee442e4916e8b)`(const FString & MatchId,const FString & MatchSegmentId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Match,const FRH_OnMatchSegmentUpdateCompleteDynamicDelegate & Delegate)` | 
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
 `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) | The last match created with bSetActive = true, for ease of use.
-`protected TOptional< FString > `[`ActiveMatchSegmentId`](#classURH__MatchSubsystem_1a4384d8d3e7da1ace5c15ee3cc75cf799) | The last match created with bSetActive = true, for ease of use.
 
 #### Members
 
@@ -168,21 +151,6 @@ Set the active match.
 Gets whether the active match exists.
 
 <br>
-#### `public inline virtual const FString `[`GetActiveMatchSegmentId`](#classURH__MatchSubsystem_1a9b20d85f71d62aea8fb6c7d55778f02f)`() const` <a id="classURH__MatchSubsystem_1a9b20d85f71d62aea8fb6c7d55778f02f"></a>
-
-Get the active match ID.
-
-<br>
-#### `public inline virtual void `[`SetActiveMatchSegmentId`](#classURH__MatchSubsystem_1add41f49f9018a48a6a1e42e2642b57f1)`(const FString & MatchSegmentId)` <a id="classURH__MatchSubsystem_1add41f49f9018a48a6a1e42e2642b57f1"></a>
-
-Set the active match.
-
-<br>
-#### `public inline bool `[`HasActiveMatchSegmentId`](#classURH__MatchSubsystem_1a8a884ac901dc6f278319933333635909)`() const` <a id="classURH__MatchSubsystem_1a8a884ac901dc6f278319933333635909"></a>
-
-Gets whether the active match exists.
-
-<br>
 #### `public virtual void `[`CreateMatch`](#classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b)`(const `[`FRHAPI_MatchRequest`](models/RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,bool bSetActive,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a88ae0bc379ecc672dff718686ca8887b"></a>
 
 Create a match (POST)
@@ -232,51 +200,10 @@ Update a player in a match (PATCH w/ UPSERT)
 #### `public inline void `[`BLUEPRINT_UpdateMatchPlayer`](#classURH__MatchSubsystem_1a9fd3f47fb61af076c88c24e2402863ec)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](models/RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1a9fd3f47fb61af076c88c24e2402863ec"></a>
 
 <br>
-#### `public virtual void `[`CreateMatchSegment`](#classURH__MatchSubsystem_1a7bfbd597ab93155c9afe5912ee0aa103)`(const FString & MatchId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Segment,bool bSetActive,const FRH_OnMatchSegmentUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a7bfbd597ab93155c9afe5912ee0aa103"></a>
-
-Create a match segment (POST)
-
-#### Parameters
-* `MatchId` The match to create the segment in 
-
-* `Segment` The match to create 
-
-* `Players` The players to add to the match 
-
-* `bSetActiveMatchId` Whether to set the match as the active match 
-
-* `Delegate` Callback with the results of the match creation
-
-<br>
-#### `public inline void `[`BLUEPRINT_CreateMatchSegment`](#classURH__MatchSubsystem_1a20a7acf9a3b9b06c2e9a17cce78c8891)`(const FString & MatchId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Segment,bool bSetActive,const FRH_OnMatchSegmentUpdateCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1a20a7acf9a3b9b06c2e9a17cce78c8891"></a>
-
-<br>
-#### `public virtual void `[`UpdateMatchSegment`](#classURH__MatchSubsystem_1a91917687149f06be55fe67e2daae4037)`(const FString & MatchId,const FString & MatchSegmentId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Match,const FRH_OnMatchSegmentUpdateCompleteDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1a91917687149f06be55fe67e2daae4037"></a>
-
-Update a match segment (PATCH w/ UPSERT)
-
-#### Parameters
-* `MatchId` The match to update 
-
-* `MatchSegmentId` The match segment to update 
-
-* `Match` The match to update 
-
-* `Delegate` Callback with the results of the match update
-
-<br>
-#### `public inline void `[`BLUEPRINT_UpdateMatchSegment`](#classURH__MatchSubsystem_1aaf2781aea0584c3bdeaee442e4916e8b)`(const FString & MatchId,const FString & MatchSegmentId,const `[`FRHAPI_MatchSegmentRequest`](models/RHAPI_MatchSegmentRequest.md#structFRHAPI__MatchSegmentRequest)` & Match,const FRH_OnMatchSegmentUpdateCompleteDynamicDelegate & Delegate)` <a id="classURH__MatchSubsystem_1aaf2781aea0584c3bdeaee442e4916e8b"></a>
-
-<br>
 #### `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](models/RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) <a id="classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a"></a>
 
 <br>
 #### `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) <a id="classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b"></a>
-
-The last match created with bSetActive = true, for ease of use.
-
-<br>
-#### `protected TOptional< FString > `[`ActiveMatchSegmentId`](#classURH__MatchSubsystem_1a4384d8d3e7da1ace5c15ee3cc75cf799) <a id="classURH__MatchSubsystem_1a4384d8d3e7da1ace5c15ee3cc75cf799"></a>
 
 The last match created with bSetActive = true, for ease of use.
 

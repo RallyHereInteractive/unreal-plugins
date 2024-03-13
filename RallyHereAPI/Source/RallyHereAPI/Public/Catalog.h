@@ -13,6 +13,7 @@
 #include "InventoryBucketUseRuleSets.h"
 #include "Items.h"
 #include "Loots.h"
+#include "PlatformSKUs.h"
 #include "PortalUseRulesets.h"
 #include "PricePoints.h"
 #include "TimeFrames.h"
@@ -231,6 +232,29 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
     void SetTimeFrames(FRHAPI_TimeFrames NewValue) { TimeFrames_Optional = NewValue; TimeFrames_IsSet = true; }
      /** @brief Clears the value of TimeFrames_Optional and sets TimeFrames_IsSet to false */
     void ClearTimeFrames() { TimeFrames_IsSet = false; }
+
+    /** @brief The Platform SKUs. */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FRHAPI_PlatformSKUs Skus_Optional{  };
+    /** @brief true if Skus_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool Skus_IsSet{ false };
+    /** @brief Gets the value of Skus_Optional, regardless of it having been set */
+    FRHAPI_PlatformSKUs& GetSkus() { return Skus_Optional; }
+    /** @brief Gets the value of Skus_Optional, regardless of it having been set */
+    const FRHAPI_PlatformSKUs& GetSkus() const { return Skus_Optional; }
+    /** @brief Gets the value of Skus_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FRHAPI_PlatformSKUs& GetSkus(const FRHAPI_PlatformSKUs& DefaultValue) const { if (Skus_IsSet) return Skus_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Skus_Optional and returns true if it has been set, otherwise returns false */
+    bool GetSkus(FRHAPI_PlatformSKUs& OutValue) const { if (Skus_IsSet) OutValue = Skus_Optional; return Skus_IsSet; }
+    /** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
+    FRHAPI_PlatformSKUs* GetSkusOrNull() { if (Skus_IsSet) return &Skus_Optional; return nullptr; }
+    /** @brief Returns a pointer to Skus_Optional, if it has been set, otherwise returns nullptr */
+    const FRHAPI_PlatformSKUs* GetSkusOrNull() const { if (Skus_IsSet) return &Skus_Optional; return nullptr; }
+    /** @brief Sets the value of Skus_Optional and also sets Skus_IsSet to true */
+    void SetSkus(FRHAPI_PlatformSKUs NewValue) { Skus_Optional = NewValue; Skus_IsSet = true; }
+     /** @brief Clears the value of Skus_Optional and sets Skus_IsSet to false */
+    void ClearSkus() { Skus_IsSet = false; }
 
     /** @brief Cache info for the Catalog. */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

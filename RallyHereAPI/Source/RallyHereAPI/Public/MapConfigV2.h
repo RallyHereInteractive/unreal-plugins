@@ -51,13 +51,13 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
 
     /** @brief Name of the map the instance should load into */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-    FString Name{  };
-    /** @brief Gets the value of Name */
-    FString& GetName() { return Name; }
-    /** @brief Gets the value of Name */
-    const FString& GetName() const { return Name; }
-    /** @brief Sets the value of Name */
-    void SetName(FString NewValue) { Name = NewValue;  }
+    FString MapName{  };
+    /** @brief Gets the value of MapName */
+    FString& GetMapName() { return MapName; }
+    /** @brief Gets the value of MapName */
+    const FString& GetMapName() const { return MapName; }
+    /** @brief Sets the value of MapName */
+    void SetMapName(FString NewValue) { MapName = NewValue;  }
 
     /** @brief Game mode for the instance to spawn in */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,6 +114,52 @@ struct RALLYHEREAPI_API FRHAPI_MapConfigV2 : public FRHAPI_Model
     void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief Human readable name for this map */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FString Name_Optional{  };
+    /** @brief true if Name_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool Name_IsSet{ false };
+    /** @brief Gets the value of Name_Optional, regardless of it having been set */
+    FString& GetName() { return Name_Optional; }
+    /** @brief Gets the value of Name_Optional, regardless of it having been set */
+    const FString& GetName() const { return Name_Optional; }
+    /** @brief Gets the value of Name_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetName(const FString& DefaultValue) const { if (Name_IsSet) return Name_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Name_Optional and returns true if it has been set, otherwise returns false */
+    bool GetName(FString& OutValue) const { if (Name_IsSet) OutValue = Name_Optional; return Name_IsSet; }
+    /** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetNameOrNull() { if (Name_IsSet) return &Name_Optional; return nullptr; }
+    /** @brief Returns a pointer to Name_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetNameOrNull() const { if (Name_IsSet) return &Name_Optional; return nullptr; }
+    /** @brief Sets the value of Name_Optional and also sets Name_IsSet to true */
+    void SetName(FString NewValue) { Name_Optional = NewValue; Name_IsSet = true; }
+     /** @brief Clears the value of Name_Optional and sets Name_IsSet to false */
+    void ClearName() { Name_IsSet = false; }
+
+    /** @brief Description of the map */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FString Description_Optional{  };
+    /** @brief true if Description_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool Description_IsSet{ false };
+    /** @brief Gets the value of Description_Optional, regardless of it having been set */
+    FString& GetDescription() { return Description_Optional; }
+    /** @brief Gets the value of Description_Optional, regardless of it having been set */
+    const FString& GetDescription() const { return Description_Optional; }
+    /** @brief Gets the value of Description_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetDescription(const FString& DefaultValue) const { if (Description_IsSet) return Description_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
+    bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
+    /** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetDescriptionOrNull() { if (Description_IsSet) return &Description_Optional; return nullptr; }
+    /** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetDescriptionOrNull() const { if (Description_IsSet) return &Description_Optional; return nullptr; }
+    /** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
+    void SetDescription(FString NewValue) { Description_Optional = NewValue; Description_IsSet = true; }
+     /** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
+    void ClearDescription() { Description_IsSet = false; }
 };
 
 /** @} */

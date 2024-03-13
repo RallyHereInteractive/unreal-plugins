@@ -364,6 +364,10 @@ public:
 	*/
 	virtual void OnGameHostProviderStats(FRH_GameHostProviderStats& Stats);
 	/**
+	* @brief callback triggered to request stats if default implementation is not sufficient
+	*/
+	FRH_GameHostProviderStatsRequested OnGameHostProviderStatsRequested;
+	/**
 	* @brief Tick function
 	* @param [in] DeltaTime The time since the last tick
 	*/

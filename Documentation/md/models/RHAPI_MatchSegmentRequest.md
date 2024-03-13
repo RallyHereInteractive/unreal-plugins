@@ -38,6 +38,8 @@ struct FRHAPI_MatchSegmentRequest
 `public bool `[`Instances_IsSet`](#structFRHAPI__MatchSegmentRequest_1a649e5e22b69bb4db84e1e4862e1db942) | true if Instances_Optional has been set to a value
 `public TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > `[`Allocations_Optional`](#structFRHAPI__MatchSegmentRequest_1a1548d9a5f4346208258780a082ec1d24) | List of allocation IDs for the match.
 `public bool `[`Allocations_IsSet`](#structFRHAPI__MatchSegmentRequest_1a9fc5279a288e6118729eda867a549611) | true if Allocations_Optional has been set to a value
+`public TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > `[`Players_Optional`](#structFRHAPI__MatchSegmentRequest_1a92dcdda0698197aaadf51c1ea420a4f2) | List of players in the match.
+`public bool `[`Players_IsSet`](#structFRHAPI__MatchSegmentRequest_1adc3cd94b304bfa1b132b85c34b399b0e) | true if Players_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchSegmentRequest_1ade2f19b599e855966c5f2e303cefb8fc)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchSegmentRequest_1a23161b70299e90627c008b1b567373e0)`(TSharedRef< TJsonWriter<>> & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchSegment`](#structFRHAPI__MatchSegmentRequest_1ad7a445e45e9e4a64862b11a3dc4576d3)`()` | Gets the value of MatchSegment.
@@ -125,6 +127,14 @@ struct FRHAPI_MatchSegmentRequest
 `public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentRequest_1a3e3dbebe95dbdf4db518034b15840f77)`() const` | Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetAllocations`](#structFRHAPI__MatchSegmentRequest_1ae24113540ba795a510fbad0660e6a580)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > NewValue)` | Sets the value of Allocations_Optional and also sets Allocations_IsSet to true.
 `public inline void `[`ClearAllocations`](#structFRHAPI__MatchSegmentRequest_1a82c44276f3a07d2165c049295e0a168a)`()` | Clears the value of Allocations_Optional and sets Allocations_IsSet to false.
+`public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1ad2bf4fc7c632872f301cd7b121f1e922)`()` | Gets the value of Players_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1a11d72526942b049b13b861c92ba24414)`() const` | Gets the value of Players_Optional, regardless of it having been set.
+`public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1a756d0c8a1bd95421ee99a4f3a82edb01)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & DefaultValue) const` | Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1a5c1318286920615fe22d34216d649e97)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & OutValue) const` | Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
+`public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentRequest_1a613990d7519f25d2b953d62e2334d510)`()` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentRequest_1a18b935ccb8f9e63d9a82ce8035194e45)`() const` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentRequest_1a5005a6c888c78cbc678ce725741cbe26)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
+`public inline void `[`ClearPlayers`](#structFRHAPI__MatchSegmentRequest_1a82789e62a1025e16304f51dce9461f75)`()` | Clears the value of Players_Optional and sets Players_IsSet to false.
 
 #### Members
 
@@ -221,6 +231,16 @@ List of allocation IDs for the match.
 #### `public bool `[`Allocations_IsSet`](#structFRHAPI__MatchSegmentRequest_1a9fc5279a288e6118729eda867a549611) <a id="structFRHAPI__MatchSegmentRequest_1a9fc5279a288e6118729eda867a549611"></a>
 
 true if Allocations_Optional has been set to a value
+
+<br>
+#### `public TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > `[`Players_Optional`](#structFRHAPI__MatchSegmentRequest_1a92dcdda0698197aaadf51c1ea420a4f2) <a id="structFRHAPI__MatchSegmentRequest_1a92dcdda0698197aaadf51c1ea420a4f2"></a>
+
+List of players in the match.
+
+<br>
+#### `public bool `[`Players_IsSet`](#structFRHAPI__MatchSegmentRequest_1adc3cd94b304bfa1b132b85c34b399b0e) <a id="structFRHAPI__MatchSegmentRequest_1adc3cd94b304bfa1b132b85c34b399b0e"></a>
+
+true if Players_Optional has been set to a value
 
 <br>
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchSegmentRequest_1ade2f19b599e855966c5f2e303cefb8fc)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchSegmentRequest_1ade2f19b599e855966c5f2e303cefb8fc"></a>
@@ -665,5 +685,45 @@ Sets the value of Allocations_Optional and also sets Allocations_IsSet to true.
 #### `public inline void `[`ClearAllocations`](#structFRHAPI__MatchSegmentRequest_1a82c44276f3a07d2165c049295e0a168a)`()` <a id="structFRHAPI__MatchSegmentRequest_1a82c44276f3a07d2165c049295e0a168a"></a>
 
 Clears the value of Allocations_Optional and sets Allocations_IsSet to false.
+
+<br>
+#### `public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1ad2bf4fc7c632872f301cd7b121f1e922)`()` <a id="structFRHAPI__MatchSegmentRequest_1ad2bf4fc7c632872f301cd7b121f1e922"></a>
+
+Gets the value of Players_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1a11d72526942b049b13b861c92ba24414)`() const` <a id="structFRHAPI__MatchSegmentRequest_1a11d72526942b049b13b861c92ba24414"></a>
+
+Gets the value of Players_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1a756d0c8a1bd95421ee99a4f3a82edb01)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentRequest_1a756d0c8a1bd95421ee99a4f3a82edb01"></a>
+
+Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetPlayers`](#structFRHAPI__MatchSegmentRequest_1a5c1318286920615fe22d34216d649e97)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentRequest_1a5c1318286920615fe22d34216d649e97"></a>
+
+Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentRequest_1a613990d7519f25d2b953d62e2334d510)`()` <a id="structFRHAPI__MatchSegmentRequest_1a613990d7519f25d2b953d62e2334d510"></a>
+
+Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentRequest_1a18b935ccb8f9e63d9a82ce8035194e45)`() const` <a id="structFRHAPI__MatchSegmentRequest_1a18b935ccb8f9e63d9a82ce8035194e45"></a>
+
+Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentRequest_1a5005a6c888c78cbc678ce725741cbe26)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > NewValue)` <a id="structFRHAPI__MatchSegmentRequest_1a5005a6c888c78cbc678ce725741cbe26"></a>
+
+Sets the value of Players_Optional and also sets Players_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearPlayers`](#structFRHAPI__MatchSegmentRequest_1a82789e62a1025e16304f51dce9461f75)`()` <a id="structFRHAPI__MatchSegmentRequest_1a82789e62a1025e16304f51dce9461f75"></a>
+
+Clears the value of Players_Optional and sets Players_IsSet to false.
 
 <br>
