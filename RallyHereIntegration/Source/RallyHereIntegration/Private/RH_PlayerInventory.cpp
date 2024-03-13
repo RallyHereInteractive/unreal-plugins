@@ -286,6 +286,9 @@ void URH_PlayerInventory::HandleCreateInventorySession(const RallyHereAPI::FResp
 {
 	if (Response.IsSuccessful())
 	{
+		// reset inventory session storage, since a new one was created
+		InventorySession = FRH_InventorySession();
+
 		InventorySession.SessionId = Response.Content.SessionId;
 		if (const auto OrderId = Response.Content.GetOrderIdOrNull())
 		{
