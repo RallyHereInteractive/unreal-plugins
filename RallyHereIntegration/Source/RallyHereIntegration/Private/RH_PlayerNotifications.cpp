@@ -9,6 +9,7 @@
 
 #include "RH_GameInstanceSubsystem.h"
 #include "Engine/World.h"
+#include "TimerManager.h"
 
 void URH_PlayerNotifications::Initialize()
 {

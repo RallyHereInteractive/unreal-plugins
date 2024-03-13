@@ -10,6 +10,7 @@
 #include "Notifications.h"
 #include "RH_Common.h"
 #include "RH_SubsystemPluginBase.h"
+#include "Engine/TimerHandle.h"
 
 #include "UsersAPI.h"
 

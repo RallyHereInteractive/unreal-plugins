@@ -7,6 +7,7 @@
 #include "HAL/IConsoleManager.h"
 #include "Misc/OutputDevice.h"
 #include "Misc/CommandLine.h"
+#include "Misc/FileHelper.h"
 #include "Misc/ConfigCacheIni.h"
 #include "Serialization/JsonSerializer.h"
 #include "RH_WebRequests.h"
