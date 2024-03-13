@@ -53,11 +53,12 @@ public:
 
     /**
       * @brief Get the Environment ID used for finding the base URL from the first of the following sources:
-      * 1. Command line values from the keys in EnvironmentCommandLineKeys.  By default these are:
+      * 1. Command line values from the keys in EnvironmentCommandLineKeysInternal.  By default these are:
       *     RallyHereEnvX
       *     RallyHereEnv
       *     RallyHereEnvInternal
-      * 2. Results from GetEnvironmentId from the EnvironmentOSSName (or default if one is not provided)
+	  * 2. Command line values from the keys in EnvironmentCommandLineKeys, which are configured by ini
+      * 3. Results from GetEnvironmentId from the EnvironmentOSSName (or default if one is not provided)
       */
     void ResolveEnvironmentId();
 
@@ -84,12 +85,13 @@ public:
 
     /**
       * @brief Check for a base URL across several sources and assign the first non-empty value to the APIs:
-      * 1. Command line values from the keys in BaseURLCommandLineKeys.  By default these are:
+      * 1. Command line values from the keys in BaseURLCommandLineKeysInternal.  By default these are:
       *     RallyHereURLX
       *     RallyHereURL
       *     RallyHereURLInternal
-      * 2. ini value from the "RallyHereEnvURL" section, where the key is the current EnvironmentId returned from GetEnvironmentId
-      * 3. ini value from the section for this class, with the "BaseUrl" key.
+	  * 2. Command line values from the keys in BaseURLCommandLineKeys, which are configured by ini
+      * 3. ini value from the "RallyHereEnvURL" section, where the key is the current EnvironmentId returned from GetEnvironmentId
+      * 4. ini value from the section for this class, with the "BaseUrl" key.
       */
     void ResolveBaseURL();
 
@@ -116,10 +118,11 @@ public:
 
 	/**
 	  * @brief Check for a client ID across several sources and assign the first non-empty value to the APIs:
-	  * 1. Command line values from the keys in ClientIdCommandLineKeys.  By default these are:
+	  * 1. Command line values from the keys in ClientIdCommandLineKeysInternal.  By default these are:
 	  *     RallyHereClientIdX
 	  *     RallyHereClientId
 	  *     RallyHereClientIdInternal
+	  * 2. Command line values from the keys in ClientIdCommandLineKeys, which are configured by ini
 	  * 2. ini value from the "RallyHere" section, with the "ClientId" key.
 	  * 3. ini value from the section for this class, with the "ClientId" key.
 	  */
@@ -148,12 +151,13 @@ public:
 
 	/**
 	  * @brief Check for a client secret across several sources and assign the first non-empty value to the APIs:
-	  * 1. Command line values from the keys in ClientSecretCommandLineKeys.  By default these are:
+	  * 1. Command line values from the keys in ClientSecretCommandLineKeysInternal.  By default these are:
 	  *     RallyHereClientSecretX
 	  *     RallyHereClientSecret
 	  *     RallyHereClientSecretInternal
-	  * 2. ini value from the "RallyHere" section, with the "ClientSecret" key.
-	  * 3. ini value from the section for this class, with the "ClientSecret" key.
+	  * 2. Command line values from the keys in ClientSecretCommandLineKeys, which are configured by ini
+	  * 3. ini value from the "RallyHere" section, with the "ClientSecret" key.
+	  * 4. ini value from the section for this class, with the "ClientSecret" key.
 	  */
 	void ResolveClientSecret();
 

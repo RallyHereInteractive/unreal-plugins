@@ -62,21 +62,36 @@ public:
 	/** @brief Helper to get the configuration for a given environment by EnvironmentId */
 	const FRH_EnvironmentConfiguration* GetEnvironmentConfiguration(const FString& EnvironmentId) const;
 
+	/** @brief Internal/Hardcoded Keys to check for on the command line for an override to the default BaseURL.  These are potentially used by RallyHere's automation and internal processes */
+	TArray<FString> BaseURLCommandLineKeysInternal;
+
 	/** @brief Keys to check for on the command line for an override to the default BaseURL */
     UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
     TArray<FString> BaseURLCommandLineKeys;
+
+	/** @brief Internal/Hardcoded Keys to check for on the command line for an override to the default Environment.  These are potentially used by RallyHere's automation and internal processes */
+	TArray<FString> EnvironmentCommandLineKeysInternal;
 
 	/** @brief Keys to check for on the command line for an override to the default Environment when using EnvironmentConfigurations */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
     TArray<FString> EnvironmentCommandLineKeys;
 
+	/** @brief Internal/Hardcoded Keys to check for on the command line for an override to the default OSS.  These are potentially used by RallyHere's automation and internal processes */
+	TArray<FString> DefaultOSSCommandLineKeysInternal;
+
 	/** @brief Keys to check for on the command line for an override to the default OSS */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
     TArray<FString> DefaultOSSCommandLineKeys;
 
+	/** @brief Internal/Hardcoded Keys to check for on the command line for an override to the default ClientId.  These are potentially used by RallyHere's automation and internal processes */
+	TArray<FString> ClientIdCommandLineKeysInternal;
+
 	/** @brief Keys to check for on the command line for an override to the default ClientId */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")
 	TArray<FString> ClientIdCommandLineKeys;
+
+	/** @brief Internal/Hardcoded Keys to check for on the command line for an override to the default ClientSecret.  These are potentially used by RallyHere's automation and internal processes */
+	TArray<FString> ClientSecretCommandLineKeysInternal;
 
 	/** @brief Keys to check for on the command line for an override to the default ClientSecret */
 	UPROPERTY(EditAnywhere, Config, Category = "Connectivity|Commandline")

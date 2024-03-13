@@ -10,6 +10,20 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	CategoryName = TEXT("Plugins");
 	SectionName = TEXT("Rally Here Integration Settings");
 
+	// Set the default internal commandline keys.  Note that ORDER IS IMPORTANT, as it determines priority.
+#define SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(SettingName, CommandLineBase) \
+	SettingName.Reset(3); \
+	SettingName.Add(TEXT(CommandLineBase "X"));			/* override variant (highest priority, dev / user override) */ \
+	SettingName.Add(TEXT(CommandLineBase));				/* default variant (middle priority, for default from storefront/install) */ \
+	SettingName.Add(TEXT(CommandLineBase "Internal"));	/* internal variant (lowest priority, for automation defaults from build/package) */ \
+
+	// set the default internal commandline keys for each setting
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(BaseURLCommandLineKeysInternal, "RallyHereURL");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(EnvironmentCommandLineKeysInternal, "RallyHereEnv");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(DefaultOSSCommandLineKeysInternal, "OSS");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientIdCommandLineKeysInternal, "RallyHereClientId");
+	SET_DEFAULT_INTERNAL_COMMANDLINE_KEYS(ClientSecretCommandLineKeysInternal, "RallyHereClientSecret");
+
 	bAutoStartSessionsAfterJoin = true;
 	bAutoJoinPlatformSessionsAfterUserChange = true;
 
