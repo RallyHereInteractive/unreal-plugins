@@ -247,6 +247,19 @@ void FRH_Integration::Initialize()
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
 
 	// override default OSS if specified
+	for (const auto& Key : Settings->DefaultOSSCommandLineKeysInternal)
+	{
+		FString temp;
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
+		{
+			temp = ParseCommandlineOverrideCommon(temp);
+			UE_LOG(LogRallyHereIntegration, Log, TEXT("[%s] Update Default OSS Value=%s Source=%s (Internal)"), ANSI_TO_TCHAR(__FUNCTION__), *temp, *Key);
+			GConfig->SetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), *temp, GEngineIni);
+			IOnlineSubsystem::ReloadDefaultSubsystem();
+			break;
+		}
+	}
+
 	for (const auto& Key : Settings->DefaultOSSCommandLineKeys)
 	{
 		FString temp;
@@ -369,6 +382,17 @@ void FRH_Integration::ResolveBaseURL()
 
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
 
+	for (const auto& Key : Settings->BaseURLCommandLineKeysInternal)
+	{
+		FString temp;
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
+		{
+			temp = ParseCommandlineOverrideCommon(temp);
+			SetBaseURL(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("' (Internal)"));
+			return;
+		}
+	}
+
 	for (const auto& Key : Settings->BaseURLCommandLineKeys)
 	{
 		FString temp;
@@ -379,7 +403,6 @@ void FRH_Integration::ResolveBaseURL()
 			return;
 		}
 	}
-
 
 	{
 		// check environment
@@ -447,6 +470,16 @@ void FRH_Integration::ResolveEnvironmentId()
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
 
 	FString temp;
+	for (const auto& Key : Settings->EnvironmentCommandLineKeysInternal)
+	{
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), temp))
+		{
+			temp = ParseCommandlineOverrideCommon(temp);
+			SetEnvironmentId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("' (Internal)"));
+			return;
+		}
+	}
+
 	for (const auto& Key : Settings->EnvironmentCommandLineKeys)
 	{
 		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT("=")), temp))
@@ -509,6 +542,17 @@ void FRH_Integration::ResolveClientId()
 
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
 
+	for (const auto& Key : Settings->ClientIdCommandLineKeysInternal)
+	{
+		FString temp;
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
+		{
+			temp = ParseCommandlineOverrideCommon(temp);
+			SetClientId(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("' (Internal)"));
+			return;
+		}
+	}
+
 	for (const auto& Key : Settings->ClientIdCommandLineKeys)
 	{
 		FString temp;
@@ -566,6 +610,17 @@ void FRH_Integration::ResolveClientSecret()
 	}
 
 	auto* Settings = GetDefault<URH_IntegrationSettings>();
+
+	for (const auto& Key : Settings->ClientSecretCommandLineKeysInternal)
+	{
+		FString temp;
+		if (FParse::Value(FCommandLine::Get(), *(Key + TEXT('=')), temp))
+		{
+			temp = ParseCommandlineOverrideCommon(temp);
+			SetClientSecret(MoveTemp(temp), TEXT("CmdLine '") + Key + TEXT("' (Internal)"));
+			return;
+		}
+	}
 
 	for (const auto& Key : Settings->ClientSecretCommandLineKeys)
 	{
