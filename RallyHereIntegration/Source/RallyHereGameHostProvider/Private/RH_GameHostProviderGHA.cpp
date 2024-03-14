@@ -366,6 +366,10 @@ void FRH_GameHostProviderGHA::OnSelfAllocateComplete(const RallyHereStatusCode& 
 	OnProviderSelfAllocateComplete.ExecuteIfBound(!bIsError);
 }
 
+void FRH_GameHostProviderGHA::NotifySoftStopRequested()
+{
+	GameHostAdapterImporter::rallyhere_external_soft_stop_requested(GameHostAdapter);
+}
 
 void FRH_GameHostProviderGHA::OnSoftStopRequestedCallback(const RallyHereStatusCode& code, void* user_data)
 {
