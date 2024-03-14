@@ -179,13 +179,8 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 			}
 			if (RHLoginResult->GetPersonIdOrNull() != nullptr)
 			{
-				Event.PlatformDisplayName = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphens);
+				Event.PersonId = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphens);
 			}
-			if (RHLoginResult->GetPersonIdOrNull() != nullptr)
-			{
-				Event.PlatformDisplayName = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphens);
-			}
-
 		}
 
 		Event.EmitTo(AnalyticsProvider);
