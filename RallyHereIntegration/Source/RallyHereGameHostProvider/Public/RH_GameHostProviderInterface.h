@@ -61,6 +61,8 @@ struct FRH_GameHostProviderStats
 	TOptional<bool> Private;
 	/** Whether anti cheat is enabled, if known */
 	TOptional<bool> AntiCheatEnabled;
+	/** Whether the server is healthy, if known */
+	TOptional<bool> Healthy;
 
 	FRH_GameHostProviderStats()
 	{

@@ -1171,6 +1171,7 @@ void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostPro
 {
 	// fill in basic information
 	{
+		// retrieve game state from world
 		const auto* World = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
 		if (World != nullptr)
 		{
@@ -1180,14 +1181,26 @@ void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostPro
 				Stats.GameMode = GameMode->GetName();
 				Stats.PlayerCount = GameMode->GetNumPlayers() + GameMode->GetNumSpectators();
 			}
+		}
 
-			if (RHSession != nullptr)
+		// retrieve session information
+		if (RHSession != nullptr)
+		{
+			int32 TeamCount = RHSession->GetTemplate().GetNumTeams(1);
+			int MaxPerTeam = RHSession->GetTemplate().GetPlayersPerTeam(1);
+			Stats.MaxPlayerCount = TeamCount * MaxPerTeam;
+
+			Stats.Private = !RHSession->GetSessionData().Joinable;
+		}
+
+		// retrieve health status from session subsystem
+		auto pSessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
+		if (pSessionSubsystem != nullptr && RHSession != nullptr && RHSession == pSessionSubsystem->GetActiveSession())
+		{
+			auto HealthStatus = pSessionSubsystem->GetInstanceHealthStatusToReport();
+			if (HealthStatus != ERHAPI_InstanceHealthStatus::Unknown)
 			{
-				int32 TeamCount = RHSession->GetTemplate().GetNumTeams(1);
-				int MaxPerTeam = RHSession->GetTemplate().GetPlayersPerTeam(1);
-				Stats.MaxPlayerCount = TeamCount * MaxPerTeam;
-
-				Stats.Private = !RHSession->GetSessionData().Joinable;
+				Stats.Healthy = HealthStatus == ERHAPI_InstanceHealthStatus::Healthy;
 			}
 		}
 	}
