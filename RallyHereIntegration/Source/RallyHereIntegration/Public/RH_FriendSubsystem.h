@@ -1184,6 +1184,13 @@ protected:
 	 */
 	virtual void OnReadOSSFriendsComplete(int32 LocalUserNum, bool bWasSuccessful, const FString& ListName, const FString& ErrorStr);
 	/**
+	 * @brief Handles the response from the online subsystem call to get blocked list.
+	 * @param [in] UserId Unique id of the local player.
+	 * @param [in] bWasSuccessful If the get friends call was successful.
+	 * @param [in] ErrorStr Error string if the call failed.
+	 */
+	void OnOSSQueryBlockListComplete(const FUniqueNetId& UserId, bool bWasSuccessful, const FString& ErrorStr);
+	/**
 	 * @brief Handles the response from the online subsystem call to get list of blocked players.
 	 * @param [in] LocalUserNum Controller id of the local player.
 	 * @param [in] ListName The name of the list that was returned.
@@ -1204,6 +1211,10 @@ protected:
 	 * @brief Delegate to be fired when online subsystem presence is received.
 	 */
 	FDelegateHandle OnOSSPresenceReceivedHandle;
+	/**
+	 * @brief Delegate to be fired when online subsystem blocked list is received
+	 */
+	FDelegateHandle OnOSSBlockListReceivedHandle;
 };
 
 /** @} */
