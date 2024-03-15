@@ -290,6 +290,12 @@ public:
 	{
 		OnProviderSelfAllocateComplete.ExecuteIfBound(true);
 	}
+
+	/** @brief Notify the provider that the game process initiated a soft stop on its own (this may end up calling the soft stop callback!) */
+	virtual void NotifySoftStopRequested()
+	{
+		// do nothing, no special handling is required
+	}
 };
 
 // helper class that contains the full flow of a server login (so it can be called during bootstrapping, or other times)

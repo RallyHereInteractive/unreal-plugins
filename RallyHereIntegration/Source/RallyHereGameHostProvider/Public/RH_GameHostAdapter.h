@@ -19,8 +19,10 @@ THIRD_PARTY_INCLUDES_START
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_create_game_instance_adapter) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_create_game_instance_adapter_with_logger) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_on_soft_stop_callback) \
+	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_external_soft_stop_requested) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_connect) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_tick) \
+	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_healthy) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_on_allocated_callback) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_string_map_create) \
 	FOREACH_RHGHA_IMPORT_FUNC_IMPL(rallyhere_string_map_destroy) \

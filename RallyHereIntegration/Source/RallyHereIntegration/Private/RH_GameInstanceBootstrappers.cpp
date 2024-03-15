@@ -242,6 +242,7 @@ namespace RallyHere
 	{
 		uint8 ExitStatusOverride = 0;
 		bool bHasReceivedTermSignal = false;
+		bool bHasNotifiedProvider = false;
 
 		void TerminationSignalHandler()
 		{
@@ -253,7 +254,22 @@ namespace RallyHere
 			}
 		}
 
+		void ProviderTerminationSignalHandler()
+		{
+			if (!bHasReceivedTermSignal)
+			{
+				bHasNotifiedProvider = true;	// if signal came from provider, we do not need to notify it again
+				bHasReceivedTermSignal = true;
+
+				UE_LOG(LogRallyHereIntegration, Warning, TEXT("Termination signal received, marking for spindown rather than exiting"));
+			}
+		}
+
+		// whether a soft stop has been requested
 		bool IsSoftStopRequested() { return bHasReceivedTermSignal; }
+
+		// simple gate to ensure we only notify the provider once.  Will return true if this is the one and only time provider should be notified
+		bool CheckShouldNotifyProvider() { bool bOldValue = bHasNotifiedProvider; bHasNotifiedProvider = true; return bOldValue; }
 
 #if PLATFORM_UNIX
 		namespace Unix
@@ -573,7 +589,7 @@ void URH_GameInstanceServerBootstrapper::BeginRegistration()
 	}
 
 	// bind callbacks
-	GameHostProvider->OnProviderSoftStopRequested.BindStatic(&RallyHere::TermSignalHandler::TerminationSignalHandler);
+	GameHostProvider->OnProviderSoftStopRequested.BindStatic(&RallyHere::TermSignalHandler::ProviderTerminationSignalHandler);
 	GameHostProvider->OnProviderHardStopRequested.BindWeakLambda(this, [this]()
 		{
 			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - hard stop requested from game host provider"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1158,12 +1174,22 @@ void URH_GameInstanceServerBootstrapper::Tick(float DeltaTime)
 	// if a soft stop has been requested and we do not have a session yet, spin down - else wait for session to no longer exist before spinning down
 	if (RallyHere::TermSignalHandler::IsSoftStopRequested() && RHSession == nullptr)
 	{
-		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Soft stop requested found while ticking, running cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
+		UE_LOG(LogRallyHereIntegration, Warning, TEXT("[%s] Soft stop requested found while ticking and unallocated, running cleanup"), ANSI_TO_TCHAR(__FUNCTION__));
 		check(ShouldRecycleAfterCleanup() == false); // this is used by the next function, and must return false to properly spin down
 
 		// trigger instance removal cleanup (even if not quite true) to unsync us
 		OnCleanupSessionSyncComplete(RHSession, false, TEXT("Soft Stop Requested"));
 		return;
+	}
+
+	// if a soft stop was requested, and the provider has not been notified, notify it
+	if (RallyHere::TermSignalHandler::IsSoftStopRequested() && RallyHere::TermSignalHandler::CheckShouldNotifyProvider())
+	{
+		// notify provider that we are stopping
+		if (GameHostProvider.IsValid())
+		{
+			GameHostProvider->NotifySoftStopRequested();
+		}
 	}
 }
 
@@ -1171,6 +1197,7 @@ void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostPro
 {
 	// fill in basic information
 	{
+		// retrieve game state from world
 		const auto* World = GetGameInstanceSubsystem()->GetGameInstance()->GetWorld();
 		if (World != nullptr)
 		{
@@ -1180,14 +1207,26 @@ void URH_GameInstanceServerBootstrapper::OnGameHostProviderStats(FRH_GameHostPro
 				Stats.GameMode = GameMode->GetName();
 				Stats.PlayerCount = GameMode->GetNumPlayers() + GameMode->GetNumSpectators();
 			}
+		}
 
-			if (RHSession != nullptr)
+		// retrieve session information
+		if (RHSession != nullptr)
+		{
+			int32 TeamCount = RHSession->GetTemplate().GetNumTeams(1);
+			int MaxPerTeam = RHSession->GetTemplate().GetPlayersPerTeam(1);
+			Stats.MaxPlayerCount = TeamCount * MaxPerTeam;
+
+			Stats.Private = !RHSession->GetSessionData().Joinable;
+		}
+
+		// retrieve health status from session subsystem
+		auto pSessionSubsystem = GetGameInstanceSubsystem()->GetSessionSubsystem();
+		if (pSessionSubsystem != nullptr && RHSession != nullptr && RHSession == pSessionSubsystem->GetActiveSession())
+		{
+			auto HealthStatus = pSessionSubsystem->GetInstanceHealthStatusToReport();
+			if (HealthStatus != ERHAPI_InstanceHealthStatus::Unknown)
 			{
-				int32 TeamCount = RHSession->GetTemplate().GetNumTeams(1);
-				int MaxPerTeam = RHSession->GetTemplate().GetPlayersPerTeam(1);
-				Stats.MaxPlayerCount = TeamCount * MaxPerTeam;
-
-				Stats.Private = !RHSession->GetSessionData().Joinable;
+				Stats.Healthy = HealthStatus == ERHAPI_InstanceHealthStatus::Healthy;
 			}
 		}
 	}

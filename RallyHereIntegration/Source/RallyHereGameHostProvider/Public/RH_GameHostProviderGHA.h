@@ -41,6 +41,8 @@ public:
 	virtual void BeginReservation() override;
 	virtual void BeginSelfAllocate() override;
 
+	virtual void NotifySoftStopRequested() override;
+
 	~FRH_GameHostProviderGHA();
 
 	/** @brief FTickableGameObject interface - Ticks the object */

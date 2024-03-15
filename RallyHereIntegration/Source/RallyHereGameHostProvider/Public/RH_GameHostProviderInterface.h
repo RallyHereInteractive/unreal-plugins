@@ -61,6 +61,8 @@ struct FRH_GameHostProviderStats
 	TOptional<bool> Private;
 	/** Whether anti cheat is enabled, if known */
 	TOptional<bool> AntiCheatEnabled;
+	/** Whether the server is healthy, if known */
+	TOptional<bool> Healthy;
 
 	FRH_GameHostProviderStats()
 	{
@@ -110,6 +112,9 @@ public:
 	virtual void BeginReservation() = 0;
 	/** @brief Asynchronous creation an allocation with the provider for self-allocating servers, triggers OnProviderSelfAllocateComplete upon completion */
 	virtual void BeginSelfAllocate() = 0;
+
+	/** @brief Notify the provider that the game process initiated a soft stop on its own (this may end up calling the soft stop callback!) */
+	virtual void NotifySoftStopRequested() = 0;
 
 	template<typename ProviderType>
 	static ProviderType* Create(const FString& Commandline)

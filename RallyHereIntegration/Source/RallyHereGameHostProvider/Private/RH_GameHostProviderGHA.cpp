@@ -147,51 +147,55 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 	// push stats to GHA
 	if (GameHostAdapter != nullptr)
 	{
-		// collect stats
+		// collect stats from bound delegate
 		FRH_GameHostProviderStats GameStats;
 		OnProviderStats.ExecuteIfBound(GameStats);
 
-		RallyHereStatsBase stats{};
-		RallyHereStatsBaseProvided provided{};
-		memset(&provided, 0x00, sizeof(provided));
+		// convert and update stats to GHA
+		{
+			RallyHereStatsBase stats{};
+			RallyHereStatsBaseProvided provided{};
+			memset(&provided, 0x00, sizeof(provided));
 
-		// make sure the string storage persists properly until the call
-		FString MapName;
-		if (GameStats.Map.IsSet())
-		{
-			MapName = GameStats.Map.GetValue();
-			FTCHARToUTF8 MapNameUTF8(*MapName);
-			stats.map = (ANSICHAR*)MapNameUTF8.Get();
-			provided.set_map = true;
-		}
+			// make sure the string storage persists properly until the call
+			FString MapName;
+			if (GameStats.Map.IsSet())
+			{
+				MapName = GameStats.Map.GetValue();
+				FTCHARToUTF8 MapNameUTF8(*MapName);
+				stats.map = (ANSICHAR*)MapNameUTF8.Get();
+				provided.set_map = true;
+			}
 
-		if (GameStats.PlayerCount.IsSet())
-		{
-			stats.players = GameStats.PlayerCount.GetValue();
-			provided.set_players = true;
-		}
-		if (GameStats.MaxPlayerCount.IsSet())
-		{
-			stats.max_players = GameStats.MaxPlayerCount.GetValue();
-			provided.set_max_players = true;
-		}
-		if (GameStats.BotCount.IsSet())
-		{
-			stats.bots = GameStats.BotCount.GetValue();
-			provided.set_bots = true;
-		}
-		if (GameStats.Private.IsSet())
-		{
-			stats.visibility = GameStats.Private.GetValue() ? 1 : 0;
-			provided.set_visibility = true;
-		}
-		if (GameStats.AntiCheatEnabled.IsSet())
-		{
-			stats.anticheat = GameStats.AntiCheatEnabled.GetValue() ? 1 : 0;
-			provided.set_anticheat = true;
-		}
+			if (GameStats.PlayerCount.IsSet())
+			{
+				stats.players = GameStats.PlayerCount.GetValue();
+				provided.set_players = true;
+			}
+			if (GameStats.MaxPlayerCount.IsSet())
+			{
+				stats.max_players = GameStats.MaxPlayerCount.GetValue();
+				provided.set_max_players = true;
+			}
+			if (GameStats.BotCount.IsSet())
+			{
+				stats.bots = GameStats.BotCount.GetValue();
+				provided.set_bots = true;
+			}
+			if (GameStats.Private.IsSet())
+			{
+				stats.visibility = GameStats.Private.GetValue() ? 1 : 0;
+				provided.set_visibility = true;
+			}
+			if (GameStats.AntiCheatEnabled.IsSet())
+			{
+				stats.anticheat = GameStats.AntiCheatEnabled.GetValue() ? 1 : 0;
+				provided.set_anticheat = true;
+			}
 
-		GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
+			// update stats
+			GameHostAdapterImporter::rallyhere_stats_base(GameHostAdapter, &stats, &provided, nullptr, nullptr);
+		}
 
 		// pass other additional params
 		if (GameStats.GameMode.IsSet())
@@ -204,12 +208,25 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 			}
 		}
 
-		auto code = GameHostAdapterImporter::rallyhere_tick(GameHostAdapter);
-		if (GameHostAdapterImporter::rallyhere_is_error(code))
+		// update health status
+		if (GameStats.Healthy.IsSet() && !GameStats.Healthy.GetValue())
 		{
-			UE_LOG(LogRHGameHostProvider, Log, TEXT("[%s] Failed tick: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
-			OnProviderHardStopRequested.ExecuteIfBound();
-			return;
+			auto code = GameHostAdapterImporter::rallyhere_healthy(GameHostAdapter);
+			if (GameHostAdapterImporter::rallyhere_is_error(code))
+			{
+				UE_LOG(LogRHGameHostProvider, Warning, TEXT("[%s] Failed healthy: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+			}
+		}
+
+		// process callbacks from GHA
+		{
+			auto code = GameHostAdapterImporter::rallyhere_tick(GameHostAdapter);
+			if (GameHostAdapterImporter::rallyhere_is_error(code))
+			{
+				UE_LOG(LogRHGameHostProvider, Error, TEXT("[%s] Failed tick: %s"), ANSI_TO_TCHAR(__FUNCTION__), UTF8_TO_TCHAR(GameHostAdapterImporter::rallyhere_status_text(code)));
+				OnProviderHardStopRequested.ExecuteIfBound();
+				return;
+			}
 		}
 	}
 }
@@ -349,6 +366,10 @@ void FRH_GameHostProviderGHA::OnSelfAllocateComplete(const RallyHereStatusCode& 
 	OnProviderSelfAllocateComplete.ExecuteIfBound(!bIsError);
 }
 
+void FRH_GameHostProviderGHA::NotifySoftStopRequested()
+{
+	GameHostAdapterImporter::rallyhere_external_soft_stop_requested(GameHostAdapter);
+}
 
 void FRH_GameHostProviderGHA::OnSoftStopRequestedCallback(const RallyHereStatusCode& code, void* user_data)
 {
