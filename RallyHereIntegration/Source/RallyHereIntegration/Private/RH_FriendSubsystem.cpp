@@ -807,8 +807,15 @@ void URH_FriendSubsystem::OSSReadFriendsList(const FString& ListName /* = "Defau
 			// Request load platform friends list
 			OSSFriendsInterface->ReadFriendsList(LPSS->GetPlatformUserId(), ListName, FOnReadFriendsListComplete::CreateUObject(this, &URH_FriendSubsystem::OnReadOSSFriendsComplete));
 
-			// Request a list of blocked platform players
+			// bind to the block query complete binding
+			OSSFriendsInterface->ClearOnQueryBlockedPlayersCompleteDelegate_Handle(OnOSSBlockListReceivedHandle);
+			OnOSSBlockListReceivedHandle = OSSFriendsInterface->AddOnQueryBlockedPlayersCompleteDelegate_Handle(FOnQueryBlockedPlayersCompleteDelegate::CreateUObject(this, &URH_FriendSubsystem::OnOSSQueryBlockListComplete));
+			
+			// bind to the block list change delegate
+			OSSFriendsInterface->OnBlockListChangeDelegates[LPSS->GetPlatformUserId()].RemoveAll(this);
 			OSSFriendsInterface->OnBlockListChangeDelegates[LPSS->GetPlatformUserId()].AddUObject(this, &URH_FriendSubsystem::OnOSSBlockListChanged);
+
+			// Query the block list
 			OSSFriendsInterface->QueryBlockedPlayers(*LPSS->GetOSSUniqueId().GetUniqueNetId());
 
 			// Listen to presence change to update friends' metadata
@@ -833,6 +840,24 @@ void URH_FriendSubsystem::OnReadOSSFriendsComplete(int32 LocalUserNum, bool bWas
 	}
 }
 
+void URH_FriendSubsystem::OnOSSQueryBlockListComplete(const FUniqueNetId& UserId, bool bWasSuccessful, const FString& ErrorStr)
+{
+	if (bWasSuccessful)
+	{
+		if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+		{
+			OnOSSBlockListChanged(LPSS->GetPlatformUserId().GetInternalId(), TEXT("Default"));
+		}
+		else
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OnOSSQueryBlockListComplete failed to get local player subsystem"), ANSI_TO_TCHAR(__FUNCTION__));
+		}
+	}
+	else
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSSFriendsInterface failed to QueryBlockList with error: %s"), ANSI_TO_TCHAR(__FUNCTION__), *ErrorStr);
+	}
+}
 
 void URH_FriendSubsystem::OnOSSBlockListChanged(int32 LocalUserNum, const FString& ListName)
 {

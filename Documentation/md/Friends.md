@@ -653,6 +653,7 @@ Friends Subsystem for handling a users relationships with other players.
 `protected FRH_AutoPollerPtr `[`FriendsListPoller`](#classURH__FriendSubsystem_1ae4e279605cefbf9699c08c1f9a56a190) | Poller for getting friends list.
 `protected FRH_AutoPollerPtr `[`BlockedListPoller`](#classURH__FriendSubsystem_1a702f1614a6893998c654fd7ee5f340b0) | Poller for getting blocked players list.
 `protected FDelegateHandle `[`OnOSSPresenceReceivedHandle`](#classURH__FriendSubsystem_1af4dee5d7db87903fc77a81214efdda36) | Delegate to be fired when online subsystem presence is received.
+`protected FDelegateHandle `[`OnOSSBlockListReceivedHandle`](#classURH__FriendSubsystem_1aa34a363f7ba27902f860e261910f01aa) | Delegate to be fired when online subsystem blocked list is received.
 `protected virtual void `[`OnUserChanged`](#classURH__FriendSubsystem_1af5610e7a103a6e3fa10cbddf90f5f37c)`()` | Callback that occurs whenever the local player this subsystem is associated with changes.
 `protected virtual void `[`InitPropertiesWithDefaultValues`](#classURH__FriendSubsystem_1a329dc919c010125a81f508eaf83f3d74)`()` | Initializes the subsystem with defaults for its cached data.
 `protected virtual bool `[`SetDefaultParamsForGetFriendRequest`](#classURH__FriendSubsystem_1ac4a8491381ccb8bcc26a031048d628b9)`(GetFriendRelationshipType::Request & Request) const` | Fills our a Get Friend request.
@@ -678,6 +679,7 @@ Friends Subsystem for handling a users relationships with other players.
 `protected void `[`PollBlockedPlayers`](#classURH__FriendSubsystem_1a3eb26a11fae901e018b1a1863c576f3b)`(const FRH_PollCompleteFunc & Delegate)` | Executes a poll of the players blocked list.
 `protected FName `[`ExtractErrorCodeFromResponse`](#classURH__FriendSubsystem_1a132d8e0a874d1f686f085ab4b3a6e68f)`(const FHttpResponsePtr & Response) const` | Gets the error code response name from a http request.
 `protected virtual void `[`OnReadOSSFriendsComplete`](#classURH__FriendSubsystem_1a28e2e549632ea1cde658e352a74e5e71)`(int32 LocalUserNum,bool bWasSuccessful,const FString & ListName,const FString & ErrorStr)` | Handles the response from the online subsystem call to get friends.
+`protected void `[`OnOSSQueryBlockListComplete`](#classURH__FriendSubsystem_1ab8eb49f42a52b3cb1e6a1ae6c1663d3d)`(const FUniqueNetId & UserId,bool bWasSuccessful,const FString & ErrorStr)` | Handles the response from the online subsystem call to get blocked list.
 `protected virtual void `[`OnOSSBlockListChanged`](#classURH__FriendSubsystem_1ac118c76788b362e16e3c254372921074)`(int32 LocalUserNum,const FString & ListName)` | Handles the response from the online subsystem call to get list of blocked players.
 `protected virtual void `[`UpdateWithOSSFriends`](#classURH__FriendSubsystem_1ac1ec831e3a17301014fd02b08cd786e6)`(const FString & ListName)` | Updates the system with the friends from the online subsystem.
 `protected virtual void `[`OnOSSPresenceReceived`](#classURH__FriendSubsystem_1a96025e788f843e3af281e4a35bc67f2d)`(const FUniqueNetId & UserId,const TSharedRef< FOnlineUserPresence > & NewPresence)` | Handles the response from the online subsystem call to get presence.
@@ -1101,6 +1103,11 @@ Poller for getting blocked players list.
 Delegate to be fired when online subsystem presence is received.
 
 <br>
+#### `protected FDelegateHandle `[`OnOSSBlockListReceivedHandle`](#classURH__FriendSubsystem_1aa34a363f7ba27902f860e261910f01aa) <a id="classURH__FriendSubsystem_1aa34a363f7ba27902f860e261910f01aa"></a>
+
+Delegate to be fired when online subsystem blocked list is received.
+
+<br>
 #### `protected virtual void `[`OnUserChanged`](#classURH__FriendSubsystem_1af5610e7a103a6e3fa10cbddf90f5f37c)`()` <a id="classURH__FriendSubsystem_1af5610e7a103a6e3fa10cbddf90f5f37c"></a>
 
 Callback that occurs whenever the local player this subsystem is associated with changes.
@@ -1363,6 +1370,18 @@ Handles the response from the online subsystem call to get friends.
 * `bWasSuccessful` If the get friends call was successful. 
 
 * `ListName` The name of the list that was requested. 
+
+* `ErrorStr` Error string if the call failed.
+
+<br>
+#### `protected void `[`OnOSSQueryBlockListComplete`](#classURH__FriendSubsystem_1ab8eb49f42a52b3cb1e6a1ae6c1663d3d)`(const FUniqueNetId & UserId,bool bWasSuccessful,const FString & ErrorStr)` <a id="classURH__FriendSubsystem_1ab8eb49f42a52b3cb1e6a1ae6c1663d3d"></a>
+
+Handles the response from the online subsystem call to get blocked list.
+
+#### Parameters
+* `UserId` Unique id of the local player. 
+
+* `bWasSuccessful` If the get friends call was successful. 
 
 * `ErrorStr` Error string if the call failed.
 
