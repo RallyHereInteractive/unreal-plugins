@@ -10,7 +10,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "SettingsAPI.h"
 #include "SessionsAPI.h"
-#include "SanctionsAPI.h"
+#include "ReportsAPI.h"
 #include "MatchAPI.h"
 #include "RankAPI.h"
 #include "Engine/EngineTypes.h"
@@ -67,6 +67,17 @@ UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>&, PlayerRankingInfo);
 DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerRankingsBlock, FRH_PlayerInfoGetPlayerRankingsDelegate, FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>&)
+
+
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_FourParams(FRH_PlayerInfoGetPlayerReportsDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_PlayerReport>&, PlayerReports, const FString&, Cursor, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_FourParams(FRH_PlayerInfoGetPlayerReportsDelegate, bool, const TArray<FRHAPI_PlayerReport>&, const FString&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerReportsBlock, FRH_PlayerInfoGetPlayerReportsDelegate, FRH_PlayerInfoGetPlayerReportsDynamicDelegate, bool, const TArray<FRHAPI_PlayerReport>&, const FString&, const FRH_ErrorInfo&)
+
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoCreatePlayerReportDynamicDelegate, bool, bSuccess, const FRHAPI_PlayerReport, Report, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_PlayerInfoCreatePlayerReportDelegate, bool, const FRHAPI_PlayerReport&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoCreatePlayerReportBlock, FRH_PlayerInfoCreatePlayerReportDelegate, FRH_PlayerInfoCreatePlayerReportDynamicDelegate, bool, const FRHAPI_PlayerReport&, const FRH_ErrorInfo&)
 
 // multicast delegates to notify listeners of player info subobject events
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate, URH_PlayerInfoSubobject*, Subobject);
@@ -334,50 +345,6 @@ protected:
 	}
 };
 
-
-/**
- * @brief Player Sanctions class used to store and send player sanction report information
- */
-UCLASS(Config = RallyHereIntegration, DefaultConfig)
-class RALLYHEREINTEGRATION_API URH_PlayerSanctions: public URH_PlayerInfoSubobject
-{
-	GENERATED_UCLASS_BODY()
-
-public:
-	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid GetReportsSentType;
-	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid GetReportsReceivedType;
-	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid SendReportType;
-
-	/**
-	* @brief The sessions the player is a member of.
-	*/
-	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
-	FRHAPI_PlayerSessions Sessions;
-
-protected:
-
-	/**
-	 * @brief Starts a poll of the players sessions.
-	 * @param Delegate Callback delegate for the poll.
-	 */
-	virtual void Poll(const FRH_PollCompleteFunc& Delegate) override;
-	/**
-	 * @brief Stores the response data from an API request.
-	 * @param Other The response data to store.
-	 */
-	virtual void Update(const GetSessionsType::Response& Other)
-	{
-		UpdateBase(Other);
-
-		if (Other.ETag.IsSet())
-		{
-			ETag = Other.ETag.GetValue();
-		}
-
-		Sessions = Other.Content;
-	}
-};
-
 /**
  * @brief Player Matches class used to store player match history information
  */
@@ -503,6 +470,94 @@ protected:
 	static bool CheckPollingCursorComplete(const TSharedPtr<FPollContext> Context);
 };
 
+
+/**
+ * @brief Player Reports class used to store and send player report information
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerReports : public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+
+	typedef RallyHereAPI::Traits_GetReportsFromSourcePlayerUuid GetReportsSentType;
+	typedef RallyHereAPI::Traits_GetReportsForTargetPlayerUuid GetReportsReceivedType;
+	typedef RallyHereAPI::Traits_CreateReportForTargetPlayerUuid CreateReportType;
+
+	/**
+	 * @brief Request a list of player reports send by this player
+	 * @param Cursor The cursor to use for the request.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	void GetReportsSentAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
+
+	/**
+	 * @brief Request a list of player reports send by this player
+	 * @param Cursor The cursor to use for the request.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Reports", meta = (DisplayName = "Get Reports Sent Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetReportsSentAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsDynamicDelegate& Delegate) { GetReportsSentAsync(Cursor, Delegate); }
+
+	/**
+	 * @brief Get the current cached list of player reports sent by this player
+	 */
+	UFUNCTION(BlueprintGetter, Category = "Player Info Subsystem | Player Reports")
+	TArray<FRHAPI_PlayerReport> GetReportsSent() const { return ReportsSent; }
+
+	/**
+	 * @brief Request a list of player reports received by this player
+	 * @param Cursor The cursor to use for the request.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	void GetReportsReceivedAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
+
+	/**
+	 * @brief Request a list of player reports received by this player
+	 * @param Cursor The cursor to use for the request.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Reports", meta = (DisplayName = "Get Reports Received Async", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetReportsReceivedAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsDynamicDelegate& Delegate) { GetReportsReceivedAsync(Cursor, Delegate); }
+
+	/**
+	 * @brief Get the current cached list of player reports received by this player
+	 */
+	UFUNCTION(BlueprintGetter, Category = "Player Info Subsystem | Player Reports")
+	TArray<FRHAPI_PlayerReport> GetReportsReceived() const { return ReportsReceived; }
+
+	/**
+	 * @brief Create a new report for the target player
+	 * @param Report The report to create.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	void CreateReport(const FRHAPI_PlayerReportCreate& Report, const FRH_PlayerInfoCreatePlayerReportBlock& Delegate = FRH_PlayerInfoCreatePlayerReportBlock());
+
+	/**
+	 * @brief Create a new report for the target player
+	 * @param Report The report to create.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Reports", meta = (DisplayName = "Create Report", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_CreateReport(const FRHAPI_PlayerReportCreate& Report, const FRH_PlayerInfoCreatePlayerReportDynamicDelegate& Delegate) { CreateReport(Report, Delegate); }
+
+	/**
+	 * @brief Create a new report for the target player with a specific auth context
+	 * @param Report The report to create.
+	 * @param AuthContext The auth context to use for the request.
+	 * @param Delegate Callback delegate for the request.
+	 */
+	void CreateReport(const FRHAPI_PlayerReportCreate& Report, FAuthContextPtr AuthContext, const FRH_PlayerInfoCreatePlayerReportBlock& Delegate = FRH_PlayerInfoCreatePlayerReportBlock());
+
+protected:
+	UPROPERTY(BlueprintReadOnly, BlueprintGetter = GetReportsSent, Category = "Player Info Subsystem | Player Reports")
+	TArray<FRHAPI_PlayerReport> ReportsSent;
+
+	UPROPERTY(BlueprintReadOnly, BlueprintGetter = GetReportsReceived, Category = "Player Info Subsystem | Player Reports")
+	TArray<FRHAPI_PlayerReport> ReportsReceived;
+};
+
 /**
  * @brief Wrapper to help with setting keys for player settings.
  */
@@ -609,6 +664,13 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerMatches* GetMatches() const { return PlayerMatches; }
+
+	/**
+	* @brief Gets The players reports class.
+	* @return The players reports class.
+	*/
+	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
+	FORCEINLINE URH_PlayerReports* GetReports() const { return PlayerReports; }
 
 	/**
 	* @brief Gets the associated platform ids of the player.
@@ -813,6 +875,11 @@ protected:
 	 */
 	UPROPERTY(BlueprintGetter = GetMatches, Category = "Matches")
 	URH_PlayerMatches* PlayerMatches;
+	/**
+	 * @brief The players Reports Information.
+	 */
+	UPROPERTY(BlueprintGetter = GetReports, Category = "Reports")
+	URH_PlayerReports* PlayerReports;
 	/**
 	 * @brief The Players Inventory Subsystem.
 	 */
