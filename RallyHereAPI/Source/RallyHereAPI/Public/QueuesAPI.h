@@ -87,7 +87,7 @@ private:
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -159,7 +159,7 @@ struct RALLYHEREAPI_API Traits_GetAllMapGameInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -232,7 +232,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -305,7 +305,7 @@ struct RALLYHEREAPI_API Traits_GetAllQueueInfoV2
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -376,7 +376,7 @@ struct RALLYHEREAPI_API Traits_GetInstanceRequestTemplate
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -448,7 +448,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfile
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -520,7 +520,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingProfileV2
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  *             
@@ -593,7 +593,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplates
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 

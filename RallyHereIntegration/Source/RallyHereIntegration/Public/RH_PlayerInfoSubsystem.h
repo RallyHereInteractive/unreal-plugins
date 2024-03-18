@@ -10,6 +10,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "SettingsAPI.h"
 #include "SessionsAPI.h"
+#include "SanctionsAPI.h"
 #include "MatchAPI.h"
 #include "RankAPI.h"
 #include "Engine/EngineTypes.h"
@@ -333,6 +334,49 @@ protected:
 	}
 };
 
+
+/**
+ * @brief Player Sanctions class used to store and send player sanction report information
+ */
+UCLASS(Config = RallyHereIntegration, DefaultConfig)
+class RALLYHEREINTEGRATION_API URH_PlayerSanctions: public URH_PlayerInfoSubobject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid GetReportsSentType;
+	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid GetReportsReceivedType;
+	typedef RallyHereAPI::Traits_GetPlayerSessionsByUuid SendReportType;
+
+	/**
+	* @brief The sessions the player is a member of.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Sessions")
+	FRHAPI_PlayerSessions Sessions;
+
+protected:
+
+	/**
+	 * @brief Starts a poll of the players sessions.
+	 * @param Delegate Callback delegate for the poll.
+	 */
+	virtual void Poll(const FRH_PollCompleteFunc& Delegate) override;
+	/**
+	 * @brief Stores the response data from an API request.
+	 * @param Other The response data to store.
+	 */
+	virtual void Update(const GetSessionsType::Response& Other)
+	{
+		UpdateBase(Other);
+
+		if (Other.ETag.IsSet())
+		{
+			ETag = Other.ETag.GetValue();
+		}
+
+		Sessions = Other.Content;
+	}
+};
 
 /**
  * @brief Player Matches class used to store player match history information

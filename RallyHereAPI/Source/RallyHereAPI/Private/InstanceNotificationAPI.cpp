@@ -164,7 +164,7 @@ void FResponse_InstanceCreateNotification::SetHttpResponseCode(EHttpResponseCode
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization "));
         break;
     case 409:
         SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
@@ -351,7 +351,7 @@ void FResponse_InstanceGetNotificationById::SetHttpResponseCode(EHttpResponseCod
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization "));
         break;
     case 404:
         SetResponseString(TEXT(" Error Codes: - resource_not_found - Notification could not be found "));
@@ -570,7 +570,7 @@ void FResponse_InstanceGetNotificationsPage::SetHttpResponseCode(EHttpResponseCo
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization "));
         break;
     case 409:
         SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));
@@ -776,7 +776,7 @@ void FResponse_InstanceLongPollForNotifications::SetHttpResponseCode(EHttpRespon
         SetResponseString(TEXT(" Error Codes: - bad_id - Passed client id is not a valid id "));
         break;
     case 403:
-        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_format - Invalid Authorization - {} - auth_token_sig_invalid - Token Signature is invalid - auth_token_expired - Token is expired - auth_invalid_version - Invalid Authorization - version - auth_token_unknown - Failed to parse token - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_not_jwt - Invalid Authorization - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_malformed_access - Invalid Authorization - malformed access token "));
+        SetResponseString(TEXT(" Error Codes: - insufficient_permissions - Insufficient Permissions - auth_token_unknown - Failed to parse token - auth_invalid_key_id - Invalid Authorization - Invalid Key ID in Access Token - auth_invalid_version - Invalid Authorization - version - auth_token_invalid_claim - Token contained invalid claim value: {} - auth_malformed_access - Invalid Authorization - malformed access token - auth_token_expired - Token is expired - auth_token_sig_invalid - Token Signature is invalid - auth_token_format - Invalid Authorization - {} - auth_not_jwt - Invalid Authorization "));
         break;
     case 409:
         SetResponseString(TEXT(" Error Codes: - too_many_listening_to_single_client - An enumeration. "));

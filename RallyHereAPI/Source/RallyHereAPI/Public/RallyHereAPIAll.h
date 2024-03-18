@@ -35,6 +35,7 @@
 #include "QueuesAPI.h"
 #include "RankAPI.h"
 #include "RegionsAPI.h"
+#include "ReportsAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
 #include "TimeAPI.h"
@@ -128,6 +129,9 @@ public:
     FRegionsAPI& GetRegions();
     const FRegionsAPI& GetRegions() const;
 
+    FReportsAPI& GetReports();
+    const FReportsAPI& GetReports() const;
+
     FSessionsAPI& GetSessions();
     const FSessionsAPI& GetSessions() const;
 
@@ -168,6 +172,7 @@ private:
     FQueuesAPI Queues;
     FRankAPI Rank;
     FRegionsAPI Regions;
+    FReportsAPI Reports;
     FSessionsAPI Sessions;
     FSettingsAPI Settings;
     FTimeAPI Time;
