@@ -107,8 +107,9 @@ public:
 	TSharedPtr<struct FRHDTW_WebRequests> WebRequestsWindow;
 	TSharedPtr<struct FRHDTW_PlayerPlatforms> PlayerPlatformsWindow;
 	TSharedPtr<struct FRHDTW_PlayerInventory> PlayerInventoryWindow;
-	TSharedPtr<struct FRHDTW_PlayerSessions> PlayerSessionsWindow;
+	TSharedPtr<struct FRHDTW_PlayerRanks> PlayerRanksWindow;
 	TSharedPtr<struct FRHDTW_PlayerSettings> PlayerSettingsWindow;
+	TSharedPtr<struct FRHDTW_PlayerReports> PlayerReportsWindow;
 	TSharedPtr<struct FRHDTW_Purge> PurgeWindow;
 	TSharedPtr<struct FRHDTW_Catalog> CatalogWindow;
 	TSharedPtr<struct FRHDTW_Entitlements> EntitlementsWindow;

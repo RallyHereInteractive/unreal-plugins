@@ -165,6 +165,8 @@ public:
 	void GetCustomDataMap(TMap<FString, FString>& OutMap);
 	void SetDataFromMap(const TMap<FString, FString>& InMap);
 
+	void Clear() { SetDataFromMap(TMap<FString, FString>()); }
+
 private:
 	struct KeyValueInputPair
 	{

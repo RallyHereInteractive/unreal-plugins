@@ -35,8 +35,9 @@
 #include "RHDTW_Players.h"
 #include "RHDTW_PlayerPlatforms.h"
 #include "RHDTW_PlayerInventory.h"
-#include "RHDTW_PlayerSessions.h"
+#include "RHDTW_PlayerRanks.h"
 #include "RHDTW_PlayerSettings.h"
+#include "RHDTW_PlayerReports.h"
 #include "RHDTW_Presence.h"
 #include "RHDTW_WebRequests.h"
 #include "RHDTW_Purge.h"
@@ -105,14 +106,17 @@ void URallyHereDebugTool::Initialize(FSubsystemCollectionBase& Collection)
 	PurgeWindow = MakeShared<FRHDTW_Purge>();
 	PurgeWindow->Init(this, TEXT("Purge"));
 
-	PlayerSessionsWindow = MakeShared<FRHDTW_PlayerSessions>();
-	PlayerSessionsWindow->Init(this, TEXT("Ranks"));
+	PlayerRanksWindow = MakeShared<FRHDTW_PlayerRanks>();
+	PlayerRanksWindow->Init(this, TEXT("Ranks"));
 
 	SessionWindow = MakeShared<FRHDTW_Session>();
 	SessionWindow->Init(this, TEXT("Session"));
 
 	PlayerSettingsWindow = MakeShared<FRHDTW_PlayerSettings>();
 	PlayerSettingsWindow->Init(this, TEXT("Settings"));
+
+	PlayerReportsWindow = MakeShared<FRHDTW_PlayerReports>();
+	PlayerReportsWindow->Init(this, TEXT("Reports"));
 
 	CustomEndpointWindow = MakeShared<FRHDTW_CustomEndpoint>();
 	CustomEndpointWindow->Init(this, TEXT("Custom Endpoint"));
