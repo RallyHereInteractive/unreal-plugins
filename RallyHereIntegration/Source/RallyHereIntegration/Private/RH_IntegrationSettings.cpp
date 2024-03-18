@@ -3,6 +3,8 @@
 
 #include "RH_IntegrationSettings.h"
 #include "RH_Common.h"
+#include "Misc/CommandLine.h"
+
 
 URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -142,4 +144,20 @@ const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfi
 	}
 
 	return EnvironmentConfig;
+}
+
+bool URH_IntegrationSettings::ShouldUseLocalPlayerSandboxing()
+{
+#if !UE_BUILD_SHIPPING
+	if (FParse::Param(FCommandLine::Get(), TEXT("rh.ForceNoLPSandboxing")))
+	{
+		return false;
+	}
+	else if (FParse::Param(FCommandLine::Get(), TEXT("rh.ForceLPSandboxing")))
+	{
+		return true;
+	}
+#endif
+
+	return GetDefault<URH_IntegrationSettings>()->bLocalPlayerSubsystemSandboxing;
 }
