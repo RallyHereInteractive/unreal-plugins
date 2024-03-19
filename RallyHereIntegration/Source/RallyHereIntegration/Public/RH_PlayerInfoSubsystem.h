@@ -488,17 +488,19 @@ public:
 	/**
 	 * @brief Request a list of player reports send by this player
 	 * @param Cursor The cursor to use for the request.
+	 * @param PageSize The size of the pages to poll, if 0, uses default
 	 * @param Delegate Callback delegate for the request.
 	 */
-	void GetReportsSentAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
+	void GetReportsSentAsync(const FString& Cursor, const int32 PageSize = 0, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
 
 	/**
 	 * @brief Request a list of player reports send by this player
 	 * @param Cursor The cursor to use for the request.
+	 * @param PageSize The size of the pages to poll, if 0, uses default
 	 * @param Delegate Callback delegate for the request.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Reports", meta = (DisplayName = "Get Reports Sent Async", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetReportsSentAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsDynamicDelegate& Delegate) { GetReportsSentAsync(Cursor, Delegate); }
+	void BLUEPRINT_GetReportsSentAsync(const FString& Cursor, const int32 PageSize, const FRH_PlayerInfoGetPlayerReportsDynamicDelegate& Delegate) { GetReportsSentAsync(Cursor, PageSize, Delegate); }
 
 	/**
 	 * @brief Get the current cached list of player reports sent by this player
@@ -509,17 +511,19 @@ public:
 	/**
 	 * @brief Request a list of player reports received by this player
 	 * @param Cursor The cursor to use for the request.
+	 * @param PageSize The size of the pages to poll, if 0, uses default
 	 * @param Delegate Callback delegate for the request.
 	 */
-	void GetReportsReceivedAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
+	void GetReportsReceivedAsync(const FString& Cursor, const int32 PageSize = 0, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate = FRH_PlayerInfoGetPlayerReportsBlock());
 
 	/**
 	 * @brief Request a list of player reports received by this player
 	 * @param Cursor The cursor to use for the request.
+	 * @param PageSize The size of the pages to poll, if 0, uses default
 	 * @param Delegate Callback delegate for the request.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Reports", meta = (DisplayName = "Get Reports Received Async", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GetReportsReceivedAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsDynamicDelegate& Delegate) { GetReportsReceivedAsync(Cursor, Delegate); }
+	void BLUEPRINT_GetReportsReceivedAsync(const FString& Cursor, const int32 PageSize, const FRH_PlayerInfoGetPlayerReportsDynamicDelegate& Delegate) { GetReportsReceivedAsync(Cursor, PageSize, Delegate); }
 
 	/**
 	 * @brief Get the current cached list of player reports received by this player

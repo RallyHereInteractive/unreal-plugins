@@ -12,6 +12,8 @@ FRHDTW_PlayerReports::FRHDTW_PlayerReports()
 {
 	DefaultPos = FVector2D(610, 20);
 
+	GetReportsPageSize = 0;
+
 	CreateReportActionResult.Empty();
 }
 
@@ -169,16 +171,18 @@ void FRHDTW_PlayerReports::DoViewReportsReceived()
 
 	if (ImGui::Button("Fetch Reports"))
 	{
-		ActivePlayerInfo->GetReports()->GetReportsReceivedAsync(FString(), FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsReceived));
+		ActivePlayerInfo->GetReports()->GetReportsReceivedAsync(FString(), GetReportsPageSize, FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsReceived));
 	}
 	if (GetReportsReceivedNextCursor.Len() > 0)
 	{
 		ImGui::SameLine();
 		if (ImGui::Button("Fetch Next Page"))
 		{
-			ActivePlayerInfo->GetReports()->GetReportsReceivedAsync(GetReportsReceivedNextCursor, FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsReceived));
+			ActivePlayerInfo->GetReports()->GetReportsReceivedAsync(GetReportsReceivedNextCursor, GetReportsPageSize, FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsReceived));
 		}
 	}
+
+	ImGui::InputInt("Page Size", &GetReportsPageSize);
 
 	ImGui::Separator();
 	for (const auto& Report : ActivePlayerInfo->GetReports()->GetReportsReceived())
@@ -217,16 +221,18 @@ void FRHDTW_PlayerReports::DoViewReportsSent()
 
 	if (ImGui::Button("Fetch Reports"))
 	{
-		ActivePlayerInfo->GetReports()->GetReportsSentAsync(FString(), FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsSent));
+		ActivePlayerInfo->GetReports()->GetReportsSentAsync(FString(), GetReportsPageSize, FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsSent));
 	}
 	if (GetReportsSentNextCursor.Len() > 0)
 	{
 		ImGui::SameLine();
 		if (ImGui::Button("Fetch Next Page"))
 		{
-			ActivePlayerInfo->GetReports()->GetReportsSentAsync(GetReportsSentNextCursor, FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsSent));
+			ActivePlayerInfo->GetReports()->GetReportsSentAsync(GetReportsSentNextCursor, GetReportsPageSize, FRH_PlayerInfoGetPlayerReportsDelegate::CreateSP(this, &FRHDTW_PlayerReports::HandleGetReportsSent));
 		}
 	}
+
+	ImGui::InputInt("Page Size", &GetReportsPageSize);
 
 	ImGui::Separator();
 	for (const auto& Report : ActivePlayerInfo->GetReports()->GetReportsSent())

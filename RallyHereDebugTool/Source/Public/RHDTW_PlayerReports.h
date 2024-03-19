@@ -22,6 +22,8 @@ struct FRHDTW_PlayerReports : public FRH_DebugToolWindow
 
 
 private:
+	int32 GetReportsPageSize;
+
 	void HandleCreatedReport(bool bSuccess, const FRHAPI_PlayerReport& OutReport, const FRH_ErrorInfo& ErrorInfo);
 	FString CreateReportActionResult;
 

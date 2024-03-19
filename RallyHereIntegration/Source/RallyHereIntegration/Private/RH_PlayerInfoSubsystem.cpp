@@ -988,7 +988,7 @@ URH_PlayerReports::URH_PlayerReports(const FObjectInitializer& ObjectInitializer
 	
 }
 
-void URH_PlayerReports::GetReportsSentAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate)
+void URH_PlayerReports::GetReportsSentAsync(const FString& Cursor, const int32 PageSize, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate)
 {
 	typedef GetReportsSentType BaseType;
 
@@ -997,6 +997,10 @@ void URH_PlayerReports::GetReportsSentAsync(const FString& Cursor, const FRH_Pla
 	if (Cursor.Len() > 0)
 	{
 		Request.Cursor = Cursor;
+	}
+	if (PageSize > 0)
+	{
+		Request.PageSize = PageSize;
 	}
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
 
@@ -1045,7 +1049,7 @@ void URH_PlayerReports::GetReportsSentAsync(const FString& Cursor, const FRH_Pla
 	Helper->Start(RH_APIs::GetReportsAPI(), Request);
 }
 
-void URH_PlayerReports::GetReportsReceivedAsync(const FString& Cursor, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate)
+void URH_PlayerReports::GetReportsReceivedAsync(const FString& Cursor, const int32 PageSize, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate)
 {
 	typedef GetReportsReceivedType BaseType;
 
@@ -1054,6 +1058,10 @@ void URH_PlayerReports::GetReportsReceivedAsync(const FString& Cursor, const FRH
 	if (Cursor.Len() > 0)
 	{
 		Request.Cursor = Cursor;
+	}
+	if (PageSize > 0)
+	{
+		Request.PageSize = PageSize;
 	}
 	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
 
