@@ -174,7 +174,15 @@ bool FResponse_GetCatalogAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -388,7 +396,15 @@ bool FResponse_GetCatalogEntitlementSku::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -596,7 +612,15 @@ bool FResponse_GetCatalogEntitlementSkuAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -809,7 +833,15 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSet::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1017,7 +1049,15 @@ bool FResponse_GetCatalogInventoryBucketUseRuleSetsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1230,7 +1270,15 @@ bool FResponse_GetCatalogItem::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1438,7 +1486,15 @@ bool FResponse_GetCatalogItemsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1651,7 +1707,15 @@ bool FResponse_GetCatalogLoot::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1859,7 +1923,15 @@ bool FResponse_GetCatalogLootsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2072,7 +2144,15 @@ bool FResponse_GetCatalogPortalUseRuleset::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2280,7 +2360,15 @@ bool FResponse_GetCatalogPortalUseRulesetsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2493,7 +2581,15 @@ bool FResponse_GetCatalogPricePoint::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2701,7 +2797,15 @@ bool FResponse_GetCatalogPricePointsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2914,7 +3018,15 @@ bool FResponse_GetCatalogTimeFrame::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3122,7 +3234,15 @@ bool FResponse_GetCatalogTimeFramesAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3335,7 +3455,15 @@ bool FResponse_GetCatalogVendor::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3543,7 +3671,15 @@ bool FResponse_GetCatalogVendorsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3751,7 +3887,15 @@ bool FResponse_GetCatalogXpAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3964,7 +4108,15 @@ bool FResponse_GetCatalogXpTable::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;

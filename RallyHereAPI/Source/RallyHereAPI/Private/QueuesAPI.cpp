@@ -173,7 +173,15 @@ bool FResponse_GetAllMapGameInfo::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -382,7 +390,15 @@ bool FResponse_GetAllQueueInfo::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -591,7 +607,15 @@ bool FResponse_GetAllQueueInfoV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -793,7 +817,15 @@ bool FResponse_GetInstanceRequestTemplate::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -995,7 +1027,15 @@ bool FResponse_GetMatchMakingProfile::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1197,7 +1237,15 @@ bool FResponse_GetMatchMakingProfileV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1399,7 +1447,15 @@ bool FResponse_GetMatchMakingTemplates::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1601,7 +1657,15 @@ bool FResponse_GetMatchMakingTemplatesV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;

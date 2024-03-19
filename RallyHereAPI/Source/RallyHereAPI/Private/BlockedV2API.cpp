@@ -373,7 +373,15 @@ bool FResponse_GetBlockedListForPlayerV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
+            }
+            else
+            {
+                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            }
         }
     }
     bool bParsedAllRequiredHeaders = true;
