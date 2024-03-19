@@ -183,14 +183,7 @@ bool FResponse_BeginNewSession::ParseHeaders()
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
             // if there is a space after the colon, skip it
-            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
-            {
-                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
-            }
-            else
-            {
-                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
-            }
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -416,14 +409,7 @@ bool FResponse_FindOpportunities::ParseHeaders()
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
             // if there is a space after the colon, skip it
-            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
-            {
-                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
-            }
-            else
-            {
-                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
-            }
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -947,14 +933,7 @@ bool FResponse_UpdateOpportunityById::ParseHeaders()
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
             // if there is a space after the colon, skip it
-            if (HeaderStr.IsValidIndex(index + 1) && HeaderStr[index + 1] == ' ')
-            {
-                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 2));
-            }
-            else
-            {
-                HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
-            }
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
