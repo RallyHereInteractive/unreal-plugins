@@ -287,7 +287,7 @@ void URH_SessionView::PollForUpdate(const FRH_PollCompleteFunc& Delegate)
 			// this allows modifications and notifications to race to add the poll request, but avoid polling a second time if one arrives while other's poll is already running
 			for (int i = DeferredPolls.Num() - 1; i >= 0; --i)
 			{
-				if (DeferredPolls[i].ETag == GetETag())
+				if (DeferredPolls[i].ETag.IsSet() && DeferredPolls[i].ETag.GetValue() == GetETag())
 				{
 					DeferredPolls[i].Delegate.ExecuteIfBound(bSuccess, false);
 					DeferredPolls.RemoveAt(i);
@@ -335,7 +335,7 @@ void URH_SessionView::AddDeferredPoll(const FRH_DeferredSessionPoll& DeferredPol
 	}
 
 	// if the ETag matches, we don't need to poll unless forcing it
-	if (DeferredPoll.ETag == GetETag() && DeferredPoll.PollType != FRH_DeferredSessionPoll::Type::Forced)
+	if (DeferredPoll.ETag.IsSet() && DeferredPoll.ETag == GetETag() && DeferredPoll.PollType != FRH_DeferredSessionPoll::Type::Forced)
 	{
 		// make sure we notify the delegate, as we are not going to poll since this request is already complete
 		DeferredPoll.Delegate.ExecuteIfBound(true, false);
