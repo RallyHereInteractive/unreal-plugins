@@ -33,6 +33,8 @@ enum class ECopyMode : uint8
 	TwoColumn,	// displays the key and value in two columns format
 };
 
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyButton(const FString& Key, const FString& Value, bool bContentAsTooltip = false, bool bUseKeyAsLabel = false);
+
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FGuid& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayCopyableValue(const FString& Key, const FDateTime& Value, ECopyMode CopyMode = ECopyMode::KeyValue, bool bButtonOnLeftSide = false, bool bContentAsTooltip = false);
