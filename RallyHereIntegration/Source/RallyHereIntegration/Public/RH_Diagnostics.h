@@ -15,13 +15,12 @@
  *  @{
  */
 
-/** Bindable delegate to get custom metadata to add to diagnostic reports.  Can be used by a project to add data to the Metadata section. */
-DECLARE_DELEGATE_RetVal(TSharedPtr<FJsonObject>, FGetCustomDiagnosticMetadata);
-
+/** Bindable delegate to modify custom metadata to add to diagnostic reports.  Can be used by a project to add data to the Metadata section. */
+DECLARE_DELEGATE_OneParam(FGetCustomDiagnosticMetadata, FRHAPI_JsonObject&);
 
 class FRH_DiagnosticReportGenerator;
 
-/** Bindable delegate to notify that a report generation is complete */
+/** Bindable delegate to notify that a report generation is complete. */
 DECLARE_DELEGATE_OneParam(FRH_OnDiagnosticReportComplete, const TSharedRef<const FRH_DiagnosticReportGenerator>&);
 
 /**
@@ -33,30 +32,34 @@ struct FRH_DiagnosticReportOptions
 	GENERATED_BODY()
 
 	/** Whether to include metadata in the report */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category="Diagnostics|Options")
 	bool bIncludeMetadata;
 
+	/** Metadata to include in the report */
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
+	FRHAPI_JsonObject CustomMetadata;
+
 	/** Whether to include web request data in the report */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
 	bool bIncludeWebRequests;
 
 	/** Whether to include device data in the report */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
 	bool bIncludeDeviceData;
 
 	/** Whether to write to a file when the report is complete */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
 	bool bWriteToFile;
 	/** Optional filename to write the report to if bWiteToFile is set (otherwise, generates a name) */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
 	FString OutputFilename;
 
 	/** Whether to write to cloud when the report is complete */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
 	bool bWriteToCloud;
 
 	/** World to use to acquire RH subsystems and information */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Diagnostics|Options")
 	TWeakObjectPtr<UWorld> World;
 
 	/** Delegate fired when report is complete */
