@@ -10,6 +10,8 @@
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_CatalogSubsystem.h"
 #include "RallyHereIntegrationModule.h"
+#include "RH_Diagnostics.h"
+#include "RH_Integration.h"
 #include "RallyHereAPIHttpRequester.h"
 #include "RH_ConfigSubsystem.h"
 #include "Engine/GameInstance.h"
@@ -19,6 +21,7 @@
 
 #include "RH_SessionHelpers.h"
 #include "RH_BootstrappingHelpers.h"
+
 #include "OnlineSubsystemUtils.h"
 #include "HttpManager.h"
 #include "GameFramework/GameModeBase.h"
@@ -422,13 +425,53 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 		FHttpModule::Get().GetHttpManager().Flush(false);
 #endif
 
-		if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
+		auto GameInstance = GetGameInstanceSubsystem()->GetGameInstance();
+
+		auto ShutdownServer = []()
 		{
-			FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);
+			if (RallyHere::TermSignalHandler::ExitStatusOverride != 0)
+			{
+				FPlatformMisc::RequestExitWithStatus(false, RallyHere::TermSignalHandler::ExitStatusOverride);
+			}
+			else
+			{
+				RequestEngineExit(TEXT("Server bootstrapper failed"));
+			}
+		};
+
+		// write a diagnostic with potential information about the failure
+		if (GameInstance != nullptr)
+		{
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Writing diagnostic report"), ANSI_TO_TCHAR(__FUNCTION__));
+			auto World = GameInstance != nullptr ? GameInstance->GetWorld() : nullptr;
+
+			FRH_DiagnosticReportOptions Options;
+			Options.World = World;
+			Options.bWriteToFile = true;
+
+			Options.OutputFilename = TEXT("BootstrapFailure-") + FDateTime::Now().ToString() + TEXT(".json");
+
+			// we want to exit once the report is complete
+			Options.OnReportComplete.BindLambda([ShutdownServer](const TSharedRef<const FRH_DiagnosticReportGenerator>& FinalReport)
+				{
+					ShutdownServer();
+				});
+
+			FRallyHereIntegrationModule::Get().GetDiagnostics()->GenerateReport(Options);
+
+			// set a 5 second backup timer to initiate shutdown in case report has an error itself
+			FTimerHandle DummyHandle;
+			GameInstance->GetTimerManager().SetTimer(DummyHandle, FTimerDelegate::CreateLambda([ShutdownServer]()
+				{
+					ShutdownServer();
+				}),
+				5.f, false);
 		}
 		else
 		{
-			RequestEngineExit(TEXT("Server bootstrapper failed"));
+			UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] - Could not write diagnostic report, no game instance"), ANSI_TO_TCHAR(__FUNCTION__));
+
+			ShutdownServer();
 		}
 	}
 	else
