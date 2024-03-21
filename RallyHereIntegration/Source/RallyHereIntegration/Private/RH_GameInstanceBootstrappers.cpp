@@ -449,6 +449,25 @@ void URH_GameInstanceServerBootstrapper::OnBootstrappingFailed()
 			Options.World = World;
 			Options.bWriteToFile = true;
 
+			const FString BootstrapStepString = RH_GETENUMSTRING("/Script/RallyHereIntegration", "ERH_ServerBootstrapFlowStep", GetBootstrapStep());
+			Options.CustomMetadata.SetStringField(TEXT("shutdown_reason"), 
+				FString::Printf(TEXT("Bootstrapping Failure on %s"), *BootstrapStepString)
+			);
+
+			if (BootstrappingResult.AllocationInfo.AllocationId.IsSet())
+			{
+				Options.CustomMetadata.SetStringField(TEXT("allocation_id"), BootstrappingResult.AllocationInfo.AllocationId.GetValue());
+			}
+			if (BootstrappingResult.Session.IsSet())
+			{
+				Options.CustomMetadata.SetStringField(TEXT("session_id"), BootstrappingResult.Session.GetValue().Data.GetSessionId());
+				const auto Instance = BootstrappingResult.Session.GetValue().Data.GetInstanceOrNull();
+				if (Instance)
+				{
+					Options.CustomMetadata.SetStringField(TEXT("instance_id"), Instance->GetInstanceId());
+				}
+			}
+
 			Options.OutputFilename = TEXT("BootstrapFailure-") + FDateTime::Now().ToString() + TEXT(".json");
 
 			// we want to exit once the report is complete
