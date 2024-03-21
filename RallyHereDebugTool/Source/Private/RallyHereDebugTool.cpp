@@ -243,7 +243,7 @@ void URallyHereDebugTool::CheckForFirstEverSelectValidLocalPlayer()
 
 	if (!bHasSelectedLocalPlayerOnce)
 	{
-		bIsUsingLocalPlayerSandboxing = GetDefault<URH_IntegrationSettings>()->bLocalPlayerSubsystemSandboxing;
+		bIsUsingLocalPlayerSandboxing = GetDefault<URH_IntegrationSettings>()->ShouldUseLocalPlayerSandboxing();
 
 		TArray<ULocalPlayer*> LocalPlayers = GetAllLocalPlayers();
 		for (auto localPlayerItr = LocalPlayers.CreateIterator(); localPlayerItr; ++localPlayerItr)

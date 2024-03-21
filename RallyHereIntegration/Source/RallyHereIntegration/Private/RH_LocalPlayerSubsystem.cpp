@@ -72,7 +72,7 @@ void URH_LocalPlayerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	PurgeSubsystem = AddSubsystemPlugin<URH_PurgeSubsystem>(Settings->PurgeSubsystemClass);
 	EntitlementSubsystem = AddSubsystemPlugin<URH_EntitlementSubsystem>(Settings->EntitlementSubsystemClass);
 
-	if (Settings->bLocalPlayerSubsystemSandboxing)
+	if (Settings->ShouldUseLocalPlayerSandboxing())
 	{
 		SandboxedPlayerInfoSubsystem = AddSandboxedSubsystemPlugin<URH_PlayerInfoSubsystem>(Settings->PlayerInfoSubsystemClass);
 	}
