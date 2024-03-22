@@ -9,39 +9,40 @@
 // used for copy support
 #include "HAL/PlatformApplicationMisc.h"
 
+void ImGuiDisplayCopyButton(const FString& Key, const FString& Value, bool bContentAsTooltip, bool bUseKeyAsLabel)
+{
+#if !PLATFORM_ALLOWS_COPY
+	ImGui::BeginDisabled();
+#endif
+	FString ImGuiId = TEXT("Copy##") + Key;
+	if (bUseKeyAsLabel)
+	{
+		ImGuiId = Key;
+	}
+	if (ImGui::SmallButton(TCHAR_TO_UTF8(*ImGuiId)))
+	{
+#if PLATFORM_ALLOWS_COPY
+		FPlatformApplicationMisc::ClipboardCopy(*Value);
+#endif
+	}
+	if (bContentAsTooltip)
+	{
+		if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+		{
+			FString Tooltip = FString(TEXT("Copy content:")).Append(LINE_TERMINATOR).Append(Value);
+			ImGui::SetTooltip("%s", TCHAR_TO_UTF8(*Tooltip));
+		}
+	}
+#if !PLATFORM_ALLOWS_COPY
+	ImGui::EndDisabled();
+#endif
+}
+
 void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
-	auto CopyButton = [Key, Value, CopyMode, bContentAsTooltip]() {
-#if !PLATFORM_ALLOWS_COPY
-		ImGui::BeginDisabled();
-#endif
-		FString ImGuiId = TEXT("Copy##") + Key;
-		if (CopyMode == ECopyMode::ButtonKey)
-		{
-			ImGuiId = Key;
-		}
-		if (ImGui::SmallButton(TCHAR_TO_UTF8(*ImGuiId)))
-		{
-#if PLATFORM_ALLOWS_COPY
-			FPlatformApplicationMisc::ClipboardCopy(*Value);
-#endif
-		}
-		if (bContentAsTooltip)
-		{
-			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
-			{
-				FString Tooltip = FString(TEXT("Copy content:")).Append(LINE_TERMINATOR).Append(Value);
-				ImGui::SetTooltip("%s", TCHAR_TO_UTF8(*Tooltip));
-			}
-		}
-#if !PLATFORM_ALLOWS_COPY
-		ImGui::EndDisabled();
-#endif
-	};
-
 	if (bButtonOnLeftSide)
 	{
-		CopyButton();
+		ImGuiDisplayCopyButton(Key, Value, bContentAsTooltip, CopyMode == ECopyMode::ButtonKey);
 		if (CopyMode != ECopyMode::Button && CopyMode != ECopyMode::ButtonKey)
 		{
 			ImGui::SameLine();
@@ -73,7 +74,7 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FString& Value, ECopyMo
 		{
 			ImGui::SameLine();
 		}
-		CopyButton();
+		ImGuiDisplayCopyButton(Key, Value, bContentAsTooltip, CopyMode == ECopyMode::ButtonKey);
 	}
 
 	// advance column again

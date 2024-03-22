@@ -372,7 +372,8 @@ bool FResponse_AddPlatformSessionToRallyHereSession::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1801,7 +1802,8 @@ bool FResponse_EndInstance::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -1993,7 +1995,8 @@ bool FResponse_GetAllSessionTemplates::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2201,7 +2204,8 @@ bool FResponse_GetBrowserSessionsByType::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2570,7 +2574,8 @@ bool FResponse_GetPlatformSessionInfo::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -2939,7 +2944,8 @@ bool FResponse_GetPlayerSessionsByUuid::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3141,7 +3147,8 @@ bool FResponse_GetPlayerSessionsByUuidV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3338,7 +3345,8 @@ bool FResponse_GetPlayerSessionsSelf::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3540,7 +3548,8 @@ bool FResponse_GetSessionByAllocationId::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -3750,7 +3759,8 @@ bool FResponse_GetSessionById::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -4126,7 +4136,8 @@ bool FResponse_GetSessionTemplateByType::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -4659,7 +4670,8 @@ bool FResponse_InviteSessionToSession::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -5047,7 +5059,8 @@ bool FResponse_JoinSessionByIdSelf::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -5275,7 +5288,8 @@ bool FResponse_JoinSessionByPlatformSessionByUuid::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -5513,7 +5527,8 @@ bool FResponse_JoinSessionByPlatformSessionIdSelf::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -5903,7 +5918,8 @@ bool FResponse_KickPlayerFromSessionByUuid::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -6103,7 +6119,8 @@ bool FResponse_KickPlayerFromSessionByUuidV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -7902,7 +7919,8 @@ bool FResponse_UpdateSessionById::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -8295,7 +8313,8 @@ bool FResponse_UpdateSessionPlayerByUuid::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -8511,7 +8530,8 @@ bool FResponse_UpdateSessionPlayerByUuidV2::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;

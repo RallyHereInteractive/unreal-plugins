@@ -3,6 +3,8 @@
 
 #include "RH_IntegrationSettings.h"
 #include "RH_Common.h"
+#include "Misc/CommandLine.h"
+
 
 URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -128,6 +130,9 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	MatchesLookupPriority = 1000000;
 	MatchesUpdatePriority = 900000;
 	MatchesUpdatePlayerPriority = 900000;
+	GetPlayerReportsSentPriority = 1000000;
+	GetPlayerReportsReceivedPriority = 1000000;
+	CreatePlayerReportPriority = 800000;
 }
 
 const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfiguration(const FString& EnvironmentId) const
@@ -142,4 +147,20 @@ const FRH_EnvironmentConfiguration* URH_IntegrationSettings::GetEnvironmentConfi
 	}
 
 	return EnvironmentConfig;
+}
+
+bool URH_IntegrationSettings::ShouldUseLocalPlayerSandboxing()
+{
+#if !UE_BUILD_SHIPPING
+	if (FParse::Param(FCommandLine::Get(), TEXT("rh.ForceNoLPSandboxing")))
+	{
+		return false;
+	}
+	else if (FParse::Param(FCommandLine::Get(), TEXT("rh.ForceLPSandboxing")))
+	{
+		return true;
+	}
+#endif
+
+	return GetDefault<URH_IntegrationSettings>()->bLocalPlayerSubsystemSandboxing;
 }

@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 #include "RallyHereDebugToolModule.h"
 #include "RallyHereDebugTool.h"
-#include "RHDTW_PlayerSessions.h"
+#include "RHDTW_PlayerRanks.h"
 #include "RH_PlayerInfoSubsystem.h"
 #include "imgui.h"
 #include "RH_ImGuiUtilities.h"
 
-FRHDTW_PlayerSessions::FRHDTW_PlayerSessions()
+FRHDTW_PlayerRanks::FRHDTW_PlayerRanks()
 	: Super()
 {
 	DefaultPos = FVector2D(610, 20);
@@ -19,11 +19,11 @@ FRHDTW_PlayerSessions::FRHDTW_PlayerSessions()
 	UpdateRankingActionResult.Empty();
 }
 
-FRHDTW_PlayerSessions::~FRHDTW_PlayerSessions()
+FRHDTW_PlayerRanks::~FRHDTW_PlayerRanks()
 {
 }
 
-void FRHDTW_PlayerSessions::Do()
+void FRHDTW_PlayerRanks::Do()
 {
 	if (ImGui::BeginTabBar("Rankings", ImGuiTabBarFlags_FittingPolicyScroll))
 	{
@@ -43,7 +43,7 @@ void FRHDTW_PlayerSessions::Do()
 	}
 }
 
-void FRHDTW_PlayerSessions::DoViewRankings()
+void FRHDTW_PlayerRanks::DoViewRankings()
 {
 	URH_PlayerInfo* ActivePlayerInfo = nullptr;
 	if (URallyHereDebugTool* pOwner = GetOwner())
@@ -91,7 +91,7 @@ void FRHDTW_PlayerSessions::DoViewRankings()
 	}
 }
 
-void FRHDTW_PlayerSessions::DoModifyRankings()
+void FRHDTW_PlayerRanks::DoModifyRankings()
 {
 	int NumSelectedPlayers = 0;
 	if (URallyHereDebugTool* pOwner = GetOwner())
@@ -129,14 +129,14 @@ void FRHDTW_PlayerSessions::DoModifyRankings()
 			{
 				if (PlayerInfo)
 				{
-					auto Delegate = FRH_PlayerInfoGetPlayerRankingsDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerSessions::HandleUpdateRankingResponse, PlayerInfo->GetRHPlayerUuid());
+					auto Delegate = FRH_PlayerInfoGetPlayerRankingsDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerRanks::HandleUpdateRankingResponse, PlayerInfo->GetRHPlayerUuid());
 					PlayerInfo->UpdatePlayerRanking(ImGuiGetStringFromTextInputBuffer(ModifyRankIdInput), UpdateRequest, MoveTemp(Delegate));
 				}
 			}));
 	}
 }
 
-void FRHDTW_PlayerSessions::HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>& PlayerRankingInfo, FGuid PlayerUuid)
+void FRHDTW_PlayerRanks::HandleUpdateRankingResponse(bool bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>& PlayerRankingInfo, FGuid PlayerUuid)
 {
 	if (bSuccess)
 	{

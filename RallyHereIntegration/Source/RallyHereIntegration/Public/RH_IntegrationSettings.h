@@ -234,6 +234,8 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Subsystem Classes")
 	bool bLocalPlayerSubsystemSandboxing;
 
+	static bool ShouldUseLocalPlayerSandboxing();
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// API Priorities
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -483,6 +485,15 @@ public:
 	/** @brief Sets the request priority of Create Match calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
 	int32 MatchesUpdatePlayerPriority;
+	/** @brief Sets the request priority of Player Report calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Report API Priority", AdvancedDisplay)
+	int32 GetPlayerReportsSentPriority;
+	/** @brief Sets the request priority of Player Report calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Report API Priority", AdvancedDisplay)
+	int32 GetPlayerReportsReceivedPriority;
+	/** @brief Sets the request priority of Player Report calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Report API Priority", AdvancedDisplay)
+	int32 CreatePlayerReportPriority;
 };
 
 /** @} */

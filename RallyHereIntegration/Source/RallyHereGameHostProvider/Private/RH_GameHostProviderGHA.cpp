@@ -159,10 +159,10 @@ void FRH_GameHostProviderGHA::Tick(float DeltaTime)
 
 			// make sure the string storage persists properly until the call
 			FString MapName;
+			FTCHARToUTF8 MapNameUTF8(*MapName);
 			if (GameStats.Map.IsSet())
 			{
 				MapName = GameStats.Map.GetValue();
-				FTCHARToUTF8 MapNameUTF8(*MapName);
 				stats.map = (ANSICHAR*)MapNameUTF8.Get();
 				provided.set_map = true;
 			}

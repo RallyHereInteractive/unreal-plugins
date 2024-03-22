@@ -143,7 +143,7 @@ struct RALLYHEREAPI_API Traits_GenerateEntitlementEvent
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `inv:*`, `inv:entitlement_event:read`
+ * - For any player (including themselves) any of: `inv:entitlement_event:read`, `inv:*`
 */
 struct RALLYHEREAPI_API FRequest_GetEntitlementEvents : public FRequest
 {

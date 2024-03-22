@@ -35,6 +35,23 @@ namespace
 			ImGuiDisplayCopyableValue(TEXT("Config Elector UUID"), LoginResult.ConfigElectorUuid);
 			ImGuiDisplayCopyableValue(TEXT("Client UUID"), LoginResult.ClientUuid);
 
+			auto* Permissions = LoginResult.GetPermissionsOrNull();
+			if (Permissions != nullptr && ImGui::TreeNodeEx("Permissions", RH_DefaultTreeFlags))
+			{
+				auto SortedPermissions = *Permissions;
+				SortedPermissions.Sort();
+
+				const FString PermissionsString = FString::Join(SortedPermissions, TEXT("\n"));
+
+#if PLATFORM_ALLOWS_COPY
+				ImGuiDisplayCopyButton(TEXT("Copy All"), PermissionsString, false, true);
+#endif
+
+				ImGui::Text("%s", TCHAR_TO_UTF8(*PermissionsString));
+
+				ImGui::TreePop();
+			}
+
 			ImGui::TreePop();
 		}
 	}
