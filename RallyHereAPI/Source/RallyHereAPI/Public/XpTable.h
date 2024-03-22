@@ -63,6 +63,29 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief The XP Table UUID */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid XpUuid_Optional{  };
+    /** @brief true if XpUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool XpUuid_IsSet{ false };
+    /** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
+    FGuid& GetXpUuid() { return XpUuid_Optional; }
+    /** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
+    const FGuid& GetXpUuid() const { return XpUuid_Optional; }
+    /** @brief Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetXpUuid(const FGuid& DefaultValue) const { if (XpUuid_IsSet) return XpUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetXpUuid(FGuid& OutValue) const { if (XpUuid_IsSet) OutValue = XpUuid_Optional; return XpUuid_IsSet; }
+    /** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetXpUuidOrNull() { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetXpUuidOrNull() const { if (XpUuid_IsSet) return &XpUuid_Optional; return nullptr; }
+    /** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true */
+    void SetXpUuid(FGuid NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; }
+     /** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
+    void ClearXpUuid() { XpUuid_IsSet = false; }
+
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, int32> XpEntries_Optional{  };
     /** @brief true if XpEntries_Optional has been set to a value */

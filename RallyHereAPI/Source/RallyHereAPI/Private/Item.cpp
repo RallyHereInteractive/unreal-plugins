@@ -27,6 +27,11 @@ void FRHAPI_Item::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
     }
+    if (ItemUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("item_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, ItemUuid_Optional);
+    }
     if (Type_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("type"));
@@ -52,20 +57,40 @@ void FRHAPI_Item::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("availability_flags"));
         RallyHereAPI::WriteJsonValue(Writer, AvailabilityFlags_Optional);
     }
+    if (EntitledLootUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("entitled_loot_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, EntitledLootUuid_Optional);
+    }
     if (EntitledLootId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("entitled_loot_id"));
         RallyHereAPI::WriteJsonValue(Writer, EntitledLootId_Optional);
+    }
+    if (LevelXpTableUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("level_xp_table_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, LevelXpTableUuid_Optional);
     }
     if (LevelXpTableId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("level_xp_table_id"));
         RallyHereAPI::WriteJsonValue(Writer, LevelXpTableId_Optional);
     }
+    if (LevelVendorUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("level_vendor_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, LevelVendorUuid_Optional);
+    }
     if (LevelVendorId_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("level_vendor_id"));
         RallyHereAPI::WriteJsonValue(Writer, LevelVendorId_Optional);
+    }
+    if (CouponDiscountCurrencyItemUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("coupon_discount_currency_item_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, CouponDiscountCurrencyItemUuid_Optional);
     }
     if (CouponDiscountCurrencyItemId_IsSet)
     {
@@ -97,6 +122,11 @@ void FRHAPI_Item::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("coupon_discount_loot"));
         RallyHereAPI::WriteJsonValue(Writer, CouponDiscountLoot_Optional);
     }
+    if (CouponDiscountLootUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("coupon_discount_loot_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, CouponDiscountLootUuid_Optional);
+    }
     if (CacheInfo_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("cache_info"));
@@ -118,6 +148,12 @@ bool FRHAPI_Item::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonItemUuidField = (*Object)->TryGetField(TEXT("item_uuid"));
+    if (JsonItemUuidField.IsValid() && !JsonItemUuidField->IsNull())
+    {
+        ItemUuid_IsSet = TryGetJsonValue(JsonItemUuidField, ItemUuid_Optional);
+        ParseSuccess &= ItemUuid_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonTypeField = (*Object)->TryGetField(TEXT("type"));
     if (JsonTypeField.IsValid() && !JsonTypeField->IsNull())
@@ -149,11 +185,23 @@ bool FRHAPI_Item::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         AvailabilityFlags_IsSet = TryGetJsonValue(JsonAvailabilityFlagsField, AvailabilityFlags_Optional);
         ParseSuccess &= AvailabilityFlags_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonEntitledLootUuidField = (*Object)->TryGetField(TEXT("entitled_loot_uuid"));
+    if (JsonEntitledLootUuidField.IsValid() && !JsonEntitledLootUuidField->IsNull())
+    {
+        EntitledLootUuid_IsSet = TryGetJsonValue(JsonEntitledLootUuidField, EntitledLootUuid_Optional);
+        ParseSuccess &= EntitledLootUuid_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonEntitledLootIdField = (*Object)->TryGetField(TEXT("entitled_loot_id"));
     if (JsonEntitledLootIdField.IsValid() && !JsonEntitledLootIdField->IsNull())
     {
         EntitledLootId_IsSet = TryGetJsonValue(JsonEntitledLootIdField, EntitledLootId_Optional);
         ParseSuccess &= EntitledLootId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonLevelXpTableUuidField = (*Object)->TryGetField(TEXT("level_xp_table_uuid"));
+    if (JsonLevelXpTableUuidField.IsValid() && !JsonLevelXpTableUuidField->IsNull())
+    {
+        LevelXpTableUuid_IsSet = TryGetJsonValue(JsonLevelXpTableUuidField, LevelXpTableUuid_Optional);
+        ParseSuccess &= LevelXpTableUuid_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonLevelXpTableIdField = (*Object)->TryGetField(TEXT("level_xp_table_id"));
     if (JsonLevelXpTableIdField.IsValid() && !JsonLevelXpTableIdField->IsNull())
@@ -161,11 +209,23 @@ bool FRHAPI_Item::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
         LevelXpTableId_IsSet = TryGetJsonValue(JsonLevelXpTableIdField, LevelXpTableId_Optional);
         ParseSuccess &= LevelXpTableId_IsSet;
     }
+    const TSharedPtr<FJsonValue> JsonLevelVendorUuidField = (*Object)->TryGetField(TEXT("level_vendor_uuid"));
+    if (JsonLevelVendorUuidField.IsValid() && !JsonLevelVendorUuidField->IsNull())
+    {
+        LevelVendorUuid_IsSet = TryGetJsonValue(JsonLevelVendorUuidField, LevelVendorUuid_Optional);
+        ParseSuccess &= LevelVendorUuid_IsSet;
+    }
     const TSharedPtr<FJsonValue> JsonLevelVendorIdField = (*Object)->TryGetField(TEXT("level_vendor_id"));
     if (JsonLevelVendorIdField.IsValid() && !JsonLevelVendorIdField->IsNull())
     {
         LevelVendorId_IsSet = TryGetJsonValue(JsonLevelVendorIdField, LevelVendorId_Optional);
         ParseSuccess &= LevelVendorId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCouponDiscountCurrencyItemUuidField = (*Object)->TryGetField(TEXT("coupon_discount_currency_item_uuid"));
+    if (JsonCouponDiscountCurrencyItemUuidField.IsValid() && !JsonCouponDiscountCurrencyItemUuidField->IsNull())
+    {
+        CouponDiscountCurrencyItemUuid_IsSet = TryGetJsonValue(JsonCouponDiscountCurrencyItemUuidField, CouponDiscountCurrencyItemUuid_Optional);
+        ParseSuccess &= CouponDiscountCurrencyItemUuid_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonCouponDiscountCurrencyItemIdField = (*Object)->TryGetField(TEXT("coupon_discount_currency_item_id"));
     if (JsonCouponDiscountCurrencyItemIdField.IsValid() && !JsonCouponDiscountCurrencyItemIdField->IsNull())
@@ -202,6 +262,12 @@ bool FRHAPI_Item::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         CouponDiscountLoot_IsSet = TryGetJsonValue(JsonCouponDiscountLootField, CouponDiscountLoot_Optional);
         ParseSuccess &= CouponDiscountLoot_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonCouponDiscountLootUuidField = (*Object)->TryGetField(TEXT("coupon_discount_loot_uuid"));
+    if (JsonCouponDiscountLootUuidField.IsValid() && !JsonCouponDiscountLootUuidField->IsNull())
+    {
+        CouponDiscountLootUuid_IsSet = TryGetJsonValue(JsonCouponDiscountLootUuidField, CouponDiscountLootUuid_Optional);
+        ParseSuccess &= CouponDiscountLootUuid_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
     if (JsonCacheInfoField.IsValid() && !JsonCacheInfoField->IsNull())

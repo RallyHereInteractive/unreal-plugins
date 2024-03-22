@@ -27,6 +27,11 @@ void FRHAPI_XpTable::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
         RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
     }
+    if (XpUuid_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("xp_uuid"));
+        RallyHereAPI::WriteJsonValue(Writer, XpUuid_Optional);
+    }
     if (XpEntries_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("xp_entries"));
@@ -53,6 +58,12 @@ bool FRHAPI_XpTable::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
         ParseSuccess &= CustomData_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonXpUuidField = (*Object)->TryGetField(TEXT("xp_uuid"));
+    if (JsonXpUuidField.IsValid() && !JsonXpUuidField->IsNull())
+    {
+        XpUuid_IsSet = TryGetJsonValue(JsonXpUuidField, XpUuid_Optional);
+        ParseSuccess &= XpUuid_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonXpEntriesField = (*Object)->TryGetField(TEXT("xp_entries"));
     if (JsonXpEntriesField.IsValid() && !JsonXpEntriesField->IsNull())

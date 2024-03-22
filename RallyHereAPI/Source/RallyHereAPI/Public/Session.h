@@ -90,7 +90,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of Instance_Optional and sets Instance_IsSet to false */
     void ClearInstance() { Instance_IsSet = false; }
 
-    /** @brief Info about the current match in the instance */
+    /** @brief DEPRECATED Info about the current match in the instance */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MatchInfo Match_Optional{  };
     /** @brief true if Match_Optional has been set to a value */
@@ -136,7 +136,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
      /** @brief Clears the value of MatchmakingResults_Optional and sets MatchmakingResults_IsSet to false */
     void ClearMatchmakingResults() { MatchmakingResults_IsSet = false; }
 
-    /** @brief DEPRECATED Info about the matchmaking state of the session, if it is in the process of matchmaking */
+    /** @brief Info about the matchmaking state of the session, if it is in the process of matchmaking */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     FRHAPI_MatchmakingInfo Matchmaking_Optional{  };
     /** @brief true if Matchmaking_Optional has been set to a value */

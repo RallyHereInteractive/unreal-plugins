@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "SessionEvents.h"
+#include "AuditResponse.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_SessionEvents
+// Implementation for FRHAPI_AuditResponse
 
-void FRHAPI_SessionEvents::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_AuditResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
     Writer->WriteObjectStart();
     if (Events_IsSet)
@@ -30,7 +30,7 @@ void FRHAPI_SessionEvents::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
     Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_SessionEvents::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_AuditResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
     const TSharedPtr<FJsonObject>* Object;
     if (!JsonValue->TryGetObject(Object))
