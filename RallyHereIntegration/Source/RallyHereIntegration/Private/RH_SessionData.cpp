@@ -157,8 +157,10 @@ void URH_SessionView::ImportAPISession(const FRH_APISessionWithETag& newSessionD
 		PadMemberStates(NewMemberStates, OldMemberStates);
 	}
 
-	// simple copy for now
+	// copy the new data into our local storage
 	SessionData = newSessionData;
+
+	// import the template
 	ImportTemplate(newTemplate);
 
 	{
@@ -274,10 +276,22 @@ void URH_SessionView::PollForUpdate(const FRH_PollCompleteFunc& Delegate)
 			// notify poller that execution is done
 			Delegate.ExecuteIfBound(bSuccess, true);
 
-			// notify any waiting polls that we are done
+			// notify any waiting polls that we are done, and clear the list
 			for (auto& Poll : WaitingPolls)
 			{
 				Poll.Delegate.ExecuteIfBound(bSuccess, false);
+			}
+			WaitingPolls.Empty();
+
+			// any deferred polls with a matching etag can also be notified and cleared
+			// this allows modifications and notifications to race to add the poll request, but avoid polling a second time if one arrives while other's poll is already running
+			for (int i = DeferredPolls.Num() - 1; i >= 0; --i)
+			{
+				if (DeferredPolls[i].ETag.IsSet() && DeferredPolls[i].ETag.GetValue() == GetETag())
+				{
+					DeferredPolls[i].Delegate.ExecuteIfBound(bSuccess, false);
+					DeferredPolls.RemoveAt(i);
+				}
 			}
 
 			// check if we need to kick off a new poll
@@ -306,22 +320,26 @@ void URH_SessionView::ForcePollForUpdate(bool bClearEtag)
 
 void URH_SessionView::AddDeferredPoll(const FRH_DeferredSessionPoll& DeferredPoll)
 {
+	// only store latest notification poll
 	if (DeferredPoll.PollType == FRH_DeferredSessionPoll::Type::Notification)
 	{
-		// remove any existing notification polls, as this one supercedes them
+		// strip any existing notification polls we can, as this one supercedes them
 		for (int i = DeferredPolls.Num() - 1; i >= 0; --i)
 		{
-			if (DeferredPolls[i].PollType == FRH_DeferredSessionPoll::Type::Notification)
+			// we cannot strip notifications polls with a delegate, as that would prevent the delegate from being called
+			if (DeferredPolls[i].PollType == FRH_DeferredSessionPoll::Type::Notification && !DeferredPolls[i].Delegate.IsBound())
 			{
 				DeferredPolls.RemoveAt(i);
 			}
 		}
+	}
 
-		if (DeferredPoll.ETag == GetETag())
-		{
-			// if the ETag matches, we don't need to poll
-			return;
-		}
+	// if the ETag matches, we don't need to poll unless forcing it
+	if (DeferredPoll.ETag.IsSet() && DeferredPoll.ETag == GetETag() && DeferredPoll.PollType != FRH_DeferredSessionPoll::Type::Forced)
+	{
+		// make sure we notify the delegate, as we are not going to poll since this request is already complete
+		DeferredPoll.Delegate.ExecuteIfBound(true, false);
+		return;
 	}
 
 	DeferredPolls.Add(DeferredPoll);

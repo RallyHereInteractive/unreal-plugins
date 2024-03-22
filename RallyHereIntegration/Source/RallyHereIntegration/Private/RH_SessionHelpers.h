@@ -50,7 +50,13 @@ protected:
 
 			if (PolledSession != nullptr)
 			{
-				PolledSession->AddDeferredPoll(FRH_DeferredSessionPoll(FRH_DeferredSessionPoll::Type::Modification, FRH_PollCompleteFunc::CreateSP(this, &FRH_SessionPollHelper::OnSessionPollComplete)));
+				PolledSession->AddDeferredPoll(
+					FRH_DeferredSessionPoll(
+						FRH_DeferredSessionPoll::Type::Modification, 
+						FRH_PollCompleteFunc::CreateSP(this, &FRH_SessionPollHelper::OnSessionPollComplete),
+						SessionLookupETag
+					)
+				);
 			}
 			else
 			{
@@ -83,6 +89,7 @@ protected:
 	}
 
 	FString SessionId;
+	TOptional<FString> SessionLookupETag;
 	TWeakObjectPtr<URH_SessionView> RHSession;
 };
 
@@ -280,6 +287,28 @@ public:
 	}
 protected:
 
+	// boilerplate to determine if the etag field exists in the response class
+	template <typename, typename = void>
+	struct has_etag : std::false_type {};
+
+
+	template <typename T>
+	struct has_etag<T, std::void_t<decltype(&T::ETag)>> : std::is_same<TOptional<FString>, decltype(std::declval<T>().ETag)>
+	{};
+
+	template <typename T,
+		typename std::enable_if<has_etag<T>::value, T>::type* = nullptr>
+	void SetSessionLookupETag(const T& Resp)
+	{
+		SessionLookupETag = Resp.ETag;
+	};
+
+	template <typename T,
+		typename std::enable_if<!has_etag<T>::value, T>::type* = nullptr>
+	void SetSessionLookupETag(const T& Resp)
+	{
+	};
+
 	virtual void OnRequestById(const typename BaseType::Response& Resp)
 	{
 		ErrorInfo = FRH_ErrorInfo(Resp);
@@ -287,6 +316,7 @@ protected:
 		if (Resp.IsSuccessful())
 		{
 			bRequestWasSuccessful = true;
+			SetSessionLookupETag(Resp);
 			DoSessionLookup();	// this will re-read the session, and attempt to import it.  The import will detect that we left the session and adjust accordingly
 		}
 		else
