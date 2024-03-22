@@ -21,6 +21,8 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 --------------------------------|---------------------------------------------
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__XpTable_1af1d0f6100d26e90a9c94c41d719bbab4) | Custom data associated with the resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__XpTable_1a91f78eae595931b545702560639fe2b1) | true if CustomData_Optional has been set to a value
+`public FGuid `[`XpUuid_Optional`](#structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95) | The XP Table UUID.
+`public bool `[`XpUuid_IsSet`](#structFRHAPI__XpTable_1aa14640432399209965372fa806902813) | true if XpUuid_Optional has been set to a value
 `public TMap< FString, int32 > `[`XpEntries_Optional`](#structFRHAPI__XpTable_1a6fce5a0a8d2d65c0049771d51bf6b2cf) | 
 `public bool `[`XpEntries_IsSet`](#structFRHAPI__XpTable_1a0d1d82acc42c1ad029117cd1ea15cb12) | true if XpEntries_Optional has been set to a value
 `public `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` `[`CacheInfo_Optional`](#structFRHAPI__XpTable_1a0785200adbf808bdd25fab3cb5f01b0b) | 
@@ -35,6 +37,14 @@ A collection of XP Levels from 1 to N. Each level has a minimum XP value.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__XpTable_1a78bc02a47e85ccbaa064abd3ba74d5ac)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__XpTable_1a8a4b62744773d285f688ad4749e10a2a)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__XpTable_1ae84305fd00b049e142b7ca609225e959)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea)`()` | Gets the value of XpUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178)`() const` | Gets the value of XpUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762)`(const FGuid & DefaultValue) const` | Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetXpUuid`](#structFRHAPI__XpTable_1a3397f6ce21c649115fef7400cca188f8)`(FGuid & OutValue) const` | Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad922d62d8a9e5384f734d6f6e4994d0a)`()` | Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad814398692c686b085ea338e2c392adb)`() const` | Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1a8d474e760cdb2739a7c8b2a62164b40e)`(FGuid NewValue)` | Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true.
+`public inline void `[`ClearXpUuid`](#structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae)`()` | Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
 `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448)`()` | Gets the value of XpEntries_Optional, regardless of it having been set.
 `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a28bd1c9fbc988a8fb285418a5ff0f332)`() const` | Gets the value of XpEntries_Optional, regardless of it having been set.
 `public inline const TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1a19d0b92c5075718cb70ecaf15994a270)`(const TMap< FString, int32 > & DefaultValue) const` | Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -62,6 +72,16 @@ Custom data associated with the resource.
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__XpTable_1a91f78eae595931b545702560639fe2b1) <a id="structFRHAPI__XpTable_1a91f78eae595931b545702560639fe2b1"></a>
 
 true if CustomData_Optional has been set to a value
+
+<br>
+#### `public FGuid `[`XpUuid_Optional`](#structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95) <a id="structFRHAPI__XpTable_1acb2f31eb7fa32f1056dcfd64a90f0e95"></a>
+
+The XP Table UUID.
+
+<br>
+#### `public bool `[`XpUuid_IsSet`](#structFRHAPI__XpTable_1aa14640432399209965372fa806902813) <a id="structFRHAPI__XpTable_1aa14640432399209965372fa806902813"></a>
+
+true if XpUuid_Optional has been set to a value
 
 <br>
 #### `public TMap< FString, int32 > `[`XpEntries_Optional`](#structFRHAPI__XpTable_1a6fce5a0a8d2d65c0049771d51bf6b2cf) <a id="structFRHAPI__XpTable_1a6fce5a0a8d2d65c0049771d51bf6b2cf"></a>
@@ -137,6 +157,46 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__XpTable_1ae84305fd00b049e142b7ca609225e959)`()` <a id="structFRHAPI__XpTable_1ae84305fd00b049e142b7ca609225e959"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+<br>
+#### `public inline FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea)`()` <a id="structFRHAPI__XpTable_1aa959c114770a28fb7bfa2e0c3b5a01ea"></a>
+
+Gets the value of XpUuid_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178)`() const` <a id="structFRHAPI__XpTable_1a7ef1602cb6deaa93f30543e17eed1178"></a>
+
+Gets the value of XpUuid_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FGuid & `[`GetXpUuid`](#structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__XpTable_1a18bc8bab6fd96bb8acd8814416a8c762"></a>
+
+Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetXpUuid`](#structFRHAPI__XpTable_1a3397f6ce21c649115fef7400cca188f8)`(FGuid & OutValue) const` <a id="structFRHAPI__XpTable_1a3397f6ce21c649115fef7400cca188f8"></a>
+
+Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad922d62d8a9e5384f734d6f6e4994d0a)`()` <a id="structFRHAPI__XpTable_1ad922d62d8a9e5384f734d6f6e4994d0a"></a>
+
+Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const FGuid * `[`GetXpUuidOrNull`](#structFRHAPI__XpTable_1ad814398692c686b085ea338e2c392adb)`() const` <a id="structFRHAPI__XpTable_1ad814398692c686b085ea338e2c392adb"></a>
+
+Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetXpUuid`](#structFRHAPI__XpTable_1a8d474e760cdb2739a7c8b2a62164b40e)`(FGuid NewValue)` <a id="structFRHAPI__XpTable_1a8d474e760cdb2739a7c8b2a62164b40e"></a>
+
+Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearXpUuid`](#structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae)`()` <a id="structFRHAPI__XpTable_1acb556ad5b7af78430e60dc1f7ffa63ae"></a>
+
+Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false.
 
 <br>
 #### `public inline TMap< FString, int32 > & `[`GetXpEntries`](#structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448)`()` <a id="structFRHAPI__XpTable_1af3fd80f0b0ca8769eb57089f7a672448"></a>

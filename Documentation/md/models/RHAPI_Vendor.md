@@ -21,6 +21,8 @@ A collection of Loot and how to fulfill them.
 --------------------------------|---------------------------------------------
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__Vendor_1ad1fd7d01d6c9003ad84a5e58e8b638f5) | Custom data associated with the resource.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2) | true if CustomData_Optional has been set to a value
+`public FGuid `[`VendorUuid_Optional`](#structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57) | The Vendor UUID.
+`public bool `[`VendorUuid_IsSet`](#structFRHAPI__Vendor_1a492f4a102e5132fc7532ba567d1925da) | true if VendorUuid_Optional has been set to a value
 `public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) | Determines how the Vendor fulfills the loot.
 `public bool `[`Type_IsSet`](#structFRHAPI__Vendor_1a2b43a4bd9314bb4dda95366e7465eab2) | true if Type_Optional has been set to a value
 `public int32 `[`LegacyType_Optional`](#structFRHAPI__Vendor_1a7ddc9fd486f80acdd94206d576727874) | 
@@ -41,6 +43,14 @@ A collection of Loot and how to fulfill them.
 `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Vendor_1a443f7f3b5a4d61b855258c8410498176)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetCustomData`](#structFRHAPI__Vendor_1a0c1bccc4044d44928f069428c54a0baa)`(TMap< FString, FString > NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 `public inline void `[`ClearCustomData`](#structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+`public inline FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1aac37e4c01929f700585eb565edab3589)`()` | Gets the value of VendorUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1a0251860469c6454d7daa83b40bf9cca6)`() const` | Gets the value of VendorUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1aacaae6ed59372b1251a3bf556e402e77)`(const FGuid & DefaultValue) const` | Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetVendorUuid`](#structFRHAPI__Vendor_1ab96b24ef610404ae3b9e38e948659ce9)`(FGuid & OutValue) const` | Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetVendorUuidOrNull`](#structFRHAPI__Vendor_1aea178973ef93b37639d5f3df679d38d2)`()` | Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetVendorUuidOrNull`](#structFRHAPI__Vendor_1ace85d579b93e01c50c73470185593317)`() const` | Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1a5a8887e0a008ea5d0b4a6ad1590b832a)`(FGuid NewValue)` | Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true.
+`public inline void `[`ClearVendorUuid`](#structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9)`()` | Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
 `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7)`()` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1ae21da9d6ed5959edd48a777e7b6ff3a3)`() const` | Gets the value of Type_Optional, regardless of it having been set.
 `public inline const ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a8f67f4cd42adea280e7d6b01414cbefa)`(const ERHAPI_VendorType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -96,6 +106,16 @@ Custom data associated with the resource.
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2) <a id="structFRHAPI__Vendor_1a2c1b1b4781dae86fc8d06815eb882ae2"></a>
 
 true if CustomData_Optional has been set to a value
+
+<br>
+#### `public FGuid `[`VendorUuid_Optional`](#structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57) <a id="structFRHAPI__Vendor_1a19f4b7dd00d5e1e14767e0913b5b2c57"></a>
+
+The Vendor UUID.
+
+<br>
+#### `public bool `[`VendorUuid_IsSet`](#structFRHAPI__Vendor_1a492f4a102e5132fc7532ba567d1925da) <a id="structFRHAPI__Vendor_1a492f4a102e5132fc7532ba567d1925da"></a>
+
+true if VendorUuid_Optional has been set to a value
 
 <br>
 #### `public ERHAPI_VendorType `[`Type_Optional`](#structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782) <a id="structFRHAPI__Vendor_1a5679543c05b7c35a6b7f9dfb45e82782"></a>
@@ -201,6 +221,46 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367)`()` <a id="structFRHAPI__Vendor_1a3be0ed314dd1c186d5437cd282e72367"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
+
+<br>
+#### `public inline FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1aac37e4c01929f700585eb565edab3589)`()` <a id="structFRHAPI__Vendor_1aac37e4c01929f700585eb565edab3589"></a>
+
+Gets the value of VendorUuid_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1a0251860469c6454d7daa83b40bf9cca6)`() const` <a id="structFRHAPI__Vendor_1a0251860469c6454d7daa83b40bf9cca6"></a>
+
+Gets the value of VendorUuid_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FGuid & `[`GetVendorUuid`](#structFRHAPI__Vendor_1aacaae6ed59372b1251a3bf556e402e77)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Vendor_1aacaae6ed59372b1251a3bf556e402e77"></a>
+
+Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetVendorUuid`](#structFRHAPI__Vendor_1ab96b24ef610404ae3b9e38e948659ce9)`(FGuid & OutValue) const` <a id="structFRHAPI__Vendor_1ab96b24ef610404ae3b9e38e948659ce9"></a>
+
+Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline FGuid * `[`GetVendorUuidOrNull`](#structFRHAPI__Vendor_1aea178973ef93b37639d5f3df679d38d2)`()` <a id="structFRHAPI__Vendor_1aea178973ef93b37639d5f3df679d38d2"></a>
+
+Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const FGuid * `[`GetVendorUuidOrNull`](#structFRHAPI__Vendor_1ace85d579b93e01c50c73470185593317)`() const` <a id="structFRHAPI__Vendor_1ace85d579b93e01c50c73470185593317"></a>
+
+Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetVendorUuid`](#structFRHAPI__Vendor_1a5a8887e0a008ea5d0b4a6ad1590b832a)`(FGuid NewValue)` <a id="structFRHAPI__Vendor_1a5a8887e0a008ea5d0b4a6ad1590b832a"></a>
+
+Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearVendorUuid`](#structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9)`()` <a id="structFRHAPI__Vendor_1abf17b70aaa40c7c92456dd853564d0b9"></a>
+
+Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false.
 
 <br>
 #### `public inline ERHAPI_VendorType & `[`GetType`](#structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7)`()` <a id="structFRHAPI__Vendor_1a45b0024bf9841cc84a56cf325a7b61e7"></a>
