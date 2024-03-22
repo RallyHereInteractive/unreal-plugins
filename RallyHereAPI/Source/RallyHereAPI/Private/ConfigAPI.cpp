@@ -176,7 +176,8 @@ bool FResponse_GetAppSettingsAll::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -357,7 +358,8 @@ bool FResponse_GetAppSettingsClient::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;
@@ -552,7 +554,8 @@ bool FResponse_GetAppSettingsServer::ParseHeaders()
         int32 index;
         if (HeaderStr.FindChar(TEXT(':'), index))
         {
-            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1));
+            // if there is a space after the colon, skip it
+            HeadersMap.Add(HeaderStr.Mid(0, index), HeaderStr.Mid(index + 1).TrimStartAndEnd());
         }
     }
     bool bParsedAllRequiredHeaders = true;

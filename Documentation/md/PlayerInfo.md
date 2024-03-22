@@ -8,6 +8,7 @@
 `class `[`URH_PlayerPresence`](#classURH__PlayerPresence) | Player Presence class used to store player presence data.
 `class `[`URH_PlayerSessions`](#classURH__PlayerSessions) | Player Sessions class used to store player session membership information.
 `class `[`URH_PlayerMatches`](#classURH__PlayerMatches) | Player Matches class used to store player match history information.
+`class `[`URH_PlayerReports`](#classURH__PlayerReports) | Player Reports class used to store and send player report information.
 `class `[`URH_PlayerPlatformInfo`](#classURH__PlayerPlatformInfo) | Stores information a specific platform the player has linked to their account.
 `class `[`URH_PlayerInfo`](#classURH__PlayerInfo) | Stores and fetchs all the information about a given player.
 `class `[`URH_PlayerInfoSubsystem`](#classURH__PlayerInfoSubsystem) | Subsystem used to track and request information about players.
@@ -364,6 +365,141 @@ Stores the response data from an API presence request.
 #### `typedef `[`GetMatchesType`](#classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9) <a id="classURH__PlayerMatches_1a13c41a6b6f28555aa13c6536c706c8b9"></a>
 
 <br>
+## class `URH_PlayerReports` <a id="classURH__PlayerReports"></a>
+
+```
+class URH_PlayerReports
+  : public URH_PlayerInfoSubobject
+```
+
+Player Reports class used to store and send player report information.
+
+#### Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`public void `[`GetReportsSentAsync`](#classURH__PlayerReports_1a998c9757f509c24745f705ee6f3152ec)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` | Request a list of player reports send by this player.
+`public inline void `[`BLUEPRINT_GetReportsSentAsync`](#classURH__PlayerReports_1abc1c0b9e9fb18c326cffcd0c21030078)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsDynamicDelegate & Delegate)` | Request a list of player reports send by this player.
+`public inline TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` | Get the current cached list of player reports sent by this player.
+`public void `[`GetReportsReceivedAsync`](#classURH__PlayerReports_1a1f5420d091da13449807424a2151433c)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` | Request a list of player reports received by this player.
+`public inline void `[`BLUEPRINT_GetReportsReceivedAsync`](#classURH__PlayerReports_1af22eebdd08e50bf32cb51c42712d42bd)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsDynamicDelegate & Delegate)` | Request a list of player reports received by this player.
+`public inline TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1ae2797d22ab1d3dc0a492aefb8a9aa9ce)`() const` | Get the current cached list of player reports received by this player.
+`public void `[`CreateReport`](#classURH__PlayerReports_1ad3901abf329a8ad6400d68ee82e41678)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player.
+`public inline void `[`BLUEPRINT_CreateReport`](#classURH__PlayerReports_1a6ed2cfcfa311ed6eaed59db909566e15)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportDynamicDelegate & Delegate)` | Create a new report for the target player.
+`public void `[`CreateReport`](#classURH__PlayerReports_1a675dcfb7ec0e5b4708da14bfaa419809)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` | Create a new report for the target player with a specific auth context.
+`protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) | 
+`protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsReceived`](#classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959) | 
+`typedef `[`GetReportsSentType`](#classURH__PlayerReports_1a66e9b68dfeb75fe986b3f615385e80a7) | 
+`typedef `[`GetReportsReceivedType`](#classURH__PlayerReports_1a2bebbdb949cccf80084b2e5b3cb99951) | 
+`typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) | 
+
+#### Members
+
+#### `public void `[`GetReportsSentAsync`](#classURH__PlayerReports_1a998c9757f509c24745f705ee6f3152ec)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` <a id="classURH__PlayerReports_1a998c9757f509c24745f705ee6f3152ec"></a>
+
+Request a list of player reports send by this player.
+
+#### Parameters
+* `Cursor` The cursor to use for the request. 
+
+* `PageSize` The size of the pages to poll, if 0, uses default 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline void `[`BLUEPRINT_GetReportsSentAsync`](#classURH__PlayerReports_1abc1c0b9e9fb18c326cffcd0c21030078)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsDynamicDelegate & Delegate)` <a id="classURH__PlayerReports_1abc1c0b9e9fb18c326cffcd0c21030078"></a>
+
+Request a list of player reports send by this player.
+
+#### Parameters
+* `Cursor` The cursor to use for the request. 
+
+* `PageSize` The size of the pages to poll, if 0, uses default 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsSent`](#classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750)`() const` <a id="classURH__PlayerReports_1a143d1f8a21fec0136747bd53bfe85750"></a>
+
+Get the current cached list of player reports sent by this player.
+
+<br>
+#### `public void `[`GetReportsReceivedAsync`](#classURH__PlayerReports_1a1f5420d091da13449807424a2151433c)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsBlock & Delegate)` <a id="classURH__PlayerReports_1a1f5420d091da13449807424a2151433c"></a>
+
+Request a list of player reports received by this player.
+
+#### Parameters
+* `Cursor` The cursor to use for the request. 
+
+* `PageSize` The size of the pages to poll, if 0, uses default 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline void `[`BLUEPRINT_GetReportsReceivedAsync`](#classURH__PlayerReports_1af22eebdd08e50bf32cb51c42712d42bd)`(const FString & Cursor,const int32 PageSize,const FRH_PlayerInfoGetPlayerReportsDynamicDelegate & Delegate)` <a id="classURH__PlayerReports_1af22eebdd08e50bf32cb51c42712d42bd"></a>
+
+Request a list of player reports received by this player.
+
+#### Parameters
+* `Cursor` The cursor to use for the request. 
+
+* `PageSize` The size of the pages to poll, if 0, uses default 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`GetReportsReceived`](#classURH__PlayerReports_1ae2797d22ab1d3dc0a492aefb8a9aa9ce)`() const` <a id="classURH__PlayerReports_1ae2797d22ab1d3dc0a492aefb8a9aa9ce"></a>
+
+Get the current cached list of player reports received by this player.
+
+<br>
+#### `public void `[`CreateReport`](#classURH__PlayerReports_1ad3901abf329a8ad6400d68ee82e41678)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` <a id="classURH__PlayerReports_1ad3901abf329a8ad6400d68ee82e41678"></a>
+
+Create a new report for the target player.
+
+#### Parameters
+* `Report` The report to create. 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public inline void `[`BLUEPRINT_CreateReport`](#classURH__PlayerReports_1a6ed2cfcfa311ed6eaed59db909566e15)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,const FRH_PlayerInfoCreatePlayerReportDynamicDelegate & Delegate)` <a id="classURH__PlayerReports_1a6ed2cfcfa311ed6eaed59db909566e15"></a>
+
+Create a new report for the target player.
+
+#### Parameters
+* `Report` The report to create. 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `public void `[`CreateReport`](#classURH__PlayerReports_1a675dcfb7ec0e5b4708da14bfaa419809)`(const `[`FRHAPI_PlayerReportCreate`](models/RHAPI_PlayerReportCreate.md#structFRHAPI__PlayerReportCreate)` & Report,FAuthContextPtr AuthContext,const FRH_PlayerInfoCreatePlayerReportBlock & Delegate)` <a id="classURH__PlayerReports_1a675dcfb7ec0e5b4708da14bfaa419809"></a>
+
+Create a new report for the target player with a specific auth context.
+
+#### Parameters
+* `Report` The report to create. 
+
+* `AuthContext` The auth context to use for the request. 
+
+* `Delegate` Callback delegate for the request.
+
+<br>
+#### `protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsSent`](#classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263) <a id="classURH__PlayerReports_1afa610002ff1c15ed7e6dfdfce53b2263"></a>
+
+<br>
+#### `protected TArray< `[`FRHAPI_PlayerReport`](models/RHAPI_PlayerReport.md#structFRHAPI__PlayerReport)` > `[`ReportsReceived`](#classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959) <a id="classURH__PlayerReports_1a3f561b683fa7026383b75e5494ca6959"></a>
+
+<br>
+#### `typedef `[`GetReportsSentType`](#classURH__PlayerReports_1a66e9b68dfeb75fe986b3f615385e80a7) <a id="classURH__PlayerReports_1a66e9b68dfeb75fe986b3f615385e80a7"></a>
+
+<br>
+#### `typedef `[`GetReportsReceivedType`](#classURH__PlayerReports_1a2bebbdb949cccf80084b2e5b3cb99951) <a id="classURH__PlayerReports_1a2bebbdb949cccf80084b2e5b3cb99951"></a>
+
+<br>
+#### `typedef `[`CreateReportType`](#classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d) <a id="classURH__PlayerReports_1a6b101fa42b9857a05a752b07cade837d"></a>
+
+<br>
 ## class `URH_PlayerPlatformInfo` <a id="classURH__PlayerPlatformInfo"></a>
 
 ```
@@ -445,6 +581,7 @@ Stores and fetchs all the information about a given player.
 `public inline FORCEINLINE `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`GetPresence`](#classURH__PlayerInfo_1a30440b0a7ab410262e696bc6ac976568)`() const` | Gets The players presence class.
 `public inline FORCEINLINE `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`GetSessions`](#classURH__PlayerInfo_1a3a012da0a55d1edb09a80dcf658ae7f4)`() const` | Gets The players sessions class.
 `public inline FORCEINLINE `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`GetMatches`](#classURH__PlayerInfo_1a18162aabb6b78affb52f918ae8517f84)`() const` | Gets The players matches class.
+`public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018)`() const` | Gets The players reports class.
 `public inline FORCEINLINE TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480)`()` | Gets the associated platform ids of the player.
 `public inline FORCEINLINE const TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1ab0617adb51499a0c8ce36ef60693e6d6)`() const` | Gets the associated platform ids of the player.
 `public TArray< `[`URH_PlayerPlatformInfo`](PlayerInfo.md#classURH__PlayerPlatformInfo)` * > `[`GetPlayerPlatforms`](#classURH__PlayerInfo_1a3896d84ba5481158ce3cfc62b39e064e)`() const` | Gets the associated platforms of the player.
@@ -481,6 +618,7 @@ Stores and fetchs all the information about a given player.
 `protected `[`URH_PlayerPresence`](PlayerInfo.md#classURH__PlayerPresence)` * `[`PlayerPresence`](#classURH__PlayerInfo_1ae3c851503d0b5b8c024dc55252acb688) | The players Presence Information.
 `protected `[`URH_PlayerSessions`](PlayerInfo.md#classURH__PlayerSessions)` * `[`PlayerSessions`](#classURH__PlayerInfo_1a7af4d09bb83333d3028bc9a94cf067fd) | The players Sessions Information.
 `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) | The players Matches Information.
+`protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) | The players Reports Information.
 `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) | The Players Inventory Subsystem.
 `protected `[`URH_PlayerNotifications`](Notifications.md#classURH__PlayerNotifications)` * `[`PlayerNotifications`](#classURH__PlayerInfo_1ac1eb1a25b4d89a7f7c75cbb6d4c9e4a8) | The Players Inventory Subsystem.
 `protected TMap< FString, `[`FRHAPI_PlayerRankResponseV2`](models/RHAPI_PlayerRankResponseV2.md#structFRHAPI__PlayerRankResponseV2)` > `[`PlayerRankingsByRankingId`](#classURH__PlayerInfo_1a5728d3241aef0abed0788e90422ad071) | List of the player's rankings.
@@ -532,6 +670,14 @@ Gets The players matches class.
 
 #### Returns
 The players matches class.
+
+<br>
+#### `public inline FORCEINLINE `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`GetReports`](#classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018)`() const` <a id="classURH__PlayerInfo_1a384f5b99113927ed0f47cf1278e45018"></a>
+
+Gets The players reports class.
+
+#### Returns
+The players reports class.
 
 <br>
 #### `public inline FORCEINLINE TArray< `[`FRH_PlayerPlatformId`](Common.md#structFRH__PlayerPlatformId)` > & `[`GetPlayerPlatformIds`](#classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480)`()` <a id="classURH__PlayerInfo_1a6da64917c1815b0048dbf5b770a43480"></a>
@@ -796,6 +942,11 @@ The players Sessions Information.
 #### `protected `[`URH_PlayerMatches`](PlayerInfo.md#classURH__PlayerMatches)` * `[`PlayerMatches`](#classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa) <a id="classURH__PlayerInfo_1a1f355fbb71f17bc3bb40283c931138aa"></a>
 
 The players Matches Information.
+
+<br>
+#### `protected `[`URH_PlayerReports`](PlayerInfo.md#classURH__PlayerReports)` * `[`PlayerReports`](#classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572) <a id="classURH__PlayerInfo_1a99a08ebcbd1c9c030f1d4ca7f9fcb572"></a>
+
+The players Reports Information.
 
 <br>
 #### `protected `[`URH_PlayerInventory`](Inventory.md#classURH__PlayerInventory)` * `[`PlayerInventory`](#classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da) <a id="classURH__PlayerInfo_1ab06228dae3921d141dbbf2bf895c55da"></a>

@@ -228,6 +228,8 @@ URH_PlayerInfo::URH_PlayerInfo(const FObjectInitializer& ObjectInitializer) : Su
 
 	PlayerMatches = CreateDefaultSubobject<URH_PlayerMatches>(TEXT("PlayerMatches"));
 
+	PlayerReports = CreateDefaultSubobject<URH_PlayerReports>(TEXT("PlayerReports"));
+
 	PlayerInventory = CreateDefaultSubobject<URH_PlayerInventory>(TEXT("PlayerInventory"));
 	PlayerInventory->SetPlayerInfo(this);
 
@@ -977,3 +979,167 @@ bool URH_PlayerMatches::CheckPollingCursorComplete(const TSharedPtr<FPollContext
 		return true;
 	}
 }
+
+///
+
+URH_PlayerReports::URH_PlayerReports(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+	
+}
+
+void URH_PlayerReports::GetReportsSentAsync(const FString& Cursor, const int32 PageSize, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate)
+{
+	typedef GetReportsSentType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	if (Cursor.Len() > 0)
+	{
+		Request.Cursor = Cursor;
+	}
+	if (PageSize > 0)
+	{
+		Request.PageSize = PageSize;
+	}
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+
+	struct FCursorContext
+	{
+		FString Cursor;
+	} Context;
+	auto SharedContext = MakeShared<FCursorContext>();
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, SharedContext](const BaseType::Response& Response)
+			{
+				if (auto* NextCursor = Response.Content.GetNextCursorOrNull())
+				{
+					SharedContext->Cursor = *NextCursor;
+				}
+
+				// merge the response into our local cache
+				for (const auto& Report : Response.Content.GetReports())
+				{
+					// try to find the report in our local cache, update it there (in case of any changes)
+					bool bFound = false;
+					for (auto& ExistingReport : ReportsSent)
+					{
+						if (ExistingReport.GetReportId() == Report.GetReportId())
+						{
+							bFound = true;
+							ExistingReport = Report;
+							break;
+						}
+					}
+					// if we didn't find it, add it to our local cache
+					if (!bFound)
+					{
+						ReportsSent.Add(Report);
+					}
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, SharedContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ReportsSent, SharedContext->Cursor, ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetPlayerReportsSentPriority
+	);
+
+	Helper->Start(RH_APIs::GetReportsAPI(), Request);
+}
+
+void URH_PlayerReports::GetReportsReceivedAsync(const FString& Cursor, const int32 PageSize, const FRH_PlayerInfoGetPlayerReportsBlock& Delegate)
+{
+	typedef GetReportsReceivedType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	if (Cursor.Len() > 0)
+	{
+		Request.Cursor = Cursor;
+	}
+	if (PageSize > 0)
+	{
+		Request.PageSize = PageSize;
+	}
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+
+	struct FCursorContext
+	{
+		FString Cursor;
+	} Context;
+	auto SharedContext = MakeShared<FCursorContext>();
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, SharedContext](const BaseType::Response& Response)
+			{
+				if (auto* NextCursor = Response.Content.GetNextCursorOrNull())
+				{
+					SharedContext->Cursor = *NextCursor;
+				}
+
+				// merge the response into our local cache
+				for (const auto& Report : Response.Content.GetReports())
+				{
+					// try to find the report in our local cache, update it there (in case of any changes)
+					bool bFound = false;
+					for (auto& ExistingReport : ReportsReceived)
+					{
+						if (ExistingReport.GetReportId() == Report.GetReportId())
+						{
+							bFound = true;
+							ExistingReport = Report;
+							break;
+						}
+					}
+					// if we didn't find it, add it to our local cache
+					if (!bFound)
+					{
+						ReportsReceived.Add(Report);
+					}
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, SharedContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ReportsReceived, SharedContext->Cursor, ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->GetPlayerReportsReceivedPriority
+	);
+
+	Helper->Start(RH_APIs::GetReportsAPI(), Request);
+}
+
+void URH_PlayerReports::CreateReport(const FRHAPI_PlayerReportCreate& Report, const FRH_PlayerInfoCreatePlayerReportBlock& Delegate)
+{
+	CreateReport(Report, GetPlayerInfo()->GetAuthContext(), Delegate);
+}
+
+void URH_PlayerReports::CreateReport(const FRHAPI_PlayerReportCreate& Report, FAuthContextPtr AuthContextOverride, const FRH_PlayerInfoCreatePlayerReportBlock& Delegate)
+{
+	typedef CreateReportType BaseType;
+
+	auto Request = BaseType::Request();
+	Request.PlayerUuid = GetPlayerInfo()->GetRHPlayerUuid();
+	Request.AuthContext = GetPlayerInfo()->GetAuthContext();
+	Request.PlayerReportCreate = Report;
+
+	auto ReportResult = MakeShared<FRHAPI_PlayerReport>();
+
+	const auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, ReportResult](const BaseType::Response& Response)
+			{
+				// merge the response into our local cache
+				*ReportResult = Response.Content;
+				ReportsSent.Add(Response.Content);
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, ReportResult, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, ReportResult.Get(), ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->CreatePlayerReportPriority
+	);
+
+	Helper->Start(RH_APIs::GetReportsAPI(), Request);
+}
+

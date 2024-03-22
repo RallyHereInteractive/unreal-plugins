@@ -359,7 +359,7 @@ struct RALLYHEREAPI_API Traits_AcknowledgeBackfillRequest
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:platform`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update:platform`
  * 
  * 
  * 
@@ -443,7 +443,7 @@ struct RALLYHEREAPI_API Traits_AddPlatformSessionToRallyHereSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
 */
 struct RALLYHEREAPI_API FRequest_BackfillConfig : public FRequest
 {
@@ -497,7 +497,7 @@ struct RALLYHEREAPI_API Traits_BackfillConfig
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`
  * 
  * 
  * 
@@ -631,7 +631,7 @@ struct RALLYHEREAPI_API Traits_CreateOrJoinSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:event`, `session:*`
+ * - For any player (including themselves) any of: `session:update:event`, `session:*`, `session:update:any`
  * 
  * 
  * 
@@ -763,7 +763,7 @@ struct RALLYHEREAPI_API Traits_DeleteBackfillRequest
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:update:browser`
+ * - For any player (including themselves) any of: `session:update:browser`, `session:*`
  * 
  * 
  * 
@@ -826,7 +826,7 @@ struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
  *                
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:platform`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:update:platform`
  * 
  * 
  * 
@@ -904,7 +904,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`
  * 
  * 
  * 
@@ -972,7 +972,7 @@ struct RALLYHEREAPI_API Traits_EndInstance
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -1114,7 +1114,7 @@ struct RALLYHEREAPI_API Traits_GetBrowserSessionsByType
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -1255,7 +1255,7 @@ struct RALLYHEREAPI_API Traits_GetPlatformSessionInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:read-player:any`
+ * - For any player (including themselves) any of: `session:read-player:any`, `session:*`
  * 
  * - For the player themselves : `session:read-player:self`
  * 
@@ -1321,7 +1321,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessions
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:read-player:any`
+ * - For any player (including themselves) any of: `session:read-player:any`, `session:*`
  * 
  * - For the player themselves : `session:read-player:self`
  * 
@@ -1393,7 +1393,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:read-player:any`
+ * - For any player (including themselves) any of: `session:read-player:any`, `session:*`
  * 
  * - For the player themselves : `session:read-player:self`
  * 
@@ -1530,7 +1530,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerSessionsSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:read:allocation`
+ * - For any player (including themselves) any of: `session:read:allocation`, `session:*`
  * 
  * 
  * 
@@ -1602,7 +1602,7 @@ struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:self`, `session:*`, `session:read:any`
+ * - For any player (including themselves) any of: `session:read:any`, `session:*`, `session:read:self`
  * 
  * 
  * 
@@ -1740,7 +1740,7 @@ struct RALLYHEREAPI_API Traits_GetSessionEvents
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
  * 
  * 
  * 
@@ -1876,7 +1876,7 @@ struct RALLYHEREAPI_API Traits_InstanceHealthCheck
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:read:config`, `session:*`
+ * - For any player (including themselves) any of: `session:*`, `session:read:config`
 */
 struct RALLYHEREAPI_API FRequest_InstanceHealthConfig : public FRequest
 {
@@ -2012,7 +2012,7 @@ struct RALLYHEREAPI_API Traits_InviteSessionToSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`
  * 
  * 
  * 
@@ -2618,7 +2618,7 @@ struct RALLYHEREAPI_API Traits_KickSessionFromSession
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`
  * 
  * 
  *                
@@ -2908,7 +2908,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:update:browser`
+ * - For any player (including themselves) any of: `session:update:browser`, `session:*`
  * 
  * 
  * 
@@ -3036,7 +3036,7 @@ struct RALLYHEREAPI_API Traits_UpdateBackfillRequest
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:update:browser`
+ * - For any player (including themselves) any of: `session:update:browser`, `session:*`
  * 
  * 
  * 
@@ -3102,7 +3102,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`
  * 
  * 
  * 
@@ -3167,7 +3167,7 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:update:any`, `session:update:self`, `session:*`
+ * - For any player (including themselves) any of: `session:update:any`, `session:*`, `session:update:self`
  * 
  * 
  * 
@@ -3237,7 +3237,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+ * - For any player (including themselves) any of: `session:promote:any`, `session:*`, `session:promote:self`
  * 
  * 
  * 
@@ -3311,7 +3311,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+ * - For any player (including themselves) any of: `session:promote:any`, `session:*`, `session:promote:self`
  * 
  * 
  * 
@@ -3389,7 +3389,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
  * 
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`
+ * - For any player (including themselves) any of: `session:promote:any`, `session:*`, `session:promote:self`
  * 
  * 
  * 

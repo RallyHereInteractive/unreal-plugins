@@ -223,6 +223,9 @@ Private/PlayerRankResponseV2.cpp
 Private/PlayerRankUpdateRequest.cpp
 Private/PlayerRankUpdateResponse.cpp
 Private/PlayerRankUpdateResponseV2.cpp
+Private/PlayerReport.cpp
+Private/PlayerReportCreate.cpp
+Private/PlayerReportList.cpp
 Private/PlayerResponse.cpp
 Private/PlayerSession.cpp
 Private/PlayerSessionInvite.cpp
@@ -274,6 +277,8 @@ Private/RankedTeam.cpp
 Private/Region.cpp
 Private/RegionsAPI.cpp
 Private/RegionsResponse.cpp
+Private/ReportReason.cpp
+Private/ReportsAPI.cpp
 Private/Restriction.cpp
 Private/RestrictionType.cpp
 Private/Role.cpp
@@ -552,6 +557,9 @@ Public/PlayerRankResponseV2.h
 Public/PlayerRankUpdateRequest.h
 Public/PlayerRankUpdateResponse.h
 Public/PlayerRankUpdateResponseV2.h
+Public/PlayerReport.h
+Public/PlayerReportCreate.h
+Public/PlayerReportList.h
 Public/PlayerResponse.h
 Public/PlayerSession.h
 Public/PlayerSessionInvite.h
@@ -603,6 +611,8 @@ Public/RankedTeam.h
 Public/Region.h
 Public/RegionsAPI.h
 Public/RegionsResponse.h
+Public/ReportReason.h
+Public/ReportsAPI.h
 Public/Restriction.h
 Public/RestrictionType.h
 Public/Role.h

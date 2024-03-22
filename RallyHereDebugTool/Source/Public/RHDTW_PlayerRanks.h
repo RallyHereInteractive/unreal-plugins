@@ -6,12 +6,12 @@
 
 #include "RankAPI.h"
 
-struct FRHDTW_PlayerSessions : public FRH_DebugToolWindow
+struct FRHDTW_PlayerRanks : public FRH_DebugToolWindow
 {
 	typedef FRH_DebugToolWindow Super;
 
-	FRHDTW_PlayerSessions();
-	virtual ~FRHDTW_PlayerSessions();
+	FRHDTW_PlayerRanks();
+	virtual ~FRHDTW_PlayerRanks();
 
 	virtual void Do() override;
 
