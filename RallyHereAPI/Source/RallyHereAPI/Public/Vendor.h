@@ -65,6 +65,29 @@ struct RALLYHEREAPI_API FRHAPI_Vendor : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief The Vendor UUID */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid VendorUuid_Optional{  };
+    /** @brief true if VendorUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool VendorUuid_IsSet{ false };
+    /** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
+    FGuid& GetVendorUuid() { return VendorUuid_Optional; }
+    /** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
+    const FGuid& GetVendorUuid() const { return VendorUuid_Optional; }
+    /** @brief Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetVendorUuid(const FGuid& DefaultValue) const { if (VendorUuid_IsSet) return VendorUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetVendorUuid(FGuid& OutValue) const { if (VendorUuid_IsSet) OutValue = VendorUuid_Optional; return VendorUuid_IsSet; }
+    /** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetVendorUuidOrNull() { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
+    /** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
+    void SetVendorUuid(FGuid NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+     /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
+    void ClearVendorUuid() { VendorUuid_IsSet = false; }
+
     /** @brief Determines how the Vendor fulfills the loot */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     ERHAPI_VendorType Type_Optional{  };

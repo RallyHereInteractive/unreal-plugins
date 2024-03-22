@@ -69,6 +69,29 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
 
+    /** @brief The Loot UUID */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid LootUuid_Optional{  };
+    /** @brief true if LootUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool LootUuid_IsSet{ false };
+    /** @brief Gets the value of LootUuid_Optional, regardless of it having been set */
+    FGuid& GetLootUuid() { return LootUuid_Optional; }
+    /** @brief Gets the value of LootUuid_Optional, regardless of it having been set */
+    const FGuid& GetLootUuid() const { return LootUuid_Optional; }
+    /** @brief Gets the value of LootUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetLootUuid(const FGuid& DefaultValue) const { if (LootUuid_IsSet) return LootUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of LootUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetLootUuid(FGuid& OutValue) const { if (LootUuid_IsSet) OutValue = LootUuid_Optional; return LootUuid_IsSet; }
+    /** @brief Returns a pointer to LootUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetLootUuidOrNull() { if (LootUuid_IsSet) return &LootUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to LootUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetLootUuidOrNull() const { if (LootUuid_IsSet) return &LootUuid_Optional; return nullptr; }
+    /** @brief Sets the value of LootUuid_Optional and also sets LootUuid_IsSet to true */
+    void SetLootUuid(FGuid NewValue) { LootUuid_Optional = NewValue; LootUuid_IsSet = true; }
+     /** @brief Clears the value of LootUuid_Optional and sets LootUuid_IsSet to false */
+    void ClearLootUuid() { LootUuid_IsSet = false; }
+
     /** @brief The Loot ID */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 LootId{ 0 };
@@ -97,6 +120,29 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of VendorId to its default  */
     void SetVendorIdToDefault() { VendorId = 0;  }
 
+    /** @brief The Vendor UUID */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid VendorUuid_Optional{  };
+    /** @brief true if VendorUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool VendorUuid_IsSet{ false };
+    /** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
+    FGuid& GetVendorUuid() { return VendorUuid_Optional; }
+    /** @brief Gets the value of VendorUuid_Optional, regardless of it having been set */
+    const FGuid& GetVendorUuid() const { return VendorUuid_Optional; }
+    /** @brief Gets the value of VendorUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetVendorUuid(const FGuid& DefaultValue) const { if (VendorUuid_IsSet) return VendorUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of VendorUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetVendorUuid(FGuid& OutValue) const { if (VendorUuid_IsSet) OutValue = VendorUuid_Optional; return VendorUuid_IsSet; }
+    /** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetVendorUuidOrNull() { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to VendorUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetVendorUuidOrNull() const { if (VendorUuid_IsSet) return &VendorUuid_Optional; return nullptr; }
+    /** @brief Sets the value of VendorUuid_Optional and also sets VendorUuid_IsSet to true */
+    void SetVendorUuid(FGuid NewValue) { VendorUuid_Optional = NewValue; VendorUuid_IsSet = true; }
+     /** @brief Clears the value of VendorUuid_Optional and sets VendorUuid_IsSet to false */
+    void ClearVendorUuid() { VendorUuid_IsSet = false; }
+
     /** @brief The Item ID. Optional Item that will be granted to the player if Sub Vendor ID is not specified. */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 ItemId_Optional{  };
@@ -123,6 +169,29 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     bool IsItemIdDefaultValue() const { return ItemId_IsSet && ItemId_Optional == 0; }
     /** @brief Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true */
     void SetItemIdToDefault() { ItemId_Optional = 0; ItemId_IsSet = true; }
+
+    /** @brief The Item UUID. Optional Item that will be granted to the player if Sub Vendor ID is not specified. */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid ItemUuid_Optional{  };
+    /** @brief true if ItemUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool ItemUuid_IsSet{ false };
+    /** @brief Gets the value of ItemUuid_Optional, regardless of it having been set */
+    FGuid& GetItemUuid() { return ItemUuid_Optional; }
+    /** @brief Gets the value of ItemUuid_Optional, regardless of it having been set */
+    const FGuid& GetItemUuid() const { return ItemUuid_Optional; }
+    /** @brief Gets the value of ItemUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetItemUuid(const FGuid& DefaultValue) const { if (ItemUuid_IsSet) return ItemUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of ItemUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetItemUuid(FGuid& OutValue) const { if (ItemUuid_IsSet) OutValue = ItemUuid_Optional; return ItemUuid_IsSet; }
+    /** @brief Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetItemUuidOrNull() { if (ItemUuid_IsSet) return &ItemUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetItemUuidOrNull() const { if (ItemUuid_IsSet) return &ItemUuid_Optional; return nullptr; }
+    /** @brief Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true */
+    void SetItemUuid(FGuid NewValue) { ItemUuid_Optional = NewValue; ItemUuid_IsSet = true; }
+     /** @brief Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false */
+    void ClearItemUuid() { ItemUuid_IsSet = false; }
 
     /** @brief In-line Item definition. Optional Item that will be granted to the player if Sub Vendor ID is not specified. */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -173,6 +242,29 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     bool IsSubVendorIdDefaultValue() const { return SubVendorId_IsSet && SubVendorId_Optional == 0; }
     /** @brief Sets the value of SubVendorId_Optional to its default and also sets SubVendorId_IsSet to true */
     void SetSubVendorIdToDefault() { SubVendorId_Optional = 0; SubVendorId_IsSet = true; }
+
+    /** @brief The Sub Vendor UUID. Optional Vendor ID that will be used to fulfill the Loot instead of granting the Item. */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid SubVendorUuid_Optional{  };
+    /** @brief true if SubVendorUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool SubVendorUuid_IsSet{ false };
+    /** @brief Gets the value of SubVendorUuid_Optional, regardless of it having been set */
+    FGuid& GetSubVendorUuid() { return SubVendorUuid_Optional; }
+    /** @brief Gets the value of SubVendorUuid_Optional, regardless of it having been set */
+    const FGuid& GetSubVendorUuid() const { return SubVendorUuid_Optional; }
+    /** @brief Gets the value of SubVendorUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetSubVendorUuid(const FGuid& DefaultValue) const { if (SubVendorUuid_IsSet) return SubVendorUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of SubVendorUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetSubVendorUuid(FGuid& OutValue) const { if (SubVendorUuid_IsSet) OutValue = SubVendorUuid_Optional; return SubVendorUuid_IsSet; }
+    /** @brief Returns a pointer to SubVendorUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetSubVendorUuidOrNull() { if (SubVendorUuid_IsSet) return &SubVendorUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to SubVendorUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetSubVendorUuidOrNull() const { if (SubVendorUuid_IsSet) return &SubVendorUuid_Optional; return nullptr; }
+    /** @brief Sets the value of SubVendorUuid_Optional and also sets SubVendorUuid_IsSet to true */
+    void SetSubVendorUuid(FGuid NewValue) { SubVendorUuid_Optional = NewValue; SubVendorUuid_IsSet = true; }
+     /** @brief Clears the value of SubVendorUuid_Optional and sets SubVendorUuid_IsSet to false */
+    void ClearSubVendorUuid() { SubVendorUuid_IsSet = false; }
 
     /** @brief The quantity of the Item or Sub Vendor to fulfill. This will be multiplied by the quantity of fulfilled Loot and the parent Loot if quantity_type is relative. */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -409,6 +501,29 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     /** @brief Sets the value of RequiredItemId_Optional to its default and also sets RequiredItemId_IsSet to true */
     void SetRequiredItemIdToDefault() { RequiredItemId_Optional = 0; RequiredItemId_IsSet = true; }
 
+    /** @brief Item required to be owned/rented to drop this Loot in a randomly sampled vendor */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid RequiredItemUuid_Optional{  };
+    /** @brief true if RequiredItemUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool RequiredItemUuid_IsSet{ false };
+    /** @brief Gets the value of RequiredItemUuid_Optional, regardless of it having been set */
+    FGuid& GetRequiredItemUuid() { return RequiredItemUuid_Optional; }
+    /** @brief Gets the value of RequiredItemUuid_Optional, regardless of it having been set */
+    const FGuid& GetRequiredItemUuid() const { return RequiredItemUuid_Optional; }
+    /** @brief Gets the value of RequiredItemUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetRequiredItemUuid(const FGuid& DefaultValue) const { if (RequiredItemUuid_IsSet) return RequiredItemUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of RequiredItemUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetRequiredItemUuid(FGuid& OutValue) const { if (RequiredItemUuid_IsSet) OutValue = RequiredItemUuid_Optional; return RequiredItemUuid_IsSet; }
+    /** @brief Returns a pointer to RequiredItemUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetRequiredItemUuidOrNull() { if (RequiredItemUuid_IsSet) return &RequiredItemUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to RequiredItemUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetRequiredItemUuidOrNull() const { if (RequiredItemUuid_IsSet) return &RequiredItemUuid_Optional; return nullptr; }
+    /** @brief Sets the value of RequiredItemUuid_Optional and also sets RequiredItemUuid_IsSet to true */
+    void SetRequiredItemUuid(FGuid NewValue) { RequiredItemUuid_Optional = NewValue; RequiredItemUuid_IsSet = true; }
+     /** @brief Clears the value of RequiredItemUuid_Optional and sets RequiredItemUuid_IsSet to false */
+    void ClearRequiredItemUuid() { RequiredItemUuid_IsSet = false; }
+
     /** @brief Amount of the required_item_id to be owned/rented to drop this Loot in a randomly sampled vendor */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     int32 RequiredItemCount_Optional{  };
@@ -560,6 +675,29 @@ struct RALLYHEREAPI_API FRHAPI_Loot : public FRHAPI_Model
     bool IsQuantityMultInventoryItemIdDefaultValue() const { return QuantityMultInventoryItemId_IsSet && QuantityMultInventoryItemId_Optional == 0; }
     /** @brief Sets the value of QuantityMultInventoryItemId_Optional to its default and also sets QuantityMultInventoryItemId_IsSet to true */
     void SetQuantityMultInventoryItemIdToDefault() { QuantityMultInventoryItemId_Optional = 0; QuantityMultInventoryItemId_IsSet = true; }
+
+    /** @brief When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FGuid QuantityMultInventoryItemUuid_Optional{  };
+    /** @brief true if QuantityMultInventoryItemUuid_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool QuantityMultInventoryItemUuid_IsSet{ false };
+    /** @brief Gets the value of QuantityMultInventoryItemUuid_Optional, regardless of it having been set */
+    FGuid& GetQuantityMultInventoryItemUuid() { return QuantityMultInventoryItemUuid_Optional; }
+    /** @brief Gets the value of QuantityMultInventoryItemUuid_Optional, regardless of it having been set */
+    const FGuid& GetQuantityMultInventoryItemUuid() const { return QuantityMultInventoryItemUuid_Optional; }
+    /** @brief Gets the value of QuantityMultInventoryItemUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FGuid& GetQuantityMultInventoryItemUuid(const FGuid& DefaultValue) const { if (QuantityMultInventoryItemUuid_IsSet) return QuantityMultInventoryItemUuid_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of QuantityMultInventoryItemUuid_Optional and returns true if it has been set, otherwise returns false */
+    bool GetQuantityMultInventoryItemUuid(FGuid& OutValue) const { if (QuantityMultInventoryItemUuid_IsSet) OutValue = QuantityMultInventoryItemUuid_Optional; return QuantityMultInventoryItemUuid_IsSet; }
+    /** @brief Returns a pointer to QuantityMultInventoryItemUuid_Optional, if it has been set, otherwise returns nullptr */
+    FGuid* GetQuantityMultInventoryItemUuidOrNull() { if (QuantityMultInventoryItemUuid_IsSet) return &QuantityMultInventoryItemUuid_Optional; return nullptr; }
+    /** @brief Returns a pointer to QuantityMultInventoryItemUuid_Optional, if it has been set, otherwise returns nullptr */
+    const FGuid* GetQuantityMultInventoryItemUuidOrNull() const { if (QuantityMultInventoryItemUuid_IsSet) return &QuantityMultInventoryItemUuid_Optional; return nullptr; }
+    /** @brief Sets the value of QuantityMultInventoryItemUuid_Optional and also sets QuantityMultInventoryItemUuid_IsSet to true */
+    void SetQuantityMultInventoryItemUuid(FGuid NewValue) { QuantityMultInventoryItemUuid_Optional = NewValue; QuantityMultInventoryItemUuid_IsSet = true; }
+     /** @brief Clears the value of QuantityMultInventoryItemUuid_Optional and sets QuantityMultInventoryItemUuid_IsSet to false */
+    void ClearQuantityMultInventoryItemUuid() { QuantityMultInventoryItemUuid_IsSet = false; }
 
     /** @brief Determines if the Loot can be claimed by the client. This is dangerous without the correct loot confiuration as a client could claim Loot multiple times. */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

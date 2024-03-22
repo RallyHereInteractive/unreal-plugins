@@ -64,8 +64,8 @@ private:
  *
  * Create a new report for a target player
  * Required Permissions:
- * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`
- * Otherwise: any of: `sanction:report:create:any`, `sanction:*`
+ * If `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`
+ * Otherwise: any of: `sanction:*`, `sanction:report:create:any`
 */
 struct RALLYHEREAPI_API FRequest_CreateReportForTargetPlayerUuid : public FRequest
 {
@@ -141,7 +141,7 @@ struct RALLYHEREAPI_API Traits_CreateReportForTargetPlayerUuid
  * 
  * Source players will be empty without the Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -216,7 +216,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuid
  * 
  * Source players will be empty without the Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -284,7 +284,7 @@ struct RALLYHEREAPI_API Traits_GetReportsForTargetPlayerUuidSelf
  * Get reports from a source player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */
@@ -353,7 +353,7 @@ struct RALLYHEREAPI_API Traits_GetReportsFromSourcePlayerUuid
  * Get reports from a source player
  * Required Permissions:
  * 
- * - For any player (including themselves) any of: `sanction:report:read:source-any`, `sanction:*`
+ * - For any player (including themselves) any of: `sanction:*`, `sanction:report:read:source-any`
  * 
  * - For the player themselves : `sanction:report:read:source-self`
 */

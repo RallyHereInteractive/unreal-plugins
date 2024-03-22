@@ -34,6 +34,8 @@ struct FRHAPI_PlayerReport
 `public bool `[`InstanceId_IsSet`](#structFRHAPI__PlayerReport_1af6c6bde55f0204d93fefb5736905b2d2) | true if InstanceId_Optional has been set to a value
 `public FString `[`MatchId_Optional`](#structFRHAPI__PlayerReport_1a51b57e66148af98ebe8a417a1934ebcd) | 
 `public bool `[`MatchId_IsSet`](#structFRHAPI__PlayerReport_1a1329755fd98ef7f472e74f80292c613a) | true if MatchId_Optional has been set to a value
+`public FString `[`MatchSegment_Optional`](#structFRHAPI__PlayerReport_1a89059c798981790d55bc8139f471e6da) | 
+`public bool `[`MatchSegment_IsSet`](#structFRHAPI__PlayerReport_1a1dd8140a5aa65f4811c2792939fcab8c) | true if MatchSegment_Optional has been set to a value
 `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlayerReport_1a80153d5a0c0581838a4dd5d0f4fd0599) | Custom data for the report.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlayerReport_1a0abbc656b7e49086f1d00fbf6c7efabd) | true if CustomData_Optional has been set to a value
 `public FDateTime `[`Created_Optional`](#structFRHAPI__PlayerReport_1a2c81b6a985bb83ebde61d6aab1cbafea) | 
@@ -111,6 +113,14 @@ struct FRHAPI_PlayerReport
 `public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerReport_1a1a299f5caeb2956dc082f7446495135f)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 `public inline void `[`SetMatchId`](#structFRHAPI__PlayerReport_1ab4bac1ec8cc2fde28dae7ef28616fb01)`(FString NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
 `public inline void `[`ClearMatchId`](#structFRHAPI__PlayerReport_1ac5cdcfbdb2a8fd6732bd130cf6da9a56)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
+`public inline FString & `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a6bdf6e172d55a4a68b5f48eb16279798)`()` | Gets the value of MatchSegment_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a792a0720a227a09674d0f141e42ba703)`() const` | Gets the value of MatchSegment_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a742f6456cf9030cce693381401119ce3)`(const FString & DefaultValue) const` | Gets the value of MatchSegment_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a25a74a37312065b9d0d43d4361f42e50)`(FString & OutValue) const` | Fills OutValue with the value of MatchSegment_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMatchSegmentOrNull`](#structFRHAPI__PlayerReport_1a07289dad1ffb0aeb4f93f78544c7bfde)`()` | Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMatchSegmentOrNull`](#structFRHAPI__PlayerReport_1aaf744a5aa01eb905210f295f191b27d5)`() const` | Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMatchSegment`](#structFRHAPI__PlayerReport_1a68eee1f512a12d5d8f244169406ee434)`(FString NewValue)` | Sets the value of MatchSegment_Optional and also sets MatchSegment_IsSet to true.
+`public inline void `[`ClearMatchSegment`](#structFRHAPI__PlayerReport_1ae4cc911288e101f606d03eff84cda53e)`()` | Clears the value of MatchSegment_Optional and sets MatchSegment_IsSet to false.
 `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerReport_1a2385a92118ebd2247349552a20412750)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerReport_1ac0ad68bcd23572a99d93abb31b6c97d1)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
 `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerReport_1a3451382935b44826946f90595f7826ff)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -205,6 +215,14 @@ true if InstanceId_Optional has been set to a value
 #### `public bool `[`MatchId_IsSet`](#structFRHAPI__PlayerReport_1a1329755fd98ef7f472e74f80292c613a) <a id="structFRHAPI__PlayerReport_1a1329755fd98ef7f472e74f80292c613a"></a>
 
 true if MatchId_Optional has been set to a value
+
+<br>
+#### `public FString `[`MatchSegment_Optional`](#structFRHAPI__PlayerReport_1a89059c798981790d55bc8139f471e6da) <a id="structFRHAPI__PlayerReport_1a89059c798981790d55bc8139f471e6da"></a>
+
+<br>
+#### `public bool `[`MatchSegment_IsSet`](#structFRHAPI__PlayerReport_1a1dd8140a5aa65f4811c2792939fcab8c) <a id="structFRHAPI__PlayerReport_1a1dd8140a5aa65f4811c2792939fcab8c"></a>
+
+true if MatchSegment_Optional has been set to a value
 
 <br>
 #### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlayerReport_1a80153d5a0c0581838a4dd5d0f4fd0599) <a id="structFRHAPI__PlayerReport_1a80153d5a0c0581838a4dd5d0f4fd0599"></a>
@@ -595,6 +613,46 @@ Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
 #### `public inline void `[`ClearMatchId`](#structFRHAPI__PlayerReport_1ac5cdcfbdb2a8fd6732bd130cf6da9a56)`()` <a id="structFRHAPI__PlayerReport_1ac5cdcfbdb2a8fd6732bd130cf6da9a56"></a>
 
 Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
+
+<br>
+#### `public inline FString & `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a6bdf6e172d55a4a68b5f48eb16279798)`()` <a id="structFRHAPI__PlayerReport_1a6bdf6e172d55a4a68b5f48eb16279798"></a>
+
+Gets the value of MatchSegment_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a792a0720a227a09674d0f141e42ba703)`() const` <a id="structFRHAPI__PlayerReport_1a792a0720a227a09674d0f141e42ba703"></a>
+
+Gets the value of MatchSegment_Optional, regardless of it having been set.
+
+<br>
+#### `public inline const FString & `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a742f6456cf9030cce693381401119ce3)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerReport_1a742f6456cf9030cce693381401119ce3"></a>
+
+Gets the value of MatchSegment_Optional, if it has been set, otherwise it returns DefaultValue.
+
+<br>
+#### `public inline bool `[`GetMatchSegment`](#structFRHAPI__PlayerReport_1a25a74a37312065b9d0d43d4361f42e50)`(FString & OutValue) const` <a id="structFRHAPI__PlayerReport_1a25a74a37312065b9d0d43d4361f42e50"></a>
+
+Fills OutValue with the value of MatchSegment_Optional and returns true if it has been set, otherwise returns false.
+
+<br>
+#### `public inline FString * `[`GetMatchSegmentOrNull`](#structFRHAPI__PlayerReport_1a07289dad1ffb0aeb4f93f78544c7bfde)`()` <a id="structFRHAPI__PlayerReport_1a07289dad1ffb0aeb4f93f78544c7bfde"></a>
+
+Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline const FString * `[`GetMatchSegmentOrNull`](#structFRHAPI__PlayerReport_1aaf744a5aa01eb905210f295f191b27d5)`() const` <a id="structFRHAPI__PlayerReport_1aaf744a5aa01eb905210f295f191b27d5"></a>
+
+Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr.
+
+<br>
+#### `public inline void `[`SetMatchSegment`](#structFRHAPI__PlayerReport_1a68eee1f512a12d5d8f244169406ee434)`(FString NewValue)` <a id="structFRHAPI__PlayerReport_1a68eee1f512a12d5d8f244169406ee434"></a>
+
+Sets the value of MatchSegment_Optional and also sets MatchSegment_IsSet to true.
+
+<br>
+#### `public inline void `[`ClearMatchSegment`](#structFRHAPI__PlayerReport_1ae4cc911288e101f606d03eff84cda53e)`()` <a id="structFRHAPI__PlayerReport_1ae4cc911288e101f606d03eff84cda53e"></a>
+
+Clears the value of MatchSegment_Optional and sets MatchSegment_IsSet to false.
 
 <br>
 #### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerReport_1a2385a92118ebd2247349552a20412750)`()` <a id="structFRHAPI__PlayerReport_1a2385a92118ebd2247349552a20412750"></a>

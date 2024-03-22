@@ -63,6 +63,11 @@ void FRHAPI_PlayerReport::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
         Writer->WriteIdentifierPrefix(TEXT("match_id"));
         RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
     }
+    if (MatchSegment_IsSet)
+    {
+        Writer->WriteIdentifierPrefix(TEXT("match_segment"));
+        RallyHereAPI::WriteJsonValue(Writer, MatchSegment_Optional);
+    }
     if (CustomData_IsSet)
     {
         Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -136,6 +141,12 @@ bool FRHAPI_PlayerReport::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
     {
         MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
         ParseSuccess &= MatchId_IsSet;
+    }
+    const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
+    if (JsonMatchSegmentField.IsValid() && !JsonMatchSegmentField->IsNull())
+    {
+        MatchSegment_IsSet = TryGetJsonValue(JsonMatchSegmentField, MatchSegment_Optional);
+        ParseSuccess &= MatchSegment_IsSet;
     }
     const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
     if (JsonCustomDataField.IsValid() && !JsonCustomDataField->IsNull())

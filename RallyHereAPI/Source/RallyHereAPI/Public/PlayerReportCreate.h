@@ -160,6 +160,28 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReportCreate : public FRHAPI_Model
      /** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
     void ClearMatchId() { MatchId_IsSet = false; }
 
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FString MatchSegment_Optional{  };
+    /** @brief true if MatchSegment_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool MatchSegment_IsSet{ false };
+    /** @brief Gets the value of MatchSegment_Optional, regardless of it having been set */
+    FString& GetMatchSegment() { return MatchSegment_Optional; }
+    /** @brief Gets the value of MatchSegment_Optional, regardless of it having been set */
+    const FString& GetMatchSegment() const { return MatchSegment_Optional; }
+    /** @brief Gets the value of MatchSegment_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetMatchSegment(const FString& DefaultValue) const { if (MatchSegment_IsSet) return MatchSegment_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of MatchSegment_Optional and returns true if it has been set, otherwise returns false */
+    bool GetMatchSegment(FString& OutValue) const { if (MatchSegment_IsSet) OutValue = MatchSegment_Optional; return MatchSegment_IsSet; }
+    /** @brief Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetMatchSegmentOrNull() { if (MatchSegment_IsSet) return &MatchSegment_Optional; return nullptr; }
+    /** @brief Returns a pointer to MatchSegment_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetMatchSegmentOrNull() const { if (MatchSegment_IsSet) return &MatchSegment_Optional; return nullptr; }
+    /** @brief Sets the value of MatchSegment_Optional and also sets MatchSegment_IsSet to true */
+    void SetMatchSegment(FString NewValue) { MatchSegment_Optional = NewValue; MatchSegment_IsSet = true; }
+     /** @brief Clears the value of MatchSegment_Optional and sets MatchSegment_IsSet to false */
+    void ClearMatchSegment() { MatchSegment_IsSet = false; }
+
     /** @brief Custom data for the report */
     UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
     TMap<FString, FString> CustomData_Optional{  };

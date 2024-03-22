@@ -71,6 +71,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
     void SetCustomData(TMap<FString, FString> NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; }
      /** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
     void ClearCustomData() { CustomData_IsSet = false; }
+
+    /** @brief Unique ID for the joined queue */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    FString QueueId_Optional{  };
+    /** @brief true if QueueId_Optional has been set to a value */
+    UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+    bool QueueId_IsSet{ false };
+    /** @brief Gets the value of QueueId_Optional, regardless of it having been set */
+    FString& GetQueueId() { return QueueId_Optional; }
+    /** @brief Gets the value of QueueId_Optional, regardless of it having been set */
+    const FString& GetQueueId() const { return QueueId_Optional; }
+    /** @brief Gets the value of QueueId_Optional, if it has been set, otherwise it returns DefaultValue */
+    const FString& GetQueueId(const FString& DefaultValue) const { if (QueueId_IsSet) return QueueId_Optional; return DefaultValue; }
+    /** @brief Fills OutValue with the value of QueueId_Optional and returns true if it has been set, otherwise returns false */
+    bool GetQueueId(FString& OutValue) const { if (QueueId_IsSet) OutValue = QueueId_Optional; return QueueId_IsSet; }
+    /** @brief Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr */
+    FString* GetQueueIdOrNull() { if (QueueId_IsSet) return &QueueId_Optional; return nullptr; }
+    /** @brief Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr */
+    const FString* GetQueueIdOrNull() const { if (QueueId_IsSet) return &QueueId_Optional; return nullptr; }
+    /** @brief Sets the value of QueueId_Optional and also sets QueueId_IsSet to true */
+    void SetQueueId(FString NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true; }
+     /** @brief Clears the value of QueueId_Optional and sets QueueId_IsSet to false */
+    void ClearQueueId() { QueueId_IsSet = false; }
 };
 
 /** @} */
