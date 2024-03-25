@@ -35,6 +35,7 @@ Main settings for the Integration.
 `public FName `[`EnvironmentOSSName`](#classURH__IntegrationSettings_1a6dcea31e94599c761b3616e62f0b65ab) | Online Subsystem to use for selecting the base URL environment. If not provided, will use the default OSS.
 `public bool `[`bAutoStartSessionsAfterJoin`](#classURH__IntegrationSettings_1a43e468e0d80e224c6fc7479940e0bcab) | Whether to automatically start platform sessions after joining them.
 `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) | Whether to automatically join platform sessions after a user change when invites were received while logged out.
+`public bool `[`bAutoMakeSessionsJoinableOnHostMapLoadComplete`](#classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675) | Whether to automatically mark hosted sessions as joinable after map load completes.
 `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) | If set, the connection attempt must have a valid security token to be allowed to connect.
 `public bool `[`bRequireImportedPlayerIdsForJoining`](#classURH__IntegrationSettings_1aa8eb456e2ac57561cf12b7c3c306327f) | If set, the Player Id must have been imported to the instance before being allowed to connect.
 `public bool `[`bRequireValidPlayerIdsForJoining`](#classURH__IntegrationSettings_1a6fad3a9359d98b325990c8723a48a4c9) | If set, the Player Id must be valid before being allowed to connect.
@@ -230,6 +231,11 @@ Whether to automatically start platform sessions after joining them.
 #### `public bool `[`bAutoJoinPlatformSessionsAfterUserChange`](#classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a) <a id="classURH__IntegrationSettings_1a999a80d02b5974b5be5be331ac13682a"></a>
 
 Whether to automatically join platform sessions after a user change when invites were received while logged out.
+
+<br>
+#### `public bool `[`bAutoMakeSessionsJoinableOnHostMapLoadComplete`](#classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675) <a id="classURH__IntegrationSettings_1a6776fe09a632de261d308f6402261675"></a>
+
+Whether to automatically mark hosted sessions as joinable after map load completes.
 
 <br>
 #### `public bool `[`bUseSecurityTokenForJoining`](#classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2) <a id="classURH__IntegrationSettings_1a782c0fd4f8a350128f7f686fad7e1af2"></a>
