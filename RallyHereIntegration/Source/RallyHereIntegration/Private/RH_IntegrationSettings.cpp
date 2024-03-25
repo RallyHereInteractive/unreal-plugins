@@ -36,6 +36,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsBurstCountThreshold = 5;
 	WebRequestsBurstTimeThresholdInSeconds = 5;
 
+	bAutoMakeSessionsJoinableOnHostMapLoadComplete = true;
 	bUseSecurityTokenForJoining = true;
 	bRequireImportedPlayerIdsForJoining = true;
 	bRequireValidPlayerIdsForJoining = true;

@@ -113,6 +113,10 @@ public:
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Platform")
 	bool bAutoJoinPlatformSessionsAfterUserChange;
 
+	/** @brief Whether to automatically mark hosted sessions as joinable after map load completes */
+	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
+	bool bAutoMakeSessionsJoinableOnHostMapLoadComplete;
+
 	/** @brief If set, the connection attempt must have a valid security token to be allowed to connect. */
 	UPROPERTY(EditAnywhere, Config, Category = "Sessions|Joining")
 	bool bUseSecurityTokenForJoining;

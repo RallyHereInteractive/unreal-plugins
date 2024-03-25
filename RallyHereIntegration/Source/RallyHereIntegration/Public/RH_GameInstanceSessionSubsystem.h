@@ -260,6 +260,12 @@ public:
 	virtual void TerminateBackfill() { ActiveSessionState.bIsBackfillTerminated = true; }
 
 	/**
+	 * @brief Set the currently active session as joinable, and do any work necessary to make it so.  Automatically called if bAutoMakeSessionsJoinableOnHostMapLoadComplete is true
+	 * @param [in] pWorld The world that is being hosted
+	 */
+	virtual bool MakeActiveSessionJoinable(UWorld* pWorld);
+
+	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
 	 */
 	FRH_OnBeaconCreatedDelegate OnBeaconCreated;
