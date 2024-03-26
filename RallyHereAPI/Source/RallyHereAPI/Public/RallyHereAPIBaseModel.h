@@ -146,7 +146,19 @@ public:
 	FResponse(FRequestMetadata InRequestMetadata);
 	virtual ~FResponse() = default;
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) = 0;
+	bool ParseResponse(bool& bOutParsedHeaders, bool& bOutParsedContent, bool& bOutNeedsReauth)
+	{
+		bOutParsedContent = bOutNeedsReauth = false;
+		bOutParsedHeaders = ParseHeaders();
+		if (bOutParsedHeaders)
+		{
+			bOutParsedContent = ParseContent(bOutNeedsReauth);
+		}
+		return bOutParsedHeaders && bOutParsedContent && !bOutNeedsReauth;
+	};
+	
 	virtual bool ParseHeaders() { return true; }
+	virtual bool ParseContent(bool& bOutNeedsReauth);
 
 	void SetSuccessful(bool InSuccessful) { Successful = InSuccessful; }
 	bool IsSuccessful() const { return Successful; }
@@ -172,6 +184,11 @@ protected:
 	FHttpResponsePtr HttpResponse;
 	FRequestMetadata RequestMetadata;
 	TSharedPtr<FJsonValue> ResponseJson;
+	
+	virtual bool ParseTypelessContent(bool& bNeedsReauth);
+	virtual bool ParseTextTypeContent(bool& bNeedsReauth);
+	virtual bool ParseJsonTypeContent(bool& bNeedsReauth);
+	virtual bool ParseUnknownTypeContent(bool& bNeedsReauth);
 };
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FAPI_RequestStarted, const FRequestMetadata&, FHttpRequestRef);
